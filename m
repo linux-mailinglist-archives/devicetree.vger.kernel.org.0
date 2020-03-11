@@ -2,180 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4400018173A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 12:57:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6520E18176B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729284AbgCKL47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 07:56:59 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:57394 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729244AbgCKL46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 07:56:58 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id B2559295EBA
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, ck.hu@mediatek.com,
-        p.zabel@pengutronix.de, airlied@linux.ie, mturquette@baylibre.com,
-        sboyd@kernel.org, ulrich.hecht+renesas@gmail.com,
-        laurent.pinchart@ideasonboard.com
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-media@vger.kernel.org, Allison Randal <allison@lohutok.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-mediatek@lists.infradead.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        dri-devel@lists.freedesktop.org,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, wens@csie.org,
-        Daniel Vetter <daniel@ffwll.ch>, linux-clk@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        devicetree@vger.kernel.org, Matthias Brugger <mbrugger@suse.com>,
-        Thomas Gleixner <tglx@linutronix.de>, frank-w@public-files.de,
-        linux-arm-kernel@lists.infradead.org, hsinyi@chromium.org,
-        Richard Fontana <rfontana@redhat.com>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>, sean.wang@mediatek.com,
-        rdunlap@infradead.org, matthias.bgg@kernel.org,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>
-Subject: [PATCH v11 5/5] soc / drm: mediatek: Fix mediatek-drm device probing
-Date:   Wed, 11 Mar 2020 12:56:14 +0100
-Message-Id: <20200311115614.1425528-6-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200311115614.1425528-1-enric.balletbo@collabora.com>
-References: <20200311115614.1425528-1-enric.balletbo@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729306AbgCKME5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:04:57 -0400
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:28645 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729279AbgCKME4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 08:04:56 -0400
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Mar 2020 17:34:47 +0530
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 11 Mar 2020 17:34:25 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 7212326C0; Wed, 11 Mar 2020 17:34:24 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v4 0/4] Add QMP V3 USB3 PHY support for SC7180 
+Date:   Wed, 11 Mar 2020 17:34:08 +0530
+Message-Id: <1583928252-21246-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the actual implementation the same compatible string
-"mediatek,<chip>-mmsys" is used to bind the clock drivers
-(drivers/soc/mediatek) as well as to the gpu driver
-(drivers/gpu/drm/mediatek/mtk_drm_drv.c). This ends with the problem
-that the only probed driver is the clock driver and there is no display
-at all.
+Add QMP V3 USB3 PHY entries for SC7180 in phy driver and
+device tree bindings.
 
-In any case having the same compatible string for two drivers is not
-correct and should be fixed. To fix this, and maintain backward
-compatibility, we can consider that the mmsys driver is the top-level
-entry point for the multimedia subsystem, so is not a pure clock
-controller but a system controller, and the drm driver is instantiated
-by that MMSYS driver.
+changes in v4:
+*Addressed comments from Matthias and Rob in yaml file.
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
----
+changes in v3:
+*Addressed Rob's comments in yaml file.
+*Sepearated the SC7180 support in yaml patch.
+*corrected the phy reset entries in device tree.
 
-Changes in v11: None
-Changes in v10:
-- Match driver data to get display routing.
+changes in v2:
+*Remove global phy reset in QMP PHY.
+*Convert QMP PHY bindings to yaml.
 
-Changes in v9:
-- Do not move the display routing from the drm driver (CK)
+Sandeep Maheswaram (4):
+  dt-bindings: phy: qcom,qmp: Convert QMP PHY bindings to yaml
+  dt-bindings: phy: qcom,qmp: Add support for SC7180
+  phy: qcom-qmp: Add QMP V3 USB3 PHY support for SC7180
+  arm64: dts: qcom: sc7180: Correct qmp phy reset entries
 
-Changes in v8:
-- New patch introduced in this series.
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      | 315 +++++++++++++++++++++
+ .../devicetree/bindings/phy/qcom-qmp-phy.txt       | 237 ----------------
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   4 +-
+ drivers/phy/qualcomm/phy-qcom-qmp.c                |  38 +++
+ 4 files changed, 355 insertions(+), 239 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
 
-Changes in v7: None
-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 31 ++++++++++++++++----------
- drivers/soc/mediatek/mtk-mmsys.c       |  6 +++++
- 2 files changed, 25 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 208f9c5256ef..bb26e346750a 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -422,9 +422,21 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	{ }
- };
- 
-+static const struct of_device_id mtk_drm_of_ids[] = {
-+	{ .compatible = "mediatek,mt2701-mmsys",
-+	  .data = &mt2701_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt2712-mmsys",
-+	  .data = &mt2712_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8173-mmsys",
-+	  .data = &mt8173_mmsys_driver_data},
-+	{ }
-+};
-+
- static int mtk_drm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct device_node *phandle = dev->parent->of_node;
-+	const struct of_device_id *of_id;
- 	struct mtk_drm_private *private;
- 	struct device_node *node;
- 	struct component_match *match = NULL;
-@@ -442,8 +454,14 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 		return -ENODEV;
- 	}
- 
-+	of_id = of_match_node(mtk_drm_of_ids, phandle);
-+	if (!of_id)
-+		return -ENODEV;
-+
-+	private->data = of_id->data;
-+
- 	/* Iterate over sibling DISP function blocks */
--	for_each_child_of_node(dev->of_node->parent, node) {
-+	for_each_child_of_node(phandle->parent, node) {
- 		const struct of_device_id *of_id;
- 		enum mtk_ddp_comp_type comp_type;
- 		int comp_id;
-@@ -575,22 +593,11 @@ static int mtk_drm_sys_resume(struct device *dev)
- static SIMPLE_DEV_PM_OPS(mtk_drm_pm_ops, mtk_drm_sys_suspend,
- 			 mtk_drm_sys_resume);
- 
--static const struct of_device_id mtk_drm_of_ids[] = {
--	{ .compatible = "mediatek,mt2701-mmsys",
--	  .data = &mt2701_mmsys_driver_data},
--	{ .compatible = "mediatek,mt2712-mmsys",
--	  .data = &mt2712_mmsys_driver_data},
--	{ .compatible = "mediatek,mt8173-mmsys",
--	  .data = &mt8173_mmsys_driver_data},
--	{ }
--};
--
- static struct platform_driver mtk_drm_platform_driver = {
- 	.probe	= mtk_drm_probe,
- 	.remove	= mtk_drm_remove,
- 	.driver	= {
- 		.name	= "mediatek-drm",
--		.of_match_table = mtk_drm_of_ids,
- 		.pm     = &mtk_drm_pm_ops,
- 	},
- };
-diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-index 4b286b525cd3..32a92ec447c5 100644
---- a/drivers/soc/mediatek/mtk-mmsys.c
-+++ b/drivers/soc/mediatek/mtk-mmsys.c
-@@ -285,6 +285,7 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
- 	const struct mtk_mmsys_driver_data *data;
- 	struct device *dev = &pdev->dev;
- 	struct platform_device *clks;
-+	struct platform_device *drm;
- 	void __iomem *config_regs;
- 	struct resource *mem;
- 	int ret;
-@@ -307,6 +308,11 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
- 	if (IS_ERR(clks))
- 		return PTR_ERR(clks);
- 
-+	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
-+					    PLATFORM_DEVID_AUTO, NULL, 0);
-+	if (IS_ERR(drm))
-+		return PTR_ERR(drm);
-+
- 	return 0;
- }
- 
 -- 
-2.25.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
