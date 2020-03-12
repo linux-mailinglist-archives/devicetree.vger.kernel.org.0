@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57F56183AC7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 21:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82410183AC9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 21:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726788AbgCLUoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 16:44:08 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41604 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbgCLUoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 16:44:08 -0400
-Received: by mail-oi1-f195.google.com with SMTP id i1so6962881oie.8;
-        Thu, 12 Mar 2020 13:44:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Bf/mniPvgv/hyidCSVXAA0PznIXPMrUrlLxoUaBO5E4=;
-        b=jnPl5P+dSGW/rSpjff9KuFb6qf9tErM3JuhqAkf8bwNWv2JaP8CZlpFJy/wjBxBWbW
-         JQ5Sb+a3+OoD75U3QqA9UpOcxAaJBKT3pX8elBxAeRNSYUcyjPAitf/ee5BplJw+omR7
-         OzjUDbynKd5icdtSuxd7Mo7jwHunKnpORU+yFcKOl4llr+aLlklyrkTdtjnLdXWeX9a4
-         7KuQ3hCEJAT8u+sSm+N5e6npsCFS75qRkf3kR0rmsXL/GK348QUBt8VxsZEU+qOcM4ka
-         74ued8mNaG/bkbYtgObwsfr1sLdNUlkSNKvXkYgPqcBIuxYFblY6OrV9gS9RUYBOL2qf
-         kkvA==
-X-Gm-Message-State: ANhLgQ1cRQOS0cjhHhEd8n32dcggp4cUeUVldO/ngwRe7KWyrJ9RZwnh
-        x5slIFFs2tSR5PxZkAMtiQ==
-X-Google-Smtp-Source: ADFU+vu12lPkGVzdrIc8Kmu31z1cZSRT3mJtmGey2zd3WfeSfiPOTSTWLggHp89RbmmTJLde5D8/og==
-X-Received: by 2002:aca:4bc5:: with SMTP id y188mr4293335oia.9.1584045847828;
-        Thu, 12 Mar 2020 13:44:07 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c2sm225330otm.27.2020.03.12.13.44.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2020 13:44:06 -0700 (PDT)
-Received: (nullmailer pid 8135 invoked by uid 1000);
-        Thu, 12 Mar 2020 20:44:06 -0000
-Date:   Thu, 12 Mar 2020 15:44:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sergey.Semin@baikalelectronics.ru
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/22] dt-bindings: Add vendor prefix for Baikal
- Electronics, JSC
-Message-ID: <20200312204406.GA4654@bogus>
-References: <20200306124705.6595-1-Sergey.Semin@baikalelectronics.ru>
- <20200306124832.986FE8030793@mail.baikalelectronics.ru>
+        id S1726826AbgCLUpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 16:45:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726246AbgCLUpR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Mar 2020 16:45:17 -0400
+Received: from localhost (mobile-166-175-186-165.mycingular.net [166.175.186.165])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 067F0205F4;
+        Thu, 12 Mar 2020 20:45:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584045916;
+        bh=zZzSYd+OhEGo8pmui4OqaDSuxP1H2anQxWw6SpQUHb8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=nx7m7zJcnrAvX1RV8llWgsCoe4zJIRYbu9W2a5EFju1bjHduukyyrr861uJ2A38+c
+         SD4yPMh1iEsi3jWdLg+wFDm11H4Mn213zXfKWrpetsfmbPZmH4P3EnuIJMFcVRAlzQ
+         GHFsnrLuzMfgwFRn6465StIBaqkEOazOtFgUBYDc=
+Date:   Thu, 12 Mar 2020 15:45:14 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     will@kernel.org, robh+dt@kernel.org, joro@8bytes.org,
+        baolu.lu@linux.intel.com, sudeep.holla@arm.com,
+        linux-doc@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, iommu@lists.linux-foundation.org,
+        lorenzo.pieralisi@arm.com, corbet@lwn.net, mark.rutland@arm.com,
+        liviu.dudau@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
+        amurray@thegoodpenguin.co.uk, frowand.list@gmail.com
+Subject: Re: [PATCH v2 03/11] PCI: OF: Check whether the host bridge supports
+ ATS
+Message-ID: <20200312204514.GA178416@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200306124832.986FE8030793@mail.baikalelectronics.ru>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200311124506.208376-4-jean-philippe@linaro.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 06, 2020 at 03:46:47PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> From: Serge Semin <fancer.lancer@gmail.com>
+On Wed, Mar 11, 2020 at 01:44:58PM +0100, Jean-Philippe Brucker wrote:
+> When setting up a generic host on a device-tree based system, copy the
+> ats-supported flag into the pci_host_bridge structure.
 > 
-> Add "BAIKAL ELECTRONICS, JSC" to the list of devicetree vendor prefixes
-> as "be".
-> 
-> Website: http://www.baikalelectronics.com
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> v1->v2: keep the helper in pci-host-common.c
+> ---
+>  drivers/pci/controller/pci-host-common.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 9e67944bec9c..8568713396af 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -141,6 +141,8 @@ patternProperties:
->      description: Shenzhen AZW Technology Co., Ltd.
->    "^bananapi,.*":
->      description: BIPAI KEJI LIMITED
-> +  "^be,.*":
-> +    description: BAIKAL ELECTRONICS, JSC
+> diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
+> index 250a3fc80ec6..2e800bc6ae7a 100644
+> --- a/drivers/pci/controller/pci-host-common.c
+> +++ b/drivers/pci/controller/pci-host-common.c
+> @@ -54,6 +54,16 @@ static struct pci_config_window *gen_pci_init(struct device *dev,
+>  	return ERR_PTR(err);
+>  }
+>  
+> +static void of_pci_host_check_ats(struct pci_host_bridge *bridge)
+> +{
+> +	struct device_node *np = bridge->bus->dev.of_node;
+> +
+> +	if (!np)
+> +		return;
+> +
+> +	bridge->ats_supported = of_property_read_bool(np, "ats-supported");
+> +}
+> +
+>  int pci_host_common_probe(struct platform_device *pdev,
+>  			  struct pci_ecam_ops *ops)
+>  {
+> @@ -92,6 +102,7 @@ int pci_host_common_probe(struct platform_device *pdev,
+>  		return ret;
+>  	}
+>  
+> +	of_pci_host_check_ats(bridge);
 
-Also, is 'be' a well known abbreviation for this company. Perhaps 
-'baikal' instead?
+I would prefer to write this as a predicate instead of having the
+assignment be a side-effect, e.g.,
 
->    "^bhf,.*":
->      description: Beckhoff Automation GmbH & Co. KG
->    "^bitmain,.*":
+  bridge->ats_supported = of_pci_host_ats_supported(bridge);
+
+If that works for you,
+
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+
+>  	platform_set_drvdata(pdev, bridge->bus);
+>  	return 0;
+>  }
 > -- 
 > 2.25.1
 > 
