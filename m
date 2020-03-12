@@ -2,56 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D060183E82
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 02:12:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163B218331B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 15:31:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727150AbgCMBMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 21:12:00 -0400
-Received: from 97-93-29-23.dhcp.snlo.ca.charter.com ([97.93.29.23]:54474 "EHLO
-        skomatineni-linux.nvidia.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727179AbgCMBL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Mar 2020 21:11:27 -0400
-X-Greylist: delayed 91210 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Mar 2020 21:11:26 EDT
-Received: by skomatineni-linux.nvidia.com (Postfix, from userid 1000)
-        id 070701040081; Tue, 10 Mar 2020 21:02:53 -0700 (PDT)
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     skomatineni@nvidia.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org, josephl@nvidia.com,
-        daniel.lezcano@linaro.org, mmaddireddy@nvidia.com,
-        nkristam@nvidia.com
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: tegra: Add reset-cells to mc
-Date:   Tue, 10 Mar 2020 21:02:46 -0700
-Message-Id: <1583899366-1588-1-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727567AbgCLOah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 10:30:37 -0400
+Received: from mail-wr1-f53.google.com ([209.85.221.53]:36867 "EHLO
+        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727414AbgCLOag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 10:30:36 -0400
+Received: by mail-wr1-f53.google.com with SMTP id 6so7760269wre.4
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2020 07:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lYlsV+0cFhI9h/pYRfsk3djKR8WhNlc269xMicOU68A=;
+        b=list6E2hu0YAwMIDt+JPZR0ang+wqpLJPzY9oxQPcsmVekhQyifaFtxHlTPWjwA9Je
+         fjhNeQbCTVPQkAS6awePwy91Dzjp8Gz4D7Xj7xw5GZ2avB2v4YpYKlbxc0d921dZsmWQ
+         KSQe6TyLMn1lR3zGBF81mRC/fduAOtqGmSsMtaV+xJRTmEVcxtp6991wYNyNRJmPmYjb
+         5hDvWlkLoB/9DxHsJBMarZD3YaAQ0uSQ1Ua68Kd7lrOrwQZT1a1HjAbZGvd+Cb9vvWVU
+         hUFmGbP71trSGC3VUuz4zOhsHkUzBi6aCxmGRe+/YXm/jUaCcN0DacHaSOwSMz+kZ/kR
+         FanQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lYlsV+0cFhI9h/pYRfsk3djKR8WhNlc269xMicOU68A=;
+        b=uUx/9ArncCTal47JVMYHUjU4ZKPYZ5KmFfcGfXl3OjQzzwHgWN3+FQzOhrefFj4vBr
+         Kyg5cyyeUHIbzrhsK1e4rvAp5zYT1So5Fvvk7hFg5wEuJwjwc9lOQqEvHMxiWWp+SiNZ
+         czXUcHXYoDBBHQOpXaQ4sc7d7ZSjfxSCyqUzAUX1XReR6L0ooXlC9+HER8Sd8FXaRUxR
+         MwLYoIPBU7pMn2f0tG3LPqGkyNSF9ygt0i90s0DrA8VB8FeQPwtcDkih37XCl+WTHivR
+         abwCb8oFm9pL6dlQ0/cmON6AX2BB9eYZY9i7eZ18pdwVS2Ad6x1Yd6Gt7f5W2uTQDLya
+         wBxw==
+X-Gm-Message-State: ANhLgQ0lL8/oS5EJNAFP4eXLbG1ClCXBYzc8PT6ZkXG2E6q0PNbIYc6t
+        t0S1ohHAoXMhOLPJENbAUWvEhQ==
+X-Google-Smtp-Source: ADFU+vu25VE3Sm06Pe6EURmiIU0APvhxTGY3muWASxJ2HSGF1+cC0Oh6wwWs2ENxev29gzq+PgsqPw==
+X-Received: by 2002:adf:fa4c:: with SMTP id y12mr3257467wrr.392.1584023434641;
+        Thu, 12 Mar 2020 07:30:34 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id v8sm72860454wrw.2.2020.03.12.07.30.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2020 07:30:33 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org, agross@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/5] arm64: dts: qcom: sdm845: add audio support
+Date:   Thu, 12 Mar 2020 14:30:19 +0000
+Message-Id: <20200312143024.11059-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra210 device tree is missing reset-cells property for mc node.
+This patchset adds analog audio support for sdm845 based boards.
 
-This patch fixes it.
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Changes since v1:
+	- various trival cleanups done as suggested by Bjorn
+	- added compressed audio dai for db845c
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 66dd1df..9241163 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -935,6 +935,7 @@
- 		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
- 
- 		#iommu-cells = <1>;
-+		#reset-cells = <1>;
- 	};
- 
- 	sata@70020000 {
+Srinivas Kandagatla (5):
+  arm64: dts: qcom: sdm845: add slimbus nodes
+  arm64: dts: qcom: sdm845: add apr nodes
+  arm64: dts: qcom: c630: Enable audio support
+  arm64: dts: qcom: sdm845: add pinctrl nodes for quat i2s
+  arm64: dts: qcom: db845c: add analog audio support
+
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    | 159 ++++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 281 ++++++++++++++++++
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 113 +++++++
+ 3 files changed, 553 insertions(+)
+
 -- 
-2.7.4
+2.21.0
 
