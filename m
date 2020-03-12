@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C71CF182D59
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 11:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5307182DB5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 11:32:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726028AbgCLKXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 06:23:02 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:35282 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725268AbgCLKXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 06:23:02 -0400
-Received: by mail-wr1-f66.google.com with SMTP id d5so6327572wrc.2;
-        Thu, 12 Mar 2020 03:23:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=R39Tv+SJk1mlAAPLn4Outf5Cn4fszK3o5vE5appptCQ=;
-        b=m/GTFAZpm1PoK9CRxkedOWz96yiMDrmJ4OJvKUBr+fD9DtdQvxc/2FFDnQEt0YStqY
-         x9SfI6ajDaK+qNuJbOFFNFVKgFEj++WBuJnMDyLLE74P628Mvp/VhGWeuX7NsqW1lexS
-         IB/gOlQ+QDU93dhY624kh22HQ7u4NKtKUweQAhTkzFPsfUbB5gaF/5IS7oGAsBPNEVF7
-         krYB/h8Capx3EfkVzEKZrKCjppeElKO4u/h4aNGiQBl90nCAp2gqRZeh8y1BDnjkqB5C
-         EFcNfeCEv9KhtVv8bhS56hRrmoHrr3M81QhL1gfOdYG2cnNmPihuI2XJu/bRry6j8WN3
-         f4bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=R39Tv+SJk1mlAAPLn4Outf5Cn4fszK3o5vE5appptCQ=;
-        b=e2NXQAvOeaFjiJxHdjpxqFtM6HQZvnLXNvUJeFbpa2zo+7UDGJwZj4kVKJZVQiu+Mq
-         PyvMd8+0tStFO4dYDdbfMjCn0le81x5Kbr8Zt7antyAMul13qQGUL5vEn8D1wv1G76WE
-         zZwh81z4Nb5KQ98J7G3uGdVfqvIlQQDesu2eujGZ3qFmgUBBvJqA7YhLAxxesxcIQumO
-         aXoelmhXf+mK/BQSPGQLn8Hho6QvDugpeUrr2TFa8MAsoACCvsYXeO5Z874I3atetb1+
-         8KTa0iBGR0xK2N2enZnDhb651MBwSo6AjyIpATViKJaGHJ6z5zCHULkcl+OX9JWNSpbA
-         i9gA==
-X-Gm-Message-State: ANhLgQ3WoqaEWrC0UYlXvVwBTV9z37pQTwqlMKd2zl/h3q299MdtFy68
-        6dhVtz0i+IoSciUddLgjdBo=
-X-Google-Smtp-Source: ADFU+vvIPiE9oEe1sZdLC6ETn26Bj3DUmMFh6IUf3SyWaySqtKrgHzYOT/xCRJ9z9STnzL9EAcaYgA==
-X-Received: by 2002:a05:6000:118c:: with SMTP id g12mr10378257wrx.341.1584008579775;
-        Thu, 12 Mar 2020 03:22:59 -0700 (PDT)
-Received: from localhost (pD9E516A9.dip0.t-ipconnect.de. [217.229.22.169])
-        by smtp.gmail.com with ESMTPSA id 98sm13500854wrm.64.2020.03.12.03.22.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2020 03:22:56 -0700 (PDT)
-Date:   Thu, 12 Mar 2020 11:22:44 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     JC Kuo <jckuo@nvidia.com>, robh@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        felipe.balbi@linux.intel.com
-Subject: Re: [PATCH v1] dt-binding: usb: add "super-speed-plus"
-Message-ID: <20200312102244.GC1199023@ulmo>
-References: <20200113060046.14448-1-jckuo@nvidia.com>
- <20200210185821.GA1057764@kroah.com>
+        id S1726891AbgCLKc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 06:32:29 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:39151 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726841AbgCLKc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 06:32:27 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jCL8T-0002xl-Ar; Thu, 12 Mar 2020 11:32:17 +0100
+Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jCL8R-0001Jn-AL; Thu, 12 Mar 2020 11:32:15 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: [PATCH v13 00/19] TVP5150 Features and Fixes
+Date:   Thu, 12 Mar 2020 11:31:35 +0100
+Message-Id: <20200312103156.3178-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5G06lTa6Jq83wMTw"
-Content-Disposition: inline
-In-Reply-To: <20200210185821.GA1057764@kroah.com>
-User-Agent: Mutt/1.13.1 (2019-12-14)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
 
---5G06lTa6Jq83wMTw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+since my v12 wasn't the last I drop any comments about that here ;)
+Anyway this version addresses Sakari's and Hans comments.
 
-On Mon, Feb 10, 2020 at 10:58:21AM -0800, Greg KH wrote:
-> On Mon, Jan 13, 2020 at 02:00:46PM +0800, JC Kuo wrote:
-> > This commit adds "super-speed-plus" to valid argument list of
-> > "maximum-speed" property.
-> >=20
-> > Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/generic.txt | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
->=20
-> What ever happened to this?  Did the DT developers see it?
->=20
-> I suggest resending please so it gets into their queue to review.
+In short:
+- Patch 4 and 5 are new according Sakari's comments. I splitted them
+  due to backport reasons (something for stable?).
+- Patch 8:
+  - address the memory leak bug
+  - address the uselsee connector NULL set
+- Patch 13:
+  - fixes the non static issue
 
-It's been a while and you probably noticed by now, but in case you
-haven't: Rob picked this up into the devicetree tree a few weeks ago, so
-no need to worry about this any longer.
+Regards,
+  Marco
 
-Thierry
+Javier Martinez Canillas (1):
+  partial revert of "[media] tvp5150: add HW input connectors support"
 
---5G06lTa6Jq83wMTw
-Content-Type: application/pgp-signature; name="signature.asc"
+Marco Felsch (19):
+  dt-bindings: connector: analog: add sdtv standards property
+  dt-bindings: display: add sdtv-standards defines
+  media: v4l: link dt-bindings and uapi
+  media: v4l2-fwnode: fix v4l2_fwnode_parse_link handling
+  media: v4l2-fwnode: simplify v4l2_fwnode_parse_link
+  media: v4l2-fwnode: add endpoint id field to v4l2_fwnode_link
+  media: v4l2-fwnode: add v4l2_fwnode_connector
+  media: v4l2-fwnode: add initial connector parsing support
+  media: tvp5150: add input source selection of_graph support
+  media: dt-bindings: tvp5150: Add input port connectors DT bindings
+  media: tvp5150: fix set_selection rectangle handling
+  media: tvp5150: add FORMAT_TRY support for get/set selection handlers
+  media: tvp5150: move irq en-/disable into runtime-pm ops
+  media: tvp5150: add v4l2-event support
+  media: tvp5150: add subdev open/close callbacks
+  media: dt-bindings: tvp5150: cleanup bindings stlye
+  media: dt-bindings: tvp5150: add optional sdtv standards documentation
+  media: tvp5150: add support to limit sdtv standards
+  media: tvp5150: make debug output more readable
 
------BEGIN PGP SIGNATURE-----
+Michael Tretter (1):
+  media: tvp5150: initialize subdev before parsing device tree
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl5qDWgACgkQ3SOs138+
-s6FY5xAAwR85ce936jWef2QohmCJ3TQFWmFhJT5xrR4lenXt/X/5CRqHrY/UhFp6
-JDh8UTQytoqUiFBx6qEP6zb7uj1VsrA/dD8vw03/a8mJwSWw7P2sXZc0eSRrSC35
-G2AAq6JLGMDMcXvIGB8mwGrcrbp717KTYD8umwiBUc7qK5U1STNbMS75FzO6bRtN
-7xVk57ED6K9qA76oNVZ2EidzVPTC7l0w/5jBkNwBc3bFwPlxNL/ULtgBYjJAz041
-0s069xWv+OGZyxkG10CaRPCi2erXwYiX2WHivnQJQReY1YHVVqmOOJPTeR11YhTc
-K01Yc+bbKIpyjAPywPDV0oQrOpMb4QPPCjRFzYVJKK66UfNc/ihmlCdXFlN/51/V
-lrV/1/onTP0VKho5LJWfL7S0gJLusbhCBe0TnSnBKpF/R1PW65e6oHqvLUX+Rh/V
-dZMF90Z2JzKzMBSeh4y66GXYzyikFqqAGDt7nEPLTarIyBQD4bbggg0nF7ADVzj7
-HhfSGyCjLVlz8V4G3FN2JHguA1Htjl4We/D5BjghRWQJFBxAvVphJTFi9PDrc/yw
-CH7P4dL1INI4BqJQhxQwpXjJDs4KwS5P4axnBXx9iqXQFTYEWVxOHaX9pKOsI+ix
-cEjOltNEzaPJNS13Zm9Z+aWSdG/3BGLbFOwX7Jfuv1ISOcmBNYc=
-=k0XA
------END PGP SIGNATURE-----
+ .../display/connector/analog-tv-connector.txt |   6 +
+ .../devicetree/bindings/media/i2c/tvp5150.txt | 146 +++-
+ drivers/media/i2c/tvp5150.c                   | 802 ++++++++++++++----
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 192 ++++-
+ include/dt-bindings/display/sdtv-standards.h  |  76 ++
+ include/dt-bindings/media/tvp5150.h           |   2 -
+ include/media/v4l2-fwnode.h                   | 143 ++++
+ include/uapi/linux/videodev2.h                |   4 +
+ 8 files changed, 1156 insertions(+), 215 deletions(-)
+ create mode 100644 include/dt-bindings/display/sdtv-standards.h
 
---5G06lTa6Jq83wMTw--
+-- 
+2.20.1
+
