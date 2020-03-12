@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE245183314
+	by mail.lfdr.de (Postfix) with ESMTP id 5496D183313
 	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 15:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727719AbgCLOat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 10:30:49 -0400
-Received: from mail-wr1-f45.google.com ([209.85.221.45]:33002 "EHLO
-        mail-wr1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727685AbgCLOas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 10:30:48 -0400
-Received: by mail-wr1-f45.google.com with SMTP id a25so7783951wrd.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2020 07:30:47 -0700 (PDT)
+        id S1727714AbgCLOaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 10:30:55 -0400
+Received: from mail-wr1-f46.google.com ([209.85.221.46]:33009 "EHLO
+        mail-wr1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727716AbgCLOav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 10:30:51 -0400
+Received: by mail-wr1-f46.google.com with SMTP id a25so7784133wrd.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2020 07:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YwUqcbSkfiGcYWBIGYa6fyAd0dVAA7TWBNYQrjCfOhE=;
-        b=DgaapTg5RX+RM/6VrRELTPI3+/XW/sUo7nLw+QWisSsj0esPnFTRxK06CDNVuS6dk0
-         wETGh5t0ExN2ajH6UrJSEU0XQSf0F9wx63May9wtKWq/qW8oWeroPbVznFuDKJw2iNHO
-         pSsiqxvr/KVgWfLDNcbpF8SYaRBoUeFVkixCm1jXJGvZYQM0u4irTOucpPcvpfT4eTlk
-         eanB9yuViFYQphQTu0I/T9vH2IDD4OpN74UTpXmcJw9EzWwcOU7+hf3CSjaR7LTtkOeh
-         d6yJA1HRSNNMksR4UmlMsFsJfw3Va/liICmyuMjJXGBFLOmagMqfzwiAvTSj1V25JfUm
-         ZKGw==
+        bh=Avkf50vmIXVLn6vftt8SeIEwKsLAXThhjPmhmV2jMv0=;
+        b=jgrChhvTkmqOK/HunW66SirMl/ynwIK6Aeod19ZbOXj6bEX/phSlSiC5vD2OtZWrVz
+         8lVfAAu2i5M+sFpr54NOgqEvPfO3XOK/hR9BF0+Or+jMIBHDkTOEAU26s9cL8Ma0DekB
+         1hkbYg4mlcEEmQN7OkgBMjVdgsb1KqfCLPxRQDrN/VEROg5hesseT+r0olW+OvhUcs+q
+         U16MHvf4JgGOuxb3rKXVytWFMTubvZeSAg1e198v0MRFKRO4XywUz2MD+UkOWAPO7cWs
+         QSZ6l94A0TUiYpz23tB7wzF+P9JeN0m0dPhlf1Yu/H+RBC7+FwDZSTTDAePIzo0N67Ez
+         bdiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YwUqcbSkfiGcYWBIGYa6fyAd0dVAA7TWBNYQrjCfOhE=;
-        b=jxnG3gOs2mNbZKSHgCriHWvRqLpXXATeY3SqN7WhsAHopR+9BN5T8fpXDYkZdV8W5D
-         qo2F80eaxrKhe42olEXBN/qEwF52c5kIbt2Z6nWYG1O4cSYA7Ic6fVaS4bouwpVgugW/
-         4PWDxVTOiAPtFhSeWOq2wDj8enLf3LAtkNqY7F+rATaYccfDTptGwtvWVLnjBI6JdzkO
-         rvJsUg+r06TgWdG850FBcL2W0nN19uvc5kE9ULQot0xAKIfd3a12ashJcZW2zeHZq4tc
-         ZyPOKVYoEFMKeNnWwGDLlrHAirYU+AkvceFWN8sauGPwKSoqYh5/TylaI6D6LQn2eNnw
-         ++jQ==
-X-Gm-Message-State: ANhLgQ1asMYbETX2O7ykQe6WLKbyZk3bPiQp4FcNX93Aa0Xd4RykA4NE
-        YDEf+Z7Lx3ECbOFLw3d2fZtQqw==
-X-Google-Smtp-Source: ADFU+vtNye5LXYq43J99KhyYyK+mxSC1U8QCons7K7iPov/Ue1YnNXFCphoEgn8CM88EVDQV1vPf+Q==
-X-Received: by 2002:adf:e3c9:: with SMTP id k9mr907979wrm.247.1584023446356;
-        Thu, 12 Mar 2020 07:30:46 -0700 (PDT)
+        bh=Avkf50vmIXVLn6vftt8SeIEwKsLAXThhjPmhmV2jMv0=;
+        b=okpZiEOHwUwWiRBw5X6Aw014tt4zlkealyHRltcXv5rM1oTLwJvlRCuT0bjUOXYkY7
+         KSvqZ7Rg4C4GFFc5FMfGH4FJLnTctA2/MQ0uTmxB5fhO5XLuA377B0NQAriuVjt+JB8F
+         RCGAetgn1WNOpEq4xm1OIpkJQreaJvyM61wA1nXtFbf9TMf/BqCEKaBZPxtkWbGtxY5P
+         eAgq0Bk2eDRFgDUh5ES7fhLz0fUilJb99DGotYRQl4mYxLSSAfzUgKLMaKPxdR+0ODYk
+         Afk4VJP5sAMCvz+4rBUSJfPvt0HilSjRhbZogyhvjW4YMFQG1F1JMc1shZ1xOVTjoWXW
+         ZA0w==
+X-Gm-Message-State: ANhLgQ3DZ3KcVmCIZbXfeGA4hXfmPsyXjYJsQatPGNe9nmICzZSjkZJE
+        qZmP7KD2TBNgnpcASE++OlWUhsB6xqw=
+X-Google-Smtp-Source: ADFU+vsXVtVEuVdxGV3DL215cc14Vmb07eGBnvaa7iMqhEAt7kSzEw36/IKC+StZ02WGLY/NpcRSog==
+X-Received: by 2002:a5d:640a:: with SMTP id z10mr6984140wru.301.1584023448654;
+        Thu, 12 Mar 2020 07:30:48 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id v8sm72860454wrw.2.2020.03.12.07.30.42
+        by smtp.gmail.com with ESMTPSA id v8sm72860454wrw.2.2020.03.12.07.30.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2020 07:30:44 -0700 (PDT)
+        Thu, 12 Mar 2020 07:30:47 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     bjorn.andersson@linaro.org, agross@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 4/5] arm64: dts: qcom: sdm845: add pinctrl nodes for quat i2s
-Date:   Thu, 12 Mar 2020 14:30:23 +0000
-Message-Id: <20200312143024.11059-5-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 5/5] arm64: dts: qcom: db845c: add analog audio support
+Date:   Thu, 12 Mar 2020 14:30:24 +0000
+Message-Id: <20200312143024.11059-6-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200312143024.11059-1-srinivas.kandagatla@linaro.org>
 References: <20200312143024.11059-1-srinivas.kandagatla@linaro.org>
@@ -62,160 +62,201 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pinctrl nodes required for QUAT I2S
+This patch adds support to Analog audio via WSA881x speakers.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 136 +++++++++++++++++++++++++++
- 1 file changed, 136 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 159 +++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 5b7626f2a27b..c565948e322f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2152,6 +2152,142 @@
- 					function = "qup15";
- 				};
- 			};
-+
-+			quat_mi2s_sleep: quat_mi2s_sleep {
-+				mux {
-+					pins = "gpio58", "gpio59";
-+					function = "gpio";
-+				};
-+
-+				config {
-+					pins = "gpio58", "gpio59";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			quat_mi2s_active: quat_mi2s_active {
-+				mux {
-+					pins = "gpio58", "gpio59";
-+					function = "qua_mi2s";
-+				};
-+
-+				config {
-+					pins = "gpio58", "gpio59";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
-+
-+			quat_mi2s_sd0_sleep: quat_mi2s_sd0_sleep {
-+				mux {
-+					pins = "gpio60";
-+					function = "gpio";
-+				};
-+
-+				config {
-+					pins = "gpio60";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			quat_mi2s_sd0_active: quat_mi2s_sd0_active {
-+				mux {
-+					pins = "gpio60";
-+					function = "qua_mi2s";
-+				};
-+
-+				config {
-+					pins = "gpio60";
-+					drive-strength = <8>;
-+					bias-disable;
-+				};
-+			};
-+
-+			quat_mi2s_sd1_sleep: quat_mi2s_sd1_sleep {
-+				mux {
-+					pins = "gpio61";
-+					function = "gpio";
-+				};
-+
-+				config {
-+					pins = "gpio61";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			quat_mi2s_sd1_active: quat_mi2s_sd1_active {
-+				mux {
-+					pins = "gpio61";
-+					function = "qua_mi2s";
-+				};
-+
-+				config {
-+					pins = "gpio61";
-+					drive-strength = <8>;
-+					bias-disable;
-+				};
-+			};
-+
-+			quat_mi2s_sd2_sleep: quat_mi2s_sd2_sleep {
-+				mux {
-+					pins = "gpio62";
-+					function = "gpio";
-+				};
-+
-+				config {
-+					pins = "gpio62";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			quat_mi2s_sd2_active: quat_mi2s_sd2_active {
-+				mux {
-+					pins = "gpio62";
-+					function = "qua_mi2s";
-+				};
-+
-+				config {
-+					pins = "gpio62";
-+					drive-strength = <8>;
-+					bias-disable;
-+				};
-+			};
-+
-+			quat_mi2s_sd3_sleep: quat_mi2s_sd3_sleep {
-+				mux {
-+					pins = "gpio63";
-+					function = "gpio";
-+				};
-+
-+				config {
-+					pins = "gpio63";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			quat_mi2s_sd3_active: quat_mi2s_sd3_active {
-+				mux {
-+					pins = "gpio63";
-+					function = "qua_mi2s";
-+				};
-+
-+				config {
-+					pins = "gpio63";
-+					drive-strength = <8>;
-+					bias-disable;
-+				};
-+			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 6e60e81f8db7..94aa9227ca51 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -8,6 +8,8 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <dt-bindings/sound/qcom,q6asm.h>
+ #include "sdm845.dtsi"
+ #include "pm8998.dtsi"
+ #include "pmi8998.dtsi"
+@@ -200,6 +202,40 @@
+ 	firmware-name = "qcom/sdm845/adsp.mdt";
+ };
  
- 		mss_pil: remoteproc@4080000 {
++
++&wcd9340{
++	pinctrl-0 = <&wcd_intr_default>;
++	pinctrl-names = "default";
++	clock-names = "extclk";
++	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
++	reset-gpios = <&tlmm 64 0>;
++	vdd-buck-supply = <&vreg_s4a_1p8>;
++	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
++	vdd-tx-supply = <&vreg_s4a_1p8>;
++	vdd-rx-supply = <&vreg_s4a_1p8>;
++	vdd-io-supply = <&vreg_s4a_1p8>;
++
++	swm: swm@c85 {
++		left_spkr: wsa8810-left{
++			compatible = "sdw10217201000";
++			reg = <0 1>;
++			powerdown-gpios = <&wcdgpio 2 GPIO_ACTIVE_HIGH>;
++			#thermal-sensor-cells = <0>;
++			sound-name-prefix = "SpkrLeft";
++			#sound-dai-cells = <0>;
++		};
++
++		right_spkr: wsa8810-right{
++			compatible = "sdw10217201000";
++			powerdown-gpios = <&wcdgpio 2 GPIO_ACTIVE_HIGH>;
++			reg = <0 2>;
++			#thermal-sensor-cells = <0>;
++			sound-name-prefix = "SpkrRight";
++			#sound-dai-cells = <0>;
++		};
++	};
++};
++
+ &apps_rsc {
+ 	pm8998-rpmh-regulators {
+ 		compatible = "qcom,pm8998-rpmh-regulators";
+@@ -535,6 +571,15 @@
+ 		function = "gpio";
+ 		bias-pull-up;
+ 	};
++
++	wcd_intr_default: wcd_intr_default {
++		pins = <54>;
++		function = "gpio";
++
++		input-enable;
++		bias-pull-down;
++		drive-strength = <2>;
++	};
+ };
+ 
+ &uart6 {
+@@ -674,3 +719,117 @@
+ 		bias-pull-up;
+ 	};
+ };
++
++/* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
++&q6afedai {
++	qi2s@22 {
++		reg = <22>;
++		qcom,sd-lines = <0 1 2 3>;
++	};
++};
++
++&q6asmdai {
++	dai@0 {
++		reg = <0>;
++		direction = <2>;
++	};
++
++	dai@1 {
++		reg = <1>;
++		direction = <2>;
++	};
++
++	dai@2 {
++		reg = <2>;
++		direction = <1>;
++	};
++
++	dai@3 {
++		reg = <3>;
++		direction = <2>;
++		is-compress-dai;
++	};
++};
++
++&sound {
++	compatible = "qcom,db845c-sndcard";
++	pinctrl-0 = <&quat_mi2s_active
++			 &quat_mi2s_sd0_active
++			 &quat_mi2s_sd1_active
++			 &quat_mi2s_sd2_active
++			 &quat_mi2s_sd3_active>;
++	pinctrl-names = "default";
++	model = "DB845c";
++	audio-routing =
++		"RX_BIAS", "MCLK",
++		"AMIC1", "MIC BIAS1",
++		"AMIC2", "MIC BIAS2",
++		"DMIC0", "MIC BIAS1",
++		"DMIC1", "MIC BIAS1",
++		"DMIC2", "MIC BIAS3",
++		"DMIC3", "MIC BIAS3",
++		"SpkrLeft IN", "SPK1 OUT",
++		"SpkrRight IN", "SPK2 OUT",
++		"MM_DL1",  "MultiMedia1 Playback",
++		"MM_DL2",  "MultiMedia2 Playback",
++		"MM_DL4",  "MultiMedia4 Playback",
++		"MultiMedia3 Capture", "MM_UL3";
++
++	mm1-dai-link {
++		link-name = "MultiMedia1";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
++		};
++	};
++
++	mm2-dai-link {
++		link-name = "MultiMedia2";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA2>;
++		};
++	};
++
++	mm3-dai-link {
++		link-name = "MultiMedia3";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
++		};
++	};
++
++	mm4-dai-link {
++		link-name = "MultiMedia4";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA4>;
++		};
++	};
++
++	slim-dai-link {
++		link-name = "SLIM Playback";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai =  <&left_spkr>, <&right_spkr>, <&swm 0>, <&wcd9340 0>;
++		};
++	};
++
++	slimcap-dai-link {
++		link-name = "SLIM Capture";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 1>;
++		};
++	};
++};
 -- 
 2.21.0
 
