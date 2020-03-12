@@ -2,33 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5307182DB5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 11:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2EB6182DAB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 11:32:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbgCLKc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 06:32:29 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:39151 "EHLO
+        id S1725978AbgCLKcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 06:32:25 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:58463 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726841AbgCLKc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 06:32:27 -0400
+        with ESMTP id S1726390AbgCLKcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 06:32:25 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1jCL8T-0002xl-Ar; Thu, 12 Mar 2020 11:32:17 +0100
+        id 1jCL8T-0002xm-BD; Thu, 12 Mar 2020 11:32:17 +0100
 Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1jCL8R-0001Jn-AL; Thu, 12 Mar 2020 11:32:15 +0100
+        id 1jCL8R-0001Jp-Ar; Thu, 12 Mar 2020 11:32:15 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
         hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
         robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
 Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: [PATCH v13 00/19] TVP5150 Features and Fixes
-Date:   Thu, 12 Mar 2020 11:31:35 +0100
-Message-Id: <20200312103156.3178-1-m.felsch@pengutronix.de>
+        linux-media@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v13 01/21] dt-bindings: connector: analog: add sdtv standards property
+Date:   Thu, 12 Mar 2020 11:31:36 +0100
+Message-Id: <20200312103156.3178-2-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200312103156.3178-1-m.felsch@pengutronix.de>
+References: <20200312103156.3178-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
@@ -40,61 +42,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Some connectors no matter if in- or output supports only a limited
+range of sdtv standards. It doesn't matter if the hardware behind that
+connector supports more than the listed formats since the users are
+restriced by a label e.g. to plug only a camera into this connector
+which uses the PAL format.
 
-since my v12 wasn't the last I drop any comments about that here ;)
-Anyway this version addresses Sakari's and Hans comments.
+This patch adds the capability to describe such limitation within the
+firmware. There are no format restrictions if the property isn't
+present, so it's completely backward compatible.
 
-In short:
-- Patch 4 and 5 are new according Sakari's comments. I splitted them
-  due to backport reasons (something for stable?).
-- Patch 8:
-  - address the memory leak bug
-  - address the uselsee connector NULL set
-- Patch 13:
-  - fixes the non static issue
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+[1] https://patchwork.kernel.org/cover/10794703/
 
-Regards,
-  Marco
+v12:
+- split patch https://patchwork.linuxtv.org/patch/58491/
 
-Javier Martinez Canillas (1):
-  partial revert of "[media] tvp5150: add HW input connectors support"
+v10:
+- fix typo s/TV_STD_*/SDTV_STD_*/
 
-Marco Felsch (19):
-  dt-bindings: connector: analog: add sdtv standards property
-  dt-bindings: display: add sdtv-standards defines
-  media: v4l: link dt-bindings and uapi
-  media: v4l2-fwnode: fix v4l2_fwnode_parse_link handling
-  media: v4l2-fwnode: simplify v4l2_fwnode_parse_link
-  media: v4l2-fwnode: add endpoint id field to v4l2_fwnode_link
-  media: v4l2-fwnode: add v4l2_fwnode_connector
-  media: v4l2-fwnode: add initial connector parsing support
-  media: tvp5150: add input source selection of_graph support
-  media: dt-bindings: tvp5150: Add input port connectors DT bindings
-  media: tvp5150: fix set_selection rectangle handling
-  media: tvp5150: add FORMAT_TRY support for get/set selection handlers
-  media: tvp5150: move irq en-/disable into runtime-pm ops
-  media: tvp5150: add v4l2-event support
-  media: tvp5150: add subdev open/close callbacks
-  media: dt-bindings: tvp5150: cleanup bindings stlye
-  media: dt-bindings: tvp5150: add optional sdtv standards documentation
-  media: tvp5150: add support to limit sdtv standards
-  media: tvp5150: make debug output more readable
+v8:
+Hi Rob,
 
-Michael Tretter (1):
-  media: tvp5150: initialize subdev before parsing device tree
+I dropped your r b tag becuase of the changes I made in this version.
+Please can you have look on it again? Luckily this would be the last
+time ;-)
 
- .../display/connector/analog-tv-connector.txt |   6 +
- .../devicetree/bindings/media/i2c/tvp5150.txt | 146 +++-
- drivers/media/i2c/tvp5150.c                   | 802 ++++++++++++++----
- drivers/media/v4l2-core/v4l2-fwnode.c         | 192 ++++-
- include/dt-bindings/display/sdtv-standards.h  |  76 ++
- include/dt-bindings/media/tvp5150.h           |   2 -
- include/media/v4l2-fwnode.h                   | 143 ++++
- include/uapi/linux/videodev2.h                |   4 +
- 8 files changed, 1156 insertions(+), 215 deletions(-)
- create mode 100644 include/dt-bindings/display/sdtv-standards.h
+- move definition to include/dt-bindings/display
+- rename tvnorms.h to sdtv-standards.h
+- TVORMS_* -> SDTV_STD_*
+- add sync comments
+- adapt commit message
+- fix bindings documentation
 
+v7:
+I kept Robs r b tag because I only changed the example and extended
+TVNORM_* macros.
+
+- fix some style issues
+- add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
+
+v6:
+- tvnorms.h: use tabs instead of spaces
+- tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+- tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+
+v2-v4:
+- nothing since the patch was squashed from series [1] into this
+  series.
+---
+ .../bindings/display/connector/analog-tv-connector.txt      | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+index 0c0970c210ab..883bcb2604c7 100644
+--- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
++++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+@@ -6,16 +6,22 @@ Required properties:
+ 
+ Optional properties:
+ - label: a symbolic name for the connector
++- sdtv-standards: limit the supported TV standards on a connector to the given
++                  ones. If not specified all TV standards are allowed.
++                  Possible TV standards are defined in
++                  include/dt-bindings/display/sdtv-standards.h.
+ 
+ Required nodes:
+ - Video port for TV input
+ 
+ Example
+ -------
++#include <dt-bindings/display/sdtv-standards.h>
+ 
+ tv: connector {
+ 	compatible = "composite-video-connector";
+ 	label = "tv";
++	sdtv-standards = <(SDTV_STD_PAL | SDTV_STD_NTSC)>;
+ 
+ 	port {
+ 		tv_connector_in: endpoint {
 -- 
 2.20.1
 
