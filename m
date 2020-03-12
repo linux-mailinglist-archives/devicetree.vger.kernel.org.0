@@ -2,72 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29A621836C0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 18:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE4D183721
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 18:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726254AbgCLRAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 13:00:22 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:42618 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726127AbgCLRAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 13:00:22 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w17so3922539oic.9;
-        Thu, 12 Mar 2020 10:00:21 -0700 (PDT)
+        id S1726504AbgCLRO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 13:14:59 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:33594 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726194AbgCLROz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 13:14:55 -0400
+Received: by mail-wm1-f65.google.com with SMTP id r7so5978670wmg.0;
+        Thu, 12 Mar 2020 10:14:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=/rHi3YAkRAcdMWtqtXDhFmgLSOL8x4zCT7svjD1llso=;
+        b=CZBgUzmx+EEy6Hdu9DInRUBaFiOWh84iUnz4jURnXgTy+86cMmjyL+Xm/IiK5B0HBe
+         mRg9AXxyeAbj6pJKhCGImAXZNQwQYE0+0WpiZ4u841pcqgBHauz7DHWB6rcY64d9niAh
+         fzLFR7ZIA2K5/8mAAROD93RSBqLh2dM0gPW1ekQDJJ6RrLBwIB2qqD3klsEUspWSiurl
+         Ywf3ZObsiUzImDTk30kKZwEhKeGYKFfUFrQW+7c+6DBGCUux0DjKdrBLdjMwcQhsRoSF
+         9XA8tSdQcF/jcTuGbDafn92DvX8CY2bBMBEebdro2EREy+07YkkBxeSb6zHQV2qUfUbU
+         9MxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=f0gWE+1m+Ql/v/rWEfu8TjQTj2WuKMi1DQBbx7/F2n4=;
-        b=UTFcsx04sePY7WuhwCi3ppQ/lk+QlInV6HyvMh98Zok05PYCiCjNkBoxC3Xo5jxWhh
-         Kp6HbFKNrUYOuu2u07QR47SGXCs/aWE+EY1VDxGbCChLi9JTsVO9NU4Jw2ZmcuWJByZn
-         Tzs7jnJOSc5QVAIkKX3/R2GtTnVN8WEHO6u3ePhSIqZUZAgncBn1/hCxyrnahaLtJ10V
-         dGwFym+gjZwg/JORMRx7QCpkdW5XWChqWt5PwGqvbnz4mi/T1+uGMLj0U3d1sBhguPN8
-         3dVzmycbMYmJ/jiGcyOYCCrK0pOrsmJmxlawSLJA9yf2bzOrfAVNLMai1O/WXnBWNJyH
-         XxJg==
-X-Gm-Message-State: ANhLgQ0uysHGNu1MMaHxXLRJ0eo5CPERQasfsBvkHs471yYBqmFs9Gg9
-        JloQLIg2Q6ixlcVg+dVsxq1GrJM=
-X-Google-Smtp-Source: ADFU+vsdyR0B1ifapCwJqxa12n/SOqKOgvumt9yTwt5f9bEeJl0JqLXmhvj1v+fFYTFzp6ai6Hlo8A==
-X-Received: by 2002:a54:4f81:: with SMTP id g1mr298477oiy.113.1584032421031;
-        Thu, 12 Mar 2020 10:00:21 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g39sm5195633otb.26.2020.03.12.10.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2020 10:00:19 -0700 (PDT)
-Received: (nullmailer pid 25940 invoked by uid 1000);
-        Thu, 12 Mar 2020 17:00:18 -0000
-Date:   Thu, 12 Mar 2020 12:00:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] dt-bindings: arm: cpus: Add kryo280 compatible
-Message-ID: <20200312170018.GA25797@bogus>
-References: <cover.1583445235.git.amit.kucheria@linaro.org>
- <6db6e3412e82fdbaf81a2554f176402a8a718bf6.1583445235.git.amit.kucheria@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6db6e3412e82fdbaf81a2554f176402a8a718bf6.1583445235.git.amit.kucheria@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/rHi3YAkRAcdMWtqtXDhFmgLSOL8x4zCT7svjD1llso=;
+        b=s5TAVHzL5oDKxXf5xCuUV3W3eNXFpjQ4/JvliDwQ6fLnKSAFlBtCAlQBsJI3Ya0cYv
+         9fbXk05GbAiq4YBgvfreR1rbqUZ5cIhvc358kbFz97+vZFEplXqJLKac9f6DpxC98ObH
+         KUKG7Dyv61Fshsoown04dmLlLibxjOlOLj4t3ZazBvD1sF0liS3G73fhoXblO9dZo96M
+         CaTSL5Meerf8z46iMiXFix8o/O6F4Rwt759/mroTX0jbvQI7DMXvGCZzupV4L/hew3gN
+         QcEMV9ir5QHMTdJDWb3si5hYmdP+3a1CRURa3fzvzvb3B5mqOdi1KxmmHBXuH0rKP/rt
+         B9yg==
+X-Gm-Message-State: ANhLgQ3/Am1lrIyFN1wJbfrQwmjtFm8uIuvG9pqz/bT7f0T48Z0Dnab0
+        LDbIx9UdSPMW5as59GumA24=
+X-Google-Smtp-Source: ADFU+vuU7JONushGnh3yAgda3gxF27iAlAIS/lIT8K59ScQnS7AhYwvRjg88gHQjT88rLF0AWIIufQ==
+X-Received: by 2002:a1c:cc06:: with SMTP id h6mr5962352wmb.118.1584033292012;
+        Thu, 12 Mar 2020 10:14:52 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id v10sm3398832wmh.17.2020.03.12.10.14.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 12 Mar 2020 10:14:51 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] ARM: dts: rockchip: remove clock-names property from 'generic-ehci' nodes
+Date:   Thu, 12 Mar 2020 18:14:38 +0100
+Message-Id: <20200312171441.21144-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  6 Mar 2020 03:30:13 +0530, Amit Kucheria wrote:
-> Kryo280 is found in msm8998, so add it to the list of cpu compatibles.
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+A test with the command below gives for example this error:
 
-Applied, thanks.
+arch/arm/boot/dts/rv1108-evb.dt.yaml: usb@30140000:
+'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Rob
+'clock-names' is not a valid property name for usb_host nodes with
+compatible string 'generic-ehci', so remove them.
+
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/generic-ehci.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk322x.dtsi | 3 ---
+ arch/arm/boot/dts/rk3288.dtsi | 2 --
+ arch/arm/boot/dts/rv1108.dtsi | 1 -
+ 3 files changed, 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
+index a0acf2ef8..6503247e9 100644
+--- a/arch/arm/boot/dts/rk322x.dtsi
++++ b/arch/arm/boot/dts/rk322x.dtsi
+@@ -722,7 +722,6 @@
+ 		reg = <0x30080000 0x20000>;
+ 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HOST0>, <&u2phy0>;
+-		clock-names = "usbhost", "utmi";
+ 		phys = <&u2phy0_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+@@ -744,7 +743,6 @@
+ 		reg = <0x300c0000 0x20000>;
+ 		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HOST1>, <&u2phy1>;
+-		clock-names = "usbhost", "utmi";
+ 		phys = <&u2phy1_otg>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+@@ -768,7 +766,6 @@
+ 		clocks = <&cru HCLK_HOST2>, <&u2phy1>;
+ 		phys = <&u2phy1_host>;
+ 		phy-names = "usb";
+-		clock-names = "usbhost", "utmi";
+ 		status = "disabled";
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index 4745be518..485234f6a 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -601,7 +601,6 @@
+ 		reg = <0x0 0xff500000 0x0 0x100>;
+ 		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_USBHOST0>;
+-		clock-names = "usbhost";
+ 		phys = <&usbphy1>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+@@ -644,7 +643,6 @@
+ 		reg = <0x0 0xff5c0000 0x0 0x100>;
+ 		interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HSIC>;
+-		clock-names = "usbhost";
+ 		status = "disabled";
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/rv1108.dtsi b/arch/arm/boot/dts/rv1108.dtsi
+index fda16f976..d33e606be 100644
+--- a/arch/arm/boot/dts/rv1108.dtsi
++++ b/arch/arm/boot/dts/rv1108.dtsi
+@@ -495,7 +495,6 @@
+ 		reg = <0x30140000 0x20000>;
+ 		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HOST0>, <&u2phy>;
+-		clock-names = "usbhost", "utmi";
+ 		phys = <&u2phy_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+-- 
+2.11.0
+
