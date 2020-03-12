@@ -2,149 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED086182B5A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 09:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33BCE182B6A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 09:38:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726028AbgCLIfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 04:35:39 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40321 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbgCLIff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 04:35:35 -0400
-Received: by mail-wm1-f68.google.com with SMTP id e26so5213414wme.5;
-        Thu, 12 Mar 2020 01:35:31 -0700 (PDT)
+        id S1726480AbgCLIij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 04:38:39 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:36405 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726310AbgCLIij (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 04:38:39 -0400
+Received: by mail-lf1-f67.google.com with SMTP id s1so4075592lfd.3;
+        Thu, 12 Mar 2020 01:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Pi3izNgFJ8/Wn3g5uvUevM173nM22Xr7mDvSE98uAq0=;
-        b=iygKix3k8tYPew0DKefQ5Z3MJaVCjgGhTqZe0HktLhOZJ0uvXqTFifYXCVCwh3ZzF4
-         0yI8jvldsCtQupNBwiNphiv+f3kZ59gOb5wgRZHEp9G53cwdLzyIAt2z7MLNUac7QSZb
-         6BsssXqFOwd0NXGJgSm6t1FBu03bM8TsAQN+Z4ZRBcuH3ktOIFWCz56xAvlHjPLeA01k
-         a8ex8c0lYFwYate9tpLOPqLOkmJZbQRoK8f2X+dTaUq6praU77An5bj00F0BpwuJ5146
-         K9083ddJom6yX/OCDQFxZ06zIlqNJodLUgVZ1nY1w4VcVl1AFy0xwyF1nK16X8yu6z9b
-         iZiQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=njL/xVSacl4Pc5DEtw15HmBhPQTizshbsVWkVfiTBLY=;
+        b=QsrMU/Di9LHFG3fLS4fRPfTghm0L3MmVK4fDq2O6pVXfffFJJgCux0XhJrPdT/OG3l
+         TPivR1AqMUAbI8OqP2jZumDnYk0Mg3E8dG4ZtIRPKTnkrwtXyVRdZ277/Dykzg93aJHi
+         g8xlqXUhusZUp7FcZmzWuYMAt65NbGt/ieBSRKxJYYEbzJPMoVdCumL3qXvTQfQmVrS3
+         S/Pvfn0E7iinf39J1JAt6xmwzvYd4WpBgjpxcioZrey6Fv6iWi7nzpDPAmwNQhNKTq6e
+         bwgOImhXXrATX4HsFQtJE5HP8hIK/nGveHg3k8/OyJHDezuDa4tt2TI+dTTgVnaLnPhF
+         8+Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Pi3izNgFJ8/Wn3g5uvUevM173nM22Xr7mDvSE98uAq0=;
-        b=DC8i2dS35kXUaPQf7vuxlFlwSY04sdcRIY7hiEImNlMuf80uit0jW5zg0NnmD5wdX5
-         noxZ9FzQVHcpy95ZJe0iiXvGJruHhgtSYeXJ2DhXK3gsCkhZXb+7WMLh34MJhPbjqekn
-         PpD7a4uUrpBSg7veJkg6ZVbeYDGV056O4bOk8UzB46ooXCzxFgkHlPSyukYWogsQt60q
-         oW4aCdUNXxOEjIkiZ/fhahnfZL29/F7vP/xkbTtWlb8dnCOSg34EKtNvlQ5jZl/uEbqR
-         gLL1k3g7TYWtbYZb+3Hu0MY+on95jxAdamAE/75tXvy7nqQptyLlVpLPY6S7wBmcXS0O
-         5p3g==
-X-Gm-Message-State: ANhLgQ22s8+EsaG/kbzlVqnBe9g1+D/m9ekZ7rI6PexQlHbr/b5hLAyq
-        dfMj3NXtrTzsPept9asGGwmP8kzff0I=
-X-Google-Smtp-Source: ADFU+vvooBQ3lq8YA/+dE1Gl1upXgvevHPgfCB3c4nxm763tXD7qjzpNoNXZar8lY5x3PRGFC0cXiw==
-X-Received: by 2002:a1c:ed04:: with SMTP id l4mr3578623wmh.36.1584002130671;
-        Thu, 12 Mar 2020 01:35:30 -0700 (PDT)
-Received: from localhost.localdomain ([188.26.73.247])
-        by smtp.gmail.com with ESMTPSA id 9sm11543334wmo.38.2020.03.12.01.35.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2020 01:35:30 -0700 (PDT)
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-X-Google-Original-From: Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jic23@kernel.org, robh+dt@kernel.org, Laszlo.Nagy@analog.com,
-        Andrei.Grozav@analog.com, Michael.Hennerich@analog.com,
-        Istvan.Csomortani@analog.com, Adrian.Costina@analog.com,
-        Dragos.Bogdan@analog.com,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v9 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Thu, 12 Mar 2020 10:35:11 +0200
-Message-Id: <20200312083511.28832-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200312083511.28832-1-alexandru.ardelean@analog.com>
-References: <20200312083511.28832-1-alexandru.ardelean@analog.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=njL/xVSacl4Pc5DEtw15HmBhPQTizshbsVWkVfiTBLY=;
+        b=fJMpjIj9Tr+bI3zVBD6sbRScCduM5DxS6VUjpg11yVFOtlBSVUXn9sjKjHWQUJmwaG
+         bXJ7cYAgjgGqO3VyhdzgBnzvvIgUrAYa8P+wI0tyEts0aYb5/fcGwyQr4ZSwTFZU5EMm
+         Zrpd43sUVa5AtMbT0dIghrzjtP1JvlRHGwxRWZG+5aRSX7PCrGI1OAjpaDLrO7AW9uCc
+         KXcoMT60oj3zL0CR/d50lk2iL5ZnE17zBDbzuhCauX81BZy7J2LInqclUIgwZr3V33dW
+         gqHi8thmDFYNs9I7dN8QNJASi48i9I84cmSYWqjwSBRm1t72XdTRfigghBvPb/sUlLAq
+         /L0Q==
+X-Gm-Message-State: ANhLgQ2ftofpNMQpdXpgCtZilG4J/leke+UA7123oqBoUa2keyQJky/P
+        HFaP0bMVpyrvjrbUemBxaEs=
+X-Google-Smtp-Source: ADFU+vspNzeVCKKtcvLNBCDPv0jVjywH/HxnrsGdojEsAE4CAtpd936CF7NW+rGunjAHjRSrMALCEQ==
+X-Received: by 2002:a05:6512:6c7:: with SMTP id u7mr4777532lff.176.1584002316800;
+        Thu, 12 Mar 2020 01:38:36 -0700 (PDT)
+Received: from localhost (host-176-37-176-139.la.net.ua. [176.37.176.139])
+        by smtp.gmail.com with ESMTPSA id x8sm1091616lfn.24.2020.03.12.01.38.35
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 12 Mar 2020 01:38:36 -0700 (PDT)
+From:   Igor Opaniuk <igor.opaniuk@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] ARM: dts: toradex: DTS license/copyright clean-up
+Date:   Thu, 12 Mar 2020 10:38:27 +0200
+Message-Id: <20200312083830.18011-1-igor.opaniuk@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
+1. Replace boiler plate licenses texts with the SPDX license
+identifiers in Toradex Vybrid-based SoM device trees.
+2. As X11 is identical to the MIT License, but with an extra sentence
+that prohibits using the copyright holders' names for advertising or
+promotional purposes without written permission, use MIT license instead
+of X11 ('s/X11/MIT/g').
+3. Replace "Toradex AG" with "Toradex" in the Copyright notice.
+4. Use GPL2.0+ instead of GPL2.0, as it's used now by default for all
+new DTS files.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+v2:
+- Drop switching from GPL2.0+ to GPL2.0 [Marcel Ziswiler]
+- Replace "Toradex AG" with "Toradex" in the Copyright notice [Marcel Ziswiler]
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
+Igor Opaniuk (3):
+  arm: dts: imx6: toradex: use SPDX-License-Identifier
+  arm: dts: imx7: toradex: use SPDX-License-Identifier
+  arm: dts: vf: toradex: SPDX tags and copyright cleanup
+
+ arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts  | 40 +-----------------
+ arch/arm/boot/dts/imx6q-apalis-eval.dts       | 40 +-----------------
+ arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts | 40 +-----------------
+ arch/arm/boot/dts/imx6q-apalis-ixora.dts      | 40 +-----------------
+ arch/arm/boot/dts/imx6qdl-apalis.dtsi         | 40 +-----------------
+ arch/arm/boot/dts/imx6qdl-colibri.dtsi        | 40 +-----------------
+ arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi   | 41 +------------------
+ arch/arm/boot/dts/imx7-colibri.dtsi           | 41 +------------------
+ arch/arm/boot/dts/imx7d-colibri-eval-v3.dts   | 41 +------------------
+ arch/arm/boot/dts/imx7d-colibri.dtsi          | 41 +------------------
+ arch/arm/boot/dts/imx7s-colibri-eval-v3.dts   | 41 +------------------
+ arch/arm/boot/dts/imx7s-colibri.dtsi          | 41 +------------------
+ arch/arm/boot/dts/vf-colibri-eval-v3.dtsi     | 40 +-----------------
+ arch/arm/boot/dts/vf-colibri.dtsi             | 39 +-----------------
+ arch/arm/boot/dts/vf500-colibri-eval-v3.dts   | 40 +-----------------
+ arch/arm/boot/dts/vf500-colibri.dtsi          | 40 +-----------------
+ arch/arm/boot/dts/vf610-colibri-eval-v3.dts   | 40 +-----------------
+ arch/arm/boot/dts/vf610-colibri.dtsi          | 40 +-----------------
+ arch/arm/boot/dts/vf610m4-colibri.dts         | 39 +-----------------
+ 19 files changed, 37 insertions(+), 727 deletions(-)
+
 -- 
-2.20.1
+2.17.1
 
