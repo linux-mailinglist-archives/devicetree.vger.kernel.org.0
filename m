@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8AD183843
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 19:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4DD183904
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2020 19:51:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726523AbgCLSIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 14:08:42 -0400
-Received: from mga04.intel.com ([192.55.52.120]:17942 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726436AbgCLSIm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Mar 2020 14:08:42 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Mar 2020 11:08:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; 
-   d="scan'208";a="243117885"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003.jf.intel.com with ESMTP; 12 Mar 2020 11:08:34 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jCSG3-0094KY-W6; Thu, 12 Mar 2020 20:08:35 +0200
-Date:   Thu, 12 Mar 2020 20:08:35 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Saravanan Sekar <sravanhome@gmail.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        sre@kernel.org, mchehab+huawei@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org, fabrice.gasnier@st.com,
-        beniamin.bia@analog.com, linus.walleij@linaro.org,
-        u.kleine-koenig@pengutronix.de, fabrizio.castro@bp.renesas.com,
-        info@metux.net, hancock@sedsystems.ca, gregory.clement@bootlin.com,
-        renatogeh@gmail.com, plr.vincent@gmail.com,
-        miquel.raynal@bootlin.com, marcelo.schmitt1@gmail.com,
-        paul@crapouillou.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH 0/5] Add battery charger driver support for MP2629
-Message-ID: <20200312180835.GM1922688@smile.fi.intel.com>
-References: <20200312172649.13702-1-sravanhome@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200312172649.13702-1-sravanhome@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+        id S1726553AbgCLSv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 14:51:27 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:41552 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726534AbgCLSv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Mar 2020 14:51:26 -0400
+Received: by mail-lj1-f195.google.com with SMTP id o10so7705478ljc.8;
+        Thu, 12 Mar 2020 11:51:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Ze2fZQQej6uS2QviuuQ6/4nfx3KKsQROZMmrRSSZ7Mo=;
+        b=EEShK/bKtI55I9LpTF1bBN1AfvV7vWXpcSNMyezqvBtUrUAQbz9+etSPkvA0ll731G
+         MWA8GaJxGpzwU33ajgRj1ABtyI/g2qCYSCco8vioGY9Wzm6wxf0Em0LEQL5AhtlWnpHU
+         chwA/VcJOPyquLt92S/PHV8pkpxUaiiIUS4Bh2WDtCjfWK8/69OXgFeMJhWAUSkoSRMG
+         lbJ51oFFr7eF7SCJU+JmYGetDL/txgNVEaqWy5gzObRlWbjk/KGjJ1pq16FdCuCJTEY6
+         ol2bn43X0JNpxTwVLyqwhSsjaK+htEzcAqlbpUlRWdYUF2j3fhex/jH8UY5EU9c5RjA6
+         +QUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Ze2fZQQej6uS2QviuuQ6/4nfx3KKsQROZMmrRSSZ7Mo=;
+        b=MwR8QhMgk7ZqnTusdXiVcBdp/PLhfp3qZY9bC2fbAHfIMYe7LHKOCVlpadxrW8P6XX
+         wXDraiMHfBgzjsaHlQuooYvW+CC+tB6QBfqDWA27vla8OhusM6lZAqR8Uw2PMs95ahiP
+         thFI9lROQl/ZpjcoPXIzuv57yjXD88P91LrdeH6V24F7bXHxhhzOosM6a8E7GzY7tZF8
+         KxOrrXE+1tlpQGlLd+Owtj0Z+BzPfwWQ+Mz0VfvaAVVZuxYhnNlX7tQpUmfOatRDBT1q
+         PGP6ebphnx7WNF39jmT/6fQFGWmYhug+6xe+a0gwcBQS1gazlxNrFq8CYLlNV9dBVVtG
+         0sHg==
+X-Gm-Message-State: ANhLgQ2lYSflw2HWuv9+ymGqK6jDUyjPfSSyccc0QdNsbVkRRcE+nWvD
+        MEnELObCPjL7FvHmCni56m4=
+X-Google-Smtp-Source: ADFU+vtMh2OSYemJX/GMyXuvSTeqDPtfVEegzoT9okAtinRs2tH/jk/rK7jfGUyqFYMckzNwIBcatw==
+X-Received: by 2002:a2e:9bc8:: with SMTP id w8mr5794248ljj.227.1584039082702;
+        Thu, 12 Mar 2020 11:51:22 -0700 (PDT)
+Received: from localhost (host-176-37-176-139.la.net.ua. [176.37.176.139])
+        by smtp.gmail.com with ESMTPSA id w14sm13143879lfq.69.2020.03.12.11.51.21
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 12 Mar 2020 11:51:21 -0700 (PDT)
+From:   Igor Opaniuk <igor.opaniuk@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Jones <rjones@gateworks.com>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: arm: fsl: add nxp based toradex colibri bindings
+Date:   Thu, 12 Mar 2020 20:51:12 +0200
+Message-Id: <20200312185113.2504-1-igor.opaniuk@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 12, 2020 at 06:26:44PM +0100, Saravanan Sekar wrote:
-> This patch series add support for Battery charger control driver for Monolithic
-> Power System's MP2629 chipset, includes MFD driver for ADC battery & input
-> power supply measurement and battery charger control driver.
+From: Igor Opaniuk <igor.opaniuk@toradex.com>
 
-For the future, hint:
-	scripts/get_maintainer.pl --git --git-min-percent=67 ...
+Document Colibri iMX6S/DL V1.1x re-design devicetree binding.
 
-but since I reviewed this, don't forget to include reviewers in your next version.
+Signed-off-by: Igor Opaniuk <igor.opaniuk@toradex.com>
+---
 
-> 
-> Thanks,
-> Saravanan
-> 
-> Saravanan Sekar (5):
->   dt-bindings: mfd: add document bindings for mp2629
->   mfd: mp2629: Add support for mps battery charger
->   iio: adc: mp2629: Add support for mp2629 ADC driver
->   power: supply: Add support for mps mp2629 battery charger
->   MAINTAINERS: Add entry for mp2629 Battery Charger driver
-> 
->  .../devicetree/bindings/mfd/mps,mp2629.yaml   |  62 ++
->  MAINTAINERS                                   |   5 +
->  drivers/iio/adc/Kconfig                       |  10 +
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/mp2629_adc.c                  | 211 ++++++
->  drivers/mfd/Kconfig                           |  43 +-
->  drivers/mfd/Makefile                          |   4 +-
->  drivers/mfd/mp2629.c                          | 109 +++
->  drivers/power/supply/Kconfig                  |  14 +-
->  drivers/power/supply/Makefile                 |   1 +
->  drivers/power/supply/mp2629_charger.c         | 709 ++++++++++++++++++
->  include/linux/mfd/mp2629.h                    |  34 +
->  12 files changed, 1169 insertions(+), 34 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
->  create mode 100644 drivers/iio/adc/mp2629_adc.c
->  create mode 100644 drivers/mfd/mp2629.c
->  create mode 100644 drivers/power/supply/mp2629_charger.c
->  create mode 100644 include/linux/mfd/mp2629.h
-> 
-> -- 
-> 2.17.1
-> 
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 0e17e1f6fb80..7342097056c3 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -169,7 +169,9 @@ properties:
+               - technologic,imx6dl-ts4900
+               - technologic,imx6dl-ts7970
+               - toradex,colibri_imx6dl          # Colibri iMX6 Module
++              - toradex,colibri_imx6dl-v1_1     # Colibri iMX6 Module V1.1
+               - toradex,colibri_imx6dl-eval-v3  # Colibri iMX6 Module on Colibri Evaluation Board V3
++              - toradex,colibri_imx6dl-v1_1-eval-v3 # Colibri iMX6 Module V1.1 on Colibri Evaluation Board V3
+               - ysoft,imx6dl-yapp4-draco  # i.MX6 DualLite Y Soft IOTA Draco board
+               - ysoft,imx6dl-yapp4-hydra  # i.MX6 DualLite Y Soft IOTA Hydra board
+               - ysoft,imx6dl-yapp4-ursa   # i.MX6 Solo Y Soft IOTA Ursa board
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
