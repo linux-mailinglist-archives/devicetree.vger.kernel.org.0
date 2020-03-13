@@ -2,82 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A51A71843CB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 10:35:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D891843EE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 10:41:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726664AbgCMJei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 05:34:38 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:12079 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726543AbgCMJei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 05:34:38 -0400
-X-UUID: 688c0dbc8df94d6bb51056bf3da10502-20200313
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=y4fidyRMowL3surEo6zhd1R+r3Ch90oXxAv9QuI8xU0=;
-        b=sWLBUWp4Hr3buMy3YPTagFHWIMAX+m6BdkYF9m0ovRbTnsg4ncGG2W6WdFP8q2Y+LqjTk5Im+ke2VCH5pb66HGCwS16aFZnhBHWHhAene1tVpeq4DRQLyDYEZ8PUMTCeJs8jllbA+9gQL5wD6PvK1GMIouDcoALHGJ8uALpflfQ=;
-X-UUID: 688c0dbc8df94d6bb51056bf3da10502-20200313
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <henryc.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 514878430; Fri, 13 Mar 2020 17:34:32 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 13 Mar 2020 17:31:41 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 13 Mar 2020 17:33:42 +0800
-From:   Henry Chen <henryc.chen@mediatek.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Mark Brown <broonie@kernel.org>
+        id S1726216AbgCMJlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 05:41:04 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:60082 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726055AbgCMJlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 05:41:03 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 7CA7B8030886;
+        Fri, 13 Mar 2020 09:41:00 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id teOI_MFyEwyH; Fri, 13 Mar 2020 12:40:59 +0300 (MSK)
+Date:   Fri, 13 Mar 2020 12:40:17 +0300
+From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
 CC:     Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        Mike Turquette <mturquette@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        Henry Chen <henryc.chen@mediatek.com>
-Subject: [PATCH V4 10/13] arm64: dts: mt8183: add dvfsrc related nodes
-Date:   Fri, 13 Mar 2020 17:34:23 +0800
-Message-ID: <1584092066-24425-11-git-send-email-henryc.chen@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1584092066-24425-1-git-send-email-henryc.chen@mediatek.com>
-References: <1584092066-24425-1-git-send-email-henryc.chen@mediatek.com>
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 04/22] dt-bindings: Add vendor prefix for Baikal
+ Electronics, JSC
+Message-ID: <20200313094017.y7nko4sx2dfcadnp@ubsrv2.baikal.int>
+References: <20200306124705.6595-1-Sergey.Semin@baikalelectronics.ru>
+ <20200306124832.986FE8030793@mail.baikalelectronics.ru>
+ <20200312204406.GA4654@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: DB2F051B1CE46416C0FA451C46FB79B651A5F200F22551BD3162F8468D7B5AA92000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200312204406.GA4654@bogus>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIEREUiBFTUkgcHJvdmlkZXIgZGljdGF0aW5nIGRyYW0gaW50ZXJjb25uZWN0IGJ1cyBwZXJm
-b3JtYW5jZSBmb3VuZCBvbg0KTVQ4MTgzLWJhc2VkIHBsYXRmb3Jtcw0KDQpTaWduZWQtb2ZmLWJ5
-OiBIZW5yeSBDaGVuIDxoZW5yeWMuY2hlbkBtZWRpYXRlay5jb20+DQotLS0NCiBhcmNoL2FybTY0
-L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My5kdHNpIHwgNSArKysrKw0KIDEgZmlsZSBjaGFuZ2Vk
-LCA1IGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ4MTgzLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My5k
-dHNpDQppbmRleCBjMGQwOGM4Li41N2E1NWEzIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290
-L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9tdDgxODMuZHRzaQ0KQEAgLTEyLDYgKzEyLDcgQEANCiAjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvcmVzZXQtY29udHJvbGxlci9tdDgxODMtcmVzZXRzLmg+DQogI2luY2x1ZGUgIm10ODE4My1w
-aW5mdW5jLmgiDQogI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3NvYy9tdGssZHZmc3JjLmg+DQorI2lu
-Y2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVyY29ubmVjdC9tdGssbXQ4MTgzLWVtaS5oPg0KIA0KIC8g
-ew0KIAljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4MyI7DQpAQCAtMTY0LDYgKzE2NSwxMCBA
-QA0KIAkJcmVnID0gPDAgMHgxMDAxMjAwMCAwIDB4MTAwMD47DQogCQljbG9ja3MgPSA8JmluZnJh
-Y2ZnIENMS19JTkZSQV9EVkZTUkM+Ow0KIAkJY2xvY2stbmFtZXMgPSAiZHZmc3JjIjsNCisJCWRk
-cl9lbWk6IGludGVyY29ubmVjdCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMt
-ZW1pIjsNCisJCQkjaW50ZXJjb25uZWN0LWNlbGxzID0gPDE+Ow0KKwkJfTsNCiAJfTsNCiANCiAJ
-dGltZXIgew0KLS0gDQoxLjkuMQ0K
+On Thu, Mar 12, 2020 at 03:44:06PM -0500, Rob Herring wrote:
+> On Fri, Mar 06, 2020 at 03:46:47PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
+> > From: Serge Semin <fancer.lancer@gmail.com>
+> > 
+> > Add "BAIKAL ELECTRONICS, JSC" to the list of devicetree vendor prefixes
+> > as "be".
+> > 
+> > Website: http://www.baikalelectronics.com
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > Cc: Paul Burton <paulburton@kernel.org>
+> > Cc: Ralf Baechle <ralf@linux-mips.org>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 9e67944bec9c..8568713396af 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -141,6 +141,8 @@ patternProperties:
+> >      description: Shenzhen AZW Technology Co., Ltd.
+> >    "^bananapi,.*":
+> >      description: BIPAI KEJI LIMITED
+> > +  "^be,.*":
+> > +    description: BAIKAL ELECTRONICS, JSC
+> 
+> Also, is 'be' a well known abbreviation for this company. Perhaps 
+> 'baikal' instead?
+> 
 
+Hm, I don't think that baikal is a well known synonym of the company
+either. Seeing the company isn't well known in general.) Here the
+'Baikal' name is mostly associated with the deepest lake in the world.)
+
+We had a discussion amongst our team developers what abbreviation to choose.
+Some of us suggested to use 'baikal' prefix too. But after all we agreed to
+set the 'be' one as being short and yet compatible with company name. However
+it's unlikely that developers looking at vendor prefix would think of a lake
+first and, you are right, that 'baikal' word would point to the original
+company name better than 'be'. On the other hand the chips the company
+produces also have 'baikal' in their names: Baikal-T1, Baikal-M1, etc.
+So the compatible strings of the SoC components either would look like:
+- be,bt1; be,baikal-t1 (SoC/machine compatible strings)
+- be,bt1-i2c; be,bt1-pvt; be,bt1-efuse; be,bt1-axi-ic; etc (individual
+  SoC subdevices compatible strings)
+or
+- baikal,bt1; baikal,baikal-t1
+- baikal,bt1-i2c; baikal,bt1-pvt; baikal,bt1-efuse; baikal,bt1-axi-ic; etc
+
+First version seemed less cumbersome, having less 'baikal' in the
+compatible strings. In the second case the vendor prefix turned to be
+longer than the rest of the component name, which is supposed to be the
+main part of the string.
+
+So you think 'baikal' would be better anyway? It would be great to hear
+your opinion about this in details, because we still have doubts which
+prefix is better.
+
+(I'm so persistent in describing why we chose 'be' prefix, because in
+case of changing it to 'baikal' I would have to alter all the drivers
+we wrote, which you must agree isn't that pleasant work.)
+
+-Sergey
+
+> >    "^bhf,.*":
+> >      description: Beckhoff Automation GmbH & Co. KG
+> >    "^bitmain,.*":
+> > -- 
+> > 2.25.1
+> > 
