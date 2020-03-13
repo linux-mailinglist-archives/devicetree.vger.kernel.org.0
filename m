@@ -2,115 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF1A185208
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2020 00:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23525185274
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2020 00:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726777AbgCMXF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 19:05:29 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:48890 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726681AbgCMXF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 19:05:29 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 4408C20029;
-        Sat, 14 Mar 2020 00:05:23 +0100 (CET)
-Date:   Sat, 14 Mar 2020 00:05:21 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: display: ti: Fix dtc unit-address
- warnings in examples
-Message-ID: <20200313230521.GA8476@ravnborg.org>
-References: <20200313180727.23044-1-robh@kernel.org>
+        id S1726534AbgCMXrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 19:47:03 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:43861 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726397AbgCMXrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 19:47:03 -0400
+Received: by mail-pg1-f196.google.com with SMTP id u12so5911731pgb.10
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2020 16:47:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QqSV3LpUI3XKUkmQyfNi1UamAdu5bkgGpHDrMQfv4MU=;
+        b=HNvgMOR2I4lu6ZzQhLaqLLWdM+2GtFd3IZ4AuPpce/zw9p/2oX7gHoLKNpj8pDJ3Pj
+         Jij9sP4ezR342y5fuAI/xYD8IyVYpsAdH5FWh6dW9U0DC3yQUz/e9eRPDExe1KhgW0Vy
+         rO81pgsWwtIIwk0BTd+z1VJ8I3vFOlSR9xbrp8wt4bH003euw1llVcV39hsIheW0NLZH
+         3rH6dYrHUjz0+PDZvr/zh1CgPjpt1cZDRUdc3a/09XwqbDnHLO2Cgy/KP6Q7AQwDMqYy
+         lLUX9NU/nAHYdBHqteUHrygCelftfNMsp+AxKPno4amYs3qpLBSFr+4snMF5NW7uHOCj
+         kNTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QqSV3LpUI3XKUkmQyfNi1UamAdu5bkgGpHDrMQfv4MU=;
+        b=L/m+nTNWBiXTQlUBKCZFGWNl/ARKuXHfkFbUK7ClM6Ge8KTua9YBnq3pIaKzDQFjvV
+         pueAGqZ7MdNj+EgX/wO79JnPERduTvO7bXMsnFSJESW87cuQV+f4tmFhCT48HYgZhixr
+         Za0c0z+OZ8ikHukr/D2Dkfu/QrIp/UQfYarYx4h7Cxpp7ShqlNC1cvxptZk7zyt2K/0n
+         8dnPGA1UqM8z/KMrSqqR+pQLWN/KtcWwgccNkTp/082VP9lVBv5F6T2SljQgrz7Xnwo5
+         lnZ3iiALJ95VpHkpx0IdbaJXlIGPHr9AgnGkqGZ+XzjyR9h19BS3JssPBUKUENtt+SPC
+         RBTg==
+X-Gm-Message-State: ANhLgQ2hrUWldfG6IwCHg82d3qlZglGJUXbvvSOFP13zgYzgTKMZDwuz
+        IeilE5rZDxov5K1VIuQO38TJDQ==
+X-Google-Smtp-Source: ADFU+vsW6m1GL4wfPHL5s4jhGiDzBkhnb+8gcvRgTtKjWKHSrkQbWzNiNxyD247XMBP14NBXaEZ10A==
+X-Received: by 2002:a63:1d7:: with SMTP id 206mr13645799pgb.99.1584143221655;
+        Fri, 13 Mar 2020 16:47:01 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id o11sm10927883pjb.18.2020.03.13.16.47.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2020 16:47:00 -0700 (PDT)
+Date:   Fri, 13 Mar 2020 16:46:57 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     ansuelsmth@gmail.com
+Cc:     'Stephen Boyd' <sboyd@kernel.org>, agross@kernel.org,
+        'Mathieu Olivari' <mathieu@codeaurora.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Mark Rutland' <mark.rutland@arm.com>,
+        'Michael Turquette' <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: R: [PATCH] ARM: qcom: Disable i2c device on gsbi4 for ipq806x
+Message-ID: <20200313234657.GD1214176@minitux>
+References: <20200313195816.12435-1-ansuelsmth@gmail.com>
+ <158413179776.164562.8295974225127853050@swboyd.mtv.corp.google.com>
+ <014101d5f987$82790c90$876b25b0$@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200313180727.23044-1-robh@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=sozttTNsAAAA:8
-        a=VwQbUJbxAAAA:8 a=7gkXJVJtAAAA:8 a=k4r3PqWcPq6Qy1X7_v8A:9
-        a=rbD8nFOAu45xlIuL:21 a=UehPyaCQOHXEbEJC:21 a=CjuIK1q_8ugA:10
-        a=aeg5Gbbo78KNqacMgKqU:22 a=AjGcO6oz07-iQ99wixmX:22
-        a=E9Po1WZjFZOl8hwRPBS3:22
+In-Reply-To: <014101d5f987$82790c90$876b25b0$@gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 13, 2020 at 01:07:27PM -0500, Rob Herring wrote:
-> Extra dtc warnings (roughly what W=1 enables) are now enabled by default
-> when building the binding examples. These were fixed treewide in
-> 5.6-rc5, but some new display bindings have been added with new
-> warnings:
-> 
-> Documentation/devicetree/bindings/display/ti/ti,am65x-dss.example.dts:21.27-49.11: Warning (unit_address_format): /example-0/dss@04a00000: unit name should not have leading 0s
-> Documentation/devicetree/bindings/display/ti/ti,j721e-dss.example.dts:21.27-72.11: Warning (unit_address_format): /example-0/dss@04a00000: unit name should not have leading 0s
-> Documentation/devicetree/bindings/display/ti/ti,k2g-dss.example.dts:20.27-42.11: Warning (unit_address_format): /example-0/dss@02540000: unit name should not have leading 0s
-> 
-> Cc: Jyri Sarha <jsarha@ti.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+On Fri 13 Mar 15:34 PDT 2020, ansuelsmth@gmail.com wrote:
 
-> ---
-> v2:
->  - Drop panel fixes as there's another patch fixing the 3 panels plus
->    others.
-Will revisit the panel/ fixes patch and apply tomorrow.
-
-	Sam
-
-> ---
->  Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml | 2 +-
->  Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml | 2 +-
->  Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml   | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+> > Quoting Ansuel Smith (2020-03-13 12:58:16)
+> > > diff --git a/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
+> > b/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
+> > > index 554c65e7aa0e..580aec63030d 100644
+> > > --- a/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
+> > > +++ b/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
+> > > @@ -21,14 +21,5 @@ mux {
+> > >                                 };
+> > >                         };
+> > >                 };
+> > > -
+> > > -               gsbi@16300000 {
+> > > -                       i2c@16380000 {
+> > > -                               status = "ok";
+> > > -                               clock-frequency = <200000>;
+> > > -                               pinctrl-0 = <&i2c4_pins>;
+> > > -                               pinctrl-names = "default";
+> > > -                       };
+> > > -               };
+> > >         };
+> > >  };
+> > > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-
+> > ipq806x.c
+> > > index b0eee0903807..75706807e6cf 100644
+> > > --- a/drivers/clk/qcom/gcc-ipq806x.c
+> > > +++ b/drivers/clk/qcom/gcc-ipq806x.c
+> > > @@ -782,7 +782,7 @@ static struct clk_rcg gsbi4_qup_src = {
+> > >                         .parent_names = gcc_pxo_pll8,
+> > >                         .num_parents = 2,
+> > >                         .ops = &clk_rcg_ops,
+> > > -                       .flags = CLK_SET_PARENT_GATE,
+> > > +                       .flags = CLK_SET_PARENT_GATE | CLK_IGNORE_UNUSED,
+> > 
+> > A better solution is to use the protected-clocks property so we don't
+> > try to touch these clks at all on this device. So this whole patch can
+> > be routed through arm-soc and remove the i2c node and add some dt
+> > property to the gcc node.
+> > 
 > 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index cac61a998203..aa5543a64526 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -121,7 +121,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/soc/ti,sci_pm_domain.h>
->  
-> -    dss: dss@04a00000 {
-> +    dss: dss@4a00000 {
->              compatible = "ti,am65x-dss";
->              reg =   <0x0 0x04a00000 0x0 0x1000>, /* common */
->                      <0x0 0x04a02000 0x0 0x1000>, /* vidl1 */
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-> index ade9b2f513f5..6d47cd7206c2 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-> @@ -154,7 +154,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/soc/ti,sci_pm_domain.h>
->  
-> -    dss: dss@04a00000 {
-> +    dss: dss@4a00000 {
->              compatible = "ti,j721e-dss";
->              reg =   <0x00 0x04a00000 0x00 0x10000>, /* common_m */
->                      <0x00 0x04a10000 0x00 0x10000>, /* common_s0*/
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-> index 385bd060ccf9..7cb37053e95b 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-> @@ -81,7 +81,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
->  
-> -    dss: dss@02540000 {
-> +    dss: dss@2540000 {
->              compatible = "ti,k2g-dss";
->              reg =   <0x02540000 0x400>,
->                      <0x02550000 0x1000>,
-> -- 
-> 2.20.1
+> Should I add a comment where the i2c is removed or I can remove it
+> directly?
+> 
+
+It's fine that you just remove it, like you proposed above.
+
+The commit message should describe the reason and per your description I
+don't expect that anyone will miss the node...
+
+Regards,
+Bjorn
+
+> > >                 },
+> > >         },
+> > >  };
+> 
