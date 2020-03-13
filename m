@@ -2,93 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 992BC184E2D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 18:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E48D1184E46
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 19:01:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726866AbgCMR4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 13:56:44 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:37570 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726865AbgCMR4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 13:56:43 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02DHucv1001108;
-        Fri, 13 Mar 2020 12:56:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1584122198;
-        bh=/Dw8KFsaIkFkfgLKZhRV5MXpefmC30Xga+RKXA8psqw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ke/ZcVzjLNANCq1l6dgVZ9hVLo1SDlq5XkDXHHp5TFFAKBNsrt2xHhMMJU5PpU18Y
-         0iX/zIOJE6e1EYwCnXQbXoSc25FFF+Mdi5Ucg4tNJ47EAa4Wa95VsgNR2BAH74Gj3I
-         r2Y5LQFGqya4zS4A5TUtEK6qqtX/E5daDr3mBLWE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02DHubxK047580;
-        Fri, 13 Mar 2020 12:56:38 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 13
- Mar 2020 12:56:37 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 13 Mar 2020 12:56:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02DHua2m028293;
-        Fri, 13 Mar 2020 12:56:36 -0500
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        netdev <netdev@vger.kernel.org>, Roger Quadros <rogerq@ti.com>,
-        <devicetree@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>
-CC:     Murali Karicheri <m-karicheri2@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH net-next v3 10/10] arm64: defconfig: ti: k3: enable dma and networking
-Date:   Fri, 13 Mar 2020 19:55:11 +0200
-Message-ID: <20200313175511.2155-11-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200313175511.2155-1-grygorii.strashko@ti.com>
-References: <20200313175511.2155-1-grygorii.strashko@ti.com>
+        id S1726550AbgCMSBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 14:01:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41372 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726414AbgCMSBD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Mar 2020 14:01:03 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4F6FD20674;
+        Fri, 13 Mar 2020 18:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584122462;
+        bh=0Atpr6ZtF5yQD78BdGzERxlwoaiekMUryGsAon4sBCc=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=He88vEq+9HRxEG4fEVgDj9kFX9XEaRGY5yIP3KzKueEJGC4wYnBfAMnAG19TNBDX5
+         L2mRoHAyRvzp5Jq2dyN3l9hppcUVVTh1j2AvJhY9a6OKsLbLLghX9ocvMpcAc38c87
+         CSO0YQKob5qwOqIIz+RU5E8fz3pNsSQbeOaMYIDU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200304170939.GR24720@google.com>
+References: <1581423236-21341-1-git-send-email-tdas@codeaurora.org> <1581423236-21341-2-git-send-email-tdas@codeaurora.org> <20200303201629.GP24720@google.com> <f0529793-c51d-4baf-5217-173c552f4cbe@codeaurora.org> <20200304170939.GR24720@google.com>
+Subject: Re: [PATCH v1 2/2] clk: qcom: dispcc: Remove support of disp_cc_mdss_rscc_ahb_clk
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>, robh@kernel.org,
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Doug Anderson <dianders@chromium.org>
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Fri, 13 Mar 2020 11:01:01 -0700
+Message-ID: <158412246142.149997.5548337390525905687@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable TI K3 AM654x/J721E DMA and networking options.
+Quoting Matthias Kaehlcke (2020-03-04 09:09:39)
+> Hi Taniya,
+>=20
+> On Wed, Mar 04, 2020 at 09:05:20AM +0530, Taniya Das wrote:
+> >=20
+> > Hi Matthias,
+> >=20
+> > The display device node is not present and we encounter this crash, wou=
+ld it
+> > be possible to add ALWAYS_ON for the MDSS GDSC and give it a try.
+>=20
+> It still crashes when ALWAYS_ON is set for the MDSS GDSC.
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4db223dbc549..13cd865d7d4b 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -283,6 +283,7 @@ CONFIG_SMSC911X=y
- CONFIG_SNI_AVE=y
- CONFIG_SNI_NETSEC=y
- CONFIG_STMMAC_ETH=m
-+CONFIG_TI_K3_AM65_CPSW_NUSS=y
- CONFIG_MDIO_BUS_MUX_MMIOREG=y
- CONFIG_MARVELL_PHY=m
- CONFIG_MARVELL_10G_PHY=m
-@@ -698,6 +699,8 @@ CONFIG_QCOM_HIDMA_MGMT=y
- CONFIG_QCOM_HIDMA=y
- CONFIG_RCAR_DMAC=y
- CONFIG_RENESAS_USB_DMAC=m
-+CONFIG_TI_K3_UDMA=y
-+CONFIG_TI_K3_UDMA_GLUE_LAYER=y
- CONFIG_VFIO=y
- CONFIG_VFIO_PCI=y
- CONFIG_VIRTIO_PCI=y
--- 
-2.17.1
-
+Any updates here? I'm about to send this patch off to Linus and I'm
+wondering if there will be a resolution besides reverting it.
