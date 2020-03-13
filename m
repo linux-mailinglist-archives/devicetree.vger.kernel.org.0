@@ -2,114 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A13184B74
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 16:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A78BB184BCA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 16:56:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727002AbgCMPrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 11:47:04 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:40120 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726832AbgCMPrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 11:47:04 -0400
-Received: by mail-oi1-f193.google.com with SMTP id y71so9820377oia.7
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2020 08:47:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tMfy8/E6oXzJJx/8VpRV3tj4/ckSsq/8G43sIQgZQ7U=;
-        b=czUQs5daMOGZ8mc2tQRL9AILd/K6SkUf/czTpvkbfK/OQuet9UZhmlxYefNZeVyTLz
-         UdHkdId5K49m4sutgjqR3NTB8j+g161WOF8ZZ1azns4UvnZcd+nxdqj7nlAwgN477+kD
-         VIAriXsKrKLsJIbznNJER461AG92L+XYHFKBO7LmEis23RFs9Gu3t9VGTrwPhlEOY0Vy
-         LH5D6lw5VlzMRsK7ndIVsy0TI/69WcSr3Qpp5PkREz3hN3G0PbLqMV3W+JQNuKebHv8m
-         g1WzpBJZmtv+lBbSsiLG4p/47Rdgrm67CkY9M8POCs8cSdegsZWf7rwTA9GDkB+wf3G3
-         p5Nw==
-X-Gm-Message-State: ANhLgQ00WYXWAx9ksGONvyeM/BGbHFDjgkj6kIEyjypysK4zWH0qIV6Q
-        ncTPu3iUljetlFkC9J46sw==
-X-Google-Smtp-Source: ADFU+vtE/jAJa6g5NqFQM+VkazVXWPBMZUEMY66SKGWqXr6JceMIiuB6q4UOhUn9lUCRUfb+R5SqfQ==
-X-Received: by 2002:a05:6808:14a:: with SMTP id h10mr7551170oie.81.1584114423061;
-        Fri, 13 Mar 2020 08:47:03 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id t21sm6884983otp.80.2020.03.13.08.47.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2020 08:47:02 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: sunxi: Fix dtc 'dma-ranges' warnings
-Date:   Fri, 13 Mar 2020 10:47:01 -0500
-Message-Id: <20200313154701.948-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1726908AbgCMPz7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Mar 2020 11:55:59 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59633 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726442AbgCMPz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 11:55:59 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1jCmf7-00012X-Sk; Fri, 13 Mar 2020 16:55:49 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1jCmf6-00054P-27; Fri, 13 Mar 2020 16:55:48 +0100
+Message-ID: <3aedf6357f321efaf1d59a0b654300803ad51cef.camel@pengutronix.de>
+Subject: Re: [RFC 10/11] reset: imx: Add audiomix reset controller support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Anson Huang <anson.huang@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Fri, 13 Mar 2020 16:55:47 +0100
+In-Reply-To: <20200313141606.euumtuizm562zghv@fsr-ub1664-175>
+References: <1583226206-19758-1-git-send-email-abel.vesa@nxp.com>
+         <1583226206-19758-11-git-send-email-abel.vesa@nxp.com>
+         <ac6eb54c01cce4ec52560ac622e024ab47f2136c.camel@pengutronix.de>
+         <20200313141606.euumtuizm562zghv@fsr-ub1664-175>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'#address-cells' and '#size-cells' are needed in the same node (for the
-child bus) as 'dma-ranges' in order to parse it. The kernel is more lax
-and will walk up the tree to get the properties from a parent node, but
-it's better to be explicit. dtc now does checks on 'dma-ranges' and is
-more strict:
+On Fri, 2020-03-13 at 16:16 +0200, Abel Vesa wrote:
+[...]
+> > > +	if (assert) {
+> > > +		pm_runtime_get_sync(rcdev->dev);
+> > 
+> > This seems wrong. Why is the runtime PM reference count incremented when
+> > a reset is asserted ...
+> 
+> The audiomix IP has its own power domain. 
 
-arch/arm/boot/dts/sun5i.dtsi:189.4-52: Warning (dma_ranges_format): \
-/soc/dram-controller@1c01000:dma-ranges: "dma-ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/sun8i-r40.dtsi:742.4-52: Warning (dma_ranges_format): \
-/soc/dram-controller@1c62000:dma-ranges: "dma-ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/sunxi-h3-h5.dtsi:563.4-52: Warning (dma_ranges_format): \
-/soc/dram-controller@1c62000:dma-ranges: "dma-ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
+The reset controller does not control the power domain for its
+consumers. The consumer of this reset should implement runtime PM.
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-I'm updating dtc for 5.7 which will introduce this warning.
+> The way I see it, when the last deassert is done, there is no point
+> in keeping the audiomix on. So, unless the clock controller part of it does it,
+> the audiomix will be powered down.
 
- arch/arm/boot/dts/sun5i.dtsi       | 2 ++
- arch/arm/boot/dts/sun8i-r40.dtsi   | 2 ++
- arch/arm/boot/dts/sunxi-h3-h5.dtsi | 2 ++
- 3 files changed, 6 insertions(+)
+You mean when the last assert is done? Presumably the driver wants to
+use the hardware after deasserting the reset and asserts the reset when
+it is done.
 
-diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
-index 0b526e6e5a95..b8bb58b0180e 100644
---- a/arch/arm/boot/dts/sun5i.dtsi
-+++ b/arch/arm/boot/dts/sun5i.dtsi
-@@ -186,6 +186,8 @@
- 			compatible = "allwinner,sun5i-a13-mbus";
- 			reg = <0x01c01000 0x1000>;
- 			clocks = <&ccu CLK_MBUS>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			dma-ranges = <0x00000000 0x40000000 0x20000000>;
- 			#interconnect-cells = <1>;
- 		};
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 8f09a24b36ec..b9c45aa8f21f 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -739,6 +739,8 @@
- 			compatible = "allwinner,sun8i-r40-mbus";
- 			reg = <0x01c62000 0x1000>;
- 			clocks = <&ccu 155>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			dma-ranges = <0x00000000 0x40000000 0x80000000>;
- 			#interconnect-cells = <1>;
- 		};
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index 5e9c3060aa08..62ca0d287008 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -560,6 +560,8 @@
- 			compatible = "allwinner,sun8i-h3-mbus";
- 			reg = <0x01c62000 0x1000>;
- 			clocks = <&ccu CLK_MBUS>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			dma-ranges = <0x00000000 0x40000000 0xc0000000>;
- 			#interconnect-cells = <1>;
- 		};
--- 
-2.20.1
-
+regards
+Philipp
