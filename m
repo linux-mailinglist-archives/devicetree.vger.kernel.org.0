@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC4C183E0D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 01:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CBF183E0E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 01:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727041AbgCMA6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Mar 2020 20:58:40 -0400
-Received: from mx.socionext.com ([202.248.49.38]:4526 "EHLO mx.socionext.com"
+        id S1727073AbgCMA6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Mar 2020 20:58:41 -0400
+Received: from mx.socionext.com ([202.248.49.38]:4536 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727073AbgCMA6j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Mar 2020 20:58:39 -0400
+        id S1727077AbgCMA6l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Mar 2020 20:58:41 -0400
 Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 13 Mar 2020 09:58:38 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id A8FD118020C;
-        Fri, 13 Mar 2020 09:58:38 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 13 Mar 2020 09:58:38 +0900
+  by mx.socionext.com with ESMTP; 13 Mar 2020 09:58:39 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 93ACF18020C;
+        Fri, 13 Mar 2020 09:58:39 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 13 Mar 2020 09:58:39 +0900
 Received: from plum.e01.socionext.com (unknown [10.213.132.32])
-        by kinkan.css.socionext.com (Postfix) with ESMTP id 54F351A01BB;
-        Fri, 13 Mar 2020 09:58:38 +0900 (JST)
+        by kinkan.css.socionext.com (Postfix) with ESMTP id 265051A01BB;
+        Fri, 13 Mar 2020 09:58:39 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 To:     Masahiro Yamada <yamada.masahiro@socionext.com>,
         Rob Herring <robh+dt@kernel.org>
@@ -27,9 +27,9 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Masami Hiramatsu <masami.hiramatsu@linaro.org>,
         Jassi Brar <jaswinder.singh@linaro.org>,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH 05/10] arm64: dts: uniphier: Add nodes of thermal monitor and thermal zone for PXs3
-Date:   Fri, 13 Mar 2020 09:58:11 +0900
-Message-Id: <1584061096-23686-6-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH 06/10] ARM: dts: uniphier: Add ethernet aliases
+Date:   Fri, 13 Mar 2020 09:58:12 +0900
+Message-Id: <1584061096-23686-7-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1584061096-23686-1-git-send-email-hayashi.kunihiko@socionext.com>
 References: <1584061096-23686-1-git-send-email-hayashi.kunihiko@socionext.com>
@@ -38,111 +38,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes of thermal monitor and thermal zone for UniPhier PXs3 SoC.
-The thermal monitor node is included in sysctrl. This patch gives the
-default value for PXs3 in the same way as LD20.
+Add an aliases property for ethernet to determine device name assignments.
 
 Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 43 ++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ arch/arm/boot/dts/uniphier-ld6b-ref.dts    | 1 +
+ arch/arm/boot/dts/uniphier-pro4-ace.dts    | 1 +
+ arch/arm/boot/dts/uniphier-pro4-ref.dts    | 1 +
+ arch/arm/boot/dts/uniphier-pro4-sanji.dts  | 1 +
+ arch/arm/boot/dts/uniphier-pxs2-gentil.dts | 1 +
+ arch/arm/boot/dts/uniphier-pxs2-vodka.dts  | 1 +
+ 6 files changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-index ffe57c6..0d4283c 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/gpio/uniphier-gpio.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	compatible = "socionext,uniphier-pxs3";
-@@ -42,6 +43,7 @@
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cluster0_opp>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -51,6 +53,7 @@
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cluster0_opp>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -60,6 +63,7 @@
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cluster0_opp>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -69,6 +73,7 @@
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cluster0_opp>;
-+			#cooling-cells = <2>;
- 		};
+diff --git a/arch/arm/boot/dts/uniphier-ld6b-ref.dts b/arch/arm/boot/dts/uniphier-ld6b-ref.dts
+index 60994b6..079cadc 100644
+--- a/arch/arm/boot/dts/uniphier-ld6b-ref.dts
++++ b/arch/arm/boot/dts/uniphier-ld6b-ref.dts
+@@ -29,6 +29,7 @@
+ 		i2c4 = &i2c4;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
  	};
  
-@@ -136,6 +141,37 @@
- 			     <1 10 4>;
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/uniphier-pro4-ace.dts b/arch/arm/boot/dts/uniphier-pro4-ace.dts
+index 92cc48d..64246fa 100644
+--- a/arch/arm/boot/dts/uniphier-pro4-ace.dts
++++ b/arch/arm/boot/dts/uniphier-pro4-ace.dts
+@@ -26,6 +26,7 @@
+ 		i2c3 = &i2c3;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
  	};
  
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <250>;	/* 250ms */
-+			polling-delay = <1000>;		/* 1000ms */
-+			thermal-sensors = <&pvtctl>;
-+
-+			trips {
-+				cpu_crit: cpu-crit {
-+					temperature = <110000>;	/* 110C */
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+				cpu_alert: cpu-alert {
-+					temperature = <100000>;	/* 100C */
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -504,6 +540,13 @@
- 			watchdog {
- 				compatible = "socionext,uniphier-wdt";
- 			};
-+
-+			pvtctl: pvtctl {
-+				compatible = "socionext,uniphier-pxs3-thermal";
-+				interrupts = <0 3 4>;
-+				#thermal-sensor-cells = <0>;
-+				socionext,tmod-calibration = <0x0f22 0x68ee>;
-+			};
- 		};
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/uniphier-pro4-ref.dts b/arch/arm/boot/dts/uniphier-pro4-ref.dts
+index 854f2eb..181442c 100644
+--- a/arch/arm/boot/dts/uniphier-pro4-ref.dts
++++ b/arch/arm/boot/dts/uniphier-pro4-ref.dts
+@@ -29,6 +29,7 @@
+ 		i2c3 = &i2c3;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
+ 	};
  
- 		eth0: ethernet@65000000 {
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/uniphier-pro4-sanji.dts b/arch/arm/boot/dts/uniphier-pro4-sanji.dts
+index dda1a2f..5396556 100644
+--- a/arch/arm/boot/dts/uniphier-pro4-sanji.dts
++++ b/arch/arm/boot/dts/uniphier-pro4-sanji.dts
+@@ -25,6 +25,7 @@
+ 		i2c3 = &i2c3;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
+ 	};
+ 
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/uniphier-pxs2-gentil.dts b/arch/arm/boot/dts/uniphier-pxs2-gentil.dts
+index e27fd4f..8e9ac57 100644
+--- a/arch/arm/boot/dts/uniphier-pxs2-gentil.dts
++++ b/arch/arm/boot/dts/uniphier-pxs2-gentil.dts
+@@ -26,6 +26,7 @@
+ 		i2c4 = &i2c4;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
+ 	};
+ 
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/uniphier-pxs2-vodka.dts b/arch/arm/boot/dts/uniphier-pxs2-vodka.dts
+index 23fe42b..8eacc7b 100644
+--- a/arch/arm/boot/dts/uniphier-pxs2-vodka.dts
++++ b/arch/arm/boot/dts/uniphier-pxs2-vodka.dts
+@@ -24,6 +24,7 @@
+ 		i2c4 = &i2c4;
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
++		ethernet0 = &eth;
+ 	};
+ 
+ 	memory@80000000 {
 -- 
 2.7.4
 
