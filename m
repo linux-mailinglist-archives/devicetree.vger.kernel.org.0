@@ -2,119 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE308184010
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 05:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C582E184042
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 06:23:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726300AbgCMEoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 00:44:00 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:59434 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726194AbgCMEoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 00:44:00 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02D4hmM2019617;
-        Thu, 12 Mar 2020 23:43:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1584074628;
-        bh=XpUwsYDH/tbEiw9bK9EeXQskLAoqJ6LteWN9NgyZdl4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=rc+0rrd5mK+hpp1qXDueWMnJ+xVaNuRe4JNuHPRBgh+l2k9lxqWLzA+M4TzdAqh1l
-         4gcaA3aKJdqF5/bDmdHL/dt0N5s59RD+uSAHCOmll67WkRC0y22b+tb1M77vB0ovrP
-         crI699YeDGzoMFwL6tL9zop3mm8/WGFSMAd7UIM8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02D4hluL001597
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 12 Mar 2020 23:43:47 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 12
- Mar 2020 23:43:47 -0500
-Received: from localhost.localdomain (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 12 Mar 2020 23:43:47 -0500
-Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02D4hhuU126810;
-        Thu, 12 Mar 2020 23:43:44 -0500
-Subject: Re: [Patch V5 00/21] Tegra XUSB OTG support
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nagarjuna Kristam <nkristam@nvidia.com>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1581322307-11140-1-git-send-email-nkristam@nvidia.com>
- <20200217085130.GJ1339021@ulmo> <20200227173226.GA1114616@ulmo>
- <20200304070100.GA1271591@kroah.com> <20200312092232.GA1199023@ulmo>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <3e76c44e-f2b0-3c8a-c7b3-0461ff1176d3@ti.com>
-Date:   Fri, 13 Mar 2020 10:18:23 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1726535AbgCMFXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 01:23:10 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37179 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726480AbgCMFXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 01:23:06 -0400
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jCcmf-00005M-2x; Fri, 13 Mar 2020 06:22:57 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jCcmc-0006cO-HQ; Fri, 13 Mar 2020 06:22:54 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, David Jander <david@protonic.nl>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 0/4] add TJA1102 support
+Date:   Fri, 13 Mar 2020 06:22:48 +0100
+Message-Id: <20200313052252.25389-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200312092232.GA1199023@ulmo>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+changes v4:
+- remove unused phy_id variable
 
-On 12/03/20 2:52 pm, Thierry Reding wrote:
-> On Wed, Mar 04, 2020 at 08:01:00AM +0100, Greg Kroah-Hartman wrote:
->> On Thu, Feb 27, 2020 at 06:32:26PM +0100, Thierry Reding wrote:
->>> On Mon, Feb 17, 2020 at 09:51:30AM +0100, Thierry Reding wrote:
->>>> On Mon, Feb 10, 2020 at 01:41:26PM +0530, Nagarjuna Kristam wrote:
->>>>> This patch series adds OTG support on XUSB hardware used in Tegra210 and
->>>>> Tegra186 SoCs.
->>>>>
->>>>> This patchset is composed with :
->>>>>  - dt bindings of XUSB Pad Controller
->>>>>  - dt bindings for XUSB device Driver
->>>>>  - Tegra PHY driver for usb-role-switch and usb-phy
->>>>>  - Tegra XUSB host mode driver to support OTG mode
->>>>>  - Tegra XUSB device mode driver to use usb-phy and multi device mode
->>>>>  - dts for XUSB pad controller
->>>>>  - dts for xudc for Jetson TX1 and TX2
->>>>>  - dts for Jetson-TK1
->>>>>  - dts for Jetson-Nano
->>>>>
->>>>> Tegra Pad controller driver register for role switch updates for
->>>>> OTG/peripheral capable USB ports and adds usb-phy for that corresponding
->>>>> USB ports.
->>>>>
->>>>> Host and Device mode drivers gets usb-phy from USB2's phy and registers
->>>>> notifier for role changes to perform corresponding role tasks.
->>>>>
->>>>> Order of merging Patches:
->>>>> Please merge DT changes first followed Tegra PHY driver changes and then
->>>>> USB driver changes.
->>>>
->>>> Felipe, Greg, Kishon,
->>>>
->>>> Given the runtime dependencies between these various parts, I could pick
->>>> these up into the Tegra tree if you provide an Acked-by.
->>>
->>> Ping. Are you guys okay if I pick these up into the Tegra tree?
->>
->> That's up to Felipe, I have no opinion :)
-> 
-> Felipe, Kishon,
-> 
-> I've picked up the device tree changes into the Tegra tree. Let me know
-> if you also want me to pick up the USB and PHY driver changes.
+changes v3:
+- export part of of_mdiobus_register_phy() and reuse it in tja11xx
+  driver
+- coding style fixes
 
-The PHY and USB changes can only go together since xhci-tegra.c seems to
-use an export symbol of xusb PHY. So I'm fine if someone takes the PHY
-changes along with USB changes.
+changes v2:
+- use .match_phy_device
+- add irq support
+- add add delayed registration for PHY1
 
-Acked-by: Kishon Vijay Abraham I <kishon@ti.com>
+Oleksij Rempel (4):
+  dt-bindings: net: phy: Add support for NXP TJA11xx
+  net: phy: tja11xx: add initial TJA1102 support
+  net: mdio: of: export part of of_mdiobus_register_phy()
+  net: phy: tja11xx: add delayed registration of TJA1102 PHY1
 
-Thanks
-Kishon
+ .../devicetree/bindings/net/nxp,tja11xx.yaml  |  61 ++++++
+ drivers/net/phy/nxp-tja11xx.c                 | 201 +++++++++++++++++-
+ drivers/of/of_mdio.c                          |  73 ++++---
+ include/linux/of_mdio.h                       |  11 +-
+ 4 files changed, 308 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
+
+-- 
+2.25.1
+
