@@ -2,59 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96361185092
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 21:57:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D11F21850C5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 22:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727210AbgCMU5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 16:57:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55076 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726528AbgCMU5c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Mar 2020 16:57:32 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B2D3F2074A;
-        Fri, 13 Mar 2020 20:57:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584133051;
-        bh=B4l8ndTJzmvb3eEAPRS7jp/F3ynzjAo+Jf9vLnUAo9c=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=KO4D24a3uDptIHeuIwRUqwXWmDeMDdQM5pfycl4dinBY44n+xxSgSX/dCwIW66QJU
-         upMPDamHWwFOmMXnkIQQhP97lQrdLq4B+gI3wEQJqSueNUv7s41E7aal04cRMSk2ta
-         i39ZlcU7+gycWGFMUS+o1H25g1OHO0gw3qyVYC/0=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200310143756.244-1-ansuelsmth@gmail.com>
-References: <sboyd@kernel.org> <20200310143756.244-1-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v2] clk: qcom: clk-rpm: add missing rpm clk for ipq806x
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S1727195AbgCMVMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 17:12:48 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:33087 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726637AbgCMVMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Mar 2020 17:12:48 -0400
+X-IronPort-AV: E=Sophos;i="5.70,550,1574089200"; 
+   d="scan'208";a="41835027"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 14 Mar 2020 06:12:43 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E2D6B40E09D5;
+        Sat, 14 Mar 2020 06:12:38 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Date:   Fri, 13 Mar 2020 13:57:30 -0700
-Message-ID: <158413305090.164562.262956401824904582@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/4] ov5645: Switch to assigned-clock-rates
+Date:   Fri, 13 Mar 2020 21:12:30 +0000
+Message-Id: <1584133954-6953-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Ansuel Smith (2020-03-10 07:37:56)
-> Add missing definition of rpm clk for ipq806x soc
->=20
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> Acked-by: John Crispin <john@phrozen.org>
-> ---
+Hi All,
 
-Applied to clk-next and added Rob's review tag from v1. Please help and
-do it next time.
+This patch series adds support for using assigned-clock-rates for
+specifying clock rates for ov5645 driver
+
+Thanks,
+Prabhakar
+
+Changed for v3:
+* Dropped reading assigned-clock-rates
+* Increased the maximum clock frequency to 24480000
+
+Changes for v2:
+* Instead of completely dropping clock-frequency property marked it as
+  deprecated.
+* Split up imx6qdl-wandboard.dtsi changes as separate patch.
+
+Lad Prabhakar (4):
+  media: dt-bindings: media: i2c: Switch to assigned-clock-rates
+  media: i2c: ov5645: Switch to assigned-clock-rates
+  media: i2c: ov5645: Set maximum leverage of external clock frequency
+    to 24480000
+  ARM: dts: imx6qdl-wandboard: Switch to assigned-clock-rates for ov5645
+    node
+
+ .../devicetree/bindings/media/i2c/ov5645.txt       |  5 ++--
+ arch/arm/boot/dts/imx6qdl-wandboard.dtsi           |  3 ++-
+ drivers/media/i2c/ov5645.c                         | 27 ++++++++++++----------
+ 3 files changed, 20 insertions(+), 15 deletions(-)
+
+-- 
+2.7.4
+
