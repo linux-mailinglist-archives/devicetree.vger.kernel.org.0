@@ -2,165 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF7A184580
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 12:04:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 460F51845A1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 12:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbgCMLEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 07:04:22 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34490 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726667AbgCMLEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 07:04:13 -0400
-Received: by mail-wm1-f67.google.com with SMTP id x3so7576574wmj.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2020 04:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KmK9rPbQ7ZkiTZPfd7jr8oEpxHT6uehvlGdRiVCfa9E=;
-        b=bHeV3oZzGpOJp9X2/+ayJxINfN/+cGoX+D+XUhTs6Q4RfuCAcephVcJEMljWUqg0oY
-         TfV385qnmaVVyq5bXflo/xOe/PW6CJyP7UWZx+Ile8m8rEY48+pmBcBK7vOK/frIvihh
-         jJWxEC/zdw6oE6+NhGS7Y8H/sqWrUhsmqilh55QnUxolhvqTSVDJV67t24HGXxksGqmo
-         2TVgjbWh3d5khSKPFOyWy8L3nXOtL/siZ07IAxXHCcZioSLCFldpaNLx30kHkN2IATKe
-         /kZo0Av80UuI6B3c6Kja3n+wEg4K5XwWh/TC8zULaBHxtjGmpRFxf0aoN+y7As+iRpRe
-         wUig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KmK9rPbQ7ZkiTZPfd7jr8oEpxHT6uehvlGdRiVCfa9E=;
-        b=BJwEY4DNNJwGZrd3sOKQ9ug2tbpvinAaND6xTjxiaLNs4pts7crKRPqm47QSCcopxW
-         3Cf0oQ/te+4veEBygb/amIn/j3nmhEOgR1DbtRCHMFmKyWqUkSgwYz0GPovMeYq3RdwD
-         WOOrynsIKZHEv/ijlPz3N2XrLuDjKxYiP2p8+ME8MSwW9gRjM3xamNE2TEFq/dw5EdFW
-         gQ6aXnCuy7phuw9CGXt2Ujd2q+JSliPjuNAB4uM/GwenJ2HhQIeB4WuO+ZrxuJB3eR4C
-         hh3ce1PkUq8xbMRQdn9EACFKEVZNAKbaRI5XwZSBXw7QXlxOt9oYJy1k+SgFxpQw8yBC
-         rNrg==
-X-Gm-Message-State: ANhLgQ1y4rNzJKvEQVmP0OdxEJVP+WfbPgDCfp5+GbTtuhYUGe4qHhf0
-        LgG0D3+VlVdovM0RMoHIlruYOw==
-X-Google-Smtp-Source: ADFU+vsecmaXEqCn3VzdzRxpowdlFf1VRTVp8EqTIdciEiR4i/mJkERoqke1oLtWuG4/wpapMep3Bw==
-X-Received: by 2002:a7b:cb17:: with SMTP id u23mr10778712wmj.12.1584097452112;
-        Fri, 13 Mar 2020 04:04:12 -0700 (PDT)
-Received: from xps7590.local ([2a02:2450:102f:13b8:c814:5be4:577e:3bd5])
-        by smtp.gmail.com with ESMTPSA id r23sm23578052wrr.93.2020.03.13.04.04.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2020 04:04:11 -0700 (PDT)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Tomasz Figa <tfiga@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [v2 3/3] media: ov8856: Implement sensor module revision identification
-Date:   Fri, 13 Mar 2020 12:03:50 +0100
-Message-Id: <20200313110350.10864-4-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200313110350.10864-1-robert.foss@linaro.org>
-References: <20200313110350.10864-1-robert.foss@linaro.org>
+        id S1726508AbgCMLJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 07:09:31 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:45860 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726414AbgCMLJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 07:09:31 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02DB9Rl9116314;
+        Fri, 13 Mar 2020 06:09:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1584097767;
+        bh=Gcba3nSrASmOMxPn5/+FGEYyz7Y0+H63Cau6YWzzsfI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=q8JtAEqZ0Vo8O5HyQZARU8EY5pYSNsgL3rcDdn3U4rkjXRd+pMvW/9Q0YjOXPuTrF
+         vlrVDldujyvuHTFbRIvMP4o85hP0JxGZHlqynKujRHkhkwe4HhjtGy/o1FVs44DFnO
+         Kupm59OYnYlKEdBlqiPWlWG2ys23da0cpvNRtvvk=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02DB9Qq3032533
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Mar 2020 06:09:27 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 13
+ Mar 2020 06:09:26 -0500
+Received: from localhost.localdomain (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 13 Mar 2020 06:09:26 -0500
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02DB9ObY004979;
+        Fri, 13 Mar 2020 06:09:25 -0500
+Subject: Re: [PATCH v6 1/3] dt-bindings: phy: Add DT bindings for Xilinx
+ ZynqMP PSGTR PHY
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh@kernel.org>
+CC:     Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        <devicetree@vger.kernel.org>
+References: <20200311103252.17514-1-laurent.pinchart@ideasonboard.com>
+ <20200311103252.17514-2-laurent.pinchart@ideasonboard.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <57072adb-9967-f5d1-7a3d-af713e8c35cd@ti.com>
+Date:   Fri, 13 Mar 2020 16:44:04 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200311103252.17514-2-laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Query the sensor for its module revision, and compare it
-to known revisions.
-Currently only the '1B' revision has been added.
++Rob
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- drivers/media/i2c/ov8856.c | 54 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 48 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/media/i2c/ov8856.c b/drivers/media/i2c/ov8856.c
-index db61eed223e8..39662d3d86dd 100644
---- a/drivers/media/i2c/ov8856.c
-+++ b/drivers/media/i2c/ov8856.c
-@@ -34,6 +34,18 @@
- #define OV8856_MODE_STANDBY		0x00
- #define OV8856_MODE_STREAMING		0x01
- 
-+/* define 1B module revision */
-+#define OV8856_1B_MODULE		0x02
-+
-+/* the OTP read-out buffer is at 0x7000 and 0xf is the offset
-+ * of the byte in the OTP that means the module revision
-+ */
-+#define OV8856_MODULE_REVISION		0x700f
-+#define OV8856_OTP_MODE_CTRL		0x3d84
-+#define OV8856_OTP_LOAD_CTRL		0x3d81
-+#define OV8856_OTP_MODE_AUTO		0x00
-+#define OV8856_OTP_LOAD_CTRL_ENABLE	BIT(0)
-+
- /* vertical-timings from sensor */
- #define OV8856_REG_VTS			0x380e
- #define OV8856_VTS_MAX			0x7fff
-@@ -711,6 +723,25 @@ static int ov8856_test_pattern(struct ov8856 *ov8856, u32 pattern)
- 				OV8856_REG_VALUE_08BIT, pattern);
- }
- 
-+static int ov8856_check_revision(struct ov8856 *ov8856)
-+{
-+	int ret;
-+
-+	ret = ov8856_write_reg(ov8856, OV8856_REG_MODE_SELECT,
-+			       OV8856_REG_VALUE_08BIT, OV8856_MODE_STREAMING);
-+	if (ret)
-+		return ret;
-+
-+	ret = ov8856_write_reg(ov8856, OV8856_OTP_MODE_CTRL,
-+			       OV8856_REG_VALUE_08BIT, OV8856_OTP_MODE_AUTO);
-+	if (ret)
-+		return ret;
-+
-+	return ov8856_write_reg(ov8856, OV8856_OTP_LOAD_CTRL,
-+				OV8856_REG_VALUE_08BIT,
-+				OV8856_OTP_LOAD_CTRL_ENABLE);
-+}
-+
- static int ov8856_set_ctrl(struct v4l2_ctrl *ctrl)
- {
- 	struct ov8856 *ov8856 = container_of(ctrl->handler,
-@@ -1144,6 +1175,23 @@ static int ov8856_identify_module(struct ov8856 *ov8856)
- 		return -ENXIO;
- 	}
- 
-+	/* check sensor hardware revision */
-+	ret = ov8856_check_revision(ov8856);
-+	if (ret) {
-+		dev_err(&client->dev, "failed to check sensor revision");
-+		return ret;
-+	}
-+
-+	ret = ov8856_read_reg(ov8856, OV8856_MODULE_REVISION,
-+			      OV8856_REG_VALUE_08BIT, &val);
-+	if (ret)
-+		return ret;
-+
-+	dev_info(&client->dev, "OV8856 revision %x (%s) at address 0x%02x\n",
-+		val,
-+		val == OV8856_1B_MODULE ? "1B" : "unknown revision",
-+		client->addr);
-+
- 	return 0;
- }
- 
-@@ -1254,12 +1302,6 @@ static int ov8856_probe(struct i2c_client *client)
- 		return PTR_ERR(ov8856->xvclk);
- 	}
- 
--	ret = clk_set_rate(ov8856->xvclk, OV8856_XVCLK_24);
--	if (ret < 0) {
--		dev_err(&client->dev, "failed to set xvclk rate (24MHz)\n");
--		return ret;
--	}
--
- 	ov8856->reset_gpio = devm_gpiod_get(&client->dev, "reset",
- 					       GPIOD_OUT_HIGH);
- 	if (IS_ERR(ov8856->reset_gpio)) {
--- 
-2.20.1
-
+On 11/03/20 4:02 pm, Laurent Pinchart wrote:
+> From: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+> 
+> Add DT bindings for the Xilinx ZynqMP PHY. ZynqMP SoCs have a High Speed
+> Processing System Gigabit Transceiver which provides PHY capabilities to
+> USB, SATA, PCIE, Display Port and Ehernet SGMII controllers.
+> 
+> Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v5:
+> 
+> - Document clocks and clock-names properties
+> - Document resets and reset-names properties
+> - Replace subnodes with an additional entry in the PHY cells
+> - Drop lane frequency PHY cell, replaced by reference clock phandle
+> - Convert bindings to YAML
+> - Reword the subject line
+> - Drop Rob's R-b as the bindings have significantly changed
+> - Drop resets and reset-names properties
+> ---
+>  .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 104 ++++++++++++++++++
+>  include/dt-bindings/phy/phy.h                 |   1 +
+>  2 files changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> new file mode 100644
+> index 000000000000..9948e4a60e45
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/xlnx,zynqmp-psgtr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx ZynqMP Gigabit Transceiver PHY Device Tree Bindings
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +
+> +description: |
+> +  This binding describes the Xilinx ZynqMP Gigabit Transceiver (GTR) PHY. The
+> +  GTR provides four lanes and is used by USB, SATA, PCIE, Display port and
+> +  Ethernet SGMII controllers.
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 4
+> +    description: |
+> +      The cells contain the following arguments.
+> +
+> +      - description: The GTR lane
+> +        minimum: 0
+> +        maximum: 3
+> +      - description: The PHY type
+> +        enum:
+> +          - PHY_TYPE_DP
+> +          - PHY_TYPE_PCIE
+> +          - PHY_TYPE_SATA
+> +          - PHY_TYPE_SGMII
+> +          - PHY_TYPE_USB
+> +      - description: The PHY instance
+> +        minimum: 0
+> +        maximum: 1 # for DP, SATA or USB
+> +        maximum: 3 # for PCIE or SGMII
+> +      - description: The reference clock number
+> +        minimum: 0
+> +        maximum: 3
+> +
+> +  compatible:
+> +    enum:
+> +      - xlnx,zynqmp-psgtr-v1.1
+> +      - xlnx,zynqmp-psgtr
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 4
+> +    description: |
+> +      Clock for each PS_MGTREFCLK[0-3] reference clock input. Unconnected
+> +      inputs shall not have an entry.
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      pattern: "^ref[0-3]$"
+> +
+> +  reg:
+> +    items:
+> +      - description: SERDES registers block
+> +      - description: SIOU registers block
+> +
+> +  reg-names:
+> +    items:
+> +      - const: serdes
+> +      - const: siou
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      const: xlnx,zynqmp-psgtr
+> +
+> +then:
+> +  properties:
+> +    xlnx,tx-termination-fix:
+> +      description: |
+> +        Include this for fixing functional issue with the TX termination
+> +        resistance in GT, which can be out of spec for the XCZU9EG silicon
+> +        version.
+> +      type: boolean
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    phy: phy@fd400000 {
+> +      compatible = "xlnx,zynqmp-psgtr-v1.1";
+> +      reg = <0x0 0xfd400000 0x0 0x40000>,
+> +            <0x0 0xfd3d0000 0x0 0x1000>;
+> +      reg-names = "serdes", "siou";
+> +      clocks = <&refclks 3>, <&refclks 2>, <&refclks 0>;
+> +      clock-names = "ref1", "ref2", "ref3";
+> +      #phy-cells = <4>;
+> +      status = "okay";
+> +    };
+> +
+> +...
+> diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
+> index 1f3f866fae7b..f6bc83b66ae9 100644
+> --- a/include/dt-bindings/phy/phy.h
+> +++ b/include/dt-bindings/phy/phy.h
+> @@ -17,5 +17,6 @@
+>  #define PHY_TYPE_USB3		4
+>  #define PHY_TYPE_UFS		5
+>  #define PHY_TYPE_DP		6
+> +#define PHY_TYPE_SGMII		7
+>  
+>  #endif /* _DT_BINDINGS_PHY */
+> 
