@@ -2,117 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4ED1846D3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 13:27:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E095F1846D9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 13:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726642AbgCMM11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 08:27:27 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:60628 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726395AbgCMM11 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 08:27:27 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id D2E2C80307C4;
-        Fri, 13 Mar 2020 12:27:23 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Dm24oyUx6UoH; Fri, 13 Mar 2020 15:27:23 +0300 (MSK)
-Date:   Fri, 13 Mar 2020 15:26:34 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: syscon: Add syscon endian properties
- support
-Message-ID: <20200313122634.lfdharbhxvnoew6r@ubsrv2.baikal.int>
-References: <20200306130341.9585-1-Sergey.Semin@baikalelectronics.ru>
- <20200306130356.D9FCD8030794@mail.baikalelectronics.ru>
- <20200312211102.GA21647@bogus>
+        id S1726591AbgCMM2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 08:28:07 -0400
+Received: from mga18.intel.com ([134.134.136.126]:6234 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726395AbgCMM2H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Mar 2020 08:28:07 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Mar 2020 05:28:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; 
+   d="scan'208";a="290013497"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by FMSMGA003.fm.intel.com with ESMTP; 13 Mar 2020 05:28:04 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jCjQ6-009G8T-69; Fri, 13 Mar 2020 14:28:06 +0200
+Date:   Fri, 13 Mar 2020 14:28:06 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Tomasz Figa <tfiga@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [v2 2/3] media: ov8856: Add devicetree support
+Message-ID: <20200313122806.GT1922688@smile.fi.intel.com>
+References: <20200313110350.10864-1-robert.foss@linaro.org>
+ <20200313110350.10864-3-robert.foss@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200312211102.GA21647@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20200313110350.10864-3-robert.foss@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 12, 2020 at 04:11:02PM -0500, Rob Herring wrote:
-> On Fri, Mar 06, 2020 at 04:03:38PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > In accordance with the syscon-driver (drivers/mfd/syscon.c) the syscon
-> > dts-nodes may accept endian properties of the boolean type: little-endian,
-> > big-endian, native-endian. Lets make sure that syscon bindings json-schema
-> > also supports them.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > Cc: Paul Burton <paulburton@kernel.org>
-> > Cc: Ralf Baechle <ralf@linux-mips.org>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/syscon.yaml | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > index 39375e4313d2..9ee404991533 100644
-> > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > @@ -61,6 +61,11 @@ properties:
-> >      description:
-> >        Reference to a phandle of a hardware spinlock provider node.
-> >  
-> > +patternProperties:
-> > +  "^(big|little|native)-endian$":
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: Bytes order of the system controller memory space.
-> 
-> Common properties should have a type definition in a common schema. For 
-> this one, I'd like it in the core schema in dtschema. 
+On Fri, Mar 13, 2020 at 12:03:49PM +0100, Robert Foss wrote:
+> Add devicetree match table, and enable ov8856_probe()
+> to initialize power, clocks and reset pins.
 
-So what do you suggest then? Will you move this file to the dt-scheme/schemas
-in your repo? What shall I do with this patch, just drop? Or would you like me
-to fork your dt-schema repo, add dt-schemas/schemas/mfd/syscon.yaml file similar
-to this one with "*-endian" property supported, then pull-request or
-send a patch with the alteration back to your repo?
+Thanks for an update.
+My comments below.
 
-> 
-> I'd expect for any specific 'syscon', either none or only a subset of 
-> these are valid, so I don't think this should be added here.
+...
 
-AFAIU mfd/syscon.yaml describes a generic syscon compatible with generic
-driver drivers/mfd/syscon.c, which may have any of these properties
-declared in its dt-node. We can't predict which one because, well, it's
-generic. At the same time, yes, only a subset of these properties can be
-supported by a specific system controller, which one can be determined
-by the controller specific dt schema. So if we left the property here in
-the generic syscon.yaml, then the controller dt-schema would have had a
-pattern like:
+> +	ov8856->xvclk = devm_clk_get(&client->dev, "xvclk");
 
->
-> allOf:
->   - $ref: ../../mfd/syscon.yaml#
->
-> properties:
->   little-endian: true
->
-> additionalProperties: false
->
+In many frameworks we have '_optional' variants of API. Please use it instead
+of open coded approach.
 
-as I did for soc/baikal-t1/be,bt1-l2-ctl.yaml. See the patch: "dt-bindings:
-Add Baikal-T1 L2-cache Control Block dts bindings file" in the corresponding
-patchset in your email Inbox.
+> +	if (PTR_ERR(ov8856->xvclk) == -ENOENT) {
+> +		dev_info(&client->dev, "xvclk clock not defined, continuing...\n");
+> +		ov8856->xvclk = NULL;
+> +	} else if (IS_ERR(ov8856->xvclk)) {
+> +		dev_err(&client->dev, "could not get xvclk clock (%ld)\n",
+> +			PTR_ERR(ov8856->xvclk));
+> +		return PTR_ERR(ov8856->xvclk);
+> +	}
+> +
+> +	ret = clk_set_rate(ov8856->xvclk, OV8856_XVCLK_24);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "failed to set xvclk rate (24MHz)\n");
+> +		return ret;
+> +	}
+> +
 
-Regards,
--Sergey
+> +	ov8856->reset_gpio = devm_gpiod_get(&client->dev, "reset",
+> +					       GPIOD_OUT_HIGH);
 
-> 
-> Rob
+Same here.
+
+> +	if (IS_ERR(ov8856->reset_gpio)) {
+> +		dev_err(&client->dev, "failed to get reset-gpios\n");
+> +		return PTR_ERR(ov8856->reset_gpio);
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ov8856_supply_names); i++)
+> +		ov8856->supplies[i].supply = ov8856_supply_names[i];
+> +
+
+> +	ret = devm_regulator_bulk_get(&client->dev,
+> +				      ARRAY_SIZE(ov8856_supply_names),
+> +				      ov8856->supplies);
+
+Luckily regulator framework will create dummy ones if there is none found.
+
+> +	if (ret) {
+> +		dev_warn(&client->dev, "failed to get regulators\n");
+> +		return ret;
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
