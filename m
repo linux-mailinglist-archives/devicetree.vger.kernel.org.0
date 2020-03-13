@@ -2,119 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 338001851AE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2020 23:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 436E018520A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2020 00:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgCMWeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Mar 2020 18:34:12 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35807 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726534AbgCMWeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 18:34:12 -0400
-Received: by mail-wr1-f68.google.com with SMTP id d5so13725609wrc.2;
-        Fri, 13 Mar 2020 15:34:10 -0700 (PDT)
+        id S1727181AbgCMXFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Mar 2020 19:05:32 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:44447 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726681AbgCMXFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Mar 2020 19:05:31 -0400
+Received: by mail-qt1-f193.google.com with SMTP id h16so9104882qtr.11;
+        Fri, 13 Mar 2020 16:05:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:references:in-reply-to:subject:date:message-id
-         :mime-version:content-transfer-encoding:thread-index
-         :content-language;
-        bh=u2/KsbMRst5bOqjjozeqv6hTnglC4BshRp2rjl0jtkE=;
-        b=J+TIiwsKperfrX263SHYpVChqgx2ehGPtuTPCxNhG61/OgzX0SeZROV+/dZCwtr0UL
-         iQZm5u345orMAsMTyYca+AHmpt7gL8VOm7ijkJKezhhW/iUqOwWa64hZfI2TT4M+OQ5w
-         +GNCtW/wxOyQAEP2qsJog8CdrpPRNg8NAN2Qv4h9vPcNJgbKNbdwWvNY/9ujuPLNB29t
-         O3y2tzPrHhfQ9oojPZ2C3mNhtXjGydVi7kdkJ4joFq1S9GhS+YbzFMUZ6c+3K9hRNk5U
-         OhFRXx35CcfyIkEDhJDiTyyHkrJVSoCFtRnXy6C32sR3x4QRvhHrASLMB6ls3CaG6MCE
-         tXjQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K19tWYumSLxb2jgL1zYdrr/V94anTYSOiMqlc5VxdrE=;
+        b=alFec87BZpXN0KlqpPOND8yBwUN3qvnWceUs7RmxNXeRDLzbLwA4DYwSftKfaQlb/5
+         7CAPgS3YNllTd3voPPiwGOMxjOQZSYwCJA51vA5c2WrbGD0dXJDIk37PRPc9mHoyySa/
+         gIQjUk+ytd9tDQFbOxNsYc6bySk+TmEccp59iajt3fu5Fv8UiXif7ksXa1pNMPrSv3II
+         c0pFJjeFk7YuM2R/Dsl0S74VPm2Wq6bFgbInkAYrPMvMgz2NxorHElKI3Z7GPyyxPvOO
+         UHvD8Ewk/06FHXmloZqLkhsG/pS6FtdDbTO7EKDWK1SBmLHKgaVYuYCuUu7HS5LfHfbd
+         JtQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
-         :message-id:mime-version:content-transfer-encoding:thread-index
-         :content-language;
-        bh=u2/KsbMRst5bOqjjozeqv6hTnglC4BshRp2rjl0jtkE=;
-        b=cjaLJ530orLqSUMw+uLGJSdQY8KkzXU9oqP+g1mOtPvzi2LZsw87K4ZdslmHdipVvg
-         BfY3Qc8O1GU9ki2bv1g7BKYRy+YLI7yhnuJpFD1DEYmBzV6LGWvCnwIGOPk9Mf3Qu8ti
-         Y78vebQkv3N76vTMLJ0rWMxuAl6aMLny8BEcVIoG1KI67nbs9h1QHzzAjeQflJ3+iVU8
-         uAnShiBl8eUo1bLFHqj+cmUMU7vxU8CPRi3JFuQIGNnTEZhaCnM2E8X34QQT9wITrLhT
-         P0T9p/qEIfWFT+837doki3J5DNocTcIDF3T1kiq621Q5mJ02aj8GF95cXAiqyLVJLBsa
-         5p3w==
-X-Gm-Message-State: ANhLgQ0CcOhQnjuCK0BTRCH10RGPkf23n2K1Mf+jjkvXY3GMRnIfTCM2
-        i/Ve68pENr/xNqSPlBYjHkw=
-X-Google-Smtp-Source: ADFU+vuwl9wZQqUu+AK3esARk//0MO9KcaK6BM7g9CGUYNYklmt4SgOYLGnFRB6MFLNXN1F+2JzSiQ==
-X-Received: by 2002:adf:e98c:: with SMTP id h12mr20476792wrm.345.1584138849748;
-        Fri, 13 Mar 2020 15:34:09 -0700 (PDT)
-Received: from AnsuelXPS ([2001:470:b467:1:44af:5966:96b9:9aa4])
-        by smtp.gmail.com with ESMTPSA id t1sm36023991wrq.36.2020.03.13.15.34.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 13 Mar 2020 15:34:09 -0700 (PDT)
-From:   <ansuelsmth@gmail.com>
-To:     "'Stephen Boyd'" <sboyd@kernel.org>, <agross@kernel.org>
-Cc:     "'Mathieu Olivari'" <mathieu@codeaurora.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Mark Rutland'" <mark.rutland@arm.com>,
-        "'Michael Turquette'" <mturquette@baylibre.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20200313195816.12435-1-ansuelsmth@gmail.com> <158413179776.164562.8295974225127853050@swboyd.mtv.corp.google.com>
-In-Reply-To: <158413179776.164562.8295974225127853050@swboyd.mtv.corp.google.com>
-Subject: R: [PATCH] ARM: qcom: Disable i2c device on gsbi4 for ipq806x
-Date:   Fri, 13 Mar 2020 23:34:05 +0100
-Message-ID: <014101d5f987$82790c90$876b25b0$@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K19tWYumSLxb2jgL1zYdrr/V94anTYSOiMqlc5VxdrE=;
+        b=cxPVexytEVah9blDzmMz4R5n/i6iI78FtLFAMt2XgUB9rnr36xoFICUT2PIupWfFV/
+         At5nEHNs/WjgWQf8DWKH/Yd60dfBdutC3q4GSGbKYyFrHhwGYN+A6cTPUbhCd9YDepCj
+         +cj3IBbaK047pygZ5WgpkIa+HQot3nNzFmCPLjqGWc/Z8DEc6CcL3itqHQZI8nTpj17n
+         A+R1uaQMERD7guOx2JiIP0KNfo9P1vygUDn+fP+qd95I6LBecrNYHLTaX5sgbzGSm6fb
+         eP+EcUdz24NZdfRtfk9Vk/U4DM6y82fz0+C+xi6LEOtjsfcsd53SB5/QVDK0Lohj+VHq
+         eqyw==
+X-Gm-Message-State: ANhLgQ3u5Jt1eUw5kcx35yrO0NNAIN/7ujeKZnCVJ7cSsEm4zESixHVi
+        4m+P6sI6DtBqK1sS43TXquY=
+X-Google-Smtp-Source: ADFU+vu2A0jQITKSfb9D6lzWugdRnkulN3l3qRdmwJK7GenwUubT5WBUEj4UMaYTfXtbMNN5smwyEQ==
+X-Received: by 2002:ac8:6685:: with SMTP id d5mr15145698qtp.170.1584140730346;
+        Fri, 13 Mar 2020 16:05:30 -0700 (PDT)
+Received: from localhost.localdomain (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.googlemail.com with ESMTPSA id i1sm25756015qtg.31.2020.03.13.16.05.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2020 16:05:29 -0700 (PDT)
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
+        npcomplete13@gmail.com, ezequiel@collabora.com, jbx6244@gmail.com,
+        akash@openedev.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Add Hugsun X99 IR receiver and power led
+Date:   Fri, 13 Mar 2020 19:05:13 -0400
+Message-Id: <20200313230513.123049-1-npcomplete13@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFhpnVMu9aClkJmE4H4ViqLWFkkBwJI+//GqR16BZA=
-Content-Language: it
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Quoting Ansuel Smith (2020-03-13 12:58:16)
-> > diff --git a/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
-> b/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
-> > index 554c65e7aa0e..580aec63030d 100644
-> > --- a/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
-> > +++ b/arch/arm/boot/dts/qcom-ipq8064-ap148.dts
-> > @@ -21,14 +21,5 @@ mux {
-> >                                 };
-> >                         };
-> >                 };
-> > -
-> > -               gsbi@16300000 {
-> > -                       i2c@16380000 {
-> > -                               status = "ok";
-> > -                               clock-frequency = <200000>;
-> > -                               pinctrl-0 = <&i2c4_pins>;
-> > -                               pinctrl-names = "default";
-> > -                       };
-> > -               };
-> >         };
-> >  };
-> > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-
-> ipq806x.c
-> > index b0eee0903807..75706807e6cf 100644
-> > --- a/drivers/clk/qcom/gcc-ipq806x.c
-> > +++ b/drivers/clk/qcom/gcc-ipq806x.c
-> > @@ -782,7 +782,7 @@ static struct clk_rcg gsbi4_qup_src = {
-> >                         .parent_names = gcc_pxo_pll8,
-> >                         .num_parents = 2,
-> >                         .ops = &clk_rcg_ops,
-> > -                       .flags = CLK_SET_PARENT_GATE,
-> > +                       .flags = CLK_SET_PARENT_GATE | CLK_IGNORE_UNUSED,
-> 
-> A better solution is to use the protected-clocks property so we don't
-> try to touch these clks at all on this device. So this whole patch can
-> be routed through arm-soc and remove the i2c node and add some dt
-> property to the gcc node.
-> 
+ - Add Hugsun X99 IR receiver and power led
+ - Remove pwm0 node as it interferes with power LED gpio
+   pwm0 is not used in factory firmware as well
 
-Should I add a comment where the i2c is removed or I can remove it
-directly?
+Tested with LibreElec linux-next-20200305
 
-> >                 },
-> >         },
-> >  };
+Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+---
+Changes in v2:
+	- Changed led trigger from none to default-on
+	- Changed led node name from power-led to led-0
+---
+ .../boot/dts/rockchip/rk3399-hugsun-x99.dts   | 37 +++++++++++++++++--
+ 1 file changed, 33 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+index d69a613fb65a..df425e164a2e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+@@ -29,6 +29,26 @@
+ 		regulator-max-microvolt = <5000000>;
+ 	};
+ 
++	ir-receiver {
++		compatible = "gpio-ir-receiver";
++		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ir_rx>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&power_led_gpio>;
++
++		led-0 {
++			label = "blue:power";
++			gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++			linux,default-trigger = "default-on";
++		};
++	};
++
+ 	vcc_sys: vcc-sys {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_sys";
+@@ -483,6 +503,18 @@
+ 		};
+ 	};
+ 
++	ir {
++		ir_rx: ir-rx {
++			rockchip,pins = <0 RK_PA6 1 &pcfg_pull_none>;
++		};
++	};
++
++	leds {
++		power_led_gpio: power-led-gpio {
++			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	pmic {
+ 		pmic_int_l: pmic-int-l {
+ 			rockchip,pins =
+@@ -539,10 +572,6 @@
+ 	};
+ };
+ 
+-&pwm0 {
+-	status = "okay";
+-};
+-
+ &pwm2 {
+ 	status = "okay";
+ 	pinctrl-0 = <&pwm2_pin_pull_down>;
+-- 
+2.20.1
 
