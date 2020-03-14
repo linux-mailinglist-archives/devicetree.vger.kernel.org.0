@@ -2,127 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA42018584E
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:02:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F114D185863
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:05:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727544AbgCOCCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 22:02:35 -0400
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:34309 "EHLO
-        mail-ed1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726550AbgCOCCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:02:35 -0400
-Received: by mail-ed1-f52.google.com with SMTP id i24so13498074eds.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2020 19:02:33 -0700 (PDT)
+        id S1727280AbgCOCFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 22:05:49 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:33759 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgCOCFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:05:48 -0400
+Received: by mail-qt1-f194.google.com with SMTP id d22so11203298qtn.0
+        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2020 19:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9oaTRbmXh8YDwKHKnzGVIS7f6wuqtnZ7xd23oLTEEto=;
-        b=jiH9bpypMJvdPe8XlrGt2qIBH0ac9i0GdP9NUU8Dbj21jnOYrHb0bpgF+yR2ExaTYd
-         NAzRvP5rwXw9qS1pTlpVkDL1uK1h23pv4kRIx7rjoVJlKJ4JGKbRFRzPcCVKSHyr0Exa
-         QYfrr56GTgIxZP4PKS3KLmbx2h8wu8mhnBIfesQ90NCsMIdxbmKKElN3L5ZdH/gmbfBb
-         +mKXbkpKXgh37oIgvXP29B9BlEW9ZNN3qEa89bFCLbLLvpJ23EET2a315DQkHekpY87W
-         PJnlFxnqdeB7VyXFW1bKPwiALokrPnjTfWn9E+nLuatsB2E1UE6hGwgIdU1DjH+yWgJ5
-         EaAg==
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=rySLrb6e8pdxDloLytBEUWmIP8HvBNLPxIuJLcg1j9c=;
+        b=h9YhYCfhuvcoOK9JuTSnuiXg2cILoy3ExIWXtsaJYq8huKBTSezqcgybwNUJnF31OD
+         8M4XkdAA+wF3Kc0hz30O/kK9eMooTs7yoqdIBJNfvWQnNRWRGMPcYzXrJl2zdeF1j7va
+         J8XdxMT0KmL8llAYJuvJtfAv+moo5flCUCJCh/tlglJ+fFmIUPVbZ1fac7bCjKhbkCn+
+         rZJerUAJLBThHl7kvNkOSCFj/J2Gim7L2OHs8nEEBbbGF0yG+oMEoxI1m7Q6XmwEaoXK
+         TKHu+SSgJteucaBn++J1ylejcFocesa/O0LZlk7VxDKA6TPZDYhdjLA4ADjt7vhRjRdb
+         KZMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=9oaTRbmXh8YDwKHKnzGVIS7f6wuqtnZ7xd23oLTEEto=;
-        b=Tr0whdFUzuwwbbHfpm5Z0PyAsGuh/ZWWQXmrS50nGHsSmukClqOtnuYKa3emYFL+5/
-         D0b93r/YJI07LAiJEoMGMLLLkicPLBRMmpUTlUFAluF1o7NEyRhiTyevlfNG7rkRdjrw
-         o16n74q8eOY2T6f0rvAGcyxFtnEzAOxprG5LkdDrhMkeCicbAYJjGwoyt/WV6vHHGBze
-         KMpkOexvqXOeAQcD1merM6gmU2vpzryR4R4Aba2e3PZ30nHH0gGZe6di/8n5/bmJ1R0q
-         VT4NtVr0sETGdeN4TwRPxZnJUShYuHY+egKefyEsxBxh62CNaOVVivYc378hJSR+o9oo
-         mjyQ==
-X-Gm-Message-State: ANhLgQ0LzXSqsYfezkDURAGUkqQmMyzsKQHnfMFF3HgcuWxCoyBM/D3e
-        S1+6PmH56qmZWgeuS1FrXQn0bBeZ
-X-Google-Smtp-Source: ADFU+vvH1iIivBsmhWr5uHtWe7gtlRpbjBV0BUayRn5Pu0EOIMWSnmqA2h3aU7ENFknpE70YCgDJCQ==
-X-Received: by 2002:a05:6512:10c4:: with SMTP id k4mr11585029lfg.98.1584199859650;
-        Sat, 14 Mar 2020 08:30:59 -0700 (PDT)
-Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id n200sm15650418lfa.50.2020.03.14.08.30.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Mar 2020 08:30:59 -0700 (PDT)
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH v1 3/3] dt-bindings: display: grammar fixes in panel/
-Date:   Sat, 14 Mar 2020 16:30:47 +0100
-Message-Id: <20200314153047.2486-4-sam@ravnborg.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200314153047.2486-1-sam@ravnborg.org>
-References: <20200314153047.2486-1-sam@ravnborg.org>
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=rySLrb6e8pdxDloLytBEUWmIP8HvBNLPxIuJLcg1j9c=;
+        b=Z61yg6QuG4BCmt5mr2Vkob8+Tz84jv7mQnKw2oCmzbvNE7ro7pH+dlXrmH9mjjkstK
+         Qhnm6vkCfbrvWzSK4q7eLRnc8slNwti1V1MKDwCRztCK5Ieabm3Bt4eZM7br/xLlYwC1
+         cMbnDSM4bO0M6tadbcQoGmXiKsUxeGrXjuK+LsLch/xbWjY+pHYUz43qGpMjhXsRK0ov
+         w2bfwasi4f4BuLMVMTe3LA0n8Rei/vMJNxNl0L8DayzymabA8LQGtjbTCxjC1GAjUgXB
+         IajkuqwIz1EyGSaoCo4b5Wj9VW/svU51XbGoi6+SlvZd6D69hC5NT28uoFCxRvaNJKvP
+         HtoQ==
+X-Gm-Message-State: ANhLgQ0Esl97H9dM5B4jhAd0zuiCUyrLhzuOSbTvCqjOS9cEnmsgpfzT
+        UyDDefroTRE+98j5kYMb6Fpt6Omtuq2Y0VnCzdHVdKdz
+X-Google-Smtp-Source: ADFU+vsJ8OZ/Dhr0DwwgkL8CDPySYZHLYuNtMBF50V178xoCgQ3+Wbsy6eqrOFGI1hDMkk7GA6AGM8FMlDHfqPtuVxs=
+X-Received: by 2002:a02:3f4c:: with SMTP id c12mr12249418jaf.115.1584206617074;
+ Sat, 14 Mar 2020 10:23:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a02:63c1:0:0:0:0:0 with HTTP; Sat, 14 Mar 2020 10:23:36
+ -0700 (PDT)
+From:   Omar Ousman <omarousman25@gmail.com>
+Date:   Sat, 14 Mar 2020 18:23:36 +0100
+X-Google-Sender-Auth: e3Esaw6NMf2t59gU8aF8hbfxq5E
+Message-ID: <CAOdk3H=BWVFSbBHnPp89pkv5eyhE_YLWx_uztwjom2+untGdDQ@mail.gmail.com>
+Subject: You received my last mail,,,,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix a few grammar/editorial issues spotted by Laurent Pinchart.
+I am Mr.Omar Ousman, a regional managing director (CORIS BANK
+INTERNATIONAL) Ouagadougou Burkina Faso, in my department we have
+US$9,500.0000 million united state dollars, to transfer into your
+account as a dormant fund.If you are interested to use this fund to
+help the orphans around the world contact and send me your personal
+information for more details to my email omarousman25@gmail.com
 
-Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh@kernel.org>
----
- .../bindings/display/panel/display-timings.yaml           | 8 ++++----
- .../devicetree/bindings/display/panel/panel-common.yaml   | 4 ++--
- 2 files changed, 6 insertions(+), 6 deletions(-)
+Your full names..........
+Your country of origin..........
+Your occupation..........
+Your Age..........
+Your Mobile Number..........
 
-diff --git a/Documentation/devicetree/bindings/display/panel/display-timings.yaml b/Documentation/devicetree/bindings/display/panel/display-timings.yaml
-index c8c0c9cb0492..56903ded005e 100644
---- a/Documentation/devicetree/bindings/display/panel/display-timings.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/display-timings.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/display/panel/display-timings.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: display timing bindings
-+title: display timings bindings
- 
- maintainers:
-   - Thierry Reding <thierry.reding@gmail.com>
-@@ -14,7 +14,7 @@ maintainers:
- description: |
-   A display panel may be able to handle several display timings,
-   with different resolutions.
--  The display-timings node makes it possible to specify the timing
-+  The display-timings node makes it possible to specify the timings
-   and to specify the timing that is native for the display.
- 
- properties:
-@@ -25,8 +25,8 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: |
-       The default display timing is the one specified as native-mode.
--      If no native-mode is specified then the first node is assumed the
--      native mode.
-+      If no native-mode is specified then the first node is assumed
-+      to be the native mode.
- 
- patternProperties:
-   "^timing":
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-index ed051ba12084..dee4faffd204 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-@@ -63,9 +63,9 @@ properties:
- 
-   display-timings:
-     description:
--      Some display panels supports several resolutions with different timing.
-+      Some display panels supports several resolutions with different timings.
-       The display-timings bindings supports specifying several timings and
--      optional specify which is the native mode.
-+      optionally specify which is the native mode.
-     allOf:
-       - $ref: display-timings.yaml#
- 
--- 
-2.20.1
-
+Best Regards,
