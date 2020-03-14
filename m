@@ -2,189 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1035A1857EC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ECFD1857A7
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbgCOBuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 21:50:21 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:13505 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726720AbgCOBuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Mar 2020 21:50:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1584237020; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=JylJ2rTy/Spa9FGV/rDNvZeuTPw7s+H4qdIzU9nL+wo=; b=ZoM3bF7Qcwud1Va6YyG+4FCEIaV9l4nXGm1JUngWSkV55Eo+TDCytp8K9C63MreZ4lvwHT03
- zJJJJCiNzCyaYnwtwDH5YzqKT2fG473wBWtOitzdZ/pkatkQ0hnVyBP6EMZBhqqeZgZqr9+o
- IRMTxmGKU5VFu/zlNVrD6eOpIF4=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e6d276f.7ff632690068-smtp-out-n01;
- Sat, 14 Mar 2020 18:50:23 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 86F10C433D2; Sat, 14 Mar 2020 18:50:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFDD2C433D2;
-        Sat, 14 Mar 2020 18:50:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BFDD2C433D2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v6 1/3] dt-bindings: clock: Add YAML schemas for the QCOM MSS clock bindings
-Date:   Sun, 15 Mar 2020 00:19:56 +0530
-Message-Id: <1584211798-10332-2-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
-References: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
+        id S1726852AbgCOBo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 21:44:26 -0400
+Received: from muru.com ([72.249.23.125]:60428 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726738AbgCOBo0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Mar 2020 21:44:26 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 16C308167;
+        Sat, 14 Mar 2020 20:55:53 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, maemo-leste@lists.dyne.org,
+        Arthur Demchenkov <spinal.by@gmail.com>,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Pavel Machek <pavel@ucw.cz>, Sebastian Reichel <sre@kernel.org>
+Subject: [PATCH] ARM: dts: omap4-droid4: Fix lost touchscreen interrupts
+Date:   Sat, 14 Mar 2020 13:55:05 -0700
+Message-Id: <20200314205505.44953-1-tony@atomide.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Modem Subsystem clock provider have a bunch of generic properties
-that are needed in a device tree. Add a YAML schemas for those.
+Looks like we can have the maxtouch touchscreen stop producing interrupts
+if an edge interrupt is lost. This can happen easily when the SoC idles as
+the gpio controller may not see any state for an edge interrupt if it
+is briefly triggered when the system is idle.
 
-Add clock ids for GCC MSS and MSS clocks which are required to bring
-the modem out of reset.
+Also it looks like maxtouch stops sending any further interrupts if the
+interrupt is not handled. And we do have several cases of maxtouch already
+configured with a level interrupt, so let's do that.
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
+With level interrupt the gpio controller has the interrupt state visible
+after idle. Note that eventually we will probably also be using the
+Linux generic wakeirq configured for the controller, but that cannot be
+done until the maxtouch driver supports runtime PM.
+
+Cc: maemo-leste@lists.dyne.org
+Cc: Arthur Demchenkov <spinal.by@gmail.com>
+Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Cc: Merlijn Wajer <merlijn@wizzup.org>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Sebastian Reichel <sre@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- .../devicetree/bindings/clock/qcom,sc7180-mss.yaml | 62 ++++++++++++++++++++++
- include/dt-bindings/clock/qcom,gcc-sc7180.h        |  7 ++-
- include/dt-bindings/clock/qcom,mss-sc7180.h        | 12 +++++
- 3 files changed, 80 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
- create mode 100644 include/dt-bindings/clock/qcom,mss-sc7180.h
+ arch/arm/boot/dts/motorola-mapphone-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
-new file mode 100644
-index 0000000..72493dd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bindings/clock/qcom,sc7180-mss.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Modem Clock Controller Binding
-+
-+maintainers:
-+  - Taniya Das <tdas@codeaurora.org>
-+
-+description: |
-+  Qualcomm modem clock control module which supports the clocks.
-+
-+  See also dt-bindings/clock/qcom,mss-sc7180.h.
-+
-+properties:
-+  compatible:
-+    enum:
-+       - qcom,sc7180-mss
-+
-+  clocks:
-+    items:
-+      - description: gcc_mss_mfab_axi clock from GCC
-+      - description: gcc_mss_nav_axi clock from GCC
-+      - description: gcc_mss_cfg_ahb clock from GCC
-+
-+  clock-names:
-+    items:
-+      - const: gcc_mss_mfab_axis
-+      - const: gcc_mss_nav_axi
-+      - const: cfg_ahb
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
-+    clock-controller@41a8000 {
-+      compatible = "qcom,sc7180-mss";
-+      reg = <0 0x041a8000 0 0x8000>;
-+      clocks = <&gcc GCC_MSS_MFAB_AXIS_CLK>,
-+               <&gcc GCC_MSS_NAV_AXI_CLK>,
-+               <&gcc GCC_MSS_CFG_AHB_CLK>;
-+      clock-names = "gcc_mss_mfab_axis",
-+                    "gcc_mss_nav_axi",
-+                    "cfg_ahb";
-+      #clock-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,gcc-sc7180.h b/include/dt-bindings/clock/qcom,gcc-sc7180.h
-index e8029b2e..1258fd0 100644
---- a/include/dt-bindings/clock/qcom,gcc-sc7180.h
-+++ b/include/dt-bindings/clock/qcom,gcc-sc7180.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0-only */
- /*
-- * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-  */
+diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+--- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
++++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+@@ -429,7 +429,7 @@ touchscreen@4a {
+ 		reset-gpios = <&gpio6 13 GPIO_ACTIVE_HIGH>; /* gpio173 */
  
- #ifndef _DT_BINDINGS_CLK_QCOM_GCC_SC7180_H
-@@ -132,6 +132,11 @@
- #define GCC_VIDEO_GPLL0_DIV_CLK_SRC				122
- #define GCC_VIDEO_THROTTLE_AXI_CLK				123
- #define GCC_VIDEO_XO_CLK					124
-+#define GCC_MSS_CFG_AHB_CLK					125
-+#define GCC_MSS_MFAB_AXIS_CLK					126
-+#define GCC_MSS_NAV_AXI_CLK					127
-+#define GCC_MSS_Q6_MEMNOC_AXI_CLK				128
-+#define GCC_MSS_SNOC_AXI_CLK					129
- 
- /* GCC resets */
- #define GCC_QUSB2PHY_PRIM_BCR					0
-diff --git a/include/dt-bindings/clock/qcom,mss-sc7180.h b/include/dt-bindings/clock/qcom,mss-sc7180.h
-new file mode 100644
-index 0000000..f15a9de
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,mss-sc7180.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_MSS_SC7180_H
-+#define _DT_BINDINGS_CLK_QCOM_MSS_SC7180_H
-+
-+#define MSS_AXI_CRYPTO_CLK	0
-+#define MSS_AXI_NAV_CLK		1
-+
-+#endif
+ 		/* gpio_183 with sys_nirq2 pad as wakeup */
+-		interrupts-extended = <&gpio6 23 IRQ_TYPE_EDGE_FALLING>,
++		interrupts-extended = <&gpio6 23 IRQ_TYPE_LEVEL_LOW>,
+ 				      <&omap4_pmx_core 0x160>;
+ 		interrupt-names = "irq", "wakeup";
+ 		wakeup-source;
 -- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+2.25.1
