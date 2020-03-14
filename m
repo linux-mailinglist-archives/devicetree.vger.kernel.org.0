@@ -2,257 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5302818584C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C861858F6
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727543AbgCOCC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 22:02:28 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:55503 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727464AbgCOCC2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Mar 2020 22:02:28 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1584237747; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=jonzZp63L40u3yfPOPtIkP2E/IYQDyZzE0IebztJjEc=; b=ftZVjFc0v9VkiZKl/vwglVvJQ97l+UpTYVfL4Fow/wYrYeGhzL2vAKXByh/e/kNJtmHyZxU8
- YFfgSEBD2KJ/GxWcjbog46DDHpn9frhA4GJIEj56kzxhtEByoXaA9sw6MgqaFu/hBbERhowT
- 8/LThxK0Ft4s0lM6yzXbl6TVwlE=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e6d277b.7fbaa34f7068-smtp-out-n03;
- Sat, 14 Mar 2020 18:50:35 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3A63AC433D2; Sat, 14 Mar 2020 18:50:34 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5EBA0C433CB;
-        Sat, 14 Mar 2020 18:50:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5EBA0C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v6 3/3] clk: qcom: Add modem clock controller driver for SC7180
-Date:   Sun, 15 Mar 2020 00:19:58 +0530
-Message-Id: <1584211798-10332-4-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
-References: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
+        id S1727815AbgCOCZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 22:25:26 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:42534 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727469AbgCOCZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:25:26 -0400
+Received: by mail-ed1-f65.google.com with SMTP id b21so7013260edy.9;
+        Sat, 14 Mar 2020 19:25:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=scVa43zyxygvECGnQm1S3eFhi/yi+v2NjhQ3Y67S8+s=;
+        b=DZJmEso7FWMpIN149v1XYbxdUTFDHNzLK2CDbFp/Orm8oQtCM3lvniQbX5hzoBkDhG
+         v2/8XXLtHbEg1zM2Qtj4Qei6Lq2OWLuFyZYGvumXDHwSzULtNLP87JBjm1cXW7dqVNvO
+         NnjoeB0033FfEVytR4YUz/Ka7BmxeW5TQV/5Yeq8Gd3DorzhW1BT7cUaVFXYYVIf/ztM
+         mPKCAPNUfDG5C7vOFjp//ESAo5w7XjU2NHbMd6+Cd6db1GmQkBPHQJbXVbyIJwiOC0QD
+         2OML2+ppsSg0DIK38Tgo3b+qzVi7+8+TzJH9kZ9XSK5C2QCQKi7FYy8Vlm4gBykd0VqZ
+         R+Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=scVa43zyxygvECGnQm1S3eFhi/yi+v2NjhQ3Y67S8+s=;
+        b=g1M3XFsOw4IVvKii6/4h0UjgHKi+rAlty5Xk7Z/LmKbWS6Q2UxYfl6kMxP2/u1lYCA
+         ol0SLacYtas8qaHC+Du1Nwow8WAQWki7XBN3IUTJq07SfAy9nMG0gwW0U0KjwqI3Xbt1
+         4axxOlY93f5H8udwWkXOqVAfI7b7cWRxzwT0bD8eUqP7hNACPPtcMOlAhsyP1OzfVtXM
+         adLajaZoeaynJbINiu/W3WpSmpvciRLxOvqfmM5MgVNbpVeFU9ifbY4LTJbh/e11u59h
+         aO5IktUy7n/zIvHhpkc+rS2Y0a5Zy06dUnSELv1AsCYoyImElNZzucnCVc5wbxYGr8bJ
+         3m/g==
+X-Gm-Message-State: ANhLgQ34RzD9f2RDTT2Vv7r7zfBeyEJ41xiM7XxfAQjWjtQt8OC9b+it
+        +UThaQJYnm5WFHAHnb/8YNGsl62WuSY=
+X-Google-Smtp-Source: ADFU+vu90cO+yTpYnx1/WdE0TgOvGt6zsVMUTfNfcOpWRUMB9PTsM0cnujazpXA46+jyq4VzkyHXAQ==
+X-Received: by 2002:adf:bbd3:: with SMTP id z19mr5532850wrg.228.1584225840599;
+        Sat, 14 Mar 2020 15:44:00 -0700 (PDT)
+Received: from localhost.localdomain ([79.115.60.40])
+        by smtp.gmail.com with ESMTPSA id 133sm23690732wmd.5.2020.03.14.15.43.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Mar 2020 15:44:00 -0700 (PDT)
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     broonie@kernel.org
+Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
+        andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
+        mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
+Subject: [PATCH v3 03/12] spi: spi-fsl-dspi: Fix bits-per-word acceleration in DMA mode
+Date:   Sun, 15 Mar 2020 00:43:31 +0200
+Message-Id: <20200314224340.1544-4-olteanv@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200314224340.1544-1-olteanv@gmail.com>
+References: <20200314224340.1544-1-olteanv@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the modem clock controller found on SC7180
-based devices. This would allow modem drivers to probe and
-control their clocks.
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
+In DMA mode, dspi_setup_accel does not get called, which results in the
+dspi->oper_word_size variable (which is used by dspi_dma_xfer) to not be
+initialized properly.
+
+Because oper_word_size is zero, a few calculations end up being
+incorrect, and the DMA transfer eventually times out instead of sending
+anything on the wire.
+
+Set up native transfers (or 8-on-16 acceleration) using dspi_setup_accel
+for DMA mode too.
+
+Also take the opportunity and simplify the DMA buffer handling a little
+bit.
+
+Fixes: 6c1c26ecd9a3 ("spi: spi-fsl-dspi: Accelerate transfers using larger word size if possible")
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
- drivers/clk/qcom/Kconfig      |   9 +++
- drivers/clk/qcom/Makefile     |   1 +
- drivers/clk/qcom/mss-sc7180.c | 143 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 153 insertions(+)
- create mode 100644 drivers/clk/qcom/mss-sc7180.c
+Changes in v4:
+Rebased on top of "spi: spi-fsl-dspi: fix DMA mapping".
+Stopped uselessly writing to SPI_CTAR in dspi_transfer_one_message,
+since we already do that in dspi_setup_accel which we now call.
+Update message->actual_length before submitting the DMA transfer.
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 15cdcdc..4225f86 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -280,6 +280,15 @@ config SC_GPUCC_7180
- 	  Say Y if you want to support graphics controller devices and
- 	  functionality such as 3D graphics.
+Changes in v3:
+Pretty much re-did the patch. Before, dspi_setup_accel was called just
+once at the beginning of dspi_dma_xfer. Now it is called in the while
+loop. Everything else is just refactoring that follows along.
 
-+config SC_MSS_7180
-+	tristate "SC7180 Modem Clock Controller"
-+	select SC_GCC_7180
-+	help
-+	  Support for the Modem Subsystem clock controller on Qualcomm
-+	  Technologies, Inc on SC7180 devices.
-+	  Say Y if you want to use the Modem branch clocks of the Modem
-+	  subsystem clock controller to reset the MSS subsystem.
+Changes in v2:
+None.
+
+ drivers/spi/spi-fsl-dspi.c | 86 ++++++++++++++------------------------
+ 1 file changed, 32 insertions(+), 54 deletions(-)
+
+diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
+index be717776dd98..8f2b73cc6ed7 100644
+--- a/drivers/spi/spi-fsl-dspi.c
++++ b/drivers/spi/spi-fsl-dspi.c
+@@ -119,7 +119,6 @@ struct fsl_dspi_devtype_data {
+ 	enum dspi_trans_mode	trans_mode;
+ 	u8			max_clock_factor;
+ 	int			fifo_size;
+-	int			dma_bufsize;
+ };
+ 
+ enum {
+@@ -138,7 +137,6 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
+ 	[VF610] = {
+ 		.trans_mode		= DSPI_DMA_MODE,
+ 		.max_clock_factor	= 2,
+-		.dma_bufsize		= 4096,
+ 		.fifo_size		= 4,
+ 	},
+ 	[LS1021A] = {
+@@ -167,19 +165,16 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
+ 	},
+ 	[LS2080A] = {
+ 		.trans_mode		= DSPI_DMA_MODE,
+-		.dma_bufsize		= 8,
+ 		.max_clock_factor	= 8,
+ 		.fifo_size		= 4,
+ 	},
+ 	[LS2085A] = {
+ 		.trans_mode		= DSPI_DMA_MODE,
+-		.dma_bufsize		= 8,
+ 		.max_clock_factor	= 8,
+ 		.fifo_size		= 4,
+ 	},
+ 	[LX2160A] = {
+ 		.trans_mode		= DSPI_DMA_MODE,
+-		.dma_bufsize		= 8,
+ 		.max_clock_factor	= 8,
+ 		.fifo_size		= 4,
+ 	},
+@@ -191,9 +186,6 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
+ };
+ 
+ struct fsl_dspi_dma {
+-	/* Length of transfer in words of dspi->fifo_size */
+-	u32					curr_xfer_len;
+-
+ 	u32					*tx_dma_buf;
+ 	struct dma_chan				*chan_tx;
+ 	dma_addr_t				tx_dma_phys;
+@@ -352,7 +344,7 @@ static void dspi_rx_dma_callback(void *arg)
+ 	int i;
+ 
+ 	if (dspi->rx) {
+-		for (i = 0; i < dma->curr_xfer_len; i++)
++		for (i = 0; i < dspi->words_in_flight; i++)
+ 			dspi_push_rx(dspi, dspi->dma->rx_dma_buf[i]);
+ 	}
+ 
+@@ -366,12 +358,12 @@ static int dspi_next_xfer_dma_submit(struct fsl_dspi *dspi)
+ 	int time_left;
+ 	int i;
+ 
+-	for (i = 0; i < dma->curr_xfer_len; i++)
++	for (i = 0; i < dspi->words_in_flight; i++)
+ 		dspi->dma->tx_dma_buf[i] = dspi_pop_tx_pushr(dspi);
+ 
+ 	dma->tx_desc = dmaengine_prep_slave_single(dma->chan_tx,
+ 					dma->tx_dma_phys,
+-					dma->curr_xfer_len *
++					dspi->words_in_flight *
+ 					DMA_SLAVE_BUSWIDTH_4_BYTES,
+ 					DMA_MEM_TO_DEV,
+ 					DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+@@ -389,7 +381,7 @@ static int dspi_next_xfer_dma_submit(struct fsl_dspi *dspi)
+ 
+ 	dma->rx_desc = dmaengine_prep_slave_single(dma->chan_rx,
+ 					dma->rx_dma_phys,
+-					dma->curr_xfer_len *
++					dspi->words_in_flight *
+ 					DMA_SLAVE_BUSWIDTH_4_BYTES,
+ 					DMA_DEV_TO_MEM,
+ 					DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+@@ -437,46 +429,42 @@ static int dspi_next_xfer_dma_submit(struct fsl_dspi *dspi)
+ 	return 0;
+ }
+ 
++static void dspi_setup_accel(struct fsl_dspi *dspi);
 +
- config SC_VIDEOCC_7180
- 	tristate "SC7180 Video Clock Controller"
- 	select SC_GCC_7180
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 656a87e..9135592 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -50,6 +50,7 @@ obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
- obj-$(CONFIG_SC_DISPCC_7180) += dispcc-sc7180.o
- obj-$(CONFIG_SC_GCC_7180) += gcc-sc7180.o
- obj-$(CONFIG_SC_GPUCC_7180) += gpucc-sc7180.o
-+obj-$(CONFIG_SC_MSS_7180) += mss-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
- obj-$(CONFIG_SDM_CAMCC_845) += camcc-sdm845.o
- obj-$(CONFIG_SDM_DISPCC_845) += dispcc-sdm845.o
-diff --git a/drivers/clk/qcom/mss-sc7180.c b/drivers/clk/qcom/mss-sc7180.c
-new file mode 100644
-index 0000000..673fa1a
---- /dev/null
-+++ b/drivers/clk/qcom/mss-sc7180.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-+ */
+ static int dspi_dma_xfer(struct fsl_dspi *dspi)
+ {
+ 	struct spi_message *message = dspi->cur_msg;
+ 	struct device *dev = &dspi->pdev->dev;
+-	struct fsl_dspi_dma *dma = dspi->dma;
+-	int curr_remaining_bytes;
+-	int bytes_per_buffer;
+ 	int ret = 0;
+ 
+-	curr_remaining_bytes = dspi->len;
+-	bytes_per_buffer = dspi->devtype_data->dma_bufsize /
+-			   dspi->devtype_data->fifo_size;
+-	while (curr_remaining_bytes) {
+-		/* Check if current transfer fits the DMA buffer */
+-		dma->curr_xfer_len = curr_remaining_bytes /
+-				     dspi->oper_word_size;
+-		if (dma->curr_xfer_len > bytes_per_buffer)
+-			dma->curr_xfer_len = bytes_per_buffer;
++	/*
++	 * dspi->len gets decremented by dspi_pop_tx_pushr in
++	 * dspi_next_xfer_dma_submit
++	 */
++	while (dspi->len) {
++		/* Figure out operational bits-per-word for this chunk */
++		dspi_setup_accel(dspi);
 +
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/module.h>
-+#include <linux/pm_clock.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
++		dspi->words_in_flight = dspi->len / dspi->oper_word_size;
++		if (dspi->words_in_flight > dspi->devtype_data->fifo_size)
++			dspi->words_in_flight = dspi->devtype_data->fifo_size;
 +
-+#include <dt-bindings/clock/qcom,mss-sc7180.h>
-+
-+#include "clk-regmap.h"
-+#include "clk-branch.h"
-+#include "common.h"
-+
-+static struct clk_branch mss_axi_nav_clk = {
-+	.halt_reg = 0x20bc,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x20bc,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "mss_axi_nav_clk",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "gcc_mss_nav_axi",
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch mss_axi_crypto_clk = {
-+	.halt_reg = 0x20cc,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x20cc,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "mss_axi_crypto_clk",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "gcc_mss_mfab_axis",
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static const struct regmap_config mss_regmap_config = {
-+	.reg_bits	= 32,
-+	.reg_stride	= 4,
-+	.val_bits	= 32,
-+	.fast_io	= true,
-+	.max_register	= 0x41aa0cc,
-+};
-+
-+static struct clk_regmap *mss_sc7180_clocks[] = {
-+	[MSS_AXI_CRYPTO_CLK] = &mss_axi_crypto_clk.clkr,
-+	[MSS_AXI_NAV_CLK] = &mss_axi_nav_clk.clkr,
-+};
-+
-+static const struct qcom_cc_desc mss_sc7180_desc = {
-+	.config = &mss_regmap_config,
-+	.clks = mss_sc7180_clocks,
-+	.num_clks = ARRAY_SIZE(mss_sc7180_clocks),
-+};
-+
-+static int mss_sc7180_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+
-+	pm_runtime_enable(&pdev->dev);
-+	ret = pm_clk_create(&pdev->dev);
-+	if (ret)
-+		goto disable_pm_runtime;
-+
-+	ret = pm_clk_add(&pdev->dev, "cfg_ahb");
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to acquire iface clock\n");
-+		goto destroy_pm_clk;
-+	}
-+
-+	ret = qcom_cc_probe(pdev, &mss_sc7180_desc);
-+	if (ret < 0)
-+		goto destroy_pm_clk;
-+
-+	return 0;
-+
-+destroy_pm_clk:
-+	pm_clk_destroy(&pdev->dev);
-+
-+disable_pm_runtime:
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+static int mss_sc7180_remove(struct platform_device *pdev)
-+{
-+	pm_clk_destroy(&pdev->dev);
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops mss_sc7180_pm_ops = {
-+	SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
-+};
-+
-+static const struct of_device_id mss_sc7180_match_table[] = {
-+	{ .compatible = "qcom,sc7180-mss" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mss_sc7180_match_table);
-+
-+static struct platform_driver mss_sc7180_driver = {
-+	.probe		= mss_sc7180_probe,
-+	.remove		= mss_sc7180_remove,
-+	.driver		= {
-+		.name		= "sc7180-mss",
-+		.of_match_table = mss_sc7180_match_table,
-+		.pm = &mss_sc7180_pm_ops,
-+	},
-+};
-+
-+static int __init mss_sc7180_init(void)
-+{
-+	return platform_driver_register(&mss_sc7180_driver);
-+}
-+subsys_initcall(mss_sc7180_init);
-+
-+static void __exit mss_sc7180_exit(void)
-+{
-+	platform_driver_unregister(&mss_sc7180_driver);
-+}
-+module_exit(mss_sc7180_exit);
-+
-+MODULE_DESCRIPTION("QTI MSS SC7180 Driver");
-+MODULE_LICENSE("GPL v2");
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
++		message->actual_length += dspi->words_in_flight *
++					  dspi->oper_word_size;
+ 
+ 		ret = dspi_next_xfer_dma_submit(dspi);
+ 		if (ret) {
+ 			dev_err(dev, "DMA transfer failed\n");
+-			goto exit;
+-
+-		} else {
+-			const int len = dma->curr_xfer_len *
+-					dspi->oper_word_size;
+-			curr_remaining_bytes -= len;
+-			message->actual_length += len;
+-			if (curr_remaining_bytes < 0)
+-				curr_remaining_bytes = 0;
++			break;
+ 		}
+ 	}
+ 
+-exit:
+ 	return ret;
+ }
+ 
+ static int dspi_request_dma(struct fsl_dspi *dspi, phys_addr_t phy_addr)
+ {
++	int dma_bufsize = dspi->devtype_data->fifo_size * 2;
+ 	struct device *dev = &dspi->pdev->dev;
+ 	struct dma_slave_config cfg;
+ 	struct fsl_dspi_dma *dma;
+@@ -501,16 +489,16 @@ static int dspi_request_dma(struct fsl_dspi *dspi, phys_addr_t phy_addr)
+ 	}
+ 
+ 	dma->tx_dma_buf = dma_alloc_coherent(dma->chan_tx->device->dev,
+-					     dspi->devtype_data->dma_bufsize,
+-					     &dma->tx_dma_phys, GFP_KERNEL);
++					     dma_bufsize, &dma->tx_dma_phys,
++					     GFP_KERNEL);
+ 	if (!dma->tx_dma_buf) {
+ 		ret = -ENOMEM;
+ 		goto err_tx_dma_buf;
+ 	}
+ 
+ 	dma->rx_dma_buf = dma_alloc_coherent(dma->chan_rx->device->dev,
+-					     dspi->devtype_data->dma_bufsize,
+-					     &dma->rx_dma_phys, GFP_KERNEL);
++					     dma_bufsize, &dma->rx_dma_phys,
++					     GFP_KERNEL);
+ 	if (!dma->rx_dma_buf) {
+ 		ret = -ENOMEM;
+ 		goto err_rx_dma_buf;
+@@ -547,12 +535,10 @@ static int dspi_request_dma(struct fsl_dspi *dspi, phys_addr_t phy_addr)
+ 
+ err_slave_config:
+ 	dma_free_coherent(dma->chan_rx->device->dev,
+-			  dspi->devtype_data->dma_bufsize,
+-			  dma->rx_dma_buf, dma->rx_dma_phys);
++			  dma_bufsize, dma->rx_dma_buf, dma->rx_dma_phys);
+ err_rx_dma_buf:
+ 	dma_free_coherent(dma->chan_tx->device->dev,
+-			  dspi->devtype_data->dma_bufsize,
+-			  dma->tx_dma_buf, dma->tx_dma_phys);
++			  dma_bufsize, dma->tx_dma_buf, dma->tx_dma_phys);
+ err_tx_dma_buf:
+ 	dma_release_channel(dma->chan_tx);
+ err_tx_channel:
+@@ -566,6 +552,7 @@ static int dspi_request_dma(struct fsl_dspi *dspi, phys_addr_t phy_addr)
+ 
+ static void dspi_release_dma(struct fsl_dspi *dspi)
+ {
++	int dma_bufsize = dspi->devtype_data->fifo_size * 2;
+ 	struct fsl_dspi_dma *dma = dspi->dma;
+ 
+ 	if (!dma)
+@@ -573,15 +560,13 @@ static void dspi_release_dma(struct fsl_dspi *dspi)
+ 
+ 	if (dma->chan_tx) {
+ 		dma_unmap_single(dma->chan_tx->device->dev, dma->tx_dma_phys,
+-				 dspi->devtype_data->dma_bufsize,
+-				 DMA_TO_DEVICE);
++				 dma_bufsize, DMA_TO_DEVICE);
+ 		dma_release_channel(dma->chan_tx);
+ 	}
+ 
+ 	if (dma->chan_rx) {
+ 		dma_unmap_single(dma->chan_rx->device->dev, dma->rx_dma_phys,
+-				 dspi->devtype_data->dma_bufsize,
+-				 DMA_FROM_DEVICE);
++				 dma_bufsize, DMA_FROM_DEVICE);
+ 		dma_release_channel(dma->chan_rx);
+ 	}
+ }
+@@ -833,7 +818,7 @@ static void dspi_setup_accel(struct fsl_dspi *dspi)
+ 	dspi->oper_word_size = DIV_ROUND_UP(dspi->oper_bits_per_word, 8);
+ 
+ 	/*
+-	 * Update CTAR here (code is common for both EOQ and XSPI modes).
++	 * Update CTAR here (code is common for EOQ, XSPI and DMA modes).
+ 	 * We will update CTARE in the portion specific to XSPI, when we
+ 	 * also know the preload value (DTCP).
+ 	 */
+@@ -960,13 +945,6 @@ static int dspi_transfer_one_message(struct spi_controller *ctlr,
+ 		regmap_update_bits(dspi->regmap, SPI_MCR,
+ 				   SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF,
+ 				   SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF);
+-		/*
+-		 * Static CTAR setup for modes that don't dynamically adjust it
+-		 * via dspi_setup_accel (aka for DMA)
+-		 */
+-		regmap_write(dspi->regmap, SPI_CTAR(0),
+-			     dspi->cur_chip->ctar_val |
+-			     SPI_FRAME_BITS(transfer->bits_per_word));
+ 
+ 		spi_take_timestamp_pre(dspi->ctlr, dspi->cur_transfer,
+ 				       dspi->progress, !dspi->irq);
+-- 
+2.17.1
+
