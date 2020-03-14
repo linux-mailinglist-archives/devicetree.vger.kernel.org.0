@@ -2,130 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 781CA1858F7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5FA1858B2
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727324AbgCOC04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 22:26:56 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:46588 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726557AbgCOC04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:26:56 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 2594B80501;
-        Sat, 14 Mar 2020 08:41:19 +0100 (CET)
-Date:   Sat, 14 Mar 2020 08:41:18 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        id S1726491AbgCOCS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 22:18:29 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:42224 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727520AbgCOCS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:18:29 -0400
+X-Greylist: delayed 2387 seconds by postgrey-1.27 at vger.kernel.org; Sat, 14 Mar 2020 22:18:27 EDT
+Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 27F5B3A3405;
+        Sat, 14 Mar 2020 12:26:29 +0000 (UTC)
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id C566A240009;
+        Sat, 14 Mar 2020 12:24:55 +0000 (UTC)
+Date:   Sat, 14 Mar 2020 13:24:55 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Ran Bi <ran.bi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 2/5] dt-bindings: panel: add binding for Xingbangda
- XBD599 panel
-Message-ID: <20200314074118.GD5783@ravnborg.org>
-References: <20200311163329.221840-1-icenowy@aosc.io>
- <20200311163329.221840-3-icenowy@aosc.io>
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        YT Shen <yt.shen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Subject: Re: [PATCH v3 0/4] Add Support for MediaTek MT2712 RTC
+Message-ID: <20200314122455.GC4518@piout.net>
+References: <20200226051303.22560-1-ran.bi@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200311163329.221840-3-icenowy@aosc.io>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=gEfo2CItAAAA:8
-        a=NVUcaYqSR25QaaNNWYIA:9 a=CjuIK1q_8ugA:10 a=sptkURWiP4Gy88Gu7hUp:22
-        a=pHzHmUro8NiASowvMSCR:22 a=nt3jZW36AmriUCFCBwmW:22
+In-Reply-To: <20200226051303.22560-1-ran.bi@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy
-
-A few comment below.
-
-	Sam
-
-On Thu, Mar 12, 2020 at 12:33:26AM +0800, Icenowy Zheng wrote:
-> Xingbangda XBD599 is a 5.99" 720x1440 MIPI-DSI LCD panel.
+On 26/02/2020 13:12:59+0800, Ran Bi wrote:
+> This patchset add support to MT2712 RTC. MT2712 RTC is a SoC based RTC
+> with different architecture compared to MT7622 RTC.
 > 
-> Add its device tree binding.
+> Changes in V3:
+> 1. change struct mt2712_rtc
+> 2. use 100 as year offset
+> 3. change irq handle thread
+> 4. remove useless rtc time check
+> 5. not modify struct rtc_time in set_time/set_alarm functions
+> 6. modify rtc init function
+> 7. add power lost flag for get_time/set_time functions
+> 8. add .alarm_irq_enable callback
+> 9. set rtc->range_min and rtc->range_max to do range checking
+> 10. use fixed driver name
 > 
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> ---
->  .../display/panel/xingbangda,xbd599.yaml      | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/xingbangda,xbd599.yaml
+> Changes in V2:
+> 1. change minimum year from 1968 to 2000
+> 2. fix lock usage
+> 3. stop to calculate useless day of week
+> 4. stop to set default date after init
+> 5. change the prefix of functions
+> 6. use devm_request_threaded_irq() to replace request_threaded_irq()
+> 7. add mt2712 rtc related files into MAINTAINERS
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/xingbangda,xbd599.yaml b/Documentation/devicetree/bindings/display/panel/xingbangda,xbd599.yaml
-> new file mode 100644
-> index 000000000000..62816b34de31
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/xingbangda,xbd599.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/xingbangda,xbd599.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xingbangda XBD599 5.99in MIPI-DSI LCD panel
-> +
-> +maintainers:
-> +  - Icenowy Zheng <icenowy@aosc.io>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: xingbangda,xbd599
-> +  reg: true
-> +  backlight: true
-> +  reset-gpios: true
-> +  vcc-supply:
-> +     description: regulator that supplies the VCC voltage
-Fix indent - two chars, not three
+> Ran Bi (4):
+>   bindings: rtc: add bindings for MT2712 RTC
+>   rtc: add support for the MediaTek MT2712 RTC
+>   arm64: dts: add RTC nodes for MT2712
+>   MAINTAINERS: add MT2712 RTC files
+> 
 
-> +  iovcc-supply:
-> +     description: regulator that supplies the IOVCC voltage
-Same here
+Applied 1,2 and 4, thanks!
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - backlight
-> +  - vcc-supply
-> +  - iovcc-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    &dsi {
-Remove '&' - dt_binding_check will fail otherwise
 
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "xingbangda,xbd599";
-> +            reg = <0>;
-> +            backlight = <&backlight>;
-> +            iovcc-supply = <&reg_dldo2>;
-> +            vcc-supply = <&reg_ldo_io0>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.24.1
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
