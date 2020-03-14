@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ECFD1857A7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BADA118581C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:54:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726852AbgCOBo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 21:44:26 -0400
-Received: from muru.com ([72.249.23.125]:60428 "EHLO muru.com"
+        id S1727604AbgCOBy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 21:54:29 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:36040 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726738AbgCOBo0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Mar 2020 21:44:26 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 16C308167;
-        Sat, 14 Mar 2020 20:55:53 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, maemo-leste@lists.dyne.org,
-        Arthur Demchenkov <spinal.by@gmail.com>,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Pavel Machek <pavel@ucw.cz>, Sebastian Reichel <sre@kernel.org>
-Subject: [PATCH] ARM: dts: omap4-droid4: Fix lost touchscreen interrupts
-Date:   Sat, 14 Mar 2020 13:55:05 -0700
-Message-Id: <20200314205505.44953-1-tony@atomide.com>
-X-Mailer: git-send-email 2.25.1
+        id S1727298AbgCOBy2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Mar 2020 21:54:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=NL3MJouei4eDxbtXys1XmSE5zsmrHAunj/d9XtHq32s=; b=G5szt1P7X8/ZbWY5RtsxzdhZQQ
+        FAgcpi+1hAXENYjjox6ZLVeHuUrmbkQiky5pSrHj7lZs3bFyKv0AceSFMBk833fGX1CPfVoh9mj49
+        psBPAjJDhJrAgfqjaAWG1m+7bFdjDfsETwSdUxnfe4MuZWSZ6NTPOh0bHe1gK2v+in0I=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jDE8X-0002J5-M9; Sat, 14 Mar 2020 22:16:01 +0100
+Date:   Sat, 14 Mar 2020 22:16:01 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Madalin Bucur <madalin.bucur@oss.nxp.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net 1/3] net: fsl/fman: treat all RGMII modes in
+ memac_adjust_link()
+Message-ID: <20200314211601.GA8622@lunn.ch>
+References: <1584101065-3482-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1584101065-3482-2-git-send-email-madalin.bucur@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1584101065-3482-2-git-send-email-madalin.bucur@oss.nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looks like we can have the maxtouch touchscreen stop producing interrupts
-if an edge interrupt is lost. This can happen easily when the SoC idles as
-the gpio controller may not see any state for an edge interrupt if it
-is briefly triggered when the system is idle.
+On Fri, Mar 13, 2020 at 02:04:23PM +0200, Madalin Bucur wrote:
+> Treat all internal delay variants the same as RGMII.
+> 
+> Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
+> ---
+>  drivers/net/ethernet/freescale/fman/fman_memac.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/freescale/fman/fman_memac.c b/drivers/net/ethernet/freescale/fman/fman_memac.c
+> index e1901874c19f..0fc98584974a 100644
+> --- a/drivers/net/ethernet/freescale/fman/fman_memac.c
+> +++ b/drivers/net/ethernet/freescale/fman/fman_memac.c
+> @@ -782,7 +782,10 @@ int memac_adjust_link(struct fman_mac *memac, u16 speed)
+>  	/* Set full duplex */
+>  	tmp &= ~IF_MODE_HD;
+>  
+> -	if (memac->phy_if == PHY_INTERFACE_MODE_RGMII) {
+> +	if (memac->phy_if == PHY_INTERFACE_MODE_RGMII ||
+> +	    memac->phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
+> +	    memac->phy_if == PHY_INTERFACE_MODE_RGMII_RXID ||
+> +	    memac->phy_if == PHY_INTERFACE_MODE_RGMII_TXID) {
 
-Also it looks like maxtouch stops sending any further interrupts if the
-interrupt is not handled. And we do have several cases of maxtouch already
-configured with a level interrupt, so let's do that.
+Hi Madalin
 
-With level interrupt the gpio controller has the interrupt state visible
-after idle. Note that eventually we will probably also be using the
-Linux generic wakeirq configured for the controller, but that cannot be
-done until the maxtouch driver supports runtime PM.
+You can use phy_interface_mode_is_rgmii()
 
-Cc: maemo-leste@lists.dyne.org
-Cc: Arthur Demchenkov <spinal.by@gmail.com>
-Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Cc: Merlijn Wajer <merlijn@wizzup.org>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: Sebastian Reichel <sre@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/motorola-mapphone-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
---- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-+++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-@@ -429,7 +429,7 @@ touchscreen@4a {
- 		reset-gpios = <&gpio6 13 GPIO_ACTIVE_HIGH>; /* gpio173 */
- 
- 		/* gpio_183 with sys_nirq2 pad as wakeup */
--		interrupts-extended = <&gpio6 23 IRQ_TYPE_EDGE_FALLING>,
-+		interrupts-extended = <&gpio6 23 IRQ_TYPE_LEVEL_LOW>,
- 				      <&omap4_pmx_core 0x160>;
- 		interrupt-names = "irq", "wakeup";
- 		wakeup-source;
--- 
-2.25.1
+    Andrew
