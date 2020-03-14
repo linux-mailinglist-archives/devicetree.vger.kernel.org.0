@@ -2,115 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E37C5185789
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:39:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CE37185832
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726952AbgCOBj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 21:39:27 -0400
-Received: from muru.com ([72.249.23.125]:60426 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726579AbgCOBj1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Mar 2020 21:39:27 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id AA1D48043;
-        Sat, 14 Mar 2020 17:24:54 +0000 (UTC)
-Date:   Sat, 14 Mar 2020 10:24:05 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Arthur Demchenkov <spinal.by@gmail.com>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Sebastian Reichel <sre@kernel.org>
-Subject: Re: [PATCH] ARM: dts: omap4-droid4: Fix sgx clock rate
-Message-ID: <20200314172405.GH37466@atomide.com>
-References: <20200310201818.15989-1-tony@atomide.com>
- <20200310210944.GU37466@atomide.com>
+        id S1727479AbgCOB5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 21:57:32 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:34683 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726853AbgCOB5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 21:57:32 -0400
+Received: by mail-ed1-f67.google.com with SMTP id i24so13489883eds.1;
+        Sat, 14 Mar 2020 18:57:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=IGvteHNkCAAe9RzBu1B2j4q+4lEY8L8k3NmOvCcX8OE=;
+        b=KhwANvBcrTq2q2W5HVumXxXVfw3LRtfnYku9FMQ1suJpsKfm1z2FlTffMfi3FsbB/z
+         IVMP/udmVbpgTjKW5cNUjWgiV1tKC8kDYSO0gLZpwjEWBWrION7WTmd0TM8EJEgQOH8Z
+         eTNelbIFbn3OAHSNgYbM8h0d7qMMar0Bl4C/Siv215MIThh7Rb/Hf0UciLgjp0hufgBs
+         MnR1vOy4s76cXpYBYvMXauY51h/rWdykIJmS97Fx3tj838dCUXZmEtIBBj0R4eAOSpVR
+         EBiUdAe2DM/dJPL/nSR1jjY9CpXC1ER/ag4dJbFKldpE8HvCU6JNzqH4ubhvlpC7RmUQ
+         G6SA==
+X-Gm-Message-State: ANhLgQ2UywbPP/WnWS3yPZBN1VwWm8GBWPebJYVOudtwHeZJK9YCOcaC
+        R5m0GQ0kZ9ASWJ39wq6Xl9I4uG1JtWA=
+X-Google-Smtp-Source: ADFU+vvqta4B+r9p/W0zTELooOA9Cc7fWz4UD77LqxM6UYcl+Sd+u1u4HEDyOkSEfBTCw7OTPTESnQ==
+X-Received: by 2002:a50:d657:: with SMTP id c23mr19074934edj.18.1584210014117;
+        Sat, 14 Mar 2020 11:20:14 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.125])
+        by smtp.googlemail.com with ESMTPSA id n6sm2172656ejy.23.2020.03.14.11.20.12
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 14 Mar 2020 11:20:13 -0700 (PDT)
+Date:   Sat, 14 Mar 2020 19:20:10 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Linux USB Mailing List <linux-usb@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCHv3 2/5] ARM: dts: exynos: Add missing usbdrd3 suspend clk
+Message-ID: <20200314182010.GB17580@kozik-lap>
+References: <20200310194854.831-1-linux.amoon@gmail.com>
+ <20200310194854.831-3-linux.amoon@gmail.com>
+ <CANAwSgR4fJK0uVANv-x-=iSL_hAKD8kvazACUsY9Meu5xonuqQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200310210944.GU37466@atomide.com>
+In-Reply-To: <CANAwSgR4fJK0uVANv-x-=iSL_hAKD8kvazACUsY9Meu5xonuqQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [200310 21:10]:
-> * Tony Lindgren <tony@atomide.com> [200310 20:19]:
-> > +&sgx_module {
+On Sat, Mar 14, 2020 at 07:02:33PM +0530, Anand Moon wrote:
+> Hi Krzysztof,
 > 
-> Sorry the sgx_module label came from the linux_openpvrsgx branch
-> I had merged in as Arthur noticed.
+> On Wed, 11 Mar 2020 at 01:19, Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > Add new compatible strings for USBDRD3 for adding missing
+> > suspend clk, exynos5422 usbdrd3 support two clk USBD300 and
+> > SCLK_USBD300, so add missing suspemd_clk for Exynos542x DWC3 nodes.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > 
-> Below is an updated patch against v5.6-rc series.
+> My assumption based on the FSYS clock source diagram below was bit wrong.
+> [0] https://imgur.com/gallery/zAiBoyh
+> 
+> And again re-looking into the driver source code, it turn out their
+> are *6 clock*
+> Here is the correct mapping as per the Exynos5420 clock driver.
+> 
+> USB-(phy@12100000)
+> |___________________CLK_SCLK_USBD300
+> |___________________CLK_SCLK_USBPHY300
+> 
+> USB-(phy@12500000)
+> |___________________CLK_SCLK_USBD301
+> |___________________CLK_SCLK_USBPHY301
+> 
+> USB-(dwc3@12000000)
+> |___________________CLK_USBD300
+> USB-(dwc3@12400000)
+> |___________________CLK_USBD301
+> 
+> Note: As per Exynos 5422 user manual, There are some more USB CLK
+> configuration missing in GATE_IP_FSYS. So we could enable another dwc3 clk,
+> If needed I would like too add this missing clk code and enable this
+> clk for dwc3 driver.
+> 
+> For some reason we already use CLK_USBD300 and CLK_USBD301
+> for PHY nodes, which lead to this confusion. So we need to update PHY clock
+> CLK_USBD300 with CLK_SCLK_USBD300 and clock CLK_USBD301 with CLK_SCLK_USBD301.
+> 
+> Please share your thought on linking PHY nodes above and add new DWC3 clock
+> and enable this clock.
 
-And looks like this is also needed for at least duovero, so let's
-change the clock for all 4430.
+The real clock topology of Exynos5422 is not properly reflected in the
+kernel. However cleaning this up is quite big task.
 
-Regards,
 
-Tony
+Best regards,
+Krzysztof
 
-8< ----------------------
-From tony Mon Sep 17 00:00:00 2001
-From: Tony Lindgren <tony@atomide.com>
-Date: Tue, 10 Mar 2020 14:02:48 -0700
-Subject: [PATCH] ARM: dts: omap4: Fix sgx clock rate for 4430
-
-We currently have a different clock rate for droid4 compared to the
-stock v3.0.8 based Android Linux kernel:
-
-# cat /sys/kernel/debug/clk/dpll_*_m7x2_ck/clk_rate
-266666667
-307200000
-# cat /sys/kernel/debug/clk/l3_gfx_cm:clk:0000:0/clk_rate
-307200000
-
-Let's fix this by configuring sgx to use 153.6 MHz instead of 307.2 MHz.
-Looks like also at least duover needs this change to avoid hangs, so
-let's apply it for all 4430.
-
-This helps a bit with thermal issues that seem to be related to memory
-corruption when using sgx. It seems that other driver related issues
-still remain though.
-
-Cc: Arthur Demchenkov <spinal.by@gmail.com>
-Cc: Merlijn Wajer <merlijn@wizzup.org>
-Cc: Sebastian Reichel <sre@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/omap4.dtsi    |  2 +-
- arch/arm/boot/dts/omap443x.dtsi | 10 ++++++++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/omap4.dtsi b/arch/arm/boot/dts/omap4.dtsi
---- a/arch/arm/boot/dts/omap4.dtsi
-+++ b/arch/arm/boot/dts/omap4.dtsi
-@@ -390,7 +390,7 @@ abb_iva: regulator-abb-iva {
- 			status = "disabled";
- 		};
- 
--		target-module@56000000 {
-+		sgx_module: target-module@56000000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
- 			reg = <0x5600fe00 0x4>,
- 			      <0x5600fe10 0x4>;
-diff --git a/arch/arm/boot/dts/omap443x.dtsi b/arch/arm/boot/dts/omap443x.dtsi
---- a/arch/arm/boot/dts/omap443x.dtsi
-+++ b/arch/arm/boot/dts/omap443x.dtsi
-@@ -74,3 +74,13 @@ &cpu_thermal {
- };
- 
- /include/ "omap443x-clocks.dtsi"
-+
-+/*
-+ * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android kernel
-+ */
-+&sgx_module {
-+	assigned-clocks = <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
-+			  <&dpll_per_m7x2_ck>;
-+	assigned-clock-rates = <0>, <153600000>;
-+	assigned-clock-parents = <&dpll_per_m7x2_ck>;
-+};
--- 
-2.25.1
