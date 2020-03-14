@@ -2,91 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 155B6185860
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A55F9185940
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:42:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727548AbgCOCFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 22:05:20 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:45900 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgCOCFU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:05:20 -0400
-Received: by mail-lj1-f195.google.com with SMTP id e18so14764296ljn.12;
-        Sat, 14 Mar 2020 19:05:18 -0700 (PDT)
+        id S1726754AbgCOCmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 22:42:50 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:43439 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726811AbgCOCmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:42:49 -0400
+Received: by mail-qk1-f194.google.com with SMTP id x1so15210515qkx.10;
+        Sat, 14 Mar 2020 19:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=OIJzVdRqmII3xpN14/wQN0Vvrs1lDoUVouTfyF1AzzfhS7PAX65NnJmEstFfAwHm0J
-         MEdvf9urGT/J4thuvj9vk11uUp5M1ygunTCQ40PysktE5qk6p49gkKWkoPYa8hbxlpZ+
-         8AHxeLhfVqkUX208e6r8trwKTkIzfc7jZVyFb0j7si5B/e5Q5XglfRDu7Lgva68dRazY
-         t3ksP3zdoG8z1pawPZeocy0I+666FiKRbaFcF5tdQuT+avWEfO4hptk359IUQ52E/0AL
-         Fyhc24SsfBPdJPaus75o3DysidczlxbECY0IAS4F8XJ5ZrpGp0mWMaE2ibqoijxKTHF0
-         TMKQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Vc8LwrIaU40nI0L9rZtv7zvcU+o5GuwsQBOLTCK4qFI=;
+        b=OWQQM+EsX/WIldwdhGjM06LV5RrRYgpfmsg0veXZ5b1TbRwxXPK0G+WQbH1j1/L2e3
+         WVMPJDIpZH/IDd7nWjzggg03LB0+pgKuXyrM4YWKU83RqpkFLv4osM0SP36Yd9ttHUXY
+         Dveio6C8RFtOJ0nK3G1m6dGNn+ENhlyrEANU4viuG3hPzXpHAHcCOLm7mvyfoatCpxg5
+         Sp1pJoOdqMCYSFFy6f4AjVPkEtY933eukKKpmug2SRaZqoGbIF0WvkHyIMMzyrgMaYIh
+         ZzJxraxHiqWPV0u9qPQFucNts0nSW6OxBu8CGX6h4lxaE/5KvpRH2JAvjnHXM8nCLg1s
+         MXpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=DvpDYDkZQW5E0JKHHq0vb4oxewJIyQvPWFfQMo/8bD8oXXLgOVOSOL+PE/lTjdehQr
-         V4VC7LazQ5sJhE5W4SGYH3JG2I/FrUtNQYhUx2+C1ES/yF6QpNnwtNqwPutNBsNDn895
-         p3iLvfFNIcFZS2wiM2eXa4dBPZGCoGkQp+cai4WlQGgxp0AktTpH120ACcDuk1pA/6/P
-         x9SJl2sd/L1Yqkf5wqhujO85C9RBOQalq65EpFC5Uw0AJ5t5PcfYQj7p7JkDA4Xpdvnv
-         vpWrQ0ycD3XETabaluWtpVuCxkf4yN53TgaW51Nut+4g6T5O730dosOfPqGFOUVkJ6OJ
-         sHEg==
-X-Gm-Message-State: ANhLgQ0stTElPSOqFS/HY90FHYnOFE+8kKoFTtPcOvZ8ZJLaVg7Iprs0
-        KNhcM5G2lxsZvpyYguDvRqn/Rw7mxR4=
-X-Google-Smtp-Source: ADFU+vsLbPyHg/3H2qHGT2azKEXr7tZwXNK8qhcJh9SO/kwPkfqvtObR5asqoXdlrz1UQKhDfB3WlA==
-X-Received: by 2002:a5d:5290:: with SMTP id c16mr25043929wrv.235.1584230432390;
-        Sat, 14 Mar 2020 17:00:32 -0700 (PDT)
-Received: from localhost.localdomain (p5B3F731E.dip0.t-ipconnect.de. [91.63.115.30])
-        by smtp.gmail.com with ESMTPSA id 7sm11394469wmf.20.2020.03.14.17.00.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Mar 2020 17:00:31 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v2 5/5] MAINTAINERS: Add entry for mp2629 Battery Charger driver
-Date:   Sun, 15 Mar 2020 01:00:13 +0100
-Message-Id: <20200315000013.4440-6-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200315000013.4440-1-sravanhome@gmail.com>
-References: <20200315000013.4440-1-sravanhome@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vc8LwrIaU40nI0L9rZtv7zvcU+o5GuwsQBOLTCK4qFI=;
+        b=NVhea6Ed0yAqP9ufxC82kq3x5AZWSiT31UCiLUbv2OMJgIDG/G+ZKnSNsmNE7qUeZW
+         KdRohrY/9Q3xnpV5Hsd9ZB5jud/biFFLNCns+5H56fjC0ZC63OZCe7DZksN87eY49fTd
+         kzc1xF32VC1+MyA2M1aPaCCG3IKMgSgxNn61QdCNOk8oqCRME4qzbW5tDpXl12zj74Ji
+         EkgfHsGqnMTm+ng6Fk6pz8YwPRNoPFHqnhCJoPjUqnCrWhwfGGhpMkV0pql0jKx03s+M
+         /2El1zNvMPOA1DLo+yiyuPT+FcWPN6BnPSN5B2EsMgOUFY/N0NtEnKWbKCauO8+3tJmm
+         OIcw==
+X-Gm-Message-State: ANhLgQ1IAqsmTNMTDOElPgNQi2Lf8OqSYurorlinp5CrzMzTaCWV/Cjs
+        IiRH1QsjFH8reraW95+E9jYyrg2iVEjaGjTJhhDQlebC
+X-Google-Smtp-Source: ADFU+vvqbJcRXoy8MLoV6dVlKl4R88lrkt8lrWmZMrkz8gdnvH1wWUt998hcX+ARQdd6OcDsbFBEZdJVYtnNc81xZ1Q=
+X-Received: by 2002:a02:8795:: with SMTP id t21mr13779924jai.126.1584192765365;
+ Sat, 14 Mar 2020 06:32:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200310194854.831-1-linux.amoon@gmail.com> <20200310194854.831-3-linux.amoon@gmail.com>
+In-Reply-To: <20200310194854.831-3-linux.amoon@gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Sat, 14 Mar 2020 19:02:33 +0530
+Message-ID: <CANAwSgR4fJK0uVANv-x-=iSL_hAKD8kvazACUsY9Meu5xonuqQ@mail.gmail.com>
+Subject: Re: [PATCHv3 2/5] ARM: dts: exynos: Add missing usbdrd3 suspend clk
+To:     Linux USB Mailing List <linux-usb@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp2629 Charger driver.
+Hi Krzysztof,
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+On Wed, 11 Mar 2020 at 01:19, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Add new compatible strings for USBDRD3 for adding missing
+> suspend clk, exynos5422 usbdrd3 support two clk USBD300 and
+> SCLK_USBD300, so add missing suspemd_clk for Exynos542x DWC3 nodes.
+>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32a95d162f06..0f82d5a7a614 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11358,10 +11358,15 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
- F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
-+F:	drivers/iio/adc/mp2629_adc.c
-+F:	drivers/mfd/mp2629.c
-+F:	drivers/power/supply/mp2629_charger.c
- F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
-+F:	include/linux/mfd/mp2629.h
- 
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
--- 
-2.17.1
+My assumption based on the FSYS clock source diagram below was bit wrong.
+[0] https://imgur.com/gallery/zAiBoyh
 
+And again re-looking into the driver source code, it turn out their
+are *6 clock*
+Here is the correct mapping as per the Exynos5420 clock driver.
+
+USB-(phy@12100000)
+|___________________CLK_SCLK_USBD300
+|___________________CLK_SCLK_USBPHY300
+
+USB-(phy@12500000)
+|___________________CLK_SCLK_USBD301
+|___________________CLK_SCLK_USBPHY301
+
+USB-(dwc3@12000000)
+|___________________CLK_USBD300
+USB-(dwc3@12400000)
+|___________________CLK_USBD301
+
+Note: As per Exynos 5422 user manual, There are some more USB CLK
+configuration missing in GATE_IP_FSYS. So we could enable another dwc3 clk,
+If needed I would like too add this missing clk code and enable this
+clk for dwc3 driver.
+
+For some reason we already use CLK_USBD300 and CLK_USBD301
+for PHY nodes, which lead to this confusion. So we need to update PHY clock
+CLK_USBD300 with CLK_SCLK_USBD300 and clock CLK_USBD301 with CLK_SCLK_USBD301.
+
+Please share your thought on linking PHY nodes above and add new DWC3 clock
+and enable this clock.
+
+-Anand
+
+> ---
+> fix the commit message
+> ---
+>  arch/arm/boot/dts/exynos5410.dtsi | 8 ++++----
+>  arch/arm/boot/dts/exynos5420.dtsi | 8 ++++----
+>  arch/arm/boot/dts/exynos54xx.dtsi | 4 ++--
+>  3 files changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/exynos5410.dtsi b/arch/arm/boot/dts/exynos5410.dtsi
+> index 2eab80bf5f3a..19845dcd528f 100644
+> --- a/arch/arm/boot/dts/exynos5410.dtsi
+> +++ b/arch/arm/boot/dts/exynos5410.dtsi
+> @@ -396,8 +396,8 @@ &trng {
+>  };
+>
+>  &usbdrd3_0 {
+> -       clocks = <&clock CLK_USBD300>;
+> -       clock-names = "usbdrd30";
+> +       clocks = <&clock CLK_USBD300>, <&clock CLK_SCLK_USBD300>;
+> +       clock-names = "usbdrd30", "usbdrd30_susp_clk";
+>  };
+>
+>  &usbdrd_phy0 {
+> @@ -407,8 +407,8 @@ &usbdrd_phy0 {
+>  };
+>
+>  &usbdrd3_1 {
+> -       clocks = <&clock CLK_USBD301>;
+> -       clock-names = "usbdrd30";
+> +       clocks = <&clock CLK_USBD301>, <&clock CLK_SCLK_USBD301>;
+> +       clock-names = "usbdrd30", "usbdrd30_susp_clk";
+>  };
+>
+>  &usbdrd_dwc3_1 {
+> diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
+> index b672080e7469..bd505256a223 100644
+> --- a/arch/arm/boot/dts/exynos5420.dtsi
+> +++ b/arch/arm/boot/dts/exynos5420.dtsi
+> @@ -1372,8 +1372,8 @@ &trng {
+>  };
+>
+>  &usbdrd3_0 {
+> -       clocks = <&clock CLK_USBD300>;
+> -       clock-names = "usbdrd30";
+> +       clocks = <&clock CLK_USBD300>, <&clock CLK_SCLK_USBD300>;
+> +       clock-names = "usbdrd30", "usbdrd30_susp_clk";
+>  };
+>
+>  &usbdrd_phy0 {
+> @@ -1383,8 +1383,8 @@ &usbdrd_phy0 {
+>  };
+>
+>  &usbdrd3_1 {
+> -       clocks = <&clock CLK_USBD301>;
+> -       clock-names = "usbdrd30";
+> +       clocks = <&clock CLK_USBD301>, <&clock CLK_SCLK_USBD301>;
+> +       clock-names = "usbdrd30", "usbdrd30_susp_clk";
+>  };
+>
+>  &usbdrd_dwc3_1 {
+> diff --git a/arch/arm/boot/dts/exynos54xx.dtsi b/arch/arm/boot/dts/exynos54xx.dtsi
+> index 8aa5117e58ce..0aac6255de5d 100644
+> --- a/arch/arm/boot/dts/exynos54xx.dtsi
+> +++ b/arch/arm/boot/dts/exynos54xx.dtsi
+> @@ -143,7 +143,7 @@ hsi2c_7: i2c@12cd0000 {
+>                 };
+>
+>                 usbdrd3_0: usb3-0 {
+> -                       compatible = "samsung,exynos5250-dwusb3";
+> +                       compatible = "samsung,exynos5420-dwusb3";
+>                         #address-cells = <1>;
+>                         #size-cells = <1>;
+>                         ranges;
+> @@ -165,7 +165,7 @@ usbdrd_phy0: phy@12100000 {
+>                 };
+>
+>                 usbdrd3_1: usb3-1 {
+> -                       compatible = "samsung,exynos5250-dwusb3";
+> +                       compatible = "samsung,exynos5420-dwusb3";
+>                         #address-cells = <1>;
+>                         #size-cells = <1>;
+>                         ranges;
+> --
+> 2.25.1
+>
