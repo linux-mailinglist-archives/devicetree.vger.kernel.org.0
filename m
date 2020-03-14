@@ -2,158 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A90E1857ED
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E37C5185789
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 02:39:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726720AbgCOBv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 21:51:27 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42600 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726643AbgCOBv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 21:51:27 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 13so4989440oiy.9;
-        Sat, 14 Mar 2020 18:51:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=35XhdiPf7N2b+kAbuAAdXV42xW5hub0L667+H4IKlmk=;
-        b=YXFjcvBeV6V4LELDQyU58eupJBzeXQnfnsR6yFHR/maxum8Vs72anKO6WdFh/Z/Qek
-         pR6wsEdmurMvkQg0FTAkBdskTO+SOovm+V0vgm8TPwEfYdOff7Us85puFuAtoaa+9d3R
-         6uV4gsymxTnUJsWtXy6OqXtug5iXGH8CEG8XXZrUf9f6qIdAeW9QIQD5AfWg0YT3MhXr
-         6L05Wj/4Bo+kxXcJojXlQcsl1vBGa8whfWQ3dZgyaakzt09KYB831bTUB141MkOzT+BX
-         rrPj1RFcL6QnFjk8lzrKtwMRGqS02I8zJYmyip02DSzSL4Y5UuemFq+tQy7fim/zzF2T
-         YhWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=35XhdiPf7N2b+kAbuAAdXV42xW5hub0L667+H4IKlmk=;
-        b=GoUi0VcTjOdRvF24ReovgkpQgiOHig8MIxsftsMFT3jPdc9q9uvhIkUCWw11SNt/bt
-         Q30YdxKvQe32zgVFaiX7J8rMwM1ZLbahO5yyIsEo3T8siPtlOgx3SaXHtQfuVPIz8MrL
-         y8SJ+s5ZDA2CXY8FN9/rGM/CQ1SLd6vT4vEcXSZ8T10C/1S80a9yCWd61LNF96XVjkSb
-         4rYyJliDKydQ9vBrLu1EUZfgW1/AF02hz6gE1DeTFgJ3UKNep6T2/U3bJf7xDE84v0Bl
-         jt2FcdyXVl/hB1vhl/UccxaFDZ9klFyxuSKgzjQgXxezpSv1J2K7hflcRXWcntXHxJ3G
-         xHGg==
-X-Gm-Message-State: ANhLgQ1SZzV8hBatpiv+KlAYdBgg365o9y0oetQtyO92MRLgMLMSHGO0
-        P5bxrbFfY1rVRVZAZqmLlWpHksUw
-X-Google-Smtp-Source: ADFU+vsfG2YRIywLZtaTGNFY5QnxtFNloA653nmIEte+/glxpF5LNbpsrXEPBg5BD0BeozWHLv5KUA==
-X-Received: by 2002:a17:90a:a48b:: with SMTP id z11mr15529796pjp.1.1584193385623;
-        Sat, 14 Mar 2020 06:43:05 -0700 (PDT)
-Received: from nish-HP-Pavilion ([113.30.156.69])
-        by smtp.gmail.com with ESMTPSA id md20sm14771530pjb.15.2020.03.14.06.43.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Mar 2020 06:43:05 -0700 (PDT)
-From:   Nishant Malpani <nish.malpani25@gmail.com>
-To:     jic23@kernel.org, robh+dt@kernel.org
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        mark.rutland@arm.com, nish.malpani25@gmail.com, sre@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio: tsl2563: convert bindings to YAML
-Date:   Sat, 14 Mar 2020 19:12:37 +0530
-Message-Id: <20200314134237.12187-1-nish.malpani25@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726952AbgCOBj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 21:39:27 -0400
+Received: from muru.com ([72.249.23.125]:60426 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726579AbgCOBj1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Mar 2020 21:39:27 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id AA1D48043;
+        Sat, 14 Mar 2020 17:24:54 +0000 (UTC)
+Date:   Sat, 14 Mar 2020 10:24:05 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Arthur Demchenkov <spinal.by@gmail.com>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Sebastian Reichel <sre@kernel.org>
+Subject: Re: [PATCH] ARM: dts: omap4-droid4: Fix sgx clock rate
+Message-ID: <20200314172405.GH37466@atomide.com>
+References: <20200310201818.15989-1-tony@atomide.com>
+ <20200310210944.GU37466@atomide.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200310210944.GU37466@atomide.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the TSL2563 device tree bindings to the new YAML format.
+* Tony Lindgren <tony@atomide.com> [200310 21:10]:
+> * Tony Lindgren <tony@atomide.com> [200310 20:19]:
+> > +&sgx_module {
+> 
+> Sorry the sgx_module label came from the linux_openpvrsgx branch
+> I had merged in as Arthur noticed.
+> 
+> Below is an updated patch against v5.6-rc series.
 
-Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
+And looks like this is also needed for at least duovero, so let's
+change the clock for all 4430.
+
+Regards,
+
+Tony
+
+8< ----------------------
+From tony Mon Sep 17 00:00:00 2001
+From: Tony Lindgren <tony@atomide.com>
+Date: Tue, 10 Mar 2020 14:02:48 -0700
+Subject: [PATCH] ARM: dts: omap4: Fix sgx clock rate for 4430
+
+We currently have a different clock rate for droid4 compared to the
+stock v3.0.8 based Android Linux kernel:
+
+# cat /sys/kernel/debug/clk/dpll_*_m7x2_ck/clk_rate
+266666667
+307200000
+# cat /sys/kernel/debug/clk/l3_gfx_cm:clk:0000:0/clk_rate
+307200000
+
+Let's fix this by configuring sgx to use 153.6 MHz instead of 307.2 MHz.
+Looks like also at least duover needs this change to avoid hangs, so
+let's apply it for all 4430.
+
+This helps a bit with thermal issues that seem to be related to memory
+corruption when using sgx. It seems that other driver related issues
+still remain though.
+
+Cc: Arthur Demchenkov <spinal.by@gmail.com>
+Cc: Merlijn Wajer <merlijn@wizzup.org>
+Cc: Sebastian Reichel <sre@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
+ arch/arm/boot/dts/omap4.dtsi    |  2 +-
+ arch/arm/boot/dts/omap443x.dtsi | 10 ++++++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-The link for the datasheet is not attached in the binding document
-because it was not available on the manufacturer's (AMS) website [1].
-
-[1] https://ams.com/ambient-light-sensors
----
- .../devicetree/bindings/iio/light/tsl2563.txt | 19 --------
- .../bindings/iio/light/tsl2563.yaml           | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/light/tsl2563.txt
- create mode 100644 Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/tsl2563.txt b/Documentation/devicetree/bindings/iio/light/tsl2563.txt
-deleted file mode 100644
-index f91e809e736e..000000000000
---- a/Documentation/devicetree/bindings/iio/light/tsl2563.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--* AMS TAOS TSL2563 ambient light sensor
--
--Required properties:
--
--  - compatible : should be "amstaos,tsl2563"
--  - reg : the I2C address of the sensor
--
--Optional properties:
--
--  - amstaos,cover-comp-gain : integer used as multiplier for gain
--                              compensation (default = 1)
--
--Example:
--
--tsl2563@29 {
--	compatible = "amstaos,tsl2563";
--	reg = <0x29>;
--	amstaos,cover-comp-gain = <16>;
--};
-diff --git a/Documentation/devicetree/bindings/iio/light/tsl2563.yaml b/Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-new file mode 100644
-index 000000000000..2a70b8d62760
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/tsl2563.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/omap4.dtsi b/arch/arm/boot/dts/omap4.dtsi
+--- a/arch/arm/boot/dts/omap4.dtsi
++++ b/arch/arm/boot/dts/omap4.dtsi
+@@ -390,7 +390,7 @@ abb_iva: regulator-abb-iva {
+ 			status = "disabled";
+ 		};
+ 
+-		target-module@56000000 {
++		sgx_module: target-module@56000000 {
+ 			compatible = "ti,sysc-omap4", "ti,sysc";
+ 			reg = <0x5600fe00 0x4>,
+ 			      <0x5600fe10 0x4>;
+diff --git a/arch/arm/boot/dts/omap443x.dtsi b/arch/arm/boot/dts/omap443x.dtsi
+--- a/arch/arm/boot/dts/omap443x.dtsi
++++ b/arch/arm/boot/dts/omap443x.dtsi
+@@ -74,3 +74,13 @@ &cpu_thermal {
+ };
+ 
+ /include/ "omap443x-clocks.dtsi"
 +
-+title: AMS TAOS TSL2563 ambient light sensor
-+
-+maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+description: |
-+  Ambient light sensor with an i2c interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amstaos,tsl2563
-+
-+  reg:
-+    maxItems: 1
-+
-+  amstaos,cover-comp-gain:
-+    description: Multiplier for gain compensation
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [1, 16]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    i2c {
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      light-sensor@29 {
-+        compatible = "amstaos,tsl2563";
-+        reg = <0x29>;
-+        amstaos,cover-comp-gain = <16>;
-+      };
-+    };
-+...
++/*
++ * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android kernel
++ */
++&sgx_module {
++	assigned-clocks = <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
++			  <&dpll_per_m7x2_ck>;
++	assigned-clock-rates = <0>, <153600000>;
++	assigned-clock-parents = <&dpll_per_m7x2_ck>;
++};
 -- 
-2.20.1
-
+2.25.1
