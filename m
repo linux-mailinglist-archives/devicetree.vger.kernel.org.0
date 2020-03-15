@@ -2,130 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2753185913
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 155B6185860
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 03:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727743AbgCOCbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Mar 2020 22:31:14 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36138 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727772AbgCOCbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:31:14 -0400
-Received: by mail-wm1-f68.google.com with SMTP id g62so14311144wme.1;
-        Sat, 14 Mar 2020 19:31:13 -0700 (PDT)
+        id S1727548AbgCOCFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Mar 2020 22:05:20 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:45900 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgCOCFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Mar 2020 22:05:20 -0400
+Received: by mail-lj1-f195.google.com with SMTP id e18so14764296ljn.12;
+        Sat, 14 Mar 2020 19:05:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=UBLq+DVYQxDs8a8x/M0DoStKIVGMho+f5uexM3U5eEY=;
-        b=leXggBwfI+U1mWn9FkJboIpHLw2O7MMsTzSZS+64xWyOc7KeCL+60U99o9EA1ZOS9r
-         TSj5FrW+W2yycJdhgWvH4125L3H0s/YQOe5JR6a41E5kljCBg30DaO+etyRBRehHO3gd
-         aFaIVKIIsufg/vipykTMARGle92PNXW8R5Rjkk3iS/AflBqQbQaE6kufHBiBF2qdgjP0
-         8OFPu5rOdlRXq32GBpkAf5UQsHkGkGtsZBh8QjzR9XkprPDk0SvN6iRJK3DVjH/XXOms
-         syZsOcE5IDKrwzFjiIsscgk1ZehZ40F0cy2NaJwgijxv/ipEyv/hvXAy8F7tVjl/XawB
-         siEg==
+        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
+        b=OIJzVdRqmII3xpN14/wQN0Vvrs1lDoUVouTfyF1AzzfhS7PAX65NnJmEstFfAwHm0J
+         MEdvf9urGT/J4thuvj9vk11uUp5M1ygunTCQ40PysktE5qk6p49gkKWkoPYa8hbxlpZ+
+         8AHxeLhfVqkUX208e6r8trwKTkIzfc7jZVyFb0j7si5B/e5Q5XglfRDu7Lgva68dRazY
+         t3ksP3zdoG8z1pawPZeocy0I+666FiKRbaFcF5tdQuT+avWEfO4hptk359IUQ52E/0AL
+         Fyhc24SsfBPdJPaus75o3DysidczlxbECY0IAS4F8XJ5ZrpGp0mWMaE2ibqoijxKTHF0
+         TMKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=UBLq+DVYQxDs8a8x/M0DoStKIVGMho+f5uexM3U5eEY=;
-        b=swWVusZ62otMBbZ1yb4vHuQeaD2bPde30rXin/qDolaVTW0X18u6E/VIgAVlmDSYJh
-         f71jnbtfgTHN5O8lZVIBkLjTwtNsn/BgIGT8gzGXWJ+UL8pbqvvacdLBCmTzzPIaQRHL
-         ca8LG8MydcTp/HMFKgmAgy9vOj2Bi95Crh/pTSAkn3SxBfNwOydxspabqrOtHimRuMxd
-         2I2Uwb+/7NnBsnQ+JkCl10xBYSKmwL0v5h8ck+XNrjutYxJsCnM1z0Pph+VVU/BFS7Xh
-         e1WnJmG54+rULx3ddh6yvMn9nVu2coo6eu8avoxND5K9bT9J1VQmuqZdpL0WJeWDZBJY
-         d5rw==
-X-Gm-Message-State: ANhLgQ3Sod/D/fyzkbx7azSTWanVEzeImgRwC76ZKs7HixZpx7XZAGbC
-        ZgL/QHgCOlCACKrPTITnuPzb8dQVnW0=
-X-Google-Smtp-Source: ADFU+vvfxGr4VcbjzdQ9Qc5anz+ZVnL17sKm3kWOf89+oaVzDiigT8qEB6jG10BXVSEFtxosOh6erQ==
-X-Received: by 2002:a1c:a502:: with SMTP id o2mr17828001wme.94.1584225850211;
-        Sat, 14 Mar 2020 15:44:10 -0700 (PDT)
-Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id 133sm23690732wmd.5.2020.03.14.15.44.08
+        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
+        b=DvpDYDkZQW5E0JKHHq0vb4oxewJIyQvPWFfQMo/8bD8oXXLgOVOSOL+PE/lTjdehQr
+         V4VC7LazQ5sJhE5W4SGYH3JG2I/FrUtNQYhUx2+C1ES/yF6QpNnwtNqwPutNBsNDn895
+         p3iLvfFNIcFZS2wiM2eXa4dBPZGCoGkQp+cai4WlQGgxp0AktTpH120ACcDuk1pA/6/P
+         x9SJl2sd/L1Yqkf5wqhujO85C9RBOQalq65EpFC5Uw0AJ5t5PcfYQj7p7JkDA4Xpdvnv
+         vpWrQ0ycD3XETabaluWtpVuCxkf4yN53TgaW51Nut+4g6T5O730dosOfPqGFOUVkJ6OJ
+         sHEg==
+X-Gm-Message-State: ANhLgQ0stTElPSOqFS/HY90FHYnOFE+8kKoFTtPcOvZ8ZJLaVg7Iprs0
+        KNhcM5G2lxsZvpyYguDvRqn/Rw7mxR4=
+X-Google-Smtp-Source: ADFU+vsLbPyHg/3H2qHGT2azKEXr7tZwXNK8qhcJh9SO/kwPkfqvtObR5asqoXdlrz1UQKhDfB3WlA==
+X-Received: by 2002:a5d:5290:: with SMTP id c16mr25043929wrv.235.1584230432390;
+        Sat, 14 Mar 2020 17:00:32 -0700 (PDT)
+Received: from localhost.localdomain (p5B3F731E.dip0.t-ipconnect.de. [91.63.115.30])
+        by smtp.gmail.com with ESMTPSA id 7sm11394469wmf.20.2020.03.14.17.00.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Mar 2020 15:44:09 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     broonie@kernel.org
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
-        andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
-        mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
-Subject: [PATCH v3 10/12] spi: spi-fsl-dspi: Add support for LS1028A
-Date:   Sun, 15 Mar 2020 00:43:38 +0200
-Message-Id: <20200314224340.1544-11-olteanv@gmail.com>
+        Sat, 14 Mar 2020 17:00:31 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
+        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v2 5/5] MAINTAINERS: Add entry for mp2629 Battery Charger driver
+Date:   Sun, 15 Mar 2020 01:00:13 +0100
+Message-Id: <20200315000013.4440-6-sravanhome@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200314224340.1544-1-olteanv@gmail.com>
-References: <20200314224340.1544-1-olteanv@gmail.com>
+In-Reply-To: <20200315000013.4440-1-sravanhome@gmail.com>
+References: <20200315000013.4440-1-sravanhome@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+Add MAINTAINERS entry for Monolithic Power Systems mp2629 Charger driver.
 
-This is similar to the DSPI instantiation on LS1028A, except that:
- - The A-011218 erratum has been fixed, so DMA works
- - The endianness is different, which has implications on XSPI mode
-
-Some benchmarking with the following command:
-
-spidev_test --device /dev/spidev2.0 --bpw 8 --size 256 --cpha --iter 10000000 --speed 20000000
-
-shows that in DMA mode, it can achieve around 2400 kbps, and in XSPI
-mode, the same command goes up to 4700 kbps. This is somewhat to be
-expected, since the DMA buffer size is extremely small at 8 bytes, the
-winner becomes whomever can prepare the buffers for transmission
-quicker, and DMA mode has higher overhead there. So XSPI FIFO mode has
-been chosen as the operating mode for this chip.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
 ---
-Changes in v4:
-None.
+ MAINTAINERS | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Changes in v3:
-Removed the dma_bufsize variable (obsoleted by 03/12).
-
-Changes in v2:
-Switch to DSPI_XSPI_MODE.
-
- drivers/spi/spi-fsl-dspi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-index 86255d38ffcf..b6d7e6f383ec 100644
---- a/drivers/spi/spi-fsl-dspi.c
-+++ b/drivers/spi/spi-fsl-dspi.c
-@@ -124,6 +124,7 @@ struct fsl_dspi_devtype_data {
- enum {
- 	LS1021A,
- 	LS1012A,
-+	LS1028A,
- 	LS1043A,
- 	LS1046A,
- 	LS2080A,
-@@ -151,6 +152,11 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
- 		.max_clock_factor	= 8,
- 		.fifo_size		= 16,
- 	},
-+	[LS1028A] = {
-+		.trans_mode		= DSPI_XSPI_MODE,
-+		.max_clock_factor	= 8,
-+		.fifo_size		= 4,
-+	},
- 	[LS1043A] = {
- 		/* Has A-011218 DMA erratum */
- 		.trans_mode		= DSPI_XSPI_MODE,
-@@ -1059,6 +1065,9 @@ static const struct of_device_id fsl_dspi_dt_ids[] = {
- 	}, {
- 		.compatible = "fsl,ls1012a-dspi",
- 		.data = &devtype_data[LS1012A],
-+	}, {
-+		.compatible = "fsl,ls1028a-dspi",
-+		.data = &devtype_data[LS1028A],
- 	}, {
- 		.compatible = "fsl,ls1043a-dspi",
- 		.data = &devtype_data[LS1043A],
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 32a95d162f06..0f82d5a7a614 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11358,10 +11358,15 @@ F:	drivers/tty/mxser.*
+ MONOLITHIC POWER SYSTEM PMIC DRIVER
+ M:	Saravanan Sekar <sravanhome@gmail.com>
+ S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+ F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
++F:	drivers/iio/adc/mp2629_adc.c
++F:	drivers/mfd/mp2629.c
++F:	drivers/power/supply/mp2629_charger.c
+ F:	drivers/regulator/mp5416.c
+ F:	drivers/regulator/mpq7920.c
+ F:	drivers/regulator/mpq7920.h
++F:	include/linux/mfd/mp2629.h
+ 
+ MR800 AVERMEDIA USB FM RADIO DRIVER
+ M:	Alexey Klimov <klimov.linux@gmail.com>
 -- 
 2.17.1
 
