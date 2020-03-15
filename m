@@ -2,76 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9478E185C0C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 11:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF726185C0D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2020 11:53:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728278AbgCOKry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Mar 2020 06:47:54 -0400
-Received: from sonic316-22.consmr.mail.ne1.yahoo.com ([66.163.187.148]:35098
-        "EHLO sonic316-22.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728234AbgCOKry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Mar 2020 06:47:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1584269272; bh=7bAj2aTmdt2qZuhBQReQcDKGCSJd8LlC9EcZcjUJr8M=; h=Date:From:Reply-To:Subject:References:From:Subject; b=EcyK20Yws9RMUO23L/qYSwnYY/uEfAmjzpLNZ6wAGYaBCq8pjep8d6TSXqXp0b9yA4tPLOG0jkBi8+e3j3ZP7pxbcEF89/8j7PCVZ1OOSdSoazwHWEUqghffm5DoMISNVv2MUYSiuo/Th2YEx4aSvX93pAmBWqONWQQyKIWdMmwikB7NXPfXEr25ekESjKk2Y96xEE/+orrkKTX7XMbV7AI0oo0KRjK41SKZ+vskNoHHKShCVUMVNtR+bCcFoiYw6itkFd4yD/7q0bz9rkIqCz9SdtOIVebTE0lbEedp2X7k/YF46mF2Xdp9y6crfMMmpetLotWXOOLb4C+oE2Y7zQ==
-X-YMail-OSG: dtHFHawVM1n.B2McmTcgtIDwNFWEJPN.tI7PklDTDk8MqNreZjx2dUMHDpRiNG7
- Mb3lHg_O04z0RTcyGzr6qrqNu4fHm3BXr.HhRVog4VG1neiKcZHYeiwqwaCAuLprF3mxIGwHe.aY
- 0AMuhya8ouCWDj2XZo1ST0V_9vGdgO991dV24up50dhEMUEFPz78XSSP_YAbkqlNuOO4CH6Jnd0Z
- vvBpa7oH8HKGj8I54Kqc_xqhG8gZ4cpH6hvruvR.H9zkxJFStgx36ZdWniQsPNvlnSfxgbTueZW8
- _ibKaDARJYGXtWyUqfu51qrZRBkh39OBAxEBLFaomdby1rFYOP85v8j4IH3MkkNOsQt.Fo0bRQGk
- EwGlEj1gaIO5h7HxBUzvE0VAh375L1p11Ol0sxVzUII6z4_f487wqYsWz8boaU3C373f3ayO6t1b
- d0M23UziSOavtIYZKr5HPkNKE85ayC.IO45SR9qVOmJf4EZQgLVymCl0gz_NmY0RcODg3rrfIZXW
- 9BQKXggXzZAL67hxEsfoDAfp4K_L_hoJe0ZxcISnZwIoUcDwpaSV2OtwpYyv5dGjK.IrDGhcW6O8
- 3e.psUHx12u6_5VuGhnBJ3tDechp31wOhZpu_lVayQD.jEaJjEawKSanI1wfjCllqSM7Ys4VHMmF
- x5UnchTCazEDekdcVf6nI.eLoePYwv6rczjuQMdyNc09kd3E7EPWCV3e5VqU.RcNAz_sqbEdCWer
- dv5iGlrnoCnm8.i6XezI9RVNHdmYo5ewi5NygxQfZC0SI43Ghu8siqVPZLzZDi0hCI.XIp0.1UiW
- Ljp22jbr9EptnE4zPtA_BG0TNCZkmCbM4n07m86vFPIn8a42kdxP8nT4WhgPc6F_NCeOh.UtNTdM
- 3rOKkM1VE7EJmuRJHxFDWcWWiwT37Z11vkYyxeTSbjto.2Z4nxGyjolF8wFRPxmm2d8JYhGYb0y6
- 9uqzE1FKHBkj_AbRoPi5g38fwHeG4S8IokxGY_zKxwsieO_eB7scee.3EEUZl08qC3GJvpuM2hZw
- LJOYdtNtuGLx3fWRfQEZJUWIYq6KklmoDedDspokJKGISMH03LIOppOYYR2oIgJEbBJd35124YGy
- sMqzxvKt61ag6Ef3EijIWrsDLDEJ2m8Zg9PKaOXbOq.nnWp8Ww301EF.oshKSM7z_D3MIOz2MjFo
- gGGC7sgiy827jTOEPeynO2PoKKZg5U_3JbmqGILU8dIO30rwkjWzTealwD_Qal39qemPCWo87ET1
- YUCoItni1KzmHG8lqL6iq4GzwtrH6ssxfUQyE0eGx4DWIefEYW543ZbkYjAeq3Io.jbxc.5.cN4Z
- dDg--
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.ne1.yahoo.com with HTTP; Sun, 15 Mar 2020 10:47:52 +0000
-Date:   Sun, 15 Mar 2020 10:47:51 +0000 (UTC)
-From:   Suleiman Abubaker <suleimanabubaker84612@gmail.com>
-Reply-To: suleimanabubaker@mail.com
-Message-ID: <870126041.844918.1584269271550@mail.yahoo.com>
-Subject: Helo
+        id S1728306AbgCOKx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Mar 2020 06:53:58 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:45238 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728234AbgCOKx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Mar 2020 06:53:58 -0400
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4D6D02D6;
+        Sun, 15 Mar 2020 11:53:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1584269636;
+        bh=tHZj7k528VQp787Iu7lw15HaxCaHUWTuuW+O8lIRCV0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=twQyM+1lGITMQqyxXCOzCVjNxdRkFDEN5Q+XB7scUmWhUwBhnFmAx/7FRLsXJe09t
+         3c+eJ6c0MTWuKvkh/Wa+144xmukaiIwjDTSe1D4n6VXiu/EFm6qlCHllgISiac3x8n
+         W4aiRKx5AIlyOz82CjnfeLQxDBSudePE3vgLvhLA=
+Date:   Sun, 15 Mar 2020 12:53:45 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-leds@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/3] dt-bindings: leds: Add binding for sgm3140
+Message-ID: <20200315105345.GB4732@pendragon.ideasonboard.com>
+References: <20200309203558.305725-1-luca@z3ntu.xyz>
+ <20200309203558.305725-3-luca@z3ntu.xyz>
+ <4f848ab3-0e76-ae63-0771-758b1eaa0660@ti.com>
+ <3051566.44csPzL39Z@g550jk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-References: <870126041.844918.1584269271550.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15342 YMailNodin Mozilla/5.0 (Windows NT 6.1; rv:74.0) Gecko/20100101 Firefox/74.0
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3051566.44csPzL39Z@g550jk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Luca,
 
+On Sun, Mar 15, 2020 at 11:47:36AM +0100, Luca Weiss wrote:
+> On Mittwoch, 11. März 2020 13:49:35 CET Dan Murphy wrote:
+> > On 3/9/20 3:35 PM, Luca Weiss wrote:
+> > > Add YAML devicetree binding for SGMICRO SGM3140 charge pump used for
+> > > camera flash LEDs.
+> > > 
+> > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > > ---
+> > > Changes since RFC:
+> > > - new patch
+> > > 
+> > > I'm not sure about the completeness of this binding as it doesn't
+> > > mention the led subnode at all.
+> > > The only existing led yaml binding is leds/leds-max77650.yaml which
+> > > mentions the subnode but duplicates properties from documented in
+> > > leds/common.txt.
+> > > 
+> > >   .../bindings/leds/leds-sgm3140.yaml           | 53 +++++++++++++++++++
+> > >   1 file changed, 53 insertions(+)
+> > >   create mode 100644
+> > >   Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+> > > b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml new file mode
+> > > 100644
+> > > index 000000000000..be9384573d02
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+> > > @@ -0,0 +1,53 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/leds-sgm3140.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: SGMICRO SGM3140 500mA Buck/Boost Charge Pump LED Driver
+> > > +
+> > > +maintainers:
+> > > +  - Luca Weiss <luca@z3ntu.xyz>
+> > > +
+> > > +description: |
+> > > +  The SGM3140 is a current-regulated charge pump which can regulate two
+> > > current +  levels for Flash and Torch modes.
+> > > +
+> > > +  It is controlled with two GPIO pins.
+> > 
+> > Please define "It".  Not sure what is controlled here.
+> > 
+> 
+> "It" means the SGM3140. Not sure how else to write that or what the correct 
+> term for such a component is.
 
+Maybe "The device" ? I think Dan's concern is that he wasn't sure if
+"It" referred to "the device" or to "flash and torch modes".
 
+-- 
+Regards,
 
-
-
-Dear Friend,
-
-I am. Mr. Suleiman Abubaker, Manager Auditing and Accountancy Department,Bank of Africa in (B.O.A) Burkina Faso
-
-i am writing to seek for your highly esteemed consent/assistance in a lasting business relationship of mutual benefit involving $18. Million Usd for investment in your country, under a joint venture partnership.
-
-Thank you for accommodating my inquiry, as i look forward to hear from you on this business collaboration and meeting with you soon.
-
-
-(1)Your Full name:..........................
-(2)Your Age.................................
-(3)Occupation:.................................
-(4)Mobile phone number:.....................
-(5)Your Country..........................
-
-Waiting to hear from you.
-
-Your's truly,
-
-Mr. Suleiman Abubaker,
+Laurent Pinchart
