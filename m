@@ -2,144 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D71186DBB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 15:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE9F186DC4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 15:48:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731478AbgCPOrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 10:47:00 -0400
-Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:34176 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731572AbgCPOrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Mar 2020 10:47:00 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 4BC48400DE;
-        Mon, 16 Mar 2020 14:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1584370019; bh=CSXgu1Fl5WfUS91bKBQktad7Yrg6yqP4RJTvw8e9FHw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VWs8ZLZ0AfPj6Q/AcdXj0hwzeGadPXLw3W8nSwoG4wJpmIki57IfdJdS7hpu2pq1C
-         FTnXU4XNxQlktkYxjTkiVFoeN7alFG5yluIDc1qDsibHrY+YtO3Y2Cl4r3lCcnWZV7
-         a426jVae5VjmhPDYbEW3gYVfRu3l16r3+6+hMYnAd3Dyk3I7Db3dZeHMRNJhyXrbz5
-         JjAYGQUWPrLBjG/2kcs8xN5sHnzHhMSUTV+SLI/rgjBm6wzQ7zofdO7PU4L5aEbEQ4
-         12wxtryS4JMyLnSug5A0KXF7T7ht9QJeJaNaAcDLLMtOL6Hi41fmJ9Ug0wqWochtJF
-         QM9Bg5o2JwAig==
-Received: from paltsev-e7480.internal.synopsys.com (unknown [10.121.8.79])
-        by mailhost.synopsys.com (Postfix) with ESMTP id 4EB44A0062;
-        Mon, 16 Mar 2020 14:46:57 +0000 (UTC)
-From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-To:     dri-devel@lists.freedesktop.org,
-        Alexey Brodkin <Alexey.Brodkin@synopsys.com>
-Cc:     linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Subject: [PATCH 2/2] dt-bindings: Document the Synopsys ARC HDMI TX bindings
-Date:   Mon, 16 Mar 2020 17:46:47 +0300
-Message-Id: <20200316144647.10416-3-Eugeniy.Paltsev@synopsys.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200316144647.10416-1-Eugeniy.Paltsev@synopsys.com>
-References: <20200316144647.10416-1-Eugeniy.Paltsev@synopsys.com>
+        id S1731607AbgCPOsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 10:48:41 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:40664 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731549AbgCPOsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 10:48:41 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02GEmaY5092372;
+        Mon, 16 Mar 2020 09:48:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1584370116;
+        bh=UooX8ZNh9tr7y4gxXLpPFHF5TDh2m19GWAc6UYXvUo0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=oV18zW7FS2UjKbHiEMKyD9jTTTDsLv8Jt25tv0xLNCgqPgf8Zg0S0YJA/l9yB7Gca
+         HgsFBwXLEA6MdCrR0Nexw/eT7EkonthCWD7CubrJ1iCrxFTSFh5zS3CxopWh4b/MAe
+         11wUDTI6Rzie0jfI5j2kvXoOyTqjw8KCohun8r2k=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02GEma1A055336
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 Mar 2020 09:48:36 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 16
+ Mar 2020 09:48:34 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 16 Mar 2020 09:48:34 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02GEmVxO027810;
+        Mon, 16 Mar 2020 09:48:32 -0500
+Subject: Re: [PATCH] clk: ti: am43xx: Fix clock parent for RTC clock
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tony Lindgren <tony@atomide.com>
+CC:     <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>
+References: <20200221171030.39326-1-tony@atomide.com>
+ <158231096467.258574.11716255621346536160@swboyd.mtv.corp.google.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <831d632e-78da-07c4-f8c7-14d17ba1ef28@ti.com>
+Date:   Mon, 16 Mar 2020 16:48:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <158231096467.258574.11716255621346536160@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds documentation of device tree bindings for the Synopsys
-HDMI 2.0 TX encoder driver for ARC SoCs.
+On 21/02/2020 20:49, Stephen Boyd wrote:
+> Quoting Tony Lindgren (2020-02-21 09:10:30)
+>> Currently enabling clkctrl clock on am4 can fail for RTC as the clock
+>> parent is wrong for RTC.
+>>
+>> Fixes: 76a1049b84dd ("clk: ti: am43xx: add new clkctrl data for am43xx")
+>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+>> ---
+>>
+>> It is unclear if we can end up with RTC hung with the current mainline
+>> kernel in some cases. Probing RTC with device tree data only seems to
+>> trigger this every time.
+> 
+> It's small enough and if it's annoying enough we can probably put it
+> into clk-fixes to get it fixed for this release instead of waiting. Can
+> Tero ack it?
+> 
 
-Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
----
- .../display/bridge/snps,arc-dw-hdmi.txt       | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.txt
+Sure,
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.txt b/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.txt
-new file mode 100644
-index 000000000000..d5e006b392cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.txt
-@@ -0,0 +1,73 @@
-+Synopsys DesignWare HDMI 2.0 TX encoder driver for ARC SoCs
-+================================
-+
-+The HDMI transmitter is a Synopsys DesignWare HDMI 2.0 TX controller IP
-+with a companion of Synopsys DesignWare HDMI 2.0 TX PHY IP.
-+
-+These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
-+Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt
-+with the following device-specific properties.
-+
-+
-+Required properties:
-+
-+- compatible : Shall contain
-+  - "snps,dw-hdmi-hsdk" for HSDK4xD compatible HDMI TX
-+
-+- reg: See dw_hdmi.txt.
-+- interrupts: HDMI interrupt number.
-+- clocks: See dw_hdmi.txt.
-+- clock-names: Must contain "iahb" and "isfr" as defined in dw_hdmi.txt.
-+- ports: See dw_hdmi.txt. The DWC HDMI shall have one port numbered 0
-+  corresponding to the video input of the controller and one port numbered 1
-+  corresponding to its HDMI output.
-+
-+Example:
-+
-+hdmi: hdmi@0x10000 {
-+	compatible = "snps,dw-hdmi-hsdk";
-+	reg = <0x10000 0x10000>;
-+	reg-io-width = <4>;
-+	interrupts = <14>;
-+	clocks = <&apbclk>, <&hdmi_pix_clk>;
-+	clock-names = "iahb", "isfr";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			hdmi_enc_input: endpoint {
-+				remote-endpoint = <&pgu_output>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			hdmi_enc_out: endpoint {
-+				remote-endpoint = <&hdmi_con>;
-+			};
-+		};
-+	};
-+};
-+
-+hdmi-out {
-+	...
-+
-+	port {
-+		hdmi_con: endpoint {
-+			remote-endpoint = <&hdmi_enc_out>;
-+		};
-+	};
-+};
-+
-+pgu {
-+	...
-+
-+	port_o: port {
-+		pgu_output: endpoint {
-+			remote-endpoint = <&hdmi_enc_input>;
-+		};
-+	};
-+};
--- 
-2.21.1
-
+Acked-by: Tero Kristo <t-kristo@ti.com>
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
