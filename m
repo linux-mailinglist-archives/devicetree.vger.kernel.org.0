@@ -2,166 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C087D1868B4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 11:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A191F1868C2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 11:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730517AbgCPKIK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Mar 2020 06:08:10 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:43161 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730497AbgCPKIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 06:08:10 -0400
-X-Originating-IP: 90.89.41.158
-Received: from xps13 (lfbn-tou-1-1473-158.w90-89.abo.wanadoo.fr [90.89.41.158])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id B0FD26002D;
-        Mon, 16 Mar 2020 10:06:58 +0000 (UTC)
-Date:   Mon, 16 Mar 2020 11:06:58 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?UTF-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>
-Cc:     richard <richard@nod.at>, vigneshr <vigneshr@ti.com>,
-        robh+dt <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        =?UTF-8?B?SGVpa29TdMO8Ym5lcg==?= <heiko@sntech.de>,
-        linux-rockchip <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v3 1/3] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK3188 and others
-Message-ID: <20200316110658.43aea94a@xps13>
-In-Reply-To: <2020031617554207432140@rock-chips.com>
-References: <20200303094736.7490-1-yifeng.zhao@rock-chips.com>
-        <20200303094736.7490-2-yifeng.zhao@rock-chips.com>
-        <20200309121645.1fca069d@xps13>
-        <2020031617554207432140@rock-chips.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S1730541AbgCPKO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 06:14:57 -0400
+Received: from laurent.telenet-ops.be ([195.130.137.89]:46312 "EHLO
+        laurent.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730527AbgCPKO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 06:14:57 -0400
+Received: from ramsan ([84.195.182.253])
+        by laurent.telenet-ops.be with bizsmtp
+        id EyEu220045USYZQ01yEuru; Mon, 16 Mar 2020 11:14:54 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jDmlq-00062m-8B; Mon, 16 Mar 2020 11:14:54 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jDmlq-0007EE-5z; Mon, 16 Mar 2020 11:14:54 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: pwm: renesas-tpu: Document more R-Car Gen2 support
+Date:   Mon, 16 Mar 2020 11:14:53 +0100
+Message-Id: <20200316101453.27745-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
+All R-Car Gen2 SoCs have a Renesas Timer Pulse Unit.
+Document support for the missing variants.
 
-赵仪峰 <yifeng.zhao@rock-chips.com> wrote on Mon, 16 Mar 2020 17:59:26
-+0800:
+No driver change is needed due to the fallback compatible string.
 
-> Hi miquel，
-> 
-> 1.
-> >A comment here explaining what the next function does and why would be
-> >nice.
-> >  
-> >> +static void rk_nfc_format_page(struct mtd_info *mtd, const u8 *buf)
-> >> +{
-> >> +	struct nand_chip *chip = mtd_to_nand(mtd);
-> >> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
-> >> +	u32 i;
-> >> +   
-> 
-> The data layout is different between NFC and nand  driver
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Tested on R-Car M2-W.
+---
+ Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-you probably mean between the NAND flash controller and whét the NAND
-core expects, but ok
+diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+index 4969a954993cb693..4bf62a3d5bba8e3a 100644
+--- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+@@ -19,6 +19,10 @@ properties:
+           - renesas,tpu-r8a7744   # RZ/G1N
+           - renesas,tpu-r8a7745   # RZ/G1E
+           - renesas,tpu-r8a7790   # R-Car H2
++          - renesas,tpu-r8a7791   # R-Car M2-W
++          - renesas,tpu-r8a7792   # R-Car V2H
++          - renesas,tpu-r8a7793   # R-Car M2-N
++          - renesas,tpu-r8a7794   # R-Car E2
+           - renesas,tpu-r8a7795   # R-Car H3
+           - renesas,tpu-r8a7796   # R-Car M3-W
+           - renesas,tpu-r8a77965  # R-Car M3-N
+-- 
+2.17.1
 
-> This code is designed with reference to mtk_nand.c
-> There is a description of the data layout at the beginning of the file:
->  * NFC Page Data Layout:
->  *	1024 Bytes Data + 4Bytes sys data + 28Bytes~124Bytes ecc +
->  *	1024 Bytes Data + 4Bytes sys data + 28Bytes~124Bytes ecc +
->  *	......
->  * NAND Page Data Layout:
->  *	1024 * n Data + m Bytes oob
->  * Original Bad Block Mask Location:
->  *	first byte of oob(spare)
->  * nand_chip->oob_poi data layout:
->  *	4Bytes sys data + .... + 4Bytes sys data + ecc data
-> 
-> 2. 
-> >> +	dma_reg = DMA_ST | ((!rw) << DMA_WR)  | DMA_EN | (2 << DMA_AHB_SIZE) |
-> >> +	     (7 << DMA_BURST_SIZE) | (16 << DMA_INC_NUM);
-> >> +
-> >> +	fl_reg = (rw << FLCTL_WR) | FLCTL_XFER_EN | FLCTL_ACORRECT |
-> >> +	(n_KB << FLCTL_XFER_SECTOR) | FLCTL_TOG_FIX;
-> >> +
-> >> +	if (nfc->nfc_version == 6) {  
-> >
-> >I would prefer using switch statements any time you check the version.
-> >The version should be an enum.
-> >
-> >You can also define a platform data structure for the register offsets
-> >that have the same name, but not necessarily the same offset. Then you
-> >can reference the right value directly.
-> >eg.
-> >
-> >	struct rk_nfc_plat_data {
-> >	u32 nfc_bchctl_off;
-> >	...
-> >	};
-> >
-> >	struct rk_nfc_plat_data rk_nfc_v6_plat_data = {
-> >	nfc_bchctl_off = ...;
-> >	...
-> >	};
-> >
-> >	bch_reg = readl(pdata->nfc_bchctl_off);  
-> 
-> I will modify the code with switch and enum, but it is difficult to use platform data structure, 
-> because the bit offset inside the register is also different.
-
-it works the same with bitfields actually, if the bitfields have close
-names and behave the same (no matter where they are in registers), you
-should probably define them in a platform data structure as well.
-
-> #define	NFC_BCH_ST_V6	(0x20)
-> #define	NFC_BCH_ST_V9	(0x150)
-> #define	BCH_ST_ERR0_V6	BIT(2)
-> #define	BCH_ST_ERR1_V6	BIT(15)
-> #define	BCH_ST_ERR0_V9	BIT(2)
-> #define	BCH_ST_ERR1_V9	BIT(18)
-> #define	ECC_ERR_CNT0_V6(x) (((((x) & (0x1F << 3)) >> 3) \
-> | (((x) & (1 << 27)) >> 22)) & 0x3F)
-> #define	ECC_ERR_CNT1_V6(x) (((((x) & (0x1F << 16)) >> 16) \
-> | (((x) & (1 << 29)) >> 24)) & 0x3F)
-> #define	ECC_ERR_CNT0_V9(x) (((x) & (0x7F << 3)) >> 3)
-> #define	ECC_ERR_CNT1_V9(x) (((x) & (0x7F << 19)) >> 19)
-> 
-> 3.
-> >> +static int rk_nfc_write_page_raw(struct nand_chip *chip, const u8 *buf,
-> >> +	 int oob_on, int page)
-> >> +{
-> >> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> >> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
-> >> +
-> >> +	rk_nfc_format_page(mtd, buf);
-> >> +	return rk_nfc_write_page(mtd, chip, nfc->buffer, page, 1);  
-> >
-> >I think you should avoid calling ->write_page. You will avoid an
-> >indentation level in this function and clarify what write_page_raw do.
-> >Same for read, and the _oob alternative. Also, I'm sure write_buf does
-> >not need to be exported and you can just move the actual code in this
-> >function.  
-> 
-> The code  is designed with reference to mtk_nand.c.
-> The function rk_nfc_format_page will copy data from extern buffer to nfc->buffer.
-> I will move the code in the function rk_nfc_format_page to rk_nfc_write_page_raw.
-> 
-> 4.
-> >> +static int rk_nfc_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
-> >> +	   int oob_on, int page)
-> >> +{
-> >> +	return rk_nfc_write_page(nand_to_mtd(chip), chip, buf, page, 0);
-> >> +}  
-> >
-> >What is the purpose of this indirection?
-> >  
-> 
-> The function  rk_nfc_write_page also call by rk_nfc_write_page_raw, a parameter(raw)
-> is required to confirm whether ECC is used or not.
-
-Ok.
-
-Thanks,
-Miquèl
