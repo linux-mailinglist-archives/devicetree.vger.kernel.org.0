@@ -2,89 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D10518694A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 11:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D8818698E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 11:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730661AbgCPKnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 06:43:33 -0400
-Received: from mx.socionext.com ([202.248.49.38]:42881 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730582AbgCPKnc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Mar 2020 06:43:32 -0400
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 16 Mar 2020 19:43:31 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 5E0A76002C;
-        Mon, 16 Mar 2020 19:43:31 +0900 (JST)
-Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Mon, 16 Mar 2020 19:43:31 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by iyokan.css.socionext.com (Postfix) with ESMTP id C95E540350;
-        Mon, 16 Mar 2020 19:43:30 +0900 (JST)
-Received: from [10.213.132.48] (unknown [10.213.132.48])
-        by yuzu.css.socionext.com (Postfix) with ESMTP id A467A12013D;
-        Mon, 16 Mar 2020 19:43:30 +0900 (JST)
-Date:   Mon, 16 Mar 2020 19:43:30 +0900
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Masahiro Yamada <yamada.masahiro@socionext.com>
-Subject: Re: [PATCH 01/10] ARM: dts: uniphier: Add XDMAC node
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-In-Reply-To: <CAK7LNASCOhZ5BMWWCA1zKep-sXra1pBBTxjsDp816k8Ph1m1Pw@mail.gmail.com>
-References: <1584061096-23686-2-git-send-email-hayashi.kunihiko@socionext.com> <CAK7LNASCOhZ5BMWWCA1zKep-sXra1pBBTxjsDp816k8Ph1m1Pw@mail.gmail.com>
-Message-Id: <20200316194330.B482.4A936039@socionext.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Becky! ver. 2.70 [ja]
+        id S1730745AbgCPKzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 06:55:25 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:37108 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730718AbgCPKzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Mar 2020 06:55:25 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1584356124; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=DKwrELKnjwH9SwHQIhyY0Hh3JIa8xcnhF4BLtd/Q+B0=; b=kDktN3not5wnZEB45q9jOKsqJMT4y1ztn0OjZyPwLJucZuJDh4VCjARPGKStysE7DajimnRd
+ 6neoRQFQuCTmIEl4c16GDMYE3RCsNXzv4ljYhf02hCgLZpGD4a54ua48t7MtDpHPLUcFFyiZ
+ YJSy4gm9687Vrgz2KKBwGKkHzqU=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e6f5b0a.7fcdc2696110-smtp-out-n01;
+ Mon, 16 Mar 2020 10:55:06 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5798AC43636; Mon, 16 Mar 2020 10:55:06 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2510BC433CB;
+        Mon, 16 Mar 2020 10:55:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2510BC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1 0/3] Add GCC clock driver support
+Date:   Mon, 16 Mar 2020 16:24:39 +0530
+Message-Id: <1584356082-26769-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 14 Mar 2020 11:14:09 +0900 <yamada.masahiro@socionext.com> wrote:
+ [v1]
+  * Add a new frequency of 51.2MHz for QUP clock.
+  * Add support for gcc_sec_ctrl_clk_src RCG for client to be able to request
+   various frequencies.
 
-> On Fri, Mar 13, 2020 at 9:58 AM Kunihiko Hayashi
-> <hayashi.kunihiko@socionext.com> wrote:
-> >
-> > Add external DMA controller support implemented in UniPhier SoCs.
-> > This supports for Pro4, Pro5 and PXs2.
-> >
-> > Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> > ---
-> >  arch/arm/boot/dts/uniphier-pro4.dtsi | 8 ++++++++
-> >  arch/arm/boot/dts/uniphier-pro5.dtsi | 8 ++++++++
-> >  arch/arm/boot/dts/uniphier-pxs2.dtsi | 8 ++++++++
-> >  3 files changed, 24 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/uniphier-pro4.dtsi b/arch/arm/boot/dts/uniphier-pro4.dtsi
-> > index 2ec04d7..a1bfe0f 100644
-> > --- a/arch/arm/boot/dts/uniphier-pro4.dtsi
-> > +++ b/arch/arm/boot/dts/uniphier-pro4.dtsi
-> > @@ -426,6 +426,14 @@
-> >                         };
-> >                 };
-> >
-> > +               xdmac: dma-controller@5fc10000 {
-> > +                       compatible = "socionext,uniphier-xdmac";
-> > +                       reg = <0x5fc10000 0x1000>, <0x5fc20000 0x800>;
-> 
-> 
-> 
-> This is odd.
-> <0x5fc20000 0x800> causes reg overwrap with
-> aidet@5fc20000 below.
+Taniya Das (3):
+  clk: qcom: gcc: Add support for a new frequency for SC7180
+  dt-bindings: clock: Add gcc_sec_ctrl_clk_src clock ID
+  clk: qcom: gcc: Add support for Secure control source clock
 
-Thank you for pointing out.
+ drivers/clk/qcom/gcc-sc7180.c               | 94 ++++++++++++++++++-----------
+ include/dt-bindings/clock/qcom,gcc-sc7180.h |  1 +
+ 2 files changed, 59 insertions(+), 36 deletions(-)
 
-Indeed, the address is wrong. I'll fix it.
-And I'll also fix the example of dt-bindings.
-
-Thank you,
-
----
-Best Regards,
-Kunihiko Hayashi
-
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
