@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB9B71861A2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 03:33:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 823F3186340
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 03:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729511AbgCPCd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Mar 2020 22:33:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36038 "EHLO mail.kernel.org"
+        id S1730486AbgCPClk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Mar 2020 22:41:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36118 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729508AbgCPCd1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Mar 2020 22:33:27 -0400
+        id S1729482AbgCPCda (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Mar 2020 22:33:30 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9DA8820724;
-        Mon, 16 Mar 2020 02:33:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E7F90206E9;
+        Mon, 16 Mar 2020 02:33:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584326006;
-        bh=xVkW6QXkoVncl6FlKkwsPTCwVa8yuWnT/9V+BX7zKXA=;
+        s=default; t=1584326009;
+        bh=ClFWbM6KRvO0jA0ltmJ0uDe7H7a6wSR5QyRk4Y8M8UY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JMejwOvMRVAbazWPFSjLYQmTETgbZwVM2FiQIGdBJ0rK9IYRvm4LCAOEJMMeiqs5S
-         8xdex6WltQClTd3IYxrfdpPcYmcQrIMpR11NSzDUAqojqAr/4n8aAFmbxQGZ09GrzR
-         eEYHsx04FJ/KED7Pg6Y59VhMA6LF+8kRtIuaMg2g=
+        b=LybBq0H8VByDyd+dKIhDlbk5tGG2NvY7aLudfI8iL9/Uo256lmFcZBmbRzRGXa5cO
+         SUjiV2q/YX7XrOasMnTacY4KQ0gjcUoSyXaNBGWA5h6VTGAJdZINusblnkMEjYcIKp
+         izVYHJjXta2kuK05wEllgL8YODq9MQoEgLCaIDjg=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Hovold <johan@kernel.org>,
-        Sanchayan Maity <maitysanchayan@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 05/41] ARM: dts: imx6dl-colibri-eval-v3: fix sram compatible properties
-Date:   Sun, 15 Mar 2020 22:32:43 -0400
-Message-Id: <20200316023319.749-5-sashal@kernel.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 08/41] ARM: dts: dra7-l4: mark timer13-16 as pwm capable
+Date:   Sun, 15 Mar 2020 22:32:46 -0400
+Message-Id: <20200316023319.749-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200316023319.749-1-sashal@kernel.org>
 References: <20200316023319.749-1-sashal@kernel.org>
@@ -47,54 +45,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Hovold <johan@kernel.org>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-[ Upstream commit bcbf53a0dab50980867476994f6079c1ec5bb3a3 ]
+[ Upstream commit 00a39c92c8ab94727f021297d1748531af113fcd ]
 
-The sram-node compatible properties have mistakingly combined the
-model-specific string with the generic "mtd-ram" string.
+DMTimers 13 - 16 are PWM capable and also can be used for CPTS input
+signals generation. Hence, mark them as "ti,timer-pwm".
 
-Note that neither "cy7c1019dv33-10zsxi, mtd-ram" or
-"cy7c1019dv33-10zsxi" are used by any in-kernel driver and they are
-not present in any binding.
-
-The physmap driver will however bind to platform devices that specify
-"mtd-ram".
-
-Fixes: fc48e76489fd ("ARM: dts: imx6: Add support for Toradex Colibri iMX6 module")
-Cc: Sanchayan Maity <maitysanchayan@gmail.com>
-Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Johan Hovold <johan@kernel.org>
-Reviewed-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/dra7-l4.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-index cd075621de52d..84fcc203a2e48 100644
---- a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-+++ b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-@@ -275,7 +275,7 @@
+diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
+index 7e7aa101d8a49..912ee8778830a 100644
+--- a/arch/arm/boot/dts/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/dra7-l4.dtsi
+@@ -3461,6 +3461,7 @@
+ 				clocks = <&l4per3_clkctrl DRA7_L4PER3_TIMER13_CLKCTRL 24>;
+ 				clock-names = "fck";
+ 				interrupts = <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>;
++				ti,timer-pwm;
+ 			};
+ 		};
  
- 	/* SRAM on Colibri nEXT_CS0 */
- 	sram@0,0 {
--		compatible = "cypress,cy7c1019dv33-10zsxi, mtd-ram";
-+		compatible = "cypress,cy7c1019dv33-10zsxi", "mtd-ram";
- 		reg = <0 0 0x00010000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -286,7 +286,7 @@
+@@ -3489,6 +3490,7 @@
+ 				clocks = <&l4per3_clkctrl DRA7_L4PER3_TIMER14_CLKCTRL 24>;
+ 				clock-names = "fck";
+ 				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
++				ti,timer-pwm;
+ 			};
+ 		};
  
- 	/* SRAM on Colibri nEXT_CS1 */
- 	sram@1,0 {
--		compatible = "cypress,cy7c1019dv33-10zsxi, mtd-ram";
-+		compatible = "cypress,cy7c1019dv33-10zsxi", "mtd-ram";
- 		reg = <1 0 0x00010000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+@@ -3517,6 +3519,7 @@
+ 				clocks = <&l4per3_clkctrl DRA7_L4PER3_TIMER15_CLKCTRL 24>;
+ 				clock-names = "fck";
+ 				interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>;
++				ti,timer-pwm;
+ 			};
+ 		};
+ 
+@@ -3545,6 +3548,7 @@
+ 				clocks = <&l4per3_clkctrl DRA7_L4PER3_TIMER16_CLKCTRL 24>;
+ 				clock-names = "fck";
+ 				interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
++				ti,timer-pwm;
+ 			};
+ 		};
+ 
 -- 
 2.20.1
 
