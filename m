@@ -2,84 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BADCC187192
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 18:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4F9187238
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 19:23:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732127AbgCPRtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 13:49:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42250 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731891AbgCPRtt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Mar 2020 13:49:49 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EF37E20719;
-        Mon, 16 Mar 2020 17:49:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584380989;
-        bh=zsKNNIKwKTr7UrxLQIlcC4JugcVMjtMOTZFacNLQx04=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=PkwmGnNvVljIuI0vpdmjup/6MQ1pCq1HtE1Iny5Z/GOIO09WBzyWysy39hD0WFU/D
-         aVPHAJNlEhAqG1JvBf5PqmhOOs8e/vnNWuGLrCsB6cmuC6Km2rqYjc2Sk75r/qfTId
-         zPKwOlfb0ZSk86Ccdpm83CEe9iUxPE15zgFriyC8=
-Content-Type: text/plain; charset="utf-8"
+        id S1732256AbgCPSXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 14:23:11 -0400
+Received: from www381.your-server.de ([78.46.137.84]:39600 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732242AbgCPSXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 14:23:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=M7ml/Y4gDZjel4sRH32iDPtQppbmjBMK4zkw++HJBF0=; b=U81rN3TZfipi2EFc5vAjnlQVfp
+        avCVc4cUmvOv8fSdHFTPVEj2qrOpx7JJUlVTvVLwoxNwbUY/4t0fqn2dqVKPoelH/L54y7Ij6Sli9
+        Nv5D+IsLVpcC8zcjoOsbs0hiGF8VEg3XxcCICM1zEh8ipt2TsGhLUZjSb8aoBAcAZdhgw0Ybjh7AN
+        nWeNJhkJrIA90f/6vHBB84wWkLBBmKL3miWDYU5/eNo0Cw0D+0QnfwAFZnahXBkfr/4tifX/r82SJ
+        hiGIXjs6Rsy9IWSGoJoDgdp1ntAIj8TCRBnkOpcu2fvczOP8DbbSdmeluHKTatYfZKkTgZcEjd+Tt
+        ltBCRERg==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89_1)
+        (envelope-from <lars@metafoo.de>)
+        id 1jDuOF-0004KC-09; Mon, 16 Mar 2020 19:23:03 +0100
+Received: from [93.104.121.61] (helo=[192.168.178.20])
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1jDuOE-000HJ7-Lf; Mon, 16 Mar 2020 19:23:02 +0100
+Subject: Re: [PATCH v2 3/4] iio: vcnl4000: Export near level property for
+ proximity sensor
+To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Tomas Novotny <tomas@novotny.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1584380360.git.agx@sigxcpu.org>
+ <5566fe01df933d3281f058666e2147cb97b38126.1584380360.git.agx@sigxcpu.org>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <c787921f-c412-4986-14ea-e31b531d3d5b@metafoo.de>
+Date:   Mon, 16 Mar 2020 19:23:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1584356082-26769-4-git-send-email-tdas@codeaurora.org>
-References: <1584356082-26769-1-git-send-email-tdas@codeaurora.org> <1584356082-26769-4-git-send-email-tdas@codeaurora.org>
-Subject: Re: [PATCH v1 3/3] clk: qcom: gcc: Add support for Secure control source clock
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>
-Date:   Mon, 16 Mar 2020 10:49:48 -0700
-Message-ID: <158438098823.88485.2094714876575396381@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+In-Reply-To: <5566fe01df933d3281f058666e2147cb97b38126.1584380360.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.2/25753/Mon Mar 16 14:05:55 2020)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2020-03-16 03:54:42)
-> diff --git a/drivers/clk/qcom/gcc-sc7180.c b/drivers/clk/qcom/gcc-sc7180.c
-> index ad75847..3302f19 100644
-> --- a/drivers/clk/qcom/gcc-sc7180.c
-> +++ b/drivers/clk/qcom/gcc-sc7180.c
-> @@ -817,6 +817,26 @@ static struct clk_rcg2 gcc_usb3_prim_phy_aux_clk_src=
- =3D {
->         },
->  };
->=20
-> +static const struct freq_tbl ftbl_gcc_sec_ctrl_clk_src[] =3D {
-> +       F(4800000, P_BI_TCXO, 4, 0, 0),
-> +       F(19200000, P_BI_TCXO, 1, 0, 0),
-> +       { }
+On 3/16/20 6:46 PM, Guido Günther wrote:
+> [...]
+> +static ssize_t vcnl4000_read_near_level(struct iio_dev *indio_dev,
+> +					uintptr_t priv,
+> +					const struct iio_chan_spec *chan,
+> +					char *buf)
+> +{
+> +	struct vcnl4000_data *data = iio_priv(indio_dev);
+> +
+> +	return sprintf(buf, "%u\n", data->near_level);
+> +}
+> +
+> +static const struct iio_chan_spec_ext_info vcnl4000_ext_info[] = {
+> +	{
+> +		.name = "near_level",
+
+Generally having properties with a underscore in them breaks generic 
+parsing of the property name by userspace applications. This is because 
+we use underscores to separate different components (type, modifier, 
+etc.) of the attribute from each other.
+
+Do you think calling this "nearlevel" would work?
+
+I know there are existing bad examples of properties that use an 
+underscore, but we should try to limit introducing new ones.
+
+> +		.shared = IIO_SEPARATE,
+> +		.read = vcnl4000_read_near_level,
+> +	},
+> +	{ /* sentinel */ }
 > +};
 > +
-> +static struct clk_rcg2 gcc_sec_ctrl_clk_src =3D {
-> +       .cmd_rcgr =3D 0x3d030,
-> +       .mnd_width =3D 0,
-> +       .hid_width =3D 5,
-> +       .parent_map =3D gcc_parent_map_3,
-> +       .freq_tbl =3D ftbl_gcc_sec_ctrl_clk_src,
-> +       .clkr.hw.init =3D &(struct clk_init_data){
-> +               .name =3D "gcc_sec_ctrl_clk_src",
-> +               .parent_data =3D gcc_parent_data_3,
-> +               .num_parents =3D 3,
-
-ARRAY_SIZE please.
-
-> +               .ops =3D &clk_rcg2_ops,
-> +       },
-> +};
+>   static const struct iio_chan_spec vcnl4000_channels[] = {
+>   	{
+>   		.type = IIO_LIGHT,
+> @@ -350,6 +371,7 @@ static const struct iio_chan_spec vcnl4000_channels[] = {
+>   	}, {
+>   		.type = IIO_PROXIMITY,
+>   		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.ext_info = vcnl4000_ext_info,
+>   	}
+>   };
+>   
+> @@ -439,6 +461,10 @@ static int vcnl4000_probe(struct i2c_client *client,
+>   	dev_dbg(&client->dev, "%s Ambient light/proximity sensor, Rev: %02x\n",
+>   		data->chip_spec->prod, data->rev);
+>   
+> +	if (device_property_read_u32(&client->dev, "near-level",
+> +				     &data->near_level) < 0)
+> +		data->near_level = 0;
 > +
->  static struct clk_branch gcc_aggre_ufs_phy_axi_clk =3D {
->         .halt_reg =3D 0x82024,
->         .halt_check =3D BRANCH_HALT_DELAY,
+>   	indio_dev->dev.parent = &client->dev;
+>   	indio_dev->info = &vcnl4000_info;
+>   	indio_dev->channels = vcnl4000_channels;
+
+
