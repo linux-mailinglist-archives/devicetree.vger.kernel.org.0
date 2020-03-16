@@ -2,126 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BA4C18673F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 10:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1653F18677E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 10:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730281AbgCPJAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 05:00:55 -0400
-Received: from mail-eopbgr70087.outbound.protection.outlook.com ([40.107.7.87]:63236
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730152AbgCPJAy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Mar 2020 05:00:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dTpJjL2CmiAdM3mvFbMusmqJ79caoQb2mas6fRqNhscdR2oMHcqCjwqR6wrccUgv2VY5KWLogjDZByBTUakG7TuiRrByWDBMfsisk0p4SNRfgzlAAUVsHXYQX+E7y/nSoD3uEt31qFs3QoiHV54Lvac2LBBFKXjumZ6K9Bd1yPMrnygPVqsZSZ5L8hUtaDt+dXuyNhJu0DsK70TgpOEEZcJZXmdg1m95UmRIq6bFQkiqIogPIUnn4XkZc34eBwSxvBNPjNeexNeb2EyNoCX+tJRZrCS4HdPavel0JhGJVMsQL7Y77LN0SLdCnY8VRiC4Wb7kpnyl95bcJ17S/kreMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zHVsVN94SSCHIVyOQVaVytdm9yDfTmajA/AjeITELOk=;
- b=TxJ3uMm6zbflDKottPFC5iccZFk821NQ/poTnJSB3q9Bn7yKCZyrsNKqdQ9fGBAModVFDiarkaL1fphwMhtV517fcNcd7kXhOfoJ3YppM4/ESDroI9NNH+adH3ze5AahJ3H+YggNLmmkUJz6CYaO9vlrsKZAJgHSeqp3rz/rk3zBx0O8fUqyQpnj187/s8CQ5zoAepJWMGTEUE1WnmIyJgHrINQBaTpND5ZGLw4BRSjbz8eGNcnnIH+Z0jhGcVF5wm53acqsOtHJAX9FvL/tpI8kyKhXia1jeZ0cWnPk3vZ3fMdp3ZvrdN5ft0f09XuRaqGHa5I2oQfBuNhQXarH6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zHVsVN94SSCHIVyOQVaVytdm9yDfTmajA/AjeITELOk=;
- b=ZwMjfMIjmJ9i+pvvSw2JD1bxLs5HePVrf63Dshvnk7rxGQsF6SNY7FuB1MX1PcuNzOXMhFpKkiDVAMn+ywFnXQKqwSAY04l+loqwrxUQi0tm7bQqTw1Ec6Rcoa9xIsD3KsX2KQ2FbnugaWOQBGmY+t168jbIXaCwqGsdkR9wL3M=
-Received: from DB8PR04MB6985.eurprd04.prod.outlook.com (52.133.243.85) by
- DB8PR04MB5851.eurprd04.prod.outlook.com (20.179.12.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.16; Mon, 16 Mar 2020 09:00:49 +0000
-Received: from DB8PR04MB6985.eurprd04.prod.outlook.com
- ([fe80::a523:58cc:b584:2c2]) by DB8PR04MB6985.eurprd04.prod.outlook.com
- ([fe80::a523:58cc:b584:2c2%6]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
- 09:00:49 +0000
-From:   "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH net 1/3] net: fsl/fman: treat all RGMII modes in
- memac_adjust_link()
-Thread-Topic: [PATCH net 1/3] net: fsl/fman: treat all RGMII modes in
- memac_adjust_link()
-Thread-Index: AQHV+S+S+wpsiCwtU0+eT3Hbq+n4/6hImSeAgAJDFLCAAA4jgIAABdtA
-Date:   Mon, 16 Mar 2020 09:00:49 +0000
-Message-ID: <DB8PR04MB69859B6027FCF8DFAF896F49ECF90@DB8PR04MB6985.eurprd04.prod.outlook.com>
-References: <1584101065-3482-1-git-send-email-madalin.bucur@oss.nxp.com>
- <1584101065-3482-2-git-send-email-madalin.bucur@oss.nxp.com>
- <20200314211601.GA8622@lunn.ch>
- <DB8PR04MB69859D7B209FEA972409FEEBECF90@DB8PR04MB6985.eurprd04.prod.outlook.com>
- <20200316083913.GC8524@lunn.ch>
-In-Reply-To: <20200316083913.GC8524@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=madalin.bucur@oss.nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [86.120.221.86]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: aa586f9d-687c-4514-b782-08d7c9888617
-x-ms-traffictypediagnostic: DB8PR04MB5851:|DB8PR04MB5851:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB5851D372F7CC5FA6A7691961ADF90@DB8PR04MB5851.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-forefront-prvs: 03449D5DD1
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(376002)(39860400002)(396003)(346002)(366004)(199004)(52536014)(5660300002)(4326008)(53546011)(6506007)(478600001)(86362001)(2906002)(81156014)(33656002)(81166006)(26005)(186003)(8936002)(8676002)(66446008)(66556008)(55016002)(66946007)(66476007)(76116006)(9686003)(64756008)(54906003)(110136005)(4744005)(7696005)(316002)(71200400001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5851;H:DB8PR04MB6985.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;
-received-spf: None (protection.outlook.com: oss.nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YjRbpuU2tfWwRG8eRVdliPcsK375cDvCel4b10XIgf2v2t12iFJp++CI4fOrIdDt4SGukbvmxW+htzKoQeXfrq9bSRPYpt81RUqSdTMt77oRw9WDQqwggwXfo++nPxaV3kmR9kK4RDGWLjF2KDUFCk8reLcDYe9csYVLsTLFlRX0PhAYAh18OFvIb/mBSMHo0sT92CP3+Tz9HLbwdHllCsdvqInYuFJM94Pxpm0bpdwbFTJ1Mcp1GeP+ndX+1EkWcXwcdV4QG9+meNJb1QmnsQ4I92/CVLP2YUII921C8tkfjlag5Up3yNxdNL7JT/O874SlgM8vIRe0/5aJxftMIk7sPfTHwLuBPf235wjitLSAaMlViamUNBBZ/OJpSD4N8+aBPeryCkZMqJWLntMD6atdFTuOJ0fg4Agr7YGqPKpqLOCsfbbfoEZelxsyz4+G
-x-ms-exchange-antispam-messagedata: 3mvDcOOBmr47vocuM1gu0BIOKpDrVyNyKprlSbYfTgjbJZOKrU8cai8n2sQTh6FL8IXRsSO4wW2SzNrr2j2CVEi3jvHBX26TyH8o4UOiA5y1jrFGH5NnGFtn9hFj2Qf00UqKOCcxjhyPcuVYN3XXzg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1730278AbgCPJKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 05:10:08 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:50214 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730110AbgCPJKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Mar 2020 05:10:08 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02G93bt4015574;
+        Mon, 16 Mar 2020 10:09:45 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=iCHTmv5+KQ6tDSYoZf4uMAipyo7xfSoDIHIrOmeczBg=;
+ b=amITm585YYoORfKCMeI0ovpNZ79QNp4zFMOnmwE5K1gdY/nZOWXp0dcHhVLOW8y8jAJb
+ 1DQv9rrjboP8Eeurjo2Of4mYKKxMXmodhx4wUtZI8oomHzWK4Px4C0/BAe2NJBho+uSu
+ y85Aeg/JkiNsPVCoJaJB3gnIkhUMLJSFyLFtXPjawB3lp/cvdg9Fg5mLwPVoiyUCeVIM
+ eIt105Aip6byCu+B6z+OTIOdMlG3CHSMgNR0Z4fUyAR/otjS+HX4Lh8i12cEr/c7i0Gz
+ Sn87JtRjm2yUuFpBjVkmv9I77E8lua1kVrlpBQEgPtI6y364Bhwhgr/6nwqiMVmVGPS5 7A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2yrqvcxjew-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 Mar 2020 10:09:45 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9456910002A;
+        Mon, 16 Mar 2020 10:09:35 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5C4A22A4D77;
+        Mon, 16 Mar 2020 10:09:35 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG5NODE3.st.com (10.75.127.15)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 16 Mar 2020 10:09:34
+ +0100
+From:   Christophe Roullier <christophe.roullier@st.com>
+To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <christophe.roullier@st.com>, <andrew@lunn.ch>
+Subject: [PATCHv2 1/1] net: ethernet: stmmac: simplify phy modes management for stm32
+Date:   Mon, 16 Mar 2020 10:09:07 +0100
+Message-ID: <20200316090907.18488-1-christophe.roullier@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa586f9d-687c-4514-b782-08d7c9888617
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2020 09:00:49.7127
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jqu/2xNquolmWAuVhV0il7vZo8gzMBq3mww8JuTLPDOmyaroqIHJrQuZCCjLeopslZbDMVaUFDzc9LFyfqwOtQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5851
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-03-16_02:2020-03-12,2020-03-16 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Andrew Lunn <andrew@lunn.ch>
-> Sent: Monday, March 16, 2020 10:39 AM
-> To: Madalin Bucur (OSS) <madalin.bucur@oss.nxp.com>
-> Cc: davem@davemloft.net; netdev@vger.kernel.org;
-> devicetree@vger.kernel.org; shawnguo@kernel.org; Leo Li
-> <leoyang.li@nxp.com>; robh+dt@kernel.org; mark.rutland@arm.com; linux-
-> kernel@vger.kernel.org
-> Subject: Re: [PATCH net 1/3] net: fsl/fman: treat all RGMII modes in
-> memac_adjust_link()
->=20
-> > > Hi Madalin
-> > >
-> > > You can use phy_interface_mode_is_rgmii()
-> > >
-> > >     Andrew
-> >
-> > I have that on the todo list for all the places in the code, but that's
-> > net-next material.
->=20
-> I don't see why it cannot be used here, for this case, now.
->=20
->   Andrew
+No new feature, just to simplify stm32 part to be easier to use.
+Add by default all Ethernet clocks in DT, and activate or not in function
+of phy mode, clock frequency, if property "st,ext-phyclk" is set or not.
+Keep backward compatibility
+-----------------------------------------------------------------------
+|PHY_MODE | Normal | PHY wo crystal|   PHY wo crystal   |  No 125Mhz  |
+|         |        |      25MHz    |        50MHz       |  from PHY   |
+-----------------------------------------------------------------------
+|  MII    |	 -    |     eth-ck    |       n/a          |	    n/a  |
+|         |        | st,ext-phyclk |                    |             |
+-----------------------------------------------------------------------
+|  GMII   |	 -    |     eth-ck    |       n/a          |	    n/a  |
+|         |        | st,ext-phyclk |                    |             |
+-----------------------------------------------------------------------
+| RGMII   |	 -    |     eth-ck    |       n/a          |      eth-ck  |
+|         |        | st,ext-phyclk |                    |st,eth-clk-sel|
+|         |        |               |                    |       or     |
+|         |        |               |                    | st,ext-phyclk|
+------------------------------------------------------------------------
+| RMII    |	 -    |     eth-ck    |      eth-ck        |	     n/a  |
+|         |        | st,ext-phyclk | st,eth-ref-clk-sel |              |
+|         |        |               | or st,ext-phyclk   |              |
+------------------------------------------------------------------------
 
-I'll send a v2 with this, I was referring to the rest of them.
+Signed-off-by: Christophe Roullier <christophe.roullier@st.com>
+
+---
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 74 +++++++++++--------
+ 1 file changed, 44 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+index b2dc99289687..5d4df4c5254e 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+@@ -29,6 +29,11 @@
+ #define SYSCFG_PMCR_ETH_CLK_SEL		BIT(16)
+ #define SYSCFG_PMCR_ETH_REF_CLK_SEL	BIT(17)
+ 
++/* CLOCK feed to PHY*/
++#define ETH_CK_F_25M	25000000
++#define ETH_CK_F_50M	50000000
++#define ETH_CK_F_125M	125000000
++
+ /*  Ethernet PHY interface selection in register SYSCFG Configuration
+  *------------------------------------------
+  * src	 |BIT(23)| BIT(22)| BIT(21)|BIT(20)|
+@@ -58,33 +63,20 @@
+  *|         |        |      25MHz    |        50MHz       |                  |
+  * ---------------------------------------------------------------------------
+  *|  MII    |	 -   |     eth-ck    |	      n/a	  |	  n/a        |
+- *|         |        |		     |                    |		     |
++ *|         |        | st,ext-phyclk |                    |		     |
+  * ---------------------------------------------------------------------------
+  *|  GMII   |	 -   |     eth-ck    |	      n/a	  |	  n/a        |
+- *|         |        |               |                    |		     |
++ *|         |        | st,ext-phyclk |                    |		     |
+  * ---------------------------------------------------------------------------
+- *| RGMII   |	 -   |     eth-ck    |	      n/a	  |  eth-ck (no pin) |
+- *|         |        |               |                    |  st,eth-clk-sel  |
++ *| RGMII   |	 -   |     eth-ck    |	      n/a	  |      eth-ck      |
++ *|         |        | st,ext-phyclk |                    | st,eth-clk-sel or|
++ *|         |        |               |                    | st,ext-phyclk    |
+  * ---------------------------------------------------------------------------
+  *| RMII    |	 -   |     eth-ck    |	    eth-ck        |	  n/a        |
+- *|         |        |		     | st,eth-ref-clk-sel |		     |
++ *|         |        | st,ext-phyclk | st,eth-ref-clk-sel |		     |
++ *|         |        |               | or st,ext-phyclk   |		     |
+  * ---------------------------------------------------------------------------
+  *
+- * BIT(17) : set this bit in RMII mode when you have PHY without crystal 50MHz
+- * BIT(16) : set this bit in GMII/RGMII PHY when you do not want use 125Mhz
+- * from PHY
+- *-----------------------------------------------------
+- * src	 |         BIT(17)       |       BIT(16)      |
+- *-----------------------------------------------------
+- * MII   |           n/a	 |         n/a        |
+- *-----------------------------------------------------
+- * GMII  |           n/a         |   st,eth-clk-sel   |
+- *-----------------------------------------------------
+- * RGMII |           n/a         |   st,eth-clk-sel   |
+- *-----------------------------------------------------
+- * RMII  |   st,eth-ref-clk-sel	 |         n/a        |
+- *-----------------------------------------------------
+- *
+  */
+ 
+ struct stm32_dwmac {
+@@ -93,6 +85,8 @@ struct stm32_dwmac {
+ 	struct clk *clk_eth_ck;
+ 	struct clk *clk_ethstp;
+ 	struct clk *syscfg_clk;
++	int ext_phyclk;
++	int enable_eth_ck;
+ 	int eth_clk_sel_reg;
+ 	int eth_ref_clk_sel_reg;
+ 	int irq_pwr_wakeup;
+@@ -155,14 +149,17 @@ static int stm32mp1_clk_prepare(struct stm32_dwmac *dwmac, bool prepare)
+ 		ret = clk_prepare_enable(dwmac->syscfg_clk);
+ 		if (ret)
+ 			return ret;
+-		ret = clk_prepare_enable(dwmac->clk_eth_ck);
+-		if (ret) {
+-			clk_disable_unprepare(dwmac->syscfg_clk);
+-			return ret;
++		if (dwmac->enable_eth_ck) {
++			ret = clk_prepare_enable(dwmac->clk_eth_ck);
++			if (ret) {
++				clk_disable_unprepare(dwmac->syscfg_clk);
++				return ret;
++			}
+ 		}
+ 	} else {
+ 		clk_disable_unprepare(dwmac->syscfg_clk);
+-		clk_disable_unprepare(dwmac->clk_eth_ck);
++		if (dwmac->enable_eth_ck)
++			clk_disable_unprepare(dwmac->clk_eth_ck);
+ 	}
+ 	return ret;
+ }
+@@ -170,24 +167,34 @@ static int stm32mp1_clk_prepare(struct stm32_dwmac *dwmac, bool prepare)
+ static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
+ {
+ 	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+-	u32 reg = dwmac->mode_reg;
++	u32 reg = dwmac->mode_reg, clk_rate;
+ 	int val;
+ 
++	clk_rate = clk_get_rate(dwmac->clk_eth_ck);
++	dwmac->enable_eth_ck = false;
+ 	switch (plat_dat->interface) {
+ 	case PHY_INTERFACE_MODE_MII:
++		if (clk_rate == ETH_CK_F_25M && dwmac->ext_phyclk)
++			dwmac->enable_eth_ck = true;
+ 		val = SYSCFG_PMCR_ETH_SEL_MII;
+ 		pr_debug("SYSCFG init : PHY_INTERFACE_MODE_MII\n");
+ 		break;
+ 	case PHY_INTERFACE_MODE_GMII:
+ 		val = SYSCFG_PMCR_ETH_SEL_GMII;
+-		if (dwmac->eth_clk_sel_reg)
++		if (clk_rate == ETH_CK_F_25M &&
++		    (dwmac->eth_clk_sel_reg || dwmac->ext_phyclk)) {
++			dwmac->enable_eth_ck = true;
+ 			val |= SYSCFG_PMCR_ETH_CLK_SEL;
++		}
+ 		pr_debug("SYSCFG init : PHY_INTERFACE_MODE_GMII\n");
+ 		break;
+ 	case PHY_INTERFACE_MODE_RMII:
+ 		val = SYSCFG_PMCR_ETH_SEL_RMII;
+-		if (dwmac->eth_ref_clk_sel_reg)
++		if ((clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_50M) &&
++		    (dwmac->eth_ref_clk_sel_reg || dwmac->ext_phyclk)) {
++			dwmac->enable_eth_ck = true;
+ 			val |= SYSCFG_PMCR_ETH_REF_CLK_SEL;
++		}
+ 		pr_debug("SYSCFG init : PHY_INTERFACE_MODE_RMII\n");
+ 		break;
+ 	case PHY_INTERFACE_MODE_RGMII:
+@@ -195,8 +202,11 @@ static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
+ 	case PHY_INTERFACE_MODE_RGMII_RXID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+ 		val = SYSCFG_PMCR_ETH_SEL_RGMII;
+-		if (dwmac->eth_clk_sel_reg)
++		if ((clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_125M) &&
++		    (dwmac->eth_clk_sel_reg || dwmac->ext_phyclk)) {
++			dwmac->enable_eth_ck = true;
+ 			val |= SYSCFG_PMCR_ETH_CLK_SEL;
++		}
+ 		pr_debug("SYSCFG init : PHY_INTERFACE_MODE_RGMII\n");
+ 		break;
+ 	default:
+@@ -294,6 +304,9 @@ static int stm32mp1_parse_data(struct stm32_dwmac *dwmac,
+ 	struct device_node *np = dev->of_node;
+ 	int err = 0;
+ 
++	/* Ethernet PHY have no crystal */
++	dwmac->ext_phyclk = of_property_read_bool(np, "st,ext-phyclk");
++
+ 	/* Gigabit Ethernet 125MHz clock selection. */
+ 	dwmac->eth_clk_sel_reg = of_property_read_bool(np, "st,eth-clk-sel");
+ 
+@@ -431,7 +444,8 @@ static int stm32mp1_suspend(struct stm32_dwmac *dwmac)
+ 
+ 	clk_disable_unprepare(dwmac->clk_tx);
+ 	clk_disable_unprepare(dwmac->syscfg_clk);
+-	clk_disable_unprepare(dwmac->clk_eth_ck);
++	if (dwmac->enable_eth_ck)
++		clk_disable_unprepare(dwmac->clk_eth_ck);
+ 
+ 	return ret;
+ }
+-- 
+2.17.1
+
