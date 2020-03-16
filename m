@@ -2,102 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A07F1186B83
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 13:54:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C754186B93
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 13:55:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731106AbgCPMyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 08:54:06 -0400
-Received: from enterprise02.smtp.diehl.com ([193.201.238.220]:39081 "EHLO
-        enterprise02.smtp.diehl.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730878AbgCPMyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Mar 2020 08:54:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=diehl.com; i=@diehl.com; q=dns/txt; s=default;
-  t=1584363245; x=1615899245;
-  h=from:to:cc:subject:date:message-id:
-   content-transfer-encoding:mime-version;
-  bh=J/iGnR7YmZY9KTs8LrY/4ZVX7F3aL4si4N4VK/NPNYk=;
-  b=BhYE/0MMy7vb9217mvfVnTKKGaVHZCwZUmDovz/A2jFUNrxEiiVraZUJ
-   A6ibdCAZSBXIBLiBG50uf42+8i3zqdPEAifvI5Hpfwx13k3abXDHfHOcs
-   5KRTeb/tKwFqQpKjOSy/TD3n+E6bm4j2kshsJiqdT3zdfFPsLTMI0+Uu1
-   eRUmoCswKGCNso9HYnpLLwcYdYKWcGBvtY8snc944zib4oT8UGWgfTyRy
-   /NOL8uXIkTr/vYjWmxTs0pvw7ENQ6nAhCnzo5AQxATK8j1Cy1FU3pnBmq
-   k+st57YtOv9R+z+5Fb8wUWPCu+oUrROmlaVYzLIpNI8Wz8NlNwUuxlcxi
-   w==;
-IronPort-SDR: /ffvDTvBI0g2FnUoyrmfvRA988PHKIEOsmKEKGKDrOt6PCcK5nUr8/hsgcS6FS0CvZqVs20ks1
- dIoehy3CFc4g==
-From:   Denis Osterland-Heim <denis.osterland@diehl.com>
-To:     "dmurphy@ti.com" <dmurphy@ti.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v3 0/3] leds: pwm: add support for default-state device
-Thread-Topic: [PATCH v3 0/3] leds: pwm: add support for default-state device
-Thread-Index: AQHV+5H28xMtkJy33E69SJJPDStMgQ==
-Date:   Mon, 16 Mar 2020 12:54:00 +0000
-Message-ID: <20200316124851.6303-1-Denis.Osterland@diehl.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-x-ms-exchange-messagesentrepresentingtype: 1
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S1731063AbgCPMzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 08:55:52 -0400
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:34102 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731056AbgCPMzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 08:55:52 -0400
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id 02GCtj17010775
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2020 21:55:46 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 02GCtj17010775
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1584363346;
+        bh=2HQwa7nwNFrEoeIhVSQz+z9hPaegOb5WhBxknPBYxLU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=No96Wbyqqkf3oxZoxUKEsFANRPMHct/0RSVDnoVy4Xc+6L9nPItIhOFo9xAeMD47h
+         utrxewZ6toi37TMD2rqdmzUu1QXTMWaXW2xxLGBNy3fXINYD+KAd3yAhGJsBlh6snB
+         CAhi7nQTwcdWrnHr54PgxPd149VDmOkYVQto6ruTiU9mYOVKEJBU4ws+ZWtmoflzsZ
+         kRca3oJRmcC6F6wCQ4Dvon34Su0Kv2Vm14x3lu8i1LLmTIbJTTfuVec/Q53Shj2yMO
+         4dCwtH67oGQLY4/fdztCBwBDYHTVvVWpBOP2apIqT2OQE96DVD4bi3x1F4xHpCaIKO
+         5kyCwUpSN/pGQ==
+X-Nifty-SrcIP: [209.85.222.49]
+Received: by mail-ua1-f49.google.com with SMTP id a33so6439713uad.11
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2020 05:55:46 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ34bv/ZcBH3qQW8ZQav/4Ii/k7UnNVaVJ1h0tXsWrtMQAEpybx6
+        zQp8AuZzqTWNQmvWvy5WA9EpfL4XKToZJ3d3RqY=
+X-Google-Smtp-Source: ADFU+vu3J2cRyDb6ek6J1P/y4nL1obn2Se7a010pRaJsc0IwGE/IEI6eKiVqsyEA+CwYoVvWuiwVJorthFmddZ79YEE=
+X-Received: by 2002:a9f:28c5:: with SMTP id d63mr8234963uad.25.1584363345215;
+ Mon, 16 Mar 2020 05:55:45 -0700 (PDT)
 MIME-Version: 1.0
-X-TrailerSkip: 1
-X-GBS-PROC: PkB65aL1SqtESF35r/jQn8w7kzMrMJ/nFfGPiwdQWaH+CQj/jWPKj2h1ZtogVvvP
+References: <1584061096-23686-1-git-send-email-hayashi.kunihiko@socionext.com> <1584061096-23686-11-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1584061096-23686-11-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Mon, 16 Mar 2020 21:55:09 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQ98kUHQS33jQL+Kq5E48H75yvYk_qsWxT9ubrP-yRCdg@mail.gmail.com>
+Message-ID: <CAK7LNAQ98kUHQS33jQL+Kq5E48H75yvYk_qsWxT9ubrP-yRCdg@mail.gmail.com>
+Subject: Re: [PATCH 10/10] arm64: dts: uniphier: Stabilize Ethernet RGMII mode
+ of LD20 global and PXs3 ref board
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2->v3:
- - s/set/sets/
- - remove leds_pwm.h
- - rebase on atomic PWM API
- - separate patch for devicetree changes
- - PWM default state defines instead of GPIO reuse
- - apply elegant if, else if schema
+On Fri, Mar 13, 2020 at 9:58 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
+>
+> The RGMII PHY needs to change drive-strength properties of the Ethernet
+> Tx pins to stabilize the PHY.
+>
+> The devicetree for LD20 global board specifies RMII PHY in the ethernet
+> node as default, however, there is also another board that has RGMII PHY.
+> The devicetree for the board doesn't exist, so the users should change
+> the ethernet properties by outside way.
 
- .../devicetree/bindings/leds/leds-pwm.txt          |  2 +
- drivers/leds/leds-pwm.c                            | 49 ++++++++++++++++=
-++++--
- include/linux/leds_pwm.h                           | 22 ----------
- 3 files changed, 48 insertions(+), 25 deletions(-)
-
-Message-Id: 20200310123126.4709-1-Denis.Osterland@diehl.com
+Probably, users should change pinctrl_ether_rgmii
+by the same means.
 
 
+The change to uniphier-pxs3-ref.dts looks OK to me.
 
+--
+Best Regards
 
-Diehl Connectivity Solutions GmbH
-Gesch=E4ftsf=FChrung: Horst Leonberger
-Sitz der Gesellschaft: N=FCrnberg - Registergericht: Amtsgericht
-N=FCrnberg: HRB 32315
-_________________________________________________________________________=
-__________________________
-
-Der Inhalt der vorstehenden E-Mail ist nicht rechtlich bindend. Diese E-M=
-ail enthaelt vertrauliche und/oder rechtlich geschuetzte Informationen.
-Informieren Sie uns bitte, wenn Sie diese E-Mail faelschlicherweise erhal=
-ten haben. Bitte loeschen Sie in diesem Fall die Nachricht.
-Jede unerlaubte Form der Reproduktion, Bekanntgabe, Aenderung, Verteilung=
- und/oder Publikation dieser E-Mail ist strengstens untersagt.
-- Informationen zum Datenschutz, insbesondere zu Ihren Rechten, erhalten =
-Sie unter https://www.diehl.com/group/de/transparenz-und-informationspfli=
-chten/
-
-The contents of the above mentioned e-mail is not legally binding. This e=
--mail contains confidential and/or legally protected information. Please =
-inform us if you have received this e-mail by
-mistake and delete it in such a case. Each unauthorized reproduction, dis=
-closure, alteration, distribution and/or publication of this e-mail is st=
-rictly prohibited.=20
-- For general information on data protection and your respective rights p=
-lease visit https://www.diehl.com/group/en/transparency-and-information-o=
-bligations/
+Masahiro Yamada
