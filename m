@@ -2,149 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99091186F3F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 16:51:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2077A186FAE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2020 17:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731999AbgCPPvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Mar 2020 11:51:15 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:45001 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732072AbgCPPvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Mar 2020 11:51:07 -0400
-Received: by mail-wr1-f68.google.com with SMTP id y2so6383801wrn.11;
-        Mon, 16 Mar 2020 08:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Pi3izNgFJ8/Wn3g5uvUevM173nM22Xr7mDvSE98uAq0=;
-        b=cJ48qA7kE7JybTdpcAoE5sbhxDypIhKl5l9q5MIIdwZKsWfNyHJ5L1qUrYRGPev5C9
-         DkcNqHIvbeWOGDUceNXMPvzGqKDzs1qfVkhYXR6XI+VQfLTqnadj5CwooPEk9QQpsohq
-         NE8Vik+Px9eSNpRKF56Q2QbpfKv8mx4Qt5PZ4ELhBYMbCYaZ3tb77xVGc5GWalYqLa09
-         e/4BJDsl24eOPtmMP+cQjs/FFKi+T5VUk+fbvOElzcWfFmBk/Tny0bqG5NxRAJoafv6o
-         6lq0ZPTSLKxWttOZ4/dEuFnD9/J3+jZmsDDnZiGdzMB9xFpwMKGx4DXKOqXYcHOnUh7x
-         CG2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Pi3izNgFJ8/Wn3g5uvUevM173nM22Xr7mDvSE98uAq0=;
-        b=bwjEmPlPPL90JYdSVJyOZS8eHFUG8kupZdYfbEniEaTVATsjV3zqwt7/NmwaLEaqY/
-         XYovI/VZzo0Sv6p7bQzwJu8NFlKuI5P8hvWmvmm70XEPyQ6VTOQ8Td8uMRQSHTgXo1Sk
-         +mt5vKtuqsuM415SnM30PIKD+GTP3quO5OK7L8huPqECRiZBEIuw5PsFrcdQWNvTSowN
-         Rgb2cbUZKfvAnqjpamNLV4KbXHcx4tnIpnWyS7Qc2uJxgIahfn1/shK5VApyWl4cmDAd
-         GnnOELNPgGI1IeDQi8b/dzEUJHL9uROOby9GhWqfJpFC37rk9J40CUYc/yIhUT9PtOW5
-         LgYg==
-X-Gm-Message-State: ANhLgQ3vDjYG9X6yvlfDNsy/oRXz11SzNF9aJWuXMS1SFi8C+hWuz913
-        m5lKujcYsV2sAgVm2fXX5oQQL47O
-X-Google-Smtp-Source: ADFU+vuRh4hYRRqz4FcdU201pTY3UL3+RG8kdekrT+sL3Qqb5ePPt24DY48+sk7sG4oPy8prX+tYTg==
-X-Received: by 2002:adf:f504:: with SMTP id q4mr44851wro.28.1584373865545;
-        Mon, 16 Mar 2020 08:51:05 -0700 (PDT)
-Received: from saturn.lan ([188.26.73.247])
-        by smtp.gmail.com with ESMTPSA id n14sm153558wmi.19.2020.03.16.08.51.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Mar 2020 08:51:05 -0700 (PDT)
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-X-Google-Original-From: Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jic23@kernel.org, robh+dt@kernel.org, Laszlo.Nagy@analog.com,
-        Andrei.Grozav@analog.com, Michael.Hennerich@analog.com,
-        Istvan.Csomortani@analog.com, Adrian.Costina@analog.com,
-        Dragos.Bogdan@analog.com,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v10 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Mon, 16 Mar 2020 17:50:35 +0200
-Message-Id: <20200316155035.25500-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200316155035.25500-1-alexandru.ardelean@analog.com>
-References: <20200316155035.25500-1-alexandru.ardelean@analog.com>
+        id S1731936AbgCPQJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Mar 2020 12:09:45 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:38484 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731867AbgCPQJp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Mar 2020 12:09:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=a4SkyFwUTn7jLPIQJrqhF70q9YReVX9hTIk2qJVhEFY=; b=oAFdRSRyjwGA7rmlMrui7YjmX7
+        6MUbLJdG8hTMakntHtFtg5dD83ME/J5rQCvdToEkBQCsbgUHM01oSHhvcYU0SwEr5m70zMTS/dx87
+        rM3sKo1qthSpM89vbkiTUIthGPOAnrwswfJPqn+k23PEHmeCYS1Y3tOHFFIXn3dYmqpI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jDsJ5-00085n-Kr; Mon, 16 Mar 2020 17:09:35 +0100
+Date:   Mon, 16 Mar 2020 17:09:35 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Madalin Bucur <madalin.bucur@oss.nxp.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2 1/3] net: fsl/fman: treat all RGMII modes in
+ memac_adjust_link()
+Message-ID: <20200316160935.GA30840@lunn.ch>
+References: <1584360358-8092-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1584360358-8092-2-git-send-email-madalin.bucur@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1584360358-8092-2-git-send-email-madalin.bucur@oss.nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
+On Mon, Mar 16, 2020 at 02:05:56PM +0200, Madalin Bucur wrote:
+> Treat all internal delay variants the same as RGMII.
+> 
+> Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
--- 
-2.20.1
-
+    Andrew
