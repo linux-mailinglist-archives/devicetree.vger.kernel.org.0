@@ -2,115 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 379CB188696
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2FD21886BC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 15:00:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726760AbgCQN6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 09:58:02 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:34542 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726814AbgCQN6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 09:58:01 -0400
-Received: by mail-wr1-f68.google.com with SMTP id z15so25776892wrl.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 06:58:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UppQrsnlpe86U1iJ2vxLuqmcwC6nQrjDuqLHzwr9eq8=;
-        b=n6l/WllNY7yB9vdu0o78Kevuih0X0jlKF33Qac5TIulVecbJJhn04M3bXa5FVZ2Ayj
-         nMdI2M0fpHFdBWRa0BhPJzsNtf74iIzJYsfnN/E1j7ud159TZCGIsrMb4PANiVBt/4LX
-         JDIvbOBhvc0l5ps5YEzy+FSZY670na89VlTNkUBEPnAT4m+/pqKZCSCBGpNcv48E88W0
-         sG19qv8z6WQT4MsCry1difL47JM6xzqgNIUayos0WV1rsSJ3xwsFJb9ciVilyB624Sp5
-         OzHf51degqnW+xr8gcVWrV//eDELr22o9g1plb1Y699FSbPxS61/1fq8hycr0Gr9+fK0
-         cazQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UppQrsnlpe86U1iJ2vxLuqmcwC6nQrjDuqLHzwr9eq8=;
-        b=csQZK70q2H9gYuhVJ+8Kon4IBQCUqhUhaRP69rrEGEumqtaJreeEjqJVNyyEhMTtAe
-         WWnF3TNAjXlRScVC4c6CJfbVcp+/yqZq7spYS6HQWC4i48i3d0fZMGUyTuZEZI6potKK
-         5P1OvvxLr6o9HBXQZo3e2aNeOXJUVEwveY8xRRmc9udpKAq9Mi9aembi7OjrGtR1RLr2
-         O5IVNksT0521BIMV5pFB5uO71MOUQJ90Iu8OCLzgpgg7MomqlvyYmLeKETzGLhEK/bcY
-         ligQuvqhZMwTuRxyvPJ2tMA/AnYNJWK2Nz2qJ+KAIHLkA25LU8o8Xq86g/rZtv60DUy0
-         LMQg==
-X-Gm-Message-State: ANhLgQ2z5tkLMBEccPQfAHSlKmzNjwCPUEGHDUex2xZQYpLpdvfdLo7K
-        hlLnewuORGlhbHZU2lu/nS4JGw==
-X-Google-Smtp-Source: ADFU+vuB83bdRe3honSZVhDGSTt2YdioMyqclnLEVfdMeETbDf0ejd9vEKSvzBHwoB0XWvgcu6GtAg==
-X-Received: by 2002:adf:a348:: with SMTP id d8mr6276482wrb.83.1584453479320;
-        Tue, 17 Mar 2020 06:57:59 -0700 (PDT)
-Received: from xps7590.local ([2a02:2450:102f:13b8:84f7:5c25:a9d8:81a1])
-        by smtp.gmail.com with ESMTPSA id r3sm2976558wrn.35.2020.03.17.06.57.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2020 06:57:58 -0700 (PDT)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, olof@lixom.net, maxime@cerno.tech,
-        Anson.Huang@nxp.com, dinguyen@kernel.org, leonard.crestez@nxp.com,
-        marcin.juszkiewicz@linaro.org, linux-arm-msm@vger.kernel.org,
+        id S1726388AbgCQOAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 10:00:12 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:40808 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726148AbgCQOAL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Mar 2020 10:00:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=FrLx3+zGH3oU0Jo8/lq72eF8fifQc3xB2bQg8gY6tl8=; b=cGnLnBuVsp6fkYfQcJ+N0lP7Zi
+        1CQ0257uMP73Zssq480GqtOsiT6dtz3j4jFY4auOWYouzd6Noyy4GBuZ2grQ+9xBQnBkb7o8JyQgO
+        LYVpPM0bbhZnw1Ygcjk+w5hK1jV6VmA0mj+VI2m8UsxHjo1atAFpbrGsSPzlUpACujao=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jEClA-0006j0-3H; Tue, 17 Mar 2020 14:59:56 +0100
+Date:   Tue, 17 Mar 2020 14:59:56 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [v2 6/6] arm64: defconfig: Enable QCOM CAMCC, CAMSS and CCI drivers
-Date:   Tue, 17 Mar 2020 14:57:40 +0100
-Message-Id: <20200317135740.19412-7-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200317135740.19412-1-robert.foss@linaro.org>
-References: <20200317135740.19412-1-robert.foss@linaro.org>
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH 00/28] DT: Improve validation for Marvell SoCs
+Message-ID: <20200317135956.GQ24270@lunn.ch>
+References: <20200317093922.20785-1-lkundrak@v3.sk>
+ <20200317134609.GN24270@lunn.ch>
+ <20200317135551.GE3448@piout.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200317135551.GE3448@piout.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Build camera clock, isp and controller drivers as modules.
+On Tue, Mar 17, 2020 at 02:55:59PM +0100, Alexandre Belloni wrote:
+> On 17/03/2020 14:46:09+0100, Andrew Lunn wrote:
+> > On Tue, Mar 17, 2020 at 10:38:54AM +0100, Lubomir Rintel wrote:
+> > > Hello World,
+> > 
+> > Yah, that is an issue here. Marvell have a few different SoC families,
+> > each with there own maintainers. Gregory and I tend to look after
+> > 'mvebu', aka orion5x, kirkwood, dove, berlin and a few others. All the
+> > others are 'Somebody elses' problem'.
+> > 
+> 
+> Hum, berlin is not mvebu, it was the same BU as the MMP and it has been
+> sold to synopsys a while ago.
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+Yes, the boundaries are a bit fluffy. At least the early work by
+Sebastian was merged via the mvebu maintainers, even if it is not
+technically part of mvebu.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4db223dbc549..7cb6989249ab 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -376,6 +376,7 @@ CONFIG_I2C_MESON=y
- CONFIG_I2C_MV64XXX=y
- CONFIG_I2C_OWL=y
- CONFIG_I2C_PXA=y
-+CONFIG_I2C_QCOM_CCI=m
- CONFIG_I2C_QCOM_GENI=m
- CONFIG_I2C_QUP=y
- CONFIG_I2C_RK3X=y
-@@ -530,6 +531,7 @@ CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
- CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
- CONFIG_VIDEO_RENESAS_FCP=m
- CONFIG_VIDEO_RENESAS_VSP1=m
-+CONFIG_VIDEO_QCOM_CAMSS=m
- CONFIG_DRM=m
- CONFIG_DRM_I2C_NXP_TDA998X=m
- CONFIG_DRM_NOUVEAU=m
-@@ -732,6 +734,7 @@ CONFIG_MSM_GCC_8994=y
- CONFIG_MSM_MMCC_8996=y
- CONFIG_MSM_GCC_8998=y
- CONFIG_QCS_GCC_404=y
-+CONFIG_SDM_CAMCC_845=m
- CONFIG_SDM_GCC_845=y
- CONFIG_SM_GCC_8150=y
- CONFIG_QCOM_HFPLL=y
-@@ -762,6 +765,7 @@ CONFIG_QCOM_COMMAND_DB=y
- CONFIG_QCOM_GENI_SE=y
- CONFIG_QCOM_GLINK_SSR=m
- CONFIG_QCOM_RMTFS_MEM=m
-+CONFIG_SDM_CAMCC_845=m
- CONFIG_QCOM_RPMH=y
- CONFIG_QCOM_RPMHPD=y
- CONFIG_QCOM_SMEM=y
--- 
-2.20.1
+This is also part of the discussion about how this lot actually gets
+merged.
 
+	   Andrew
