@@ -2,117 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 655151882E1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 13:05:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE69188313
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 13:09:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726399AbgCQMFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 08:05:40 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:49552 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725962AbgCQMFk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 08:05:40 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 17C74FB03;
-        Tue, 17 Mar 2020 13:05:38 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id LQVffm-bFDdy; Tue, 17 Mar 2020 13:05:36 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 0B565412BE; Tue, 17 Mar 2020 13:05:35 +0100 (CET)
-Date:   Tue, 17 Mar 2020 13:05:35 +0100
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Tomas Novotny <tomas@novotny.cz>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: vcnl4000: Export near level property for
- proximity sensor
-Message-ID: <20200317120535.GA16807@bogon.m.sigxcpu.org>
-References: <cover.1584380360.git.agx@sigxcpu.org>
- <5566fe01df933d3281f058666e2147cb97b38126.1584380360.git.agx@sigxcpu.org>
- <c787921f-c412-4986-14ea-e31b531d3d5b@metafoo.de>
+        id S1726596AbgCQMJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 08:09:33 -0400
+Received: from sonic307-2.consmr.mail.ne1.yahoo.com ([66.163.190.121]:42424
+        "EHLO sonic307-2.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726643AbgCQMJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Mar 2020 08:09:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1584446971; bh=kcevCRoll2+Bsa3FDERpIV72LVcB1A4YV1b5N2AWYBk=; h=Date:From:Reply-To:Subject:References:From:Subject; b=YO0tVrQVvzfL2xl61ElSaonc3517GXUr0CDAxIB/J60BNk++5+YDQYJCADuPQrgC3Nm7qQiarie3CGUkhklb/7KJKqEOdupkobzgSYzDXgwmLyelTzifPlQTOYbXnvdSr/ln0xMv6o5/eMeR+6LoSRP/jT3YvF7l5aQR64z3Ze/GcfVd4VpiUalS5GWMCarbzZLJGTwAMaMJoviyCW9zdohxsHwS4jmItVEn0tCD0w4Im8NTK0E3hGsYL8OL0szUmaOOJar6Q+a535fMn+5tzzWmg5j7MTm3OX+QOIdmfZjsMbdpAbJIYLVkLCuH2/OeLT/xDe8uXjcxDqq1SSZaVg==
+X-YMail-OSG: _SJfPigVM1kXmNt8jPd7ks7OdsTkH5cZ0rp5hOOs8vq95p1mnEQV.avInsHNaaQ
+ iVSQL2q4IPnHNN6uquNiNhjK6GF_whiUZzxOiRvCbd_G9yG7EfomXrdZUljOpd6G8a0BtfoWpjTw
+ B4ydA0EW1g84WDczFyRzb4oWWwJ2gFKbaK7immyHwy30eWmsNq96Z6UoHHRVOax_9NrXiZigaSkh
+ V.z2.Zff0YsKE0290B7pLm7s5F4CB8jaIg1rI4qboAyT1lbZca9_1k7dNLpGER4bLd_Cf80aT2NW
+ GXoIaWK9bgkICK1EmcxNuwPcsXuISpXjSK_HpfWI4ApF4sVKAat8zTiYvsSMq4T6pOVsVCcxVPUw
+ 7UTGjvs9ntMfXF6XK3.42XYMxZbzD.q1GQhK_jwzcpv96MwLNlCggbV6S77lz7kL0T1.kAK5MtKP
+ Zly4VDEyZC0cql2vHxyIscKMLiItoekWDfQ5YOH2pNN5UcQsgzy2F1UoSjb0edVVxHXh1u4uHq0_
+ XhfRdZmEMYHQjGT8BJkNKBrf9WGfdW6tBxbHViH.M2OBVhAwZ8f.hThyCYqadd.2E8JKnAARe2CT
+ eN5nGTbBI_16DKZtQoQAfT_Nfr5_ZtBG7sHmAVz0a8Jrw3tYwS0fs.CzocLk.BBBOp0F.ht8wY1J
+ RbNL0SO7N4AAc6K64fhUC.m19l3dGKWdQow4iBVG4KgPbl8bmgwhN2T4tdeIHHYC.q5nCIZ2KVVZ
+ PwTgZqUS3_f15qJPM0rjjhCvl7ZfJdgS2doo7Sa6D8N_Dmcux44tffYGpzCAq3YG9RnrnwvivuNo
+ 1w2VSMdUCSAhzkSoF.TZkGymSAS4RN8texI1Gh6gmMUHRq_5ksx5amMayQp4phvn0epTiCAj6Tnz
+ 7BB8b6yXGZSvw6nn4SvXeK3v2v4bhD_abJZS24h8RNgltg99S4INAxlcz0zB64DboO9AMorJVkF.
+ IOUxoH1Y4gZeGjeOlHdnDkKJ_riC2Q9cF9CfAz0hk7v3yPJ4KhGsHVDbdcMHxWZNiGQdmI97y7c5
+ U8ZIpwopgkRgHSC0Bm_ezDmUpG79TP7BPQwSXF63ilZY8ZswCPPWsq8IZ79W2575GwYL9Jlfx1ol
+ 7z5KV0EmQCARXn6k13rk9vKhD.6mG5wIbiWKO1V77l0u8rHMSJbE9pmvKDgJ2LKSr2NUzQzsoVnx
+ YiAhY6Aid7uVLw97G8OvQsFl68p6hAV9dpxybh2qyzrR01.k6UYyCB.hHb0Ap0_P48xTN.xAnMMY
+ w.pSdEPLR25_A1f0_FCFQ..kcJK0Z0DZp53yJzNtOnx5O6zWu4549oTIZmgWDhElx_mGML01KQo2
+ qgjzvoBsyizVdBaGiuZ.IM4G7rqw-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Tue, 17 Mar 2020 12:09:31 +0000
+Date:   Tue, 17 Mar 2020 12:07:31 +0000 (UTC)
+From:   Stephen Li <stenn7@gabg.net>
+Reply-To: stephli947701@gmail.com
+Message-ID: <1553052642.1814451.1584446851283@mail.yahoo.com>
+Subject: REF
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c787921f-c412-4986-14ea-e31b531d3d5b@metafoo.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+References: <1553052642.1814451.1584446851283.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.15342 YMailNodin Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Mon, Mar 16, 2020 at 07:23:01PM +0100, Lars-Peter Clausen wrote:
-> On 3/16/20 6:46 PM, Guido Günther wrote:
-> > [...]
-> > +static ssize_t vcnl4000_read_near_level(struct iio_dev *indio_dev,
-> > +					uintptr_t priv,
-> > +					const struct iio_chan_spec *chan,
-> > +					char *buf)
-> > +{
-> > +	struct vcnl4000_data *data = iio_priv(indio_dev);
-> > +
-> > +	return sprintf(buf, "%u\n", data->near_level);
-> > +}
-> > +
-> > +static const struct iio_chan_spec_ext_info vcnl4000_ext_info[] = {
-> > +	{
-> > +		.name = "near_level",
-> 
-> Generally having properties with a underscore in them breaks generic parsing
-> of the property name by userspace applications. This is because we use
-> underscores to separate different components (type, modifier, etc.) of the
-> attribute from each other.
-> 
-> Do you think calling this "nearlevel" would work?
 
-That works as well. I'll change that for v3.
 
-For my education: Is the type, modifier policy written down somewhere
-(similar to
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/leds/leds-class.rst#n44
-)?
-
-Cheers,
- -- Guido
-
-> 
-> I know there are existing bad examples of properties that use an underscore,
-> but we should try to limit introducing new ones.
-> 
-> > +		.shared = IIO_SEPARATE,
-> > +		.read = vcnl4000_read_near_level,
-> > +	},
-> > +	{ /* sentinel */ }
-> > +};
-> > +
-> >   static const struct iio_chan_spec vcnl4000_channels[] = {
-> >   	{
-> >   		.type = IIO_LIGHT,
-> > @@ -350,6 +371,7 @@ static const struct iio_chan_spec vcnl4000_channels[] = {
-> >   	}, {
-> >   		.type = IIO_PROXIMITY,
-> >   		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> > +		.ext_info = vcnl4000_ext_info,
-> >   	}
-> >   };
-> > @@ -439,6 +461,10 @@ static int vcnl4000_probe(struct i2c_client *client,
-> >   	dev_dbg(&client->dev, "%s Ambient light/proximity sensor, Rev: %02x\n",
-> >   		data->chip_spec->prod, data->rev);
-> > +	if (device_property_read_u32(&client->dev, "near-level",
-> > +				     &data->near_level) < 0)
-> > +		data->near_level = 0;
-> > +
-> >   	indio_dev->dev.parent = &client->dev;
-> >   	indio_dev->info = &vcnl4000_info;
-> >   	indio_dev->channels = vcnl4000_channels;
-> 
-> 
+Greetings,
+I was searching through a local business directory when I found your
+profile. I am Soliciting On-Behalf of my private client who is
+interested in having a serious business investment in your country. If
+you have a valid business, investment or project he can invest
+back to me for more details. Your swift response is highly needed.
+Sincerely
+Stephen Li
+Please response back to me with is my private email below for more details
+stephli947701@gmail.com
