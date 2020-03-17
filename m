@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B32E1885DF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:35:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 183931885F2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:36:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726754AbgCQNfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 09:35:12 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:40640 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726278AbgCQNfM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 09:35:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=anIHw2n42gE6MXhrin5xBUs2z5QKKPkI+0ps7BpcDdY=; b=OhRXDthl1+sN8WRo7eAAByndba
-        abhPyWUTzNovC4kxG+p32sA/ZwV54N1LYR2oRgGD7LZAUPqc+g1iAGFIXm8FMVYiGNR9wIVoH+apU
-        sF10D4A7yT/Nd/Wduv+e997fzZOfzIloJMbHia1AzEcAGXFTTV1Ojuz/qHPRRAjOmceo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jECMy-0006YW-7F; Tue, 17 Mar 2020 14:34:56 +0100
-Date:   Tue, 17 Mar 2020 14:34:56 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Daniel Mack <daniel@zonque.org>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 11/28] ARM: dts: berlin*: Fix up the SDHCI node names
-Message-ID: <20200317133456.GM24270@lunn.ch>
-References: <20200317093922.20785-1-lkundrak@v3.sk>
- <20200317093922.20785-12-lkundrak@v3.sk>
+        id S1726084AbgCQNgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 09:36:43 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36629 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726474AbgCQNgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 09:36:42 -0400
+Received: by mail-wr1-f68.google.com with SMTP id s5so25759584wrg.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 06:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :organization:mime-version:content-transfer-encoding;
+        bh=C5UUMlB1vuVsFqD+amvxd3LJdmlP7Psxf6b/ICw2yeE=;
+        b=se96Gfa2PabhLjXbMk3DF/dsiXpQcRoXaNnO0MF+OIOP+6Ga54A4maQX31UU5r4vPU
+         5/hGqPTpnRLR8DecY2Pg23NZ1/yWDIJoZWfsSry8XsID7ZcqDz1R9QAiNgSTrPlRbaqx
+         Kx5W9cykjsWagYxQgEhiKtKMvH2zCyN6USHJs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:organization:mime-version:content-transfer-encoding;
+        bh=C5UUMlB1vuVsFqD+amvxd3LJdmlP7Psxf6b/ICw2yeE=;
+        b=igzwStCayCV3DOVb2OJMuKJcDV2vEwdTGVbgrL7v6Lickfm1R8j4RwAcEZThNbF4Cd
+         0uTi1bC7o2GwWLl8XG0MpfJ1G+NR0D/KtZaMcJPhOiDqmebPuNgnzIuoUOrGTDT1znZK
+         hTbV5ymRNC53HvH4sgI69KJX9212OwzhBay6E+Wczq7fHh3/9w8TEyGV8VHhlgkx29gm
+         ZNUn2xsqaMqeNPgeBdz2skKCvHBMIf0x6uAAHKGFPwe+18YyquBx8GVQ3hzjWehGQlef
+         keYAagS3+y9kcrggVwCc+Lqad62ApR+nVrf7h44qj6DhLV+9bBOoxM/fHDkwzWQqfp88
+         u0uw==
+X-Gm-Message-State: ANhLgQ1H7Fz3T3AZ7yzDVCONtklvBa0A5otnMJWgR0bi8uuz2lfBI6Mm
+        vly75W+Z0xQXVu1mXZpKkPOydg==
+X-Google-Smtp-Source: ADFU+vt2hjTZMVdUwDmhSalbO2esCViQhgfOwq7UWI9SwWOAqbVu4rfpvcU688VZVd1B1aN3n2pb0g==
+X-Received: by 2002:a5d:522c:: with SMTP id i12mr5953325wra.176.1584452200128;
+        Tue, 17 Mar 2020 06:36:40 -0700 (PDT)
+Received: from ub1910 ([213.48.11.149])
+        by smtp.gmail.com with ESMTPSA id k5sm3743373wmj.18.2020.03.17.06.36.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2020 06:36:39 -0700 (PDT)
+Date:   Tue, 17 Mar 2020 13:36:38 +0000
+From:   Paul Barker <pbarker@konsulko.com>
+To:     Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 3/7] dt-bindings: pwm: add normal PWM polarity flag
+Message-ID: <20200317133638.5951a743@ub1910>
+In-Reply-To: <20200317123231.2843297-4-oleksandr.suvorov@toradex.com>
+References: <20200317123231.2843297-1-oleksandr.suvorov@toradex.com>
+        <20200317123231.2843297-4-oleksandr.suvorov@toradex.com>
+Organization: Konsulko Group
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200317093922.20785-12-lkundrak@v3.sk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 17, 2020 at 10:39:05AM +0100, Lubomir Rintel wrote:
-> The node name preferred by mmc-controller.yaml binding spec is "mmc":
-> 
->   berlin2-sony-nsz-gs7.dt.yaml: sdhci@ab0000: $nodename:0:
->       'sdhci@ab0000' does not match '^mmc(@.*)?$'
->   berlin2-sony-nsz-gs7.dt.yaml: sdhci@ab0800: $nodename:0:
->       'sdhci@ab0800' does not match '^mmc(@.*)?$'
->   berlin2-sony-nsz-gs7.dt.yaml: sdhci@ab1000: $nodename:0:
->       'sdhci@ab1000' does not match '^mmc(@.*)?$'
->   berlin2cd-google-chromecast.dt.yaml: sdhci@ab0000: $nodename:0:
->       'sdhci@ab0000' does not match '^mmc(@.*)?$'
->   berlin2cd-valve-steamlink.dt.yaml: sdhci@ab0000: $nodename:0:
->       'sdhci@ab0000' does not match '^mmc(@.*)?$'
->   berlin2q-marvell-dmp.dt.yaml: sdhci@ab0000: $nodename:0:
->       'sdhci@ab0000' does not match '^mmc(@.*)?$'
->   berlin2q-marvell-dmp.dt.yaml: sdhci@ab0800: $nodename:0:
->       'sdhci@ab0800' does not match '^mmc(@.*)?$'
->   berlin2q-marvell-dmp.dt.yaml: sdhci@ab1000: $nodename:0:
->       'sdhci@ab1000' does not match '^mmc(@.*)?$'
-> 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+On Tue, 17 Mar 2020 14:32:27 +0200
+Oleksandr Suvorov <oleksandr.suvorov@toradex.com> wrote:
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> PWM can have a normal polarity and a reverted one. The reverted polarity
+> value is defined.
+> Define the PWM_POLARITY_NORMAL to be used further.
+> 
+> Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
 
-    Andrew
+s/reverted/inverted/
+
+-- 
+Paul Barker
+Konsulko Group
