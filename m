@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A158187CC6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 10:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C35187CBC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 10:41:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726719AbgCQJlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726646AbgCQJlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 17 Mar 2020 05:41:42 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:50553 "EHLO
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38607 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727282AbgCQJlY (ORCPT
+        with ESMTP id S1727295AbgCQJlY (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 05:41:24 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jE8ix-0004Q6-2M; Tue, 17 Mar 2020 10:41:23 +0100
+        id 1jE8ix-0004Q7-2P; Tue, 17 Mar 2020 10:41:23 +0100
 Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jE8iw-00049K-E4; Tue, 17 Mar 2020 10:41:22 +0100
+        id 1jE8iw-00049N-Eg; Tue, 17 Mar 2020 10:41:22 +0100
 From:   Michael Tretter <m.tretter@pengutronix.de>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Michal Simek <michal.simek@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
         Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
         Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH 1/6] soc: xilinx: vcu: drop useless success message
-Date:   Tue, 17 Mar 2020 10:41:10 +0100
-Message-Id: <20200317094115.15896-2-m.tretter@pengutronix.de>
+Subject: [PATCH 2/6] ARM: dts: define indexes for output clocks
+Date:   Tue, 17 Mar 2020 10:41:11 +0100
+Message-Id: <20200317094115.15896-3-m.tretter@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200317094115.15896-1-m.tretter@pengutronix.de>
 References: <20200317094115.15896-1-m.tretter@pengutronix.de>
@@ -42,27 +42,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The message that the driver was successfully probed only adds useless
-noise. Drop the message.
+The VCU System-Level Control provides 4 clocks. Defined indexes for
+these clocks.
 
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
- drivers/soc/xilinx/xlnx_vcu.c | 2 --
- 1 file changed, 2 deletions(-)
+ include/dt-bindings/clock/xlnx-vcu.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
 
-diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
-index a3aa40996f13..dcd8e7824b06 100644
---- a/drivers/soc/xilinx/xlnx_vcu.c
-+++ b/drivers/soc/xilinx/xlnx_vcu.c
-@@ -571,8 +571,6 @@ static int xvcu_probe(struct platform_device *pdev)
- 
- 	dev_set_drvdata(&pdev->dev, xvcu);
- 
--	dev_info(&pdev->dev, "%s: Probed successfully\n", __func__);
--
- 	return 0;
- 
- error_pll_ref:
+diff --git a/include/dt-bindings/clock/xlnx-vcu.h b/include/dt-bindings/clock/xlnx-vcu.h
+new file mode 100644
+index 000000000000..f2a5ea9c4155
+--- /dev/null
++++ b/include/dt-bindings/clock/xlnx-vcu.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (C) 2020 Pengutronix, Michael Tretter <kernel@pengutronix.de>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_XLNX_VCU_H
++#define _DT_BINDINGS_CLOCK_XLNX_VCU_H
++
++#define CLK_XVCU_ENC_CORE		0
++#define CLK_XVCU_ENC_MCU		1
++#define CLK_XVCU_DEC_CORE		2
++#define CLK_XVCU_DEC_MCU		3
++#define CLK_XVCU_MAX			4
++
++#endif /* _DT_BINDINGS_CLOCK_XLNX_VCU_H */
 -- 
 2.20.1
 
