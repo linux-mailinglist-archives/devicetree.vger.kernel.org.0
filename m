@@ -2,62 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE69188313
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 13:09:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2129F188339
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 13:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726596AbgCQMJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 08:09:33 -0400
-Received: from sonic307-2.consmr.mail.ne1.yahoo.com ([66.163.190.121]:42424
-        "EHLO sonic307-2.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726643AbgCQMJc (ORCPT
+        id S1726575AbgCQMLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 08:11:22 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:42480 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726272AbgCQMLW (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 08:09:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1584446971; bh=kcevCRoll2+Bsa3FDERpIV72LVcB1A4YV1b5N2AWYBk=; h=Date:From:Reply-To:Subject:References:From:Subject; b=YO0tVrQVvzfL2xl61ElSaonc3517GXUr0CDAxIB/J60BNk++5+YDQYJCADuPQrgC3Nm7qQiarie3CGUkhklb/7KJKqEOdupkobzgSYzDXgwmLyelTzifPlQTOYbXnvdSr/ln0xMv6o5/eMeR+6LoSRP/jT3YvF7l5aQR64z3Ze/GcfVd4VpiUalS5GWMCarbzZLJGTwAMaMJoviyCW9zdohxsHwS4jmItVEn0tCD0w4Im8NTK0E3hGsYL8OL0szUmaOOJar6Q+a535fMn+5tzzWmg5j7MTm3OX+QOIdmfZjsMbdpAbJIYLVkLCuH2/OeLT/xDe8uXjcxDqq1SSZaVg==
-X-YMail-OSG: _SJfPigVM1kXmNt8jPd7ks7OdsTkH5cZ0rp5hOOs8vq95p1mnEQV.avInsHNaaQ
- iVSQL2q4IPnHNN6uquNiNhjK6GF_whiUZzxOiRvCbd_G9yG7EfomXrdZUljOpd6G8a0BtfoWpjTw
- B4ydA0EW1g84WDczFyRzb4oWWwJ2gFKbaK7immyHwy30eWmsNq96Z6UoHHRVOax_9NrXiZigaSkh
- V.z2.Zff0YsKE0290B7pLm7s5F4CB8jaIg1rI4qboAyT1lbZca9_1k7dNLpGER4bLd_Cf80aT2NW
- GXoIaWK9bgkICK1EmcxNuwPcsXuISpXjSK_HpfWI4ApF4sVKAat8zTiYvsSMq4T6pOVsVCcxVPUw
- 7UTGjvs9ntMfXF6XK3.42XYMxZbzD.q1GQhK_jwzcpv96MwLNlCggbV6S77lz7kL0T1.kAK5MtKP
- Zly4VDEyZC0cql2vHxyIscKMLiItoekWDfQ5YOH2pNN5UcQsgzy2F1UoSjb0edVVxHXh1u4uHq0_
- XhfRdZmEMYHQjGT8BJkNKBrf9WGfdW6tBxbHViH.M2OBVhAwZ8f.hThyCYqadd.2E8JKnAARe2CT
- eN5nGTbBI_16DKZtQoQAfT_Nfr5_ZtBG7sHmAVz0a8Jrw3tYwS0fs.CzocLk.BBBOp0F.ht8wY1J
- RbNL0SO7N4AAc6K64fhUC.m19l3dGKWdQow4iBVG4KgPbl8bmgwhN2T4tdeIHHYC.q5nCIZ2KVVZ
- PwTgZqUS3_f15qJPM0rjjhCvl7ZfJdgS2doo7Sa6D8N_Dmcux44tffYGpzCAq3YG9RnrnwvivuNo
- 1w2VSMdUCSAhzkSoF.TZkGymSAS4RN8texI1Gh6gmMUHRq_5ksx5amMayQp4phvn0epTiCAj6Tnz
- 7BB8b6yXGZSvw6nn4SvXeK3v2v4bhD_abJZS24h8RNgltg99S4INAxlcz0zB64DboO9AMorJVkF.
- IOUxoH1Y4gZeGjeOlHdnDkKJ_riC2Q9cF9CfAz0hk7v3yPJ4KhGsHVDbdcMHxWZNiGQdmI97y7c5
- U8ZIpwopgkRgHSC0Bm_ezDmUpG79TP7BPQwSXF63ilZY8ZswCPPWsq8IZ79W2575GwYL9Jlfx1ol
- 7z5KV0EmQCARXn6k13rk9vKhD.6mG5wIbiWKO1V77l0u8rHMSJbE9pmvKDgJ2LKSr2NUzQzsoVnx
- YiAhY6Aid7uVLw97G8OvQsFl68p6hAV9dpxybh2qyzrR01.k6UYyCB.hHb0Ap0_P48xTN.xAnMMY
- w.pSdEPLR25_A1f0_FCFQ..kcJK0Z0DZp53yJzNtOnx5O6zWu4549oTIZmgWDhElx_mGML01KQo2
- qgjzvoBsyizVdBaGiuZ.IM4G7rqw-
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Tue, 17 Mar 2020 12:09:31 +0000
-Date:   Tue, 17 Mar 2020 12:07:31 +0000 (UTC)
-From:   Stephen Li <stenn7@gabg.net>
-Reply-To: stephli947701@gmail.com
-Message-ID: <1553052642.1814451.1584446851283@mail.yahoo.com>
-Subject: REF
+        Tue, 17 Mar 2020 08:11:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1584447081; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=Sru+Cd4uA9JwbTwKdB95gAy2jutmuwcrBflueUnElmo=; b=L4E9cwqRWwtFR3ZRl3f3fre/Amjle4llbyLy+gcl0tWnyja7qio6SiNG3bUCjeQq0o6j8PVX
+ ANhUOMECGCYd71ZSQxYwG6VOLjTe/NJflW+9FC9Z6Sm5QJ6ZOMendt34hJJdFcyNTX+VUxjG
+ TYy7/fPzymybuuFFT85WhJhsRsc=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e70be68.7f4613935f10-smtp-out-n03;
+ Tue, 17 Mar 2020 12:11:20 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2435EC4478C; Tue, 17 Mar 2020 12:11:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.8] (unknown [183.83.138.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 57ACAC433CB;
+        Tue, 17 Mar 2020 12:11:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 57ACAC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
+Subject: Re: [PATCH V2 6/8] spi: spi-geni-qcom: Add interconnect support
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, dianders@chromium.org,
+        evgreen@chromium.org
+References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org>
+ <1584105134-13583-7-git-send-email-akashast@codeaurora.org>
+ <20200314004106.GM144492@google.com>
+From:   Akash Asthana <akashast@codeaurora.org>
+Message-ID: <384d0184-e7cc-0ee9-75b3-3f1c84e6e99d@codeaurora.org>
+Date:   Tue, 17 Mar 2020 17:41:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20200314004106.GM144492@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-References: <1553052642.1814451.1584446851283.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15342 YMailNodin Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Matthias,
+
+On 3/14/2020 6:11 AM, Matthias Kaehlcke wrote:
+> Hi Akash,
+>
+> On Fri, Mar 13, 2020 at 06:42:12PM +0530, Akash Asthana wrote:
+>> Get the interconnect paths for SPI based Serial Engine device
+>> and vote according to the current bus speed of the driver.
+>>
+>> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+>> ---
+>>   - As per Bjorn's comment, removed se == NULL check from geni_spi_icc_get
+>>   - As per Bjorn's comment, removed code to set se->icc_path* to NULL in failure
+>>   - As per Bjorn's comment, introduced and using devm_of_icc_get API for getting
+>>     path handle
+>>   - As per Matthias comment, added error handling for icc_set_bw call
+>>
+>>   drivers/spi/spi-geni-qcom.c | 74 ++++++++++++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 73 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/spi/spi-geni-qcom.c b/drivers/spi/spi-geni-qcom.c
+>> index c397242..09c4709 100644
+>> --- a/drivers/spi/spi-geni-qcom.c
+>> +++ b/drivers/spi/spi-geni-qcom.c
+>> @@ -118,6 +118,19 @@ static int get_spi_clk_cfg(unsigned int speed_hz,
+>>   	return ret;
+>>   }
+>>   
+>> +static int geni_spi_icc_get(struct geni_se *se)
+>> +{
+>> +	se->icc_path_geni_to_core = devm_of_icc_get(se->dev, "qup-core");
+>> +	if (IS_ERR(se->icc_path_geni_to_core))
+>> +		return PTR_ERR(se->icc_path_geni_to_core);
+>> +
+>> +	se->icc_path_cpu_to_geni = devm_of_icc_get(se->dev, "qup-config");
+>> +	if (IS_ERR(se->icc_path_cpu_to_geni))
+>> +		return PTR_ERR(se->icc_path_cpu_to_geni);
+>> +
+>> +	return 0;
+>> +}
+> As per my comments on (https://patchwork.kernel.org/patch/11436895/#23222713),
+> the above function could be replaced by calling a 'geni_icc_get()' (or so, to
+> be created) provided by the geni SE driver.
+ok
+>
+>> +
+>>   static void handle_fifo_timeout(struct spi_master *spi,
+>>   				struct spi_message *msg)
+>>   {
+>> @@ -234,6 +247,20 @@ static int setup_fifo_params(struct spi_device *spi_slv,
+>>   		return ret;
+>>   	}
+>>   
+>> +	/*
+>> +	 * Set BW quota for CPU as driver supports FIFO mode only.
+>> +	 * Assume peak bw as twice of avg bw.
+>> +	 */
+>> +	se->avg_bw_cpu = Bps_to_icc(mas->cur_speed_hz);
+>> +	se->peak_bw_cpu = Bps_to_icc(2 * mas->cur_speed_hz);
+>> +	ret = icc_set_bw(se->icc_path_cpu_to_geni, se->avg_bw_cpu,
+>> +			se->peak_bw_cpu);
+>> +	if (ret) {
+>> +		dev_err(mas->dev, "%s: ICC BW voting failed for cpu\n",
+>> +			__func__);
+>> +		return ret;
+>> +	}
+>> +
+>>   	clk_sel = idx & CLK_SEL_MSK;
+>>   	m_clk_cfg = (div << CLK_DIV_SHFT) | SER_CLK_EN;
+>>   	spi_setup_word_len(mas, spi_slv->mode, spi_slv->bits_per_word);
+>> @@ -578,6 +605,15 @@ static int spi_geni_probe(struct platform_device *pdev)
+>>   	spin_lock_init(&mas->lock);
+>>   	pm_runtime_enable(dev);
+>>   
+>> +	ret = geni_spi_icc_get(&mas->se);
+>> +	if (ret)
+>> +		goto spi_geni_probe_runtime_disable;
+>> +	/* Set the bus quota to a reasonable value for register access */
+>> +	mas->se.avg_bw_core = Bps_to_icc(CORE_2X_50_MHZ);
+>> +	mas->se.peak_bw_core = Bps_to_icc(CORE_2X_100_MHZ);
+>> +	mas->se.avg_bw_cpu = Bps_to_icc(1000);
+>> +	mas->se.peak_bw_cpu = Bps_to_icc(1000);
+>> +
+>>   	ret = spi_geni_init(mas);
+>>   	if (ret)
+>>   		goto spi_geni_probe_runtime_disable;
+>> @@ -616,14 +652,50 @@ static int __maybe_unused spi_geni_runtime_suspend(struct device *dev)
+>>   {
+>>   	struct spi_master *spi = dev_get_drvdata(dev);
+>>   	struct spi_geni_master *mas = spi_master_get_devdata(spi);
+>> +	int ret;
+>> +
+>> +	ret = geni_se_resources_off(&mas->se);
+>> +	if (ret)
+>> +		return ret;
+>>   
+>> -	return geni_se_resources_off(&mas->se);
+>> +	ret = icc_set_bw(mas->se.icc_path_geni_to_core, 0, 0);
+>> +	if (ret) {
+>> +		dev_err_ratelimited(mas->dev, "%s: ICC BW remove failed for core\n",
+>> +			__func__);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = icc_set_bw(mas->se.icc_path_cpu_to_geni, 0, 0);
+>> +	if (ret) {
+>> +		dev_err_ratelimited(mas->dev, "%s: ICC BW remove failed for cpu\n",
+>> +			__func__);
+>> +		return ret;
+>> +	}
+> the ICC stuff above would become:
+>
+> 	ret = geni_icc_vote_off(&mas->se);
+> 	if (ret)
+> 		return ret;
+>
+> with the consolidated code in geni SE.
+ok
+>
+>> +
+>> +	return 0;
+>>   }
+>>   
+>>   static int __maybe_unused spi_geni_runtime_resume(struct device *dev)
+>>   {
+>>   	struct spi_master *spi = dev_get_drvdata(dev);
+>>   	struct spi_geni_master *mas = spi_master_get_devdata(spi);
+>> +	int ret;
+>> +
+>> +	ret = icc_set_bw(mas->se.icc_path_geni_to_core, mas->se.avg_bw_core,
+>> +		mas->se.peak_bw_core);
+>> +	if (ret) {
+>> +		dev_err_ratelimited(mas->dev, "%s: ICC BW voting failed for core\n",
+>> +			__func__);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = icc_set_bw(mas->se.icc_path_cpu_to_geni, mas->se.avg_bw_cpu,
+>> +		mas->se.peak_bw_cpu);
+>> +	if (ret) {
+>> +		dev_err_ratelimited(mas->dev, "%s: ICC BW voting failed for cpu\n",
+>> +			__func__);
+>> +		return ret;
+>> +	}
+> and this:
+>
+> 	ret = geni_icc_vote_on(&mas->se);
+> 	if (ret)
+> 		return ret;
+ok
+>>   	return geni_se_resources_on(&mas->se);
+> possibly you could even do the ICC voting from geni_se_resources_on/off()
+> it seems the two are always done together for UART, I2C and SPI.
+
+I think we should expose geni_icc_vote_on/off API seperately and not 
+merge to resources_on/off.
+
+Because if we merge then it will appear that we are just doing 
+geni_icc_get() from individual SE driver probe not using any of ICC apis.
+
+It looks somewhat asymmetry.
 
 
-Greetings,
-I was searching through a local business directory when I found your
-profile. I am Soliciting On-Behalf of my private client who is
-interested in having a serious business investment in your country. If
-you have a valid business, investment or project he can invest
-back to me for more details. Your swift response is highly needed.
-Sincerely
-Stephen Li
-Please response back to me with is my private email below for more details
-stephli947701@gmail.com
+Thanks for reviewing,
+
+Regards,
+
+Akash
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
