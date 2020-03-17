@@ -2,206 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4541886E0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 15:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E54FF188779
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 15:27:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726892AbgCQOHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 10:07:04 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:65061 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726287AbgCQOHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 10:07:03 -0400
-X-UUID: fceab6bd20b340b89e30378668d023b7-20200317
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=lqvH3oO5wH3y1sJ+3cVl4j7awH6DuFksT0pEN88jgZ8=;
-        b=oyeSAM90+4r4SsDKMQStBnyrpSbYicQkk9zGiQJ8H7mpEfmDByuT6jTvy8djBzzOjyBHLUBN2i7STLgngg9o4C7gvvRcgJHPgx+rl6Iv+Ofkr/AoX3yEnu+GVoHQjfLaMc+whsPzqV+bZdLK8B4iyNAiiEH+J/Zu6Cl/pnt3/HA=;
-X-UUID: fceab6bd20b340b89e30378668d023b7-20200317
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <hanks.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 684839166; Tue, 17 Mar 2020 22:06:57 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 17 Mar 2020 22:04:38 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 17 Mar 2020 22:06:10 +0800
-From:   Hanks Chen <hanks.chen@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>
-CC:     Andy Teng <andy.teng@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, Hanks Chen <hanks.chen@mediatek.com>
-Subject: [PATCH v3 6/6] arm64: dts: add dts nodes for MT6779
-Date:   Tue, 17 Mar 2020 22:06:47 +0800
-Message-ID: <1584454007-2115-7-git-send-email-hanks.chen@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1584454007-2115-1-git-send-email-hanks.chen@mediatek.com>
-References: <1584454007-2115-1-git-send-email-hanks.chen@mediatek.com>
+        id S1726473AbgCQO1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 10:27:10 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:44840 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726345AbgCQO1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 10:27:09 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 2158F20031;
+        Tue, 17 Mar 2020 15:27:04 +0100 (CET)
+Date:   Tue, 17 Mar 2020 15:27:02 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Vinay Simha B N <simhavcs@gmail.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-binding: Add DSI/LVDS tc358775 bridge bindings
+Message-ID: <20200317142702.GA16338@ravnborg.org>
+References: <1583920112-2680-1-git-send-email-simhavcs@gmail.com>
+ <20200312151752.GA7490@bogus>
+ <CAGWqDJ7DP3DuR7EWT6Ni8YxN3Adg3RgJZut6+AtpAak_HB=QCQ@mail.gmail.com>
+ <CAGWqDJ4cAU98_xMk6f-bsT5LF5cD2JJk8_JCykwM=cd6CCfWtw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGWqDJ4cAU98_xMk6f-bsT5LF5cD2JJk8_JCykwM=cd6CCfWtw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=gEfo2CItAAAA:8
+        a=pGLkceISAAAA:8 a=KY18R1YYeKRrVLQ61OwA:9 a=5V_uxFQuYriqKHR4:21
+        a=H5yeRiyAWD2ozbk7:21 a=CjuIK1q_8ugA:10 a=sptkURWiP4Gy88Gu7hUp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dGhpcyBhZGRzIGluaXRpYWwgTVQ2Nzc5IGR0cyBzZXR0aW5ncyBmbyBib2FyZCBzdXBwb3J0LA0K
-aW5jbHVkaW5nIGNwdSwgZ2ljLCB0aW1lciwgY2NmLCBwaW5jdHJsLCB1YXJ0Li4uZXRjLg0KDQpD
-aGFuZ2UtSWQ6IElhZDI4MmNhNjZjOGE1NjkyNzYwOTI0OTI5ZTE5NDZlYjk5OTE4NjY1DQpTaWdu
-ZWQtb2ZmLWJ5OiBIYW5rcyBDaGVuIDxoYW5rcy5jaGVuQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvTWFrZWZpbGUgICAgICAgfCAgICAxICsNCiBhcmNo
-L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS1ldmIuZHRzIHwgICAzMSArKysrDQogYXJj
-aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSAgICB8ICAyNjUgKysrKysrKysr
-KysrKysrKysrKysrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCAyOTcgaW5zZXJ0aW9ucygrKQ0K
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS1l
-dmIuZHRzDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
-bXQ2Nzc5LmR0c2kNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
-TWFrZWZpbGUgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL01ha2VmaWxlDQppbmRleCA0
-NThiYmM0Li41M2YxYzYxIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9NYWtlZmlsZQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9NYWtlZmlsZQ0K
-QEAgLTEsNiArMSw3IEBADQogIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMA0KIGR0
-Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDI3MTItZXZiLmR0Yg0KIGR0Yi0kKENPTkZJ
-R19BUkNIX01FRElBVEVLKSArPSBtdDY3NTUtZXZiLmR0Yg0KK2R0Yi0kKENPTkZJR19BUkNIX01F
-RElBVEVLKSArPSBtdDY3NzktZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSAr
-PSBtdDY3OTUtZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDY3OTct
-ZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDY3OTcteDIwLWRldi5k
-dGINCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS1ldmIu
-ZHRzIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzktZXZiLmR0cw0KbmV3IGZp
-bGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAuLjE2NGY1Y2INCi0tLSAvZGV2L251bGwNCisr
-KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LWV2Yi5kdHMNCkBAIC0wLDAg
-KzEsMzEgQEANCisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCsNCisvKg0KKyAq
-IENvcHlyaWdodCAoYykgMjAxOSBNZWRpYVRlayBJbmMuDQorICogQXV0aG9yOiBNYXJzLkMgPG1h
-cnMuY2hlbmdAbWVkaWF0ZWsuY29tPg0KKyAqDQorICovDQorDQorL2R0cy12MS87DQorI2luY2x1
-ZGUgIm10Njc3OS5kdHNpIg0KKw0KKy8gew0KKwltb2RlbCA9ICJNZWRpYVRlayBNVDY3NzkgRVZC
-IjsNCisJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktZXZiIiwgIm1lZGlhdGVrLG10Njc3
-OSI7DQorDQorCWFsaWFzZXMgew0KKwkJc2VyaWFsMCA9ICZ1YXJ0MDsNCisJfTsNCisNCisJbWVt
-b3J5QDQwMDAwMDAwIHsNCisJCWRldmljZV90eXBlID0gIm1lbW9yeSI7DQorCQlyZWcgPSA8MCAw
-eDQwMDAwMDAwIDAgMHgxZTgwMDAwMD47DQorCX07DQorDQorCWNob3NlbiB7DQorCQlzdGRvdXQt
-cGF0aCA9ICJzZXJpYWwwOjkyMTYwMG44IjsNCisJfTsNCit9Ow0KKw0KKyZ1YXJ0MCB7DQorCXN0
-YXR1cyA9ICJva2F5IjsNCit9Ow0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ2Nzc5LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS5k
-dHNpDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uNDIyZmY1Zg0KLS0tIC9k
-ZXYvbnVsbA0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaQ0K
-QEAgLTAsMCArMSwyNjUgQEANCisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCsN
-CisvKg0KKyAqIENvcHlyaWdodCAoYykgMjAxOSBNZWRpYVRlayBJbmMuDQorICogQXV0aG9yOiBN
-YXJzLkMgPG1hcnMuY2hlbmdAbWVkaWF0ZWsuY29tPg0KKyAqDQorICovDQorDQorI2luY2x1ZGUg
-PGR0LWJpbmRpbmdzL2Nsb2NrL210Njc3OS1jbGsuaD4NCisjaW5jbHVkZSA8ZHQtYmluZGluZ3Mv
-aW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQorI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVy
-cnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCisjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcGluY3Ry
-bC9tdDY3NzktcGluZnVuYy5oPg0KKw0KKy8gew0KKwljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
-Njc3OSI7DQorCWludGVycnVwdC1wYXJlbnQgPSA8JnN5c2lycT47DQorCSNhZGRyZXNzLWNlbGxz
-ID0gPDI+Ow0KKwkjc2l6ZS1jZWxscyA9IDwyPjsNCisNCisJcHNjaSB7DQorCQljb21wYXRpYmxl
-ID0gImFybSxwc2NpLTAuMiI7DQorCQltZXRob2QgPSAic21jIjsNCisJfTsNCisNCisJY3B1cyB7
-DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKw0KKwkJ
-Y3B1MDogY3B1QDAgew0KKwkJCWRldmljZV90eXBlID0gImNwdSI7DQorCQkJY29tcGF0aWJsZSA9
-ICJhcm0sY29ydGV4LWE1NSI7DQorCQkJZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCisJCQlyZWcg
-PSA8MHgwMDA+Ow0KKwkJfTsNCisNCisJCWNwdTE6IGNwdUAxIHsNCisJCQlkZXZpY2VfdHlwZSA9
-ICJjcHUiOw0KKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKwkJCWVuYWJsZS1t
-ZXRob2QgPSAicHNjaSI7DQorCQkJcmVnID0gPDB4MTAwPjsNCisJCX07DQorDQorCQljcHUyOiBj
-cHVAMiB7DQorCQkJZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisJCQljb21wYXRpYmxlID0gImFybSxj
-b3J0ZXgtYTU1IjsNCisJCQllbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKwkJCXJlZyA9IDwweDIw
-MD47DQorCQl9Ow0KKw0KKwkJY3B1MzogY3B1QDMgew0KKwkJCWRldmljZV90eXBlID0gImNwdSI7
-DQorCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorCQkJZW5hYmxlLW1ldGhvZCA9
-ICJwc2NpIjsNCisJCQlyZWcgPSA8MHgzMDA+Ow0KKwkJfTsNCisNCisJCWNwdTQ6IGNwdUA0IHsN
-CisJCQlkZXZpY2VfdHlwZSA9ICJjcHUiOw0KKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1h
-NTUiOw0KKwkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorCQkJcmVnID0gPDB4NDAwPjsNCisJ
-CX07DQorDQorCQljcHU1OiBjcHVANSB7DQorCQkJZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisJCQlj
-b21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCisJCQllbmFibGUtbWV0aG9kID0gInBzY2ki
-Ow0KKwkJCXJlZyA9IDwweDUwMD47DQorCQl9Ow0KKw0KKwkJY3B1NjogY3B1QDYgew0KKwkJCWRl
-dmljZV90eXBlID0gImNwdSI7DQorCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE3NSI7DQor
-CQkJZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCisJCQlyZWcgPSA8MHg2MDA+Ow0KKwkJfTsNCisN
-CisJCWNwdTc6IGNwdUA3IHsNCisJCQlkZXZpY2VfdHlwZSA9ICJjcHUiOw0KKwkJCWNvbXBhdGli
-bGUgPSAiYXJtLGNvcnRleC1hNzUiOw0KKwkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorCQkJ
-cmVnID0gPDB4NzAwPjsNCisJCX07DQorCX07DQorDQorCXBtdSB7DQorCQljb21wYXRpYmxlID0g
-ImFybSxhcm12OC1wbXV2MyI7DQorCQlpbnRlcnJ1cHQtcGFyZW50ID0gPCZnaWM+Ow0KKwkJaW50
-ZXJydXB0cyA9IDxHSUNfUFBJIDcgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwl9Ow0KKw0KKwlj
-bGsyNm06IG9zY2lsbGF0b3JAMCB7DQorCQljb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsNCisJ
-CSNjbG9jay1jZWxscyA9IDwwPjsNCisJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyNjAwMDAwMD47DQor
-CQljbG9jay1vdXRwdXQtbmFtZXMgPSAiY2xrMjZtIjsNCisJfTsNCisNCisJY2xrMzJrOiBvc2Np
-bGxhdG9yQDEgew0KKwkJY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQorCQkjY2xvY2stY2Vs
-bHMgPSA8MD47DQorCQljbG9jay1mcmVxdWVuY3kgPSA8MzI3Njg+Ow0KKwkJY2xvY2stb3V0cHV0
-LW5hbWVzID0gImNsazMyayI7DQorCX07DQorDQorCXVhcnRfY2xrOiBkdW1teTI2bSB7DQorCQlj
-b21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsNCisJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyNjAwMDAw
-MD47DQorCQkjY2xvY2stY2VsbHMgPSA8MD47DQorCX07DQorDQorCXRpbWVyIHsNCisJCWNvbXBh
-dGlibGUgPSAiYXJtLGFybXY4LXRpbWVyIjsNCisJCWludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47
-DQorCQlpbnRlcnJ1cHRzID0gPEdJQ19QUEkgMTMgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0KKwkJ
-CSAgICAgPEdJQ19QUEkgMTQgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0KKwkJCSAgICAgPEdJQ19Q
-UEkgMTEgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0KKwkJCSAgICAgPEdJQ19QUEkgMTAgSVJRX1RZ
-UEVfTEVWRUxfTE9XIDA+Ow0KKwl9Ow0KKw0KKwlzb2Mgew0KKwkJI2FkZHJlc3MtY2VsbHMgPSA8
-Mj47DQorCQkjc2l6ZS1jZWxscyA9IDwyPjsNCisJCWNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7
-DQorCQlyYW5nZXM7DQorDQorCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQDBjMDAwMDAwIHsN
-CisJCQljb21wYXRpYmxlID0gImFybSxnaWMtdjMiOw0KKwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8
-ND47DQorCQkJaW50ZXJydXB0LXBhcmVudCA9IDwmZ2ljPjsNCisJCQlpbnRlcnJ1cHQtY29udHJv
-bGxlcjsNCisJCQlyZWcgPSA8MCAweDBjMDAwMDAwIDAgMHg0MDAwMD4sICAvKiBHSUNEICovDQor
-CQkJICAgICAgPDAgMHgwYzA0MDAwMCAwIDB4MjAwMDAwPjsgLyogR0lDUiAqLw0KKwkJCWludGVy
-cnVwdHMgPSA8R0lDX1BQSSA5IElSUV9UWVBFX0xFVkVMX0hJR0ggMD47DQorDQorCQkJcHBpLXBh
-cnRpdGlvbnMgew0KKwkJCQlwcGlfY2x1c3RlcjA6IGludGVycnVwdC1wYXJ0aXRpb24tMCB7DQor
-CQkJCQlhZmZpbml0eSA9IDwmY3B1MCAmY3B1MSBcDQorCQkJCQkJJmNwdTIgJmNwdTMgJmNwdTQg
-JmNwdTU+Ow0KKwkJCQl9Ow0KKwkJCQlwcGlfY2x1c3RlcjE6IGludGVycnVwdC1wYXJ0aXRpb24t
-MSB7DQorCQkJCQlhZmZpbml0eSA9IDwmY3B1NiAmY3B1Nz47DQorCQkJCX07DQorCQkJfTsNCisN
-CisJCX07DQorDQorCQlzeXNpcnE6IGludHBvbC1jb250cm9sbGVyQDBjNTNhNjUwIHsNCisJCQlj
-b21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zeXNpcnEiLA0KKwkJCQkgICAgICJtZWRpYXRl
-ayxtdDY1Nzctc3lzaXJxIjsNCisJCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsNCisJCQkjaW50ZXJy
-dXB0LWNlbGxzID0gPDM+Ow0KKwkJCWludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47DQorCQkJcmVn
-ID0gPDAgMHgwYzUzYTY1MCAwIDB4NTA+Ow0KKwkJfTsNCisNCisJCXRvcGNrZ2VuOiBjbG9jay1j
-b250cm9sbGVyQDEwMDAwMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS10
-b3Bja2dlbiIsICJzeXNjb24iOw0KKwkJCXJlZyA9IDwwIDB4MTAwMDAwMDAgMCAweDEwMDA+Ow0K
-KwkJCSNjbG9jay1jZWxscyA9IDwxPjsNCisJCX07DQorDQorCQlpbmZyYWNmZ19hbzogY2xvY2st
-Y29udHJvbGxlckAxMDAwMTAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzkt
-aW5mcmFjZmdfYW8iLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDEwMDAxMDAwIDAgMHgxMDAw
-PjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJcGlvOiBwaW5jdHJsQDEw
-MDA1MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1waW5jdHJsIiwgInN5
-c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxMDAwNTAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAg
-MHgxMWMyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWQxMDAwMCAwIDB4MTAwMD4s
-DQorCQkJICAgICAgPDAgMHgxMWUyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWU3
-MDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWVhMDAwMCAwIDB4MTAwMD4sDQorCQkJ
-ICAgICAgPDAgMHgxMWYyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWYzMDAwMCAw
-IDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMDAwYjAwMCAwIDB4MTAwMD47DQorCQkJcmVnLW5h
-bWVzID0gImdwaW8iLCAiaW9jZmdfcm0iLA0KKwkJCQkgICAgImlvY2ZnX2JyIiwgImlvY2ZnX2xt
-IiwNCisJCQkJICAgICJpb2NmZ19sYiIsICJpb2NmZ19ydCIsDQorCQkJCSAgICAiaW9jZmdfbHQi
-LCAiaW9jZmdfdGwiLA0KKwkJCQkgICAgImVpbnQiOw0KKwkJCWdwaW8tY29udHJvbGxlcjsNCisJ
-CQkjZ3Bpby1jZWxscyA9IDwyPjsNCisJCQlncGlvLXJhbmdlcyA9IDwmcGlvIDAgMCAyMTA+Ow0K
-KwkJCWludGVycnVwdC1jb250cm9sbGVyOw0KKwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8Mj47DQor
-CQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIwNCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCisJCX07
-DQorDQorCQlhcG1peGVkOiBjbG9jay1jb250cm9sbGVyQDEwMDBjMDAwIHsNCisJCQljb21wYXRp
-YmxlID0gIm1lZGlhdGVrLG10Njc3OS1hcG1peGVkIiwgInN5c2NvbiI7DQorCQkJcmVnID0gPDAg
-MHgxMDAwYzAwMCAwIDB4ZTAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0K
-KwkJdWFydDA6IHNlcmlhbEAxMTAwMjAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxt
-dDY3NzktdWFydCIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10NjU3Ny11YXJ0IjsNCisJCQlyZWcg
-PSA8MCAweDExMDAyMDAwIDAgMHg0MDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxMTUg
-SVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJCQljbG9ja3MgPSA8JnVhcnRfY2xrPjsNCisJCQlzdGF0
-dXMgPSAiZGlzYWJsZWQiOw0KKwkJfTsNCisNCisJCXVhcnQxOiBzZXJpYWxAMTEwMDMwMDAgew0K
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXVhcnQiLA0KKwkJCQkgICAgICJtZWRp
-YXRlayxtdDY1NzctdWFydCI7DQorCQkJcmVnID0gPDAgMHgxMTAwMzAwMCAwIDB4NDAwPjsNCisJ
-CQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTE2IElSUV9UWVBFX0xFVkVMX0xPVz47DQorCQkJY2xv
-Y2tzID0gPCZ1YXJ0X2Nsaz47DQorCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCisJCX07DQorDQor
-CQlhdWRpbzogY2xvY2stY29udHJvbGxlckAxMTIxMDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJt
-ZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDExMjEwMDAw
-IDAgMHgxMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJbWZnY2Zn
-OiBjbG9jay1jb250cm9sbGVyQDEzZmJmMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
-LG10Njc3OS1tZmdjZmciLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDEzZmJmMDAwIDAgMHgx
-MDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJbW1zeXM6IGNsb2Nr
-LWNvbnRyb2xsZXJAMTQwMDAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5
-LW1tc3lzIiwgInN5c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxNDAwMDAwMCAwIDB4MTAwMD47DQor
-CQkJI2Nsb2NrLWNlbGxzID0gPDE+Ow0KKwkJfTsNCisNCisJCWltZ3N5czogY2xvY2stY29udHJv
-bGxlckAxNTAyMDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktaW1nc3lz
-IiwgInN5c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxNTAyMDAwMCAwIDB4MTAwMD47DQorCQkJI2Ns
-b2NrLWNlbGxzID0gPDE+Ow0KKwkJfTsNCisNCisJCXZkZWNzeXM6IGNsb2NrLWNvbnRyb2xsZXJA
-MTYwMDAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXZkZWNzeXMiLCAi
-c3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDE2MDAwMDAwIDAgMHgxMDAwPjsNCisJCQkjY2xvY2st
-Y2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJdmVuY3N5czogY2xvY2stY29udHJvbGxlckAxNzAw
-MDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktdmVuY3N5cyIsICJzeXNj
-b24iOw0KKwkJCXJlZyA9IDwwIDB4MTcwMDAwMDAgMCAweDEwMDA+Ow0KKwkJCSNjbG9jay1jZWxs
-cyA9IDwxPjsNCisJCX07DQorDQorCQljYW1zeXM6IGNsb2NrLWNvbnRyb2xsZXJAMWEwMDAwMDAg
-ew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LWNhbXN5cyIsICJzeXNjb24iOw0K
-KwkJCXJlZyA9IDwwIDB4MWEwMDAwMDAgMCAweDEwMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8
-MT47DQorCQl9Ow0KKw0KKwkJaXBlc3lzOiBjbG9jay1jb250cm9sbGVyQDFiMDAwMDAwIHsNCisJ
-CQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1pcGVzeXMiLCAic3lzY29uIjsNCisJCQly
-ZWcgPSA8MCAweDFiMDAwMDAwIDAgMHgxMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQor
-CQl9Ow0KKw0KKwl9Ow0KK307DQotLSANCjEuNy45LjUNCg==
+Hi Vinay.
 
+On Tue, Mar 17, 2020 at 12:25:42PM +0530, Vinay Simha B N wrote:
+> sam,
+> 
+> i need some inputs on the below  error. I had created this file
+> Documentation/devicetree/bindings/display/bridge/toshiba-tc358775.yaml
+> by using vim editor. Do we have any tool to create yaml file?
+
+I use vim myself, but is careful to follow the right syntax.
+
+> 
+> i do not get the error when running 'make dt_binding_check' in my
+> build environment
+> Documentation/devicetree/bindings/display/bridge/toshiba-tc358775.yaml
+> 
+> is there any tool available similar to  scripts/checkpatch.pl -f
+> <file> , for yaml files?
+
+Please read Documentation/devicetree/writing-schema.
+Here you can find general info + instruction how to install the tools
+required for "make dt_binding_check".
+
+I could reproduce the error reported by Rob.
+I gave your binding file a shot - there were a lot of smaller issues:
+
+- do not use tabs in yaml files
+- be consistent in indent
+- vendor prefixed properties needed some extra care
+- example was full of bugs
+  - "..."
+  - no need for status = "okay";
+  - properties spelled wrong
+
+For the example I adjusted it to use indent of 4 spaces, which IMO
+is more readable than the two spaces used in the other parts of the 
+file.
+
+I have attached the updated binding file - please review and fix.
+This is just a quick shot, I did not do a proper review.
+
+Please rename the file, other files in same dir are named "toshiba,xxx",
+so replace '-' with ','.
+
+And try to introduce bugs in the example - and check that the tooling
+catches the bug.
+
+hint:
+
+    make DT=.../foo.yaml dt_binding_check
+
+is a qucik way to check only your binding.
+
+And for new bindings the preferred license is: (GPL-2.0-only OR BSD-2-Clause)
+
+	Sam
+
+# SPDX-License-Identifier: GPL-2.0
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/display/bridge/toshiba-tc358775.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+
+title: Toshiba TC358775 DSI to LVDS bridge bindings
+
+maintainers:
+  - Vinay Simha BN <simhavcs@gmail.com>
+
+description: |
+  This binding supports DSI to LVDS bridge TC358775
+
+properties:
+  compatible:
+    const: toshiba,tc358775
+
+  reg:
+    maxItems: 1
+    description: i2c address of the bridge, 0x0f
+
+  toshiba,dsi-lanes:
+    allOf:
+      - $ref: /schemas/types.yaml#/definitions/uint32
+      - minimum: 1
+        maximum: 4
+        default: 1
+    description: bla bla
+
+  toshiba,dual-link:
+    $ref: /schemas/types.yaml#definitions/flag
+    description: bla bla
+
+  vdd-supply:
+    maxItems: 1
+    description: 1.2V LVDS Power Supply
+
+  vddio-supply:
+    maxItems: 1
+    description: 1.8V IO Power Supply
+
+  stby-gpios:
+    maxItems: 1
+    description: Standby pin, Low active
+
+  reset-gpios:
+    maxItems: 1
+    description: Hardware reset, Low active
+
+  ports:
+    type: object
+
+    properties:
+      port@0:
+        type: object
+        description: |
+          DSI Input. The remote endpoint phandle should be a
+          reference to a valid mipi_dsi_host device node.
+      port@1:
+        type: object
+        description: |
+          Video port for LVDS output (panel or connector).
+
+    required:
+      - port@0
+      - port@1
+
+required:
+ - compatible
+ - reg
+ - tc,dsi-lanes
+ - vdd-supply
+ - vddio-supply
+ - stby-gpios
+ - reset-gpios
+ - ports
+
+examples:
+  - |+
+    #include <dt-bindings/gpio/gpio.h>
+
+    i2c@78b8000 {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        /* On High speed expansion */
+        label = "HS-I2C2";
+        status = "okay";
+
+        tc_bridge: bridge@f {
+            compatible = "toshiba,tc358775";
+            reg = <0x0f>;
+
+            tc,dsi-lanes = <4>;
+            tc,dual-link = <0>;
+
+            vdd-supply = <&pm8916_l2>;
+            vddio-supply = <&pm8916_l6>;
+
+            stby-gpios = <&msmgpio 99 GPIO_ACTIVE_LOW>;
+            reset-gpios = <&msmgpio 72 GPIO_ACTIVE_LOW>;
+
+            ports {
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                port@0 {
+                    reg = <0>;
+                    d2l_in: endpoint {
+                        remote-endpoint = <&dsi0_out>;
+                    };
+                };
+
+                port@1 {
+                    reg = <1>;
+                    d2l_out: endpoint {
+                        remote-endpoint = <&panel_in>;
+                    };
+                };
+            };
+        };
+    };
+
+    panel: auo,b101xtn01 {
+        status = "okay";
+        compatible = "auo,b101xtn01", "panel-lvds";
+        power-supply = <&pm8916_l14>;
+
+        width-mm = <223>;
+        height-mm = <125>;
+
+        data-mapping = "jeida-24";
+
+        panel-timing {
+            /* 1366x768 @60Hz */
+            clock-frequency = <72000000>;
+            hactive = <1366>;
+            vactive = <768>;
+            hsync-len = <70>;
+            hfront-porch = <20>;
+            hback-porch = <0>;
+            vsync-len = <42>;
+            vfront-porch = <14>;
+            vback-porch = <0>;
+        };
+
+        port {
+            panel_in: endpoint {
+                remote-endpoint = <&d2l_out>;
+            };
+        };
+    };
+
+    mdss {
+        dsi@1a98000 {
+            ports {
+                port@1 {
+                    dsi0_out: endpoint {
+                        remote-endpoint = <&d2l_in>;
+                        data-lanes = <0 1 2 3>;
+                    };
+                };
+            };
+        };
+    };
+
+...
