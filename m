@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF001884DE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CCB61884F9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726874AbgCQNK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 09:10:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726836AbgCQNK4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 09:10:56 -0400
-Received: from mail.kernel.org (ip5f5ad4e9.dynamic.kabel-deutschland.de [95.90.212.233])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E4DAB20771;
-        Tue, 17 Mar 2020 13:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584450656;
-        bh=mk8yrQgkQyBugbYLHmm+tFdVac0Y5h97Jl9+snWpEaQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iRLrwE8NPBGx2fpI5vfgihq7wN49b+3eEzaHFlThlQYHnpR1GQZ2qOJxwBnHBrn7Q
-         csbw96IVb8qHenA021C7/cNAe2qWSo6TN9k9u3NbsVbGvuCMUyuA5rq2/XCB5S6UIF
-         mcgv9MkW6KxcEAkcNs3VpDQNRnwZD1lNnS/+eWUs=
-Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
-        (envelope-from <mchehab@kernel.org>)
-        id 1jEBzh-0006SS-Sy; Tue, 17 Mar 2020 14:10:53 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH 10/12] docs: dt: display/ti: fix typos at the devicetree/ directory name
-Date:   Tue, 17 Mar 2020 14:10:49 +0100
-Message-Id: <875b824ac97bd76dfe77b6227ff9b6b2671a6abf.1584450500.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <cover.1584450500.git.mchehab+huawei@kernel.org>
-References: <cover.1584450500.git.mchehab+huawei@kernel.org>
+        id S1727061AbgCQNLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 09:11:48 -0400
+Received: from www381.your-server.de ([78.46.137.84]:47428 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726740AbgCQNLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 09:11:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=DPBt6a2ecj+oPPIEOONyeXXPrj98nh9q+dqBm7gAtso=; b=mMby00Z43dqeyhZbuPee4ExS6N
+        4gkp9xdwpVvaPIV2W3AJXxcgJIBTjOnq0QVUOJN/gK8L21MwJDUbfnukN8Lxa1Km19sMoa3CAq05j
+        +nFca35tlZP+5P6eMNDc2DBLfGBhdodQ7Z5tLGsJush9KUIH20nMppWDpY0WAyqZjlZPAKA7N5cWm
+        RJ9q5CHaGJglL9+nRqHzVZedaF2bEA7JL2U6SghM6U6HjTLIRcDFj15pnuD+pTDxHEyKdufObDZ8l
+        CQZ+3BhAt+aNNZeZUOLQg75SB0u8Ql42loQPAnlApssu+nF9CUk6fGvZkQeLTO71AZq3cdVcZZtnq
+        5kE92uDA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89_1)
+        (envelope-from <lars@metafoo.de>)
+        id 1jEC0P-0001j3-TD; Tue, 17 Mar 2020 14:11:38 +0100
+Received: from [93.104.105.202] (helo=[192.168.178.20])
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1jEC0P-000Dpk-Ij; Tue, 17 Mar 2020 14:11:37 +0100
+Subject: Re: [PATCH v2 3/4] iio: vcnl4000: Export near level property for
+ proximity sensor
+To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
+Cc:     Tomas Novotny <tomas@novotny.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1584380360.git.agx@sigxcpu.org>
+ <5566fe01df933d3281f058666e2147cb97b38126.1584380360.git.agx@sigxcpu.org>
+ <c787921f-c412-4986-14ea-e31b531d3d5b@metafoo.de>
+ <20200317120535.GA16807@bogon.m.sigxcpu.org>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <ab8f970b-f95f-b34b-7e4d-c2cc64d94886@metafoo.de>
+Date:   Tue, 17 Mar 2020 14:11:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
+In-Reply-To: <20200317120535.GA16807@bogon.m.sigxcpu.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.2/25753/Mon Mar 16 14:05:55 2020)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The name of the devicetree directory is wrong on those three
-TI bindings:
+On 3/17/20 1:05 PM, Guido Günther wrote:
+> Hi,
+> On Mon, Mar 16, 2020 at 07:23:01PM +0100, Lars-Peter Clausen wrote:
+>> On 3/16/20 6:46 PM, Guido Günther wrote:
+>>> [...]
+>>> +static ssize_t vcnl4000_read_near_level(struct iio_dev *indio_dev,
+>>> +					uintptr_t priv,
+>>> +					const struct iio_chan_spec *chan,
+>>> +					char *buf)
+>>> +{
+>>> +	struct vcnl4000_data *data = iio_priv(indio_dev);
+>>> +
+>>> +	return sprintf(buf, "%u\n", data->near_level);
+>>> +}
+>>> +
+>>> +static const struct iio_chan_spec_ext_info vcnl4000_ext_info[] = {
+>>> +	{
+>>> +		.name = "near_level",
+>> Generally having properties with a underscore in them breaks generic parsing
+>> of the property name by userspace applications. This is because we use
+>> underscores to separate different components (type, modifier, etc.) of the
+>> attribute from each other.
+>>
+>> Do you think calling this "nearlevel" would work?
+> That works as well. I'll change that for v3.
+>
+> For my education: Is the type, modifier policy written down somewhere
+> (similar to
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/leds/leds-class.rst#n44
+> )?
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml | 2 +-
- Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml | 2 +-
- Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml   | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Good point, this is quite badly documented at the moment.
 
-diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-index cac61a998203..c6598d2e3fa3 100644
---- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-@@ -65,7 +65,7 @@ properties:
-   ports:
-     type: object
-     description:
--      Ports as described in Documentation/devictree/bindings/graph.txt
-+      Ports as described in Documentation/devicetree/bindings/graph.txt
-     properties:
-       "#address-cells":
-         const: 1
-diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-index ade9b2f513f5..9e19293c0dbc 100644
---- a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-+++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-@@ -98,7 +98,7 @@ properties:
-   ports:
-     type: object
-     description:
--      Ports as described in Documentation/devictree/bindings/graph.txt
-+      Ports as described in Documentation/devicetree/bindings/graph.txt
-     properties:
-       "#address-cells":
-         const: 1
-diff --git a/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-index 385bd060ccf9..698f439d839c 100644
---- a/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-+++ b/Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-@@ -56,7 +56,7 @@ properties:
-   port:
-     type: object
-     description:
--      Port as described in Documentation/devictree/bindings/graph.txt.
-+      Port as described in Documentation/devicetree/bindings/graph.txt.
-       The DSS DPI output port node
- 
-   max-memory-bandwidth:
--- 
-2.24.1
+The only thing I could find is this presentation by Daniel 
+https://events.static.linuxfound.org/sites/events/files/slides/lceu15_baluta.pdf#page=9
+
+- Lars
 
