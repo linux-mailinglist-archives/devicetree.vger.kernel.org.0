@@ -2,77 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD4D187A95
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 08:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 331F6187A99
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 08:42:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725794AbgCQHjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 03:39:37 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:46266 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725536AbgCQHjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 03:39:36 -0400
-Received: by mail-io1-f67.google.com with SMTP id v3so19917691iom.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 00:39:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=RFjST6WTWl2HErgo/MFlw9oz3Ck4pyxWRgkJWzlGF00=;
-        b=IwE+/gk7yeFi2E6EAn0hGFcvZQySEASa39uxVK0+D8anvY30JvYbjmt2FjVuvZeDXU
-         qMQUysSuHP8h/4hBLt71NtZ52Q+AQoRF/alW2qXgUt5ZEagSPnPIelUbKrGxAjk+SyVZ
-         rsd5D56T4UVBwHpGrGYvkK7Ha/5APHRW0ZxSMr8+gO9UU7Wdwwj0miwXEk8No5bSdrRt
-         tWS0LLSg5Y6BHioz2vEsz12CKRnWTvTgj9wx1Wp2NmcepD4HNFpvW1UMqsFTW4lkmZsQ
-         RHuYBZewbHWmxrWE9GyMw3I15FkQdmMi2c5t9TrmgPjqMtwgyMZ7LtTXTFx0iVs3BThv
-         juzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=RFjST6WTWl2HErgo/MFlw9oz3Ck4pyxWRgkJWzlGF00=;
-        b=uGFEf/8zWrNOFGO15FvEL4BNtFlc9gcsUb3+1NluUaqDMJFnk0bMcNsQhQMnwR6PL2
-         EMeKC4FsLSdc5w+ooG1J2IHnunpVyZrus2bPOGu1h8tU8Fg5cYthDHxv9v7DwSav39/t
-         JtUNY7r1iFwRk0RZLmV6eC+fajKd9yWhr+ukBLo2r4t5cxNjzzoX9z1gJe4NZ9vaTGxv
-         GU+37X/TgutzqLgLZzd1yEyVkBIy7iGJqhEJMGdJviyG3nYeR97dG6DGU/UMkL0v1rip
-         1YqUHkkwDzdMEAOtzV7rOQLJDceSyZRY+YZvGz278T981RMXS+HYdQE0sp/vz4lK7mNA
-         mPMQ==
-X-Gm-Message-State: ANhLgQ3o5M4Gs84NrZZq8BQ7gHgXVQVkyk8jGU3DqDvL6C88xhQnuV7m
-        dfzv+h6gAJixjPbr0BeWer0qOD+rjIbXY1VO9wc=
-X-Google-Smtp-Source: ADFU+vu1VL8j/+bJNa8x2NijKcOljxZbz6gjoIy7mVNENIa2nzspqdIH7dsvIMsC0ipT6oS7CpHZKW6DBf2g4gLEPCA=
-X-Received: by 2002:a02:6f11:: with SMTP id x17mr3973126jab.130.1584430775724;
- Tue, 17 Mar 2020 00:39:35 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a02:c8:0:0:0:0:0 with HTTP; Tue, 17 Mar 2020 00:39:35 -0700 (PDT)
-Reply-To: dunawattara96@outlook.com
-From:   Mr Duna Wattara <mrharword.somda@gmail.com>
-Date:   Tue, 17 Mar 2020 00:39:35 -0700
-Message-ID: <CACA8Y7sbF00NwJkG09WUdny7LrmSaigAYzRFeyiTB7qkUUZ0Ow@mail.gmail.com>
-Subject: with due respect
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        id S1726016AbgCQHmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 03:42:07 -0400
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:34883 "EHLO
+        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725794AbgCQHmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Mar 2020 03:42:07 -0400
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 17 Mar 2020 13:10:40 +0530
+Received: from c-rkambl-linux1.qualcomm.com ([10.242.50.190])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 17 Mar 2020 13:10:21 +0530
+Received: by c-rkambl-linux1.qualcomm.com (Postfix, from userid 2344811)
+        id D1C061E20; Tue, 17 Mar 2020 13:10:19 +0530 (IST)
+From:   Rajeshwari <rkambl@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sivaa@codeaurora.org,
+        sanm@codeaurora.org, Doug Anderson <dianders@chromium.org>,
+        Rajeshwari <rkambl@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: sc7180: Changed polling-delay in Thermal-zones node
+Date:   Tue, 17 Mar 2020 13:10:04 +0530
+Message-Id: <1584430804-8343-1-git-send-email-rkambl@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
+Changed polling-delay and polling-delay-passive to zero as per
+the requirement.
 
-I know that this mail will come to you as a surprise as we have never
-met before, but need not to worry as I am contacting you independently
-of my investigation and no one is informed of this communication.
+Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 100 +++++++++++++++++------------------
+ 1 file changed, 50 insertions(+), 50 deletions(-)
 
-I need your urgent assistance in transferring the sum of $11.3million
-immediately to your private account.The money has been here in our
-Bank lying dormant for years now without anybody coming for the claim of it.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index ca876ed..d81c4f1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -1907,8 +1907,8 @@
+ 
+ 	thermal-zones {
+ 		cpu0-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 1>;
+ 
+@@ -1955,8 +1955,8 @@
+ 		};
+ 
+ 		cpu1-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 2>;
+ 
+@@ -2003,8 +2003,8 @@
+ 		};
+ 
+ 		cpu2-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 3>;
+ 
+@@ -2051,8 +2051,8 @@
+ 		};
+ 
+ 		cpu3-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 4>;
+ 
+@@ -2099,8 +2099,8 @@
+ 		};
+ 
+ 		cpu4-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 5>;
+ 
+@@ -2147,8 +2147,8 @@
+ 		};
+ 
+ 		cpu5-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 6>;
+ 
+@@ -2195,8 +2195,8 @@
+ 		};
+ 
+ 		cpu6-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 9>;
+ 
+@@ -2235,8 +2235,8 @@
+ 		};
+ 
+ 		cpu7-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 10>;
+ 
+@@ -2275,8 +2275,8 @@
+ 		};
+ 
+ 		cpu8-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 11>;
+ 
+@@ -2315,8 +2315,8 @@
+ 		};
+ 
+ 		cpu9-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 12>;
+ 
+@@ -2355,8 +2355,8 @@
+ 		};
+ 
+ 		aoss0-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 0>;
+ 
+@@ -2376,8 +2376,8 @@
+ 		};
+ 
+ 		cpuss0-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 7>;
+ 
+@@ -2396,8 +2396,8 @@
+ 		};
+ 
+ 		cpuss1-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 8>;
+ 
+@@ -2416,8 +2416,8 @@
+ 		};
+ 
+ 		gpuss0-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 13>;
+ 
+@@ -2437,8 +2437,8 @@
+ 		};
+ 
+ 		gpuss1-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 14>;
+ 
+@@ -2458,8 +2458,8 @@
+ 		};
+ 
+ 		aoss1-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 0>;
+ 
+@@ -2479,8 +2479,8 @@
+ 		};
+ 
+ 		cwlan-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 1>;
+ 
+@@ -2500,8 +2500,8 @@
+ 		};
+ 
+ 		audio-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 2>;
+ 
+@@ -2521,8 +2521,8 @@
+ 		};
+ 
+ 		ddr-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 3>;
+ 
+@@ -2542,8 +2542,8 @@
+ 		};
+ 
+ 		q6-hvx-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 4>;
+ 
+@@ -2563,8 +2563,8 @@
+ 		};
+ 
+ 		camera-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 5>;
+ 
+@@ -2584,8 +2584,8 @@
+ 		};
+ 
+ 		mdm-core-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 6>;
+ 
+@@ -2605,8 +2605,8 @@
+ 		};
+ 
+ 		mdm-dsp-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 7>;
+ 
+@@ -2626,8 +2626,8 @@
+ 		};
+ 
+ 		npu-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 8>;
+ 
+@@ -2647,8 +2647,8 @@
+ 		};
+ 
+ 		video-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 9>;
+ 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-I want to release the money to you as the relative to our deceased
-customer (the account owner) who died a long with his supposed NEXT OF
-KIN since 16th October 2005. The Banking laws here does not allow such
-money to stay more than 15 years, because the money will be recalled
-to the Bank treasury account as unclaimed fund.
-
-By indicating your interest I will send you the full details on how
-the business will be executed.
-
-Please respond urgently and delete if you are not interested.
-
-Best Regards,
-Mr. Duna Wattara.
