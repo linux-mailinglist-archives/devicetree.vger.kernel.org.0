@@ -2,64 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE725188D9A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 20:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14759188DAA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 20:07:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbgCQTDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 15:03:18 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:35845 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726294AbgCQTDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 15:03:18 -0400
-Received: by mail-oi1-f193.google.com with SMTP id k18so23019389oib.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 12:03:17 -0700 (PDT)
+        id S1726294AbgCQTHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 15:07:14 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:34448 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726494AbgCQTHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 15:07:14 -0400
+Received: by mail-lf1-f68.google.com with SMTP id f3so7949671lfc.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 12:07:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=bEps1wWWEY3W7o5TdFz8hIgzIPUZGhpHt8TI7Ae1vhM=;
-        b=RNNB0MK8FAnawohEv43ImY+A+IcteOkOH2Jp8QJ/Bx9SyZIolFwyIWWKuTBzL2GrP+
-         EcRnQVejikbj5f/bcSsk7whcL8JkOBxuJprLguUULfTG6EZMq41gRFIX1eF8nR/v0go4
-         GLPYUtRHIGFkKzpxnotoK7jSjrDkDQESSBZxwqXRgGftB6a+8ygTj4iL+hG7vhtxfjis
-         HK4dUaVu3fm4xRARHuckRhOIpPvXdQSnCmLhiyetfP9jSFOapugjlE1fOHlNe28AwuAu
-         WBXJLb2NABwwZy2/iNZKEkkN4fXAStknbWPZ0pNks4MouOEBIXWKDRaM5gq/XUy0VcAm
-         yDiQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YEEc09trOmH4D9SUDPMbQiadK7H2Qw9VvDkuRLFStZo=;
+        b=RmFy6BxUBkaGc+I1s1MbSATu7fVGC1ZDQWtncIWzCCz4160Yptu+BTMXEBd43s7u2y
+         FfV8PoCRMC8uuFC8P+RJRqxTnZeDjQyjwhwyodSTiDLsDFaKrrRaYtTB7WFKhmLDmxeq
+         s2DEy9aVLpUQogfr+sbRzzhmkkAtNzcoaIR68=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=bEps1wWWEY3W7o5TdFz8hIgzIPUZGhpHt8TI7Ae1vhM=;
-        b=ao5uG41By08b4foMvsKf7nkYkOoc0WdkpuP9seLr4jO7Z2xyeInSxi08CBhH9Dxl0S
-         2f9welrg9144OzNX+Y7U6XnznhWT1p7RPTB8ifGHY6qPTtW6opzhFlt7TUN71nUrjmbA
-         /0n/47OVZzy7EanWFkyQlOPzoD/n8SlDT0nEfgis5c1gy3W1+/4gexRTu9VDSHesFAXy
-         MeMuD2Vp2zGsUNqj1bT6PQ6iIp1fdOAUYfzPq7Nu5P6s2LBUbWh0SktW1YCdNJne+pKs
-         JGRqdykGsTlmEoYqu7nkhBO9JDHLiEJWP56mWXJJf5NVWEAtV6GNC1s5HYydXv6LALDz
-         JHSg==
-X-Gm-Message-State: ANhLgQ3SdmBL+gKL1wXMuHrGRnKvCSkNL0CmsimFQ0JzhPV26A5AUp+/
-        XRHvx6gCCJ/50EUNJOMMlV7rJJpqW24gA2ctrS8=
-X-Google-Smtp-Source: ADFU+vtB3m9SZ/gGDDsgRWoOgdmDPD99O/xuzC4f0JCPt0VWAzPyeE5pheTqZC353OBL0r4KDlXT8FeiKNlNxVnqwB4=
-X-Received: by 2002:aca:4142:: with SMTP id o63mr287444oia.118.1584471797576;
- Tue, 17 Mar 2020 12:03:17 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YEEc09trOmH4D9SUDPMbQiadK7H2Qw9VvDkuRLFStZo=;
+        b=AO/nsLGaMGXs6cLwCVFgQy3GzaNIOYZtsLlt8HSJ0w5XmbTeppXlst1AuJdCayyxnb
+         LfQALGiBN/JhMR7KHkul5ctvfGM9Eb7gewNDnF3qPOfwXAyw+Yz7czW7kOsBPnHeUSm0
+         INl3L97WkSOKTeuoKibXeYXwy8UAhGoSdge2ibQygFqiw+aoSW88C/SkOo8eFrWrEdqJ
+         Ypw2akrzWttK4LE5OueNzeT1McPfkAEkgqtZgl6CrQUd9QB1ingWWv7QCBHeaA9BVrqM
+         q4ssfunant5wLHNMa7Iwy3d93t7iYD6y+2b+mXm1j2lAPPcK8bGvhRmm6VFk1+VkD49N
+         QrpQ==
+X-Gm-Message-State: ANhLgQ1QtSvCFaKPl9NZgJsRXLapL00JRQvxfq3Vz5ZBzxRLWu5N79iu
+        9mU7FznhvocbdfhhnKJpsxmOvwKBy9Y=
+X-Google-Smtp-Source: ADFU+vvhn2c/8Fr18K8CjYYHea6ddRGw4N37L2vt/QMlXOET3kCekaHlDS4HRc8xJJEwKiCvemlHvA==
+X-Received: by 2002:a19:857:: with SMTP id 84mr510033lfi.15.1584472029549;
+        Tue, 17 Mar 2020 12:07:09 -0700 (PDT)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id u19sm3002613ljk.12.2020.03.17.12.07.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Mar 2020 12:07:09 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id t21so18190196lfe.9
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2020 12:07:08 -0700 (PDT)
+X-Received: by 2002:a19:8788:: with SMTP id j130mr521058lfd.130.1584472028241;
+ Tue, 17 Mar 2020 12:07:08 -0700 (PDT)
 MIME-Version: 1.0
-Reply-To: mrrocksteven505@gmail.com
-Received: by 2002:a4a:b646:0:0:0:0:0 with HTTP; Tue, 17 Mar 2020 12:03:16
- -0700 (PDT)
-From:   "Mr.Rock Steven" <mrcaraluda05@gmail.com>
-Date:   Tue, 17 Mar 2020 19:03:16 +0000
-X-Google-Sender-Auth: wcyQ2FILMCEXfcE1HM2INtyAB6o
-Message-ID: <CABg+cK1j1ZKqo9vOAiM8t8f32dd4C=iTca33z0-krcNrkm861g@mail.gmail.com>
-Subject: READ AND REPLY
-To:     undisclosed-recipients:;
+References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org> <1584105134-13583-3-git-send-email-akashast@codeaurora.org>
+In-Reply-To: <1584105134-13583-3-git-send-email-akashast@codeaurora.org>
+From:   Evan Green <evgreen@chromium.org>
+Date:   Tue, 17 Mar 2020 12:06:31 -0700
+X-Gmail-Original-Message-ID: <CAE=gft4_Su4+SXWAW_HWy5BF1mH7QaDHCiwAAhrNaekTeU57rA@mail.gmail.com>
+Message-ID: <CAE=gft4_Su4+SXWAW_HWy5BF1mH7QaDHCiwAAhrNaekTeU57rA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/8] soc: qcom: geni: Support for ICC voting
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        wsa@the-dreams.de, Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear friend.
-I assume you and your family are in good health My name is Mr. Rock
-Steven, work with one of the leading Banks here in Burkina Faso. I
-have a business Proposal that will be of benefit to the both of us and
-I shall be compensating you with 40% at the final conclusion. If you
-are interested please reply ASAP for more details,
-Yours Faithful,
-Mr. Rock Steven,
+On Fri, Mar 13, 2020 at 6:12 AM Akash Asthana <akashast@codeaurora.org> wrote:
+>
+> Add necessary macros and structure variables to support ICC BW
+> voting from individual SE drivers.
+>
+> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+> ---
+> Changes in V2:
+>  - As per Bjorn's comment dropped enums for ICC paths, given the three
+>    paths individual members
+>
+>  include/linux/qcom-geni-se.h | 28 ++++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>
+> diff --git a/include/linux/qcom-geni-se.h b/include/linux/qcom-geni-se.h
+> index dd46494..eaae16e 100644
+> --- a/include/linux/qcom-geni-se.h
+> +++ b/include/linux/qcom-geni-se.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _LINUX_QCOM_GENI_SE
+>  #define _LINUX_QCOM_GENI_SE
+>
+> +#include <linux/interconnect.h>
+> +
+>  /* Transfer mode supported by GENI Serial Engines */
+>  enum geni_se_xfer_mode {
+>         GENI_SE_INVALID,
+> @@ -33,6 +35,15 @@ struct clk;
+>   * @clk:               Handle to the core serial engine clock
+>   * @num_clk_levels:    Number of valid clock levels in clk_perf_tbl
+>   * @clk_perf_tbl:      Table of clock frequency input to serial engine clock
+> + * @icc_path_geni_to_core:     ICC path handle for geni to core
+> + * @icc_path_cpu_to_geni:      ICC path handle for cpu to geni
+> + * @icc_path_geni_to_ddr:      ICC path handle for geni to ddr
+> + * @avg_bw_core:       Average bus bandwidth value for QUP core 2x clock
+> + * @peak_bw_core:      Peak bus bandwidth value for QUP core 2x clock
+> + * @avg_bw_cpu:                Average bus bandwidth value for CPU
+> + * @peak_bw_cpu:       Peak bus bandwidth value for CPU
+> + * @avg_bw_ddr:                Average bus bandwidth value for DDR
+> + * @peak_bw_ddr:       Peak bus bandwidth value for DDR
+>   */
+>  struct geni_se {
+>         void __iomem *base;
+> @@ -41,6 +52,15 @@ struct geni_se {
+>         struct clk *clk;
+>         unsigned int num_clk_levels;
+>         unsigned long *clk_perf_tbl;
+> +       struct icc_path *icc_path_geni_to_core;
+> +       struct icc_path *icc_path_cpu_to_geni;
+> +       struct icc_path *icc_path_geni_to_ddr;
+> +       unsigned int avg_bw_core;
+> +       unsigned int peak_bw_core;
+> +       unsigned int avg_bw_cpu;
+> +       unsigned int peak_bw_cpu;
+> +       unsigned int avg_bw_ddr;
+> +       unsigned int peak_bw_ddr;
+>  };
+>
+>  /* Common SE registers */
+> @@ -229,6 +249,14 @@ struct geni_se {
+>  #define GENI_SE_VERSION_MINOR(ver) ((ver & HW_VER_MINOR_MASK) >> HW_VER_MINOR_SHFT)
+>  #define GENI_SE_VERSION_STEP(ver) (ver & HW_VER_STEP_MASK)
+>
+> +/* Core 2X clock frequency to BCM threshold mapping */
+> +#define CORE_2X_19_2_MHZ               960
+> +#define CORE_2X_50_MHZ                 2500
+> +#define CORE_2X_100_MHZ                        5000
+> +#define CORE_2X_150_MHZ                        7500
+> +#define CORE_2X_200_MHZ                        10000
+> +#define CORE_2X_236_MHZ                        16383
+
+These are all just 50 * clock_rate. Can you instead specify that one
+define of CLK_TO_BW_RATIO 50, and then use clk_get_rate() to get the
+input clock frequency. That way, if these end up getting clocked at a
+different rate, the bandwidth also scales appropriately. Also, can you
+enumerate why 50 is an appropriate ratio?
+-Evan
+
+-Evan
