@@ -2,48 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0DC188B70
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 18:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9308E188B84
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 18:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726819AbgCQRBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 13:01:44 -0400
-Received: from muru.com ([72.249.23.125]:60646 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726769AbgCQRBo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 13:01:44 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 8B79A810D;
-        Tue, 17 Mar 2020 17:02:29 +0000 (UTC)
-Date:   Tue, 17 Mar 2020 10:01:40 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Roger Quadros <rogerq@ti.com>
-Cc:     hch@lst.de, robin.murphy@arm.com, robh+dt@kernel.org, nm@ti.com,
-        t-kristo@ti.com, nsekhar@ti.com, linux-omap@vger.kernel.org,
+        id S1726278AbgCQRD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 13:03:56 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:42214 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726082AbgCQRD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 13:03:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
+        bh=JrfbfStkuLthDJce1M1JugDTO24hOoZE58L7iN+zG2U=; b=jOeS0u829MtADQiUjmIqAmuJKK
+        etUNM1qkA+POedoDZdTcxDQbKGA5Ltl+G3zo4zyk9vZF9F2epczpebM4r+qpE4cCDXtTbXsEqsRdC
+        vwNMTgdrUxksdy3oy99KgYgsqiZaRhcsOrVfOjATxum+k7gbgA0tJIopajlTDy02l8YxkBiQ1Oqsp
+        WZvYKipXpfKvXKt/4eEl73Rqf0Te0oYUmBL1iVqhpx1sjqeu4xwtJlkjmqD1lVEyMOCXQFsABTnbR
+        HDsNTn55SBEezIAwjDefrCoetIBT6CbDNMVV31xTZvsIqj4wOzCxWEanwQpjL1gxU+eP8GLC/1SgA
+        nJFHVyqQ==;
+Received: from [2601:1c0:6280:3f0::19c2]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jEFdC-0007p4-Kj; Tue, 17 Mar 2020 17:03:55 +0000
+Subject: Re: [PATCH v6 3/3] hwmon: add Gateworks System Controller support
+To:     Tim Harvey <tharvey@gateworks.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@kernel.org
-Subject: Re: [PATCH] ARM: dts: omap5: Add bus_dma_limit for L3 bus
-Message-ID: <20200317170140.GM37466@atomide.com>
-References: <20200316102731.15467-1-rogerq@ti.com>
+        Robert Jones <rjones@gateworks.com>
+References: <1584464453-28200-1-git-send-email-tharvey@gateworks.com>
+ <1584464453-28200-4-git-send-email-tharvey@gateworks.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <f7ccbdb4-917a-2dd7-bf6b-8c82b87bc167@infradead.org>
+Date:   Tue, 17 Mar 2020 10:03:53 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200316102731.15467-1-rogerq@ti.com>
+In-Reply-To: <1584464453-28200-4-git-send-email-tharvey@gateworks.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Roger Quadros <rogerq@ti.com> [200316 03:28]:
-> The L3 interconnect's memory map is from 0x0 to
-> 0xffffffff. Out of this, System memory (SDRAM) can be
-> accessed from 0x80000000 to 0xffffffff (2GB)
-> 
-> OMAP5 does support 4GB of SDRAM but upper 2GB can only be
-> accessed by the MPU subsystem.
-> 
-> Add the dma-ranges property to reflect the physical address limit
-> of the L3 bus.
+On 3/17/20 10:00 AM, Tim Harvey wrote:
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 23dfe84..99dae13 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -494,6 +494,15 @@ config SENSORS_F75375S
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called f75375s.
+>  
+> +config SENSORS_GSC
+> +        tristate "Gateworks System Controller ADC"
+> +        depends on MFD_GATEWORKS_GSC
+> +        help
+> +          Support for the Gateworks System Controller A/D converters.
 
-Thanks applying into fixes.
+Hi Tim,
+Those 4 lines above should be using tabs for indentation.
++ 2 spaces on the final "Support" line.
 
-Tony
+> +
+> +	  To compile this driver as a module, choose M here:
+> +	  the module will be called gsc-hwmon.
+> +
+>  config SENSORS_MC13783_ADC
+>          tristate "Freescale MC13783/MC13892 ADC"
+>          depends on MFD_MC13XXX
+
+
+-- 
+~Randy
+
