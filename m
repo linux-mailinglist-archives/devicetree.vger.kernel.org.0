@@ -2,295 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A501888EA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 16:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB3A4188980
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 16:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727026AbgCQPRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 11:17:55 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:32530 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726607AbgCQPRx (ORCPT
+        id S1726521AbgCQPwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 11:52:45 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:53036 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726498AbgCQPwm (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 11:17:53 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02HFDNjo001999;
-        Tue, 17 Mar 2020 16:17:24 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=z2Z/BSGosSRak6mnNoW0BFzlgP/CgbBuGPkERy2kuNc=;
- b=k0YFT87AtxGDAo48E7eIHgMY1MFGYUPyIC0Iq2SuAHyw1EgyWIX/oyStxAPAdc1/MoGa
- eiQ8/1ECXFptNJ3AL7V0gsp4XuYPKKDdrluM7CU4YAYilO75EPZyI+nG0a+250z+Ne95
- LMGy43jFuCtLHDxBrKg2ck17a+kbF8u8Fy9YvavSIEs8MvJL9KqSKLlTHES5NK0vhQoD
- 5Uvhq98UAIsdhLKRJRONRXZYYMWakKCY+YNqSsbXq7YtMW/TroIqthcw6mQxUUJf1toR
- e34xSCTh9PJ+7szy1U2um7bWvoynFwBLtABf14rLPDwTiFWntEE4BI4Sx2tjKX//qzxC rA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2yrqa9s1vq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Mar 2020 16:17:24 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CD6A410002A;
-        Tue, 17 Mar 2020 16:17:19 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BDD252BC7AF;
-        Tue, 17 Mar 2020 16:17:19 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG5NODE3.st.com (10.75.127.15)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Mar 2020 16:17:18
- +0100
-From:   Christophe Roullier <christophe.roullier@st.com>
-To:     <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <mripard@kernel.org>,
-        <martin.blumenstingl@googlemail.com>,
-        <alexandru.ardelean@analog.com>, <narmstrong@baylibre.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>
-CC:     <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <christophe.roullier@st.com>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCHv2 2/2] dt-bindings: net: dwmac: Convert stm32 dwmac to DT schema
-Date:   Tue, 17 Mar 2020 16:17:06 +0100
-Message-ID: <20200317151706.25810-3-christophe.roullier@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200317151706.25810-1-christophe.roullier@st.com>
-References: <20200317151706.25810-1-christophe.roullier@st.com>
+        Tue, 17 Mar 2020 11:52:42 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1584460362; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=F3ioMX8bj8P3wFuntkEmg3te9kA2v3f1KYJgn3TX8No=;
+ b=DJjbqK+MfSvWe/G94I3T9dFIYvYYtCrYtG8QLVi3CjOnmm7WAE3L0WVeTV/zahRkZzNUX1Vh
+ Oum1uZ0sQrno4vgLH9vPJDFZFDaqnnNLd4X0jvGp41MdXtdRBjp1RV9I/iBxU1rpgN5N/0IE
+ vfR2/Bkiyxt0U4B4aRKk0B2gqyI=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e70f236.7f14e17cc0d8-smtp-out-n03;
+ Tue, 17 Mar 2020 15:52:22 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 69A8FC433BA; Tue, 17 Mar 2020 15:52:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CBA72C433D2;
+        Tue, 17 Mar 2020 15:52:21 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG6NODE2.st.com (10.75.127.17) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
- definitions=2020-03-17_06:2020-03-17,2020-03-17 signatures=0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 17 Mar 2020 21:22:21 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, joro@8bytes.org,
+        robin.murphy@arm.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-remoteproc@vger.kernel.org, ohad@wizery.com,
+        agross@kernel.org, dianders@chromium.org,
+        saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCH v2 0/3] Request direct mapping for modem device
+In-Reply-To: <20200317150910.26053-1-sibis@codeaurora.org>
+References: <20200317150910.26053-1-sibis@codeaurora.org>
+Message-ID: <fe9bb128563bea9798573ac9eec1d214@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert stm32 dwmac to DT schema.
+On 2020-03-17 20:39, Sibi Sankar wrote:
+> The Q6 modem sub-system has direct access to DDR through memnoc and
+> an indirect access routed through a SMMU which MSS CE (crypto engine
+> sub-component of MSS) uses during out of reset sequence. Request direct
+> mapping for the modem device since smmu is not expected to provide 
+> access
+> control/translation for these SIDs (sandboxing of the modem is achieved
+> through XPUs engaged using SMC calls). This is done on platforms which
+> don't have TrustZone (which programs the modem SIDs) to prevent the
+> following global faults seen on Cheza/Trogdor:
+> 
+> Cheza:
+> arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
+> arm-smmu 15000000.iommu: GFSR 0x80000002, GFSYNR0 0x00000000,
+> 			 GFSYNR1 0x00000781, GFSYNR2 0x00000000
+> 
+> Trogdor:
+> arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
+> arm-smmu 15000000.iommu: GFSR 0x80000002, GFSYNR0 0x00000000,
+> 			 GFSYNR1 0x00000461, GFSYNR2 0x00000000
+> 
+> V2:
+>  * Request direct mapping from SoC-specific corner of the SMMU
+>    driver [Robin]
+>  * Add iommu property to remoteproc modem node on Cheza
+> 
+> Depends on:
+> https://lore.kernel.org/patchwork/cover/1183528/
+> 
+> Sibi Sankar (3):
+>   dt-bindings: remoteproc: qcom: Add iommus property
+>   remoteproc: qcom_q6v5_mss: Request direct mapping for modem device
 
-Signed-off-by: Christophe Roullier <christophe.roullier@st.com>
----
- .../devicetree/bindings/net/stm32-dwmac.txt   |  44 -----
- .../devicetree/bindings/net/stm32-dwmac.yaml  | 160 ++++++++++++++++++
- 2 files changed, 160 insertions(+), 44 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/stm32-dwmac.txt
- create mode 100644 Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+iommu: arm-smmu-qcom: Request direct mapping for modem device
 
-diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.txt b/Documentation/devicetree/bindings/net/stm32-dwmac.txt
-deleted file mode 100644
-index a90eef11dc46..000000000000
---- a/Documentation/devicetree/bindings/net/stm32-dwmac.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--STMicroelectronics STM32 / MCU DWMAC glue layer controller
--
--This file documents platform glue layer for stmmac.
--Please see stmmac.txt for the other unchanged properties.
--
--The device node has following properties.
--
--Required properties:
--- compatible:  For MCU family should be "st,stm32-dwmac" to select glue, and
--	       "snps,dwmac-3.50a" to select IP version.
--	       For MPU family should be "st,stm32mp1-dwmac" to select
--	       glue, and "snps,dwmac-4.20a" to select IP version.
--- clocks: Must contain a phandle for each entry in clock-names.
--- clock-names: Should be "stmmaceth" for the host clock.
--	       Should be "mac-clk-tx" for the MAC TX clock.
--	       Should be "mac-clk-rx" for the MAC RX clock.
--	       For MPU family need to add also "ethstp" for power mode clock
--- interrupt-names: Should contain a list of interrupt names corresponding to
--           the interrupts in the interrupts property, if available.
--		   Should be "macirq" for the main MAC IRQ
--		   Should be "eth_wake_irq" for the IT which wake up system
--- st,syscon : Should be phandle/offset pair. The phandle to the syscon node which
--	       encompases the glue register, and the offset of the control register.
--
--Optional properties:
--- clock-names:     For MPU family "eth-ck" for PHY without quartz
--- st,eth-clk-sel (boolean) : set this property in RGMII PHY when you want to select RCC clock instead of ETH_CLK125.
--- st,eth-ref-clk-sel (boolean) :  set this property in RMII mode when you have PHY without crystal 50MHz and want to select RCC clock instead of ETH_REF_CLK.
--
--Example:
--
--	ethernet@40028000 {
--		compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
--		reg = <0x40028000 0x8000>;
--		reg-names = "stmmaceth";
--		interrupts = <0 61 0>, <0 62 0>;
--		interrupt-names = "macirq", "eth_wake_irq";
--		clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
--		clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
--		st,syscon = <&syscfg 0x4>;
--		snps,pbl = <8>;
--		snps,mixed-burst;
--		dma-ranges;
--	};
-diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-new file mode 100644
-index 000000000000..4440216917b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-@@ -0,0 +1,160 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/stm32-dwmac.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: STMicroelectronics STM32 / MCU DWMAC glue layer controller
-+
-+maintainers:
-+  - Alexandre Torgue <alexandre.torgue@st.com>
-+  - Christophe Roullier <christophe.roullier@st.com>
-+
-+description:
-+  This file documents platform glue layer for stmmac.
-+
-+# We need a select here so we don't match all nodes with 'snps,dwmac'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - st,stm32-dwmac
-+          - st,stm32mp1-dwmac
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: "snps,dwmac.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - st,stm32-dwmac
-+              - st,stm32mp1-dwmac
-+    then:
-+      properties:
-+       clocks:
-+         minItems: 3
-+         maxItems: 5
-+         items:
-+          - description: GMAC main clock
-+          - description: MAC TX clock
-+          - description: MAC RX clock
-+          - description: For MPU family, used for power mode
-+          - description: For MPU family, used for PHY without quartz
-+
-+       clock-names:
-+         minItems: 3
-+         maxItems: 5
-+         contains:
-+          enum:
-+            - stmmaceth
-+            - mac-clk-tx
-+            - mac-clk-rx
-+            - ethstp
-+            - eth-ck
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - st,stm32mp1-dwmac
-+          - const: snps,dwmac-4.20a
-+      - items:
-+          - enum:
-+              - st,stm32-dwmac
-+          - const: snps,dwmac-4.10a
-+      - items:
-+          - enum:
-+              - st,stm32-dwmac
-+          - const: snps,dwmac-3.50a
-+
-+  st,syscon:
-+    allOf:
-+      - $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    description:
-+      Should be phandle/offset pair. The phandle to the syscon node which
-+      encompases the glue register, and the offset of the control register
-+
-+  st,eth-clk-sel:
-+    description:
-+      set this property in RGMII PHY when you want to select RCC clock instead of ETH_CLK125.
-+    type: boolean
-+
-+  st,eth-ref-clk-sel:
-+    description:
-+      set this property in RMII mode when you have PHY without crystal 50MHz and want to
-+      select RCC clock instead of ETH_REF_CLK.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - st,syscon
-+
-+examples:
-+ - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    #include <dt-bindings/reset/stm32mp1-resets.h>
-+    #include <dt-bindings/mfd/stm32h7-rcc.h>
-+    //Example 1
-+     ethernet0: ethernet@5800a000 {
-+       compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
-+       reg = <0x5800a000 0x2000>;
-+       reg-names = "stmmaceth";
-+       interrupts = <&intc GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-+       interrupt-names = "macirq";
-+       clock-names = "stmmaceth",
-+                     "mac-clk-tx",
-+                     "mac-clk-rx",
-+                     "ethstp",
-+                     "eth-ck";
-+       clocks = <&rcc ETHMAC>,
-+                <&rcc ETHTX>,
-+                <&rcc ETHRX>,
-+                <&rcc ETHSTP>,
-+                <&rcc ETHCK_K>;
-+       st,syscon = <&syscfg 0x4>;
-+       snps,pbl = <2>;
-+       snps,axi-config = <&stmmac_axi_config_0>;
-+       snps,tso;
-+       status = "disabled";
-+       phy-mode = "rgmii";
-+       };
-+
-+    //Example 2 (MCU example)
-+     ethernet1: ethernet@40028000 {
-+       compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
-+       reg = <0x40028000 0x8000>;
-+       reg-names = "stmmaceth";
-+       interrupts = <0 61 0>, <0 62 0>;
-+       interrupt-names = "macirq", "eth_wake_irq";
-+       clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
-+       clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
-+       st,syscon = <&syscfg 0x4>;
-+       snps,pbl = <8>;
-+       snps,mixed-burst;
-+       dma-ranges;
-+       phy-mode = "mii";
-+       };
-+
-+    //Example 3
-+     ethernet2: ethernet@40027000 {
-+       compatible = "st,stm32-dwmac", "snps,dwmac-4.10a";
-+       reg = <0x40028000 0x8000>;
-+       reg-names = "stmmaceth";
-+       interrupts = <61>;
-+       interrupt-names = "macirq";
-+       clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
-+       clocks = <&rcc 62>, <&rcc 61>, <&rcc 60>;
-+       st,syscon = <&syscfg 0x4>;
-+       snps,pbl = <8>;
-+       status = "disabled";
-+       phy-mode = "mii";
-+       };
+sry should have been ^^ instead
+
+
+>   arm64: dts: qcom: sdm845-cheza: Add iommus property
+> 
+>  Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt | 3 +++
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi                 | 4 ++++
+>  drivers/iommu/arm-smmu-qcom.c                              | 6 ++++++
+>  3 files changed, 13 insertions(+)
+
 -- 
-2.17.1
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
