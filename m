@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97BC7188F81
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 21:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E427188FD0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 21:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727131AbgCQUvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 16:51:05 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:37775 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727065AbgCQUvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Mar 2020 16:51:03 -0400
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S1726680AbgCQUxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 16:53:39 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:14828 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726388AbgCQUxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Mar 2020 16:53:39 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1584478419; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=0FuWCaiIeZ+dC3cNZQsIBNBHz1QAlcLwuEg7g1HMh0o=; b=xIhuVEd40feaIp3Vszra7ER2iNDGwV5KRldu2HuY6RpMTh8alaZmsKOT4fN3VN/nyXyBBnWQ
+ /biHAFQBRW0s4UOqlhDuWSmNbqBTSdLBqfSWDarReRwXfsVxUZffXvmti92wN5goGA2W/wFi
+ mjcKejxdP6SBQ8tGmfv/fQF6EYI=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e7138d2.7f859b99af80-smtp-out-n02;
+ Tue, 17 Mar 2020 20:53:38 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 39C36C44788; Tue, 17 Mar 2020 20:53:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 2025123EC4;
-        Tue, 17 Mar 2020 21:51:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1584478260;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=W2NICvToJ5VxP77+c9lfy+Eo5/BPC2qjYzOe6PwS1TY=;
-        b=GoSAhAhKPygog86zCvdX/KIK15Bpoy1qgBcBDCsnwFSc7ORr1Qn7y51e3qM1MuUEA4A1Yz
-        ow/+sDOVf5eZWxHpwLhcV/yApcTgnKAUeaiwF8YsW5Hw5tSiw6AuTVBbbYfE2mz5tw1FGW
-        FVz/hz9mwVYd+m3lrRPAK59AYAojuwc=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Michael Walle <michael@walle.cc>
-Subject: [PATCH 18/18] arm64: dts: freescale: sl28: enable fan support
-Date:   Tue, 17 Mar 2020 21:50:17 +0100
-Message-Id: <20200317205017.28280-19-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200317205017.28280-1-michael@walle.cc>
-References: <20200317205017.28280-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: 2025123EC4
-X-Spamd-Result: default: False [6.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         NEURAL_SPAM(0.00)[0.572];
-         DKIM_SIGNED(0.00)[];
-         RCPT_COUNT_TWELVE(0.00)[22];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:31334, ipnet:2a02:810c:8000::/33, country:DE];
-         FREEMAIL_CC(0.00)[linaro.org,baylibre.com,kernel.org,suse.com,roeck-us.net,gmail.com,pengutronix.de,linux-watchdog.org,nxp.com,linutronix.de,lakedaemon.net,walle.cc];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 51595C433D2;
+        Tue, 17 Mar 2020 20:53:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 51595C433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
+From:   Wesley Cheng <wcheng@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Wesley Cheng <wcheng@codeaurora.org>
+Subject: [PATCH v2 0/2] Enable SS/HS USB support on SM8150
+Date:   Tue, 17 Mar 2020 13:53:30 -0700
+Message-Id: <1584478412-7798-1-git-send-email-wcheng@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pwm-fan mapped to the PWM channel 0 which is connected to the
-fan connector of the carrier.
+Add required device tree nodes to enable the USB SS and HS
+paths on the primary USB controller on SM8150.  In addition,
+implement missing resources from the SM8150 GCC driver, which
+includes the USB GDSC and the USB PIPE clocks.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in v2:
+ - Combine GDSC and USB PIPE clock changes.
+ - Re-order DTS nodes based on address
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-index 0973a6a45217..016b6ae5826b 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-@@ -15,6 +15,15 @@
- 	compatible = "kontron,sl28-var3-ads2", "kontron,sl28-var3",
- 		     "kontron,sl28", "fsl,ls1028a";
- 
-+	pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-min-state = <0>;
-+		cooling-max-state = <3>;
-+		#cooling-cells = <2>;
-+		pwms = <&pwm0 0 4000000>;
-+		cooling-levels = <1 128 192 255>;
-+	};
-+
- 	sound {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+Jack Pham (1):
+  arm64: dts: qcom: sm8150: Add USB and PHY device nodes
+
+Wesley Cheng (1):
+  clk: qcom: gcc: Add USB3 PIPE clock and GDSC for SM8150
+
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts     | 17 ++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi        | 92 +++++++++++++++++++++++++++++
+ drivers/clk/qcom/gcc-sm8150.c               | 52 ++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm8150.h |  4 ++
+ 4 files changed, 165 insertions(+)
+
 -- 
-2.20.1
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
