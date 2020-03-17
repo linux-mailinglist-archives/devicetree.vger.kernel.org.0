@@ -2,84 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A925D1884B8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:06:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD4D21884F1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:11:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726647AbgCQNGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 09:06:19 -0400
-Received: from foss.arm.com ([217.140.110.172]:37940 "EHLO foss.arm.com"
+        id S1726647AbgCQNL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 09:11:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726637AbgCQNGT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 09:06:19 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5466830E;
-        Tue, 17 Mar 2020 06:06:18 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A72F53F534;
-        Tue, 17 Mar 2020 06:06:17 -0700 (PDT)
-Date:   Tue, 17 Mar 2020 13:06:16 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Akash Asthana <akashast@codeaurora.org>
-Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, wsa@the-dreams.de,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-serial@vger.kernel.org, mka@chromium.org,
-        dianders@chromium.org, evgreen@chromium.org
-Subject: Re: [PATCH V2 6/8] spi: spi-geni-qcom: Add interconnect support
-Message-ID: <20200317130616.GE3971@sirena.org.uk>
-References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org>
- <1584105134-13583-7-git-send-email-akashast@codeaurora.org>
- <20200313131603.GG5528@sirena.org.uk>
- <aa197568-3bac-6962-d39d-3261f68c0514@codeaurora.org>
+        id S1726474AbgCQNK4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Mar 2020 09:10:56 -0400
+Received: from mail.kernel.org (ip5f5ad4e9.dynamic.kabel-deutschland.de [95.90.212.233])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B6AED2076E;
+        Tue, 17 Mar 2020 13:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584450655;
+        bh=qcurY8bOcWo5+GUNbRcDNmw4qaVy7k5l/0CO6+ZkKn8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=jl7qcP50X5PEG7pLxCKMawz9B/YaStb/OFPHwDjzIcVY19FeS1R3yo0VxzuRD+ym9
+         S+81PAI+1NAfeNkBWgzWrPQzSLvxUth+7zhHb362HH+aM9PGwy9W2eHJ4Rp6bkFw6w
+         36hdLJzkW2dPPbezgaeHvBZdG/HPKoMhzIwPaoYU=
+Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
+        (envelope-from <mchehab@kernel.org>)
+        id 1jEBzh-0006S1-JQ; Tue, 17 Mar 2020 14:10:53 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Dan Murphy <dmurphy@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 04/12] docs: dt: fix references to m_can.txt file
+Date:   Tue, 17 Mar 2020 14:10:43 +0100
+Message-Id: <db67f9bc93f062179942f1e095a46b572a442b76.1584450500.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <cover.1584450500.git.mchehab+huawei@kernel.org>
+References: <cover.1584450500.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9l24NVCWtSuIVIod"
-Content-Disposition: inline
-In-Reply-To: <aa197568-3bac-6962-d39d-3261f68c0514@codeaurora.org>
-X-Cookie: There's only one everything.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This file was converted to json and renamed. Update its
+references accordingly.
 
---9l24NVCWtSuIVIod
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: 824674b59f72 ("dt-bindings: net: can: Convert M_CAN to json-schema")
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+ MAINTAINERS                                            | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Tue, Mar 17, 2020 at 03:05:21PM +0530, Akash Asthana wrote:
+diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+index 6bdcc3f84bd3..3613c2c8f75d 100644
+--- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
++++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+@@ -14,7 +14,7 @@ Required properties:
+                     the interrupt.
+ 	- interrupts: interrupt specification for data-ready.
+ 
+-See Documentation/devicetree/bindings/net/can/m_can.txt for additional
++See Documentation/devicetree/bindings/net/can/bosch,m_can.yaml for additional
+ required property details.
+ 
+ Optional properties:
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 39da9ac4cc1f..84cb39b5a23b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10327,7 +10327,7 @@ M:	Dan Murphy <dmurphy@ti.com>
+ M:	Sriram Dash <sriram.dash@samsung.com>
+ L:	linux-can@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/net/can/m_can.txt
++F:	Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+ F:	drivers/net/can/m_can/m_can.c
+ F:	drivers/net/can/m_can/m_can.h
+ F:	drivers/net/can/m_can/m_can_platform.c
+-- 
+2.24.1
 
-> We are taking care of actual throughput requirement in avg_bw vote and the
-> intention of putting peak as twice of avg is to ensure that if high speed
-> peripherals(ex:USB) removes their votes, we shouldn't see any latency issue
-> because of other ICC client who don't vote for their BW requirement or
-> *actual* BW requirement. Factor of 2 is chosen randomly. Please
-> correct/improve me if this is not okay.
-
-> If this is okay, I will centralize this design for SPI QUP, I2C and UART
-> driver.
-
-That seems reasonable to me, it was just the fact that every driver
-seemed to be doing the same thing that I was noticing - what was being
-done seemed OK.
-
---9l24NVCWtSuIVIod
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5wy0cACgkQJNaLcl1U
-h9Ae3QgAggJnWHS/CyykvzCHo7E8nPR1L9kx3kYVZpAuCtrYfxzrw9cs6+7l/K1G
-CKM6uVeL3GtVc7wO+8Y3B6KSmyXcNYMZnHTk/skQlxv2i32r3gRIYxXbl1xqoZXn
-8r//df86MC+eLCnCLLngJD57k4mHG6yP0+05zpZ28N8F0rSFbG5+hC303bojUM9i
-/wi8QJBfXtABa4qZ1UpiAlUghsIIjLQDn+LYHFDALx1Ju/5XShsVHfIMaJuVeVQ4
-vbfLjXl+GDyNSQ8Yxa7Thzojxjys+Wk1ZFChxJ7FPfhGEYWjAv/Q8k12R7D/oUl9
-4srH0EJ6Y77GgPuPPEQpQYO6ecHiMg==
-=e7Eb
------END PGP SIGNATURE-----
-
---9l24NVCWtSuIVIod--
