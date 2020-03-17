@@ -2,130 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2CDA188491
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 13:55:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7D01884FF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2020 14:12:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725957AbgCQMzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Mar 2020 08:55:22 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:17611 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725995AbgCQMzW (ORCPT
+        id S1727133AbgCQNMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Mar 2020 09:12:10 -0400
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.114]:38498 "EHLO
+        mail1.bemta26.messagelabs.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726187AbgCQNMJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Mar 2020 08:55:22 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1584449722; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=GjbOAVBonUachoEYynZJyqOqo/SneyKPARmLiqRE1nc=;
- b=HvdgHWVTZZ9t13i1Ovfcz+I1tGA9+mQcsPaTzl63RbrvnOM/ZUHI5wVD7PPtIH/kePaKnbl9
- ycVlx+K2XcnwvIecGP4QEuHAUry+tqNYa80RSUy9ar4DW0SCf6xr/3hBqJ94TpUzX5duIUf3
- 9Ki9HUf7YHb4w+s89yHcNiPbj1E=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e70c8a9.7f870ab8da78-smtp-out-n03;
- Tue, 17 Mar 2020 12:55:05 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 507C8C43637; Tue, 17 Mar 2020 12:55:04 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 604C1C433BA;
-        Tue, 17 Mar 2020 12:55:03 +0000 (UTC)
+        Tue, 17 Mar 2020 09:12:09 -0400
+Received: from [100.113.4.131] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-3.bemta.az-b.eu-central-1.aws.symcld.net id B2/09-40261-5ACC07E5; Tue, 17 Mar 2020 13:12:05 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAIsWRWlGSWpSXmKPExsVy8MN7Xd0lZwr
+  iDBrmmFjMOd/CYjH/yDlWi8OLXjBaNC9ez2Zx/+tRRoubn76xWlzeNYfNon3jbFaLpdcvMlm8
+  /9TJZNG69wi7xf89O9gtfu6ax2Jxe+JkRgc+jzXz1jB6bFl5k8lj56y77B6bVnWyedy5tofNY
+  //cNewe/X8NPD5vkgvgiGLNzEvKr0hgzZh06SVTwRf2imvn1jA2ML5n7WLk4hASWMsoMWfBF6
+  YuRk4gp1JiUf8bVhCbV8BUYuaqB2BxNgEdiUcz14PZLAKqEps2LWQHsYUFrCTubd7NBDJIROA
+  ks0Tnva8sIA6zwDRGiT0fDzNDTBKUODnzCQuIzSwgIXHwxQtmiG1aEufWrGKcwMg9C0nZLCRl
+  CxiZVjFaJhVlpmeU5CZm5ugaGhjoGhoa65rqGhpb6iVW6SbppZbqJqfmlRQlAmX1EsuL9Yorc
+  5NzUvTyUks2MQIDP6WQtXsH46e17/UOMUpyMCmJ8gbPKYgT4kvKT6nMSCzOiC8qzUktPsQow8
+  GhJMGreRooJ1iUmp5akZaZA4xCmLQEB4+SCG/3KaA0b3FBYm5xZjpE6hSjLsf193uXMgux5OX
+  npUqJ8y4HKRIAKcoozYMbAUsIlxhlpYR5GRkYGIR4ClKLcjNLUOVfMYpzMCoJ87aAXMKTmVcC
+  t+kV0BFMQEdUbMgHOaIkESEl1cDEzJsSdT/tAoOMwOaAF53aD37cjz2zX/Wuaq4Y+w0jXZ1/+
+  +umMB7v+W+aG+kvovD89N9Jl5nmLWlhmi0kYnrfsTcvOPv0RWHDL44tm3iVVYRntGxcuLr44N
+  PGi/PLX5acb7g2a8q7k0GfFxRobp1WGrx0ao67+PZz93/Jbjj1vLfmdF1iYMGlprVyXk+tA6X
+  0n29YUle2aefazVX2R8+7Br8yE+4vqOoIl1BctC7nkJ5S813WSZf7Gl35H20RamXVOXyv8KB3
+  jDW/2pU9mtlPlpxYJCkkt/POg4Kmj5Pq5cOyltZcESlSi5x9rWMO95G07MJaU+Vrq3ef7OvVD
+  Y3tT1WubL4aZZsT35H4IEiJpTgj0VCLuag4EQAutONZgwMAAA==
+X-Env-Sender: roy.im.opensource@diasemi.com
+X-Msg-Ref: server-18.tower-246.messagelabs.com!1584450724!1103421!1
+X-Originating-IP: [193.240.239.45]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.50.1; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 9017 invoked from network); 17 Mar 2020 13:12:04 -0000
+Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
+  by server-18.tower-246.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 17 Mar 2020 13:12:04 -0000
+Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
+ NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
+ 14.3.468.0; Tue, 17 Mar 2020 14:12:03 +0100
+Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
+ E050913F671; Tue, 17 Mar 2020 22:12:01 +0900 (KST)
+Message-ID: <cover.1584445730.git.Roy.Im@diasemi.com>
+From:   Roy Im <roy.im.opensource@diasemi.com>
+Date:   Tue, 17 Mar 2020 20:48:50 +0900
+Subject: [PATCH V11 0/3]  da7280: haptic driver submission
+To:     "David S. Miller" <davem@davemloft.net>,
+        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     Support Opensource <support.opensource@diasemi.com>,
+        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 17 Mar 2020 18:25:03 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?Q?Michael_Turquette_=C2=A0?= <mturquette@baylibre.com>,
-        David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        robh@kernel.org, robh+dt@kernel.org,
-        linux-soc-owner@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] Add modem Clock controller (MSS CC) driver for
- SC7180
-In-Reply-To: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
-References: <1584211798-10332-1-git-send-email-tdas@codeaurora.org>
-Message-ID: <e8bed15b87dda3698e37bfcd09dc3c31@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-03-15 00:19, Taniya Das wrote:
-> [v6]
->  * Combine the Documentation YAML schema and clock IDs for GCC MSS and
->    MSS clocks.
->  * Remove a unnecessary header file inclusion, define the max_registers 
-> for
->    regmap and also update the fw_name to remove _clk suffix.
->  * Update the copyright year.
+This patch adds support for the Dialog DA7280 Haptic driver IC.
 
-Tested-by: Sibi Sankar <sibis@codeaurora.org>
+In this patch set the following is provided:
 
-> 
-> [v5]
->  * Update the clock ID for GCC_MSS_NAV_AXIS_CLK to GCC_MSS_NAV_AXI_CLK
-> 
-> [v4]
->  * Split the GCC MSS clocks and Modem clock driver.
->  * Update mss_regmap_config to const.
->  * Rename the Documentation binding as per the latest convention.
->  * Minor comments of clock-names/clocks properties updated.
-> 
-> [v3]
->   * Add clocks/clock-names required for the MSS clock controller.
->   * Add pm_ops to enable/disable the required dependent clock.
->   * Add parent_data for the MSS clocks.
->   * Update the GCC MSS clocks from _CBCR to _CLK.
-> 
-> [v2]
->   * Update the license for the documentation and fix minor comments in 
-> the
->     YAML bindings.
-> 
-> [v1]
->   * Add driver support for Modem clock controller for SC7180 and also
->     update device tree bindings for the various clocks supported in the
->     clock controller.
-> 
-> Taniya Das (3):
->   dt-bindings: clock: Add YAML schemas for the QCOM MSS clock bindings
->   clk: qcom: gcc: Add support for modem clocks in GCC
->   clk: qcom: Add modem clock controller driver for SC7180
-> 
->  .../devicetree/bindings/clock/qcom,sc7180-mss.yaml |  62 +++++++++
->  drivers/clk/qcom/Kconfig                           |   9 ++
->  drivers/clk/qcom/Makefile                          |   1 +
->  drivers/clk/qcom/gcc-sc7180.c                      |  72 ++++++++++-
->  drivers/clk/qcom/mss-sc7180.c                      | 143 
-> +++++++++++++++++++++
->  include/dt-bindings/clock/qcom,gcc-sc7180.h        |   7 +-
->  include/dt-bindings/clock/qcom,mss-sc7180.h        |  12 ++
->  7 files changed, 304 insertions(+), 2 deletions(-)
->  create mode 100644 
-> Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
->  create mode 100644 drivers/clk/qcom/mss-sc7180.c
->  create mode 100644 include/dt-bindings/clock/qcom,mss-sc7180.h
-> 
-> --
-> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a 
-> member
-> of the Code Aurora Forum, hosted by the  Linux Foundation.
+[PATCH V11 1/3] MAINTAINERS file update for DA7280
+[PATCH V11 2/3] DA7280 DT Binding
+[PATCH V11 3/3] DA7280 Driver
+
+This patch applies against linux-next and v5.5
+
+Thank you,
+Roy Im, Dialog Semiconductor Ltd.
+
+Roy Im (3):
+  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
+  dt-bindings: input: Add document bindings for DA7280
+  Input: new da7280 haptic driver
+
+ .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
+ MAINTAINERS                                        |    2 +
+ drivers/input/misc/Kconfig                         |   13 +
+ drivers/input/misc/Makefile                        |    1 +
+ drivers/input/misc/da7280.c                        | 1898 ++++++++++++++++++++
+ 5 files changed, 2023 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
+ create mode 100644 drivers/input/misc/da7280.c
 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+end-of-patch for PATCH V11
+
