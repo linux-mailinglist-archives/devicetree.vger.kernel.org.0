@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB57D18A6C2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 22:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A911C18A6A5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 22:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726971AbgCRUx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 16:53:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52332 "EHLO mail.kernel.org"
+        id S1727656AbgCRVJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 17:09:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52752 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726619AbgCRUx1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Mar 2020 16:53:27 -0400
+        id S1727241AbgCRUxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Mar 2020 16:53:41 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5756A208CA;
-        Wed, 18 Mar 2020 20:53:26 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9CBD7208FE;
+        Wed, 18 Mar 2020 20:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584564807;
-        bh=uXDGNLCrGr2jksJkSRoXf3F08iWPTsL4n2XmsDF9I/8=;
+        s=default; t=1584564821;
+        bh=5uS4a+5EJm4CyeOijDRc8Zh+DisVODdHPSDxweM/j/U=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0W9CW62ntiqX8cgol8Qxem+r5dXRH0vznfEjueJGnwGl350RNS282Lu/5MRlcU/Ge
-         2o+ybnVieaU0hDLHF5/LPHSejKRh2PZAStmLngJppFhkZiRUAkPr7n0lJ2Th5YW5PY
-         mZz2uKsPnIhX/IyKflu851bz9By+hfgP0rgIrRTc=
+        b=toAxLGlztpQESogpAkn7ob0DdNkvY3Yz0uYUGSAMKb+XuufPDWpskNzwKuwWTFVcZ
+         8OlCHqqxERTVhpOHJHH1Wjhhf5+fOw5NLlPf4QtMaGi+7fuooPpnJ2cDwshfHO+2Jp
+         t8/uSKhyil4necfKWXxl8O2TN4IHxhDpJT3p4gTI=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Anson Huang <Anson.Huang@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 04/84] clk: imx8mn: Fix incorrect clock defines
-Date:   Wed, 18 Mar 2020 16:52:01 -0400
-Message-Id: <20200318205321.16066-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 03/73] clk: imx8mn: Fix incorrect clock defines
+Date:   Wed, 18 Mar 2020 16:52:27 -0400
+Message-Id: <20200318205337.16279-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205321.16066-1-sashal@kernel.org>
-References: <20200318205321.16066-1-sashal@kernel.org>
+In-Reply-To: <20200318205337.16279-1-sashal@kernel.org>
+References: <20200318205337.16279-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -59,7 +59,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
-index 0f2b8423ce1d1..65ac6eb6c7330 100644
+index d7b201652f4cd..0c7c750fc2c41 100644
 --- a/include/dt-bindings/clock/imx8mn-clock.h
 +++ b/include/dt-bindings/clock/imx8mn-clock.h
 @@ -122,8 +122,8 @@
