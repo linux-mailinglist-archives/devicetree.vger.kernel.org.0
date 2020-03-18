@@ -2,111 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65F3F18A324
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 20:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B5118A38A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 21:13:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbgCRT3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 15:29:11 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:36224 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726631AbgCRT3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 15:29:11 -0400
-Received: by mail-wr1-f66.google.com with SMTP id s5so31983602wrg.3;
-        Wed, 18 Mar 2020 12:29:09 -0700 (PDT)
+        id S1726747AbgCRUN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 16:13:28 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42414 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726647AbgCRUN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 16:13:27 -0400
+Received: by mail-oi1-f194.google.com with SMTP id 13so158390oiy.9;
+        Wed, 18 Mar 2020 13:13:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=24spxwKs6/lu06D14Gb2r20D9msuLPFYXhBKgOUGLVY=;
-        b=e/RATo9W4dh73ey1VeO1DFTpBsoaeBO/sb3+wu9I5BZ4DnG6xs/Fzvnqv2+wU6o+bK
-         CB5yNr5Vt+FtbsHgYSE80t+Txf8NJPHdqDgPHfxh0bXiU+wgCkJrpmm/s87WIG0TWiK6
-         zOamz7BEEoj4xtqAFGCOFl48gQXf49BoXuyZiaP71lJH8bfxd3FfjAbInUrV4LILb23p
-         o/uv5iv2aS1FePjcgLw4sIER9Ek+zIVXvcGamxqobtmqU90tdvFFokcSBeG+3i2U1i47
-         MKPY+6bvDkp9oAvYPOo4a5NmX2JMV4Tc/oIg0R77XkWocS63V3xq8RhVEjjnYSIUtX6s
-         gB0g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TTrA+tMwfg5GaaL0pTTB4SX2vmA9Q9FMRW/WsoCZ0JE=;
+        b=EdyaXSK/9dSzcuY7KwTimocBCtQucM4yN4ilyd0nhsZPKf/UZPVgHsa27qIqIEWXnQ
+         cPh0Eqo1ASE1ekQGfsFtJNbZhhy1L/klvGKLYsRpvUQhWP06l5H7cwN0ynA4d7cnjgB9
+         +mSQIHNkMZW8leB3bfjIIfD9iUaGIpkiVUeiZ526JEb9RorazGGJUyLQGtYJ1Rp9Vngi
+         XiuI7qVILh/vxu/878w2zvYPf99V8I/i1Fon1swKN8rVHN1BILMMtig7NlQzyC2xR3Vl
+         90HSAqD4+MRRWe0jOLDzen4quH5t9LZP3htJmM24EpiC7E4DvRe4sti7AhcEdUghPqIK
+         ZVag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=24spxwKs6/lu06D14Gb2r20D9msuLPFYXhBKgOUGLVY=;
-        b=cTd+nQYOboVkImHxTv/z1rlRKrrDl1txaY27PxdLyFZj9k8LKwBm7zvgwpDQ8weO03
-         2OOCuMpye2WDeqskwkItdjXAYN+ZIGT+MPdhm3VqKsixVWiM50U6bYAQtssPwFF4Uq8A
-         XzI/ZG+trgMYYjVska39XjiUEZTMcR+djiDiT5wHoD5OSRDSxHokkBZT5otWm8ODkbQo
-         eP75wDY7T5v5mBJ3DluRs2TQpA6ebm8/3iqWJfIhe9cX0AO87+Cjs70AKcPLQwsOTaV3
-         QiwoYjgSwHDKcg2+49ZpRfZV7f9wgfNDCiJZYF0unVfoVn9Sk2dHz4jjaZK0DQJ30u3Z
-         FmAA==
-X-Gm-Message-State: ANhLgQ2greHB0cNh0ykJTX5gCXZWkB1MDVNQ0w5G19ocHP23iwwoVKov
-        eYny+U/uzugCQdwEYeavMYg=
-X-Google-Smtp-Source: ADFU+vuJAKgOP6N0WJCkC/0D+fPS5480Ytml+vLa/YcsAurBD7mGJpj/3MStcWaMC+osRkDc+h/ZnA==
-X-Received: by 2002:adf:9b96:: with SMTP id d22mr7727492wrc.249.1584559749269;
-        Wed, 18 Mar 2020 12:29:09 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id s131sm5333728wmf.35.2020.03.18.12.29.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 18 Mar 2020 12:29:08 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     kishon@ti.com
-Cc:     heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 2/2] phy: phy-rockchip-inno-usb2: remove support for rockchip,rk3366-usb2phy
-Date:   Wed, 18 Mar 2020 20:29:01 +0100
-Message-Id: <20200318192901.5023-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200318192901.5023-1-jbx6244@gmail.com>
-References: <20200318192901.5023-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TTrA+tMwfg5GaaL0pTTB4SX2vmA9Q9FMRW/WsoCZ0JE=;
+        b=ekdjUyFQv2TSMcoOYLYe9YJcq4hwSQZM4jcNX3jjjug/alRE/pMZGcnMhKi6qxWYm8
+         s19DRdCoZAjj++czh1IdTQIPfulOAFIO0pjmoUogbRutOvo3P9zmoFuhJIScr9yuIM7H
+         LiPFmlt3bLaEsfVe9Io0UP1sMtlOr297ax5ZdBhvP6JpYKexSVx8h7Z19P+hFHT0uQ5U
+         0TbLIKFECs2B99Stk787Ox7zS2QZEIuPJAwUvXrLcbNv9M3JfR9iDm643kOniuCaP3rC
+         GXvs6NE8BFXUyxA5E+JtjfsodSJnTih8OvHzSR/EAFh5iNlVJ27OsLztNL8VIsy6+Tnw
+         AC9Q==
+X-Gm-Message-State: ANhLgQ3CT6GATjWRYXWJgU3Y5G2ceYxba5LOOu3bFvru0B56hu1ruLgn
+        +4u4eD5MZpgdKJ1k4jg/+CQUuaZoPPNeiR0ls4M=
+X-Google-Smtp-Source: ADFU+vufu0AMNL2diBAQJHFss43B9g2oEZMBku7DzmuqAqCY+mQmcA2SGVTBSVyu9mf3O/z+lZkGA1kzO8O/MIO5lqs=
+X-Received: by 2002:aca:7512:: with SMTP id q18mr4630250oic.71.1584562407110;
+ Wed, 18 Mar 2020 13:13:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <1584133954-6953-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1584133954-6953-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200313212012.GL4751@pendragon.ideasonboard.com> <OSBPR01MB35905D6D72DCBF154FCF7C88AAFA0@OSBPR01MB3590.jpnprd01.prod.outlook.com>
+ <20200313212717.GO4751@pendragon.ideasonboard.com>
+In-Reply-To: <20200313212717.GO4751@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 18 Mar 2020 20:13:00 +0000
+Message-ID: <CA+V-a8veXbwMrda8UEu2mN6gGgrBJA8Mp7gdN7Q3-iXNw9c4pg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] media: dt-bindings: media: i2c: Switch to assigned-clock-rates
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'phy-rockchip-inno-usb2.txt' is updated to yaml, whereby
-the compatible string 'rockchip,rk3366-usb2phy' was removed,
-because it's not in use by a dts file, so remove support
-in the code as well.
+Hi Laurent,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 20 --------------------
- 1 file changed, 20 deletions(-)
+On Fri, Mar 13, 2020 at 9:27 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Mar 13, 2020 at 09:25:01PM +0000, Prabhakar Mahadev Lad wrote:
+> > On Sent: 13 March 2020 21:20, Laurent Pinchart wrote:
+> > > On Fri, Mar 13, 2020 at 09:12:31PM +0000, Lad Prabhakar wrote:
+> > > > Use assigned-clock-rates to specify the clock rate. Also mark
+> > > > clock-frequency property as deprecated.
+> > >
+> > > I would phrase it the other way around, this patch mainly deprecates clock-
+> > > frequency, and as a side effect recommends usage of assigned-clock-rates.
+> > >
+> > > "Deprecate usage of the clock-frequency propertly. The preferred method
+> > > to set clock rates is to use assigned-clock-rates."
+> >
+> > Agreed will do that.
+> >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/media/i2c/ov5645.txt | 5 +++--
+> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > index 72ad992..e62fe82 100644
+> > > > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > @@ -8,7 +8,7 @@ Required Properties:
+> > > >  - compatible: Value should be "ovti,ov5645".
+> > > >  - clocks: Reference to the xclk clock.
+> > > >  - clock-names: Should be "xclk".
+> > > > -- clock-frequency: Frequency of the xclk clock.
+> > > > +- clock-frequency (deprecated): Frequency of the xclk clock.
+> > >
+> > > I would drop this completely. Drivers need to ensure backward compatibility,
+> > > but DT bindings should only document the latest version, the history is
+> > > available in git.
+> > >
+> > Sure will drop it.
+> >
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >
+> > > While at it, can I enlist you to convert these bindings to yaml ? :-)
+> > >
+> > Sure will do the honours , will make sure yaml patch is ontop of this patch too.
+>
+Shall I enlist you as the maintainer  in the json-schema ?
+dt_binding_check says  'maintainers' is a required property.
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index 680cc0c88..dcdb5589b 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -1299,25 +1299,6 @@ static const struct rockchip_usb2phy_cfg rk3328_phy_cfgs[] = {
- 	{ /* sentinel */ }
- };
- 
--static const struct rockchip_usb2phy_cfg rk3366_phy_cfgs[] = {
--	{
--		.reg = 0x700,
--		.num_ports	= 2,
--		.clkout_ctl	= { 0x0724, 15, 15, 1, 0 },
--		.port_cfgs	= {
--			[USB2PHY_PORT_HOST] = {
--				.phy_sus	= { 0x0728, 15, 0, 0, 0x1d1 },
--				.ls_det_en	= { 0x0680, 4, 4, 0, 1 },
--				.ls_det_st	= { 0x0690, 4, 4, 0, 1 },
--				.ls_det_clr	= { 0x06a0, 4, 4, 0, 1 },
--				.utmi_ls	= { 0x049c, 14, 13, 0, 1 },
--				.utmi_hstdet	= { 0x049c, 12, 12, 0, 1 }
--			}
--		},
--	},
--	{ /* sentinel */ }
--};
--
- static const struct rockchip_usb2phy_cfg rk3399_phy_cfgs[] = {
- 	{
- 		.reg		= 0xe450,
-@@ -1426,7 +1407,6 @@ static const struct of_device_id rockchip_usb2phy_dt_match[] = {
- 	{ .compatible = "rockchip,px30-usb2phy", .data = &rk3328_phy_cfgs },
- 	{ .compatible = "rockchip,rk3228-usb2phy", .data = &rk3228_phy_cfgs },
- 	{ .compatible = "rockchip,rk3328-usb2phy", .data = &rk3328_phy_cfgs },
--	{ .compatible = "rockchip,rk3366-usb2phy", .data = &rk3366_phy_cfgs },
- 	{ .compatible = "rockchip,rk3399-usb2phy", .data = &rk3399_phy_cfgs },
- 	{ .compatible = "rockchip,rv1108-usb2phy", .data = &rv1108_phy_cfgs },
- 	{}
--- 
-2.11.0
+Cheers,
+--Prabhakar Lad
 
+> Thank you :-)
+>
+> > > >  - enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> > > >    to the hardware pin PWDNB which is physically active low.
+> > > >  - reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> > > > @@ -37,7 +37,8 @@ Example:
+> > > >
+> > > >  clocks = <&clks 200>;
+> > > >  clock-names = "xclk";
+> > > > -clock-frequency = <24000000>;
+> > > > +assigned-clocks = <&clks 200>;
+> > > > +assigned-clock-rates = <24000000>;
+> > > >
+> > > >  vdddo-supply = <&camera_dovdd_1v8>;
+> > > >  vdda-supply = <&camera_avdd_2v8>;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
