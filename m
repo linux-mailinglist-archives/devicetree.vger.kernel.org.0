@@ -2,211 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B56B3189EDB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 16:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F745189F38
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 16:10:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727279AbgCRPFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 11:05:08 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:46128 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726866AbgCRPFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 11:05:07 -0400
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B831FF9;
-        Wed, 18 Mar 2020 16:05:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1584543905;
-        bh=4XeE4TEsnH5MYOX96WeQj61o+elhBI7bp3OtoVjeJgo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=agETx32Y3rQ/mCj8O63i2CwrNmnxqYTx9vYR48w+UMxhVyGx9Fav95ZgeA1HYb/BA
-         84KzQ0nPck5ouJ8rh5/usYno1MaH0UAQ8yxTQbNm5XRmFyk9ivC3O6FJ8X+zMq7SCs
-         d8Mai5VkjVHsAuFAmskPkvEvEOrWwd4hdgsIMMsQ=
-Date:   Wed, 18 Mar 2020 17:05:00 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: phy: Add DT bindings for Xilinx
- ZynqMP PSGTR PHY
-Message-ID: <20200318150500.GO4733@pendragon.ideasonboard.com>
-References: <20200311103252.17514-1-laurent.pinchart@ideasonboard.com>
- <20200311103252.17514-2-laurent.pinchart@ideasonboard.com>
- <57072adb-9967-f5d1-7a3d-af713e8c35cd@ti.com>
+        id S1727308AbgCRPJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 11:09:19 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:33784 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727291AbgCRPJT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Mar 2020 11:09:19 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 0E6F7FB05;
+        Wed, 18 Mar 2020 16:09:14 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 1bdfLMJNkSUx; Wed, 18 Mar 2020 16:09:09 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id A5F0A412BE; Wed, 18 Mar 2020 16:09:08 +0100 (CET)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v9 0/2] drm: bridge: Add NWL MIPI DSI host controller support
+Date:   Wed, 18 Mar 2020 16:09:06 +0100
+Message-Id: <cover.1584544065.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <57072adb-9967-f5d1-7a3d-af713e8c35cd@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kishon,
+This adds initial support for the NWL MIPI DSI Host controller found on i.MX8
+SoCs.
 
-On Fri, Mar 13, 2020 at 04:44:04PM +0530, Kishon Vijay Abraham I wrote:
-> +Rob
+It adds support for the i.MX8MQ but the same IP core can also be found on e.g.
+i.MX8QXP. I added the necessary hooks to support other imx8 variants but since
+I only have imx8mq boards to test I omitted the platform data for other SoCs.
 
-Any comment regarding patch 2/3 ? :-) You mentioned in your review of v5
-that the exported symbols were a no-go, and that is now fixed. The
-driver uses the PHY .configure() API to configure DisplayPort
-parameters, .power_on() now waits for the PHY PLL to lock, and the
-USB-specific exported symbols were removed with reset support being
-moved to the PHY consumers (there's no reason for the PHY driver to
-reset the PHY consumers, that's a layering violation).
+The code is based on NXPs BSP so I added Robert Chiras as Co-authored-by.
 
-> On 11/03/20 4:02 pm, Laurent Pinchart wrote:
-> > From: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-> > 
-> > Add DT bindings for the Xilinx ZynqMP PHY. ZynqMP SoCs have a High Speed
-> > Processing System Gigabit Transceiver which provides PHY capabilities to
-> > USB, SATA, PCIE, Display Port and Ehernet SGMII controllers.
-> > 
-> > Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v5:
-> > 
-> > - Document clocks and clock-names properties
-> > - Document resets and reset-names properties
-> > - Replace subnodes with an additional entry in the PHY cells
-> > - Drop lane frequency PHY cell, replaced by reference clock phandle
-> > - Convert bindings to YAML
-> > - Reword the subject line
-> > - Drop Rob's R-b as the bindings have significantly changed
-> > - Drop resets and reset-names properties
-> > ---
-> >  .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 104 ++++++++++++++++++
-> >  include/dt-bindings/phy/phy.h                 |   1 +
-> >  2 files changed, 105 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> > new file mode 100644
-> > index 000000000000..9948e4a60e45
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> > @@ -0,0 +1,104 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/xlnx,zynqmp-psgtr.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Xilinx ZynqMP Gigabit Transceiver PHY Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > +
-> > +description: |
-> > +  This binding describes the Xilinx ZynqMP Gigabit Transceiver (GTR) PHY. The
-> > +  GTR provides four lanes and is used by USB, SATA, PCIE, Display port and
-> > +  Ethernet SGMII controllers.
-> > +
-> > +properties:
-> > +  "#phy-cells":
-> > +    const: 4
-> > +    description: |
-> > +      The cells contain the following arguments.
-> > +
-> > +      - description: The GTR lane
-> > +        minimum: 0
-> > +        maximum: 3
-> > +      - description: The PHY type
-> > +        enum:
-> > +          - PHY_TYPE_DP
-> > +          - PHY_TYPE_PCIE
-> > +          - PHY_TYPE_SATA
-> > +          - PHY_TYPE_SGMII
-> > +          - PHY_TYPE_USB
-> > +      - description: The PHY instance
-> > +        minimum: 0
-> > +        maximum: 1 # for DP, SATA or USB
-> > +        maximum: 3 # for PCIE or SGMII
-> > +      - description: The reference clock number
-> > +        minimum: 0
-> > +        maximum: 3
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - xlnx,zynqmp-psgtr-v1.1
-> > +      - xlnx,zynqmp-psgtr
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +    description: |
-> > +      Clock for each PS_MGTREFCLK[0-3] reference clock input. Unconnected
-> > +      inputs shall not have an entry.
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +    items:
-> > +      pattern: "^ref[0-3]$"
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: SERDES registers block
-> > +      - description: SIOU registers block
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: serdes
-> > +      - const: siou
-> > +
-> > +required:
-> > +  - "#phy-cells"
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      const: xlnx,zynqmp-psgtr
-> > +
-> > +then:
-> > +  properties:
-> > +    xlnx,tx-termination-fix:
-> > +      description: |
-> > +        Include this for fixing functional issue with the TX termination
-> > +        resistance in GT, which can be out of spec for the XCZU9EG silicon
-> > +        version.
-> > +      type: boolean
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    phy: phy@fd400000 {
-> > +      compatible = "xlnx,zynqmp-psgtr-v1.1";
-> > +      reg = <0x0 0xfd400000 0x0 0x40000>,
-> > +            <0x0 0xfd3d0000 0x0 0x1000>;
-> > +      reg-names = "serdes", "siou";
-> > +      clocks = <&refclks 3>, <&refclks 2>, <&refclks 0>;
-> > +      clock-names = "ref1", "ref2", "ref3";
-> > +      #phy-cells = <4>;
-> > +      status = "okay";
-> > +    };
-> > +
-> > +...
-> > diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
-> > index 1f3f866fae7b..f6bc83b66ae9 100644
-> > --- a/include/dt-bindings/phy/phy.h
-> > +++ b/include/dt-bindings/phy/phy.h
-> > @@ -17,5 +17,6 @@
-> >  #define PHY_TYPE_USB3		4
-> >  #define PHY_TYPE_UFS		5
-> >  #define PHY_TYPE_DP		6
-> > +#define PHY_TYPE_SGMII		7
-> >  
-> >  #endif /* _DT_BINDINGS_PHY */
-> > 
+The most notable changes over the BSP driver are
+ - Calculate HS mode timing from phy_configure_opts_mipi_dphy
+ - Perform all clock setup via DT
+ - Merge nwl-imx and nwl drivers
+ - Add B0 silion revision quirk
+ - become a bridge driver to hook into mxsfb / dcss
+   imx-display-subsystem so it makes sense to make it drive a bridge for dsi as
+   well).
+ - Use panel_bridge to attach the panel
+ - Use multiplex framework instead of accessing syscon directly
+
+This has been tested on a Librem 5 devkit using mxsfb with Robert's patches[1]
+and the mainline rocktech-jh057n00900 DSI panel driver on next-20200226 and on
+the Librem5 with the a Mantix MLAF057WE51-X DSI panel driver (not yet mainline)
+The DCSS (submitted for mainline inclusion now too) can also act as input
+source.
+
+Changes from v9:
+- Per review comments by Robert Chiras
+  https://lore.kernel.org/dri-devel/1575366594.6423.61.camel@nxp.com/
+  - don't mix DSI host and bridge initialization
+  - only select output source once
+  - defer probe when panel is not ready to fix usage as a module
+  - use correct reset sequence as described by Robert
+    (and provided by NWL)
+  - use mode->clock instead of mode->crtc_clock
+- Add tested by from Martin Kepplinger, thanks!
+- Drop platform specific data (as suggested previously by Laurent Pinchart and
+  Andrzej Hajda) since imx8q* needs another set of abstractions with the new
+  reset sequence and that's easier to do when adding imx8q* support rather then
+  adding wrong abstraction now.
+- Update bindings to use proper clock and irq names to make the example match
+  reality more closely.
+- Use `fallthrough;` instead of /* Fall through */ in switch statements
+
+Changes from v8:
+- Drop reset quirk. It's not needed with mxsfb and sometimes triggers a shifted display.
+
+Changes from v7:
+- Per review comments by Andrzej Hajda
+  https://lore.kernel.org/linux-arm-kernel/c86b7ca2-7799-eafd-c380-e4b551520837@samsung.com/
+  - Drop spare empty line
+  - handle nwl_dsi_write errors
+  - better handle read errors
+  - unwind in case of error in nwl_dsi_enable
+  - use bridge_to_dsi() instead of accessing driver_private
+  - don't log on -EPROBEDEFER when fething the reset controller
+  - use endpoint number to determine input
+- Spotted by kbuild test robot <lkp@intel.com>
+  https://lore.kernel.org/linux-arm-kernel/201909230644.qfSKbNf9%25lkp@intel.com/
+  Use signed return type for nwl_dsi_get_dpi_pixel_format
+- Drop connector type from drm_panel_bridge_add
+- Don't forget to set an error value on dsi reads
+
+Changes from v5:
+- Per review comments by Andrzej Hajda
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/235281.html
+  - Fix include file ordering
+  - Add a comment to nwl_dsi_platform_data that will allow to add support
+    at least for the i.MX8QM
+  - Merge driver into a single file plus the register defs in a separate header
+- Make more functions and structs static
+
+Changes from v4:
+- Collect Reviewed-by: from Rob Herring, thanks!
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233979.html
+- Spotted by kbuild test robot <lkp@intel.com>
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233860.html
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233863.html
+  - fix format string for size_t
+  - Use DIV64_U64_ROUND_UP to fix build on 32 bit architectures
+    We can't use simple shift sind d and n are similar in size and
+    we need full precision
+- Fix debug cfg_t_post debug print out
+- Avoid PSEC_PER_SEC
+- Move timeout / overflow handling out of nwl_dsi_finish_transmission,
+  it would never end up being reported since the call to the function
+  was guarded by flags.
+- Drop 'support for' from KConfig title to make it match the other
+  drivers in that submenu
+
+Changes from v3:
+- Per review comments by Robert Chiras
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/232580.html
+  - Add Robert's {Signed-off,Tested}-by:
+  - Respect number of lanes when calculting bandwidth limits
+  - Drop duplicate NWL_DSI_ENABLE_MULT_PKTS setup
+- Per testing by Rober Chiras
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/233688.html
+  - Drop duplicate (and too early) drm_bridge_add() in nwl_dir_probe() that
+    made mxsfb fail to connect to the bridge since the panel_bridge was not up
+    yet. drm_bridge_add() happens in nwl_dsi_host_attach() where after the
+    panel_bridge was set up.
+- Per review comments by Rob Herring on bindings
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/233196.html
+  - drop description from power-domains and resets
+  - allow BSD 2 clause license as well
+  - make ports more specific
+  - add #address-cells, #size-cells as required
+  - use additionalProperties
+  - panel is of type object
+
+Changes from v2:
+- Per review comments by Rob Herring
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230448.html
+  - bindings:
+    - Simplify by restricting to fsl,imx8mq-nwl-dsi
+    - document reset lines
+    - add port@{0,1}
+    - use a real compatible string for the panel
+    - resets are required
+- Per review comments by Arnd Bergmann
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230868.html
+  - Don't access iomuxc_gpr regs directly. This allows us to drop the
+    first patch in the series with the iomuxc_gpr field defines.
+- Per review comments by Laurent Pinchart
+  Fix wording in bindings
+- Add mux-controls to bindings
+- Don't print error message on dphy probe deferral
+
+Changes from v1:
+- Per review comments by Sam Ravnborg
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228130.html
+  - Change binding docs to YAML
+  - build: Don't always visit imx-nwl/
+  - build: Add header-test-y
+  - Sort headers according to DRM convention
+  - Use drm_display_mode instead of videmode
+- Per review comments by Fabio Estevam
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228299.html
+  - Don't restrict build to ARCH_MXC
+  - Drop unused includes
+  - Drop unreachable code in imx_nwl_dsi_bridge_mode_fixup()
+  - Drop remaining calls of dev_err() and use DRM_DEV_ERR()
+    consistently.
+  - Use devm_platform_ioremap_resource()
+  - Drop devm_free_irq() in probe() error path
+  - Use single line comments where sufficient
+  - Use <linux/time64.h> instead of defining USEC_PER_SEC
+  - Make input source select imx8 specific
+  - Drop <asm/unaligned.h> inclusion (after removal of get_unaligned_le32)
+  - Drop all EXPORT_SYMBOL_GPL() for functions used in the same module
+    but different source files.
+  - Drop nwl_dsi_enable_{rx,tx}_clock() by invoking clk_prepare_enable()
+    directly
+  - Remove pointless comment
+- Laurent Pinchart
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228313.html
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228308.html
+  - Drop (on iMX8MQ) unused csr regmap
+  - Use NWL_MAX_PLATFORM_CLOCKS everywhere
+  - Drop get_unaligned_le32() usage
+  - remove duplicate 'for the' in binding docs
+  - Don't include unused <linux/clk-provider.h>
+  - Don't include unused <linux/component.h>
+  - Drop dpms_mode for tracking state, trust the drm layer on that
+  - Use pm_runtime_put() instead of pm_runtime_put_sync()
+  - Don't overwrite encoder type
+  - Make imx_nwl_platform_data const
+  - Use the reset controller API instead of open coding that platform specific
+    part
+  - Use <linux/bitfield.h> intead of making up our own defines
+  - name mipi_dsi_transfer less generic: nwl_dsi_transfer
+  - ensure clean in .remove by calling mipi_dsi_host_unregister.
+  - prefix constants by NWL_DSI_
+  - properly format transfer_direction enum
+  - simplify platform clock handling
+  - Don't modify state in mode_fixup() and use mode_set() instead
+  - Drop bridge detach(), already handle by nwl_dsi_host_detach()
+  - Drop USE_*_QUIRK() macros
+- Drop (for now) unused clock defnitions. 'pixel' and 'bypass' clock will be
+  used for i.MX8 SoCs but since they're unused atm drop the definitions - but
+  keep the logic to enable/disable several clocks in place since we know we'll
+  need it in the future.
+
+Changes from v0:
+- Add quirk for IMQ8MQ silicon B0 revision to not mess with the
+  system reset controller on power down since enable() won't work
+  otherwise.
+- Drop devm_free_irq() handled by the device driver core
+- Disable tx esc clock after the phy power down to unbreak
+  disable/enable (unblank/blank)
+- Add ports to dt binding docs
+- Select GENERIC_PHY_MIPI_DPHY instead of GENERIC_PHY for
+  phy_mipi_dphy_get_default_config
+- Select DRM_MIPI_DSI
+- Include drm_print.h to fix build on next-20190408
+- Drop some debugging messages
+- Newline terminate all DRM_ printouts
+- Turn component driver into a drm bridge
+
+[0]: https://lists.freedesktop.org/archives/dri-devel/2019-May/219484.html
+[1]: https://patchwork.freedesktop.org/series/62822/
+
+Guido Günther (2):
+  dt-bindings: display/bridge: Add binding for NWL mipi dsi host
+    controller
+  drm/bridge: Add NWL MIPI DSI host controller support
+
+ .../bindings/display/bridge/nwl-dsi.yaml      |  216 +++
+ drivers/gpu/drm/bridge/Kconfig                |   16 +
+ drivers/gpu/drm/bridge/Makefile               |    3 +
+ drivers/gpu/drm/bridge/nwl-dsi.c              | 1213 +++++++++++++++++
+ drivers/gpu/drm/bridge/nwl-dsi.h              |  144 ++
+ 5 files changed, 1592 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi.c
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi.h
 
 -- 
-Regards,
+2.23.0
 
-Laurent Pinchart
