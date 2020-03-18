@@ -2,279 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C5D518A31C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 20:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22CA118A327
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 20:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbgCRT06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 15:26:58 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:50770 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbgCRT06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 15:26:58 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 726C880607;
-        Wed, 18 Mar 2020 20:26:53 +0100 (CET)
-Date:   Wed, 18 Mar 2020 20:26:51 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Michal Simek <michal.simek@xilinx.com>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Satish Kumar Nagireddy <SATISHNA@xilinx.com>
-Subject: Re: [PATCH v11 1/5] dt-bindings: display: xlnx: Add ZynqMP DP
- subsystem bindings
-Message-ID: <20200318192651.GA28612@ravnborg.org>
-References: <20200318153728.25843-1-laurent.pinchart@ideasonboard.com>
- <20200318153728.25843-2-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200318153728.25843-2-laurent.pinchart@ideasonboard.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=Am4ss40yAAAA:8
-        a=P1BnusSwAAAA:8 a=VwQbUJbxAAAA:8 a=7gkXJVJtAAAA:8 a=gEfo2CItAAAA:8
-        a=e5mUnYsNAAAA:8 a=kTn6tiXFuQMK-JzNtnEA:9 a=CjuIK1q_8ugA:10
-        a=lf-hbUz_c89dky27wAWH:22 a=D0XLA9XvdZm18NrgonBM:22
-        a=AjGcO6oz07-iQ99wixmX:22 a=E9Po1WZjFZOl8hwRPBS3:22
-        a=sptkURWiP4Gy88Gu7hUp:22 a=Vxmtnl_E_bksehYqCbjh:22
+        id S1726810AbgCRT3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 15:29:22 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:53257 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726631AbgCRT3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 15:29:22 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 25so4831661wmk.3;
+        Wed, 18 Mar 2020 12:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=KdMSCAwSZJxCt921knCES5wm2vjg59UHOmJpntfpsrQ=;
+        b=sui7jwdNSHCvkLhFYYQSkI0ZjDuWgLtUu5b759IGsMx1wv9Z9N9ZzdJqIcgi4ib/6J
+         bawhTKLg1nuRNdm7jXAdEchx2sS6sjhljMNMLJLUZ6E1gmLvU5uJsBHOkt5VzJ8wLcQu
+         MRviLgH7pqcRjfo7c1AX3tyzH4xlEJNaLf/qRMknWGShNp2BE9I3G5UPF3lhSRPTkz6u
+         +XSm4UQROFEOuwXX3YeB3JZahiasVUowWRwWNa7Oy0Il+0/aY4UyRiiznby5TJGiDEsm
+         keY7btWvt8kAO+BPgKaEWLQIc6Lsfn0bU46CESNP3tQozftD1cXg+BJoypD7CmcupCQE
+         cQXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=KdMSCAwSZJxCt921knCES5wm2vjg59UHOmJpntfpsrQ=;
+        b=fSsHf6XaXlhCvkMUXHcfZaJXudacjHpPFApS3CmwBXg0RiaWtuaDXYfGNBYTzxWYAx
+         l3VLi7wWDSmZydr/irnuShmO3UD3wLUIwLTgzukFjscXl6s9nZE1j6rqrdjAYqemHbjj
+         NOV+oo+x33dk8OzUVY1GbLJ8fGdPgZOmM96omMULxGB4pSV+DSPoD6sGQYeNcHqKV5nS
+         cgAsuovjFlWZtyA29vhMdYN2SizI2QGXqg4lJLBYRhnfuxEPN9uI89GlucizIjix3Lc5
+         +xmo/uLiVgxXVcfgjXb7QEMAmsC28sGK9PgO1K43RH1gwzkkJmdxcI2kpT4xYEkSCbqh
+         g5YQ==
+X-Gm-Message-State: ANhLgQ17+oCrtncFOkMUV+U/bHKVNsvwXV6SOfUg63hjcanBYY5lZneS
+        MJICJGIEGUK9/oPXa8U0W9M=
+X-Google-Smtp-Source: ADFU+vtNuNfl3UuIaIj8ul1aotqzBFUnCK8di4ve2AE4ngboh5WtUUw+uyNnpNWlHDERAppMlduMsA==
+X-Received: by 2002:a7b:cb50:: with SMTP id v16mr6784337wmj.74.1584559748306;
+        Wed, 18 Mar 2020 12:29:08 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id s131sm5333728wmf.35.2020.03.18.12.29.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 18 Mar 2020 12:29:07 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     kishon@ti.com
+Cc:     heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 1/2] dt-bindings: phy: convert phy-rockchip-inno-usb2 bindings to yaml
+Date:   Wed, 18 Mar 2020 20:29:00 +0100
+Message-Id: <20200318192901.5023-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 18, 2020 at 05:37:24PM +0200, Laurent Pinchart wrote:
-> From: Hyun Kwon <hyun.kwon@xilinx.com>
-> 
-> The bindings describe the ZynqMP DP subsystem. They don't support the
-> interface with the programmable logic (FPGA) or audio yet.
-> 
-> Signed-off-by: Hyun Kwon <hyun.kwon@xilinx.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Current dts files for Rockchip with 'usb2-phy' subnodes
+are manually verified. In order to automate this process
+phy-rockchip-inno-usb2.txt has to be converted to yaml.
 
-Bikeshedding - examples with indent on 4 spaces to make them easier to
-read.
+Changed:
+  Removed unused "rockchip,rk3366-usb2phy" support.
+  Replaced example with something that has SoC support
+  in the kernel.
 
-Would it be possible to make this binding: (GPL-2.0-only OR BSD-2-Clause)
-This is preferred for new bindings.
-In this case asking Hyun Kwon should be enough?
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../bindings/phy/phy-rockchip-inno-usb2.txt        |  81 -----------
+ .../bindings/phy/phy-rockchip-inno-usb2.yaml       | 149 +++++++++++++++++++++
+ 2 files changed, 149 insertions(+), 81 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
 
-With or without the suggestions above:
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
+deleted file mode 100644
+index 541f52988..000000000
+--- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
++++ /dev/null
+@@ -1,81 +0,0 @@
+-ROCKCHIP USB2.0 PHY WITH INNO IP BLOCK
+-
+-Required properties (phy (parent) node):
+- - compatible : should be one of the listed compatibles:
+-	* "rockchip,px30-usb2phy"
+-	* "rockchip,rk3228-usb2phy"
+-	* "rockchip,rk3328-usb2phy"
+-	* "rockchip,rk3366-usb2phy"
+-	* "rockchip,rk3399-usb2phy"
+-	* "rockchip,rv1108-usb2phy"
+- - reg : the address offset of grf for usb-phy configuration.
+- - #clock-cells : should be 0.
+- - clock-output-names : specify the 480m output clock name.
+-
+-Optional properties:
+- - clocks : phandle + phy specifier pair, for the input clock of phy.
+- - clock-names : input clock name of phy, must be "phyclk".
+- - assigned-clocks : phandle of usb 480m clock.
+- - assigned-clock-parents : parent of usb 480m clock, select between
+-		 usb-phy output 480m and xin24m.
+-		 Refer to clk/clock-bindings.txt for generic clock
+-		 consumer properties.
+- - rockchip,usbgrf : phandle to the syscon managing the "usb general
+-		 register files". When set driver will request its
+-		 phandle as one companion-grf for some special SoCs
+-		 (e.g RV1108).
+- - extcon : phandle to the extcon device providing the cable state for
+-		 the otg phy.
+-
+-Required nodes : a sub-node is required for each port the phy provides.
+-		 The sub-node name is used to identify host or otg port,
+-		 and shall be the following entries:
+-	* "otg-port" : the name of otg port.
+-	* "host-port" : the name of host port.
+-
+-Required properties (port (child) node):
+- - #phy-cells : must be 0. See ./phy-bindings.txt for details.
+- - interrupts : specify an interrupt for each entry in interrupt-names.
+- - interrupt-names : a list which should be one of the following cases:
+-	Regular case:
+-	* "otg-id" : for the otg id interrupt.
+-	* "otg-bvalid" : for the otg vbus interrupt.
+-	* "linestate" : for the host/otg linestate interrupt.
+-	Some SoCs use one interrupt with the above muxed together, so for these
+-	* "otg-mux" : otg-port interrupt, which mux otg-id/otg-bvalid/linestate
+-		to one.
+-
+-Optional properties:
+- - phy-supply : phandle to a regulator that provides power to VBUS.
+-		See ./phy-bindings.txt for details.
+-
+-Example:
+-
+-grf: syscon@ff770000 {
+-	compatible = "rockchip,rk3366-grf", "syscon", "simple-mfd";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-...
+-
+-	u2phy: usb2-phy@700 {
+-		compatible = "rockchip,rk3366-usb2phy";
+-		reg = <0x700 0x2c>;
+-		#clock-cells = <0>;
+-		clock-output-names = "sclk_otgphy0_480m";
+-
+-		u2phy_otg: otg-port {
+-			#phy-cells = <0>;
+-			interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "otg-id", "otg-bvalid", "linestate";
+-		};
+-
+-		u2phy_host: host-port {
+-			#phy-cells = <0>;
+-			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "linestate";
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+new file mode 100644
+index 000000000..df92ac993
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+@@ -0,0 +1,149 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/phy-rockchip-inno-usb2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip USB2.0 phy with inno IP block
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,px30-usb2phy
++      - const: rockchip,rk3228-usb2phy
++      - const: rockchip,rk3328-usb2phy
++      - const: rockchip,rk3399-usb2phy
++      - const: rockchip,rv1108-usb2phy
++
++  reg:
++    maxItems: 1
++
++  clock-output-names:
++    description:
++      The usb 480m output clock name.
++
++  "#clock-cells":
++    const: 0
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: phyclk
++
++  assigned-clocks:
++    description:
++      Phandle of the usb 480m clock.
++
++  assigned-clock-parents:
++    description:
++      Parent of the usb 480m clock.
++      Select between usb-phy output 480m and xin24m.
++      Refer to clk/clock-bindings.txt for generic clock consumer properties.
++
++  extcon:
++    description:
++      Phandle to the extcon device providing the cable state for the otg phy.
++
++  rockchip,usbgrf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon managing the 'usb general register files'.
++      When set the driver will request its phandle as one companion-grf
++      for some special SoCs (e.g rv1108).
++
++  host-port:
++    type: object
++    additionalProperties: false
++
++    properties:
++      "#phy-cells":
++        const: 0
++
++      interrupts:
++        description: host linestate interrupt
++
++      interrupt-names:
++        const: linestate
++
++      phy-supply:
++        description:
++          Phandle to a regulator that provides power to VBUS.
++          See ./phy-bindings.txt for details.
++
++    required:
++      - "#phy-cells"
++      - interrupts
++      - interrupt-names
++
++  otg-port:
++    type: object
++    additionalProperties: false
++
++    properties:
++      "#phy-cells":
++        const: 0
++
++      interrupts:
++        minItems: 1
++        maxItems: 3
++
++      interrupt-names:
++        oneOf:
++          - const: linestate
++          - const: otg-mux
++          - items:
++            - const: otg-bvalid
++            - const: otg-id
++            - const: linestate
++
++      phy-supply:
++        description:
++          Phandle to a regulator that provides power to VBUS.
++          See ./phy-bindings.txt for details.
++
++    required:
++      - "#phy-cells"
++      - interrupts
++      - interrupt-names
++
++required:
++  - compatible
++  - reg
++  - clock-output-names
++  - "#clock-cells"
++  - host-port
++  - otg-port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    u2phy0: usb2-phy@e450 {
++      compatible = "rockchip,rk3399-usb2phy";
++      reg = <0xe450 0x10>;
++      clocks = <&cru SCLK_USB2PHY0_REF>;
++      clock-names = "phyclk";
++      clock-output-names = "clk_usbphy0_480m";
++      #clock-cells = <0>;
++
++      u2phy0_host: host-port {
++        #phy-cells = <0>;
++        interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH 0>;
++        interrupt-names = "linestate";
++      };
++
++      u2phy0_otg: otg-port {
++        #phy-cells = <0>;
++        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>,
++                     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH 0>,
++                     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH 0>;
++        interrupt-names = "otg-bvalid", "otg-id", "linestate";
++      };
++    };
+-- 
+2.11.0
 
-	Sam
-
-> ---
-> Changes since v10:
-> 
-> - Update example to new PHY DT bindings without subnodes
-> - Add resets property
-> 
-> Changes since v9:
-> 
-> - Fix constraints on clock-names
-> - Document dp_apb_clk as the APB clock, not the AXI clock
-> 
-> Changes since v8:
-> 
-> - Convert to yaml
-> - Rename aclk to dp_apb_clk
-> ---
->  .../display/xlnx/xlnx,zynqmp-dpsub.yaml       | 174 ++++++++++++++++++
->  1 file changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-> new file mode 100644
-> index 000000000000..05e6a14de75c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-> @@ -0,0 +1,174 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/xlnx/xlnx,zynqmp-dpsub.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx ZynqMP DisplayPort Subsystem
-> +
-> +description: |
-> +  The DisplayPort subsystem of Xilinx ZynqMP (Zynq UltraScale+ MPSoC)
-> +  implements the display and audio pipelines based on the DisplayPort v1.2
-> +  standard. The subsystem includes multiple functional blocks as below:
-> +
-> +               +------------------------------------------------------------+
-> +  +--------+   | +----------------+     +-----------+                       |
-> +  | DPDMA  | --->|                | --> |   Video   | Video +-------------+ |
-> +  | 4x vid |   | |                |     | Rendering | -+--> |             | |   +------+
-> +  | 2x aud |   | |  Audio/Video   | --> | Pipeline  |  |    | DisplayPort |---> | PHY0 |
-> +  +--------+   | | Buffer Manager |     +-----------+  |    |   Source    | |   +------+
-> +               | |    and STC     |     +-----------+  |    | Controller  | |   +------+
-> +  Live Video --->|                | --> |   Audio   | Audio |             |---> | PHY1 |
-> +               | |                |     |   Mixer   | --+-> |             | |   +------+
-> +  Live Audio --->|                | --> |           |  ||   +-------------+ |
-> +               | +----------------+     +-----------+  ||                   |
-> +               +---------------------------------------||-------------------+
-> +                                                       vv
-> +                                                 Blended Video and
-> +                                                 Mixed Audio to PL
-> +
-> +  The Buffer Manager interacts with external interface such as DMA engines or
-> +  live audio/video streams from the programmable logic. The Video Rendering
-> +  Pipeline blends the video and graphics layers and performs colorspace
-> +  conversion. The Audio Mixer mixes the incoming audio streams. The DisplayPort
-> +  Source Controller handles the DisplayPort protocol and connects to external
-> +  PHYs.
-> +
-> +  The subsystem supports 2 video and 2 audio streams, and various pixel formats
-> +  and depths up to 4K@30 resolution.
-> +
-> +  Please refer to "Zynq UltraScale+ Device Technical Reference Manual"
-> +  (https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf)
-> +  for more details.
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-dpsub-1.7
-> +
-> +  reg:
-> +    maxItems: 4
-> +  reg-names:
-> +    items:
-> +      - const: dp
-> +      - const: blend
-> +      - const: av_buf
-> +      - const: aud
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      The APB clock and at least one video clock are mandatory, the audio clock
-> +      is optional.
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      - description: dp_apb_clk is the APB clock
-> +      - description: dp_aud_clk is the Audio clock
-> +      - description:
-> +          dp_vtc_pixel_clk_in is the non-live video clock (from Processing
-> +          System)
-> +      - description:
-> +          dp_live_video_in_clk is the live video clock (from Programmable
-> +          Logic)
-> +  clock-names:
-> +    oneOf:
-> +      - minItems: 2
-> +        maxItems: 3
-> +        items:
-> +          - const: dp_apb_clk
-> +          - enum: [ dp_vtc_pixel_clk_in, dp_live_video_in_clk ]
-> +          - enum: [ dp_vtc_pixel_clk_in, dp_live_video_in_clk ]
-> +      - minItems: 3
-> +        maxItems: 4
-> +        items:
-> +          - const: dp_apb_clk
-> +          - const: dp_aud_clk
-> +          - enum: [ dp_vtc_pixel_clk_in, dp_live_video_in_clk ]
-> +          - enum: [ dp_vtc_pixel_clk_in, dp_live_video_in_clk ]
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 4
-> +    items:
-> +      - description: Video layer, plane 0 (RGB or luma)
-> +      - description: Video layer, plane 1 (U/V or U)
-> +      - description: Video layer, plane 2 (V)
-> +      - description: Graphics layer
-> +  dma-names:
-> +    items:
-> +      - const: vid0
-> +      - const: vid1
-> +      - const: vid2
-> +      - const: gfx0
-> +
-> +  phys:
-> +    description: PHYs for the DP data lanes
-> +    minItems: 1
-> +    maxItems: 2
-> +  phy-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - const: dp-phy0
-> +      - const: dp-phy1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - dmas
-> +  - dma-names
-> +  - phys
-> +  - phy-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/phy/phy.h>
-> +    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
-> +
-> +    display@fd4a0000 {
-> +      compatible = "xlnx,zynqmp-dpsub-1.7";
-> +      reg = <0x0 0xfd4a0000 0x0 0x1000>,
-> +            <0x0 0xfd4aa000 0x0 0x1000>,
-> +            <0x0 0xfd4ab000 0x0 0x1000>,
-> +            <0x0 0xfd4ac000 0x0 0x1000>;
-> +      reg-names = "dp", "blend", "av_buf", "aud";
-> +      interrupts = <0 119 4>;
-> +      interrupt-parent = <&gic>;
-> +
-> +      clock-names = "dp_apb_clk", "dp_aud_clk", "dp_live_video_in_clk";
-> +      clocks = <&dp_aclk>, <&clkc 17>, <&si570_1>;
-> +
-> +      power-domains = <&pd_dp>;
-> +      resets = <&reset ZYNQMP_RESET_DP>;
-> +
-> +      dma-names = "vid0", "vid1", "vid2", "gfx0";
-> +      dmas = <&xlnx_dpdma 0>,
-> +             <&xlnx_dpdma 1>,
-> +             <&xlnx_dpdma 2>,
-> +             <&xlnx_dpdma 3>;
-> +
-> +      phys = <&psgtr 1 PHY_TYPE_DP 0 3 27000000>,
-> +             <&psgtr 0 PHY_TYPE_DP 1 3 27000000>;
-> +
-> +      phy-names = "dp-phy0", "dp-phy1";
-> +    };
-> +
-> +...
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
