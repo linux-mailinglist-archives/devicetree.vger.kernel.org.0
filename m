@@ -2,97 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F91918A137
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 18:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EB7118A14C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 18:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727041AbgCRRKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 13:10:25 -0400
-Received: from mail-pj1-f67.google.com ([209.85.216.67]:35282 "EHLO
-        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727082AbgCRRKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 13:10:25 -0400
-Received: by mail-pj1-f67.google.com with SMTP id j20so715198pjz.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2020 10:10:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=kzfdHSO2Eg/pCLBb9aj78kXEmbZ2vEcI/EKrPZigKxI=;
-        b=AU7eU4/3E2gmDQx59Lfw1/ryh1dsM3Kf2E6dy+bDEQvBh8/uU7w/X6bF4fznHSSASt
-         i9a1E9VmxE4DYH7eZKZ0cxcueWHrdKoa6z4ILBjN9BKMuZXFt/w8pxYRqIvTyG4YVPAA
-         9bbZIYZI2dDr7gbfsEXq5e4y4RoyIeJP3JSjo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=kzfdHSO2Eg/pCLBb9aj78kXEmbZ2vEcI/EKrPZigKxI=;
-        b=sf3XB75fCeJqnfUrgFwKv6gs3czd1XEAnnyvXGhp0IKuxYUKSCg9r3ZQgK7/pGmkML
-         8Y7vvJMoBO08FQj5MI3zGGTxB92YK7eSq8E29FA9+1QXuZOXZ/7zD83TK490d7m3vzaF
-         WpdXHv2E+AAxu3NL2eXh8SVI65IaILVmENKEBWAIaF5kf1BQiyZz1jTIKBiA386MEIm4
-         gVt9xoLQGCT6iczReoJWCJW2wmt6XVG4viAdlJXEvehlumMEAHnzXWWy0Vsu9DEIE8yf
-         DWoxsX3xnw1OFGOwZyVK5cjEozaAT/JESWKwvNve3wQK2q2xqqocADjNHM3+34UmYRiF
-         IN+g==
-X-Gm-Message-State: ANhLgQ3nc/PmhF2jg4MbTVW7eRbC5+Uw41jyP/lfXv7laNS/2WjX4kRU
-        m9Ukd8B6z4w39omkErPo/p28vA==
-X-Google-Smtp-Source: ADFU+vtu5mYYKn1aoaSPcvAoMeeiGoWtv0NZSu62f5Smu2NArdKXK3KRad7e8p6T+qn3WvIFv3X1nA==
-X-Received: by 2002:a17:90a:26ed:: with SMTP id m100mr5599112pje.130.1584551424263;
-        Wed, 18 Mar 2020 10:10:24 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c809:c7d5:1998:878c:c26e:b8be])
-        by smtp.gmail.com with ESMTPSA id e6sm6443869pgu.44.2020.03.18.10.10.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2020 10:10:23 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: Update feiyang, st7701 panel bindings converted as YAML
-Date:   Wed, 18 Mar 2020 22:40:03 +0530
-Message-Id: <20200318171003.5179-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200318171003.5179-1-jagan@amarulasolutions.com>
-References: <20200318171003.5179-1-jagan@amarulasolutions.com>
+        id S1726752AbgCRRQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 13:16:06 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:3950 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726623AbgCRRQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 13:16:06 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e7257480000>; Wed, 18 Mar 2020 10:15:52 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 18 Mar 2020 10:16:05 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 18 Mar 2020 10:16:05 -0700
+Received: from [10.2.175.141] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 18 Mar
+ 2020 17:16:04 +0000
+Subject: Re: [RFC PATCH v3 4/6] media: tegra: Add Tegra210 Video input driver
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>,
+        <helen.koike@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1581704608-31219-1-git-send-email-skomatineni@nvidia.com>
+ <1581704608-31219-5-git-send-email-skomatineni@nvidia.com>
+ <b301c247-537d-d78e-b057-a3225b10de7e@xs4all.nl>
+ <dc592f29-3109-d10c-7df7-ffdb2755ade0@xs4all.nl>
+ <b3933aa1-0717-183d-f00c-2d5fd6836a18@nvidia.com>
+ <12a36c2a-593c-e555-d44e-e2e6c4c1a562@nvidia.com>
+ <5f54c018-5670-8193-7c68-969f9bde92f6@xs4all.nl>
+ <19081d90-62cc-e6eb-0337-f108fb6ca9bc@nvidia.com>
+ <061eabf1-4b6f-83c0-6851-df8a193a84e8@nvidia.com>
+Message-ID: <a5377068-3c70-1af4-6398-630d205e794b@nvidia.com>
+Date:   Wed, 18 Mar 2020 10:17:12 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <061eabf1-4b6f-83c0-6851-df8a193a84e8@nvidia.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1584551752; bh=oBKNPTi9GLdtryL/j8HF1CfdlMDUDx2LP07rQWMZdTU=;
+        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=XU11EO/Fztnr3hGAYUHf3fIwU8CfkRR4/nx842XtN96L9Mhi1h+aWyNLvtQCdYkro
+         18M4Pb1niPTJifZ8vx0a1xDqE8jgIfYWRdyopv0/QqVsZ+1MJkb/UosfaVYN0Np3Q7
+         o9JSwPvj7qzGVang7q2bgTQLlSZhtkWDFpSwsPublH5QrFAb9rUWk2JNm3DqAo/zuR
+         +uugeK+19xm8ckxWwB0tSAvj2+lkDl4v2lqV3mZnIyc6laiIEt5DA6/sHl/krvG+p0
+         YOBRO0sC17o6Td8hVI//ptF8gilEfovPNpLAzHZJSirKQMqvZedZoP1El/DsJSRv/s
+         nMZY7U/HZvt1g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The feiyang,fy07024di26a30d.txt and sitronix,st7701.txt has been
-converted to YAML schemas, update MAINTAINERS to match them again.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v2:
-- none
+On 3/18/20 9:25 AM, Sowjanya Komatineni wrote:
+>
+> On 3/18/20 9:14 AM, Sowjanya Komatineni wrote:
+>>
+>> On 3/18/20 4:48 AM, Hans Verkuil wrote:
+>>> External email: Use caution opening links or attachments
+>>>
+>>>
+>>> On 2/24/20 5:45 AM, Sowjanya Komatineni wrote:
+>>>> On 2/20/20 11:11 AM, Sowjanya Komatineni wrote:
+>>>>> On 2/20/20 5:33 AM, Hans Verkuil wrote:
+>>>>>> External email: Use caution opening links or attachments
+>>>>>>
+>>>>>>
+>>>>>> (Replying to myself so I can explain this a bit more)
+>>>>>>
+>>>>>> On 2/20/20 1:44 PM, Hans Verkuil wrote:
+>>>>>>>> +
+>>>>>>>> +static int tegra_csi_tpg_channels_alloc(struct tegra_csi *csi)
+>>>>>>>> +{
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 struct device_node *node =3D csi->dev->of_node=
+;
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int port_num;
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 int ret;
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_csi_channel *item;
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int tpg_channels =3D csi->soc->csi_ma=
+x_channels;
+>>>>>>>> +
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 /* allocate CSI channel for each CSI x2 ports =
+*/
+>>>>>>>> +=C2=A0=C2=A0=C2=A0 for (port_num =3D 0; port_num < tpg_channels; =
+port_num++) {
+>>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 item =3D devm_kzalloc(csi->dev, sizeof(*item),=20
+>>>>>>>> GFP_KERNEL);
+>>>>>>> Using devm_*alloc can be dangerous. If someone unbinds the=20
+>>>>>>> driver, then
+>>>>>>> all memory allocated with devm_ is immediately freed. But if an
+>>>>>>> application
+>>>>>>> still has a filehandle open, then when it closes it it might still
+>>>>>>> reference
+>>>>>>> this already-freed memory.
+>>>>>>>
+>>>>>>> I recommend that you avoid using devm_*alloc for media drivers.
+>>>>>> A good test is to unbind & bind the driver:
+>>>>>>
+>>>>>> cd /sys/devices/platform/50000000.host1x/54080000.vi/driver
+>>>>>> echo -n 54080000.vi >unbind
+>>>>>> echo -n 54080000.vi >bind
+>>>>>>
+>>>>>> First just do this without the driver being used. That already
+>>>>>> gives me 'list_del corruption' kernel messages (list debugging
+>>>>>> is turned on in my kernel).
+>>>> Will fix in v4 to use kzalloc and also proper release v4l2 to make=20
+>>>> sure
+>>>> unbind/bind works properly.
+>>>>
+>>>> BTW, tegra vi and csi are registered as clients to host1x video=20
+>>>> driver.
+>>>>
+>>>> So, unbind and bind should be done with host1x video driver=20
+>>>> "tegra-video"
+>>>>
+>>>> cd /sys/devices/platform/50000000.host1x/tegra-video/driver
+>>>> echo -n tegra-video > unbind
+>>>> echo -n tegra-video > bind
+>>> This still crashes with v4, at least if I am streaming with v4l2-ctl=20
+>>> --stream-mmap.
+>>> Is that known?
+>>>
+>>> It's not a big deal at this moment, just want to know if this will=20
+>>> be looked
+>>> at later.
+>>>
+>>> Regards,
+>>>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Hans
+>>
+>> Weird, I tested streaming after unbind and bind as well and don't see=20
+>> crash. Did below steps and tried several times unbind/bind as well.
+>>
+>> ./v4l2-ctl --stream-mmap --stream-count=3D1 -d /dev/video3
+>> cd /sys/devices/platform/50000000.host1x/tegra-video/driver
+>> echo -n tegra-video > unbind
+>> sleep 1
+>> echo -n tegra-video > bind
+>> cd /home/ubuntu
+>> ./v4l2-ctl --stream-mmap --stream-count=3D1 -d /dev/video3
+>>
+>> Can you post call trace when you saw crash?
+>
+> Tried unbind when=C2=A0 node is open with v4l2-ctl --sleep 10 as well and=
+=20
+> bind back.
+>
+> I don't see crash. Will confirm on doing unbind/bind with stream-mmap...
+>
+Able to repro when unbind/bind happens while stream-mmap.
 
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Will look and have fix in v5.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6ba8b584bf95..b987f2588e6a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5273,7 +5273,7 @@ DRM DRIVER FOR FEIYANG FY07024DI26A30-D MIPI-DSI LCD PANELS
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
- F:	drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
--F:	Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.txt
-+F:	Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml
- 
- DRM DRIVER FOR GRAIN MEDIA GM12U320 PROJECTORS
- M:	Hans de Goede <hdegoede@redhat.com>
-@@ -5416,7 +5416,7 @@ DRM DRIVER FOR SITRONIX ST7701 PANELS
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
- F:	drivers/gpu/drm/panel/panel-sitronix-st7701.c
--F:	Documentation/devicetree/bindings/display/panel/sitronix,st7701.txt
-+F:	Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
- 
- DRM DRIVER FOR SITRONIX ST7586 PANELS
- M:	David Lechner <david@lechnology.com>
--- 
-2.17.1
+Thanks Hans.
 
+>>
+>>>>>> Note that this first test is basically identical to a rmmod/modprobe
+>>>>>> of the driver. But when I compiled the driver as a module it didn't
+>>>>>> create any video device nodes! Nor did I see any errors in the=20
+>>>>>> kernel
+>>>>>> log. I didn't pursue this, and perhaps I did something wrong, but=20
+>>>>>> it's
+>>>>>> worth taking a look at.
+>>>>>>
+>>>>>> The next step would be to have a video node open with:
+>>>>>>
+>>>>>> v4l2-ctl --sleep 10
+>>>>>>
+>>>>>> then while it is sleeping unbind the driver and see what happens
+>>>>>> when v4l2-ctl exits.
+>>>>>>
+>>>>>> Worst case is when you are streaming:
+>>>>>>
+>>>>>> v4l2-ctl --stream-mmap
+>>>>>>
+>>>>>> and then unbind.
+>>>>>>
+>>>>>> In general, the best way to get this to work correctly is:
+>>>>>>
+>>>>>> 1) don't use devm_*alloc
+>>>>>> 2) set the release callback of struct v4l2_device and do all freeing
+>>>>>> there.
+>>>>>> 3) in the platform remove() callback you call=20
+>>>>>> media_device_unregister()
+>>>>>> =C2=A0=C2=A0=C2=A0=C2=A0 and video_unregister_device().
+>>>>> Reg 3, in current patch, media_device_unregister is called in
+>>>>> host1x_video_remove
+>>>>> video_unregister_device happens during host1x_video_remove ->
+>>>>> host1x_device_exit -> tegra_vi_exit -> tegra_vi_channels_cleanup
+>>>>>
+>>>>>> It's worth getting this right in this early stage, rather than=20
+>>>>>> fixing it
+>>>>>> in the future.
+>>>>>>
+>>>>>> Regards,
+>>>>>>
+>>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Hans
