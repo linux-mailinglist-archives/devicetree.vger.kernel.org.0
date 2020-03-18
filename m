@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B5C18A4E6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 21:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC02318A51B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 21:59:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728671AbgCRU4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 16:56:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57862 "EHLO mail.kernel.org"
+        id S1727779AbgCRU7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 16:59:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58412 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728659AbgCRU4l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Mar 2020 16:56:41 -0400
+        id S1728207AbgCRU46 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Mar 2020 16:56:58 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D27592166E;
-        Wed, 18 Mar 2020 20:56:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A10CA2166E;
+        Wed, 18 Mar 2020 20:56:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584565000;
-        bh=4Ki+qkxU39QDsDVJd+9zZO5BdWzNnwZi+XZF9+iCI3o=;
+        s=default; t=1584565017;
+        bh=X7SO+AFWtttTHvmpiHOIjqHujUY1avAOlL7VXiJYJl0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U8q8IVLdpW62OFFSEYFQagnSS6872zzbVhF7/yz0TmC6Ok8+Htqapa8fPwDoGAj8a
-         x5JOu7EbuVz3c9IDSr4QwC9+UJ5639fSffnWzpIy4TBpDFO2PjHebUlePmEzUAqm10
-         id9QuYfBWHv/Yuz9Ti+apXdf2XPpAzbw0t1KQmWs=
+        b=C/fnKMGPRcdR2tZN3S/29Bd3UX3pbPwmqoHYuYuMVBbQjtSLv10qi3Tcd0z2pSLM1
+         mZxFjOQvu6v0cH20/69pKBzYbCrITY80PlfyoKbhJKEimcmaoz9Jds+WBpVsCkw+pI
+         HIJUaDgFW+T4z7YA7AKewVHQEDSLqBlEzSTlnuok=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
         "David S . Miller" <davem@davemloft.net>,
         Sasha Levin <sashal@kernel.org>, linuxppc-dev@lists.ozlabs.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 09/15] dt-bindings: net: FMan erratum A050385
-Date:   Wed, 18 Mar 2020 16:56:23 -0400
-Message-Id: <20200318205629.17750-9-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.4 07/12] dt-bindings: net: FMan erratum A050385
+Date:   Wed, 18 Mar 2020 16:56:43 -0400
+Message-Id: <20200318205648.17937-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205629.17750-1-sashal@kernel.org>
-References: <20200318205629.17750-1-sashal@kernel.org>
+In-Reply-To: <20200318205648.17937-1-sashal@kernel.org>
+References: <20200318205648.17937-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -108,7 +108,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 7 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fman.txt b/Documentation/devicetree/bindings/powerpc/fsl/fman.txt
-index df873d1f3b7c5..2aaae210317bb 100644
+index 1fc5328c0651b..23708f3f4e58a 100644
 --- a/Documentation/devicetree/bindings/powerpc/fsl/fman.txt
 +++ b/Documentation/devicetree/bindings/powerpc/fsl/fman.txt
 @@ -110,6 +110,13 @@ PROPERTIES
