@@ -2,76 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B8C18A568
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 22:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 399D518A6FD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 22:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727785AbgCRVBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 17:01:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57104 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727495AbgCRU4R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Mar 2020 16:56:17 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 16EBB208E4;
-        Wed, 18 Mar 2020 20:56:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584564976;
-        bh=xiR447SPRj5Q7cH3/CX6Z/TdZ+9rqAJAouR0yNNLHPo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rHCW1dCrnzA2CbimAqSy8bGBcvQMBbJrntyqiYppXiy7scYmJyDIaQClzNsMWZrL2
-         NVanwMBEuj8WkALd6q+qMW6D59Zy+AMyBcs8W6nFQ27tfvfdIKFJsi3TT4oRV+TlO6
-         YM3L73D2maUAi4kzoj62hC4Oktr+achiZqTVFmOY=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 18/28] arm64: dts: ls1043a: FMan erratum A050385
-Date:   Wed, 18 Mar 2020 16:55:45 -0400
-Message-Id: <20200318205555.17447-18-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205555.17447-1-sashal@kernel.org>
-References: <20200318205555.17447-1-sashal@kernel.org>
+        id S1727070AbgCRV3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 17:29:17 -0400
+Received: from mail-pj1-f67.google.com ([209.85.216.67]:55522 "EHLO
+        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727064AbgCRV3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 17:29:17 -0400
+Received: by mail-pj1-f67.google.com with SMTP id mj6so1897600pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2020 14:29:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=vPxunhAC+58vvctmoFp0mN4mjw3S+0eezQoOCor4cGs=;
+        b=VOGW/Dj8fGjI99TmvzepftNCpO4/MF0xNVIWEVCFGM5msDgWmk9GbdMjLQF38bAiXe
+         5gagPr9toHAfEAsPQwMfnuXDZQf7H3CatTnOsFNOsCOhbmACF/ZMzZCRZSSciBpOPJSC
+         Q7K91OtcK/hEVFs79ZF4SKleT6de5W7BC03o8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=vPxunhAC+58vvctmoFp0mN4mjw3S+0eezQoOCor4cGs=;
+        b=XqnnheoGhN9NnPw8Nogi9oNn2jPhCbWIAdss8nmO9EPEpq0M+HQ2eisQzb+fjH+3bw
+         Ey72OFyFWb1mDBtwo+fdtm+7eM6pRehgZTFxMr4EoL6/tlAXa6w8LGjNp5TP/gg7TEYc
+         gpqgPr2xoOlrO7HKLfe+UkJXzok/P1yNId/3aQus/c+7ILEQhWrOvEC8qpflOl5k4ehK
+         /OIcfsLJW1VIlEIV0jUPJ88U3HlaHTk2mhBXIXWV+udR5AX0QwiJVAjzbmLDFiOkufRJ
+         crS62CxsaLrJ/5KmAo02NhpWW6AyL1v59W57FPeZ9C3Fj26S23YNfOESuNFxlXgAFgMa
+         FCZw==
+X-Gm-Message-State: ANhLgQ1DYuEIDETcSPajEpkLXbmDuIuP5Z9JsfYGPsFLfWcsbSbb3ASc
+        6qEZSl0nyiz/UgiNWmpqoWrgQw==
+X-Google-Smtp-Source: ADFU+vuNwz5zB7ybsEb07TyGdEuZebQPsPh4F6LxTKWUK7RBgfUFTMHmwsHSGC2pOB6twp7ci+pDew==
+X-Received: by 2002:a17:902:aa98:: with SMTP id d24mr221832plr.74.1584566955402;
+        Wed, 18 Mar 2020 14:29:15 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id w6sm9144pfw.55.2020.03.18.14.29.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2020 14:29:14 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1584505758-21037-2-git-send-email-mkshah@codeaurora.org>
+References: <1584505758-21037-1-git-send-email-mkshah@codeaurora.org> <1584505758-21037-2-git-send-email-mkshah@codeaurora.org>
+Subject: Re: [PATCH v5 1/4] dt-bindings: Introduce SoC sleep stats bindings
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>
+To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, mka@chromium.org
+Date:   Wed, 18 Mar 2020 14:29:13 -0700
+Message-ID: <158456695397.152100.7669140417826227943@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Madalin Bucur <madalin.bucur@nxp.com>
+Quoting Maulik Shah (2020-03-17 21:29:15)
+> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+>=20
+> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> SoC sleep stats driver. The driver is used for displaying SoC sleep
+> statistic maintained by Always On Processor or Resource Power Manager.
+>=20
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
 
-[ Upstream commit b54d3900862374e1bb2846e6b39d79c896c0b200 ]
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-The LS1043A SoC is affected by the A050385 erratum stating that
-FMAN DMA read or writes under heavy traffic load may cause FMAN
-internal resource leak thus stopping further packet processing.
+Two nits below.
 
-Signed-off-by: Madalin Bucur <madalin.bucur@nxp.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.y=
+aml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> new file mode 100644
+> index 0000000..d0c751d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> @@ -0,0 +1,46 @@
+[...]
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    rpmh-sleep-stats@c3f0000 {
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-index 169e171407a63..acd205ef329f7 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-@@ -21,6 +21,8 @@
- };
- 
- &fman0 {
-+	fsl,erratum-a050385;
-+
- 	/* these aliases provide the FMan ports mapping */
- 	enet0: ethernet@e0000 {
- 	};
--- 
-2.20.1
+I would think 'memory' would be a more appropriate node name, but OK.
 
+> +      compatible =3D "qcom,rpmh-sleep-stats";
+> +      reg =3D <0 0xc3f0000 0 0x400>;
+
+Please add a leading 0 to the address to pad it out to 8 digits.
+
+> +    };
