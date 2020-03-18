@@ -2,184 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D565D18A064
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 17:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 887B318A03D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 17:13:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbgCRQVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 12:21:48 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:34098 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726647AbgCRQVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Mar 2020 12:21:48 -0400
-X-Greylist: delayed 2795 seconds by postgrey-1.27 at vger.kernel.org; Wed, 18 Mar 2020 12:21:47 EDT
-Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02IFOLf4026838;
-        Wed, 18 Mar 2020 10:34:52 -0500
-Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2057.outbound.protection.outlook.com [104.47.37.57])
-        by mx0a-00010702.pphosted.com with ESMTP id 2yua4ha91r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 18 Mar 2020 10:34:52 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BGuqRKWK7n2hYcu+XfnzAI/lGatTqhMSjKvZUIVD+HIVc5UhAqgJPf+p6XoOWEIc1t8Q6g+U6T4YWHGdqhlvYBCPJ0AqZ0d+9BfAACUW4OolXBopE0QM/7ATpL4gU8fU8yEhBFsnHrrvTNxdzDGLgzOxEOaeh3cDgZiVjKM9LQZm0Phjawr3V1eNapISv1SLDMKCwSXPVfRod4nR2Ns3TiaNPYvUqziw8liUsVf5ENZkslQ2wbXGAcfa+FLPZwxPqHrJtEdstcKQMw7RBz69XsscT07VhMrPEotA4mjm53iKF4ZEd3yYc8P1cbCWkTIST/YE3M+4LN0snpD8/qRMxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yDnFnkMX9vIGiWG8S9fUYcwhbKfMJZhAl7P3oDnd1Qg=;
- b=TLKn9E7S7CJE8cJw9GLPxi/s0Oy6gsP2zKUndwBgX3mdE4AI98rr6dHuixRHEbRF6D8+ERC0+JRyqkenzwD4MOlXDjMZD3r7bbiqOSswLJnXSSuUf/b/0Cx34c3OqlZUzfCraOvlAS5Jb0/m0mr3LzlFRCR8WjDnVjRWJTOj7yO8nwkYyH8WhpvfGvtlgwbBpVYQRFTqqw46xpcJWIOWig6PwjvgdS5rZTETQlo+eR28eVI9NSTUn3tZzOfl+tYX4ArD3c3/vuctLKCBpb8e6DthL6mD7SBwcQPnjphpLRby830vSpp5z86PVK4S9nhP9Fz9zU8x8xknZTUKbPFksA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yDnFnkMX9vIGiWG8S9fUYcwhbKfMJZhAl7P3oDnd1Qg=;
- b=AVsHbsGsvViikQ8SnbvbPxOwbqPHfF4SlZw8NrClDn16LYJNPWHJ8AXe1ubSRsa8GRoXkqz7Sia6teDMsgoeQQ1BMT4U2yqFx8xznvO886UAMi7VbzumI7iocU7C1lQ+/4ebTovVbCfNCzuub5r8WILOfMfgNlGXPCnrGnf7LBY=
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN4PR0401MB3709.namprd04.prod.outlook.com
- (2603:10b6:803:48::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.16; Wed, 18 Mar
- 2020 15:34:51 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::d05b:1953:4111:38e4]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::d05b:1953:4111:38e4%5]) with mapi id 15.20.2793.023; Wed, 18 Mar 2020
- 15:34:51 +0000
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Michael Auchter <michael.auchter@ni.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: iio: dac: ad5686: add binding
-Date:   Wed, 18 Mar 2020 10:34:34 -0500
-Message-Id: <20200318153434.62833-3-michael.auchter@ni.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200318153434.62833-1-michael.auchter@ni.com>
-References: <20200318153434.62833-1-michael.auchter@ni.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: DM3PR14CA0146.namprd14.prod.outlook.com
- (2603:10b6:0:53::30) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
+        id S1726780AbgCRQNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 12:13:08 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:17015 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726733AbgCRQNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 12:13:08 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e7248320000>; Wed, 18 Mar 2020 09:11:30 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 18 Mar 2020 09:13:07 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 18 Mar 2020 09:13:07 -0700
+Received: from [10.2.175.141] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 18 Mar
+ 2020 16:13:06 +0000
+Subject: Re: [RFC PATCH v3 4/6] media: tegra: Add Tegra210 Video input driver
+To:     Hans Verkuil <hverkuil@xs4all.nl>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>,
+        <helen.koike@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1581704608-31219-1-git-send-email-skomatineni@nvidia.com>
+ <1581704608-31219-5-git-send-email-skomatineni@nvidia.com>
+ <b301c247-537d-d78e-b057-a3225b10de7e@xs4all.nl>
+ <dc592f29-3109-d10c-7df7-ffdb2755ade0@xs4all.nl>
+ <b3933aa1-0717-183d-f00c-2d5fd6836a18@nvidia.com>
+ <12a36c2a-593c-e555-d44e-e2e6c4c1a562@nvidia.com>
+ <5f54c018-5670-8193-7c68-969f9bde92f6@xs4all.nl>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <19081d90-62cc-e6eb-0337-f108fb6ca9bc@nvidia.com>
+Date:   Wed, 18 Mar 2020 09:14:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xaphan.phire.org (66.90.216.181) by DM3PR14CA0146.namprd14.prod.outlook.com (2603:10b6:0:53::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.19 via Frontend Transport; Wed, 18 Mar 2020 15:34:50 +0000
-X-Mailer: git-send-email 2.24.1
-X-Originating-IP: [66.90.216.181]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: baa99a74-bc59-41f5-bef0-08d7cb51e62e
-X-MS-TrafficTypeDiagnostic: SN4PR0401MB3709:|SN4PR0401MB3709:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN4PR0401MB370950BD942A9B0C882BBCE187F70@SN4PR0401MB3709.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-Forefront-PRVS: 03468CBA43
-X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10019020)(4636009)(136003)(396003)(346002)(39860400002)(366004)(376002)(199004)(66556008)(66476007)(8676002)(2906002)(81166006)(81156014)(66946007)(2616005)(36756003)(6506007)(44832011)(966005)(6512007)(6486002)(5660300002)(110136005)(478600001)(16526019)(316002)(52116002)(956004)(4326008)(8936002)(6666004)(26005)(186003)(1076003)(86362001);DIR:OUT;SFP:1102;SCL:1;SRVR:SN4PR0401MB3709;H:SN4PR0401MB3646.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
-Received-SPF: None (protection.outlook.com: ni.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: juarWr5oX1TPTk5iel+G485b0dI0w/JQ7iPfrvuuS1hIebgxDbRN8P5usDUpB8jLJEdVadO+MKs2SmksZ7yuEX6nE0CCTjew7GfYoeHNxx4iPKwg3+xSQ+GK2QGdlEykMgTG/vWwafZocgOQYQiPuhhJ83t6FxS4SWM5Fkwv6yBUOdEww5nMbIR5KPqIIm9Y2iKEvsd48ejpP9O4LRCa1OUHGS68uhJqK33iFtE8T7dqfUO65pocZntuIbKhVDl3W022wfl6dC+Frjr3yNNf/dBXfP5yDH5PvE8G90qzLUGSApG0M2+Ja78QILvmjBEjlRPa5KI4WQN+Xpt0BmgHxSy/L3yJyfwKWtGnv7gHQH3oJiaaoVwPs5I4e8Pn5av6gMriMO9tEz11KX8ANGJf2Am4ph19mGOmYMweV+BXmncydxcu5WaUtcZAJz6Ucc4pDUN+dTJGqaNSsmlAIG1Cqs/DqOS1sOXUUWTBd65BniyioFWenIkccpizLK8uKP7mYAwlS0FIFG5mwAOCtTHc2w==
-X-MS-Exchange-AntiSpam-MessageData: C67PBI+qn/Zfc25DPufZjI6sj3Zx7mhJqXuv4GuC1KQO6jPXnn1oPou47J1htX3ZWyLRP88piCloI4VBOnLew+1u5DXWdxNnmpA7FiiA5pcC2Cz3pV6iP2XBvnQfQczbJI45uqXcohqeG2y6mea0RQ==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: baa99a74-bc59-41f5-bef0-08d7cb51e62e
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 15:34:51.2436
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LWWDnkMKgpsL1ftPEtvUp0tef8AH6bM+6yrGPh6cO3laKwlZ1VgQ3ioJ2stKI8fMSXsAmV+2kSwCeiTjwJio0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0401MB3709
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
- definitions=2020-03-18_07:2020-03-18,2020-03-18 signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy score=30 impostorscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 phishscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=30 reason=mlx scancount=1
- engine=8.12.0-2003020000 definitions=main-2003180073
+In-Reply-To: <5f54c018-5670-8193-7c68-969f9bde92f6@xs4all.nl>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1584547890; bh=tIHZbQLtSkJ53RrtKu9vilUV11m0jEsmcYMmUk3NErg=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=MkFrRgcrqQAzQJcI2+1Q40+Pr9qGESvro4Iislxt2Izw1pDw9+uxYindJKOuhauPP
+         9TnHwD3EhYiI9hppup43ZWHvkPwGzWf67CXtKZSkssNgDM3QHbkyRu4XknC4xIkJy7
+         0VRO3RaUv2p+fnA2Kajs5enDYxis8R1g8z7tPlWDF3k7kRjOE3LkpGyu+5G8+/bdcC
+         ueokh3NujrDWrfILfiHFTGU7F7JTdXIZY/aE/vkbfUQBaLofWMZ6Dbm81SZRzCUkjt
+         LbstXrBXFK4BuI8wySVdDQHWo/JL1vu0Nq7eKTKkHG4j+nzsKG8kZDPLJ05SKHrEMk
+         jVKoZVqhUP0IQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for AD5686
 
-Signed-off-by: Michael Auchter <michael.auchter@ni.com>
----
- .../bindings/iio/dac/adi,ad5686.yaml          | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+On 3/18/20 4:48 AM, Hans Verkuil wrote:
+> External email: Use caution opening links or attachments
+>
+>
+> On 2/24/20 5:45 AM, Sowjanya Komatineni wrote:
+>> On 2/20/20 11:11 AM, Sowjanya Komatineni wrote:
+>>> On 2/20/20 5:33 AM, Hans Verkuil wrote:
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> (Replying to myself so I can explain this a bit more)
+>>>>
+>>>> On 2/20/20 1:44 PM, Hans Verkuil wrote:
+>>>>>> +
+>>>>>> +static int tegra_csi_tpg_channels_alloc(struct tegra_csi *csi)
+>>>>>> +{
+>>>>>> +    struct device_node *node = csi->dev->of_node;
+>>>>>> +    unsigned int port_num;
+>>>>>> +    int ret;
+>>>>>> +    struct tegra_csi_channel *item;
+>>>>>> +    unsigned int tpg_channels = csi->soc->csi_max_channels;
+>>>>>> +
+>>>>>> +    /* allocate CSI channel for each CSI x2 ports */
+>>>>>> +    for (port_num = 0; port_num < tpg_channels; port_num++) {
+>>>>>> +            item = devm_kzalloc(csi->dev, sizeof(*item), GFP_KERNEL);
+>>>>> Using devm_*alloc can be dangerous. If someone unbinds the driver, then
+>>>>> all memory allocated with devm_ is immediately freed. But if an
+>>>>> application
+>>>>> still has a filehandle open, then when it closes it it might still
+>>>>> reference
+>>>>> this already-freed memory.
+>>>>>
+>>>>> I recommend that you avoid using devm_*alloc for media drivers.
+>>>> A good test is to unbind & bind the driver:
+>>>>
+>>>> cd /sys/devices/platform/50000000.host1x/54080000.vi/driver
+>>>> echo -n 54080000.vi >unbind
+>>>> echo -n 54080000.vi >bind
+>>>>
+>>>> First just do this without the driver being used. That already
+>>>> gives me 'list_del corruption' kernel messages (list debugging
+>>>> is turned on in my kernel).
+>> Will fix in v4 to use kzalloc and also proper release v4l2 to make sure
+>> unbind/bind works properly.
+>>
+>> BTW, tegra vi and csi are registered as clients to host1x video driver.
+>>
+>> So, unbind and bind should be done with host1x video driver "tegra-video"
+>>
+>> cd /sys/devices/platform/50000000.host1x/tegra-video/driver
+>> echo -n tegra-video > unbind
+>> echo -n tegra-video > bind
+> This still crashes with v4, at least if I am streaming with v4l2-ctl --stream-mmap.
+> Is that known?
+>
+> It's not a big deal at this moment, just want to know if this will be looked
+> at later.
+>
+> Regards,
+>
+>          Hans
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
-new file mode 100644
-index 000000000000..4bd379720e99
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad5686.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD5686 and similar multi-channel DACs
-+
-+maintainers:
-+  - Michael Auchter <michael.auchter@ni.com>
-+
-+description: |
-+  Binding for Analog Devices AD5686 and similar multi-channel DACs
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad5311r
-+      - adi,ad5671r
-+      - adi,ad5675r
-+      - adi,ad5691r
-+      - adi,ad5692r
-+      - adi,ad5693
-+      - adi,ad5693r
-+      - adi,ad5694
-+      - adi,ad5694r
-+      - adi,ad5695r
-+      - adi,ad5696
-+      - adi,ad5696r
-+      - adi,ad5338r
-+
-+  reg:
-+    maxItems: 1
-+
-+  vcc-supply:
-+    description: |
-+      The regulator supply for DAC reference voltage.
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ad5686: dac@0 {
-+        compatible = "adi,ad5686";
-+        reg = <0>;
-+        vcc-supply = <&dac_vref>;
-+      };
-+    };
-+
--- 
-2.24.1
+Weird, I tested streaming after unbind and bind as well and don't see 
+crash. Did below steps and tried several times unbind/bind as well.
 
+./v4l2-ctl --stream-mmap --stream-count=1 -d /dev/video3
+cd /sys/devices/platform/50000000.host1x/tegra-video/driver
+echo -n tegra-video > unbind
+sleep 1
+echo -n tegra-video > bind
+cd /home/ubuntu
+./v4l2-ctl --stream-mmap --stream-count=1 -d /dev/video3
+
+Can you post call trace when you saw crash?
+
+>>>> Note that this first test is basically identical to a rmmod/modprobe
+>>>> of the driver. But when I compiled the driver as a module it didn't
+>>>> create any video device nodes! Nor did I see any errors in the kernel
+>>>> log. I didn't pursue this, and perhaps I did something wrong, but it's
+>>>> worth taking a look at.
+>>>>
+>>>> The next step would be to have a video node open with:
+>>>>
+>>>> v4l2-ctl --sleep 10
+>>>>
+>>>> then while it is sleeping unbind the driver and see what happens
+>>>> when v4l2-ctl exits.
+>>>>
+>>>> Worst case is when you are streaming:
+>>>>
+>>>> v4l2-ctl --stream-mmap
+>>>>
+>>>> and then unbind.
+>>>>
+>>>> In general, the best way to get this to work correctly is:
+>>>>
+>>>> 1) don't use devm_*alloc
+>>>> 2) set the release callback of struct v4l2_device and do all freeing
+>>>> there.
+>>>> 3) in the platform remove() callback you call media_device_unregister()
+>>>>      and video_unregister_device().
+>>> Reg 3, in current patch, media_device_unregister is called in
+>>> host1x_video_remove
+>>> video_unregister_device happens during host1x_video_remove ->
+>>> host1x_device_exit -> tegra_vi_exit -> tegra_vi_channels_cleanup
+>>>
+>>>> It's worth getting this right in this early stage, rather than fixing it
+>>>> in the future.
+>>>>
+>>>> Regards,
+>>>>
+>>>>           Hans
