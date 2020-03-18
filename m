@@ -2,81 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A07189977
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 11:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2483D189990
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2020 11:37:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727881AbgCRKcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Mar 2020 06:32:12 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7107 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727572AbgCRKcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 06:32:11 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e71f89d0000>; Wed, 18 Mar 2020 03:31:57 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 18 Mar 2020 03:32:10 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 18 Mar 2020 03:32:10 -0700
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 18 Mar
- 2020 10:32:10 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Wed, 18 Mar 2020 10:32:10 +0000
-Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.67.128]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5e71f8a60007>; Wed, 18 Mar 2020 03:32:09 -0700
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-To:     <kishon@ti.com>, <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <balbi@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <jckuo@nvidia.com>, Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: [PATCH V1 8/8] phy: tegra: xusb: Enable charger detect for Tegra210
-Date:   Wed, 18 Mar 2020 16:01:07 +0530
-Message-ID: <1584527467-8058-9-git-send-email-nkristam@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1584527467-8058-1-git-send-email-nkristam@nvidia.com>
-References: <1584527467-8058-1-git-send-email-nkristam@nvidia.com>
-X-NVConfidentiality: public
+        id S1727324AbgCRKhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Mar 2020 06:37:00 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37195 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbgCRKhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Mar 2020 06:37:00 -0400
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1jEW4F-0007jf-05; Wed, 18 Mar 2020 11:36:55 +0100
+Received: from [IPv6:2a03:f580:87bc:d400:124:7ee3:e89c:2c00] (unknown [IPv6:2a03:f580:87bc:d400:124:7ee3:e89c:2c00])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
+         client-signature RSA-PSS (4096 bits))
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id EDA824D0528;
+        Wed, 18 Mar 2020 10:36:51 +0000 (UTC)
+Subject: Re: [PATCH] docs: dt: Fix m_can.txt reference in tcan4x5x.txt
+To:     Dan Murphy <dmurphy@ti.com>, linux-doc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-can@vger.kernel.org, robh+dt@kernel.org, davem@davemloft.net,
+        wg@grandegger.com, corbet@lwn.net, linux-kernel@vger.kernel.org
+References: <20200317161900.14380-1-dmurphy@ti.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ mQINBFFVq30BEACtnSvtXHoeHJxG6nRULcvlkW6RuNwHKmrqoksispp43X8+nwqIFYgb8UaX
+ zu8T6kZP2wEIpM9RjEL3jdBjZNCsjSS6x1qzpc2+2ivjdiJsqeaagIgvy2JWy7vUa4/PyGfx
+ QyUeXOxdj59DvLwAx8I6hOgeHx2X/ntKAMUxwawYfPZpP3gwTNKc27dJWSomOLgp+gbmOmgc
+ 6U5KwhAxPTEb3CsT5RicsC+uQQFumdl5I6XS+pbeXZndXwnj5t84M+HEj7RN6bUfV2WZO/AB
+ Xt5+qFkC/AVUcj/dcHvZwQJlGeZxoi4veCoOT2MYqfR0ax1MmN+LVRvKm29oSyD4Ts/97cbs
+ XsZDRxnEG3z/7Winiv0ZanclA7v7CQwrzsbpCv+oj+zokGuKasofzKdpywkjAfSE1zTyF+8K
+ nxBAmzwEqeQ3iKqBc3AcCseqSPX53mPqmwvNVS2GqBpnOfY7Mxr1AEmxdEcRYbhG6Xdn+ACq
+ Dq0Db3A++3PhMSaOu125uIAIwMXRJIzCXYSqXo8NIeo9tobk0C/9w3fUfMTrBDtSviLHqlp8
+ eQEP8+TDSmRP/CwmFHv36jd+XGmBHzW5I7qw0OORRwNFYBeEuiOIgxAfjjbLGHh9SRwEqXAL
+ kw+WVTwh0MN1k7I9/CDVlGvc3yIKS0sA+wudYiselXzgLuP5cQARAQABtCZNYXJjIEtsZWlu
+ ZS1CdWRkZSA8bWtsQHBlbmd1dHJvbml4LmRlPokCVAQTAQoAPgIbAwIeAQIXgAULCQgHAwUV
+ CgkICwUWAgMBABYhBMFAC6CzmJ5vvH1bXCte4hHFiupUBQJcUsSbBQkM366zAAoJECte4hHF
+ iupUgkAP/2RdxKPZ3GMqag33jKwKAbn/fRqAFWqUH9TCsRH3h6+/uEPnZdzhkL4a9p/6OeJn
+ Z6NXqgsyRAOTZsSFcwlfxLNHVxBWm8pMwrBecdt4lzrjSt/3ws2GqxPsmza1Gs61lEdYvLST
+ Ix2vPbB4FAfE0kizKAjRZzlwOyuHOr2ilujDsKTpFtd8lV1nBNNn6HBIBR5ShvJnwyUdzuby
+ tOsSt7qJEvF1x3y49bHCy3uy+MmYuoEyG6zo9udUzhVsKe3hHYC2kfB16ZOBjFC3lH2U5An+
+ yQYIIPZrSWXUeKjeMaKGvbg6W9Oi4XEtrwpzUGhbewxCZZCIrzAH2hz0dUhacxB201Y/faY6
+ BdTS75SPs+zjTYo8yE9Y9eG7x/lB60nQjJiZVNvZ88QDfVuLl/heuIq+fyNajBbqbtBT5CWf
+ mOP4Dh4xjm3Vwlz8imWW/drEVJZJrPYqv0HdPbY8jVMpqoe5jDloyVn3prfLdXSbKPexlJaW
+ 5tnPd4lj8rqOFShRnLFCibpeHWIumqrIqIkiRA9kFW3XMgtU6JkIrQzhJb6Tc6mZg2wuYW0d
+ Wo2qvdziMgPkMFiWJpsxM9xPk9BBVwR+uojNq5LzdCsXQ2seG0dhaOTaaIDWVS8U/V8Nqjrl
+ 6bGG2quo5YzJuXKjtKjZ4R6k762pHJ3tnzI/jnlc1sXz
+Message-ID: <8a450951-a28d-dabf-6d52-2c827c5b749e@pengutronix.de>
+Date:   Wed, 18 Mar 2020 11:36:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1584527517; bh=uv1fkuSad4kBCRwzQTXQF9RBAm7wcOWJwqJqYeh9Dgk=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=nlt9uEKHAIpz95lJP5LapcrgBgt5MBTTN31/B/CCweamN7BYeJg/1YQjP7JCYAh5Y
-         2debWzIoQcLnjabTZ2I6ojb/mckNczHj0CevzfXvM3qP6P9C8oZrZ80JdIjiYCBTcC
-         lehWiEekdhTX0y5KOV4IjSCm/QSTZ4ZXDNT5z6+ulN9+V995YBDfLSWpoGLkYFi2hx
-         IhiQJj+Y4fK858j0g0bJ74UYf7FEMBuT0OYefiO46tKfmnVIyt8tyfhRJrOHWrM/zO
-         7UIu0yDPg7sgSu6kYUi9y8PVkhhVGYRWAX7jzVM3ZypC+dExD1eCby9lV4B6DC8YOT
-         qUr3iAfDx9Dww==
+In-Reply-To: <20200317161900.14380-1-dmurphy@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra210 SoC supports charger detect, set corresponding soc flag.
+On 3/17/20 5:19 PM, Dan Murphy wrote:
+> Fix the m_can.txt reference to point to the bosch,m_can.yaml.
+> 
+> Fixes: 824674b59f72 ("dt-bindings: net: can: Convert M_CAN to json-schema")
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
 
-Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
----
- drivers/phy/tegra/xusb-tegra210.c | 1 +
- 1 file changed, 1 insertion(+)
+Mauro Carvalho Chehab has already send a patch. See:
+https://lkml.org/lkml/2020/3/17/843
 
-diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
-index 93517b1..4c8cb0a 100644
---- a/drivers/phy/tegra/xusb-tegra210.c
-+++ b/drivers/phy/tegra/xusb-tegra210.c
-@@ -2347,6 +2347,7 @@ const struct tegra_xusb_padctl_soc tegra210_xusb_padctl_soc = {
- 	.supply_names = tegra210_xusb_padctl_supply_names,
- 	.num_supplies = ARRAY_SIZE(tegra210_xusb_padctl_supply_names),
- 	.need_fake_usb3_port = true,
-+	.charger_detect = true,
- };
- EXPORT_SYMBOL_GPL(tegra210_xusb_padctl_soc);
- 
+Feel free to ack that patch.
+
+Marc
+
+> ---
+>  Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+> index 6bdcc3f84bd3..3613c2c8f75d 100644
+> --- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+> +++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+> @@ -14,7 +14,7 @@ Required properties:
+>                      the interrupt.
+>  	- interrupts: interrupt specification for data-ready.
+>  
+> -See Documentation/devicetree/bindings/net/can/m_can.txt for additional
+> +See Documentation/devicetree/bindings/net/can/bosch,m_can.yaml for additional
+>  required property details.
+>  
+>  Optional properties:
+> 
+
+
 -- 
-2.7.4
-
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
