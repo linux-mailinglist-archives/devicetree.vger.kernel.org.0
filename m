@@ -2,94 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6249018B16E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 11:31:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E34818B17B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 11:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726911AbgCSKbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Mar 2020 06:31:04 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:13864 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726765AbgCSKbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Mar 2020 06:31:04 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02JASqwX011436;
-        Thu, 19 Mar 2020 11:30:54 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=T6KxkBVdSlvswEwEr/fHrokZ23VjltZtaEhbr8esy5Y=;
- b=V+mZ7etU3SXK2Sgi/eC0JJJcC0C2b6+W/lPBlCAm7cql5HaWiqr1nCquGskoO938ojO3
- TdSa/73rQ4/9Vvydn+LYsfxmm9I3QKhZN0JEy+AOwUCnb0aeS/71iN2Yva50ffyWCgq9
- I0MCbyxNAYcW/39U+TDk9ZKbSkOZsYCL8JGlcJt3G2UCWPWPGhcKA1ZyR7oHBgPqpjgV
- d5U7uQKSx9mtCf1tjaEMXBLZGcjHBReEe4BlbVciglZhy7j4HO9qOoGTq5xv49RadOwH
- UDbgdOcwmZUUsC+ZbjX8ZrM2hb9dppXkrhQGS0VR4mTJn5+H9X7tbTD8lWRFOJtMYtOh AQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2yu6xdhk8b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Mar 2020 11:30:54 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 12BCD100038;
-        Thu, 19 Mar 2020 11:30:54 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F0ED82A5824;
-        Thu, 19 Mar 2020 11:30:53 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG5NODE3.st.com (10.75.127.15)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 19 Mar 2020 11:30:53
- +0100
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-To:     <alexandre.torgue@st.com>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <fabrice.gasnier@st.com>
-Subject: [PATCH] ARM: dts: stm32: fix a typo for DAC io-channel-cells on stm32mp15
-Date:   Thu, 19 Mar 2020 11:30:26 +0100
-Message-ID: <1584613826-10838-1-git-send-email-fabrice.gasnier@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726802AbgCSKcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Mar 2020 06:32:05 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:34658 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbgCSKcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Mar 2020 06:32:05 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id BAEA880453;
+        Thu, 19 Mar 2020 11:32:00 +0100 (CET)
+Date:   Thu, 19 Mar 2020 11:31:59 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v2 3/3] MAINTAINERS: Update feiyang, st7701 panel
+ bindings converted as YAML
+Message-ID: <20200319103159.GA18744@ravnborg.org>
+References: <20200318171003.5179-1-jagan@amarulasolutions.com>
+ <20200318171003.5179-3-jagan@amarulasolutions.com>
+ <20200318185814.GB28092@ravnborg.org>
+ <CAMty3ZDhVfvYXV7OO+NT+d_2YHbsJXebzjdtYkqtdD+X=Ch0yQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG7NODE3.st.com (10.75.127.21) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
- definitions=2020-03-19_02:2020-03-19,2020-03-19 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZDhVfvYXV7OO+NT+d_2YHbsJXebzjdtYkqtdD+X=Ch0yQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+        a=iP-xVBlJAAAA:8 a=-5vWvTUDYGztgwe3K24A:9 a=CjuIK1q_8ugA:10
+        a=E9Po1WZjFZOl8hwRPBS3:22 a=lHLH-nfn2y1bM_0xSXwp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix a typo on STM32MP15 DAC, e.g. s/channels/channel
+Hi Jagan.
+On Thu, Mar 19, 2020 at 03:50:44PM +0530, Jagan Teki wrote:
+> On Thu, Mar 19, 2020 at 12:28 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+> >
+> > On Wed, Mar 18, 2020 at 10:40:03PM +0530, Jagan Teki wrote:
+> > > The feiyang,fy07024di26a30d.txt and sitronix,st7701.txt has been
+> > > converted to YAML schemas, update MAINTAINERS to match them again.
+> > >
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> >
+> > The patch is fine.
+> > I just dislike we repeat the maintainer info in two places..
+> 
+> Since these are two different panels. and entry similar like other
+> panels.do you look for single entry for both the panels?
+My comment was related to the fact that we have maintainer entry in the
+.yaml file, and in MAINTAINERS.
 
-Fixes: da6cddc7e8a4 ("ARM: dts: stm32: Add DAC support to stm32mp157c")
+Seems a waste to have a distributed and a centralized place for this.
+So patches are fine in this respect.
+And merging the two bindings would be very bad, they are not alike.
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 3ea05ba..5260818 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -550,14 +550,14 @@
- 
- 			dac1: dac@1 {
- 				compatible = "st,stm32-dac";
--				#io-channels-cells = <1>;
-+				#io-channel-cells = <1>;
- 				reg = <1>;
- 				status = "disabled";
- 			};
- 
- 			dac2: dac@2 {
- 				compatible = "st,stm32-dac";
--				#io-channels-cells = <1>;
-+				#io-channel-cells = <1>;
- 				reg = <2>;
- 				status = "disabled";
- 			};
--- 
-2.7.4
-
+	Sam
