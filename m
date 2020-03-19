@@ -2,159 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE68618AE6A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 09:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF1FC18B02F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 10:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbgCSIeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Mar 2020 04:34:12 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:10252 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725787AbgCSIeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Mar 2020 04:34:11 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1584606850; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=WjXzvAYgeus60ZHUiMBAn5ZUUcI2n3FOiiJg0MvlMXI=; b=IHaCZTUc26ayNIQDqjg6WP8IeFCydzYecYwb4jIsJx/vF9YcbJtdE2dKv2G1FtBCIhGofXiV
- z7/TTTnER8MpbbK+PP2wEcIC5OKjWKjGoduAd9l0IzYBYlgfFjnGSerg6Lj6ZVzBzOczgyV/
- +Apk4PjEw2Xdq4KZSJnmuIy6akU=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e732e77.7fdc70171848-smtp-out-n04;
- Thu, 19 Mar 2020 08:33:59 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D04D0C43637; Thu, 19 Mar 2020 08:33:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.0.103] (unknown [106.51.30.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5507DC432C2;
-        Thu, 19 Mar 2020 08:33:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5507DC432C2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7180: Fix cpu compatible
-To:     Amit Kucheria <amit.kucheria@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, sibis@codeaurora.org,
-        swboyd@chromium.org, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org
-References: <cd0f3d35ca0fc2944fd97e030a28318ff82dd5c1.1584516925.git.amit.kucheria@linaro.org>
- <2526d2b2907116d1bb6f7edd194226eb7e24c333.1584516925.git.amit.kucheria@linaro.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <f78414f8-01c7-1274-14ae-a0222a8f636a@codeaurora.org>
-Date:   Thu, 19 Mar 2020 14:03:36 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1726912AbgCSJ2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Mar 2020 05:28:18 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46648 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725887AbgCSJ2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Mar 2020 05:28:18 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02J9S8AZ010903;
+        Thu, 19 Mar 2020 04:28:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1584610088;
+        bh=UEwEnyl32F01p44oeA8YEloWkVx0Y9IDXcQfa9MD6go=;
+        h=From:To:CC:Subject:Date;
+        b=nr67BPBaGJ2/eZkEenADfUCnKG+CTOIRV4zwNLaF62EXzlyjfMrt1604bIERMdv2y
+         8iJKR7e/NbWrLLQ6JQ8szGmOcxSy14cBVnNdEwJNl5l6jBCX1/K1cX44rsGhdv4lCW
+         VPxgNdVv0OfygsGC5+9Vl/ijc3+kbq6JxEfbJ0TA=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02J9S7EH051953
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Mar 2020 04:28:07 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
+ Mar 2020 04:28:06 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 19 Mar 2020 04:28:06 -0500
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02J9S4eo088372;
+        Thu, 19 Mar 2020 04:28:05 -0500
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] ASoC: ti: Add support for audio on J721e EVM
+Date:   Thu, 19 Mar 2020 11:28:12 +0200
+Message-ID: <20200319092815.3776-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <2526d2b2907116d1bb6f7edd194226eb7e24c333.1584516925.git.amit.kucheria@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This series adds support for the analog audio setup on the j721e EVM.
+The audio setup of the EVM is:
+Common Processor Board (CPB): McASP10 <-> pcm3168a
+Infotainment Expansion Board (IVI): McASP0 <-> 2x pcm3168a
 
-On 3/18/2020 2:38 PM, Amit Kucheria wrote:
-> "arm,armv8" compatible should only be used for software models. Replace
-> it with the real cpu type.
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> ---
+Both CPB and IVI wired in parallel serializer setup.
 
-Reviewed-by: Rajendra Nayak <rnayak@codeaurora.org>
+The first patch adds the stream_name for McASP driver as it is needed in
+multicodec (and would be needed in DPCM) setup for proper DAPM handling.
 
->   arch/arm64/boot/dts/qcom/sc7180.dtsi | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 8011c5fe2a31..a01dfefd90be 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -83,7 +83,7 @@
->   
->   		CPU0: cpu@0 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x0>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_0>;
-> @@ -100,7 +100,7 @@
->   
->   		CPU1: cpu@100 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x100>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_100>;
-> @@ -114,7 +114,7 @@
->   
->   		CPU2: cpu@200 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x200>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_200>;
-> @@ -128,7 +128,7 @@
->   
->   		CPU3: cpu@300 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x300>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_300>;
-> @@ -142,7 +142,7 @@
->   
->   		CPU4: cpu@400 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x400>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_400>;
-> @@ -156,7 +156,7 @@
->   
->   		CPU5: cpu@500 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x500>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_500>;
-> @@ -170,7 +170,7 @@
->   
->   		CPU6: cpu@600 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x600>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_600>;
-> @@ -184,7 +184,7 @@
->   
->   		CPU7: cpu@700 {
->   			device_type = "cpu";
-> -			compatible = "arm,armv8";
-> +			compatible = "qcom,kryo468";
->   			reg = <0x0 0x700>;
->   			enable-method = "psci";
->   			next-level-cache = <&L2_700>;
-> 
+The second patch adds two DT schema, one for the cpb and one for the cpb+ivi
+card.
+
+Regards,
+Peter
+---
+Peter Ujfalusi (3):
+  ASoC: ti: davinci-mcasp: Specify stream_name for playback/capture
+  bindings: sound: Add documentation for TI j721e EVM (CPB and IVI)
+  ASoC: ti: Add custom machine driver for j721e EVM (CPB and IVI)
+
+ .../bindings/sound/ti,j721e-cpb-audio.yaml    |  93 ++
+ .../sound/ti,j721e-cpb-ivi-audio.yaml         | 145 +++
+ sound/soc/ti/Kconfig                          |   8 +
+ sound/soc/ti/Makefile                         |   2 +
+ sound/soc/ti/davinci-mcasp.c                  |   3 +
+ sound/soc/ti/j721e-evm.c                      | 864 ++++++++++++++++++
+ 6 files changed, 1115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,j721e-cpb-audio.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml
+ create mode 100644 sound/soc/ti/j721e-evm.c
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
