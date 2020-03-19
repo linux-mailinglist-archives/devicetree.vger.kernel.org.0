@@ -2,121 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E2A18C0C7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 20:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F84D18C16F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 21:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727692AbgCSTv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Mar 2020 15:51:58 -0400
-Received: from mail-eopbgr80052.outbound.protection.outlook.com ([40.107.8.52]:28703
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727664AbgCSTv5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Mar 2020 15:51:57 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RHJlQCqeIskHJSirDvJ7vB8Xi0O4AD1BBBBCj0rSxF21/SfCU86oVB7VwZcrII9UDGoGTGunS8SIWw506G0ohg4hHZ0gYxG49pnHGytYzJEcZMwOpVdMQ3Y2jToyFEYPeIqKSFQjkRoeuTyoGjfAFi0tZpiw3zoVwBjcoxBJ73I/x3w7qBrAqSEyhpIhRlJN9qQE1RT17DxbXr8nxpP0EdpWiyDYc9gyXHPxetyTzJtwHZpNzM1ub06P68M4gmZS4sZiXR2xrk55SDoRz9FmMq3aRPdb1a6vy2g2Y7NbP6wGQaoxWRghjXxMGd8ki0vCbpRrVaskWUgOhGLEtMPxyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MIJvm2uYZN1kvrqVYFKaOn8ftsCDFypCbj2Nd45Sk+w=;
- b=cOAudeVPH3XgYxUYt39EjGo9HQCGMwyfH0eoWuETHxQgwAylFqKZAq4bk4jZRD48IGwBWe+gZgRr+bw7PXpMCWgRKvIEF8CQ3kPRqA3QzhizifKznFlVN+FTiHl9mGa1zRG2nsY5lOa9tagd5v2dmQ6U8id5KqwTR8iMqEBQuDoVhEIqm0O8I+Ogm8dBBnOHgSsQSa/CQ8vcSm/VkU76/ZUotSfrVlgiOxhG/r12A9kmbV8skBX3faLpLr/MIRjy4HHL7LxqEmwiAx0kCGL4uDSTfwI3JXOxjPHlMRxrSDfaotXQ95oWaqM/z9aX4oFvx6sGHQrFkk2ppvUhdOLNow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MIJvm2uYZN1kvrqVYFKaOn8ftsCDFypCbj2Nd45Sk+w=;
- b=iDxp4OoxnvBoeeqgPRab42NJ8jWnbX88Xkn7S5ZxfI1+JMrpH6gh/ejCtiAm/sar0hS8rKIS7LFxifQdDrqmg4ApwgGJ+rYaESn2gtEPV4kfWVD8iYDPyEofumloUXIfKdybBAI93RuOnztJnRcAA4H6LsV7R/tAhDCsKdiZQAc=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=daniel.baluta@oss.nxp.com; 
-Received: from VI1PR0402MB3839.eurprd04.prod.outlook.com (52.134.16.147) by
- VI1PR0402MB3486.eurprd04.prod.outlook.com (52.134.4.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.13; Thu, 19 Mar 2020 19:51:53 +0000
-Received: from VI1PR0402MB3839.eurprd04.prod.outlook.com
- ([fe80::35d0:31bc:91d9:ceb0]) by VI1PR0402MB3839.eurprd04.prod.outlook.com
- ([fe80::35d0:31bc:91d9:ceb0%7]) with mapi id 15.20.2835.017; Thu, 19 Mar 2020
- 19:51:53 +0000
-From:   Daniel Baluta <daniel.baluta@oss.nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org
-Cc:     pierre-louis.bossart@linux.intel.com,
-        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com,
-        daniel.baluta@gmail.com, linux-imx@nxp.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        yuehaibing@huawei.com, krzk@kernel.org,
-        linux-kernel@vger.kernel.org, sound-open-firmware@alsa-project.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH 5/5] dt-bindings: dsp: fsl: Add fsl,imx8mp-dsp entry
-Date:   Thu, 19 Mar 2020 21:49:57 +0200
-Message-Id: <20200319194957.9569-6-daniel.baluta@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200319194957.9569-1-daniel.baluta@oss.nxp.com>
-References: <20200319194957.9569-1-daniel.baluta@oss.nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR07CA0031.eurprd07.prod.outlook.com
- (2603:10a6:208:ac::44) To VI1PR0402MB3839.eurprd04.prod.outlook.com
- (2603:10a6:803:21::19)
+        id S1727383AbgCSUaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Mar 2020 16:30:07 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:36066 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727414AbgCSUaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Mar 2020 16:30:06 -0400
+Received: by mail-pf1-f195.google.com with SMTP id i13so2045765pfe.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2020 13:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=jWRRL5fJU84goaEEMPwzMKuUagdNByNPY2GPzz3BqUo=;
+        b=lWmsiQ6Lb12qslAwJviWPgtxxPbMSrg+pf/z7L753FhqBwUjeQBLJhoTf8/lddF/he
+         xOvVxA7tlABxLQiOJrogLhHZqlWH9NMdQK6z4QFWYrq0WhNVbIDT1NPcMDNKDlbpBIGY
+         esQgYzmhVXZOC2O6GW91aUxmqMwf/hxeKNtH4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=jWRRL5fJU84goaEEMPwzMKuUagdNByNPY2GPzz3BqUo=;
+        b=ONEcvg+2hbFM7wjcPBVPZ2lJkVxa+bClqbVMdeddvuR3bzMkoo2ExYwdljW8VFPgWb
+         SmT8MZYJsXZB7TaOT9t0qqvgb0232fBg89GwL8u7zDY9l3Pjlqf7Imnw+teyQKM3yyqo
+         /wCvsQyanuiQz+LdDenxzvLEkXtPoHIhVX1HaMg/lmiptsUzI1gnNN4ak/x98SLDUUlj
+         L+MQuUKQ6dj6/2Ixo58hV1bSMujcxl+X/WFktdij9Unf8XUU7puvQx36+FGnBU1fuCDY
+         aRc95/itsR5eHIK++gjSQdtk0LUBXr9Pilv83L3+uOJoNIOq5f8Fqg7fuP8AZKnMThRK
+         9RYQ==
+X-Gm-Message-State: ANhLgQ2+r1/WG3U5c6EqmrwH4WHwFuQsmfrwuYc5xA13yVIS8nFGNo0q
+        /kjNGOzwB/I5H/WpW05yy1Fisg==
+X-Google-Smtp-Source: ADFU+vvXN5rPoEsslES8Yzt/IbFnT4RPQKMhfYMmFrcParmX/mJcnSp+G095zu6wuQaOYpmLGqW8Lw==
+X-Received: by 2002:a62:7a88:: with SMTP id v130mr5681312pfc.129.1584649804565;
+        Thu, 19 Mar 2020 13:30:04 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id z16sm3343326pfr.138.2020.03.19.13.30.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2020 13:30:03 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from fsr-ub1864-103.ro-buh02.nxp.com (89.37.124.34) by AM0PR07CA0031.eurprd07.prod.outlook.com (2603:10a6:208:ac::44) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.12 via Frontend Transport; Thu, 19 Mar 2020 19:51:51 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [89.37.124.34]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 26b9327e-5f61-480a-6567-08d7cc3ef8de
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3486:|VI1PR0402MB3486:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB348694A48BB9350AA0CFF7E3B8F40@VI1PR0402MB3486.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
-X-Forefront-PRVS: 0347410860
-X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(199004)(81156014)(4744005)(8676002)(8936002)(1076003)(81166006)(186003)(26005)(956004)(4326008)(16526019)(2616005)(478600001)(6506007)(316002)(2906002)(44832011)(86362001)(66946007)(7416002)(66476007)(6486002)(52116002)(66556008)(6512007)(5660300002)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3486;H:VI1PR0402MB3839.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;
-Received-SPF: None (protection.outlook.com: oss.nxp.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mdidgtAEs9fHPdsa7BMJZLpizZLS/dxSd2ChpB/WsyChUEmuKzd6X5rJeOVg7DXPWO92MDXVwce5TLTfXVmLlBajhzfYMMBmQgPhX+10rSIAZaToGDPD7+5SDDG2uymZbSymAMbh3BobGLGa3a4zbJoaQvFJbV+UxnIPtSXb6xAmSHmmrCcDyzfo625Ga4tvpiDcQDdkxd0vfEclsG/ztguXqtOpnH8kunMCJAPc2kGf/QRUUhdJ7RsUFxJsuHGyk4A4VuYaKw07Y4JuBM6ziujUH7zbF17kh8kvXHAPmvlpNJt3KSSiPzS4PMw4ryox7a/LLF6UTALWfuR6Dv2ppSts+pvDppTEJ0R3lzNF0uKcmWIYug+pDnUmUQpWAcJOy9B5ViO8MW2kOyVTnQHMQEzMMvHeXbQ+TC//ehLWBZiZEaMcL+Sg+tn0U11wprHBnhtmY1M9mIlw+a2b1KjqX9vUmX+IzSqxhs4EHW7MBUStGHKI9TldtY8BLu0IQTiC
-X-MS-Exchange-AntiSpam-MessageData: CpUNsa8i+T5aomKEeLXuqD1Hk93R9fVAPxBLjPSSrBa2HMZDIvs4eaY+U17pMLXTrJrrCikivFBY8sUsikEBBeGFVaqYQqEy6/f22WItSDNmjsLizqperPzYj3TmxiD9NTKvetPM91mkABbarR1kZA==
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26b9327e-5f61-480a-6567-08d7cc3ef8de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2020 19:51:53.6324
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NnqN+ybr78DOTjlsXEgDSVWFUxyrV+3MZb88jJO8xJLINcGxvr/AiD1DNSPOiUFdOH8ZZahGuYHNj5YPydJ02Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3486
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <f6e948cb-7d3f-72b6-b153-58afb1304c49@linaro.org>
+References: <20200311191501.8165-1-bryan.odonoghue@linaro.org> <20200311191501.8165-3-bryan.odonoghue@linaro.org> <158458013177.152100.17920784952083533825@swboyd.mtv.corp.google.com> <aa6aa234-e2d1-bdcd-0f0e-64b2a7e497d3@linaro.org> <158463604559.152100.9219030962819234620@swboyd.mtv.corp.google.com> <f6e948cb-7d3f-72b6-b153-58afb1304c49@linaro.org>
+Subject: Re: [PATCH 2/7] dt-bindings: usb: dwc3: Add a gpio-usb-connector example
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bjorn.andersson@linaro.org, jackp@codeaurora.org, robh@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, balbi@kernel.org,
+        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org
+Date:   Thu, 19 Mar 2020 13:30:02 -0700
+Message-ID: <158464980279.152100.13680630167113607572@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Baluta <daniel.baluta@nxp.com>
+Quoting Bryan O'Donoghue (2020-03-19 11:03:58)
+> On 19/03/2020 16:40, Stephen Boyd wrote:
+> > the gpio for the connector?
+>=20
+> Previous version of the PHY from 2019 had extcon toggling vbus.
+>=20
+> Since extcon is going away, we moved go usb-gpio
+>=20
+> https://lwn.net/ml/devicetree/20190905175802.GA19599@jackp-linux.qualcomm=
+.com/
+>=20
+> https://lwn.net/ml/devicetree/5d71edf5.1c69fb81.1f307.fdd6@mx.google.com/
+>=20
+> usb-gpio-conn handle VBUS and notifies via the USB role switch API.
+>=20
+> Which if the connector is a child of the controller "just works" but,=20
+> maybe with a little bit of work DT <port> references could do the same=20
+> thing and the connector wouldn't need to be declared as a child.
+>=20
+> > We (ChromeOS) need to integrate the type-c connector class, etc. on
+> > sc7180 with the dwc3 driver and the current thinking has the type-c
+> > connectors underneath the cros_ec node because the EC is the type-c
+> > manager. The EC will have a type-c driver associated with it.
+>=20
+> right and you don't want, doesn't work or doesn't make sense, to declare =
 
-Minimal implementation needs the same DT properties as
-existing compatible strings. So, we just add the new
-compatible string in the list.
+> cros_ec as a child of DWC3, fair enough.
+>=20
+> I guess a DT remote-endpoint{} will do the job.
+>=20
+> Something like:
+> arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+>=20
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- Documentation/devicetree/bindings/dsp/fsl,dsp.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-index f04870d84542..65d4d07e1952 100644
---- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-+++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-@@ -17,6 +17,8 @@ properties:
-   compatible:
-     enum:
-       - fsl,imx8qxp-dsp
-+      - fsl,imx8qm-dsp
-+      - fsl,imx8mp-dsp
- 
-   reg:
-     description: Should contain register location and length
--- 
-2.17.1
-
+Yes something like that, but it looks like that dtsi file has the usb
+host controller connected through a remote-endpoint to the type-c
+connector. I was under the impression that it would only be the phy that
+is connected this way because it's possible for there to be multiple
+different phys that drive data out through one connector. For example,
+in type-c the DP phy can be different from the USB2 phy or USB3 phy and
+there could even be other things like an HDMI phy too that all go to the
+same connector.
