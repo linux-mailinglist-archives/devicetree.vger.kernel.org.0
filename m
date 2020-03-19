@@ -2,100 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5BB18B26B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 12:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2800618B255
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2020 12:32:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726979AbgCSLgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Mar 2020 07:36:13 -0400
-Received: from mga03.intel.com ([134.134.136.65]:28282 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725767AbgCSLgN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Mar 2020 07:36:13 -0400
-IronPort-SDR: e8zNjWbh0ykkkWfYJWE+GlBp9NqQPwvmsZFeZh5QG1ETpTowMxQDyWk+lj0VdDiZV5o3Sk6y3t
- K+Bv3W88I1+A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2020 04:36:12 -0700
-IronPort-SDR: zLFal0iZZQ0ZeR6+e3XbpetkEaXpQZVwtGXSMeK5IxeonJZfwJg60dAil2oiypArdRd8mzsDIw
- R6s5MCiPToyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; 
-   d="scan'208";a="444534943"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga005.fm.intel.com with ESMTP; 19 Mar 2020 04:36:09 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andy.shevchenko@gmail.com>)
-        id 1jEtT9-00B3pc-1y; Thu, 19 Mar 2020 13:36:11 +0200
-Date:   Thu, 19 Mar 2020 13:36:11 +0200
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        sj.huang@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, louis.kuo@mediatek.com,
-        shengnan.wang@mediatek.com
-Subject: Re: [V3, 2/2] media: i2c: Add DW9768 VCM driver
-Message-ID: <20200319113611.GJ1922688@smile.fi.intel.com>
-References: <20200228155958.20657-1-dongchun.zhu@mediatek.com>
- <20200228155958.20657-3-dongchun.zhu@mediatek.com>
- <20200305120516.GQ5379@paasikivi.fi.intel.com>
- <CAHp75Vf5km-YitoTUAFkr8LZVq2QMep1rC19ZpR-YRbeXgJOVQ@mail.gmail.com>
- <1584612215.5781.62.camel@mhfsdcap03>
+        id S1726933AbgCSLcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Mar 2020 07:32:36 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:57908 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726881AbgCSLcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Mar 2020 07:32:36 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02JBWYie039016;
+        Thu, 19 Mar 2020 06:32:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1584617554;
+        bh=ku+SXfUtiEPt/RRJyiXB55ygGUXJdm2rEMXxzuG3T7U=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=lDqZJOowIH/oOw82O3cHSRafck9PJMUWj1U18frjPU5RFfq1+m1+96NJDJ4Yc6tw5
+         amovR4wjO7sR21x8jxxY2j6BJzEZzu+pBe2PtZg/7oXQHpRX5X36tY96gcSIhB5/7Q
+         fpgZosJOj0Z3p7TJF/0n5GPBDQaNUwcRqTHBkOFE=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02JBWY1T074453;
+        Thu, 19 Mar 2020 06:32:34 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
+ Mar 2020 06:32:33 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 19 Mar 2020 06:32:33 -0500
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02JBWUk9099128;
+        Thu, 19 Mar 2020 06:32:31 -0500
+Subject: Re: [PATCH v2 3/6] arm64: dts: ti: k3-j721e-main: Add serdes_ln_ctrl
+ node to select SERDES lane mux
+To:     Rob Herring <robh@kernel.org>, Roger Quadros <rogerq@ti.com>
+CC:     <t-kristo@ti.com>, <nm@ti.com>, <nsekhar@ti.com>,
+        <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200303101722.26052-1-rogerq@ti.com>
+ <20200303101722.26052-4-rogerq@ti.com> <20200310210904.GA11275@bogus>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <247a115e-6b44-2906-07cf-771236d492d6@ti.com>
+Date:   Thu, 19 Mar 2020 17:07:14 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1584612215.5781.62.camel@mhfsdcap03>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20200310210904.GA11275@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 19, 2020 at 06:03:35PM +0800, Dongchun Zhu wrote:
-> On Tue, 2020-03-10 at 12:10 +0200, Andy Shevchenko wrote:
-> > On Thu, Mar 5, 2020 at 2:07 PM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > > On Fri, Feb 28, 2020 at 11:59:58PM +0800, Dongchun Zhu wrote:
-> > > > This patch adds a V4L2 sub-device driver for DW9768 lens voice coil,
-> > > > and provides control to set the desired focus via I2C serial interface.
-> > 
-> > ...
-> > 
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -5139,6 +5139,7 @@ M:      Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > >  L:   linux-media@vger.kernel.org
-> > > >  T:   git git://linuxtv.org/media_tree.git
-> > > >  S:   Maintained
-> > > > +F:   drivers/media/i2c/dw9768.c
-> > > >  F:   Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
-> > 
-> > This has ordering issues.
-> > Run parse-maintainers.pl to fix.
-> > 
+Hi Rob,
+
+On 11/03/20 2:39 am, Rob Herring wrote:
+> On Tue, Mar 03, 2020 at 12:17:19PM +0200, Roger Quadros wrote:
+>> From: Kishon Vijay Abraham I <kishon@ti.com>
+>>
+>> Add serdes_ln_ctrl node used for selecting SERDES lane mux.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 27 ++++++++++++
+>>  include/dt-bindings/mux/mux-j721e-wiz.h   | 53 +++++++++++++++++++++++
+>>  2 files changed, 80 insertions(+)
+>>  create mode 100644 include/dt-bindings/mux/mux-j721e-wiz.h
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> index cbaadee5bfdc..c5d54af37e91 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> @@ -5,6 +5,8 @@
+>>   * Copyright (C) 2016-2019 Texas Instruments Incorporated - http://www.ti.com/
+>>   */
+>>  #include <dt-bindings/phy/phy.h>
+>> +#include <dt-bindings/mux/mux.h>
+>> +#include <dt-bindings/mux/mux-j721e-wiz.h>
+>>  
+>>  &cbass_main {
+>>  	msmc_ram: sram@70000000 {
+>> @@ -19,6 +21,31 @@
+>>  		};
+>>  	};
+>>  
+>> +	scm_conf: scm-conf@100000 {
+>> +		compatible = "syscon", "simple-mfd", "ti,j721e-system-controller";
 > 
-> Pardon, how to run parse-maintainers.pl?
-> Locally I ran this script, it occurs some syntax as below.
-> $./scripts/parse-maintainers.pl
+> Wrong ordering. Most significant first.
+> 
+>> +		reg = <0 0x00100000 0 0x1c000>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		ranges = <0x0 0x0 0x00100000 0x1c000>;
+>> +
+>> +		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
+> 
+> Your syscon.yaml change is not valid if you have child nodes. Do a 
+> specific binding for this block.
 
-It's a perl script which is made non-executable by some reason.
+Do you mean in addition to having platform specific binding for
+scm-conf, I need to have platform specific binding for serdes-ln-ctrl.
 
-So, proper run as a parameter to the language interpreter, i.e.
-	$ perl scripts/parse-maintainer.pl
+Since the driver doesn't do any platform specific stuff, the driver
+doesn't have to change. Is that correct?
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks
+Kishon
+> 
+>> +			compatible = "mmio-mux";
+>> +			reg = <0x00004080 0x50>;
+>> +			#mux-control-cells = <1>;
+>> +			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
+>> +					<0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
+>> +					<0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
+>> +					<0x40b0 0x3>, <0x40b4 0x3>, /* SERDES3 lane0/1 select */
+>> +					<0x40c0 0x3>, <0x40c4 0x3>, <0x40c8 0x3>, <0x40cc 0x3>;
+>> +					/* SERDES4 lane0/1/2/3 select */
+>> +			idle-states = <SERDES0_LANE0_PCIE0_LANE0>, <SERDES0_LANE1_PCIE0_LANE1>,
+>> +				      <SERDES1_LANE0_PCIE1_LANE0>, <SERDES1_LANE1_PCIE1_LANE1>,
+>> +				      <SERDES2_LANE0_PCIE2_LANE0>, <SERDES2_LANE1_PCIE2_LANE1>,
+>> +				      <MUX_IDLE_AS_IS>, <SERDES3_LANE1_USB3_0>,
+>> +				      <SERDES4_LANE0_EDP_LANE0>, <SERDES4_LANE1_EDP_LANE1>, <SERDES4_LANE2_EDP_LANE2>, <SERDES4_LANE3_EDP_LANE3>;
+>> +		};
+>> +	};
+>> +
+>>  	gic500: interrupt-controller@1800000 {
+>>  		compatible = "arm,gic-v3";
+>>  		#address-cells = <2>;
+>> diff --git a/include/dt-bindings/mux/mux-j721e-wiz.h b/include/dt-bindings/mux/mux-j721e-wiz.h
+>> new file mode 100644
+>> index 000000000000..fd1c4ea9fc7f
+>> --- /dev/null
+>> +++ b/include/dt-bindings/mux/mux-j721e-wiz.h
+>> @@ -0,0 +1,53 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * This header provides constants for J721E WIZ.
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_J721E_WIZ
+>> +#define _DT_BINDINGS_J721E_WIZ
+>> +
+>> +#define SERDES0_LANE0_QSGMII_LANE1	0x0
+>> +#define SERDES0_LANE0_PCIE0_LANE0	0x1
+>> +#define SERDES0_LANE0_USB3_0_SWAP	0x2
+>> +
+>> +#define SERDES0_LANE1_QSGMII_LANE2	0x0
+>> +#define SERDES0_LANE1_PCIE0_LANE1	0x1
+>> +#define SERDES0_LANE1_USB3_0		0x2
+>> +
+>> +#define SERDES1_LANE0_QSGMII_LANE3	0x0
+>> +#define SERDES1_LANE0_PCIE1_LANE0	0x1
+>> +#define SERDES1_LANE0_USB3_1_SWAP	0x2
+>> +#define SERDES1_LANE0_SGMII_LANE0	0x3
+>> +
+>> +#define SERDES1_LANE1_QSGMII_LANE4	0x0
+>> +#define SERDES1_LANE1_PCIE1_LANE1	0x1
+>> +#define SERDES1_LANE1_USB3_1		0x2
+>> +#define SERDES1_LANE1_SGMII_LANE1	0x3
+>> +
+>> +#define SERDES2_LANE0_PCIE2_LANE0	0x1
+>> +#define SERDES2_LANE0_SGMII_LANE0	0x3
+>> +#define SERDES2_LANE0_USB3_1_SWAP	0x2
+>> +
+>> +#define SERDES2_LANE1_PCIE2_LANE1	0x1
+>> +#define SERDES2_LANE1_USB3_1		0x2
+>> +#define SERDES2_LANE1_SGMII_LANE1	0x3
+>> +
+>> +#define SERDES3_LANE0_PCIE3_LANE0	0x1
+>> +#define SERDES3_LANE0_USB3_0_SWAP	0x2
+>> +
+>> +#define SERDES3_LANE1_PCIE3_LANE1	0x1
+>> +#define SERDES3_LANE1_USB3_0		0x2
+>> +
+>> +#define SERDES4_LANE0_EDP_LANE0		0x0
+>> +#define SERDES4_LANE0_QSGMII_LANE5	0x2
+>> +
+>> +#define SERDES4_LANE1_EDP_LANE1		0x0
+>> +#define SERDES4_LANE1_QSGMII_LANE6	0x2
+>> +
+>> +#define SERDES4_LANE2_EDP_LANE2		0x0
+>> +#define SERDES4_LANE2_QSGMII_LANE7	0x2
+>> +
+>> +#define SERDES4_LANE3_EDP_LANE3		0x0
+>> +#define SERDES4_LANE3_QSGMII_LANE8	0x2
+>> +
+>> +#endif /* _DT_BINDINGS_J721E_WIZ */
+>> -- 
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>>
