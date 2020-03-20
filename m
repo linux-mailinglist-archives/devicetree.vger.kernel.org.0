@@ -2,103 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A38D18C8BB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 09:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A92818C8E9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 09:23:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726897AbgCTILb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 04:11:31 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:51318 "EHLO mail.andi.de1.cc"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726840AbgCTILa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Mar 2020 04:11:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8uNn0pgvKn2fpP2I6JTFrcoatNgGZjsQe8kBMamy+W4=; b=Ax+m3e+nTo5xkxohG8wKZzCk/P
-        7wmG6uk2I1ntHVWUtwA/LWnMjkwZ4CsCKidBsmvjdYpN5nARe6/b7fz3Su2kvCKqY5t/6IcHVR8uV
-        TzHnciddPPUyjkwNO3UaFamd67sgr7WDYsEAJcw76hncz1Y3xUqG1l8X1gtZ1is+4Mts=;
-Received: from p200300ccff093a00e2cec3fffe93fc31.dip0.t-ipconnect.de ([2003:cc:ff09:3a00:e2ce:c3ff:fe93:fc31] helo=eeepc)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1jFCkP-00058S-7M; Fri, 20 Mar 2020 09:11:18 +0100
-Received: from andi by eeepc with local (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1jFCkK-00039Z-0g; Fri, 20 Mar 2020 09:11:12 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, stefan@agner.ch, b.galvani@gmail.com,
-        phh@phh.me, letux-kernel@openphoenux.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
-        jic23@kernel.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v7 7/7] mfd: rn5t618: cleanup i2c_device_id
-Date:   Fri, 20 Mar 2020 09:11:05 +0100
-Message-Id: <20200320081105.12026-8-andreas@kemnade.info>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200320081105.12026-1-andreas@kemnade.info>
-References: <20200320081105.12026-1-andreas@kemnade.info>
+        id S1726704AbgCTIXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 04:23:52 -0400
+Received: from mout.kundenserver.de ([217.72.192.73]:44171 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726527AbgCTIXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 04:23:52 -0400
+Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1N3bCH-1jOrq90Hlz-010fJp; Fri, 20 Mar 2020 09:23:34 +0100
+Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
+        by mail.cetitecgmbh.com (Postfix) with ESMTP id ADF0C64F8DA;
+        Fri, 20 Mar 2020 08:23:32 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at cetitec.com
+Received: from mail.cetitecgmbh.com ([127.0.0.1])
+        by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id dUkY0kNg4MH8; Fri, 20 Mar 2020 09:23:32 +0100 (CET)
+Received: from pfwsexchange.corp.cetitec.com (unknown [10.10.1.99])
+        by mail.cetitecgmbh.com (Postfix) with ESMTPS id 62EDA64E0DE;
+        Fri, 20 Mar 2020 09:23:32 +0100 (CET)
+Received: from pflmari.corp.cetitec.com (10.8.5.41) by
+ PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Fri, 20 Mar 2020 09:23:32 +0100
+Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
+        id BC6AC80524; Fri, 20 Mar 2020 09:23:31 +0100 (CET)
+Date:   Fri, 20 Mar 2020 09:23:31 +0100
+From:   Alex Riesen <alexander.riesen@cetitec.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        <devel@driverdev.osuosl.org>, <linux-media@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 02/10] media: adv748x: include everything adv748x.h
+ needs into the file
+Message-ID: <20200320082331.GA4344@pflmari>
+Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devel@driverdev.osuosl.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1584639664.git.alexander.riesen@cetitec.com>
+ <fe109d58eaa34d68cad0f34bb048f827b336e024.1584639664.git.alexander.riesen@cetitec.com>
+ <20200319174802.GH14585@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200319174802.GH14585@pendragon.ideasonboard.com>
+X-Originating-IP: [10.8.5.41]
+X-ClientProxiedBy: PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) To
+ PFWSEXCHANGE.corp.cetitec.com (10.10.1.99)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A290D7F536A6D7764
+X-Provags-ID: V03:K1:33L9iXlJrVAggt8Qr9tzFofSe8801Fe853bNzSP0wXiHIM5BDd+
+ ycYFhci0saF/hRiVg9z3D6spodni5WsR06QZvTtkt3mUd6/7A22KIDkjkY4RqWKSzR/1byL
+ YvrPoyjlKlvOgFppmYEqZ6xwFexNcSXyQxrO8D1x2CL2ftDnRx1WUPVNWydn0+5WLFftewx
+ ZYgEWKIXTHmnguyZx3cJg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nc81whusC54=:fwlSM1iQLjay0uUJ5eWU3Q
+ b+jrVseEx9QTc34P/74chQufQiB8rgPH8uUYdUqWOpnYsuChGEdeiqr9iQ8xqt2rAvboTE1r7
+ c5UX8BivJbScplA88regWkoGtzK5DqhRLne43IJopTRMKluhf7hPQ5Ft7D8fxIT+0aDcbX+Rv
+ Hff9H4R3u5J5/euBGShbUdKYQ0U7yuV7KXFg1QrJ7EDaoiVBIkwIdyTNSwaXatbcWqlTwKUNd
+ O1nqE76x/SaxlUwC0aKdT8Icm3muNWQBAesNIOFeOyKUDOkvoogz8Kn+SJgi3PtZNaN1+D9mV
+ TBTbAzbzWaLVqcDPOAAhnJpUgoYWFP0C3TtO0p6NnwgVwe2tOLFyoBIc5S0dK/EbQqdKdPFir
+ 6Qc5AWEQXwlkYWdhsZWn8orpSWd7DFliVWn8Iv3lqXtoNq+Ai3H7+gkwYQf40Do6u9LFfXfBz
+ zS4pIuDkzqWdh2gxFrsYJiEyThu2nv6HyhKgXr+lnmUnVeSMJyo2TJJInxgMRWhGRsyf7lTnk
+ GXPvV2xVo2+DALI5Qq9We6cu7qjTmzcxW4wRZ14LBvvmr9uF5tHETCxYHrI+EGPGoS1xTxaMf
+ T+edlaDLFeDP1qmYjtbBXfy7V5yzMKiZJM7i0x1SYlvtXI8aXq/Hl+5U/yjeqRJNGW9hmSSBz
+ aGEZiAXtTgaCJTKEEIPoIVJTV/2lq1/jMMPPPeNC2V+lfH39MXzdDut74rh0i++vov5wuJNQo
+ 9RCqp7qmGjymWOrqFgAk4/k9mP5iovsRLYDxnxlop6m363qljYutiOLQe0YrC5ap3dfA1Ogju
+ bOBQtvFMymsbxR4W5SgSI0+0svPWYjggEP50RU69bro1EgPYqAEGSvwc9DDMSVCmAKYS2cX
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-That list was just empty, so it can be removed if .probe_new
-instead of .probe is used
+Hi Laurent,
 
-Suggested-by: Lee Jones <lee.jones@linaro.org>
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
-Functional independent from the other patches, but since they are
-touching similar areas, commit/merge conflicts would occur.
- drivers/mfd/rn5t618.c | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+Laurent Pinchart, Thu, Mar 19, 2020 18:48:02 +0100:
+> On Thu, Mar 19, 2020 at 06:41:48PM +0100, Alex Riesen wrote:
+> > To follow the established practice of not depending on others to
+> > pull everything in.
+> 
+> Good idea. While at it, could you include "adv748x.h" as the very first
+> header in at least one of the C files ? That will help ensuring the
+> header stays self-contained in the future.
 
-diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-index bc117adede4c..232de50562f9 100644
---- a/drivers/mfd/rn5t618.c
-+++ b/drivers/mfd/rn5t618.c
-@@ -146,8 +146,7 @@ static const struct of_device_id rn5t618_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, rn5t618_of_match);
- 
--static int rn5t618_i2c_probe(struct i2c_client *i2c,
--			     const struct i2c_device_id *id)
-+static int rn5t618_i2c_probe(struct i2c_client *i2c)
- {
- 	const struct of_device_id *of_id;
- 	struct rn5t618 *priv;
-@@ -244,11 +243,6 @@ static int __maybe_unused rn5t618_i2c_resume(struct device *dev)
- 	return 0;
- }
- 
--static const struct i2c_device_id rn5t618_i2c_id[] = {
--	{ }
--};
--MODULE_DEVICE_TABLE(i2c, rn5t618_i2c_id);
--
- static SIMPLE_DEV_PM_OPS(rn5t618_i2c_dev_pm_ops,
- 			rn5t618_i2c_suspend,
- 			rn5t618_i2c_resume);
-@@ -259,9 +253,8 @@ static struct i2c_driver rn5t618_i2c_driver = {
- 		.of_match_table = of_match_ptr(rn5t618_of_match),
- 		.pm = &rn5t618_i2c_dev_pm_ops,
- 	},
--	.probe = rn5t618_i2c_probe,
-+	.probe_new = rn5t618_i2c_probe,
- 	.remove = rn5t618_i2c_remove,
--	.id_table = rn5t618_i2c_id,
- };
- 
- module_i2c_driver(rn5t618_i2c_driver);
--- 
-2.20.1
+Done.
 
