@@ -2,121 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2388A18C86B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 09:01:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFA5A18C8B5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 09:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbgCTIBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 04:01:24 -0400
-Received: from mail-pj1-f48.google.com ([209.85.216.48]:35778 "EHLO
-        mail-pj1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgCTIBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 04:01:23 -0400
-Received: by mail-pj1-f48.google.com with SMTP id j20so2127391pjz.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 01:01:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=F4z4DhLVGvbna7aIcuhJEG+lKoXYnQgbcpPqw2ITAKU=;
-        b=Ygxm+18KOXZTFbzvkGg+Tf7RqavXc344b9FQ2nlvHUhRyxiLwNSVZZzOH4mFW/b2RH
-         LJhABONmxCTa+PLt5Tu7POF1qsT8W4TE/ODvrLFy0CuQPCmjym4SToq6doAWMB11DSxd
-         Qar6z2Y3XBEf4v/OJ+QpNzrR9HiEBwUA+wQ+g3GXu4fMFziYPlhtt0njTouf6ExMH0Ro
-         pMPfS9RoHlMQ8ijIOcX1HAAWFwoZHgnhc8sEQyaHf1KHLhHiLgBaenncmhJvMPm4r7po
-         U2n/elBRNUUOMppW5/2Sw8Ks6whUl9OOigfw8icHCwZXxRsq2PF7H5xZFEGmrVnOo0c0
-         Yqig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=F4z4DhLVGvbna7aIcuhJEG+lKoXYnQgbcpPqw2ITAKU=;
-        b=QS2jpjSRVWwXdGd/PczN3gTru8ZZcykicqcbV76Z+t3ddd2WBclMGFDAIc4nfRm394
-         F4EJfi7iaug+iTys0kwLht8eEvZi5iPWZfLZ37SgnaiumN8gA6wpYJvawWZgLnKguflg
-         4vBJploSUldkefBzwFoed6XlMEibKj/5avSjvqfFcQIjTzHovySvSC5EGnyfaG3HsKRF
-         /XmrjcqdYUAKt57So/4sB/cf9zl5WxBL7PzDBfw8OXMMeY1MdxiDOJSlK8KUVB6Ktn/M
-         o5iMiOGUToeD58b1eMSsLXB64vzXdJbgwWXv7fr8v1pQePWka09J7DLc3XkE7OVoPToR
-         fNtw==
-X-Gm-Message-State: ANhLgQ2LuTBx3cFjKbBbRXu5Z+o/VOBx/T4lNIsEZ/RB01MqYASpY4B/
-        735nc0vbrT+ECNt3YEDOHDiCXA==
-X-Google-Smtp-Source: ADFU+vuiOBTrlaYtXDptNfRvUosd7l5Aa1+h2LxNOdqrM0CsGlfVE5Q6aFN1jDdM00w5TC2vObqltg==
-X-Received: by 2002:a17:902:aa49:: with SMTP id c9mr7501332plr.145.1584691282393;
-        Fri, 20 Mar 2020 01:01:22 -0700 (PDT)
-Received: from localhost ([122.171.118.46])
-        by smtp.gmail.com with ESMTPSA id g7sm3825789pjl.17.2020.03.20.01.01.21
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 20 Mar 2020 01:01:21 -0700 (PDT)
-Date:   Fri, 20 Mar 2020 13:31:19 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>, sboyd@kernel.org,
-        georgi.djakov@linaro.org, saravanak@google.com, nm@ti.com,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        david.brown@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        rjw@rjwysocki.net, linux-arm-msm@vger.kernel.org,
+        id S1726912AbgCTILc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 04:11:32 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:51332 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726631AbgCTILa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Mar 2020 04:11:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=/tNgPzPvBgCPfKKRPyvUe6Q7AEQzyG6kRTYOs3M9DUI=; b=OGigWW4lHLlo1FNdpuKgv7a9Sf
+        5tPcRcz4mgKK9+Z8hPDypWqIOEEFxKXHH3WlFSZ6NT8cHEskwFIHdZQTF22EdRjYZmmtcMGOX6pF8
+        VDLXUvUxTaLEpks+CfyKyRNBWgK8fd6Nb0+grAXTDiVJ0QLre90WkBhI84n0z2innsq4=;
+Received: from p200300ccff093a00e2cec3fffe93fc31.dip0.t-ipconnect.de ([2003:cc:ff09:3a00:e2ce:c3ff:fe93:fc31] helo=eeepc)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1jFCkP-00058T-5a; Fri, 20 Mar 2020 09:11:18 +0100
+Received: from andi by eeepc with local (Exim 4.92)
+        (envelope-from <andreas@kemnade.info>)
+        id 1jFCkG-00039E-60; Fri, 20 Mar 2020 09:11:08 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dianders@chromium.org, mka@chromium.org,
-        vincent.guittot@linaro.org, amit.kucheria@linaro.org,
-        ulf.hansson@linaro.org, linux-kernel-owner@vger.kernel.org
-Subject: Re: [RFC v3 00/10] DDR/L3 Scaling support on SDM845 and SC7180 SoCs
-Message-ID: <20200320080119.gztifbmenwpi6rrp@vireshk-i7>
-References: <20200127200350.24465-1-sibis@codeaurora.org>
- <19cf027ba87ade1b895ea90ac0fedbe2@codeaurora.org>
- <20200318034243.o2metmggzuah6cqw@vireshk-i7>
- <f6a7930a-4eaa-6982-88c6-b50773bee9d8@codeaurora.org>
- <ea4265f3f4b5a439d70d3c80bcc77b7f@codeaurora.org>
- <20200319102411.oivesngrk7gy7vtw@vireshk-i7>
- <78d92969-0219-d140-d788-d1b14e643e90@codeaurora.org>
- <20200319110805.glmuc2qvgcei3mon@vireshk-i7>
- <53065b03-22d5-fb78-aa6f-e4711b8ffd3b@codeaurora.org>
+        linux-rtc@vger.kernel.org, stefan@agner.ch, b.galvani@gmail.com,
+        phh@phh.me, letux-kernel@openphoenux.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        jic23@kernel.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v7 0/7] mfd: rn5t618: Add RTC/ADC support
+Date:   Fri, 20 Mar 2020 09:10:58 +0100
+Message-Id: <20200320081105.12026-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <53065b03-22d5-fb78-aa6f-e4711b8ffd3b@codeaurora.org>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-03-20, 17:03, Rajendra Nayak wrote:
-> sure, I understand there is a dependency, however refusing to review the approach
-> (to add multiple OPPS tables per device) that this series is taking because of an outstanding
-> question which, if I read it right is "We can not add multiple OPP tables for a single device right now"
-> seems odd.
-> 
-> Its fine if you are not happy with the approach taken here and you can propose something else,
-> but it looks inevitable that we would need something like this to be supported (multiple OPP tables per device)
-> and hence the request to review the patches.
+In the variant RC5T619 the mfd has an RTC. This patchset adds
+support for it. To do so it adds the missing register defines in 
+rn5t618.h and general irq handling for that.
+It seems that the IRQ definitions are the same except missing RTC
+for the RN5T618 but due to missing ability to test that they are
+not added here.
+It also adds support for the ADC, it is available in both the
+RN5T618 and RC5T619 but due to missing ability to test that,
+the subdevice is only added for the RC5T619.
 
-I understand the frustration you have right now, but honestly most of
-the delay is not from my part. I normally try to be very quick in
-giving reviews or even accepting material for next cycle. Still, I am
-part of the chain which has blocked this series and I am really sorry
-for that.
+It was tested on the Kobo Clara HD.
 
-Coming back to reviews. I never liked the idea of keeping separate OPP
-tables just for the relation that a peripheral share with the
-interconnect, i.e. the b/w tables getting discussed right now.
+Changes in v7:
+- cleanup in IRQ init stuff
 
-And I am not at all sure if such tables should be added as device
-tables anyway, it was present in cover letter of Saravana for sometime
-but not in the real patches and so I missed it until the time Sibi
-asked me something on IRC.
+Changes in v6:
+- put together with ADC series
+- also added cleanup i2_device_id patch to avoid merge
+  conflicts
 
-To be clear, I don't think we will allow multiple active OPP tables
-for a device for now, unless we have a very good reason to do that. It
-just doesn't make sense to me to have one table for keeping
-frequency/voltage thing, and another set of tables for b/w
-requirements from interconnect.
+Changes in v5:
+- static rn5t618_irq_init
+- PLATFORM_DEVID_NONE
+- added some Acked-Bys
 
-So, the changes proposed by this patchset even doesn't matter as I am
-not agreeing on the binding itself. And we need a binding change for
-that, which Saravana never sent, i.e. to have multiple active tables
-for a device.
+Changes in v4:
+- use macros for IRQ definitions
+- merge rn5t618-core.c and rn5t618-irq.c
 
-Yes, we need a solution for this and a quick one. I am fine to discuss
-this all on a hangout session (anyway, everyone is working from home
-now anyways) anytime next week with the interested parties. I think
-/me and Vincent can join it.
+Changes in v3:
+- alignment cleanup
+- output cleanup, remove useless toggling of alarm flag in rtc probe
+- updated bindings description, so patch 1/5 becomes 2/6 and so on
+
+Changes in v2:
+- no dead code in irq code
+- various improvements and cleanups in rtc driver itself
+
+
+Andreas Kemnade (7):
+  dt-bindings: mfd: rn5t618: Document optional property interrupts
+  mfd: rn5t618: add IRQ support
+  mfd: rn5t618: add RTC related registers
+  mfd: rn5t618: add more subdevices
+  rtc: rc5t619: add Ricoh RC5T619 RTC driver
+  iio: adc: rn5t618: Add ADC driver for RN5T618/RC5T619
+  mfd: rn5t618: cleanup i2c_device_id
+
+ .../devicetree/bindings/mfd/rn5t618.txt       |   4 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/rn5t618-adc.c                 | 256 ++++++++++
+ drivers/mfd/Kconfig                           |   1 +
+ drivers/mfd/rn5t618.c                         | 109 ++++-
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-rc5t619.c                     | 444 ++++++++++++++++++
+ include/linux/mfd/rn5t618.h                   |  26 +
+ 10 files changed, 851 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/iio/adc/rn5t618-adc.c
+ create mode 100644 drivers/rtc/rtc-rc5t619.c
 
 -- 
-viresh
+2.20.1
+
