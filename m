@@ -2,116 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D0B18CC27
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 12:05:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B13318CC5C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 12:08:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726912AbgCTLFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 07:05:33 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:35572 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726821AbgCTLFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 07:05:32 -0400
-Received: by mail-oi1-f194.google.com with SMTP id k8so6080054oik.2;
-        Fri, 20 Mar 2020 04:05:31 -0700 (PDT)
+        id S1727043AbgCTLIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 07:08:54 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:41632 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726912AbgCTLIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 07:08:54 -0400
+Received: by mail-ot1-f65.google.com with SMTP id s15so5544756otq.8
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 04:08:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=kuhba0bbR9oJup1oQ7P5tNPZ9FqBHXE57QqcfHgaIHo=;
+        b=JAtXBJqr5hMz+TFFzUTYToXqzS7c51G8vKLiqCDy1i1/On+nQVdz02QZ1PRqL4CyBV
+         X4glRefjimK9GfDoVGwz8kikRgk33FnvkUhx6uO4BTbQbNm8S7O1AZPp10dlFLgtAz0x
+         rFL2qxUTruF+kToHLDhlYtTwze4TqFKBuWQhuO1oFhcmi9UjJZsAD/qhKChg4pw0VokL
+         SgTYqaqGQz81XLJqAqHOfKZ5rlEVViGHosb0tMGyvx04G/1DF2wv71hjcOE2AncHgCvI
+         Lc+mT4lwLkUcrLP/YwU6bt6V/8IAZf//w9FHMt91tLvtR+ljZtq+6uIqjb2GkwLz0CRD
+         0svQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=qk9ZSy2DLiaTxJZm6e71Gii7NkNOP2X+Pdycr1qsNeg=;
-        b=T+nBHriHh3lIfVReU0GHeHK4HHl7g31JXkRS+J8PxYVNM8aTF8UariRa8t2V040IKG
-         HAUVZBA3nR5ojM6l9uUyzOlWfUJQ/w18Lpmx1jMFdMhdD0xf7OPg6ujRsur2x93NdXxb
-         kzUFprOZaroPEkHbDiLiZr4SyvGue9CQ5F3bTWt4K1HJep0A0fVVoFpCXD87AJUWeG56
-         18srr4cv/SvMlaeFscn9ClWZ0egkOdo1RPZC+2Sdeb0US1HiEiBxtewWqP+gUgx8ml+X
-         hpTPVvuOds4+3p6LlfLknbe7MmP9RrtQ6S5pVQc34qsWUQcsV3/+w+rPzYuizVdMBrtX
-         XcSw==
-X-Gm-Message-State: ANhLgQ0Ye+sRJO/h+vexCU8GmwoApqE6kEOJQQkMVEciUdjYjUQD16wO
-        dwm8g/NhZpYo6egYNWiv4n4ci9SZYrZSMasvF4Xl7w==
-X-Google-Smtp-Source: ADFU+vvZyP9GBWBhMAk5XHXHMbgIrKzVUdFFXha+oMjRGimfx83JH0ySN8kjfcMPKWHrHJ11GggEe2Z4AVFy0DPZVrQ=
-X-Received: by 2002:aca:ad93:: with SMTP id w141mr6113278oie.54.1584702331516;
- Fri, 20 Mar 2020 04:05:31 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=kuhba0bbR9oJup1oQ7P5tNPZ9FqBHXE57QqcfHgaIHo=;
+        b=W531iGm8RT/c2MYhlBv3Dm8c2AmOHRuHGMo4AwqJIy87wzA4Y+l68WrLZvC9dnWSL9
+         2s9gHHayEJgvbPanTovgjAkibaeSMl0W7rHuKqH9SVtkaHKlXhlL2xOQTJDTgoLWUZjQ
+         gn5hIkBdoWZPpSnI6WrQ8x5Wa6weU9TxIn4SheWMIpGaG5IYVaJVwoaIaF6DmRmb8nta
+         xz9ubFeh2oBn0L10z8EvSM3fuhia1+JSxX1CQqvUbzg7pu5TCaFb9UWz8K/GA1SIXQ6T
+         hdIJ4zdPnzImD2imoV15R+dpo1K2PuOCopMIPda1eg228sejXrOS9hF8DqXGrJAwwxme
+         i+/g==
+X-Gm-Message-State: ANhLgQ2hzFs1kA/Nc8D0mo5ANn+tJYR4J7LZ3U9lXLw1wb/WnF/R9RSs
+        UK24+BANSNrmR0QsYkh6MFn0TOTPZb1EgniHaHk=
+X-Google-Smtp-Source: ADFU+vvH+LGd+WFNKdJlGlEYryRTNsEjpn0AcYGn8HwXGyvhoRjiJZ82jJbccAGwHdEvKWUIlQW8FYcgRnFZ/M56vEw=
+X-Received: by 2002:a9d:282:: with SMTP id 2mr6105589otl.178.1584702532193;
+ Fri, 20 Mar 2020 04:08:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1584639664.git.alexander.riesen@cetitec.com>
- <252bb433f47b0ccb61bb077abdbd892091abc550.1584639664.git.alexander.riesen@cetitec.com>
- <CAMuHMdXOAQtuxCAfb=sZKodyJWwSrf-GO-pdV3HYkOytQW4ENg@mail.gmail.com> <20200320105846.GG4344@pflmari>
-In-Reply-To: <20200320105846.GG4344@pflmari>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 Mar 2020 12:05:20 +0100
-Message-ID: <CAMuHMdVRJZ+RLSxeFdXXPntVxCUMd-Ai+=vizFrvN-CHNW=kjA@mail.gmail.com>
-Subject: Re: [PATCH v2 05/10] media: adv748x: add support for HDMI audio
-To:     Alex Riesen <alexander.riesen@cetitec.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
+Received: by 2002:a4a:c897:0:0:0:0:0 with HTTP; Fri, 20 Mar 2020 04:08:51
+ -0700 (PDT)
+From:   federa bureau of inteligence <federabureauofinteligence@gmail.com>
+Date:   Fri, 20 Mar 2020 11:08:51 +0000
+Message-ID: <CAE9o6LB8uVVDxDvXUM48MSUTPhbV1MGNW-EXBpanBopr0qXsMA@mail.gmail.com>
+Subject: HAPPY SURVIVAL OF CORONAVIRUS
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
+Dear Sir,
 
-On Fri, Mar 20, 2020 at 11:58 AM Alex Riesen
-<alexander.riesen@cetitec.com> wrote:
-> Geert Uytterhoeven, Fri, Mar 20, 2020 09:43:29 +0100:
-> > On Thu, Mar 19, 2020 at 6:42 PM Alex Riesen <alexander.riesen@cetitec.com> wrote:
-> > > This adds an implemention of SoC DAI driver which provides access to the
-> > > I2S port of the device.
->
-> I just noticed I don't do clk_prepare_enable anywhere.
-> Shouldn't the clock master enable its clocks somewhere?
+HAPPY SURVIVAL OF CORONAVIRUS
 
-Usually the consumer is responsible for doing that.
-Does the rcar-sound driver do that?
+We are reaching for a very interesting business transaction which we
+feel will of great benefit.We the FBI unit in the western subregion of
+Africa have a fund which we confiscated and lodge it in a bank
 
-But in this case, perhaps the clock should be enabled implicitly in response
-to a request from the audio subsystem, like you do below.
+This fund is worth of $12.5 million dollars.We will need your
+assistance to recieve this fund into your account for investment in
+your country.
 
-Note that you register a fixed-rate clock, which is assumed to be always
-enabled. Perhaps a gateable clock type is more appropriate?
+We will need your urgent response for details
 
-> > > diff --git a/drivers/media/i2c/adv748x/adv748x-dai.c b/drivers/media/i2c/adv748x/adv748x-dai.c
-> > > new file mode 100644
-> > > index 000000000000..4775a0c7ed7f
-> > > --- /dev/null
-> > > +++ b/drivers/media/i2c/adv748x/adv748x-dai.c
-> ...
-> > > +static int adv748x_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
-> > > +{
-> > > +       struct adv748x_state *state = state_of(dai);
-> > > +
-> > > +       if (sub->stream != SNDRV_PCM_STREAM_CAPTURE)
-> > > +               return -EINVAL;
-> > > +       return set_audio_pads_state(state, 1);
-> > > +}
->
-> For example, here, after activation of the lines succeeded?
->
-> > > +static void adv748x_dai_shutdown(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
-> > > +{
-> > > +       struct adv748x_state *state = state_of(dai);
-> > > +
-> > > +       set_audio_pads_state(state, 0);
-> > > +}
->
-> And clk_disable_unprepare here, before shutting down the pads?
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Inspector Greg Adams,
+For and on behalf of Cote D'Ivoire FBI
+Tel 00225 6716 6756
