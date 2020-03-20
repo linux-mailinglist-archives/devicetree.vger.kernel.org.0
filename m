@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DB8B18CA6B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 10:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96EBF18CA73
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 10:34:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727105AbgCTJbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 05:31:33 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34212 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726602AbgCTJbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 05:31:32 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02K9VQFN012302;
-        Fri, 20 Mar 2020 04:31:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1584696686;
-        bh=KQmoqh9mgTESw16TTxpzd8iXS+b+Uiyj7E0qjX+WhS8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=qQN54ML1xrErkmup4pW50gsVV9LxL3ikZaBLIRM+J+4Zb3tUQqhv++8+lOwIb+SgH
-         or2QBHG3d+Z44IaN+BLyo0OsJGmnWg5YDi0UH0rgi28dNqSPiHCdGHangCpWIH5UDU
-         c6p+FJH9cWqQDzEiVL2TTJcvPO+PpvNa1xvGO2GQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02K9VQFR130683
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 20 Mar 2020 04:31:26 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 20
- Mar 2020 04:31:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 20 Mar 2020 04:31:26 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02K9VNxq018507;
-        Fri, 20 Mar 2020 04:31:24 -0500
-Subject: Re: [PATCH 2/3] bindings: sound: Add documentation for TI j721e EVM
- (CPB and IVI)
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200319092815.3776-1-peter.ujfalusi@ti.com>
- <20200319092815.3776-3-peter.ujfalusi@ti.com> <20200320002112.GA10030@bogus>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <412ff8fd-bab2-39b0-5885-82823981655b@ti.com>
-Date:   Fri, 20 Mar 2020 11:31:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20200320002112.GA10030@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726789AbgCTJeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 05:34:09 -0400
+Received: from lucky1.263xmail.com ([211.157.147.130]:55208 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726602AbgCTJeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 05:34:09 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by lucky1.263xmail.com (Postfix) with ESMTP id BBD2898A8E;
+        Fri, 20 Mar 2020 17:34:03 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from ubuntu18.lan (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P19134T140660085376768S1584696835111908_;
+        Fri, 20 Mar 2020 17:34:01 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <a2788f8beebf89e9311c37ca470a0cdd>
+X-RL-SENDER: yifeng.zhao@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: yifeng.zhao@rock-chips.com
+X-FST-TO: miquel.raynal@bootlin.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+X-System-Flag: 0
+From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: [PATCH v4 0/3] Add Rockchip NFC drivers for RK3308 and others
+Date:   Fri, 20 Mar 2020 17:33:39 +0800
+Message-Id: <20200320093342.15470-1-yifeng.zhao@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
 
-On 20/03/2020 2.21, Rob Herring wrote:
-> On Thu, 19 Mar 2020 11:28:14 +0200, Peter Ujfalusi wrote:
->> The audio support on the Common Processor Board board is using
->> pcm3168a codec connected to McASP10 serializers in parallel setup.
->>
->> The Infotainment board plugs into the Common Processor Board, the support
->> of the extension board is extending the CPB audio support by adding
->> the two codecs on the expansion board.
->>
->> The audio support on the Infotainment Expansion Board consists of McASP0
->> connected to two pcm3168a codecs with dedicated set of serializers to each.
->> The SCKI for pcm3168a is sourced from j721e AUDIO_REFCLK0 pin.
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  .../bindings/sound/ti,j721e-cpb-audio.yaml    |  93 +++++++++++
->>  .../sound/ti,j721e-cpb-ivi-audio.yaml         | 145 ++++++++++++++++++
->>  2 files changed, 238 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/sound/ti,j721e-cpb-audio.yaml
->>  create mode 100644 Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml: $id: relative path/filename doesn't match actual path or filename
-> 	expected: http://devicetree.org/schemas/sound/ti,j721e-cpb-ivi-audio.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/ti,j721e-cpb-audio.yaml: duplicate '$id' value 'http://devicetree.org/schemas/sound/ti,j721e-cpb-audio.yaml#'
-> Error: Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.example.dts:21.23-24 syntax error
-> FATAL ERROR: Unable to parse input tree
-> scripts/Makefile.lib:311: recipe for target 'Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.example.dt.yaml' failed
-> make[1]: *** [Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> Makefile:1262: recipe for target 'dt_binding_check' failed
-> make: *** [dt_binding_check] Error 2
+Rockchp's NFC(Nand Flash Controller) has three versions: V6, V8 and V9.
+This series patch can support all  three versions.
 
-I made copy-paste error (two) when creating the cpb-ivi yaml and forgot
-to re-run the dt_binding_check
 
-Fixed up and verified that the build is clean now.
+Changes in v4:
+- Define platform data structure for the register offsets.
+- The compatible define with rkxx_nfc.
+- Use SET_SYSTEM_SLEEP_PM_OPS to define PM_OPS.
+- Use exec_op instead of legacy hooks.
+- The compatible define with rkxx_nfc
+- Add assigned-clocks
+- Fix some wrong define
 
-> See https://patchwork.ozlabs.org/patch/1258054
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure dt-schema is up to date:
-> 
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> 
-> Please check and re-submit.
-> 
+Changes in v3:
+- Change the title for the dt-bindings
 
-- Péter
+Changes in v2:
+- Fix compile error.
+- Include header files sorted by file name
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Yifeng Zhao (3):
+  mtd: rawnand: rockchip: NFC drivers for RK3308, RK3188 and others
+  dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
+  MAINTAINERS: add maintainers to rockchip nfc
+
+ .../bindings/mtd/rockchip,nand.yaml           |  101 ++
+ MAINTAINERS                                   |    2 +
+ drivers/mtd/nand/raw/Kconfig                  |    7 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ drivers/mtd/nand/raw/rockchip_nand.c          | 1315 +++++++++++++++++
+ 5 files changed, 1426 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/rockchip_nand.c
+
+-- 
+2.17.1
+
+
+
