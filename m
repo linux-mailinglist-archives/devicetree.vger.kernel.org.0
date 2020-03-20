@@ -2,34 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41EBB18D247
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 16:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE3218D259
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 16:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725446AbgCTPBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 11:01:49 -0400
-Received: from mx-out1.startmail.com ([145.131.90.139]:43102 "EHLO
-        mx-out1.startmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726816AbgCTPBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 11:01:48 -0400
-X-Greylist: delayed 520 seconds by postgrey-1.27 at vger.kernel.org; Fri, 20 Mar 2020 11:01:47 EDT
+        id S1725446AbgCTPGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 11:06:52 -0400
+Received: from mx-out2.startmail.com ([145.131.90.155]:38116 "EHLO
+        mx-out2.startmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726144AbgCTPGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 11:06:52 -0400
 From:   Alexandru Lazar <alazar@startmail.com>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2017-11; t=1584715986;
-        bh=nGR6FoC3zIPpZzmPkRZ9wSj5EwBjWj7KQoDXqXEv5xQ=;
+        s=2017-11; t=1584716212;
+        bh=sZD0qWHqFqESLhv5Lfz3UbS8xmvjsTflHa3pdsR+j74=;
         h=From:To:Cc:Subject:Date:From;
-        b=QQ7sDGO4ReAidEkVRw6RxDk7q3Yml34QyaAUkrINtF6zSQFdlWBBMC2aBrJjrimaS
-         AlBpjAtt7N67IQNZPkkTWsO9CxZIROXJhkA3ML/A6exr1HTQ5WRPCLanTMFJJ+CI4X
-         kqIZtaALPub3oxErn1hpOJrBDO+WOYDRQ9RPQs/oUiw03jd4tPlToN82nO15SkFRx7
-         xqCGiO6INIQZl27YsPM+x7xGcSu+YNoaNH99epk/1YbsHPVeW2HKKetG8ejYlUfXKg
-         HS4yYFOsp2dfNk9zksvUTUbhmiLvCjIFkelDL4tkKolsADHgMgfdWYUH+G/vXJiZuJ
-         VDuXPeylfauMQ==
+        b=ELtOtXxsWBfWi8U4ybnW8KdB/WFIQ+qrIaTzOiGI7/v9sNqCI5SHdFl4Cs2y6pF3e
+         O6dTaMqigrzlc5NGLjc/JdXNo1/4TvT1AfMejK1yLTU8OjPupgAffs2+ZeuJYDuuF1
+         mFccLUzKIsw/d96H9PfkrsuUU6JZVqSjaXX4FUxEeIZTBlocfXYUAGGE/E3Pv+J1As
+         TyZRWD8oPAYbJDBNUGamS62oAWvGznmvABHl6qL9z40J6nJfBjMDD622Jifvbn3Q3y
+         QAAESMf0Dc5uHYsWLYrnhs2PGxK1Ul4whnSW7Ius3ZnzsokDrzzHXqtPnC2Pjn1rGs
+         //xrQ16qq+msw==
 To:     linux-iio@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, jic23@kernel.org, knaack.h@gmx.de,
         lars@metafoo.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
         mark.rutland@arm.com, Alexandru Lazar <alazar@startmail.com>
 Subject: [PATCH v4 0/2] Maxim MAX1241 driver
-Date:   Fri, 20 Mar 2020 16:57:32 +0200
-Message-Id: <20200320145734.8262-1-alazar@startmail.com>
+Date:   Fri, 20 Mar 2020 17:01:13 +0200
+Message-Id: <20200320150114.9297-1-alazar@startmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -71,6 +70,9 @@ v2:
 * DT binding: use correct id, add reg description (looks pretty
   standard), dropped spi-max-frequency, fixed dt_binding_check
   complaints (oops!)
+
+Apologies for the last botched message -- my machine died at the
+wrongest possible time.
 
 All the best,
 Alex
