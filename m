@@ -2,100 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A3918D3E5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C27B018D492
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727535AbgCTQOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 12:14:01 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36481 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727148AbgCTQOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:14:00 -0400
-Received: by mail-wm1-f68.google.com with SMTP id g62so6992595wme.1;
-        Fri, 20 Mar 2020 09:13:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=HRtu8AVeAHAknZ42KPGSxOplwEGK88Q8JlmoyejiN4s=;
-        b=kVG/0xG2cW1hqWykmx5+YgTdm28vSFNmahqvgTBCKwahH4cTylfhP7akPciw+IfbPK
-         7WixZ89wvUJ0DZQ6OlctkE6biuZWJCOfgJcaqAbEopobqJPksRB+h1ti0eHk5u1r0WHU
-         m3HW0aNQmQWabF8iKT9Jo5MrjAlAUDNf02W79uuYAi71biLqqzcwYlkNqD6fEGnNEt/K
-         FWlpd6wZD891rZz5GWrtvSMtXhqTFzLQ9sS85GsbTyPlLl9WBPGo86gNLdKSXajARruP
-         cYQ1g4ljz7+iVlM0Qe8C1nWSvO8MfIT7dreF3OkPL3hNZJ3MlBVlCPl0bMDaPAzFTqME
-         4kKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=HRtu8AVeAHAknZ42KPGSxOplwEGK88Q8JlmoyejiN4s=;
-        b=OPFpXXUZejFvHGSFmoBkphGYqIljiFf6SZckJjo2y56xzpu037xHFbO86zmK9/cNbl
-         khOm/GYX6z4zSJvW3eFP1S4exXvuZPY44kXe7L7o5qR9RU9cuOxTdoPS1xTvAOp+R7X7
-         mScdlU07oMGWPDwUjElLRWc3Cf4z75gkE8NGT5rSHQ5LNtSd+RQRTg3BA5eaR1Z64T1Y
-         g/kf7m4BhtzVZ/RqL+2bMVknjnQGITVPjxDUrAnYBVJBPayJamXByCJapW+MMDk2vu0g
-         VaYi4jHpElvmE4DfcS+QwJpvtRx9mWwJN+aY3+EEsuPe2qljI7lKWDhtY8QmHcCAwQ+t
-         FOEw==
-X-Gm-Message-State: ANhLgQ1V0UagMOJ3Rm2MXK/iYxpsC/I7ZIAlqZx9kTtWybKjyIZXEFL+
-        XMrXNoy3w8EnlyNzn1ZwFb4=
-X-Google-Smtp-Source: ADFU+vs7DqXV+eSKaMKmdVHkPIZZzsNFvLxil12cr4cwWhr5KaXH5uTtC2urbVKUjK98J0uHPcgCFQ==
-X-Received: by 2002:a1c:23ca:: with SMTP id j193mr11341609wmj.111.1584720837718;
-        Fri, 20 Mar 2020 09:13:57 -0700 (PDT)
-Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id r3sm9121154wrm.35.2020.03.20.09.13.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Mar 2020 09:13:57 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, broonie@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        michael@walle.cc, peng.ma@nxp.com
-Subject: [PATCH devicetree 2/2] arm64: dts: ls1028a-rdb: Add a spidev node for the mikroBUS
-Date:   Fri, 20 Mar 2020 18:13:46 +0200
-Message-Id: <20200320161346.14155-3-olteanv@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200320161346.14155-1-olteanv@gmail.com>
-References: <20200320161346.14155-1-olteanv@gmail.com>
+        id S1727122AbgCTQgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 12:36:04 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:37269 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726935AbgCTQgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:36:04 -0400
+Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1N5FMB-1jN4P1383Z-011Dwq for <devicetree@vger.kernel.org>; Fri, 20 Mar
+ 2020 17:36:02 +0100
+Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
+        by mail.cetitecgmbh.com (Postfix) with ESMTP id 873B4650123
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 16:36:02 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at cetitec.com
+Received: from mail.cetitecgmbh.com ([127.0.0.1])
+        by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id k9BT9eNzK3Yn for <devicetree@vger.kernel.org>;
+        Fri, 20 Mar 2020 17:36:02 +0100 (CET)
+Received: from pfwsexchange.corp.cetitec.com (unknown [10.10.1.99])
+        by mail.cetitecgmbh.com (Postfix) with ESMTPS id 48E1D64F136
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 17:36:02 +0100 (CET)
+Received: from pflmari.corp.cetitec.com (10.8.5.41) by
+ PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Fri, 20 Mar 2020 17:36:02 +0100
+Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
+        id 9E6F480504; Fri, 20 Mar 2020 17:12:02 +0100 (CET)
+Date:   Fri, 20 Mar 2020 17:12:02 +0100
+From:   Alex Riesen <alexander.riesen@cetitec.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        <devel@driverdev.osuosl.org>, <linux-media@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>
+Subject: [PATCH v3 07/11] media: adv748x: only activate DAI if it is
+ described in device tree
+Message-ID: <ad4992170f9865f1040f6bda13452f23ea30a787.1584720678.git.alexander.riesen@cetitec.com>
+Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devel@driverdev.osuosl.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1584720678.git.alexander.riesen@cetitec.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cover.1584720678.git.alexander.riesen@cetitec.com>
+X-Originating-IP: [10.8.5.41]
+X-ClientProxiedBy: PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) To
+ PFWSEXCHANGE.corp.cetitec.com (10.10.1.99)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A290D7F536A6D7660
+X-Provags-ID: V03:K1:fFxGd8WEtAg/VQ0vO5eIwdBT1BlBu0xz8eUGLc3iu0quNA0ef4M
+ 6ZPzytSa0FaFM9GzJvXXOF25wfda6wJgGdW8Vyjd79XvaDIDS9CGxkGqd7ifc+RcMXuBmWA
+ eKcj5dRQwY8z+27USKM1/xGnqrInnfbZd8wRmPVI/I+JUQwLVSLxwOVjbPxiGVrZj+HTmaf
+ 1xN4ubXIV0PTlXUvBgGCg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ruFrWWRLW2M=:yLUGHlSxu0S33b/lGTiMm2
+ TGcz6zOTql6CKYOBAB+rnGIyxkJxNAffRTtuaevOH29zgbnRV+7Cqe+P2iVtFLvMotslVAY1W
+ z17GoH/oPN2JDGKajwBkokUu+y5aZPqQM1cTx9KxsKiBv2VFbyZzDF4d1MCb8O8a/W9edu97H
+ jFLhob1747D3d0dxDBS3ACwcaU5k7aidb+FSLImVQYILX6AreIf4y0YnmBVsMqIji3duZO09a
+ BciFWU7SQPNX6kGJ8midwNy+Odqz0MLVuM9G9OxyL4/rEIz/4ohSNCwoEZOVpO/AzxgzXuVep
+ M1X7rHHx0KXH2TFazSvm2CuP+xWj1rfWOQXi1SS+pi+ctujHhPFca1K/pzLgXhfY6Emg3Ohw/
+ wt0jjmIlAv4FPA0H+GF3AsRcIcjJ5NvP5QMyspXYAjgdI3xVhi+QR/Z9LK2ixALVeaSyLhVAy
+ 5hFg+bI738WYXcxHinEz7L75Pw/05QsbG6dSGOqUU901tUcekHoMMg5gmnEziRkJmgWcowg7p
+ Vw/B8WyGoSWtOttI5fZ0TGNVN0BJopHMF6ldTAxF0Zjz6L8MjIVbM18xv5yAk+4EGdJWebQMM
+ Cs8dN5ebuUteLGLmmTZnVUlXSELHZzOqZ1dhmurXTQt9y7ieqKQQ8z/Omix1oDgywI8HCkwEq
+ WM9anv5iusPGFbNwYTVqY0u1bk5XPhJumKj+8wbVPB/BIO88HIc9Oxe0i/QnMDkqTDg9NiEjp
+ HkHHczSIE7UsjuiveS7Se5hYS36rcHgtqRAX66GdWFeuESzo7slkNSQ6yfctznyGf/YiCd+wv
+ 15MLfNSniuH9yBcr3zy1pEjotgnwvTd0S/+mkArXETvdJ5V6kUNLAlJk7/78ECX9Cpx+Fl6wB
+ QUAPBwGB0YQxAXKfqt3xzCZ6lsJSj/aIf7D6hgbrEufCBZh1R6q1ppWBvj4Mt4xoqL8qLtD6g
+ M8efZFWURVA1PHShFlcJ97McCiEbwH50=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To avoid setting it up even if the hardware is not actually connected
+to anything physically.
 
-For debugging, it is useful to have access to the DSPI controller
-signals. On the reference design board, these are exported to either the
-mikroBUS1 or mikroBUS2 connector (according to the CPLD register
-BRDCFG3[SPI3]).
+Besides, the bindings explicitly notes that port definitions are
+"optional if they are not connected to anything at the hardware level".
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Signed-off-by: Alexander Riesen <alexander.riesen@cetitec.com>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/media/i2c/adv748x/adv748x-dai.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 6d05b76c2c7a..0d27b5667b8c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -83,6 +83,20 @@
- 	};
- };
+diff --git a/drivers/media/i2c/adv748x/adv748x-dai.c b/drivers/media/i2c/adv748x/adv748x-dai.c
+index 1c673efd4745..f22566094568 100644
+--- a/drivers/media/i2c/adv748x/adv748x-dai.c
++++ b/drivers/media/i2c/adv748x/adv748x-dai.c
+@@ -216,6 +216,11 @@ int adv748x_dai_init(struct adv748x_dai *dai)
+ 	int ret;
+ 	struct adv748x_state *state = adv748x_dai_to_state(dai);
  
-+&dspi2 {
-+	bus-num = <2>;
-+	status = "okay";
-+
-+	/* mikroBUS1 */
-+	spidev@0 {
-+		compatible = "rohm,dh2228fv";
-+		spi-max-frequency = <20000000>;
-+		fsl,spi-cs-sck-delay = <100>;
-+		fsl,spi-sck-cs-delay = <100>;
-+		reg = <0>;
-+	};
-+};
-+
- &esdhc {
- 	sd-uhs-sdr104;
- 	sd-uhs-sdr50;
++	if (!state->endpoints[ADV748X_PORT_I2S]) {
++		adv_info(state, "no I2S port, DAI disabled\n");
++		ret = 0;
++		goto fail;
++	}
+ 	dai->mclk_name = kasprintf(GFP_KERNEL, "%s.%s-i2s-mclk",
+ 				   state->dev->driver->name,
+ 				   dev_name(state->dev));
 -- 
-2.17.1
+2.25.1.25.g9ecbe7eb18
+
 
