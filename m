@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC57718D47E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E92B18D4A5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:39:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727163AbgCTQcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 12:32:43 -0400
-Received: from mout.kundenserver.de ([212.227.17.13]:49575 "EHLO
+        id S1727093AbgCTQj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 12:39:26 -0400
+Received: from mout.kundenserver.de ([212.227.126.187]:45819 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726983AbgCTQcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:32:42 -0400
+        with ESMTP id S1726935AbgCTQj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:39:26 -0400
 Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MBltK-1j7brZ2XmO-00CBqH for <devicetree@vger.kernel.org>; Fri, 20 Mar
- 2020 17:32:41 +0100
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1N1u2b-1jQNCn1Vxh-012KNh for <devicetree@vger.kernel.org>; Fri, 20 Mar
+ 2020 17:39:24 +0100
 Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
-        by mail.cetitecgmbh.com (Postfix) with ESMTP id 6398B65007A
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 16:32:41 +0000 (UTC)
+        by mail.cetitecgmbh.com (Postfix) with ESMTP id 34106650123
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 16:39:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at cetitec.com
 Received: from mail.cetitecgmbh.com ([127.0.0.1])
         by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id YAUaIx70n7yM for <devicetree@vger.kernel.org>;
-        Fri, 20 Mar 2020 17:32:41 +0100 (CET)
+        with ESMTP id 1PsRH_UJxv4e for <devicetree@vger.kernel.org>;
+        Fri, 20 Mar 2020 17:39:23 +0100 (CET)
 Received: from pfwsexchange.corp.cetitec.com (unknown [10.10.1.99])
-        by mail.cetitecgmbh.com (Postfix) with ESMTPS id 1F6F864EFE3
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 17:32:41 +0100 (CET)
+        by mail.cetitecgmbh.com (Postfix) with ESMTPS id CE94764C337
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 17:39:23 +0100 (CET)
 Received: from pflmari.corp.cetitec.com (10.8.5.41) by
  PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2; Fri, 20 Mar 2020 17:32:41 +0100
+ id 15.0.1497.2; Fri, 20 Mar 2020 17:39:23 +0100
 Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
-        id 2CE8680503; Fri, 20 Mar 2020 17:12:02 +0100 (CET)
-Date:   Fri, 20 Mar 2020 17:12:02 +0100
+        id 33D6A80505; Fri, 20 Mar 2020 17:12:04 +0100 (CET)
+Date:   Fri, 20 Mar 2020 17:12:04 +0100
 From:   Alex Riesen <alexander.riesen@cetitec.com>
 To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
 CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
@@ -44,9 +44,9 @@ CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
         <devel@driverdev.osuosl.org>, <linux-media@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-renesas-soc@vger.kernel.org>
-Subject: [PATCH v3 06/11] media: adv748x: prepare/enable mclk when the audio
- is used
-Message-ID: <7ed1287d00da70de13627480b1601bfd2c6e570a.1584720678.git.alexander.riesen@cetitec.com>
+Subject: [PATCH v3 08/11] dt-bindings: adv748x: add information about serial
+ audio interface (I2S/TDM)
+Message-ID: <5e7da04cd003778cf525eac96d8bacdf4a245a13.1584720678.git.alexander.riesen@cetitec.com>
 Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
         Kieran Bingham <kieran.bingham@ideasonboard.com>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
@@ -69,76 +69,98 @@ X-ClientProxiedBy: PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) To
  PFWSEXCHANGE.corp.cetitec.com (10.10.1.99)
 X-EsetResult: clean, is OK
 X-EsetId: 37303A290D7F536A6D7660
-X-Provags-ID: V03:K1:eC2STgDsAzkhPBfLXG+Hxi8gv+6lf9+IQEDdr/c4aKkn5s456fR
- /U9NjBoq2BPFo1JFSJkL6Vlw2hEDTW7tWSDLgOQ/93vMCCFSeiU3fP/Knbg976yhHL/u4dd
- +VjqnlSdkYX/LoieARnfOLz4kBA79OP42pEhTuC/pA3qkeSgrsyf4jGvwnXZUrbQBIjHj1U
- seNojtU5+idqXpA4lDH2A==
+X-Provags-ID: V03:K1:sc9y98i62d5iyM2zmlEbyFVa7pJl1ZW5vDoAOLJ6oJRVBC0PBdu
+ C7gJxq8cfjbiD7KLleHPsYTG0fimZVmzVi5KL4OkXMYwieNbxZEKtQhVuO7uT9h18XsV6h/
+ cZHdIpzPMqGk3LaF2ALHIeCOGKtNZkAJMdDRn3XrEKW46Z49sZTy0dhcUAjKZLMomIZMREh
+ RegicryI3CXxdibVB4e5A==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Y/lakGYveKg=:DgziO3dwYdtyqcksaU3+SV
- x9DOj3JH4imXS3M3dR4pifpGp2XyHBlKgymvBAs9PVk3qnnWEHNgvTHzGpqq3WlwnudtTgbK0
- L/BN+JZ7wqobpj+jd2QvOfAG5zvW9u8WvRa05yWPFLaHhDi1PF9WyImqsZcQ3W/6BE5UR88rL
- sPFs+Yy/k03Z+K4+b73WRqL9y5e9rmLt5auBP3oKayguAyfgOtaIwX+vudd9qp2NiAAUTuDOq
- qUq5Ew43PAc3MAhi67d4F13Ecx0kObN1AzAM62TqJwc8NwEQE3JdwBcTfrmN3w3bMzbyC1BrZ
- WHee0flg3xrr5JWlNB9eZSEz68jqVy737z0g/+yj1StbBqrVG0CwJPzz4n4cQqb5ut7I4fwzk
- jn+zp6L+3zAT4lp93nSqnqd+q9TLKyEKPBXILkKJtos9cKsxahH3GuDuJFDc9zAqgXkIA3gX2
- f8yxjiHYObeIYNPyBRz3APanb2TkWWPsTl3H5VSsH98qDPBVHAOJSpv90NxA+dMO8ovBzD28U
- tmUp7Va1skBbdqqd1Nsrd5Rx7YH627do9dTeY76VT2MxUx0psZFFetiGijIl+lFPWodvDMgzx
- +e0jNOfCtFOWBDRe6IwVrKhvElNifcDqgTm/bUvgf3mupEhvCtI3fGqHT331hWJgJpbko+QHf
- ITig37bR5vTS4AfppcP6CgLSiNVwKaxvyEpo0FHhacAvquidMqJptR3H4dSgDSJhwgTs4wLwt
- qczsf4vx6QsVXG9HQy13wuYyHY61YAe1XdpLmfj9Z6DFXwtSUEkqUsKwl1rn5NkenD6dDYeTu
- 3ZcM0cxFYXWNXXJFse7W+nmzlRzUCqYBZRDeLBlz87F9dGw77lL08P5j9msyqec4vuAB9FD
+X-UI-Out-Filterresults: notjunk:1;V03:K0:IZkxpIjPa08=:kTJ6CcaIOFf5y//Qt2EF7E
+ cohn33rVWYYjVq4GZVTV+V6x2SYdtCjATup6e7Cit9Uur0w2CV6CdPPI9hyxkV89CZlQ2PJhU
+ fztXersm0SWvw8GyVYiZDxE2yIT33GhrCkRR/XTClERFXySSSPKmfK0Bgjac8KytkcFLPkSIH
+ VN4BjnzR16UKgSo02RTvDfi1QJHmSaqHU/tPCI+ISqFwaXv0Ou8B+MXf1RYEt+2px7sWNRYQ4
+ Y39UREStsTy/3BbyvTAfjHstlDwjbfdMn0u/jBhnCunknouv15kAcyikHl0OOEClTWunHiC8y
+ e+sCKJs8D/L0auLT3oRXpWAWmhjlLNBggekGLd1gg3El7CF1Wp/Lz2rx0mVIjXJaOnXKY+JDs
+ aQyExewAucVn+5HQswpMo3NMDwgqc5SQevLpfzVUgiWM7ZWXrehrk5m4K6CaS8YBAnlxZ3MmU
+ Yu/DuM7XNpzBePaMMNnwRmn3HgBNKvCFRyf3mF+dFExWNs6DKNW7bsT+sBjuU5kbzli2q0hpa
+ ThOGdL8pYm/Dr26UQ2bSY+lt4w4WHpLWoC1FqsmNhmLyybs2edRdnkybDrfBmRMlopSo5hq5q
+ Ohq2MfSyuWsm7xGDlrzR2GQ15GyqjlnEpm1VYDa8p1Y56eos8UM+S1A8HH/08io6AFDnrIKVf
+ HtxP48OvLtcQXsT43hhXFspfAekVSLCfy9oWOwIFg63aJ/Uwq2P3bqVVIfSGYnneNztsRC0SX
+ 7c6e6XJ+kpoJSiZvkXkXHVG+YdySnBDwlt4LIcnL3YTXUPEY3rLRdCgEjDCZo2FoktKUbb8uH
+ 2iWPVofwsvR2Gz2Ngv0XreoLUJCZmPqEFk3GSFzDt7SDyA9iO9pWRlX5bVpyYSi/RmnsYdV
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As there is nothing else (the consumers are supposed to do that) which
-enables the clock, do it in the driver.
+As the driver has some support for the audio interface of the device,
+the bindings file should mention it.
 
 Signed-off-by: Alexander Riesen <alexander.riesen@cetitec.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 --
 
-v3: added
+v3: remove optionality off MCLK clock cell to ensure the description
+    matches the hardware no matter if the line is connected.
+    Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
 ---
- drivers/media/i2c/adv748x/adv748x-dai.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/media/i2c/adv748x.txt    | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/media/i2c/adv748x/adv748x-dai.c b/drivers/media/i2c/adv748x/adv748x-dai.c
-index 6fce7d000423..1c673efd4745 100644
---- a/drivers/media/i2c/adv748x/adv748x-dai.c
-+++ b/drivers/media/i2c/adv748x/adv748x-dai.c
-@@ -117,11 +117,22 @@ static int adv748x_dai_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.txt b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
+index 4f91686e54a6..50a753189b81 100644
+--- a/Documentation/devicetree/bindings/media/i2c/adv748x.txt
++++ b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
+@@ -2,7 +2,9 @@
  
- static int adv748x_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
- {
-+	int ret;
- 	struct adv748x_state *state = state_of(dai);
+ The ADV7481 and ADV7482 are multi format video decoders with an integrated
+ HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
+-from three input sources HDMI, analog and TTL.
++from three input sources HDMI, analog and TTL. There is also support for an
++I2S-compatible interface connected to the audio processor of the HDMI decoder.
++The interface has TDM capability (8 slots, 32 bits, left or right justified).
  
- 	if (sub->stream != SNDRV_PCM_STREAM_CAPTURE)
- 		return -EINVAL;
--	return set_audio_pads_state(state, 1);
-+	ret = set_audio_pads_state(state, 1);
-+	if (ret)
-+		goto fail;
-+	ret = clk_prepare_enable(state->dai.mclk);
-+	if (ret)
-+		goto fail_pwdn;
-+	return 0;
-+fail_pwdn:
-+	set_audio_pads_state(state, 0);
-+fail:
-+	return ret;
- }
+ Required Properties:
  
- static int adv748x_dai_hw_params(struct snd_pcm_substream *sub,
-@@ -174,6 +185,7 @@ static void adv748x_dai_shutdown(struct snd_pcm_substream *sub, struct snd_soc_d
- {
- 	struct adv748x_state *state = state_of(dai);
+@@ -16,6 +18,8 @@ Required Properties:
+     slave device on the I2C bus. The main address is mandatory, others are
+     optional and remain at default values if not specified.
  
-+	clk_disable_unprepare(state->dai.mclk);
- 	set_audio_pads_state(state, 0);
- }
++  - #clock-cells: must be <0>
++
+ Optional Properties:
  
+   - interrupt-names: Should specify the interrupts as "intrq1", "intrq2" and/or
+@@ -47,6 +51,7 @@ are numbered as follows.
+ 	  TTL		sink		9
+ 	  TXA		source		10
+ 	  TXB		source		11
++	  I2S		source		12
+ 
+ The digital output port nodes, when present, shall contain at least one
+ endpoint. Each of those endpoints shall contain the data-lanes property as
+@@ -72,6 +77,7 @@ Example:
+ 
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		#clock-cells = <0>;
+ 
+ 		interrupt-parent = <&gpio6>;
+ 		interrupt-names = "intrq1", "intrq2";
+@@ -113,4 +119,12 @@ Example:
+ 				remote-endpoint = <&csi20_in>;
+ 			};
+ 		};
++
++		port@c {
++			reg = <12>;
++
++			adv7482_i2s: endpoint {
++				remote-endpoint = <&i2s_in>;
++			};
++		};
+ 	};
 -- 
 2.25.1.25.g9ecbe7eb18
 
