@@ -2,137 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC2A18D4E5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41D2418D472
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727101AbgCTQww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 12:52:52 -0400
-Received: from mout.kundenserver.de ([212.227.126.135]:53195 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726983AbgCTQww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:52:52 -0400
-Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
- mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MTiHd-1iqDM60p6j-00U3dg for <devicetree@vger.kernel.org>; Fri, 20 Mar
- 2020 17:52:51 +0100
-Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
-        by mail.cetitecgmbh.com (Postfix) with ESMTP id F2DAA650077
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 16:52:50 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at cetitec.com
-Received: from mail.cetitecgmbh.com ([127.0.0.1])
-        by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 7sRpzGf3qfU8 for <devicetree@vger.kernel.org>;
-        Fri, 20 Mar 2020 17:52:50 +0100 (CET)
-Received: from pfwsexchange.corp.cetitec.com (unknown [10.10.1.99])
-        by mail.cetitecgmbh.com (Postfix) with ESMTPS id AA7BD64EE64
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 17:52:50 +0100 (CET)
-Received: from pflmari.corp.cetitec.com (10.8.5.41) by
- PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2; Fri, 20 Mar 2020 17:52:50 +0100
-Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
-        id 6E020804FB; Fri, 20 Mar 2020 17:15:39 +0100 (CET)
-Date:   Fri, 20 Mar 2020 17:15:39 +0100
-From:   Alex Riesen <alexander.riesen@cetitec.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 07/10] dt-bindings: adv748x: add information about
- serial audio interface (I2S/TDM)
-Message-ID: <20200320161539.GM4344@pflmari>
-Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <cover.1584639664.git.alexander.riesen@cetitec.com>
- <c9ff553f804f178a247dca356306948e971432fb.1584639664.git.alexander.riesen@cetitec.com>
- <20200319180125.GJ14585@pendragon.ideasonboard.com>
- <20200320084406.GB4344@pflmari>
- <CAMuHMdUdVb0LwZDx-MH2FLYYPvgq=uj_3Nrzo9obWAi-Q-2ZnA@mail.gmail.com>
- <20200320090339.GD4344@pflmari>
- <20200320095907.GB5193@pendragon.ideasonboard.com>
+        id S1726983AbgCTQbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 12:31:05 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:34176 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727016AbgCTQbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:31:04 -0400
+Received: by mail-lj1-f195.google.com with SMTP id s13so7111993ljm.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 09:31:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qWa0IWkYd6tdWbqMa29lygSoK/RlkQZ5CmiZBdveSls=;
+        b=FhYh2/TXtz7rtHB2/sgGBWoGU1DMlUy49ZjxAZUAtHGGaPfpIzwGoPOkWPk1jW8vGQ
+         jawEHWpkM54XOu4a2QFgn66KU6hYd7Ex8uSdTNm7ZvYxd4vjdywS3TGM21jCtTAyFMkb
+         7klwMPsfqIdIcAknorjDXjW9m8eXggf0ojSRI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qWa0IWkYd6tdWbqMa29lygSoK/RlkQZ5CmiZBdveSls=;
+        b=Ruw3Ml/pjZb0D/PqZECDa7pmxCD+wTmLo6OeGO6724AQHSUrbU7CeQSz2USn6UcgSd
+         D58HRcOBUc+eKile9sxJJB67+PW6W8VmnCsy3sW9k+GQcRmrXh6r+YxnYoQDIZq8q0/b
+         Bq+xqWAKGA3wMHZD853MURrnlhncWN2nLiDCPJIy+cDCtxFTQU6vQ2tvUnoEhOo/LS0n
+         xx+GfJB5z01ELgZMawlV2nIR0ZsuHp7pyQ+ce8HpN8HD/4je756c9ovUIuCkMGXOD7Cw
+         vIV/G+dBytiA8kD7Ip/Kmb8Ph1RIrcHcfsIvzeJ7IKCRp3+0KteohnJHarV6CM6STn6W
+         Pz6Q==
+X-Gm-Message-State: ANhLgQ2RgrIcBA91T9IatDqkIsQvqjysggszJMLTrXRmVExShjdF+joo
+        ofOz+o9uRFo7GDXgtGlvfip8JAEExQc=
+X-Google-Smtp-Source: ADFU+vs9LU7Ht/lW/jMhu7avw8UFmKYML1ldjgKrYqwt/XOuSmt9M116QoeQUwTZbwguMRJQuNOnbQ==
+X-Received: by 2002:a2e:b1c2:: with SMTP id e2mr6157441lja.288.1584721862054;
+        Fri, 20 Mar 2020 09:31:02 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id c22sm3730385lfi.41.2020.03.20.09.31.00
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Mar 2020 09:31:01 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id o10so7069029ljc.8
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 09:31:00 -0700 (PDT)
+X-Received: by 2002:a2e:8991:: with SMTP id c17mr6037445lji.278.1584721860043;
+ Fri, 20 Mar 2020 09:31:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200320095907.GB5193@pendragon.ideasonboard.com>
-X-Originating-IP: [10.8.5.41]
-X-ClientProxiedBy: PFWSEXCHANGE.corp.cetitec.com (10.10.1.99) To
- PFWSEXCHANGE.corp.cetitec.com (10.10.1.99)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A290D7F536A6D7660
-X-Provags-ID: V03:K1:D4eS4e4xp1McIUFcMMxslR0mUoZ9Aw9KsNAweQjf2W9PJXvfubB
- SSzlO8n0SVh68jSO6E9Tk4N9U9O/nMOi0PANTTTtvdPmho6YMBSIluPTl5961niKd+b+bWF
- sAuAn4OkNXwiEsW3WmrP1JhdiZwxtKt66M1TR/A87IhtzYtvEFj2UxZwNXQBF7IWYFKciDZ
- JRkBYxCgtJRnn5pjnLFpA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:tWCjiYKAreY=:oyTRBSXKeMVmdgikJPOKJW
- CoTaGsSUiiEWKVBf+rF4t/V/gzVRTA5CRgpnCxLnqyRhSInLSIX0zKiISRxpUZmzlXW39+r/I
- 3npPQ4tOmIFj6VUdtPJru+ms3VQYHhb0MLXJxB+9wNYpYOeqfaOROfwsGbm8vP/gQFK9vK1na
- cfh4c4ARoa5UBMmun4jLUJ4bRbw3B/pnns2DXiMsy35pcHMEps6E2Egi3hInNHP9fOupwT62e
- 4d+ucQwTWDBJhd3VmaBYHiAlffn3n5RiamPLBAh6LU5mQn03dquoqOxj1ETRROnJPiSPtsgbf
- yTmaoCaVU2IvTTXoHE5iPgPRWnwuD7/IBZzcBKRMm8q3I03UUGWacOdk1YcwsHdmhnHAdaAIb
- VtnUdLy/4XHj64T06MHNX0FTwzPt39NzZO7ejkohKJlz0scAZHSw8xACiql3TahVGyksl33MR
- bhsl3DDuSOi2OvxDia7JMvSDC6DYqEXIBJY0DSWuC7PA0oUqaDIFB0oph8qhXmmcpCjGPzGit
- jVUWVl5BTgVrmsPWrHDW5K3AF5xk8MDjDt+8KcrLc7ckfOpuOEBQZh3JoFVNOU1x2ygm0kXNa
- AELFMJ6rwLEZ4ORpSY5yj01OHy5bzf0WSDvk2Rztqtqjf7tlnaFnkW3WJ6p1M9DRNCDXfqwoE
- sFsgKPeh7dm6PVKwpJxxJnOcPTFhKKow7lc3vog7+Y7OhpaWSOS3sIPQtDN/+YRHdq5se/056
- JiTiZEjU5W8lDTN6Q/XQzqdT3hfulU8PDxgsXTpB3e8C4SZu8DgjHISUDXGj1TOPUyoBHsf5a
- snQsoa6jSQkzEFr+3u65E7Ppkh5W4enBl6fpZ0NJhBKDJsXpV89ZIpw2PK0jock9Ja3axo4
+References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org>
+ <1584105134-13583-4-git-send-email-akashast@codeaurora.org>
+ <20200313204441.GJ144492@google.com> <1f86fdf0-df7c-4e4a-d4d8-8b0162e52cb4@codeaurora.org>
+ <20200317182910.GR144492@google.com> <3831b33c-93ee-e5e0-fcfb-530b4738f930@codeaurora.org>
+ <20200319194332.GA60149@google.com> <a7227a1f-00a1-0818-80f3-904fe264f864@codeaurora.org>
+In-Reply-To: <a7227a1f-00a1-0818-80f3-904fe264f864@codeaurora.org>
+From:   Evan Green <evgreen@chromium.org>
+Date:   Fri, 20 Mar 2020 09:30:23 -0700
+X-Gmail-Original-Message-ID: <CAE=gft6AGkcdUAkoyevZgmtBgaiEkoQzzJcg7sYjbpy5Kh2fyA@mail.gmail.com>
+Message-ID: <CAE=gft6AGkcdUAkoyevZgmtBgaiEkoQzzJcg7sYjbpy5Kh2fyA@mail.gmail.com>
+Subject: Re: [PATCH V2 3/8] soc: qcom-geni-se: Add interconnect support to fix
+ earlycon crash
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        wsa@the-dreams.de, Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-serial@vger.kernel.org, Doug Anderson <dianders@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Fri, Mar 20, 2020 at 3:22 AM Akash Asthana <akashast@codeaurora.org> wrote:
+>
+> Hi Evan, Matthias,
+>
+> On 3/20/2020 1:13 AM, Matthias Kaehlcke wrote:
+> > On Wed, Mar 18, 2020 at 02:24:35PM +0530, Akash Asthana wrote:
+> >> Hi Matthias,
+> >>
+> >> On 3/17/2020 11:59 PM, Matthias Kaehlcke wrote:
+> >>> Hi Akash,
+> >>>
+> >>> On Tue, Mar 17, 2020 at 04:27:47PM +0530, Akash Asthana wrote:
+> >>>> Hi Matthias,
+> >>>>
+> >>>> On 3/14/2020 2:14 AM, Matthias Kaehlcke wrote:
+> >>>>> Hi Akash,
+> >>>>>
+> >>>>> On Fri, Mar 13, 2020 at 06:42:09PM +0530, Akash Asthana wrote:
+> >>>>>> V1 patch@https://patchwork.kernel.org/patch/11386469/ caused SC7180 system
+> >>>>>> to reset at boot time.
+> >>>>> The v1 patch isn't relevant in the commit message, please just describe the
+> >>>>> problem. Also the crash only occurs when earlycon is used.
+> >>>> ok
+> >>>>>> As QUP core clock is shared among all the SE drivers present on particular
+> >>>>>> QUP wrapper, the reset seen is due to earlycon usage after QUP core clock
+> >>>>>> is put to 0 from other SE drivers before real console comes up.
+> >>>>>>
+> >>>>>> As earlycon can't vote for it's QUP core need, to fix this add ICC
+> >>>>>> support to common/QUP wrapper driver and put vote for QUP core from
+> >>>>>> probe on behalf of earlycon and remove vote during sys suspend.
+> >>>>> Only removing the vote on suspend isn't ideal, the system might never get
+> >>>>> suspended. That said I don't have a really good alternative suggestion.
+> >>>>>
+> >>>>> One thing you could possibly do is to launch a delayed work, check
+> >>>>> console_device() every second or so and remove the vote when it returns
+> >>>>> non-NULL. Not claiming this would be a great solution ...
+> >>>>>
+> >>>>> The cleanest solution might be a notifier when the early console is
+> >>>>> unregistered, it seems somewhat over-engineered though ... Then again
+> >>>>> other (future) uart drivers with interconnect support might run into
+> >>>>> the same problem.
+> >>>> We are hitting this problem because QUP core clocks are shared among all the
+> >>>> SE driver present in particular QUP wrapper, if other HW controllers has
+> >>>> similar architecture we will hit this issue.
+> >>>>
+> >>>> How about if we expose an API from common driver(geni-se) for putting QUP
+> >>>> core BW vote to 0.
+> >>>>
+> >>>> We call this from console probe just after uart_add_one_port call (console
+> >>>> resources are enabled as part of this call) to put core quota to 0 on behalf
+> >>>> of earlyconsole?
+> >>>   From my notes from earlier debugging I have doubts this would work:
+> >>>
+> >>>     There is a short window where the early console and the 'real' console coexist:
+> >>>
+> >>>     [    3.858122] printk: console [ttyMSM0] enabled
+> >>>     [    3.875692] printk: bootconsole [qcom_geni0] disabled
+> >>>
+> >>>     The reset probably occurs when the early console tries to write, but the ICC
+> >>>     is effectively disabled because ttyMSM0 and the other geni ports are runtime
+> >>>     suspended.
+> >> Code flow from console driver probe(qcom_geni_serial.c)
+> >>
+> >> uart_add_one_port--->uart_configure_port--->{ 1) uart_change_pm(enable
+> >> console resources)  2)register_console(boot to real console switch happens
+> >> here)}
+> >>
+> >> Console resources are not disabled from anywhere before the switch happens
+> >> completely. I meant to say until we saw below logs.
+> >>
+> >> [    3.875692] printk: bootconsole [qcom_geni0] disabled
+> >>
+> >> I think the board reset issue cannot occur during the window where early
+> >> console and 'real' console coexist.
+> > Thanks for the clarification! Indeed my notes were only a hypothesis, I
+> > don't see evidence that there is an actual downvote shortly after console
+> > registration.
+> >
+> >> I have validated proposed solution by me, it is working fine.
+> >>
+> >> Currently voting is done for every QUP and not only to which earlycon is
+> >> connect, with the above approach we can't remove vote from other QUPs.
+> >>
+> >> However we can limit voting only to earlycon QUP by removing interconnect
+> >> from DT node of other QUPs.
+> >>
+> >> I am not sure how clean is this solution.
+> > I'm more inclined towards a solution along the lines of what Evan
+> > proposed, i.e. delaying the votes (either in geni or ICC) until we
+> > are ready.
+>
+> Based on discussion I think the delayed solution is most suited if
+> implemented in ICC core because other ICC client might face the similar
+> problem.
+>
+> However for geni case I am more inclined towards below proposed solution.
+>
+> -----------------------------------------------------------------------------------------------------
+>
+> How about if we expose an API from common driver(geni-se) for putting QUP
+> core BW vote to 0.
+>
+> We call this from console probe just after uart_add_one_port call (console
+> resources are enabled as part of this call) to put core quota to 0 on behalf
+> of earlyconsole?
 
-Laurent Pinchart, Fri, Mar 20, 2020 10:59:07 +0100:
-> On Fri, Mar 20, 2020 at 10:03:39AM +0100, Alex Riesen wrote:
-> > Geert Uytterhoeven, Fri, Mar 20, 2020 09:48:14 +0100:
-> > > 
-> > > You'd be surprised how many board designers would consider this a cheap
-> > > 12.288 MHz clock source, without using the I2S port ;-)
-> > 
-> > Well, I am :-)
-> > 
-> > Especially considering that the driver will not switch the MCLK pin aktive
-> > (all I2S-related pins are tristate by default).
-> 
-> If the MCLK can't be output without enabling the I2S then I don't mind
-> if we make the #clock-cells optional, although, as Geert mentioned,
-> someone may still want to use it.
-
-So I settled on just removing the option.
-
-> > And how do I require it to be set unconditionally? By just removing the
-> > "if ..." part of the statement?
-> 
-> Yes. For YAML it's easy too, the hard part is making properties
-> conditional :-)
-
-Converting it into YAML turned out a bit more than just reformatting:
-some of the explicit bindings schema is only implied in the text format :-(
-
-Takes a while to find out what is what.
-
-Regards,
-Alex
+This seems ok to me. Earlycon sets up a vote, and then real probe
+tears it down. As long as in the shuffle of all of these things into
+SE library helpers you still have a way of differentiating the
+earlycon vote from the real vote. In other words, don't reuse this
+early icc_path for the real UART vote. You should probably also
+destroy the path once you've voted zero on it.
+-Evan
