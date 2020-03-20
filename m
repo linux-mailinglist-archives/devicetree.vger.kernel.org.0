@@ -2,119 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F2218D4C5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DADF218D4F5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2020 17:53:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727523AbgCTQqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 12:46:15 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:46315 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727400AbgCTQqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Mar 2020 12:46:15 -0400
-Received: by mail-lj1-f196.google.com with SMTP id v16so95881ljk.13
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 09:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yVeMWWgOR9TOsajWbE931ud3emvQ0ziFK5hlBW9OADE=;
-        b=ZGRQRHVYCzH20glp+CuGONYp6DfLbf36SiaLFRCofD+cDdIUlqDIJFyII0gsPvuBtO
-         hCqPw+nLaQvXF1wEZLoYIPhwNfGVkUUZtXGg05RoKCrMYcQutWHg+7zLOZ3+BSB+QIvY
-         EV93/VSdJajMFJqONuXGVgXN27wm7h3uUh4yI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yVeMWWgOR9TOsajWbE931ud3emvQ0ziFK5hlBW9OADE=;
-        b=Je/QmU3bLHy3XLGdqQNt7l3I4fsd0WdeE+iEGXly7McP3wT/ZN6+moMjlm15+1oUKT
-         2NNdwAMo9xtZIpNQqL7Qg8AkX2hFkscRPbyVc+DVt6ivBOWIf+6SbYHY8b+pu2LNpoTa
-         pJ4ZfCs8RtJrw5lszO09xmOD70/gmxmb47sa7A2+k+V0pMDF83BQog0VReG0CygJKRBq
-         65ZPN+qwOG23H2Xm4zKsTuwaiQqgoHBFLMGF14lay2ExdLQxLejw8phoP+xVO1HK2fZ5
-         HuO5TpiSumbovopnJ6gSilTDgzqbImxpkewL0RIwobhuFauE9tIL5W0VOrPS+aBO0QFd
-         RKMQ==
-X-Gm-Message-State: ANhLgQ2meRNaUfUXyQ6PwbqEdO/S6SzUxXpMLbrTUcLbrmNqvm+Az2Dt
-        MC6a79oS2K3geF7+mBOgWdnYAzEQ47U=
-X-Google-Smtp-Source: ADFU+vuFWcO8B5LgoqLYxctU9fZorsLvCW1WQyEOk3VrBu6AynHhMTFfRrRqW580FFrrzIFmgE4u5A==
-X-Received: by 2002:a2e:8350:: with SMTP id l16mr5764786ljh.202.1584722772406;
-        Fri, 20 Mar 2020 09:46:12 -0700 (PDT)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
-        by smtp.gmail.com with ESMTPSA id h25sm3667264ljg.31.2020.03.20.09.46.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Mar 2020 09:46:11 -0700 (PDT)
-Received: by mail-lj1-f177.google.com with SMTP id 19so7128353ljj.7
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 09:46:10 -0700 (PDT)
-X-Received: by 2002:a2e:2206:: with SMTP id i6mr5969667lji.208.1584722770463;
- Fri, 20 Mar 2020 09:46:10 -0700 (PDT)
+        id S1727721AbgCTQxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Mar 2020 12:53:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35900 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727718AbgCTQxS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Mar 2020 12:53:18 -0400
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3EBE22076F;
+        Fri, 20 Mar 2020 16:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584723197;
+        bh=SUbZeebq2OONQq8LMWFOH9NX2Sbm+ozg8Th8tzFckYU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bTH3vd97Pt8kd9zl64OoU6o+cL0J2/cFcPZlPRLd5crl6MsogX1+Q+qRTK1MvnW56
+         SjtaeD2M78vXw5bVqKf8PrkOcMh9ZGR8xKkXhTjPbI28erlEKLHmADMmo645RUAeIo
+         M57crmxqMKjEYnJMw9my6FHHFbUaa6i+T+vCbrCg=
+Received: by mail-qv1-f50.google.com with SMTP id o18so3323642qvf.1;
+        Fri, 20 Mar 2020 09:53:17 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3H1uaNjRGw7xXO56ZpbLl/FP3sFCXvWDEAHflBB6SNQBgSz5WA
+        Pu63FYXkqjCsq6/gBxE7WJ8UxiRT5Jac9/H/Hw==
+X-Google-Smtp-Source: ADFU+vsMjlPOxytEUWukU50ZVC3dzXv3n2NYqa5n45Md60Vhbk7YA2fh97wZC7a46wDxIGTK9RSllaTWR6GMaB3eFaY=
+X-Received: by 2002:ad4:4766:: with SMTP id d6mr8592149qvx.136.1584723196260;
+ Fri, 20 Mar 2020 09:53:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org>
- <1584105134-13583-3-git-send-email-akashast@codeaurora.org>
- <CAE=gft4_Su4+SXWAW_HWy5BF1mH7QaDHCiwAAhrNaekTeU57rA@mail.gmail.com> <74851dda-296d-cdc5-2449-b9ec59bbc057@codeaurora.org>
-In-Reply-To: <74851dda-296d-cdc5-2449-b9ec59bbc057@codeaurora.org>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Fri, 20 Mar 2020 09:45:34 -0700
-X-Gmail-Original-Message-ID: <CAE=gft5Uucr83DoQqaE7_8_H=ExnkPBQvRiUK_+LxOMeadam_g@mail.gmail.com>
-Message-ID: <CAE=gft5Uucr83DoQqaE7_8_H=ExnkPBQvRiUK_+LxOMeadam_g@mail.gmail.com>
-Subject: Re: [PATCH V2 2/8] soc: qcom: geni: Support for ICC voting
-To:     Akash Asthana <akashast@codeaurora.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        wsa@the-dreams.de, Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-spi@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>
+References: <20200311103252.17514-1-laurent.pinchart@ideasonboard.com>
+ <20200311103252.17514-2-laurent.pinchart@ideasonboard.com>
+ <20200320023520.GA18490@bogus> <20200320095036.GA5193@pendragon.ideasonboard.com>
+In-Reply-To: <20200320095036.GA5193@pendragon.ideasonboard.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 20 Mar 2020 10:53:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLYUooc-9i6U6Br9DQKPHZMrLJf3f883PeM4Ctbwycs8w@mail.gmail.com>
+Message-ID: <CAL_JsqLYUooc-9i6U6Br9DQKPHZMrLJf3f883PeM4Ctbwycs8w@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: phy: Add DT bindings for Xilinx
+ ZynqMP PSGTR PHY
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 20, 2020 at 4:03 AM Akash Asthana <akashast@codeaurora.org> wrote:
+On Fri, Mar 20, 2020 at 3:50 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
-> Hi Evan,
+> Hi Rob,
 >
-> +/* Core 2X clock frequency to BCM threshold mapping */
-> +#define CORE_2X_19_2_MHZ               960
-> +#define CORE_2X_50_MHZ                 2500
-> +#define CORE_2X_100_MHZ                        5000
-> +#define CORE_2X_150_MHZ                        7500
-> +#define CORE_2X_200_MHZ                        10000
-> +#define CORE_2X_236_MHZ                        16383
+> On Thu, Mar 19, 2020 at 08:35:20PM -0600, Rob Herring wrote:
+> > On Wed, Mar 11, 2020 at 12:32:50PM +0200, Laurent Pinchart wrote:
+> > > From: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+> > >
+> > > Add DT bindings for the Xilinx ZynqMP PHY. ZynqMP SoCs have a High Speed
+> > > Processing System Gigabit Transceiver which provides PHY capabilities to
+> > > USB, SATA, PCIE, Display Port and Ehernet SGMII controllers.
+> > >
+> > > Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > > Changes since v5:
+> > >
+> > > - Document clocks and clock-names properties
+> > > - Document resets and reset-names properties
+> > > - Replace subnodes with an additional entry in the PHY cells
+> > > - Drop lane frequency PHY cell, replaced by reference clock phandle
+> > > - Convert bindings to YAML
+> > > - Reword the subject line
+> > > - Drop Rob's R-b as the bindings have significantly changed
+> > > - Drop resets and reset-names properties
+> > > ---
+> > >  .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 104 ++++++++++++++++++
+> > >  include/dt-bindings/phy/phy.h                 |   1 +
+> > >  2 files changed, 105 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> > > new file mode 100644
+> > > index 000000000000..9948e4a60e45
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+> > > @@ -0,0 +1,104 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> >
+> > For new bindings:
+> >
+> > (GPL-2.0-only OR BSD-2-Clause)
+> >
+> > Though I guess Anurag needs to agree.
 >
-> These are all just 50 * clock_rate. Can you instead specify that one
-> define of CLK_TO_BW_RATIO 50, and then use clk_get_rate() to get the
-> input clock frequency. That way, if these end up getting clocked at a
-> different rate, the bandwidth also scales appropriately. Also, can you
-> enumerate why 50 is an appropriate ratio?
-> -Evan
->
-> -Evan
->
-> Clock rate for Core 2X is controlled by BW voting only, we don't set clock rate for core 2X clock either by DFS or calling clk_set_rate API like we do for SE clocks from individual driver.
->
-> In DT node it's not mentioned as clock.
->
-> As discussed in patch@ https://patchwork.kernel.org/patch/11436897/  We are not scaling Core 2X clock based on dynamic need of driver instead we are putting recommended value from HW team for each driver.
+> There's an ongoing similar discussion regarding the DPSUB (DRM/KMS)
+> bindings. Hyun is checking with the Xilinx legal department. If they
+> agree, I'll change the license here, otherwise I'll keep it as-is.
 
-Oh I get it. This is pretty opaque, since this table is saying "here
-are the bandwidth values that happen to work out to a Core2X clock
-rate of N". But it's not obvious why setting the Core2X clock rate to
-N is desirable or appropriate. The answer seems to be hardware guys
-told us these thresholds work well in practice. And if I'm reading
-into it more, probably they're saying these bandwidths are too low to
-be worth dynamically managing beyond on/off.
+TBC, the choice is change it or take your toys elsewhere and play by
+yourself. I don't really want to end up with whatever each submitter
+desires. I don't expect there's many companies that object to a
+permissive license.
 
-At the very least we should explain some of this in the comment above
-these defines. Something like:
-/* Define bandwidth thresholds that cause the underlying Core 2X
-interconnect clock to run at the named frequency. These baseline
-values are recommended by the hardware team, and are not dynamically
-scaled with GENI bandwidth beyond basic on/off. */
--Evan
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/phy/xlnx,zynqmp-psgtr.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Xilinx ZynqMP Gigabit Transceiver PHY Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > +
+> > > +description: |
+> > > +  This binding describes the Xilinx ZynqMP Gigabit Transceiver (GTR) PHY. The
+> > > +  GTR provides four lanes and is used by USB, SATA, PCIE, Display port and
+> > > +  Ethernet SGMII controllers.
+> > > +
+> > > +properties:
+> > > +  "#phy-cells":
+> > > +    const: 4
+> > > +    description: |
+> > > +      The cells contain the following arguments.
+> > > +
+> > > +      - description: The GTR lane
+> > > +        minimum: 0
+> > > +        maximum: 3
+> > > +      - description: The PHY type
+> > > +        enum:
+> > > +          - PHY_TYPE_DP
+> > > +          - PHY_TYPE_PCIE
+> > > +          - PHY_TYPE_SATA
+> > > +          - PHY_TYPE_SGMII
+> > > +          - PHY_TYPE_USB
+> > > +      - description: The PHY instance
+> > > +        minimum: 0
+> > > +        maximum: 1 # for DP, SATA or USB
+> > > +        maximum: 3 # for PCIE or SGMII
+> > > +      - description: The reference clock number
+> > > +        minimum: 0
+> > > +        maximum: 3
+> >
+> > Humm, interesting almost json-schema. I guess it's fine as-is.
+> >
+> > I would like to figure out how to apply a schema like this to the
+> > consumer nodes. We'd have to look up the phandle, get that node's
+> > compatible, find the provider's schema, find #.*-cells property, and
+> > extract a schema from it. Actually, doesn't sound too hard.
+>
+> That would be nice :-)
+>
+> > > +
+> > > +  compatible:
+> > > +    enum:
+> > > +      - xlnx,zynqmp-psgtr-v1.1
+> > > +      - xlnx,zynqmp-psgtr
+> > > +
+> > > +  clocks:
+> > > +    minItems: 1
+> > > +    maxItems: 4
+> > > +    description: |
+> > > +      Clock for each PS_MGTREFCLK[0-3] reference clock input. Unconnected
+> > > +      inputs shall not have an entry.
+> > > +
+> > > +  clock-names:
+> > > +    minItems: 1
+> > > +    maxItems: 4
+> > > +    items:
+> > > +      pattern: "^ref[0-3]$"
+> > > +
+> > > +  reg:
+> > > +    items:
+> > > +      - description: SERDES registers block
+> > > +      - description: SIOU registers block
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: serdes
+> > > +      - const: siou
+> > > +
+> > > +required:
+> > > +  - "#phy-cells"
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reg-names
+> > > +
+> > > +if:
+> > > +  properties:
+> > > +    compatible:
+> > > +      const: xlnx,zynqmp-psgtr
+> > > +
+> > > +then:
+> > > +  properties:
+> > > +    xlnx,tx-termination-fix:
+> > > +      description: |
+> > > +        Include this for fixing functional issue with the TX termination
+> > > +        resistance in GT, which can be out of spec for the XCZU9EG silicon
+> > > +        version.
+> > > +      type: boolean
+> > > +
+> > > +additionalProperties: false
+> >
+> > This won't work with 'xlnx,tx-termination-fix'. You need to move it to
+> > the main properties section and then do:
+> >
+> > if:
+> >   properties:
+> >     compatible:
+> >       const: xlnx,zynqmp-psgtr-v1.1
+>
+> It doesn't make a big difference as only two compatible values are
+> allowed, but is there a way to express the condition the other way
+> around, if (compatible != "xlnx,zynqmp-psgtr") ?
+
+if:
+  properties:
+    compatible:
+      not:
+        const: xlnx,zynqmp-psgtr
+
+I think if: { not: ... } would also work. You'll have to test them out.
+
+> > then:
+> >   properties:
+> >     xlnx,tx-termination-fix: false
+>
+> This works.
+>
+> > I think this would also work:
+> >
+> >   not:
+> >     required:
+> >       - xlnx,tx-termination-fix
+>
+> I've tested it and it works, but I'm not sure why, given that the
+> property isn't required required in the first place. Could you enlighten
+> me ?
+
+'required' is true or false based on presence or absence of properties
+in the list. If 'xlnx,tx-termination-fix' is present, then 'required'
+evaluates to true. And the inverse is true. Then we take the inverse
+of of that with 'not'.
+
+The first case is what trips me up more because a property not present
+evaluates to true. So if you look at 'select' schemas, we have to make
+any properties we list (compatible typically) required.
+
+Rob
