@@ -2,93 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7241318E4E0
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 22:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE1CC18E4F7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 22:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728054AbgCUVyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Mar 2020 17:54:40 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:34820 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728081AbgCUVyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Mar 2020 17:54:37 -0400
-Received: by mail-wr1-f65.google.com with SMTP id h4so11939881wru.2;
-        Sat, 21 Mar 2020 14:54:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=yDruFVRHrSK5ODyzVMCRmTY0CPw77IJrtm55iVL4ls4=;
-        b=G+Ny8yQIOG79RvLyCWGo3N2mrPHkrZ9M5A1g2Au0NO6RFN4ptQofj4Mkgf1YnTMN8z
-         vvGFHT5+X7Jw7LTXVTr0O9jUE22wtXMADFetR2VO9M+Wn33ED7i3F6h7NX1qpzl+EEGL
-         jII4jAFp0ngp6w+7X9/wcv+2jbi2/T3FxOdfIMhXkcQtbBG6FoxfB9t9rdX28Fi1WPq+
-         Qsa/MaPBd5uWfMGcMVA/4+e5H0GZveBJ6Mq84RcjVOh0soZtDwuAcw2mwss8TKMNadJN
-         3WaWwa6qJi3KDebK1190XVuNe7u8/G5pV8XoYtWqBkTVbegKvih/AaE7Jw4vtBqpeq7l
-         Yq2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=yDruFVRHrSK5ODyzVMCRmTY0CPw77IJrtm55iVL4ls4=;
-        b=ST0N+b9L7P0roOIfk0D2RCjqxBmq68nW5ikjbWtX89m4/K6vE/+En1ejQxIFxqPL/u
-         xcyFdrRwEx5vxyB5cBiKmbDp+YzCbiqgmmQBTGpVi+/mBYns2LEfrENsclP55pfcnLK/
-         ZNyPx8lzC6yRH0CZ2ioMAvekx7QwQklmTFROFD6wh/DNirtBlLBloFZquKhC69ffy8O2
-         AjsJXMC2sDfHjd2Gdb1YPSVOPacmsHibqfD/OlvNbjLzwrWk1hDzwbxxcqhG+AosAMCW
-         7tJfZ/qewvW/xdnVmMdtqgwSJNiudtbXd7lbAWJrnwqwNSDgIOJSO9iYYLlDu9YjkKGt
-         3u7g==
-X-Gm-Message-State: ANhLgQ0f6G6P68b1tzkcbshg/HTq5O6WfBvSjEwsThZ8JY5jLOATYpcN
-        FpPcMSklH3p70cTt+FcqweA=
-X-Google-Smtp-Source: ADFU+vvfecVP4/2cTL1Qur4iAjfBJDvtPVohFp7zMiubwjXigr+XQIYueXlTgQ5kqnzW7sC5BvDI8A==
-X-Received: by 2002:adf:8182:: with SMTP id 2mr18848820wra.37.1584827675862;
-        Sat, 21 Mar 2020 14:54:35 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id l83sm14113796wmf.43.2020.03.21.14.54.34
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 21 Mar 2020 14:54:35 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robin.murphy@arm.com, aballier@gentoo.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: rockchip: fix &pinctrl phy sub nodename for rk3399-orangepi
-Date:   Sat, 21 Mar 2020 22:54:23 +0100
-Message-Id: <20200321215423.12176-6-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200321215423.12176-1-jbx6244@gmail.com>
-References: <20200321215423.12176-1-jbx6244@gmail.com>
+        id S1726846AbgCUV4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Mar 2020 17:56:30 -0400
+Received: from mga07.intel.com ([134.134.136.100]:52636 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726813AbgCUV4a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 21 Mar 2020 17:56:30 -0400
+IronPort-SDR: TpR6iY2wseZt+2/PQmzTfMLcfIkHGREpXlMpmotomSRAltSbaoRQlZN4hIpw2s9wG81HJ0yvFr
+ 833tH8gWYhwg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2020 14:56:29 -0700
+IronPort-SDR: cgTcSgZrPiurxit+x25KUlqG1UBg26PwgbfjGoi45zQyUDXcXkcb/Ekr58mapPHUsd54tmBDgc
+ XgGkMadd7jrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,290,1580803200"; 
+   d="scan'208";a="325206721"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga001.jf.intel.com with ESMTP; 21 Mar 2020 14:56:26 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1jFm6W-00BpXb-S8; Sat, 21 Mar 2020 23:56:28 +0200
+Date:   Sat, 21 Mar 2020 23:56:28 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Alexandru Lazar <alazar@startmail.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: Add MAX1241 driver
+Message-ID: <20200321215628.GA2819421@smile.fi.intel.com>
+References: <20200320150114.9297-1-alazar@startmail.com>
+ <20200320150114.9297-3-alazar@startmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200320150114.9297-3-alazar@startmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below this error:
+On Fri, Mar 20, 2020 at 05:01:15PM +0200, Alexandru Lazar wrote:
+> Add driver for the Maxim MAX1241 12-bit, single-channel ADC. The driver
+> includes support for this device's low-power operation mode.
 
-arch/arm64/boot/dts/rockchip/rk3399-orangepi.dt.yaml: phy:
-'#phy-cells' is a required property
+...
 
-'phy' is a reserved nodename and should not be used for pinctrl,
-so change it to 'gmac'.
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/spi/spi.h>
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/
-phy/phy-provider.yaml
+I think you can keep them sorted.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-index afbcd213c..6163ae806 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-@@ -554,7 +554,7 @@
- 		};
- 	};
- 
--	phy {
-+	gmac {
- 		phy_intb: phy-intb {
- 			rockchip,pins = <3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
+> +#define MAX1241_VAL_MASK 0xFFF
+
+GENMASK() ?
+
+...
+
+> +		if (adc->shdn) {
+> +			gpiod_set_value(adc->shdn, 0);
+> +			udelay(MAX1241_SHDN_DELAY_USEC);
+> +		}
+> +
+> +		ret = max1241_read(adc);
+> +
+> +		if (adc->shdn)
+> +			gpiod_set_value(adc->shdn, 1);
+
+I guess easier to read in a way
+
+		if () {
+			gpio...
+			read();
+			gpio...
+		} else {
+			read();
+		}
+
+Or actually introduce runtime PM and move these gpio calls there.
+
+
+...
+
+> +static int max1241_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct max1241 *adc;
+
+> +	int ret = 0;
+
+Redundant assignment.
+
+> +	ret = regulator_enable(adc->reg);
+> +	if (ret)
+> +		return ret;
+> +
+
+> +	ret = devm_add_action_or_reset(&spi->dev, max1241_disable_reg_action,
+> +					adc);
+
+Introducing
+	struct device *dev = &spi->dev;
+will simplifies such lines like above by making them on one line.
+
+> +	if (ret) {
+> +		dev_err(&spi->dev, "could not set up regulator cleanup action!\n");
+> +		return ret;
+> +	}
+
+> +	adc->shdn = devm_gpiod_get_optional(&spi->dev, "shdn", GPIOD_OUT_HIGH);
+
+> +
+
+Redundant blank line.
+
+> +	if (IS_ERR(adc->shdn))
+> +		return PTR_ERR(adc->shdn);
+
+> +	if (!adc->shdn)
+
+Why not to use positive conditional?
+
+> +		dev_dbg(&spi->dev, "no shdn pin passed, low-power mode disabled");
+> +	else
+> +		dev_dbg(&spi->dev, "shdn pin passed, low-power mode enabled");
+
+> +}
+
+...
+
+> +static const struct spi_device_id max1241_id[] = {
+> +	{ "max1241", max1241 },
+
+> +	{},
+
+Terminators better w/o comma.
+
+> +};
+> +
+> +static const struct of_device_id max1241_dt_ids[] = {
+> +	{ .compatible = "maxim,max1241" },
+
+> +	{},
+
+Ditto.
+
+> +};
+
 -- 
-2.11.0
+With Best Regards,
+Andy Shevchenko
+
 
