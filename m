@@ -2,206 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4A418DEB7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 09:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D06418DECF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 09:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728235AbgCUIQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Mar 2020 04:16:05 -0400
-Received: from enterprise01.smtp.diehl.com ([193.201.238.219]:12449 "EHLO
-        enterprise01.smtp.diehl.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727961AbgCUIQB (ORCPT
+        id S1728247AbgCUIxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Mar 2020 04:53:52 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:16192 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728213AbgCUIxw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sat, 21 Mar 2020 04:16:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=diehl.com; i=@diehl.com; q=dns/txt; s=default;
-  t=1584778560; x=1616314560;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Z2uB7z28QOCO6ZHYTC0YmbiAxXblaUq/Ne32486EdG0=;
-  b=OsLdVg/AKLVzAZTKxy9FChMNhTCd6BW4ie0+RQM2n2uZcvuoZcGyp7sX
-   6rGA1xwpse4kH+FaJVNph0VX/UdzxpuBhij+4H33lu3Isb6yfGrbNepj7
-   iDT8PfUBtrWzYRlT1N9Zx+9lrTSyfGf0NfVg7MP1u9Yf78gX8RVJ0juxw
-   RENDQenZr06Z/W2f7AZF9HEhPjr+aGdGM6VKwrHUdonetvoV/IBbE58FX
-   IprxzC/hDXJRQACj30lzlkE0ktjBuzfoexIF8QksaJojI9xiai0uILCTv
-   /9srQyBSOE3v3jYOUq2SFeBkUwq0C4uGCpyq52jOVvTcGHcjz54t1HfQA
-   g==;
-IronPort-SDR: JGlCynbsOKWT0iqKYADU4jDJnWhu18yo24qSseS7HqPzLPQTZZLjAibyoBXUf5MD+vAe4wIU5X
- AwX/fhac/Wkw==
-From:   Denis Osterland-Heim <denis.osterland@diehl.com>
-To:     "dmurphy@ti.com" <dmurphy@ti.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Denis Osterland-Heim" <denis.osterland@diehl.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v4 4/5] leds: pwm: add support for default-state device
- property
-Thread-Topic: [PATCH v4 4/5] leds: pwm: add support for default-state device
- property
-Thread-Index: AQHV/1jxcfu5++mTukas+V/Yy7sQpw==
-Date:   Sat, 21 Mar 2020 08:15:55 +0000
-Message-ID: <20200321081321.15614-5-Denis.Osterland@diehl.com>
-References: <20200321081321.15614-1-Denis.Osterland@diehl.com>
-In-Reply-To: <20200321081321.15614-1-Denis.Osterland@diehl.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-x-ms-exchange-messagesentrepresentingtype: 1
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        Sat, 21 Mar 2020 04:53:52 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02L8rQOo009305;
+        Sat, 21 Mar 2020 04:53:51 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2yw4ec1st3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 21 Mar 2020 04:53:50 -0400
+Received: from ASHBMBX8.ad.analog.com (ashbmbx8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 02L8rnCC049565
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Sat, 21 Mar 2020 04:53:49 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Sat, 21 Mar 2020 04:53:42 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Sat, 21 Mar 2020 04:53:42 -0400
+Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Sat, 21 Mar 2020 04:53:42 -0400
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 02L8rdei008553;
+        Sat, 21 Mar 2020 04:53:39 -0400
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <jic23@kernel.org>, <robh+dt@kernel.org>, <Laszlo.Nagy@analog.com>,
+        <Andrei.Grozav@analog.com>, <Michael.Hennerich@analog.com>,
+        <Istvan.Csomortani@analog.com>, <Adrian.Costina@analog.com>,
+        <Dragos.Bogdan@analog.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH v11 0/8] iio: adi-axi-adc,ad9647: Add support for AD9467 ADC
+Date:   Sat, 21 Mar 2020 10:53:07 +0200
+Message-ID: <20200321085315.11030-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-TrailerSkip: 1
-X-GBS-PROC: 415AWy8o668fDtCxszluz3Qkyqh7rcy46kDTEvbxZbU7iORrjmTYQnM0XIpmHs+x
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
+ definitions=2020-03-21_02:2020-03-20,2020-03-21 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 malwarescore=0 suspectscore=0 impostorscore=0 spamscore=0
+ mlxscore=0 bulkscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2003210051
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for =22default-state=22 devicetree property, whic=
-h
-allows to defer pwm init to first use of led.
+Changelog v10 -> v11:
+* added 'Reviewed-by: Rob Herring <robh@kernel.org>' tag to DT bindings patches
+* patch 'dt-bindings: iio: adc: add bindings doc for AXI ADC driver'
+  removed 'maxItems' from dma-names property
+* sent from an @analog.com server; author was showing as @gmail.com on
+  V9 & V10
 
-This allows to configure the PWM early in bootloader to let the LED
-blink until an application in Linux userspace sets something different.
+Changelog v9 -> v10:
+* patch 'iio: adc: adi-axi-adc: add support for AXI ADC IP core'
+  - removed IQ correction logic; the AD9467 ADC driver has only 1 channel,
+    so it can't have I & Q; also the IQ correction assumes that all
+    even channels are Q and all odd channels are I, which is true for
+    current ADI-AXI ADC IP cores, but shouldn't be an assumption designed
+    in the driver; the IQ correction stuff will be re-added later,
+    and will try to use the IIO_MOD_I & IIO_MOD_Q modifiers
 
-Signed-off-by: Denis Osterland-Heim <Denis.Osterland@diehl.com>
----
- drivers/leds/leds-pwm.c | 54 ++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 48 insertions(+), 6 deletions(-)
+Changelog v8 -> v9:
+* adding more Analog people to the list; predominantly HDL people; this
+  should help me sync people about the details of regs/reg-names
+* added 'Acked-by: Moritz Fischer <mdf@kernel.org>' tag to fpga patches
+  - we can always re-update these patches if something else is decided about
+    the location of the 'adi-axi-common.h' header; I'm not insisting about
+    where to put it; I'm open to other proposals
+* patch 'iio: adc: adi-axi-adc: add support for AXI ADC IP core'
+  - prefixed regs ADI_AXI_ ; I tried ADI_AXI_ADC_, but that seemed to make
+    them too long
+  - dropped unused regs; will add them as stuff gets added in the upstream
+    driver; in the meantime, reg-names can be reworked
+  - dropped generic LOWERXY_SET/GET macros
+  - update reg-names a bit; will update them in the docs and HDL
+  - order in adi_axi_adc_conv_unregister() should now be symmetrically
+    oppposite now to the register function
+  - implemented 'is_visible()' callback to adi_axi_adc_attributes[] so that
+    attrs can be made invisible to userspace if needed;
+  - 'indio_dev->name = "adi-axi-adc";'
+  - added kernel doc-string for @reg_access
+* patch 'iio: adc: ad9467: add support AD9467 ADC'
+  - ad9467_spi_read() split in 2 buffers; tbuf & rbuf
+  - removed 'if (chan->extend_name)' test ; left-over from initial driver
+  - removed 'if (!st->clk)' check; driver will fail probe without a clock
+  - removed 'if (!spi->dev.of_node)' in probe; shouldn't be needed
+  - using 'of_device_get_match_data()' in probe to get data; moved chip
+    info table entry as data on the of_device_id table
 
-diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-index 07eab2d8b7c7..73d36d5fb427 100644
---- a/drivers/leds/leds-pwm.c
-+++ b/drivers/leds/leds-pwm.c
-@@ -18,10 +18,15 @@
- #include <linux/pwm.h>
- #include <linux/slab.h>
-=20
-+#define LEDS_PWM_DEFSTATE_OFF	0
-+#define LEDS_PWM_DEFSTATE_ON	1
-+#define LEDS_PWM_DEFSTATE_KEEP	2
-+
- struct led_pwm {
- 	const char	*name;
- 	const char	*default_trigger;
- 	u8		active_low;
-+	u8		default_state;
- 	unsigned int	max_brightness;
- };
-=20
-@@ -88,7 +93,30 @@ static int led_pwm_add(struct device *dev, struct led_=
-pwm_priv *priv,
-=20
- 	led_data->cdev.brightness_set_blocking =3D led_pwm_set;
-=20
--	pwm_init_state(led_data->pwm, &led_data->pwmstate);
-+	/* init PWM state */
-+	if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_KEEP) {
-+		pwm_get_state(led_data->pwm, &led_data->pwmstate);
-+		if (!led_data->pwmstate.period) {
-+			led->default_state =3D LEDS_PWM_DEFSTATE_OFF;
-+			dev_warn(dev,
-+				=22failed to read period for %s, default to off=22,
-+				led->name);
-+		}
-+	}
-+	if (led->default_state !=3D LEDS_PWM_DEFSTATE_KEEP)
-+		pwm_init_state(led_data->pwm, &led_data->pwmstate);
-+
-+	/* set brightness */
-+	if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_ON)
-+		led_data->cdev.brightness =3D led->max_brightness;
-+	else if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_KEEP) {
-+		uint64_t brightness;
-+
-+		brightness =3D led->max_brightness;
-+		brightness *=3D led_data->pwmstate.duty_cycle;
-+		do_div(brightness, led_data->pwmstate.period);
-+		led_data->cdev.brightness =3D brightness;
-+	}
-=20
- 	ret =3D devm_led_classdev_register(dev, &led_data->cdev);
- 	if (ret) {
-@@ -97,11 +125,13 @@ static int led_pwm_add(struct device *dev, struct le=
-d_pwm_priv *priv,
- 		return ret;
- 	}
-=20
--	ret =3D led_pwm_set(&led_data->cdev, led_data->cdev.brightness);
--	if (ret) {
--		dev_err(dev, =22failed to set led PWM value for %s: %d=22,
--			led->name, ret);
--		return ret;
-+	if (led->default_state !=3D LEDS_PWM_DEFSTATE_KEEP) {
-+		ret =3D led_pwm_set(&led_data->cdev, led_data->cdev.brightness);
-+		if (ret) {
-+			dev_err(dev, =22failed to set led PWM value for %s: %d=22,
-+				led->name, ret);
-+			return ret;
-+		}
- 	}
-=20
- 	priv->num_leds++;
-@@ -117,6 +147,8 @@ static int led_pwm_create_fwnode(struct device *dev, =
-struct led_pwm_priv *priv)
- 	memset(&led, 0, sizeof(led));
-=20
- 	device_for_each_child_node(dev, fwnode) {
-+		const char *state =3D NULL;
-+
- 		ret =3D fwnode_property_read_string(fwnode, =22label=22, &led.name);
- 		if (ret && is_of_node(fwnode))
- 			led.name =3D to_of_node(fwnode)->name;
-@@ -134,6 +166,16 @@ static int led_pwm_create_fwnode(struct device *dev,=
- struct led_pwm_priv *priv)
- 		fwnode_property_read_u32(fwnode, =22max-brightness=22,
- 					 &led.max_brightness);
-=20
-+		if (!fwnode_property_read_string(fwnode, =22default-state=22,
-+						 &state)) {
-+			if (!strcmp(state, =22keep=22))
-+				led.default_state =3D LEDS_PWM_DEFSTATE_KEEP;
-+			else if (!strcmp(state, =22on=22))
-+				led.default_state =3D LEDS_PWM_DEFSTATE_ON;
-+			else
-+				led.default_state =3D LEDS_PWM_DEFSTATE_OFF;
-+		}
-+
- 		ret =3D led_pwm_add(dev, priv, &led, fwnode);
- 		if (ret) {
- 			fwnode_handle_put(fwnode);
---=20
-2.25.1
+Changelog v7 -> v8:
+* in 'iio: adc: adi-axi-adc: add support for AXI ADC IP core'
+  - updated register definitions and bits to newer format/docs; the ref driver wasn't really up-to-date
+    -- prefixed bit names with reg-name to avoid bit definition colisions; that makes some macros longer, but at least the format is consistent
+  - using dev_name(&pdev->dev) for indio_dev->name
+  - moved reset to own axi_adc_reset() function; may be re-used later
+  - some re-formatting/alignment changes
+  - address ENOSYS checkpatch complaint; changed with EOPNOTSUPP
 
+Changelog v6 -> v7:
+* Fixed dt-schema build for adi,axi-adc.yaml based on Rob's suggestion
+  - added '$ref: /schemas/types.yaml#/definitions/phandle' to 'adi,adc-dev'
+  - dropped 'maxItems' from 'adi,adc-dev'
 
+Changelog v5 -> v6
+* fix URLs; got changed during rename
+   https://wiki.analog.com/resources/fpga/docs/adi_axi_adc_ip ->
+   https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
+  - noticed while working on the AXI DAC driver
 
-Diehl Connectivity Solutions GmbH
-Gesch=E4ftsf=FChrung: Horst Leonberger
-Sitz der Gesellschaft: N=FCrnberg - Registergericht: Amtsgericht
-N=FCrnberg: HRB 32315
-_________________________________________________________________________=
-__________________________
+Changelog v4 -> v5:
+* update drivers/iio/adc/Kconfig note about module name; omitted during first rename
+   - 'module will be called axi-adc.' -> 'module will be called adi-axi-adc.'
 
-Der Inhalt der vorstehenden E-Mail ist nicht rechtlich bindend. Diese E-M=
-ail enthaelt vertrauliche und/oder rechtlich geschuetzte Informationen.
-Informieren Sie uns bitte, wenn Sie diese E-Mail faelschlicherweise erhal=
-ten haben. Bitte loeschen Sie in diesem Fall die Nachricht.
-Jede unerlaubte Form der Reproduktion, Bekanntgabe, Aenderung, Verteilung=
- und/oder Publikation dieser E-Mail ist strengstens untersagt.
-- Informationen zum Datenschutz, insbesondere zu Ihren Rechten, erhalten =
-Sie unter https://www.diehl.com/group/de/transparenz-und-informationspfli=
-chten/
+Changelog v3 -> v4:
+* addressed Rob's dt-remarks
+   - change 'adi-axi-adc-client' prop to 'adi,adc-dev'
 
-The contents of the above mentioned e-mail is not legally binding. This e=
--mail contains confidential and/or legally protected information. Please =
-inform us if you have received this e-mail by
-mistake and delete it in such a case. Each unauthorized reproduction, dis=
-closure, alteration, distribution and/or publication of this e-mail is st=
-rictly prohibited.=20
-- For general information on data protection and your respective rights p=
-lease visit https://www.diehl.com/group/en/transparency-and-information-o=
-bligations/
+Changelog v2 -> v3:
+* addressed compiler warning
+
+Changelog v1 -> v2:
+* first series was added a bit hastily
+* addressed  'make dt_binding_check' complaints; seems I missed a few when running the check;
+* added missing patches to include/linux/fpga/adi-axi-common.h
+   - 'include: fpga: adi-axi-common.h: fixup whitespace tab -> space'
+   - 'include: fpga: adi-axi-common.h: add version helper macros'
+* patch 'iio: buffer-dmaengine: add dev-managed calls for buffer alloc/free'
+   - remove copy+pasted comment for 'devm_iio_dmaengine_buffer_alloc()'
+   - removed devm_iio_dmaengine_buffer_free() ; hopefully it might never be needed
+   - fix-up alignment for devm_iio_dmaengine_buffer_alloc() in header
+* patch 'iio: adc: adi-axi-adc: add support for AXI ADC IP core'
+   - renamed axi-adc.c -> adi-axi-adc.c & Kconfig symbol
+   - prefix all axi_adc -> adi_axi_adc
+   - removed switch statement in axi_adc_read_raw() & axi_adc_write_raw()
+   - remove axi_adc_chan_spec ; replaced with iio_chan_spec directly ; will think of a simpler solution for extra chan params
+   - removed left-over 'struct axi_adc_cleanup_data'
+   - moved 'devm_add_action_or_reset()' call right after 'adi_axi_adc_attach_client()'
+   - switched to using 'devm_platform_ioremap_resource()'
+* patch 'iio: adc: ad9467: add support AD9467 ADC'
+  - renamed ADI_ADC reg prefixes to AN877_ADC
+  - dropped 'info_mask_separate' field in AD9467_CHAN - will be re-added later when driver gets more features; was left-over from the initial ref driver
+  - remove .shift = 0,  in AD9467_CHAN
+  - renamed 'sample-clock' -> 'adc-clock'
+  - direct returns in ad9467_read_raw() & ad9467_write_raw() & ad9467_setup() switch statements
+  - removed blank line after devm_axi_adc_conv_register()
+  - removed ad9467_id & reworked to use ad9467_of_match
+
+Alexandru Ardelean (6):
+  include: fpga: adi-axi-common.h: fixup whitespace tab -> space
+  include: fpga: adi-axi-common.h: add version helper macros
+  iio: buffer-dmaengine: use %zu specifier for sprintf(align)
+  iio: buffer-dmaengine: add dev-managed calls for buffer alloc
+  dt-bindings: iio: adc: add bindings doc for AXI ADC driver
+  dt-bindings: iio: adc: add bindings doc for AD9467 ADC
+
+Michael Hennerich (2):
+  iio: adc: adi-axi-adc: add support for AXI ADC IP core
+  iio: adc: ad9467: add support AD9467 ADC
+
+ .../bindings/iio/adc/adi,ad9467.yaml          |  65 +++
+ .../bindings/iio/adc/adi,axi-adc.yaml         |  62 +++
+ drivers/iio/adc/Kconfig                       |  35 ++
+ drivers/iio/adc/Makefile                      |   2 +
+ drivers/iio/adc/ad9467.c                      | 420 +++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 | 495 ++++++++++++++++++
+ .../buffer/industrialio-buffer-dmaengine.c    |  41 +-
+ include/linux/fpga/adi-axi-common.h           |   6 +-
+ include/linux/iio/adc/adi-axi-adc.h           |  64 +++
+ include/linux/iio/buffer-dmaengine.h          |   3 +
+ 10 files changed, 1191 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+ create mode 100644 drivers/iio/adc/ad9467.c
+ create mode 100644 drivers/iio/adc/adi-axi-adc.c
+ create mode 100644 include/linux/iio/adc/adi-axi-adc.h
+
+-- 
+2.17.1
+
