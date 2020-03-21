@@ -2,212 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E43218DFBD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 12:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C959918E15B
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 13:53:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725932AbgCULTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Mar 2020 07:19:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40782 "EHLO mail.kernel.org"
+        id S1726933AbgCUMx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Mar 2020 08:53:29 -0400
+Received: from mail.manjaro.org ([176.9.38.148]:37078 "EHLO mail.manjaro.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726192AbgCULTX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 21 Mar 2020 07:19:23 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5C76620732;
-        Sat, 21 Mar 2020 11:19:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1584789562;
-        bh=/4Tg/7Vu94FAj6F1UEbjVB8URukEL7viIow25tsliJ4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WHRiXzdGrKN3Jxn9uznM6mC+5pmjd4E07ffiO/Z3aAcKoNKh448RTiMgq0EodUc//
-         +31DgIXYa1lbgF82RfR1icQKr3We/m33o7IOtK786qKhLooE1naq7Ws9tIveRc/Fcf
-         ve0cpVwVvmlSzrkgsZlY7DdTOmr+Ad9gUBVg/PYY=
-Date:   Sat, 21 Mar 2020 11:19:16 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Nishant Malpani <nish.malpani25@gmail.com>
-Cc:     robh+dt@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, mark.rutland@arm.com, sre@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: tsl2563: convert bindings to YAML
-Message-ID: <20200321111916.4fe23b3e@archlinux>
-In-Reply-To: <1cfe5e97-1c0d-8ffe-88f3-90db77e0f03b@gmail.com>
-References: <20200314134237.12187-1-nish.malpani25@gmail.com>
-        <20200315105834.7a5f4475@archlinux>
-        <1cfe5e97-1c0d-8ffe-88f3-90db77e0f03b@gmail.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726192AbgCUMx3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 21 Mar 2020 08:53:29 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id BA73237E5074;
+        Sat, 21 Mar 2020 13:53:27 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id tcVmSE4T3BKl; Sat, 21 Mar 2020 13:53:25 +0100 (CET)
+From:   Tobias Schramm <t.schramm@manjaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH v6 0/3] Add support for CellWise cw2015 fuel gauge
+Date:   Sat, 21 Mar 2020 13:52:38 +0100
+Message-Id: <20200321125241.3072123-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Mar 2020 11:57:20 +0530
-Nishant Malpani <nish.malpani25@gmail.com> wrote:
+This patchset adds support for the CellWise cw2015 fuel gauge.
 
-> A v3 PATCH [1] was generated taking care of the reviews which can be 
-> found inline.
-> 
-> [1] https://marc.info/?l=linux-iio&m=158451158827441&w=2
-> 
-> On 15/03/20 4:28 pm, Jonathan Cameron wrote:
-> > On Sat, 14 Mar 2020 19:12:37 +0530
-> > Nishant Malpani <nish.malpani25@gmail.com> wrote:
-> >   
-> >> Convert the TSL2563 device tree bindings to the new YAML format.
-> >>
-> >> Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
-> >> ---
-> >>
-> >> The link for the datasheet is not attached in the binding document
-> >> because it was not available on the manufacturer's (AMS) website [1].  
-> > 
-> > Very old part now, though plenty of them in circulation or least there
-> > used to be.  I have though not powered up that board for a while.
-> > 
-> > When doing these conversions, do sanity check them against the driver
-> > as the old docs aren't always entirely accurate ; >
-> > Jonathan
-> >   
-> >>
-> >> [1] https://ams.com/ambient-light-sensors
-> >> ---
-> >>   .../devicetree/bindings/iio/light/tsl2563.txt | 19 --------
-> >>   .../bindings/iio/light/tsl2563.yaml           | 46 +++++++++++++++++++
-> >>   2 files changed, 46 insertions(+), 19 deletions(-)
-> >>   delete mode 100644 Documentation/devicetree/bindings/iio/light/tsl2563.txt
-> >>   create mode 100644 Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/light/tsl2563.txt b/Documentation/devicetree/bindings/iio/light/tsl2563.txt
-> >> deleted file mode 100644
-> >> index f91e809e736e..000000000000
-> >> --- a/Documentation/devicetree/bindings/iio/light/tsl2563.txt
-> >> +++ /dev/null
-> >> @@ -1,19 +0,0 @@
-> >> -* AMS TAOS TSL2563 ambient light sensor
-> >> -
-> >> -Required properties:
-> >> -
-> >> -  - compatible : should be "amstaos,tsl2563"
-> >> -  - reg : the I2C address of the sensor
-> >> -
-> >> -Optional properties:
-> >> -
-> >> -  - amstaos,cover-comp-gain : integer used as multiplier for gain
-> >> -                              compensation (default = 1)
-> >> -
-> >> -Example:
-> >> -
-> >> -tsl2563@29 {
-> >> -	compatible = "amstaos,tsl2563";
-> >> -	reg = <0x29>;
-> >> -	amstaos,cover-comp-gain = <16>;
-> >> -};
-> >> diff --git a/Documentation/devicetree/bindings/iio/light/tsl2563.yaml b/Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-> >> new file mode 100644
-> >> index 000000000000..2a70b8d62760
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/iio/light/tsl2563.yaml
-> >> @@ -0,0 +1,46 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/iio/light/tsl2563.yaml#  
-> > 
-> > Convention is now to name files and this with the manufacturer part
-> > as well.  
-> 
-> Got it! Taken care of in v3.
-> > 
-> > light/amstaos,tsl2563.yaml
-> >   
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: AMS TAOS TSL2563 ambient light sensor
-> >> +
-> >> +maintainers:
-> >> +  - Sebastian Reichel <sre@kernel.org>
-> >> +
-> >> +description: |
-> >> +  Ambient light sensor with an i2c interface.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - amstaos,tsl2563  
-> > 
-> > The original binding was wrong on this.   Check the driver :)
-> > I'm a bit embarrassed I never noticed during review as I have
-> > a tsl2561, be it on a board that was never converted to DT.
-> >   
-> 
-> You're right. Should have cross-checked with the driver before blindly 
-> following the original binding. Corrected in v3.
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  amstaos,cover-comp-gain:
-> >> +    description: Multiplier for gain compensation
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> >> +      - enum: [1, 16]  
-> > 
-> > Not sure it's that restricted...  or to be honest what
-> > that is for at all.  Superficially it looks like
-> > a multiplier to change the 'range' of the the sysfs control.
-> > 
-> > I wonder if anyone cares or if we can just start ignoring that going
-> > forwards?  Sebastian, anyone else?
-> >   
-> 
->  From what I understood while reading the datasheet [2] (Page 4), 
-> 'amstaos,cover-comp-gain' is used to switch between the low gain and 
-> high gain mode which further adjusts the 'Illuminance Responsivity'. 
-> Ergo, I've taken it forward even in v3 since the driver also relies on 
-> it [3]. Please let me know if my reasoning is erroneous.
+The CellWise cw2015 fuel gauge is a shuntless, single-cell Li-Ion fuel
+gauge. It is used in the pine64 Pinebook Pro laptop.
 
-My issue here is that might be the intent, but that's not what the driver
-uses it for.  All the infrastructure seems to be there to control the
-low gain / high gain control but it's not actually hooked up.
+This is v6 of the patchset. This version fixes binding issues found
+by Rob.
 
-The driver currently just applies that number as a multiplier without changing
-the state of the chip to match.
+I've kept the cellwise,battery-profile property in the device tree. Its
+content describes characteristics of the battery built into a device. The
+exact format is unknown and not publicly documented. It is likely
+comprised of some key parameters of the battery (chemistry, voltages,
+design capacity) and parameters for tuning the internal state of charge
+approximation function.
+Since v2 CellWise has confirmed to me that the only way to obtain the
+profile blob is to mail them batteries for testing. Thus we will need to
+keep that property.
 
-Let's leave it there, but at somepoint would be good to dig out some hardware
-and actually make this work as expected.  I 'might' get to this at somepoint.
+In general I'm not 100 % sure about my json-schema binding for the gauge.
+It is my first time ever writing a json-schema binding and I'm not sure
+whether properties like power-supplies or monitored-battery need to be
+added to a separate, common schema for power supplies or not.
 
-Jonathan
-> 
-> [2] 
-> https://media.digikey.com/pdf/Data%20Sheets/Austriamicrosystems%20PDFs/TSL2562,63.pdf
-> 
-> [3] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/tree/drivers/iio/light/tsl2563.c#n494
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    i2c {
-> >> +
-> >> +      #address-cells = <1>;
-> >> +      #size-cells = <0>;
-> >> +
-> >> +      light-sensor@29 {
-> >> +        compatible = "amstaos,tsl2563";
-> >> +        reg = <0x29>;
-> >> +        amstaos,cover-comp-gain = <16>;
-> >> +      };
-> >> +    };
-> >> +...  
-> >   
-> 
-> With regards,
-> Nishant Malpani
+
+Best Regards,
+
+Tobias Schramm
+
+Changelog:
+ v2:
+  * Change subject to "Add support for CellWise cw2015 fuel gauge"
+  * Rewrite bindings as json-schema
+  * Use default power-supplies handling
+  * Use regmap for register access
+  * Use standard simple-battery node
+  * Replace printk/pr_* by dev_{dbg,info,warn,err}
+  * Use cancel_delayed_work_sync in remove
+  * General code cleanup
+ v3:
+  * Incorporate review by Andy
+  * Add cellwise vendor prefix
+  * Rename cellwise,bat-config-info property to cellwise,battery-profile
+  * Remove most state of charge post-processing
+  * Use fwnode interface
+  * General code cleanup
+  * Lots of code style fixes
+ v4:
+  * Implement additional changes requested by Andy
+  * Use fwnode inline wrappers
+  * Clean up waiting for gauge
+  * Minor code style fixes
+ v5:
+  * Clean up includes
+  * Handle errors during device property parsing
+  * Refactor device property parsing
+  * Replace i2c->probe by i2c->probe_new 
+  * More code style fixes
+ v6:
+  * Fix bindings according to review by Rob
+
+
+Tobias Schramm (3):
+  dt-bindings: Document cellwise vendor-prefix
+  dt-bindings: power: supply: add cw2015_battery bindings
+  power: supply: add CellWise cw2015 fuel gauge driver
+
+ .../bindings/power/supply/cw2015_battery.yaml |  82 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/power/supply/Kconfig                  |  11 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/cw2015_battery.c         | 749 ++++++++++++++++++
+ 6 files changed, 851 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+ create mode 100644 drivers/power/supply/cw2015_battery.c
+
+-- 
+2.24.1
 
