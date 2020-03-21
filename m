@@ -2,201 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DFB218DD6E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 02:32:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 541C418DDF3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2020 06:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727788AbgCUBcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Mar 2020 21:32:21 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:51776 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727693AbgCUBcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Mar 2020 21:32:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1584754339; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=/FHA7+MQrxO1ynBN4KFge6gmC0i/oDr2iQWcxHPoxsE=; b=d2CNb/IlGA3hr6bzRI8g6CNz+hJAO2OKYd7qfD1ZWyqzyTzJUqZkURjriMRcviYJtL5rZBiE
- Vxn9HBEHw77A7jhaFcmkyw+GNCqYJ9gS3itl+Mg1y/A9DF9+RNR0Fb1LB4dOaprStH4XTmee
- uPjE7YHR9TzWxK2RUy6/fN5w+cs=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e756ea3.7f2b6c7c0d88-smtp-out-n02;
- Sat, 21 Mar 2020 01:32:19 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 052C7C433CB; Sat, 21 Mar 2020 01:32:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
-Received: from rishabhb-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rishabhb)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 00845C433BA;
-        Sat, 21 Mar 2020 01:32:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 00845C433BA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rishabhb@codeaurora.org
-From:   Rishabh Bhatnagar <rishabhb@codeaurora.org>
-To:     linux-remoteproc-owner@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, devicetree@vger.kernel.org
-Cc:     robh@kernel.org, psodagud@codeaurora.org, tsoni@codeaurora.org,
-        sidgup@codeaurora.org, Rishabh Bhatnagar <rishabhb@codeaurora.org>
-Subject: [PATCH v2 2/2] dt-bindings: remoteproc: Add documentation for SPSS remoteproc
-Date:   Fri, 20 Mar 2020 18:32:10 -0700
-Message-Id: <1584754330-445-2-git-send-email-rishabhb@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1584754330-445-1-git-send-email-rishabhb@codeaurora.org>
-References: <1584754330-445-1-git-send-email-rishabhb@codeaurora.org>
+        id S1727999AbgCUFQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Mar 2020 01:16:18 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:38033 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727970AbgCUFQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Mar 2020 01:16:17 -0400
+Received: by mail-pg1-f194.google.com with SMTP id x7so4144374pgh.5
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2020 22:16:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XNi67lxb8U8NV5u7Vn404GtWj+hZ0U+9yVzYkz6He6c=;
+        b=jq8uYH4KlVRzXv1z55n7X7m51bZgjDN7PaeFcN5NkEvGni89YjKSeIk1kY1qugZ2EW
+         A2oUo07JhAZvwb6/Awi0TCpenPbNi8CujHTpna1iApfqArhDl0pHhWMY/zX20I+ZTfMV
+         wYGuRj0e+22DUP2xtisJw0EabKIUIZ90TprLg087ujThJ0CTRoxsqE2/tNrzcEzT3SLw
+         naQSXNKV23pdQ5DBrd+B64G5uOajpwStBJOPChgD7/VDf4jb1bbbZ8k+gFFFVnlv/mlY
+         6R8BcXlqX8wcYF0H4m7kpMAD4q4jZcg4zM+6vHjBScFw8RLaVTvdzN+5RkZAoGwqBPbc
+         9N4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XNi67lxb8U8NV5u7Vn404GtWj+hZ0U+9yVzYkz6He6c=;
+        b=sUWlEhjRzDxlOuILg9HR56ByJvhQkscUaeo2iBy5jo19ougs0Al2isbEAx2ny+H7LR
+         pzXhm6eyg42nxRnmFPky11o6nYWRRV771IkJ0yUS4DCPnaDVJ2Td5PhTIv677AlEDMOg
+         Y8uS79o/WpF9ta7GoWQT2HQOQQ4ON/nqzmv4QHaIlksu3PHDEiE8CPkQKgRKFXbMHG7t
+         mcQwtw707Re7tfedLF8u45zXsCyWS0HATw7KReIwu3oY913UnKSjQPhpXJhZEjBTi4t9
+         kgX9eJGCQK9T7UATWODt4O2aCDukxKw8NtTDDQ85hqpnKKyXnupzIWTopfZ9vFViTkzG
+         Cruw==
+X-Gm-Message-State: ANhLgQ0zFviv++u6QVq17PEH07EjzAhX79XV6XlXMOPghGCZCmneS9Hk
+        fkkJTnfREmYie1V3wuvuSNvCbw==
+X-Google-Smtp-Source: ADFU+vs2kNydDTd3Wn+dEAvpwU9bUvPxix2ypzpJD/vmL+TvIzEbcNGfc+1iSt2ank04tWaOQaCaVQ==
+X-Received: by 2002:a63:18b:: with SMTP id 133mr2609937pgb.422.1584767775753;
+        Fri, 20 Mar 2020 22:16:15 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id i11sm6170637pje.30.2020.03.20.22.16.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2020 22:16:15 -0700 (PDT)
+Date:   Fri, 20 Mar 2020 22:16:12 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@gmail.com>
+Subject: Re: [PATCH 2/4] clk: qcom: mmcc-msm8996: Properly describe GPU_GX
+ gdsc
+Message-ID: <20200321051612.GA5063@builder>
+References: <20200319053902.3415984-1-bjorn.andersson@linaro.org>
+ <20200319053902.3415984-3-bjorn.andersson@linaro.org>
+ <158474710844.125146.15515925711513283888@swboyd.mtv.corp.google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <158474710844.125146.15515925711513283888@swboyd.mtv.corp.google.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for Secure Subsystem remote processor
-support in remoteproc framework. This describes all the resources
-needed by SPSS to boot and handle crash and shutdown scenarios.
+On Fri 20 Mar 16:31 PDT 2020, Stephen Boyd wrote:
 
-Signed-off-by: Rishabh Bhatnagar <rishabhb@codeaurora.org>
----
- .../devicetree/bindings/remoteproc/qcom,spss.yaml  | 125 +++++++++++++++++++++
- 1 file changed, 125 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,spss.yaml
+> Quoting Bjorn Andersson (2020-03-18 22:39:00)
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+> > index 85518494ce43..65d9aa790581 100644
+> > --- a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+> > @@ -67,6 +67,10 @@ properties:
+> >      description:
+> >         Protected clock specifier list as per common clock binding
+> >  
+> > +  vdd_gfx-supply:
+> 
+> Why not vdd-gfx-supply? What's with the underscore?
+> 
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,spss.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,spss.yaml
-new file mode 100644
-index 0000000..9ca7947a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,spss.yaml
-@@ -0,0 +1,125 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/qcom,spss.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SPSS Peripheral Image Loader
-+
-+maintainers:
-+  - Rishabh Bhatnagar <rishabhb@codeaurora.org>
-+description: |
-+  This document defines the binding for a component that loads and boots firmware
-+  on the Qualcomm Secure Peripheral Processor. This processor is booted in the
-+  bootloader stage and it attaches itself to linux later on in the boot process.
-+
-+properties:
-+  compatible:
-+    enum:
-+      "qcom,sm8250-spss-pas"
-+
-+  reg:
-+    items:
-+      - description: IRQ status register
-+      - description: IRQ clear register
-+      - description: IRQ mask register
-+      - description: Error register
-+      - description: Error spare register
-+
-+  reg-names:
-+    items:
-+      - const: sp2soc_irq_status
-+      - const: sp2soc_irq_clr
-+      - const: sp2soc_irq_mask
-+      - const: rmb_err
-+      - const: rmb_err_spare2
-+
-+  interrupts:
-+    maxitems: 1
-+    items:
-+      - description: rx interrupt
-+
-+  clocks:
-+    items:
-+      - description:
-+                    reference to the xo clock to be held on behalf
-+                    of the booting Hexagon core
-+
-+  clock-names:
-+    items:
-+      - const: xo
-+
-+  cx-supply: true
-+
-+  px-supply: true
-+
-+  memory-region: true
-+    items:
-+      - description: reference to the reserved-memory for the SPSS
-+
-+  qcom,spss-scsr-bits:
-+    - description: Bits that are set by remote processor in the irq status
-+                   register region to represent different states during
-+                   boot process
-+
-+  child-node:
-+    description: Subnode named either "smd-edge" or "glink-edge" that
-+                 describes the communication edge, channels and devices
-+                 related to the SPSS.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - cx-supply
-+  - px-supply
-+  - memory-region
-+  - qcom,spss-scsr-bits
-+
-+
-+examples:
-+  - |
-+    spss {
-+        compatible = "qcom,sm8250-spss-pil";
-+        reg = <0x188101c 0x4>,
-+                <0x1881024 0x4>,
-+                <0x1881028 0x4>,
-+                <0x188103c 0x4>,
-+                <0x1882014 0x4>;
-+        reg-names = "sp2soc_irq_status", "sp2soc_irq_clr",
-+                    "sp2soc_irq_mask", "rmb_err", "rmb_err_spare2";
-+        interrupts = <0 352 1>;
-+
-+        cx-supply = <&VDD_CX_LEVEL>;
-+        cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-+        px-supply = <&VDD_MX_LEVEL>;
-+        px-uV = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-+
-+        clocks = <&clock_rpmh RPMH_CXO_CLK>;
-+        clock-names = "xo";
-+        qcom,proxy-clock-names = "xo";
-+        status = "ok";
-+
-+        memory-region = <&pil_spss_mem>;
-+        qcom,spss-scsr-bits = <24 25>;
-+
-+        glink-edge {
-+                qcom,remote-pid = <8>;
-+                transport = "spss";
-+                mboxes = <&sp_scsr 0>;
-+                mbox-names = "spss_spss";
-+                interrupt-parent = <&intsp>;
-+                interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>;
-+
-+                reg = <0x1885008 0x8>,
-+                      <0x1885010 0x4>;
-+                reg-names = "qcom,spss-addr",
-+                            "qcom,spss-size";
-+
-+                label = "spss";
-+                qcom,glink-label = "spss";
-+        };
-+    };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+The pad is named "VDD_GFX" in the datasheet and the schematics. I see
+that we've started y/_/-/ in some of the newly added bindings, would you
+prefer I follow this?
+
+Regards,
+Bjorn
+
+> > +    description:
+> > +      Regulator supply for the GPU_GX GDSC
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
