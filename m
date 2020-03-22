@@ -2,91 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF38318ECF1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 23:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DFA918ED0D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 23:42:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727024AbgCVWag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Mar 2020 18:30:36 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:37016 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726945AbgCVWae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Mar 2020 18:30:34 -0400
-Received: by mail-wr1-f67.google.com with SMTP id w10so14682033wrm.4;
-        Sun, 22 Mar 2020 15:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=iNlo842b2IZbB4k4GNg40U38B5BAXAYpbvKeEk7Dc/+bOAjMapsHryR3aodBMAu0cw
-         EhX70aCHLZUKf86vdEDJn4JFhLVF2jntWk/OioFzw+qYk0hrnj5XNCraPCdso4646mcF
-         jglG6rqrp0Aq1Oqnl7aNsiqiZGSc4c/o43i11Gj1zRCQi5S7eLbfX3hYpnVMePdh3AgH
-         cIJLy+s08J2uO/rTN1btWrg9TCj6fthHcbyW+ackw+jRWPBetHTc0pDig4d3A0bgZrEL
-         Ev6XinvZkDFEQq/CUCyjqNxCU+6DRvWHByc3cJSp3Rw+UtYv6/FFiFLeVcOgyLByp+bL
-         sYxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=pb8HVAAhl9uqmFGhLAW7M7hz1ehXY7NQtz6hSrsZ8uxP/5jMsJH4Sre4IVpYUbVcw5
-         p4z60KlIEfYyiwiylUNvebB6Semu/2DWlPSg9EzXh1Pl7xtweIheysCT7gWTmYbvlEBT
-         2WqnscZnLk9wCzAVY5MlDYET7S+7Dng7CRMt9zLtM7bwmyRvCdxkjcX3F9CAZNRW5n5y
-         Jvvh+lOv8Y2bwIOJiSTKVXIkCu6xvHWaIa/dZkUr9QHo2SJ2LkXv/tm003z9HQilrX80
-         7C35QNuVtatxGTLLezVgzYnW5xDfcAiJmc31K4q3gkncd80mtXVMq8hq8PRkLdPqwwEM
-         wivw==
-X-Gm-Message-State: ANhLgQ0e/MxTzPv5xNZes+tTMPP3Oz1X/WOHnAV2YMT2IzXlqYV87Ran
-        jMYdC5xUPulUQxjikjb+FfQ=
-X-Google-Smtp-Source: ADFU+vtdKjMEZ3M5NceBBY7KjXw4/hbXmYf/MhFtXlDNzKjzmO9VqLfZH/7KCuV2EVVjaBeh5Dls6w==
-X-Received: by 2002:adf:eb51:: with SMTP id u17mr27376880wrn.29.1584916231767;
-        Sun, 22 Mar 2020 15:30:31 -0700 (PDT)
-Received: from localhost.localdomain (p5DCFFFE5.dip0.t-ipconnect.de. [93.207.255.229])
-        by smtp.gmail.com with ESMTPSA id p13sm8060517wru.3.2020.03.22.15.30.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Mar 2020 15:30:31 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v3 5/5] MAINTAINERS: Add entry for mp2629 Battery Charger driver
-Date:   Sun, 22 Mar 2020 23:30:16 +0100
-Message-Id: <20200322223016.11509-6-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200322223016.11509-1-sravanhome@gmail.com>
-References: <20200322223016.11509-1-sravanhome@gmail.com>
+        id S1726822AbgCVWmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Mar 2020 18:42:33 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:58798 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726809AbgCVWmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Mar 2020 18:42:33 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 3991D1C033E; Sun, 22 Mar 2020 23:42:31 +0100 (CET)
+Date:   Sun, 22 Mar 2020 23:42:30 +0100
+From:   Pavel Machek <pavel@denx.de>
+To:     Tony Lindgren <tony@atomide.com>,
+        kernel list <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-omap@vger.kernel.org, sre@kernel.org, nekit1000@gmail.com,
+        mpartap@gmx.net, merlijn@wizzup.org, martin_rysavy@centrum.cz
+Cc:     Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Droid 4 in -next -- still no backlight was Re: [PATCH 1/4] tty:
+ n_gsm: Add support for serdev drivers
+Message-ID: <20200322224230.GB28082@amd>
+References: <20200319173755.65082-1-tony@atomide.com>
+ <20200319173755.65082-2-tony@atomide.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="R3G7APHDIzY6R/pk"
+Content-Disposition: inline
+In-Reply-To: <20200319173755.65082-2-tony@atomide.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp2629 Charger driver.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+--R3G7APHDIzY6R/pk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32a95d162f06..0f82d5a7a614 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11358,10 +11358,15 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
- F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
-+F:	drivers/iio/adc/mp2629_adc.c
-+F:	drivers/mfd/mp2629.c
-+F:	drivers/power/supply/mp2629_charger.c
- F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
-+F:	include/linux/mfd/mp2629.h
- 
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
--- 
-2.17.1
+Hi!
 
+> We can make use of serdev drivers to do simple device drivers for
+> TS 27.010 chanels, and we can handle vendor specific protocols on top
+> of TS 27.010 with serdev drivers.
+
+I took all three series (
+
+[PATCHv3 0/3] Lost key-up interrupt handling for omap4-keypa
+[PATCH 1/3] Input: atmel_mxt_ts - use runtime PM instead of
+[PATCHv5 0/4] n_gsm serdev support and protocol driver for d
+
+) and applied them on top of next-20200320.
+
+Good news is that result boots. (So I did partial testing of the patches).
+
+Bad news is that I still don't have working backlight. I do have LED
+and there's backlight device connected to the LED, so I can't control
+the LED directly, but the screen is black (and I don't see boot
+messages either).
+
+Before I start debugging, does screen work for you in -next, or do you
+have some fixes I could try?
+
+Thanks and best regards,
+									Pavel
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--R3G7APHDIzY6R/pk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl536dYACgkQMOfwapXb+vKBJQCeIUN5N8vMzmkvY9E6nubpW6wN
+P7IAoKaO0YTconM1rcr4rigfmHCyJeJk
+=q+Wl
+-----END PGP SIGNATURE-----
+
+--R3G7APHDIzY6R/pk--
