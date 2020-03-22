@@ -2,104 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B798B18E9DA
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 16:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42EBA18E9FA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 17:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726903AbgCVPpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Mar 2020 11:45:44 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:40733 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726752AbgCVPpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Mar 2020 11:45:44 -0400
-Received: by mail-wr1-f66.google.com with SMTP id f3so13528679wrw.7;
-        Sun, 22 Mar 2020 08:45:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:subject:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oW0vYewmMm0M3PXQVGqM0DMXOo8Xcl8P8bGj8WAcz1s=;
-        b=UZAlZvIAW51LULMnDZHiLUIyOPiuB672JgdsY9xSfZmPxy9rSKsc2mRMp26i4Uv2Nm
-         ByT7sJUTHNxolCeVb7eNDxWXO1BvR6+ZwFHcZxr9gHN8Vkac3Zd3B7DKjYykBp+GOABq
-         T74BZntD5uAnvoQ3JlOfihftY9JeoXu0n8g6YdqPErGdkWIDmsNJGUTZ/a3m5CxP8t2f
-         Wm2stFjip8ht8zH3nq0kba+vMB8i4avKJsePBOY2kIopk/amvbvEc0TAZ5aYMYUUOGy5
-         4i9GaJXboD41m6m6h13rDonxBTFGTwN3i/luyjrBH1qfV3/xg4s6v2qj0j3nvvecqnqc
-         H30w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:subject:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oW0vYewmMm0M3PXQVGqM0DMXOo8Xcl8P8bGj8WAcz1s=;
-        b=CL3sedT7VEknCpNeMvkdx1/+DCGsFYOpByiT7OdWRWAWOi6kC//616DKbFQ8pXrmf0
-         A+aY50IAB8TaMNV/cPIC9uQJ5kozk/rTdIyvrVKl/VGBxhwKBgwKKwY1fbfEyoYrD1bo
-         D9Rva1qIV18oDzeq5fmT+gyniWhtCnkJLFlAk6v84TvWrGns7dsiKgyZpVkQz+GA1nD0
-         wRdh8vUnb9FiDEhTkDt+/3lpTxEthMSVLXN64ClvRZuBZVo3mBxM5Ax2FIzc1NogcMKq
-         u2rCzKn2V4AzFjLEzxgcAKP2/yYQ9uHighLRSKfTAOST5xu8GsQYEsDGdCDRcbYxEIuO
-         VL0w==
-X-Gm-Message-State: ANhLgQ2mH4miXCQa/BObQPXSB1kRry/XdGv4i7zBK42OHC2/U4pAMINY
-        btNQwGzVuRGI+JV1gPXiP6Y=
-X-Google-Smtp-Source: ADFU+vuLfqJLTVWgtE2gxmF3zyW7/5g33LYY933B6JEG7gw8iL8V704y0dGVTMbKy7oXYEW3aN89ag==
-X-Received: by 2002:adf:e60b:: with SMTP id p11mr23245914wrm.140.1584891942005;
-        Sun, 22 Mar 2020 08:45:42 -0700 (PDT)
-Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id x17sm17685351wmi.28.2020.03.22.08.45.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Mar 2020 08:45:41 -0700 (PDT)
-To:     jbx6244@gmail.com
-Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org
-References: <20200322140046.5824-1-jbx6244@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: fix defines in pd_vio node for
- rk3399
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <48a91cc1-7751-4df0-a2cd-940eb829fa16@gmail.com>
-Date:   Sun, 22 Mar 2020 16:45:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        id S1726137AbgCVQCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Mar 2020 12:02:03 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:36466 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725785AbgCVQCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Mar 2020 12:02:02 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1584892922; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=KbW1c1jJh3fjm7VZhx+zDnxPu5lMEAB+5FN/4TFQHC0=;
+ b=WeeviBYEcS7MSm6xAHc40r0wuqHbyAH5TwlF5b+Sv9xnq+NvuOs8c/Cs7pD3QQBSFrKSbCGJ
+ cMIF5WvTsc+ya4A/SGU9tzG1PTHmRdM0d5m6El5ae6oDy4phcGl77IEjsMBRxtnJ4U86I5XJ
+ aKhayQsgwxGFMyYSxPHzTRgF1jc=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e778bf7.7feaa835a420-smtp-out-n01;
+ Sun, 22 Mar 2020 16:01:59 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E19ECC43637; Sun, 22 Mar 2020 16:01:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: ppvk)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A4AA8C433CB;
+        Sun, 22 Mar 2020 16:01:57 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200322140046.5824-1-jbx6244@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Sun, 22 Mar 2020 21:31:57 +0530
+From:   ppvk@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     bjorn.andersson@linaro.org, adrian.hunter@intel.com,
+        robh+dt@kernel.org, ulf.hansson@linaro.org,
+        asutoshd@codeaurora.org, stummala@codeaurora.org,
+        sayalil@codeaurora.org, rampraka@codeaurora.org,
+        vbadigan@codeaurora.org, sboyd@kernel.org,
+        georgi.djakov@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        linux-mmc-owner@vger.kernel.org,
+        Subhash Jadavani <subhashj@codeaurora.org>
+Subject: Re: [RFC v5 1/2] mmc: sdhci-msm: Add interconnect bus bandwidth
+ scaling support
+In-Reply-To: <20200312204935.GF144492@google.com>
+References: <1583992911-12001-1-git-send-email-ppvk@codeaurora.org>
+ <1583992911-12001-2-git-send-email-ppvk@codeaurora.org>
+ <20200312204935.GF144492@google.com>
+Message-ID: <11a193adc32906f28358556dfc11858c@codeaurora.org>
+X-Sender: ppvk@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2020-03-13 02:19, Matthias Kaehlcke wrote:
+Hi Matthias,
 
-The RK3399 TRM uses both
+Thanks for reviewing.
 
-'pd_tcpc0, pd_tcpc1'
+> Hi Pradeep,
+> 
+> On Thu, Mar 12, 2020 at 11:31:50AM +0530, Pradeep P V K wrote:
+>> Add interconnect bandwidths for SDHC driver using OPP framework that
+>> is required by SDHC driver based on the clock frequency and bus width
+>> of the card. Otherwise, the system clocks may run at minimum clock
+>> speed and thus affecting the performance.
+>> 
+>> This change is based on
+>> [RFC] mmc: host: sdhci-msm: Use the interconnect API
+>> (https://lkml.org/lkml/2018/10/11/499) and
+>> 
+>> [PATCH v6] Introduce Bandwidth OPPs for interconnects
+>> (https://lkml.org/lkml/2019/12/6/740)
+>> 
+>> Co-developed-by: Sahitya Tummala <stummala@codeaurora.org>
+>> Signed-off-by: Sahitya Tummala <stummala@codeaurora.org>
+>> Co-developed-by: Subhash Jadavani <subhashj@codeaurora.org>
+>> Signed-off-by: Subhash Jadavani <subhashj@codeaurora.org>
+>> Co-developed-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+>> Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+>> Co-developed-by: Pradeep P V K <ppvk@codeaurora.org>
+>> Signed-off-by: Pradeep P V K <ppvk@codeaurora.org>
+>> ---
+>> 
+>> RFC v4 -> v5:
+>> - Rewrote the icc interconnect get handlers and its error handling
+>>   and allocated vote data after handling all icc get handler errors.
+>> - Removed explicit error check on ICC handlers.
+>> - Addressed minor code style comments.
+>> 
+>>  drivers/mmc/host/sdhci-msm.c | 231 
+>> ++++++++++++++++++++++++++++++++++++++++++-
+>>  1 file changed, 227 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/mmc/host/sdhci-msm.c 
+>> b/drivers/mmc/host/sdhci-msm.c
+>> index 09ff731..5fe8fad 100644
+>> --- a/drivers/mmc/host/sdhci-msm.c
+>> +++ b/drivers/mmc/host/sdhci-msm.c
+>> 
+>> ...
+>> 
+>> +/*
+>> + * This function sets the interconnect bus bandwidth
+>> + * vote based on bw (bandwidth) argument.
+>> + */
+>> +#define BUS_INTERCONNECT_PATHS 2 /* 1. sdhc -> ddr 2. cpu -> sdhc */
+>> +static void sdhci_msm_bus_set_vote(struct sdhci_host *host,
+>> +						unsigned int bw)
+>> +{
+>> +	int i, err;
+>> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+>> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
+>> +	struct sdhci_msm_bus_vote_data *vote_data = msm_host->bus_vote_data;
+>> +	struct device *dev = &msm_host->pdev->dev;
+>> +	struct dev_pm_opp *opp;
+>> +	unsigned long freq = bw;
+>> +	unsigned long peak_bw[BUS_INTERCONNECT_PATHS] = {0};
+>> +	unsigned long avg_bw[BUS_INTERCONNECT_PATHS] = {0};
+>> +
+>> +	if (bw == vote_data->curr_freq)
+>> +		return;
+>> +
+>> +	for (i = 0; i < BUS_INTERCONNECT_PATHS; i++) {
+>> +		opp = sdhci_msm_find_opp_for_freq(msm_host, freq);
+>> +		if (opp) {
+>> +			avg_bw[i] = dev_pm_opp_get_bw(opp, &peak_bw[i]);
+>> +			freq += 1; /* Next bandwidth vote */
+>> +			dev_pm_opp_put(opp);
+>> +		}
+>> +	}
+>> +	pr_debug("%s: freq:%d sdhc_to_ddr avg_bw:%lu peak_bw:%lu cpu_to_sdhc 
+>> avg_bw:%lu peak_bw:%lu\n",
+>> +			mmc_hostname(host->mmc), bw, avg_bw[0], peak_bw[0],
+>> +				avg_bw[1], peak_bw[1]);
+>> +	err = icc_set_bw(vote_data->sdhc_to_ddr, 0, peak_bw[0]);
+>> +	if (err) {
+>> +		dev_err(dev, "icc_set() failed for 'sdhc-ddr' path err:%d\n",
+>> +							err);
+> 
+> nit: the alignment is odd, either align with 'dev' or a tab after 
+> 'dev_err'
+> 
+sure, will do this in my next patch set.
+>> +		return;
+>> +	}
+>> +	err = icc_set_bw(vote_data->cpu_to_sdhc, 0, peak_bw[1]);
+>> +	if (err) {
+>> +		dev_err(dev, "icc_set() failed for 'cpu-sdhc' path err:%d\n",
+>> +							err);
+> 
+> ditto
+> 
+ok.
 
-as
+>> +		return;
+>> +	}
+>> +	vote_data->curr_freq = bw;
+>> +}
+>> +
+>> +/*
+>> + * Helper function to register for OPP and interconnect
+>> + * frameworks.
+>> + */
+>> +static struct sdhci_msm_bus_vote_data
+>> +		*sdhci_msm_bus_register(struct sdhci_msm_host *host,
+>> +				struct platform_device *pdev)
+>> +{
+>> +	struct sdhci_msm_bus_vote_data *vote_data;
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret, i, err;
+> 
+> nit: you can get rid of 'ret' and use 'err' instead.
+> 
+ok. i will do this in my next patchset.
 
-'pd_tcpd0, pd_tcpd1'.
+>> +	struct icc_path *icc_paths[BUS_INTERCONNECT_PATHS];
+>> +	const char *path_names[] = {
+>> +		"sdhc-ddr",
+>> +		"cpu-sdhc",
+>> +	};
+>> +
+>> +	for (i = 0; i < BUS_INTERCONNECT_PATHS; i++)
+>> +		icc_paths[i] = of_icc_get(&pdev->dev, path_names[i]);
+>> +
+>> +	if (!icc_paths[0] && !icc_paths[1]) {
+>> +		dev_info(&pdev->dev, "ICC DT property is missing.Skip vote!!\n");
+>> +		return NULL;
+>> +	}
+>> +
+>> +	for (i = 0; i < BUS_INTERCONNECT_PATHS; i++) {
+>> +		if (!icc_paths[i]) {
+>> +			dev_err(&pdev->dev, "interconnect path '%s' is not configured\n",
+>> +					path_names[i]);
+>> +			err = -EINVAL;
+>> +			goto handle_err;
+>> +		}
+>> +		if (IS_ERR(icc_paths[i])) {
+>> +			err = PTR_ERR(icc_paths[i]);
+>> +
+>> +			if (err != -EPROBE_DEFER)
+>> +				dev_err(&pdev->dev, "interconnect path '%s' is invalid:%d\n",
+>> +					path_names[i], err);
+>> +			goto handle_err;
+>> +		}
+>> +	}
+>> +
+>> +	ret = dev_pm_opp_of_add_table(dev);
+>> +	if (ret) {
+>> +		if (ret == -ENODEV || ret == -ENODATA)
+>> +			dev_err(dev, "OPP dt properties missing:%d\n", ret);
+>> +		else
+>> +			dev_err(dev, "OPP registration failed:%d\n", ret);
+> 
+> need to call icc_put() for the two paths?
+> 
+hmm yes. coming here means, we got both icc paths without error.
+So, should put both icc paths. I will handle this by adding a new goto 
+jump tag.
 
-What should we use here?
+>> +		return ERR_PTR(ret);
+>> +	}
+>> +
+>> +	vote_data = devm_kzalloc(dev, sizeof(*vote_data), GFP_KERNEL);
+>> +	if (!vote_data)
+> 
+> ditto
+> 
+> probably you want to do this with a jump to an error handler below.
+> 
+ok. i will handle this by adding a new goto jump tag.
 
-Thanks.
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	vote_data->sdhc_to_ddr = icc_paths[0];
+>> +	vote_data->cpu_to_sdhc = icc_paths[1];
+>> +	return vote_data;
+> 
+> nit: add empty line
+> 
+ok.
 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index 8aac201f0..3dc8fe620 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -1087,12 +1087,12 @@
->  					pm_qos = <&qos_isp1_m0>,
->  						 <&qos_isp1_m1>;
->  				};
-> -				pd_tcpc0@RK3399_PD_TCPC0 {
-> +				pd_tcpc0@RK3399_PD_TCPD0 {
->  					reg = <RK3399_PD_TCPD0>;
->  					clocks = <&cru SCLK_UPHY0_TCPDCORE>,
->  						 <&cru SCLK_UPHY0_TCPDPHY_REF>;
->  				};
-> -				pd_tcpc1@RK3399_PD_TCPC1 {
-> +				pd_tcpc1@RK3399_PD_TCPD1 {
->  					reg = <RK3399_PD_TCPD1>;
->  					clocks = <&cru SCLK_UPHY1_TCPDCORE>,
->  						 <&cru SCLK_UPHY1_TCPDPHY_REF>;
-> -- 
-> 2.11.0
+>> +handle_err:
+>> +	if (err) {
+>> +		int other = (i == 0) ? 1 : 0;
+>> +
+>> +		if (!IS_ERR_OR_NULL(icc_paths[other]))
+>> +			icc_put(icc_paths[other]);
+>> +	}
+> 
+> doing this at the end (as opposed to my suggestion from
+> https://patchwork.kernel.org/patch/11388409/#23165321) has the 
+> advantage of
+> keeping the above loop cleaner from error handling cruft, on the 
+> downside it
+> is probably easier to understand right away in the context of the loop. 
+> I
+> guess you can do it either way.
+> 
+True. i will leave this error handling at bottom as the code looks more 
+cleaner.
 
+> It might get a bit more messy if you also handle the case where both 
+> paths are
+> valid. If that gets too involved I'd suggest to hnadle the above case 
+> inside
+> the loop.
+> 
+hmm true, handling the above error in loop making the code more messy 
+so,
+i'm using a new tag (put_icc) to put both the icc paths.
+
+>> +	return ERR_PTR(err);
+>> +}
+>> +
+>> +static void sdhci_msm_bus_unregister(struct device *dev,
+>> +				struct sdhci_msm_host *host)
+>> +{
+>> +	struct sdhci_msm_bus_vote_data *vote_data = host->bus_vote_data;
+>> +
+>> +	if (IS_ERR_OR_NULL(vote_data))
+> 
+> I think 'if (!vote_data)' would be sufficient, since _probe() aborts in
+> case of an error.
+> 
+ok. i will handle this in my next patch set.
+
+>> +		return;
+>> +
+>> +	icc_put(vote_data->sdhc_to_ddr);
+>> +	icc_put(vote_data->cpu_to_sdhc);
+>> +}
+>> +
+>> +static void sdhci_msm_bus_voting(struct sdhci_host *host, bool 
+>> enable)
+>> +{
+>> +	struct mmc_ios *ios = &host->mmc->ios;
+>> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+>> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
+>> +	unsigned int bw;
+>> +
+>> +	if (IS_ERR_OR_NULL(msm_host->bus_vote_data))
+>> +		return;
+> 
+> ditto
+ok.
