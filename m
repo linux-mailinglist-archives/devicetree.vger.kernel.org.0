@@ -2,145 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB54B18EB2E
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 18:54:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8323318EB84
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2020 19:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727119AbgCVRyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Mar 2020 13:54:17 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:31046 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727112AbgCVRyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Mar 2020 13:54:16 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02MHsDKq007763;
-        Sun, 22 Mar 2020 13:54:15 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2ywfu53prb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 22 Mar 2020 13:54:15 -0400
-Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 02MHsDmm005322
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Sun, 22 Mar 2020 13:54:13 -0400
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Sun, 22 Mar
- 2020 10:54:12 -0700
-Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Sun, 22 Mar 2020 10:54:12 -0700
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 02MHro3n027953;
-        Sun, 22 Mar 2020 13:54:08 -0400
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>, <Laszlo.Nagy@analog.com>,
-        <Andrei.Grozav@analog.com>, <Michael.Hennerich@analog.com>,
-        <Istvan.Csomortani@analog.com>, <Adrian.Costina@analog.com>,
-        <Dragos.Bogdan@analog.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v12 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Sun, 22 Mar 2020 19:53:25 +0200
-Message-ID: <20200322175325.42469-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200322175325.42469-1-alexandru.ardelean@analog.com>
-References: <20200322175325.42469-1-alexandru.ardelean@analog.com>
+        id S1725881AbgCVSZA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 22 Mar 2020 14:25:00 -0400
+Received: from mail.destinigroup.com ([175.144.213.75]:59028 "EHLO
+        mail.destinigroup.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725785AbgCVSY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Mar 2020 14:24:59 -0400
+X-Greylist: delayed 4880 seconds by postgrey-1.27 at vger.kernel.org; Sun, 22 Mar 2020 14:24:58 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.destinigroup.com (Postfix) with ESMTP id 30D862D350A;
+        Mon, 23 Mar 2020 00:52:45 +0800 (MYT)
+Received: from mail.destinigroup.com ([127.0.0.1])
+        by localhost (mail.destinigroup.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id UL4mDKi7Amuh; Mon, 23 Mar 2020 00:52:45 +0800 (MYT)
+Received: from [45.143.223.46] (unknown [45.143.223.46])
+        by mail.destinigroup.com (Postfix) with ESMTPSA id 0AAF92D2E43;
+        Mon, 23 Mar 2020 00:52:39 +0800 (MYT)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
- definitions=2020-03-22_06:2020-03-21,2020-03-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1015 impostorscore=0 adultscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 suspectscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2003020000 definitions=main-2003220108
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: YOUR EARLY REPLY
+To:     Recipients <amunoza@surnet.cl>
+From:   "Mr. Fu" <amunoza@surnet.cl>
+Date:   Sun, 22 Mar 2020 09:52:32 -0700
+Reply-To: fulanlan28@gmail.com
+Message-Id: <20200322165240.0AAF92D2E43@mail.destinigroup.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
-
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
--- 
-2.17.1
-
+YOUR EARLY REPLY
+I have a lucrative business proposal that I would like to share with you.
+I'm glad about your quick answer
+E-mail;fulanlan28@gmail.com
+greetings
+Mr. Fu Lan
