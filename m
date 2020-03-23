@@ -2,170 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4ACE18F4C1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 13:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C75718F566
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 14:14:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728325AbgCWMfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 08:35:41 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:58642 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728289AbgCWMfl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Mar 2020 08:35:41 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C78D91A0DF4;
-        Mon, 23 Mar 2020 13:35:38 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 07A8D1A13C1;
-        Mon, 23 Mar 2020 13:35:31 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id B6D5640305;
-        Mon, 23 Mar 2020 20:35:21 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amit.kucheria@verdurent.com, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, horia.geanta@nxp.com, peng.fan@nxp.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V3 3/3] arm64: dts: imx8mp: Add thermal zones support
-Date:   Mon, 23 Mar 2020 20:28:24 +0800
-Message-Id: <1584966504-21719-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1584966504-21719-1-git-send-email-Anson.Huang@nxp.com>
-References: <1584966504-21719-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728365AbgCWNOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 09:14:24 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40170 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728307AbgCWNOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 09:14:23 -0400
+Received: by mail-lf1-f68.google.com with SMTP id j17so10175455lfe.7;
+        Mon, 23 Mar 2020 06:14:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=E1CQtmDgklmhJ8UOqFgoAnNC1Hs9OG7/L9e38p9NJko=;
+        b=cVXxLjLlZWbliitWGuklNFT8/b/ipWnER/MBOfcjIMh6YI2DcJv8Cyx9jCRtWTlFX3
+         8aWb0xVZUcow9EfUHRy3WtM6HPg1oPk836709omTqABsL0Forp5JACWbxRI8++kjSIzC
+         wrOo/5+HT5cgZSfM3tSXwty895eyCGY+SSforbkecWud+7Bj4zApFyUDQl/JcwxeGJUq
+         xjglf2IYPC5ZQoCud4+sluk0Ba43iSiYtI3akVpKhQB4EKDbZzcyggCIseS2cMWwiNI0
+         MkzPDPw2hazLDwi30/g7ayTZDBEBAatHOfs4FV4loFqVVBcbM/HU0T2F+l9VUf/2txtG
+         va4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=E1CQtmDgklmhJ8UOqFgoAnNC1Hs9OG7/L9e38p9NJko=;
+        b=mBVkgtecUzZ8oxwL2V4B9NlA9r77SRDOLR8z3ncFoqyQiwYjXIMz9k9/G6+mbRr22+
+         ApotJUR6xDEDhiIokdh4REay+xRu0N/pc0Evs2C3Zk8w5q8CIsh5mjnOXPR2WHEX6KI5
+         iBqI6VT0wZVF6VnEetvUXhiVvxwsyVK43qNPkdg8+EhKq/ovj07adR8Pfn0JAyJWbelP
+         i5d9un4/qgJtlzlh/zydtd5U49J47zIbjCVt3BIT7HCqeFYOdd0GXkHDqdTjQbF7j7XI
+         MemhmUSXHUqv5ycEVxWzOh51H84cNF1AYL5D7KRl/Zs4QZXd3wlrxu3dIGjuX3nh7W9I
+         g8qQ==
+X-Gm-Message-State: ANhLgQ3dQYM5u0sQQil+gV1IIJ7RRUJ9YDO12RBVzE/rTAtkyq4vKuhk
+        oAMoP//gArpi6htWMNUiEiE=
+X-Google-Smtp-Source: ADFU+vsrHRmN74MSFYaqInYZvtueW7JY7IrqwVBW3ExHmXKgr3xW/dEG/H5kvPyo6PdChKHxXDQvNw==
+X-Received: by 2002:a19:550e:: with SMTP id n14mr12877759lfe.141.1584969259348;
+        Mon, 23 Mar 2020 06:14:19 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-39-224.dynamic.spd-mgts.ru. [94.29.39.224])
+        by smtp.googlemail.com with ESMTPSA id e14sm8399787ljb.97.2020.03.23.06.14.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Mar 2020 06:14:18 -0700 (PDT)
+Subject: Re: [PATCH v5 3/8] clk: tegra: Implement Tegra210 EMC clock
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joseph Lo <josephl@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200310152003.2945170-1-thierry.reding@gmail.com>
+ <20200310152003.2945170-4-thierry.reding@gmail.com>
+ <b5fb83d8-003c-d76b-9dac-7c8ef15f2ab1@gmail.com>
+ <20200323110531.GD3883508@ulmo>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <d57eaef9-65b9-23e5-e66b-9cea9df19fd5@gmail.com>
+Date:   Mon, 23 Mar 2020 16:14:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+MIME-Version: 1.0
+In-Reply-To: <20200323110531.GD3883508@ulmo>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MP has a TMU inside which supports two thermal zones, add support
-for them.
+23.03.2020 14:05, Thierry Reding пишет:
+...
+>>> +static const struct dev_pm_ops tegra210_emc_pm_ops = {
+>>> +	SET_SYSTEM_SLEEP_PM_OPS(tegra210_emc_suspend, tegra210_emc_resume)
+>>> +};
+>> What about to use the default suspend/resume level?
+> 
+> I don't understand. This is already the default suspend/resume level,
+> isn't it?
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No change.
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 63 +++++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 9b1616e..175165b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- #include "imx8mp-pinfunc.h"
- 
-@@ -43,6 +44,7 @@
- 			clocks = <&clk IMX8MP_CLK_ARM>;
- 			enable-method = "psci";
- 			next-level-cache = <&A53_L2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_1: cpu@1 {
-@@ -53,6 +55,7 @@
- 			clocks = <&clk IMX8MP_CLK_ARM>;
- 			enable-method = "psci";
- 			next-level-cache = <&A53_L2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_2: cpu@2 {
-@@ -63,6 +66,7 @@
- 			clocks = <&clk IMX8MP_CLK_ARM>;
- 			enable-method = "psci";
- 			next-level-cache = <&A53_L2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_3: cpu@3 {
-@@ -73,6 +77,7 @@
- 			clocks = <&clk IMX8MP_CLK_ARM>;
- 			enable-method = "psci";
- 			next-level-cache = <&A53_L2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_L2: l2-cache0 {
-@@ -127,6 +132,57 @@
- 		method = "smc";
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tmu 0x0>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_crit0: trip1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		soc-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tmu 0x1>;
-+			trips {
-+				soc_alert0: trip0 {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				soc_crit0: trip1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
-@@ -215,6 +271,13 @@
- 				gpio-ranges = <&iomuxc 0 114 30>;
- 			};
- 
-+			tmu: tmu@30260000 {
-+				compatible = "fsl,imx8mp-tmu";
-+				reg = <0x30260000 0x10000>;
-+				clocks = <&clk IMX8MP_CLK_TSENSOR_ROOT>;
-+				#thermal-sensor-cells = <1>;
-+			};
-+
- 			wdog1: watchdog@30280000 {
- 				compatible = "fsl,imx8mp-wdt", "fsl,imx21-wdt";
- 				reg = <0x30280000 0x10000>;
--- 
-2.7.4
-
+Please use SIMPLE_DEV_PM_OPS, for clarity.
