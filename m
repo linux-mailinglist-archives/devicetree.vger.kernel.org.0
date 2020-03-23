@@ -2,125 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 005F418F435
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 13:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B3218F458
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 13:18:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727607AbgCWMPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 08:15:47 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:37010 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727384AbgCWMPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 08:15:47 -0400
-X-UUID: 10e5c13d7f7b4fa48d2ad273c04ace85-20200323
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6afKyor9AgACuTa8Oqf4MptvrGy9B10niDpAuK601p8=;
-        b=Mrh0SgYK2mztGt3Sfq9lLr6Ow8t3HhXjV2eiphMsnsOwBoM1NKtuL4dOa9JWbT2T4Y1p7v2Wkl2DG9rKxt3EeglYhrR3qvMg5A5Ev8tEfVTWGzAdAHPL3P9WmEwWhfCuEdwDj9AvvziCX+DI6XThTO7AXV5IOHfe7XEBpjXjFqY=;
-X-UUID: 10e5c13d7f7b4fa48d2ad273c04ace85-20200323
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 2045009876; Mon, 23 Mar 2020 20:15:41 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 23 Mar 2020 20:15:38 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 23 Mar 2020 20:15:38 +0800
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, <hsinyi@chromium.org>,
-        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <michael.kao@mediatek.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [v4,6/7] thermal: mediatek: add another get_temp ops for thermal sensors
-Date:   Mon, 23 Mar 2020 20:15:36 +0800
-Message-ID: <20200323121537.22697-7-michael.kao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200323121537.22697-1-michael.kao@mediatek.com>
-References: <20200323121537.22697-1-michael.kao@mediatek.com>
+        id S1727381AbgCWMSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 08:18:40 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39182 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727401AbgCWMSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 08:18:40 -0400
+Received: by mail-ed1-f65.google.com with SMTP id a43so15931462edf.6
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2020 05:18:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LOuNnZgzyqcm8GFQy/Cs3MTKU0ONrbIzdq5zmi+oP6k=;
+        b=HSUd4vdQOWkpZOlavXsGiTaSMf+lCfYpsCdFJSbN9eAuxw2kaPfwFbxExOUNmiJINM
+         qb51YiC/4XO/9TFlK2gh3latsgjR8hoxSztzkUbqvez1Aadg52NkenrzRj0pCZ7iMDMO
+         EePCTMvP8wdYeSdRSSGskUq0p1GfyStpyBmqI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LOuNnZgzyqcm8GFQy/Cs3MTKU0ONrbIzdq5zmi+oP6k=;
+        b=AZRhuiLqSLFWIGl58p5srhgeSKJL2Ya+NGmCFtw98HLqOtZDeTHF/ZIm2Gs7eURU4N
+         OFQQI1Hj6KbGOTA1lQjZ8KKS9ROA2CXeV3tg9VkLSQ0K3b8k/X+Vm3e5v7+5KdogrbOn
+         wvcjsc/4aVPdiKiLmBn23SO8OIdt6288v78scQgNWHvWHnq2m/I6h6iDssU5fP1+4Xet
+         5dPPNMC1h37fgf8ZP2GaHgtM5LNA4cWW6glH79AR8PBX8Hva84MJ1rD2WVGMw8gWDkyL
+         WbL0cIEO9MKh08zQIRC8azX+M+Wc93BCsCVdSvizmOYvLBVLz8qVAE1lS9WmCGGcVC5P
+         u/Jg==
+X-Gm-Message-State: ANhLgQ2BbK763DGBxUUg1MEVdhowtQHo/jySrLssvo5Weghzg8gHMJk/
+        J2X9hc2KvWwRPtLE+L8YcpTBLh04v3E=
+X-Google-Smtp-Source: ADFU+vsANJCX/y95X41kOnV/UQWVr0fNshsEsdlzNDL2cLSoSHKvXZd8Vb2x5u8eEWfDtIroFd0iWw==
+X-Received: by 2002:a17:906:361a:: with SMTP id q26mr9808462ejb.310.1584965918058;
+        Mon, 23 Mar 2020 05:18:38 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id h2sm1074826edt.44.2020.03.23.05.18.35
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Mar 2020 05:18:36 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id d1so14546719wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2020 05:18:35 -0700 (PDT)
+X-Received: by 2002:a1c:6a1a:: with SMTP id f26mr1797828wmc.55.1584965915045;
+ Mon, 23 Mar 2020 05:18:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20200306034946.11223-1-bibby.hsieh@mediatek.com>
+ <20200306034946.11223-2-bibby.hsieh@mediatek.com> <20200322130710.GA1091@ninjato>
+In-Reply-To: <20200322130710.GA1091@ninjato>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 23 Mar 2020 13:18:22 +0100
+X-Gmail-Original-Message-ID: <CAAFQd5ANJcReHD_n0LorS+bjE8Cn_W-kY5LNgGG+L+jMmywYfA@mail.gmail.com>
+Message-ID: <CAAFQd5ANJcReHD_n0LorS+bjE8Cn_W-kY5LNgGG+L+jMmywYfA@mail.gmail.com>
+Subject: Re: [PATCH v12 1/2] dt-binding: i2c: add bus-supply property
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UHJvdmlkZSB0aGVybWFsIHpvbmUgdG8gcmVhZCB0aGVybWFsIHNlbnNvcg0KaW4gdGhlIFNvQy4g
-V2UgY2FuIHJlYWQgYWxsIHRoZSB0aGVybWFsIHNlbnNvcnMNCnZhbHVlIGluIHRoZSBTb0MgYnkg
-dGhlIG5vZGUgL3N5cy9jbGFzcy90aGVybWFsLw0KDQpJbiBtdGtfdGhlcm1hbF9iYW5rX3RlbXBl
-cmF0dXJlLCByZXR1cm4gLUVBR0FJTiBpbnN0ZWFkIG9mIC1FQUNDRVNTDQpvbiB0aGUgZmlyc3Qg
-cmVhZCBvZiBzZW5zb3IgdGhhdCBvZnRlbiBhcmUgYm9ndXMgdmFsdWVzLg0KVGhpcyBjYW4gYXZv
-aWQgZm9sbG93aW5nIHdhcm5pbmcgb24gYm9vdDoNCg0KICB0aGVybWFsIHRoZXJtYWxfem9uZTY6
-IGZhaWxlZCB0byByZWFkIG91dCB0aGVybWFsIHpvbmUgKC0xMykNCg0KU2lnbmVkLW9mZi1ieTog
-TWljaGFlbCBLYW8gPG1pY2hhZWwua2FvQG1lZGlhdGVrLmNvbT4NClNpZ25lZC1vZmYtYnk6IEhz
-aW4tWWkgV2FuZyA8aHNpbnlpQGNocm9taXVtLm9yZz4NCi0tLQ0KIGRyaXZlcnMvdGhlcm1hbC9t
-dGtfdGhlcm1hbC5jIHwgNzQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0NCiAx
-IGZpbGUgY2hhbmdlZCwgNjcgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkNCg0KZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvdGhlcm1hbC9tdGtfdGhlcm1hbC5jIGIvZHJpdmVycy90aGVybWFsL210
-a190aGVybWFsLmMNCmluZGV4IDZiN2VmMTk5M2Q3ZS4uOWVhY2E0MzI5MjBlIDEwMDY0NA0KLS0t
-IGEvZHJpdmVycy90aGVybWFsL210a190aGVybWFsLmMNCisrKyBiL2RyaXZlcnMvdGhlcm1hbC9t
-dGtfdGhlcm1hbC5jDQpAQCAtMjI1LDYgKzIyNSwxMSBAQCBlbnVtIHsNCiANCiBzdHJ1Y3QgbXRr
-X3RoZXJtYWw7DQogDQorc3RydWN0IG10a190aGVybWFsX3pvbmUgew0KKwlzdHJ1Y3QgbXRrX3Ro
-ZXJtYWwgKm10Ow0KKwlpbnQgaWQ7DQorfTsNCisNCiBzdHJ1Y3QgdGhlcm1hbF9iYW5rX2NmZyB7
-DQogCXVuc2lnbmVkIGludCBudW1fc2Vuc29yczsNCiAJY29uc3QgaW50ICpzZW5zb3JzOw0KQEAg
-LTYwNyw3ICs2MTIsNyBAQCBzdGF0aWMgaW50IG10a190aGVybWFsX2JhbmtfdGVtcGVyYXR1cmUo
-c3RydWN0IG10a190aGVybWFsX2JhbmsgKmJhbmspDQogCQkgKiBub3QgaW1tZWRpYXRlbHkgc2h1
-dCBkb3duLg0KIAkJICovDQogCQlpZiAodGVtcCA+IDIwMDAwMCkNCi0JCQl0ZW1wID0gMDsNCisJ
-CQl0ZW1wID0gLUVBR0FJTjsNCiANCiAJCWlmICh0ZW1wID4gbWF4KQ0KIAkJCW1heCA9IHRlbXA7
-DQpAQCAtNjE4LDcgKzYyMyw4IEBAIHN0YXRpYyBpbnQgbXRrX3RoZXJtYWxfYmFua190ZW1wZXJh
-dHVyZShzdHJ1Y3QgbXRrX3RoZXJtYWxfYmFuayAqYmFuaykNCiANCiBzdGF0aWMgaW50IG10a19y
-ZWFkX3RlbXAodm9pZCAqZGF0YSwgaW50ICp0ZW1wZXJhdHVyZSkNCiB7DQotCXN0cnVjdCBtdGtf
-dGhlcm1hbCAqbXQgPSBkYXRhOw0KKwlzdHJ1Y3QgbXRrX3RoZXJtYWxfem9uZSAqdHogPSBkYXRh
-Ow0KKwlzdHJ1Y3QgbXRrX3RoZXJtYWwgKm10ID0gdHotPm10Ow0KIAlpbnQgaTsNCiAJaW50IHRl
-bXBtYXggPSBJTlRfTUlOOw0KIA0KQEAgLTYzNywxMCArNjQzLDQ0IEBAIHN0YXRpYyBpbnQgbXRr
-X3JlYWRfdGVtcCh2b2lkICpkYXRhLCBpbnQgKnRlbXBlcmF0dXJlKQ0KIAlyZXR1cm4gMDsNCiB9
-DQogDQorc3RhdGljIGludCBtdGtfcmVhZF9zZW5zb3JfdGVtcCh2b2lkICpkYXRhLCBpbnQgKnRl
-bXBlcmF0dXJlKQ0KK3sNCisJc3RydWN0IG10a190aGVybWFsX3pvbmUgKnR6ID0gZGF0YTsNCisJ
-c3RydWN0IG10a190aGVybWFsICptdCA9IHR6LT5tdDsNCisJY29uc3Qgc3RydWN0IG10a190aGVy
-bWFsX2RhdGEgKmNvbmYgPSBtdC0+Y29uZjsNCisJaW50IGlkID0gdHotPmlkIC0gMTsNCisJaW50
-IHRlbXAgPSBJTlRfTUlOOw0KKwl1MzIgcmF3Ow0KKw0KKwlpZiAoaWQgPCAwKQ0KKwkJcmV0dXJu
-ICAtRUFDQ0VTOw0KKw0KKwlyYXcgPSByZWFkbChtdC0+dGhlcm1hbF9iYXNlICsgY29uZi0+bXNy
-W2lkXSk7DQorDQorCXRlbXAgPSByYXdfdG9fbWNlbHNpdXMobXQsIGlkLCByYXcpOw0KKw0KKwkv
-Kg0KKwkgKiBUaGUgZmlyc3QgcmVhZCBvZiBhIHNlbnNvciBvZnRlbiBjb250YWlucyB2ZXJ5IGhp
-Z2ggYm9ndXMNCisJICogdGVtcGVyYXR1cmUgdmFsdWUuIEZpbHRlciB0aGVzZSBvdXQgc28gdGhh
-dCB0aGUgc3lzdGVtIGRvZXMNCisJICogbm90IGltbWVkaWF0ZWx5IHNodXQgZG93bi4NCisJICov
-DQorDQorCWlmICh0ZW1wID4gMjAwMDAwKQ0KKwkJcmV0dXJuICAtRUFHQUlOOw0KKw0KKwkqdGVt
-cGVyYXR1cmUgPSB0ZW1wOw0KKw0KKwlyZXR1cm4gMDsNCit9DQorDQogc3RhdGljIGNvbnN0IHN0
-cnVjdCB0aGVybWFsX3pvbmVfb2ZfZGV2aWNlX29wcyBtdGtfdGhlcm1hbF9vcHMgPSB7DQogCS5n
-ZXRfdGVtcCA9IG10a19yZWFkX3RlbXAsDQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IHRo
-ZXJtYWxfem9uZV9vZl9kZXZpY2Vfb3BzIG10a190aGVybWFsX3NlbnNvcl9vcHMgPSB7DQorCS5n
-ZXRfdGVtcCA9IG10a19yZWFkX3NlbnNvcl90ZW1wLA0KK307DQorDQogc3RhdGljIHZvaWQgbXRr
-X3RoZXJtYWxfaW5pdF9iYW5rKHN0cnVjdCBtdGtfdGhlcm1hbCAqbXQsIGludCBudW0sDQogCQkJ
-CSAgdTMyIGFwbWl4ZWRfcGh5c19iYXNlLCB1MzIgYXV4YWRjX3BoeXNfYmFzZSwNCiAJCQkJICBp
-bnQgY3RybF9pZCkNCkBAIC04NzMsNiArOTEzLDcgQEAgc3RhdGljIGludCBtdGtfdGhlcm1hbF9w
-cm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIAlzdHJ1Y3QgcmVzb3VyY2UgKnJl
-czsNCiAJdTY0IGF1eGFkY19waHlzX2Jhc2UsIGFwbWl4ZWRfcGh5c19iYXNlOw0KIAlzdHJ1Y3Qg
-dGhlcm1hbF96b25lX2RldmljZSAqdHpkZXY7DQorCXN0cnVjdCBtdGtfdGhlcm1hbF96b25lICp0
-ejsNCiANCiAJbXQgPSBkZXZtX2t6YWxsb2MoJnBkZXYtPmRldiwgc2l6ZW9mKCptdCksIEdGUF9L
-RVJORUwpOw0KIAlpZiAoIW10KQ0KQEAgLTk1NCwxMSArOTk1LDMwIEBAIHN0YXRpYyBpbnQgbXRr
-X3RoZXJtYWxfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiANCiAJcGxhdGZv
-cm1fc2V0X2RydmRhdGEocGRldiwgbXQpOw0KIA0KLQl0emRldiA9IGRldm1fdGhlcm1hbF96b25l
-X29mX3NlbnNvcl9yZWdpc3RlcigmcGRldi0+ZGV2LCAwLCBtdCwNCi0JCQkJCQkgICAgICZtdGtf
-dGhlcm1hbF9vcHMpOw0KLQlpZiAoSVNfRVJSKHR6ZGV2KSkgew0KLQkJcmV0ID0gUFRSX0VSUih0
-emRldik7DQotCQlnb3RvIGVycl9kaXNhYmxlX2Nsa19wZXJpX3RoZXJtOw0KKwlmb3IgKGkgPSAw
-OyBpIDwgbXQtPmNvbmYtPm51bV9zZW5zb3JzICsgMTsgaSsrKSB7DQorCQl0eiA9IGttYWxsb2Mo
-c2l6ZW9mKCp0eiksIEdGUF9LRVJORUwpOw0KKwkJaWYgKCF0eikNCisJCQlyZXR1cm4gLUVOT01F
-TTsNCisNCisJCXR6LT5tdCA9IG10Ow0KKwkJdHotPmlkID0gaTsNCisNCisJCXR6ZGV2ID0gZGV2
-bV90aGVybWFsX3pvbmVfb2Zfc2Vuc29yX3JlZ2lzdGVyKCZwZGV2LT5kZXYsIGksDQorCQkJCQkJ
-CSAgICAgdHosIChpID09IDApID8NCisJCQkJJm10a190aGVybWFsX29wcyA6ICZtdGtfdGhlcm1h
-bF9zZW5zb3Jfb3BzKTsNCisNCisJCWlmIChJU19FUlIodHpkZXYpKSB7DQorCQkJaWYgKFBUUl9F
-UlIodHpkZXYpID09IC1FTk9ERVYpIHsNCisJCQkJZGV2X3dhcm4oJnBkZXYtPmRldiwNCisJCQkJ
-CSAic2Vuc29yICVkIG5vdCByZWdpc3RlcmVkIGluIHRoZXJtYWwgem9uZSBpbiBkdFxuIiwNCisJ
-CQkJCSBpKTsNCisJCQkJY29udGludWU7DQorCQkJfQ0KKwkJCWlmIChQVFJfRVJSKHR6ZGV2KSA9
-PSAtRUFDQ0VTKSB7DQorCQkJCXJldCA9IFBUUl9FUlIodHpkZXYpOw0KKwkJCQlnb3RvIGVycl9k
-aXNhYmxlX2Nsa19wZXJpX3RoZXJtOw0KKwkJCX0NCisJCX0NCiAJfQ0KIA0KIAlyZXR1cm4gMDsN
-Ci0tIA0KMi4xOC4wDQo=
+On Sun, Mar 22, 2020 at 2:07 PM Wolfram Sang <wsa@the-dreams.de> wrote:
+>
+> Hi,
+>
+> thanks for the patches!
+>
+> I have a high level question about them, first.
+>
+> > +- bus-supply
+> > +     phandle to the regulator that provides power to i2c.
+>
+> I think this is not clear enough. I assume it means the regulator for
+> driving SCL/SDA? In the coverletter you mention also an EEPROM. In your
+> case, this is driven by the same regulator? I am skeptical we can
+> abstract it like this because I2C devices could be driven by various
+> regulators in the system, so there couldn't be one "bus regulator". The
+> regulator for the EEPROM should be described in the EEPROM node. So,
+> this "bus supply" is only for driving SCL/SDA?
 
+In our case the bus-supply regulator drives the voltage rail to which
+SCL/SDA are pulled up and there is an EEPROM on the bus, powered by
+yet another rail. There is also another slave on the bus which uses
+the same regulator as the bus-supply for its own power.
+
+In other words, bus-supply only ensures that SCL and SDA are in a
+usable state. Other consumers need to refer to the regulator in their
+own supplies if they need it for their own power.
+
+Does this answer your questions?
+
+Best regards,
+Tomasz
