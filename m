@@ -2,106 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F6718F7CD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 15:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD5518F888
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 16:25:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726143AbgCWO4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 10:56:51 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:44195 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbgCWO4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 10:56:51 -0400
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost.discworld.emantor.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <r.czerwinski@pengutronix.de>)
-        id 1jGOV7-0006Sg-Pz; Mon, 23 Mar 2020 15:56:25 +0100
-Message-ID: <412a4da61063b8c8a72729f03c06480c5f1374fb.camel@pengutronix.de>
-Subject: Re: [PATCH v5 2/3] hw_random: cctrng: introduce Arm CryptoCell
- driver
-From:   Rouven Czerwinski <r.czerwinski@pengutronix.de>
-To:     Hadar Gat <hadar.gat@arm.com>, Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
+        id S1727280AbgCWPZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 11:25:57 -0400
+Received: from elvis.franken.de ([193.175.24.41]:58633 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727388AbgCWPZ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Mar 2020 11:25:56 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jGOxd-0007im-00; Mon, 23 Mar 2020 16:25:53 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 08279C0955; Mon, 23 Mar 2020 15:46:41 +0100 (CET)
+Date:   Mon, 23 Mar 2020 15:46:40 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zaibo Xu <xuzaibo@huawei.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gilad Ben-Yossef <gilad@benyossef.com>,
-        Ofir Drang <ofir.drang@arm.com>
-Date:   Mon, 23 Mar 2020 15:56:19 +0100
-In-Reply-To: <1584891085-8963-3-git-send-email-hadar.gat@arm.com>
-References: <1584891085-8963-1-git-send-email-hadar.gat@arm.com>
-         <1584891085-8963-3-git-send-email-hadar.gat@arm.com>
-Organization: Pengutronix e.K.
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.0 
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Paul Boddie <paul@boddie.org.uk>
+Subject: Re: [PATCH v7 0/3] MIPS: Fixes and improvements for CI20 board
+ (JZ4780)
+Message-ID: <20200323144640.GA10431@alpha.franken.de>
+References: <cover.1583528793.git.hns@goldelico.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: r.czerwinski@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1583528793.git.hns@goldelico.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Hadar,
-
-On Sun, 2020-03-22 at 17:31 +0200, Hadar Gat wrote:
-> Introduce low level Arm CryptoCell TRNG HW support.
+On Fri, Mar 06, 2020 at 10:06:30PM +0100, H. Nikolaus Schaller wrote:
 > 
-> Signed-off-by: Hadar Gat <hadar.gat@arm.com>
-> ---
->  drivers/char/hw_random/Kconfig  |  12 +
->  drivers/char/hw_random/Makefile |   1 +
->  drivers/char/hw_random/cctrng.c | 735
-> ++++++++++++++++++++++++++++++++++++++++
->  drivers/char/hw_random/cctrng.h |  69 ++++
->  4 files changed, 817 insertions(+)
->  create mode 100644 drivers/char/hw_random/cctrng.c
->  create mode 100644 drivers/char/hw_random/cctrng.h
+> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 > 
-> [...]
-> +static int cctrng_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *req_mem_cc_regs = NULL;
-> +	struct cctrng_drvdata *drvdata;
-> +	struct device *dev = &pdev->dev;
-> +	int rc = 0;
-> +	u32 val;
-> +	int irq;
-> +
-> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->rng.name = devm_kstrdup(dev, dev_name(dev),
-> GFP_KERNEL);
-> +	if (!drvdata->rng.name)
-> +		return -ENOMEM;
-> +
-> +	drvdata->rng.read = cctrng_read;
-> +	drvdata->rng.priv = (unsigned long)drvdata;
+> 
+> Alex Smith (1):
+>   MIPS: DTS: CI20: add DT node for IR sensor
+> 
+> H. Nikolaus Schaller (2):
+>   MIPS: DTS: CI20: multiple DTS improvements
+>   MIPS: CI20: defconfig: multiple improvements
+> 
+>  arch/mips/boot/dts/ingenic/ci20.dts | 19 +++++++++++++++++++
+>  arch/mips/configs/ci20_defconfig    | 21 +++++++++++++++++++++
+>  2 files changed, 40 insertions(+)
 
-You are not initializing drvdata->rng.quality to a default value, which
-results in the TRNG not being used by the kernel by default. If its a
-perfect TRNG this should be set to 1024, i.e. 1024 bits of entropy per
-1024 bits of input.
+series applied to mips-next.
 
-Regards,
-Rouven Czerwinski
+Thomas.
 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
