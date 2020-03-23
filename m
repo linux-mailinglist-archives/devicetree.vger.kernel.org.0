@@ -2,80 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C855518FC63
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 19:08:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2871C18FCEE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 19:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727925AbgCWSHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 14:07:53 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:37588 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727091AbgCWSHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 14:07:53 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 1423C8030786;
-        Mon, 23 Mar 2020 18:07:50 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id he40NiI6SB9g; Mon, 23 Mar 2020 21:07:49 +0300 (MSK)
-From:   <Sergey.Semin@baikalelectronics.ru>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Hoan Tran <hoan@os.amperecomputing.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/6] dt-bindings: gpio: Add Sergey Semin to DW APB GPIO driver maintainers
-Date:   Mon, 23 Mar 2020 21:06:29 +0300
-Message-ID: <20200323180632.14119-4-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200323180632.14119-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200306132505.8D3B88030795@mail.baikalelectronics.ru>
- <20200323180632.14119-1-Sergey.Semin@baikalelectronics.ru>
+        id S1727624AbgCWSp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 14:45:29 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:36111 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727544AbgCWSp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 14:45:29 -0400
+Received: by mail-io1-f65.google.com with SMTP id d15so15394704iog.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2020 11:45:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=icZYPj4zSkGWnoVAnbdqNMAmgPXta//xqBn7Y00v1rM=;
+        b=C1U5zzFeDObXO/GEF8f9ha1SyRra8p24g9S0I9zXXHkKED7mSKpS0EdX1oG4RhkYAA
+         T0tOhRkaqFmEzbgUBgS4d1T6Dov97Aa5JZJ0HFsQY20ukbD6rc/xFdkKYWxK5ZVNVttn
+         61p1oDzsJpnANqPkcbQErqfOcC7SOdtnaz/lU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=icZYPj4zSkGWnoVAnbdqNMAmgPXta//xqBn7Y00v1rM=;
+        b=BZYh/c6jiyRcXvSlZevI7l/pElvXzPigIz7cZgZOD5rKtUihv6x98gRgInN/y6iNHY
+         tsu40APYcTX0AgsdHcP7aOAtDPATxbPzCIfQv5BqIlBsgYvhRR02u1ZKoy2ojHdl5PKi
+         l36uCKKpJ6AmA8xoMWDSoHZTTSIK6LZF2UIHxoccLG+gj1tHnl2QQ9Tm5Vuwgf5L7Om4
+         vr1sEb8Q2A2rNb4cZ3PI/nFA+MeZs8Dk7RiS5F+7L5ZapTtDH4f/C6pZijaUzUwGhENt
+         Sy52zAuVoKVM6rPFp0d5lF/CUm5Lmj8cwEhWzrxDCFIIaQL/qZV+Id3hBdIXTfJ1I6XB
+         lhAg==
+X-Gm-Message-State: ANhLgQ3nv3Ctek/Iqd0r6AicHxtqj9muB1zMH6qcf9D3Lgs3RoR5ZC+b
+        wP40p1v7MrrE5kQ5rLW/z/hj9fFbXy0=
+X-Google-Smtp-Source: ADFU+vulf7R6STk8+OCHoqvxohDJjIWY7qIWjV1A2vWb23ySpEkG8Wsj9uavHDn/ly08NYJCj6mYOA==
+X-Received: by 2002:a5e:d919:: with SMTP id n25mr20218429iop.205.1584989127783;
+        Mon, 23 Mar 2020 11:45:27 -0700 (PDT)
+Received: from derch.Home (75-166-136-192.hlrn.qwest.net. [75.166.136.192])
+        by smtp.gmail.com with ESMTPSA id y6sm604857ilc.41.2020.03.23.11.45.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Mar 2020 11:45:27 -0700 (PDT)
+From:   Daniel Campello <campello@chromium.org>
+To:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Daniel Campello <campello@chromium.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: Add bindings for sx9310 sensor
+Date:   Mon, 23 Mar 2020 12:45:14 -0600
+Message-Id: <20200323124310.1.I6ed779cd21abf3e70f21c1562bbda81f590976ab@changeid>
+X-Mailer: git-send-email 2.25.1.696.g5e7596f4ac-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Adds device tree bandings for sx9310 sensor.
 
-Seeing Hoan has been silent for a long time Linus suggested to me
-to be also maintaining the driver. This patch adds myself to the list
-of maintainers in the DT schema of the driver.
-
-Suggested-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Hoan Tran <hoan@os.amperecomputing.com>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
+Signed-off-by: Daniel Campello <campello@chromium.org>
 ---
- Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-index 58a8df367623..04a3c51e1dc1 100644
---- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-@@ -13,6 +13,7 @@ description: |
- 
- maintainers:
-   - Hoan Tran <hoan@os.amperecomputing.com>
-+  - Serge Semin <fancer.lancer@gmail.com>
- 
- properties:
-   $nodename:
--- 
-2.25.1
+ .../iio/proximity/semtech,sx9310.yaml         | 52 +++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+new file mode 100644
+index 00000000000000..da3424abe37e9d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/semtech,sx9310.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Semtech's SX9310 capacitive proximity sensor
++
++maintainers:
++  - Daniel Campello <campello@chromium.org>
++
++description: |
++  Semtech's SX9310/SX9311 capacitive proximity/button solution.
++
++  Specifications about the devices can be found at:
++  https://www.semtech.com/products/smart-sensing/sar-sensors/sx9310
++
++properties:
++  compatible:
++    enum:
++      - semtech,sx9310
++      - semtech,sx9311
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      The sole interrupt generated by the device used to announce the
++      preceding reading request has finished and that data is
++      available or that a close/far proximity event has happened.
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      proximity@28 {
++        compatible = "semtech,sx9310";
++        reg = <0x28>;
++        interrupt-parent = <&pio>;
++        interrupts = <5 IRQ_TYPE_LEVEL_LOW 5>;
++      };
++    };
+--
+2.25.1.696.g5e7596f4ac-goog
 
