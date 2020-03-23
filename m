@@ -2,161 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44424190065
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 22:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD9A190084
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 22:39:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726203AbgCWVcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 17:32:41 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:34084 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725897AbgCWVcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 17:32:41 -0400
-Received: by mail-il1-f193.google.com with SMTP id t11so4961556ils.1;
-        Mon, 23 Mar 2020 14:32:39 -0700 (PDT)
+        id S1726955AbgCWVjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 17:39:32 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:43473 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726618AbgCWVjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 17:39:31 -0400
+Received: by mail-pl1-f196.google.com with SMTP id v23so2439212ply.10;
+        Mon, 23 Mar 2020 14:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=04AmBWPf9NtQxOjfM+5Ojeo1U97cyh/LV2bI/QaVGJA=;
+        b=aaZSZZpEJr+iIdXt6bJX5IDtQ38srLcbGLjthpjyPYDxmh23Dbc2gxk8CQQRpa7T4N
+         QW8f33e4TDN0W0KUt1qHl7Ia04nxO/5dYw5onnEjyM5kSVaG4CtILUl2fp+qhs1VURBx
+         AAyn6rn8dPabWH9lV69kF3dcxxcjmdbXhf0cP3zYeATV4Znug/+eJUDo7zBbBEFnqTdC
+         7ECXolzDnEIhBXirUJ+kW9sTlCMfOmyoI0XD3hEGb/qGwHzT9XeGNJMwonNiIwWxkXoD
+         oyl5hmromt8w4CwhHxg2yhMidEP3qffH+jmVh9h1tRunm0tzSZhpl7oExj0kJ5Ixmfv8
+         uw3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qFDFZEF2IE5G2XSanobwC6e4wfS266KN7sjR0GtTr3A=;
-        b=GmpdE05cieHRUMaKwUAAG6jNyBcQnG/TCNfhh7DaKsLsvHaOzTYlExjeuFobjLCZ2z
-         cbYRk/ztXVAfUrQpWbr76G+tJNP7eI7lI+AqZN5TaVqdQ8MUGYrNIhBgx7bKQ5KQ+oke
-         b/M/OYpuxSrn1Gzf2u/4Hh2Y3A2InA8Ms1q0HmxMmf4Hm+dfUt+Ck/M3CDOON2qv8JaA
-         xAACfTrQnKk+DlEyvY1nmPXQpDmxjV0eEN7nzNlGwxiXLdcpvNEYyZ2Wf5H8FDSK4r5d
-         9Vkpty4T0FRL0GC6pk8QJB1TGpPmtWrWa8Q/87Dt18C6qlpPN7mya2q188gTURyiCJ5S
-         x8gw==
-X-Gm-Message-State: ANhLgQ1nz4prDEQ6Kj1j2xvMlr3pS0VJczwlUPceu4HMa59iswEVoL8n
-        IqigQZ6kcgfAwLYnnbJozg==
-X-Google-Smtp-Source: ADFU+vsdj+CL7qScZ2QMMXXFIpqS7PR2Aj0hpAbWGIXfavNyIOQeG6mSi5+SvWjx8/e821aDJWCPhg==
-X-Received: by 2002:a92:d3d0:: with SMTP id c16mr7945343ilh.22.1584999158718;
-        Mon, 23 Mar 2020 14:32:38 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k81sm5674964ilf.44.2020.03.23.14.32.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Mar 2020 14:32:38 -0700 (PDT)
-Received: (nullmailer pid 29102 invoked by uid 1000);
-        Mon, 23 Mar 2020 21:32:37 -0000
-Date:   Mon, 23 Mar 2020 15:32:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Ferruh Yigit <fery@cypress.com>,
-        Henrik Rydberg <rydberg@bitmath.org>
-Subject: Re: [PATCH 1/2 v1] dt-bindings: touchscreen: Add CY8CTMA140 bindings
-Message-ID: <20200323213237.GA20027@bogus>
-References: <20200310142818.15415-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=04AmBWPf9NtQxOjfM+5Ojeo1U97cyh/LV2bI/QaVGJA=;
+        b=r4QkGTS/VieWC+KZt3w0/3AVzLHAhqU6oe4ZrynG2tZtsoM+XEVw0etv+UFLYfhMbG
+         rD5YgKVa9nLj6VEdGXj38/t2PG2D/p72D1zlNEE8Q1Pm9P/1eo8k1S9Z2kF4Cl6m6Ojr
+         H/7m7TnCS2Clbuk2jox4cIR2l+qfgGdDMJXh8N01JC3tk68KtRLYmns2HZucL0y80a+3
+         HU9s2//qyfEqQQsKPdoID8Vm675yCuQjvQ51k2YGPghzPLM8kGRAYKx7wkcs4RwWR4hW
+         UBfZOtTJ2j8Qp7TzEUjQVbYdFvKFCOKecTJ2PZ/eeIbyiZcR9Ef8h/8ymV4tbTkjoOAY
+         X76w==
+X-Gm-Message-State: ANhLgQ3J7txk9UXBa82tJ6SH6qSCbQZvz+Cvuu1ZKwcJP9aRt1hbRtl9
+        PkERAVFTA65LCaVKVJcpvD7+UZNCNNUOQvw/CTo=
+X-Google-Smtp-Source: ADFU+vtJy+9WqkH4HzXIDlclgIfiK87PAWKt5CqsyDCM8B67mVkCQIwUaLHq9/9TwGptJlL5gqqSC4m0ckXd7nEXtH8=
+X-Received: by 2002:a17:90a:3602:: with SMTP id s2mr1468035pjb.143.1584999569682;
+ Mon, 23 Mar 2020 14:39:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200310142818.15415-1-linus.walleij@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200323180632.14119-1-Sergey.Semin@baikalelectronics.ru> <20200323195401.30338-1-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20200323195401.30338-1-Sergey.Semin@baikalelectronics.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 23 Mar 2020 23:39:18 +0200
+Message-ID: <CAHp75VdNJ3omj3fqwfbgE4DLeLqpkVA=1AXv-mDXv2z3TKDHeQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] gpio: dwapb: Fix reference clocks usage
+To:     Sergey.Semin@baikalelectronics.ru
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Hoan Tran <hoan@os.amperecomputing.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 10, 2020 at 03:28:17PM +0100, Linus Walleij wrote:
-> This adds device tree bindings for the Cypress CY8CTMA140
-> touchscreen.
-> 
+On Mon, Mar 23, 2020 at 9:55 PM <Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> From: Serge Semin <fancer.lancer@gmail.com>
+>
+> There is no need in any fixes to have the Baikal-T1 SoC DW GPIO controllers
+> supported by the kernel DW APB GPIO driver. It works for them just fine with
+> no modifications. But still there is a room for optimizations there.
+>
+> First of all as it tends to be traditional for all Baikal-T1 SoC related
+> patchset we replaced the legacy plain text-based dt-binding file with
+> yaml-based one. Baikal-T1 DW GPIO port A supports a debounce functionality,
+> but in order to use it the corresponding reference clock must be enabled.
+> We added support of that clock in the driver and made sure the dt-bindings
+> had its declaration. In addition seeing both APB and debounce reference
+> clocks are optional, we replaced the standard devm_clk_get() usage with
+> the function of optional clocks acquisition.
+>
+> This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
+> commit 98d54f81e36b ("Linux 5.6-rc4").
+
+Thank you!
+FWIW,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+>
+> Changelog v2:
+> - Use a shorter summary describing the DT bindings conversion patch.
+> - Add myself to the MAINTAINERS file as a maintainer of the DW APB GPIO driver.
+> - Add myself to the maintainers list of the DW APB GPIO driver DT schema.
+> - Print error instead of info-message if APB/debounce clocks either
+>   failed to be acquired or couldn't be enabled.
+> - Rearrange the SoB tags.
+> - Make sure DT schema defines the lowercase hex numbers in the main dt-node
+>   name and in the sub-node names.
+> - Use "allOf:" statement to apply uint32 and "minimum/maximum" limitations
+>   on the "snps,nr-gpios" property of the DW APB GPIO DT schema.
+> - Discard "interrupts-extended" property from the DT schema.
+> - Make sure the sub-nodes have names with either 'gpio-port' or
+>   'gpio-controller' prefixes.
+> - Our corporate email server doesn't change Message-Id anymore, so the patchset
+>   is resubmitted being in the cover-letter-threaded format.
+>
+> Changelog v3:
+> - Replace S: with M: section entry in the MAINTAINERS file.
+> - Cc Andy to all patches he isn't added by the auto "cc-cmd" command.
+>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+> Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+> Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+> Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+> Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Hoan Tran <hoan@os.amperecomputing.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+> Cc: linux-gpio@vger.kernel.org
 > Cc: devicetree@vger.kernel.org
-> Cc: Ferruh Yigit <fery@cypress.com>
-> Cc: Henrik Rydberg <rydberg@bitmath.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../input/touchscreen/cypress,cy8ctma140.yaml | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml
-> new file mode 100644
-> index 000000000000..66b488e48b74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/cypress,cy8ctma140.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cypress CY8CTMA140 series touchscreen controller bindings
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: cypress,cy8ctma140
-> +
-> +  reg:
-> +    description: I2C client address, defined by hardware
+> Cc: linux-kernel@vger.kernel.org
+>
+> Serge Semin (6):
+>   dt-bindings: gpio: Convert snps,dw-apb-gpio to DT schema
+>   dt-bindings: gpio: Add DW GPIO debounce clock property
+>   dt-bindings: gpio: Add Sergey Semin to DW APB GPIO driver maintainers
+>   gpio: dwapb: Use optional-clocks interface for APB ref-clock
+>   gpio: dwapb: Add debounce reference clock support
+>   MAINTAINERS: Add Segey Semin to maintainers of DW APB GPIO driver
+>
+>  .../bindings/gpio/snps,dw-apb-gpio.yaml       | 134 ++++++++++++++++++
+>  .../bindings/gpio/snps-dwapb-gpio.txt         |  65 ---------
+>  MAINTAINERS                                   |   1 +
+>  drivers/gpio/gpio-dwapb.c                     |  41 ++++--
+>  4 files changed, 161 insertions(+), 80 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/snps-dwapb-gpio.txt
+>
+> --
+> 2.25.1
+>
 
-Can drop this. That's every 'reg'.
 
-> +    const: 0x20
-> +
-> +  clock-frequency:
-> +    description: I2C client max frequency, defined by hardware
-> +    const: 400000
-
-What if I have a board which can't do 400k? Perhaps 'maximum: 400000' 
-instead.
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  vcpin-supply:
-> +    description: Analog power supply regulator on VCPIN pin
-> +
-> +  vdd-supply:
-> +    description: Digital power supply regulator on VDD pin
-> +
-> +  touchscreen-inverted-x: true
-> +  touchscreen-inverted-y: true
-> +  touchscreen-size-x: true
-> +  touchscreen-size-y: true
-> +  touchscreen-swapped-x-y: true
-> +  touchscreen-max-pressure: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - touchscreen-size-x
-> +  - touchscreen-size-y
-> +  - touchscreen-max-pressure
-> +
-> +examples:
-> +- |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c@00000000 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      touchscreen@20 {
-> +        compatible = "cypress,cy8ctma140";
-> +        reg = <0x20>;
-> +        touchscreen-size-x = <480>;
-> +        touchscreen-size-y = <800>;
-> +        touchscreen-max-pressure = <255>;
-> +        interrupt-parent = <&gpio6>;
-> +        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-> +        vdd-supply = <&ab8500_ldo_aux2_reg>;
-> +        vcpin-supply = <&ab8500_ldo_aux2_reg>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.21.1
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
