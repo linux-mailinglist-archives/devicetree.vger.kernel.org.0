@@ -2,128 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D02618F5F2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 14:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D094518F60F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 14:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728478AbgCWNmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 09:42:25 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:39126 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728473AbgCWNmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 09:42:25 -0400
-Received: by mail-wm1-f66.google.com with SMTP id a9so11807018wmj.4;
-        Mon, 23 Mar 2020 06:42:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dvv5KYSeov008fjUZCDYRHsqDtzSr80A/lH3aSDQD5E=;
-        b=RrPg7/C7thNc8X/4PiA5n/W5hrKfI7MPm0nvlwemPmWTKwPoP3NLiuGw9Sqw+Jmn7Z
-         tOt4YX066ke1FyUiB1FTDl7OCDL1xd16p24y1dlAElec9E4RXulc2soY1hDTpz7y1Rev
-         vAm6lCHCZPhs95Ph9kLOlLkApkZfeSSzyqWot9EIaa98GMoYJiTk/s+0PvA4RP2gMynG
-         vGF24ilfDnW3rowMdHf8Yu6dvF71Flers3bbyPiC30kxObdITZ4hlAG2uUnncM+kMNKs
-         XnKOQWiFd0e5OqKa4hofFihWKOFiZLTjzhM0NAePhccdxo23pzLcmjWxwNxsEijQFrsR
-         7eiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dvv5KYSeov008fjUZCDYRHsqDtzSr80A/lH3aSDQD5E=;
-        b=ovJa6EBc6o9/8bR1gAKurgePhKLdud11xGsloTncqK6a24d7QBOTwCJDjoB4nzeCCz
-         hY6Uvl6X7z0jk9qOHAy6fQm5pVVqz4tRc+A1ANUh1z96C2s33JB534P/0oBe3NB6+UP5
-         SRaj+c9AMd3dBauPMCokJMrKvlO54M7C31/8yEdD+mfRmkuYXxhQwhTyxj1KSul4cpZl
-         ZhxfusG8sq+P3kXITDhTgpvNektfgTx1GQp2ixebxh5l7DBvICeA1f+R2bWP4zxA+A3X
-         FuKDB/+uk4ke+tm+c7wmyV71iCfvYTsjbNQ4ojj0L4LiPF6Rxbhe0up3bUjwNgmvfK0R
-         3RZw==
-X-Gm-Message-State: ANhLgQ3WNE8aBjPVcBxRSE4qkBTrxVDyOrqUvHwQuvR1P4hLXNkeAzq0
-        X5PBbyA5sQafdhqaLHpdv8E=
-X-Google-Smtp-Source: ADFU+vtufi/fRnjgu+sdiS+TXN9VAeQgZRDtSwHzjcT1C05POrW5So60IPYjv6wBJnt0M/RgA/GUFw==
-X-Received: by 2002:a1c:1b51:: with SMTP id b78mr27326933wmb.8.1584970942965;
-        Mon, 23 Mar 2020 06:42:22 -0700 (PDT)
-Received: from localhost (pD9E51CDC.dip0.t-ipconnect.de. [217.229.28.220])
-        by smtp.gmail.com with ESMTPSA id s15sm25038525wrr.45.2020.03.23.06.42.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Mar 2020 06:42:21 -0700 (PDT)
-Date:   Mon, 23 Mar 2020 14:42:21 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/7] clocksource: Add Tegra186 timers support
-Message-ID: <20200323134221.GI3883508@ulmo>
-References: <20200320133452.3705040-1-thierry.reding@gmail.com>
- <20200320133452.3705040-3-thierry.reding@gmail.com>
- <48b2099c-dd83-d4dc-aab4-8c6f68a215cf@gmail.com>
- <da2a0501-664a-c5d0-7b13-174e5347eaf7@gmail.com>
+        id S1728473AbgCWNp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 09:45:58 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:39565 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728275AbgCWNp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 09:45:58 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 02NDj2b1019814;
+        Mon, 23 Mar 2020 15:45:02 +0200
+Received: by taln60.nuvoton.co.il (Postfix, from userid 20088)
+        id 7CD0D6032E; Mon, 23 Mar 2020 15:45:02 +0200 (IST)
+From:   Tali Perry <tali.perry1@gmail.com>
+To:     brendanhiggins@google.com, avifishman70@gmail.com,
+        tmaimon77@gmail.com, kfting@nuvoton.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        wsa@the-dreams.de, andriy.shevchenko@linux.intel.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        kbuild test robot <lkp@intel.com>
+Subject: [PATCH v9 0/3] i2c: npcm7xx: add NPCM i2c controller driver
+Date:   Mon, 23 Mar 2020 15:44:34 +0200
+Message-Id: <20200323134437.259210-1-tali.perry1@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BWWlCdgt6QLN7tv3"
-Content-Disposition: inline
-In-Reply-To: <da2a0501-664a-c5d0-7b13-174e5347eaf7@gmail.com>
-User-Agent: Mutt/1.13.1 (2019-12-14)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set adds i2c controller support 
+for the Nuvoton NPCM Baseboard Management Controller (BMC).
 
---BWWlCdgt6QLN7tv3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+NPCM7xx includes 16 I2C controllers. This driver operates the controller.
+This module also includes a slave mode.
 
-On Fri, Mar 20, 2020 at 06:38:32PM +0300, Dmitry Osipenko wrote:
-> 20.03.2020 18:11, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > 20.03.2020 16:34, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> >> From: Thierry Reding <treding@nvidia.com>
-> >>
-> >> Currently this only supports a single watchdog, which uses a timer in
-> >> the background for countdown. Eventually the timers could be used for
-> >> various time-keeping tasks, but by default the architected timer will
-> >> already provide that functionality.
-> >>
-> >> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> >> ---
-> >=20
-> > ...
-> >> +config TEGRA186_TIMER
-> >> +	bool "NVIDIA Tegra186 timer driver"
-> >=20
-> > tristate?
-> >=20
-> >> +	depends on ARCH_TEGRA || COMPILE_TEST
-> >=20
-> > depends on WATCHDOG && WATCHDOG_CORE?
->=20
-> Actually `select WATCHDOG_CORE` for the WATCHDOG_CORE.
+---
+v9 -> v8:
+	- Fix according to maintainer comments.
+	- Split lines of iowrite..(ioread..) to separate lines.
+	- Use readx_poll_timeout_atomic
+	- resolve various style issues.
+	 
+v8 -> v7:
+	- Split to two commits, one for master, one for slave.
+	- Rename smb to i2c.
+	- Remove global vars.
 
-WATCHDOG_CORE is user-visible, so it's not safe to select it. Any reason
-depends on WATCHDOG && WATCHDOG_CORE wouldn't work? I guess a dependency
-on WATCHDOG_CORE would be enough because that itself already depends on
-WATCHDOG.
+v7 -> v6:
+	- Rebased on Linux 5.4-rc8  (was Linux 5.4-rc7).
+	- Fix issue found by kbuild test robot (redundant include).
+	- Note: left a warning related to fall through. This fall through is
+	  intentional.
+	
+v6 -> v5:
+	- Update documentation
 
-Thierry
+v5 -> v4:
+	- support recovery
+	- master-slave switch support needed for IPMB
 
---BWWlCdgt6QLN7tv3
-Content-Type: application/pgp-signature; name="signature.asc"
+v4 -> v3:
+	- typo on cover letter.
 
------BEGIN PGP SIGNATURE-----
+v3 -> v2:
+	- fix dt binding: compatible name: omit "bus"
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl54vLwACgkQ3SOs138+
-s6Hm6w/7B3Ghz0ANr2BofgzITgnu5EWzIVG8pCMCtGBR/7mX8IPwLWoO4VG/6ku2
-Q23YgLA2+IGMRsLJ83Ln7T5ErjdPZ/r903q4d3DMp6EdKRdaqU45dDrbYyf7Zi/4
-sU2xati6QaZxxUEOtQbg+8B+2y1lLSqo5f90dIZu8P/6Jf1oAyvgSyzvWXf77936
-6595a5kOSRGfl5/X+0cZ8am6o+zr6Pf3MdZ6+znzSG4PRqGh8UrccEg7oQvmsuib
-ZOk5Ka5ZZQ7I8fw6vGIAoGaBKY2wnr/SnWGQNCaqf+PW2wrtMiHLeqhrPtk92IDK
-pSQvAuxHHAuO2S/gPC+BAVBkrm2MuGuMzdYg+4HRxrjsb7nKwiei7sCGx3uCirEh
-JLLAfG+wV4XpwuswLW5ZWM+IwIvI2JmrUYn1lFyFwfqf5G82zh236fdhNsZI4iK0
-jYrGdGLAnHg0B8BJIUC5VAWvpnibsslVMcAYMuS/q98mfbul7uRFK7teqnXsj7mw
-i2nc1CLzPmaJPLNxpmCQOeNReiCmOM4jvhMY+qY0bjw8jx3RWLT1g8P4tsO5shXT
-17YjuI0aJ5G5iBXcsjHEi8SVVWximHxgYCQpk5kILgwOchRn+58h7YF9b6rBVdU/
-K5wOe5gXnVKaD6lyI2AjbPtWp/Dhk89nY2DnO4q+tdopRhze+S0=
-=AZjC
------END PGP SIGNATURE-----
+v2 -> v1:
+	- run check patch in strict mode.
+	- use linux crc.
+	- define regs in constant offset without base.
+	- remove debug prints.
+	- no declarations for local functions.
+	
+v1: initial version
 
---BWWlCdgt6QLN7tv3--
+Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reported-by: kbuild test robot <lkp@intel.com>
+
+---
+Tali Perry (3):
+  dt-bindings: i2c: npcm7xx: add NPCM I2C controller documentation
+  i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver
+  i2c: npcm7xx: Add support for slave mode for Nuvoton NPCM BMC I2C
+    controller driver.
+
+ .../devicetree/bindings/i2c/i2c-npcm7xx.txt   |   29 +
+ drivers/i2c/busses/Kconfig                    |    9 +
+ drivers/i2c/busses/Makefile                   |    1 +
+ drivers/i2c/busses/i2c-npcm7xx.c              | 2434 +++++++++++++++++
+ 4 files changed, 2473 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-npcm7xx.txt
+ create mode 100644 drivers/i2c/busses/i2c-npcm7xx.c
+
+
+base-commit: af42d3466bdc8f39806b26f593604fdc54140bcb
+-- 
+2.22.0
+
