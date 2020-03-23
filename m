@@ -2,164 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B849F18FBF2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 18:52:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C01EB18FC32
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2020 18:59:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727572AbgCWRwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Mar 2020 13:52:45 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:17093 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727803AbgCWRwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Mar 2020 13:52:44 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e78f7110000>; Mon, 23 Mar 2020 10:51:13 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Mon, 23 Mar 2020 10:52:43 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Mon, 23 Mar 2020 10:52:43 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Mar
- 2020 17:52:43 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Mon, 23 Mar 2020 17:52:42 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.160.78]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5e78f76a0000>; Mon, 23 Mar 2020 10:52:42 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <helen.koike@collabora.com>
-CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v5 9/9] arm64: tegra: Add Tegra VI CSI support in device tree
-Date:   Mon, 23 Mar 2020 10:52:35 -0700
-Message-ID: <1584985955-19101-10-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1584985955-19101-1-git-send-email-skomatineni@nvidia.com>
-References: <1584985955-19101-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1727196AbgCWR7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Mar 2020 13:59:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35396 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727011AbgCWR7b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Mar 2020 13:59:31 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6C2292076E;
+        Mon, 23 Mar 2020 17:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584986370;
+        bh=2l0KQW4VoP61cJLv+dL28Z9ly7A7laSQG5Iu1ELGiNg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0lqsb+hyuD6XqDBK/iujiOzptPXvHe2aV/Kkwr/P9PUnDfHuueev3+9fAESyrBbXO
+         ZkqqYSoJFuvUWkikxGH/IUJ026YcMeuNlg4tvEn2RHdNtA8m0Q8d/1izBjP/Y7z1YM
+         neW0n8jo8z3fJdmpYEmC19DdPkIw8QyaG/UxJ2uQ=
+Received: by mail-qk1-f173.google.com with SMTP id x3so4743764qki.4;
+        Mon, 23 Mar 2020 10:59:30 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3X6lkENw1D+18PwfR1dHlvEp+svbIONC0IFdXeaX3lh/nmGMJ+
+        CfwV5SOwBn319i1jyWmcJbwatv4y65OE6frLzg==
+X-Google-Smtp-Source: ADFU+vsR6Us0V+BMyVNelvszRuS/SrM36zlyf95ZYn/ZAx/QRMGOQ3N6czh+WeF4cZMmcFdLqwHXYaDLwzsbRTR1RmQ=
+X-Received: by 2002:a37:8502:: with SMTP id h2mr22475590qkd.223.1584986369516;
+ Mon, 23 Mar 2020 10:59:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1584985873; bh=qg4/50YwdGiG0ifmC8NW2wUPpPGLSESHVND184P5UFw=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=kFzaIrtxtdihQI5PAHWVWD/UqOIby7BGGDpM+ZaaV/ObTaFIMJs+ZJWEWARzbmnXT
-         Ca204D+JfmYqEQNxS8Rh24W/uHV2S3AhvYPNR6ZQgEmZhYyLa4CH9oOu1+XLiiBtaF
-         zZqG/v/6VGz9uuAS1exEQMqWOkOKo6mDGJmhVvSLmcYvLnkh1fBPVH8J36Jmhn14Rg
-         yzHqgp0rFSHyF6z5PcjxpQVFLNW1phlCBNXTIiRIe10ZnjaaGjO9zkHzbPS/kMwIrN
-         6UgbN+jg/cWGn+mTW9SyomtuhIZYwvL1Be1T1gKqRdQS8ktM0A26X4/z6O1tuD8Pv4
-         t0wEW0mA7D7Tg==
+References: <20200320174107.29406-1-lkundrak@v3.sk> <20200320174107.29406-9-lkundrak@v3.sk>
+In-Reply-To: <20200320174107.29406-9-lkundrak@v3.sk>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 23 Mar 2020 11:59:17 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+rzaFLvZGX+dpgGhfCSsAvj06T8fcgo83m+ZJGboKsnQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+rzaFLvZGX+dpgGhfCSsAvj06T8fcgo83m+ZJGboKsnQ@mail.gmail.com>
+Subject: Re: [PATCH 08/10] powerpc/fsl: Make serial ports compatible with ns16550a
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Mans Rullgard <mans@mansr.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra210 contains VI controller for video input capture from MIPI
-CSI camera sensors and also supports built-in test pattern generator.
+On Fri, Mar 20, 2020 at 11:41 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
+>
+> There are separate compatible strings for ns16550 and ns16550a and the
+> Freescale serial port is compatible with the latter one, with working
+> FIFO.
 
-CSI ports can be one-to-one mapped to VI channels for capturing from
-an external sensor or from built-in test pattern generator.
+I don't think changing this is right. First, 'ns16550' is what's
+documented in the DT spec (and ePAPR which it's based on).
 
-This patch adds support for VI and CSI and enables them in Tegra210
-device tree.
+Second, these dts files are pretty mature/stable, so I'm less inclined
+to change them. AFAICT, this change either enables the fifo (which
+would be an untested change in behavior) or has no effect because the
+fifo is auto-detected.
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 10 ++++++
- arch/arm64/boot/dts/nvidia/tegra210.dtsi       | 45 +++++++++++++++++++++++++-
- 2 files changed, 54 insertions(+), 1 deletion(-)
+> Use the appropriate compatible string that is also consistent with ARM64
+> Freescale boards and thus avoiding one special case in the binding schema.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-index 313a4c2..b57d837 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-@@ -14,6 +14,16 @@
- 			status = "okay";
- 		};
- 
-+		vi@54080000 {
-+			status = "okay";
-+
-+			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-+
-+			csi@838 {
-+				status = "okay";
-+			};
-+		};
-+
- 		sor@54580000 {
- 			status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 5b1dfd8..2deba87 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -137,9 +137,43 @@
- 
- 		vi@54080000 {
- 			compatible = "nvidia,tegra210-vi";
--			reg = <0x0 0x54080000 0x0 0x00040000>;
-+			reg = <0x0 0x54080000 0x0 0x700>;
- 			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-+			assigned-clocks = <&tegra_car TEGRA210_CLK_VI>;
-+			assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_C4_OUT0>;
-+
-+			clocks = <&tegra_car TEGRA210_CLK_VI>;
-+			clock-names = "vi";
-+			power-domains = <&pd_venc>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			ranges = <0x0 0x0 0x54080000 0x2000>;
-+
-+			csi@838 {
-+				compatible = "nvidia,tegra210-csi";
-+				reg = <0x838 0x1300>;
-+				status = "disabled";
-+				assigned-clocks = <&tegra_car TEGRA210_CLK_CILAB>,
-+						  <&tegra_car TEGRA210_CLK_CILCD>,
-+						  <&tegra_car TEGRA210_CLK_CILE>;
-+				assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_P>,
-+							 <&tegra_car TEGRA210_CLK_PLL_P>,
-+							 <&tegra_car TEGRA210_CLK_PLL_P>;
-+				assigned-clock-rates = <102000000>,
-+						       <102000000>,
-+						       <102000000>;
-+
-+				clocks = <&tegra_car TEGRA210_CLK_CSI>,
-+					 <&tegra_car TEGRA210_CLK_CILAB>,
-+					 <&tegra_car TEGRA210_CLK_CILCD>,
-+					 <&tegra_car TEGRA210_CLK_CILE>;
-+				clock-names = "csi", "cilab", "cilcd", "cile";
-+				power-domains = <&pd_sor>;
-+			};
-+
- 		};
- 
- 		tsec@54100000 {
-@@ -839,6 +873,15 @@
- 				reset-names = "vic";
- 				#power-domain-cells = <0>;
- 			};
-+
-+			pd_venc: venc {
-+				clocks = <&tegra_car TEGRA210_CLK_VI>,
-+					 <&tegra_car TEGRA210_CLK_CSI>;
-+				resets = <&mc TEGRA210_MC_RESET_VI>,
-+					 <&tegra_car TEGRA210_RST_VI>,
-+					 <&tegra_car TEGRA210_CLK_CSI>;
-+				#power-domain-cells = <0>;
-+			};
- 		};
- 
- 		sdmmc1_3v3: sdmmc1-3v3 {
--- 
-2.7.4
+Well, that's annoying...
 
+Rob
