@@ -2,177 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC54191511
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4650D19153A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727837AbgCXPkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 11:40:49 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:49655 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727510AbgCXPkt (ORCPT
+        id S1727389AbgCXPpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 11:45:31 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:57007 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727684AbgCXPpb (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Mar 2020 11:40:49 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 6EC37580187;
-        Tue, 24 Mar 2020 11:40:47 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 24 Mar 2020 11:40:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=lR0eBIanF6SDCnxFLTSyE8ziSKg
-        i9ZA+hhtsHfD2qAA=; b=TixMqDr3fI806sOY6xWM1xXk/HuR5Sl4JafhqvNyYCh
-        B0WnbHWQLOO/1xO3PFhETsvKzKyyEM88a0AaojKb7Z7jEAY7iBfwNSPkX7HeNFhP
-        EpVoSgsuZtGVDGoBCmKTFfXrDkcnCGOxzvDPtk7CplrnmncsR3pI089wwgutQyOl
-        r9c4STe+YabsAQZyWWaej1FAM3C2S7RoT2JjIigyyOE4sFLStzFrVqAlujo5Y7Vu
-        duNNH6cgHIIj02nefyBxBJcAJneMRe7HJ+0/UkxGCKKLuzYUEBgya224oMv9FJQ8
-        hfkxFh4t20pQdpM7EhYCvXT2s9wHPi5dnalEcb5Rayg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=lR0eBI
-        anF6SDCnxFLTSyE8ziSKgi9ZA+hhtsHfD2qAA=; b=BjBkNffjGWUc/5jO4przwO
-        m59Z+khlWSZ+YRhAy0e926I4p4hSBXhtqDoIV/ttcdvFNvFP7jrBppP4f8ENR3fy
-        x1uQbKV6JcLOBipoIyP3jrVTNTedqJHP4cSabAQ/rYi8ndXBL33kHLHOjodHgE6D
-        Fnqe3JIsYpplYmQHIuQ6PIKdNyDshuUMRlWDC/n4fsQ9ElI1YNkfeiIVkoZ4Q8vp
-        fQDoCqp7yY3eY7AHpOL/ZNL5CBDO8jHaulswREydapxFOLUDBt+Hh+HyqJq4RhAn
-        q6eymUBCE4G0MWyZYWMxTTJNsdGOtrkVqk7c0stXqR13ZtgqmC9VVNcaRhkKph6w
-        ==
-X-ME-Sender: <xms:_il6Xt4ksL-jhcvZmkMCViNSBNo_RZcE01s0-7JRpOaAC5BY7DBs2Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrudehuddggeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltd
-    drkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
-    lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:_il6XrOD7fk_9C_XwgCcc_S_KP163e5_Z8_eD_LWJkl0VBKflvYB0Q>
-    <xmx:_il6XopYb_SZOG4texGiaC00k_z4vPuvlVbEHFAJ4hOcMuQW7FPmEQ>
-    <xmx:_il6XtKI1PhRtOFQ3CLV-Slek7_CFFK3anEYIZsnEFTNFkZcbvKM3A>
-    <xmx:_yl6XjBaAJpG6w4gxocQIXvtVa5yNQPAsyZ6cZubr3X6ZjCqfUjYGQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 1E4E63280064;
-        Tue, 24 Mar 2020 11:40:46 -0400 (EDT)
-Date:   Tue, 24 Mar 2020 16:40:45 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        LAK <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>
-Subject: Re: [PATCH v3 1/4] media: dt-bindings: media: i2c: Switch to
- assigned-clock-rates
-Message-ID: <20200324154045.whiy6uvlg2mrjv5a@gilmour.lan>
-References: <1584133954-6953-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1584133954-6953-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200319124452.3yfcvq754vi4q2rv@gilmour.lan>
- <20200319130348.GC4872@pendragon.ideasonboard.com>
- <CA+V-a8s-GZsYuBLyGnzURZfGD42f0c+QEan6FSwb2ew1=7Gj3g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="766st27slgtqfmag"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8s-GZsYuBLyGnzURZfGD42f0c+QEan6FSwb2ew1=7Gj3g@mail.gmail.com>
+        Tue, 24 Mar 2020 11:45:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1585064731; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=v9dIb51/ZCmNlwPIwP3pchy18wJ6E/8T6dJA5ppS5pE=; b=ia3J5K094C7F3Q6kCTZoOdb5k040bhMuACdWNyfJT82Hhh9gW1/sQXPds1AOKe/jKk2wLTWl
+ uBktolOibVWdUKMfj25TU5yFfkP+XEtlqlQ/T7zlN7fdcwSaJtV91pHOkHt4ZNOJV6/4qZS9
+ OytuQQX1gcRyI2yGX8Tx+DLSBRk=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e7a2b09.7feefbb70f10-smtp-out-n04;
+ Tue, 24 Mar 2020 15:45:13 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6B241C433BA; Tue, 24 Mar 2020 15:45:13 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jprakash-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jprakash)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 881B0C433CB;
+        Tue, 24 Mar 2020 15:45:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 881B0C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jprakash@codeaurora.org
+From:   Jishnu Prakash <jprakash@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, linus.walleij@linaro.org, sboyd@codeaurora.org,
+        Jonathan.Cameron@huawei.com, smohanad@codeaurora.org,
+        kgunda@codeaurora.org, aghayal@codeaurora.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        Jishnu Prakash <jprakash@codeaurora.org>
+Subject: [PATCH 0/3] iio: adc: Add support for QCOM SPMI PMIC7 ADC
+Date:   Tue, 24 Mar 2020 21:14:07 +0530
+Message-Id: <1585064650-16235-1-git-send-email-jprakash@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The first patch converts the ADC DT bindings from .txt to .yaml format.
 
---766st27slgtqfmag
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The second patch updates the documentation, for PMIC7 ADC. The main
+difference between PMIC5 and PMIC7 for ADC is that for PMIC7, SW requests to
+ADCs (on any PMIC) need to go through the ADC on PMK8350, which communicates with
+the ADCs on other PMICs through PBS. A SID register has been added for SW to specify
+the PMIC with which it needs to communicate.
 
-On Thu, Mar 19, 2020 at 01:17:51PM +0000, Lad, Prabhakar wrote:
-> Hi Laurent,
->
-> On Thu, Mar 19, 2020 at 1:04 PM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> >
-> > Hi Maxime,
-> >
-> > On Thu, Mar 19, 2020 at 01:44:52PM +0100, Maxime Ripard wrote:
-> > > On Fri, Mar 13, 2020 at 09:12:31PM +0000, Lad Prabhakar wrote:
-> > > > Use assigned-clock-rates to specify the clock rate. Also mark
-> > > > clock-frequency property as deprecated.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/media/i2c/ov5645.txt | 5 +++--
-> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> > > > index 72ad992..e62fe82 100644
-> > > > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> > > > @@ -8,7 +8,7 @@ Required Properties:
-> > > >  - compatible: Value should be "ovti,ov5645".
-> > > >  - clocks: Reference to the xclk clock.
-> > > >  - clock-names: Should be "xclk".
-> > > > -- clock-frequency: Frequency of the xclk clock.
-> > > > +- clock-frequency (deprecated): Frequency of the xclk clock.
-> > > >  - enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
-> > > >    to the hardware pin PWDNB which is physically active low.
-> > > >  - reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
-> > > > @@ -37,7 +37,8 @@ Example:
-> > > >
-> > > >                     clocks = <&clks 200>;
-> > > >                     clock-names = "xclk";
-> > > > -                   clock-frequency = <24000000>;
-> > > > +                   assigned-clocks = <&clks 200>;
-> > > > +                   assigned-clock-rates = <24000000>;
-> > > >
-> > > >                     vdddo-supply = <&camera_dovdd_1v8>;
-> > > >                     vdda-supply = <&camera_avdd_2v8>;
-> > >
-> > > clock-frequency is quite different from assigned-clock-rates though,
-> > > semantically speaking. clock-frequency is only about what the clock
-> > > frequency is, while assigned-clock-rates will change the rate as well,
-> > > and you have no idea how long it will last.
-> >
-> > The driver currently reads the clock-frequency property and then calls
-> > clk_set_rate(). I agree tht assigned-clock-rates isn't a panacea, but I
-> > think it's less of a hack than what we currently have.
-> >
-> > As discussed on IRC, maybe the best option in this specific case is to
-> > drop clock-frequency and assigned-clok-rates, and call clk_set_rate()
-> > with a hardcoded frequency of 24MHz in the driver, as that's the only
-> > frequency the driver supports.
-> >
-> Does this mean any driver which has a fixed clock requirement shouldn't be a
-> DT property and should be just handled by the drivers internally ?
+The third patch adds driver support for PMIC7 ADC. It also adds definitions for
+PMIC7 ADC channels and virtual channel definitions per PMIC (made by combining ADC
+channel number and PMIC SID), to be used by ADC clients for PMIC7.
 
-It's hard to give a generic policy, but here, the hardware is pretty
-flexible since it can deal with anything between 6MHz to 50-something
-MHz, it's the driver that chooses to enforce a 24MHz and be pedantic
-about it, so it's up to the driver to enforce that policy, not to the
-DT since it's essentially a software limitation, not a hardware one.
+Jishnu Prakash (3):
+  iio: adc: Convert the QCOM SPMI ADC bindings to .yaml format
+  iio: adc: Add PMIC7 ADC bindings
+  iio: adc: Add support for PMIC7 ADC
 
-Maxime
+ .../devicetree/bindings/iio/adc/qcom,spmi-vadc.txt | 173 --------------
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml           | 192 +++++++++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c                   | 239 ++++++++++++++++++-
+ drivers/iio/adc/qcom-vadc-common.c                 | 260 +++++++++++++++++++++
+ drivers/iio/adc/qcom-vadc-common.h                 |  14 ++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h    |  67 ++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h   |  88 +++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h   |  46 ++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-vadc.h           |  78 ++++++-
+ 11 files changed, 1035 insertions(+), 178 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h
 
---766st27slgtqfmag
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXnop/QAKCRDj7w1vZxhR
-xUp3AQC4CpS3+gKsDPAnZm8pakj0NLuoi+oYlCsyVqEEtPSmBQD/W0Fnywv9KUiq
-QETeY979lVRzXw6cNCOb1qDBjB9TGQE=
-=nwfk
------END PGP SIGNATURE-----
-
---766st27slgtqfmag--
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
