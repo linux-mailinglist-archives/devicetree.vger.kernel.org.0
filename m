@@ -2,16 +2,16 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6587E191536
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74DF9191521
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727216AbgCXPo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 11:44:29 -0400
-Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17817 "EHLO
+        id S1727879AbgCXPlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 11:41:44 -0400
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17886 "EHLO
         sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728483AbgCXPo3 (ORCPT
+        by vger.kernel.org with ESMTP id S1727834AbgCXPlo (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Mar 2020 11:44:29 -0400
+        Tue, 24 Mar 2020 11:41:44 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1585064263;
         s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
         h=From:To:Cc:Message-ID:Subject:Date:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type;
