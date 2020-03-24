@@ -2,138 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7816B1914FA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC54191511
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 16:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728551AbgCXPjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 11:39:07 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36635 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728445AbgCXPjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 11:39:06 -0400
-Received: by mail-ot1-f66.google.com with SMTP id l23so7329517otf.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 08:39:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=gdNgUyovH3fFL036Rwp6qFNO07syiek5Tdf11PTq7yM=;
-        b=ONu4l2SCV9dgZFVg2UfYC52IuLbDCEb5mUeYEhKuzsvwFmPCM5N8SJEEk4UafeWoac
-         DoP3VVqPJ1Dk2LAERFmDMuVGBO0TY89uQuoBp7MFHclOAMl3bheWXApCowCeUXM/iSYl
-         Nki8KGmmkSaOqM2fHh6N8WGQtlddbJhB3NDhpJ++w3NiESRoLgfLeVfr2rbE+cELcGxq
-         o2DKUdhGkONXExSAuo9kb0sL0NAcnUZsgjhHgPJPpfzcsj07J5frb6YO7TEkmwK/jufN
-         epMmVkXkVFOiJMmQSqJtLz6OILDjXl85QLHgLlYPCaP8HtfqS6wc3U9QgUQs5Zr3ATYI
-         g9ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=gdNgUyovH3fFL036Rwp6qFNO07syiek5Tdf11PTq7yM=;
-        b=puSLFDBdPX5TEbDw109EJMcOYsb3lTWvaqijEeEbQ9pMsF+tv5mt37kiXuknU+wVSg
-         MmkbiDaKkPOZzspXdD4+7HoKXQ1hD6G4uHCVVcyFlB5GNZtaJ8j2m0w3U7ssIk8Tgrk2
-         AHAuOwdHr+SC8FX2Q9F+WRQHtzTzm07Wbw+h2jdA5FATluu/ScM4+HodBujpsrF3EmNi
-         yNZ1dPdk5B1JlpyD4mw/MSsoj8UxLNuyTB1g/0RWW0MpEeNa474vaqwDaYTKZ26tnNFo
-         6YGLFavmx5JKFUcnZKJkoeGKEcQOwDNUqrjndN7rYEo7WKoNjbRM52mhx5DAhfulFZfh
-         ys/A==
-X-Gm-Message-State: ANhLgQ1HUxgaH24aeZPHfEhttQreCJbAKpuxKfSgyeT1bp38u+cOipcR
-        JJdv/ggO7Le62kyd9wenffv10hE2rvG8VgGLtcW95A==
-X-Google-Smtp-Source: ADFU+vtLsKQwanUzdtbf2Q0mesZdWrEI+84/TzmxAH6yGULo2vc9lF+1ZHeUnyQ0lDvVCPKemKF+dhoLeJTrSBfVjBc=
-X-Received: by 2002:a4a:e48a:: with SMTP id s10mr2128023oov.10.1585064345759;
- Tue, 24 Mar 2020 08:39:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200317135740.19412-1-robert.foss@linaro.org>
- <20200317135740.19412-7-robert.foss@linaro.org> <2523204.mvXUDI8C0e@g550jk>
-In-Reply-To: <2523204.mvXUDI8C0e@g550jk>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 24 Mar 2020 16:38:54 +0100
-Message-ID: <CAG3jFyuiVFHfNVwCAEynH0j8fK91k32m+nvZYYR79gju9cwPKQ@mail.gmail.com>
-Subject: Re: [v2 6/6] arm64: defconfig: Enable QCOM CAMCC, CAMSS and CCI drivers
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     agross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, catalin.marinas@arm.com,
-        will@kernel.org, shawnguo@kernel.org, olof@lixom.net,
-        maxime@cerno.tech, Anson.Huang@nxp.com, dinguyen@kernel.org,
-        leonard.crestez@nxp.com,
-        Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
+        id S1727837AbgCXPkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 11:40:49 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:49655 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727510AbgCXPkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Mar 2020 11:40:49 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6EC37580187;
+        Tue, 24 Mar 2020 11:40:47 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 24 Mar 2020 11:40:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=lR0eBIanF6SDCnxFLTSyE8ziSKg
+        i9ZA+hhtsHfD2qAA=; b=TixMqDr3fI806sOY6xWM1xXk/HuR5Sl4JafhqvNyYCh
+        B0WnbHWQLOO/1xO3PFhETsvKzKyyEM88a0AaojKb7Z7jEAY7iBfwNSPkX7HeNFhP
+        EpVoSgsuZtGVDGoBCmKTFfXrDkcnCGOxzvDPtk7CplrnmncsR3pI089wwgutQyOl
+        r9c4STe+YabsAQZyWWaej1FAM3C2S7RoT2JjIigyyOE4sFLStzFrVqAlujo5Y7Vu
+        duNNH6cgHIIj02nefyBxBJcAJneMRe7HJ+0/UkxGCKKLuzYUEBgya224oMv9FJQ8
+        hfkxFh4t20pQdpM7EhYCvXT2s9wHPi5dnalEcb5Rayg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=lR0eBI
+        anF6SDCnxFLTSyE8ziSKgi9ZA+hhtsHfD2qAA=; b=BjBkNffjGWUc/5jO4przwO
+        m59Z+khlWSZ+YRhAy0e926I4p4hSBXhtqDoIV/ttcdvFNvFP7jrBppP4f8ENR3fy
+        x1uQbKV6JcLOBipoIyP3jrVTNTedqJHP4cSabAQ/rYi8ndXBL33kHLHOjodHgE6D
+        Fnqe3JIsYpplYmQHIuQ6PIKdNyDshuUMRlWDC/n4fsQ9ElI1YNkfeiIVkoZ4Q8vp
+        fQDoCqp7yY3eY7AHpOL/ZNL5CBDO8jHaulswREydapxFOLUDBt+Hh+HyqJq4RhAn
+        q6eymUBCE4G0MWyZYWMxTTJNsdGOtrkVqk7c0stXqR13ZtgqmC9VVNcaRhkKph6w
+        ==
+X-ME-Sender: <xms:_il6Xt4ksL-jhcvZmkMCViNSBNo_RZcE01s0-7JRpOaAC5BY7DBs2Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrudehuddggeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltd
+    drkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
+    lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:_il6XrOD7fk_9C_XwgCcc_S_KP163e5_Z8_eD_LWJkl0VBKflvYB0Q>
+    <xmx:_il6XopYb_SZOG4texGiaC00k_z4vPuvlVbEHFAJ4hOcMuQW7FPmEQ>
+    <xmx:_il6XtKI1PhRtOFQ3CLV-Slek7_CFFK3anEYIZsnEFTNFkZcbvKM3A>
+    <xmx:_yl6XjBaAJpG6w4gxocQIXvtVa5yNQPAsyZ6cZubr3X6ZjCqfUjYGQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 1E4E63280064;
+        Tue, 24 Mar 2020 11:40:46 -0400 (EDT)
+Date:   Tue, 24 Mar 2020 16:40:45 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Loic Poulain <loic.poulain@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        linux-media <linux-media@vger.kernel.org>
+Subject: Re: [PATCH v3 1/4] media: dt-bindings: media: i2c: Switch to
+ assigned-clock-rates
+Message-ID: <20200324154045.whiy6uvlg2mrjv5a@gilmour.lan>
+References: <1584133954-6953-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1584133954-6953-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200319124452.3yfcvq754vi4q2rv@gilmour.lan>
+ <20200319130348.GC4872@pendragon.ideasonboard.com>
+ <CA+V-a8s-GZsYuBLyGnzURZfGD42f0c+QEan6FSwb2ew1=7Gj3g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="766st27slgtqfmag"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8s-GZsYuBLyGnzURZfGD42f0c+QEan6FSwb2ew1=7Gj3g@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Luca,
 
-On Fri, 20 Mar 2020 at 20:52, Luca Weiss <luca@z3ntu.xyz> wrote:
+--766st27slgtqfmag
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, Mar 19, 2020 at 01:17:51PM +0000, Lad, Prabhakar wrote:
+> Hi Laurent,
 >
-> Hi Robert,
->
-> On Dienstag, 17. M=C3=A4rz 2020 14:57:40 CET Robert Foss wrote:
-> > Build camera clock, isp and controller drivers as modules.
+> On Thu, Mar 19, 2020 at 1:04 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
 > >
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/configs/defconfig | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> > Hi Maxime,
 > >
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfi=
-g
-> > index 4db223dbc549..7cb6989249ab 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -376,6 +376,7 @@ CONFIG_I2C_MESON=3Dy
-> >  CONFIG_I2C_MV64XXX=3Dy
-> >  CONFIG_I2C_OWL=3Dy
-> >  CONFIG_I2C_PXA=3Dy
-> > +CONFIG_I2C_QCOM_CCI=3Dm
-> >  CONFIG_I2C_QCOM_GENI=3Dm
-> >  CONFIG_I2C_QUP=3Dy
-> >  CONFIG_I2C_RK3X=3Dy
-> > @@ -530,6 +531,7 @@ CONFIG_VIDEO_SAMSUNG_S5P_MFC=3Dm
-> >  CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=3Dm
-> >  CONFIG_VIDEO_RENESAS_FCP=3Dm
-> >  CONFIG_VIDEO_RENESAS_VSP1=3Dm
-> > +CONFIG_VIDEO_QCOM_CAMSS=3Dm
-> >  CONFIG_DRM=3Dm
-> >  CONFIG_DRM_I2C_NXP_TDA998X=3Dm
-> >  CONFIG_DRM_NOUVEAU=3Dm
-> > @@ -732,6 +734,7 @@ CONFIG_MSM_GCC_8994=3Dy
-> >  CONFIG_MSM_MMCC_8996=3Dy
-> >  CONFIG_MSM_GCC_8998=3Dy
-> >  CONFIG_QCS_GCC_404=3Dy
-> > +CONFIG_SDM_CAMCC_845=3Dm
->
-> You seem to have this option twice in this patch.
+> > On Thu, Mar 19, 2020 at 01:44:52PM +0100, Maxime Ripard wrote:
+> > > On Fri, Mar 13, 2020 at 09:12:31PM +0000, Lad Prabhakar wrote:
+> > > > Use assigned-clock-rates to specify the clock rate. Also mark
+> > > > clock-frequency property as deprecated.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/media/i2c/ov5645.txt | 5 +++--
+> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > index 72ad992..e62fe82 100644
+> > > > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > @@ -8,7 +8,7 @@ Required Properties:
+> > > >  - compatible: Value should be "ovti,ov5645".
+> > > >  - clocks: Reference to the xclk clock.
+> > > >  - clock-names: Should be "xclk".
+> > > > -- clock-frequency: Frequency of the xclk clock.
+> > > > +- clock-frequency (deprecated): Frequency of the xclk clock.
+> > > >  - enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> > > >    to the hardware pin PWDNB which is physically active low.
+> > > >  - reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> > > > @@ -37,7 +37,8 @@ Example:
+> > > >
+> > > >                     clocks = <&clks 200>;
+> > > >                     clock-names = "xclk";
+> > > > -                   clock-frequency = <24000000>;
+> > > > +                   assigned-clocks = <&clks 200>;
+> > > > +                   assigned-clock-rates = <24000000>;
+> > > >
+> > > >                     vdddo-supply = <&camera_dovdd_1v8>;
+> > > >                     vdda-supply = <&camera_avdd_2v8>;
+> > >
+> > > clock-frequency is quite different from assigned-clock-rates though,
+> > > semantically speaking. clock-frequency is only about what the clock
+> > > frequency is, while assigned-clock-rates will change the rate as well,
+> > > and you have no idea how long it will last.
+> >
+> > The driver currently reads the clock-frequency property and then calls
+> > clk_set_rate(). I agree tht assigned-clock-rates isn't a panacea, but I
+> > think it's less of a hack than what we currently have.
+> >
+> > As discussed on IRC, maybe the best option in this specific case is to
+> > drop clock-frequency and assigned-clok-rates, and call clk_set_rate()
+> > with a hardcoded frequency of 24MHz in the driver, as that's the only
+> > frequency the driver supports.
+> >
+> Does this mean any driver which has a fixed clock requirement shouldn't be a
+> DT property and should be just handled by the drivers internally ?
 
-Thanks for catching this.
-I'll send out a fix in v3.
+It's hard to give a generic policy, but here, the hardware is pretty
+flexible since it can deal with anything between 6MHz to 50-something
+MHz, it's the driver that chooses to enforce a 24MHz and be pedantic
+about it, so it's up to the driver to enforce that policy, not to the
+DT since it's essentially a software limitation, not a hardware one.
 
->
-> >  CONFIG_SDM_GCC_845=3Dy
-> >  CONFIG_SM_GCC_8150=3Dy
-> >  CONFIG_QCOM_HFPLL=3Dy
-> > @@ -762,6 +765,7 @@ CONFIG_QCOM_COMMAND_DB=3Dy
-> >  CONFIG_QCOM_GENI_SE=3Dy
-> >  CONFIG_QCOM_GLINK_SSR=3Dm
-> >  CONFIG_QCOM_RMTFS_MEM=3Dm
-> > +CONFIG_SDM_CAMCC_845=3Dm
->
-> ^
->
-> >  CONFIG_QCOM_RPMH=3Dy
-> >  CONFIG_QCOM_RPMHPD=3Dy
-> >  CONFIG_QCOM_SMEM=3Dy
->
-> Regards
-> Luca
->
->
+Maxime
+
+--766st27slgtqfmag
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXnop/QAKCRDj7w1vZxhR
+xUp3AQC4CpS3+gKsDPAnZm8pakj0NLuoi+oYlCsyVqEEtPSmBQD/W0Fnywv9KUiq
+QETeY979lVRzXw6cNCOb1qDBjB9TGQE=
+=nwfk
+-----END PGP SIGNATURE-----
+
+--766st27slgtqfmag--
