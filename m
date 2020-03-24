@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E15190B04
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35F0E190B1D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727230AbgCXKdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 06:33:06 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:35129 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727084AbgCXKdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:33:05 -0400
-Received: by mail-wr1-f66.google.com with SMTP id d5so8390384wrn.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 03:33:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=IrXGZHQOvRbVrdhyf/YbRhdpgB7gnLqs/mPRG5sDLy8=;
-        b=RKCe9AqJsuMkR/lMvYJWSWdCJnc1DPMPpVeLHXBVb+QXi4dQYkPD+C/kF0fBm3IHMF
-         WEt7EA8eWrnGZDE+025B+xvia3MieEBNPFwUPFuJSKS7A//eicws5oy4X4T8tqm11l05
-         94eqTdiVFrR/HvNYYACXO3bLpi2UUTnj9M6fnwIWBuyn7BuxOgfRgiNRy2F/pUKfutyw
-         /TzVrgmhXXMqkodvQ1gkSAyO9biPMerMgQwY5O6NnNRjxpn+t18puUb8vLX5k3gwoPM4
-         PiSrnmaRu3kOGD+2VEZjV6L1wYvs7tfOvs/mF0WanLBpv3BTNWjfKrTiLRieE0IMqoC0
-         T9uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IrXGZHQOvRbVrdhyf/YbRhdpgB7gnLqs/mPRG5sDLy8=;
-        b=I0252opJdJzNZO4ng4SA3LuLBkmRz+ny1KCkRMap6D0sB/rgjeXOWlIoq18yvNJ4n3
-         Lsn3hxkVI8Bvca8Bo7MFUWGP90HPcMZ5/dql2CAZexEzsuUKZ0LuLamksZC/uzpjBuSf
-         0ocafptiPE5aBqiwG8PSZ4WtrMbHkgiYCS+jCWuHybzhiRRHr27L5l7DtNdR3ogWHQl7
-         2OyfDz8fvhcsVD/vwFnHDT/Aqkzm2j0HRrEq/X+IlXLXrfUji3YxRt1NSjhgdsd1nxNK
-         TiGyEh5K5BGfnhfxAdyZ6ZJUDHmpXDhgu/psGul22z/OiYrMX/2z80kcvent5/NbGydP
-         6riQ==
-X-Gm-Message-State: ANhLgQ2WatB+QtwveJsISFffghJc5WwXsLBI5r94ptGuRBJbdbjG7z0N
-        vekyB4prQPUZS83omqYK5TDMyA==
-X-Google-Smtp-Source: ADFU+vtHp9ysDVVXPgqTHTn9l98ma/U7CpdYITGz7jbimYm+l7hrGG3ySHDK1cpVtfXjt18py39TrA==
-X-Received: by 2002:adf:de01:: with SMTP id b1mr10143860wrm.376.1585045984218;
-        Tue, 24 Mar 2020 03:33:04 -0700 (PDT)
-Received: from dell ([2.27.35.213])
-        by smtp.gmail.com with ESMTPSA id o26sm3564319wmc.33.2020.03.24.03.33.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Mar 2020 03:33:03 -0700 (PDT)
-Date:   Tue, 24 Mar 2020 10:33:52 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        stefan@agner.ch, b.galvani@gmail.com, phh@phh.me,
-        letux-kernel@openphoenux.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, linux-iio@vger.kernel.org, jic23@kernel.org
-Subject: Re: [PATCH v7 2/7] mfd: rn5t618: add IRQ support
-Message-ID: <20200324103352.GH5477@dell>
-References: <20200320081105.12026-1-andreas@kemnade.info>
- <20200320081105.12026-3-andreas@kemnade.info>
+        id S1727270AbgCXKev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 06:34:51 -0400
+Received: from sauhun.de ([88.99.104.3]:48924 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727241AbgCXKev (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Mar 2020 06:34:51 -0400
+Received: from localhost (p54B3339A.dip0.t-ipconnect.de [84.179.51.154])
+        by pokefinder.org (Postfix) with ESMTPSA id D13B92C08EF;
+        Tue, 24 Mar 2020 11:34:48 +0100 (CET)
+Date:   Tue, 24 Mar 2020 11:34:48 +0100
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Tomasz Figa <tfiga@chromium.org>
+Cc:     Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>
+Subject: Re: [PATCH v12 1/2] dt-binding: i2c: add bus-supply property
+Message-ID: <20200324103448.GE1134@ninjato>
+References: <20200306034946.11223-1-bibby.hsieh@mediatek.com>
+ <20200306034946.11223-2-bibby.hsieh@mediatek.com>
+ <20200322130710.GA1091@ninjato>
+ <CAAFQd5ANJcReHD_n0LorS+bjE8Cn_W-kY5LNgGG+L+jMmywYfA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tVmo9FyGdCe4F4YN"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200320081105.12026-3-andreas@kemnade.info>
+In-Reply-To: <CAAFQd5ANJcReHD_n0LorS+bjE8Cn_W-kY5LNgGG+L+jMmywYfA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Mar 2020, Andreas Kemnade wrote:
 
-> This adds support for IRQ handling in the RC5T619 which is required
-> for properly implementing subdevices like RTC.
-> For now only definitions for the variant RC5T619 are included.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
-> Changes in v7:
-> more cleanups in IRQ init
-> 
-> Changes in v5:
-> rn5t618_irq_init static
-> 
-> Changes in v4:
-> merge rn5t618-irq.c into rn5t618.c
-> use macros for IRQ table
-> 
-> Changes in v3:
-> alignment cleanup
-> 
-> Changes in v2:
-> - no dead code, did some more testing and thinking for that
-> - remove extra empty lines
->  drivers/mfd/Kconfig         |  1 +
->  drivers/mfd/rn5t618.c       | 78 ++++++++++++++++++++++++++++++++++++-
->  include/linux/mfd/rn5t618.h | 15 +++++++
->  3 files changed, 93 insertions(+), 1 deletion(-)
+--tVmo9FyGdCe4F4YN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Looks good to me now:
 
-For my own reference:
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> > > +- bus-supply
+> > > +     phandle to the regulator that provides power to i2c.
+> >
+> > I think this is not clear enough. I assume it means the regulator for
+> > driving SCL/SDA? In the coverletter you mention also an EEPROM. In your
+> > case, this is driven by the same regulator? I am skeptical we can
+> > abstract it like this because I2C devices could be driven by various
+> > regulators in the system, so there couldn't be one "bus regulator". The
+> > regulator for the EEPROM should be described in the EEPROM node. So,
+> > this "bus supply" is only for driving SCL/SDA?
+>=20
+> In our case the bus-supply regulator drives the voltage rail to which
+> SCL/SDA are pulled up and there is an EEPROM on the bus, powered by
+> yet another rail. There is also another slave on the bus which uses
+> the same regulator as the bus-supply for its own power.
+>=20
+> In other words, bus-supply only ensures that SCL and SDA are in a
+> usable state. Other consumers need to refer to the regulator in their
+> own supplies if they need it for their own power.
+>=20
+> Does this answer your questions?
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Yes, this was exactly what I was assuming.
+
+So, I think the above documentation should be changed: s|i2c|SCL/SDA|
+
+D'accord?
+
+
+--tVmo9FyGdCe4F4YN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl554kQACgkQFA3kzBSg
+KbamcA/+Ll60/Efzo6FG3APE0g6ZjxtUBgbCskbrOq6AAiExxWU0zzl2zcvkimxm
+EzB4MMQDk7XBRnr8IeBNOHgT9F7txegCzrSzCTV8j0peut5akg385S8heeM5b9e+
+udCKQahb2tb8vOCZFOTn9OoguZ+VDNhOYCGIoBcgUCA/YWcuomaxt/VPACI+E558
+TWqhouadPIqQiRLGuF6N+Ya8Tri9i6cURoYa1uZKL/bsnxKc0TkcWiiOzYXmB+Fu
+I6uNg5XJxRzIvYDAeMuWxvUOazNcdJldc1l+neD3HKhKQs+OKyVl25JD7tLpgZNU
+CHQHoItGULjh7sapaG3BbjkW//SHTumw6G6JBYNrjrzA3Tr6gv6+dymXyPKp62sA
+9XFwguFD2LntFyVBsuBs0tN8jycZNkp0wgEXnTetn2gFQP70lXby6wlhTkUahEHf
+WIcDERSPKv7UleKiwaZx9p3KMZisxMMdJZjArKwbLE7xu0iFjwhepD4D4wlmHrT+
+dDVLJJJDShtwpTqSFsGjdo6xDT5Hzx7Vdv/dSBtLk9P+OSj3AwgVA3bG+PnXUzLW
+C5WvW28kFg78c49B7vlYVnNcoxhIJuuloiCeKGXwjba0OZ1nRjHi37VC5Q4S43Mu
+DpVsDnjrkImZub+ijqjHgfLXL5OSV/NVDjrVsCnq8zZlbkHgGgM=
+=/K3S
+-----END PGP SIGNATURE-----
+
+--tVmo9FyGdCe4F4YN--
