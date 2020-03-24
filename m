@@ -2,88 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2AF190D85
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 13:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3092F190DA7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 13:35:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727680AbgCXMcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 08:32:06 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:45188 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727431AbgCXMcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 08:32:05 -0400
-Received: by mail-wr1-f68.google.com with SMTP id t7so16507748wrw.12;
-        Tue, 24 Mar 2020 05:32:05 -0700 (PDT)
+        id S1727534AbgCXMf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 08:35:27 -0400
+Received: from mail-pf1-f201.google.com ([209.85.210.201]:36801 "EHLO
+        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727521AbgCXMf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 08:35:27 -0400
+Received: by mail-pf1-f201.google.com with SMTP id h125so13846660pfg.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 05:35:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Q8xyTZiiURMuZz55C+lV5frFi0juzWLh763pjmleRTI=;
-        b=XvEENzKw2wGFTbrDGRT3ml/i9ciXc0tz7Wabz9yXGUzdkYE4+jwsp4Oz1tZnNsOQCx
-         RmPmOt4EITNYP6enElBEOeeXIbsROyVn/p1lqndCXnzohUIBGvGRb/tiN60CTc0I7iJD
-         l/pmAsVQna4eQPy3zsl1/eAfMPmPFeItIjs13dfnfRxcuhygA1DmUnp6Vu6Qm9nrK95+
-         C6KCyFvUph3EfIxZqM3ZoEDoFrelVWO3c2sdPswtZjzNRrhkihhX/2HLq+yNX0gom61J
-         zOVQeIk0PYGQCuoLabwoEAX8SlcTWE0gGuPQKBMgrN383EZ+iVcL4ZkKcqHdJOK1Htk4
-         62JQ==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=5LJBH8xQN/jQBYcxN7fADpsh/S4ILyM2BLQ/YSrufN0=;
+        b=lrkNOvRmUfIaF/A680qHGLiVgg0GQPkzG6FPhLtY747Zb6pLNG8Zgn8lppIsH1ATDA
+         qi2aczpwz1DwrvZaRiIJjdZuljpnhbxcIlV3tH30rFehu9n/VcQCT72NRCumITBYwZcs
+         u2vqZHudgsefVYz+OnKrpUocL7ncCUxYD1sWAeTYAVKhNG36dPUFEeG2EsskGXE8Gqv7
+         W6t9VEvV6CZYmMIXsJng/CIAM5+9WkHrlLR16tuWvMJ5B0LjGhrKJnMuf5yTBkRfeVcS
+         7vQ9gQmNzQA/SHCh04nyP551vhjc9mEyIRgpsmkCP+XyWgTn8pTj+emFXRd7rC+KrqDH
+         BUPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Q8xyTZiiURMuZz55C+lV5frFi0juzWLh763pjmleRTI=;
-        b=AAK3widtKlIUTnmkL22tI7SP9Oo+FjGss8REVcb+HMRXvqKtD0JlhEVjdinDBVE4N8
-         Tqqu13QRXEpeWJO1zhXsMtG388YwT4Q6P69ioubALNtNm8HQ2Sl+JQuct5pLj0GSF+Ge
-         51X0qlVch2QBXdsiCTE9BKjHdJQB7GAkX70S19xl4czV3acC3B+9N0G4bawywOELYZhN
-         RfIeGml1ynIp1e8pzbIGUbeAm6h+H05dR+ezKdf+nP5iLYj92XTr+I/UYFAEWI5nap8z
-         0kTpNYKeawXe9XsOBC5yvfKxcstf/BfDWBMNUGMaDVEqshTF/IwwI3joUY6dy9F3mGT+
-         mD0w==
-X-Gm-Message-State: ANhLgQ0NmgNrxwH9F7rKZ+DmdueMO8PDR5/hI2YnhBxVqA4RFbf+rMzh
-        +wTGULpuZfMIHe19rFxbYX8=
-X-Google-Smtp-Source: ADFU+vspS2iaiHICA89DEah3/meoLs+mzhJGZMZqXh2WzZtOitG+ZLB8tygXug0W+SCEjGmNzcIUmg==
-X-Received: by 2002:adf:f892:: with SMTP id u18mr27024616wrp.367.1585053124710;
-        Tue, 24 Mar 2020 05:32:04 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id k185sm4215029wmb.7.2020.03.24.05.32.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 24 Mar 2020 05:32:04 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     lgirdwood@gmail.com
-Cc:     broonie@kernel.org, heiko@sntech.de, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: sound: rockchip-spdif: add power-domains property
-Date:   Tue, 24 Mar 2020 13:31:55 +0100
-Message-Id: <20200324123155.11858-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200324123155.11858-1-jbx6244@gmail.com>
-References: <20200324123155.11858-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=5LJBH8xQN/jQBYcxN7fADpsh/S4ILyM2BLQ/YSrufN0=;
+        b=nQ4zdPY6kGttge94+4sYQJnd74VhEJ1QMLkJFccn8ZOQRame1NWnFJjOC4H+7voqdh
+         oEnahyoVPxXtipJhnIlCmpi7E/v7qnPN2/xq73s569IFhAlw+BfDfIMbidgO2/YOrH3i
+         Imi3MJQLYiIjEyzXECvcId0+4J1UoyNbUQOAmLRV4KB0uRBQCr8Pi/2JVaST+LZaR1sA
+         uW5lpn/ZXQcoq4S9QNy8/2q2N1iJovdY4L/oUXmc56kben1W3zBJ14nplD2af9HNk8bY
+         P3XRLzE9vszAVPiWOhyicGPwRBDcmSGSKszGuGlaNWaqo4BepmZPjIyrlMrxRu/j8KcA
+         lPng==
+X-Gm-Message-State: ANhLgQ1bKjvAkIU1MXCrTmtxHm/8ALINHrm+DyH3Tz1Wc6y7STcOxg6X
+        Ja1uLQKzlgkIbch6vpD0JRfQ5YG3wRmE
+X-Google-Smtp-Source: ADFU+vu288sFSt11Qek/NJ9edzx6Ik5VpV0z7KGXLXL8qHNO1/Re0wIomUu+WPPbOweT/mkzeqW3EKHV9Tjl
+X-Received: by 2002:a17:90a:ba93:: with SMTP id t19mr4040036pjr.67.1585053326283;
+ Tue, 24 Mar 2020 05:35:26 -0700 (PDT)
+Date:   Tue, 24 Mar 2020 05:35:14 -0700
+Message-Id: <20200324123518.239768-1-rajatja@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.25.1.696.g5e7596f4ac-goog
+Subject: [PATCH v2 1/5] input/serio/i8042: Attach fwnode to serio i8042 kbd device
+From:   Rajat Jain <rajatja@google.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>, dtor@google.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rajat Jain <rajatja@google.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, furquan@google.com,
+        dlaurie@google.com, bleung@google.com, zentaro@google.com,
+        dbehr@google.com
+Cc:     rajatxjain@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the old txt situation we add/describe only properties that are used
-by the driver/hardware itself. With yaml it also filters things in a
-node that are used by other drivers like 'power-domains' for rk3399,
-so add it to 'rockchip-spdif.yaml'.
+Attach the firmware node to the serio i8042 kbd device so that device
+properties can be passed from the firmware.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Signed-off-by: Rajat Jain <rajatja@google.com>
 ---
- Documentation/devicetree/bindings/sound/rockchip-spdif.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+v2: Remove the Change-Id from the commit log
 
-diff --git a/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
-index 0546fd4cc..f79dbd153 100644
---- a/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
-@@ -51,6 +51,9 @@ properties:
-   dma-names:
-     const: tx
+ drivers/input/serio/i8042-x86ia64io.h | 1 +
+ drivers/input/serio/i8042.c           | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/input/serio/i8042-x86ia64io.h b/drivers/input/serio/i8042-x86ia64io.h
+index dc974c288e880..ed9ec4310d976 100644
+--- a/drivers/input/serio/i8042-x86ia64io.h
++++ b/drivers/input/serio/i8042-x86ia64io.h
+@@ -927,6 +927,7 @@ static int i8042_pnp_kbd_probe(struct pnp_dev *dev, const struct pnp_device_id *
+ 	}
+ 	i8042_pnp_id_to_string(dev->id, i8042_kbd_firmware_id,
+ 			       sizeof(i8042_kbd_firmware_id));
++	i8042_kbd_fwnode = dev_fwnode(&dev->dev);
  
-+  power-domains:
-+    maxItems: 1
-+
-   rockchip,grf:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
+ 	/* Keyboard ports are always supposed to be wakeup-enabled */
+ 	device_set_wakeup_enable(&dev->dev, true);
+diff --git a/drivers/input/serio/i8042.c b/drivers/input/serio/i8042.c
+index 20ff2bed3917a..0dddf273afd94 100644
+--- a/drivers/input/serio/i8042.c
++++ b/drivers/input/serio/i8042.c
+@@ -21,6 +21,7 @@
+ #include <linux/i8042.h>
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
++#include <linux/property.h>
+ 
+ #include <asm/io.h>
+ 
+@@ -124,6 +125,7 @@ MODULE_PARM_DESC(unmask_kbd_data, "Unconditional enable (may reveal sensitive da
+ static bool i8042_bypass_aux_irq_test;
+ static char i8042_kbd_firmware_id[128];
+ static char i8042_aux_firmware_id[128];
++static struct fwnode_handle *i8042_kbd_fwnode;
+ 
+ #include "i8042.h"
+ 
+@@ -1335,6 +1337,7 @@ static int __init i8042_create_kbd_port(void)
+ 	strlcpy(serio->phys, I8042_KBD_PHYS_DESC, sizeof(serio->phys));
+ 	strlcpy(serio->firmware_id, i8042_kbd_firmware_id,
+ 		sizeof(serio->firmware_id));
++	set_primary_fwnode(&serio->dev, i8042_kbd_fwnode);
+ 
+ 	port->serio = serio;
+ 	port->irq = I8042_KBD_IRQ;
 -- 
-2.11.0
+2.25.1.696.g5e7596f4ac-goog
 
