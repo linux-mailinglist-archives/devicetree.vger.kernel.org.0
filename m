@@ -2,135 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF9D191869
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 19:06:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD3719187E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 19:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727509AbgCXSFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 14:05:17 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:43165 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727314AbgCXSFR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 14:05:17 -0400
-Received: by mail-il1-f196.google.com with SMTP id g15so8511425ilj.10;
-        Tue, 24 Mar 2020 11:05:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=f9FwT4hBATnVfznxi1cnrb0F4y7CCgXvMmx9RvvvTuk=;
-        b=HQFyIs64REozGG698aB7gxXHmc92rNPosEpkNH5SrahMuIhYpfZSvr9aVIw6uoqlZk
-         9ImqfjsiST5bg4Q0oVynq1uB8aJrEnIS1d+ikgPmXEiBvPk1aXIhE8LkWCmjZT+Rj2ln
-         skE/NKiNIWz16/da1dtjBPsNWSXYKWLk/3GANp0xht7OqPggVawDoA9Q44ryktbPCEyv
-         EKQI2Z5z7OtL5JT9DKq5OFINe9hb9JAWF0XXnkJQVtHZTLm1VvydguVbMYrysIsYdRRE
-         qMET8ENLXm9XKCe1Qomx9F0+HBFyqP8BVkdZSH7UF4wpiOua5sWDNVqY1fn6OR8CgpOI
-         eFXA==
-X-Gm-Message-State: ANhLgQ034nJwvC4HvNYcEb+/8EIUf7YcPQ0olCFQNlH3h+OFBoEYswMq
-        0fo4ErOOzFXABXNn6k2oJw==
-X-Google-Smtp-Source: ADFU+vtWYXZGcZ5Xm5GdMRAWBGF58PhfvWP3D92WD4x1uhj4RylpNyqfXK314CqkENzaR4qEWKuXbQ==
-X-Received: by 2002:a92:8316:: with SMTP id f22mr703764ild.169.1585073116525;
-        Tue, 24 Mar 2020 11:05:16 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.250])
-        by smtp.googlemail.com with ESMTPSA id h12sm5348493iob.22.2020.03.24.11.05.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Mar 2020 11:05:15 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: thermal: tsens: Set 'additionalProperties: false'
-Date:   Tue, 24 Mar 2020 12:05:13 -0600
-Message-Id: <20200324180513.3882-2-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200324180513.3882-1-robh@kernel.org>
-References: <20200324180513.3882-1-robh@kernel.org>
+        id S1727448AbgCXSHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 14:07:14 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:33159 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727611AbgCXSHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 14:07:14 -0400
+X-Originating-IP: 86.202.105.35
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 77F59C000B;
+        Tue, 24 Mar 2020 18:07:09 +0000 (UTC)
+Date:   Tue, 24 Mar 2020 19:07:09 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Sergey.Semin@baikalelectronics.ru
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: rtc: Convert snps,dw-apb-timer to DT
+ schema
+Message-ID: <20200324180709.GO5504@piout.net>
+References: <20200306125622.839ED80307C4@mail.baikalelectronics.ru>
+ <20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru>
+ <20200324174325.14213-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200324174325.14213-2-Sergey.Semin@baikalelectronics.ru>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ensure the node only contains the properties listed in the schema by
-setting 'additionalProperties: false'. Doing this requires reworking the
-interrupt properties schemas so that they are defined in the main
-'properties' section.
+Hi,
 
-Fixes: a877e768f655 ("dt-bindings: thermal: tsens: Convert over to a yaml schema")
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Amit Kucheria <amit.kucheria@linaro.org>
-Cc: Zhang Rui <rui.zhang@intel.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: linux-pm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/thermal/qcom-tsens.yaml          | 28 ++++++++++++-------
- 1 file changed, 18 insertions(+), 10 deletions(-)
+On 24/03/2020 20:43:20+0300, Sergey.Semin@baikalelectronics.ru wrote:
+> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> Modern device tree bindings are supposed to be created as YAML-files
+> in accordance with DT schema. This commit replaces Synopsys DW Timer
+> legacy bare text binding with YAML file. As before the binding file
+> states that the corresponding dts node is supposed to be compatible
+> with generic DW APB Timer indicated by the "snps,dw-apb-timer"
+> compatible string and to provide a mandatory registers memory range,
+> one timer interrupt, either reference clock source or a fixed clock
+> rate value. It may also have an optional APB bus reference clock
+> phandle specified.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-rtc@vger.kernel.org
+> 
+> ---
+> 
+> I have doubts that this binding file belongs to the bindings/rtc
+> directory seeing it's a pure timer with no rtc facilities like
+> days/months/years counting and alarms. What about moving it to the
+> "Documentation/devicetree/bindings/timer/" directory?
+> 
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index 7a38d2116059..3492447e42e9 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -46,6 +46,18 @@ properties:
-       - description: TM registers
-       - description: SROT registers
- 
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Combined interrupt if upper or lower threshold crossed
-+      - description: Interrupt if critical threshold crossed
-+
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: uplow
-+      - const: critical
-+
-   nvmem-cells:
-     minItems: 1
-     maxItems: 2
-@@ -88,22 +100,16 @@ allOf:
-     then:
-       properties:
-         interrupts:
--          items:
--            - description: Combined interrupt if upper or lower threshold crossed
-+          maxItems: 1
-         interrupt-names:
--          items:
--            - const: uplow
-+          maxItems: 1
- 
-     else:
-       properties:
-         interrupts:
--          items:
--            - description: Combined interrupt if upper or lower threshold crossed
--            - description: Interrupt if critical threshold crossed
-+          minItems: 2
-         interrupt-names:
--          items:
--            - const: uplow
--            - const: critical
-+          minItems: 2
- 
- required:
-   - compatible
-@@ -113,6 +119,8 @@ required:
-   - interrupt-names
-   - "#thermal-sensor-cells"
- 
-+additionalProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
+Exactly my reaction when seeing the patch, please move it out of
+bindings/rtc/
+
+
 -- 
-2.20.1
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
