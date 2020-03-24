@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 471501917FB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 18:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A9D619186C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 19:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727952AbgCXRpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 13:45:09 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:43042 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727318AbgCXRpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 13:45:08 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 5F3A78030791;
-        Tue, 24 Mar 2020 17:45:06 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id wyv3-3hxBCBg; Tue, 24 Mar 2020 20:45:02 +0300 (MSK)
-From:   <Sergey.Semin@baikalelectronics.ru>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 6/6] clocksource: mips-gic-timer: Set limitations on clocksource/sched-clocks usage
-Date:   Tue, 24 Mar 2020 20:43:25 +0300
-Message-ID: <20200324174325.14213-7-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200306125622.839ED80307C4@mail.baikalelectronics.ru>
- <20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru>
+        id S1727314AbgCXSFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 14:05:18 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:46166 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727495AbgCXSFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 14:05:17 -0400
+Received: by mail-io1-f65.google.com with SMTP id a20so11798695ioo.13;
+        Tue, 24 Mar 2020 11:05:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nyDEVt1mvrogKhA8Gqx9BDr8ZhtFuURVk0awOOjdRAk=;
+        b=FRvVpYZQ7kbHljZAiALiNAYG2hMeiVKXcQ1YWleARDSyLEBqaXP1dJpny0a+TDuhUh
+         qYHnfX6qZDseEAXVITgxaKuiaG6+MNuN81fk8cjdTcp78Ogomzzflo+4Fy7sMtYFymhi
+         wjMStuKRdM+uNSEFGmjL58iBB0VnBZZ7SbD0LXbLlGFURR1vkyjkYV1V9NH8ZCqdxsLh
+         l1UuunmM0F9PZ9sf4PH2fbHAEUWK7X5odUv3t0qWossqDTG2SLurJPzdh5hnMFEJqDGs
+         e445soVE84Y1uOIl/XiXYencK70axgE4+dPhRPG0eVc3SweVfZ62lwb6cf8Snyk1IeoK
+         sjUQ==
+X-Gm-Message-State: ANhLgQ2xeVxUvivr1m/NbjGu4HMGnRTP6KJE+953m0Xoc+ftFHbawdAy
+        UE38gKZ6k65O8Ou1KnwvGA==
+X-Google-Smtp-Source: ADFU+vviVLJ2406W4da5BKPv3JBD0h+tKl7SMZvgGaaTsZAT3LHrZ3tTM5vdWhgLvBrZ8lN+deNRYw==
+X-Received: by 2002:a02:740d:: with SMTP id o13mr25847674jac.113.1585073114974;
+        Tue, 24 Mar 2020 11:05:14 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.250])
+        by smtp.googlemail.com with ESMTPSA id h12sm5348493iob.22.2020.03.24.11.05.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Mar 2020 11:05:14 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: thermal: tsens: Fix nvmem-cell-names schema
+Date:   Tue, 24 Mar 2020 12:05:12 -0600
+Message-Id: <20200324180513.3882-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+There's a typo 'nvmem-cells-names' in the schema which means the correct
+'nvmem-cell-names' in the examples are not checked. The possible values
+are wrong too both in that the 2nd entry is not specified correctly and the
+values are just wrong based on the dts files in the kernel.
 
-Currently neither clocksource nor scheduler clock kernel framework
-support the clocks with variable frequency. Needless to say how many
-problems may cause the sudden base clocks frequency change. In a
-simplest case the system time will either slow down or speed up.
-Since on CM2.5 and earlier MIPS GIC timer is synchronously clocked
-with CPU we must set some limitations on using it for these frameworks
-if CPU frequency may change. First of all it's not safe to have the
-MIPS GIC used for scheduler timings. So we shouldn't proceed with
-the clocks registration in the sched-subsystem. Secondly we must
-significantly decrease the MIPS GIC clocksource rating. This will let
-the system to use it only as a last resort.
-
-Note CM3.x-based systems may also experience the problems with MIPS GIC
-if the CPU-frequency change is activated for the whole CPU cluster
-instead of using the individual CPC core clocks divider.
-
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
+Fixes: a877e768f655 ("dt-bindings: thermal: tsens: Convert over to a yaml schema")
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Amit Kucheria <amit.kucheria@linaro.org>
+Cc: Zhang Rui <rui.zhang@intel.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
 Cc: devicetree@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/clocksource/mips-gic-timer.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ .../devicetree/bindings/thermal/qcom-tsens.yaml          | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/clocksource/mips-gic-timer.c b/drivers/clocksource/mips-gic-timer.c
-index 8239ff99cfe4..5eb241b8b28d 100644
---- a/drivers/clocksource/mips-gic-timer.c
-+++ b/drivers/clocksource/mips-gic-timer.c
-@@ -185,7 +185,10 @@ static int __init __gic_clocksource_init(void)
- 	gic_clocksource.mask = CLOCKSOURCE_MASK(count_width);
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index eac644d9e238..7a38d2116059 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -52,13 +52,12 @@ properties:
+     description:
+       Reference to an nvmem node for the calibration data
  
- 	/* Calculate a somewhat reasonable rating value. */
--	gic_clocksource.rating = 200 + gic_frequency / 10000000;
-+	if (mips_cm_revision() >= CM_REV_CM3 || !IS_ENABLED(CONFIG_CPU_FREQ))
-+		gic_clocksource.rating = 200 + gic_frequency / 10000000;
-+	else
-+		gic_clocksource.rating = 99;
+-  nvmem-cells-names:
++  nvmem-cell-names:
+     minItems: 1
+     maxItems: 2
+     items:
+-      - enum:
+-        - caldata
+-        - calsel
++      - const: calib
++      - const: calib_sel
  
- 	ret = clocksource_register_hz(&gic_clocksource, gic_frequency);
- 	if (ret < 0)
-@@ -239,9 +242,11 @@ static int __init gic_clocksource_of_init(struct device_node *node)
- 	/* And finally start the counter */
- 	clear_gic_config(GIC_CONFIG_COUNTSTOP);
+   "#qcom,sensors":
+     allOf:
+@@ -124,7 +123,7 @@ examples:
+                  <0x4a8000 0x1000>; /* SROT */
  
--	sched_clock_register(mips_cm_is64 ?
--			     gic_read_count_64 : gic_read_count_2x32,
--			     64, gic_frequency);
-+	if (mips_cm_revision() >= CM_REV_CM3 || !IS_ENABLED(CONFIG_CPU_FREQ)) {
-+		sched_clock_register(mips_cm_is64 ?
-+				     gic_read_count_64 : gic_read_count_2x32,
-+				     64, gic_frequency);
-+	}
+            nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
+-           nvmem-cell-names = "caldata", "calsel";
++           nvmem-cell-names = "calib", "calib_sel";
  
- 	return 0;
- }
+            interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
+            interrupt-names = "uplow";
 -- 
-2.25.1
+2.20.1
 
