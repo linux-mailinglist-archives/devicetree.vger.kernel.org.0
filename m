@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D50190A91
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1C2190AAA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:22:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727120AbgCXKUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 06:20:41 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:36869 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727266AbgCXKUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:20:41 -0400
-Received: by mail-wr1-f68.google.com with SMTP id w10so20719317wrm.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 03:20:40 -0700 (PDT)
+        id S1727507AbgCXKU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 06:20:57 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34673 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727485AbgCXKU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:20:56 -0400
+Received: by mail-wr1-f67.google.com with SMTP id 65so3990776wrl.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 03:20:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=PTVvCh6PCJj9CPS0mPmEeRILoyiEMTqk2ooxm8xZf1k=;
-        b=EEH56wJBqun7EBSVO4LMn6fqPoTs4At2LM/YVV2dtVHxxbpJuN3szu7uSpe+kSmvi3
-         TxCvqdQJquFANwLgUK+fQPNkG608Rkh94NOPfDs6MMjSiiREA3uudX/TedyWtWiTnyFY
-         EzgQ7NpsLtbO6g1gyMPfdcBV89d97RTuF0W5cg9SUKkAESJgkdtJwZFxU9O7uIHugZ1d
-         1k70pLR86Lf9DQ8w5F2ZadKf4edU3JPtuEtGh9Tjwic7MHmGL00zd9Tm258pm+VsMltS
-         M6U0YI2KMrVMVjygtAnys1cOp4ZMzHXENKLwlLxS9LbdPwxWGI4lw14Z07p1aSdaH1Gj
-         hCzw==
+        bh=GhA9x8hO0OSqZFQSsNcZ2UKUqCG4/t+w/VnuL1kPUHU=;
+        b=qkkU2Hsy3KDoPTQpcjYY1qdbEx1TTR+31GrBzsfrej5riME6gzYRij4LFJmmSnTlYn
+         uj/LhvVBDDEXQRX7bKMRLx6uC0Arw3UVexvCTGXLLPd0KvtNlZDpQ/iSPPpCvfeD0322
+         t5zFFnmBEAjdW2Lm7kugnAuT2aXCMf5miFReQar54A4WiMMmWmqciJhne0zU/qvbqbaG
+         W8odiVk5SpXaLfVOXq56uqevXAfUJi96Fz8kjWViOqX0ChuAew4G88CPv2PEnlwMUgKa
+         utrQa8uQqj3RjbNG5P9/9SQ2rcPjEpQJ16muoqs9rDaO7yh098l6yDOWeyHiGClZvjIH
+         6hjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=PTVvCh6PCJj9CPS0mPmEeRILoyiEMTqk2ooxm8xZf1k=;
-        b=nm8uRehuBYFlNVnPa3U53TLuyz5ymwaRpmS57D3j1vu/pXLZt9i5M0q2nlJPkjnbpx
-         szMxpqLfKAlUnAGbbTkCvqa5TG2F05AG+b57OHYJAcb/s251A2z6wE2sXWthlfE9W4OF
-         sb9Lv0hn+BCjLjNYYighX4DsoWTcsIKdHzk07/6MkjEf3Wg5s7bNuNGKcMF+Mfs7WIqR
-         /QjwrGT2HGcfMWWPEiTr/eIiwpmowIACaojJ7EsFvGAI9iUziDb2ckPlZDLLK1MwEPOL
-         rzynXmT9S5TtuMqp7DcI3/Kw6M86Irih5tW7D2xcQiE+RfDNcNrOMts3NMzAY0LpAlXx
-         j+Fg==
-X-Gm-Message-State: ANhLgQ0aLt9iUeYNY+aBXfvn/P2PH+Z+/tPpopdfY1Wpnuwlb42hS9mH
-        9/Lklm3YilfCbaR9d2ZKREUbUw==
-X-Google-Smtp-Source: ADFU+vv0Pm5TZxBHMF9uclt+1rsV0UT+7tGkBMqmqLouYZCDr6eH28qreQbJ7FmeuNB4K4N4oYjX8A==
-X-Received: by 2002:adf:ee52:: with SMTP id w18mr9469000wro.245.1585045239496;
-        Tue, 24 Mar 2020 03:20:39 -0700 (PDT)
+        bh=GhA9x8hO0OSqZFQSsNcZ2UKUqCG4/t+w/VnuL1kPUHU=;
+        b=IYwEpJPS0FPPJB5T1OLNkGLGFKrWHgIaCYmLnklJO+dgqNroCsM9c8MId1MlpJP455
+         3lz23Jos9Qd84iB05s6ijoZWNOBQKbLvlB3brijzR1SluunV5BmjxOs8LFgmAaEY+JLZ
+         VWPyppmrImpwB3655ecLbCjAHwDroa0uu7Hid+t4Ku902dqsJbtMKEPBF3mxz6jAjzrU
+         w52fciELa1CtjyHuPCrOVDsaNUNKlF0WT9ePGp53MsiIBHN4jwckMNHrNESPguolgD3u
+         pYLjvvCgXjvFo734Kc36Hr3zusU1ZfFuX8YBR24zW3cS9heSP+FGy2l7jF5zHM7GsidU
+         eEFw==
+X-Gm-Message-State: ANhLgQ34ZE/q4tM0r0dxdv1mhphyfwETelxkDGZm0iNZBLnX+nnd5zMK
+        KxIBsv3mpMNoPTkXLMkLtmhVdA==
+X-Google-Smtp-Source: ADFU+vsOUkcfU1BNDYfhQfb1PA6CgnmWBbxotLsJb0kQIO5yklTREcusHubmGOMO+cINekbgUIW0dA==
+X-Received: by 2002:a05:6000:a:: with SMTP id h10mr8576233wrx.226.1585045254135;
+        Tue, 24 Mar 2020 03:20:54 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
-        by smtp.gmail.com with ESMTPSA id h5sm2879527wro.83.2020.03.24.03.20.38
+        by smtp.gmail.com with ESMTPSA id h5sm2879527wro.83.2020.03.24.03.20.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Mar 2020 03:20:39 -0700 (PDT)
+        Tue, 24 Mar 2020 03:20:53 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
         martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 01/13] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic GXL and GXM Families USB Glue Bindings
-Date:   Tue, 24 Mar 2020 11:20:18 +0100
-Message-Id: <20200324102030.31000-2-narmstrong@baylibre.com>
+Subject: [PATCH 12/13] dt-bindings: usb: dwc3: remove amlogic compatible entries
+Date:   Tue, 24 Mar 2020 11:20:29 +0100
+Message-Id: <20200324102030.31000-13-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200324102030.31000-1-narmstrong@baylibre.com>
 References: <20200324102030.31000-1-narmstrong@baylibre.com>
@@ -63,58 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic GXL and GXM is slightly different from the Amlogic G12A Glue.
-
-The GXL SoCs only embeds 2 USB2 PHYs and no USB3 PHYs, and the GXM SoCs
-embeds 3 USB2 PHYs.
+There is now a dedicated driver for these SoCs making the old compatible
+obsolete.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ Documentation/devicetree/bindings/usb/dwc3.txt | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index b0e5e0fe9386..e9afedbe8424 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -25,9 +25,13 @@ description: |
-   The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
-   host-only mode.
- 
-+  The Amlogic GXL & GXM SoCs doesn't embed an USB3 PHY.
-+
- properties:
-   compatible:
-     enum:
-+      - amlogic,meson-gxl-usb-ctrl
-+      - amlogic,meson-gxm-usb-ctrl
-       - amlogic,meson-g12a-usb-ctrl
-       - amlogic,meson-a1-usb-ctrl
- 
-@@ -89,6 +93,23 @@ required:
-   - dr_mode
- 
- allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gxl-usb-ctrl
-+            - amlogic,meson-gxm-usb-ctrl
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          items:
-+            - const: usb_ctrl
-+            - const: ddr
-+      required:
-+        - clock-names
-   - if:
-       properties:
-         compatible:
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 66780a47ad85..2ef0bcc30648 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -14,8 +14,6 @@ Required properties:
+ Exception for clocks:
+   clocks are optional if the parent node (i.e. glue-layer) is compatible to
+   one of the following:
+-    "amlogic,meson-axg-dwc3"
+-    "amlogic,meson-gxl-dwc3"
+     "cavium,octeon-7130-usb-uctl"
+     "qcom,dwc3"
+     "samsung,exynos5250-dwusb3"
 -- 
 2.22.0
 
