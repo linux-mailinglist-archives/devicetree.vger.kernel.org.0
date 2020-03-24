@@ -2,127 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51146190AA9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF972190B54
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:46:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727485AbgCXKU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 06:20:57 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:47012 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727491AbgCXKU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:20:57 -0400
-Received: by mail-wr1-f66.google.com with SMTP id j17so17281119wru.13
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2020 03:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=67sFvVtkG1ivlSk+fGwbgHaYe6cmIRn/pWHBZ0lu9g4=;
-        b=G9GUxZPZnPhLAajMtiZxgmUxpYrGOcJIkPozWgUDMvAuy8EBmZbwC30xlR9wHUDnJV
-         ALFika3tbYFYgOcbEy6lLg62lZVK5VultjcamVietFmwqmduFKScAs2xljobVRPKpRXB
-         i+0XwLWm2dPB3T/cVEbeziTgctq2IaB8JoXEKasglnWC/N+nQosrtmb+n8kp06GIIR0w
-         30OWNQB2zwjvbXX5cMH+cNlV+3NUfzEfVtxBP2DaojGqjDvF5egj+tn0DSOrKutBLBFj
-         t77PxOjT7DJ0Obl93NXUkDItQyzWrNOnIQ9JmQ3KbXHMtLKZy6nVXVOBML4RvL87vvDb
-         rSqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=67sFvVtkG1ivlSk+fGwbgHaYe6cmIRn/pWHBZ0lu9g4=;
-        b=rsFyoLaZFZ2nF+spM6yIGjynkl9sFqayrSinLrh9m2tlQfdpIhV0hd3sb0oqAweIoh
-         5Cb9udIztC538jtZxoyEeT7SlxUn4evNKj3S/BO9CQck/kgBeK93ApQI1BDoLE5Hoaek
-         BKyK2ft1vXmBVmEUOnkeiapmyYhh7hVP9HhijpHhEduXWkfhHna78HzFH0JvDgSeoPzs
-         Dl3aXCQ38QPi4D9R+8DUd4s0rQaa1o9rmA1QYZQhZ+Jom9BtGeEuMilhEhpD3io6tzaA
-         rTi29MOK4Y7eD12sHD2DdmsX6pmHms+n3hgSGX5SgBGeacfr96pd009MNru8XbY6MevC
-         joBg==
-X-Gm-Message-State: ANhLgQ2wMgPyJBgs0Ymf7pTt34/1fKVGX+0y7tqE2TysePD+VPWbHUs8
-        E+fzOLnNdYrvYOUkuHLCZLbjbg==
-X-Google-Smtp-Source: ADFU+vuGwhRTHhtQBh24wMOPnFqWmD8WEDTDqhBcn0GQZbxNq7+HwZ5AGbojto+87MT0Z8I4IEGjhQ==
-X-Received: by 2002:adf:fd87:: with SMTP id d7mr35578867wrr.393.1585045255321;
-        Tue, 24 Mar 2020 03:20:55 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
-        by smtp.gmail.com with ESMTPSA id h5sm2879527wro.83.2020.03.24.03.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Mar 2020 03:20:54 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 13/13] dt-bindings: usb: amlogic,dwc3: remove old DWC3 wrapper
-Date:   Tue, 24 Mar 2020 11:20:30 +0100
-Message-Id: <20200324102030.31000-14-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200324102030.31000-1-narmstrong@baylibre.com>
-References: <20200324102030.31000-1-narmstrong@baylibre.com>
+        id S1726697AbgCXKqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 06:46:02 -0400
+Received: from mailgate1.rohmeurope.com ([87.129.152.131]:61998 "EHLO
+        mailgate1.rohmeurope.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726563AbgCXKqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:46:02 -0400
+X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Tue, 24 Mar 2020 06:46:01 EDT
+X-AuditID: c0a8fbf4-473ff70000004419-8b-5e79e1633674
+Received: from smtp.reu.rohmeu.com (will-cas002.reu.rohmeu.com [192.168.251.178])
+        by mailgate1.rohmeurope.com (Symantec Messaging Gateway) with SMTP id 2E.BD.17433.361E97E5; Tue, 24 Mar 2020 11:30:59 +0100 (CET)
+Received: from WILL-MAIL001.REu.RohmEu.com ([fe80::2915:304f:d22c:c6ba]) by
+ WILL-CAS002.REu.RohmEu.com ([fe80::fc24:4cbc:e287:8659%12]) with mapi id
+ 14.03.0487.000; Tue, 24 Mar 2020 11:30:54 +0100
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>
+CC:     "tglx@linutronix.de" <tglx@linutronix.de>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "talgi@mellanox.com" <talgi@mellanox.com>,
+        "brendanhiggins@google.com" <brendanhiggins@google.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "Gary.Hook@amd.com" <Gary.Hook@amd.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davidgow@google.com" <davidgow@google.com>,
+        "changbin.du@intel.com" <changbin.du@intel.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "olteanv@gmail.com" <olteanv@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
+        "bp@suse.de" <bp@suse.de>,
+        "mhiramat@kernel.org" <mhiramat@kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
+        "skhan@linuxfoundation.org" <skhan@linuxfoundation.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Laine, Markus" <Markus.Laine@fi.rohmeurope.com>,
+        "vincenzo.frascino@arm.com" <vincenzo.frascino@arm.com>,
+        "sre@kernel.org" <sre@kernel.org>,
+        "ardb@kernel.org" <ardb@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "zaslonko@linux.ibm.com" <zaslonko@linux.ibm.com>,
+        "uwe@kleine-koenig.org" <uwe@kleine-koenig.org>,
+        "akpm@linux-foundation.org" <akpm@linux-foundation.org>
+Subject: Re: [PATCH v6 09/10] power: supply: Support ROHM bd99954 charger
+Thread-Topic: [PATCH v6 09/10] power: supply: Support ROHM bd99954 charger
+Thread-Index: AQHWAbbAyLpT1a+wPEGvvo/J38Wk46hXbxYAgAAAaoCAAArrAA==
+Date:   Tue, 24 Mar 2020 10:30:53 +0000
+Message-ID: <e9d1cdafb6b048147eae318e0d6843601442725a.camel@fi.rohmeurope.com>
+References: <cover.1584977512.git.matti.vaittinen@fi.rohmeurope.com>
+         <1bf2431b80489ae412e774519a92616a9aa2bcca.1584977512.git.matti.vaittinen@fi.rohmeurope.com>
+         <20200324095024.GE1922688@smile.fi.intel.com>
+         <20200324095153.GF1922688@smile.fi.intel.com>
+In-Reply-To: <20200324095153.GF1922688@smile.fi.intel.com>
+Accept-Language: en-US, de-DE
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [62.78.225.252]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2BE73F2C85064547B8F97E281684098C@de.rohmeurope.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TbVBUVRjH59x79t7Dy22uK8pptQ9saSMGZtHMqaHGmj5cc8oa8oOZSxe5
+        7JL7wuyLQVMTyZKI44gvhCwLbiCCtgksjhjtjrizo0ANK2gBzq5KMU3gQL6NG1HUXq4Kn87/
+        nP/ze/7Ph+cgWn2W1aBCs12ymkWjlkmEPa2zvowdYyW65wfLMom7zcuQ/btrKDJz/09ADh5Y
+        QwZHDtOkemycIR2DlyhSU30ZEHfYCUlvRzskx0IDKvLX1UOQlDW1MWTf5EoSDrez5MHVCooc
+        +aeFIle63Qy5tz8ESPPwIEXczb2QNLWsJu2dMYpMRWogKQ+EWBKoOaEiP/5gJ1/XB1jS6aum
+        yfDdaxQJzM1AErh+D5CLd2bAhjShfOhfRvA2eIFw5uQoJXzvirLC2Z5VgsfnEDpb04Um/wQl
+        +E7tZYRDJxpVQuQXPyNMDwywQu/RWShUNfYAoaHvPeF8vZd9N+WDpOw80b4rp1BvXvfaR0mG
+        qF9XdA0VO6eisBT4USVIQJjPwrfqLtOVIBGp+Z8BLrv9B1AuvQCP9nlUlQAhhs/GlaOsDKTw
+        m/Df0yPzNTTv53DFVIiSjaX8Rtx6Y0ilFL2FW74KMIp+A58ed87DkF+Fa7taoKw5/h08W/fl
+        w+RyCgf3zMwDCfwr+NvwdVrWgH8K7y2dng+g+VTs+z2mUsbm8XF/mFb0Mjzx29zD9zTcFTsN
+        5aFpfg1u616noBtw4MBhqOg0fGTfGKvMsAT31Y7DKrDctSjBtUC7FtGuRbRrEe0BqlMAm8RC
+        o160S+szrZIj02oxmOLHDovJB5Q9vH8O/BfcGAQUAkHwJKK0y7iPb5bo1E/kWfJLDKLNkGt1
+        GCVbEGBEa1O4TqlYp+byxZJPJavlkbUCQW0q9+zYwe1qXs7aKUlFkvWRuxIhLeZy5KZLrJJe
+        Ki4oNNoXbAolyM0TNSk2yZwvWUWH3ZAr70euLb4gspUcz90s45ytSDTFXxW0H6xFVRP1jTQK
+        1Tc30mpotpglTSpnlEt5udTgMD8OmgSpCGiXckWymxz/jI/7TMYjqHiE3vWJHGEXFyxNKfj8
+        9cgZsS5ni/D+yBcfvvTgTuQuE4tqnBkdGT/t8T/NdI1HoicvmZ7pF8+/ulOf7X4h4bu65KGq
+        7U23n9td8E2W/jjtTZoObRmIOWzHbvarq2E4yzO8CRWsfXvrjTfNSc7N58S8Cyu26Tz5L++6
+        ld59xffixK/L5z7bNloR7qplLjZc0EKbQVyfTltt4v+caEJkSQQAAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-There is now an updated bindings for these SoCs making the old
-compatible obsolete.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../devicetree/bindings/usb/amlogic,dwc3.txt  | 42 -------------------
- 1 file changed, 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
-
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
-deleted file mode 100644
-index 9a8b631904fd..000000000000
---- a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Amlogic Meson GX DWC3 USB SoC controller
--
--Required properties:
--- compatible:	depending on the SoC this should contain one of:
--			* amlogic,meson-axg-dwc3
--			* amlogic,meson-gxl-dwc3
--- clocks:	a handle for the "USB general" clock
--- clock-names:	must be "usb_general"
--- resets:	a handle for the shared "USB OTG" reset line
--- reset-names:	must be "usb_otg"
--
--Required child node:
--A child node must exist to represent the core DWC3 IP block. The name of
--the node is not important. The content of the node is defined in dwc3.txt.
--
--PHY documentation is provided in the following places:
--- Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
--- Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
--
--Example device nodes:
--		usb0: usb@ff500000 {
--			compatible = "amlogic,meson-axg-dwc3";
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
--
--			clocks = <&clkc CLKID_USB>;
--			clock-names = "usb_general";
--			resets = <&reset RESET_USB_OTG>;
--			reset-names = "usb_otg";
--
--			dwc3: dwc3@ff500000 {
--				compatible = "snps,dwc3";
--				reg = <0x0 0xff500000 0x0 0x100000>;
--				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
--				dr_mode = "host";
--				maximum-speed = "high-speed";
--				snps,dis_u2_susphy_quirk;
--				phys = <&usb3_phy>, <&usb2_phy0>;
--				phy-names = "usb2-phy", "usb3-phy";
--			};
--		};
--- 
-2.22.0
-
+SGVsbG8gQW5keSwNCg0KVGhhbmtzIGZvciB0YWtpbmcgdGhlIHRpbWUgYW5kIHJldmlld2luZyB0
+aGlzIDopIEFwcHJlY2lhdGVkLg0KDQpPbiBUdWUsIDIwMjAtMDMtMjQgYXQgMTE6NTEgKzAyMDAs
+IEFuZHkgU2hldmNoZW5rbyB3cm90ZToNCj4gT24gVHVlLCBNYXIgMjQsIDIwMjAgYXQgMTE6NTA6
+MjRBTSArMDIwMCwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPiA+IE9uIFR1ZSwgTWFyIDI0LCAy
+MDIwIGF0IDEwOjMyOjE5QU0gKzAyMDAsIE1hdHRpIFZhaXR0aW5lbiB3cm90ZToNCj4gPiA+ICtz
+dGF0aWMgaW50IGJkOTk5NXhfZ2V0X3Byb3BfYmF0dF9wcmVzZW50KHN0cnVjdCBiZDk5OTV4X2Rl
+dmljZQ0KPiA+ID4gKmJkKQ0KPiA+ID4gK3sNCj4gPiA+ICsJaW50IHJldCwgdG1wOw0KPiA+ID4g
+Kw0KPiA+ID4gKwlyZXQgPSByZWdtYXBfZmllbGRfcmVhZChiZC0+cm1hcF9maWVsZHNbRl9CQVRU
+RU1QXSwgJnRtcCk7DQo+ID4gPiArCWlmIChyZXQpDQo+ID4gPiArCQlyZXR1cm4gZmFsc2U7DQo+
+ID4gPiArDQo+ID4gPiArCXJldHVybiAodG1wICE9IEJBVFRfT1BFTikgPyB0cnVlIDogZmFsc2U7
+DQo+ID4gDQo+ID4gQyAxMDEgKEkgc2F3IHNvbWV3aGVyZSBjb2NjaW5lbGxlIHNjcmlwdCBmb3Ig
+dGhpcyk6DQo+ID4gDQo+ID4gCXJldHVybiB0bXAgIT0gQkFUVF9PUEVOOw0KPiA+IA0KPiA+ID4g
+K30NCj4gDQo+IEFoLCBhbmQgZXZlbiBtb3JlLiBNaXN0eXBlIG9mIGZ1bmN0aW9uIGFuZCByZXR1
+cm4gdmFsdWUuDQo+IA0KUmlnaHQuIEFuZCBzYW1lIGlzIGRvbmUgaW4gcmV0dXJuIGFib3ZlLiBJ
+J2xsIGZpeCB0aGlzLg0K
