@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 865281904D0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 06:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E7719055E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 06:56:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725927AbgCXFQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 01:16:48 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:28303 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725853AbgCXFQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Mar 2020 01:16:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1585027008; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=HJVvgeexErEjlhM7G8ecIrzeSjkVY0caLFRfY64utGo=; b=NcdOkx+LZawRy+ddCopLATegD+v09mUo3XdzMEessd4ZN13L706ks8tw7HWbuhw2hI2qdnR2
- VCBl2TgkRUyVltjb9TBEKiMBjHAEliAMXrQY6ZWL+uxcVAfoyZvQOyjp78HFIpVu3rGfNzXE
- smPiJ+qxgEtFOKSzXnPfNniZcgk=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e7997bf.7ff25d1ba928-smtp-out-n01;
- Tue, 24 Mar 2020 05:16:47 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 84445C43636; Tue, 24 Mar 2020 05:16:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.0.13] (unknown [183.83.138.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akashast)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A65DAC433D2;
-        Tue, 24 Mar 2020 05:16:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A65DAC433D2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
-Subject: Re: [PATCH V5 3/3] dt-bindings: geni-se: Add binding for UART pin
- swap
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>, rojay@codeaurora.org,
-        c_skakit@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>
-References: <1584095350-841-1-git-send-email-akashast@codeaurora.org>
- <1584095350-841-4-git-send-email-akashast@codeaurora.org>
- <CAL_JsqKLoiPUhiJDuYX+bSQwoCLTXOvtNyEB8ti__xMfEDyxNQ@mail.gmail.com>
-From:   Akash Asthana <akashast@codeaurora.org>
-Message-ID: <ee34573a-e4ff-ad43-64ed-53439206d534@codeaurora.org>
-Date:   Tue, 24 Mar 2020 10:46:40 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1725869AbgCXF4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 01:56:53 -0400
+Received: from bosmailout06.eigbox.net ([66.96.187.6]:57415 "EHLO
+        bosmailout06.eigbox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725853AbgCXF4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 01:56:53 -0400
+X-Greylist: delayed 1826 seconds by postgrey-1.27 at vger.kernel.org; Tue, 24 Mar 2020 01:56:52 EDT
+Received: from bosmailscan14.eigbox.net ([10.20.15.14])
+        by bosmailout06.eigbox.net with esmtp (Exim)
+        id 1jGc52-0003Hi-RF
+        for devicetree@vger.kernel.org; Tue, 24 Mar 2020 01:26:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=clark.com;
+         s=dkim; h=Sender:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        Reply-To:From:Subject:Date:Message-ID:To:Cc:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=2sYXab816592TI99Ved8O1yjqw8Kr4WrPwE583YJ8QY=; b=RVbbGNw+cpoFVyxD7PPwtX6Z0a
+        nIdRt04P6oHSPENzdgBezoZnFeG3TdnVXat3hCdW9Rs/m+ueRSGcyuCV+GfrFtXrxy9+b+gLfDyOV
+        EXqRqU005nbaRX9KL+cCkvKWH7hO1MtkmbkHX9npXY5gWzq5O8Ets3is5Xoey8kECVO+XHLAwWf3g
+        P1NAmAT6f4D7Un2q7z2OLVrAnd/oEvAqlvI1LGsJq1SJofie6gd9nAOIFHVI8j+730nMF+Oj9hzXN
+        7my7/R4ikhyL1j+DOlDWmLaM4fOIAUrqkSEBKE6fBJlpj0PPF3er46mEvSWKi6hQaCAghMk83T/tc
+        BRUX2tSQ==;
+Received: from [10.115.3.32] (helo=bosimpout12)
+        by bosmailscan14.eigbox.net with esmtp (Exim)
+        id 1jGc4w-0004g4-Ug; Tue, 24 Mar 2020 01:26:18 -0400
+Received: from boswebmail07.eigbox.net ([10.20.16.7])
+        by bosimpout12 with 
+        id J5RS22004098b3e015RVqt; Tue, 24 Mar 2020 01:26:18 -0400
+X-EN-SP-DIR: OUT
+X-EN-SP-SQ: 1
+Received: from [127.0.0.1] (helo=emailmg.ipower.com)
+        by boswebmail07.eigbox.net with esmtp (Exim)
+        id 1jGc46-0002Cv-95; Tue, 24 Mar 2020 01:25:26 -0400
+Received: from 185.212.170.180
+        (SquirrelMail authenticated user donee@aquesttax.com)
+        by emailmg.ipower.com with HTTP;
+        Tue, 24 Mar 2020 01:25:26 -0400
+Message-ID: <01028e8dcf4c28a9c55b5e0eb75d483c.squirrel@emailmg.ipower.com>
+Date:   Tue, 24 Mar 2020 01:25:26 -0400
+Subject: Good Day Dear!!!
+From:   "Dr. (Mrs.) Mary Clark" <info@clark.com>
+Reply-To: moppelchen@schmusemail.de
+User-Agent: SquirrelMail/1.4.19
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKLoiPUhiJDuYX+bSQwoCLTXOvtNyEB8ti__xMfEDyxNQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain;charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+X-Priority: 3 (Normal)
+Importance: Normal
+X-EN-AuthUser: donee@aquesttax.com
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On 3/20/2020 11:37 PM, Rob Herring wrote:
-> On Fri, Mar 13, 2020 at 4:29 AM Akash Asthana <akashast@codeaurora.org> wrote:
->> Add documentation to support RX/TX/CTS/RTS pin swap in HW.
->>
->> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
->> ---
->> Changes in V5:
->>   -  As per Matthias's comment, remove rx-tx-cts-rts-swap property from UART
->>      child node.
->>
->>   Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
-> STM32 folks need something similar. Can you move this to a common
-> location. That's serial.txt, but that is being converted to DT schema.
->
-> Rob
 
-Okay, once serial.txt is converted to DT schema, I will move it there.
 
-Regards,
+With your permission I want to present to you my sincere initiatives and
+proposals.
 
-Akash
+In the spirit of faith, solidarity, humanity and common sense appeal to
+your wisdom and kindness as a human of this planet with the request
+friendship sustains me if you consider setting up a foundation for
+humanitarian work with $12.5 Million American United States Dollars
+inherited from my late husband who was an industrialist.
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
+I decided to donate these funds because I have no child and my days are
+numbered according to my physician who always examines my health because I
+was diagnosed by serious lung and breast cancer and will be going for my
+third surgical operation next week, I want you to use these funds
+nationally and internationally to people without hope, against which we
+must not be careless.
+
+I am Mrs Dr. (Mrs.)Mary Clark Aged 63, and childless, always cheerful with
+a desire to do good and give those who need help. The principles which I
+rely in life are faith, humanity, solidarity, respect and trust.Please
+always put me in your daily prayers so that God will grant more days to my
+leaving and confirm these funds into your hand.
+
+Hoping to hearing from you soonest with your information that I will
+submit to the bank for the transfer of this money to your account and your
+delays in replying to this message will create an avenue of searching for
+another person that will understand the nature of my situation in other to
+handle this donation funds gloriously to the Kingdom of God.
+
+I am urgently expecting your kind acceptance reply
+
+Remain blessed with your family.
+
+Dr. (Mrs.)Mary Clark
+
