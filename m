@@ -2,103 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6429C190B2E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A89F190B64
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2020 11:50:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727213AbgCXKgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Mar 2020 06:36:06 -0400
-Received: from mga07.intel.com ([134.134.136.100]:62844 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727201AbgCXKgG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Mar 2020 06:36:06 -0400
-IronPort-SDR: dcAOxkDoSZK05LN2jKE2yreu9ci2Af/De+eW6dywMIXZst/rDpaEMLosM6CbL9PxaGPb7PMHZX
- eXci96JS2C9g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2020 03:36:05 -0700
-IronPort-SDR: zht+CM67eDL0WyqMDvo8EzEqKBTQrdKyZEvlUHQrDxhdF91Nm+Yg/36Y4EV9R5v02T7UU2XIbV
- S8ba3qhgWZNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,300,1580803200"; 
-   d="scan'208";a="393240574"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga004.jf.intel.com with ESMTP; 24 Mar 2020 03:35:56 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jGgub-00CVDz-DA; Tue, 24 Mar 2020 12:35:57 +0200
-Date:   Tue, 24 Mar 2020 12:35:57 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mikko Mutanen <mikko.mutanen@fi.rohmeurope.com>,
-        Markus Laine <markus.laine@fi.rohmeurope.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>, Borislav Petkov <bp@suse.de>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Changbin Du <changbin.du@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        David Gow <davidgow@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Gary Hook <Gary.Hook@amd.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Mikhail Zaslonko <zaslonko@linux.ibm.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Shuah Khan <skhan@linuxfoundation.org>,
-        Tal Gilboa <talgi@mellanox.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v6 09/10] power: supply: Support ROHM bd99954 charger
-Message-ID: <20200324103557.GH1922688@smile.fi.intel.com>
-References: <cover.1584977512.git.matti.vaittinen@fi.rohmeurope.com>
- <1bf2431b80489ae412e774519a92616a9aa2bcca.1584977512.git.matti.vaittinen@fi.rohmeurope.com>
- <20200324095024.GE1922688@smile.fi.intel.com>
+        id S1727112AbgCXKua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Mar 2020 06:50:30 -0400
+Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:37522 "EHLO
+        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727095AbgCXKua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Mar 2020 06:50:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1585047029; x=1616583029;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=TxlBi3ra4HMx8zuqspMqJ3ApAbYybIFOtoUMzIZQnpE=;
+  b=gXvyvwbPIeS6MHA1/BKc6tLxq9xrsyguFOsvqk8TzEDPiYd5p+iaMoVp
+   WVR71wKf2VkP3C+YVmZQy6032RJqsBVm9NjnjD0jc7CjlkgH+WxqfNDgA
+   cVYHPRtJsYFH9+e5Xn+EpmuPB+9qIrFHTwuRcDi7bYvHge9p9QyGRvAAQ
+   A=;
+IronPort-SDR: bCo4jtv7LFaaBuNw2kk0Cv7swc6NiVbyPBkdlU1QBKrMC8FohCy5dsrclfPt1QZQBiyT+3uQzN
+ d2F/l/rARt9w==
+X-IronPort-AV: E=Sophos;i="5.72,300,1580774400"; 
+   d="scan'208";a="34501424"
+Received: from sea32-co-svc-lb4-vlan3.sea.corp.amazon.com (HELO email-inbound-relay-2a-22cc717f.us-west-2.amazon.com) ([10.47.23.38])
+  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 24 Mar 2020 10:50:27 +0000
+Received: from EX13MTAUEA002.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2a-22cc717f.us-west-2.amazon.com (Postfix) with ESMTPS id 2E6EFA18E6;
+        Tue, 24 Mar 2020 10:50:26 +0000 (UTC)
+Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
+ EX13MTAUEA002.ant.amazon.com (10.43.61.77) with Microsoft SMTP Server (TLS)
+ id 15.0.1236.3; Tue, 24 Mar 2020 10:50:25 +0000
+Received: from u8a88181e7b2355.ant.amazon.com (10.43.162.241) by
+ EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Tue, 24 Mar 2020 10:50:15 +0000
+From:   Hanna Hawa <hhhawa@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <tsahee@annapurnalabs.com>, <antoine.tenart@bootlin.com>,
+        <hhhawa@amazon.com>, <mchehab+samsung@kernel.org>,
+        <davem@davemloft.net>, <gregkh@linuxfoundation.org>,
+        <Jonathan.Cameron@huawei.com>, <andriy.shevchenko@linux.intel.com>,
+        <tglx@linutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <dwmw@amazon.co.uk>,
+        <benh@amazon.com>, <ronenk@amazon.com>, <talel@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>
+Subject: [PATCH v5 0/6] Amazon's Annapurna Labs Alpine v3 device-tree
+Date:   Tue, 24 Mar 2020 12:49:12 +0200
+Message-ID: <20200324104918.29578-1-hhhawa@amazon.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200324095024.GE1922688@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-Originating-IP: [10.43.162.241]
+X-ClientProxiedBy: EX13D36UWA001.ant.amazon.com (10.43.160.71) To
+ EX13D19EUB003.ant.amazon.com (10.43.166.69)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 24, 2020 at 11:50:24AM +0200, Andy Shevchenko wrote:
-> On Tue, Mar 24, 2020 at 10:32:19AM +0200, Matti Vaittinen wrote:
+This series organize the Amazon's Annapurna Labs Alpine device tree
+bindings, device tree folder and adds new device tree for Alpine v3.
 
-> > +#include <linux/acpi.h>
-> 
-> > +#include <linux/of.h>
-> 
-> I didn't find any evidence of use of those two, otherwise, missed property.h
-> and perhaps mod_devicetable.h.
+Changes since v4:
+-----------------
+- Re-order nodes in increasing order.
+- Add disable to UART nodes.
+- Add missing UART nodes (1,2,3)
+- Add comments for GIC/UART
+- Add io-fabric bus, and move uart nodes into it.
+- Fix MSIx range according Alpine function spec
 
-...
+Changes since v3:
+-----------------
+- rebased and retested for tag Linux 5.6-rc2
 
-> > +MODULE_DEVICE_TABLE(of, bd9995x_of_match);
+Changes since v2:
+-----------------
+- Move up a level for DT node without mmio regs.
+- Drop device_type from serial@fd883000 node.
+- Minor change name of PCIe node to: pcie@fbd00000
 
-> > +MODULE_DEVICE_TABLE(acpi, bd9995x_acpi_match);
+Changes since v1:
+-----------------
+- Rename al,alpine DT binding to amazon,alpine
+- Rename al folder to be amazon
+- Update maintainers of amazon,alpine DT
+- Add missing alpine-v2 DT binding
+- Fix yaml schemas for alpine-v3-evp.dts:
+	- #size-cells:0:0: 0 is not one of [1, 2]
+	- arch-timer: interrupts: [[1, 13, 8, 1, 14, 8, 1, 11, 8, 1, 10,
+	8]] is too short
+- Change compatible string of alpine-v3-evp to amazon,al
 
-I have to add since you are using those macros without ifdeffery, you should
-get warning in !ACPI and/or !OF cases.
+Hanna Hawa (5):
+  dt-bindings: arm: amazon: rename al,alpine DT binding to amazon,al
+  arm64: dts: amazon: rename al folder to be amazon
+  dt-bindings: arm: amazon: update maintainers of amazon,al DT bindings
+  dt-bindings: arm: amazon: add missing alpine-v2 DT binding
+  dt-bindings: arm: amazon: add Amazon Annapurna Labs Alpine V3
 
-So, drop those of_match_ptr() / ACPI_PTR() and thus above headers.
+Ronen Krupnik (1):
+  arm64: dts: amazon: add Amazon's Annapurna Labs Alpine v3 support
+
+ .../devicetree/bindings/arm/al,alpine.yaml    |  21 -
+ .../devicetree/bindings/arm/amazon,al.yaml    |  33 ++
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/Makefile                  |   2 +-
+ arch/arm64/boot/dts/{al => amazon}/Makefile   |   1 +
+ .../boot/dts/{al => amazon}/alpine-v2-evp.dts |   0
+ .../boot/dts/{al => amazon}/alpine-v2.dtsi    |   0
+ arch/arm64/boot/dts/amazon/alpine-v3-evp.dts  |  24 ++
+ arch/arm64/boot/dts/amazon/alpine-v3.dtsi     | 408 ++++++++++++++++++
+ 9 files changed, 468 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/al,alpine.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/amazon,al.yaml
+ rename arch/arm64/boot/dts/{al => amazon}/Makefile (64%)
+ rename arch/arm64/boot/dts/{al => amazon}/alpine-v2-evp.dts (100%)
+ rename arch/arm64/boot/dts/{al => amazon}/alpine-v2.dtsi (100%)
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3.dtsi
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
