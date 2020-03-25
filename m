@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8149D193025
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 19:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F6F193019
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 19:12:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727639AbgCYSM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 14:12:26 -0400
-Received: from mail-wr1-f98.google.com ([209.85.221.98]:34174 "EHLO
-        mail-wr1-f98.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727460AbgCYSMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 14:12:01 -0400
-Received: by mail-wr1-f98.google.com with SMTP id 65so4445406wrl.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 11:12:00 -0700 (PDT)
+        id S1727935AbgCYSME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 14:12:04 -0400
+Received: from mail-ed1-f99.google.com ([209.85.208.99]:46256 "EHLO
+        mail-ed1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727655AbgCYSMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 14:12:02 -0400
+Received: by mail-ed1-f99.google.com with SMTP id cf14so3682005edb.13
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 11:12:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=flowbird.group; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=G61Qe3eJT571EH7x7IhXUIxwlPNKKyhXnXe4ITy6VDY=;
-        b=BJCpQeb64ilhKkblw6FOV5x7rvqyn9D/mptuh8QHSv4LCHx1h22tsz8VRicfOKIuy7
-         35s2PDgmhbScymVqGByxQVrsHLJq/j6RIv3ZN9aU4o0WZb7B6SFqEnxXJps5QZDa976P
-         813Xnt5LQ4xFA7gvgY4LSfSUV6/LS+lHY+tOwPFPM2xZp0NhZXgbyz+l3iI0cfUDGn1Q
-         fZwzLwf2H3HWMhqX9GaeOm9oUOvEcbXom84OCu1QYjvKjkEEjdXMfLIZE0Rcnget399+
-         imRnWfc8rguyBYzRG8WqYpl66nH71FdYg0QK2vD6lUzCa+uLIujmj9ArAoelFtMcH4jE
-         N4KQ==
+        bh=KKpKhLhaC9HGAwcc/wCEo8PVI3BgJbUGYTvCaeR49Ok=;
+        b=rrNk6KcxURyxMqPmDLj2w7bRmiDPMbUI0d/kn5MoPrEUo33YzVn3zrxcuD85NeIErE
+         +uGfzC7ut3SYcHQaLhmVWeUTDF73/vZGMa7Ku0Mz/KEWdWqxjWZHRLrkQP0RfXWMGD0m
+         g8VbKMTkYncsJmDzeZV4BiiiM5zYJmPUIi2Cs4pHzaY5pWLRtjTfZVHxHP9YFhI9gv2h
+         /soDGEdt35MheO4BaZk6KhmtRX4IfSR4z5IKnqcXCOr/49iFIdKQh5jwWJD6BMQDXElL
+         to2vidpfeVH7HdXqu2o5MY3gopz3yUWfxHW8arc0tljoE4wT5MR3wxtPfBk3kpMziCWj
+         MZ5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=G61Qe3eJT571EH7x7IhXUIxwlPNKKyhXnXe4ITy6VDY=;
-        b=Onh9yr0PpXMkoO/yZtmAvjAUQ8OWuOFPSwY+pgy9LyHpAynx6UT/7ZwfBH+VnTbIAD
-         Tn1MW7vydDnagj1iNDN8WJyksQ6fLDir5gJ4RNiVzjkrbkOKBxcoKXrH0wjjVDCpcpgI
-         7wLDb6OUWx/SxvsO3G18PWdhZPabRQbFuK3O/CY8DVCSK9rB6oy4VRn9hdrz5GEOGw2J
-         824sZxBNQBZAdk0KyPUTjJijiBq247sq+NaLwbOLAGHwFiTuhFX6JrsiVAnbM6HsJch+
-         d7i6RKZWqwzpiqTxOg5Uz90cGFQoiZLdxp1VM/72iv8qJJOmBcQ+PPV0j3j5BFT+nN4n
-         p+Wg==
-X-Gm-Message-State: ANhLgQ0cCJtJ1yQExP38GOeUS5XNoKzCvmv2Oz8a39fKbAt1ni4vUZiK
-        uwWpquwSLmF7haBpoSMxmN9b9HcQLzCbQejwzPeKgYmnuJwE
-X-Google-Smtp-Source: ADFU+vub5D0jlsGOnm4YpokUYEZUOEHB6GT1kQnRwz9Q/yK67pONTdN9dt97HprIfogh2eG4adM5QF2KReUu
-X-Received: by 2002:a05:6000:114f:: with SMTP id d15mr4897008wrx.143.1585159919696;
-        Wed, 25 Mar 2020 11:11:59 -0700 (PDT)
+        bh=KKpKhLhaC9HGAwcc/wCEo8PVI3BgJbUGYTvCaeR49Ok=;
+        b=cQ/Cbgy0nBrFQh/FKb5bwvlYeuzHGg1WHn9xGa1dJlLvzIGTfQtwrC1FLwHE13IoVZ
+         gBdUIVmehGXtRsSEHIuKmVnIVrPghO5oyO4/cIbdRElknFYghJp0cfz4WncETP6I5VPk
+         x/NC+KJA6/g/AMbkF+Lj9k+G3yUrobBKYK33umFsWgRtSBIYCwWwnS9YGs7v7S/hTEaM
+         t/cqG4Fb4O8DGBtdP3qDBgJKYf1hTM4SWFWwARkvkA1Vs7OopITYOoaJFTMNfNiQKsxB
+         1EXfXyqngL+wGAc8G+RLmrMEcojZkggiV635XQ2qrlD0FYfi+hUGQleE8JrwfdicLNni
+         Z+TA==
+X-Gm-Message-State: ANhLgQ0qL8HMyGM8PsYJvEkMITGZul9e3f4DgB/qeivg4ystWWFhR/1V
+        CdKEoeVyayGJXRwnd40iiRS0WMO2SeSLGRYEFySAKIouOKDE
+X-Google-Smtp-Source: ADFU+vuep+cArUuYfyT4aIlU+oz4LwkVg1M9a67K8D0RfGmqdTIIjC4kRTkukTB5EAVMq2zHqSjAPESSkERj
+X-Received: by 2002:a17:906:1cc9:: with SMTP id i9mr2034588ejh.0.1585159920479;
+        Wed, 25 Mar 2020 11:12:00 -0700 (PDT)
 Received: from mail.besancon.parkeon.com ([185.149.63.251])
-        by smtp-relay.gmail.com with ESMTPS id e16sm328483wrs.81.2020.03.25.11.11.59
+        by smtp-relay.gmail.com with ESMTPS id x25sm182281edl.7.2020.03.25.11.12.00
         (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Wed, 25 Mar 2020 11:11:59 -0700 (PDT)
+        Wed, 25 Mar 2020 11:12:00 -0700 (PDT)
 X-Relaying-Domain: flowbird.group
 Received: from [172.16.13.190] (port=39524 helo=PC12445-BES.dynamic.besancon.parkeon.com)
         by mail.besancon.parkeon.com with esmtp (Exim 4.71)
         (envelope-from <martin.fuzzey@flowbird.group>)
-        id 1jHAVT-0003Oy-7a; Wed, 25 Mar 2020 19:11:59 +0100
+        id 1jHAVT-0003Oy-U9; Wed, 25 Mar 2020 19:12:00 +0100
 From:   Martin Fuzzey <martin.fuzzey@flowbird.group>
 To:     Fugang Duan <fugang.duan@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -58,9 +58,9 @@ Cc:     netdev@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v2 2/4] ARM: dts: imx6: Use gpc for FEC interrupt controller to fix wake on LAN.
-Date:   Wed, 25 Mar 2020 19:11:57 +0100
-Message-Id: <1585159919-11491-3-git-send-email-martin.fuzzey@flowbird.group>
+Subject: [PATCH v2 3/4] dt-bindings: fec: document the new gpr property.
+Date:   Wed, 25 Mar 2020 19:11:58 +0100
+Message-Id: <1585159919-11491-4-git-send-email-martin.fuzzey@flowbird.group>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1585159919-11491-1-git-send-email-martin.fuzzey@flowbird.group>
 References: <1585159919-11491-1-git-send-email-martin.fuzzey@flowbird.group>
@@ -69,41 +69,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to wake from suspend by ethernet magic packets the GPC
-must be used as intc does not have wakeup functionality.
-
-But the FEC DT node currently uses interrupt-extended,
-specificying intc, thus breaking WoL.
-
-This problem is probably fallout from the stacked domain conversion
-as intc used to chain to GPC.
-
-So replace "interrupts-extended" by "interrupts" to use the default
-parent which is GPC.
-
-Fixes: b923ff6af0d5 ("ARM: imx6: convert GPC to stacked domains")
+This property allows the gpr register bit to be defined
+for wake on lan support.
 
 Signed-off-by: Martin Fuzzey <martin.fuzzey@flowbird.group>
 ---
- arch/arm/boot/dts/imx6qdl.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/net/fsl-fec.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index e6b4b85..bc488df 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -1039,9 +1039,8 @@
- 				compatible = "fsl,imx6q-fec";
- 				reg = <0x02188000 0x4000>;
- 				interrupt-names = "int0", "pps";
--				interrupts-extended =
--					<&intc 0 118 IRQ_TYPE_LEVEL_HIGH>,
--					<&intc 0 119 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <0 118 IRQ_TYPE_LEVEL_HIGH>,
-+					     <0 119 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6QDL_CLK_ENET>,
- 					 <&clks IMX6QDL_CLK_ENET>,
- 					 <&clks IMX6QDL_CLK_ENET_REF>;
+diff --git a/Documentation/devicetree/bindings/net/fsl-fec.txt b/Documentation/devicetree/bindings/net/fsl-fec.txt
+index 5b88fae0..ff8b0f2 100644
+--- a/Documentation/devicetree/bindings/net/fsl-fec.txt
++++ b/Documentation/devicetree/bindings/net/fsl-fec.txt
+@@ -22,6 +22,8 @@ Optional properties:
+ - fsl,err006687-workaround-present: If present indicates that the system has
+   the hardware workaround for ERR006687 applied and does not need a software
+   workaround.
++- gpr: phandle of SoC general purpose register mode. Required for wake on LAN
++  on some SoCs
+  -interrupt-names:  names of the interrupts listed in interrupts property in
+   the same order. The defaults if not specified are
+   __Number of interrupts__   __Default__
 -- 
 1.9.1
 
