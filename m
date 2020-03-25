@@ -2,69 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D0D192915
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 14:01:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E51D192927
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 14:07:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727277AbgCYNBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 09:01:23 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38072 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727177AbgCYNBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 09:01:23 -0400
-Received: by mail-oi1-f196.google.com with SMTP id w2so1973995oic.5;
-        Wed, 25 Mar 2020 06:01:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6b9uuA0aNtQ3KS63dzxDL0TH4aJwxZd88qv2EmvcWpE=;
-        b=HeYwlesruLmxbdtFbuxOGQkFBs5VaS14REB/5Ni/U5hI+MVLzbmMNdtGFjaLz+kI/X
-         NuJ/V8DrYzQpN40vlkkDvaTDWO2bjuASh7V71mma//xUNJZX9pqpGPkQV46+2/pTpm4x
-         tr1+4iGVXSvKRTGRaLciVsNqP2NlshWWBrXYdx8PITRPe1JgpMCeek++z2mzEu8BszTI
-         TGgPeO5RUXx5Gd/5vlQuUOZeb4rU/PTrcBJ3MsWZHmaA2EiV6A5hVTfD3kZVrK3mJhPu
-         eq+xTueXMD6di9a7olFWyOtaFU8aBCHkb1GyV3CwGL4rxw6C1zx5rtTBM51S5z1jMzAV
-         oXHg==
-X-Gm-Message-State: ANhLgQ0vmit5BV917VNyN/9ONRuHGSJ/9DOBRFgvg2xc5DkEXNUI4ZNW
-        gGAFHrHNArsmvnreAmbhOC81a6U2svCIOwBoUqfUsg==
-X-Google-Smtp-Source: ADFU+vv5gCYsq60DuC9OSj7OhQUx4TSjxP9nV6u3006GjlU/JO71QZ2I22FI/FT/7ClTr1OI2Inf3NZOJmRiujI0yYM=
-X-Received: by 2002:aca:4e57:: with SMTP id c84mr2275379oib.148.1585141282795;
- Wed, 25 Mar 2020 06:01:22 -0700 (PDT)
+        id S1727464AbgCYNHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 09:07:06 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:62088 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727275AbgCYNHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 09:07:05 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02PD1nNn005057;
+        Wed, 25 Mar 2020 09:06:47 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2ywfu5d5v1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 Mar 2020 09:06:46 -0400
+Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 02PD6jRg052202
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Wed, 25 Mar 2020 09:06:45 -0400
+Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
+ SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Wed, 25 Mar 2020 06:06:44 -0700
+Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by
+ SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Wed, 25 Mar 2020 06:06:18 -0700
+Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX10.ad.analog.com
+ (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Wed, 25 Mar 2020 06:06:43 -0700
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 02PD6fxP027890;
+        Wed, 25 Mar 2020 09:06:41 -0400
+From:   <alexandru.tachici@analog.com>
+To:     <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>,
+        Alexandru Tachici <alexandru.tachici@analog.com>
+Subject: [PATCH v2 0/2] hwmon: pmbus: adm1266: add support
+Date:   Wed, 25 Mar 2020 15:06:03 +0200
+Message-ID: <20200325130605.2420-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1585117006-8266-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1585117006-8266-4-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1585117006-8266-4-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Mar 2020 14:01:11 +0100
-Message-ID: <CAMuHMdVm2yQsKmj5es_mhMpuz5THP6+Tr9HoTnepKXG4ExDFMg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: usb: renesas,usb3-peri: add r8a77961 support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
+ definitions=2020-03-25_05:2020-03-24,2020-03-25 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ clxscore=1015 impostorscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=779 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2003020000 definitions=main-2003250109
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 25, 2020 at 7:18 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> This patch adds support for r8a77961 (R-Car M3-W+).
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+From: Alexandru Tachici <alexandru.tachici@analog.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Add pmbus probing driver for the adm1266 Cascadable
+Super Sequencer with Margin Control and Fault Recording.
 
-Gr{oetje,eeting}s,
+Alexandru Tachici (2):
+  hwmon: pmbus: adm1266: add support
+  dt-bindings: hwmon: Add bindings for ADM1266
 
-                        Geert
+Changelog v1 -> v2:
+- removed multiple chips id checks as this driver will
+support only adm1266
+- moved pmbus configurations in probe function
+- removed adm1266_config, adm1266_data, adm1266_block_wr
+- added adi,connected-adm1266 property to dt bindings
+
+ .../bindings/hwmon/adi,adm1266.yaml           | 57 +++++++++++++++++
+ Documentation/hwmon/adm1266.rst               | 35 +++++++++++
+ drivers/hwmon/pmbus/Kconfig                   |  9 +++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/adm1266.c                 | 62 +++++++++++++++++++
+ 5 files changed, 164 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
+ create mode 100644 Documentation/hwmon/adm1266.rst
+ create mode 100644 drivers/hwmon/pmbus/adm1266.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.20.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
