@@ -2,94 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DF8192925
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 14:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A559D19293C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 14:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbgCYNGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 09:06:46 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45357 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727298AbgCYNGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 09:06:46 -0400
-Received: by mail-oi1-f195.google.com with SMTP id l22so1940733oii.12;
-        Wed, 25 Mar 2020 06:06:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tRAqWE5jTPBEZ5gwwukisG5aliJgP0GpLk1uYWHBM64=;
-        b=nUpC4oaZMccfzvcSkkiSvPSNoynX7krGCR6bgkDYsMCW3pSo/SGHi311rLd9QJLgk7
-         Wj9BxcqwIZEn294wAmlU3xd6yI6QAnBNVl0ZBex0/y8bzkaoGpWLv2OIInByG5wd7MvV
-         m/nAxH+y+iiPrYNJCM/F93lUhm6zPExB7yuOqnPsi/8aHz5148p39TKY6PdJHpmqo13c
-         YmDPi2Ruw1Rsnv4+Kz5EnUrE+5qw9hgl+q7vZlSjon2rkGWjMJ+IpWCJ4+Rk3SlLNmEY
-         348BVFvJp/KIsmXCc3RpTszpNf32p10AUa6YKzbNE2CwfzjTROHW2dQuA3YF0npU6jtK
-         Cgzw==
-X-Gm-Message-State: ANhLgQ3h45evt8WtcVt6Y4MUGszpJEYAj6ud42vGptXEkd6pPh+YVz/G
-        UI09CDS5rCVAEt2ekugdBzNs1kNW8cjTvSOfQsqQ12H7
-X-Google-Smtp-Source: ADFU+vv1evnjrbuj83i0B7RGEzz/c4jPdtY0pyZWk0DBMBbFsDcTsnbzisEyBz8xwP8wDfazp9tgg4fkN70P3agYkFQ=
-X-Received: by 2002:aca:ad93:: with SMTP id w141mr2484859oie.54.1585141604111;
- Wed, 25 Mar 2020 06:06:44 -0700 (PDT)
+        id S1727129AbgCYNJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 09:09:17 -0400
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17812 "EHLO
+        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727046AbgCYNJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 09:09:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1585141636;
+        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
+        h=Date:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Subject:To:CC:From:Message-ID;
+        bh=iuTIotTHRiD5t5xclM0klY4anxFqXzV0is5UKGCU0Kk=;
+        b=NeBLHqiI7qV0woiMnt3N1Yutj8NPaQCpNhLh+5yayjbVibXolp1EhBbIzZ/7q89n
+        mI53omrN4/iEoE+rBQqldx8ic9iLIurLQU/CE2WYC9RdvvnwteOvoOYxuPqFXj/RMtQ
+        Dia88FCxHspMUvKRM1RCRWXdl2Q5vANqogbdGlMM=
+Received: from [10.233.233.252] (183.157.60.227 [183.157.60.227]) by mx.zoho.com.cn
+        with SMTPS id 1585141633736867.4293564995277; Wed, 25 Mar 2020 21:07:13 +0800 (CST)
+Date:   Wed, 25 Mar 2020 21:07:04 +0800
+User-Agent: K-9 Mail for Android
+In-Reply-To: <a69f727d37daac6e20ac08de022245b1@kernel.org>
+References: <20200325035537.156911-1-jiaxun.yang@flygoat.com> <20200325035537.156911-7-jiaxun.yang@flygoat.com> <20200325123742.GA9911@alpha.franken.de> <a69f727d37daac6e20ac08de022245b1@kernel.org>
 MIME-Version: 1.0
-References: <1585117100-8359-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1585117100-8359-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1585117100-8359-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Mar 2020 14:06:33 +0100
-Message-ID: <CAMuHMdXhwxmDuwK9M4ctP9=FVBfdLHSroq-YhuMrFtXaCtNq4Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: rcar-gen3-phy-usb2: add r8a77961 support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 06/11] irqchip: mips-cpu: Convert to simple domain
+To:     Marc Zyngier <maz@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+CC:     linux-mips@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Allison Randal <allison@lohutok.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-ID: <C4892878-8463-448D-897B-5F2C56F5A340@flygoat.com>
+X-ZohoCNMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
 
-On Wed, Mar 25, 2020 at 7:18 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> This patch adds support for r8a77961 (R-Car M3-W+).
+
+=E4=BA=8E 2020=E5=B9=B43=E6=9C=8825=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=889=
+:00:01, Marc Zyngier <maz@kernel=2Eorg> =E5=86=99=E5=88=B0:
+>On 2020-03-25 12:37, Thomas Bogendoerfer wrote:
+>> On Wed, Mar 25, 2020 at 11:54:59AM +0800, Jiaxun Yang wrote:
+>>> The old code is using legacy domain to setup irq_domain for CPU=20
+>>> interrupts
+>>> which requires irq_desc to be preallocated=2E
+>>>=20
+>>> However, when MIPS_CPU_IRQ_BASE >=3D 16, irq_desc for CPU IRQs may end
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>>> up
+>>> unallocated and lead to incorrect behavior=2E
+>>>=20
+>>> Thus we convert the legacy domain to simple domain which can
+>allocate
+>>> irq_desc during initialization=2E
+>>>=20
+>>> Signed-off-by: Jiaxun Yang <jiaxun=2Eyang@flygoat=2Ecom>
+>>> Co-developed-by: Huacai Chen <chenhc@lemote=2Ecom>
+>>> Signed-off-by: Huacai Chen <chenhc@lemote=2Ecom>
+>>> Reviewed-by: Marc Zyngier <maz@kernel=2Eorg>
+>>> ---
+>>>  drivers/irqchip/irq-mips-cpu=2Ec | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>=20
+>>> diff --git a/drivers/irqchip/irq-mips-cpu=2Ec=20
+>>> b/drivers/irqchip/irq-mips-cpu=2Ec
+>>> index 95d4fd8f7a96=2E=2Ec3cf7fa76424 100644
+>>> --- a/drivers/irqchip/irq-mips-cpu=2Ec
+>>> +++ b/drivers/irqchip/irq-mips-cpu=2Ec
+>>> @@ -251,7 +251,7 @@ static void __init __mips_cpu_irq_init(struct=20
+>>> device_node *of_node)
+>>>  	clear_c0_status(ST0_IM);
+>>>  	clear_c0_cause(CAUSEF_IP);
+>>>=20
+>>> -	irq_domain =3D irq_domain_add_legacy(of_node, 8, MIPS_CPU_IRQ_BASE,
+>0,
+>>> +	irq_domain =3D irq_domain_add_simple(of_node, 8, MIPS_CPU_IRQ_BASE,
+>>>  					   &mips_cpu_intc_irq_domain_ops,
+>>>  					   NULL);
+>>=20
+>> this breaks at least IP30 and guess it will break every platform
+>where
+>> MIPS_CPU_IRQ_BASE =3D=3D 0=2E add_legacy will always do=20
+>> irq_domain_associate_many(),
+>> while add_simple doesn't do it, if first_irq =3D=3D 0=2E
+>>=20
+>> Marc, what is the reason not doing it all the time ? What's the
+>correct
+>> way here to work with irq_domain_add_simple() in this case ?
+>
+>On a fully DT-ified platform, using non-legacy irqdomains, virtual=20
+>interrupts
+>are allocated as a "random" number, depending on the order of=20
+>allocation,
+>and on demand=2E
+>
+>The first_irq hack in irq_domain_add_simple() is just a way to still=20
+>allocate
+>descriptors upfront (and I wish we could drop it=2E=2E=2E)=2E
+>
+>If you have legacy code that "knows" about the relationship between=20
+>Linux's
+>virtual interrupt and the hwirq (that is only meaningful to the=20
+>interrupt
+>controller), you're screwed, and need to stick to the legacy irqdomain=2E
+>
+>It feels like the MIPS code is squarely in the latter case, so I guess=20
+>this
+>patch is probably the wrong thing to do for this architecture=2E
 
-Thanks for your patch!
+So probably we can use legacy domain when  MIPS IRQ BASE is in the range o=
+f legacy IRQ
+and switch to simple domain when it's not in that range?
 
-> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
-> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
-> @@ -18,6 +18,8 @@ Required properties:
->               SoC.
->               "renesas,usb2-phy-r8a7796" if the device is a part of an R8A7796
+Here in Loongson systems IRQ 0-15 is occupied by I8259 so I did this hack=
+=2E
 
-While at it, you may want to update "r8A7796 SoC" to "r8A77960 SoC", to
-avoid confusion between R-Car M3-W (R8A77960) and M3-W+ (R8A77961).
+Thanks=2E
 
-Note that rebasing this patch on top of your "[PATCH v2] dt-bindings:
-phy: renesas: usb2-phy: convert bindings to json-schema"
-(https://lore.kernel.org/linux-devicetree/1572592763-12396-1-git-send-email-yoshihiro.shimoda.uh@renesas.com/)
-would avoid that, too.
-
->               SoC.
-> +             "renesas,usb2-phy-r8a77961" if the device is a part of an
-> +             R8A77961 SoC.
->               "renesas,usb2-phy-r8a77965" if the device is a part of an
->               R8A77965 SoC.
->               "renesas,usb2-phy-r8a77990" if the device is a part of an
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+>Thanks,
+>
+>         M=2E
+=20
+--=20
+Jiaxun Yang
