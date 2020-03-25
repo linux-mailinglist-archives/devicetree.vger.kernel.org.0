@@ -2,162 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FB0C192D79
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 16:54:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DEC0192DC4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 17:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727174AbgCYPyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 11:54:06 -0400
-Received: from mail-pj1-f67.google.com ([209.85.216.67]:33249 "EHLO
-        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726264AbgCYPyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 11:54:06 -0400
-Received: by mail-pj1-f67.google.com with SMTP id jz1so2395405pjb.0;
-        Wed, 25 Mar 2020 08:54:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=m2KTzbKyqjKYw4vr9/LcS8DzT4Q8P/nBfhkd8Raxax0=;
-        b=J1vLle3i29D1ETVntQbTdDTo7RbhoAw4biGBEDwG+xA9B4DG3sbgqMKgP3pTvAKQT4
-         bapLIr0OOYwFQPfPRaIfl7yokOqbx+ItAiIhLj667sdoKkZkf5GekVnBYl4tZ2G6GCcJ
-         iRJNaGGoWZ5Yleyvy0DQJLYJUBxfc6sL9KG9zdAN3s3ZX9g33lrIvZhuRddMvSKtX7MC
-         wy1hIfDzWHbcAOVE8fi19Da+UBBOV2+LZtRjFvY+itZJJd+tPnEgWkji64tWIK7kXjlP
-         ZUBeNugEChi6JH16CzF2ti+g8kUB6s4Lz0lddmdx3bcwrdvXSfmTGGDcLZ+82bZwOfgb
-         6Dng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m2KTzbKyqjKYw4vr9/LcS8DzT4Q8P/nBfhkd8Raxax0=;
-        b=AOifu5JN5pkSuDXtL2AkhEeDtsTRkZHxarGCDNz1E2snZ9NUtQtldqOJ+2l1D3WIjw
-         iElxBn5iz0mqTr5U8ngei4WQlVMTUIP+uG6ZKqNtxe+cbNsdCF931dUOFEUtxHOtcu6T
-         NCdOo/fbbmMjFVlty7Np189uYjg53//vgkap51b4BBKkDdEGZE/xJ8nK9yRWQRClPrrD
-         gIvWSNYhG9on/rUPBvC7rGt7ZKrhQyIcn9Af+Ng8hEb0br77xu3PntnD5pUSNferTOvv
-         f/MBfC1/PGYZqYUW/1J7Wa5sdo1fOWPwyA6CBbf61i2hTDbHg7ELGpX02RAsZhF5Absj
-         X3Qw==
-X-Gm-Message-State: ANhLgQ00oaPdqAMAhEC6PZGNb3telphfF8miBms/dtCULvMYHwI6UahT
-        TIpvBpv9WrTRQC6VZQZdSXzhADg1Dd7p96AOhY0=
-X-Google-Smtp-Source: ADFU+vs1t1sRby5FeNyrAmPWma3Y7Ur7v+64WoOhzdYpplXZSsXcLF5yer3YjgSOIvPcvdhBWolXsHmRB3zEkOiP0sQ=
-X-Received: by 2002:a17:90a:8403:: with SMTP id j3mr4520249pjn.8.1585151644817;
- Wed, 25 Mar 2020 08:54:04 -0700 (PDT)
+        id S1727953AbgCYQEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 12:04:44 -0400
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17805 "EHLO
+        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725812AbgCYQEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 12:04:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1585152166;
+        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
+        h=Date:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Subject:To:CC:From:Message-ID;
+        bh=CRLfE2jz7muXeJ6qeLvUrod4IRB84jHCPnWRdiwg/sA=;
+        b=SSYChqb1m1zrASxa3+5zJjrUtMKnv9+6kTT50o212WoZGJBKE+2duup3tWenPe99
+        EGwtRDYOrgwoJ8RtPYjwvnjMdGG7AM1H2zWyeo1d9z99Rt1kbP2qdd/KPHatUNPgUy0
+        d706UjL0F/enoxNjBmfFPAbALumoy1HCfJEvY/mE=
+Received: from [10.233.233.252] (183.157.60.227 [183.157.60.227]) by mx.zoho.com.cn
+        with SMTPS id 1585152161181504.9058622774445; Thu, 26 Mar 2020 00:02:41 +0800 (CST)
+Date:   Thu, 26 Mar 2020 00:02:28 +0800
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20200325154600.GA14923@alpha.franken.de>
+References: <20200325035537.156911-7-jiaxun.yang@flygoat.com> <20200325123742.GA9911@alpha.franken.de> <a69f727d37daac6e20ac08de022245b1@kernel.org> <C4892878-8463-448D-897B-5F2C56F5A340@flygoat.com> <5eb9ce9ea665ee32da40779f00fc9b37@kernel.org> <4BB367D3-B8AD-47B6-ACC2-30752137BC1B@flygoat.com> <c4520c4b0b0eaaba5fdbaebfce7b4460@kernel.org> <39CF835E-D1D9-4B52-ABDC-BDB17B650936@flygoat.com> <20200325150437.GA14217@alpha.franken.de> <777D8DAA-F462-4E8D-9012-C114DE6D56DE@flygoat.com> <20200325154600.GA14923@alpha.franken.de>
 MIME-Version: 1.0
-References: <20200325151211.19949-1-i.mikhaylov@yadro.com> <20200325151211.19949-3-i.mikhaylov@yadro.com>
-In-Reply-To: <20200325151211.19949-3-i.mikhaylov@yadro.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 25 Mar 2020 17:53:57 +0200
-Message-ID: <CAHp75VfjqtAtS-iXS6vz452m-EUtPcNt7EPm1JvQwC4VeX-k1A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: proximity: Add driver support for vcnl3020
- proximity sensor
-To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 06/11] irqchip: mips-cpu: Convert to simple domain
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+CC:     Marc Zyngier <maz@kernel.org>, linux-mips@vger.kernel.org,
+        Huacai Chen <chenhc@lemote.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Allison Randal <allison@lohutok.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-ID: <8F2B64C3-A887-4D4B-ABEA-4BE3D30F4632@flygoat.com>
+X-ZohoCNMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 25, 2020 at 5:14 PM Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+
+
+=E4=BA=8E 2020=E5=B9=B43=E6=9C=8825=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=881=
+1:46:00, Thomas Bogendoerfer <tsbogend@alpha=2Efranken=2Ede> =E5=86=99=E5=
+=88=B0:
+>On Wed, Mar 25, 2020 at 11:09:10PM +0800, Jiaxun Yang wrote:
+>>=20
+>>=20
+>> =E4=BA=8E 2020=E5=B9=B43=E6=9C=8825=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
+=8811:04:37, Thomas Bogendoerfer
+><tsbogend@alpha=2Efranken=2Ede> =E5=86=99=E5=88=B0:
+>> >On Wed, Mar 25, 2020 at 10:31:21PM +0800, Jiaxun Yang wrote:
+>> >>=20
+>> >>=20
+>> >> =E4=BA=8E 2020=E5=B9=B43=E6=9C=8825=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=
+=8D=8810:15:16, Marc Zyngier <maz@kernel=2Eorg>
+>=E5=86=99=E5=88=B0:
+>> >> >On 2020-03-25 13:59, Jiaxun Yang wrote:
+>> >> >
+>> >> >[=2E=2E=2E]
+>> >> >
+>> >> >>>> So probably we can use legacy domain when  MIPS IRQ BASE is
+>in
+>> >the
+>> >> >>>> range of legacy IRQ
+>> >> >>>> and switch to simple domain when it's not in that range?
+>> >> >>>=20
+>> >> >>> No, see below=2E
+>> >> >>>=20
+>> >> >>>> Here in Loongson systems IRQ 0-15 is occupied by I8259 so I
+>did
+>> >> >this
+>> >> >>>> hack=2E
+>> >> >>>=20
+>> >> >>> Well, if you have to consider which Linux IRQ gets assigned,
+>> >> >>> then your platform is definitely not ready for non-legacy
+>> >> >>> irqdomains=2E Just stick to legacy for now until you have
+>removed
+>> >> >>> all the code that knows the hwirq mapping=2E
+>> >> >>=20
+>> >> >> Thanks=2E
+>> >> >>=20
+>> >> >> So I have to allocate irq_desc here in driver manually?
+>> >> >
+>> >> >No, you are probably better off just dropping this patch, as MIPS
+>> >> >doesn't seem to be ready for a wholesale switch to virtual
+>> >interrupts=2E
+>> >>=20
+>> >> It can't work without this patch=2E
+>> >>=20
+>> >> Legacy domain require IRQ number within 0-15=20
+>> >> however it's already occupied by i8259 or "HTPIC" driver=2E
+>> >
+>> >what's the problem here ? AFAIK there could be more than one
+>> >legacy domain, at least that's what at least IP22/SNI in MIPS world=20
+>> >are doing=2E
+>>=20
+>> MIPS_IRQ_BASE must be higher than 15, otherwise it will conflict with
+>i8259=2E
 >
-> Proximity sensor driver based on light/vcnl4000.c code.
-> For now supports only the single on-demand measurement.
+>I still don't get it=2E
 >
-> The VCNL3020 is a fully integrated proximity sensor. Fully
-> integrated means that the infrared emitter is included in the
-> package. It has 16-bit resolution. It includes a signal
-> processing IC and features standard I2C communication
-> interface. It features an interrupt function.
+>We have following in arch/mips/include/asm/mach-generic/irq=2Eh:
+>
+>#ifndef MIPS_CPU_IRQ_BASE
+>#ifdef CONFIG_I8259
+>#define MIPS_CPU_IRQ_BASE 16
+>#else
+>#define MIPS_CPU_IRQ_BASE 0
+>#endif /* CONFIG_I8259 */
+>#endif
+>
+>So every legacy platform with i8259 has MIPS_CPU_IRQ_BASE =3D 16=2E
+>
+>> However we have only preallocated irq_desc for 0-15=2E
+>> And legacy domain require irq_desc being preallocated=2E
+>
+>maybe I'm too fast by judging the irq code, but without
+>CONFIG_SPARSE_IRQ
+>the whole irq_desc is pre-allocated=2E
 
-Thank you for an update, my comments below.
+Sorry=2E You're right=2E
+I found the problem is CONFIG_SPARSE_IRQ is accidentally enabled in my con=
+fig due to another out-of-tree patch
+during my initial test and I always consider it as a problem=2E
 
-...
+So we can drop this patch safely for now=2E
+But just need to consider how to deal with it when we want to enable SPARS=
+E_IRQ=2E
 
-> +config VCNL3020
-> +       tristate "VCNL3020 proximity sensor"
+Thanks=2E
 
-> +       depends on I2C
+>
+>Thomas=2E
 
-REGMAP_I2C
-
-...
-
-> +struct vcnl3020_data {
-> +       struct regmap *regmap;
-
-> +       struct i2c_client *client;
-
-Since you have switched to regmap I2C API, do you really need client
-here, perhaps struct device *dev would be enough?
-
-> +       u8 rev;
-> +       struct mutex lock;
-> +};
-
-...
-
-> +       rc = regmap_read(data->regmap, VCNL_PROD_REV, &reg);
-
-> +       if (rc < 0) {
-
-I think you may drop all these ' < 0' checks for regmap, otherwise can
-you elaborate what positive return code, if any, means?
-
-> +               dev_err(&data->client->dev,
-> +                       "Error (%d) reading product revision", rc);
-> +               return rc;
-> +       }
-
-...
-
-> +       rc = regmap_write(data->regmap, VCNL_LED_CURRENT, led_current);
-> +       if (rc < 0) {
-
-...after above change...
-
-> +               dev_err(&data->client->dev, "Error (%d) setting LED current",
-> +                       rc);
-
-> +               return rc;
-> +       }
-> +
-> +       return 0;
-
-...simple return rc; here.
-
-...
-
-> +       /* wait for data to become ready */
-> +       do {
-> +               rc = regmap_read(data->regmap, VCNL_COMMAND, &reg);
-> +               if (rc < 0)
-> +                       goto err_unlock;
-> +               if (reg & VCNL_PS_RDY)
-> +                       break;
-> +               msleep(20); /* measurement takes up to 100 ms */
-> +       } while (--tries);
-
-regmap_read_poll_timeput()
-
-...
-
-> +static const struct iio_chan_spec vcnl3020_channels[] = {
-> +       {
-> +               .type = IIO_PROXIMITY,
-> +               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-
-> +       }
-
-Leave comma here.
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
+--=20
+Jiaxun Yang
