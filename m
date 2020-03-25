@@ -2,209 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDF361932D7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 22:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1354D193312
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 22:52:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727665AbgCYVfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 17:35:36 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39946 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726664AbgCYVfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 17:35:36 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 0E687293EA8
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Jeffrey Kardatzke <jkardatzke@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v3 7/7] dt-bindings: rockchip-vpu: Convert bindings to json-schema
-Date:   Wed, 25 Mar 2020 18:34:38 -0300
-Message-Id: <20200325213439.16509-8-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.26.0.rc2
-In-Reply-To: <20200325213439.16509-1-ezequiel@collabora.com>
-References: <20200325213439.16509-1-ezequiel@collabora.com>
+        id S1727384AbgCYVwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 17:52:33 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:36392 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726081AbgCYVwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 17:52:33 -0400
+Received: by mail-oi1-f194.google.com with SMTP id k18so3665257oib.3;
+        Wed, 25 Mar 2020 14:52:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QpLQfLACDAI5Uwkm+eP7UpguGefdvlXbhKdJDjEQTmA=;
+        b=nkNMTRqQhaFfQGLpH84h7Vb2cSQt2qMH5rYjL1EjXbTqkj1gYy/jeefNn5V/GRB41J
+         3JseCw2FRy+v359OZdF7/WrkZSvl5FKPK6PvwxkHsFpFj5q0807yBa5LEND5Yi/V+uIJ
+         UgPLECDpmaTBRbQnkU5L25l7CSmB8VRX6yxGQ73fiMN2zuw7d1kC2RhLeMDGbz6wg/v8
+         0VdQB7onLpyihmfY6oRo/EvYNfQun75wU913a98Zfv2yzTFyD741aIqe9jXvr0t/V0rJ
+         +0hL1y91Hepv2WHh6mqREvu78/rb6/aUWw2U685nvVDmNiLkAz7simG2NmeF/erOMWsM
+         soVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QpLQfLACDAI5Uwkm+eP7UpguGefdvlXbhKdJDjEQTmA=;
+        b=lUK5/O/GR8w8QYimZv5WbKEjGBLkoeGm8tYR/arKRqx99ubO63e9Ok8idXw9A9Dnon
+         82win2Dm2YsKKG83WqxeT2u7Zhmsued/wfS11WltD+lHUhX22izA0jfl/aWUpqbgpRbF
+         NpvZUujGL2E1IVGOaWvl7oS/pL/iZlLI/8EUwuDjaoIXJDLxl2KXRSRGEK8O+ANzi0qI
+         BmLpZvPESTIraDhKB9C3Uze033phMKNFzMuDLUUnFsVQSXyP+dCv3TODrOCpQPVq3xnB
+         9/eszBAuCjHkTfkWN19g/7vw6XFgXvUbR4LD5TF2kMGXSEIRUDCcQOUk0ew4413S81vE
+         MicQ==
+X-Gm-Message-State: ANhLgQ2lp6dzirKvKWrqYWgMaN2nDGXK4dH0t0enCalkq7hyfjvz7NWs
+        lKgRihT1K+umq7nuLvpj+ZtbJtOVS/EYB1JveoA=
+X-Google-Smtp-Source: ADFU+vt678gX2VsVQQpCTNMxR/ZEy9sOGed2BFdU0XnvfqmjfHdK180DMJmfexTYtkXu+tyuQ3CLR9198ESyMdFsYk0=
+X-Received: by 2002:aca:5444:: with SMTP id i65mr3865876oib.101.1585173152034;
+ Wed, 25 Mar 2020 14:52:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1584133954-6953-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1584133954-6953-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200319124452.3yfcvq754vi4q2rv@gilmour.lan> <20200319130348.GC4872@pendragon.ideasonboard.com>
+ <CA+V-a8s-GZsYuBLyGnzURZfGD42f0c+QEan6FSwb2ew1=7Gj3g@mail.gmail.com>
+ <20200324154045.whiy6uvlg2mrjv5a@gilmour.lan> <CA+V-a8tMVoJOdgM_S0sJ0WEGhwBirCC4mi-TtxLCn1SKVXXiBQ@mail.gmail.com>
+ <20200324161221.GA27805@pendragon.ideasonboard.com>
+In-Reply-To: <20200324161221.GA27805@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 25 Mar 2020 21:52:05 +0000
+Message-ID: <CA+V-a8uL+VQysPTj6m=W=Y7_eK-p4HOY0a16-F=v3q3KyvCX_g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] media: dt-bindings: media: i2c: Switch to assigned-clock-rates
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Rockchip VPU (Hantro IP block) codec driver documentation to
-json-schema.
+Hi Laurent,
 
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
- .../bindings/media/rockchip-vpu.txt           | 43 ----------
- .../bindings/media/rockchip-vpu.yaml          | 82 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 83 insertions(+), 44 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/rockchip-vpu.txt
- create mode 100644 Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+On Tue, Mar 24, 2020 at 4:12 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Mar 24, 2020 at 04:04:43PM +0000, Lad, Prabhakar wrote:
+> > On Tue, Mar 24, 2020 at 3:40 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> > > On Thu, Mar 19, 2020 at 01:17:51PM +0000, Lad, Prabhakar wrote:
+> > > > On Thu, Mar 19, 2020 at 1:04 PM Laurent Pinchart wrote:
+> > > > > On Thu, Mar 19, 2020 at 01:44:52PM +0100, Maxime Ripard wrote:
+> > > > > > On Fri, Mar 13, 2020 at 09:12:31PM +0000, Lad Prabhakar wrote:
+> > > > > > > Use assigned-clock-rates to specify the clock rate. Also mark
+> > > > > > > clock-frequency property as deprecated.
+> > > > > > >
+> > > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > > ---
+> > > > > > >  Documentation/devicetree/bindings/media/i2c/ov5645.txt | 5 +++--
+> > > > > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > > > > index 72ad992..e62fe82 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > > > > > > @@ -8,7 +8,7 @@ Required Properties:
+> > > > > > >  - compatible: Value should be "ovti,ov5645".
+> > > > > > >  - clocks: Reference to the xclk clock.
+> > > > > > >  - clock-names: Should be "xclk".
+> > > > > > > -- clock-frequency: Frequency of the xclk clock.
+> > > > > > > +- clock-frequency (deprecated): Frequency of the xclk clock.
+> > > > > > >  - enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> > > > > > >    to the hardware pin PWDNB which is physically active low.
+> > > > > > >  - reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> > > > > > > @@ -37,7 +37,8 @@ Example:
+> > > > > > >
+> > > > > > >                     clocks = <&clks 200>;
+> > > > > > >                     clock-names = "xclk";
+> > > > > > > -                   clock-frequency = <24000000>;
+> > > > > > > +                   assigned-clocks = <&clks 200>;
+> > > > > > > +                   assigned-clock-rates = <24000000>;
+> > > > > > >
+> > > > > > >                     vdddo-supply = <&camera_dovdd_1v8>;
+> > > > > > >                     vdda-supply = <&camera_avdd_2v8>;
+> > > > > >
+> > > > > > clock-frequency is quite different from assigned-clock-rates though,
+> > > > > > semantically speaking. clock-frequency is only about what the clock
+> > > > > > frequency is, while assigned-clock-rates will change the rate as well,
+> > > > > > and you have no idea how long it will last.
+> > > > >
+> > > > > The driver currently reads the clock-frequency property and then calls
+> > > > > clk_set_rate(). I agree tht assigned-clock-rates isn't a panacea, but I
+> > > > > think it's less of a hack than what we currently have.
+> > > > >
+> > > > > As discussed on IRC, maybe the best option in this specific case is to
+> > > > > drop clock-frequency and assigned-clok-rates, and call clk_set_rate()
+> > > > > with a hardcoded frequency of 24MHz in the driver, as that's the only
+> > > > > frequency the driver supports.
+> > > > >
+> > > > Does this mean any driver which has a fixed clock requirement shouldn't be a
+> > > > DT property and should be just handled by the drivers internally ?
+> > >
+> > > It's hard to give a generic policy, but here, the hardware is pretty
+> > > flexible since it can deal with anything between 6MHz to 50-something
+> > > MHz, it's the driver that chooses to enforce a 24MHz and be pedantic
+> > > about it, so it's up to the driver to enforce that policy, not to the
+> > > DT since it's essentially a software limitation, not a hardware one.
+> >
+> > Thank you for the clarification, Ill drop patches 1-4 from this series.
+>
+> That's the whole series... :-) I think you should keep patch 1/4 but
+> just remove the clock-frequency from the bindings, then remove it from
+> the DT files, and patch the driver to set the clock rate to 24MHz
+> unconditionally in patch 4/4.
+>
+My bad I was referring to v4 series patch 5/5 which converts dt
+bindings to json schema.
+I'll shall post a v5 as suggested above.
 
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.txt b/Documentation/devicetree/bindings/media/rockchip-vpu.txt
-deleted file mode 100644
-index 339252d9c515..000000000000
---- a/Documentation/devicetree/bindings/media/rockchip-vpu.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--device-tree bindings for rockchip VPU codec
--
--Rockchip (Video Processing Unit) present in various Rockchip platforms,
--such as RK3288, RK3328 and RK3399.
--
--Required properties:
--- compatible: value should be one of the following
--		"rockchip,rk3288-vpu";
--		"rockchip,rk3328-vpu";
--		"rockchip,rk3399-vpu";
--- interrupts: encoding and decoding interrupt specifiers
--- interrupt-names: should be
--		"vepu", "vdpu" on RK3288 and RK3399,
--		"vdpu" on RK3328.
--- clocks: phandle to VPU aclk, hclk clocks
--- clock-names: should be "aclk" and "hclk"
--- power-domains: phandle to power domain node
--- iommus: phandle to a iommu node
--
--Example:
--SoC-specific DT entry:
--	vpu: video-codec@ff9a0000 {
--		compatible = "rockchip,rk3288-vpu";
--		reg = <0x0 0xff9a0000 0x0 0x800>;
--		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vepu", "vdpu";
--		clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
--		clock-names = "aclk", "hclk";
--		power-domains = <&power RK3288_PD_VIDEO>;
--		iommus = <&vpu_mmu>;
--	};
--
--	vpu: video-codec@ff350000 {
--		compatible = "rockchip,rk3328-vpu";
--		reg = <0x0 0xff350000 0x0 0x800>;
--		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vdpu";
--		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
--		clock-names = "aclk", "hclk";
--		power-domains = <&power RK3328_PD_VPU>;
--		iommus = <&vpu_mmu>;
--	};
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-new file mode 100644
-index 000000000000..a0c45e05cf03
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/rockchip-vpu.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Hantro G1 VPU codecs implemented on Rockchip SoCs
-+
-+maintainers:
-+  - Ezequiel Garcia <ezequiel@collabora.com>
-+
-+description:
-+  Hantro G1 video encode and decode accelerators present on Rockchip SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3288-vpu
-+      - rockchip,rk3328-vpu
-+      - rockchip,rk3399-vpu
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: vepu
-+      - const: vdpu
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: hclk
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+        #include <dt-bindings/clock/rk3288-cru.h>
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+        vpu: video-codec@ff9a0000 {
-+                compatible = "rockchip,rk3288-vpu";
-+                reg = <0x0 0xff9a0000 0x0 0x800>;
-+                interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-names = "vepu", "vdpu";
-+                clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
-+                clock-names = "aclk", "hclk";
-+                power-domains = <&power RK3288_PD_VIDEO>;
-+                iommus = <&vpu_mmu>;
-+        };
-+
-+        vpu: video-codec@ff350000 {
-+                compatible = "rockchip,rk3328-vpu";
-+                reg = <0x0 0xff350000 0x0 0x800>;
-+                interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-names = "vdpu";
-+                clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+                clock-names = "aclk", "hclk";
-+                power-domains = <&power RK3328_PD_VPU>;
-+                iommus = <&vpu_mmu>;
-+        };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d66ac41ef587..2b8b3e7f3df3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14320,7 +14320,7 @@ L:	linux-rockchip@lists.infradead.org
- S:	Maintained
- F:	drivers/staging/media/hantro/
- F:	Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
--F:	Documentation/devicetree/bindings/media/rockchip-vpu.txt
-+F:	Documentation/devicetree/bindings/media/rockchip-vpu.yaml
- 
- ROCKER DRIVER
- M:	Jiri Pirko <jiri@resnulli.us>
--- 
-2.26.0.rc2
+Cheers,
+--Prabhakar
 
+> --
+> Regards,
+>
+> Laurent Pinchart
