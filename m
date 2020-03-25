@@ -2,165 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5D8193194
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 21:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3EFD1931C9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 21:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727236AbgCYUEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 16:04:00 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:33049 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727316AbgCYUD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Mar 2020 16:03:59 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1585166638; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=3D6rKVomxFnkyZEpJNCASMp1XYz2rOhrRpdYgZA8Qqg=;
- b=g4VNlZdPAIkA8cYHZR38cONiwvnoDndznbWWiKmy+e+L6MR+fqo+A/hfi62jF5HWG2VH8yUG
- DfxkveDZl6AQ1WwC/CNNMA13f5Olx03WOALiwnFhCVJHtdH0zj+SL0ecxa4LU5eSpBIyVwIY
- e+YXKNNDEJJQENYaX3ihJGxwp7A=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e7bb92b.7f5cd6d6adc0-smtp-out-n01;
- Wed, 25 Mar 2020 20:03:55 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 92005C43637; Wed, 25 Mar 2020 20:03:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kalyan_t)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B0F70C433D2;
-        Wed, 25 Mar 2020 20:03:53 +0000 (UTC)
+        id S1727547AbgCYUS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 16:18:58 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:38440 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727406AbgCYUS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 16:18:57 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02PKIiVR085834;
+        Wed, 25 Mar 2020 15:18:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1585167524;
+        bh=CxukkovBJFpII0uJw7j2rQdNqCAT4Ya7y+OIAbYeZf4=;
+        h=From:To:CC:Subject:Date;
+        b=gJdxXPXFwXAp0L2ctK6D43oGj9tX0xL5s2QfU0OqcRaWno9SD9iQ3H9B8D0zg530/
+         TWp4uzQOnKNMetj1WTeaugk4suty839vKyYipV9DL1pXkKCNE/DD2icfYgOzEsAJTo
+         mM/W6bBSRpx4d5deIoEkb91ol9QtUz0ACaVuRAeI=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02PKIi8a025540
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 25 Mar 2020 15:18:44 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 25
+ Mar 2020 15:18:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 25 Mar 2020 15:18:43 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02PKIhmC064313;
+        Wed, 25 Mar 2020 15:18:43 -0500
+Received: from localhost ([10.250.35.147])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 02PKIhhq090851;
+        Wed, 25 Mar 2020 15:18:43 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/3] TI K3 DSP remoteproc driver for C66x DSPs
+Date:   Wed, 25 Mar 2020 15:18:36 -0500
+Message-ID: <20200325201839.15896-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 26 Mar 2020 01:33:53 +0530
-From:   kalyan_t@codeaurora.org
-To:     Doug Anderson <dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        mkrishn@codeaurora.org, travitej@codeaurora.org,
-        nganji@codeaurora.org
-Subject: Re: [PATCH] drm/msm/dpu: ensure device suspend happens during PM
- sleep
-In-Reply-To: <CAD=FV=VxeCUEEFi9T0Jand3EWkaQTLnQkT3v5yjyjLi4yDeQ-w@mail.gmail.com>
-References: <1584944027-1730-1-git-send-email-kalyan_t@codeaurora.org>
- <CAD=FV=VX+Lj=NeZnYxDv9gLYUiwUO6brwvDSL8dbs1MTF4ieuA@mail.gmail.com>
- <CAF6AEGs5saoU3FeO++S+YD=Js499HB2CjK8neYCXAZmCjgy2nQ@mail.gmail.com>
- <CAD=FV=VxeCUEEFi9T0Jand3EWkaQTLnQkT3v5yjyjLi4yDeQ-w@mail.gmail.com>
-Message-ID: <114130f68c494f83303c51157e2c5bfa@codeaurora.org>
-X-Sender: kalyan_t@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-03-25 21:20, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Mar 25, 2020 at 8:40 AM Rob Clark <robdclark@gmail.com> wrote:
->> 
->> On Tue, Mar 24, 2020 at 7:35 AM Doug Anderson <dianders@chromium.org> 
->> wrote:
->> >
->> > Hi,
->> >
->> > On Sun, Mar 22, 2020 at 11:14 PM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
->> > >
->> > > "The PM core always increments the runtime usage counter
->> > > before calling the ->suspend() callback and decrements it
->> > > after calling the ->resume() callback"
->> > >
->> > > DPU and DSI are managed as runtime devices. When
->> > > suspend is triggered, PM core adds a refcount on all the
->> > > devices and calls device suspend, since usage count is
->> > > already incremented, runtime suspend was not getting called
->> > > and it kept the clocks on which resulted in target not
->> > > entering into XO shutdown.
->> > >
->> > > Add changes to manage runtime devices during pm sleep.
->> > >
->> > > Changes in v1:
->> > >  - Remove unnecessary checks in the function
->> > >      _dpu_kms_disable_dpu (Rob Clark).
->> >
->> > I'm wondering what happened with my feedback on v1, AKA:
->> >
->> > https://lore.kernel.org/r/CAD=FV=VxzEV40g+ieuEN+7o=34+wM8MHO8o7T5zA1Yosx7SVWg@mail.gmail.com
->> >
->> > Maybe you didn't see it?  ...or if you or Rob think I'm way off base
->> > (always possible) then please tell me so.
->> >
--- I didn't notice your comments earlier. Apologies !!
+Hi All,
 
->> 
->> At least w/ the current patch, disable_dpu should not be called for
->> screen-off (although I'd hope if all the screens are off the device
->> would suspend).
-> 
-> OK, that's good.
+The following series adds a new K3 DSP remoteproc driver supporting the
+C66x DSPs on the TI K3 J721E SoCs. The current series mainly adds the support
+for booting the DSPs from the Linux kernel. This series forms the foundation
+for adding support for a new 64-bit DSP (C71x DSP) to be posted in a separate
+series. Support for attaching to pre-booted DSPs (from bootloader) will be
+done in a future series.
 
--- Rob has answered it, with current change disable_dpu will only be 
-called during pm_suspend.
-> 
->> But I won't claim to be a pm expert.. so not really
->> sure if this is the best approach or not.  I don't think our
->> arrangement of sub-devices under a parent is completely abnormal, so
->> it does feel like there should be a simpler solution..
-> 
-> I think the other arguments about asymmetry are still valid and I've
-> fixed bugs around this type of thing in the past.  For instance, see
-> commit f7ccbed656f7 ("drm/rockchip: Suspend DP late").
-> 
+The C66x DSPs can boot either using firmware segments loaded into either DDR
+and/or internal DSP RAMs. IPC is through the virtio-rpmsg transport. There is 
+no Error Recovery or Power Management support at present. The driver also does
+not support loading into on-chip SRAMs at present.
 
-* What happens if suspend is aborted partway through (by getting a
-wakeup even as you're suspending, for instance)?  In such a case some
-of the normal suspend calls will be called but "suspend_late" won't be
-called.  Does that mess up your counting?
+The patches are based on the current rproc-next branch, and does use couple
+of patches posted earlier from the OMAP remoteproc series [1] and TI K3 R5F
+series [2]. It also leverages the fixed memory carveout fixes series [3].
 
--- I understand this concern, i'll explore a bit more on how to handle 
-"failed to suspend","early awake"
-cases (to restore the usage_count) since suspend_late wont be called.
+Following is the patch summary:
+ - Patch 1 adds the bindings in the YAML format.
+ - Patch 2 adds the basic remoteproc driver for the C66x DSPs
+ - Patch 3 is an enhancement to support loading into the DSP's internal
+   RAMs directly.
 
-*From your description, it sure seems like this part of the
-runtime_pm.rst doc is relevant to you:
+regards
+Suman
 
-Did I misunderstand and this isn't what you want?  Looking a bit
-further, maybe the right thing is to use the "SMART_SUSPEND" flag?
+[1] https://patchwork.kernel.org/patch/11455135/
+[2] https://patchwork.kernel.org/patch/11456383/ 
+[3] https://patchwork.kernel.org/cover/11447649/
 
--- if you notice in the device_prepare 
-(https://elixir.bootlin.com/linux/latest/source/drivers/base/power/main.c#L1913)
-there is a pm_runtime_get_noresume at L1931, which will increment the 
-usagecount before triggering client prepare call, hence implementing 
-prepare wont fetch us much.
+Suman Anna (3):
+  dt-bindings: remoteproc: Add bindings for C66x DSPs on TI K3 SoCs
+  remoteproc/k3-dsp: Add a remoteproc driver of K3 C66x DSPs
+  remoteproc/k3-dsp: Add support for L2RAM loading on C66x DSPs
 
-This appears to be more for the cases when device is runtime suspended 
-and suspend followed later
-"one example usecase that i can think of, is screen timeout after that 
-suspend is triggered"
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 180 ++++
+ drivers/remoteproc/Kconfig                    |  16 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     | 818 ++++++++++++++++++
+ 4 files changed, 1015 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_dsp_remoteproc.c
 
-currently the problem i am looking at is that
-	PM Core does +1 in device prepare
-		DPU driver does -1 in suspend
-		DPU driver does +1 in suspend late  ( look for right place )
-	PM core does -1 in device complete
+-- 
+2.23.0
 
-i'll get back after exploring a bit.
-
-> 
-> -Doug
