@@ -2,114 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A4E1925D1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 11:38:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E212319265B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 11:57:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727448AbgCYKij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 06:38:39 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:36594 "EHLO
+        id S1726206AbgCYK5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 06:57:42 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:41811 "EHLO
         mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727158AbgCYKij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 06:38:39 -0400
-Received: by mail-wr1-f67.google.com with SMTP id 31so2330663wrs.3;
-        Wed, 25 Mar 2020 03:38:37 -0700 (PDT)
+        with ESMTP id S1726103AbgCYK5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 06:57:42 -0400
+Received: by mail-wr1-f67.google.com with SMTP id h9so2393341wrc.8;
+        Wed, 25 Mar 2020 03:57:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/wgvz2lVpp5+P73ebkZ5cpJlG6NyplWSlH1ZFZco8LM=;
-        b=eReNsT3/ql4XtBGPugbUGLIbqp4B391Ps/1xoYiR+OGIUAH8+B72MCrP2HlKPfoWaP
-         pqYGsv0O8ZMQL6PQ+IalWVy372tw3azPRtzZgqDbyElePH+Tqh+q33JT2PdJ0HFxNGP5
-         qRaT84ztZV1Oows1zWBxj5nUJUo4aoP26PcBpAec19SxZPm2MMk9Uq/svtyyxKJa3orv
-         yvka7cvw1E52RdM4qI00bCg31CXx3lSjeUvvg7UbfjpHHVojeBhPr/W/FFRckGeye2FJ
-         15R/lKijLyeFma7tkjaxFYbz40cTthdWPkHJoqQNrVmFBJPB1baHaW6/959pOfdz/cVB
-         JpJA==
+        h=from:to:cc:subject:date:message-id;
+        bh=LK/63VpRTinhiS72eGFe8hpGS9Ib9592eNpC47zP9eg=;
+        b=STJZraM7KnNG5j/4mxy5/JwGK6u9Ls8g+U8aHGuB8OiwBRazBmk0EmDZVLasIpVg0l
+         LorsN9AwIU5jU31QyO9MIuxJJW+sLYNIXrfLt4pYBdOE8Pu9Oj734hNYJNCkwEUnLk5l
+         myQiEIBn9uX3gVw6J0TL7xoI12fBLhYqtTKXViXTBiOQsiDYTS65LvrfphITeNZzZI86
+         nOxz0frKnPvmmxaYRS8Ntfuz6rcaJ1Ay0bjXlkUIVMiNa21MYbucmpJA2Q0GYyiCbs4T
+         6XRBiv6s6z5p7ID+Zv2krl/rKyFjIbPLOqvQCItXfyFap7VfMmxa1WY1RjJS/qNiRnL5
+         udXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/wgvz2lVpp5+P73ebkZ5cpJlG6NyplWSlH1ZFZco8LM=;
-        b=NyQYEg2N4vhWsYaC8KGYmjPs+SxPCb0DZllR1/yTYEkoZr73ORNp8EfRfUdMzLGycG
-         nMnaFlDN+hOMXAE+dN/ltwaf60dgjfvtgutq1G0IUMeXHHZecfZaTL7zkArsLgeCmI8a
-         Tg9bWzVpSJzjBlwFDrP9cmEfzPUkYqhC2nNGPsl68dBqyQ4Fksq6fvCBvjwj5r60MAIm
-         k6eDJRThw7urS3nYy2m+xglpoI3vuOGf93pK+kceFdhYLFjyBAqcFWKtLT0uHXV36rm6
-         awVmOhJaky7aI6U7g/Q41AOIB7DMwlkzXq/OzClhUx6MvUIh8u9y10GNMJX0jdVPuU1S
-         1sGw==
-X-Gm-Message-State: ANhLgQ1qvsd9SnBFxsJ4ohkbcCS2SQOqf1bw5SYY5fQ33ul1FSkD042i
-        n9b/NP8sm4kWSkJEbPngynkHytOs
-X-Google-Smtp-Source: ADFU+vt2Dw8Gg8y8PXMVIdEPTxwRM9hacRHxiTFN7DEjZdRm/qg5K+XBLFsyyZk6b1ZiLZCI4gwDuw==
-X-Received: by 2002:a5d:53d1:: with SMTP id a17mr2871409wrw.41.1585132716907;
-        Wed, 25 Mar 2020 03:38:36 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LK/63VpRTinhiS72eGFe8hpGS9Ib9592eNpC47zP9eg=;
+        b=M2Rp+wA+mk0uSKMweb3uQXdd39nyRDMed0eULj5Ed59ViY60dNQDU/bxHkj2SZw6bQ
+         SPcg865lhoFaTUfJcUf3lnb2axV3Hgv91skOn4lTw2IXME5swZgltbsxdGnuXaJzdWNT
+         IMNuOcvIJt9EsNFDngDuD/NzJ3n421ufg4p0BEYq/3N/0nidI7Va3avJzXOtrqLtcJf2
+         pDStKzkY8hEMVIxLo2/avynhYVHwNNpXkG928yUfAWruOreqXCAcW+OJidMsXnOZ/dgs
+         axyXQFl9jwlslasYXSmXJcLrzNyOMlqPWYkE35NwiOtq6mp3pxsXohuXucZgPVh729rP
+         cg3w==
+X-Gm-Message-State: ANhLgQ3UJjDSEprsqacfdeLtUbM8oC1vz5/91w9Lp4f5i/Avd2l0KjDL
+        /y/4WLdh2913Rt8DkTwAVH4=
+X-Google-Smtp-Source: ADFU+vsNgfBpz3csz9luqYb8b7ZDiuvrOxIb4oqdh2Jlq7yApLxnA+XyWS3p4B5eABuEpP56HxycWA==
+X-Received: by 2002:a5d:468c:: with SMTP id u12mr2983370wrq.394.1585133860900;
+        Wed, 25 Mar 2020 03:57:40 -0700 (PDT)
 Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id i21sm9163108wmb.23.2020.03.25.03.38.35
+        by smtp.gmail.com with ESMTPSA id o9sm33867584wrw.20.2020.03.25.03.57.40
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 25 Mar 2020 03:38:36 -0700 (PDT)
+        Wed, 25 Mar 2020 03:57:40 -0700 (PDT)
 From:   Johan Jonker <jbx6244@gmail.com>
 To:     heiko@sntech.de
-Cc:     hjc@rock-chips.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] dt-bindings: display: rockchip-vop: add additional properties
-Date:   Wed, 25 Mar 2020 11:38:28 +0100
-Message-Id: <20200325103828.5422-2-jbx6244@gmail.com>
+Subject: [PATCH] ARM: dts: rockchip: remove identical #include from rk3288.dtsi
+Date:   Wed, 25 Mar 2020 11:57:34 +0100
+Message-Id: <20200325105734.5868-1-jbx6244@gmail.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200325103828.5422-1-jbx6244@gmail.com>
-References: <20200325103828.5422-1-jbx6244@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the old txt situation we add/describe only properties that are used
-by the driver/hardware itself. With yaml it also filters things in a
-node that are used by other drivers like 'assigned-clocks' and
-'assigned-clock-rates' for rk3399 and 'power-domains' for most
-Rockchip Socs in 'vop' nodes, so add them to 'rockchip-vop.yaml'.
+There are 2 identical '#include' for 'rk3288-power.h',
+so remove one of them.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- .../devicetree/bindings/display/rockchip/rockchip-vop.yaml    | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm/boot/dts/rk3288.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
-index bc58c5132..497a9fb2d 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
-@@ -75,9 +75,18 @@ properties:
-       A port node with endpoint definitions as defined in
-       Documentation/devicetree/bindings/media/video-interfaces.txt.
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index e72368a7a..f102fec69 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -7,7 +7,6 @@
+ #include <dt-bindings/clock/rk3288-cru.h>
+ #include <dt-bindings/power/rk3288-power.h>
+ #include <dt-bindings/thermal/thermal.h>
+-#include <dt-bindings/power/rk3288-power.h>
+ #include <dt-bindings/soc/rockchip,boot-mode.h>
  
-+  assigned-clocks:
-+    maxItems: 2
-+
-+  assigned-clock-rates:
-+    maxItems: 2
-+
-   iommus:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -95,6 +104,7 @@ examples:
-     #include <dt-bindings/clock/rk3288-cru.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/rk3288-power.h>
-     vopb: vopb@ff930000 {
-       compatible = "rockchip,rk3288-vop";
-       reg = <0x0 0xff930000 0x0 0x19c>,
-@@ -104,6 +114,7 @@ examples:
-                <&cru DCLK_VOP0>,
-                <&cru HCLK_VOP0>;
-       clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
-+      power-domains = <&power RK3288_PD_VIO>;
-       resets = <&cru SRST_LCDC1_AXI>,
-                <&cru SRST_LCDC1_AHB>,
-                <&cru SRST_LCDC1_DCLK>;
+ / {
 -- 
 2.11.0
 
