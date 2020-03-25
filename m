@@ -2,205 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B4F19241A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 10:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6DA192460
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 10:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727458AbgCYJb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 05:31:56 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:22729 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727260AbgCYJb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 05:31:56 -0400
-X-UUID: e8110b5dec764557b9b29913bbfeda48-20200325
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=9FQochT6xXYHVNbDm4WOYr2YjWICAQQittIMpOjh1tY=;
-        b=ExBAHLsjKKUii8TXGOmnrhtUSeCX4klVhNFWUko5n+nJGrIZFYw0w8ETjTm4piSDKWaQI+7MNisBHrEI6T6LIM7Wn7PATW6l5P50AUKiWxxIvtLG9qCww7nPmHs0iG7qvpr7STPhwWDRfc41IsUopd7d3MZgzJssyEw1JzuIt/Y=;
-X-UUID: e8110b5dec764557b9b29913bbfeda48-20200325
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <hanks.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1706807194; Wed, 25 Mar 2020 17:31:48 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 25 Mar 2020 17:31:41 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 25 Mar 2020 17:31:42 +0800
-From:   Hanks Chen <hanks.chen@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1727332AbgCYJml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 05:42:41 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37713 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727320AbgCYJmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 05:42:40 -0400
+Received: by mail-wr1-f67.google.com with SMTP id w10so2064799wrm.4
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 02:42:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=vRDeYiMCG4XXoUnQTgsGkl8d/lvzN+sIbey00XaX5XM=;
+        b=QDwl2z2ZAKFLg9mCSI/yr6ImooOPb5Fbs+CphasVocI/0SI+R5F+v5p7dMsBsVu/sm
+         nj+rxcBs7M7oOB3To5sLYPfUhGzDtzeVXP9I08hkoRRQAkp32UihUKBCYgPVs1vtS3Qa
+         PbO0r02L+BfDBd7P4MzuC1Sn0jbIB5gVhiw43nLmKg98NPo4pxshHKRNPWtb3wumxT17
+         oFXTCCi/KZpHwm0F5Sph+oQIeujRyngu1j6ae4xUSS6A9TaRjEBRg3kxWAeWar/0cYej
+         he5RWQlC0Ib8sddoq57miNpslYhx9gGXdmjZHuLocgjCeR7MQWMSKw9nt5HCA9DMMftx
+         gBbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=vRDeYiMCG4XXoUnQTgsGkl8d/lvzN+sIbey00XaX5XM=;
+        b=LbhMlZiDSFUUqmI+vWDxykPOIyULJu006boVlU2Y/XyFjSdyv5D4zQkcekfwbhPp80
+         Ypxg+8k98BEtuQKFru54fUN1ZV/xzJwjFUiZCcDs0JH6o88IUpQaabTLr44GLIRkMcDG
+         /8EdmVZtJj8xeCE+A1Mef0oebxDhzRL1D9HK0q93of+mP02itM2FP65lOMH0yGzf0+58
+         cE6Qj0PYP+ySO6inz0wICjMR4NNDcLhztcooToBc6K7KNx7sl9I8K2bCqIZz0QzFVScV
+         Nd+eQcrHXLwVX28UDEb2ccm+d8UbNYFeJYAPUupQTKyf1X3KVfkKl7MMrznsUjMb6z9X
+         F7hQ==
+X-Gm-Message-State: ANhLgQ36AKueFbD1kRjSU+TJFAUiNU1e7DsvC78XMNr/CKc+PUoQT9ze
+        7EBk5xuQC++xb/R5YRJaEORfjJ3s1Yw=
+X-Google-Smtp-Source: ADFU+vur7iuRbEAFb8kp1fAHSb42z9lGv7s7JibA/ubrGXmJU2SV6uYfUAdsdWWve6Y7oB1Tmo891A==
+X-Received: by 2002:adf:9ccb:: with SMTP id h11mr2382792wre.22.1585129358113;
+        Wed, 25 Mar 2020 02:42:38 -0700 (PDT)
+Received: from dell ([2.27.35.213])
+        by smtp.gmail.com with ESMTPSA id h26sm8323017wmb.19.2020.03.25.02.42.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Mar 2020 02:42:37 -0700 (PDT)
+Date:   Wed, 25 Mar 2020 09:43:26 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>
-CC:     Andy Teng <andy.teng@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, Hanks Chen <hanks.chen@mediatek.com>
-Subject: [PATCH v5 6/6] arm64: dts: add dts nodes for MT6779
-Date:   Wed, 25 Mar 2020 17:31:34 +0800
-Message-ID: <1585128694-13881-7-git-send-email-hanks.chen@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1585128694-13881-1-git-send-email-hanks.chen@mediatek.com>
-References: <1585128694-13881-1-git-send-email-hanks.chen@mediatek.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        Josef Friedl <josef.friedl@speed.at>,
+        Ran Bi <ran.bi@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v10 3/5] mfd: Add support for the MediaTek MT6358 PMIC
+Message-ID: <20200325094326.GH442973@dell>
+References: <1583918223-22506-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1583918223-22506-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1583918223-22506-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dGhpcyBhZGRzIGluaXRpYWwgTVQ2Nzc5IGR0cyBzZXR0aW5ncyBmbyBib2FyZCBzdXBwb3J0LA0K
-aW5jbHVkaW5nIGNwdSwgZ2ljLCB0aW1lciwgY2NmLCBwaW5jdHJsLCB1YXJ0Li4uZXRjLg0KDQpT
-aWduZWQtb2ZmLWJ5OiBIYW5rcyBDaGVuIDxoYW5rcy5jaGVuQG1lZGlhdGVrLmNvbT4NCi0tLQ0K
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvTWFrZWZpbGUgICAgICAgfCAgICAxICsNCiBh
-cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS1ldmIuZHRzIHwgICAzMSArKysrDQog
-YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSAgICB8ICAyNjUgKysrKysr
-KysrKysrKysrKysrKysrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCAyOTcgaW5zZXJ0aW9ucygr
-KQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3
-OS1ldmIuZHRzDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0
-ZWsvbXQ2Nzc5LmR0c2kNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0
-ZWsvTWFrZWZpbGUgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL01ha2VmaWxlDQppbmRl
-eCA0NThiYmM0Li41M2YxYzYxIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9NYWtlZmlsZQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9NYWtlZmls
-ZQ0KQEAgLTEsNiArMSw3IEBADQogIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMA0K
-IGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDI3MTItZXZiLmR0Yg0KIGR0Yi0kKENP
-TkZJR19BUkNIX01FRElBVEVLKSArPSBtdDY3NTUtZXZiLmR0Yg0KK2R0Yi0kKENPTkZJR19BUkNI
-X01FRElBVEVLKSArPSBtdDY3NzktZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVL
-KSArPSBtdDY3OTUtZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDY3
-OTctZXZiLmR0Yg0KIGR0Yi0kKENPTkZJR19BUkNIX01FRElBVEVLKSArPSBtdDY3OTcteDIwLWRl
-di5kdGINCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS1l
-dmIuZHRzIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzktZXZiLmR0cw0KbmV3
-IGZpbGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAuLjE2NGY1Y2INCi0tLSAvZGV2L251bGwN
-CisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LWV2Yi5kdHMNCkBAIC0w
-LDAgKzEsMzEgQEANCisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCsNCisvKg0K
-KyAqIENvcHlyaWdodCAoYykgMjAxOSBNZWRpYVRlayBJbmMuDQorICogQXV0aG9yOiBNYXJzLkMg
-PG1hcnMuY2hlbmdAbWVkaWF0ZWsuY29tPg0KKyAqDQorICovDQorDQorL2R0cy12MS87DQorI2lu
-Y2x1ZGUgIm10Njc3OS5kdHNpIg0KKw0KKy8gew0KKwltb2RlbCA9ICJNZWRpYVRlayBNVDY3Nzkg
-RVZCIjsNCisJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktZXZiIiwgIm1lZGlhdGVrLG10
-Njc3OSI7DQorDQorCWFsaWFzZXMgew0KKwkJc2VyaWFsMCA9ICZ1YXJ0MDsNCisJfTsNCisNCisJ
-bWVtb3J5QDQwMDAwMDAwIHsNCisJCWRldmljZV90eXBlID0gIm1lbW9yeSI7DQorCQlyZWcgPSA8
-MCAweDQwMDAwMDAwIDAgMHgxZTgwMDAwMD47DQorCX07DQorDQorCWNob3NlbiB7DQorCQlzdGRv
-dXQtcGF0aCA9ICJzZXJpYWwwOjkyMTYwMG44IjsNCisJfTsNCit9Ow0KKw0KKyZ1YXJ0MCB7DQor
-CXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-bWVkaWF0ZWsvbXQ2Nzc5LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3
-OS5kdHNpDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uNDIyZmY1Zg0KLS0t
-IC9kZXYvbnVsbA0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRz
-aQ0KQEAgLTAsMCArMSwyNjUgQEANCisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIu
-MCsNCisvKg0KKyAqIENvcHlyaWdodCAoYykgMjAxOSBNZWRpYVRlayBJbmMuDQorICogQXV0aG9y
-OiBNYXJzLkMgPG1hcnMuY2hlbmdAbWVkaWF0ZWsuY29tPg0KKyAqDQorICovDQorDQorI2luY2x1
-ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL210Njc3OS1jbGsuaD4NCisjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQorI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2lu
-dGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCisjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcGlu
-Y3RybC9tdDY3NzktcGluZnVuYy5oPg0KKw0KKy8gew0KKwljb21wYXRpYmxlID0gIm1lZGlhdGVr
-LG10Njc3OSI7DQorCWludGVycnVwdC1wYXJlbnQgPSA8JnN5c2lycT47DQorCSNhZGRyZXNzLWNl
-bGxzID0gPDI+Ow0KKwkjc2l6ZS1jZWxscyA9IDwyPjsNCisNCisJcHNjaSB7DQorCQljb21wYXRp
-YmxlID0gImFybSxwc2NpLTAuMiI7DQorCQltZXRob2QgPSAic21jIjsNCisJfTsNCisNCisJY3B1
-cyB7DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKw0K
-KwkJY3B1MDogY3B1QDAgew0KKwkJCWRldmljZV90eXBlID0gImNwdSI7DQorCQkJY29tcGF0aWJs
-ZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorCQkJZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCisJCQly
-ZWcgPSA8MHgwMDA+Ow0KKwkJfTsNCisNCisJCWNwdTE6IGNwdUAxIHsNCisJCQlkZXZpY2VfdHlw
-ZSA9ICJjcHUiOw0KKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKwkJCWVuYWJs
-ZS1tZXRob2QgPSAicHNjaSI7DQorCQkJcmVnID0gPDB4MTAwPjsNCisJCX07DQorDQorCQljcHUy
-OiBjcHVAMiB7DQorCQkJZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisJCQljb21wYXRpYmxlID0gImFy
-bSxjb3J0ZXgtYTU1IjsNCisJCQllbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKwkJCXJlZyA9IDww
-eDIwMD47DQorCQl9Ow0KKw0KKwkJY3B1MzogY3B1QDMgew0KKwkJCWRldmljZV90eXBlID0gImNw
-dSI7DQorCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorCQkJZW5hYmxlLW1ldGhv
-ZCA9ICJwc2NpIjsNCisJCQlyZWcgPSA8MHgzMDA+Ow0KKwkJfTsNCisNCisJCWNwdTQ6IGNwdUA0
-IHsNCisJCQlkZXZpY2VfdHlwZSA9ICJjcHUiOw0KKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRl
-eC1hNTUiOw0KKwkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorCQkJcmVnID0gPDB4NDAwPjsN
-CisJCX07DQorDQorCQljcHU1OiBjcHVANSB7DQorCQkJZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisJ
-CQljb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCisJCQllbmFibGUtbWV0aG9kID0gInBz
-Y2kiOw0KKwkJCXJlZyA9IDwweDUwMD47DQorCQl9Ow0KKw0KKwkJY3B1NjogY3B1QDYgew0KKwkJ
-CWRldmljZV90eXBlID0gImNwdSI7DQorCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE3NSI7
-DQorCQkJZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCisJCQlyZWcgPSA8MHg2MDA+Ow0KKwkJfTsN
-CisNCisJCWNwdTc6IGNwdUA3IHsNCisJCQlkZXZpY2VfdHlwZSA9ICJjcHUiOw0KKwkJCWNvbXBh
-dGlibGUgPSAiYXJtLGNvcnRleC1hNzUiOw0KKwkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQor
-CQkJcmVnID0gPDB4NzAwPjsNCisJCX07DQorCX07DQorDQorCXBtdSB7DQorCQljb21wYXRpYmxl
-ID0gImFybSxhcm12OC1wbXV2MyI7DQorCQlpbnRlcnJ1cHQtcGFyZW50ID0gPCZnaWM+Ow0KKwkJ
-aW50ZXJydXB0cyA9IDxHSUNfUFBJIDcgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwl9Ow0KKw0K
-KwljbGsyNm06IG9zY2lsbGF0b3JAMCB7DQorCQljb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsN
-CisJCSNjbG9jay1jZWxscyA9IDwwPjsNCisJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyNjAwMDAwMD47
-DQorCQljbG9jay1vdXRwdXQtbmFtZXMgPSAiY2xrMjZtIjsNCisJfTsNCisNCisJY2xrMzJrOiBv
-c2NpbGxhdG9yQDEgew0KKwkJY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQorCQkjY2xvY2st
-Y2VsbHMgPSA8MD47DQorCQljbG9jay1mcmVxdWVuY3kgPSA8MzI3Njg+Ow0KKwkJY2xvY2stb3V0
-cHV0LW5hbWVzID0gImNsazMyayI7DQorCX07DQorDQorCXVhcnRfY2xrOiBkdW1teTI2bSB7DQor
-CQljb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsNCisJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyNjAw
-MDAwMD47DQorCQkjY2xvY2stY2VsbHMgPSA8MD47DQorCX07DQorDQorCXRpbWVyIHsNCisJCWNv
-bXBhdGlibGUgPSAiYXJtLGFybXY4LXRpbWVyIjsNCisJCWludGVycnVwdC1wYXJlbnQgPSA8Jmdp
-Yz47DQorCQlpbnRlcnJ1cHRzID0gPEdJQ19QUEkgMTMgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0K
-KwkJCSAgICAgPEdJQ19QUEkgMTQgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0KKwkJCSAgICAgPEdJ
-Q19QUEkgMTEgSVJRX1RZUEVfTEVWRUxfTE9XIDA+LA0KKwkJCSAgICAgPEdJQ19QUEkgMTAgSVJR
-X1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwl9Ow0KKw0KKwlzb2Mgew0KKwkJI2FkZHJlc3MtY2VsbHMg
-PSA8Mj47DQorCQkjc2l6ZS1jZWxscyA9IDwyPjsNCisJCWNvbXBhdGlibGUgPSAic2ltcGxlLWJ1
-cyI7DQorCQlyYW5nZXM7DQorDQorCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQDBjMDAwMDAw
-IHsNCisJCQljb21wYXRpYmxlID0gImFybSxnaWMtdjMiOw0KKwkJCSNpbnRlcnJ1cHQtY2VsbHMg
-PSA8ND47DQorCQkJaW50ZXJydXB0LXBhcmVudCA9IDwmZ2ljPjsNCisJCQlpbnRlcnJ1cHQtY29u
-dHJvbGxlcjsNCisJCQlyZWcgPSA8MCAweDBjMDAwMDAwIDAgMHg0MDAwMD4sICAvKiBHSUNEICov
-DQorCQkJICAgICAgPDAgMHgwYzA0MDAwMCAwIDB4MjAwMDAwPjsgLyogR0lDUiAqLw0KKwkJCWlu
-dGVycnVwdHMgPSA8R0lDX1BQSSA5IElSUV9UWVBFX0xFVkVMX0hJR0ggMD47DQorDQorCQkJcHBp
-LXBhcnRpdGlvbnMgew0KKwkJCQlwcGlfY2x1c3RlcjA6IGludGVycnVwdC1wYXJ0aXRpb24tMCB7
-DQorCQkJCQlhZmZpbml0eSA9IDwmY3B1MCAmY3B1MSBcDQorCQkJCQkJJmNwdTIgJmNwdTMgJmNw
-dTQgJmNwdTU+Ow0KKwkJCQl9Ow0KKwkJCQlwcGlfY2x1c3RlcjE6IGludGVycnVwdC1wYXJ0aXRp
-b24tMSB7DQorCQkJCQlhZmZpbml0eSA9IDwmY3B1NiAmY3B1Nz47DQorCQkJCX07DQorCQkJfTsN
-CisNCisJCX07DQorDQorCQlzeXNpcnE6IGludHBvbC1jb250cm9sbGVyQDBjNTNhNjUwIHsNCisJ
-CQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zeXNpcnEiLA0KKwkJCQkgICAgICJtZWRp
-YXRlayxtdDY1Nzctc3lzaXJxIjsNCisJCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsNCisJCQkjaW50
-ZXJydXB0LWNlbGxzID0gPDM+Ow0KKwkJCWludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47DQorCQkJ
-cmVnID0gPDAgMHgwYzUzYTY1MCAwIDB4NTA+Ow0KKwkJfTsNCisNCisJCXRvcGNrZ2VuOiBjbG9j
-ay1jb250cm9sbGVyQDEwMDAwMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3
-OS10b3Bja2dlbiIsICJzeXNjb24iOw0KKwkJCXJlZyA9IDwwIDB4MTAwMDAwMDAgMCAweDEwMDA+
-Ow0KKwkJCSNjbG9jay1jZWxscyA9IDwxPjsNCisJCX07DQorDQorCQlpbmZyYWNmZ19hbzogY2xv
-Y2stY29udHJvbGxlckAxMDAwMTAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3
-NzktaW5mcmFjZmdfYW8iLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDEwMDAxMDAwIDAgMHgx
-MDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJcGlvOiBwaW5jdHJs
-QDEwMDA1MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1waW5jdHJsIiwg
-InN5c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxMDAwNTAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAg
-PDAgMHgxMWMyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWQxMDAwMCAwIDB4MTAw
-MD4sDQorCQkJICAgICAgPDAgMHgxMWUyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgx
-MWU3MDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWVhMDAwMCAwIDB4MTAwMD4sDQor
-CQkJICAgICAgPDAgMHgxMWYyMDAwMCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMWYzMDAw
-MCAwIDB4MTAwMD4sDQorCQkJICAgICAgPDAgMHgxMDAwYjAwMCAwIDB4MTAwMD47DQorCQkJcmVn
-LW5hbWVzID0gImdwaW8iLCAiaW9jZmdfcm0iLA0KKwkJCQkgICAgImlvY2ZnX2JyIiwgImlvY2Zn
-X2xtIiwNCisJCQkJICAgICJpb2NmZ19sYiIsICJpb2NmZ19ydCIsDQorCQkJCSAgICAiaW9jZmdf
-bHQiLCAiaW9jZmdfdGwiLA0KKwkJCQkgICAgImVpbnQiOw0KKwkJCWdwaW8tY29udHJvbGxlcjsN
-CisJCQkjZ3Bpby1jZWxscyA9IDwyPjsNCisJCQlncGlvLXJhbmdlcyA9IDwmcGlvIDAgMCAyMTA+
-Ow0KKwkJCWludGVycnVwdC1jb250cm9sbGVyOw0KKwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8Mj47
-DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIwNCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCisJ
-CX07DQorDQorCQlhcG1peGVkOiBjbG9jay1jb250cm9sbGVyQDEwMDBjMDAwIHsNCisJCQljb21w
-YXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1hcG1peGVkIiwgInN5c2NvbiI7DQorCQkJcmVnID0g
-PDAgMHgxMDAwYzAwMCAwIDB4ZTAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0K
-Kw0KKwkJdWFydDA6IHNlcmlhbEAxMTAwMjAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRl
-ayxtdDY3NzktdWFydCIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10NjU3Ny11YXJ0IjsNCisJCQly
-ZWcgPSA8MCAweDExMDAyMDAwIDAgMHg0MDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAx
-MTUgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJCQljbG9ja3MgPSA8JnVhcnRfY2xrPjsNCisJCQlz
-dGF0dXMgPSAiZGlzYWJsZWQiOw0KKwkJfTsNCisNCisJCXVhcnQxOiBzZXJpYWxAMTEwMDMwMDAg
-ew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXVhcnQiLA0KKwkJCQkgICAgICJt
-ZWRpYXRlayxtdDY1NzctdWFydCI7DQorCQkJcmVnID0gPDAgMHgxMTAwMzAwMCAwIDB4NDAwPjsN
-CisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTE2IElSUV9UWVBFX0xFVkVMX0xPVz47DQorCQkJ
-Y2xvY2tzID0gPCZ1YXJ0X2Nsaz47DQorCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCisJCX07DQor
-DQorCQlhdWRpbzogY2xvY2stY29udHJvbGxlckAxMTIxMDAwMCB7DQorCQkJY29tcGF0aWJsZSA9
-ICJtZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDExMjEw
-MDAwIDAgMHgxMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJbWZn
-Y2ZnOiBjbG9jay1jb250cm9sbGVyQDEzZmJmMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10Njc3OS1tZmdjZmciLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDEzZmJmMDAwIDAg
-MHgxMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJbW1zeXM6IGNs
-b2NrLWNvbnRyb2xsZXJAMTQwMDAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2
-Nzc5LW1tc3lzIiwgInN5c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxNDAwMDAwMCAwIDB4MTAwMD47
-DQorCQkJI2Nsb2NrLWNlbGxzID0gPDE+Ow0KKwkJfTsNCisNCisJCWltZ3N5czogY2xvY2stY29u
-dHJvbGxlckAxNTAyMDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktaW1n
-c3lzIiwgInN5c2NvbiI7DQorCQkJcmVnID0gPDAgMHgxNTAyMDAwMCAwIDB4MTAwMD47DQorCQkJ
-I2Nsb2NrLWNlbGxzID0gPDE+Ow0KKwkJfTsNCisNCisJCXZkZWNzeXM6IGNsb2NrLWNvbnRyb2xs
-ZXJAMTYwMDAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXZkZWNzeXMi
-LCAic3lzY29uIjsNCisJCQlyZWcgPSA8MCAweDE2MDAwMDAwIDAgMHgxMDAwPjsNCisJCQkjY2xv
-Y2stY2VsbHMgPSA8MT47DQorCQl9Ow0KKw0KKwkJdmVuY3N5czogY2xvY2stY29udHJvbGxlckAx
-NzAwMDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktdmVuY3N5cyIsICJz
-eXNjb24iOw0KKwkJCXJlZyA9IDwwIDB4MTcwMDAwMDAgMCAweDEwMDA+Ow0KKwkJCSNjbG9jay1j
-ZWxscyA9IDwxPjsNCisJCX07DQorDQorCQljYW1zeXM6IGNsb2NrLWNvbnRyb2xsZXJAMWEwMDAw
-MDAgew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LWNhbXN5cyIsICJzeXNjb24i
-Ow0KKwkJCXJlZyA9IDwwIDB4MWEwMDAwMDAgMCAweDEwMDAwPjsNCisJCQkjY2xvY2stY2VsbHMg
-PSA8MT47DQorCQl9Ow0KKw0KKwkJaXBlc3lzOiBjbG9jay1jb250cm9sbGVyQDFiMDAwMDAwIHsN
-CisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1pcGVzeXMiLCAic3lzY29uIjsNCisJ
-CQlyZWcgPSA8MCAweDFiMDAwMDAwIDAgMHgxMDAwPjsNCisJCQkjY2xvY2stY2VsbHMgPSA8MT47
-DQorCQl9Ow0KKw0KKwl9Ow0KK307DQotLSANCjEuNy45LjUNCg==
+On Wed, 11 Mar 2020, Hsin-Hsiung Wang wrote:
 
+> This adds support for the MediaTek MT6358 PMIC. This is a
+> multifunction device with the following sub modules:
+> 
+> - Regulator
+> - RTC
+> - Codec
+> - Interrupt
+> 
+> It is interfaced to the host controller using SPI interface
+> by a proprietary hardware called PMIC wrapper or pwrap.
+> MT6358 MFD is a child device of the pwrap.
+> 
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  drivers/mfd/Makefile                 |   2 +-
+>  drivers/mfd/mt6358-irq.c             | 236 +++++++++++++++++++++++++++++
+>  drivers/mfd/mt6397-core.c            |  55 ++++++-
+>  include/linux/mfd/mt6358/core.h      | 158 ++++++++++++++++++++
+>  include/linux/mfd/mt6358/registers.h | 282 +++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/mt6397/core.h      |   3 +
+>  6 files changed, 731 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/mfd/mt6358-irq.c
+>  create mode 100644 include/linux/mfd/mt6358/core.h
+>  create mode 100644 include/linux/mfd/mt6358/registers.h
+> 
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index b83f172..9af1414 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -238,7 +238,7 @@ obj-$(CONFIG_INTEL_SOC_PMIC)	+= intel-soc-pmic.o
+>  obj-$(CONFIG_INTEL_SOC_PMIC_BXTWC)	+= intel_soc_pmic_bxtwc.o
+>  obj-$(CONFIG_INTEL_SOC_PMIC_CHTWC)	+= intel_soc_pmic_chtwc.o
+>  obj-$(CONFIG_INTEL_SOC_PMIC_CHTDC_TI)	+= intel_soc_pmic_chtdc_ti.o
+> -mt6397-objs	:= mt6397-core.o mt6397-irq.o
+> +mt6397-objs			:= mt6397-core.o mt6397-irq.o mt6358-irq.o
+>  obj-$(CONFIG_MFD_MT6397)	+= mt6397.o
+>  obj-$(CONFIG_INTEL_SOC_PMIC_MRFLD)	+= intel_soc_pmic_mrfld.o
+>  
+> diff --git a/drivers/mfd/mt6358-irq.c b/drivers/mfd/mt6358-irq.c
+> new file mode 100644
+> index 0000000..022e5f5
+> --- /dev/null
+> +++ b/drivers/mfd/mt6358-irq.c
+> @@ -0,0 +1,236 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2019 MediaTek Inc.
+
+This is out of date.
+
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/mt6358/core.h>
+> +#include <linux/mfd/mt6358/registers.h>
+> +#include <linux/mfd/mt6397/core.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +static struct irq_top_t mt6358_ints[] = {
+> +	MT6358_TOP_GEN(BUCK),
+> +	MT6358_TOP_GEN(LDO),
+> +	MT6358_TOP_GEN(PSC),
+> +	MT6358_TOP_GEN(SCK),
+> +	MT6358_TOP_GEN(BM),
+> +	MT6358_TOP_GEN(HK),
+> +	MT6358_TOP_GEN(AUD),
+> +	MT6358_TOP_GEN(MISC),
+> +};
+> +
+> +static void pmic_irq_enable(struct irq_data *data)
+> +{
+> +	unsigned int hwirq = irqd_to_hwirq(data);
+> +	struct mt6397_chip *chip = irq_data_get_irq_chip_data(data);
+
+6397?
+
+This does make me wonder how different this file is to the existing
+support for the MT6397.  What is the justification for not extending
+that instead of creating a brand new file?
+
+> +	struct pmic_irq_data *irqd = chip->irq_data;
+> +
+> +	irqd->enable_hwirq[hwirq] = true;
+> +}
+> +
+> +static void pmic_irq_disable(struct irq_data *data)
+> +{
+> +	unsigned int hwirq = irqd_to_hwirq(data);
+> +	struct mt6397_chip *chip = irq_data_get_irq_chip_data(data);
+> +	struct pmic_irq_data *irqd = chip->irq_data;
+> +
+> +	irqd->enable_hwirq[hwirq] = false;
+> +}
+> +
+> +static void pmic_irq_lock(struct irq_data *data)
+> +{
+> +	struct mt6397_chip *chip = irq_data_get_irq_chip_data(data);
+> +
+> +	mutex_lock(&chip->irqlock);
+> +}
+> +
+> +static void pmic_irq_sync_unlock(struct irq_data *data)
+> +{
+> +	unsigned int i, top_gp, gp_offset, en_reg, int_regs, shift;
+> +	struct mt6397_chip *chip = irq_data_get_irq_chip_data(data);
+> +	struct pmic_irq_data *irqd = chip->irq_data;
+> +
+> +	for (i = 0; i < irqd->num_pmic_irqs; i++) {
+> +		if (irqd->enable_hwirq[i] == irqd->cache_hwirq[i])
+> +			continue;
+> +
+> +		/* Find out the IRQ group */
+> +		top_gp = 0;
+> +		while ((top_gp + 1) < irqd->num_top &&
+> +		       i >= mt6358_ints[top_gp + 1].hwirq_base)
+> +			top_gp++;
+> +
+> +		/* Find the irq registers */
+
+Nit: "IRQ"
+
+> +		gp_offset = i - mt6358_ints[top_gp].hwirq_base;
+> +		int_regs = gp_offset / MT6358_REG_WIDTH;
+> +		shift = gp_offset % MT6358_REG_WIDTH;
+> +		en_reg = mt6358_ints[top_gp].en_reg +
+> +			 (mt6358_ints[top_gp].en_reg_shift * int_regs);
+> +
+> +		regmap_update_bits(chip->regmap, en_reg, BIT(shift),
+> +				   irqd->enable_hwirq[i] << shift);
+> +
+> +		irqd->cache_hwirq[i] = irqd->enable_hwirq[i];
+> +	}
+> +	mutex_unlock(&chip->irqlock);
+> +}
+
+[...]
+
+> +int mt6358_irq_init(struct mt6397_chip *chip)
+> +{
+> +	int i, j, ret;
+> +	struct pmic_irq_data *irqd;
+> +
+> +	irqd = devm_kzalloc(chip->dev, sizeof(struct pmic_irq_data *),
+
+sizeof(*irqd)
+
+[...]
+
+>  static const struct chip_data mt6397_core = {
+>  	.cid_addr = MT6397_CID,
+>  	.cid_shift = 0,
+> @@ -154,19 +184,33 @@ static int mt6397_probe(struct platform_device *pdev)
+>  	if (pmic->irq <= 0)
+>  		return pmic->irq;
+>  
+> -	ret = mt6397_irq_init(pmic);
+> -	if (ret)
+> -		return ret;
+> -
+>  	switch (pmic->chip_id) {
+>  	case MT6323_CHIP_ID:
+> +		ret = mt6397_irq_init(pmic);
+> +		if (ret)
+> +			return ret;
+> +
+>  		ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_NONE,
+>  					   mt6323_devs, ARRAY_SIZE(mt6323_devs),
+>  					   NULL, 0, pmic->irq_domain);
+>  		break;
+>  
+> +	case MT6358_CHIP_ID:
+> +		ret = mt6358_irq_init(pmic);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_NONE,
+> +					   mt6358_devs, ARRAY_SIZE(mt6358_devs),
+> +					   NULL, 0, pmic->irq_domain);
+
+In a subsequent patch you can choose the correct mtXXXX_devs structure
+to pass and call devm_mfd_add_devices() only once below the switch().
+
+> +		break;
+> +
+>  	case MT6391_CHIP_ID:
+>  	case MT6397_CHIP_ID:
+> +		ret = mt6397_irq_init(pmic);
+> +		if (ret)
+> +			return ret;
+> +
+>  		ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_NONE,
+>  					   mt6397_devs, ARRAY_SIZE(mt6397_devs),
+>  					   NULL, 0, pmic->irq_domain);
+
+[...]
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
