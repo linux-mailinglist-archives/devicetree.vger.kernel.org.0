@@ -2,79 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35251192DC0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 17:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42CB2192DF5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 17:14:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728090AbgCYQEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 12:04:13 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:39600 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728056AbgCYQEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 12:04:13 -0400
-Received: by mail-lj1-f194.google.com with SMTP id i20so3056966ljn.6
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 09:04:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pn2KqvNFk/Kh/oN0XHQ6BHDkBBBhQ3u1DOedSWlNkfQ=;
-        b=NgTT4k5jlKQgS4xPUfrNeL4uN7tSr+FEjGTa0+opI2N8PJO6UtRhuIb/sfAji0iY5E
-         rpYPeEVdAQ+nQvJJF5LweKq2TJ1MRLDae7RaM6LxnVdeeulKZjz1ZsvXv8uVrZ1V3THB
-         uSYPP1p5vjzUNLwlKM728XMoTGFMLF7FmKOv4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pn2KqvNFk/Kh/oN0XHQ6BHDkBBBhQ3u1DOedSWlNkfQ=;
-        b=mo0An+8msynbO7hteA2Z7oj9dLaQZhVlLMyJRA+BUE6rXd1KVFqIokCfMSALLhD1ct
-         8N84YyO+SLLLvWDI5fNSz3UAjw+MNQYmhZDvTiJytARdum5ropUvsFlcwhjsWxRMoxB4
-         EqJcXXIEv/5UZtm44keVCV7VqPQeI5NQyXDvXh5o2IGZk0NIPYEfipwBj/BtvwcEuntn
-         +33xLbY5lxpXqzCj+uF1N4XZ099BS25BN4cLycsrv2+kK8EQcX2z5oELp0cs4hfubpwA
-         BX+7sS7JIhRu/ssD0gVZHwKNrfsalvbW/A4bp9gxhBycLM5aRVhUI9K4hTL9HLdrvQFY
-         YYlQ==
-X-Gm-Message-State: AGi0PuYMnnFNlqh7nwATk8wfFL9YIDz0rhEnrY9HMBq1e3/OC7W+eMMx
-        psd6tg1lU4DpHMmVbk2ea189IMOia7c=
-X-Google-Smtp-Source: APiQypLkYqYxl/ipY10MyrRanEWWmmF/KZBlH5K6j0hZuVC2gK3WjC57y7HpV3rMuPjQXA87u5h1wQ==
-X-Received: by 2002:a2e:8109:: with SMTP id d9mr1968914ljg.31.1585152249102;
-        Wed, 25 Mar 2020 09:04:09 -0700 (PDT)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id f26sm2350743lfc.76.2020.03.25.09.04.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Mar 2020 09:04:08 -0700 (PDT)
-Received: by mail-lj1-f181.google.com with SMTP id g27so3016321ljn.10
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 09:04:08 -0700 (PDT)
-X-Received: by 2002:a2e:9216:: with SMTP id k22mr2471412ljg.278.1585152247655;
- Wed, 25 Mar 2020 09:04:07 -0700 (PDT)
+        id S1728138AbgCYQOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 12:14:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58152 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728132AbgCYQOI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 12:14:08 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4A8A420836;
+        Wed, 25 Mar 2020 16:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1585152847;
+        bh=wVeCzzQOe5s2fJsmGoK1DwiiQhm+yokBIBkbN7cjDrM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Jt+Nhvu8WR2HB5LMtLsy+AMnWzMEv6EzjEMwZuYpiXU2HNY24cKyilbtS7gsEo0Dl
+         p9IVkN8+X5tLMau7Si6f2OCiMpQEloPAdwIzCLi8GV2dTWmn9EiLWMRPYI6WaHiQMJ
+         UVoXm6rL2REa+wWrMiprolfN7XJt5C+XRUsgMQ0k=
+Received: by mail-qk1-f172.google.com with SMTP id c145so3090196qke.12;
+        Wed, 25 Mar 2020 09:14:07 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3jHmTjbPypnmDthRX2himDcnnDXq5gl9x9GbZo3fj/ytAyh9yG
+        l38cgXpE0LRIPS2cK8RgwvH6TIGejh0rHJy4JQ==
+X-Google-Smtp-Source: ADFU+vtZfZlg/qTdAzpY920OXOLDt+yCqLosSPRhFxeYgvrlPS+oV459gEy5edJtvAOkVIBuySDN240c6NQffSPyDT8=
+X-Received: by 2002:a37:4a85:: with SMTP id x127mr3744966qka.152.1585152846283;
+ Wed, 25 Mar 2020 09:14:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <1580822300-4491-1-git-send-email-pillair@codeaurora.org>
- <CAE=gft7EOALEMUWzoR3+pjoxCUTYWbiXoXY=dXH1BDhS3KwBzg@mail.gmail.com> <000901d60295$3acc79b0$b0656d10$@codeaurora.org>
-In-Reply-To: <000901d60295$3acc79b0$b0656d10$@codeaurora.org>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Wed, 25 Mar 2020 09:03:31 -0700
-X-Gmail-Original-Message-ID: <CAE=gft7zqbUnx+BULDD+35z2p1=545=jF0=n6kFXZgo3ZTdCHQ@mail.gmail.com>
-Message-ID: <CAE=gft7zqbUnx+BULDD+35z2p1=545=jF0=n6kFXZgo3ZTdCHQ@mail.gmail.com>
-Subject: Re: [PATCH v6] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module
- device node
-To:     pillair@codeaurora.org
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20200304094220.28156-1-benjamin.gaignard@st.com>
+ <20200310211849.GA13562@bogus> <20200325092004.GF442973@dell>
+In-Reply-To: <20200325092004.GF442973@dell>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 25 Mar 2020 10:13:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLW-5=T0p85M9ZurywdNj_nFwj0VJyxHSJGrdzZGkQcJQ@mail.gmail.com>
+Message-ID: <CAL_JsqLW-5=T0p85M9ZurywdNj_nFwj0VJyxHSJGrdzZGkQcJQ@mail.gmail.com>
+Subject: Re: [PATCH v5] dt-bindings: mfd: Convert stpmic1 bindings to json-schema
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Pascal PAILLET-LME <p.paillet@st.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 25, 2020 at 4:05 AM <pillair@codeaurora.org> wrote:
+On Wed, Mar 25, 2020 at 3:19 AM Lee Jones <lee.jones@linaro.org> wrote:
 >
-> Hi Evan,
+> On Tue, 10 Mar 2020, Rob Herring wrote:
 >
-> I will send out a v7 for this patchset.
-> Since I have to configure the S2 SIDs, it is dependent on below ath10k patchset.
-> https://patchwork.kernel.org/project/linux-wireless/list/?series=261367
+> > On Wed, 4 Mar 2020 10:42:20 +0100, Benjamin Gaignard wrote:
+> > > Convert stpmic1 bindings to json-schema.
+> > >
+> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> > > ---
+> > > version 5:
+> > > - move $ref regulator.yaml under a patternProperties
+> > > - move remain fixed strings under properties field
+> > >
+> > > version 4:
+> > > - move on uppder node $ref: ../regulator/regulator.yaml
+> > > - move fixed strings under properties field
+> > > - remove unneeded () in patternProperties
+> > > - keep ldo3 separate from other ldo properties
+> > > Note:
+> > > - 'st,mask-reset' property stay in each subnode, I don't find
+> > >   the syntax to avoid dupliquate it.
+> > > - ldo6-supply and all possible *-supply are describe by this regular
+> > >   expression: ^(buck[1-4]|ldo[1-6]|boost|pwr_sw[1-2])-supply$":
+> > >
+> > > version 3:
+> > > - put $ref under allOf keyword
+> > > - for each regulator node add the list of supported regulator properties
+> > >
+> > >  .../devicetree/bindings/input/st,stpmic1-onkey.txt |  28 --
+> > >  .../devicetree/bindings/mfd/st,stpmic1.txt         |  61 ----
+> > >  .../devicetree/bindings/mfd/st,stpmic1.yaml        | 339 +++++++++++++++++++++
+> > >  .../bindings/regulator/st,stpmic1-regulator.txt    |  64 ----
+> > >  .../bindings/watchdog/st,stpmic1-wdt.txt           |  11 -
+> > >  5 files changed, 339 insertions(+), 164 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/input/st,stpmic1-onkey.txt
+> > >  delete mode 100644 Documentation/devicetree/bindings/mfd/st,stpmic1.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/regulator/st,stpmic1-regulator.txt
+> > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/st,stpmic1-wdt.txt
+> > >
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Can you take this please Rob?
 
-Ah, right. Thanks for the info, I'll check out that series as well.
--Evan
+Yes, done.
+
+Rob
