@@ -2,92 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE85193021
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 19:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A469B193087
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 19:36:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727846AbgCYSMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 14:12:09 -0400
-Received: from mail-lf1-f97.google.com ([209.85.167.97]:40320 "EHLO
-        mail-lf1-f97.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727904AbgCYSME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Mar 2020 14:12:04 -0400
-Received: by mail-lf1-f97.google.com with SMTP id j17so2617083lfe.7
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2020 11:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flowbird.group; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=fLsD0pf0Z2Qy/ATTVpbRFX98Scq2+qNt41yDSpwIQQk=;
-        b=iLyoXKlKVAEeJKb4GZYsqeun1adVsC9YRwFHuXskB9nuaEPBvhLao07deNQYw72RQZ
-         wUwwf0sN6Ny/pl8t5eyZT7VfFmA3hHfjm0p/6KznAlT68UT2/NfUk4WM2Bzg2QPFbQNK
-         Dq1SSAcgbZ97s/TTEkSa8wqn5E9oLog/QQ9+ti8S0vepfcEUM3V4wFHq5Zow6/K/fYGH
-         U/veqSNDhMM86ByHOJR9SIOtlnkc38IhLnho9ySmFzY8ZsFnUvBQ23Ybb+NcJ4a7pQMO
-         XTwn5dlOUF1oWN2ly2rRSEI7VzWpGaIUzS7n+zM1bjONc+vbSRGCjXC0QOf+r1RIlru6
-         +A3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=fLsD0pf0Z2Qy/ATTVpbRFX98Scq2+qNt41yDSpwIQQk=;
-        b=P48NfbgNFZpHbUpfoQb8Q9GAXwGIcnFCKURDWyJJFqc2K2GxiSLdYy+mi4hK+MXcPM
-         iGx83jB9Ab8rUCaC84gQJYbRo4cKpZ7hMBQTOJjLH8QUAeSG2/9RSZ60VSADNSfUaFBW
-         ski+BMzqAJF/SFDgBxmthv3140jZqUe040A1+Zoc4eNb55VPW6r1XwnnnZFWu9ok/paz
-         iTOQWqx6A60CfmJBbNDQmRUJMEtr6MwvA0CyWToWRcXkdR/FWXbVt9aSWEu+xLphJVWl
-         HPXWS+Tejz6iPMsnCMM5iDCxC7ogItQZ/UNtjma8en4rJt58VrDc9W0401wZuLxG3Vfx
-         8sKg==
-X-Gm-Message-State: ANhLgQ3J4sGtWN+YldCkPOuTooDWBeo6FawMluJUyLni4ZczsolwKVg/
-        BidOxlinlfZNHy4NLaIKmATAxqI+qRREValtnJJ+DGKQFMkW
-X-Google-Smtp-Source: ADFU+vu3J9uRTLiIP5vf8lSLTAkoSWCPvzFRTGJZ+RRp6NqycNXaFIzinWVyrA2u9iaNoUfPCIbblHthN6mv
-X-Received: by 2002:a19:660a:: with SMTP id a10mr3091046lfc.9.1585159921405;
-        Wed, 25 Mar 2020 11:12:01 -0700 (PDT)
-Received: from mail.besancon.parkeon.com ([185.149.63.251])
-        by smtp-relay.gmail.com with ESMTPS id x11sm55799lji.25.2020.03.25.11.12.01
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Wed, 25 Mar 2020 11:12:01 -0700 (PDT)
-X-Relaying-Domain: flowbird.group
-Received: from [172.16.13.190] (port=39524 helo=PC12445-BES.dynamic.besancon.parkeon.com)
-        by mail.besancon.parkeon.com with esmtp (Exim 4.71)
-        (envelope-from <martin.fuzzey@flowbird.group>)
-        id 1jHAVU-0003Oy-K9; Wed, 25 Mar 2020 19:12:00 +0100
-From:   Martin Fuzzey <martin.fuzzey@flowbird.group>
-To:     Fugang Duan <fugang.duan@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     netdev@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v2 4/4] ARM: dts: imx6: add fec gpr property.
-Date:   Wed, 25 Mar 2020 19:11:59 +0100
-Message-Id: <1585159919-11491-5-git-send-email-martin.fuzzey@flowbird.group>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1585159919-11491-1-git-send-email-martin.fuzzey@flowbird.group>
-References: <1585159919-11491-1-git-send-email-martin.fuzzey@flowbird.group>
+        id S1727275AbgCYSg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 14:36:27 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:14496 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727129AbgCYSg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 14:36:26 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02PIMLoR009691;
+        Wed, 25 Mar 2020 19:36:11 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=4smaSaGfx0ev3ozXhDm/hbuZrYNRElVuP+FA/ERuJiw=;
+ b=ByJ3yaD+xINB9VaUHJ/PwlGxKeGleD3vbhjgasPCzJ8qEzXCFhY2U/N1P5DaDMa0wgop
+ Yjm3ep8OrMG79/KbRe7bMxVXw5si2a9hVYZPhgNNKNzeVg+ONNRIuKoyvNRajrS7gB1P
+ j0RXM2+Ih1W/F+Yu0Xz9LCJDpA5SdEtf17gSQ7uurKqEv3jCddjomxh4+kcTsm56kBVI
+ kd52NyWwxGSu8C03L4WsyC/TML0d99vF30GTndQ6RY1+CT8E7CQhiMHmJe5J3nn7oTNw
+ UE7cHLTb5cacry8+s9eakpmAIpUiS6QA5G73Vl8Bl6+wC36coRy1G8BFj3ZtaoTppf0r Yg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2yw8xe7eq5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 Mar 2020 19:36:11 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D9CAF10002A;
+        Wed, 25 Mar 2020 19:36:10 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B4C792AD2DB;
+        Wed, 25 Mar 2020 19:36:10 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 25 Mar 2020 19:36:10
+ +0100
+From:   Alain Volmat <alain.volmat@st.com>
+To:     <wsa@the-dreams.de>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>,
+        <alain.volmat@st.com>
+Subject: [PATCH 0/2] i2c: i2c-stm32f7: allow range of I2C bus frequency
+Date:   Wed, 25 Mar 2020 19:35:59 +0100
+Message-ID: <1585161361-3408-1-git-send-email-alain.volmat@st.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG5NODE3.st.com (10.75.127.15) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
+ definitions=2020-03-25_09:2020-03-24,2020-03-25 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is required for wake on lan on i.MX6
+This serie introduces the possibility to set bus frequency other
+than 100KHz, 400KHz and 1MHz.
 
-Signed-off-by: Martin Fuzzey <martin.fuzzey@flowbird.group>
----
- arch/arm/boot/dts/imx6qdl.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Alain Volmat (2):
+  dt-bindings: i2c: i2c-stm32f7: allow clock-frequency range
+  i2c: i2c-stm32f7: allows for any bus frequency
 
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index bc488df..65b0c8a 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -1045,6 +1045,7 @@
- 					 <&clks IMX6QDL_CLK_ENET>,
- 					 <&clks IMX6QDL_CLK_ENET_REF>;
- 				clock-names = "ipg", "ahb", "ptp";
-+				gpr = <&gpr>;
- 				status = "disabled";
- 			};
- 
--- 
-1.9.1
+ .../devicetree/bindings/i2c/st,stm32-i2c.yaml |   8 +-
+ drivers/i2c/busses/i2c-stm32f7.c              | 116 +++++++++---------
+ 2 files changed, 65 insertions(+), 59 deletions(-)
 
