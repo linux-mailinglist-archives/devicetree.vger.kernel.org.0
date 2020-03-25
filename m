@@ -2,286 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A271926B9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 12:06:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E173A1926D5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2020 12:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727383AbgCYLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 07:06:32 -0400
-Received: from foss.arm.com ([217.140.110.172]:46696 "EHLO foss.arm.com"
+        id S1727383AbgCYLJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 07:09:24 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:37656 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726842AbgCYLGc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Mar 2020 07:06:32 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1164231B;
-        Wed, 25 Mar 2020 04:06:31 -0700 (PDT)
-Received: from [10.37.12.110] (unknown [10.37.12.110])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C30883F71F;
-        Wed, 25 Mar 2020 04:06:28 -0700 (PDT)
-Subject: Re: [PATCH v3 3/3] dt-bindings: thermal: Add yaml bindings for
- thermal zones
-To:     Amit Kucheria <amit.kucheria@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        swboyd@chromium.org, mka@chromium.org, daniel.lezcano@linaro.org,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1585117436.git.amit.kucheria@linaro.org>
- <9c447186008ef2e3f4c3e712458dc0ddcd8a8b03.1585117436.git.amit.kucheria@linaro.org>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <81b0cbe1-23c8-b4a3-4775-62e7d6c49b6b@arm.com>
-Date:   Wed, 25 Mar 2020 11:06:27 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727253AbgCYLJO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 07:09:14 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 3DC47FB02;
+        Wed, 25 Mar 2020 12:09:11 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id K_x7j6K_rbDv; Wed, 25 Mar 2020 12:09:09 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 546CA401FD; Wed, 25 Mar 2020 12:09:08 +0100 (CET)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Tomas Novotny <tomas@novotny.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>
+Subject: [PATCH v3 0/4] iio: vcnl4000: Export near level property for proximity sensor
+Date:   Wed, 25 Mar 2020 12:09:04 +0100
+Message-Id: <cover.1585134362.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <9c447186008ef2e3f4c3e712458dc0ddcd8a8b03.1585117436.git.amit.kucheria@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+If an object can be considered close to the device that has the proximity
+sensor built in is hardware dependent. Allowing to configure the property via
+device tree allows to export this device specific value to userspace via
+ext_info. This is useful for e.g. iio-sensor-proxy.
+
+This came up when adding proximity support to iio-sensor-proxy [1], [2], it is
+not meant as a vcnl4000 thing but rather as something useful for other proximity
+sensors too in the future.
+
+I've not converted the vcnl4000 binding docs to yaml but can do so as part of
+this series in a v2 if the approach makes sense.
+
+Changes from v2:
+- as per review comment by Lars-Peter Clausen
+  https://lore.kernel.org/linux-iio/c787921f-c412-4986-14ea-e31b531d3d5b@metafoo.de/
+  Switch sysfs name to `nearlevel`
+- as per review comment by Nishant Malpani
+  https://lore.kernel.org/linux-iio/f5ea512c-d427-94c7-cf5f-f1300cbd4aa3@gmail.com/
+  Add manufacturer do binding document name
+- as per review comments by Andy Shevchenko
+  - Drop superfluous blank line
+  - Check return value of device_property_read_u32 for '!= 0' instead of '< 0'
+
+Changes from v1:
+- as per review comments by Jonathan Cameron
+  https://lore.kernel.org/linux-iio/20200221120519.43b72007@archlinux/
+  Document new sysfs file in Documentation/ABI/testing/sysfs-bus-iio-proximity
+- convert bindings to yaml
+- bindings: fix typo in near-level property
+
+[1]: https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/merge_requests/298
+[2]: https://lore.kernel.org/linux-iio/20200210154153.GA26903@bogon.m.sigxcpu.org/
+
+To: Tomas Novotny <tomas@novotny.cz>, Jonathan Cameron <jic23@kernel.org>,Hartmut Knaack <knaack.h@gmx.de>,Lars-Peter Clausen <lars@metafoo.de>,Peter Meerwald-Stadler <pmeerw@pmeerw.net>,"Angus Ainslie (Purism)" <angus@akkea.ca>,"Guido Günther" <agx@sigxcpu.org>,Marco Felsch <m.felsch@pengutronix.de>,Thomas Gleixner <tglx@linutronix.de>,linux-iio@vger.kernel.org,linux-kernel@vger.kernel.org,devicetree@vger.kernel.org,
+Andy Shevchenko <andy.shevchenko@gmail.com>,Nishant Malpani <nish.malpani25@gmail.com>
 
 
-On 3/25/20 6:34 AM, Amit Kucheria wrote:
-> As part of moving the thermal bindings to YAML, split it up into 3
-> bindings: thermal sensors, cooling devices and thermal zones.
-> 
-> The thermal-zone binding is a software abstraction to capture the
-> properties of each zone - how often they should be checked, the
-> temperature thresholds (trips) at which mitigation actions need to be
-> taken and the level of mitigation needed at those thresholds.
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> ---
-> Changes since v2:
-> - Addressed review comment from Rob
-> - Added required properties for thermal-zones node
-> - Added select: true to thermal-cooling-devices.yaml
-> - Fixed up example to pass dt_binding_check
-> 
->   .../bindings/thermal/thermal-zones.yaml       | 324 ++++++++++++++++++
->   1 file changed, 324 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> new file mode 100644
-> index 000000000000..5632304dcf62
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> @@ -0,0 +1,324 @@
-> +# SPDX-License-Identifier: (GPL-2.0)
-> +# Copyright 2020 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
-> +$schema: http://devicetree.org/meta-schemas/base.yaml#
-> +
-> +title: Thermal zone binding
-> +
-> +maintainers:
-> +  - Amit Kucheria <amitk@kernel.org>
-> +
-> +description: |
-> +  Thermal management is achieved in devicetree by describing the sensor hardware
-> +  and the software abstraction of cooling devices and thermal zones required to
-> +  take appropriate action to mitigate thermal overloads.
-> +
-> +  The following node types are used to completely describe a thermal management
-> +  system in devicetree:
-> +   - thermal-sensor: device that measures temperature, has SoC-specific bindings
-> +   - cooling-device: device used to dissipate heat either passively or actively
-> +   - thermal-zones: a container of the following node types used to describe all
-> +     thermal data for the platform
-> +
-> +  This binding describes the thermal-zones.
-> +
-> +  The polling-delay properties of a thermal-zone are bound to the maximum dT/dt
-> +  (temperature derivative over time) in two situations for a thermal zone:
-> +    1. when passive cooling is activated (polling-delay-passive)
-> +    2. when the zone just needs to be monitored (polling-delay) or when
-> +       active cooling is activated.
-> +
-> +  The maximum dT/dt is highly bound to hardware power consumption and
-> +  dissipation capability. The delays should be chosen to account for said
-> +  max dT/dt, such that a device does not cross several trip boundaries
-> +  unexpectedly between polls. Choosing the right polling delays shall avoid
-> +  having the device in temperature ranges that may damage the silicon structures
-> +  and reduce silicon lifetime.
-> +
-> +properties:
-> +  $nodename:
-> +    const: thermal-zones
-> +    description:
-> +      A /thermal-zones node is required in order to use the thermal framework to
-> +      manage input from the various thermal zones in the system in order to
-> +      mitigate thermal overload conditions. It does not represent a real device
-> +      in the system, but acts as a container to link thermal sensor devices,
+Guido Günther (4):
+  dt-bindings: iio: vcnl4000: convert bindings to YAML format
+  dt-bindings: iio: light: vcnl4000: Add near-level
+  iio: vcnl4000: Export near level property for proximity sensor
+  Documentation: ABI: document IIO in_proximity_near_level file
 
-I would say 'thermal sensor device', since there is 1-to-1 mapping and
-aggregating a few sensors inside one tz is not allowed (or I missed
-some patches queuing).
+ .../ABI/testing/sysfs-bus-iio-proximity       | 10 ++++
+ .../bindings/iio/light/vcnl4000.txt           | 24 ---------
+ .../bindings/iio/light/vishay,vcnl4000.yaml   | 53 +++++++++++++++++++
+ drivers/iio/light/vcnl4000.c                  | 25 +++++++++
+ 4 files changed, 88 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-proximity
+ delete mode 100644 Documentation/devicetree/bindings/iio/light/vcnl4000.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
 
-> +      platform-data regarding temperature thresholds and the mitigation actions
-> +      to take when the temperature crosses those thresholds.
-> +
-> +patternProperties:
-> +  "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
-> +    type: object
-> +    description:
-> +      Each thermal zone node contains information about how frequently it
-> +      must be checked, the sensor responsible for reporting temperature for
-> +      this zone, one sub-node containing the various trip points for this
-> +      zone and one sub-node containing all the zone cooling-maps.
-> +
-> +    properties:
-> +      polling-delay:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The maximum number of milliseconds to wait between polls when
-> +          checking this thermal zone. Setting this to 0 disables the polling
-> +          timers setup by the thermal framework and assumes that the thermal
-> +          sensors in this zone support interrupts.
-> +
-> +      polling-delay-passive:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The maximum number of milliseconds to wait between polls when
-> +          checking this thermal zone while doing passive cooling. Setting
-> +          this to 0 disables the polling timers setup by the thermal
-> +          framework and assumes that the thermal sensors in this zone
-> +          support interrupts.
-> +
-> +      thermal-sensors:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        description:
-> +          A list of thermal sensor phandles and sensor specifiers used to
-> +          monitor this thermal zone.
+-- 
+2.23.0
 
-I don't know why it's not consistent with the actual code in
-of-thermal.c, where there is even a comment stated:
-/* For now, thermal framework supports only 1 sensor per zone */
-
-I think this is the place where developers should be informed about
-the limitation and not even try to put more sensors into the list.
-
-> +
-> +      trips:
-> +        type: object
-> +        description:
-> +          This node describes a set of points in the temperature domain at
-> +          which the thermal framework needs to takes action. The actions to
-
-s/needs to takes/needs to take/
-
-> +          be taken are defined in another node called cooling-maps.
-> +
-> +        patternProperties:
-> +          "^[a-zA-Z][a-zA-Z0-9\\-_]{0,63}$":
-> +            type: object
-> +
-> +            properties:
-> +              temperature:
-> +                $ref: /schemas/types.yaml#/definitions/int32
-> +                minimum: -273000
-> +                maximum: 200000
-> +                description:
-> +                  An integer expressing the trip temperature in millicelsius.
-> +
-> +              hysteresis:
-> +                $ref: /schemas/types.yaml#/definitions/uint32
-> +                description:
-> +                  An unsigned integer expressing the hysteresis delta with
-> +                  respect to the trip temperature property above, also in
-> +                  millicelsius.
-
-This property is worth a bit longer description.
-
-> +
-> +              type:
-> +                $ref: /schemas/types.yaml#/definitions/string
-> +                enum:
-> +                  - active   # enable active cooling e.g. fans
-> +                  - passive  # enable passive cooling e.g. throttling cpu
-> +                  - hot      # send notification to driver
-> +                  - critical # send notification to driver, trigger shutdown
-> +                description: |
-> +                  There are four valid trip types: active, passive, hot,
-> +                  critical.
-
-[snip]
-
-> +
-> +    thermal-zones {
-> +            cpu0-thermal {
-> +                    polling-delay-passive = <250>;
-> +                    polling-delay = <1000>;
-> +
-> +                    thermal-sensors = <&tsens0 1>;
-> +
-> +                    trips {
-> +                            cpu0_alert0: trip-point0 {
-> +                                    temperature = <90000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "passive";
-> +                            };
-> +
-> +                            cpu0_alert1: trip-point1 {
-> +                                    temperature = <95000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "passive";
-> +                            };
-> +
-> +                            cpu0_crit: cpu_crit {
-> +                                    temperature = <110000>;
-> +                                    hysteresis = <1000>;
-> +                                    type = "critical";
-> +                            };
-> +                    };
-> +
-> +                    cooling-maps {
-> +                            map0 {
-> +                                    trip = <&cpu0_alert0>;
-> +                                    cooling-device = <&CPU0 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU1 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU2 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU3 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>;
-> +                            };
-> +
-> +                            map1 {
-> +                                    trip = <&cpu0_alert1>;
-> +                                    cooling-device = <&CPU0 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU1 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU2 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>,
-> +                                                     <&CPU3 THERMAL_NO_LIMIT
-> +                                                            THERMAL_NO_LIMIT>;
-
- From this two examples of handling cpu0_alert0 and cpu0_alert1 you
-cannot conclude anything (if you don't understand thermal framework (and
-probably IPA). As a simple example it would be better to put a comment
-with a description and limit min, max to a specific OPP:
-
-map0 {
-     trip = <&cpu0_alert0>;
-     /* Corresponds to 1400MHz in OPP table */
-     cooling-device = <&CPU0 3 3>, <&CPU1 3 3>, <&CPU2 3 3>, <&CPU3 3 3>;
-};
-
-map1 {
-     trip = <&cpu0_alert1>;
-     /* Corresponds to 1000MHz in OPP table */
-     cooling-device = <&CPU0 5 5>, <&CPU1 5 5>, <&CPU2 5 5>, <&CPU3 5 5>;
-};
-
-IMHO this kind of example would tell more to an avg driver developer.
-
-Regards,
-Lukasz
