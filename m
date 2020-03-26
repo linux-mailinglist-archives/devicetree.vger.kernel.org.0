@@ -2,190 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C262D193D81
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 12:02:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E43193DCC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 12:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728080AbgCZLCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 07:02:21 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:38056 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727910AbgCZLCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 07:02:20 -0400
-Received: by mail-wr1-f68.google.com with SMTP id s1so7200003wrv.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2020 04:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Wfr3mshtBQnM/CRVPTN/PuNLxJ6J3zVmMT5YCluRUKU=;
-        b=LPWfvfHrcNCXNtsq0QjG6Fb5PLQf4zqNS1I4yiE3WrjMnjE7ONt6PJNZuIBHd7czBa
-         ZAE9OR0Ni4Y382HuAXc0eLi78Wu5B6h12fuJFS/ys8K5tCnKPe+Svr0E6r9lwvBYUuql
-         U8XsxbSR5PkoccOpge2YO/OuCK7aNjH41yqqHiRdhz0Vb2TqQsIqAgLaTFK31FiVgOIQ
-         WDmw0hEC84w3vcNOJI3T20VD9K0Lmun6FvApLjBc+lpUuXQ+e1j8QGb9f4HaAahYm796
-         RaF8cKKeNxOX60QSQcioWxnQoBCWHEvLt5WD6VXl5TvKxBNiFakzqkIAfTGFtE2stLNd
-         L8nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Wfr3mshtBQnM/CRVPTN/PuNLxJ6J3zVmMT5YCluRUKU=;
-        b=XEoJ7hqf1CvKoCCWR+Pd/jY3qTO1au+c4c2p1M6nG1C/8RGDBFPAILqU2SQhrpIJBi
-         uHGs+2YEAQJVE5tXlVN4MxgUzinFCQaXDxx43xbvELgv+HQYwpE1qoJxUTdULYPoP/9+
-         hif3hEmWuSSdYrTFVdSwUtgjowSBnQE82yl1rJbxTKcvLvBrhbD5Yislcxb7xo5GrdSz
-         ms44sOBWTG6yG26XrVNIa+JzjDpZlcTJYCBq98K57odfP7SWXyojI4T8o1tinVjmT+ys
-         BGnwVH+pWyMtNvh688IOYBSB/yW/lsJaJ1JcAEEmO8xivHukM64sPJ8JlVQDL8QhiKBz
-         S8CA==
-X-Gm-Message-State: ANhLgQ0EDAeQ08XIcdOZN8jLvG2tDIjkyfU3fGl3fu65HdAVllzDO/bG
-        wtvQVOJnJFMeFjxCB77HMRVxEA==
-X-Google-Smtp-Source: ADFU+vtJM2ifjt4NqZRCHSSMScdSfbUzWRVkLXVDgI6yZyq4thQ1DCTSR0RTMYpBX4xGlbTd9gzoTg==
-X-Received: by 2002:adf:a348:: with SMTP id d8mr8696704wrb.83.1585220537040;
-        Thu, 26 Mar 2020 04:02:17 -0700 (PDT)
-Received: from dell ([2.27.35.213])
-        by smtp.gmail.com with ESMTPSA id o67sm3063824wmo.5.2020.03.26.04.02.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2020 04:02:16 -0700 (PDT)
-Date:   Thu, 26 Mar 2020 11:03:06 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Anson Huang <anson.huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Subject: Re: [RFC 01/11] mfd: Add i.MX generic mix support
-Message-ID: <20200326110306.GE603801@dell>
-References: <1583226206-19758-1-git-send-email-abel.vesa@nxp.com>
- <1583226206-19758-2-git-send-email-abel.vesa@nxp.com>
+        id S1727948AbgCZLXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 07:23:21 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:59215 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727590AbgCZLXV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Mar 2020 07:23:21 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1585221801; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=V7U5JvFT204MJ8+8hEWOkXRat6eH6xB2Y/6EMB2A6vY=; b=jAQTIHpRbq//KfGSfkOz6iiVbcaQgb+rqtO5bioORCeD0QyzBNw+B5B5M0ou4pVALLng8vaU
+ U1drMm0+CxCrGS9Vys417ucMvQs3Prn1grbQVDZaG8ZwGOMCaVRfI7YX9QM4KU9SIKUYkTll
+ jeE2FiKCs3c++bGSWQm+h2PFhTw=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e7c909f.7f655da0d260-smtp-out-n01;
+ Thu, 26 Mar 2020 11:23:11 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CE755C433BA; Thu, 26 Mar 2020 11:23:11 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from Pillair (unknown [183.83.66.17])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6C65AC433D2;
+        Thu, 26 Mar 2020 11:23:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6C65AC433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Evan Green'" <evgreen@chromium.org>
+Cc:     "'open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS'" 
+        <devicetree@vger.kernel.org>,
+        "'linux-arm Mailing List'" <linux-arm-kernel@lists.infradead.org>,
+        "'LKML'" <linux-kernel@vger.kernel.org>,
+        "'linux-arm-msm'" <linux-arm-msm@vger.kernel.org>
+References: <1580822300-4491-1-git-send-email-pillair@codeaurora.org> <CAE=gft7EOALEMUWzoR3+pjoxCUTYWbiXoXY=dXH1BDhS3KwBzg@mail.gmail.com> <000901d60295$3acc79b0$b0656d10$@codeaurora.org> <CAE=gft7zqbUnx+BULDD+35z2p1=545=jF0=n6kFXZgo3ZTdCHQ@mail.gmail.com>
+In-Reply-To: <CAE=gft7zqbUnx+BULDD+35z2p1=545=jF0=n6kFXZgo3ZTdCHQ@mail.gmail.com>
+Subject: RE: [PATCH v6] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module device node
+Date:   Thu, 26 Mar 2020 16:53:05 +0530
+Message-ID: <000c01d60360$eea25c90$cbe715b0$@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1583226206-19758-2-git-send-email-abel.vesa@nxp.com>
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIr1eNiqDxek+JigOIeIUW3T4FxSwDFrKGDAq7vyx4BaNAawqeIIUVw
+Content-Language: en-us
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Mar 2020, Abel Vesa wrote:
+Hi Evan,
 
-> Some of the i.MX SoCs have a IP for interfacing the dedicated IPs with
-> clocks, resets and interrupts, plus some other specific control registers.
-> To allow the functionality to be split between drivers, this MFD driver is
-> added that has only two purposes: register the devices and map the entire
-> register addresses. Everything else is left to the dedicated drivers that will
-> bind to the registered devices.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  drivers/mfd/Kconfig   | 11 +++++++++++
->  drivers/mfd/Makefile  |  1 +
->  drivers/mfd/imx-mix.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 60 insertions(+)
->  create mode 100644 drivers/mfd/imx-mix.c
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 3c547ed..3c89288 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -460,6 +460,17 @@ config MFD_MX25_TSADC
->  	  i.MX25 processors. They consist of a conversion queue for general
->  	  purpose ADC and a queue for Touchscreens.
->  
-> +config MFD_IMX_MIX
-> +	tristate "NXP i.MX Generic Mix Control Driver"
-> +	depends on OF || COMPILE_TEST
-> +	help
-> +	  Enable generic mixes support. On some i.MX platforms, there are
-> +	  devices that are a mix of multiple functionalities like reset
-> +	  controllers, clock controllers and some others. In order to split
-> +	  those functionalities between the right drivers, this MFD populates
-> +	  with virtual devices based on what's found in the devicetree node,
-> +	  leaving the rest of the behavior control to the dedicated driver.
-> +
->  config MFD_HI6421_PMIC
->  	tristate "HiSilicon Hi6421 PMU/Codec IC"
->  	depends on OF
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index f935d10..5b2ae5d 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -113,6 +113,7 @@ obj-$(CONFIG_MFD_TWL4030_AUDIO)	+= twl4030-audio.o
->  obj-$(CONFIG_TWL6040_CORE)	+= twl6040.o
->  
->  obj-$(CONFIG_MFD_MX25_TSADC)	+= fsl-imx25-tsadc.o
-> +obj-$(CONFIG_MFD_IMX_MIX)	+= imx-mix.o
->  
->  obj-$(CONFIG_MFD_MC13XXX)	+= mc13xxx-core.o
->  obj-$(CONFIG_MFD_MC13XXX_SPI)	+= mc13xxx-spi.o
-> diff --git a/drivers/mfd/imx-mix.c b/drivers/mfd/imx-mix.c
-> new file mode 100644
-> index 00000000..d3f8c71
-> --- /dev/null
-> +++ b/drivers/mfd/imx-mix.c
-> @@ -0,0 +1,48 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2019 NXP.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/types.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of_platform.h>
-> +
-> +#include <linux/mfd/core.h>
-> +
-> +static int imx_audiomix_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	dev_set_drvdata(dev, base);
-> +
-> +	return devm_of_platform_populate(dev);
-> +}
-> +
-> +static const struct of_device_id imx_audiomix_of_match[] = {
-> +	{ .compatible = "fsl,imx8mp-audiomix" },
-> +	{ /* Sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, imx_audiomix_of_match);
+I have sent out the v7 patch by marking a dependency on the below =
+mentioned series
+https://patchwork.kernel.org/project/linux-wireless/list/?series=3D261367=
+=20
 
-This needs DT binding documentation.
+> The clocks are missing:
+> clocks =3D <&rpmhcc RPMH_RF_CLK2>;
+> clock-names =3D "cxo_ref_clk_pin";
+These clocks are optional and were required for older firmware.
+It's not needed now.
 
-Do the sub-device memory ranges overlap?
+Thanks,
+Rakesh Pillai
 
-> +static struct platform_driver imx_audiomix_driver = {
-> +	.probe = imx_audiomix_probe,
-> +	.driver = {
-> +		.name = "imx-audiomix",
-> +		.of_match_table = of_match_ptr(imx_audiomix_of_match),
-> +	},
-> +};
-> +module_platform_driver(imx_audiomix_driver);
+> -----Original Message-----
+> From: Evan Green <evgreen@chromium.org>
+> Sent: Wednesday, March 25, 2020 9:34 PM
+> To: pillair@codeaurora.org
+> Cc: open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> <devicetree@vger.kernel.org>; linux-arm Mailing List <linux-arm-
+> kernel@lists.infradead.org>; LKML <linux-kernel@vger.kernel.org>; =
+linux-
+> arm-msm <linux-arm-msm@vger.kernel.org>
+> Subject: Re: [PATCH v6] arm64: dts: qcom: sc7180: Add WCN3990 WLAN
+> module device node
+>=20
+> On Wed, Mar 25, 2020 at 4:05 AM <pillair@codeaurora.org> wrote:
+> >
+> > Hi Evan,
+> >
+> > I will send out a v7 for this patchset.
+> > Since I have to configure the S2 SIDs, it is dependent on below =
+ath10k
+> patchset.
+> > =
+https://patchwork.kernel.org/project/linux-wireless/list/?series=3D261367=
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>=20
+> Ah, right. Thanks for the info, I'll check out that series as well.
+> -Evan
