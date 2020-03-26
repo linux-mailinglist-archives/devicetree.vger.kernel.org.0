@@ -2,94 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3189A194449
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 17:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 170DC194478
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 17:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727677AbgCZQ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 12:28:42 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:45096 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726163AbgCZQ2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 12:28:42 -0400
-Received: by mail-il1-f194.google.com with SMTP id x16so5902881ilp.12;
-        Thu, 26 Mar 2020 09:28:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bVlPuJGOkEhy8wUjtWWTKaIM8+WWF/4LOBG59hrlu0Q=;
-        b=YHGmx2Z0aYlvGhVyrXmj+IG0+9n4VfZ3FuCiV8NydVIpIqlWUIDtPiSSEngYHRKuBN
-         YX21b6DuEmqWcPebqyMREAQx8gfMPbK+nOi+mEXWJBKOlEx1CmMTXLQk3Yms5vE4whOz
-         m4ALq9ItrGwFQH3vgNxZIUmvUgX139ExZt7LL8XnjYiLTSx+Q0Fzf3DjqmPAMr8/NNNY
-         qMch2paBiEpnCSwYgHn6OTXWxi5xLgdBdx7SIpjrj3ZwK/YOtBYdfUbnFKkw1jdpqvYs
-         VS+JQ9pS46ptMlHjPsnPVRgWFoXhUZsTDTzeTGHBKKpIdlhZ3SIBuvZ/U1iglSWblxc3
-         atAA==
-X-Gm-Message-State: ANhLgQ2olep/+ZekO9xuRHNSw8Ve9/D8sPCRfQZ459sFn6XQGCtbs7Kc
-        6lbMMLlBUzzLFOLXGQehRQ==
-X-Google-Smtp-Source: ADFU+vv9v63mvl8nbL3d+kPz17rDcePdFHGMay9b2YDWdFNR1yprO8F2JIv29ubqXRzM95IVux8Eig==
-X-Received: by 2002:a92:8fcd:: with SMTP id r74mr9905848ilk.39.1585240118456;
-        Thu, 26 Mar 2020 09:28:38 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id o23sm972322ild.33.2020.03.26.09.28.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2020 09:28:36 -0700 (PDT)
-Received: (nullmailer pid 2135 invoked by uid 1000);
-        Thu, 26 Mar 2020 16:28:35 -0000
-Date:   Thu, 26 Mar 2020 10:28:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hanks Chen <hanks.chen@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v5 1/6] dt-bindings: pinctrl: add bindings for MediaTek
- MT6779 SoC
-Message-ID: <20200326162835.GA1429@bogus>
-References: <1585128694-13881-1-git-send-email-hanks.chen@mediatek.com>
- <1585128694-13881-2-git-send-email-hanks.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1585128694-13881-2-git-send-email-hanks.chen@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728606AbgCZQiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 12:38:13 -0400
+Received: from albert.telenet-ops.be ([195.130.137.90]:34742 "EHLO
+        albert.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728535AbgCZQiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 12:38:13 -0400
+Received: from ramsan ([84.195.182.253])
+        by albert.telenet-ops.be with bizsmtp
+        id K4eA2200s5USYZQ064eBAL; Thu, 26 Mar 2020 17:38:11 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jHVWE-0002rD-Re; Thu, 26 Mar 2020 17:38:10 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jHVWE-00064i-P1; Thu, 26 Mar 2020 17:38:10 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] dt-bindings: usb: generic-ehci/ohci: Document power-domains property
+Date:   Thu, 26 Mar 2020 17:38:04 +0100
+Message-Id: <20200326163807.23216-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Mar 2020 17:31:29 +0800, Hanks Chen wrote:
-> From: Andy Teng <andy.teng@mediatek.com>
-> 
-> Add devicetree bindings for MediaTek MT6779 pinctrl driver.
-> 
-> Signed-off-by: Andy Teng <andy.teng@mediatek.com>
-> ---
->  .../bindings/pinctrl/mediatek,mt6779-pinctrl.yaml  |  208 ++++++++++++++++++++
->  1 file changed, 208 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-> 
+	Hi Greg, Rob,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+It is quite common for a generic EHCI or OHCI block to be embedded in an
+SoC in its own power domain.  However, the current DT bindings do not
+cover this yet, leading to "make dtbs_check" warnings like:
 
-Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.example.dts:19:18: fatal error: dt-bindings/pinctrl/mt6779-pinfunc.h: No such file or directory
-         #include <dt-bindings/pinctrl/mt6779-pinfunc.h>
-                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-scripts/Makefile.lib:311: recipe for target 'Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.example.dt.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1262: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+    arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dt.yaml: usb@ee080000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+    arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dt.yaml: usb@ee080100: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-See https://patchwork.ozlabs.org/patch/1261248
+This patch series documents the optional presence of "power-domains"
+properties in the EHCI and OHCI devices nodes, allowing the DTS writer
+to describe the controllers' positions in the power hierarchy.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+Thanks!
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+Geert Uytterhoeven (2):
+  dt-bindings: usb: generic-ehci: Document power-domains property
+  dt-bindings: usb: generic-ohci: Document power-domains property
 
-Please check and re-submit.
+ Documentation/devicetree/bindings/usb/generic-ehci.yaml | 3 +++
+ Documentation/devicetree/bindings/usb/generic-ohci.yaml | 3 +++
+ 2 files changed, 6 insertions(+)
+
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
