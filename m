@@ -2,43 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0EF919450F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 18:07:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60702194547
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 18:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727831AbgCZRHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 13:07:30 -0400
-Received: from muru.com ([72.249.23.125]:33262 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbgCZRH3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Mar 2020 13:07:29 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 3E2EF8102;
-        Thu, 26 Mar 2020 17:08:16 +0000 (UTC)
-Date:   Thu, 26 Mar 2020 10:07:26 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Aaro Koskinen <aaro.koskinen@iki.fi>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: DTS: OMAP3: disable RNG on N950/N9
-Message-ID: <20200326170726.GE37466@atomide.com>
-References: <20200325212149.27547-1-aaro.koskinen@iki.fi>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200325212149.27547-1-aaro.koskinen@iki.fi>
+        id S1726267AbgCZRTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 13:19:42 -0400
+Received: from mail-qv1-f65.google.com ([209.85.219.65]:37219 "EHLO
+        mail-qv1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725994AbgCZRTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 13:19:42 -0400
+Received: by mail-qv1-f65.google.com with SMTP id n1so3427359qvz.4;
+        Thu, 26 Mar 2020 10:19:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=JCcFv+VtQkOFOzCdOp/d+4xlelZn6o7lJvfIJY7gw+o=;
+        b=kxTPia0SE/nPUfDNdNFLyxWLpirImLkHe3HlF1cxWqdFUKQOJPsseGVl1YzUAEIv5t
+         AbtcssT8WH4sJM8YkpMBeYGAApTEUMhOrNkTT++rBuFTeOuoFQAvwdO97V6JEaiTRK5y
+         SUm5ST3aIJDUtdQxSC75qLMxKz8f2AJVRAgdbGSqWKfcxa2R5LFeWSi55nNw/A3J9sq8
+         viqKnoEGA6hs49M7qomlK92JcxB3emRnduXqF/3miXLveM0WY8/7hV2BXRGJMtDjWKxR
+         qZJMe3YCuciLoQAU7SLFWzjAQ3jaiL50JGySPiBry/buNLKP2HR2DRMOTuTLcRje5idx
+         v5Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=JCcFv+VtQkOFOzCdOp/d+4xlelZn6o7lJvfIJY7gw+o=;
+        b=ZdySumc3rGYy2Xm0JTFE6puiJfyx7cSi95LxVOKJ7eIsOZSI7jiBSuuQO0o2hfgjmg
+         6aRd1B/o5XgAO5Mtfb1A5O+N8Gq3tuxs1lvoU5o1bzNWle6flXDXz/Zbw4Rd5awlMzp1
+         rSP/SiuJ1o1ItGBTxCAbrdnx+5HMl4WedmNKzJ1SyETrtqQFrZQTN+bG7PzBPepgruYB
+         5eiqBgKUPHYbolL8cQkylnDUwa2J8tLUaGg5t689RXBqK3dc592XWR0XRLO1EDqkbYSh
+         NqscMk6TWkdYtznkbck7u+J7BvVBk6VCD8oXt0ti7zgmh8HospEOKnYAW8UKtW5QOepk
+         z6bA==
+X-Gm-Message-State: ANhLgQ2jpLZ4kSdxT3ud/eacwYYksY3FYhwGgua/C9hU355C5C1aYYRX
+        xvM3C7VbMrq3XrxxOMrVO3Q=
+X-Google-Smtp-Source: ADFU+vsLTa/30dh93pB1pVwQXfzJN2mtdQ9XLJmYQ/0IRGzW9SKd3i7SjXGGYZRLuYbmJ5pc1k7qdQ==
+X-Received: by 2002:ad4:5808:: with SMTP id dd8mr8943897qvb.191.1585243180791;
+        Thu, 26 Mar 2020 10:19:40 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:482:5bb::4])
+        by smtp.gmail.com with ESMTPSA id d2sm1792498qkl.98.2020.03.26.10.19.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Mar 2020 10:19:39 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: imx8mq-clock: Fix the file path
+Date:   Thu, 26 Mar 2020 14:19:32 -0300
+Message-Id: <20200326171933.13394-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Aaro Koskinen <aaro.koskinen@iki.fi> [200325 14:22]:
-> Like on N900, we cannot access RNG directly on N950/N9. Mark it disabled in
-> the DTS to allow kernel to boot.
->
-> Fixes: 308607e5545f ("ARM: dts: Configure omap3 rng")
+Currently the following warning is seen with 'make dt_binding_check':
 
-Oops sorry looks like I missed that one. Applying into fixes.
+Documentation/devicetree/bindings/clock/imx8mq-clock.yaml: $id: relative path/filename doesn't match actual path or filename
 
-Thanks,
+Fix it by removing the "bindings" directory from the file path.
 
-Tony
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ Documentation/devicetree/bindings/clock/imx8mq-clock.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/imx8mq-clock.yaml b/Documentation/devicetree/bindings/clock/imx8mq-clock.yaml
+index 77790f0fdcd3..05d7d1471e0c 100644
+--- a/Documentation/devicetree/bindings/clock/imx8mq-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx8mq-clock.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/bindings/clock/imx8mq-clock.yaml#
++$id: http://devicetree.org/schemas/clock/imx8mq-clock.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: NXP i.MX8M Quad Clock Control Module Binding
+-- 
+2.17.1
+
