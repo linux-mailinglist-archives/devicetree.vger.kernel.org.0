@@ -2,165 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF162194205
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 15:52:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28414194232
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 15:59:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727939AbgCZOvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 10:51:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54174 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728187AbgCZOvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Mar 2020 10:51:49 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B4B692078B;
-        Thu, 26 Mar 2020 14:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1585234308;
-        bh=p3zv7d1KVn/lO0YWV+VHW3tOP5OSRao+l1dqyJw8S5c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=UfsHThTwiuyFpUiJWXxGs/wTECR1yUDEUwZeUTA2UgRjdb0qc8HlCXpU+grRqkEX+
-         4vCdmgFDaTGdVbk12d337OwrZ3f4gSrZwsyZKeP035fc56LSdHycfVOiwchkhrstpo
-         gDmnuk9+ZUi6BAvV0Od2OLVT3LtF5O+7W3kcSKjc=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1jHTrH-00FuHQ-21; Thu, 26 Mar 2020 14:51:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 26 Mar 2020 14:51:47 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Srinath Mannam <srinath.mannam@broadcom.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Andrew Murray <andrew.murray@arm.com>,
+        id S1726318AbgCZO7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 10:59:02 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:4922 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727821AbgCZO7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 10:59:02 -0400
+X-UUID: 3b0233988805467bb0e81fa145363b3d-20200326
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Wz22YepjvknPTT9ZKt5FiQJcqf5sA/7i5zIs+ibGrZ4=;
+        b=SqSLOyHXrBpAitkBidGCJ+3b5YisFxhwgjBJdS8wNh0FkMflt3HKNZm8WQoYzI4/2sWCaj/ykWw3b9s8L2bqzC5aJ6HtbONsOdinWnxIOYeFN3FZWHg7c2Axf5XXzD/3bQPei6i8ua9kWNkr/t5bGVWIDnvEwX5Q8zfBa1hmE6Q=;
+X-UUID: 3b0233988805467bb0e81fa145363b3d-20200326
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1827274245; Thu, 26 Mar 2020 22:57:25 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 26 Mar 2020 22:57:23 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 26 Mar 2020 22:57:20 +0800
+Message-ID: <1585234641.12089.7.camel@mtksdaap41>
+Subject: Re: [RESEND PATCH v6 00/17] add drm support for MT8183
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ray Jui <ray.jui@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/6] dt-bindings: pci: Update iProc PCI binding for
- INTx support
-In-Reply-To: <1585205326-25326-2-git-send-email-srinath.mannam@broadcom.com>
-References: <1585205326-25326-1-git-send-email-srinath.mannam@broadcom.com>
- <1585205326-25326-2-git-send-email-srinath.mannam@broadcom.com>
-Message-ID: <54b2c749ec398e1c63880a7945f633ab@kernel.org>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/1.3.10
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: srinath.mannam@broadcom.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com, f.fainelli@gmail.com, rjui@broadcom.com, robh+dt@kernel.org, andrew.murray@arm.com, mark.rutland@arm.com, andy.shevchenko@gmail.com, arnd@arndb.de, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, ray.jui@broadcom.com, bcm-kernel-feedback-list@broadcom.com, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Thu, 26 Mar 2020 22:57:21 +0800
+In-Reply-To: <1578021148-32413-1-git-send-email-yongqiang.niu@mediatek.com>
+References: <1578021148-32413-1-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 0F6801C5DB930AB9FF671AA0D74D3E125BF3CAC024BE411DDBC607B4DE40F1C22000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Srinath,
+SGksIFlvbmdxaWFuZzoNCg0KSW4gWzFdLCBNYXR0aGlhcyBoYXMgYXBwbGllZCBiZWxvdyBzZXJp
+ZXMgdG8gZml4IG1tc3lzIGRyaXZlciBwcm9iZQ0KcHJvYmxlbS4gUGxlYXNlIGJhc2Ugb24gdGhh
+dCBzZXJpZXMgdG8gcmVzZW5kIHlvdXIgcGF0Y2hlcy4NCg0Kc29jIC8gZHJtOiBtZWRpYXRlazog
+Rml4IG1lZGlhdGVrLWRybSBkZXZpY2UgcHJvYmluZwlzb2MgLyBkcm06DQptZWRpYXRlazogTW92
+ZSByb3V0aW5nIGNvbnRyb2wgdG8gbW1zeXMgZGV2aWNlCWNsayAvIHNvYzogbWVkaWF0ZWs6IE1v
+dmUNCm10ODE3MyBNTVNZUyB0byBwbGF0Zm9ybSBkcml2ZXIJZHQtYmluZGluZ3M6IG1lZGlhdGVr
+OiBVcGRhdGUgbW1zeXMNCmJpbmRpbmcgdG8gcmVmbGVjdCBpdCBpcyBhIHN5c3RlbSBjb250cm9s
+bGVyCWRybS9tZWRpYXRlazogT21pdCB3YXJuaW5nDQpvbiBwcm9iZSBkZWZlcnMNCg0KWzFdDQpo
+dHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9tYXR0aGlhcy5i
+Z2cvbGludXguZ2l0L2xvZy8/aD1mb3ItbmV4dA0KDQpSZWdhcmRzLA0KQ0sNCg0KT24gRnJpLCAy
+MDIwLTAxLTAzIGF0IDExOjEyICswODAwLCBZb25ncWlhbmcgTml1IHdyb3RlOg0KPiBUaGlzIHNl
+cmllcyBhcmUgYmFzZWQgb24gNS41LXJjMSBhbmQgcHJvdmlkIDE3IHBhdGNoDQo+IHRvIHN1cHBv
+cnQgbWVkaWF0ZWsgU09DIE1UODE4Mw0KPiANCj4gQ2hhbmdlIHNpbmNlIHY1DQo+IC0gZml4IHJl
+dmlld2VkIGlzc3VlIGluIHY1DQo+IGJhc2UgaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9w
+cm9qZWN0L2xpbnV4LW1lZGlhdGVrL2xpc3QvP3Nlcmllcz0yMTMyMTkNCj4gDQo+IENoYW5nZSBz
+aW5jZSB2NA0KPiAtIGZpeCByZXZpZXdlZCBpc3N1ZSBpbiB2NA0KPiANCj4gQ2hhbmdlIHNpbmNl
+IHYzDQo+IC0gZml4IHJldmlld2VkIGlzc3VlIGluIHYzDQo+IC0gZml4IHR5cGUgZXJyb3IgaW4g
+djMNCj4gLSBmaXggY29uZmxpY3Qgd2l0aCBpb21tdSBwYXRjaA0KPiANCj4gQ2hhbmdlIHNpbmNl
+IHYyDQo+IC0gZml4IHJldmlld2VkIGlzc3VlIGluIHYyDQo+IC0gYWRkIG11dGV4IG5vZGUgaW50
+byBkdHMgZmlsZQ0KPiANCj4gQ2hhbmdlcyBzaW5jZSB2MToNCj4gLSBmaXggcmV2aWV3ZWQgaXNz
+dWUgaW4gdjENCj4gLSBhZGQgZHRzIGZvciBtdDgxODMgZGlzcGxheSBub2Rlcw0KPiAtIGFkanVz
+dCBkaXNwbGF5IGNsb2NrIGNvbnRyb2wgZmxvdyBpbiBwYXRjaCAyMg0KPiAtIGFkZCB2bWFwIHN1
+cHBvcnQgZm9yIG1lZGlhdGVrIGRybSBpbiBwYXRjaCAyMw0KPiAtIGZpeCBwYWdlIG9mZnNldCBp
+c3N1ZSBmb3IgbW1hcCBmdW5jdGlvbiBpbiBwYXRjaCAyNA0KPiAtIGVuYWJsZSBhbGxvd19mYl9t
+b2RpZmllcnMgZm9yIG1lZGlhdGVrIGRybSBpbiBwYXRjaCAyNQ0KPiANCj4gWW9uZ3FpYW5nIE5p
+dSAoMTcpOg0KPiAgIGR0LWJpbmRpbmdzOiBtZWRpYXRlazogYWRkIHJkbWFfZmlmb19zaXplIGRl
+c2NyaXB0aW9uIGZvciBtdDgxODMNCj4gICAgIGRpc3BsYXkNCj4gICBhcm02NDogZHRzOiBhZGQg
+ZGlzcGxheSBub2RlcyBmb3IgbXQ4MTgzDQo+ICAgZHJtL21lZGlhdGVrOiBtb3ZlIGRzaS9kcGkg
+c2VsZWN0IGlucHV0IGludG8gbXRrX2RkcF9zZWxfaW4NCj4gICBkcm0vbWVkaWF0ZWs6IG1ha2Ug
+c291dCBzZWxlY3QgZnVuY3Rpb24gZm9ybWF0IHNhbWUgd2l0aCBzZWxlY3QgaW5wdXQNCj4gICBk
+cm0vbWVkaWF0ZWs6IGFkZCBtbXN5cyBwcml2YXRlIGRhdGEgZm9yIGRkcCBwYXRoIGNvbmZpZw0K
+PiAgIGRybS9tZWRpYXRlazogYWRkIHByaXZhdGUgZGF0YSBmb3IgcmRtYTEgdG8gZHBpMCBjb25u
+ZWN0aW9uDQo+ICAgZHJtL21lZGlhdGVrOiBhZGQgcHJpdmF0ZSBkYXRhIGZvciByZG1hMSB0byBk
+c2kwIGNvbm5lY3Rpb24NCj4gICBkcm0vbWVkaWF0ZWs6IG1vdmUgcmRtYSBzb3V0IGZyb20gbXRr
+X2RkcF9tb3V0X2VuIGludG8NCj4gICAgIG10a19kZHBfc291dF9zZWwNCj4gICBkcm0vbWVkaWF0
+ZWs6IGFkZCBjb25uZWN0aW9uIGZyb20gT1ZMMCB0byBPVkxfMkwwDQo+ICAgZHJtL21lZGlhdGVr
+OiBhZGQgY29ubmVjdGlvbiBmcm9tIFJETUEwIHRvIENPTE9SMA0KPiAgIGRybS9tZWRpYXRlazog
+YWRkIGNvbm5lY3Rpb24gZnJvbSBSRE1BMSB0byBEU0kwDQo+ICAgZHJtL21lZGlhdGVrOiBhZGQg
+Y29ubmVjdGlvbiBmcm9tIE9WTF8yTDAgdG8gUkRNQTANCj4gICBkcm0vbWVkaWF0ZWs6IGFkZCBj
+b25uZWN0aW9uIGZyb20gT1ZMXzJMMSB0byBSRE1BMQ0KPiAgIGRybS9tZWRpYXRlazogYWRkIGNv
+bm5lY3Rpb24gZnJvbSBESVRIRVIwIHRvIERTSTANCj4gICBkcm0vbWVkaWF0ZWs6IGFkZCBjb25u
+ZWN0aW9uIGZyb20gUkRNQTAgdG8gRFNJMA0KPiAgIGRybS9tZWRpYXRlazogYWRkIGZpZm9fc2l6
+ZSBpbnRvIHJkbWEgcHJpdmF0ZSBkYXRhDQo+ICAgZHJtL21lZGlhdGVrOiBhZGQgc3VwcG9ydCBm
+b3IgbWVkaWF0ZWsgU09DIE1UODE4Mw0KPiANCj4gIC4uLi9iaW5kaW5ncy9kaXNwbGF5L21lZGlh
+dGVrL21lZGlhdGVrLGRpc3AudHh0ICAgIHwgIDEzICsNCj4gIGFyY2gvYXJtNjQvYm9vdC9kdHMv
+bWVkaWF0ZWsvbXQ4MTgzLmR0c2kgICAgICAgICAgIHwgIDk4ICsrKysrKysNCj4gIGRyaXZlcnMv
+Z3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmwuYyAgICAgICAgICAgIHwgIDE4ICsrDQo+ICBk
+cml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5jICAgICAgICAgICB8ICAyNSAr
+LQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fY3J0Yy5jICAgICAgICAgICAg
+fCAgIDQgKw0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRwLmMgICAgICAg
+ICAgICAgfCAyODggKysrKysrKysrKysrKysrKy0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVk
+aWF0ZWsvbXRrX2RybV9kZHAuaCAgICAgICAgICAgICB8ICAgNyArDQo+ICBkcml2ZXJzL2dwdS9k
+cm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuYyAgICAgICAgICAgICB8ICA0OSArKysrDQo+ICBkcml2
+ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuaCAgICAgICAgICAgICB8ICAgMyArDQo+
+ICA5IGZpbGVzIGNoYW5nZWQsIDQzNSBpbnNlcnRpb25zKCspLCA3MCBkZWxldGlvbnMoLSkNCj4g
+DQoNCg==
 
-Please note that Andrew's email address as changed (see the MAINTAINERS 
-file).
-
-On 2020-03-26 06:48, Srinath Mannam wrote:
-> From: Ray Jui <ray.jui@broadcom.com>
-> 
-> Update the iProc PCIe binding document for better modeling of the 
-> legacy
-> interrupt (INTx) support.
-> 
-> Signed-off-by: Ray Jui <ray.jui@broadcom.com>
-> Signed-off-by: Srinath Mannam <srinath.mannam@broadcom.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/pci/brcm,iproc-pcie.txt    | 48 
-> ++++++++++++++++++----
->  1 file changed, 41 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
-> b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
-> index df065aa..d3f833a 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
-> @@ -13,9 +13,6 @@ controller, used in Stingray
->    PAXB-based root complex is used for external endpoint devices. 
-> PAXC-based
->  root complex is connected to emulated endpoint devices internal to the 
-> ASIC
->  - reg: base address and length of the PCIe controller I/O register 
-> space
-> -- #interrupt-cells: set to <1>
-> -- interrupt-map-mask and interrupt-map, standard PCI properties to 
-> define the
-> -  mapping of the PCIe interface to interrupt numbers
->  - linux,pci-domain: PCI domain ID. Should be unique for each host 
-> controller
->  - bus-range: PCI bus numbers covered
->  - #address-cells: set to <3>
-> @@ -41,6 +38,21 @@ Required:
->  - brcm,pcie-ob-axi-offset: The offset from the AXI address to the 
-> internal
->  address used by the iProc PCIe core (not the PCIe address)
-> 
-> +Legacy interrupt (INTx) support (optional):
-> +
-> +Note INTx is for PAXB only.
-> +- interrupt-map-mask and interrupt-map, standard PCI properties to 
-> define
-> +the mapping of the PCIe interface to interrupt numbers
-> +
-> +In addition, a sub-node that describes the legacy interrupt controller 
-> built
-> +into the PCIe controller.
-> +This sub-node must have the following properties:
-> + - compatible: must be "brcm,iproc-intc"
-> + - interrupt-controller: claims itself as an interrupt controller for 
-> INTx
-> + - #interrupt-cells: set to <1>
-> + - interrupts: interrupt line wired to the generic GIC for INTx 
-> support
-> + - interrupt-parent: Phandle to the parent interrupt controller
-> +
->  MSI support (optional):
-> 
->  For older platforms without MSI integrated in the GIC, iProc PCIe core 
-> provides
-> @@ -77,8 +89,11 @@ Example:
->  		reg = <0x18012000 0x1000>;
-> 
->  		#interrupt-cells = <1>;
-> -		interrupt-map-mask = <0 0 0 0>;
-> -		interrupt-map = <0 0 0 0 &gic GIC_SPI 100 IRQ_TYPE_NONE>;
-> +		interrupt-map-mask = <0 0 0 7>;
-> +		interrupt-map = <0 0 0 1 &pcie0_intc 0>,
-> +				<0 0 0 2 &pcie0_intc 1>,
-> +				<0 0 0 3 &pcie0_intc 2>,
-> +				<0 0 0 4 &pcie0_intc 3>;
-> 
->  		linux,pci-domain = <0>;
-> 
-> @@ -98,6 +113,14 @@ Example:
-> 
->  		msi-parent = <&msi0>;
-> 
-> +		pcie0_intc: interrupt-controller {
-> +			compatible = "brcm,iproc-intc";
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 100 IRQ_TYPE_NONE>;
-
-There is no such thing as IRQ_TYPE_NONE in the GIC binding.
-Please update this to the right trigger type (which better
-be level high...)
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
