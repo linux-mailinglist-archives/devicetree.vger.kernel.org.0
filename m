@@ -2,233 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 375E9194AFD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 22:56:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B275E194B15
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 23:02:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726496AbgCZV4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 17:56:08 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:34025 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726363AbgCZV4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 17:56:08 -0400
-Received: by mail-ot1-f67.google.com with SMTP id j16so7689660otl.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2020 14:56:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fVDzJ6BDEWFzO6Zb5IeGhEXG4L3sc+hrhgcx0i0PDMc=;
-        b=oUaa4kKpgOh9V1+IpaniVvK9yJzz4NLG4abJw0B5W05RL5HKAw+RPj9HZSG1LDDo7o
-         xNSfpAIETfqMHJZJ2kZ/CmDopIiWyBUGKtHgBR63U8l1FoAD3J+z3ai7krCy1xFwnqZF
-         CLk6cnqkm4ZR9MJyLruD+dTTeGerXRh1epfU1aiZfPAKyrb8jv3L+db6Amf+rr5PN0vO
-         KSkimNNpjs/31eJL7+EnW1Si+tG3DjjkCWr5pJz19L2h5DjrQPVdLqeoYNE4ZI4pYkwe
-         g04owtoGOG/7cEjU64xMJgZ0jh9+MNk5YnHf30L3vzEZ0zedjjMiIGHAY+bubla2n5sU
-         5zvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fVDzJ6BDEWFzO6Zb5IeGhEXG4L3sc+hrhgcx0i0PDMc=;
-        b=DH1qWtL9YK9CRSb2qTGAbTcethaY8zabvqu12Fmio4UUS8PtuhyPv4yvUQe7iG1IBh
-         nJkx/nQ0y9d8uOejdLi3DpimwTAfHKDRLWD8RmFJqHNCph7is+VqACcD6pAIc38mmSTz
-         IMK5r7Az/BzStIGEKq7d0cdvpX6zPEbSMyAklJXFCgGTtBext0+ENU9jPpVnZAyrt649
-         RbeIrJYQsJPy/x+/d8sn7IDKVBm6G9dMB4amooZgBzAstkcSBI5FK8sRkwr4fgvFmz8C
-         w/a55Cc8BBSqEQvQHIMM6UYB6tw4PDtxlag7mNIWu+bAwXsJr5/9/TtMuM6r8CcyTTRB
-         S/eQ==
-X-Gm-Message-State: ANhLgQ261NXmzb+tvnGQBwbzEicwOLCg6KSJoFYnlmfeNE5r8y0v9ArI
-        Gi6BjqPUgtC7BeppMBxYoU85wS6Q4ZrcfkvKlHOTEg==
-X-Google-Smtp-Source: ADFU+vsWTvLX1x18YifbVlDZbfMowYVSThseSulGrqAUkQatpGn5d7UzcL2X3gq8FAmUJ8EfBv414sF7tqsi/FUvBUc=
-X-Received: by 2002:a4a:c184:: with SMTP id w4mr6815873oop.39.1585259766176;
- Thu, 26 Mar 2020 14:56:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <1584736550-7520-1-git-send-email-tharvey@gateworks.com>
- <1584736550-7520-3-git-send-email-tharvey@gateworks.com> <20200326101702.GD603801@dell>
-In-Reply-To: <20200326101702.GD603801@dell>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 26 Mar 2020 14:55:54 -0700
-Message-ID: <CAJ+vNU0pPW3n6dnUH4n_3ZtmwGYdtc6gwUkg+aWJYPF7bFUXzQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] mfd: add Gateworks System Controller core driver
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        id S1727606AbgCZWC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 18:02:57 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:33071 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726260AbgCZWC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 18:02:56 -0400
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1jHaaP-0006Dh-MO; Thu, 26 Mar 2020 23:02:49 +0100
+Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1jHaaO-00088r-6A; Thu, 26 Mar 2020 23:02:48 +0100
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Robert Jones <rjones@gateworks.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/8] ARM: dts: stm32: enable stm32mp157's &gpu by default
+Date:   Thu, 26 Mar 2020 23:02:05 +0100
+Message-Id: <20200326220213.28632-1-a.fatoum@pengutronix.de>
+X-Mailer: git-send-email 2.26.0.rc2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: afa@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 26, 2020 at 3:16 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Fri, 20 Mar 2020, Tim Harvey wrote:
->
-> > The Gateworks System Controller (GSC) is an I2C slave controller
-> > implemented with an MSP430 micro-controller whose firmware embeds the
-> > following features:
-> >  - I/O expander (16 GPIO's) using PCA955x protocol
-> >  - Real Time Clock using DS1672 protocol
-> >  - User EEPROM using AT24 protocol
-> >  - HWMON using custom protocol
-> >  - Interrupt controller with tamper detect, user pushbotton
-> >  - Watchdog controller capable of full board power-cycle
-> >  - Power Control capable of full board power-cycle
-> >
-<snip>
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 4209008..d84725a 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -407,6 +407,16 @@ config MFD_EXYNOS_LPASS
-> >         Select this option to enable support for Samsung Exynos Low Power
-> >         Audio Subsystem.
-> >
-> > +config MFD_GATEWORKS_GSC
-> > +     tristate "Gateworks System Controller"
-> > +     depends on (I2C && OF)
-> > +     select MFD_CORE
-> > +     select REGMAP_I2C
-> > +     select REGMAP_IRQ
-> > +     help
-> > +       Enable support for the Gateworks System Controller found
-> > +       on Gateworks Single Board Computers.
->
-> Please describe which sub-devices are attached.
+In the original stm32mp157c.dtsi, the GPU was disabled as some SoC
+variants lacked a GPU. We now have separate a dtsi for each SoC
+variant and variants without a GPU lack the node altogether.
 
-Hi Lee, thanks for the review!
+As we need no board support for using the GPU, enable it by default
+and while at it remove the now redundant status = "okay" in existing
+board device trees.
 
-I will add more description for v8:
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+v1 -> v2:
+  - New Patch
+---
+ arch/arm/boot/dts/stm32mp157.dtsi            | 1 -
+ arch/arm/boot/dts/stm32mp157c-dhcom-som.dtsi | 4 ----
+ arch/arm/boot/dts/stm32mp157c-ed1.dts        | 1 -
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi       | 1 -
+ 4 files changed, 7 deletions(-)
 
-Enable common support for the Gateworks System Controller
-found on Gateworks Single Board Computers. This device supports
-an interrupt controller providing interrupts for pushbutton
-events and a sub-device for HWMON and FAN controller via the
-gsc-hwmon driver.
+diff --git a/arch/arm/boot/dts/stm32mp157.dtsi b/arch/arm/boot/dts/stm32mp157.dtsi
+index 3f0a4a91cce6..5e733cd16ff9 100644
+--- a/arch/arm/boot/dts/stm32mp157.dtsi
++++ b/arch/arm/boot/dts/stm32mp157.dtsi
+@@ -15,7 +15,6 @@ gpu: gpu@59000000 {
+ 			clocks = <&rcc GPU>, <&rcc GPU_K>;
+ 			clock-names = "bus" ,"core";
+ 			resets = <&rcc GPU_R>;
+-			status = "disabled";
+ 		};
+ 
+ 		dsi: dsi@5a000000 {
+diff --git a/arch/arm/boot/dts/stm32mp157c-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp157c-dhcom-som.dtsi
+index f81dc3134135..f97e0d2ecf17 100644
+--- a/arch/arm/boot/dts/stm32mp157c-dhcom-som.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c-dhcom-som.dtsi
+@@ -97,10 +97,6 @@ &dts {
+ 	status = "okay";
+ };
+ 
+-&gpu {
+-	status = "okay";
+-};
+-
+ &i2c4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c4_pins_a>;
+diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
+index 9d2592db630c..e9aad3e101ac 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
+@@ -126,7 +126,6 @@ &dts {
+ 
+ &gpu {
+ 	contiguous-area = <&gpu_reserved>;
+-	status = "okay";
+ };
+ 
+ &i2c4 {
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+index d946e0a02f5c..558a91a6962b 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+@@ -137,7 +137,6 @@ phy0: ethernet-phy@0 {
+ 
+ &gpu {
+ 	contiguous-area = <&gpu_reserved>;
+-	status = "okay";
+ };
+ 
+ &i2c1 {
+-- 
+2.26.0.rc2
 
->
-> >  config MFD_MC13XXX
-> >       tristate
-> >       depends on (SPI_MASTER || I2C)
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index aed99f0..c82b442 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -15,6 +15,7 @@ obj-$(CONFIG_MFD_BCM590XX)  += bcm590xx.o
-> >  obj-$(CONFIG_MFD_BD9571MWV)  += bd9571mwv.o
-> >  obj-$(CONFIG_MFD_CROS_EC_DEV)        += cros_ec_dev.o
-> >  obj-$(CONFIG_MFD_EXYNOS_LPASS)       += exynos-lpass.o
-> > +obj-$(CONFIG_MFD_GATEWORKS_GSC)      += gateworks-gsc.o
-> >
-> >  obj-$(CONFIG_HTC_PASIC3)     += htc-pasic3.o
-> >  obj-$(CONFIG_HTC_I2CPLD)     += htc-i2cpld.o
-> > diff --git a/drivers/mfd/gateworks-gsc.c b/drivers/mfd/gateworks-gsc.c
-> > new file mode 100644
-> > index 00000000..8566123
-> > --- /dev/null
-> > +++ b/drivers/mfd/gateworks-gsc.c
-> > @@ -0,0 +1,291 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * The Gateworks System Controller (GSC) is a multi-function
-> > + * device designed for use in Gateworks Single Board Computers.
-> > + * The control interface is I2C, with an interrupt. The device supports
-> > + * system functions such as pushbutton monitoring, multiple ADC's for
-> > + * voltage and temperature, fan controller, and watchdog monitor.
->
-> When are you planning on adding support for the other devices?
-
-The pushbutton monitoring is supported via interrupts and the ADC's
-and fan controller are supported via the gsc-hwmon driver in this
-series. The watchdog is not yet supported via a driver and I'm not
-sure if/when I will submit one as the API is rather strange.
-
->
-<snip>
-> > +/*
-> > + * gsc_powerdown - API to use GSC to power down board for a specific time
-> > + *
-> > + * secs - number of seconds to remain powered off
-> > + */
-> > +static int gsc_powerdown(struct gsc_dev *gsc, unsigned long secs)
-> > +{
-> > +     int ret;
-> > +     unsigned char regs[4];
->
-> No error checking?  Could be down for a very long time.
-
-understood, but I'm not sure I want to dictate what the max amount of
-time to power-down should be. Some remote-sensing use cases may want
-to power-down for days, or weeks. I agree powering down for years
-seems strange but again, I don't want to dictate usage. If they
-accidently power down for a length of time they did not mean to they
-still have to remove power, battery, or press a button to power back
-on.
-
->
-<snip>
->
-> > +gsc_probe(struct i2c_client *client, const struct i2c_device_id *id)
-> > +{
-> > +     struct device *dev = &client->dev;
-> > +     struct gsc_dev *gsc;
-> > +     int ret;
-> > +     unsigned int reg;
-> > +
-> > +     gsc = devm_kzalloc(dev, sizeof(*gsc), GFP_KERNEL);
-> > +     if (!gsc)
-> > +             return -ENOMEM;
-> > +
-> > +     gsc->dev = &client->dev;
-> > +     gsc->i2c = client;
-> > +     i2c_set_clientdata(client, gsc);
-> > +
-> > +     gsc->regmap = devm_regmap_init(dev, &regmap_gsc, client,
-> > +                                    &gsc_regmap_config);
-> > +     if (IS_ERR(gsc->regmap))
-> > +             return PTR_ERR(gsc->regmap);
-> > +
-> > +     if (regmap_read(gsc->regmap, GSC_FW_VER, &reg))
-> > +             return -EIO;
-> > +     gsc->fwver = reg;
->
-> You not checking this for a valid value?
-
-it's a single byte unsigned char, there really isn't an invalid value.
-
->
-> > +     regmap_read(gsc->regmap, GSC_FW_CRC, &reg);
-> > +     gsc->fwcrc = reg;
-> > +     regmap_read(gsc->regmap, GSC_FW_CRC + 1, &reg);
-> > +     gsc->fwcrc |= reg << 8;
-> > +
-> > +     gsc->i2c_hwmon = i2c_new_dummy_device(client->adapter, GSC_HWMON);
-> > +     if (!gsc->i2c_hwmon) {
-> > +             dev_err(dev, "Failed to allocate I2C device for HWMON\n");
-> > +             return -ENODEV;
-> > +     }
-> > +     i2c_set_clientdata(gsc->i2c_hwmon, gsc);
-> > +
-> > +     gsc->regmap_hwmon = devm_regmap_init(dev, &regmap_gsc, gsc->i2c_hwmon,
-> > +                                          &gsc_regmap_hwmon_config);
-> > +     if (IS_ERR(gsc->regmap_hwmon)) {
-> > +             ret = PTR_ERR(gsc->regmap_hwmon);
-> > +             dev_err(dev, "failed to allocate register map: %d\n", ret);
-> > +             goto err_regmap;
-> > +     }
->
-> Why can't the HWMON driver fetch its own Regmap?
-
-I can move this to hwmon. It means I have to share the regmap_bus in
-struct gsc_dev instead of sharing the regmap but I suppose it makes
-more sense to have hwmon register it's own.
-
-Everything else you suggest makes complete sense and I will put into v8.
-
-Best Regards,
-
-Tim
