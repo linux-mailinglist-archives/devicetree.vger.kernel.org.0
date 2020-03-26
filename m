@@ -2,111 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A52193599
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 03:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AFDD1935A9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 03:16:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727575AbgCZCMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Mar 2020 22:12:08 -0400
-Received: from mail-eopbgr1410091.outbound.protection.outlook.com ([40.107.141.91]:23235
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727540AbgCZCMI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Mar 2020 22:12:08 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nhbvsVRDw5BXekzIDGujl9takpmJCXxodt/3wFLXZPZGlddEx2sEh6DvwlvRX1FK7z0gNUd27D4cC4g98AehMMODCaIFVse80orBLUXTv3+fPbHSCPQCyH1nbwoGPf2UoigTpr8hc652xqwBJ/3j/UaCX4Z+6WctZ5Lwandqw9yrdzoythLbWpede4Yw+sHoP6hxpDAg3Wq9CK7feyREIMPO/KuHwaGJJNLo9EMnHLlFkAqvY2XUm2LH9+STviokZkCYHC8PUggw0E0hbVSwE+sbZDb3XUvWpdQwicKFY8UpFVNY1fMnCv5gdce4Z2ws2PPUx55N+Jl8s5tq+W+Qmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iU35lCt4GfdcNMkNfZPCZEcNwqG3e8UnviwzMj16p2s=;
- b=JjA/ngM1A7CMvCIoQOlx7GC111RpcE02JKtEbs+4cQn3+VDeLL34/jSfVR8B3qFpXjTChwQ0vnQmfHwBqUyYAeWYiK+yMbryMSwOyDHlmYtNYJHqzTpDa6JBefeyzt5huvvY/CQdhqVVA1sHm5fPom5P06sxMe2iC6783I0YtGsqMIfbiphQ8CWO0dqeo5LidgVvXCDawiascrId66qgDq6arDIgGNhyYXxCLgaFVNSCA7FK33hvjNqVB3836QagpuuATH2hG1OvAuDbNZ1MmNy+YZou+rlzDmsj8vkfDKKM0OD+2yy5W/FdPYfc77oKUhJ7kDpgkzvp1qhy1MCVJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iU35lCt4GfdcNMkNfZPCZEcNwqG3e8UnviwzMj16p2s=;
- b=ISK3YER6GrdLdz9jhQcREolvEhq7CuDT79UE1fo8PLXR4QjWVRuEdlRTqMOuSm1oX7HMgRJGTm7+F2uTpG4M+rMFTAyljCE6vcF6yexoQSdNE1D+Jhdm/lowVd8RZ+zDwPdMH5UG7958jnu3KqokeM8DWxEbOMiXxqqtMfhuXus=
-Received: from TYAPR01MB4544.jpnprd01.prod.outlook.com (20.179.175.203) by
- TYAPR01MB5021.jpnprd01.prod.outlook.com (20.179.174.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.22; Thu, 26 Mar 2020 02:11:58 +0000
-Received: from TYAPR01MB4544.jpnprd01.prod.outlook.com
- ([fe80::ed7f:1268:55a9:fc06]) by TYAPR01MB4544.jpnprd01.prod.outlook.com
- ([fe80::ed7f:1268:55a9:fc06%4]) with mapi id 15.20.2835.023; Thu, 26 Mar 2020
- 02:11:58 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Greg KH <gregkh@linuxfoundation.org>,
+        id S1727564AbgCZCQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Mar 2020 22:16:31 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:37264 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727592AbgCZCQ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Mar 2020 22:16:27 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9FE2C1A078A;
+        Thu, 26 Mar 2020 03:16:25 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 923B41A0785;
+        Thu, 26 Mar 2020 03:16:25 +0100 (CET)
+Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 80CBB203CD;
+        Thu, 26 Mar 2020 03:16:24 +0100 (CET)
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 1/3] dt-bindings: usb: usb-xhci: add r8a77961 support
-Thread-Topic: [PATCH 1/3] dt-bindings: usb: usb-xhci: add r8a77961 support
-Thread-Index: AQHWAm0GCc3h+4VRrEGpfEWVhd+vS6hZRSOAgADdcoA=
-Date:   Thu, 26 Mar 2020 02:11:58 +0000
-Message-ID: <TYAPR01MB4544E5905AE051D7DF29F75FD8CF0@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-References: <1585117006-8266-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1585117006-8266-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdXxbzR=boveEoynjFwV8=KSkOzCTdQVmtN4Hh6PVMj-Bg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXxbzR=boveEoynjFwV8=KSkOzCTdQVmtN4Hh6PVMj-Bg@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
-x-originating-ip: [124.210.22.195]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7b5fd7a7-0ea4-4ea7-598c-08d7d12b108c
-x-ms-traffictypediagnostic: TYAPR01MB5021:
-x-microsoft-antispam-prvs: <TYAPR01MB502186213DACCB884EFEEFEAD8CF0@TYAPR01MB5021.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1332;
-x-forefront-prvs: 0354B4BED2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(39860400002)(396003)(346002)(376002)(136003)(86362001)(66946007)(33656002)(2906002)(7696005)(76116006)(66476007)(8676002)(64756008)(66446008)(52536014)(4744005)(54906003)(66556008)(5660300002)(8936002)(81166006)(4326008)(55016002)(186003)(9686003)(81156014)(55236004)(6916009)(316002)(71200400001)(26005)(6506007)(478600001);DIR:OUT;SFP:1102;SCL:1;SRVR:TYAPR01MB5021;H:TYAPR01MB4544.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yxpESVqcQwewAZnE41qz+edrZ2HnIktc6LMw0JJE5kSm2CCDpVf1uB6yGbCpRPNNy2q8JOSkW6qS/sLLtpqo1+hA905THoyB1c1tUoAFlOyJk7wnds62woT61S3J4shdkQ8bKpilhVazPH47V4LrHSiGGia9DL4HjCBnW4PuOMuau5aXCwBnhpQpm3tnMUlLacLGbjqhcKLm0aONR24KKuyCt9F0sFiq3+QibuxD9RhyjWKa95MDFsqwfnlRwpn/OlJCI8UpcW0LK2IEDN6D8dJldVAiG7eOfP6NFGpjP/OjnHB8nwCupbOsaFqMwx7oL1Km2arfPd6hgAuZ99UGbmhKGnqlgpiFXlR/nOrEEm/f1u9MEv3WW3eR7fLuv/9yHoV+Z2wHPdTEgEHMYiKRahO64vfDrlAtWIuPzHWJl18ZLO/Iqpzr3eJX0UMrcqJJ
-x-ms-exchange-antispam-messagedata: TaLMnx9+xtqSOpD2Rk1kRXwKVuj9My6Fp7J30ki2ripj69Jo+N0Fg9EgmwgkfW7vzsueuij3RaAJ5GfgyAOLx+UlubPWe3J5HBWXFRZiiMKy5N5hf4WPyO6X72gF0JgOpt1JUPiB7+O5WUlVcivF5g==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b5fd7a7-0ea4-4ea7-598c-08d7d12b108c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2020 02:11:58.6517
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: t+rvCYrI3EQ970es/ng1mnDVyN/pFOZMgJo1i2soCc0uyBRFPt2cnNYXMMWsEK/47Ckz02dAaddFVrfcGy2NA8DsmakX2FzXNGsDvXnFjP15jF1i2P9j/dOXK9+Jto8l
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5021
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Martin Kepplinger <martink@posteo.de>
+Cc:     =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Angus Ainslie <angus@akkea.ca>,
+        Silvano di Ninno <silvano.dininno@nxp.com>,
+        linux-pm@vger.kernel.org, kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/8] interconnect: Add imx support via devfreq
+Date:   Thu, 26 Mar 2020 04:16:12 +0200
+Message-Id: <cover.1585188174.git.leonard.crestez@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmV2aWV3IQ0KDQo+IEZyb206IEdl
-ZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogV2VkbmVzZGF5LCBNYXJjaCAyNSwgMjAyMCA5OjU4IFBN
-DQo8c25pcD4NCj4gSGkgU2hpbW9kYS1zYW4sDQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3VzYi91c2IteGhjaS50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi14aGNpLnR4dA0KPiA+IEBAIC0xNyw2ICsxNyw3
-IEBAIFJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gICAgICAtICJyZW5lc2FzLHhoY2ktcjhhNzc5
-MyIgZm9yIHI4YTc3OTMgU29DDQo+ID4gICAgICAtICJyZW5lc2FzLHhoY2ktcjhhNzc5NSIgZm9y
-IHI4YTc3OTUgU29DDQo+ID4gICAgICAtICJyZW5lc2FzLHhoY2ktcjhhNzc5NiIgZm9yIHI4YTc3
-OTYgU29DDQo+IA0KPiBXaGlsZSBhdCBpdCwgeW91IG1heSB3YW50IHRvIHVwZGF0ZSAicjhhNzc5
-NiBTb0MiIHRvICJyOGE3Nzk2MCBTb0MiLCB0bw0KPiBhdm9pZCBjb25mdXNpb24gYmV0d2VlbiBS
-LUNhciBNMy1XIChSOEE3Nzk2MCkgYW5kIE0zLVcrIChSOEE3Nzk2MSkuDQoNCkkgZ290IGl0LiBJ
-J2xsIGZpeCBpdCBhbmQgYWRkIHN1Y2ggYSBkZXNjcmlwdGlvbiB0byB0aGUgY29tbWl0IGxvZy4N
-Cg0KPiA+ICsgICAgLSAicmVuZXNhcyx4aGNpLXI4YTc3OTYxIiBmb3IgcjhhNzc5NjEgU29DDQo+
-ID4gICAgICAtICJyZW5lc2FzLHhoY2ktcjhhNzc5NjUiIGZvciByOGE3Nzk2NSBTb0MNCj4gPiAg
-ICAgIC0gInJlbmVzYXMseGhjaS1yOGE3Nzk5MCIgZm9yIHI4YTc3OTkwIFNvQw0KPiA+ICAgICAg
-LSAicmVuZXNhcyxyY2FyLWdlbjIteGhjaSIgZm9yIGEgZ2VuZXJpYyBSLUNhciBHZW4yIG9yIFJa
-L0cxIGNvbXBhdGlibGUNCj4gDQo+IFdpdGggdGhhdCBmaXhlZDoNCj4gUmV2aWV3ZWQtYnk6IEdl
-ZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU+DQoNClRoYW5rcyENCg0K
-QmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1vZGENCg0K
+This series adds interconnect scaling support for imx8m series chips. It uses a
+per-SOC interconnect provider layered on top of multiple instances of devfreq
+for scalable nodes along the interconnect.
+
+Existing qcom interconnect providers mostly translate bandwidth requests into
+firmware calls but equivalent firmware on imx8m is much thinner. Scaling
+support for individual nodes is implemented as distinct devfreq drivers
+instead.
+
+The imx interconnect provider doesn't communicate with devfreq directly
+but rather computes "minimum frequencies" for nodes along the path and
+creates dev_pm_qos requests.
+
+Since there is no single devicetree node that can represent the
+"interconnect" the main NOC is picked as the "interconnect provider" and
+will probe the interconnect platform device if #interconnect-cells is
+present. This avoids introducing "virtual" devices but it means that DT
+bindings of main NOC includes properties for both devfreq and
+interconnect.
+
+Only the ddrc and main noc are scalable right now but more can be added.
+
+Also available on a github branch (with various unrelated changes):
+	https://github.com/cdleonard/linux/tree/next
+Testing currently requires NXP branch of atf+uboot
+
+Martin: I believe you should be able to use this to control DRAM
+frequency from video by just adding interconnect consumer code to
+nwl-dsi. Sample code:
+	https://github.com/cdleonard/linux/commit/43772762aa5045f1ce5623740f9a4baef988d083
+	https://github.com/cdleonard/linux/commit/7b601e981b1f517b5d98b43bde292972ded13086
+
+Changes since RFCv6:
+* Replace scalable-nodes stuff with just a fsl,ddrc property. Future
+scalable nodes can be added as additional phandles on the NOC
+* Allow building interconnect drivers as modules
+* Handle icc_provider_del errors in imx_icc_unregister (like EBUSY).
+* Rename imx-devfreq to imx-bus, similar to exynos-bus
+* Explain why imx bus clock enabling is not required
+* All dependencies accepted (some time ago).
+Link: https://patchwork.kernel.org/cover/11244421/
+
+Changes since RFCv5:
+* Replace scanning for interconnect-node-id with explicit
+scalable-nodes/scalable-node-ids property on NoC.
+* Now passes make `dtbs_check`
+* Remove struct imx_icc_provider
+* Switch to of_icc_xlate_onecell
+* Use of_find_device_by_node to fetch QoS target, this causes fewer probe
+deferrals, removes dependency on devfreq API and even allows reloading ddrc
+module at runtime
+* Add imx_icc_node_destroy helper
+* Remove 0/1 on DEFINE_BUS_SLAVE/MASTER which created spurious links
+Link: https://patchwork.kernel.org/cover/11222015/
+
+Changes since RFCv4:
+* Drop icc proxy nonsense
+* Make devfreq driver for NOC probe the ICC driver if
+#interconnect-cells is present
+* Move NOC support to interconnect series and rename the node in DT
+* Add support for all chips at once, differences are not intereseting
+and there is more community interest for 8mq than 8mm.
+Link: https://patchwork.kernel.org/cover/11111865/
+
+Changes since RFCv3:
+* Remove the virtual "icc" node and add devfreq nodes as proxy providers
+* Fix build on 32-bit arm (reported by kbuilt test robot)
+* Remove ARCH_MXC_ARM64 (never existed in upstream)
+* Remove _numlinks, calculate instead
+* Replace __BUSFREQ_H header guard
+* Improve commit message and comment spelling
+* Fix checkpatch issues
+Link to RFCv3: https://patchwork.kernel.org/cover/11078671/
+
+Changes since RFCv2 and initial work by Alexandre Bailon:
+* Relying on devfreq and dev_pm_qos instead of CLK
+* No more "platform opp" stuff
+* No more special suspend handling: use suspend-opp on devfreq instead
+* Replace all mentions of "busfreq" with "interconnect"
+Link to v2: https://patchwork.kernel.org/cover/11021563/
+
+Leonard Crestez (8):
+  dt-bindings: interconnect: Add bindings for imx8m noc
+  PM / devfreq: Add generic imx bus scaling driver
+  PM / devfreq: imx: Register interconnect device
+  interconnect: Add imx core driver
+  interconnect: imx: Add platform driver for imx8mm
+  interconnect: imx: Add platform driver for imx8mq
+  interconnect: imx: Add platform driver for imx8mn
+  arm64: dts: imx8m: Add NOC nodes
+
+ .../bindings/interconnect/fsl,imx8m-noc.yaml  | 138 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  24 ++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  24 ++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  24 ++
+ drivers/devfreq/Kconfig                       |   9 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/imx-bus.c                     | 181 +++++++++++
+ drivers/interconnect/Kconfig                  |   1 +
+ drivers/interconnect/Makefile                 |   1 +
+ drivers/interconnect/imx/Kconfig              |  17 +
+ drivers/interconnect/imx/Makefile             |   9 +
+ drivers/interconnect/imx/imx.c                | 298 ++++++++++++++++++
+ drivers/interconnect/imx/imx.h                |  62 ++++
+ drivers/interconnect/imx/imx8mm.c             | 108 +++++++
+ drivers/interconnect/imx/imx8mn.c             |  97 ++++++
+ drivers/interconnect/imx/imx8mq.c             | 106 +++++++
+ include/dt-bindings/interconnect/imx8mm.h     |  49 +++
+ include/dt-bindings/interconnect/imx8mn.h     |  41 +++
+ include/dt-bindings/interconnect/imx8mq.h     |  48 +++
+ 19 files changed, 1238 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
+ create mode 100644 drivers/devfreq/imx-bus.c
+ create mode 100644 drivers/interconnect/imx/Kconfig
+ create mode 100644 drivers/interconnect/imx/Makefile
+ create mode 100644 drivers/interconnect/imx/imx.c
+ create mode 100644 drivers/interconnect/imx/imx.h
+ create mode 100644 drivers/interconnect/imx/imx8mm.c
+ create mode 100644 drivers/interconnect/imx/imx8mn.c
+ create mode 100644 drivers/interconnect/imx/imx8mq.c
+ create mode 100644 include/dt-bindings/interconnect/imx8mm.h
+ create mode 100644 include/dt-bindings/interconnect/imx8mn.h
+ create mode 100644 include/dt-bindings/interconnect/imx8mq.h
+
+-- 
+2.17.1
+
