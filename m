@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 170BD193935
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 08:07:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E460A1939C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 08:45:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbgCZHHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 03:07:14 -0400
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:38910 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726289AbgCZHHO (ORCPT
+        id S1726318AbgCZHpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 03:45:36 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:36052 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726138AbgCZHpf (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Mar 2020 03:07:14 -0400
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 26 Mar 2020 12:37:11 +0530
-Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 26 Mar 2020 12:37:10 +0530
-Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
-        id B517919BD; Thu, 26 Mar 2020 12:37:09 +0530 (IST)
-From:   Sandeep Maheswaram <sanm@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: [PATCH v5 2/2] dt-bindings: usb: qcom,dwc3: Add compatible for SC7180
-Date:   Thu, 26 Mar 2020 12:36:08 +0530
-Message-Id: <1585206368-685-3-git-send-email-sanm@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1585206368-685-1-git-send-email-sanm@codeaurora.org>
-References: <1585206368-685-1-git-send-email-sanm@codeaurora.org>
+        Thu, 26 Mar 2020 03:45:35 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1585208735; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=ofNam/A9mK9m4P86u/2kTjqxbhuy862zWmIh3TjFQ6M=; b=HwWWvGmmx1xR8PYIpkQYReDOmoDSFv2BUTfFtuJlK3xwr+K3VzXP2kMLSuyk/b2gF3NpRUf+
+ 0YSl/VX3J9DZ4Bvjoxd9nsXBCBqMl4vxwTV/iBLQEXGjfvhioOTp5MhQGWYy3aI/QvaHe9RW
+ 0fQpWdvTButIc6tHRsY97extlHo=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e7c5d9b.7f09eda134c8-smtp-out-n02;
+ Thu, 26 Mar 2020 07:45:31 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 85168C4478F; Thu, 26 Mar 2020 07:45:30 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from tynnyri.adurom.net (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5D007C433D2;
+        Thu, 26 Mar 2020 07:45:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5D007C433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     <Ajay.Kathat@microchip.com>
+Cc:     <linux-wireless@vger.kernel.org>, <devel@driverdev.osuosl.org>,
+        <devicetree@vger.kernel.org>, <gregkh@linuxfoundation.org>,
+        <Adham.Abozaeid@microchip.com>, <johannes@sipsolutions.net>,
+        <robh@kernel.org>
+Subject: Re: [PATCH] staging: wilc1000: remove label from examples in DT binding documentation
+References: <20200325164234.14146-1-ajay.kathat@microchip.com>
+Date:   Thu, 26 Mar 2020 09:45:22 +0200
+In-Reply-To: <20200325164234.14146-1-ajay.kathat@microchip.com> (Ajay Kathat's
+        message of "Wed, 25 Mar 2020 16:42:39 +0000")
+Message-ID: <87v9mrpnjh.fsf@tynnyri.adurom.net>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for SC7180 in usb dwc3 bindings.
+<Ajay.Kathat@microchip.com> writes:
 
-Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
- Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> From: Ajay Singh <ajay.kathat@microchip.com>
+>
+> Remove labels and not relevant property from DT binding documentation
+> examples as suggested in [1].
+>
+> 1. https://patchwork.ozlabs.org/patch/1252837
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index 0f69475..17e22ff 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -16,6 +16,7 @@ properties:
-       - enum:
-           - qcom,msm8996-dwc3
-           - qcom,msm8998-dwc3
-+          - qcom,sc7180-dwc3
-           - qcom,sdm845-dwc3
-       - const: qcom,dwc3
- 
+Just a nitpick but patchwork links are not that reliable in the long
+run. Instead using a lore link is better as the message id is visible
+directly from the URL.
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
