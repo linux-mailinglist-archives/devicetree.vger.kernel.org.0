@@ -2,205 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5660F194746
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 20:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F92419474A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 20:15:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726067AbgCZTOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 15:14:17 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52240 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726359AbgCZTOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 15:14:17 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 530B4297A10
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Jeffrey Kardatzke <jkardatzke@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v4] dt-bindings: rockchip-vpu: Convert bindings to json-schema
-Date:   Thu, 26 Mar 2020 16:13:43 -0300
-Message-Id: <20200326191343.1989-1-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.26.0.rc2
-In-Reply-To: <20200325213439.16509-8-ezequiel@collabora.com>
-References: <20200325213439.16509-8-ezequiel@collabora.com>
+        id S1726340AbgCZTPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 15:15:50 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:46981 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726067AbgCZTPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 15:15:50 -0400
+Received: by mail-il1-f196.google.com with SMTP id e8so6467273ilc.13;
+        Thu, 26 Mar 2020 12:15:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Olt13sdtE0D4LAs797wG3erKxjKOvDid+wOGLdWtI/Q=;
+        b=EcH46TOfrUdkt6EPYEQ3QQQQUyJEOp65u1N7TmQooqSBnk10yLme+BGud+Naf1NK57
+         QAISnLxmMk0qxw/vfcheZ7IZch1IKkexNjUuqUSTnQ2LPemCrLpNw/SXRB5oaC4R3oBJ
+         ugq2Xq0DPglEju+32dYPFCglNH09hznvxF/DQtXaM1RMHZbuMQbsG7CO+Lz3uywNFKMZ
+         G2HNtLSR41mJJ6lO/KqSZvyibEP2azX51Qcm3hyB20kyy3WCSCsOVF6k9v2Y1rAs0jbo
+         uKKArPc8I8ECLO/QaqudES7m8V2eDpntHCJHaC0n2dmFrXfCrgoi6LRwfArUcj1HBipg
+         qCgw==
+X-Gm-Message-State: ANhLgQ2MtVOb7nC0nGSMfLTRdgdVOKRziPdAhhYwHc9NSJ6Ie6r1/z8a
+        a0MZMCd1jxFPXbmsJQ/f82zg/Lk=
+X-Google-Smtp-Source: ADFU+vt5XiMccSt51KtqStNQbL6xMBa8dlZTZsEXhIz9yvw00X/Uh9S7Hd3S//8uEYuiP17IMzmlNQ==
+X-Received: by 2002:a92:dd0e:: with SMTP id n14mr10757476ilm.0.1585250149285;
+        Thu, 26 Mar 2020 12:15:49 -0700 (PDT)
+Received: from rob-hp-laptop ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id s82sm1074423ili.87.2020.03.26.12.15.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Mar 2020 12:15:48 -0700 (PDT)
+Received: (nullmailer pid 4026 invoked by uid 1000);
+        Thu, 26 Mar 2020 19:15:47 -0000
+Date:   Thu, 26 Mar 2020 13:15:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tobias Schramm <t.schramm@manjaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: Re: [PATCH v6 2/3] dt-bindings: power: supply: add cw2015_battery
+ bindings
+Message-ID: <20200326191547.GA3964@bogus>
+References: <20200321125241.3072123-1-t.schramm@manjaro.org>
+ <20200321125241.3072123-3-t.schramm@manjaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200321125241.3072123-3-t.schramm@manjaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Rockchip VPU (Hantro IP block) codec driver documentation to
-json-schema.
+On Sat, 21 Mar 2020 13:52:40 +0100, Tobias Schramm wrote:
+> This patch adds the dts binding schema for the cw2015 fuel gauge.
+> 
+> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
+> ---
+>  .../bindings/power/supply/cw2015_battery.yaml | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> 
 
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
-v4:
-* Fix issues pointed out by Rob,
-  and make sure now dt_binding_check passes.
-
- .../bindings/media/rockchip-vpu.txt           | 43 -----------
- .../bindings/media/rockchip-vpu.yaml          | 74 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 75 insertions(+), 44 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/rockchip-vpu.txt
- create mode 100644 Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.txt b/Documentation/devicetree/bindings/media/rockchip-vpu.txt
-deleted file mode 100644
-index 339252d9c515..000000000000
---- a/Documentation/devicetree/bindings/media/rockchip-vpu.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--device-tree bindings for rockchip VPU codec
--
--Rockchip (Video Processing Unit) present in various Rockchip platforms,
--such as RK3288, RK3328 and RK3399.
--
--Required properties:
--- compatible: value should be one of the following
--		"rockchip,rk3288-vpu";
--		"rockchip,rk3328-vpu";
--		"rockchip,rk3399-vpu";
--- interrupts: encoding and decoding interrupt specifiers
--- interrupt-names: should be
--		"vepu", "vdpu" on RK3288 and RK3399,
--		"vdpu" on RK3328.
--- clocks: phandle to VPU aclk, hclk clocks
--- clock-names: should be "aclk" and "hclk"
--- power-domains: phandle to power domain node
--- iommus: phandle to a iommu node
--
--Example:
--SoC-specific DT entry:
--	vpu: video-codec@ff9a0000 {
--		compatible = "rockchip,rk3288-vpu";
--		reg = <0x0 0xff9a0000 0x0 0x800>;
--		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vepu", "vdpu";
--		clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
--		clock-names = "aclk", "hclk";
--		power-domains = <&power RK3288_PD_VIDEO>;
--		iommus = <&vpu_mmu>;
--	};
--
--	vpu: video-codec@ff350000 {
--		compatible = "rockchip,rk3328-vpu";
--		reg = <0x0 0xff350000 0x0 0x800>;
--		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vdpu";
--		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
--		clock-names = "aclk", "hclk";
--		power-domains = <&power RK3328_PD_VPU>;
--		iommus = <&vpu_mmu>;
--	};
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-new file mode 100644
-index 000000000000..d7a42e6f9bcf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/rockchip-vpu.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Hantro G1 VPU codecs implemented on Rockchip SoCs
-+
-+maintainers:
-+  - Ezequiel Garcia <ezequiel@collabora.com>
-+
-+description:
-+  Hantro G1 video encode and decode accelerators present on Rockchip SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3288-vpu
-+      - rockchip,rk3328-vpu
-+      - rockchip,rk3399-vpu
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: vepu
-+      - const: vdpu
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: hclk
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/clock/rk3288-cru.h>
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        #include <dt-bindings/power/rk3288-power.h>
-+
-+        vpu: video-codec@ff9a0000 {
-+                compatible = "rockchip,rk3288-vpu";
-+                reg = <0x0 0xff9a0000 0x0 0x800>;
-+                interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-names = "vepu", "vdpu";
-+                clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
-+                clock-names = "aclk", "hclk";
-+                power-domains = <&power RK3288_PD_VIDEO>;
-+                iommus = <&vpu_mmu>;
-+        };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d66ac41ef587..2b8b3e7f3df3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14320,7 +14320,7 @@ L:	linux-rockchip@lists.infradead.org
- S:	Maintained
- F:	drivers/staging/media/hantro/
- F:	Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
--F:	Documentation/devicetree/bindings/media/rockchip-vpu.txt
-+F:	Documentation/devicetree/bindings/media/rockchip-vpu.yaml
- 
- ROCKER DRIVER
- M:	Jiri Pirko <jiri@resnulli.us>
--- 
-2.26.0.rc2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
