@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59DA91944D1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 18:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9451944DA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 18:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727393AbgCZRAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 13:00:07 -0400
-Received: from mail-wm1-f52.google.com ([209.85.128.52]:50234 "EHLO
-        mail-wm1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727770AbgCZRAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 13:00:06 -0400
-Received: by mail-wm1-f52.google.com with SMTP id d198so7310810wmd.0
+        id S1727766AbgCZRA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 13:00:26 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37956 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727867AbgCZRAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 13:00:07 -0400
+Received: by mail-wm1-f65.google.com with SMTP id f6so1289216wmj.3
         for <devicetree@vger.kernel.org>; Thu, 26 Mar 2020 10:00:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IPcQG3YcrnLLher/nefYLUs5pU6e5WyIQ5KkZW8zJhU=;
-        b=ItYxyQOPWpfIwx5id98fE1SRSt1cmLdSSkB5lgTxde8+2UMNwtZm5//pKOziYaxWnz
-         5+2cxSZCfOm/Co62Re/eJIdbYw4UfCISJQ2pMi7V7cRGerae+khQtC1Bo3N9/hZHeZp/
-         N1YngF5NBPAEdGTHZqox/NF2I/0dggkG4WZryMZfzh4I5ajCh2CCnnIu6z+/AobO9p/G
-         44CoqqYhll10X9SV/1enmd+rZawXZj5Mdu3oqD6lHfInBkUUA2kSWF7CpX4lEamLaNsR
-         8IX3ET6Q1k7H6h0n7Oajtskuu64CrCp4+N5DCG78KzSUb3AHa0uJ7xIE/ngHqzhsoaaG
-         q//g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gxa9/8xWJiWiAnJoP5kcdi2AFtJ6sEZwxgWVvybuWHI=;
+        b=wox7ZbpJR2NASF2XImey0+PMq5gjabP88qzzrAzsgIO2mqkDbs/puc5HB0nHa32xQk
+         TXTvt06zZQwxr82wCkOyNUqWip+K4gcBV0/yfjHqZOB2D9CwNZ6+d/w1wm8ff5Jp7Mg2
+         8Lswl8d+TITSc1mb8W4blydnLKgn7V84yBF/4TqWhFxhMPejKD+KiwaoTTjY/0FKBL2y
+         /NTigJwaM8l7xFWt9jldZyq1e7u98g4b0cMCCv/UHurzcEBLY9KYDgbvAoBbqGHoBZrG
+         FmX+xIPglME3YMudrQ6VCcj1v99R9WvBJ6rm3wuXXvuUu2BmMsxpah4S18PQzuMUERF9
+         LwHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IPcQG3YcrnLLher/nefYLUs5pU6e5WyIQ5KkZW8zJhU=;
-        b=qxvc1EViylqKQbQy6lf5fInSreSZFvsXN3TPXoj8mR0Fbg1g8iJ2DKjDJQq5HIoZ7D
-         YM2XhKwMUPoY82NH6GQx50eHveLX0wDRkhvvjeBD/x/arbGVJ7Qi9WsAnWPLK1xEBv+4
-         LuU9V/aYptuS2E4+romsUexF6iZXnv2L1klbt3H/yBs6l+BSTdOYedhI0skBp2ALGykg
-         CLYKq6IoxiAOD809WX0I5l2Q3XfnnMqLUpz9Uog2cbKMO0q7kzuX+eGTBViOhSZTucxX
-         mXTe3AWJcvbqBJs0dB1Sb74InRhi2Hn796NsEySu+3pR8jzcRIhHWcPEU6OZ7tuMheW7
-         Qp+A==
-X-Gm-Message-State: ANhLgQ0H3gyogeiG5elNqLtdDXN5BXlv7kiZy0GA8IGxFUIYGnbD6e+W
-        o3ZibeBK/s7665HjN9655rKAgQ==
-X-Google-Smtp-Source: ADFU+vtnT6Qi76wMfnjs4e0l9MJUiPRD/pUzToCuVWV2nVYKoGqgcAcvwfcWiAoDJIJIOj62HUDmQw==
-X-Received: by 2002:a1c:408b:: with SMTP id n133mr819774wma.182.1585242003353;
-        Thu, 26 Mar 2020 10:00:03 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gxa9/8xWJiWiAnJoP5kcdi2AFtJ6sEZwxgWVvybuWHI=;
+        b=k3ay4r/ZFIii9wWY1Buss45/D1fNMKHqNJx67ZhwJDGAF4vmTauWpHRDFdLMgcxpgJ
+         P8bUhynk+v4yfnkitbbd5IxR0ewj89S3z5JInWgIy8oPy+OG91UDDqENi0x6rOmcPd/q
+         ssCdNLhdRJjY8l0UEJdbnxyuD8jZ+lAtfpcq6Ekcd+6nLpKVE1u/KfBRWf71UiYdDmif
+         MbLTwe1o7rJ3fGkUB2ZYn8EvX4z/kroJlbAgveo727T/Y9WA/WNEovsax+viasFyhdxW
+         haOWD603bs3a0i6XxaPycVZFf4BWVFndLYpnFCfX4LjyZBZynNnEd1lGrJIWXxmzdhdX
+         Gz8A==
+X-Gm-Message-State: ANhLgQ1rs3ARebmJfq8wbjE5W/T9O6to5V6jC9F09auucAX/2w7KSPED
+        nwoO5AR84xkMWa6hTnZYAVlM5w==
+X-Google-Smtp-Source: ADFU+vv6qM1KmchXEKdNWuCW7bywdYt5WvtsW2577e4jpNyneZiOrb68QnerCwIAlSk3xpt9y+hc9g==
+X-Received: by 2002:a1c:2c85:: with SMTP id s127mr905935wms.18.1585242004777;
+        Thu, 26 Mar 2020 10:00:04 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
-        by smtp.gmail.com with ESMTPSA id r15sm4609823wra.19.2020.03.26.10.00.02
+        by smtp.gmail.com with ESMTPSA id r15sm4609823wra.19.2020.03.26.10.00.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2020 10:00:02 -0700 (PDT)
+        Thu, 26 Mar 2020 10:00:03 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com, devicetree@vger.kernel.org
 Cc:     linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 0/5] arm64: dts: meson: dtbs_checks fixups
-Date:   Thu, 26 Mar 2020 17:59:53 +0100
-Message-Id: <20200326165958.19274-1-narmstrong@baylibre.com>
+Subject: [PATCH 1/5] dt-bindings: sram: Add Amlogic SCP SRAM compatibles
+Date:   Thu, 26 Mar 2020 17:59:54 +0100
+Message-Id: <20200326165958.19274-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200326165958.19274-1-narmstrong@baylibre.com>
+References: <20200326165958.19274-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -60,33 +62,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Another round of DT fixups of dtbs_checks on Amlogic DT files.
+Add compatibles for the Amlogic SCP SRAM memory zones.
 
-Neil Armstrong (5):
-  dt-bindings: sram: Add Amlogic SCP SRAM compatibles
-  arm64: dts: meson: fixup SCP sram nodes
-  arm64: dts: meson-g12b-ugoos-am6: fix board compatible
-  arm64: dts: meson-gxbb-kii-pro: fix board compatible
-  arm64: dts: meson: fix leds subnodes name
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/sram/sram.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- Documentation/devicetree/bindings/sram/sram.yaml       |  2 ++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi             |  6 +++---
- arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts   |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi              | 10 +++++-----
- arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts     |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts   |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts    |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi   |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi      |  2 +-
- .../boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts  |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts     |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi     |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts       |  2 +-
- 16 files changed, 28 insertions(+), 26 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+index 7b83cc6c9bfa..0aea3d239a48 100644
+--- a/Documentation/devicetree/bindings/sram/sram.yaml
++++ b/Documentation/devicetree/bindings/sram/sram.yaml
+@@ -73,6 +73,8 @@ patternProperties:
+             - allwinner,sun50i-a64-sram-c
+             - amlogic,meson8-smp-sram
+             - amlogic,meson8b-smp-sram
++            - amlogic,meson-gxbb-scp-shmem
++            - amlogic,meson-axg-scp-shmem
+             - renesas,smp-sram
+             - rockchip,rk3066-smp-sram
+             - samsung,exynos4210-sysram
 -- 
 2.22.0
 
