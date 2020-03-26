@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C5C194005
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 14:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFED019401F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2020 14:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727724AbgCZNpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Mar 2020 09:45:14 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:34669 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727766AbgCZNpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 09:45:13 -0400
-Received: by mail-wr1-f66.google.com with SMTP id 65so7911392wrl.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2020 06:45:12 -0700 (PDT)
+        id S1727946AbgCZNpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Mar 2020 09:45:38 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:37023 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727913AbgCZNpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Mar 2020 09:45:31 -0400
+Received: by mail-wm1-f68.google.com with SMTP id d1so7061383wmb.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2020 06:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=aUt5da61uLANGwJFYYiA7zZjRTcSYMRB6icGf3vbU0k=;
-        b=mFk1SjUOpWFCWV3w8NUixREHmK4vDmUPsSbxrhNEvoMQoUozHNBVhh/84MOqcYKSh4
-         7nnQSLIvwIGGnrge7xHSEy+jXUSNnfwpa6LhrX9eAMWzJjJiiFyCERkVmpWT/0X+IHJp
-         hBP+BoSqsf+Q37GSlozIUGbJ+fEah8GfsiwgnpMN6JJ+K+5njBrV+P684va9X1vP3Jac
-         OFWwYXyUQr/zClqzm2tBNy7zpw31A8oiD6cQiuvCPFaasRz4jET2QoPmVugn6+FCyGJp
-         eVvBiQ7KakQsVkpFf5EDlE8/uLsoU/Jas0eIgTClWTl70sS13Y3YmZxoa1yS4wXFNUaw
-         I3bA==
+        bh=FYmBKvDX2uegk8HiuHznpAIvR/lIVMa/DD0ivvJWoKc=;
+        b=WFIzC18kvsFjgIJ4FAaGh/U0e0VcyLOupRhUbB4tyLL65yxfgasTs/rTmfpo/K+C8r
+         PfCapoDbaqg61p+hAHE7MW7uwGmcPNN0d3wQ/3UWumCMIsY4I5Gu0s4TQqOEeflO4HDm
+         Ttxvoii4MFFwJXu1wNm5hk7cnRzqx10VF998dfGBf81edsilQuIw7ybIwSV1XlVG32Wx
+         rp9uaoLg/EeTOZni35QERf+9CqXseJQnfGe8h5UtBa65ktyqDSGuejQiF+iGS9Vdm4Ve
+         GSEu8/QXFsKWm4phRr9YycLomXzQvo9aVbJTThCeKu3Hvs+yExIEH5hDMK0Tvf21dSaZ
+         O4Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aUt5da61uLANGwJFYYiA7zZjRTcSYMRB6icGf3vbU0k=;
-        b=Y1f/wX6sGzkMGnAeJAwo/v57wg984X/qA1ihffIqqrEN4Fp25bRG5K6eHiLoY23yq4
-         Wd+lTuAkdqcKVdiHcBG2ByfKErccMpez6dF04WlQ6N1KY8OpGNkGVSi86Do9zG8cBBVO
-         X5p9b5brVMQllCU6vu1NXKjRYJtL4sI8u4szzsnFk+u/jCfAMFZCeujoJRcJVBKW0pX3
-         jbOr2YRhoVO8z+JFYCq8gmuPsp827qeiNMcZFA9zVNJ3LBwYfoVCV3EnDLy4naRjS9Uz
-         Mnw+e9nHKyT/2qVJ7k1u//gFMbXKjyKdGfWSDi8C2aoRiixGxYbKd9pN99HVDoib3d6/
-         pgzw==
-X-Gm-Message-State: ANhLgQ3c36f3lahcZjxPtA9Ad7WG6vbzM/i+SWcJRKOJpjPadH+XQlhg
-        tVpD348W2yHr1511abEYPSYe+Q==
-X-Google-Smtp-Source: ADFU+vt66+XPqsyLeO+POW2yrcqbRJYseC7D+4t4IRvUw/9oFw1qz5OYThNV1WSSuwK+mezl4JqO8Q==
-X-Received: by 2002:a5d:4d07:: with SMTP id z7mr9105092wrt.89.1585230311563;
-        Thu, 26 Mar 2020 06:45:11 -0700 (PDT)
+        bh=FYmBKvDX2uegk8HiuHznpAIvR/lIVMa/DD0ivvJWoKc=;
+        b=b+qeZyqidS/o5QqxKoPd75W6KAO3uOFpDe0v/WUl+FQ+qQbQ0sSj82aFGkFhCxGu/3
+         lNTjkpcQ+DmWYI6GoqlDQuc0ugSkHpUrS+nHbqcjbKiFjqMX9bw0F60lfutMDSLUIeCr
+         Y5collSXgKpKp8yC3TjrJnHTmzuvDYMo8Y7DUYlSUx4PGGlV6JvX+ZG/2wSYdGH0PXgL
+         cnMcPg5zs30ld3sIydud31nhqIhuHo1zkYW4xEgGvMr43FRzEjfagkktBW7F/OLTObaI
+         8O6rkRojLyIqtQTXcMIkCf1TB4IWlqJVkniMC0ZOeSNPOQkzyzSXHIagMHbp14XSzFN6
+         0l0Q==
+X-Gm-Message-State: ANhLgQ0ssK/CWWfVCl1Xj0Bzxgn3WIEpTGHdjjwXr850/G2icQ3d3SH/
+        RZvAbKkUG3z/DNC5ZPKxggrK+g==
+X-Google-Smtp-Source: ADFU+vtDec2EyGWkeh0RHipBALtSpkGygZ/tofT3qFJR5rH8aahV1B9w9HjqJoFyqKyUoc7AtWokQg==
+X-Received: by 2002:a7b:cb03:: with SMTP id u3mr70540wmj.12.1585230328275;
+        Thu, 26 Mar 2020 06:45:28 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
-        by smtp.gmail.com with ESMTPSA id h29sm4079617wrc.64.2020.03.26.06.45.10
+        by smtp.gmail.com with ESMTPSA id h29sm4079617wrc.64.2020.03.26.06.45.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2020 06:45:11 -0700 (PDT)
+        Thu, 26 Mar 2020 06:45:27 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
         martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 01/14] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic GXL and GXM Families USB Glue Bindings
-Date:   Thu, 26 Mar 2020 14:44:53 +0100
-Message-Id: <20200326134507.4808-2-narmstrong@baylibre.com>
+Subject: [PATCH v2 13/14] doc: dt: bindings: usb: dwc3: remove amlogic compatible entries
+Date:   Thu, 26 Mar 2020 14:45:05 +0100
+Message-Id: <20200326134507.4808-14-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200326134507.4808-1-narmstrong@baylibre.com>
 References: <20200326134507.4808-1-narmstrong@baylibre.com>
@@ -63,132 +63,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic GXL and GXM is slightly different from the Amlogic G12A Glue.
-
-The GXL SoCs only embeds 2 USB2 PHYs and no USB3 PHYs, and the GXM SoCs
-embeds 3 USB2 PHYs.
-
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 73 ++++++++++++++++++-
- 1 file changed, 69 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/usb/dwc3.txt | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index b0e5e0fe9386..b0af50a7c124 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -25,9 +25,13 @@ description: |
-   The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
-   host-only mode.
- 
-+  The Amlogic GXL & GXM SoCs doesn't embed an USB3 PHY.
-+
- properties:
-   compatible:
-     enum:
-+      - amlogic,meson-gxl-usb-ctrl
-+      - amlogic,meson-gxm-usb-ctrl
-       - amlogic,meson-g12a-usb-ctrl
-       - amlogic,meson-a1-usb-ctrl
- 
-@@ -41,6 +45,11 @@ properties:
- 
-   clocks:
-     minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
- 
-   resets:
-     minItems: 1
-@@ -52,10 +61,8 @@ properties:
-     maxItems: 1
- 
-   phy-names:
--    items:
--      - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
--      - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
--      - const: usb3-phy0 # USB3 PHY if USB3_0 is used
-+    minItems: 1
-+    maxItems: 3
- 
-   phys:
-     minItems: 1
-@@ -89,6 +96,61 @@ required:
-   - dr_mode
- 
- allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-g12a-usb-ctrl
-+
-+    then:
-+      properties:
-+        phy-names:
-+          items:
-+            - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
-+            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
-+            - const: usb3-phy0 # USB3 PHY if USB3_0 is used
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gxl-usb-ctrl
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          items:
-+            - const: usb_ctrl
-+            - const: ddr
-+        phy-names:
-+          items:
-+            - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
-+            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
-+      required:
-+        - clock-names
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gxm-usb-ctrl
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          items:
-+            - const: usb_ctrl
-+            - const: ddr
-+        phy-names:
-+          items:
-+            - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
-+            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
-+            - const: usb2-phy2 # USB2 PHY2 if USBOTG_C port is used
-+
-+      required:
-+        - clock-names
-   - if:
-       properties:
-         compatible:
-@@ -97,6 +159,9 @@ allOf:
- 
-     then:
-       properties:
-+        phy-names:
-+          items:
-+            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
-         clocks:
-           minItems: 3
-         clock-names:
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 66780a47ad85..2ef0bcc30648 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -14,8 +14,6 @@ Required properties:
+ Exception for clocks:
+   clocks are optional if the parent node (i.e. glue-layer) is compatible to
+   one of the following:
+-    "amlogic,meson-axg-dwc3"
+-    "amlogic,meson-gxl-dwc3"
+     "cavium,octeon-7130-usb-uctl"
+     "qcom,dwc3"
+     "samsung,exynos5250-dwusb3"
 -- 
 2.22.0
 
