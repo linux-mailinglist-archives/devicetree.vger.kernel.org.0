@@ -2,80 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A71195648
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2020 12:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6661F195640
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2020 12:24:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727287AbgC0LZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Mar 2020 07:25:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39032 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727263AbgC0LZP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Mar 2020 07:25:15 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5EDC5206F8;
-        Fri, 27 Mar 2020 11:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1585308314;
-        bh=nYLHHHRgW7KyhXgGAfcT0pygfJkAcJNPNdQChIW8IzE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=18dP0C8Mb7gJckrnRxRLPL+nbNHpzhZUFKEJGWDnCbTz27iZ61uQ1UzoML5cqpwjZ
-         OnMES3/9QvzfhK6otlnz7npww5X9/VLU5sDKzxloN3NhcbnzffEaCd8pBwM/aSppbp
-         q/SogzJO2Od4oA1on+He3NN2cgG9I3jI1cN7hBEc=
-Date:   Fri, 27 Mar 2020 12:25:11 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Ajay.Kathat@microchip.com, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, Venkateswara.Kaja@microchip.com,
-        linux-wireless@vger.kernel.org, Nicolas.Ferre@microchip.com,
-        Adham.Abozaeid@microchip.com, johannes@sipsolutions.net
-Subject: Re: [PATCH v6 00/17] wilc1000: move out of staging
-Message-ID: <20200327112511.GA1708276@kroah.com>
-References: <20200327063302.20511-1-ajay.kathat@microchip.com>
- <87ftduoxou.fsf@tynnyri.adurom.net>
+        id S1726333AbgC0LYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Mar 2020 07:24:34 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:55049 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726165AbgC0LYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Mar 2020 07:24:34 -0400
+Received: by mail-wm1-f67.google.com with SMTP id c81so11014047wmd.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2020 04:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=NEKo1+Ks52CKrgqp13o2semhHLME73XljK+CspwLPrY=;
+        b=Jtw4HczpGtExse/Jed/9i2XrjLsmX3A8SK85csRKWjvyV7FYnyDWaK8osGBUNIh4IT
+         SXyF2Inx9f76wiysMcdpRB24m3bU94HFjU9zXmvZsK+rxp96pezRZeLD4AKgMLcX7I6t
+         AE0n5YdCM9yiRHauKSO14tA1SwGtP39L7lbsBOvqC2Tl5xCDaXZBKDcBwmNEd9k+gA0a
+         K6Fxy5inzLVO95/7z3fX98ZxfcOv5+WuZo3Bl8ZPbXBlA5aswDEs0VuqqwPmkMCfayvV
+         6j4uOqJZcjd38vtVnCaXo6geSVe/5BMRbzNACDHgTCBtqfua9IxT+Yq/ksnegy9Xw7X+
+         A8eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=NEKo1+Ks52CKrgqp13o2semhHLME73XljK+CspwLPrY=;
+        b=TjzHIO92UU0tMGJOUE7o29Boi7tf8f5ZEs48FEwRIf/gc/+iYj/qwmANDhbgBPKIFg
+         ZbmEhsZLvnzJn/8j0xpr++OJpLGD7dPw09f23vltMPUkXD588PzWfPIz9fCW60me2Yw+
+         z1oTBeY/Ycd2ITY4wi2ojeqJB/1qvHTsKZ6e0TwBLzqqYaDSyzzHyId2BSx6Qp9vvSfL
+         HBwIm8jzyQsec+e4FbyWWU2STvvXwooF1DTfTsTa8F0y4w14ZAVeDmTqelkXrXxNis6s
+         HobYYoflO6Y+5R0KzSKZSEtatA2YJ2m/C3uG70K1M/Jbehb5XhbAhLaV7BIm5XRTuckk
+         BB7g==
+X-Gm-Message-State: ANhLgQ2MDBOh9wM5TjY1pLn4IsWX45S1Qv+l3jdmPu76GKa0Tn+FD6wf
+        JkKbaUhPoDaX1KPVbPEWTdCenQ==
+X-Google-Smtp-Source: ADFU+vukihyFjfwUuPh25SnSXHqq3y8g/HlHxFrHniP9gGajGvwecjChMSKb0wlOCy8D3fuAaLaRiA==
+X-Received: by 2002:a7b:c408:: with SMTP id k8mr4876391wmi.11.1585308272376;
+        Fri, 27 Mar 2020 04:24:32 -0700 (PDT)
+Received: from dell ([95.149.164.95])
+        by smtp.gmail.com with ESMTPSA id q17sm8213043wrp.11.2020.03.27.04.24.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Mar 2020 04:24:31 -0700 (PDT)
+Date:   Fri, 27 Mar 2020 11:25:23 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     saravanan sekar <sravanhome@gmail.com>
+Cc:     robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] mfd: mp2629: Add support for mps battery charger
+Message-ID: <20200327112523.GC3383@dell>
+References: <20200322224626.13160-1-sravanhome@gmail.com>
+ <20200322224626.13160-3-sravanhome@gmail.com>
+ <20200327075541.GF603801@dell>
+ <a6098b6a-2b2f-5279-f9fc-85201b9aabde@gmail.com>
+ <20200327102221.GA3383@dell>
+ <a679aba5-4cfb-1b6c-8cb0-dab3a644f3e7@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <87ftduoxou.fsf@tynnyri.adurom.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a679aba5-4cfb-1b6c-8cb0-dab3a644f3e7@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 27, 2020 at 01:16:01PM +0200, Kalle Valo wrote:
-> <Ajay.Kathat@microchip.com> writes:
-> 
-> > From: Ajay Singh <ajay.kathat@microchip.com>
-> >
-> > This patch series is to review and move wilc1000 driver out of staging.
-> > Most of the review comments received in [1] & [2] are addressed in the
-> > latest code. Please review and provide your inputs.
-> >
-> > [1]. https://lore.kernel.org/linux-wireless/1537957525-11467-1-git-send-email-ajay.kathat@microchip.com/
-> > [2]. https://lore.kernel.org/linux-wireless/1562896697-8002-1-git-send-email-ajay.kathat@microchip.com/
-> >
-> > Changes since v5:
-> >  - handle DT binding review comments suggested in below link:
-> >   * https://lore.kernel.org/driverdev-devel/20200320175920.GA31641@bogus
-> >  - merged latest driver from staging which contains few cleanup patches
-> >    and changes to use crc7 from existing library instead of having
-> >    private implementation.
-> 
-> This is already the third version this month, please avoid spamming the
-> list unnecessarily. What you can do to speed up the acceptance is to get
-> Reviewed-by tags from people, the more I see those the more confident I
-> get about the driver. I will also review this again once I find some
-> free time, but don't know when that will happen.
-> 
-> But it would be good to document in the cover letter what commit id are
-> you using as the baseline. That way it's easy to review rest of the
-> changes Greg has applied separately and you don't need to resend the
-> whole driver everytime.
+On Fri, 27 Mar 2020, saravanan sekar wrote:
+> On 27/03/20 11:22 am, Lee Jones wrote:
+> > Saravanan, Jonathan,
+> > 
+> > On Fri, 27 Mar 2020, saravanan sekar wrote:
+> > > On 27/03/20 8:55 am, Lee Jones wrote:
+> > > > On Sun, 22 Mar 2020, Saravanan Sekar wrote:
+> > > > 
+> > > > > mp2629 is a highly-integrated switching-mode battery charge management
+> > > > > device for single-cell Li-ion or Li-polymer battery.
+> > > > > 
+> > > > > Add MFD core enables chip access for ADC driver for battery readings,
+> > > > > and a power supply battery-charger driver
+> > > > > 
+> > > > > Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> > > > > ---
+> > > > >    drivers/mfd/Kconfig        |   9 +++
+> > > > >    drivers/mfd/Makefile       |   2 +
+> > > > >    drivers/mfd/mp2629.c       | 116 +++++++++++++++++++++++++++++++++++++
+> > > > >    include/linux/mfd/mp2629.h |  22 +++++++
+> > > > >    4 files changed, 149 insertions(+)
+> > > > >    create mode 100644 drivers/mfd/mp2629.c
+> > > > >    create mode 100644 include/linux/mfd/mp2629.h
 
-Using the --base= flag in git format-patch is helpful in automating that
-:)
+[...]
 
-thanks,
+> > > > > +#ifndef __MP2629_H__
+> > > > > +#define __MP2629_H__
+> > > > > +
+> > > > > +#include <linux/types.h>
+> > > > > +
+> > > > > +struct device;
+> > > > > +struct regmap;
+> > > > Why not just add the includes?
+> > > Some more shared enum added in ADC driver
+> > Sorry?
+> 
+> I misunderstood your previous question that you are asking to remove this
+> mp2629.h file
+> 
+> "No user here. (Hint: Use forward declaration of struct device instead)" -
+> review comments on V1 from Andy Shevchenko.
+> So remove the includes
 
-greg k-h
+So Andy has reviewed, but you still don't have him on Cc?
+
+How are we meant to continue the discussion?
+
+As a general rule I'm not a fan of forward declarations.
+
+I think they should be avoided if at all possible.
+
+> > > > > +struct mp2629_info {
+> > > > > +	struct device *dev;
+> > > > > +	struct regmap *regmap;
+> > > > > +};
+> > > > > +
+> > > > > +#endif
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
