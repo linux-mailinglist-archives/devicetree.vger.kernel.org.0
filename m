@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5AE195439
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2020 10:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C145A195453
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2020 10:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbgC0JmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Mar 2020 05:42:03 -0400
-Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:36342 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726115AbgC0JmD (ORCPT
+        id S1727674AbgC0Jo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Mar 2020 05:44:28 -0400
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:55216 "EHLO
+        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726804AbgC0Jo2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Mar 2020 05:42:03 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 18BB64068F;
-        Fri, 27 Mar 2020 09:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1585302122; bh=5lvr85wmUB+ig2sjTf8GoiI7NOjmJtqmkcAiDXQQ+iE=;
-        h=Date:In-Reply-To:References:From:Subject:To:Cc:From;
-        b=B1wZOt6pr1GmQZBOfYyL6GDT84QfA2uWCxy6qb5oiHj5dWC4VVSITpzUIz47GmbE6
-         RNhcBq94gwBo7de+qS8l2YqD5NzZ2hQlRjxe3LaUZXXwhhPmWjwNyHX/1dF5g3dq6Z
-         bq3oIFGNv/oJTMQQ6pBkDWK+wHFzfbmnBtM0OYscfMKoDOp2j/UQq2pOdtU2JCnxUD
-         yCS7f+Mm73Ds+npbdbuKYNLPIJBl7onyH7S18AkRqP2PSS4dN9KCk7VUiZKmGpkIdO
-         CoAukWT0VIbpsx4Sw/Ag611E1o0aoJ3G19F1aAht1W2YmMQzYlaLymxXiEV65ULe2l
-         6MnBefEg3GaIw==
-Received: from tejas-VirtualBox (joglekar-e7480.internal.synopsys.com [10.146.16.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mailhost.synopsys.com (Postfix) with ESMTPSA id 446CFA005B;
-        Fri, 27 Mar 2020 09:41:58 +0000 (UTC)
-Received: by tejas-VirtualBox (sSMTP sendmail emulation); Fri, 27 Mar 2020 15:11:56 +0530
-Date:   Fri, 27 Mar 2020 15:11:56 +0530
-Message-Id: <8a9ca8e08d7c4957789a209c77589f1aa4bd2f06.1585297723.git.joglekar@synopsys.com>
-In-Reply-To: <cover.1585297723.git.joglekar@synopsys.com>
-References: <cover.1585297723.git.joglekar@synopsys.com>
-From:   Tejas Joglekar <Tejas.Joglekar@synopsys.com>
-Subject: [RESENDING RFC PATCH 1/4] dt-bindings: usb: Add snps,consolidate-sgl & consolidate-sgl
-To:     Tejas Joglekar <Tejas.Joglekar@synopsys.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     John Youn <John.Youn@synopsys.com>
+        Fri, 27 Mar 2020 05:44:28 -0400
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 27 Mar 2020 15:14:18 +0530
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 27 Mar 2020 15:13:51 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id DC4772223; Fri, 27 Mar 2020 15:13:50 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v6 0/4] ADD interconnect support for Qualcomm DWC3 driver
+Date:   Fri, 27 Mar 2020 15:13:19 +0530
+Message-Id: <1585302203-11008-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds the documentation for consolidate-sgl, and
-snps,consolidate-sgl property. These when set enables the quirk for
-XHCI driver for consolidation of sg list into a temporary buffer when small
-buffer sizes are scattered over the sg list not making up to MPS or total
-transfer size within TRB cache size with Synopsys xHC.
+This path series aims to add interconnect support in
+dwc3-qcom driver on SDM845 and SC7180 SoCs.
 
-Signed-off-by: Tejas Joglekar <joglekar@synopsys.com>
----
- Documentation/devicetree/bindings/usb/dwc3.txt     | 3 +++
- Documentation/devicetree/bindings/usb/usb-xhci.txt | 3 +++
- 2 files changed, 6 insertions(+)
+Changes from v5 -> v6
+  > [PATCH 1/4] Addressed comments from Rob.
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/4] Ignoring 80 char limit in defining interconnect paths.
+  > Added [PATCH 4/4] in this series. Adding interconnect nodes for SC7180.
+    Depends on patch https://patchwork.kernel.org/patch/11417989/.	
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-index 9946ff9ba735..292d1f7969e4 100644
---- a/Documentation/devicetree/bindings/usb/dwc3.txt
-+++ b/Documentation/devicetree/bindings/usb/dwc3.txt
-@@ -104,6 +104,9 @@ Optional properties:
- 			this and tx-thr-num-pkt-prd to a valid, non-zero value
- 			1-16 (DWC_usb31 programming guide section 1.2.3) to
- 			enable periodic ESS TX threshold.
-+ - snps,consolidate-sgl: enable sg list consolidation - host mode only. Set to use
-+			SG buffers of at least MPS size by consolidating smaller SG
-+			buffers list into a single buffer.
- 
-  - <DEPRECATED> tx-fifo-resize: determines if the FIFO *has* to be reallocated.
-  - snps,incr-burst-type-adjustment: Value for INCR burst type of GSBUSCFG0
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-index 3f378951d624..a90d853557ee 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -43,6 +43,9 @@ Optional properties:
-   - quirk-broken-port-ped: set if the controller has broken port disable mechanism
-   - imod-interval-ns: default interrupt moderation interval is 5000ns
-   - phys : see usb-hcd.yaml in the current directory
-+  - consolidate-sgl: indicate if you need to consolidate sg list into a
-+    temporary buffer when small SG buffer sizes does not make upto MPS
-+    size or total transfer size across the TRB cache size.
- 
- additionally the properties from usb-hcd.yaml (in the current directory) are
- supported.
+Changes from v4 -> v5
+  > [PATCH 1/3] Added the interconnect properties in yaml. This patch depends
+    on series https://patchwork.kernel.org/cover/11372641/.
+  > [PATCH 2/3] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/3] Modified as per the new interconnect nodes in sdm845. Depends
+    on series https://patchwork.kernel.org/cover/11372211/. 
+
+
+Changes from v3 -> v4
+  > Fixed review comments from Matthias
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+Changes from v2 -> v3
+  > Fixed review comments from Matthias and Manu
+  > changed the functions prefix from usb_* to dwc3_qcom_*
+
+Changes since V1:
+  > Comments by Georgi Djakov on "[PATCH 2/3]" addressed
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+
+Sandeep Maheswaram (4):
+  dt-bindings: usb: qcom,dwc3: Introduce interconnect properties for
+    Qualcomm DWC3 driver
+  usb: dwc3: qcom: Add interconnect support in dwc3 driver
+  arm64: dts: qcom: sdm845: Add interconnect properties for USB
+  arm64: dts: qcom: sc7180: Add interconnect properties for USB
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   8 ++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   4 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   8 ++
+ drivers/usb/dwc3/dwc3-qcom.c                       | 128 ++++++++++++++++++++-
+ 4 files changed, 146 insertions(+), 2 deletions(-)
+
 -- 
-2.11.0
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
