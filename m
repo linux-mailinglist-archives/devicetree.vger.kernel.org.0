@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE751968CA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 19:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05BAC1968D3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 19:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727176AbgC1S7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Mar 2020 14:59:30 -0400
-Received: from mail-yb1-f202.google.com ([209.85.219.202]:34437 "EHLO
-        mail-yb1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727125AbgC1S72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 14:59:28 -0400
-Received: by mail-yb1-f202.google.com with SMTP id t7so12667381ybj.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Mar 2020 11:59:27 -0700 (PDT)
+        id S1727336AbgC1S7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Mar 2020 14:59:31 -0400
+Received: from mail-pg1-f201.google.com ([209.85.215.201]:51438 "EHLO
+        mail-pg1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727192AbgC1S7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 14:59:30 -0400
+Received: by mail-pg1-f201.google.com with SMTP id p13so11044459pgk.18
+        for <devicetree@vger.kernel.org>; Sat, 28 Mar 2020 11:59:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=cb6A4ZievIvvysAvumZN4FIO7dPjsgeMK8Q/oul1Xgs=;
-        b=DAQ8XHD8okBVh2XJa2USholx+1RJddSlBF8w3rKul+bEhcpC5OB7CgsmbHySNT5MJU
-         H5RfSes0X3kz7itAjJPnhGW4wMPiSdhkWYf5TbYt5tcDeJDy1CysmVteAXTw3wLkp5+S
-         uAxj5rvzEzFn4lrDtMMHQOLiRcEhwZnrVWDEUoDI2Iw3aup9M/ylYf/ozgT9Qzu1o2zX
-         m3HgF5Bbc9x1zyMdpXaDku2GIEi6EAVYOZbHMvjK8Hy8yfPGIoQxFqW8EaiDNoFTPimU
-         ysxEwBS4A/KOyF+PfZ32GBx3fzfxIoUKYx2NiCsCtEIcJinhiawCVDMwPC2Ra9kbTe6Y
-         xPQA==
+        bh=RmZqFhOWmJfblEL39xHqmka8Tn/Hx8czxElVow6EI48=;
+        b=LsfvxAZTfx0EdEbqJrtv0QvW38sITdabmPyei4aZ2Hy3cyyWY8SsoAvWle9hPf5oDC
+         ioejvTsBSCiwQsSjc2tzw9uRHh5zKQM35MiR5Jdej0EAugnnFvynwQezlZKSIaFKf+La
+         nIHtqe5HTcqlUdFEb8uGC3sm6xVXOuKjYe9VctUSWq2rT40VMpsnwW1JlzqcHdJ/3ez7
+         Iqv4ChmXgPnGbUir4rlt7tTWuh4eaLA4hd2t5DdPvqYnkNloLEfog78LvamAkZV9W4++
+         wA5TR4ndSFw18N6W6nDejDarzS/aDW4vxFXuhtAkifBrNPgcvyAUmmDz7Cdr0CFTNk91
+         7fOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=cb6A4ZievIvvysAvumZN4FIO7dPjsgeMK8Q/oul1Xgs=;
-        b=PWPCYy7zF/eoszIYeob/RYngG4ShKo9em3OG5kJLsGwSCyJV7K0a4rn6XO/NxpjBR6
-         mA/L2EOwWfBroSzXqPrjR9TcwzCqyKHOe2+nEKPQEp1+IBypIF6IKcyd2zg5MwrZhIhY
-         6OXOKcg8y7G6OG9ZC+uyo0iOeIBecNNMGFvgGKYf8nxeKLVRwKyB1fJUr5U68NmuLZvy
-         GWiIM5L4w5/6DyOcb5ExyaV/gwTy2s34DpDAkbC8cFfB7gNanDOnzBkcFrw72TGXBUoL
-         mGMxTauRUA3UDO7x8dWm6o/mhxLtbiGcvOTFcts4ah9PpykpBYMhscY4yv3cMzO+YsE8
-         oxyQ==
-X-Gm-Message-State: ANhLgQ1MCKFAHqDpcFvMPogWvFEe/2f1/iWcnDQ3Z/nq6w9mOZyNtPc8
-        oXY4qBk7pXBtsr0xbXc1YiCJjOQWkHJL
-X-Google-Smtp-Source: ADFU+vtux+3y6NC8cdca093ciq5FCliMi9Au9EXmPcbUQ9hQB3QDO5O6FwgnREVqgVeBRyFCZRy1RPr7nH3g
-X-Received: by 2002:a25:9d88:: with SMTP id v8mr7013374ybp.433.1585421966999;
- Sat, 28 Mar 2020 11:59:26 -0700 (PDT)
-Date:   Sat, 28 Mar 2020 11:59:13 -0700
+        bh=RmZqFhOWmJfblEL39xHqmka8Tn/Hx8czxElVow6EI48=;
+        b=PlFOxfGJreEqrnKwAqezMpq6yziiiDVCbhho7ZX2GtPS0yQfzcuoC0rsWCbfpwLS8L
+         NBl/TZ91SFtJxadRYtGSTWC3xkVW4bKBXyP+apENpB1f4pXiBZdN+jBKi7qCgGV9sB80
+         UNNU+9qSXZNGiHOXwjwJCOXKyPVQIKX6UaQKfKaV+vlvGWMnMJgWuHF5n6/yH6jPb+2q
+         oxzik+AJyaM/nSIrfpt//r8mIurN2oNvPoRfP3Uqu9xb0laNvRKmM/29fPX/zKhFCYMB
+         yN7/WRvxCQ+sP+iP4ukOqoZcqYPFVGWZ6UG6I9ydV88vSixTAffdVSBMHy/7OQix11Bf
+         U6NQ==
+X-Gm-Message-State: ANhLgQ373Edl6SC7nScitii6O5U1JVd+MPzo2EX0SUbvIEOD5mg++Pjs
+        61J8lc39+PKUx0rRtLlg6sPSh9hT4ZqZ
+X-Google-Smtp-Source: ADFU+vuoEMxULA3UhwesqVMltERLeDVP8XgmIuQ9z/hiaou45fh2RQVncRU3HyXUkshQHrnPQy2r2ato9pUj
+X-Received: by 2002:a63:4c0b:: with SMTP id z11mr5506572pga.385.1585421969560;
+ Sat, 28 Mar 2020 11:59:29 -0700 (PDT)
+Date:   Sat, 28 Mar 2020 11:59:14 -0700
 In-Reply-To: <20200328185916.98423-1-rajatja@google.com>
-Message-Id: <20200328185916.98423-2-rajatja@google.com>
+Message-Id: <20200328185916.98423-3-rajatja@google.com>
 Mime-Version: 1.0
 References: <20200328185916.98423-1-rajatja@google.com>
 X-Mailer: git-send-email 2.26.0.rc2.310.g2932bb562d-goog
-Subject: [PATCH v4 2/5] Input: atkbd: Expose function row physical map to userspace
+Subject: [PATCH v4 3/5] dt-bindings: input/atkbd.txt: Add binding for "function-row-physmap"
 From:   Rajat Jain <rajatja@google.com>
 To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>, dtor@google.com,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,148 +70,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Certain keyboards have their top-row keys intended
-for actions such as "Browser back", "Browser Refresh", "Fullscreen"
-etc as their primary mode, thus they will send physical codes for those
-actions. Further, they don't have a dedicated "Fn" key so don't have
-the capability to generate function key codes (e.g. F1, F2 etc..).
-However in this case, if userspace still wants to "synthesize" those
-function keys using the top row action keys, it needs to know the
-physical position of the top row keys. (Essentially a mapping between
-usage codes and a physical location in the top row).
-
-This patch enhances the atkbd driver to receive such a mapping from the
-firmware / device tree, and expose it to userspace in the form of
-a function-row-physmap attribute. The attribute would be a space
-separated ordered list of physical codes, for the keys in the function
-row, in left-to-right order.
-
-The attribute will only be present if the kernel knows about such
-mapping, otherwise the attribute shall not be visible.
+Create the documentation for the new introduced property, that
+describes the function-row keys physical positions.
 
 Signed-off-by: Rajat Jain <rajatja@google.com>
 ---
 v4: Same as v3
-v3: Change to dev_dbg and remove unecessary error check
+v3: same as v2
 v2: Remove the Change-Id from the commit log
 
- drivers/input/keyboard/atkbd.c | 56 ++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ .../devicetree/bindings/input/atkbd.txt       | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/atkbd.txt
 
-diff --git a/drivers/input/keyboard/atkbd.c b/drivers/input/keyboard/atkbd.c
-index 7e3eae54c1926..3b20aba1861cd 100644
---- a/drivers/input/keyboard/atkbd.c
-+++ b/drivers/input/keyboard/atkbd.c
-@@ -24,6 +24,7 @@
- #include <linux/libps2.h>
- #include <linux/mutex.h>
- #include <linux/dmi.h>
-+#include <linux/property.h>
- 
- #define DRIVER_DESC	"AT and PS/2 keyboard driver"
- 
-@@ -63,6 +64,8 @@ static bool atkbd_terminal;
- module_param_named(terminal, atkbd_terminal, bool, 0);
- MODULE_PARM_DESC(terminal, "Enable break codes on an IBM Terminal keyboard connected via AT/PS2");
- 
-+#define MAX_FUNCTION_ROW_KEYS	24
+diff --git a/Documentation/devicetree/bindings/input/atkbd.txt b/Documentation/devicetree/bindings/input/atkbd.txt
+new file mode 100644
+index 0000000000000..816653eb8e98d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/atkbd.txt
+@@ -0,0 +1,34 @@
++Device tree bindings for AT / PS2 keyboard device
 +
- /*
-  * Scancode to keycode tables. These are just the default setting, and
-  * are loadable via a userland utility.
-@@ -230,6 +233,9 @@ struct atkbd {
- 
- 	/* Serializes reconnect(), attr->set() and event work */
- 	struct mutex mutex;
++Optional properties:
 +
-+	u16 function_row_physmap[MAX_FUNCTION_ROW_KEYS];
-+	int num_function_row_keys;
- };
- 
- /*
-@@ -283,6 +289,7 @@ static struct device_attribute atkbd_attr_##_name =				\
- 	__ATTR(_name, S_IRUGO, atkbd_do_show_##_name, NULL);
- 
- ATKBD_DEFINE_RO_ATTR(err_count);
-+ATKBD_DEFINE_RO_ATTR(function_row_physmap);
- 
- static struct attribute *atkbd_attributes[] = {
- 	&atkbd_attr_extra.attr,
-@@ -292,11 +299,42 @@ static struct attribute *atkbd_attributes[] = {
- 	&atkbd_attr_softrepeat.attr,
- 	&atkbd_attr_softraw.attr,
- 	&atkbd_attr_err_count.attr,
-+	&atkbd_attr_function_row_physmap.attr,
- 	NULL
- };
- 
-+static ssize_t atkbd_show_function_row_physmap(struct atkbd *atkbd, char *buf)
-+{
-+	ssize_t size = 0;
-+	int i;
++	function-row-physmap:
++			An ordered array of the physical codes for the function
++			row keys. Arranged in order from left to right.
 +
-+	if (!atkbd->num_function_row_keys)
-+		return 0;
++Example:
 +
-+	for (i = 0; i < atkbd->num_function_row_keys; i++)
-+		size += sprintf(buf + size, "%02X ",
-+				atkbd->function_row_physmap[i]);
-+	size += sprintf(buf + size, "\n");
-+	return size;
-+}
++	This is a sample ACPI _DSD node describing the property:
 +
-+static umode_t atkbd_attr_is_visible(struct kobject *kobj,
-+				struct attribute *attr, int i)
-+{
-+	struct device *dev = container_of(kobj, struct device, kobj);
-+	struct serio *serio = to_serio_port(dev);
-+	struct atkbd *atkbd = serio_get_drvdata(serio);
-+
-+	if (attr == &atkbd_attr_function_row_physmap.attr &&
-+	    !atkbd->num_function_row_keys)
-+		return 0;
-+
-+	return attr->mode;
-+}
-+
- static struct attribute_group atkbd_attribute_group = {
- 	.attrs	= atkbd_attributes,
-+	.is_visible = atkbd_attr_is_visible,
- };
- 
- static const unsigned int xl_table[] = {
-@@ -1121,6 +1159,22 @@ static void atkbd_set_device_attrs(struct atkbd *atkbd)
- 	}
- }
- 
-+static void atkbd_parse_fwnode_data(struct serio *serio)
-+{
-+	struct atkbd *atkbd = serio_get_drvdata(serio);
-+	struct device *dev = &serio->dev;
-+	int n;
-+
-+	/* Parse "function-row-physmap" property */
-+	n = device_property_count_u16(dev, "function-row-physmap");
-+	if (n > 0 && n <= MAX_FUNCTION_ROW_KEYS &&
-+	    !device_property_read_u16_array(dev, "function-row-physmap",
-+					    atkbd->function_row_physmap, n)) {
-+		atkbd->num_function_row_keys = n;
-+		dev_dbg(dev, "FW reported %d function-row key locations\n", n);
-+	}
-+}
-+
- /*
-  * atkbd_connect() is called when the serio module finds an interface
-  * that isn't handled yet by an appropriate device driver. We check if
-@@ -1184,6 +1238,8 @@ static int atkbd_connect(struct serio *serio, struct serio_driver *drv)
- 		atkbd->id = 0xab00;
- 	}
- 
-+	atkbd_parse_fwnode_data(serio);
-+
- 	atkbd_set_keycode_table(atkbd);
- 	atkbd_set_device_attrs(atkbd);
- 
++        Name (_DSD, Package () {
++                ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
++                Package () {
++                        Package () { "function-row-physmap",
++                                Package () {
++                                        0xEA, /* T1 BACK */
++                                        0xE7, /* T2 REFRESH */
++                                        0x91, /* T3 FULLSCREEN */
++                                        0x92, /* T4 SCALE */
++                                        0x93, /* T5 SNIP */
++                                        0x94, /* T6 BRIGHTNESS_DOWN */
++                                        0x95, /* T7 BRIGHTNESS_UP */
++                                        0x96, /* T8 PRIVACY_SCRN_TOGGLE */
++                                        0x97, /* T9 KBD_BKLIGHT_DOWN */
++                                        0x98, /* T10 KBD_BKLIGHT_UP */
++                                        0xA0, /* T11 VOL_MUTE */
++                                        0xAE, /* T12 VOL_DOWN */
++                                        0xB0, /* T13 VOL_UP */
++                                }
++                        }
++                }
++        })
 -- 
 2.26.0.rc2.310.g2932bb562d-goog
 
