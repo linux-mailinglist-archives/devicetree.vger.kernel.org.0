@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DE131962C4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 02:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B0B1962F6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 02:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727020AbgC1BFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Mar 2020 21:05:24 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:35971 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726134AbgC1BFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Mar 2020 21:05:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1585357524; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=Yu/yfc1pdlLgqM2OG91GrsSCmvKtPBtwpqL/H4qG6sU=; b=L6ZPnxgJX7qrWRXyLhCpw+mhxOeC1xCJ4U2V8EjwHu9nKm1htlNbzO07XXXYaCnlAuuJ20wL
- 1Vkk6Ihvdt/4OEIAZnOROmEXeER3ylkJP5FzRc0r4Bquk6vAwZIpaJnaBjl7CB4AofLVH6kJ
- kbzTIiQPNioUTMNt7NdyVZrh1ng=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e7ea2cc.7f5e1caf7b90-smtp-out-n01;
- Sat, 28 Mar 2020 01:05:16 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1BA49C43637; Sat, 28 Mar 2020 01:05:16 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from rishabhb-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rishabhb)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1D20CC433F2;
-        Sat, 28 Mar 2020 01:05:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1D20CC433F2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rishabhb@codeaurora.org
-From:   Rishabh Bhatnagar <rishabhb@codeaurora.org>
-To:     linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org
-Cc:     bjorn.andersson@linaro.org, psodagud@codeaurora.org,
-        tsoni@codeaurora.org, sidgup@codeaurora.org,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>
-Subject: [PATCH] dt-bindings: remoteproc: Add interconnect property
-Date:   Fri, 27 Mar 2020 18:04:56 -0700
-Message-Id: <1585357496-6368-1-git-send-email-rishabhb@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
+        id S1726225AbgC1Bx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Mar 2020 21:53:57 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:40235 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726212AbgC1Bx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Mar 2020 21:53:57 -0400
+Received: by mail-ed1-f66.google.com with SMTP id w26so13678484edu.7;
+        Fri, 27 Mar 2020 18:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Pi7H1Ajr6bMiyo1A76OQeaQ+kStGGuPp2rRUkY34J+0=;
+        b=dKsVu3U9Skfh/V4Y98tY+UkG1iu89G7w6W9xFiKgbBH3J2WA0eww4U645YJSvJwPjc
+         ijE+oCEEyaDqLAUTNvpl+CO1dW4pFL1bYPy3A5qOdn4UNK9IApTJ5s9fR/IUROkb0y1C
+         vpNG3Up050LqakRSWF5PSrR89lwpt1o2QSRr1x7tqY2o/kK6WkdhDW249USC2hj15dAB
+         ebft4/PvcrtmvNJImcuq1mOnLT25mo6D2VOaHf3Yrli2brGv8kX4733/eXFEh4Jjdg8m
+         zNq2hVAAYdSUOw05O5ZeAtVcPPWK7Xio5WdMHXTwmjEKmf2AUvtcjjcyPk19lFMEHuVp
+         WgKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Pi7H1Ajr6bMiyo1A76OQeaQ+kStGGuPp2rRUkY34J+0=;
+        b=mkXqqUyjgtudRmnQVzxK67aHBCPAgeoOlTBh/Gvo63YiOfGRmrBDmBzC8ImwOXsZ8j
+         Rbb1iWg3+J089ZhznAbVAD+9QbpBFbgIWm+YoREYKufxy+jIrE8v7VTLJEgi2CE85g0/
+         fBMFrhZcQO7/DxkbXc95oS05HBRfQh39rDbTzw7kd+THCQvj8yeW2EzOiMuvj9dtC+kY
+         EiDYMbdSBmlQrS/BjjIhtWQgI3nojNGgmVATn+kcdk44YBjvE8KyAVARsrRPGk+Ru5xo
+         bji+xd0qg1kOXBJu55CzTLuKdtRX1pW0yZw3x9VuDj66hu7i6jJ1QivCsb/GzblJhpvb
+         3ZpA==
+X-Gm-Message-State: ANhLgQ02NdCutydKi6RXoxMQvW2aNF17rf+14L2hv/FnlabpQW8siGNt
+        J/VQxnJ+2yJLXcOutVzafN2ucvBUOlcm1kLDdRo=
+X-Google-Smtp-Source: ADFU+vsvILa3PT8XxzuSZHQ/kr7rcKC6H72nvPxy3U9RYV/qYBFlLjgvVfwmeqbbemT53KphYXqjasieKh843Fbf4d0=
+X-Received: by 2002:aa7:dcc9:: with SMTP id w9mr1925720edu.145.1585360434676;
+ Fri, 27 Mar 2020 18:53:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200323225254.12759-1-grygorii.strashko@ti.com> <20200326.200136.1601946994817303021.davem@davemloft.net>
+In-Reply-To: <20200326.200136.1601946994817303021.davem@davemloft.net>
+From:   Vladimir Oltean <olteanv@gmail.com>
+Date:   Sat, 28 Mar 2020 03:53:43 +0200
+Message-ID: <CA+h21hr8G24ddEgAbU_TfoNAe0fqUJ0_Uyp54Gxn5cvPrM6u9g@mail.gmail.com>
+Subject: Re: [PATCH net-next v6 00/11] net: ethernet: ti: add networking
+ support for k3 am65x/j721e soc
+To:     David Miller <davem@davemloft.net>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        peter.ujfalusi@ti.com, Rob Herring <robh@kernel.org>,
+        t-kristo@ti.com, netdev <netdev@vger.kernel.org>, rogerq@ti.com,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Murali Karicheri <m-karicheri2@ti.com>, nsekhar@ti.com,
+        kishon@ti.com, lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow proxy voting/unvoting of bus bandwidth for remote
-processors. This property will specify the bus-master and
-slave so that remoteproc platform driver can make the proxy
-vote for bus bandwidth.
+Hi David,
 
-Signed-off-by: Rishabh Bhatnagar <rishabhb@codeaurora.org>
----
- Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On Fri, 27 Mar 2020 at 05:02, David Miller <davem@davemloft.net> wrote:
+>
+> From: Grygorii Strashko <grygorii.strashko@ti.com>
+> Date: Tue, 24 Mar 2020 00:52:43 +0200
+>
+> > This v6 series adds basic networking support support TI K3 AM654x/J721E SoC which
+> > have integrated Gigabit Ethernet MAC (Media Access Controller) into device MCU
+> > domain and named MCU_CPSW0 (CPSW2G NUSS).
+>  ...
+>
+> Series applied, thank you.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-index 9938918..529b0a0 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-@@ -111,6 +111,17 @@ on the Qualcomm ADSP Hexagon core.
- 	qcom,sm8150-slpi-pas:
- 		    must be "lcx", "lmx", "load_state"
- 
-+- interconnect:
-+	Usage: optional
-+	Value type: <prop-encoded-array>
-+	Definition: Specifies the interconnect bus-master and bus-slave for
-+		    bandwidth voting during proxy vote/unvote.
-+
-+- interconnect-names:
-+	Usage: optional
-+	Value type: <stringlist>
-+	Definition: The interconnect name depends on the compatible string
-+
- - memory-region:
- 	Usage: required
- 	Value type: <phandle>
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+The build is now broken on net-next:
+
+arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:303.23-309.6: ERROR
+(phandle_references):
+/interconnect@100000/interconnect@28380000/ethernet@46000000/ethernet-ports/port@1:
+Reference to non-existent node
+or label "mcu_conf"
+
+  also defined at
+arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts:471.13-474.3
+arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:303.23-309.6: ERROR
+(phandle_references):
+/interconnect@100000/interconnect@28380000/ethernet@46000000/ethernet-ports/port@1:
+Reference to non-existent node
+or label "phy_gmii_sel"
+
+  also defined at
+arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts:471.13-474.3
+
+As Grygorii said:
+
+Patches 1-6 are intended for netdev, Patches 7-11 are intended for K3 Platform
+tree and provided here for testing purposes.
+
+Regards,
+-Vladimir
