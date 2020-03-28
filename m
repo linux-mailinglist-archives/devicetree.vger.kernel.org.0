@@ -2,111 +2,478 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64536196587
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 12:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BF71965A6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 12:21:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727199AbgC1LGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Mar 2020 07:06:33 -0400
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:37129 "EHLO
-        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726378AbgC1LGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 07:06:30 -0400
-Received: by mail-pj1-f66.google.com with SMTP id o12so4904064pjs.2;
-        Sat, 28 Mar 2020 04:06:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xwqIvEeP3Vt3fTQGzaeqWDuGXBUR2dpVD8iwb1hKRFg=;
-        b=BlQDoAVcKEIX+ETSBr03c2Puity6qf9d6K9OBD3OtsxsQZLxW5IhSDKjVrPEBfNk10
-         CwyHZ3nCrFC52cW9XrOPw9iBUu5CkzfmshjLxSuB7NuOEsWYCWt0NTif/MD7DFh19ipM
-         msgL3vMzJkgTC10KlD1f0NsmVIH0WKuuZ1oT1YEpXRDUo75cHdA+LoCYdtfSY02D3vdw
-         HWCXdFCcCIT0pO4i2UqnSjpSN5wwGBzBqkwNpdzCgtzvhch5qojUKRD4+QiBP/xLNrib
-         O108y4Bfpw5fYpW4tTBlSvKY1g6WQ9Rmaoi3syW0FQZf2BNj21lpiKG+IFbLtSS2v2n7
-         Uq1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xwqIvEeP3Vt3fTQGzaeqWDuGXBUR2dpVD8iwb1hKRFg=;
-        b=aSFTgRbQ8S3C/epn8V+C/7R9bTJLM7oINBkiSZhRF0ytB7A3ccbw5FypU39HRT1JiL
-         3T+fG0I5dfQZJUeGBI9aJl1PkH7TJxahOoSHgSTScAO9Q1Mr3uX95U48QK85sEnqy2Dq
-         P83t3WkOrlgmj9ooxU5BzzmYYyicnhkLp38GqPzUsVxfw467sSU6r0LOmbyZwfINLzKb
-         RESRYO3n19OkpGug36BwahA33O+axZd92pFiieY6HThUEMYsYqDQzeJXzoHA5K1M1E2Z
-         SI0HPWdfOxNJ28CsC67L6YW5+9bqzXiyZzhpMzuE/5gbv6efCT/stPCWrQBh/HJmDGaf
-         Mvrw==
-X-Gm-Message-State: ANhLgQ0q57exw0PObnDgOyKt89/4r3E0JF1PE3kT+I4TIVgI6y01n6rW
-        KFFbWjReXzpIZRCgqOfRzJ5LnCpilgLskJDYyPI=
-X-Google-Smtp-Source: ADFU+vsuOxLwPs1LAFXP4cwwIfR7SDP2dGQkWujS045o80/7BRwgtQyckb3WD2wg8wY/W9HD7HKLYfi4zo6W4CJOZCE=
-X-Received: by 2002:a17:902:5acb:: with SMTP id g11mr3566387plm.18.1585393589055;
- Sat, 28 Mar 2020 04:06:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200328001154.17313-1-sravanhome@gmail.com> <20200328001154.17313-3-sravanhome@gmail.com>
- <CAHp75Vdc4MxMnmd_h6eFfZAji=4fir7x7bq2MX1q50nAQ1eJ=Q@mail.gmail.com> <23c39834-c2d9-5634-b9d7-8f9e16194752@gmail.com>
-In-Reply-To: <23c39834-c2d9-5634-b9d7-8f9e16194752@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 28 Mar 2020 13:06:17 +0200
-Message-ID: <CAHp75VcAh07Kb+G5HoZfgWwKTCfRHLcX7nD=g8r3+z5sm4u-dQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/5] mfd: mp2629: Add support for mps battery charger
-To:     saravanan sekar <sravanhome@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726252AbgC1LVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Mar 2020 07:21:07 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:35808 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725973AbgC1LVH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Mar 2020 07:21:07 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DE6B61A0F68;
+        Sat, 28 Mar 2020 12:21:04 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 815A31A0EF7;
+        Sat, 28 Mar 2020 12:20:55 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A769B4028F;
+        Sat, 28 Mar 2020 19:20:44 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
+        michael@walle.cc, rjones@gateworks.com,
+        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
+        jon@solid-run.com, cosmin.stoica@nxp.com, l.stach@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/3] arm64: dts: imx: Add imx8dxl support
+Date:   Sat, 28 Mar 2020 19:13:33 +0800
+Message-Id: <1585394015-27825-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 28, 2020 at 12:51 PM saravanan sekar <sravanhome@gmail.com> wrote:
->
-> Hi Andy,
->
-> On 28/03/20 11:45 am, Andy Shevchenko wrote:
-> > On Sat, Mar 28, 2020 at 2:12 AM Saravanan Sekar <sravanhome@gmail.com> wrote:
-> >> mp2629 is a highly-integrated switching-mode battery charge management
-> >> device for single-cell Li-ion or Li-polymer battery.
-> >>
-> >> Add MFD core enables chip access for ADC driver for battery readings,
-> >> and a power supply battery-charger driver
-> > ...
-> >
-> >> +#ifndef __MP2629_H__
-> >> +#define __MP2629_H__
-> >> +#include <linux/device.h>
-> >> +#include <linux/regmap.h>
-> >> +#include <linux/types.h>
-> > None of these header is in use here.
-> >
-> > struct device;
-> > struct regmap;
-> >
-> > would be enough.
->
-> Yesterday I conveyed to you that Lee is not recommended to use forward
-> declaration and asked me
->
-> to use includes, then you agreed with the same. Again same comments !!
-> sorry I am lost.
+i.MX8DXL is a dual Cortex-A35 proccessor with Cortex-M4 system controller
+inside. Add the SoC dtsi file support.
 
-Ah, okay. I missed that.
-But types.h is still not needed, all data types are provided either by
-C or by rest two headers.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+This patch needs pads-imx8dxl.h which is in below patch series:
+	https://patchwork.kernel.org/patch/11462211/
+---
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi | 416 +++++++++++++++++++++++++++++
+ 1 file changed, 416 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl.dtsi
 
-> >> +struct mp2629_info {
-> >> +       struct device *dev;
-> >> +       struct regmap *regmap;
-> >> +};
-> >> +
-> >> +#endif
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+new file mode 100644
+index 0000000..4d4b287
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+@@ -0,0 +1,416 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2019~2020 NXP
++ */
++
++#include <dt-bindings/clock/imx8-clock.h>
++#include <dt-bindings/firmware/imx/rsrc.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/pinctrl/pads-imx8dxl.h>
++#include <dt-bindings/thermal/thermal.h>
++
++/ {
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		gpio0 = &lsio_gpio0;
++		gpio1 = &lsio_gpio1;
++		gpio2 = &lsio_gpio2;
++		gpio3 = &lsio_gpio3;
++		gpio4 = &lsio_gpio4;
++		gpio5 = &lsio_gpio5;
++		gpio6 = &lsio_gpio6;
++		gpio7 = &lsio_gpio7;
++		mmc0 = &usdhc1;
++		mmc1 = &usdhc2;
++		mu1 = &lsio_mu1;
++		serial0 = &adma_lpuart0;
++	};
++
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		/* We have 1 clusters with 2 Cortex-A35 cores */
++		A35_0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++			next-level-cache = <&A35_L2>;
++			clocks = <&clk IMX_A35_CLK>;
++			operating-points-v2 = <&a35_opp_table>;
++			#cooling-cells = <2>;
++		};
++
++		A35_1: cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++			next-level-cache = <&A35_L2>;
++			clocks = <&clk IMX_A35_CLK>;
++			operating-points-v2 = <&a35_opp_table>;
++			#cooling-cells = <2>;
++		};
++
++		A35_L2: l2-cache0 {
++			compatible = "cache";
++		};
++	};
++
++	a35_opp_table: opp-table {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-900000000 {
++			opp-hz = /bits/ 64 <900000000>;
++			opp-microvolt = <1000000>;
++			clock-latency-ns = <150000>;
++		};
++
++		opp-1200000000 {
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <1100000>;
++			clock-latency-ns = <150000>;
++			opp-suspend;
++		};
++	};
++
++	gic: interrupt-controller@51a00000 {
++		compatible = "arm,gic-v3";
++		reg = <0x0 0x51a00000 0 0x10000>, /* GIC Dist */
++		      <0x0 0x51b00000 0 0xc0000>; /* GICR (RD_base + SGI_base) */
++		#interrupt-cells = <3>;
++		interrupt-controller;
++		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	pmu {
++		compatible = "arm,armv8-pmuv3";
++		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	scu {
++		compatible = "fsl,imx-scu";
++		mbox-names = "tx0", "tx1", "tx2", "tx3",
++			     "rx0", "rx1", "rx2", "rx3",
++			     "gip3";
++		mboxes = <&lsio_mu1 0 0
++			  &lsio_mu1 0 1
++			  &lsio_mu1 0 2
++			  &lsio_mu1 0 3
++			  &lsio_mu1 1 0
++			  &lsio_mu1 1 1
++			  &lsio_mu1 1 2
++			  &lsio_mu1 1 3
++			  &lsio_mu1 3 3>;
++
++		clk: clock-controller {
++			compatible = "fsl,imx8dxl-clk", "fsl,imx8qxp-clk";
++			#clock-cells = <1>;
++			clocks = <&xtal32k &xtal24m>;
++			clock-names = "xtal_32KHz", "xtal_24Mhz";
++		};
++
++		iomuxc: pinctrl {
++			compatible = "fsl,imx8dxl-iomuxc";
++		};
++
++		ocotp: imx8qx-ocotp {
++			compatible = "fsl,imx8dxl-scu-ocotp", "fsl,imx8qxp-scu-ocotp";
++			#address-cells = <1>;
++			#size-cells = <1>;
++		};
++
++		pd: imx8qx-pd {
++			compatible = "fsl,imx8dxl-scu-pd", "fsl,imx8qxp-scu-pd";
++			#power-domain-cells = <1>;
++		};
++
++		scu_key: scu-key {
++			compatible = "fsl,imx8dxl-sc-key", "fsl,imx-sc-key";
++			linux,keycodes = <KEY_POWER>;
++			status = "disabled";
++		};
++
++		rtc: rtc {
++			compatible = "fsl,imx8dxl-sc-wdt", "fsl,imx8qxp-sc-rtc";
++		};
++
++		tsens: thermal-sensor {
++			compatible = "fsl,imx8dxl-sc-thermal", "fsl,imx-sc-thermal";
++			#thermal-sensor-cells = <1>;
++		};
++
++		watchdog {
++			compatible = "fsl,imx8dxl-sc-wdt", "fsl,imx-sc-wdt";
++			timeout-sec = <60>;
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* Physical Secure */
++			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* Physical Non-Secure */
++			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* Virtual */
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* Hypervisor */
++	};
++
++	xtal32k: clock-xtal32k {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		clock-output-names = "xtal_32KHz";
++	};
++
++	xtal24m: clock-xtal24m {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal_24MHz";
++	};
++
++	adma_subsys: bus@59000000 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x59000000 0x0 0x59000000 0x2000000>;
++
++		adma_lpcg: clock-controller@59000000 {
++			compatible = "fsl,imx8dxl-lpcg-adma", "fsl,imx8qxp-lpcg-adma";
++			reg = <0x59000000 0x2000000>;
++			#clock-cells = <1>;
++		};
++
++		adma_lpuart0: serial@5a060000 {
++			compatible = "fsl,imx8dxl-lpuart", "fsl,imx8qxp-lpuart";
++			reg = <0x5a060000 0x1000>;
++			interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART0_IPG_CLK>,
++				 <&adma_lpcg IMX_ADMA_LPCG_UART0_BAUD_CLK>;
++			clock-names = "ipg", "baud";
++			power-domains = <&pd IMX_SC_R_UART_0>;
++			status = "disabled";
++		};
++	};
++
++	conn_subsys: bus@5b000000 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x5b000000 0x0 0x5b000000 0x1000000>;
++
++		conn_lpcg: clock-controller@5b200000 {
++			compatible = "fsl,imx8dxl-lpcg-conn", "fsl,imx8qxp-lpcg-conn";
++			reg = <0x5b200000 0xb0000>;
++			#clock-cells = <1>;
++		};
++
++		usdhc1: mmc@5b010000 {
++			compatible = "fsl,imx8dxl-usdhc", "fsl,imx7d-usdhc";
++			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
++			reg = <0x5b010000 0x10000>;
++			clocks = <&conn_lpcg IMX_CONN_LPCG_SDHC0_IPG_CLK>,
++				 <&conn_lpcg IMX_CONN_LPCG_SDHC0_PER_CLK>,
++				 <&conn_lpcg IMX_CONN_LPCG_SDHC0_HCLK>;
++			clock-names = "ipg", "per", "ahb";
++			power-domains = <&pd IMX_SC_R_SDHC_0>;
++			status = "disabled";
++		};
++
++		usdhc2: mmc@5b020000 {
++			compatible = "fsl,imx8dxl-usdhc", "fsl,imx7d-usdhc";
++			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
++			reg = <0x5b020000 0x10000>;
++			clocks = <&conn_lpcg IMX_CONN_LPCG_SDHC1_IPG_CLK>,
++				 <&conn_lpcg IMX_CONN_LPCG_SDHC1_PER_CLK>,
++				 <&conn_lpcg IMX_CONN_LPCG_SDHC1_HCLK>;
++			clock-names = "ipg", "per", "ahb";
++			power-domains = <&pd IMX_SC_R_SDHC_1>;
++			fsl,tuning-start-tap = <20>;
++			fsl,tuning-step= <2>;
++			status = "disabled";
++		};
++	};
++
++	lsio_subsys: bus@5d000000 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x5d000000 0x0 0x5d000000 0x1000000>;
++
++		lsio_gpio0: gpio@5d080000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d080000 0x10000>;
++			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_0>;
++		};
++
++		lsio_gpio1: gpio@5d090000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d090000 0x10000>;
++			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_1>;
++		};
++
++		lsio_gpio2: gpio@5d0a0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0a0000 0x10000>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_2>;
++		};
++
++		lsio_gpio3: gpio@5d0b0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0b0000 0x10000>;
++			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_3>;
++		};
++
++		lsio_gpio4: gpio@5d0c0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0c0000 0x10000>;
++			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_4>;
++		};
++
++		lsio_gpio5: gpio@5d0d0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0d0000 0x10000>;
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_5>;
++		};
++
++		lsio_gpio6: gpio@5d0e0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0e0000 0x10000>;
++			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_6>;
++		};
++
++		lsio_gpio7: gpio@5d0f0000 {
++			compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
++			reg = <0x5d0f0000 0x10000>;
++			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			power-domains = <&pd IMX_SC_R_GPIO_7>;
++		};
++
++		lsio_mu0: mailbox@5d1b0000 {
++			compatible = "fsl,imx8dxl-mu", "fsl,imx6sx-mu";
++			reg = <0x5d1b0000 0x10000>;
++			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
++			#mbox-cells = <2>;
++			status = "disabled";
++		};
++
++		lsio_mu1: mailbox@5d1c0000 {
++			compatible = "fsl,imx8dxl-mu", "fsl,imx6sx-mu";
++			reg = <0x5d1c0000 0x10000>;
++			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
++			#mbox-cells = <2>;
++		};
++
++		lsio_mu2: mailbox@5d1d0000 {
++			compatible = "fsl,imx8dxl-mu", "fsl,imx6sx-mu";
++			reg = <0x5d1d0000 0x10000>;
++			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
++			#mbox-cells = <2>;
++			status = "disabled";
++		};
++
++		lsio_mu3: mailbox@5d1e0000 {
++			compatible = "fsl,imx8dxl-mu", "fsl,imx6sx-mu";
++			reg = <0x5d1e0000 0x10000>;
++			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
++			#mbox-cells = <2>;
++			status = "disabled";
++		};
++
++		lsio_mu4: mailbox@5d1f0000 {
++			compatible = "fsl,imx8dxl-mu", "fsl,imx6sx-mu";
++			reg = <0x5d1f0000 0x10000>;
++			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
++			#mbox-cells = <2>;
++			status = "disabled";
++		};
++
++		lsio_lpcg: clock-controller@5d400000 {
++			compatible = "fsl,imx8dxl-lpcg-lsio", "fsl,imx8qxp-lpcg-lsio";
++			reg = <0x5d400000 0x400000>;
++			#clock-cells = <1>;
++		};
++	};
++
++	thermal_zones: thermal-zones {
++		cpu-thermal0 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
++
++			trips {
++				cpu_alert0: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_crit0: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu_alert0>;
++					cooling-device =
++						<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++};
 -- 
-With Best Regards,
-Andy Shevchenko
+2.7.4
+
