@@ -2,216 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EF21961EE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 00:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D2C196256
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 01:12:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726225AbgC0Xaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Mar 2020 19:30:55 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:38517 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726065AbgC0Xaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Mar 2020 19:30:55 -0400
-Received: by mail-vs1-f65.google.com with SMTP id x206so7354644vsx.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2020 16:30:54 -0700 (PDT)
+        id S1726291AbgC1AMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Mar 2020 20:12:06 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45431 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726134AbgC1AMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Mar 2020 20:12:05 -0400
+Received: by mail-wr1-f65.google.com with SMTP id t7so13812882wrw.12;
+        Fri, 27 Mar 2020 17:12:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=O1GvI+xFM1FBiQL/lNsi04NXxyujijnrO0wFrw3iEaA=;
-        b=AoOqU2Iw5iNjiMKPZrMi6dHRRUePrxjxp+Qtr1vJ+IrlU9XiomgunWPNb48nax0B5q
-         S2s5VpjjKmpZ2vmRzwc7FYK8BGF+dsEOJrJpu8EsyvdA4WdeDwNSNfFJgaEhVaN7ikJ0
-         6/397mTiLc3gUu6I5ER1bxg7KTyf/IdJLee/Elk+o1C0xmQg668B0wMbsRxqhWdWoDyI
-         my8bhwZE9ueVvSl4AC1JpfZhb36Fvo9asb3J6zMLTRrqbFJgUOPNC+wm+9Hzf0Kymc8L
-         6Yc6Oxfkp2wuTsot7ErcvaiFvyWqjyC5SJTA1/Dvq8CWggN4fvgq0vfRxnn8N6fm54aS
-         a+Zw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=ETNuk5HoFRvajcPB5SGInXBPTRaocJmabwQ1Y7pZBVg=;
+        b=szKTbn7Jiys934mZuxreqLLDFQrlEVHV/AofHqRdBXdaHFq6+Pua50d4ivqc9PL5qg
+         zZ+YfUqR/nYf3ck6yyOt1vOjn6w1UdkKL2+UgdJk8totMH2ndHqWQqZAR2CTBr+jIetc
+         4GLiuTqXtcX1xgMUyEEUxmfWk/EK7SRca4o6l8wrIaaYvrbmczx0mJUBqeH85RDzwcaB
+         nlR9RdemOAKNJObKVj7xNvbsDOUtZwNR+aAIouAQWrCjgO3tbzdb2nfb10VH7MXQr+i7
+         NSKQwq1Jo6gST/SBpnTP4OE2EDg4Y+XLLM7u66a3QGtyc+OGNMIt7QhVt0RtYGC4PiwU
+         7k+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=O1GvI+xFM1FBiQL/lNsi04NXxyujijnrO0wFrw3iEaA=;
-        b=ssmW+tT+wWXZAs3pe1HYl1ETpI4xNKBeC2dceBdSmy7S1Hv8L4l0yGabsSrRQTFnvu
-         JJyHE4R1LGZlT4o1yt99Kro/KKQyXEcqc4qQMl0WA/9Rtz5wkbkp9dgzfQLaFyMA6YBr
-         u1kDU/8vGwi+MravgzqGC++BGtah/Opz1yg/H24k3oAVWl63piQ8U+rVzsveqQQSy2ss
-         xDq584IKfkLX7b5wkeYDSdsM64W5tieyuyNw/kO9rWCwFqfWxw8peLxp/JprJKrMJ5PC
-         U1WUkxvWZv/n289NWV64eDe9m0rwxJMOFz1DHMDzV7PttvUW4d93wchBXEUeFb4v64na
-         PY4w==
-X-Gm-Message-State: AGi0PuYRpjrUQWfSaKzJNMwVM4ODvDpPvqad8G1kOFlzYJn5F7mZTJko
-        djEYSh2DNjNH9NDXvwJp5bqD7Egoyqo=
-X-Google-Smtp-Source: ADFU+vuoqh2rq3JlGCXgjP8/hQAqhr+Zh5UniIICv8++F9RDKUVsGBejmVNWlonpv7SUXCWSkRpL0g==
-X-Received: by 2002:a62:1dd3:: with SMTP id d202mr1654818pfd.47.1585351421886;
-        Fri, 27 Mar 2020 16:23:41 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id m7sm426908pjb.7.2020.03.27.16.23.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ETNuk5HoFRvajcPB5SGInXBPTRaocJmabwQ1Y7pZBVg=;
+        b=kZFTonwd8zOhLEs9bEjyv54o74S0U9DrVp+2baSrvHmNBH6Bw42y4oUFFZ+gIpyAz0
+         HprWTlYwm9HA/vQSoprv7wXVxqsSAfhIORD3oR9/+Ec5vi1mF5UJ9NpL++gGW9eDgA66
+         dxFHlFKnGiEILEYl6XIr6zQ5AA2P70kU9dFXvDxk0rx+nUu92l3UNUmBbydXtkz5X6kY
+         /SSwMk7mxrEaVvZorS4yEUjervD7spr076OW1yXC6K7ZvwWq10L3/Pbu9SFvQNCOyFFC
+         xWd41XKKJ6ZdP9S8TYJU+Z/yklK6EZ/uidD0dX5LF5y/B6fo92DwoegBQgKO5J3Om5pR
+         PQ2w==
+X-Gm-Message-State: ANhLgQ0KED/oyICmHeneUYxfEUdFf2TVpGdyFsWlWkYLzsBNkPGMZh2q
+        I1Su8z97wjnOzGmehP6YtGqvcBXsZpc=
+X-Google-Smtp-Source: ADFU+vvGP/WBIzxxjjBTJSg0UHtTPuXBpCde+gIzwWpVYnjVPJ1UEIOppTESL3dr3zDiVzMU6zZgtg==
+X-Received: by 2002:adf:a387:: with SMTP id l7mr2086993wrb.250.1585354323958;
+        Fri, 27 Mar 2020 17:12:03 -0700 (PDT)
+Received: from localhost.localdomain (p5B3F7536.dip0.t-ipconnect.de. [91.63.117.54])
+        by smtp.gmail.com with ESMTPSA id 61sm11237956wrn.82.2020.03.27.17.12.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Mar 2020 16:23:40 -0700 (PDT)
-Date:   Fri, 27 Mar 2020 16:23:38 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Evan Green <evgreen@chromium.org>
-Cc:     Akash Asthana <akashast@codeaurora.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>, wsa@the-dreams.de,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-spi@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-serial@vger.kernel.org, Doug Anderson <dianders@chromium.org>
-Subject: Re: [PATCH V2 3/8] soc: qcom-geni-se: Add interconnect support to
- fix earlycon crash
-Message-ID: <20200327232338.GL5063@builder>
-References: <1584105134-13583-1-git-send-email-akashast@codeaurora.org>
- <1584105134-13583-4-git-send-email-akashast@codeaurora.org>
- <20200313204441.GJ144492@google.com>
- <1f86fdf0-df7c-4e4a-d4d8-8b0162e52cb4@codeaurora.org>
- <20200317182910.GR144492@google.com>
- <3831b33c-93ee-e5e0-fcfb-530b4738f930@codeaurora.org>
- <20200319194332.GA60149@google.com>
- <a7227a1f-00a1-0818-80f3-904fe264f864@codeaurora.org>
- <CAE=gft6AGkcdUAkoyevZgmtBgaiEkoQzzJcg7sYjbpy5Kh2fyA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE=gft6AGkcdUAkoyevZgmtBgaiEkoQzzJcg7sYjbpy5Kh2fyA@mail.gmail.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        Fri, 27 Mar 2020 17:12:03 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v5 0/5] Add battery charger driver support for MP2629
+Date:   Sat, 28 Mar 2020 01:11:49 +0100
+Message-Id: <20200328001154.17313-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 20 Mar 09:30 PDT 2020, Evan Green wrote:
+changes in v5:
+ - removed platfrom data stored in mfd and directly accessed mfd struct in child
+ - fixed spell check and capitalization in mfd and documentation
 
-> On Fri, Mar 20, 2020 at 3:22 AM Akash Asthana <akashast@codeaurora.org> wrote:
-> >
-> > Hi Evan, Matthias,
-> >
-> > On 3/20/2020 1:13 AM, Matthias Kaehlcke wrote:
-> > > On Wed, Mar 18, 2020 at 02:24:35PM +0530, Akash Asthana wrote:
-> > >> Hi Matthias,
-> > >>
-> > >> On 3/17/2020 11:59 PM, Matthias Kaehlcke wrote:
-> > >>> Hi Akash,
-> > >>>
-> > >>> On Tue, Mar 17, 2020 at 04:27:47PM +0530, Akash Asthana wrote:
-> > >>>> Hi Matthias,
-> > >>>>
-> > >>>> On 3/14/2020 2:14 AM, Matthias Kaehlcke wrote:
-> > >>>>> Hi Akash,
-> > >>>>>
-> > >>>>> On Fri, Mar 13, 2020 at 06:42:09PM +0530, Akash Asthana wrote:
-> > >>>>>> V1 patch@https://patchwork.kernel.org/patch/11386469/ caused SC7180 system
-> > >>>>>> to reset at boot time.
-> > >>>>> The v1 patch isn't relevant in the commit message, please just describe the
-> > >>>>> problem. Also the crash only occurs when earlycon is used.
-> > >>>> ok
-> > >>>>>> As QUP core clock is shared among all the SE drivers present on particular
-> > >>>>>> QUP wrapper, the reset seen is due to earlycon usage after QUP core clock
-> > >>>>>> is put to 0 from other SE drivers before real console comes up.
-> > >>>>>>
-> > >>>>>> As earlycon can't vote for it's QUP core need, to fix this add ICC
-> > >>>>>> support to common/QUP wrapper driver and put vote for QUP core from
-> > >>>>>> probe on behalf of earlycon and remove vote during sys suspend.
-> > >>>>> Only removing the vote on suspend isn't ideal, the system might never get
-> > >>>>> suspended. That said I don't have a really good alternative suggestion.
-> > >>>>>
-> > >>>>> One thing you could possibly do is to launch a delayed work, check
-> > >>>>> console_device() every second or so and remove the vote when it returns
-> > >>>>> non-NULL. Not claiming this would be a great solution ...
-> > >>>>>
-> > >>>>> The cleanest solution might be a notifier when the early console is
-> > >>>>> unregistered, it seems somewhat over-engineered though ... Then again
-> > >>>>> other (future) uart drivers with interconnect support might run into
-> > >>>>> the same problem.
-> > >>>> We are hitting this problem because QUP core clocks are shared among all the
-> > >>>> SE driver present in particular QUP wrapper, if other HW controllers has
-> > >>>> similar architecture we will hit this issue.
-> > >>>>
-> > >>>> How about if we expose an API from common driver(geni-se) for putting QUP
-> > >>>> core BW vote to 0.
-> > >>>>
-> > >>>> We call this from console probe just after uart_add_one_port call (console
-> > >>>> resources are enabled as part of this call) to put core quota to 0 on behalf
-> > >>>> of earlyconsole?
-> > >>>   From my notes from earlier debugging I have doubts this would work:
-> > >>>
-> > >>>     There is a short window where the early console and the 'real' console coexist:
-> > >>>
-> > >>>     [    3.858122] printk: console [ttyMSM0] enabled
-> > >>>     [    3.875692] printk: bootconsole [qcom_geni0] disabled
-> > >>>
-> > >>>     The reset probably occurs when the early console tries to write, but the ICC
-> > >>>     is effectively disabled because ttyMSM0 and the other geni ports are runtime
-> > >>>     suspended.
-> > >> Code flow from console driver probe(qcom_geni_serial.c)
-> > >>
-> > >> uart_add_one_port--->uart_configure_port--->{ 1) uart_change_pm(enable
-> > >> console resources)  2)register_console(boot to real console switch happens
-> > >> here)}
-> > >>
-> > >> Console resources are not disabled from anywhere before the switch happens
-> > >> completely. I meant to say until we saw below logs.
-> > >>
-> > >> [    3.875692] printk: bootconsole [qcom_geni0] disabled
-> > >>
-> > >> I think the board reset issue cannot occur during the window where early
-> > >> console and 'real' console coexist.
-> > > Thanks for the clarification! Indeed my notes were only a hypothesis, I
-> > > don't see evidence that there is an actual downvote shortly after console
-> > > registration.
-> > >
-> > >> I have validated proposed solution by me, it is working fine.
-> > >>
-> > >> Currently voting is done for every QUP and not only to which earlycon is
-> > >> connect, with the above approach we can't remove vote from other QUPs.
-> > >>
-> > >> However we can limit voting only to earlycon QUP by removing interconnect
-> > >> from DT node of other QUPs.
-> > >>
-> > >> I am not sure how clean is this solution.
-> > > I'm more inclined towards a solution along the lines of what Evan
-> > > proposed, i.e. delaying the votes (either in geni or ICC) until we
-> > > are ready.
-> >
-> > Based on discussion I think the delayed solution is most suited if
-> > implemented in ICC core because other ICC client might face the similar
-> > problem.
-> >
-> > However for geni case I am more inclined towards below proposed solution.
-> >
-> > -----------------------------------------------------------------------------------------------------
-> >
-> > How about if we expose an API from common driver(geni-se) for putting QUP
-> > core BW vote to 0.
-> >
-> > We call this from console probe just after uart_add_one_port call (console
-> > resources are enabled as part of this call) to put core quota to 0 on behalf
-> > of earlyconsole?
-> 
-> This seems ok to me. Earlycon sets up a vote, and then real probe
-> tears it down. As long as in the shuffle of all of these things into
-> SE library helpers you still have a way of differentiating the
-> earlycon vote from the real vote.
+changes in v4:
+ - fixed capitalization in mfg Kconfig and documentation
 
-Note though that the boot console will outlive the real console when the
-kernel is booted with "keep_bootcon" on the command line (something I do
-from time to time).
+changes in v3:
+ - regmap for children passed using platform data and remove mfd driver info
+   access directly from children
 
-So rather than relying on "real probe" to signal when we can release the
-earlycon's icc vote I think we should specify dev->con->exit in
-qcom_geni_serial_earlycon_setup(), so that it will signal when the
-earlycon actually goes away - and until that point the clocks should
-just be on.
+changes in v2:
+ - removed EXPORT_SYMBOL of register set/get helper
+ - regmap bit filed used, fixed other review comments
 
-> In other words, don't reuse this
-> early icc_path for the real UART vote. You should probably also
-> destroy the path once you've voted zero on it.
+This patch series add support for Battery charger control driver for Monolithic
+Power System's MP2629 chipset, includes MFD driver for ADC battery & input
+power supply measurement and battery charger control driver.
 
-Maintaining the early and real votes completely separate sounds like a
-sure way to keep this sane; and there's no drawback on having multiple
-votes for the same thing and rely on the framework to keep track of the
-various users.
+Thanks,
+Saravanan
 
-Regards,
-Bjorn
+Saravanan Sekar (5):
+  dt-bindings: mfd: add document bindings for mp2629
+  mfd: mp2629: Add support for mps battery charger
+  iio: adc: mp2629: Add support for mp2629 ADC driver
+  power: supply: Add support for mps mp2629 battery charger
+  MAINTAINERS: Add entry for mp2629 Battery Charger driver
+
+ .../devicetree/bindings/mfd/mps,mp2629.yaml   |  60 ++
+ MAINTAINERS                                   |   5 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/mp2629_adc.c                  | 209 ++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mp2629.c                          |  86 +++
+ drivers/power/supply/Kconfig                  |  10 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/mp2629_charger.c         | 686 ++++++++++++++++++
+ include/linux/mfd/mp2629.h                    |  29 +
+ 12 files changed, 1108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+ create mode 100644 drivers/iio/adc/mp2629_adc.c
+ create mode 100644 drivers/mfd/mp2629.c
+ create mode 100644 drivers/power/supply/mp2629_charger.c
+ create mode 100644 include/linux/mfd/mp2629.h
+
+-- 
+2.17.1
+
