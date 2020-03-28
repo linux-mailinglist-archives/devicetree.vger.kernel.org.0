@@ -2,70 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EB31965AF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 12:22:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBDA51965A1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 12:18:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726402AbgC1LVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Mar 2020 07:21:11 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:45108 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725973AbgC1LVI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Mar 2020 07:21:08 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 957D9201126;
-        Sat, 28 Mar 2020 12:21:07 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B2AFA200F05;
-        Sat, 28 Mar 2020 12:20:58 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D089E402AA;
-        Sat, 28 Mar 2020 19:20:47 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com,
-        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
-        michael@walle.cc, rjones@gateworks.com,
-        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
-        jon@solid-run.com, cosmin.stoica@nxp.com, l.stach@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] dt-bindings: arm: imx: Add the i.MX8DXL EVK board
-Date:   Sat, 28 Mar 2020 19:13:35 +0800
-Message-Id: <1585394015-27825-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1585394015-27825-1-git-send-email-Anson.Huang@nxp.com>
-References: <1585394015-27825-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726156AbgC1LSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Mar 2020 07:18:54 -0400
+Received: from mail-lj1-f181.google.com ([209.85.208.181]:38788 "EHLO
+        mail-lj1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725973AbgC1LSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 07:18:54 -0400
+Received: by mail-lj1-f181.google.com with SMTP id w1so12825737ljh.5;
+        Sat, 28 Mar 2020 04:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mn1ytLBqSAPBNw3XMPojcu/ZhP1LOxFipDY249AI3+0=;
+        b=j/vurdna05CpEPiYbgWaMbXlO1MSn4s6AHli5VB0CRBQUIL3tn/IsFdGyopV0K3H6s
+         7AXxFX+50Ui0uBudNqvmSb7LA0mF2kQiib+sKXYdbh+5mqIYBcEOLY/SUc3u+xiIva+g
+         uFRxkAE4GSZyvbU3rtCg1qZSbURWZ5emEMzXelXG2ipoCL6yM0t4hnvH7V0csTnmXW6N
+         Q5A/5z0tjCD/X9qXmobQvxl+LKG4sq7eB5C8+Zb8GImVfabGY+co+ZWkPGW0asWwx95D
+         oHolnrdhO1IEHoQyfA2ta+ueYLSHBCQ4XzFRuPGIFFfF6BhTXsJZfD5bSkHLwSxUh/Kc
+         CMPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mn1ytLBqSAPBNw3XMPojcu/ZhP1LOxFipDY249AI3+0=;
+        b=klGhelfZQWCiOGhi4+xrkjdWC4r0/maTL9BSZyS59YAYkQnJYmcF4JAIv2mAhg4rQw
+         0xHIACIMf7Of0roqe7DAh8Ky5u0ijFhF0HfnX2aGS2Ydl6SSpd9Ip435N2W5Nfep93Od
+         yaiBLpT3DtbuYys2aD5oBX2eaKRUROxRGB0+p01MACVOl+Ol0UGRC9ECqC4aInvIEx+3
+         Q46ssZyY/PgJfjIZa3yWRCOZfNnFMFEUc6kBQRAjwPRZNvPv1X1ELRQrujNd3pyHV3dE
+         JCHYRTAjUCh6M4Cu+lYaw6YxP9FAOM1JFNERKJJy/Bjods/sNYNV6G/33iMEV1zmIrX0
+         40aw==
+X-Gm-Message-State: AGi0PubX4GhuJSoNQ4HxE9SJmNcjutodynaJTQeh1sLv5eP2wbNJ3eYt
+        daHj58eGKnzKBTdWQq+8ELNa2x6sK1apBS4jx6w=
+X-Google-Smtp-Source: APiQypLE0oLlT/o3yAjG6ThkJD82LP/2VPbDKk0L+GjVnht7omgSVfHwuAggLs+wNUYJlyQmbGiwLidjVdGS9lfq8T4=
+X-Received: by 2002:a2e:9105:: with SMTP id m5mr2054389ljg.37.1585394331360;
+ Sat, 28 Mar 2020 04:18:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHCN7xJSKH-gXA5ncFS3h6_2R28rn70O3HfT=ActS1XVgCFSeg@mail.gmail.com>
+In-Reply-To: <CAHCN7xJSKH-gXA5ncFS3h6_2R28rn70O3HfT=ActS1XVgCFSeg@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sat, 28 Mar 2020 08:18:42 -0300
+Message-ID: <CAOMZO5CZX=C2zSjXV0LTvNvAyqWkzLgR=OoRS=uY1wa4rXshVg@mail.gmail.com>
+Subject: Re: i.MX8MN Errors on 5.6-RC7
+To:     Adam Ford <aford173@gmail.com>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add board binding for i.MX8DXL EVK board.
+Hi Adam,
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Fri, Mar 27, 2020 at 11:50 PM Adam Ford <aford173@gmail.com> wrote:
+>
+> I am getting a few errors on the i.MX8MN:
+>
+> [    0.000368] Failed to get clock for /timer@306a0000
+> [    0.000380] Failed to initialize '/timer@306a0000': -22
+> [    7.203447] caam 30900000.caam: Failed to get clk 'ipg': -2
+> [    7.334741] caam 30900000.caam: Failed to request all necessary clocks
+> [    7.438651] caam: probe of 30900000.caam failed with error -2
+> [    7.854193] imx-cpufreq-dt: probe of imx-cpufreq-dt failed with error -2
+>
+> I was curious to know if anyone else is seeing similar errors.  I
+> already submitted a proposed fix for a DMA timeout (not shown here)
+> which matched work already done on i.MX8MQ and i.MX8MM.
+>
+> I am not seeing huge differences between 8MM and 8MN in the nodes
+> which address the timer, caam or imx-cpufreq-dt.
+>
+> If anyone has any suggestions, I'd love to try them.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index cd3fbe7..6564c16 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -329,6 +329,12 @@ properties:
-               - fsl,imx7ulp-evk           # i.MX7ULP Evaluation Kit
-           - const: fsl,imx7ulp
- 
-+      - description: i.MX8DXL based Boards
-+        items:
-+          - enum:
-+              - fsl,imx8dxl-evk           # i.MX8DXL EVK Board
-+          - const: fsl,imx8dxl
-+
-       - description: i.MX8MM based Boards
-         items:
-           - enum:
--- 
-2.7.4
+I don't have access to a i.MX8MN board at the moment, but I am
+wondering if the errors could be AT-F related.
 
+Which version do you use? Could you try
+https://source.codeaurora.org/external/imx/imx-atf/log/?h=imx_5.4.3_2.0.0
+?
+
+Regards,
+
+Fabio Estevam
