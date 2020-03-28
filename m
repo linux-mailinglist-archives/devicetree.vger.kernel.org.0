@@ -2,72 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B56AA196949
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 21:40:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F352019696C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2020 22:23:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727491AbgC1Ukv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Mar 2020 16:40:51 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:52362 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727070AbgC1Ukv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 16:40:51 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 9218E20030;
-        Sat, 28 Mar 2020 21:40:48 +0100 (CET)
-Date:   Sat, 28 Mar 2020 21:40:47 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Harigovindan P <harigovi@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        sean@poorly.run, seanpaul@chromium.org
-Subject: Re: [PATCH v10 0/2] Add support for rm69299 Visionox panel driver
- and add devicetree bindings for visionox panel
-Message-ID: <20200328204047.GG32230@ravnborg.org>
-References: <20200327073636.13823-1-harigovi@codeaurora.org>
+        id S1727167AbgC1VXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Mar 2020 17:23:20 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:35171 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727151AbgC1VXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Mar 2020 17:23:20 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f74so5816012wmf.0;
+        Sat, 28 Mar 2020 14:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XfZCAw3mx1VH8Q89oa0rqaHcmTmN+wwlGYRiFHc66EM=;
+        b=EsqyKWY+b1ErnScvE50klIUNK5IQjko+hO6dMBi20fAqFZg+kY8VQZTPqYkfSFNjCD
+         Hc4L2D63KLrGVyKhn26mMgwknO523QFvLRS6mhFKkHIZsuQ7gyiNlz02vtTsaFrrRGK1
+         hPyFMmVypyBxL/hc/b1mNl/xXcCispKsFjX2bLWZmkprhc4URV/u7SYibEojoaOtWFfT
+         Hot3xCxFShK8Klhoc7jPuoaPteXKy2QTAHqLhcaJWFO+ISvK7fFwop0h/Tl3IlshLIhs
+         eFYsAC733J/+P94YeTUgDg/8O+8KOIxGfhOqrEf2rcMzUJawpyJ+D2AcSJXgPmFsmX9b
+         /JKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XfZCAw3mx1VH8Q89oa0rqaHcmTmN+wwlGYRiFHc66EM=;
+        b=ddqq9bOvws04teBBGBRjDcodw4l0/USE4Z4G6rq+1GmVcZmv13Lfu3rywLR5LkiPey
+         Ak48VH7tOBb70S4Q9yVJ0LBdJn+Cnt/TPSN3x6mjsZEQmGDwNKq/p77hIWiJa/UcxWdh
+         FKrMB+0ntOmGtfsF1DFDAX+dYZzbcRL+rkeLrmyb3FF/bs81gEitWxXxF2rzpWY6cPC0
+         9QseuIEmaB292XoD+9NScDuHT0MBFiAnClJiOGHw+a6ewL9bCgG8+FeEfXJSSLXzs/Z+
+         CQ7ZHakNd9+O1COyJVIPj74xn4PkXSPyEySY4CmpEBGqscWcmw1j5EBoiyDftsUUwPzu
+         J9ag==
+X-Gm-Message-State: ANhLgQ03CKFwD3XxIhhVmd9RvZ20+HnK6OGN0N3YEoYp9Ic0U2GmeUH+
+        aWRSdi6mKwV/ajMOymNkQsg=
+X-Google-Smtp-Source: ADFU+vvAiYZf/IYzA5fxaGnYNv0X86Z6T7fDkR1sS4MKCo6tPVfB1D/leyGrwYl0zLlD2RY7i0pYYQ==
+X-Received: by 2002:a1c:4987:: with SMTP id w129mr5640004wma.168.1585430596134;
+        Sat, 28 Mar 2020 14:23:16 -0700 (PDT)
+Received: from eichest-laptop.local (77-57-203-148.dclient.hispeed.ch. [77.57.203.148])
+        by smtp.gmail.com with ESMTPSA id a10sm6227436wrm.87.2020.03.28.14.23.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Mar 2020 14:23:15 -0700 (PDT)
+From:   eichest@gmail.com
+To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Stefan Eichenberger <eichest@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: clearfog-gt-8k: fix ge phy reset pin
+Date:   Sat, 28 Mar 2020 22:21:16 +0100
+Message-Id: <20200328212115.12477-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200327073636.13823-1-harigovi@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8
-        a=_-RXmzA4W026I1OARrkA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Harigovindan
+From: Stefan Eichenberger <eichest@gmail.com>
 
-On Fri, Mar 27, 2020 at 01:06:34PM +0530, Harigovindan P wrote:
-> Adding support for visionox rm69299 panel driver and adding bindings for the same panel.
-> 
-> Harigovindan P (2):
->   dt-bindings: display: add visionox rm69299 panel variant
->   drm/panel: add support for rm69299 visionox panel driver
+According to the ClearFog-GT-8K-rev-1_1-Simplified-Schematic the reset
+pin for the gigabit phy is MPP62 and not MPP43.
 
-I have only the first patch, which is now applied.
-Please resend second patch as it is lost somewhere.
+Signed-off-by: Stefan Eichenberger <eichest@gmail.com>
+---
+ .../dts/marvell/armada-8040-clearfog-gt-8k.dts     | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-	Sam
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+index b90d78a5724b..d371d938b41e 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+@@ -144,7 +144,6 @@
+ 	 * [35-38] CP0 I2C1 and I2C0
+ 	 * [39] GPIO reset button
+ 	 * [40,41] LED0 and LED1
+-	 * [43] 1512 phy reset
+ 	 * [47] USB VBUS EN (active low)
+ 	 * [48] FAN PWM
+ 	 * [49] SFP+ present signal
+@@ -155,6 +154,7 @@
+ 	 * [54] NFC reset
+ 	 * [55] Micro SD card detect
+ 	 * [56-61] Micro SD
++	 * [62] 1512 phy reset
+ 	 */
+ 
+ 	cp0_pci0_reset_pins: pci0-reset-pins {
+@@ -197,11 +197,6 @@
+ 		marvell,function = "gpio";
+ 	};
+ 
+-	cp0_copper_eth_phy_reset: copper-eth-phy-reset {
+-		marvell,pins = "mpp43";
+-		marvell,function = "gpio";
+-	};
+-
+ 	cp0_xhci_vbus_pins: xhci0-vbus-pins {
+ 		marvell,pins = "mpp47";
+ 		marvell,function = "gpio";
+@@ -232,6 +227,11 @@
+ 			       "mpp60", "mpp61";
+ 		marvell,function = "sdio";
+ 	};
++
++	cp0_copper_eth_phy_reset: copper-eth-phy-reset {
++		marvell,pins = "mpp62";
++		marvell,function = "gpio";
++	};
+ };
+ 
+ &cp0_pcie0 {
+@@ -365,7 +365,7 @@
+ 		reg = <0>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&cp0_copper_eth_phy_reset>;
+-		reset-gpios = <&cp0_gpio2 11 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&cp0_gpio2 30 GPIO_ACTIVE_LOW>;
+ 		reset-assert-us = <10000>;
+ 		reset-deassert-us = <10000>;
+ 	};
+-- 
+2.20.1
 
-> 
->  .../display/panel/visionox,rm69299.yaml       |  58 ++++
->  drivers/gpu/drm/panel/Kconfig                 |   8 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../gpu/drm/panel/panel-visionox-rm69299.c    | 295 ++++++++++++++++++
->  4 files changed, 362 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
->  create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
-> 
-> -- 
-> 2.25.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
