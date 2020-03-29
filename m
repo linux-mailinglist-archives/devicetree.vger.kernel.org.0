@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3CE196D5E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2020 14:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 593AA196D98
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2020 15:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728242AbgC2Mb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Mar 2020 08:31:26 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43400 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728218AbgC2Mb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Mar 2020 08:31:26 -0400
-Received: by mail-wr1-f67.google.com with SMTP id m11so11678783wrx.10;
-        Sun, 29 Mar 2020 05:31:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=NYHCJt3Ku9FOElSWdLyvILotVUQ7ZCoGExqhh1hga+Ilrw7vDZuekdpSow5u1b/pUU
-         WgkjB4wm5XfHB8qAAuhtzCgyzrKGEcT2iwCxqrgyoHFWFOuvOLRrWuBWIMdsDniv9/Ln
-         WCIlkU8kF+wP8dOWqMgEA0uRysKESLErcTVJcxxNZgB9HtdvB5nULiIpKerjEGieIkIO
-         5GiJ7vUMwLEdnHa+Kivz0wYNBzfwpBLqKWWEZIjyFKhlntgewA7hOe/1QP/w2mmq26cy
-         GI/HFZj1yVjCuuf2vofTkK76RaugXKgYPbbIsW6M3D8GhqL/uA7wY6g8/TTCyUPRKJ5C
-         S3Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=6QvXfJZlpggMK4ANi6m9pBKzrWALkcbq78l8N8OifPg=;
-        b=FXMpYTAmZMokSy4WnEwnyWHprRFfoOero4rPuOMRjNFJ1+7s9bTjxiqQyQhqddMPaA
-         LWjQfXwyMgiX+CtDQ45BNGTXgbf+IKBrwensyIP1sR6l6Flg+ntsV7nRuP4hVAf9kOyu
-         2VwgJiE5eXNB14v71EhxEwB3IuQkHZJVo5l5z65jPemOVyoR3LLBrHL9uvv/+vhhXRFW
-         rEdHIkmpKpZb0wke/yrT/ugaMH3l6PCqj9rTPmsMu0zZCFYI6GZoJZAqJqjZi7lj3ddt
-         p0YyPoFzRH/WCJhZGrPb/YU212UvABHGW1bUgI1PIzGwoRRpQHa6hb6oHkvI/HGkA6NJ
-         xA7A==
-X-Gm-Message-State: ANhLgQ3Fmgg95W42ghMZJL5r2efjL8TUuebHL0kz+5uOVztIk0TYajTy
-        r8OU1zV7v05cwzOKPQQiMvw=
-X-Google-Smtp-Source: ADFU+vsqYKxoPbkbC9jA9HPJE9a9Nl32Esg9+w5puOxENCLxVc7vGrEBRwu4U9NAk5FO57lzaIepTw==
-X-Received: by 2002:adf:fc4c:: with SMTP id e12mr9500732wrs.265.1585485083974;
-        Sun, 29 Mar 2020 05:31:23 -0700 (PDT)
-Received: from localhost.localdomain (p5B3F6BD9.dip0.t-ipconnect.de. [91.63.107.217])
-        by smtp.gmail.com with ESMTPSA id f9sm17259108wrc.71.2020.03.29.05.31.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Mar 2020 05:31:23 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
-        robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v6 5/5] MAINTAINERS: Add entry for mp2629 Battery Charger driver
-Date:   Sun, 29 Mar 2020 14:31:10 +0200
-Message-Id: <20200329123110.26482-6-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200329123110.26482-1-sravanhome@gmail.com>
-References: <20200329123110.26482-1-sravanhome@gmail.com>
+        id S1728065AbgC2NRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Mar 2020 09:17:11 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35833 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727901AbgC2NRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Mar 2020 09:17:11 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jIXoD-0000oJ-Bv; Sun, 29 Mar 2020 15:17:01 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jIXoB-0001D6-EH; Sun, 29 Mar 2020 15:16:59 +0200
+Date:   Sun, 29 Mar 2020 15:16:59 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-pwm@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH RFC 2/6] gpio: mvebu: honour EPROBE_DEFER for
+ devm_clk_get()
+Message-ID: <20200329131659.4hbshjst4ccvje2n@pengutronix.de>
+References: <20200329104549.GX25745@shell.armlinux.org.uk>
+ <E1jIVU9-0005h4-QU@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <E1jIVU9-0005h4-QU@rmk-PC.armlinux.org.uk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp2629 Charger driver.
+On Sun, Mar 29, 2020 at 11:48:09AM +0100, Russell King wrote:
+> Honour deferred probing for devm_clk_get() so that we can get the clock
+> for PWM.
+> 
+> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+> ---
+>  drivers/gpio/gpio-mvebu.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpio/gpio-mvebu.c b/drivers/gpio/gpio-mvebu.c
+> index fa5641615db6..ee13b11c5298 100644
+> --- a/drivers/gpio/gpio-mvebu.c
+> +++ b/drivers/gpio/gpio-mvebu.c
+> @@ -1132,6 +1132,9 @@ static int mvebu_gpio_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	mvchip->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (mvchip->clk == ERR_PTR(-EPROBE_DEFER))
+> +		return -EPROBE_DEFER;
+> +
+>  	/* Not all SoCs require a clock.*/
+>  	if (!IS_ERR(mvchip->clk))
+>  		clk_prepare_enable(mvchip->clk);
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+I'd say the following is the right thing to do here:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32a95d162f06..0f82d5a7a614 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11358,10 +11358,15 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
- F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
-+F:	drivers/iio/adc/mp2629_adc.c
-+F:	drivers/mfd/mp2629.c
-+F:	drivers/power/supply/mp2629_charger.c
- F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
-+F:	include/linux/mfd/mp2629.h
- 
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
+	mvchip->clk = devm_clk_get_optional(...);
+	if (IS_ERR(mvchip->clk))
+		return ...
+
+Best regards
+Uwe
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
