@@ -2,132 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5DD2196E9C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2020 19:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A563196EC3
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2020 19:36:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728380AbgC2RSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Mar 2020 13:18:01 -0400
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:36700 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728065AbgC2RSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Mar 2020 13:18:01 -0400
-Received: by mail-pj1-f65.google.com with SMTP id nu11so6269685pjb.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2020 10:18:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=1VdjSPPRhlOBu7W9s+NexDovrzvWntWGJmIdhHoxZAQ=;
-        b=a4VluhObQuJFb8SVMTjUUnyaHON/TeGQbbeStEeHeBcJegBh1n4OVsHdtsIfVjvse5
-         IbvBFPybuUVOSQC5Fxd7Qc5iEqcrp89RD74YyUyxSTdpfuKOOp0DVATyIlxcyzQfmBWr
-         zEFxYeTsBKcYbSpW7IIWW+VqW4tsstUSA4qE0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1VdjSPPRhlOBu7W9s+NexDovrzvWntWGJmIdhHoxZAQ=;
-        b=MVfNn8158HMtgOq6rs3ZD4bgo/43hRPBAOrb/GVblPpHgXZeuVj2/gh2abhDSFKtBF
-         J2UMRwYhPOUHLXzL/55Vhd/Nc5Ic6SnLlxhujShrfM/4Hl4NyeC7xE1pNSa+xt6AvosD
-         8melTA0isB3lLv3JxBvQ6gGm9y7HwB//s3XVMgEOn2wZ1nK3tVY/9XCvsZ7E1LpMQEB/
-         usdPUgMXcmDCrtsXipGfrnd/29RnveKO5er1yk242/ZRAhQUcsYVOZjkl/4HCqGfU4YO
-         ofGo5DkbxiMf5ohklR5RcdGEwh8/MCs9BjUExFNuZX3vx7h8MkWi+D5WH2CTxqRzO041
-         8q7Q==
-X-Gm-Message-State: ANhLgQ1ekxMAQODJeDvd4LwwLJ3fjh9oPIzqrWMFrGUx/CuOkimlJQKz
-        TXNXBOcmgHoophW4o/22kYNy/Q==
-X-Google-Smtp-Source: ADFU+vsiB7DX7YoDE8Qsn1o3o8N1nnCf0ZGMiEPaCNY3wHCH2wyiT2nAj/cJUqGyY0agzks/DRDjjA==
-X-Received: by 2002:a17:90a:b702:: with SMTP id l2mr11203973pjr.22.1585502280189;
-        Sun, 29 Mar 2020 10:18:00 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id t2sm4016414pfh.157.2020.03.29.10.17.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Mar 2020 10:17:59 -0700 (PDT)
-Date:   Sun, 29 Mar 2020 10:17:56 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1728447AbgC2RgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Mar 2020 13:36:10 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:9920 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728349AbgC2RgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Mar 2020 13:36:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1585503365;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=o9cl3lo73IupocSaAB1N567LORTRk86aGdGAIUt50w4=;
+        b=NoRv7Wi8QNU1agInI4m5RGjdrI9u9YW4/5Dbad/BxKiIcD59qbayZ+pULr1Nccp6HP
+        Iky8Hgq54eIcjvKGOIWVAhdYvgMjlbe64xABy9GEkMiCq5Zrw3ELXP/NIm2oxTScv1EO
+        FigQLX5lxrjE2o7JpC6+zGoKYxHeEfW2ieq60EWEhkwk0OVhm9KfxqgCG0IulZy/qJqT
+        Dtwtvvc/XZNPj/ETWR/JpyNQa4qMqDqrUg2xn4avZvgk34ed87syYGo6Nse7xgpcl+5L
+        NphI/RM3X4tIc74fNKZH2qtLaGrltpv7DxKBO1HcHBh/7OE9OP23egf/LOsh6fQk+19r
+        M8GQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0pDz2rsNxxv"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+        by smtp.strato.de (RZmta 46.2.1 DYNA|AUTH)
+        with ESMTPSA id m02241w2THZtBM7
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Sun, 29 Mar 2020 19:35:55 +0200 (CEST)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Paul Boddie <paul@boddie.org.uk>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>
-Subject: Re: [PATCH v6 2/4] usb: dwc3: qcom: Add interconnect support in dwc3
- driver
-Message-ID: <20200329171756.GA199755@google.com>
-References: <1585302203-11008-1-git-send-email-sanm@codeaurora.org>
- <1585302203-11008-3-git-send-email-sanm@codeaurora.org>
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andi Kleen <ak@linux.intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Kees Cook <keescook@chromium.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, letux-kernel@openphoenux.org,
+        mips-creator-ci20-dev@googlegroups.com
+Subject: [RFC v3 0/8] MIPS: CI20: add HDMI out support
+Date:   Sun, 29 Mar 2020 19:35:46 +0200
+Message-Id: <cover.1585503354.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1585302203-11008-3-git-send-email-sanm@codeaurora.org>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
++++ help is needed: driver is not completely working and shows no output signal on the HDMI data and clock lanes
++++ HPD is working and /dev/fb0 does appear
++++ but there is no trigger to initialize the lcdc
 
-On Fri, Mar 27, 2020 at 03:13:21PM +0530, Sandeep Maheswaram wrote:
-> Add interconnect support in dwc3-qcom driver to vote for bus
-> bandwidth.
-> 
-> This requires for two different paths - from USB master to
-> DDR slave. The other is from APPS master to USB slave.
-> 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> Signed-off-by: Chandana Kishori Chiluveru <cchiluve@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 128 ++++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 126 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 1dfd024..7e85fe6 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
->
-> ...
->
-> +/* To disable an interconnect, we just set its bandwidth to 0 */
-> +static int dwc3_qcom_interconnect_disable(struct dwc3_qcom *qcom)
-> +{
-> +	int ret;
-> +
-> +	ret = icc_set_bw(qcom->usb_ddr_icc_path, 0, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = icc_set_bw(qcom->apps_usb_icc_path, 0, 0);
-> +	if (ret)
-> +		goto err_reenable_memory_path;
-> +
-> +	return 0;
-> +
-> +	/* Re-enable things in the event of an error */
-> +err_reenable_memory_path:
-> +	ret = dwc3_qcom_interconnect_enable(qcom);
+* add definition for second jz4780-lcdc
+* diverse fixes for yaml schema
+* make ingenic-drm driver compatible to ingenic,jz4780-lcd
+* converted existing ingenic,lcd.txt to ingenic,lcd.yaml - suggested by Paul Cercueil <paul@crapouillou.net>
+* removed blank line before MODULE_DEVICE_TABLE() macro - Paul Cercueil <paul@crapouillou.net>
+* added some missing Signed-off:
+* removed Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com> from the
+  recipients list and Cc: since the address is no longer available.
+* removed "pinctrl: ingenic: add hdmi-ddc pin control group" from this patch
+  series since it is already applied elsewhere (by Linus Walleij <linus.walleij@linaro.org>)
 
-This overwrites the error that led to the execution of this code path.
-The function should return original error, not the result of the
-_interconnect_enable() call.
+RFC V2 2020-02-28 19:19:40:
+* Converted .txt bindings to .yaml (by Sam Ravnborg <sam@ravnborg.org> - big THANKS)
 
-I saw Felipe queued the patch for v5.8. I think the main options to fix this
-are:
+RFC V1 2020-02-26 20:13:06:
+This patch series adds HDMI output to the jz4780/CI20 board.
 
-- a v6 of this patch to replace v5 in Felipe's tree (which IIUC will be rebased
-  anyway once there is a v5.7-rc)
-- send the fix as a separate patch
-- Felipe amends the patch in his tree
+It is based on taking the old 3.18 vendor kernel as well as
+an earlier submission from 2015:
+https://lore.kernel.org/patchwork/patch/547872/
+and trying to achieve the same with modern DTS setup and new/modified
+drivers.
 
-Felipe, what would work best for you?
+Unfortunately, in this first RFC, only EDID and creation of
+/dev/fb0 are working. Also, HDMI hot plugging is detected.
 
-Thanks
+But there is no HDMI output signal. So some tiny piece seems
+to be missing to enable/configure the Synposys HDMI controller.
 
-Matthias
+We need help from the community to fix this.
+
+Original authors of most patches are
+* Paul Boddie <paul@boddie.org.uk>
+* Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com>
+
+
+H. Nikolaus Schaller (4):
+  dt-bindings: display: convert ingenic,lcd.txt to ingenic,lcd.yaml
+  drm: ingenic-drm: add MODULE_DEVICE_TABLE
+  drm: ingenic-drm: add support for ingenic,jz4780-lcd
+  MIPS: CI20: defconfig: configure for DRM_DW_HDMI_JZ4780
+
+Paul Boddie (3):
+  drm: ingenic: add jz4780 Synopsys HDMI driver
+  MIPS: DTS: jz4780: account for Synopsys HDMI driver and LCD controller
+  MIPS: DTS: CI20: add HDMI setup
+
+Sam Ravnborg (1):
+  dt-bindings: display: add ingenic-jz4780-hdmi DT Schema
+
+ .../bindings/display/ingenic,lcd.txt          |  45 ------
+ .../bindings/display/ingenic,lcd.yaml         | 128 ++++++++++++++++++
+ .../bindings/display/ingenic-jz4780-hdmi.yaml |  82 +++++++++++
+ arch/mips/boot/dts/ingenic/ci20.dts           |  64 +++++++++
+ arch/mips/boot/dts/ingenic/jz4780.dtsi        |  46 +++++++
+ arch/mips/configs/ci20_defconfig              |   3 +
+ drivers/gpu/drm/ingenic/Kconfig               |   8 ++
+ drivers/gpu/drm/ingenic/Makefile              |   1 +
+ drivers/gpu/drm/ingenic/dw_hdmi-jz4780.c      | 120 ++++++++++++++++
+ drivers/gpu/drm/ingenic/ingenic-drm.c         |   8 ++
+ 10 files changed, 460 insertions(+), 45 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ingenic,lcd.txt
+ create mode 100644 Documentation/devicetree/bindings/display/ingenic,lcd.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/ingenic/dw_hdmi-jz4780.c
+
+-- 
+2.25.1
+
