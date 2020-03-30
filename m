@@ -2,57 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A783D198054
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 18:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A16197FC3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 17:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729754AbgC3QAb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 30 Mar 2020 12:00:31 -0400
-Received: from [193.193.200.100] ([193.193.200.100]:59378 "EHLO
-        mail.a-hostel.com" rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1729739AbgC3QAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 12:00:31 -0400
-X-Greylist: delayed 4434 seconds by postgrey-1.27 at vger.kernel.org; Mon, 30 Mar 2020 12:00:30 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id 3A79F1BA666B;
-        Mon, 30 Mar 2020 17:26:38 +0300 (EEST)
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Zr4_HMSjxtNR; Mon, 30 Mar 2020 17:26:37 +0300 (EEST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id AC9D71BA663C;
-        Mon, 30 Mar 2020 17:26:37 +0300 (EEST)
-X-Virus-Scanned: amavisd-new at a-hostel.com
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id gWLGC1Pz5EeC; Mon, 30 Mar 2020 17:26:37 +0300 (EEST)
-Received: from [10.131.0.106] (unknown [91.109.29.137])
-        by mail.a-hostel.com (Postfix) with ESMTPSA id 1F1741BA665D;
-        Mon, 30 Mar 2020 17:26:30 +0300 (EEST)
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1729024AbgC3Ph3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 11:37:29 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:37769 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729054AbgC3Ph2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 11:37:28 -0400
+Received: by mail-lf1-f65.google.com with SMTP id t11so2144872lfe.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2020 08:37:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7n3YZ9nrtrOOLXOcT8nncmyYyXz4uqz98on2S5Nc7P8=;
+        b=01eIbogv2JLufuwCILlbzumO6l4tm31Ysgk7fk42vDAxQ8S2Jzsv8Wmv4QoNc7JGoW
+         ouw5WNKmvQfSWsT0guoBS+abSnxPIUBaZq+93d3O8EtcYlHlgllZAJbG54iZ/nD5jBFn
+         OIoiFNWZu5IjFAx5DgOVhaacynAAMj+OfbkrpP/mTBee7Fz1zQVz2hquYPqLxN6BYiFw
+         kD5CEjp7KqELCqjwfe87awk3DYkzx8qV8BaYb3Z9bNrKGkVdDWSacv6Rj7ZVgaRQGRSP
+         7DwLX8kVEeiHuYvpEBIeBYkQPyLojrINApEH61LvdBgEHDiZhRApfDDwkvEg7ohY3dws
+         thEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=7n3YZ9nrtrOOLXOcT8nncmyYyXz4uqz98on2S5Nc7P8=;
+        b=Vac5iNL4ogP8rhcjr4ZsIgrR/N30G2T/YRXaPbF7DawgrZn1T+cRolq3KSe3oVmLDj
+         q9s+CWxybyao2nRLdVZpRJ+odPbyQpR4aWMyqZyDm5o+G8NbVaOtrtTmpCH6gx3mPkDL
+         ktG4u029rodlJYn+fVf/an8bYVyPiinFLd1haTpgtIZNnirXpz4WCRrh5Bq2Jts1LEoH
+         9OwQlIi1XXsY+Vz81reGiptOPcXO3hndNd/OonSTEyvkvvkKQfP+vRWkIeWNfyeyeKoo
+         U164AHqyS2+FbIWd30q8CrH2FrPjDT7rgFCEGmJw56KB5MFg4LsXMCkOFcFLhCYw3mxy
+         cINw==
+X-Gm-Message-State: AGi0Pub8tJA/kxI5/9Ak1lhG30odXXHmsJMTFkwFCpP017FfeozgVWI9
+        BQ3tU3H1BamfItnk77I+eEF3VzkSSNgWQg==
+X-Google-Smtp-Source: APiQypLCq5vVr1YrIW3e4xrFpb9STHZkBueQeFK1AR43Hf0SWSWV1m1Evg2KTFYl5nebk26zdn6zwQ==
+X-Received: by 2002:ac2:48b3:: with SMTP id u19mr8289783lfg.84.1585582645078;
+        Mon, 30 Mar 2020 08:37:25 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:654:d00e:d4e2:9dcc:b9fb:a661])
+        by smtp.gmail.com with ESMTPSA id i2sm7910219lfg.23.2020.03.30.08.37.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Mar 2020 08:37:23 -0700 (PDT)
+Subject: Re: [PATCH 4/5] MIPS: DTS: Loongson64: Add PCI Controller Node
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Paul Burton <paulburton@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200330114239.1112759-1-jiaxun.yang@flygoat.com>
+ <20200330114239.1112759-5-jiaxun.yang@flygoat.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <68446094-263d-d0d9-df00-bc1e81c1dffe@cogentembedded.com>
+Date:   Mon, 30 Mar 2020 18:37:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: =?utf-8?q?Ich_spende_f=C3=BCr_dich?=
-To:     Recipients <reservations@hotel-khreschatyk.kiev.ua>
-From:   "David Johnson" <reservations@hotel-khreschatyk.kiev.ua>
-Date:   Mon, 30 Mar 2020 16:26:23 +0200
-Reply-To: johnsondavid57td@gmail.com
-X-Antivirus: Avast (VPS 200329-0, 03/29/2020), Outbound message
-X-Antivirus-Status: Clean
-Message-Id: <20200330142631.1F1741BA665D@mail.a-hostel.com>
+In-Reply-To: <20200330114239.1112759-5-jiaxun.yang@flygoat.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guten Tag,
-Mein Name ist David Johnson, Der Gewinner von Zweihundertachtundneunzig Millionen Dreihunderttausend US-Dollar ($ 298,300,000).
-Ich komme aus New York, 57 Jahre alt. Dieser Sieg hat mein ganzes Leben verändert. Ich möchte dir neunhundertfünfzigtausend Dollar ($950,000) für wohltätige Zwecke spenden.
-Kontaktieren Sie mich zurück, um weitere Informationen.
-Ich wünsche dir einen schönen Tag.
-David Johnson
+Hello!
 
--- 
-This email has been checked for viruses by Avast antivirus software.
-https://www.avast.com/antivirus
+On 03/30/2020 02:42 PM, Jiaxun Yang wrote:
 
+> Add PCI Host controller node for Loongson64 with RS780E PCH dts.
+> Note that PCI interrupts are probed via legacy way, as different
+> machine have different interrupt arrangement, we can't cover all
+> of them in dt.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+>  arch/mips/boot/dts/loongson/rs780e-pch.dtsi | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/boot/dts/loongson/rs780e-pch.dtsi b/arch/mips/boot/dts/loongson/rs780e-pch.dtsi
+> index 45c54d555fa4..f09599a4b9d7 100644
+> --- a/arch/mips/boot/dts/loongson/rs780e-pch.dtsi
+> +++ b/arch/mips/boot/dts/loongson/rs780e-pch.dtsi
+> @@ -5,10 +5,25 @@ bus@10000000 {
+>  		compatible = "simple-bus";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		ranges = <0 0x10000000 0 0x10000000 0 0x10000000
+> +		ranges = <0 0x00000000 0 0x00000000 0 0x00010000 /* ioports */
+> +				0 0x10000000 0 0x10000000 0 0x10000000
+>  				0 0x40000000 0 0x40000000 0 0x40000000
+>  				0xfd 0xfe000000 0xfd 0xfe000000  0 0x2000000 /* PCI Config Space */>;
+>  
+> +		pci@1a000000 {
+> +			compatible = "loongson,rs780e-pci";
+> +			device_type = "pci";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			#interrupt-cells = <0x1>;
+
+   No need for 0x.
+
+> +
+> +			reg = <0 0x1a000000 0 0x02000000>;
+> +
+> +			ranges = <0x01000000 0x0 0x00004000 0x0 0x00004000  0x0 0x00004000>,
+> +				<0x02000000 0x0 0x40000000 0x0 0x40000000  0x0 0x40000000>;
+
+   No need for 0x before 0 here either. And why double spaces?
+
+> +
+> +		};
+> +
+>  		isa {
+>  			compatible = "isa";
+>  			#address-cells = <2>;
+> 
+
+MBR, Sergei
