@@ -2,109 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A651985AC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 22:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13FA19859B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 22:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728047AbgC3Ums (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Mar 2020 16:42:48 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:37238 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727437AbgC3Ums (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 16:42:48 -0400
-Received: by mail-lf1-f68.google.com with SMTP id t11so2992436lfe.4;
-        Mon, 30 Mar 2020 13:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9UkrNjDcajPGTgBBKiQQcXEwPOc4ohLFowCr4Ks0haU=;
-        b=oh689xveR36/57W4/RPGauOKst42L1S+MXOTtXleBkLzOiJ+NL6bEEF08gPLfBCf0w
-         9Pjkq3FiUE6g4iYJ8R39BdR0UWMSKcTcSnno1jANPY0fk/zWl1BAJFlujrzpTgHKkSGV
-         gObEjTicF1K/HwtUIdhfSUayjN79qoBwC316M9dZthNujLGmduxoHiokK5om+GbTi3AS
-         L/Dxvq4qgEZhv5U/aZrx6fSyXGwCCMliWGEcViF4NUEropR1GG3/uqfvnR5+yzLKHgyT
-         aXNT0WT7NKJmJsVH/dDsGFZR3FUZqlExP3CH+UOkUsLNUYXSPO1fGkEna1DVIH04DUpT
-         cdTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9UkrNjDcajPGTgBBKiQQcXEwPOc4ohLFowCr4Ks0haU=;
-        b=Ic/hZaz/uAexoa0HZLzld/MMF5y7Tw7yJmr4NZJ3uSxeJD5x6vRlQMOFhveLwI+WqZ
-         s4vCPScwKsqSFNKxCFnxjFM8RQu0FRWTlOIq3ghgSzLOiu9wAiqyrv16GF2Fj3RW+I+3
-         qizMyTZPeeaqQYFqVlLkw/3X4gL+BdmdKUWqY4925am/5yI1tIyTwqFsV33CI6skfF4D
-         6lNG0w+n0F9yO+jn7Q0g14+5Q+l2g9AAZ/Ql0zjxWD+HsdhwJ25hkUKb4YUSY8YXQmYq
-         QsomhrGP1XWqY/8rW4rmtRBAYHWvX22FfIaKMZanNS0EVglj1ETqTA98FvKpk5KldFWo
-         b5XQ==
-X-Gm-Message-State: AGi0PuYVWkFacdYk0Lflwlv2lu1ge1r6hbJc1aHFVjRumsdUjQexZUef
-        XYTKbr9ml+KXkV8N87pMFjU=
-X-Google-Smtp-Source: APiQypLLLnVzRTLcP4jabC1fU1WzfNOMcZ3hKwFpODI7tRHqByybGrOo5XBHUG6/XotAfAYXhdyTvQ==
-X-Received: by 2002:ac2:4c88:: with SMTP id d8mr9381636lfl.100.1585600965414;
-        Mon, 30 Mar 2020 13:42:45 -0700 (PDT)
-Received: from localhost.localdomain (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
-        by smtp.gmail.com with ESMTPSA id v22sm7287988ljj.67.2020.03.30.13.42.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2020 13:42:44 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] ASoC: tegra: tegra_wm8903: Support nvidia,headset property
-Date:   Mon, 30 Mar 2020 23:40:11 +0300
-Message-Id: <20200330204011.18465-3-digetx@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200330204011.18465-1-digetx@gmail.com>
-References: <20200330204011.18465-1-digetx@gmail.com>
+        id S1729363AbgC3UlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 16:41:12 -0400
+Received: from mta-02.yadro.com ([89.207.88.252]:36862 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728481AbgC3UlL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Mar 2020 16:41:11 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 1FB5041272;
+        Mon, 30 Mar 2020 20:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-transfer-encoding:mime-version:user-agent:content-type
+        :content-type:organization:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received:received; s=
+        mta-01; t=1585600867; x=1587415268; bh=OU3hBGEfOQcxytxHcUWUuI35b
+        IUOuu3HXbM3CIo0vkY=; b=QBfuYm3KLrYd59pO8C9CwBNFTPOk4X8UTiGOig9Wm
+        Z7B8plOFw6gX2yjVllCSjZieFXOvzDK7dy+MgAMKHBPJKszLMI7Ctqpm3rwOri63
+        DCSnh79H/0yeWSYnN/Abx0Y4omtl8GyavEyFxODtjeB8PARjXkdT2MUNnYKNTl1v
+        Q8=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id e8APibuRPKhO; Mon, 30 Mar 2020 23:41:07 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 77DC84126E;
+        Mon, 30 Mar 2020 23:41:07 +0300 (MSK)
+Received: from localhost.localdomain (10.199.0.226) by
+ T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Mon, 30 Mar 2020 23:41:07 +0300
+Message-ID: <5cb43513906e1175801ea4e753c855623fcd11d1.camel@yadro.com>
+Subject: Re: [PATCH v5 2/2] iio: proximity: Add driver support for vcnl3020
+ proximity sensor
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Mar 2020 23:41:15 +0300
+In-Reply-To: <CAHp75VeLtPkb0e4uNP+1LGgtquBXkb5=bPi54O1U92uaO5jqvw@mail.gmail.com>
+References: <20200330152711.8769-1-i.mikhaylov@yadro.com>
+         <20200330152711.8769-3-i.mikhaylov@yadro.com>
+         <CAHp75VeLtPkb0e4uNP+1LGgtquBXkb5=bPi54O1U92uaO5jqvw@mail.gmail.com>
+Organization: YADRO
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.199.0.226]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The microphone-jack state needs to be masked in a case of a 4-pin jack
-when microphone and ground pins are shorted. Presence of nvidia,headset
-tells that WM8903 CODEC driver should mask microphone's status if short
-circuit is detected, i.e headphones are inserted.
+On Mon, 2020-03-30 at 22:07 +0300, Andy Shevchenko wrote:
+> On Mon, Mar 30, 2020 at 6:27 PM Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+> > Proximity sensor driver based on light/vcnl4000.c code.
+> > For now supports only the single on-demand measurement.
+> > 
+> > The VCNL3020 is a fully integrated proximity sensor. Fully
+> > integrated means that the infrared emitter is included in the
+> > package. It has 16-bit resolution. It includes a signal
+> > processing IC and features standard I2C communication
+> > interface. It features an interrupt function.
+> 
+> Still my tag applies, but
+> I have few more comments below.
+> 
+> ...
+> 
+> > +#define VCNL_DRV_NAME          "vcnl3020"
+> > +#define VCNL_REGMAP_NAME       "vcnl3020_regmap"
+> 
+> I'm wondering why you need the second one.
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- sound/soc/tegra/tegra_wm8903.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+For regmap initialize as name in 
+static const struct regmap_config vcnl3020_regmap_config = {
+       .name           = VCNL_REGMAP_NAME,
 
-diff --git a/sound/soc/tegra/tegra_wm8903.c b/sound/soc/tegra/tegra_wm8903.c
-index 071c7d2de77c..e756dc8eeca4 100644
---- a/sound/soc/tegra/tegra_wm8903.c
-+++ b/sound/soc/tegra/tegra_wm8903.c
-@@ -177,6 +177,7 @@ static int tegra_wm8903_init(struct snd_soc_pcm_runtime *rtd)
- 	struct snd_soc_component *component = codec_dai->component;
- 	struct snd_soc_card *card = rtd->card;
- 	struct tegra_wm8903 *machine = snd_soc_card_get_drvdata(card);
-+	int shrt = 0;
- 
- 	if (gpio_is_valid(machine->gpio_hp_det)) {
- 		tegra_wm8903_hp_jack_gpio.gpio = machine->gpio_hp_det;
-@@ -189,12 +190,15 @@ static int tegra_wm8903_init(struct snd_soc_pcm_runtime *rtd)
- 					&tegra_wm8903_hp_jack_gpio);
- 	}
- 
-+	if (of_property_read_bool(card->dev->of_node, "nvidia,headset"))
-+		shrt = SND_JACK_MICROPHONE;
-+
- 	snd_soc_card_jack_new(rtd->card, "Mic Jack", SND_JACK_MICROPHONE,
- 			      &tegra_wm8903_mic_jack,
- 			      tegra_wm8903_mic_jack_pins,
- 			      ARRAY_SIZE(tegra_wm8903_mic_jack_pins));
- 	wm8903_mic_detect(component, &tegra_wm8903_mic_jack, SND_JACK_MICROPHONE,
--				0);
-+				shrt);
- 
- 	snd_soc_dapm_force_enable_pin(&card->dapm, "MICBIAS");
- 
--- 
-2.25.1
+I can get rid of it from struct with name definition.
+
+> > +       rc = device_property_read_u32(data->dev, "vishay,led-current-
+> > milliamp",
+> > +                                     &led_current);
+> > +       if (rc == 0) {
+> > +               rc = regmap_write(data->regmap, VCNL_LED_CURRENT,
+> > led_current);
+> > +               if (rc)
+> > +                       dev_err(data->dev,
+> > +                               "Error (%d) setting LED current", rc);
+> > +       }
+> > +
+> > +       return rc;
+> 
+> Why not to use standard pattern, i.e.
+> 
+>   if (rc)
+>     return rc;
+>   ...
+>   rc = regmap_write(...);
+> 
+> ?
+
+Optional parameter. There exists a lot of ways to do it:
+
+rc = device_property_read_u32(dev, "milliamp", &led_current);
+rc = regmap_write(regmap, VCNL_LED_CURRENT, (!rc) : led_current ? 0);
+or
+
+rc = regmap_write(regmap, VCNL_LED_CURRENT, (!rc) : led_current ?
+VCNL_LED_CURRENT_DEFAULT);
+or even maybe make a function like get_led_current:
+
+rc = regmap_write(regmap, VCNL_LED_CURRENT, get_led_curent(dev));
+where 
+static u32 get_led_current(dev) {
+	u32 led_current;
+	rc = device_property_read_u32(dev, "milliamp", &led_current);
+	return (!rc) : led_current ? VCNL_LED_CURRENT_DEFAULT;
+}
+Which one would be more preferable?
+
+> ...
+> 
+> > +       if (rc) {
+> > +               dev_err(data->dev,
+> > +                       "vcnl3020_measure() failed with error (%d)", rc);
+> 
+> Perhaps you keep same pattern for error messages as in previous function(s).
+
+Sure.
+
+> 
+> > +               goto err_unlock;
+> > +       }
+> > +       rc = regmap_bulk_read(data->regmap, VCNL_PS_RESULT_HI, &res, 2);
+> 
+> sizeof(res)
+
+Oops.
+
 
