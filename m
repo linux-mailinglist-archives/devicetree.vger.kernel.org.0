@@ -2,83 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4429197B3D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 13:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2520197B82
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 14:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729915AbgC3LwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Mar 2020 07:52:11 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:36593 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728764AbgC3LwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 07:52:11 -0400
-Received: by mail-lf1-f67.google.com with SMTP id u15so4785336lfi.3;
-        Mon, 30 Mar 2020 04:52:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oUxAOgz8NXHq1Pf5is4saO0kcIUnQRpCo7D1rQX9etA=;
-        b=RvTFD7FfX+RF2ea4gaF0j0B2FI534aB0tSVvis0sLeVy4mJcjjSl4QzkrKQxQrs/Lc
-         HnSvgz2uPVhL0YBxzkToXX0ETdvrkXkTatxWl5GYZ3Et+xaXK4x9aPAdTDpdFdBHu3LF
-         PMXP9o1RYCtkWmFsczRDmvIF/BzwpyQjLk2sSc3ltABf097AdbHhRrcgijhcCicFh6aR
-         T0JGsIhIFKx7DyT2mBRoaK6iaHLQKAK+gC/Vv15Z5kpoiAku3KSocHewLR2j8Fd3QtvF
-         t0OOgv/I94yviCfCMx7/4Wv5e9qp/KbKw9qXFzvEADHzUn0Nfjrt2u4S0sjQoIEyB6Mz
-         8r8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oUxAOgz8NXHq1Pf5is4saO0kcIUnQRpCo7D1rQX9etA=;
-        b=PVPHLXf0Ts5u3t+l3SR2QlBzMXP6JanEmOjaFtO+vjUprhtLRAuN2cEswIobbS+rgs
-         T1y0Un2LtE9VVhKs2LjDmzWdpQJztMnMP5Iwpw9FIJXpjhvsOlsFAi3Yar3w4lrIq+ED
-         VwX0eDOuHvQzoxS370Plu5XPQ0ts86YEiCNXEHBznWojwn0+qwbc2cIlvfpLoaAkgJAE
-         6YjySzsY5HsGgGRK8sGakeodpps6YFj89db2q/+sH0UUfCqQhaH+XYdSRW7o0IdxRNlN
-         Go6qb7HKm1c0ioIVv1ZER+G+b0hCHS1IVogDGxdkyT3jK3O7NCDqdQKJq3NIK2al+ALx
-         EB+w==
-X-Gm-Message-State: AGi0PuY7B1vIYiegm5k+I5BDc9enDzxLMaUd6nnBfyFkGO/+aMYSMlR9
-        xwnoPooQN4AYEXEqJkcWDi1+KSCgeWfCqE3gLd0=
-X-Google-Smtp-Source: APiQypIs6reaMQbUKLAdY3KvxuAlR9R0M+IDM0rH838tBggLkO5g/vojQtpptaZ+TdidZCUDxI0stG9ysPseXJpdgfM=
-X-Received: by 2002:a19:4cc3:: with SMTP id z186mr7582516lfa.69.1585569129458;
- Mon, 30 Mar 2020 04:52:09 -0700 (PDT)
+        id S1730088AbgC3MHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 08:07:12 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38521 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730084AbgC3MHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 08:07:11 -0400
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jItBj-0001OI-Sk; Mon, 30 Mar 2020 14:06:43 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jItBi-0002ZE-Hm; Mon, 30 Mar 2020 14:06:42 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v4 0/5] mainline Protonic boards
+Date:   Mon, 30 Mar 2020 14:06:35 +0200
+Message-Id: <20200330120640.9810-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.26.0.rc2
 MIME-Version: 1.0
-References: <20200330113542.181752-1-adrian.ratiu@collabora.com> <20200330113542.181752-6-adrian.ratiu@collabora.com>
-In-Reply-To: <20200330113542.181752-6-adrian.ratiu@collabora.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 30 Mar 2020 08:52:00 -0300
-Message-ID: <CAOMZO5CKr7hSUFtb9b05rpRtpp9mb9ZyeSVqqiDXvppHJEWu5w@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] dt-bindings: display: add i.MX6 MIPI DSI host
- controller doc
-To:     Adrian Ratiu <adrian.ratiu@collabora.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sjoerd Simons <sjoerd.simons@collabora.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-rockchip@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@collabora.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 30, 2020 at 8:35 AM Adrian Ratiu <adrian.ratiu@collabora.com> wrote:
+changes v4:
+- VT7: fix typo
 
-> +        panel@0 {
-> +            compatible = "sharp,ls032b3sx01";
-> +            reg = <0>;
-> +            reset-gpios = <&gpio6 8 GPIO_ACTIVE_LOW>;
-> +            ports {
-> +                port@0 {
+changes v3:
+- move compatible to the start of node
+- move status to the end
+- use generic names in compatible
+- refactor dts/dtsi
+- use alphabet order for pinctrl and phandels
+- remove unused or currently not supported nodes
 
-There is a unit address here without a corresponding reg property.
-This gives warning with 'make dt_binding_check'
+changes v2:
+- squash PRTI6Q patches
+
+Oleksij Rempel (5):
+  dt-bindings: vendor-prefixes: Add an entry for Protonic Holland
+  ARM: dts: add Protonic PRTI6Q board
+  ARM: dts: add Protonic WD2 board
+  ARM: dts: add Protonic VT7 board
+  ARM: dts: add Protonic RVT board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   4 +
+ arch/arm/boot/dts/imx6dl-prtrvt.dts           | 203 +++++++
+ arch/arm/boot/dts/imx6dl-prtvt7.dts           | 473 +++++++++++++++
+ arch/arm/boot/dts/imx6q-prti6q.dts            | 551 ++++++++++++++++++
+ arch/arm/boot/dts/imx6q-prtwd2.dts            | 188 ++++++
+ arch/arm/boot/dts/imx6qdl-prti6q.dtsi         | 185 ++++++
+ 8 files changed, 1610 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-prtrvt.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-prtvt7.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-prti6q.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-prtwd2.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+
+-- 
+2.26.0.rc2
+
