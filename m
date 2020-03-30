@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2520197B82
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 14:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19936197B7F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 14:07:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730088AbgC3MHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Mar 2020 08:07:12 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38521 "EHLO
+        id S1730081AbgC3MHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 08:07:03 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:58789 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730084AbgC3MHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 08:07:11 -0400
+        with ESMTP id S1730088AbgC3MHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 08:07:03 -0400
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1jItBj-0001OI-Sk; Mon, 30 Mar 2020 14:06:43 +0200
+        id 1jItBj-0001OJ-Sk; Mon, 30 Mar 2020 14:06:43 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1jItBi-0002ZE-Hm; Mon, 30 Mar 2020 14:06:42 +0200
+        id 1jItBi-0002ZN-JR; Mon, 30 Mar 2020 14:06:42 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -29,10 +29,12 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v4 0/5] mainline Protonic boards
-Date:   Mon, 30 Mar 2020 14:06:35 +0200
-Message-Id: <20200330120640.9810-1-o.rempel@pengutronix.de>
+Subject: [PATCH v4 1/5] dt-bindings: vendor-prefixes: Add an entry for Protonic Holland
+Date:   Mon, 30 Mar 2020 14:06:36 +0200
+Message-Id: <20200330120640.9810-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.26.0.rc2
+In-Reply-To: <20200330120640.9810-1-o.rempel@pengutronix.de>
+References: <20200330120640.9810-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
@@ -44,42 +46,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-changes v4:
-- VT7: fix typo
+Add "prt" entry for Protonic Holland: https://www.protonic.nl/en/
 
-changes v3:
-- move compatible to the start of node
-- move status to the end
-- use generic names in compatible
-- refactor dts/dtsi
-- use alphabet order for pinctrl and phandels
-- remove unused or currently not supported nodes
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-changes v2:
-- squash PRTI6Q patches
-
-Oleksij Rempel (5):
-  dt-bindings: vendor-prefixes: Add an entry for Protonic Holland
-  ARM: dts: add Protonic PRTI6Q board
-  ARM: dts: add Protonic WD2 board
-  ARM: dts: add Protonic VT7 board
-  ARM: dts: add Protonic RVT board
-
- .../devicetree/bindings/arm/fsl.yaml          |   4 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/Makefile                    |   4 +
- arch/arm/boot/dts/imx6dl-prtrvt.dts           | 203 +++++++
- arch/arm/boot/dts/imx6dl-prtvt7.dts           | 473 +++++++++++++++
- arch/arm/boot/dts/imx6q-prti6q.dts            | 551 ++++++++++++++++++
- arch/arm/boot/dts/imx6q-prtwd2.dts            | 188 ++++++
- arch/arm/boot/dts/imx6qdl-prti6q.dtsi         | 185 ++++++
- 8 files changed, 1610 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-prtrvt.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-prtvt7.dts
- create mode 100644 arch/arm/boot/dts/imx6q-prti6q.dts
- create mode 100644 arch/arm/boot/dts/imx6q-prtwd2.dts
- create mode 100644 arch/arm/boot/dts/imx6qdl-prti6q.dtsi
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9e67944bec9c..a0d3214187a5 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -775,6 +775,8 @@ patternProperties:
+     description: Primux Trading, S.L.
+   "^probox2,.*":
+     description: PROBOX2 (by W2COMP Co., Ltd.)
++  "^prt,.*":
++    description: Protonic Holland
+   "^pulsedlight,.*":
+     description: PulsedLight, Inc
+   "^purism,.*":
 -- 
 2.26.0.rc2
 
