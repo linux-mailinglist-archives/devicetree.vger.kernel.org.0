@@ -2,270 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D15E1981BC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 18:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5B619822E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 19:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729069AbgC3Qyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Mar 2020 12:54:44 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:33835 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727742AbgC3Qyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 12:54:43 -0400
-Received: by mail-io1-f67.google.com with SMTP id h131so18532383iof.1;
-        Mon, 30 Mar 2020 09:54:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jOrX9l7RDubap8oYqwDx/Tq7u4SAFSboI9DcFsCizxA=;
-        b=k+7p18VosGehS+rG6tJl0+Vwx3XhFuVjmlX9c/J46Tb16c0GVFczCQuGTJ+12Xr/iY
-         1HahuQPxImTs26BNiO5jaHNinzVBcZgZ7UzYKDRes4DV6JKmqZCe0bx+oHqKWvkffoOV
-         SImGkkL+e4hf4+ZriwLP6dW1qhueVoFXoHuJCth9t7e7YUDS7VFSsRORy3ix7Zy9RyTH
-         b6XwHzCQjUMDj/WfV0Mq3CmvyD8wELqZE298udu6Q0bFEOL5wRztCiwEwbR4p9swNxN0
-         xzM/wibrgYCGLjlDjZW/nK9hpirSIuZmhbIUkQysA87/N7X0X8MH8mNOpjuXOU9mL+5M
-         qfoA==
-X-Gm-Message-State: ANhLgQ0/+nE1zA1CLLsb5DQYHM1SgohrEctJDIxKMy33QQbc6kl3pXsr
-        9btip9o5A0Y4yksYiG3EmA==
-X-Google-Smtp-Source: ADFU+vtF/9BDe2ELhdoObr+6YMCkSHPZ6Kkr7nlLLIKAedijzVrsX8ZjttsiS3hlHJP0GFw7QctNrQ==
-X-Received: by 2002:a5e:c803:: with SMTP id y3mr11329390iol.82.1585587281033;
-        Mon, 30 Mar 2020 09:54:41 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id c12sm5061284ila.31.2020.03.30.09.54.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2020 09:54:40 -0700 (PDT)
-Received: (nullmailer pid 388 invoked by uid 1000);
-        Mon, 30 Mar 2020 16:54:39 -0000
-Date:   Mon, 30 Mar 2020 10:54:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     broonie@kernel.org, mark.rutland@arm.com,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: spi: dw-apb-ssi: Convert bindings to
- json-schema
-Message-ID: <20200330165439.GA15130@bogus>
-References: <20200312113129.8198-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20200312113129.8198-4-wan.ahmad.zainie.wan.mohamad@intel.com>
+        id S1729436AbgC3RWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 13:22:47 -0400
+Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.22]:11795 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728096AbgC3RWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 13:22:47 -0400
+X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Mon, 30 Mar 2020 13:22:45 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1585588964;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=KxeIHeglbqB251Du7zG5m44JsZjNiJxHjofFRSSX30I=;
+        b=JbhH6ZeZ/71d8ZQ2CivYkMey1CyT+K1VXKKrL3xNIpLK1ws5r1HhYM5ZfyHNaG+OKE
+        IfEA0lAaLcyNKQe7/k9gR86Ztml55Pc1Iz/ohwXfEWQP/eSHfaJkW/PZ5cvBId1nvRq4
+        u4xLXG2jDbDAJC96AhBgT2rC3nO8CGBgoteHpiaXa+5ZedT8neDocvNULufYyZMUoj1U
+        yhgUU/sUU217gqQsJRP5n+ZRwBdIUUQ0gn2TLwOpcl9iPM1f0AGZekAG0NImfQONEVGp
+        FPNJAArbFqy/P0SqCgjLV+W1J49UfrxxPLg1HO849J5tVo/lwmDOmJ5hgucwU3iqTtru
+        UphQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u266EZF6ORJDdfbYs7ef"
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.2.1 DYNA|AUTH)
+        with ESMTPSA id u043b8w2UHAcO1X
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Mon, 30 Mar 2020 19:10:38 +0200 (CEST)
+Date:   Mon, 30 Mar 2020 19:10:31 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     =?iso-8859-1?Q?Ga=EBtan_Andr=E9?= <rvlander@gaetanandre.eu>
+Cc:     jic23@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] iio: accel: st_sensors:  add support for LIS2HH12
+Message-ID: <20200330171031.GA41042@gerhold.net>
+References: <20200330141923.280226-1-rvlander@gaetanandre.eu>
+ <20200330141923.280226-2-rvlander@gaetanandre.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200312113129.8198-4-wan.ahmad.zainie.wan.mohamad@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200330141923.280226-2-rvlander@gaetanandre.eu>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 12, 2020 at 07:31:25PM +0800, Wan Ahmad Zainie wrote:
-> Convert the Synopsis DesignWare dw-apb-ssi binding to DT schema format
-> using json-schema.
+Hi,
+
+On Mon, Mar 30, 2020 at 04:19:23PM +0200, Gaëtan André wrote:
+> Add support for STMicroelectronics LISHH12 accelerometer in st_accel
+> framework.
 > 
-> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> https://www.st.com/resource/en/datasheet/lis2hh12.pdf
+> 
+> Signed-off-by: Gaëtan André <rvlander@gaetanandre.eu>
+
+Thanks a lot for sending this patch upstream!
+
 > ---
->  .../bindings/spi/snps,dw-apb-ssi.txt          |  41 -------
->  .../bindings/spi/snps,dw-apb-ssi.yaml         | 102 ++++++++++++++++++
->  2 files changed, 102 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+>  drivers/iio/accel/Kconfig         |  2 +-
+>  drivers/iio/accel/st_accel.h      |  2 +
+>  drivers/iio/accel/st_accel_core.c | 77 +++++++++++++++++++++++++++++++
+>  drivers/iio/accel/st_accel_i2c.c  |  5 ++
+>  4 files changed, 85 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> deleted file mode 100644
-> index 3ed08ee9feba..000000000000
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> +++ /dev/null
-> @@ -1,41 +0,0 @@
-> -Synopsys DesignWare AMBA 2.0 Synchronous Serial Interface.
-> -
-> -Required properties:
-> -- compatible : "snps,dw-apb-ssi" or "mscc,<soc>-spi", where soc is "ocelot" or
-> -  "jaguar2", or "amazon,alpine-dw-apb-ssi"
-> -- reg : The register base for the controller. For "mscc,<soc>-spi", a second
-> -  register set is required (named ICPU_CFG:SPI_MST)
-> -- interrupts : One interrupt, used by the controller.
-> -- #address-cells : <1>, as required by generic SPI binding.
-> -- #size-cells : <0>, also as required by generic SPI binding.
-> -- clocks : phandles for the clocks, see the description of clock-names below.
-> -   The phandle for the "ssi_clk" is required. The phandle for the "pclk" clock
-> -   is optional. If a single clock is specified but no clock-name, it is the
-> -   "ssi_clk" clock. If both clocks are listed, the "ssi_clk" must be first.
-> -
-> -Optional properties:
-> -- clock-names : Contains the names of the clocks:
-> -    "ssi_clk", for the core clock used to generate the external SPI clock.
-> -    "pclk", the interface clock, required for register access. If a clock domain
-> -     used to enable this clock then it should be named "pclk_clkdomain".
-> -- cs-gpios : Specifies the gpio pins to be used for chipselects.
-> -- num-cs : The number of chipselects. If omitted, this will default to 4.
-> -- reg-io-width : The I/O register width (in bytes) implemented by this
-> -  device.  Supported values are 2 or 4 (the default).
-> -
-> -Child nodes as per the generic SPI binding.
-> -
-> -Example:
-> -
-> -	spi@fff00000 {
-> -		compatible = "snps,dw-apb-ssi";
-> -		reg = <0xfff00000 0x1000>;
-> -		interrupts = <0 154 4>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -		clocks = <&spi_m_clk>;
-> -		num-cs = <2>;
-> -		cs-gpios = <&gpio0 13 0>,
-> -			   <&gpio0 14 0>;
-> -	};
-> -
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> new file mode 100644
-> index 000000000000..57a789f5d9f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/spi/snps,dw-apb-ssi.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
+> index 5d91a6dda894..24ebe9e76915 100644
+> --- a/drivers/iio/accel/Kconfig
+> +++ b/drivers/iio/accel/Kconfig
+> @@ -238,7 +238,7 @@ config IIO_ST_ACCEL_3AXIS
+>  	  Say yes here to build support for STMicroelectronics accelerometers:
+>  	  LSM303DLH, LSM303DLHC, LIS3DH, LSM330D, LSM330DL, LSM330DLC,
+>  	  LIS331DLH, LSM303DL, LSM303DLM, LSM330, LIS2DH12, H3LIS331DL,
+> -	  LNG2DM, LIS3DE, LIS2DE12
+> +	  LNG2DM, LIS3DE, LIS2DE12, LIS2HH12
+>  
+>  	  This driver can also be built as a module. If so, these modules
+>  	  will be created:
+> diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
+> index 5b13e293cade..5d356288e001 100644
+> --- a/drivers/iio/accel/st_accel.h
+> +++ b/drivers/iio/accel/st_accel.h
+> @@ -35,6 +35,7 @@ enum st_accel_type {
+>  	LIS2DW12,
+>  	LIS3DHH,
+>  	LIS2DE12,
+> +	LIS2HH12,
+>  	ST_ACCEL_MAX,
+>  };
+>  
+> @@ -59,6 +60,7 @@ enum st_accel_type {
+>  #define LIS3DHH_ACCEL_DEV_NAME		"lis3dhh"
+>  #define LIS3DE_ACCEL_DEV_NAME		"lis3de"
+>  #define LIS2DE12_ACCEL_DEV_NAME		"lis2de12"
+> +#define LIS2HH12_ACCEL_DEV_NAME		"lis2hh12"
+>  
+>  /**
+>  * struct st_sensors_platform_data - default accel platform data
+> diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
+> index e2ec5d127495..43c50167d220 100644
+> --- a/drivers/iio/accel/st_accel_core.c
+> +++ b/drivers/iio/accel/st_accel_core.c
+> @@ -904,6 +904,83 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
+>  		.multi_read_bit = true,
+>  		.bootime = 2,
+>  	},
+> +	{
+> +		.wai = 0x41,
+> +		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
+> +		.sensors_supported = {
+> +			[0] = LIS2HH12_ACCEL_DEV_NAME,
+> +		},
+> +		.ch = (struct iio_chan_spec *)st_accel_16bit_channels,
+> +		.odr = {
+> +			.addr = 0x20,
+> +			.mask = 0x70,
+> +			.odr_avl = {
+> +				{ .hz = 10, .value = 0x01, },
+> +				{ .hz = 50, .value = 0x02, },
+> +				{ .hz = 100, .value = 0x03, },
+> +				{ .hz = 200, .value = 0x04, },
+> +				{ .hz = 400, .value = 0x05, },
+> +				{ .hz = 800, .value = 0x06, },
+> +			},
+> +		},
+> +		.pw = {
+> +			.addr = 0x20,
+> +			.mask = 0x70,
+> +			.value_off = ST_SENSORS_DEFAULT_POWER_OFF_VALUE,
+> +		},
+> +		.enable_axis = {
+> +			.addr = ST_SENSORS_DEFAULT_AXIS_ADDR,
+> +			.mask = ST_SENSORS_DEFAULT_AXIS_MASK,
+> +		},
+> +		.fs = {
+> +			.addr = 0x23,
+> +			.mask = 0x30,
+> +			.fs_avl = {
+> +				[0] = {
+> +					.num = ST_ACCEL_FS_AVL_2G,
+> +					.value = 0x00,
+> +					.gain = IIO_G_TO_M_S_2(61),
+> +				},
+> +				[1] = {
+> +					.num = ST_ACCEL_FS_AVL_4G,
+> +					.value = 0x02,
+> +					.gain = IIO_G_TO_M_S_2(122),
+> +				},
+> +				[2] = {
+> +					.num = ST_ACCEL_FS_AVL_8G,
+> +					.value = 0x03,
+> +					.gain = IIO_G_TO_M_S_2(244),
+> +				},
+> +			},
+> +		},
+> +		.bdu = {
+> +			.addr = 0x20,
+> +			.mask = 0x08,
+> +		},
+> +		.drdy_irq = {
+> +			.int1 = {
+> +				.addr = 0x22,
+> +				.mask = 0x01,
+> +			},
+> +			.int2 = {
+> +				.addr = 0x25,
+> +				.mask = 0x01,
+> +			},
+> +			.addr_ihl = 0x24,
+> +			.mask_ihl = 0x02,
+> +			.stat_drdy = {
+> +				.addr = ST_SENSORS_DEFAULT_STAT_ADDR,
+> +				.mask = 0x07,
+> +			},
+> +		},
+> +		.sim = {
+> +			.addr = 0x23,
+> +			.value = BIT(0),
+> +		},
+> +		.multi_read_bit = true,
+> +		.bootime = 2,
+> +	},
 > +
-> +title: Synopsys DesignWare AMBA 2.0 Synchronous Serial Interface
-> +
-> +maintainers:
-> +  - Mark Brown <broonie@kernel.org>
+>  };
 
-Should be owner for this h/w, not who takes patches.
+I checked that this conforms to the information in the linked datasheet:
 
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mscc,ocelot-spi
-> +              - mscc,jaguar2-spi
-> +      - items:
-> +          - const: amazon,alpine-dw-apb-ssi
-> +      - items:
-> +          - const: snps,dw-apb-ssi
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
 
-This can all be a single 'enum'. You only need 'oneOf' if there are a 
-different number of compatible entries.
-
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +    oneOf:
-> +      - items:
-> +          - description: The register base for the controller.
-> +      - items:
-> +          - description: The register base for the controller.
-> +          - description: For "mscc,<soc>-spi", a second register set is
-> +                         required (named ICPU_CFG:SPI_MST)
-
-No need for the oneOf. The 2nd case is a superset of the 1st.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: One interrupt, used by the controller.
-
-Can drop description. Not specific to this h/w.
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-
-Drop these 2. Covered by spi-controller.yaml.
-
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      phandles for the clocks, see the description of clock-names below.
-> +      The phandle for the "ssi_clk" is required. The phandle for the "pclk"
-> +      clock is optional. If a single clock is specified but no clock-name,
-> +      it is the "ssi_clk" clock. If both clocks are listed, the "ssi_clk"
-> +      must be first.
-
-Rework like:
-
-items:
-  - description: ...
-  - description: ...
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ssi_clk
-> +      - const: pclk
-> +    description: |
-> +      Contains the names of the clocks.
-> +      "ssi_clk", for the core clock used to generate the external SPI clock.
-> +      "pclk", the interface clock, required for register access.
-
-No need to repeat what's in clocks.
-
-> +      If a clock domain used to enable this clock then it should be
-> +      named "pclk_clkdomain".
-
-Should be a constraint:
-
-enum: [pclk, pclk_clkdomain]
-
-But really, it probably should be dropped. I don't understand what the 
-sentence is supposed to mean.
-
-> +
-> +  cs-gpios:
-> +    description: Specifies the gpio pins to be used for chipselects.
-
-Can drop, covered by spi-controller.yaml.
-
-> +
-> +  num-cs:
-> +    default: 4
-> +    description: The number of chipselects. If omitted, this will default to 4.
-
-Constraints?
-
-> +
-> +  reg-io-width:
-> +    default: 4
-> +    description: |
-> +      The I/O register width (in bytes) implemented by this device.
-> +      Supported values are 2 or 4 (the default).
-
-2 or 4?, sounds like constraints.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - clocks
-> +
-> +examples:
-> +  - |
-> +    spi@fff00000 {
-> +          compatible = "snps,dw-apb-ssi";
-> +          reg = <0xfff00000 0x1000>;
-> +          interrupts = <0 154 4>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          clocks = <&spi_m_clk>;
-> +          num-cs = <2>;
-> +          cs-gpios = <&gpio0 13 0>,
-> +                     <&gpio0 14 0>;
-> +    };
+>  
+>  static int st_accel_read_raw(struct iio_dev *indio_dev,
+> diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
+> index 8c489312f668..821854251a7b 100644
+> --- a/drivers/iio/accel/st_accel_i2c.c
+> +++ b/drivers/iio/accel/st_accel_i2c.c
+> @@ -104,6 +104,10 @@ static const struct of_device_id st_accel_of_match[] = {
+>  		.compatible = "st,lis2de12",
+>  		.data = LIS2DE12_ACCEL_DEV_NAME,
+>  	},
+> +	{
+> +		.compatible = "st,lis2hh12",
+> +		.data = LIS2HH12_ACCEL_DEV_NAME,
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, st_accel_of_match);
+> @@ -138,6 +142,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
+>  	{ LIS2DW12_ACCEL_DEV_NAME },
+>  	{ LIS3DE_ACCEL_DEV_NAME },
+>  	{ LIS2DE12_ACCEL_DEV_NAME },
+> +	{ LIS2HH12_ACCEL_DEV_NAME },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(i2c, st_accel_id_table);
 > -- 
-> 2.17.1
-> 
+> 2.26.0
