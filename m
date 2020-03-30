@@ -2,111 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3CC19728C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 04:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3411972C8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 05:29:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728723AbgC3Cf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Mar 2020 22:35:27 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:38600 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728687AbgC3Cf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Mar 2020 22:35:27 -0400
-X-UUID: b6e59cec30534194be135c614879536a-20200330
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=fDyV786cq6YSeUNY8H+6Pi/uU5KR8v5kIaA8/PRFvFQ=;
-        b=XzUasTQvxTtMj0elugmkj1IG9aCSNv1sY5DEnco9TK1eGm4PUduZ751NrCBTh0b0k9on09SfXxewd3I9dRfFsO+WkvOCwVWjXASc7Q09YAahyBZIz0cHwPagY+jJSOWJnjFPmCutDSbw8Dkm7U+tl0ObblP9X6jEMno8EVY56u4=;
-X-UUID: b6e59cec30534194be135c614879536a-20200330
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 319311301; Mon, 30 Mar 2020 10:35:18 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32DR.mediatek.inc
- (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 30 Mar
- 2020 10:35:16 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 30 Mar 2020 10:35:15 +0800
-Message-ID: <1585535724.28859.18.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 2/4] usb: xhci: xhci-plat: Add support for Broadcom
- STB SoC's
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Al Cooper <alcooperx@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <andriy.shevchenko@linux.intel.com>,
-        "Alan Stern" <stern@rowland.harvard.edu>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        <linux-usb@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        "Mathias Nyman" <mathias.nyman@intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 30 Mar 2020 10:35:24 +0800
-In-Reply-To: <20200327204711.10614-3-alcooperx@gmail.com>
-References: <20200327204711.10614-1-alcooperx@gmail.com>
-         <20200327204711.10614-3-alcooperx@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728987AbgC3D3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Mar 2020 23:29:16 -0400
+Received: from mga18.intel.com ([134.134.136.126]:12334 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728107AbgC3D3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Mar 2020 23:29:16 -0400
+IronPort-SDR: 6tT6uq7p3NIff24VgkP16WaqdGIsI0UdTAuh/gMdZfDijT/7U5DMWVsnPVwERmKC5q20Zii+PT
+ MxZb7BWwFdvA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2020 20:29:15 -0700
+IronPort-SDR: y/3bTEDA7n9CRAqYwSzGe6+s7KhfcxDilgaVk+4lIyiGhQ3zIMFTuugiuDePCAxAELkUeka0Su
+ nhg+bWFtBa7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,322,1580803200"; 
+   d="scan'208";a="449657435"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga006.fm.intel.com with ESMTP; 29 Mar 2020 20:29:14 -0700
+Received: from [10.226.38.46] (unknown [10.226.38.46])
+        by linux.intel.com (Postfix) with ESMTP id 07CFF5802A3;
+        Sun, 29 Mar 2020 20:29:11 -0700 (PDT)
+Subject: Re: [PATCH v7 0/2] clk: intel: Add a new driver for a new clock
+ controller IP
+To:     sboyd@kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org
+Cc:     robh@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        yixin.zhu@linux.intel.com, cheol.yong.kim@intel.com
+References: <cover.1585022347.git.rahul.tanwar@linux.intel.com>
+From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Message-ID: <62be98d9-82a1-1062-22e1-4d1d1c008b27@linux.intel.com>
+Date:   Mon, 30 Mar 2020 11:29:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 47B6B53D0CD1B42A1DEB937425994BFCC1374EBB0DC4205D91873D64D7EDBD012000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <cover.1585022347.git.rahul.tanwar@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQpPbiBGcmksIDIwMjAtMDMtMjcgYXQgMTY6NDcgLTA0MDAsIEFsIENvb3BlciB3cm90ZToN
-Cj4gQWRkIHN1cHBvcnQgZm9yIEJyb2FkY29tIFNUQiBTb0MncyB0byB0aGUgeGhjaSBwbGF0Zm9y
-bSBkcml2ZXINCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFsIENvb3BlciA8YWxjb29wZXJ4QGdtYWls
-LmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL3VzYi9ob3N0L3hoY2ktYnJjbS5jIHwgMTYgKysrKysr
-KysrKysrKysrKw0KPiAgZHJpdmVycy91c2IvaG9zdC94aGNpLWJyY20uaCB8IDE2ICsrKysrKysr
-KysrKysrKysNCj4gIGRyaXZlcnMvdXNiL2hvc3QveGhjaS1wbGF0LmMgfCAxMSArKysrKysrKysr
-Kw0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA0MyBpbnNlcnRpb25zKCspDQo+ICBjcmVhdGUgbW9kZSAx
-MDA2NDQgZHJpdmVycy91c2IvaG9zdC94aGNpLWJyY20uYw0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvdXNiL2hvc3QveGhjaS1icmNtLmgNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L3VzYi9ob3N0L3hoY2ktYnJjbS5jIGIvZHJpdmVycy91c2IvaG9zdC94aGNpLWJyY20uYw0KPiBu
-ZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAuLmJmOGMwYmZkMTc4MA0K
-PiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1icmNtLmMNCj4g
-QEAgLTAsMCArMSwxNiBAQA0KPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAN
-Cj4gKy8qIENvcHlyaWdodCAoYykgMjAxOCwgQnJvYWRjb20gKi8NCj4gKw0KPiArI2luY2x1ZGUg
-PGxpbnV4L3VzYi5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L3VzYi9oY2QuaD4NCj4gKw0KPiArI2lu
-Y2x1ZGUgInhoY2kuaCINCj4gKw0KPiAraW50IHhoY2lfcGxhdF9icmNtX2luaXRfcXVpcmsoc3Ry
-dWN0IHVzYl9oY2QgKmhjZCkNCj4gK3sNCj4gKwlzdHJ1Y3QgeGhjaV9oY2QJKnhoY2kgPSBoY2Rf
-dG9feGhjaShoY2QpOw0KPiArDQo+ICsJeGhjaS0+cXVpcmtzIHw9IFhIQ0lfUkVTRVRfT05fUkVT
-VU1FOw0KPiArCXJldHVybiAwOw0KPiArfQ0KPiArDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3Vz
-Yi9ob3N0L3hoY2ktYnJjbS5oIGIvZHJpdmVycy91c2IvaG9zdC94aGNpLWJyY20uaA0KPiBuZXcg
-ZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAuLmU2NDgwMGZhZTRkNQ0KPiAt
-LS0gL2Rldi9udWxsDQo+ICsrKyBiL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1icmNtLmgNCj4gQEAg
-LTAsMCArMSwxNiBAQA0KPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAgKi8N
-Cj4gKy8qIENvcHlyaWdodCAoYykgMjAxOCwgQnJvYWRjb20gKi8NCj4gKw0KPiArI2lmbmRlZiBf
-WEhDSV9CUkNNX0gNCj4gKyNkZWZpbmUgX1hIQ0lfQlJDTV9IDQo+ICsNCj4gKyNpZiBJU19FTkFC
-TEVEKENPTkZJR19VU0JfWEhDSV9CUkNNKQ0KPiAraW50IHhoY2lfcGxhdF9icmNtX2luaXRfcXVp
-cmsoc3RydWN0IHVzYl9oY2QgKmhjZCk7DQo+ICsjZWxzZQ0KPiArc3RhdGljIGlubGluZSBpbnQg
-eGhjaV9wbGF0X2JyY21faW5pdF9xdWlyayhzdHJ1Y3QgdXNiX2hjZCAqaGNkKQ0KPiArew0KPiAr
-CXJldHVybiAwOw0KPiArfQ0KPiArI2VuZGlmDQo+ICsjZW5kaWYgLyogX1hIQ0lfQlJDTV9IICov
-DQo+ICsNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1wbGF0LmMgYi9kcml2
-ZXJzL3VzYi9ob3N0L3hoY2ktcGxhdC5jDQo+IGluZGV4IDMxNWI0NTUyNjkzYy4uM2U5MGExMjA3
-ODAzIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktcGxhdC5jDQo+ICsrKyBi
-L2RyaXZlcnMvdXNiL2hvc3QveGhjaS1wbGF0LmMNCj4gQEAgLTIyLDYgKzIyLDcgQEANCj4gIA0K
-PiAgI2luY2x1ZGUgInhoY2kuaCINCj4gICNpbmNsdWRlICJ4aGNpLXBsYXQuaCINCj4gKyNpbmNs
-dWRlICJ4aGNpLWJyY20uaCINCj4gICNpbmNsdWRlICJ4aGNpLW12ZWJ1LmgiDQo+ICAjaW5jbHVk
-ZSAieGhjaS1yY2FyLmgiDQo+ICANCj4gQEAgLTExMiw2ICsxMTMsMTAgQEAgc3RhdGljIGNvbnN0
-IHN0cnVjdCB4aGNpX3BsYXRfcHJpdiB4aGNpX3BsYXRfcmVuZXNhc19yY2FyX2dlbjMgPSB7DQo+
-ICAJU0VUX1hIQ0lfUExBVF9QUklWX0ZPUl9SQ0FSKFhIQ0lfUkNBUl9GSVJNV0FSRV9OQU1FX1Yz
-KQ0KPiAgfTsNCj4gIA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCB4aGNpX3BsYXRfcHJpdiB4aGNp
-X3BsYXRfYnJjbSA9IHsNCj4gKwkuaW5pdF9xdWlyayA9IHhoY2lfcGxhdF9icmNtX2luaXRfcXVp
-cmssDQo+ICt9Ow0KPiArDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCB1c2Jf
-eGhjaV9vZl9tYXRjaFtdID0gew0KPiAgCXsNCj4gIAkJLmNvbXBhdGlibGUgPSAiZ2VuZXJpYy14
-aGNpIiwNCj4gQEAgLTE0Nyw2ICsxNTIsMTIgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZp
-Y2VfaWQgdXNiX3hoY2lfb2ZfbWF0Y2hbXSA9IHsNCj4gIAl9LCB7DQo+ICAJCS5jb21wYXRpYmxl
-ID0gInJlbmVzYXMscmNhci1nZW4zLXhoY2kiLA0KPiAgCQkuZGF0YSA9ICZ4aGNpX3BsYXRfcmVu
-ZXNhc19yY2FyX2dlbjMsDQo+ICsJfSwgew0KPiArCQkuY29tcGF0aWJsZSA9ICJicmNtLHhoY2kt
-YnJjbS12MiIsDQo+ICsJCS5kYXRhID0gJnhoY2lfcGxhdF9icmNtLA0KVGhpcyBvbmUgaXMgbm90
-IGRlc2NyaWJlZCBpbiBkdC1iaW5kaW5nLg0KPiArCX0sIHsNCj4gKwkJLmNvbXBhdGlibGUgPSAi
-YnJjbSxiY203NDQ1LXhoY2kiLA0KPiArCQkuZGF0YSA9ICZ4aGNpX3BsYXRfYnJjbSwNCmJjbTc0
-NDUgaXMgYSBTb0MgbmFtZSA/IA0KdGhlIHF1aXJrIG9ubHkgaGFwcGVucyBvbiB0aGlzIG9uZT8g
-b3Igb24gYWxsIFNvQ3Mgd2l0aCBCcm9hZGNvbSB4SElDDQpJUD8NCg0KPiAgCX0sDQo+ICAJe30s
-DQo+ICB9Ow0KDQo=
+
+Hi Stephen Boyd,
+
+After few rounds of review comments/updates from you & other reviewers,
+this patch series seems to be lost :-\. No further review concerns or
+acks from past 2 months.
+
+I am wondering if this is due to any outstanding concerns/expectations
+or it is just bad luck. Since you are the clk maintainer, may i ask you
+to clarify what is it that i am missing. Thanks.
+
+Regards,
+Rahul
+
+On 24/3/2020 12:05 pm, Rahul Tanwar wrote:
+> Hi,
+>
+> This series adds clock driver for Clock Generation Unit(CGU) of
+> Lightning Mountain(LGM) SoC.
+>
+> Patch 1 adds bindings document & include file for CGU.
+> Patch 2 adds common clock framework based clock driver for CGU.
+>
+> These patches are baselined upon Linux 5.6-rc1 at below Git link:
+> git git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
+>
+> v7:
+> - Fix a mistake in comments explaining structure fields.
+>
+> v6:
+> - Resolve Kconfig dependencies issues (Randy Dunlap)
+>
+> v5:
+> - Address review concerns - mainly below mentioned. (Stephen Boyd)
+> - Improve commit message, add COMPILE_TEST in KConfig dependency.
+> - Remove unused header include files, drop unnecessary casts.
+> - Switch to using readl_poll_timeout() instead of implementing timeout routine.
+> - Avoid using small functions which are called just once. Inline them or
+>   remove them.
+> - const static --> static const
+> - Fix coding style/convention related review concerns.
+> - Use __iomem for all IO addresses variables.
+> - Consolidate clk_enable & clk_disable ops into a common clk_enable_disable
+>   routine to avoid redundant code.
+> - Remove unnecessary dev pointers for clk data structures.
+> - Redesign code to use new way of specifying clk_parents i.e. use
+>   clk_parent_data.fw_name instead of older parent_name strings.
+> - Switch from raw_spin_locks() to normal spin_locks() and realign locking.
+> - Drop __initconst, __init, __refdata.
+> - Reorder patch series - make dt-binding patch as first patch.
+> - Add pointer to include file in dt-bindings document.
+> - Remove CLK_IS_CRITICAL flag for clks for which IGNORE_UNUSED flag is enough.
+>   Add comments for clks which are marked as CRITICAL.
+> - Fix $id path in dt-bindings - drop bindings. (Rob Herring).
+> - Add Reviewed-by tag from Rob Herring. Thanks Rob.
+>
+> v4:
+> - Add drivers/clk/x86/Kconfig file which got missed in v3 by mistake.
+>
+> v3:
+> - Address review concerns:
+>   Add Kconfig entry in x86 folder instead of modifying clk/Kconfig. (Andy Shevchenko)
+>   Fix coding style/convention related concerns. (Andy Shevchenko)
+>   Improve description, licensing info, rename node name correctly in dt bindings
+>   document & remove CLK_NR_CLKS from dt-bindings header file. (Stephen Boyd)
+>   Fix a build warning reported by kbuild test robot & Nathan Chancellor
+> - Add few new clocks & rename few existing clocks.
+> - Add more ops for ddiv & divider clk_ops.
+> - Fix few minor bugs.
+> - Use CLK_IS_CRITICAL flag for clocks which shall never be disabled.
+>
+> v2:
+> - Move the driver to x86 folder.
+> - Remove syscon usage.
+> - Remove regmap based access. Use direct readl()/write() instead. Add spinlocks.
+> - Change all enum values to capitals.
+> - Rename all data structures & functions from intel_* to lgm_*.
+> - Remove multiple header files. Keep only one header file.
+> - Make probe fail when any of the clk/pll registration fails.
+> - Fix few bugs with clk_init_data assignement.
+> - Address review concerns for code quality/style/convention.
+>
+> v1:
+> - Initial version.
+>
+>
+> Rahul Tanwar (1):
+>   dt-bindings: clk: intel: Add bindings document & header file for CGU
+>
+> rtanwar (1):
+>   clk: intel: Add CGU clock driver for a new SoC
+>
+>  .../devicetree/bindings/clock/intel,cgu-lgm.yaml   |  44 ++
+>  drivers/clk/Kconfig                                |   1 +
+>  drivers/clk/x86/Kconfig                            |   8 +
+>  drivers/clk/x86/Makefile                           |   1 +
+>  drivers/clk/x86/clk-cgu-pll.c                      | 156 +++++
+>  drivers/clk/x86/clk-cgu.c                          | 636 +++++++++++++++++++++
+>  drivers/clk/x86/clk-cgu.h                          | 335 +++++++++++
+>  drivers/clk/x86/clk-lgm.c                          | 492 ++++++++++++++++
+>  include/dt-bindings/clock/intel,lgm-clk.h          | 165 ++++++
+>  9 files changed, 1838 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/intel,cgu-lgm.yaml
+>  create mode 100644 drivers/clk/x86/Kconfig
+>  create mode 100644 drivers/clk/x86/clk-cgu-pll.c
+>  create mode 100644 drivers/clk/x86/clk-cgu.c
+>  create mode 100644 drivers/clk/x86/clk-cgu.h
+>  create mode 100644 drivers/clk/x86/clk-lgm.c
+>  create mode 100644 include/dt-bindings/clock/intel,lgm-clk.h
+>
 
