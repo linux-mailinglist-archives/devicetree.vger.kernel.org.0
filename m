@@ -2,77 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D760419854C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 22:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15871198552
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2020 22:23:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728335AbgC3UT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Mar 2020 16:19:27 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33337 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727170AbgC3UT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 16:19:27 -0400
-Received: by mail-io1-f66.google.com with SMTP id o127so19276059iof.0;
-        Mon, 30 Mar 2020 13:19:27 -0700 (PDT)
+        id S1727750AbgC3UXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Mar 2020 16:23:24 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:38842 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727170AbgC3UXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Mar 2020 16:23:24 -0400
+Received: by mail-il1-f193.google.com with SMTP id n13so9879405ilm.5;
+        Mon, 30 Mar 2020 13:23:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4+B5KPfmqHi4jL+IOh4GSbmNe+HhynnKacqo47ghy28=;
-        b=P+m+x/ileLseCPwrm5z9HtMmH2vIjmCSBx60Eo2G5ybGGY762XpyL64AMKh84HVHty
-         RKmEh8bUqyFSNgEbkAuqdcBswQi6MTtiru9kgMTzKbU+F/7+5hesXJ89cXuNt1suze44
-         C3tFpcAWvvi0TRTHocWIPFgdTSJjJTbid6hb+z9hLmwQ3dIAXh97HCl4LysMEHcuJ8iK
-         XFrwG4HaCycSXrV+dIqpMBpyGRcmm26lHRJ7lITspiifaotaDki/X8HMctWgXfPfuKEr
-         hA3aAaRuozZc5ITQhnIU0KnaPMLLWQZXbcth2/ziSq4b1FWLigLtYv5aWqqudulZ8KKZ
-         ISUA==
-X-Gm-Message-State: ANhLgQ2G5OmCPqIhpzUA0V42ZfyA6OCeNH7izlvsL9KS32RKfbLorgRY
-        jePBRN305a9E4K1smOjLmg==
-X-Google-Smtp-Source: ADFU+vsaH8Pv63jLoRKaCrDwfKhRCRjRZ+DrReAXWpjE1MVKJ4jLGzqYS6HC6HvOPgJN5qW6RrSkmQ==
-X-Received: by 2002:a5e:8703:: with SMTP id y3mr12021465ioj.119.1585599566348;
-        Mon, 30 Mar 2020 13:19:26 -0700 (PDT)
+        bh=ATU7uGxXPYRDHpKRltXUHSrkmJcvmcEFJ9x1hejSj4Q=;
+        b=YFCTQwjmanDBN5+S8Z15ihi4k7FxZYbKuJQ42ykIHiPhVvGQVevAS99bPcmzG1JCCO
+         b9rECmoJXvdJImobXMW0ZXtFqtemEodBF9mitxgWK0UEseq79zuXl5Q5Eu7Kfzh5ZUSG
+         vNSp7spaDsw2f/ugAqB0rqsiFejM5GZysEJts3NRilhiEGUAuTy9bHvAvqL7+P1OYW2U
+         9bmIu2MwSqZV1t+1aI1BoW6gHZ7m/jeP1ZVf3cZm5OnJmjkSFRy5cOwdls24dvx1a0+Z
+         bXz6XSFeWyKcPz7boJPN7UucwTK5tQCPOJxbaiX62T9swIOODlKpZjZGV/irN3WaUcBm
+         SWDA==
+X-Gm-Message-State: ANhLgQ1bu21HfdPK/C1PWxU3kscvG4d2oqIzJILNycXg9mLr1fD+YIyB
+        SIsaP2s1l3w6z/0dbEufx+qbFZ8=
+X-Google-Smtp-Source: ADFU+vt7GlXUI+dwK2GfTS1Un6SfBA2LRvKChI2EYuVBmxrE9W6bpCd7iZvCpfWOJdLf7P72Mo/S8Q==
+X-Received: by 2002:a92:83ca:: with SMTP id p71mr12294078ilk.278.1585599803046;
+        Mon, 30 Mar 2020 13:23:23 -0700 (PDT)
 Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id s69sm5157579ild.70.2020.03.30.13.19.24
+        by smtp.gmail.com with ESMTPSA id i3sm4289598iow.11.2020.03.30.13.23.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2020 13:19:25 -0700 (PDT)
-Received: (nullmailer pid 8985 invoked by uid 1000);
-        Mon, 30 Mar 2020 20:19:23 -0000
-Date:   Mon, 30 Mar 2020 14:19:23 -0600
+        Mon, 30 Mar 2020 13:23:22 -0700 (PDT)
+Received: (nullmailer pid 14413 invoked by uid 1000);
+        Mon, 30 Mar 2020 20:23:21 -0000
+Date:   Mon, 30 Mar 2020 14:23:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: pwm: renesas-tpu: Document more R-Car Gen2
- support
-Message-ID: <20200330201923.GA8929@bogus>
-References: <20200316101453.27745-1-geert+renesas@glider.be>
+To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     kishon@ti.com, mark.rutland@arm.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: intel: Add documentation for Keem
+ Bay eMMC PHY
+Message-ID: <20200330202321.GA9386@bogus>
+References: <20200316103726.16339-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20200316103726.16339-2-wan.ahmad.zainie.wan.mohamad@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200316101453.27745-1-geert+renesas@glider.be>
+In-Reply-To: <20200316103726.16339-2-wan.ahmad.zainie.wan.mohamad@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Mar 2020 11:14:53 +0100, Geert Uytterhoeven wrote:
-> All R-Car Gen2 SoCs have a Renesas Timer Pulse Unit.
-> Document support for the missing variants.
+On Mon, Mar 16, 2020 at 06:37:25PM +0800, Wan Ahmad Zainie wrote:
+> Document Intel Keem Bay eMMC PHY DT bindings.
 > 
-> No driver change is needed due to the fallback compatible string.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
 > ---
-> Tested on R-Car M2-W.
-> ---
->  Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/phy/intel,keembay-emmc-phy.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml
+> new file mode 100644
+> index 000000000000..af1d62fc8323
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 
-Applied, thanks.
+Dual license new bindings:
 
-Rob
+(GPL-2.0-only OR BSD-2-Clause)
+
+> +# Copyright 2020 Intel Corporation
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/intel,keembay-emmc-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Intel Keem Bay eMMC PHY
+> +
+> +maintainers:
+> +  - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - intel,keembay-emmc-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: emmcclk
+> +
+> +  intel,syscon:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+
+Make this binding  a child of the syscon and get rid of this.
+
+> +    description:
+> +      A phandle to a syscon device used to access core/phy configuration
+> +      registers.
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - intel,syscon
+> +  - "#phy-cells"
+> +
+> +examples:
+> +  - |
+> +    mmc_phy_syscon: syscon@20290000 {
+> +          compatible = "simple-mfd", "syscon";
+> +          reg = <0x0 0x20290000 0x0 0x54>;
+> +    };
+> +
+> +    emmc_phy: mmc_phy@20290000 {
+
+phy@...
+
+> +          compatible = "intel,keembay-emmc-phy";
+> +          reg = <0x0 0x20290000 0x0 0x54>;
+
+Here you have overlapping register regions. Don't do that.
+
+Given they are the same size, why do you need the syscon at all?
+
+> +          clocks = <&mmc>;
+> +          clock-names = "emmcclk";
+> +          intel,syscon = <&mmc_phy_syscon>;
+> +          #phy-cells = <0>;
+> +    };
+> -- 
+> 2.17.1
+> 
