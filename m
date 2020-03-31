@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D593198E83
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 10:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E5DF198EA7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 10:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730194AbgCaIc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 04:32:26 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:61219 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726397AbgCaIcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Mar 2020 04:32:25 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02V8RqFb026609;
-        Tue, 31 Mar 2020 10:32:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=AXPGvtsGWLkKS+I+Kb5oNNnn9+C77me7iOpHlW+3zcQ=;
- b=Ik2dFwaCIuvyFsWAJweQXa25LSe/sQYl16/nENEW6qp/+KQHEr3/U1+MHTrx2yXyA9T5
- QeEdY06WYdtG5Zo5Vfki1OTmtqZe1yKLYVj1PyHuLwDEqwakJ0WrM0ywWVlHyahoZ1k1
- YQDT3hFJg3QxcVrC7Zrf8z+vUfIzfhDEyugF5v335QiAVto1NEDSUOQq1HAji/PDUBtk
- ks2j4Ay1BJPHhHGE7LCd3dLLWReOLNzKezWK9eA7xP8404jZQWb92yAzp+ZJjLTC+IPy
- SgxhuRbUnyXs5YQdCjvkWfndIc2hGy1qu8EuE749JeSce2CYHtHcF73YsDXLXxGWhB1H yA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 301w80wtq5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Mar 2020 10:32:09 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 74832100034;
-        Tue, 31 Mar 2020 10:32:08 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 65D6A21E675;
-        Tue, 31 Mar 2020 10:32:08 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 31 Mar 2020 10:32:07
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <fabrice.gasnier@st.com>, <lee.jones@linaro.org>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v5 6/6] ARM: mach-stm32: select low power timer for STM32MP157
-Date:   Tue, 31 Mar 2020 10:31:46 +0200
-Message-ID: <20200331083146.10462-7-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200331083146.10462-1-benjamin.gaignard@st.com>
-References: <20200331083146.10462-1-benjamin.gaignard@st.com>
+        id S1730099AbgCaIhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 04:37:35 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:42827 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730070AbgCaIhe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 04:37:34 -0400
+Received: by mail-wr1-f67.google.com with SMTP id h15so24766070wrx.9
+        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2020 01:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bw9s/mMNE/c7asckCQOQ8iAFN4jSk9KCdHX9uwgrhEw=;
+        b=XTvtKtJFWmp2Zmc3VHP/lvfCJ1inAsyaqylWIh4Ss2EKA+1ovJ1tZmg5c1aXZ3q1zH
+         goXa/80FrVAlCdEsamIa0Jor0NdqbZbeODuoBI4nBsVZjN54/VQXvZWNDd3Yt5c8Zzog
+         y+6S1xkEXg9k9OHLfXBnbyNzBRQEEvi1RUL7KPol2Ldpc6jaI+0wWqYOUDr5VxOjlLOG
+         Thgq/dr9FhALeoYg9RGCzIZhLz0emEdHlnoFSv3kct7Gz3xgQ4um7eDgk/DyxIVFTAyN
+         KGD7UbQHUcme5r1KIMbkd1YQI/FYPlMhhp4FeOk12xCgoCxR9ciQpHntE1wf1+flNhUK
+         5k/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bw9s/mMNE/c7asckCQOQ8iAFN4jSk9KCdHX9uwgrhEw=;
+        b=aqHtWMpIrhbRlbulPSAyGqjiVlG+/jKVBx5SW1ti/Iig6CizrfhVrRmBElf2DbIXQ2
+         1G+cyj5Z0bfRS7i7uv0G7NPIRPDFybcLrXumCG6F+3LkqCZYn2ORRCNT1j2kIbXNLK8w
+         LBNHyv1n3awcIFam0OOgDb4Szf8WVbupedoh9LQMHdpbVZhHdhJR8QbhN4ygMWd1LrR1
+         NP671gbVk67FHzAvpmEyoFMT/7RpG1fwouUOOmkQ/JsF4HnbIIx2xNGqhKXh9QkE5zXx
+         uld+TZj+2Hp7XgKjVSG+S8nj4HbNLRrQk7hqdAjsDewyPdAKCnQGCaWnmM8ntAenJJuP
+         /9LQ==
+X-Gm-Message-State: ANhLgQ3zTNeT0aemDfNp9qUaXcuZxK1e75A3xxVy/rpj1E2edmfaaeWB
+        mNBl8ni1ah4OWfhbLxQ7B5PVTQyekgyF9w==
+X-Google-Smtp-Source: ADFU+vvfGC1b/+1ygxgUrGk28VZ+Ia8a+bilQBp6RcBH82KuSbgACrUme3dO63WJl/H4m1H7wNagzQ==
+X-Received: by 2002:adf:b307:: with SMTP id j7mr20134382wrd.128.1585643852432;
+        Tue, 31 Mar 2020 01:37:32 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
+        by smtp.gmail.com with ESMTPSA id j188sm2955870wmj.36.2020.03.31.01.37.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Mar 2020 01:37:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     devicetree@vger.kernel.org
+Cc:     benjamin.gaignard@st.com, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2] dt-bindings: usb: dwc2: fix bindings for amlogic,meson-gxbb-usb
+Date:   Tue, 31 Mar 2020 10:37:29 +0200
+Message-Id: <20200331083729.24906-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG6NODE2.st.com (10.75.127.17) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-03-31_03:2020-03-30,2020-03-31 signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make MACH_STM32MP157 select CLKSRC_STM32_LP to get a broadcast timer.
+The amlogic,meson-gxbb-usb compatible needs snps,dwc2 aswell like other
+Amlogic SoC.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+Fixes: f3ca745d8a0e ("dt-bindings: usb: Convert DWC2 bindings to json-schema")
+Reviewed-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/mach-stm32/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/usb/dwc2.yaml | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
-index 57699bd8f107..d78f55b7b1d0 100644
---- a/arch/arm/mach-stm32/Kconfig
-+++ b/arch/arm/mach-stm32/Kconfig
-@@ -46,6 +46,7 @@ if ARCH_MULTI_V7
- config MACH_STM32MP157
- 	bool "STMicroelectronics STM32MP157"
- 	select ARM_ERRATA_814220
-+	select CLKSRC_STM32_LP
- 	default y
- 
- endif # ARMv7-A
+diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+index 71cf7ba32237..b5303d918e70 100644
+--- a/Documentation/devicetree/bindings/usb/dwc2.yaml
++++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+@@ -44,14 +44,11 @@ properties:
+       - const: lantiq,arx100-usb
+       - const: lantiq,xrx200-usb
+       - items:
+-          - const: amlogic,meson8-usb
+-          - const: snps,dwc2
+-      - items:
+-          - const: amlogic,meson8b-usb
+-          - const: snps,dwc2
+-      - const: amlogic,meson-gxbb-usb
+-      - items:
+-          - const: amlogic,meson-g12a-usb
++          - enum:
++            - amlogic,meson8-usb
++            - amlogic,meson8b-usb
++            - amlogic,meson-gxbb-usb
++            - amlogic,meson-g12a-usb
+           - const: snps,dwc2
+       - const: amcc,dwc-otg
+       - const: snps,dwc2
 -- 
-2.15.0
+2.22.0
 
