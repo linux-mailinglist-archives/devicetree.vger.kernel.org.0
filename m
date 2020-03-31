@@ -2,102 +2,407 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A6C199DBD
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 20:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7751199DC7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 20:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727390AbgCaSIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 14:08:32 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:1679 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726199AbgCaSIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 14:08:32 -0400
-X-UUID: 174587bf37f543c0bcedc8c9f412e457-20200401
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=B2WGXD+okc3OAMherNCj95maawSKPkr+yhClbmy/cpc=;
-        b=gO/eZcWlGlRN12xXvBy/Jx3LzDA4HGqr7peHlErgIFjkcMhPpGsJPjCoVhHnvj4P3uqMCsunbu58eLcVqadc4/813e30sCzGlcVl79yPGXmxDs/8L5SVXfoTcP0squHjpiOSrKB/zVuMnIXK4kUzZ1Pp0r7ac4NyS8sGvvkZvnI=;
-X-UUID: 174587bf37f543c0bcedc8c9f412e457-20200401
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <weijie.gao@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 421072275; Wed, 01 Apr 2020 02:08:19 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 1 Apr
- 2020 02:08:15 +0800
-Received: from mcddlt001.mediatek.inc (10.19.240.15) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 1 Apr 2020 02:08:13 +0800
-From:   Weijie Gao <weijie.gao@mediatek.com>
-To:     <linux-mtd@lists.infradead.org>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Piotr Sroka <piotrs@cadence.com>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Weijie Gao <weijie.gao@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: add documentation for mt7621-nand driver
-Date:   Wed, 1 Apr 2020 02:07:59 +0800
-Message-ID: <1585678079-5999-2-git-send-email-weijie.gao@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1585678079-5999-1-git-send-email-weijie.gao@mediatek.com>
-References: <1585678079-5999-1-git-send-email-weijie.gao@mediatek.com>
+        id S1725947AbgCaSJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 14:09:11 -0400
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:38802 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726208AbgCaSJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 14:09:11 -0400
+Received: by mail-pj1-f66.google.com with SMTP id m15so1404131pje.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2020 11:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0m7IBpCXDOsGY+DSPyHx/xVYlTu36NeTdj5dYNKeXyM=;
+        b=Jf60Gj0y7W+cyaBNFOzgemAgYw1uMEq3IlcSIzq9v1BofdlUZN/M99Ao+8+sMjnJYv
+         qzRUJu/MiBIF1Ia72bC7VxMY4OEjyWro8FmpvWlvZQtcdp1xUYB8I1I3/GZDe5+SUhaF
+         9MoJSDrFKsUHsm8K4RArk7UtKmEMVkFZPNiz/KT34/NzYlZ6vw2Kap0Hiiq4VJ6w62uQ
+         k5j84nspCKXerWktQfCkMgP2P9FhrQRQ2QgbQMvRaFOa62+ByjOxy4MJi92pU10yyBhb
+         hXv+YiE26NM0X3tqKWAmZ4TVF3rJUT2XKx8EMkVCF7iuMFMPYzNB0YCbc4L4vsLBITbg
+         5Btw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0m7IBpCXDOsGY+DSPyHx/xVYlTu36NeTdj5dYNKeXyM=;
+        b=mRAv/iy6LItKhOS9S8cCbZ5b6iICsZSNvqrBK46JPmQGltSPj5mpKlNzZ994E8TysR
+         wpV0R6gynhHTQuvsu8n1OQZcrBdZrZCRfbq1M2r1f/DwoCPJhhgNUE7zedbUo19ELHrI
+         mesuxRQS1JDGzE/DllPxtBv+eOmf1jpQyA/XTD8aVmv/9KeDLlDucVvzxaIdQwGqRTTY
+         l2CbcEp6NvdMypgrkZwRKtgstP6sBghUtvpDRqtN8EA/xcfyUv7nx+hwF3T78nfwhzM8
+         7426o/TH3Fy08iTqP8gOYsTLhFb+LF84PzWvKFtnaPBJSk8C0vxPSP709tD4n3hCEE6O
+         qO7g==
+X-Gm-Message-State: ANhLgQ2wrcKH1QATU1IPjNOhSUlQEu+vdhIatBWbvgerfRAx9IqSfrPd
+        skn/X9G2ZMMcp5xd6eZgWLt4t+CsQTuTUk1No1nLDw==
+X-Google-Smtp-Source: ADFU+vvzhxk52SK4jXu2EJF8XW24gPNMWVQvcEjxsdA0MOrrYuSfyVeAUnGaSwdYVlkamVi0/gm54g1mhEF/XKMfKts=
+X-Received: by 2002:a17:902:8ec1:: with SMTP id x1mr18956525plo.325.1585678148400;
+ Tue, 31 Mar 2020 11:09:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 3384A60C0D5DDDAA02D07F0CCC8D72BA3C78905B95A6884107B1114CBA68EF0C2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <cover.1585656143.git.matti.vaittinen@fi.rohmeurope.com> <285da2166eadc1d46667dd9659d8dae74d28b0b9.1585656143.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <285da2166eadc1d46667dd9659d8dae74d28b0b9.1585656143.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 31 Mar 2020 11:08:56 -0700
+Message-ID: <CAFd5g460hY9uOtwicWHK2rhgLdL+gStbKGmLN5KLWi5JXDQEog@mail.gmail.com>
+Subject: Re: [PATCH v7 04/10] lib/test_linear_ranges: add a test for the 'linear_ranges'
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mikko Mutanen <mikko.mutanen@fi.rohmeurope.com>,
+        Markus Laine <markus.laine@fi.rohmeurope.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>, Borislav Petkov <bp@suse.de>,
+        Changbin Du <changbin.du@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        David Gow <davidgow@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Gary Hook <Gary.Hook@amd.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Mikhail Zaslonko <zaslonko@linux.ibm.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        Tal Gilboa <talgi@mellanox.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGRzIGRvY3VtZW50YXRpb24gZm9yIE1lZGlhVGVrIE1UNzYyMSBOQU5EIGZs
-YXNoIGNvbnRyb2xsZXINCmRyaXZlci4NCg0KU2lnbmVkLW9mZi1ieTogV2VpamllIEdhbyA8d2Vp
-amllLmdhb0BtZWRpYXRlay5jb20+DQotLS0NCiAuLi4vYmluZGluZ3MvbXRkL21lZGlhdGVrLG10
-NzYyMS1uZmMueWFtbCAgICAgfCA2OCArKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5n
-ZWQsIDY4IGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tZWRpYXRlayxtdDc2MjEtbmZjLnlhbWwNCg0KZGlmZiAt
-LWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbWVkaWF0ZWssbXQ3
-NjIxLW5mYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tZWRp
-YXRlayxtdDc2MjEtbmZjLnlhbWwNCm5ldyBmaWxlIG1vZGUgMTAwNjQ0DQppbmRleCAwMDAwMDAw
-MDAwMDAuLjFjYTBjNWU5NWU0Yw0KLS0tIC9kZXYvbnVsbA0KKysrIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tZWRpYXRlayxtdDc2MjEtbmZjLnlhbWwNCkBAIC0wLDAg
-KzEsNjggQEANCisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQorJVlBTUwgMS4y
-DQorLS0tDQorJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9tdGQvbWVkaWF0ZWss
-bXQ3NjIxLW5mYy55YW1sIw0KKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNj
-aGVtYXMvY29yZS55YW1sIw0KKw0KK3RpdGxlOiBNZWRpYVRlayBNVDc2MjEgU29DIE5BTkQgRmxh
-c2ggQ29udHJvbGxlciAoTkZDKSBEVCBiaW5kaW5nDQorDQorbWFpbnRhaW5lcnM6DQorICAtIFdl
-aWppZSBHYW8gPHdlaWppZS5nYW9AbWVkaWF0ZWsuY29tPg0KKw0KK2Rlc2NyaXB0aW9uOiB8DQor
-ICBUaGlzIGRyaXZlciB1c2VzIGEgc2luZ2xlIG5vZGUgdG8gZGVzY3JpYmUgYm90aCBOQU5EIEZs
-YXNoIGNvbnRyb2xsZXINCisgIGludGVyZmFjZSAoTkZJKSBhbmQgRUNDIGVuZ2luZSBmb3IgTVQ3
-NjIxIFNvQy4NCisgIE1UNzYyMSBzdXBwb3J0cyBvbmx5IG9uZSBjaGlwIHNlbGVjdC4NCisNCitw
-cm9wZXJ0aWVzOg0KKyAgIiNhZGRyZXNzLWNlbGxzIjogZmFsc2UNCisgICIjc2l6ZS1jZWxscyI6
-IGZhbHNlDQorDQorICBjb21wYXRpYmxlOg0KKyAgICBlbnVtOg0KKyAgICAgIC0gbWVkaWF0ZWss
-bXQ3NjIxLW5mYw0KKw0KKyAgcmVnOg0KKyAgICBpdGVtczoNCisgICAgICAtIGRlc2NyaXB0aW9u
-OiBSZWdpc3RlciBiYXNlIG9mIE5GSSBjb3JlDQorICAgICAgLSBkZXNjcmlwdGlvbjogUmVnaXN0
-ZXIgYmFzZSBvZiBFQ0MgZW5naW5lDQorDQorICByZWctbmFtZXM6DQorICAgIGl0ZW1zOg0KKyAg
-ICAgIC0gY29uc3Q6IG5maQ0KKyAgICAgIC0gY29uc3Q6IGVjYw0KKw0KKyAgY2xvY2tzOg0KKyAg
-ICBpdGVtczoNCisgICAgICAtIGRlc2NyaXB0aW9uOiBTb3VyY2UgY2xvY2sgZm9yIE5GSSBjb3Jl
-LCBmaXhlZCAxMjVNSHoNCisNCisgIGNsb2NrLW5hbWVzOg0KKyAgICBpdGVtczoNCisgICAgICAt
-IGNvbnN0OiBuZmlfY2xrDQorDQorcmVxdWlyZWQ6DQorICAtIGNvbXBhdGlibGUNCisgIC0gcmVn
-DQorICAtIHJlZy1uYW1lcw0KKyAgLSBjbG9ja3MNCisgIC0gY2xvY2stbmFtZXMNCisNCitleGFt
-cGxlczoNCisgIC0gfA0KKyAgICBuZmljbG9jazogbmZpY2xvY2sgew0KKyAgICAJI2Nsb2NrLWNl
-bGxzID0gPDA+Ow0KKyAgICAJY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQorDQorICAgIAlj
-bG9jay1mcmVxdWVuY3kgPSA8MTI1MDAwMDAwPjsNCisgICAgfTsNCisNCisgICAgbmFuZEAxZTAw
-MzAwMCB7DQorICAgIAljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10NzYyMS1uZmMiOw0KKw0KKyAg
-ICAJcmVnID0gPDB4MWUwMDMwMDAgMHg4MDANCisgICAgCSAgICAgICAweDFlMDAzODAwIDB4ODAw
-PjsNCisgICAgCXJlZy1uYW1lcyA9ICJuZmkiLCAiZWNjIjsNCisNCisgICAgCWNsb2NrcyA9IDwm
-bmZpY2xvY2s+Ow0KKyAgICAJY2xvY2stbmFtZXMgPSAibmZpX2NsayI7DQorICAgIH07DQotLSAN
-CjIuMTcuMQ0K
+On Tue, Mar 31, 2020 at 5:23 AM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
+>
+>     Add a KUnit test for the linear_ranges helper.
+>
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
+One minor nit, other than that:
+
+Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
+
+> ---
+>
+> No changes since v6
+>
+>  lib/Kconfig.debug        |  11 ++
+>  lib/Makefile             |   1 +
+>  lib/test_linear_ranges.c | 228 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 240 insertions(+)
+>  create mode 100644 lib/test_linear_ranges.c
+>
+> diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+> index 69def4a9df00..32f355db4163 100644
+> --- a/lib/Kconfig.debug
+> +++ b/lib/Kconfig.debug
+> @@ -2053,6 +2053,17 @@ config LIST_KUNIT_TEST
+>
+>           If unsure, say N.
+>
+> +config LINEAR_RANGES_TEST
+> +       tristate "KUnit test for linear_ranges"
+> +       depends on KUNIT
+> +       help
+> +         This builds the linear_ranges unit test, which runs on boot.
+> +         Tests the linear_ranges logic correctness.
+> +         For more information on KUnit and unit tests in general please refer
+> +         to the KUnit documentation in Documentation/dev-tools/kunit/.
+> +
+> +         If unsure, say N.
+> +
+>  config TEST_UDELAY
+>         tristate "udelay test driver"
+>         help
+> diff --git a/lib/Makefile b/lib/Makefile
+> index 18c3d313872e..200aa1780f92 100644
+> --- a/lib/Makefile
+> +++ b/lib/Makefile
+> @@ -301,3 +301,4 @@ obj-$(CONFIG_OBJAGG) += objagg.o
+>
+>  # KUnit tests
+>  obj-$(CONFIG_LIST_KUNIT_TEST) += list-test.o
+> +obj-$(CONFIG_LINEAR_RANGES_TEST) += test_linear_ranges.o
+> diff --git a/lib/test_linear_ranges.c b/lib/test_linear_ranges.c
+> new file mode 100644
+> index 000000000000..676e0b8abcdd
+> --- /dev/null
+> +++ b/lib/test_linear_ranges.c
+> @@ -0,0 +1,228 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * KUnit test for the linear_ranges helper.
+> + *
+> + * Copyright (C) 2020, ROHM Semiconductors.
+> + * Author: Matti Vaittinen <matti.vaittien@fi.rohmeurope.com>
+> + */
+> +#include <kunit/test.h>
+> +
+> +#include <linux/linear_range.h>
+> +
+> +/* First things first. I deeply dislike unit-tests. I have seen all the hell
+> + * breaking loose when people who think the unit tests are "the silver bullet"
+> + * to kill bugs get to decide how a company should implement testing strategy...
+> + *
+> + * Believe me, it may get _really_ ridiculous. It is tempting to think that
+> + * walking through all the possible execution branches will nail down 100% of
+> + * bugs. This may lead to ideas about demands to get certain % of "test
+> + * coverage" - measured as line coverage. And that is one of the worst things
+> + * you can do.
+> + *
+> + * Ask people to provide line coverage and they do. I've seen clever tools
+> + * which generate test cases to test the existing functions - and by default
+> + * these tools expect code to be correct and just generate checks which are
+> + * passing when ran against current code-base. Run this generator and you'll get
+> + * tests that do not test code is correct but just verify nothing changes.
+> + * Problem is that testing working code is pointless. And if it is not
+> + * working, your test must not assume it is working. You won't catch any bugs
+> + * by such tests. What you can do is to generate a huge amount of tests.
+> + * Especially if you were are asked to proivde 100% line-coverage x_x. So what
+> + * does these tests - which are not finding any bugs now - do?
+
+I don't entirely disagree. I have worked on projects that do testing
+well where it actually makes development faster, and I have worked on
+projects that do testing poorly where it never improves code quality
+and is just an encumbrance, and I have never seen a project get to
+100% coverage (nor would I want to).
+
+Do you feel differently about incremental coverage vs. absolute
+coverage? I have found incremental coverage to be a lot more valuable
+in my experiences.
+
+You seem pretty passionate about this. Would you like to be included
+in our unit testing discussions in the future?
+
+> + * They add inertia to every future development. I think it was Terry Pratchet
+> + * who wrote someone having same impact as thick syrup has to chronometre.
+> + * Excessive amount of unit-tests have this effect to development. If you do
+> + * actually find _any_ bug from code in such environment and try fixing it...
+> + * ...chances are you also need to fix the test cases. In sunny day you fix one
+> + * test. But I've done refactoring which resulted 500+ broken tests (which had
+> + * really zero value other than proving to managers that we do do "quality")...
+> + *
+> + * After this being said - there are situations where UTs can be handy. If you
+> + * have algorithms which take some input and should produce output - then you
+> + * can implement few, carefully selected simple UT-cases which test this. I've
+> + * previously used this for example for netlink and device-tree data parsing
+> + * functions. Feed some data examples to functions and verify the output is as
+> + * expected. I am not covering all the cases but I will see the logic should be
+> + * working.
+> + *
+> + * Here we also do some minor testing. I don't want to go through all branches
+> + * or test more or less obvious things - but I want to see the main logic is
+> + * working. And I definitely don't want to add 500+ test cases that break when
+> + * some simple fix is done x_x. So - let's only add few, well selected tests
+> + * which ensure as much logic is good as possible.
+> + */
+> +
+> +/*
+> + * Test Range 1:
+> + * selectors:  2       3       4       5       6
+> + * values (5): 10      20      30      40      50
+> + *
+> + * Test Range 2:
+> + * selectors:  7       8       9       10
+> + * values (4): 100     150     200     250
+> + */
+> +
+> +#define RANGE1_MIN 10
+> +#define RANGE1_MIN_SEL 2
+> +#define RANGE1_STEP 10
+> +
+> +/* 2, 3, 4, 5, 6 */
+> +static const unsigned int range1_sels[] = { RANGE1_MIN_SEL, RANGE1_MIN_SEL + 1,
+> +                                           RANGE1_MIN_SEL + 2,
+> +                                           RANGE1_MIN_SEL + 3,
+> +                                           RANGE1_MIN_SEL + 4 };
+> +/* 10, 20, 30, 40, 50 */
+> +static const unsigned int range1_vals[] = { RANGE1_MIN, RANGE1_MIN +
+> +                                           RANGE1_STEP,
+> +                                           RANGE1_MIN + RANGE1_STEP * 2,
+> +                                           RANGE1_MIN + RANGE1_STEP * 3,
+> +                                           RANGE1_MIN + RANGE1_STEP * 4 };
+> +
+> +#define RANGE2_MIN 100
+> +#define RANGE2_MIN_SEL 7
+> +#define RANGE2_STEP 50
+> +
+> +/*  7, 8, 9, 10 */
+> +static const unsigned int range2_sels[] = { RANGE2_MIN_SEL, RANGE2_MIN_SEL + 1,
+> +                                           RANGE2_MIN_SEL + 2,
+> +                                           RANGE2_MIN_SEL + 3 };
+> +/* 100, 150, 200, 250 */
+> +static const unsigned int range2_vals[] = { RANGE2_MIN, RANGE2_MIN +
+> +                                           RANGE2_STEP,
+> +                                           RANGE2_MIN + RANGE2_STEP * 2,
+> +                                           RANGE2_MIN + RANGE2_STEP * 3 };
+> +
+> +#define RANGE1_NUM_VALS (ARRAY_SIZE(range1_vals))
+> +#define RANGE2_NUM_VALS (ARRAY_SIZE(range2_vals))
+> +#define RANGE_NUM_VALS (RANGE1_NUM_VALS + RANGE2_NUM_VALS)
+> +
+> +#define RANGE1_MAX_SEL (RANGE1_MIN_SEL + RANGE1_NUM_VALS - 1)
+> +#define RANGE1_MAX_VAL (range1_vals[RANGE1_NUM_VALS - 1])
+> +
+> +#define RANGE2_MAX_SEL (RANGE2_MIN_SEL + RANGE2_NUM_VALS - 1)
+> +#define RANGE2_MAX_VAL (range2_vals[RANGE2_NUM_VALS - 1])
+> +
+> +#define SMALLEST_SEL RANGE1_MIN_SEL
+> +#define SMALLEST_VAL RANGE1_MIN
+> +
+> +static struct linear_range testr[] = {
+> +       {
+> +               .min = RANGE1_MIN,
+> +               .min_sel = RANGE1_MIN_SEL,
+> +               .max_sel = RANGE1_MAX_SEL,
+> +               .step = RANGE1_STEP,
+> +       }, {
+> +               .min = RANGE2_MIN,
+> +               .min_sel = RANGE2_MIN_SEL,
+> +               .max_sel = RANGE2_MAX_SEL,
+> +               .step = RANGE2_STEP
+> +       },
+> +};
+> +
+> +static void range_test_get_value(struct kunit *test)
+> +{
+> +       int ret, i;
+> +       unsigned int sel, val;
+> +
+> +       for (i = 0; i < RANGE1_NUM_VALS; i++) {
+> +               sel = range1_sels[i];
+> +               ret = linear_range_get_value_array(&testr[0], 2, sel, &val);
+> +               KUNIT_EXPECT_EQ(test, 0, ret);
+
+nit: It looks like the next line might crash if this expectation
+fails. If this is the case, you might want to use a KUNIT_ASSERT_*
+here.
+
+> +               KUNIT_EXPECT_EQ(test, val, range1_vals[i]);
+> +       }
+> +       for (i = 0; i < RANGE2_NUM_VALS; i++) {
+> +               sel = range2_sels[i];
+> +               ret = linear_range_get_value_array(&testr[0], 2, sel, &val);
+> +               KUNIT_EXPECT_EQ(test, 0, ret);
+> +               KUNIT_EXPECT_EQ(test, val, range2_vals[i]);
+> +       }
+> +       ret = linear_range_get_value_array(&testr[0], 2, sel + 1, &val);
+> +       KUNIT_EXPECT_NE(test, 0, ret);
+> +}
+> +
+> +static void range_test_get_selector_high(struct kunit *test)
+> +{
+> +       int ret, i;
+> +       unsigned int sel;
+> +       bool found;
+> +
+> +       for (i = 0; i < RANGE1_NUM_VALS; i++) {
+> +               ret = linear_range_get_selector_high(&testr[0], range1_vals[i],
+> +                                                    &sel, &found);
+> +               KUNIT_EXPECT_EQ(test, 0, ret);
+> +               KUNIT_EXPECT_EQ(test, sel, range1_sels[i]);
+> +               KUNIT_EXPECT_TRUE(test, found);
+> +       }
+> +
+> +       ret = linear_range_get_selector_high(&testr[0], RANGE1_MAX_VAL + 1,
+> +                                            &sel, &found);
+> +       KUNIT_EXPECT_LE(test, ret, 0);
+> +
+> +       ret = linear_range_get_selector_high(&testr[0], RANGE1_MIN - 1,
+> +                                            &sel, &found);
+> +       KUNIT_EXPECT_EQ(test, 0, ret);
+> +       KUNIT_EXPECT_FALSE(test, found);
+> +       KUNIT_EXPECT_EQ(test, sel, range1_sels[0]);
+> +}
+> +
+> +static void range_test_get_value_amount(struct kunit *test)
+> +{
+> +       int ret;
+> +
+> +       ret = linear_range_values_in_range_array(&testr[0], 2);
+> +       KUNIT_EXPECT_EQ(test, (int)RANGE_NUM_VALS, ret);
+> +}
+> +
+> +static void range_test_get_selector_low(struct kunit *test)
+> +{
+> +       int i, ret;
+> +       unsigned int sel;
+> +       bool found;
+> +
+> +       for (i = 0; i < RANGE1_NUM_VALS; i++) {
+> +               ret = linear_range_get_selector_low_array(&testr[0], 2,
+> +                                                         range1_vals[i], &sel,
+> +                                                         &found);
+> +               KUNIT_EXPECT_EQ(test, 0, ret);
+> +               KUNIT_EXPECT_EQ(test, sel, range1_sels[i]);
+> +               KUNIT_EXPECT_TRUE(test, found);
+> +       }
+> +       for (i = 0; i < RANGE2_NUM_VALS; i++) {
+> +               ret = linear_range_get_selector_low_array(&testr[0], 2,
+> +                                                         range2_vals[i], &sel,
+> +                                                         &found);
+> +               KUNIT_EXPECT_EQ(test, 0, ret);
+> +               KUNIT_EXPECT_EQ(test, sel, range2_sels[i]);
+> +               KUNIT_EXPECT_TRUE(test, found);
+> +       }
+> +
+> +       /*
+> +        * Seek value greater than range max => get_selector_*_low should
+> +        * return Ok - but set found to false as value is not in range
+> +        */
+> +       ret = linear_range_get_selector_low_array(&testr[0], 2,
+> +                                       range2_vals[RANGE2_NUM_VALS - 1] + 1,
+> +                                       &sel, &found);
+> +
+> +       KUNIT_EXPECT_EQ(test, 0, ret);
+> +       KUNIT_EXPECT_EQ(test, sel, range2_sels[RANGE2_NUM_VALS - 1]);
+> +       KUNIT_EXPECT_FALSE(test, found);
+> +}
+> +
+> +static struct kunit_case range_test_cases[] = {
+> +       KUNIT_CASE(range_test_get_value_amount),
+> +       KUNIT_CASE(range_test_get_selector_high),
+> +       KUNIT_CASE(range_test_get_selector_low),
+> +       KUNIT_CASE(range_test_get_value),
+> +       {},
+> +};
+> +
+> +static struct kunit_suite range_test_module = {
+> +       .name = "linear-ranges-test",
+> +       .test_cases = range_test_cases,
+> +};
+> +
+> +kunit_test_suites(&range_test_module);
+> +
+> +MODULE_LICENSE("GPL");
+> --
+> 2.21.0
+>
+>
+> --
+> Matti Vaittinen, Linux device drivers
+> ROHM Semiconductors, Finland SWDC
+> Kiviharjunlenkki 1E
+> 90220 OULU
+> FINLAND
+>
+> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+> Simon says - in Latin please.
+> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+> Thanks to Simon Glass for the translation =]
