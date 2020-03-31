@@ -2,73 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D09019A1A9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 00:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1019119A1C2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 00:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729647AbgCaWIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 18:08:42 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:39603 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728428AbgCaWIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 18:08:42 -0400
-Received: by mail-il1-f196.google.com with SMTP id r5so21071157ilq.6;
-        Tue, 31 Mar 2020 15:08:41 -0700 (PDT)
+        id S1728840AbgCaWTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 18:19:25 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42734 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727955AbgCaWTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 18:19:24 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h15so28135173wrx.9;
+        Tue, 31 Mar 2020 15:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+hv5w97MVc2OxbT4cCnlK/0UNfmgvgpT5Fhi8G4KpGY=;
+        b=vA2l3Ah+jvHWpWZFORoCZ8hzYl0jI51cpTQrB/z4rSF+t79wy0itoCLNNIaNE0FVW8
+         xAoWkV6tkLOhQXn9m7bZfSPi3nVwzAoVKs6mL/OIWxvpcoNyYiHeBPyH1usc+l4DAWQO
+         fzL8Sj52TceXiMR/y0JynuqQ2J09CdN81aXMpryRKsbjrpxnOhp7h8A2+pcvkul01M/g
+         GvAL7cWQaYRshTBHmKnnq9rJaBgnDnnul1I58W/DS3j9Tt56InJx1mi9UWpOq9l8n8Sr
+         GIldz1r7aI+NZcMSApJdShy8ZJHw5cOEGwMe6QsVXcY77K/6Wc1YV/59K2m1+3yuV9sd
+         tISA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zq6lnen4wO1ZG0dffCWm2RGQcT8LeYtwqJqjBTsJ3GA=;
-        b=eyOpYOkyi/Ki9Ol46+Ro1+utE0pwDMe/Audj+4uvgc3x2QJdsCilQ1CCRmNndpPbYD
-         SbvSaQSyEVAb7VRZkCXa3iHJfbrk0YOojzUIJHeWGs0o6YgZYtDNe1BBZ2GqDrDLKqQ5
-         Tc3wVk95vQ9UBnVf3lHIkcLnEU3a6pziU2qhzVmCGkUbMy3cT9RYAMtZNnoowKPy/Xp1
-         LC66DPB1l07Tw65eU4zijkZi0mOsRUd8AqI+ClRcXZgqUtxBq/G86kJWEMrhoKlIZIqJ
-         /MY77k3BQTFdwPW18mukPBKDpSuutPZmSDKkWsZAvfbkUG/ZjmTXWVYCNbSTRt5OlxBb
-         0kPQ==
-X-Gm-Message-State: ANhLgQ0v3lCgGRlAxJ7FPGDDlpT5gH5YY7rmQpVSuHyg/D9w1g3UgHFM
-        a2cWtcfpZDnECkPJHHRslA==
-X-Google-Smtp-Source: ADFU+vvsqcZ/8hm+2F9xJLmsIK4neA63BSqusqM0rClIuHLAaTmsTnIJm6Qo7foDMZxypZHs0knNlw==
-X-Received: by 2002:a92:7e0d:: with SMTP id z13mr18753339ilc.202.1585692521393;
-        Tue, 31 Mar 2020 15:08:41 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id l3sm42738iob.31.2020.03.31.15.08.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+hv5w97MVc2OxbT4cCnlK/0UNfmgvgpT5Fhi8G4KpGY=;
+        b=q3V4KjKkVX0abNxVhIXVEGHMRdv5Ap7aMVpIA20Nn6fYPZLwT9nKo9svzGl2UNjgxY
+         iEDdvuxN7Xb5HHciLU2JitlI0trdjEYp6glN/CFyTmsvyS1vu6Q7wOVoxBTetDKdxx6o
+         dN5huyYwdGtQ3BXU813H17EpSn4rqtkEx+ZmyZTHu8fpU9RvhUeWKFZxDIks8AoAkzL+
+         LJZXzG973wPrsdbbqz9MgU8eiqpeLW0UlyKruIfcw3olTrVdrQl5mxdosPBaBDM3F9YA
+         h+NDDItxq6msJULodjRZENUBX4NOtrNc3vo0rExeXxgywLJBH/7DqgHvu88CH5kt4O5r
+         WX1A==
+X-Gm-Message-State: ANhLgQ3p4GRmaIs4bkh9JbX8acvinHqfTtKUJVFZwg7HktetMPq4V8y7
+        ZHD8eJmtmInztoIU5eKYPVo=
+X-Google-Smtp-Source: ADFU+vsIvkV49QVqdU9afjo6Mrv40hT+u2GGh099fQrGkcB8oJJptB7eCc+5YbOoSn6AbQFQR5b+jg==
+X-Received: by 2002:adf:a18c:: with SMTP id u12mr22221588wru.325.1585693162868;
+        Tue, 31 Mar 2020 15:19:22 -0700 (PDT)
+Received: from localhost (p200300E41F4A9B0076D02BFFFE273F51.dip0.t-ipconnect.de. [2003:e4:1f4a:9b00:76d0:2bff:fe27:3f51])
+        by smtp.gmail.com with ESMTPSA id y15sm171337wrh.50.2020.03.31.15.19.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Mar 2020 15:08:40 -0700 (PDT)
-Received: (nullmailer pid 2535 invoked by uid 1000);
-        Tue, 31 Mar 2020 22:08:39 -0000
-Date:   Tue, 31 Mar 2020 16:08:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org, benjamin.gaignard@st.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2] dt-bindings: usb: dwc2: fix bindings for
- amlogic,meson-gxbb-usb
-Message-ID: <20200331220839.GA2373@bogus>
-References: <20200331083729.24906-1-narmstrong@baylibre.com>
+        Tue, 31 Mar 2020 15:19:21 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] clocksource: Add NVIDIA Tegra186 timers support
+Date:   Wed,  1 Apr 2020 00:19:07 +0200
+Message-Id: <20200331221914.2966407-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200331083729.24906-1-narmstrong@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Mar 2020 10:37:29 +0200, Neil Armstrong wrote:
-> The amlogic,meson-gxbb-usb compatible needs snps,dwc2 aswell like other
-> Amlogic SoC.
-> 
-> Fixes: f3ca745d8a0e ("dt-bindings: usb: Convert DWC2 bindings to json-schema")
-> Reviewed-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 13 +++++--------
->  1 file changed, 5 insertions(+), 8 deletions(-)
-> 
+From: Thierry Reding <treding@nvidia.com>
 
-Applied, thanks.
+This set of patches adds the device tree bindings and a simplified
+driver for the timers found on Tegra186 and later SoCs. The driver
+itself currently only exposes a couple of clock sources and a
+watchdog, which in turn relies on the counter provided by one of
+the timers. The timers themselves are not used at the moment because
+the SoC also has an architected timer and there's currently no use
+for the additional timers provided by this hardware block.
 
-Rob
+I suggest that patches 1 & 2 go through the clocksource tree, while
+I can carry the DTS changes in the Tegra tree for v5.8.
+
+Changes in v2:
+- address review comments on the bindings
+- make the driver buildable as a module
+- support various clock sources
+
+Thierry
+
+Thierry Reding (7):
+  dt-bindings: timer: Add bindings for NVIDIA Tegra186 timers
+  clocksource: Add Tegra186 timers support
+  arm64: tegra: Order nodes by unit-address on Tegra194
+  arm64: tegra: Add native timer support on Tegra186
+  arm64: tegra: Enable native timers on Jetson TX2
+  arm64: tegra: Add native timer support on Tegra194
+  arm64: tegra: Enable native timers on Jetson AGX Xavier
+
+ .../bindings/timer/nvidia,tegra186-timer.yaml |  61 +++
+ .../arm64/boot/dts/nvidia/tegra186-p3310.dtsi |   4 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  16 +
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |   4 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  81 +--
+ drivers/clocksource/Kconfig                   |   8 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-tegra186.c          | 505 ++++++++++++++++++
+ 8 files changed, 648 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
+ create mode 100644 drivers/clocksource/timer-tegra186.c
+
+-- 
+2.24.1
+
