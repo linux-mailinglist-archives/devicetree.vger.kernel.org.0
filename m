@@ -2,154 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5271F198DC2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 09:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A16D3198DEE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 10:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730306AbgCaH5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 03:57:03 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:60484 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730294AbgCaH5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Mar 2020 03:57:02 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1585641422; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=VT9/ErTi2g1chyk6bUNJTnT/qqr1194jK5RfTnp8tS4=; b=rvUYpuvvq/A2z/VTfnSHylJ/F5ApaTMN8dhCoU98IC6jZ3m8N95WEOUOL1IRF2B8fX9KB1vV
- zODrLPgF9+ufnAWmHZGZOL0AFZ3dktDy4GsdS3jKznb0NJEW1AtX923YGMVWfDapatBrlhgd
- 5LWIg3STUmC6jpMPjO7waTO9Suo=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e82f7c9.7f3e5fc79420-smtp-out-n03;
- Tue, 31 Mar 2020 07:56:57 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 21CD4C4478F; Tue, 31 Mar 2020 07:56:57 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld559.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: smasetty)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 39EB0C44795;
-        Tue, 31 Mar 2020 07:56:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 39EB0C44795
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
-From:   Sharat Masetty <smasetty@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jcrouse@codeaurora.org,
-        mka@chromium.org, sibis@codeaurora.org, saravanak@google.com,
-        viresh.kumar@linaro.org, Sharat Masetty <smasetty@codeaurora.org>
-Subject: [PATCH 5/5] dt-bindings: drm/msm/gpu: Document OPP phandle list for the GPU
-Date:   Tue, 31 Mar 2020 13:25:53 +0530
-Message-Id: <1585641353-23229-6-git-send-email-smasetty@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1585641353-23229-1-git-send-email-smasetty@codeaurora.org>
-References: <1585641353-23229-1-git-send-email-smasetty@codeaurora.org>
+        id S1730034AbgCaIGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 04:06:54 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:63129 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726528AbgCaIGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 04:06:54 -0400
+X-Originating-IP: 86.202.105.35
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 4C28F24000A;
+        Tue, 31 Mar 2020 08:06:48 +0000 (UTC)
+Date:   Tue, 31 Mar 2020 10:06:48 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Richard Fontana <rfontana@redhat.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Josef Friedl <josef.friedl@speed.at>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ran Bi <ran.bi@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v11 4/5] rtc: mt6397: Add support for the MediaTek MT6358
+ RTC
+Message-ID: <20200331080648.GH846876@piout.net>
+References: <1585627657-3265-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1585627657-3265-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1585627657-3265-5-git-send-email-hsin-hsiung.wang@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation for listing the multiple optional GPU and the
-DDR OPP tables to help enable DDR scaling.
+On 31/03/2020 12:07:36+0800, Hsin-Hsiung Wang wrote:
+> From: Ran Bi <ran.bi@mediatek.com>
+> 
+> This add support for the MediaTek MT6358 RTC. Driver using
+> compatible data to store different RTC_WRTGR address offset.
+> This replace RTC_WRTGR to RTC_WRTGR_MT6323 in mt6323-poweroff
+> driver which only needed by armv7 CPU without ATF.
+> 
+> Signed-off-by: Ran Bi <ran.bi@mediatek.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  drivers/power/reset/mt6323-poweroff.c |  2 +-
+>  drivers/rtc/rtc-mt6397.c              | 23 +++++++++++++++++++----
+>  include/linux/mfd/mt6397/rtc.h        |  9 ++++++++-
+>  3 files changed, 28 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/power/reset/mt6323-poweroff.c b/drivers/power/reset/mt6323-poweroff.c
+> index 1caf43d..0532803 100644
+> --- a/drivers/power/reset/mt6323-poweroff.c
+> +++ b/drivers/power/reset/mt6323-poweroff.c
+> @@ -30,7 +30,7 @@ static void mt6323_do_pwroff(void)
+>  	int ret;
+>  
+>  	regmap_write(pwrc->regmap, pwrc->base + RTC_BBPU, RTC_BBPU_KEY);
+> -	regmap_write(pwrc->regmap, pwrc->base + RTC_WRTGR, 1);
+> +	regmap_write(pwrc->regmap, pwrc->base + RTC_WRTGR_MT6323, 1);
+>  
+>  	ret = regmap_read_poll_timeout(pwrc->regmap,
+>  					pwrc->base + RTC_BBPU, val,
+> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+> index cda238d..7f3dfd2 100644
+> --- a/drivers/rtc/rtc-mt6397.c
+> +++ b/drivers/rtc/rtc-mt6397.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/mfd/mt6397/core.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/rtc.h>
+> @@ -20,7 +21,7 @@ static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+>  	int ret;
+>  	u32 data;
+>  
+> -	ret = regmap_write(rtc->regmap, rtc->addr_base + RTC_WRTGR, 1);
+> +	ret = regmap_write(rtc->regmap, rtc->addr_base + rtc->data->wrtgr, 1);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -269,6 +270,8 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	rtc->addr_base = res->start;
+>  
+> +	rtc->data = of_device_get_match_data(&pdev->dev);
+> +
+>  	rtc->irq = platform_get_irq(pdev, 0);
+>  	if (rtc->irq < 0)
+>  		return rtc->irq;
+> @@ -325,10 +328,22 @@ static int mt6397_rtc_resume(struct device *dev)
+>  static SIMPLE_DEV_PM_OPS(mt6397_pm_ops, mt6397_rtc_suspend,
+>  			mt6397_rtc_resume);
+>  
+> +static const struct mtk_rtc_data mt6358_rtc_data = {
+> +	.wrtgr = RTC_WRTGR_MT6358,
+> +};
+> +
+> +static const struct mtk_rtc_data mt6397_rtc_data = {
+> +	.wrtgr = RTC_WRTGR_MT6397,
+> +};
+> +
+>  static const struct of_device_id mt6397_rtc_of_match[] = {
+> -	{ .compatible = "mediatek,mt6323-rtc", },
+> -	{ .compatible = "mediatek,mt6397-rtc", },
+> -	{ }
+> +	{ .compatible = "mediatek,mt6323-rtc",
+> +		.data = &mt6397_rtc_data, },
+> +	{ .compatible = "mediatek,mt6358-rtc",
+> +		.data = &mt6358_rtc_data, },
+> +	{ .compatible = "mediatek,mt6397-rtc",
+> +		.data = &mt6397_rtc_data, },
 
-Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
----
- .../devicetree/bindings/display/msm/gpu.txt        | 63 +++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 2 deletions(-)
+This is weirdly indented.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-index 70025cb..ff3ae1b 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
-@@ -21,7 +21,10 @@ Required properties:
-   following devices should not list clocks:
-    - qcom,adreno-630.2
- - iommus: optional phandle to an adreno iommu instance
--- operating-points-v2: optional phandle to the OPP operating points
-+- operating-points-v2: optional phandles to the OPP operating point tables
-+  one for the GPU OPPs and the other for the GPU->DDR OPPs. Note that if
-+  multiple OPP tables are specified, the GPU OPP table(considered primary)
-+  should be the first in the phandle list.
- - interconnects: optional phandle to an interconnect provider.  See
-   ../interconnect/interconnect.txt for details.
- - qcom,gmu: For GMU attached devices a phandle to the GMU device that will
-@@ -75,7 +78,7 @@ Example a6xx (with GMU):
+Else,
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
- 		iommus = <&adreno_smmu 0>;
 
--		operating-points-v2 = <&gpu_opp_table>;
-+		operating-points-v2 = <&gpu_opp_table>, <&gpu_ddr_bw_opp_table>;
-
- 		interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
-
-@@ -85,5 +88,61 @@ Example a6xx (with GMU):
- 			memory-region = <&zap_shader_region>;
- 			firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn"
- 		};
-+
-+		gpu_opp_table: opp-table {
-+			compatible = "operating-points-v2";
-+
-+			opp-430000000 {
-+				opp-hz = /bits/ 64 <430000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+				required-opps = <&gpu_ddr_bw_opp6>;
-+			};
-+
-+			opp-355000000 {
-+				opp-hz = /bits/ 64 <355000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+				required-opps = <&gpu_ddr_bw_opp4>;
-+			};
-+
-+			opp-267000000 {
-+				opp-hz = /bits/ 64 <267000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+				required-opps = <&gpu_ddr_bw_opp4>;
-+			};
-+
-+			opp-180000000 {
-+				opp-hz = /bits/ 64 <180000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				required-opps = <&gpu_ddr_bw_opp2>;
-+			};
-+		};
-+
-+		gpu_ddr_bw_opp_table: gpu-ddr-bw-opp-table {
-+			compatible = "operating-points-v2";
-+
-+			gpu_ddr_bw_opp1: opp-300000000  {
-+				opp-peak-kBps =/bits/ 32 <1200000>;
-+			};
-+
-+			gpu_ddr_bw_opp2: opp-451000000  {
-+				opp-peak-kBps =/bits/ 32 <1804000>;
-+			};
-+
-+			gpu_ddr_bw_opp3: opp-547000000  {
-+				opp-peak-kBps =/bits/ 32 <2188000>;
-+			};
-+
-+			gpu_ddr_bw_opp4: opp-768000000  {
-+				opp-peak-kBps =/bits/ 32 <3072000>;
-+			};
-+
-+			gpu_ddr_bw_opp5: opp-1017000000  {
-+				opp-peak-kBps =/bits/ 32 <4068000>;
-+			};
-+
-+			gpu_ddr_bw_opp6: opp-1353000000  {
-+				opp-peak-kBps =/bits/ 32 <5412000>;
-+			};
-+		};
- 	};
- };
---
-2.7.4
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
