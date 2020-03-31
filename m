@@ -2,174 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A0951995B2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 13:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B10B1995D2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 13:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730424AbgCaLs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 07:48:27 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:52068 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730560AbgCaLs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 07:48:26 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 746A28030774;
-        Tue, 31 Mar 2020 11:48:19 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id a9g7bqgioPTM; Tue, 31 Mar 2020 14:48:18 +0300 (MSK)
-Date:   Tue, 31 Mar 2020 14:48:24 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
-        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Wolfram Sang <wsa@the-dreams.de>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/6] i2c: designeware: Add Baikal-T1 SoC DW I2C specifics
- support
-Message-ID: <20200331114824.e3uljdymvsjuh6wh@ubsrv2.baikal.int>
-References: <20200306132001.1B875803087C@mail.baikalelectronics.ru>
- <20200306135451.4AF0480307C4@mail.baikalelectronics.ru>
+        id S1730601AbgCaLwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 07:52:32 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:60568 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730543AbgCaLwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 07:52:31 -0400
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC4AE999;
+        Tue, 31 Mar 2020 13:52:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1585655548;
+        bh=JkGWVHiizYwHOg5qMpasQNMfj5M8ESU2sYXu/vXYS8U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RSbSxYZeqrhlaoUzAQT3FImFvs5GYlPriEqhYfYrLCoP+920TwIhW8LX+OyjRjRA1
+         CmvUvSbdjIitRJ3SynGAhjfE2YA7H8gLAwBIeFNcm/5paWiw4pCe7rm6VylicDdmJE
+         XZjoKvQxtffWYbBiDUUREuga8zC8L0IL5yWyDRcI=
+Date:   Tue, 31 Mar 2020 14:52:21 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        helen.koike@collabora.com, digetx@gmail.com, sboyd@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v5 6/9] media: tegra: Add Tegra210 Video input driver
+Message-ID: <20200331115221.GA4767@pendragon.ideasonboard.com>
+References: <1584985955-19101-1-git-send-email-skomatineni@nvidia.com>
+ <1584985955-19101-7-git-send-email-skomatineni@nvidia.com>
+ <20200325110358.GB853@valkosipuli.retiisi.org.uk>
+ <8bc44545-7d1e-0e37-db27-d37784679574@xs4all.nl>
+ <20200331103215.GI2394@valkosipuli.retiisi.org.uk>
+ <ba37eb84-392c-3767-57f6-d297b0ab79a3@xs4all.nl>
+ <20200331111018.GJ2394@valkosipuli.retiisi.org.uk>
+ <a1145ee4-2991-a958-1225-090c57fec533@xs4all.nl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200306135451.4AF0480307C4@mail.baikalelectronics.ru>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <a1145ee4-2991-a958-1225-090c57fec533@xs4all.nl>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
+Hello,
 
-Finally I've thought this through reasonably conformed with the changes
-requested in the framework of the other patchsets. My comments are
-below.
-
-On Fri, Mar 06, 2020 at 03:54:45PM +0200, Andy Shevchenko wrote:
-> First of all, I got only 3 out of 6 patches. Are you sure you properly prepared
-> the series?
-> 
-> On Fri, Mar 06, 2020 at 04:19:49PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > From: Serge Semin <fancer.lancer@gmail.com>
-> 
-> Same comment as per DMA series, try next time to link the cover letter to the
-> series correctly.
-> 
-> > There are three DW I2C controllers embedded into the Baikal-T1 SoC. Two
-> > of them are normal with standard DW I2C IP-core configurations and registers
-> > accessible over normal MMIO space - so they are acceptable by the available
-> > DW I2C driver with no modification.
-> 
-> > But there is a third, which is a bit
-> > different. Its registers are indirectly accessed be means of "command/data
-> > in/data out" registers tuple. In order to have it also supported by the DW
-> > I2C driver, we must modify the code a bit. This is a main purpose of this
-> > patchset.
+On Tue, Mar 31, 2020 at 01:27:19PM +0200, Hans Verkuil wrote:
+> On 3/31/20 1:10 PM, Sakari Ailus wrote:
+> > On Tue, Mar 31, 2020 at 12:56:57PM +0200, Hans Verkuil wrote:
+> >> On 3/31/20 12:32 PM, Sakari Ailus wrote:
+> >>> On Mon, Mar 30, 2020 at 12:59:15PM +0200, Hans Verkuil wrote:
+> >>>> On 3/25/20 12:03 PM, Sakari Ailus wrote:
+> >>>>> On Mon, Mar 23, 2020 at 10:52:32AM -0700, Sowjanya Komatineni wrote:
+> >>>>>> Tegra210 contains a powerful Video Input (VI) hardware controller
+> >>>>>> which can support up to 6 MIPI CSI camera sensors.
+> >>>>>>
+> >>>>>> Each Tegra CSI port can be one-to-one mapped to VI channel and can
+> >>>>>> capture from an external camera sensor connected to CSI or from
+> >>>>>> built-in test pattern generator.
+> >>>>>>
+> >>>>>> Tegra210 supports built-in test pattern generator from CSI to VI.
+> >>>>>>
+> >>>>>> This patch adds a V4L2 media controller and capture driver support
+> >>>>>> for Tegra210 built-in CSI to VI test pattern generator.
+> >>>>>>
+> >>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> >>>>>> ---
+> >>>>>>  drivers/staging/media/Kconfig              |    2 +
+> >>>>>>  drivers/staging/media/Makefile             |    1 +
+> >>>>>>  drivers/staging/media/tegra/Kconfig        |   10 +
+> >>>>>>  drivers/staging/media/tegra/Makefile       |    8 +
+> >>>>>>  drivers/staging/media/tegra/TODO           |   10 +
+> >>>>>>  drivers/staging/media/tegra/tegra-common.h |  263 +++++++
+> >>>>>>  drivers/staging/media/tegra/tegra-csi.c    |  522 ++++++++++++++
+> >>>>>>  drivers/staging/media/tegra/tegra-csi.h    |  118 ++++
+> >>>>>>  drivers/staging/media/tegra/tegra-vi.c     | 1058 ++++++++++++++++++++++++++++
+> >>>>>>  drivers/staging/media/tegra/tegra-vi.h     |   83 +++
+> >>>>>>  drivers/staging/media/tegra/tegra-video.c  |  129 ++++
+> >>>>>>  drivers/staging/media/tegra/tegra-video.h  |   32 +
+> >>>>>>  drivers/staging/media/tegra/tegra210.c     |  754 ++++++++++++++++++++
+> >>>>>>  drivers/staging/media/tegra/tegra210.h     |  192 +++++
+> >>>>>
+> >>>>> Why staging? Are there reasons not to aim this to the kernel proper right
+> >>>>> away? If you only support TPG, the driver may not have too many (if any)
+> >>>>> real users anyway.
+> >>>>>
+> >>>>>>  14 files changed, 3182 insertions(+)
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/Kconfig
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/Makefile
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/TODO
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-common.h
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-csi.c
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-csi.h
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-vi.c
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-vi.h
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-video.c
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra-video.h
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra210.c
+> >>>>>>  create mode 100644 drivers/staging/media/tegra/tegra210.h
+> >>>>>>
+> >>>>
+> >>>> <snip>
+> >>>>
+> >>>>>> +static int tegra_channel_g_input(struct file *file, void *priv,
+> >>>>>> +				 unsigned int *i)
+> >>>>>> +{
+> >>>>>> +	*i = 0;
+> >>>>>> +	return 0;
+> >>>>>> +}
+> >>>>>> +
+> >>>>>> +static int tegra_channel_s_input(struct file *file, void *priv,
+> >>>>>> +				 unsigned int input)
+> >>>>>> +{
+> >>>>>> +	if (input > 0)
+> >>>>>> +		return -EINVAL;
+> >>>>>> +
+> >>>>>> +	return 0;
+> >>>>>> +}
+> >>>>>
+> >>>>> Please see patchset on topic "v4l2-dev/ioctl: Add V4L2_CAP_IO_MC" on
+> >>>>> linux-media; it's relevant here, too.
+> >>>>
+> >>>> No, it isn't. The pipeline is controlled by the driver, not by userspace.
+> >>>> This is a regular video capture driver, not an ISP driver.
+> >>>
+> >>> I don't think that really makes a difference, whether a device is an ISP or
+> >>> not, but instead what does is whether there is something to control in its
+> >>> pipeline that cannot be generally done through the regular V4L2 interface.
+> >>> Even plain CSI-2 receiver drivers should be media device centric these days
+> >>> as doing otherwise excludes using a range of sensor drivers with them,
+> >>> including any possible future support for e.g. sensor embedded data.
+> >>>
+> >>
+> >> We've been back and forth on this before for this driver. I see no reason to make things
+> >> complicated, these are simple video pipelines for video capture. Making this media
+> >> device centric means that existing software using the BSP version of this driver require
+> >> a full rewrite, which is not desirable.
+> >>
+> >> If we are going to require CSI receiver drivers to be media centric, then that's a
+> >> major departure of existing practice. And something that needs to be discussed first,
 > > 
-> > First of all traditionally we replaced the legacy plain text-based dt-binding
-> > file with yaml-based one. Then we found and fixed a bug in the DW I2C FIFO size
-> > detection algorithm which tried to do it too early before dw_readl/dw_writel
-> > methods could be used.
+> > I'd be happy to discuss that.
+> > 
+> > Either way, the current design is problematic as it excludes a range of
+> > camera sensors being used with the driver --- addressing of which requires
+> > converting the driver MC centric. If the driver is merged to mainline, then
+> > the user might face a Kconfig option or a module parameter to choose
+> > between the two --- this defines uAPI behaviour after all.
+> > 
+> > The only way to avoid that in the future is to make it MC-centric right
+> > away.
+> > 
+> >> since that will require that support for each csi receiver driver is added to libcamera.
+> >> Is libcamera ready for that? Are common applications using libcamera yet?
+> >>
+> >> Obviously, if NVIDIA decides that this is worth the effort, then I have no objection.
+> >> But I don't think it is something we should require at this stage.
+> > 
+> > Works for me. But in that case NVIDIA should also be aware that doing so
+> > has consequences.
+> > 
+> > We also haven't discussed what to do with old V4L2-centric drivers which
+> > you'd use with sensors that expose their own subdevs. The proportion of all
+> > sensors might not be large currently but it is almost certainly bound to
+> > grow in the future.
+> > 
+> > FWIW, Intel ipu3-cio2 CSI-2 receiver driver is MC-centric e.g. for the
+> > above reasons. Libcamera supports it currently. I'll let Laurent (cc'd)
+> > comment on the details.
 > 
-> So far so good (looks like, I think colleagues of mine and myself will review
-> individual patches later on).
+> I think it would be good to at least describe in some detail what you gain
+> by taking the media centric route, and what the obstacles are (loss of compatibility
+> with existing applications, requiring libcamera support).
+
+In this case the main gain is control of the camera sensor. Sensors can
+appear as simple when you don't look too closely at them, but many
+sensors (especially the ones modelled after SMIA++ and the now standard
+- and open! - MIPI CCS specification) have 3 locations to perform
+cropping (analog, digital and output), and 3 locations to perform
+scaling (binning, skipping, and full-featured scaler). All of these need
+to be controlled by userspace one way or another if you want to
+implement proper camera algorithms, which those platforms target.
+
+> My personal feeling has always been that for ISP drivers the pros of making
+> a media-centric driver outweigh the cons, but that for a standard video capture
+> pipeline without complex processing blocks the cons outweigh the pros.
+>
+> This might change if libcamera becomes widely used, but we're not there yet.
 > 
-> > Finally we introduced a platform-specific flag
-> > ACCESS_INDIRECT, which would enable the indirect access to the DW I2C registers
-> > implemented for one of the Baikal-T1 SoC DW I2C controllers. See the commit
-> > message of the corresponding patch for details.
-> 
-> This is quite questionable. In Intel SoCs we have indirect I²C controllers to
-> access (inside PMIC, for example). The approach used to do that is usually to
-> have an IPC mechanism and specific bus controller driver. See i2c-cht-wc.c for
-> instance.
-> 
-> I'm not sure if it makes a lot of duplication and if actually switching I²C
-> DesignWare driver to regmap API will solve it. At least that is the second
-> approach I would consider.
-> 
-> But I'll wait others to comment on this. We have to settle the solution before
-> going further.
-> 
+> To be honest, I am not opposed to having a kernel config option for drivers
+> like this that select the media-centric API vs a regular API, if that can be
+> done without too much work. If you need full control for your embedded system,
+> then you enable the option. If you want full compatibility with existing
+> applications, then disable it.
 
-As I see the others have not comments.) Anyway I see your point and having the
-regmap-based interface might be better than the approach I've suggested
-in this patchset particularly seeing that our DW i2c IP registers are
-hidden behind a system controller register space.
+How would distributions be supposed to handle those ? That could in the
+end need to be a per-driver option, and it would be very messy. Maybe
+it's unavoidable, I'm trying to figure out a way to avoid such an option
+for sensor drivers, to decide to expose them as a single subdev or
+multiple subdevs in order to support multiple streams CSI-2 streams, and
+I'm not sure I'll succeed.
 
-In order to follow your proposition to create a dedicated regmap and to supply
-it to the DW i2c driver, I have to redevelop not only this patchset, but
-also an adjacent drivers. In particular the changes will concern the
-MFD-based System Controller driver (which will instantiate this DW i2c
-controller device), Clocks Control Unit drivers set, and a few
-others. The whole alteration I described in the RFC:
-https://lkml.org/lkml/2020/3/22/393
-You've been in Cc there, so fill free to send your comments regarding
-the changes I suggested. Though this time I hope the solution will
-satisfy everyone, who had issues with patchsets I've recently sent.
-
-Getting back to your comment in the framework of this patchset. The approach
-used for CHT Whiskey Cove i2c isn't fully suitable in our case for
-the reason of the DW I2C controller nature. DW I2C controller is a generic
-controller and used on many different platforms, while AFAICS CHT Whiskey Cove
-I2C is the SoC-specific used to access a charger-IC. So in the former case we
-may have an arbitrary set of i2c-slaves connected to the controller on
-different platforms, while on the latter one - there is a fixed set of
-slaves. In addition due to the same reason the DW I2C IP might be
-embedded into different sub-blocks on different platforms, while the CHT
-Whiskey Cove I2C is known to be a part of Intel CHT WC SoC PMIC.
-For instance Baikal-T1 SoC has one DW I2C controller embedded into the
-System Controller with indirectly accessible registers and two DW I2C
-interfaces with normal memory mapped registers. Due to this in case of DW I2C
-driver we can't just "suck" the regmap out from a parental MFD or
-anywhere else as it's done in the CHT Whiskey Cove I2C driver, but instead
-we should somehow supply a regmap pointer to the driver.
-
-Taking into account all of these we can utilize a combined approach
-implemented in ./drivers/i2c/busses/i2c-cht-wc.c and
-drivers/mfd/intel_quark_i2c_gpio.c . I'll add a regmap pointer field to the
-"struct dw_i2c_platform_data" structure, so in case if there is no
-IORESOURCE_MEM resources available (platform_get_resource() fails), we
-try to get a regmap pointer from the platform data. If there is no valid
-regmap available, then completely fail the driver probe procedure. Though
-due to this alteration I'll have to change the
-dw_i2c_platform_data.i2c_scl_freq field usage a bit. In case if it's
-zero, then call i2c_parse_fw_timings(). This won't hurt ACPI or dt-less
-platforms, but will let us cover a case when regmap is set while i2c
-clock frequency is supposed to be taken from the kernel firmware (like
-dtb, etc).
-
-So if you are Ok with this, I'll send a v2 patchset with corresponding
-alteration implemented.
-
+-- 
 Regards,
--Sergey
 
-> > This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
-> > commit 98d54f81e36b ("Linux 5.6-rc4").
-> 
-> `git format-patch --base ...` should do the job.
-> 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> 
-> Same comment as per UART patch. Who is the Alexey in relation to the work done?
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Laurent Pinchart
