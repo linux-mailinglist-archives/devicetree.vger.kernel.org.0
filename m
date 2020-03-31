@@ -2,101 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3677819A0F3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 23:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D6519A108
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 23:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731259AbgCaVky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 17:40:54 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:44183 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727955AbgCaVky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 17:40:54 -0400
-Received: by mail-il1-f194.google.com with SMTP id j69so20965285ila.11;
-        Tue, 31 Mar 2020 14:40:53 -0700 (PDT)
+        id S1731386AbgCaVpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 17:45:24 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:42753 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728245AbgCaVpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 17:45:21 -0400
+Received: by mail-lf1-f66.google.com with SMTP id s13so7470684lfb.9;
+        Tue, 31 Mar 2020 14:45:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lu4NmQIheqOb4fNgKBK5hseC1xsQyAK34HxW6ZLtH+k=;
+        b=M3xPolKxnqJc2kG0dRRqVsoGTMVc530sLxrd1bYJU3VBgSa73NuFCr4YptJNFLPxGk
+         QHAMsLrBfqwNvH4w3n+a3RT2nEnom0La607m5I/88oLLz/azYZuS5UQ9SNQ9VO4XgetG
+         bOAgep5Stx+9358WFfQ/VHcmb75OwSWxy0BySH01rHrM21JuKcV3TJrFYmAvDK1+0Ljj
+         ixK/PaIsWe56mnHNHJ9SkvE5YrOpWnXYcaQEG2go2O0HQ0Y6+lUjU1fv70IWi8wm5KRh
+         50VZjxhwkFrBb1rUA/hbfCKKNM1VYkM2AYBL2aqPrcWxgyRFUmYc+kO2gfpfM9HpnADw
+         +Ing==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=eq+6A9+LczeU2VzQyTNk/9n1oBeKvi0NgSFZ/oc66oQ=;
-        b=Ap8zUEtOi2EYLmUH4H4Nt4O8w6NqZn/LYPBucU2DpkKOaKclNEc70BRDiTMEkwbxec
-         VG6GJ2gcwJ5P8IiQrFkieN56NHVYXv4mY1t0y9mZ0O3JiclLz6QsDW+mHVboW0IcsMWI
-         7YGA60KSbhmxVzj6FEAFQplr6pJfv+zBDfay2u7g7PRGYum6I79sD4f/0U1Qr6Vy/FFG
-         SojqkWyfOWCMdRkOTT+jHJuCaMWc2iUu5tSr4kTsDPyTLNtfpf9qnLHqMoMoyY4CvZ8j
-         7X2iIAiMGeMEnZywaI0AARTlRXtmhK4nb48Tztsn5T/P5fcszvUDWivgJo8wXkGy/X59
-         sYbQ==
-X-Gm-Message-State: ANhLgQ1Ax+pPpH9XvfiIcYc0QcCfHYsfjLYO+Sfunz/8YVRNQ+DOdxGk
-        6/hsiKBdKLYZqEtfp6xh0oBNAWJUzA==
-X-Google-Smtp-Source: ADFU+vssb/q/y3wnHMbcu1KcLFBTw9EarimFzfJH01AQcRsX3nDONN9ZkpJiUj9gw96009vEgGk6Xw==
-X-Received: by 2002:a92:844f:: with SMTP id l76mr19385844ild.13.1585690853355;
-        Tue, 31 Mar 2020 14:40:53 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h9sm21895iow.37.2020.03.31.14.40.52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lu4NmQIheqOb4fNgKBK5hseC1xsQyAK34HxW6ZLtH+k=;
+        b=m44folDyy+rOrm2pEo4ppDlLLEBQYkcbe9we1p25LTqfcSGs0Jc2ml4iDQrbDqnW3m
+         BLLCjsDlxtjhStEDYTDBezK3cwTmfZPtI7A78xfB3iSdE/VJmTXB76TpJHlA1sISc+u/
+         00PiWRfMlX5GQNDMotuBQBgEiLIE/bFw6ymOQDwFUFwjtUUvPEhysMeb00sZyQFXQi2X
+         KTeyHWgVGY8KNLST+nSFuZyFJpKEDeIaGXYB+JTXy6KBaG8sXFpOLqB4lU26MvoSENlb
+         Lz6r6mjKUo9LuDDRN5pNPl/HPvuWUaJe/QbquNuad7UB1iCwcXg/Ogf9Czf4IihIWnd7
+         Fxhg==
+X-Gm-Message-State: AGi0PuaOQENF/eoKl0R84qj2Df6LWhZhWZF/S26wHhVw6HaZ/Uet53+H
+        QgfJQ9LEZ9B4IAayme9P3dI=
+X-Google-Smtp-Source: APiQypLr14dB3iv3cftOawtG+8I8jschkuiqmaqV8m8xPs6jesWKJm6n41f1RDl4PtiYgsxd4JDVUQ==
+X-Received: by 2002:a19:ad43:: with SMTP id s3mr12821715lfd.63.1585691119177;
+        Tue, 31 Mar 2020 14:45:19 -0700 (PDT)
+Received: from localhost.localdomain (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.gmail.com with ESMTPSA id a4sm3757826ljb.27.2020.03.31.14.45.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Mar 2020 14:40:52 -0700 (PDT)
-Received: (nullmailer pid 20298 invoked by uid 1000);
-        Tue, 31 Mar 2020 21:40:51 -0000
-Date:   Tue, 31 Mar 2020 15:40:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: ath10k: Add wifi-firmware subnode
- for wifi node
-Message-ID: <20200331214051.GA2053@bogus>
-References: <1585134100-5944-1-git-send-email-pillair@codeaurora.org>
- <1585134100-5944-2-git-send-email-pillair@codeaurora.org>
+        Tue, 31 Mar 2020 14:45:18 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        David Heidelberg <david@ixit.cz>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        =?UTF-8?q?Pedro=20=C3=82ngelo?= <pangelo@void.io>,
+        Matt Merhar <mattmerhar@protonmail.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/6] Support NVIDIA Tegra-based Acer A500 and Nexus 7 devices
+Date:   Wed,  1 Apr 2020 00:43:21 +0300
+Message-Id: <20200331214327.6496-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1585134100-5944-2-git-send-email-pillair@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 25, 2020 at 04:31:38PM +0530, Rakesh Pillai wrote:
-> Add a wifi-firmware subnode for the wifi node.
-> This wifi-firmware subnode is needed for the
-> targets which do not support TrustZone.
-> 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
->  .../devicetree/bindings/net/wireless/qcom,ath10k.txt       | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> index 71bf91f..65ee68e 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> @@ -96,6 +96,17 @@ Optional properties:
->  - qcom,coexist-gpio-pin : gpio pin number  information to support coex
->  			  which will be used by wifi firmware.
->  
-> +* Subnodes
-> +The ath10k wifi node can contain one optional firmware subnode.
-> +Firmware subnode is needed when the platform does not have TustZone.
-> +The firmware subnode must have:
-> +
-> +- iommus:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: A list of phandle and IOMMU specifier pairs.
-> +
-> +
->  Example (to supply PCI based wifi block details):
->  
->  In this example, the node is defined as child node of the PCI controller.
-> @@ -196,4 +207,7 @@ wifi@18000000 {
->  		memory-region = <&wifi_msa_mem>;
->  		iommus = <&apps_smmu 0x0040 0x1>;
->  		qcom,msa-fixed-perm;
-> +		wifi-firmware {
-> +			iommus = <&apps_iommu 0xc22 0x1>;
+Hello,
 
-Why can't you just add a 2nd entry to the existing 'iommus' property? 
+This series introduces upstream kernel support for Acer Iconia Tab A500
+and ASUS Google Nexus 7 tablet devices. Please review and apply, thanks
+in advance.
 
-A driver doing of_dma_configure() is generally not the right thing to 
-do.
+Dmitry Osipenko (6):
+  ARM: tegra: Add device-tree for Acer Iconia Tab A500
+  ARM: tegra: Add device-tree for ASUS Google Nexus 7
+  dt-bindings: Add vendor prefix for Acer Inc.
+  dt-bindings: ARM: tegra: Add Acer Iconia Tab A500
+  dt-bindings: ARM: tegra: Add ASUS Google Nexus 7
+  ARM: tegra_defconfig: Enable options useful for Nexus 7 and Acer A500
 
-Rob
+ .../devicetree/bindings/arm/tegra.yaml        |   10 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm/boot/dts/Makefile                    |    3 +
+ .../boot/dts/tegra20-acer-a500-picasso.dts    | 1444 +++++++++
+ .../tegra30-asus-nexus7-grouper-common.dtsi   | 2646 +++++++++++++++++
+ .../boot/dts/tegra30-asus-nexus7-grouper.dts  |  463 +++
+ .../boot/dts/tegra30-asus-nexus7-tilapia.dts  |  549 ++++
+ arch/arm/configs/tegra_defconfig              |   28 +
+ 8 files changed, 5145 insertions(+)
+ create mode 100644 arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-nexus7-grouper.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dts
+
+-- 
+2.25.1
+
