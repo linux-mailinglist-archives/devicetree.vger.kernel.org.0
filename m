@@ -2,103 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC2219960D
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 14:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00DC2199634
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 14:17:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730598AbgCaMOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 08:14:02 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:41362 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730543AbgCaMOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 08:14:02 -0400
-Received: by mail-wr1-f68.google.com with SMTP id h9so25589576wrc.8;
-        Tue, 31 Mar 2020 05:14:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=o49PLtczjrvnDvwyYGD9D+ZfmKnK23dv8VxdMQjHLQo=;
-        b=GcBI+VTxX4A3aVLmPkgITDWYoC2Han02vraisjcoDy6dieWJWqK7aSepeeBupCGFgQ
-         ha+cEwrNujyV0gQQIpmvWoHL8bZxiS/HVBgNLhX4JuyVLXMBlp+8Om4/GZUPb1f1rgbZ
-         d+5LVd54abHb4j9SRHvr/5Zhja9h0dbPkgmCgfHWA0lL/PB4XKfJFk0StUfIO886iYxG
-         wfKrwaINP5VIYI2c3gC1GhqraRZJNiaRAz4hyRIn0foos/63M0K/2ZP1+2izbIoBNh6x
-         8ZIWMZsFqGurcUbLTezggmynH/BiIPxgJDIlD/YT+KsKlPoMgh8dIX3B2gFvpntRZ2Ku
-         9nCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=o49PLtczjrvnDvwyYGD9D+ZfmKnK23dv8VxdMQjHLQo=;
-        b=A+IqPBcJF9vDhF8psHp7vjPJ0XUAmWpbpGmoaP7lHXeAFu1WOARiJ0Vyfw0nfDvWAh
-         IGGVjORxAyGZRUuiuoomG6lpCD55kEYaOOPFkl/o34RPI3+34TUOx8uClbIRTWUh3xaw
-         HzsiZIuVDDREJHJUt4wrSFWsMU51fjOP4FHi9tCrZv7ku4jMGxo4e9r9znOE33jOMQN0
-         flO2xPyK44/A1BF82lvC4y1dBFU/IlAzbe/f7NYVbm2n/PYEwtZGJqLyTnonqTGom9+Q
-         wpypl8hjzHWrYsNztndAvhtEbf5O0GiUQIiiMzKUSo9XfqYlGKszQ4eeB7zOKAHxQJU6
-         LVBw==
-X-Gm-Message-State: ANhLgQ0Hd+5GpznHQ0LZW3LO/BBuEbUrGzwKu8+d+9q/Rkb5quwFDYgv
-        gn4KqgYh02YyBBouTIeNzU4=
-X-Google-Smtp-Source: ADFU+vuz27mAc1lNVPQfLWPm/LTORsy6muqNkMdbp2qKAPkgBcrIlks83Udd1Fa6w5TPOn0as3gJjg==
-X-Received: by 2002:a5d:4cc4:: with SMTP id c4mr19884904wrt.346.1585656840655;
-        Tue, 31 Mar 2020 05:14:00 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id 127sm3754936wmd.38.2020.03.31.05.13.59
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 31 Mar 2020 05:14:00 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v3 2/2] ARM: dts: rockchip: fix yaml warnings for rk3288-pmu-sram compatible nodes
-Date:   Tue, 31 Mar 2020 14:13:52 +0200
-Message-Id: <20200331121352.3825-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200331121352.3825-1-jbx6244@gmail.com>
-References: <20200331121352.3825-1-jbx6244@gmail.com>
+        id S1730719AbgCaMRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 08:17:52 -0400
+Received: from mga17.intel.com ([192.55.52.151]:18052 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730711AbgCaMRw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Mar 2020 08:17:52 -0400
+IronPort-SDR: WlQ0DVRRemDr7RWNLQw+o5ZfKFhJHzzw8MKgwVDeaIYAA3L2x//Zvk3XZSreekj/gl7xAURn9J
+ w5MGyt1opuFg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2020 05:17:51 -0700
+IronPort-SDR: LYtlAFAPob+FXfTmrIW/lRXkqfZJhCTUbXaprhrp9D1xM9HkGzCy8aecbvk04+AGJKoC4PvigD
+ H9XjHHp68jRA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; 
+   d="scan'208";a="249032770"
+Received: from tking1-mobl2.ger.corp.intel.com (HELO localhost) ([10.252.59.94])
+  by orsmga003.jf.intel.com with ESMTP; 31 Mar 2020 05:17:40 -0700
+Date:   Tue, 31 Mar 2020 15:17:39 +0300
+From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+To:     amirmizi6@gmail.com
+Cc:     Eyal.Cohen@nuvoton.com, oshrialkoby85@gmail.com,
+        alexander.steffen@infineon.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Subject: Re: [PATCH v4 4/7] tpm: tpm_tis: Fix expected bit handling and send
+ all bytes in one shot without last byte in exception
+Message-ID: <20200331121720.GB9284@linux.intel.com>
+References: <20200331113207.107080-1-amirmizi6@gmail.com>
+ <20200331113207.107080-5-amirmizi6@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200331113207.107080-5-amirmizi6@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives for example these warnings:
+On Tue, Mar 31, 2020 at 02:32:04PM +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+> 
+> Today, actual implementation for send massage is not correct. We check and
+> loop only on TPM_STS.stsValid bit and next we single check TPM_STS.expect
+> bit value.
+> TPM_STS.expected bit shall be checked in the same time of
+> TPM_STS.stsValid, and should be repeated until timeout_A.
+> To aquire that, "wait_for_tpm_stat" function is modified to
+> "wait_for_tpm_stat_result". this function read regulary status register
+> and check bit defined by "mask" to reach value defined in "mask_result"
+> (that way a bit in mask can be checked if reached 1 or 0).
+> 
+> Respectively, to send message as defined in
+> TCG_DesignPrinciples_TPM2p0Driver_vp24_pubrev.pdf, all bytes should be
+> sent in one shot instead of sending last byte in exception.
+> 
+> This improvment was suggested by Benoit Houyere.
 
-arch/arm/boot/dts/rk3288-evb-act8846.dt.yaml: sram@ff720000:
-'#address-cells' is a required property
-arch/arm/boot/dts/rk3288-evb-act8846.dt.yaml: sram@ff720000:
-'#size-cells' is a required property
-arch/arm/boot/dts/rk3288-evb-act8846.dt.yaml: sram@ff720000:
-'ranges' is a required property
+Use suggested-by tag.
 
-Fix this error by adding '#address-cells', '#size-cells' and
-'ranges' to the 'rockchip,rk3288-pmu-sram' compatible node
-in rk3288.dtsi.
+Also if something is not correct, please provide a fixes tag.
 
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/sram/sram.yaml
+You are speaking now in theoretical level, which we don't really
+care that much. Is this causing you real issues? If the answer is
+yes, please report them. If the answer is no, we don't need this.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
-Not tested with hardware.
+/Jarkko
 
-Changed v2:
-  Fix dtsi.
----
- arch/arm/boot/dts/rk3288.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 9c8741bb1..f102fec69 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -730,6 +730,9 @@
- 	pmu_sram: sram@ff720000 {
- 		compatible = "rockchip,rk3288-pmu-sram", "mmio-sram";
- 		reg = <0x0 0xff720000 0x0 0x1000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x0 0xff720000 0x1000>;
- 	};
- 
- 	pmu: power-management@ff730000 {
--- 
-2.11.0
-
+> 
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> ---
+>  drivers/char/tpm/tpm_tis_core.c | 72 ++++++++++++++++-------------------------
+>  1 file changed, 28 insertions(+), 44 deletions(-)
+> 
+> diff --git a/drivers/char/tpm/tpm_tis_core.c b/drivers/char/tpm/tpm_tis_core.c
+> index 18b9dc4..c8f4cf8 100644
+> --- a/drivers/char/tpm/tpm_tis_core.c
+> +++ b/drivers/char/tpm/tpm_tis_core.c
+> @@ -44,9 +44,10 @@ static bool wait_for_tpm_stat_cond(struct tpm_chip *chip, u8 mask,
+>         return false;
+>  }
+> 
+> -static int wait_for_tpm_stat(struct tpm_chip *chip, u8 mask,
+> -               unsigned long timeout, wait_queue_head_t *queue,
+> -               bool check_cancel)
+> +static int wait_for_tpm_stat_result(struct tpm_chip *chip, u8 mask,
+> +                                   u8 mask_result, unsigned long timeout,
+> +                                   wait_queue_head_t *queue,
+> +                                   bool check_cancel)
+>  {
+>         unsigned long stop;
+>         long rc;
+> @@ -55,7 +56,7 @@ static int wait_for_tpm_stat(struct tpm_chip *chip, u8 mask,
+> 
+>         /* check current status */
+>         status = chip->ops->status(chip);
+> -       if ((status & mask) == mask)
+> +       if ((status & mask) == mask_result)
+>                 return 0;
+> 
+>         stop = jiffies + timeout;
+> @@ -83,7 +84,7 @@ static int wait_for_tpm_stat(struct tpm_chip *chip, u8 mask,
+>                         usleep_range(TPM_TIMEOUT_USECS_MIN,
+>                                      TPM_TIMEOUT_USECS_MAX);
+>                         status = chip->ops->status(chip);
+> -                       if ((status & mask) == mask)
+> +                       if ((status & mask) == mask_result)
+>                                 return 0;
+>                 } while (time_before(jiffies, stop));
+>         }
+> @@ -290,10 +291,11 @@ static int recv_data(struct tpm_chip *chip, u8 *buf, size_t count)
+>         int size = 0, burstcnt, rc;
+> 
+>         while (size < count) {
+> -               rc = wait_for_tpm_stat(chip,
+> -                                TPM_STS_DATA_AVAIL | TPM_STS_VALID,
+> -                                chip->timeout_c,
+> -                                &priv->read_queue, true);
+> +               rc = wait_for_tpm_stat_result(chip,
+> +                                       TPM_STS_DATA_AVAIL | TPM_STS_VALID,
+> +                                       TPM_STS_DATA_AVAIL | TPM_STS_VALID,
+> +                                       chip->timeout_c,
+> +                                       &priv->read_queue, true);
+>                 if (rc < 0)
+>                         return rc;
+>                 burstcnt = get_burstcount(chip);
+> @@ -348,8 +350,9 @@ static int tpm_tis_recv(struct tpm_chip *chip, u8 *buf, size_t count)
+>                         goto out;
+>                 }
+> 
+> -               if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
+> -                                     &priv->int_queue, false) < 0) {
+> +               if (wait_for_tpm_stat_result(chip, TPM_STS_VALID,
+> +                                            TPM_STS_VALID, chip->timeout_c,
+> +                                            &priv->int_queue, false) < 0) {
+>                         size = -ETIME;
+>                         goto out;
+>                 }
+> @@ -385,61 +388,40 @@ static int tpm_tis_send_data(struct tpm_chip *chip, const u8 *buf, size_t len)
+>         struct tpm_tis_data *priv = dev_get_drvdata(&chip->dev);
+>         int rc, status, burstcnt;
+>         size_t count = 0;
+> -       bool itpm = priv->flags & TPM_TIS_ITPM_WORKAROUND;
+> 
+>         status = tpm_tis_status(chip);
+>         if ((status & TPM_STS_COMMAND_READY) == 0) {
+>                 tpm_tis_ready(chip);
+> -               if (wait_for_tpm_stat
+> -                   (chip, TPM_STS_COMMAND_READY, chip->timeout_b,
+> -                    &priv->int_queue, false) < 0) {
+> +               if (wait_for_tpm_stat_result(chip, TPM_STS_COMMAND_READY,
+> +                                            TPM_STS_COMMAND_READY,
+> +                                            chip->timeout_b,
+> +                                            &priv->int_queue, false) < 0) {
+>                         rc = -ETIME;
+>                         goto out_err;
+>                 }
+>         }
+> 
+> -       while (count < len - 1) {
+> +       while (count < len) {
+>                 burstcnt = get_burstcount(chip);
+>                 if (burstcnt < 0) {
+>                         dev_err(&chip->dev, "Unable to read burstcount\n");
+>                         rc = burstcnt;
+>                         goto out_err;
+>                 }
+> -               burstcnt = min_t(int, burstcnt, len - count - 1);
+> +               burstcnt = min_t(int, burstcnt, len - count);
+>                 rc = tpm_tis_write_bytes(priv, TPM_DATA_FIFO(priv->locality),
+>                                          burstcnt, buf + count);
+>                 if (rc < 0)
+>                         goto out_err;
+> 
+>                 count += burstcnt;
+> -
+> -               if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
+> -                                       &priv->int_queue, false) < 0) {
+> -                       rc = -ETIME;
+> -                       goto out_err;
+> -               }
+> -               status = tpm_tis_status(chip);
+> -               if (!itpm && (status & TPM_STS_DATA_EXPECT) == 0) {
+> -                       rc = -EIO;
+> -                       goto out_err;
+> -               }
+>         }
+> -
+> -       /* write last byte */
+> -       rc = tpm_tis_write8(priv, TPM_DATA_FIFO(priv->locality), buf[count]);
+> -       if (rc < 0)
+> -               goto out_err;
+> -
+> -       if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
+> -                               &priv->int_queue, false) < 0) {
+> +       if (wait_for_tpm_stat_result(chip, TPM_STS_VALID | TPM_STS_DATA_EXPECT,
+> +                                    TPM_STS_VALID, chip->timeout_c,
+> +                                    &priv->int_queue, false) < 0) {
+>                 rc = -ETIME;
+>                 goto out_err;
+>         }
+> -       status = tpm_tis_status(chip);
+> -       if (!itpm && (status & TPM_STS_DATA_EXPECT) != 0) {
+> -               rc = -EIO;
+> -               goto out_err;
+> -       }
+> 
+>         return 0;
+> 
+> @@ -496,9 +478,11 @@ static int tpm_tis_send_main(struct tpm_chip *chip, const u8 *buf, size_t len)
+>                 ordinal = be32_to_cpu(*((__be32 *) (buf + 6)));
+> 
+>                 dur = tpm_calc_ordinal_duration(chip, ordinal);
+> -               if (wait_for_tpm_stat
+> -                   (chip, TPM_STS_DATA_AVAIL | TPM_STS_VALID, dur,
+> -                    &priv->read_queue, false) < 0) {
+> +               if (wait_for_tpm_stat_result(chip,
+> +                                            TPM_STS_DATA_AVAIL | TPM_STS_VALID,
+> +                                            TPM_STS_DATA_AVAIL | TPM_STS_VALID,
+> +                                            dur,
+> +                                            &priv->read_queue, false) < 0) {
+>                         rc = -ETIME;
+>                         goto out_err;
+>                 }
+> --
+> 2.7.4
+> 
+> 
+> 
+> ===========================================================================================
+> The privileged confidential information contained in this email is intended for use only by the addressees as indicated by the original sender of this email. If you are not the addressee indicated in this email or are not responsible for delivery of the email to such a person, please kindly reply to the sender indicating this fact and delete all copies of it from your computer and network server immediately. Your cooperation is highly appreciated. It is advised that any unauthorized use of confidential information of Nuvoton is strictly prohibited; and any information in this email irrelevant to the official business of Nuvoton shall be deemed as neither given nor endorsed by Nuvoton.
