@@ -2,89 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB64198D91
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 09:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6445D198DAF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2020 09:56:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726636AbgCaHyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 03:54:36 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:60990 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729958AbgCaHyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 03:54:36 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02V7sL3r053361;
-        Tue, 31 Mar 2020 02:54:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1585641261;
-        bh=gZQLRq/ZPffbZ428LIa0YD/StxYGyhiX12YISoU/gWk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=vwLY73nwex1ynsHTl44860/0tcyKtnr+34Bd6yYqL04LwSHsSWBLM9ZKNHn5lBpTA
-         pZn5a+58EcwthkgX9WfB54sN6G0LCYkYEThhvGpsCp9DGv4TVT1qyhXHGyeZoqB0H+
-         ARFdbudQOu1QnsReXH25pu5W2fpVu4FVV4+1juAk=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02V7sLgS069877;
-        Tue, 31 Mar 2020 02:54:21 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 31
- Mar 2020 02:54:20 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 31 Mar 2020 02:54:20 -0500
-Received: from a0393675ula.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02V7s2gj009443;
-        Tue, 31 Mar 2020 02:54:17 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <rui.zhang@intel.com>, <robh+dt@kernel.org>,
-        <daniel.lezcano@linaro.org>
-CC:     <j-keerthy@ti.com>, <amit.kucheria@verdurent.com>,
-        <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <mark.rutland@arm.com>
-Subject: [PATCH v5 4/4] arm64: dts: ti: am6: Add VTM node
-Date:   Tue, 31 Mar 2020 13:23:56 +0530
-Message-ID: <20200331075356.19171-5-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200331075356.19171-1-j-keerthy@ti.com>
-References: <20200331075356.19171-1-j-keerthy@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726636AbgCaH4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 03:56:43 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:50210 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729925AbgCaH4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Mar 2020 03:56:43 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1585641402; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=mw7u0T8in9Wk7yv/+Jn7zUsruVSN8kOaTj5sQ3nzoGI=; b=xOoOwaT6zVFTiy8mCtR7WnaqOUGwlsRzSdPHCiYfGn1kyONJ2fgDsfokdGwVwyilxEi01XJT
+ 6ofJmhuoC0CFw+SoDsgfqdmSIX3P6f3R2C0w9wUDTjLe/2n27deKUX0nWr9q/kJ7HHSVvteq
+ b2zQAeDrpuFDbn3/Bt6TudR8KZM=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e82f7b0.7feed82c8bc8-smtp-out-n02;
+ Tue, 31 Mar 2020 07:56:32 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2CFFDC43636; Tue, 31 Mar 2020 07:56:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld559.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: smasetty)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0B378C433D2;
+        Tue, 31 Mar 2020 07:56:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0B378C433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
+From:   Sharat Masetty <smasetty@codeaurora.org>
+To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jcrouse@codeaurora.org,
+        mka@chromium.org, sibis@codeaurora.org, saravanak@google.com,
+        viresh.kumar@linaro.org, Sharat Masetty <smasetty@codeaurora.org>
+Subject: [PATCH 0/5] Add support for GPU DDR BW scaling
+Date:   Tue, 31 Mar 2020 13:25:48 +0530
+Message-Id: <1585641353-23229-1-git-send-email-smasetty@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VTM stands for voltage and thermal management. Add the vtm node and
-the associated thermal zones on the SoC.
+This series adds support for GPU DDR bandwidth scaling and is based on the
+bindings from Sarvana[1]. This work is based on Sibi's work for CPU side [2]
+which also lists all the needed dependencies to get this series working.
+My workspace is based on a chrome tag [3]. Although the bindings add support
+for both peak and average bandwidth votes, I have only added support for peak
+bandwidth votes.
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+[1]: https://patchwork.kernel.org/cover/11277199/
+[2]: https://patchwork.kernel.org/cover/11353185/ (this lists further dependencies)
+[3]: https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/2097039/3
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index f4227e2743f2..54a133fa1bf2 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -89,4 +89,15 @@
- 		clocks = <&k3_clks 59 0>;
- 		clock-names = "gpio";
- 	};
-+
-+	wkup_vtm0: thermal@42050000 {
-+		compatible = "ti,am654-vtm";
-+		reg = <0x42050000 0x25c>;
-+		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-+		#thermal-sensor-cells = <1>;
-+	};
-+
-+	thermal_zones: thermal-zones {
-+		#include "k3-am654-industrial-thermal.dtsi"
-+	};
- };
--- 
-2.17.1
+Sharat Masetty (5):
+  arm64: dts: qcom: sc7180: Add interconnect bindings for GPU
+  arm64: dts: qcom: sc7180: Add GPU DDR BW opp table
+  drm: msm: scale DDR BW along with GPU frequency
+  drm: msm: a6xx: Fix off by one error when setting GPU freq
+  dt-bindings: drm/msm/gpu: Document OPP phandle list for the GPU
 
+ .../devicetree/bindings/display/msm/gpu.txt        | 63 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 52 +++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 43 ++++++++++++---
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c            | 44 +++++++++++++--
+ drivers/gpu/drm/msm/msm_gpu.h                      |  9 ++++
+ 5 files changed, 197 insertions(+), 14 deletions(-)
+
+--
+2.7.4
