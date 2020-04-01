@@ -2,135 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CEF919B038
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 18:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 653A219B3ED
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 18:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387786AbgDAQZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 12:25:09 -0400
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:55970 "EHLO
-        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387764AbgDAQZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 12:25:08 -0400
-Received: by mail-pj1-f66.google.com with SMTP id fh8so185014pjb.5;
-        Wed, 01 Apr 2020 09:25:08 -0700 (PDT)
+        id S2387951AbgDAQ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 12:26:57 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:36712 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387945AbgDAQ0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 12:26:54 -0400
+Received: by mail-lj1-f194.google.com with SMTP id b1so125497ljp.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2020 09:26:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=gHFLCKlpXIGAn0egtGMAf9G1WrufJhSv91wXY+Y8f8Q=;
-        b=tWM2eX3i801PMq7UXOjk5Rdt+AbUlekjbWhkNHZLubyt7URQ62HbIkd62klBeCS1Ob
-         0bechhHZmZz0bUIAD2eQQxzk7/i4Yv9pCZIvNZGUVu4t1x2A56iCLukQ9gDV2p4kjldH
-         O+p9CbN7FF+/m3GsmzqB1T20aftGn5qll1X6AbDYLdYTNEx2+uD8m7/IH6REWVJdcSls
-         u+VoyYhb3lqNUPLDRXuzTWV9bi4xGRzl/zNJcjAUBV3yELDna/l33VoFKYgPwItULo1J
-         KCkG/7DXUDDKN6h9hN4+VI6xFJvMeqVVkfPoYus+LOy9GbUVaxZ5a2b9GSomfQ8MENUs
-         q7xw==
+         :cc;
+        bh=XlnGKqC/ksqt7PwOjXqDO3WpjQwi8cgdWrR0LC5/SsA=;
+        b=mY6lhPu6r3dtFh6Z65KXh5PfV4ehb6xbJ/qhRAI3rZHpLXxCY+F5t37DelqrPtp7D7
+         5IkwQcVghOeDbcTvjkKoVhALKtuwX4xrB2cf8+b8ZNiPjczg7fw8D7O6W8V13iFcQhUp
+         kx9C8oIn5wkZsimqa74YxFDF+Id7c35GhJrr8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=gHFLCKlpXIGAn0egtGMAf9G1WrufJhSv91wXY+Y8f8Q=;
-        b=mS4XvEIO21jAYcoutoxdpqF4kjXNvK0nxVNQbKjM3MaIRPVnnxZyuhJWXCPU5z/eBD
-         1HG8C3SWLOmLjRUa92qSmtaMZkqJL1tbHh4AeMjBi/D6VfT9ipK/G/1UUoiZOKHzUe9u
-         d4ebKmeTO8ZP7IGeNcmDf6bekVu2QdUuX4UO+dLOR5g+rKAf29GCF5HFbhbnfABbxYvQ
-         X7mjozt1V6UAp8SKZrHlHsSpHJbDzloWdstwqwDy8+QqnPhwixpoG8b18gOrp+NtrxF2
-         ue1UZ+eLNucx4ZeVvPpIcuMiILcLS1Y3UTFzs8u5/SH+Zj09lcF5SKQVN+b7zZPjC5TL
-         m/Eg==
-X-Gm-Message-State: AGi0PuZzbQ/Qr5fvm5aSxtocHuNmErHmMwvyOkZRtOuA8X69LFuSRtRM
-        /MaQQQukgB9f1P5ki7lm2i5kMITSPMQuL0+nPik=
-X-Google-Smtp-Source: APiQypJFkKtX6ZC6hJ0SDdwypkf/KeP+1RyrvwFBHvlwbJQHvhQXt7QZJ/RME6jjIkwyNRSQ2VZlIfHmuUBQY2B1cL8=
-X-Received: by 2002:a17:90a:8403:: with SMTP id j3mr5878941pjn.8.1585758307412;
- Wed, 01 Apr 2020 09:25:07 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=XlnGKqC/ksqt7PwOjXqDO3WpjQwi8cgdWrR0LC5/SsA=;
+        b=ZrCbJ8JnJPL2hdJG+eBiPfYL3zrrXsWJpzvIDgiEjmYDJiSZctSXrETB5C4+Kk79eq
+         ikPN795jmtNaSiXOECbMeECXOX6sXRFB8EP5bmz/V6wManoM15AXAmrfMi3vxMdumsur
+         Md6RoYrtBzn/6XA3hn+V5bccVUnZEhFvWf+xhkjJHsc+w5Qw06PsoopHRBIlEobs7fgy
+         w1JchT5i01engWTcS4dxSboXc/DXLA74x7b+wury5oHtzi1JF0pYcSrprGSpMrEzmTtT
+         DepmJsDGMuJ+xjOJZByFPaxA5rfAeo90BzJPOYo84vjl/JZXsBa1pHCBp1y995WgOBYB
+         cRrA==
+X-Gm-Message-State: AGi0PuZoAOkN5HZCHjQTnZQNjtYeadNjiXEB7oLrzvDn5MONQa7UE2wN
+        SA16yoF+Zz9esSLu9vydeEuuf71bnd4=
+X-Google-Smtp-Source: APiQypIn1LH0mElXYtMHvkIZVSV1QuhWyeMmP0ggSj2ewk+lKa2QYfYxpjnMrPe/fKkt9ID+xC14WQ==
+X-Received: by 2002:a2e:8290:: with SMTP id y16mr13525455ljg.186.1585758412871;
+        Wed, 01 Apr 2020 09:26:52 -0700 (PDT)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
+        by smtp.gmail.com with ESMTPSA id h3sm2046939lfk.30.2020.04.01.09.26.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Apr 2020 09:26:52 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id p14so64486lji.11
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2020 09:26:52 -0700 (PDT)
+X-Received: by 2002:a2e:9d83:: with SMTP id c3mr13562274ljj.3.1585758411425;
+ Wed, 01 Apr 2020 09:26:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200331114811.7978-1-nuno.sa@analog.com> <20200331114811.7978-6-nuno.sa@analog.com>
- <CAHp75Vdxtn1gXi=xCJfGOkBYiWB2qsYQLTJyaEGiiFqHvELaHQ@mail.gmail.com>
- <BN6PR03MB3347862A4C434CCA8C1B1E2599C90@BN6PR03MB3347.namprd03.prod.outlook.com>
- <CAHp75VfuWMDR4dUmjsYgeMgNMcVDZKdKVCsZ5p6g0m3TLHi5UA@mail.gmail.com>
- <BN6PR03MB3347E5ECF100EAD1453B577D99C90@BN6PR03MB3347.namprd03.prod.outlook.com>
- <CAHp75Vcp5Rs53i_74MvbudcRrDYCD=Agfjh2cO_GNc7TXaS73g@mail.gmail.com> <BN6PR03MB33475E91FA8665937E8F3AE599C90@BN6PR03MB3347.namprd03.prod.outlook.com>
-In-Reply-To: <BN6PR03MB33475E91FA8665937E8F3AE599C90@BN6PR03MB3347.namprd03.prod.outlook.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 1 Apr 2020 19:24:59 +0300
-Message-ID: <CAHp75VddBgGtBf=3yNs331EU6HQgL-Aq7tmf+dG3Z9W-d0hdNQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] iio: imu: Add support for adis16475
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
+ <1585652976-17481-3-git-send-email-akashast@codeaurora.org> <20200331233209.GF254911@minitux>
+In-Reply-To: <20200331233209.GF254911@minitux>
+From:   Evan Green <evgreen@chromium.org>
+Date:   Wed, 1 Apr 2020 09:26:15 -0700
+X-Gmail-Original-Message-ID: <CAE=gft6B2UCBVaKVCJXED8waFWci8WJ+sTM3CT+3e_eYS=-BDQ@mail.gmail.com>
+Message-ID: <CAE=gft6B2UCBVaKVCJXED8waFWci8WJ+sTM3CT+3e_eYS=-BDQ@mail.gmail.com>
+Subject: Re: [PATCH V3 2/8] soc: qcom: geni: Support for ICC voting
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Akash Asthana <akashast@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>, wsa@the-dreams.de,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 1, 2020 at 5:18 PM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+On Tue, Mar 31, 2020 at 4:32 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 >
-> > From: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Sent: Mittwoch, 1. April 2020 16:06
-> > To: Sa, Nuno <Nuno.Sa@analog.com>
-> > Cc: linux-iio <linux-iio@vger.kernel.org>; devicetree
-> > <devicetree@vger.kernel.org>; Jonathan Cameron <jic23@kernel.org>;
-> > Hartmut Knaack <knaack.h@gmx.de>; Lars-Peter Clausen <lars@metafoo.de>;
-> > Peter Meerwald-Stadler <pmeerw@pmeerw.net>; Rob Herring
-> > <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>; Ardelean,
-> > Alexandru <alexandru.Ardelean@analog.com>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>
-> > Subject: Re: [PATCH v3 5/6] iio: imu: Add support for adis16475
-> >
-> > On Wed, Apr 1, 2020 at 4:27 PM Sa, Nuno <Nuno.Sa@analog.com> wrote:
-> > > > On Wed, Apr 1, 2020 at 10:13 AM Sa, Nuno <Nuno.Sa@analog.com>
-> > wrote:
-> > > > > > On Tue, Mar 31, 2020 at 2:49 PM Nuno S=C3=A1 <nuno.sa@analog.co=
-m>
-> > wrote:
-
-...
-
-> > > Well, I can remove the 7. I honestly took it from another driver and =
-I guess
-> > the idea
-> > > is to make explicit that 7 is not supported. Since this is a 3 bit fi=
-eld and the
-> > datasheet
-> > > does not state this directly.
-> > >
-> > > As for the >=3D0, I prefer to have either as is or >0 since we don't =
-really need to
-> > check the
-> > > index 0. If 1 fails, then we will use 0 either way...
-> >
-> > It makes sense to check to get better optimization (and increased reada=
-bility).
-> > Look for this
-> >
-> > i =3D ARRAY_SIZE(...);
-> >
-> > while (i--) {
-> >  ...
-> > }
-> >
-> > It's much better to read and understand.
+> On Tue 31 Mar 04:09 PDT 2020, Akash Asthana wrote:
 >
-> Well, about the readability it's a bit subjective . It depends who is
-> reading the code. Just curious, how would you get better optimization
-> by doing >=3D0 instead of > 0?
+> > Add necessary macros and structure variables to support ICC BW
+> > voting from individual SE drivers.
+> >
+> > Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+> > ---
+> > Changes in V2:
+> >  - As per Bjorn's comment dropped enums for ICC paths, given the three
+> >    paths individual members
+> >
+> > Changes in V3:
+> >  - Add geni_icc_get, geni_icc_vote_on and geni_icc_vote_off as helper API.
+> >  - Add geni_icc_path structure in common header
+> >
+> >  drivers/soc/qcom/qcom-geni-se.c | 98 +++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/qcom-geni-se.h    | 36 +++++++++++++++
+> >  2 files changed, 134 insertions(+)
+> >
+> > diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> > index 7d622ea..9344c14 100644
+> > --- a/drivers/soc/qcom/qcom-geni-se.c
+> > +++ b/drivers/soc/qcom/qcom-geni-se.c
+> > @@ -720,6 +720,104 @@ void geni_se_rx_dma_unprep(struct geni_se *se, dma_addr_t iova, size_t len)
+> >  }
+> >  EXPORT_SYMBOL(geni_se_rx_dma_unprep);
+> >
+> > +int geni_icc_get(struct geni_se *se, const char *icc_core, const char *icc_cpu,
+> > +             const char *icc_ddr)
+> > +{
+> > +     if (icc_core) {
+>
+> Afaict it's only this that might be passed as NULL, so please drop these
+> conditionals (keep the last one).
+>
+> > +             se->to_core.path = devm_of_icc_get(se->dev, "qup-core");
+> > +             if (IS_ERR(se->to_core.path))
+>
+> It would be useful to print an error message here (if PTR_ERR(path) !=
+> -EPROBE_DEFER).
+>
+> > +                     return PTR_ERR(se->to_core.path);
+> > +     }
+> > +
+> > +     if (icc_cpu) {
+> > +             se->from_cpu.path = devm_of_icc_get(se->dev, "qup-config");
+> > +             if (IS_ERR(se->from_cpu.path))
+> > +                     return PTR_ERR(se->from_cpu.path);
+> > +     }
+> > +
+> > +     if (icc_ddr) {
+> > +             se->to_ddr.path = devm_of_icc_get(se->dev, "qup-memory");
+> > +             if (IS_ERR(se->to_ddr.path))
+> > +                     return PTR_ERR(se->to_ddr.path);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(geni_icc_get);
+> > +
+> > +int geni_icc_vote_on(struct geni_se *se)
+> > +{
+> > +     int ret;
+> > +
+> > +     if (se->to_core.path) {
+>
+> icc_set_bw(NULL, ...) is valid and will return 0, so these checks
+> doesn't add any value.
+>
+> > +             ret = icc_set_bw(se->to_core.path, se->to_core.avg_bw,
+> > +                     se->to_core.peak_bw);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW voting failed for core\n",
+> > +                                             __func__);
+>
+> Please drop the __func__, the message is specific enough.
+>
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     if (se->from_cpu.path) {
+> > +             ret = icc_set_bw(se->from_cpu.path, se->from_cpu.avg_bw,
+> > +                     se->from_cpu.peak_bw);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW voting failed for cpu\n",
+> > +                                             __func__);
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     if (se->to_ddr.path) {
+> > +             ret = icc_set_bw(se->to_ddr.path, se->to_ddr.avg_bw,
+> > +                     se->to_ddr.peak_bw);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW voting failed for ddr\n",
+> > +                                             __func__);
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(geni_icc_vote_on);
+> > +
+> > +int geni_icc_vote_off(struct geni_se *se)
+> > +{
+> > +     int ret;
+> > +
+> > +     if (se->to_core.path) {
+> > +             ret = icc_set_bw(se->to_core.path, 0, 0);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW remove failed for core\n",
+> > +                                             __func__);
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     if (se->from_cpu.path) {
+> > +             ret = icc_set_bw(se->from_cpu.path, 0, 0);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW remove failed for cpu\n",
+> > +                                             __func__);
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     if (se->to_ddr.path) {
+> > +             ret = icc_set_bw(se->to_ddr.path, 0, 0);
+> > +             if (ret) {
+> > +                     dev_err_ratelimited(se->dev, "%s: ICC BW remove failed for ddr\n",
+> > +                                             __func__);
+> > +                     return ret;
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(geni_icc_vote_off);
+>
+> Given that these two functions only switch the bandwidth request between
+> some value and 0, I really think we should carry a "bool enabled" on the
+> path and replace these two functions with
+> icc_bulk_enable()/icc_bulk_disable().
+>
+> The added benefit of this would be that you call icc_set_bw() instead of
+> changing the geni_icc_path->{avg_bw,peak_bw} and don't need to keep
+> track of them here.
 
-Feel the difference while (i--) vs. while (--i > 0).
-The latter one is a bit unusual.
+Yes yes! I had the same thought here [1].
 
-> Either way, I don=E2=80=99t have any strong feeling about this so I can d=
-o as
-> you suggest.
+Georgi, what do you think?
+-Evan
 
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+[1] https://lore.kernel.org/linux-arm-msm/CAE=gft58QsgTCUHMHKJhcM9ZxAeMiY16CrbNv2HaTCRqwtmt7A@mail.gmail.com/
