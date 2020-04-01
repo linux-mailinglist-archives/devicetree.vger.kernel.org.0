@@ -2,109 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCF919AE7A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 17:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4806B19AE90
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 17:09:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732504AbgDAPGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 11:06:18 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57442 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732554AbgDAPGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 11:06:17 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id B59E88030890;
-        Wed,  1 Apr 2020 15:06:09 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id o7swTIfdtaeL; Wed,  1 Apr 2020 18:06:08 +0300 (MSK)
-Date:   Wed, 1 Apr 2020 18:06:12 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
-        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1732677AbgDAPJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 11:09:16 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:54545 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732698AbgDAPJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 11:09:16 -0400
+Received: by mail-wm1-f65.google.com with SMTP id c81so44531wmd.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2020 08:09:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QsyC5XbpdA/rmlnfYe4iva3k7o6K19W7aGVX/8LE71s=;
+        b=drXfHyn/Sgn/OQv1If63LxfC2slBajC0r8s8otOEk+FQczecih3n6j44CKfWyCZPc8
+         rK3gbuRyGSnRn188TuhWL1ESm1LdOcRtYLwwkpi4AVRqxzdsDFr14JIeE0ZQ15cqMBxn
+         2hVkkUWjIsVivWqAEwQS513sfDOGRlL/Jkr+k7h15OIMMJi5CtVSCw7HddnIp9CHFXqP
+         yxY9ZOXj26HvIa3rm5udKyFVzdihal6q+oJgyuprERWuh3NPKBjxKinCiCp0AlBgsRvw
+         1ldlE5eF+RwYGcFHTSXCqEH9VD2YHC76OYah5Vq3yannF6Maz9YB613bJdG3n3N312/R
+         TwEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QsyC5XbpdA/rmlnfYe4iva3k7o6K19W7aGVX/8LE71s=;
+        b=RhXJSMJd7GdOXCaCLOJ64OAm2QZN1eCq0sETXDnHYU0MzPHSXgGfU3G6Glztoc4nFk
+         MWaHn5gYm1EIWDZUB2WH3flcAb7G6/s8QHR1ffeBtfJ/QUgSkz9fj78sl0zwx1z8vLQU
+         hICNleSrwhQ39moujttQN526pOT9bW7QIoh0WGYAtBQerv5Z4FoNZyUSZMmCW1c833rG
+         MLNHcqPxGknyFkDFjNwaXLHR8GQ4ExgYJy6HGMsiiYv9wttksLqvQnr05xda2DW7LROc
+         gflUOcWE4uFkgGRN1XPdy3D5NJUrS6a1LZ8gTGnJxvJDxR6xxUHxTB2Kv9TTGIRIl0CF
+         O5BQ==
+X-Gm-Message-State: AGi0PubFVj8oK/VeW3u78LPpAUrBIts5fsQLjwLhcM0mMqGQbs53MeFR
+        piLqWNbECPM1Q0QwFAmsWrrskw==
+X-Google-Smtp-Source: APiQypJaF4faY8l/5iAT9eY/9dKjhFsuJY2Qtseh5JoQOXF3ILTEkl8vRYMSOY5CmJmhoXVeWiwtvA==
+X-Received: by 2002:a05:600c:4145:: with SMTP id h5mr4648989wmm.3.1585753753742;
+        Wed, 01 Apr 2020 08:09:13 -0700 (PDT)
+Received: from [192.168.0.136] ([87.120.218.65])
+        by smtp.googlemail.com with ESMTPSA id d1sm3361008wrm.86.2020.04.01.08.09.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 Apr 2020 08:09:12 -0700 (PDT)
+Subject: Re: [PATCH V4 00/13] Add driver for dvfsrc, support for active state
+ of scpsys
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/6] soc: Add Baikal-T1 SoC APB/AXI EHB and L2-cache
- drivers
-Message-ID: <20200401150612.addu2gzahrarpgep@ubsrv2.baikal.int>
-References: <20200306130731.938808030702@mail.baikalelectronics.ru>
- <20200306153246.9373B80307C4@mail.baikalelectronics.ru>
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        Mike Turquette <mturquette@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com
+References: <1584092066-24425-1-git-send-email-henryc.chen@mediatek.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <2737cc5c-3876-6861-c44f-fc9f552bbdb9@linaro.org>
+Date:   Wed, 1 Apr 2020 18:09:11 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200306153246.9373B80307C4@mail.baikalelectronics.ru>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <1584092066-24425-1-git-send-email-henryc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Arnd,
+Hi Henry,
 
-On Fri, Mar 06, 2020 at 04:19:47PM +0100, Arnd Bergmann wrote:
-> On Fri, Mar 6, 2020 at 2:07 PM <Sergey.Semin@baikalelectronics.ru> wrote:
-> >
-> > From: Serge Semin <fancer.lancer@gmail.com>
-> >
-> > Aside from PCIe/SATA/DDR/I2C/CPU-reboot specific settings the Baikal-T1
-> > system controller provides three vendor-specific blocks. In particular
-> > there are two Errors Handler Blocks to detect and report an info regarding
-> > any problems discovered on the AXI and APB buses. These are the main buses
-> > utilized by the SoC devices to interact with each other. In addition there
-> > is a way to tune the MIPS P5600 CM2 L2-cache up by setting the Tag/Data/WS
-> > L2-to-RAM latencies. All of this functionality is implemented in the
-> > APB/AXI EHB and L2-cache control block drivers to be a part of the kernel soc
-> > subsystem (as being specific to the Baikal-T1 SoC) and introduced in the
-> > framework of this patchset.
-> >
-> > This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
-> > commit 98d54f81e36b ("Linux 5.6-rc4").
+On 3/13/20 11:34, Henry Chen wrote:
+> The patchsets add support for MediaTek hardware module named DVFSRC
+> (dynamic voltage and frequency scaling resource collector). The DVFSRC is
+> a HW module which is used to collect all the requests from both software
+> and hardware and turn into the decision of minimum operating voltage and
+> minimum DRAM frequency to fulfill those requests.
 > 
-> I have no objection to the drivers, but I wonder if these should be
-> in drivers/bus and drivers/memory instead of drivers/soc, which have
-> similar drivers already. The driver for the L2 cache is not really a
-> memory controller driver, but it may be close enough, and we
-> already have a couple of different things in there.
+> So, This series is to implement the dvfsrc driver to collect all the
+> requests of operating voltage or DRAM bandwidth from other device drivers
+> likes GPU/Camera through 3 frameworks basically:
 > 
->           Arnd
+> 1. interconnect framework: to aggregate the bandwidth
+>    requirements from different clients
+> 
+> [1] https://patchwork.kernel.org/cover/10766329/
+> 
+> Below is the emi bandwidth map of mt8183. There has a hw module "DRAM scheduler"
+> which used to control the throughput. The DVFSRC will collect forecast data
+> of dram bandwidth from SW consumers(camera/gpu...), and according the forecast
+> to change the DRAM frequency
+> 
+>            ICC provider         ICC Nodes
+>                             ----          ----
+>            ---------       |CPU |   |--->|VPU |
+>   -----   |         |-----> ----    |     ----
+>  |DRAM |--|DRAM     |       ----    |     ----
+>  |     |--|scheduler|----->|GPU |   |--->|DISP|
+>  |     |--|(EMI)    |       ----    |     ----
+>  |     |--|         |       -----   |     ----
+>   -----   |         |----->|MMSYS|--|--->|VDEC|
+>            ---------        -----   |     ----
+>              /|\                    |     ----
+>               |change DRAM freq     |--->|VENC|
+>            ----------               |     ----
+>           |  DVFSR   |              |
+>           |          |              |     ----
+>            ----------               |--->|IMG |
+>                                     |     ----
+>                                     |     ----
+>                                     |--->|CAM |
+>                                           ----
 
-Sorry for a delay. I was analyzing and fixing comments, which were raised
-in the framework of anther patchsets I've submitted. Some of them including
-yours cause bigger changes than just a few fixups and might be resolved
-at once by a solution I've described in RFC: https://lkml.org/lkml/2020/3/22/393
-You've been in Cc there, so feel free to send your comments.
+It would be useful to also add the above diagram into the commit text of
+patch 09/13. By doing so, it will be saved into the history, as cover letters
+are discarded.
 
-Regarding ehb drivers. You are right. They should be moved to the drivers/bus
-(it has also been described in the RFC). It is more suitable place for them.
-I'll do it in v2.
-
-Regarding l2 driver. Do you really think that L2 cache should be in
-drivers/memory? First there is no any cache-related drivers in that
-subsystem (at least I couldn't find any). Second the Baikal-T1
-L2-cache-RAM config block has just indirect connection with RAM.
-The block just tunes the L2-cache<->RAM stall clock cycles up on
-WS/Tag/Data RAM IO-operations. This config seems more SoC-specific,
-than memory-like. Do you think that the driver should still be in
-drivers/memory?
-
-On the other hand the block is part of the System Controller. I could
-just embed the l2-cache driver functionality into the System Controller
-MFD driver. Though honestly IMHO the functionality should live in
-a dedicated driver and drivers/soc is a better place for it. I also have
-doubts this part will be well accepted by Lee (drivers/mfd maintainer).
-
-So what do you think?
-
-Regards,
--Sergey
+Thanks,
+Georgi
