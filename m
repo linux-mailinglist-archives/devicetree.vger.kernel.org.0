@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9335D19AEFD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 17:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26EC19B410
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 18:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733129AbgDAPp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 11:45:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60472 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732889AbgDAPp6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Apr 2020 11:45:58 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2387480AbgDAQYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 12:24:16 -0400
+Received: from mta-02.yadro.com ([89.207.88.252]:36290 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387668AbgDAQYN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Apr 2020 12:24:13 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 5EC324128C;
+        Wed,  1 Apr 2020 16:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1585758249; x=
+        1587572650; bh=5BFHPqec9jncdoRdL5YGGPgsWuabE3fMsGtZTUs7+80=; b=C
+        xR4gYRISWEbaVjPqENp2MJ/gi6JS3bKmN9dpzkzv86Er3OtPjaBnnAlsEi5wnO31
+        jItQg9e8DcH9vJafRjVW2czo2mJJldZz+YM4SahgQeDIgidBp5P6OoNacx0uW722
+        Ww/skce/4By/zHRyWCxMB06OY9UqCRK+otCfPkm16E=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id TM75VoZGYZ_m; Wed,  1 Apr 2020 19:24:09 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 12D1E20B1F;
-        Wed,  1 Apr 2020 15:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1585755957;
-        bh=Ss9ZdTDOkMedWGrrhWeOI7Hi4L677Nmk0j4eRk1smPI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sP9gfIaSRugv6o9DO9ZFmAxLAFkBEaA/RHAEy5jx2b+vYcJMs5jdHVb6gPGqKsNVX
-         tXgvnGniFyqivTQaZVYwkYi/ZPj8RxJjtkKRZ5dvjWpBcZofGjTKF0Urr5MwP6xh7R
-         2Ds7kdYHEC927nwIN4MKJx6kxbDGtZ6z7gkP9kfw=
-Received: by mail-qt1-f174.google.com with SMTP id i3so362710qtv.8;
-        Wed, 01 Apr 2020 08:45:57 -0700 (PDT)
-X-Gm-Message-State: ANhLgQ0VhKIv20CWeTy/2bm60L+uxrfSu13cH9l3xpEuv55Mn/Jtv7QM
-        /TgZjR3ZkN3WhbNCv9VSbfuSTzL3CthvlfRvzQ==
-X-Google-Smtp-Source: ADFU+vu2TcmhrkQ3vHdIQJxoR1BX1Dgu/jUbMAzrf7+1PBw12+wOLynHGOuAxLN5XgkMazDn1FGHukH38UsQDdzp6Kc=
-X-Received: by 2002:ac8:1b33:: with SMTP id y48mr11115534qtj.136.1585755956175;
- Wed, 01 Apr 2020 08:45:56 -0700 (PDT)
+        by mta-01.yadro.com (Postfix) with ESMTPS id D29EC41254;
+        Wed,  1 Apr 2020 19:24:08 +0300 (MSK)
+Received: from localhost.yadro.com (10.199.2.98) by T-EXCH-02.corp.yadro.com
+ (172.17.10.102) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Wed, 1 Apr
+ 2020 19:24:09 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+CC:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v6 0/2] iio: proximity: driver for vcnl3020
+Date:   Wed, 1 Apr 2020 19:24:14 +0300
+Message-ID: <20200401162416.24474-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-References: <20200330164328.2944505-1-robert.marko@sartura.hr>
- <20200330164328.2944505-2-robert.marko@sartura.hr> <20200331163103.GA27585@bogus>
- <CA+HBbNEnH+0g0GK+xMGF48vJbLH3Ud2VY6yDOAxdgbRra3Y25A@mail.gmail.com>
-In-Reply-To: <CA+HBbNEnH+0g0GK+xMGF48vJbLH3Ud2VY6yDOAxdgbRra3Y25A@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 1 Apr 2020 09:45:44 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL_V6Lf3-eGoL454Gtgyp7a4hBo_2SXyq1jWfqDoXdXsQ@mail.gmail.com>
-Message-ID: <CAL_JsqL_V6Lf3-eGoL454Gtgyp7a4hBo_2SXyq1jWfqDoXdXsQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: phy-qcom-ipq4019-usb: add binding document
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.199.2.98]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 31, 2020 at 10:39 AM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> On Tue, Mar 31, 2020 at 6:31 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, 30 Mar 2020 18:43:29 +0200, Robert Marko wrote:
-> > > This patch adds the binding documentation for the HS/SS USB PHY found
-> > > inside Qualcom Dakota SoCs.
-> > >
-> > > Signed-off-by: John Crispin <john@phrozen.org>
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > Cc: Luka Perkov <luka.perkov@sartura.hr>
-> > > ---
-> > > Changes from v4 to v5:
-> > > * Replace tabs with whitespaces
-> > > * Add maintainer property
-> > >
-> > >  .../bindings/phy/qcom-usb-ipq4019-phy.yaml    | 48 +++++++++++++++++++
-> > >  1 file changed, 48 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > Error: Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.example.dts:21.25-26 syntax error
-> > FATAL ERROR: Unable to parse input tree
-> > scripts/Makefile.lib:311: recipe for target 'Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.example.dt.yaml' failed
-> > make[1]: *** [Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.example.dt.yaml] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > Makefile:1262: recipe for target 'dt_binding_check' failed
-> > make: *** [dt_binding_check] Error 2
-> >
-> > See https://patchwork.ozlabs.org/patch/1264091
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure dt-schema is up to date:
-> >
-> > pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> >
-> > Please check and re-submit.
-> Hi Rob,
-> I tested locally before submitting and it will pass.
+Add proximity sensor driver for Vishay vcnl3020. Only on-demand
+measurement is supported for now.
 
-Impossible. Your example has defines, but there are no include files listed.
+Changes from v5:
+   1. add get_and_apply_property function for optional parameters.
+   2. minor changes.
 
-Rob
+Changes from v4:
+   1. add vdd-supply,vddio-supply,interrupts properties into yaml.
+   2. led-current -> vishay,led-current-milliamp in yaml.
+   3. add possible values enum list.
+   4. add bulk_read for result hi/lo registers.
+   5. add description of vcnl3020_data structure.
+   6. vcnl3020 id table is removed.
+   7. make "vishay,led-current-milliamp" optional in yaml and code.
+
+Changes from v3:
+   1. minor changes.
+   2. add i2c block to fix dts section in yaml.
+
+Changes from v2:
+   1. using regmap_read_poll_timeout instead of do-while in measurement
+      function.
+   2. change struct i2client* in vcnl3020_data to struct dev*
+   3. enable REGMAP_I2C in Kconfig
+
+Changes from v1:
+   1. using regmap interface instead of i2c_smbus_* calls.
+   2. switch from probe to probe_new.
+   3. s32/int32_t -> int
+
+Ivan Mikhaylov (2):
+  iio: proximity: provide device tree binding document
+  iio: proximity: Add driver support for vcnl3020 proximity sensor
+
+ .../bindings/iio/proximity/vcnl3020.yaml      |  65 +++++
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/vcnl3020.c              | 234 ++++++++++++++++++
+ 4 files changed, 311 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/vcnl3020.yaml
+ create mode 100644 drivers/iio/proximity/vcnl3020.c
+
+-- 
+2.21.1
+
