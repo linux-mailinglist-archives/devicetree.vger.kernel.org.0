@@ -2,210 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD2D19A2EF
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 02:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5552219A30F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 02:47:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731548AbgDAAb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 20:31:56 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:58150 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731524AbgDAAb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Mar 2020 20:31:56 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1585701115; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=SutLuPcMOk2F8/XsaOFzGRk72Dm7cMdm+CPhWVhjnrM=; b=ZE96OJvr1IXegImrXyryiGwPyhSepj+wWfWF9fvOyWu/4PUHDGtaF+Gq3Bxg0RB5O0hlXuJG
- siEN7sWmZSbC12TmCNg7Wg7cSo/QrispddJw/Ej2PDP4Ma7HSVlFKAxwJXTcu4+dWgVNi7lg
- eE2UFr7dmwva44/LSys6vz6Wc2Y=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e83e0e9.7f029ac2f260-smtp-out-n03;
- Wed, 01 Apr 2020 00:31:37 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 16FF6C4478C; Wed,  1 Apr 2020 00:31:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from displaysanity13-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: varar)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8149EC43637;
-        Wed,  1 Apr 2020 00:31:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8149EC43637
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tanmay@codeaurora.org
-From:   Tanmay Shah <tanmay@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, seanpaul@chromium.org,
-        swboyd@chromium.org
-Cc:     Jeykumar Sankaran <jsanka@codeaurora.org>, robdclark@gmail.com,
-        abhinavk@codeaurora.org, nganji@codeaurora.org,
-        aravindh@codeaurora.org, hoegsberg@google.com,
-        dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>
-Subject: [DPU PATCH v5 5/5] drm/msm/dpu: add display port support in DPU
-Date:   Tue, 31 Mar 2020 17:30:31 -0700
-Message-Id: <1585701031-28871-6-git-send-email-tanmay@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1585701031-28871-1-git-send-email-tanmay@codeaurora.org>
-References: <1585701031-28871-1-git-send-email-tanmay@codeaurora.org>
+        id S1731550AbgDAArx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 20:47:53 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:38288 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731331AbgDAArx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 20:47:53 -0400
+Received: by mail-pl1-f193.google.com with SMTP id w3so8849931plz.5;
+        Tue, 31 Mar 2020 17:47:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Grz3j5qN3bekOkWLBc9tIOx+lzkuYvmCGEjHfUkVS6w=;
+        b=pbw9SN2uZr6z7NS/82qUlJyAHKLLx0o8fecHkIroHnXMV5ctnPROphGfQlBBot1HCJ
+         9OcK1ZODxSAfZkdboOKfCd5C/IeOTtoX6AWP9AGnjMnwMF/7ZnG6SxBatPQjXWM31rFD
+         bj4DxdivZodaaqf4CWmsWFHmRKfVgv3Wig1D7R1wuEuoEhm07ugJ67hxbTZa73y0n32b
+         2GIVLDRCaIvrlBYTQprdx+bvgZ6PQXyND3bjQz/iajIWAl4AkY+9Na7JIKzDTW6ICix1
+         /Y3bZijNDGJd8T9XyAvaZzhhNbsG4Bdlrpm5TThQ7kHe/ac11lz2rXrGlfUtBVo4nHVo
+         8VnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Grz3j5qN3bekOkWLBc9tIOx+lzkuYvmCGEjHfUkVS6w=;
+        b=E3fj2Nt9cwHHktlsa3ug9iJHU8O8mxuhRwYjbsu1LtdZqIkAJ6UwHpoAj8bMerzlz9
+         QiydwwDLOuKYT3bzRljLAX8ILU83Ld18Adkdj2lxQuhPIoC236hmJmROpa0DeUjT1V6w
+         lkLidiQ3EkrAQ+Gbt0mWiRhYUkUB6J0wFTEGVEua+nJCT5cPItAK6xqyVXrImQFeladK
+         X0UTWosrzR0Hx5pRi6X4AWevgjOVd60MstFmGYIj/KKO+kU2Hd9G+ttaO+4Viu3CFlrC
+         c4CQEy0qy1/5hGQQ8N6jVExjKCXRKoMVzV8fuWWlyS0mDVUfwU1BEXzCJ/UlCmiS5QSX
+         f5yQ==
+X-Gm-Message-State: AGi0PuaOPj0rBFiAtw7pT891ShuDQzXZbZYQrhwtOVon8tT5wHMpshAD
+        /QKfkYtOwGhYWjnBOw2muqE=
+X-Google-Smtp-Source: APiQypIwqp4XKFr4P8Yaluep4OmNAhSpUlnlig+OHmK65ulBwuoPP+K+mnxUF/3q8q4/i/5EaGbmXA==
+X-Received: by 2002:a17:90a:da06:: with SMTP id e6mr1793956pjv.14.1585702070887;
+        Tue, 31 Mar 2020 17:47:50 -0700 (PDT)
+Received: from taoren-ubuntu-R90MNF91 (c-24-4-25-55.hsd1.ca.comcast.net. [24.4.25.55])
+        by smtp.gmail.com with ESMTPSA id x188sm261705pfx.198.2020.03.31.17.47.49
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 31 Mar 2020 17:47:50 -0700 (PDT)
+Date:   Tue, 31 Mar 2020 17:47:43 -0700
+From:   Tao Ren <rentao.bupt@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tao Ren <taoren@fb.com>
+Subject: Re: [PATCH v2 6/6] dt-bindings: usb: document aspeed vhub device
+ ID/string properties
+Message-ID: <20200401004741.GA6923@taoren-ubuntu-R90MNF91>
+References: <20200315191632.12536-1-rentao.bupt@gmail.com>
+ <20200315191632.12536-7-rentao.bupt@gmail.com>
+ <20200330192347.GA6388@bogus>
+ <4dc3ac910c79dcca398eb5161dde44e1cc50baca.camel@kernel.crashing.org>
+ <CAL_JsqKZeCC352TKFGDNRRogSefF9vq+J=WqCEeg59PBsSOW1w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKZeCC352TKFGDNRRogSefF9vq+J=WqCEeg59PBsSOW1w@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jeykumar Sankaran <jsanka@codeaurora.org>
+On Tue, Mar 31, 2020 at 10:21:10AM -0600, Rob Herring wrote:
+> On Mon, Mar 30, 2020 at 6:14 PM Benjamin Herrenschmidt
+> <benh@kernel.crashing.org> wrote:
+> >
+> > On Mon, 2020-03-30 at 13:23 -0600, Rob Herring wrote:
+> > > On Sun, Mar 15, 2020 at 12:16:32PM -0700, rentao.bupt@gmail.com wrote:
+> > > > From: Tao Ren <rentao.bupt@gmail.com>
+> > > >
+> > > > Update device tree binding document for aspeed vhub's device IDs and
+> > > > string properties.
+> > > >
+> > > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> > > > ---
+> > > >  No change in v2:
+> > > >    - the patch is added into the series since v2.
+> > > >
+> > > >  .../bindings/usb/aspeed,usb-vhub.yaml         | 68 +++++++++++++++++++
+> > > >  1 file changed, 68 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+> > > > index 06399ba0d9e4..5b2e8d867219 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+> > > > @@ -52,6 +52,59 @@ properties:
+> > > >          minimum: 1
+> > > >          maximum: 21
+> > > >
+> > > > +  vhub-vendor-id:
+> > > > +    description: vhub Vendor ID
+> > > > +    allOf:
+> > > > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +      - maximum: 65535
+> > > > +
+> > > > +  vhub-product-id:
+> > > > +    description: vhub Product ID
+> > > > +    allOf:
+> > > > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +      - maximum: 65535
+> > >
+> > > There's already standard 'vendor-id' and 'device-id' properties. Use
+> > > those.
+> >
+> > So yes and no... I don't fundamentally object but keep in mind that
+> > traditionally, the properties are about matching with a physical
+> > hardware.
+> >
+> > In this case however, we are describing a virtual piece of HW and so
+> > those IDs are going to be picked up to be exposed as the USB
+> > vendor/device of the vhub on the USB bus.
+> >
+> > Not necessarily an issue but it's more "configuration" than "matching"
+> > and as such, it might make sense to expose that with a prefix, though I
+> > would prefer something like usb-vendor-id or usb,vendor-id...
+> 
+> For FDT uses, it's pretty much been configuration. It's mostly been
+> for PCI that I've seen these properties used.
 
-Add display port support in DPU by creating hooks
-for DP encoder enumeration and encoder mode
-initialization.
+Thank you Rob and Ben for the comments. I thought about using "vendor-id"
+or "idVendor" prefixed with "usb", "hub" or "vhub", and I chose "vhub"
+just to distinguish from per-port usb devices' properties in the future.
+Anyways I'm very happy to update the names per your suggestions.
 
-This change is based on the Snapdragon Display port
-driver changes[1].
+> 
+> > > > +
+> > > > +  vhub-device-revision:
+> > >
+> > > Specific to USB, not vhub.
+> >
+> > Same as the above.
+> >
+> > > > +    description: vhub Device Revision in binary-coded decimal
+> > > > +    allOf:
+> > > > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +      - maximum: 65535
+> > > > +
+> > > > +  vhub-strings:
+> > > > +    type: object
+> > > > +
+> > > > +    properties:
+> > > > +      '#address-cells':
+> > > > +        const: 1
+> > > > +
+> > > > +      '#size-cells':
+> > > > +        const: 0
+> > > > +
+> > > > +    patternProperties:
+> > > > +      '^string@[0-9a-f]+$':
+> > > > +        type: object
+> > > > +        description: string descriptors of the specific language
+> > > > +
+> > > > +        properties:
+> > > > +          reg:
+> > > > +            maxItems: 1
+> > > > +            description: 16-bit Language Identifier defined by USB-IF
+> > > > +
+> > > > +          manufacturer:
+> > > > +            description: vhub manufacturer
+> > > > +            allOf:
+> > > > +              - $ref: /schemas/types.yaml#/definitions/string
+> > > > +
+> > > > +          product:
+> > > > +            description: vhub product name
+> > > > +            allOf:
+> > > > +              - $ref: /schemas/types.yaml#/definitions/string
+> > > > +
+> > > > +          serial-number:
+> > > > +            description: vhub device serial number
+> > > > +            allOf:
+> > > > +              - $ref: /schemas/types.yaml#/definitions/string
+> > >
+> > > For all of this, it's USB specific, not vhub specific. I'm not sure this
+> > > is the right approach. It might be better to just define properties
+> > > which are just raw USB descriptors rather than inventing some DT format
+> > > that then has to be converted into USB descriptors.
+> >
+> > Raw blob in the DT is rather annoying and leads to hard to parse stuff
+> > for both humans and scripts. The main strenght of the DT is it's easy
+> > to read and manipulate.
+> 
+> True, and I'd certainly agree when we're talking about some vendor
+> specific blob. but there's already code/tools to parse USB
+> descriptors.
+> 
+> > Also not the entire descriptor is configurable this way.
+> >
+> > That said, it could be that using  the DT for the above is overkill and
+> > instead, we should consider a configfs like the rest of USB gadget.
+> > Though it isn't obvious how to do that, the current gadget stuff
+> > doesn't really "fit" what we need here.
+> 
+> Surely the descriptor building code can be shared at a minimum.
+> 
+> Regardless of whether gadget configfs fits, usually it is pretty clear
+> whether something belongs in DT or userspace. That should be decided
+> first.
+> 
+> > Maybe we could expose the port as UDCs but not actually expose them on
+> > the bus until the hub is "activated" via a special configfs entry...
+> 
+> If control of the hub is done by userspace, I'd think configuration
+> should be there too.
+> 
+> Rob
 
-changes in v2:
-	- rebase on [2] (Sean Paul)
-	- remove unwanted error checks and
-	  switch cases (Jordan Crouse)
+Perhaps it's my lack of greater knowledge in gadget/dt areas, and I'm not
+quite clear what would be the recommended/accepted approach for this
+case. I'm looking forward for more suggestions.
 
-[1] https://lwn.net/Articles/768265/
-[2] https://lkml.org/lkml/2018/11/17/87
 
-changes in V3:
--- Moved this change as part of the DP driver changes.
--- Addressed compilation issues on the latest code base.
+Cheers,
 
-Signed-off-by: Jeykumar Sankaran <jsanka@codeaurora.org>
-Signed-off-by: Chandan Uddaraju <chandanu@codeaurora.org>
-Signed-off-by: Vara Reddy <varar@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  8 ++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 65 ++++++++++++++++++++++++-----
- 2 files changed, 58 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index b063243..7c95f72 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -2025,7 +2025,7 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- {
- 	int ret = 0;
- 	int i = 0;
--	enum dpu_intf_type intf_type;
-+	enum dpu_intf_type intf_type = INTF_NONE;
- 	struct dpu_enc_phys_init_params phys_params;
- 
- 	if (!dpu_enc) {
-@@ -2047,9 +2047,9 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- 	case DRM_MODE_ENCODER_DSI:
- 		intf_type = INTF_DSI;
- 		break;
--	default:
--		DPU_ERROR_ENC(dpu_enc, "unsupported display interface type\n");
--		return -EINVAL;
-+	case DRM_MODE_ENCODER_TMDS:
-+		intf_type = INTF_DP;
-+		break;
- 	}
- 
- 	WARN_ON(disp_info->num_of_h_tiles < 1);
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index cb08faf..441c274a 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -421,6 +421,33 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
- 	return rc;
- }
- 
-+static int _dpu_kms_initialize_displayport(struct drm_device *dev,
-+					    struct msm_drm_private *priv,
-+					    struct dpu_kms *dpu_kms)
-+{
-+	struct drm_encoder *encoder = NULL;
-+	int rc = 0;
-+
-+	if (!priv->dp)
-+		return rc;
-+
-+	encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_TMDS);
-+	if (IS_ERR(encoder)) {
-+		DPU_ERROR("encoder init failed for dsi display\n");
-+		return PTR_ERR(encoder);;
-+	}
-+
-+	rc = msm_dp_modeset_init(priv->dp, dev, encoder);
-+	if (rc) {
-+		DPU_ERROR("modeset_init failed for DP, rc = %d\n", rc);
-+		drm_encoder_cleanup(encoder);
-+		return rc;
-+	}
-+
-+	priv->encoders[priv->num_encoders++] = encoder;
-+	return rc;
-+}
-+
- /**
-  * _dpu_kms_setup_displays - create encoders, bridges and connectors
-  *                           for underlying displays
-@@ -433,12 +460,21 @@ static int _dpu_kms_setup_displays(struct drm_device *dev,
- 				    struct msm_drm_private *priv,
- 				    struct dpu_kms *dpu_kms)
- {
--	/**
--	 * Extend this function to initialize other
--	 * types of displays
--	 */
-+	int rc = 0;
-+
-+	rc = _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_dsi failed, rc = %d\n", rc);
-+		return rc;
-+	}
- 
--	return _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	rc = _dpu_kms_initialize_displayport(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_DP failed, rc = %d\n", rc);
-+		return rc;
-+	}
-+
-+	return rc;
- }
- 
- static void _dpu_kms_drm_obj_destroy(struct dpu_kms *dpu_kms)
-@@ -626,13 +662,20 @@ static void _dpu_kms_set_encoder_mode(struct msm_kms *kms,
- 	info.capabilities = cmd_mode ? MSM_DISPLAY_CAP_CMD_MODE :
- 			MSM_DISPLAY_CAP_VID_MODE;
- 
--	/* TODO: No support for DSI swap */
--	for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
--		if (priv->dsi[i]) {
--			info.h_tile_instance[info.num_of_h_tiles] = i;
--			info.num_of_h_tiles++;
-+	switch (info.intf_type) {
-+	case DRM_MODE_ENCODER_DSI:
-+		/* TODO: No support for DSI swap */
-+		for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
-+			if (priv->dsi[i]) {
-+				info.h_tile_instance[info.num_of_h_tiles] = i;
-+				info.num_of_h_tiles++;
-+			}
- 		}
--	}
-+		break;
-+	case DRM_MODE_ENCODER_TMDS:
-+		info.num_of_h_tiles = 1;
-+		break;
-+	};
- 
- 	rc = dpu_encoder_setup(encoder->dev, encoder, &info);
- 	if (rc)
--- 
-1.9.1
+Tao
