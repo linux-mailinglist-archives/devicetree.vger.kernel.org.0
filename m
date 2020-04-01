@@ -2,27 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9604B19AEC1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 17:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A6B19AEDC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 17:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732832AbgDAPct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 11:32:49 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57560 "EHLO
+        id S1732820AbgDAPhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 11:37:48 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57604 "EHLO
         mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732799AbgDAPct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 11:32:49 -0400
+        with ESMTP id S1732811AbgDAPhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 11:37:48 -0400
 Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id C40C68030776;
-        Wed,  1 Apr 2020 15:32:46 +0000 (UTC)
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 2CE868030890;
+        Wed,  1 Apr 2020 15:37:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at baikalelectronics.ru
 Received: from mail.baikalelectronics.ru ([127.0.0.1])
         by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Vf465bd7u2PJ; Wed,  1 Apr 2020 18:32:46 +0300 (MSK)
-Date:   Wed, 1 Apr 2020 18:32:56 +0300
+        with ESMTP id aRGB71y78hgT; Wed,  1 Apr 2020 18:37:46 +0300 (MSK)
+Date:   Wed, 1 Apr 2020 18:37:56 +0300
 From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
         Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
@@ -31,28 +30,30 @@ CC:     Arnd Bergmann <arnd@arndb.de>,
         Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Paul Burton <paulburton@kernel.org>,
         Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
         DTML <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH 0/6] soc: Add Baikal-T1 SoC APB/AXI EHB and L2-cache
  drivers
-Message-ID: <20200401153256.6x2f252eckror2jm@ubsrv2.baikal.int>
+Message-ID: <20200401153756.kgjz4wsxsu7mtq4z@ubsrv2.baikal.int>
 References: <20200306130731.938808030702@mail.baikalelectronics.ru>
  <CAK8P3a0PjNS9+sAiPnDgkmLsnJ6=hR_Vk8oqe493t-Ad_mGa9w@mail.gmail.com>
- <20200312212557.GB27332@bogus>
+ <CAK8P3a3ztmzeDBET=jgX=LDCBVg8FKkQrcBOLzaStgUXRyG3jQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200312212557.GB27332@bogus>
+In-Reply-To: <CAK8P3a3ztmzeDBET=jgX=LDCBVg8FKkQrcBOLzaStgUXRyG3jQ@mail.gmail.com>
 X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 12, 2020 at 04:25:57PM -0500, Rob Herring wrote:
-> On Fri, Mar 06, 2020 at 04:19:47PM +0100, Arnd Bergmann wrote:
+On Thu, Mar 26, 2020 at 03:12:46PM +0100, Arnd Bergmann wrote:
+> On Fri, Mar 6, 2020 at 4:19 PM Arnd Bergmann <arnd@arndb.de> wrote:
+> >
 > > On Fri, Mar 6, 2020 at 2:07 PM <Sergey.Semin@baikalelectronics.ru> wrote:
 > > >
 > > > From: Serge Semin <fancer.lancer@gmail.com>
@@ -70,32 +71,26 @@ On Thu, Mar 12, 2020 at 04:25:57PM -0500, Rob Herring wrote:
 > > >
 > > > This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
 > > > commit 98d54f81e36b ("Linux 5.6-rc4").
-> > 
+> >
 > > I have no objection to the drivers, but I wonder if these should be
 > > in drivers/bus and drivers/memory instead of drivers/soc, which have
 > > similar drivers already. The driver for the L2 cache is not really a
 > > memory controller driver, but it may be close enough, and we
 > > already have a couple of different things in there.
 > 
-> I don't have the driver side in my inbox, but isn't setting up cache 
-> latencies in a driver a little late?
+> I don't see a reply to Rob's or my comments, so I assume you are not currently
+> updating them and I will wait for a new version after the v5.7 merge window.
 > 
-> Rob
+> Dropping the series from patchwork for now, see [1].
+> 
+>        Arnd
+> 
+> [1] https://patchwork.kernel.org/project/linux-soc/list/
 
-Generally speaking there is no much difference at what moment the driver
-is loaded and device is probed. First of all the L2-RAM latencies should be
-setup by the system bootloader before RAM is detected and the memory controller
-is enabled and run (though default value is normally Ok to use). In a worst case
-if the bootloader did something wrong it may cause either the performance
-degradation (up to 10% - 20% drop), or the system may get to be absolutely
-unstable. In the later the kernel (and bootloader) may collapse at any moment,
-most likely before the driver is loaded even at the very first possible stage.
-Due to this uncertainty the upcoming l2-cache tuning stage doesn't really matter.
-
-So this driver can be used either to tune the system performance up by updating
-the system dtb while leaving the bootloader code unchanged, or by setting the
-latencies from user-space to the corresponding sysfs nodes exported by
-the driver.
+Yeah, sorry for the delay. I'll send an update very soon. A solution for
+the ehb'es is settled. We agreed to move the drivers to the drivers/bus
+subsystem. While we still don't know what to do with l2-cache driver.
+Please see my last response to your comment on the cover-letter.
 
 Regards,
 -Sergey
