@@ -2,320 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0982519B5E6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 20:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6AB719B62C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 21:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbgDASqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 14:46:52 -0400
-Received: from mx-out2.startmail.com ([145.131.90.155]:55428 "EHLO
-        mx-out2.startmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732211AbgDASqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 14:46:52 -0400
-From:   Alexandru Lazar <alazar@startmail.com>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2017-11; t=1585766809;
-        bh=+637+Z/mx+woFC6bMaMRSAys7GdZNj8mmMIwwyL8tpc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S2esmc+VbcTrQfueectXsW3MczkJXr/rwIdDoXwWRQmoZSUPLa8nk46C4Av/+DcBq
-         BFdPjBnVxasnn64zwmXWtBp9wyKSVikDb83kgWB//woAJfKXO13DIHeqR/g+LAWB5Q
-         3N2ScQsO/WDszIq4yVfYPrnQ0QLhhClCI56gi+4end9lskt2oNw7ERN1hr93/ELBFP
-         cvL0hNEHk44ji+ssy/kg0NOVyyjFQHVObO4SLRa8200b9VpG24YeC1PK3+I6ZL+QHV
-         PWawfZgcQFS5AbSkRoZfv1nYKpVoYMyguEVNhhsHH5cZaMaiuBXQfxn24ACDTsiXyg
-         /CJfPKmk9waEw==
-To:     linux-iio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, jic23@kernel.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, Alexandru Lazar <alazar@startmail.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v6 2/2] iio: adc: Add MAX1241 driver
-Date:   Wed,  1 Apr 2020 21:51:38 +0300
-Message-Id: <20200401185138.10673-3-alazar@startmail.com>
-In-Reply-To: <20200401185138.10673-1-alazar@startmail.com>
-References: <20200401185138.10673-1-alazar@startmail.com>
+        id S1731541AbgDATEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 15:04:54 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:43853 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbgDATEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 15:04:54 -0400
+Received: by mail-lj1-f196.google.com with SMTP id g27so603607ljn.10
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2020 12:04:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/DxqfuTxuKlaH8Gn/MYKo4lOdwXZcw5v1ups67QyOqE=;
+        b=YQJ3Gf2bufH1xWuvLDsGp1wDWIMDVWgOmOSEapDwKOQ2ajyjZb85owf6rtc4/3PMdK
+         pdWwZ+Wfchw8fgnIhqRcqBiSgnFU1jUPaZBeOAPWUIUO0LHqDFa1fAegRx74lit66Tu+
+         T5a76uJtxArs+8ucTSGY412VKUjgxC1rxYBWDTKk/lrPXQsn6suQauhON8RSw2+Yuqm+
+         /zEFuf9d59SzRi6TjrNO8qbWnhsaW8dgMbLvGuXgZEaNyOB3RaL+cjd9j54oz/MLKKH0
+         /tprCxaTL/FV5PH/Ii4T5+MS1kSTM3Uz0RFg9uwUJ35gNozNXoAypN073hjuxC4A2gv3
+         vSvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/DxqfuTxuKlaH8Gn/MYKo4lOdwXZcw5v1ups67QyOqE=;
+        b=Z8uyIQdnMZ16PKFPoDbfsg77xzZx8civ9cwXg2oi+Oazt9PPBcFOx0nNVggWtmLj3/
+         ExUxGfGFeMtIAPl57UPoNmYxsTyzwoK+0duxj2ZOvH+BeVy+RZsWHfzc/Z0pT0eT7hb8
+         axPfXK7lTJosNg0HFxqf6U1djQksj37I+Uv9ELFOZTW03AtrlcIGnafKZ4dApK8uaIVa
+         VZiQ5WRMY1gDw6qyScuWB9Z0pqCBoL+/Qkrl/SG78S4qrZJCvzPq5vKhgqA4aDY1Qx4O
+         koJGEPJSxUDNBj/22bT4eg2Zdj86YWJLT9b6KiXc6PnDUdsqGzQ22XJ689UcWqyzZTob
+         ASYA==
+X-Gm-Message-State: AGi0PuYE7qu62F81FalznR5YXBKF4v+c/kmxw4azwLEONT3T/GLQEtBK
+        pgAAyUQgAK74GNvs2/LCkFClpaNnR8PL2uuijRA=
+X-Google-Smtp-Source: APiQypJaC+dBtoqJLvNc6uc/ifBPIF/2Yb0O/FFaaksX9WonGEIYgQOnVz4aOKPZbpZobomOTPl3nLr98rIpkartQYc=
+X-Received: by 2002:a05:651c:30b:: with SMTP id a11mr13626475ljp.164.1585767891570;
+ Wed, 01 Apr 2020 12:04:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200331183725.25255-1-festevam@gmail.com> <AM0PR04MB448118DFFFBA1C1119D257F588C90@AM0PR04MB4481.eurprd04.prod.outlook.com>
+In-Reply-To: <AM0PR04MB448118DFFFBA1C1119D257F588C90@AM0PR04MB4481.eurprd04.prod.outlook.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 1 Apr 2020 16:04:40 -0300
+Message-ID: <CAOMZO5AAcwjLCYtGX4LRPqbbZQmr=OsZXyc7b0Kf0D9WQfLNWA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8m: Fix AIPS reg properties
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for the Maxim MAX1241 12-bit, single-channel ADC.
+Hi Peng,
 
-Reviewed-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-Signed-off-by: Alexandru Lazar <alazar@startmail.com>
----
- drivers/iio/adc/Kconfig   |  10 ++
- drivers/iio/adc/Makefile  |   1 +
- drivers/iio/adc/max1241.c | 227 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 238 insertions(+)
- create mode 100644 drivers/iio/adc/max1241.c
+On Wed, Apr 1, 2020 at 3:51 AM Peng Fan <peng.fan@nxp.com> wrote:
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 5d8540b7b427..55f6462cd93f 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -566,6 +566,16 @@ config MAX1118
- 	  To compile this driver as a module, choose M here: the module will be
- 	  called max1118.
- 
-+config MAX1241
-+	tristate "Maxim max1241 ADC driver"
-+	depends on SPI_MASTER
-+	help
-+	  Say yes here to build support for Maxim max1241 12-bit, single-channel
-+	  ADC.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called max1241.
-+
- config MAX1363
- 	tristate "Maxim max1363 ADC driver"
- 	depends on I2C
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index a1f1fbec0f87..37d6f17559dc 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -54,6 +54,7 @@ obj-$(CONFIG_LTC2497) += ltc2497.o
- obj-$(CONFIG_MAX1027) += max1027.o
- obj-$(CONFIG_MAX11100) += max11100.o
- obj-$(CONFIG_MAX1118) += max1118.o
-+obj-$(CONFIG_MAX1241) += max1241.o
- obj-$(CONFIG_MAX1363) += max1363.o
- obj-$(CONFIG_MAX9611) += max9611.o
- obj-$(CONFIG_MCP320X) += mcp320x.o
-diff --git a/drivers/iio/adc/max1241.c b/drivers/iio/adc/max1241.c
-new file mode 100644
-index 000000000000..541939c7abca
---- /dev/null
-+++ b/drivers/iio/adc/max1241.c
-@@ -0,0 +1,227 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * MAX1241 low-power, 12-bit serial ADC
-+ *
-+ * Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX1240-MAX1241.pdf
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+
-+#define MAX1241_VAL_MASK GENMASK(11, 0)
-+#define MAX1241_SHUTDOWN_DELAY_USEC 4
-+
-+enum max1241_id {
-+	max1241,
-+};
-+
-+struct max1241 {
-+	struct spi_device *spi;
-+	struct mutex lock;
-+	struct regulator *vdd;
-+	struct regulator *vref;
-+	struct gpio_desc *shutdown;
-+
-+	__be16 data ____cacheline_aligned;
-+};
-+
-+static const struct iio_chan_spec max1241_channels[] = {
-+	{
-+		.type = IIO_VOLTAGE,
-+		.indexed = 1,
-+		.channel = 0,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+};
-+
-+static int max1241_read(struct max1241 *adc)
-+{
-+	struct spi_transfer xfers[] = {
-+		/*
-+		 * Begin conversion by bringing /CS low for at least
-+		 * tconv us.
-+		 */
-+		{
-+			.len = 0,
-+			.delay.value = 8,
-+			.delay.unit = SPI_DELAY_UNIT_USECS,
-+		},
-+		/*
-+		 * Then read two bytes of data in our RX buffer.
-+		 */
-+		{
-+			.rx_buf = &adc->data,
-+			.len = 2,
-+		},
-+	};
-+
-+	return spi_sync_transfer(adc->spi, xfers, ARRAY_SIZE(xfers));
-+}
-+
-+static int max1241_read_raw(struct iio_dev *indio_dev,
-+			struct iio_chan_spec const *chan,
-+			int *val, int *val2, long mask)
-+{
-+	int ret, vref_uV;
-+	struct max1241 *adc = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		mutex_lock(&adc->lock);
-+
-+		if (adc->shutdown) {
-+			gpiod_set_value(adc->shutdown, 0);
-+			udelay(MAX1241_SHUTDOWN_DELAY_USEC);
-+			ret = max1241_read(adc);
-+			gpiod_set_value(adc->shutdown, 1);
-+		} else
-+			ret = max1241_read(adc);
-+
-+		if (ret) {
-+			mutex_unlock(&adc->lock);
-+			return ret;
-+		}
-+
-+		*val = (be16_to_cpu(adc->data) >> 3) & MAX1241_VAL_MASK;
-+
-+		mutex_unlock(&adc->lock);
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		vref_uV = regulator_get_voltage(adc->vref);
-+
-+		if (vref_uV < 0)
-+			return vref_uV;
-+
-+		*val = vref_uV / 1000;
-+		*val2 = 12;
-+
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info max1241_info = {
-+	.read_raw = max1241_read_raw,
-+};
-+
-+static void max1241_disable_vdd_action(void *data)
-+{
-+	struct max1241 *adc = data;
-+	struct device *dev = &adc->spi->dev;
-+	int err;
-+
-+	err = regulator_disable(adc->vdd);
-+	if (err)
-+		dev_err(dev, "could not disable vdd regulator.\n");
-+}
-+
-+static void max1241_disable_vref_action(void *data)
-+{
-+	struct max1241 *adc = data;
-+	struct device *dev = &adc->spi->dev;
-+	int err;
-+
-+	err = regulator_disable(adc->vref);
-+	if (err)
-+		dev_err(dev, "could not disable vref regulator.\n");
-+}
-+
-+static int max1241_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct iio_dev *indio_dev;
-+	struct max1241 *adc;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	adc = iio_priv(indio_dev);
-+	adc->spi = spi;
-+	mutex_init(&adc->lock);
-+
-+	spi_set_drvdata(spi, indio_dev);
-+
-+	adc->vdd = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(adc->vdd)) {
-+		dev_err(dev, "failed to get vdd regulator\n");
-+		return PTR_ERR(adc->vdd);
-+	}
-+
-+	ret = regulator_enable(adc->vdd);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, max1241_disable_vdd_action, adc);
-+	if (ret) {
-+		dev_err(dev, "could not set up vdd regulator cleanup action\n");
-+		return ret;
-+	}
-+
-+	adc->vref = devm_regulator_get(dev, "vref");
-+	if (IS_ERR(adc->vref)) {
-+		dev_err(dev, "failed to get vref regulator\n");
-+		return PTR_ERR(adc->vref);
-+	}
-+
-+	ret = regulator_enable(adc->vref);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, max1241_disable_vref_action, adc);
-+	if (ret) {
-+		dev_err(dev, "could not set up vref regulator cleanup action\n");
-+		return ret;
-+	}
-+
-+	adc->shutdown = devm_gpiod_get_optional(dev, "shutdown",
-+						GPIOD_OUT_HIGH);
-+	if (IS_ERR(adc->shutdown))
-+		return PTR_ERR(adc->shutdown);
-+
-+	if (adc->shutdown)
-+		dev_dbg(dev, "shutdown pin passed, low-power mode enabled");
-+	else
-+		dev_dbg(dev, "no shutdown pin passed, low-power mode disabled");
-+
-+	indio_dev->name = spi_get_device_id(spi)->name;
-+	indio_dev->dev.parent = dev;
-+	indio_dev->info = &max1241_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = max1241_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(max1241_channels);
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct spi_device_id max1241_id[] = {
-+	{ "max1241", max1241 },
-+	{}
-+};
-+
-+static const struct of_device_id max1241_dt_ids[] = {
-+	{ .compatible = "maxim,max1241" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, max1241_dt_ids);
-+
-+static struct spi_driver max1241_spi_driver = {
-+	.driver = {
-+		.name = "max1241",
-+		.of_match_table = max1241_dt_ids,
-+	},
-+	.probe = max1241_probe,
-+	.id_table = max1241_id,
-+};
-+module_spi_driver(max1241_spi_driver);
-+
-+MODULE_AUTHOR("Alexandru Lazar <alazar@startmail.com>");
-+MODULE_DESCRIPTION("MAX1241 ADC driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.20.1
+> >               aips1: bus@30000000 {
+> >                       compatible = "fsl,aips-bus", "simple-bus";
+> > -                     reg = <0x301f0000 0x10000>;
+> > +                     reg = <0x30000000 0x400000>;
+>
+> Should the node name changed to bus@0x301f0000, but not
+> change reg?
 
+I don't think so. I have just adjusted the reg property to the AIPS
+range as per the i.MX8M Reference Manuals.
+
+> The 0x301f0000 is the correct aips configuration space.
+
+I don't see any of this AIPS configuration space mentioned in the
+Reference Manual.
+
+Also, we use the same approach on the other i.MX SoC dtsi files. Why
+i.MX8M dtsi needs to be different in this aspect?
+
+Regards,
+
+Fabio Estevam
