@@ -2,65 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6162419AC63
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 15:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE8719AC88
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 15:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732575AbgDANGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Apr 2020 09:06:51 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:42938 "EHLO vps0.lunn.ch"
+        id S1732663AbgDANSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 09:18:17 -0400
+Received: from ns.mm-sol.com ([37.157.136.199]:34344 "EHLO extserv.mm-sol.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732252AbgDANGu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Apr 2020 09:06:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=HcjlV2smdDYCCZAC2jlXo1gRdBbS5p7g45iucSysgk4=; b=DZy3HHYZq1xFx/KImjVqmgThHr
-        ObMDtbCS5JMuQXgr/e0XQGbiLnxKS/1LmlgFzGT9ptc7cI799OCijiQajMci6lInB5OutZFa1/EeI
-        gsfPfP2AMlrbW87d8AH7wYMPjYvwSY+sWahYVLFCDxjPHRrPQibZMhcr9sS6pJeKWWCc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jJd4v-000QDr-SS; Wed, 01 Apr 2020 15:06:45 +0200
-Date:   Wed, 1 Apr 2020 15:06:45 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Codrin.Ciubotariu@microchip.com
-Cc:     f.fainelli@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net
-Subject: Re: [PATCH] net: mdio: of: Do not treat fixed-link as PHY
-Message-ID: <20200401130645.GB71179@lunn.ch>
-References: <20200330160136.23018-1-codrin.ciubotariu@microchip.com>
- <20200330163028.GE23477@lunn.ch>
- <9bbbe2ed-985b-49e7-cc16-8b6bae3e8e8e@gmail.com>
- <bd9f2507-958e-50bf-2b84-c21adf6ab588@microchip.com>
- <20200331125908.GB24486@lunn.ch>
- <12cdbe77-b932-9194-5d5e-5058622cef6c@microchip.com>
+        id S1732637AbgDANSQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Apr 2020 09:18:16 -0400
+Received: from [192.168.1.3] (212-5-158-187.ip.btc-net.bg [212.5.158.187])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by extserv.mm-sol.com (Postfix) with ESMTPSA id 3ABB8CFAB;
+        Wed,  1 Apr 2020 16:18:13 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
+        t=1585747093; bh=Fq/qdX4sXnkr/VfFDq8FBTyt7s27Fzpli6td1arctek=;
+        h=Subject:To:Cc:From:Date:From;
+        b=qST7F3m+zHnnFC9wOZn+xcd5DI70lX0Rw3f3tA+iL0ImcryxOTwjLBLrITdIXFCgY
+         DUC3A3kGSss4sGNtE+PGodbhJB+DBBM1etR+ElZ0O4hMGXVOJwMXVsmvyjn062guaQ
+         NOJo4pqWehmVlgUiDcsSsFhVr3+BQHHreHEP1g67/QvdAp4Hpsh0RSmTcuhGWzSmnI
+         iYRSpeAoMq8UM7U7XhRkLs0Uq6cnDMdqkF1iv5/dbddklSDxl41Op+qVfiPbdhTA31
+         ljqYFIZzcVf0FmS1RrVdY4gqP6aqV8BF7WbD0GXNXPkS68/It3NfrDof+xjRuxcSBC
+         eDtSo81ataQIQ==
+Subject: Re: [PATCH 11/12] devicetree: bindings: pci: add force_gen1 for
+ qcom,pcie
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200320183455.21311-1-ansuelsmth@gmail.com>
+ <20200320183455.21311-11-ansuelsmth@gmail.com>
+From:   Stanimir Varbanov <svarbanov@mm-sol.com>
+Message-ID: <10cd1a8d-7203-c267-a9d7-9ca761d5acce@mm-sol.com>
+Date:   Wed, 1 Apr 2020 16:17:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <12cdbe77-b932-9194-5d5e-5058622cef6c@microchip.com>
+In-Reply-To: <20200320183455.21311-11-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hi Andrew
-> 
-> > 
-> > There are some still using this deprecated feature. But macb is the
-> > only one doing this odd looping over child nodes. It is this looping
-> > which is breaking things, not the use of the deprecated feature
-> > itself.
-> 
-> Yes, its due to the fact that the MDIO node is missing. Should we have 
-> in mind to add an MDIO node under the macb node, where we could add the 
-> PHY nodes?
+Hi Ansuel,
 
-Yes, you can make the driver complient any time you want. But as you
-said, you need to keep with backwards compatibility. But net-next is
-closed now, for the merge window. So you probably want to wait two
-weeks before posting code.
+Before inventing new DT property I'd suggest you to consult with [1].
+There is already property max-link-speed for that purpose.
 
-      Andrew
+On 3/20/20 8:34 PM, Ansuel Smith wrote:
+> Document force_gen1 optional definition to limit pcie
+> line to GEN1 speed
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> index 8c1d014f37b0..766876465c42 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> @@ -260,6 +260,11 @@
+>  	Definition: If not defined is 0. In ipq806x is set to 7. In newer
+>  				revision (v2.0) the offset is zero.
+>  
+> +- force_gen1:
+> +	Usage: optional
+> +	Value type: <u32>
+> +	Definition: Set 1 to force the pcie line to GEN1
+> +
+>  * Example for ipq/apq8064
+>  	pcie@1b500000 {
+>  		compatible = "qcom,pcie-apq8064", "qcom,pcie-ipq8064", "snps,dw-pcie";
+> 
+
+-- 
+regards,
+Stan
+
+[1] Documentation/devicetree/bindings/pci/pci.txt
