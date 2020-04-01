@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3D1919A3F1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 05:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC1319A49F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 07:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731611AbgDADW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 23:22:59 -0400
-Received: from conuserg-11.nifty.com ([210.131.2.78]:19739 "EHLO
-        conuserg-11.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731593AbgDADW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 23:22:59 -0400
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-11.nifty.com with ESMTP id 0313MSET017333;
-        Wed, 1 Apr 2020 12:22:29 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-11.nifty.com 0313MSET017333
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1585711350;
-        bh=6cmk4VhYcoiSK0648BJFDTb8WGo1i4aniwWtusevAaQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=n0crX8GxExB2dPg/8QhQatWt02gUfaOo6/Q6XF2RR3LPaFrXrpow0/nhIbhk9UaSp
-         a/+rhR9iy+jrfi4TIoRdURW1PVBAGPQ1E0Qbb7appR14bGzqqheIN3+Tx7tsYwceEx
-         mQJxi6OQmpZb6Nar5VNm/dmqec/IsB23ZD5zBEZG7VFGh1uBd2BGZXjlY06PyQGSak
-         7xgUgyNtqdbz+b1rgf6jKiqrYZsw273kOa1j7abnHphGqOx+Ff8e6bVIajur46u3j7
-         LWs5x+R6+Vo36uvL3YHv/n2qz6z9yTXvH54CSJPzjKW07NcFPpKL7LMbISOrkFEyh6
-         924kwGhB0OP7Q==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org
-Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: dma: uniphier-xdmac: switch to single reg region
-Date:   Wed,  1 Apr 2020 12:21:50 +0900
-Message-Id: <20200401032150.19767-1-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
+        id S1731792AbgDAFRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Apr 2020 01:17:02 -0400
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:14851 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731783AbgDAFRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Apr 2020 01:17:01 -0400
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 01 Apr 2020 10:46:12 +0530
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 01 Apr 2020 10:45:50 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 822392619; Wed,  1 Apr 2020 10:45:49 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v7 0/4] ADD interconnect support for Qualcomm DWC3 driver 
+Date:   Wed,  1 Apr 2020 10:45:41 +0530
+Message-Id: <1585718145-29537-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reg in the example "<0x5fc10000 0x1000>, <0x5fc20000 0x800>"
-is wrong. The register region of this controller is much smaller,
-and there is no other hardware register interleaved. There is no
-good reason to split it into two regions.
+This path series aims to add interconnect support in
+dwc3-qcom driver on SDM845 and SC7180 SoCs.
 
-Just use a single, contiguous register region.
+Changes from v6 -> v7
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > Other patches remain unchanged.
 
-While I am here, I made the 'dma-channels' property mandatory because
-otherwise there is no way to determine the number of the channels.
+Changes from v5 -> v6
+  > [PATCH 1/4] Addressed comments from Rob.
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/4] Ignoring 80 char limit in defining interconnect paths.
+  > Added [PATCH 4/4] in this series. Adding interconnect nodes for SC7180.
+    Depends on patch https://patchwork.kernel.org/patch/11417989/.	
 
-Please note the original binding was merged recently. Since there
-is no user yet, this change has no actual impact.
-
-Fixes: b9fb56b6ba8a ("dt-bindings: dmaengine: Add UniPhier external DMA controller bindings")
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
-
-We do not need to touch the driver either because the second
-region is not used.
+Changes from v4 -> v5
+  > [PATCH 1/3] Added the interconnect properties in yaml. This patch depends
+    on series https://patchwork.kernel.org/cover/11372641/.
+  > [PATCH 2/3] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/3] Modified as per the new interconnect nodes in sdm845. Depends
+    on series https://patchwork.kernel.org/cover/11372211/. 
 
 
- .../devicetree/bindings/dma/socionext,uniphier-xdmac.yaml  | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Changes from v3 -> v4
+  > Fixed review comments from Matthias
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
 
-diff --git a/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml b/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-index 86cfb599256e..371f18773198 100644
---- a/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-@@ -22,9 +22,7 @@ properties:
-     const: socionext,uniphier-xdmac
- 
-   reg:
--    items:
--      - description: XDMAC base register region (offset and length)
--      - description: XDMAC extension register region (offset and length)
-+    maxItems: 1
- 
-   interrupts:
-     maxItems: 1
-@@ -49,12 +47,13 @@ required:
-   - reg
-   - interrupts
-   - "#dma-cells"
-+  - dma-channels
- 
- examples:
-   - |
-     xdmac: dma-controller@5fc10000 {
-         compatible = "socionext,uniphier-xdmac";
--        reg = <0x5fc10000 0x1000>, <0x5fc20000 0x800>;
-+        reg = <0x5fc10000 0x5300>;
-         interrupts = <0 188 4>;
-         #dma-cells = <2>;
-         dma-channels = <16>;
+Changes from v2 -> v3
+  > Fixed review comments from Matthias and Manu
+  > changed the functions prefix from usb_* to dwc3_qcom_*
+
+Changes since V1:
+  > Comments by Georgi Djakov on "[PATCH 2/3]" addressed
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+
+Sandeep Maheswaram (4):
+  dt-bindings: usb: qcom,dwc3: Introduce interconnect properties for
+    Qualcomm DWC3 driver
+  usb: dwc3: qcom: Add interconnect support in dwc3 driver
+  arm64: dts: qcom: sdm845: Add interconnect properties for USB
+  arm64: dts: qcom: sc7180: Add interconnect properties for USB
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   8 ++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   4 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   8 ++
+ drivers/usb/dwc3/dwc3-qcom.c                       | 128 ++++++++++++++++++++-
+ 4 files changed, 146 insertions(+), 2 deletions(-)
+
 -- 
-2.17.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
