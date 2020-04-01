@@ -2,134 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD8719A379
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 04:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B65F19A3D1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2020 05:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731531AbgDACPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Mar 2020 22:15:13 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:46566 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731427AbgDACPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Mar 2020 22:15:12 -0400
-Received: by mail-lf1-f66.google.com with SMTP id q5so19056354lfb.13;
-        Tue, 31 Mar 2020 19:15:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sTX+2islckicUBdDqhO5fJeYE0TjuqLAF7CpNcSNMao=;
-        b=BOjJF7U5oCICrJcisMaLwUe2fWyaBcoRYOjccvuerasUkZpI04l80GEz6IdvVMaonY
-         YRTeBEvEhxWgbiN2qBkWhArDAnza56TQMB6cOLvgnheSiq/1fJmXeRUDXz/4a7mzVtuM
-         mP92qsU69l0GDSUx00kcEP/0aVZVwhF61SKHGtYoupj/wAkeT6TwmulGWNTKvtM73G6+
-         dGbAlSpPlaXijkbFdXjDfk9cdHpZeQN6FdXylxV6RnQmQQtumj1pnm2gI6Y1BvrQzhjA
-         MxVwlUqIXQSR+wKbQQXhuSfhfcnTJj3H+cSAKlYHaiw5SeQP2ljC5lY6FzWmEEKcLVi3
-         OdOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sTX+2islckicUBdDqhO5fJeYE0TjuqLAF7CpNcSNMao=;
-        b=tpqIeq4OuVRTft+L8fjH7CcYPYFum2Xf0jMGYLFmA5p0aZ+c4et6oFE6AllsCm9VC9
-         CEVkXNK5jK2iqK5m1OCwcjQksmfEkrbt9YGEQ63pH/0QXKvN1sET2afhSPHZehwgFMOP
-         8biySnHfd4Dv6HxhQSQov0hnJk5u65PZYRa4Erhndr2eirZfLxfcowvsNWdBhMh98uwT
-         FKTP46xvf/VLPnsnmuh9Zofws7LeOuUExye1FF8f9GyheH3rnYCQe/MZ4bqtG63WI7PQ
-         KpT2u3MXQ47e2MMnOo1YuwXA2M/3XFsShiqiwdlsPB6j24RpP2hBx8pL2hjVZgWvYEWN
-         KBsQ==
-X-Gm-Message-State: AGi0PubjL3OWalY7wuVWSmWkRaXVGLo42jtQQW6T7Qf3b43NT3LD64BC
-        XOO9n4xugjiOvcBsz0eXBgf5iE7KAHz1mTJnF0s=
-X-Google-Smtp-Source: APiQypIM53+BHKTpdC3LAAzHpk6+HbNwqnX3j+63secbytSV4i15OjsC8Hjxzqai67N72StO4XFAa84vBWs85MDyzg4=
-X-Received: by 2002:a19:be94:: with SMTP id o142mr13146328lff.13.1585707310572;
- Tue, 31 Mar 2020 19:15:10 -0700 (PDT)
+        id S1731694AbgDADJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Mar 2020 23:09:49 -0400
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17802 "EHLO
+        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731592AbgDADJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Mar 2020 23:09:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1585710529;
+        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
+        h=From:To:Cc:Message-ID:Subject:Date:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        bh=GaL5PU1+MzN2vdc172Z+8T4IBBXDqZVCHe8kJc6oNlI=;
+        b=T2MAplSi5XVCw0+Be5E2HUiFKOVdFUm2uFz0LN4gRQ7fgsF/ptwDQ+HAghBj+6aV
+        OStnO8fFHxU7pKzVu+SpI6/77iLpvTGGNsDKbAN9JVFuJPuilf8frZvyGqfWpxlsPIM
+        5i/6DP+PNOn+aQ58qnEwQu4Qc51v4bmHpFLDw6fA=
+Received: from localhost.localdomain (39.155.141.144 [39.155.141.144]) by mx.zoho.com.cn
+        with SMTPS id 1585710527100667.6418910848599; Wed, 1 Apr 2020 11:08:47 +0800 (CST)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Paul Burton <paulburton@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-ID: <20200401030658.1174045-1-jiaxun.yang@flygoat.com>
+Subject: [PATCH v2 0/5] Loongson64 Generic PCI driver v2
+Date:   Wed,  1 Apr 2020 11:06:44 +0800
+X-Mailer: git-send-email 2.26.0.rc2
+In-Reply-To: <20200330114239.1112759-1-jiaxun.yang@flygoat.com>
+References: 
 MIME-Version: 1.0
-References: <600e0b027a4e62a4aea8900e5a1e95e3e14b10f0.1584943873.git.baolin.wang7@gmail.com>
- <20200331174021.GA4288@bogus>
-In-Reply-To: <20200331174021.GA4288@bogus>
-From:   Baolin Wang <baolin.wang7@gmail.com>
-Date:   Wed, 1 Apr 2020 10:14:58 +0800
-Message-ID: <CADBw62r6+SsnMh=48Pny02MGcEqSmUs4bNFXpibu6BMJwwrVhg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: Add the Spreadtrum mailbox documentation
-To:     Rob Herring <robh@kernel.org>
-Cc:     mark.rutland@arm.com, jassisinghbrar@gmail.com,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ZohoCNMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 1, 2020 at 1:40 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Mar 23, 2020 at 02:13:46PM +0800, Baolin Wang wrote:
-> > From: Baolin Wang <baolin.wang@unisoc.com>
-> >
-> > Add the Spreadtrum mailbox documentation.
-> >
-> > Signed-off-by: Baolin Wang <baolin.wang@unisoc.com>
-> > Signed-off-by: Baolin Wang <baolin.wang7@gmail.com>
-> > ---
-> > Changes from v1:
-> >  - Add 'additionalProperties'.
-> >  - Split description for each entry.
-> > ---
-> >  .../devicetree/bindings/mailbox/sprd-mailbox.yaml  | 62 ++++++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> > new file mode 100644
-> > index 0000000..0848b18
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> > @@ -0,0 +1,62 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/mailbox/sprd-mailbox.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Spreadtrum mailbox controller bindings
-> > +
-> > +maintainers:
-> > +  - Orson Zhai <orsonzhai@gmail.com>
-> > +  - Baolin Wang <baolin.wang7@gmail.com>
-> > +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sprd,sc9860-mailbox
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: inbox registers' base address
-> > +      - description: outbox registers' base address
->
-> > +    minItems: 2
->
-> This is redundant, drop it.
+Jiaxun Yang (5):
+  PCI: OF: Don't remap iospace on unsupported platform
+  PCI: Add Loongson PCI Controller support
+  dt-bindings: Document Loongson PCI Host Controller
+  MIPS: DTS: Loongson64: Add PCI Controller Node
+  MIPS: Loongson64: Switch to generic PCI driver
 
-OK.
+ .../devicetree/bindings/pci/loongson.yaml     |  57 ++++
+ arch/mips/Kconfig                             |   1 +
+ arch/mips/boot/dts/loongson/rs780e-pch.dtsi   |  17 +-
+ arch/mips/loongson64/Makefile                 |   2 +-
+ arch/mips/loongson64/vbios_quirk.c            |  29 ++
+ arch/mips/pci/Makefile                        |   1 -
+ arch/mips/pci/fixup-loongson3.c               |  71 -----
+ arch/mips/pci/ops-loongson3.c                 | 116 --------
+ drivers/pci/controller/Kconfig                |   9 +
+ drivers/pci/controller/Makefile               |   1 +
+ drivers/pci/controller/pci-loongson.c         | 257 ++++++++++++++++++
+ drivers/pci/of.c                              |   9 +
+ 12 files changed, 380 insertions(+), 190 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/loongson.yaml
+ create mode 100644 arch/mips/loongson64/vbios_quirk.c
+ delete mode 100644 arch/mips/pci/fixup-loongson3.c
+ delete mode 100644 arch/mips/pci/ops-loongson3.c
+ create mode 100644 drivers/pci/controller/pci-loongson.c
 
->
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: inbox interrupt
-> > +      - description: outbox interrupt
-> > +    minItems: 2
->
-> Same here.
+--=20
+2.26.0.rc2
 
-Sure.
 
->
-> With that,
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Thanks for your comments.
-
--- 
-Baolin Wang
