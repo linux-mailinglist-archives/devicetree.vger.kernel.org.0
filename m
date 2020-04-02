@@ -2,142 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68DD119C0D2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 14:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F08B19C0F6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 14:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388367AbgDBMMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Apr 2020 08:12:22 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:46489 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388344AbgDBMMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 08:12:22 -0400
-Received: by mail-ed1-f65.google.com with SMTP id cf14so3744598edb.13;
-        Thu, 02 Apr 2020 05:12:20 -0700 (PDT)
+        id S2388119AbgDBMQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Apr 2020 08:16:50 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:46848 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387730AbgDBMQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 08:16:50 -0400
+Received: by mail-wr1-f66.google.com with SMTP id j17so3856549wru.13;
+        Thu, 02 Apr 2020 05:16:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jpfK5CYxI8iAPFcZqyQcL5PaZpDr+KrVab+ErVI0E9A=;
-        b=uVKjtr9Z2nepMqEDTiTNNduDfcQJhvvNnmcyS8yfwHjpDvWzEIMZz0lRCYqqz8EoQh
-         MSmE0pl+mSAZNhfA9/7nz32tzqB3NOdIlvpeqtbwPGqFbk4pX1MyiMo2zFL2v/H6dEFB
-         cPJyWiU3Wqu6OFboT+zFQj3b/26oTBr5026kW601iqMQh1wuc+LdDb4xenB5wHhgXOBx
-         cTPErLGCyz6VGn/uTIOlXVvAV/0JR2N7jNnl0wr8rWJsIBGMEJ+JNhFNVLNOOwvjx5jb
-         0Pp2KFAlPvZs1D+EWdph5/O5Jx661nzq3sKTvehAq6nOvmqh2Ua936zmS58Ku64XQvn8
-         Hf/g==
+        h=to:cc:references:subject:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9100ZMfQ3eWaJVwdNq9pSQeHCEwHDV/UJ/zuKVucMxA=;
+        b=ALLV3AjWxKR07II/OzlDnRe+odhQFSFArcf8cWjQukJmd6WXsg9+vyfD8DfKX9gWMN
+         o85KGRmQSCApKdFnuQRIdkmUme7sEKjqw5SXiIFrjdPkCVpclHE6AukhNWeb6yNKOhL8
+         mSBvda/9k8hhDcs8hxq7Ir3tcfWNZFcNPUaqnc4VZGHD9WT/x2/UGQ7N9VjavMYukKnM
+         K8ULMWCC9wgUMpVyfUQ+xkB0QzfidY2ZSgy9eCRnT7acIbLf8oyP71jF6JKhMbcYxj4Q
+         HrYzq3IEOcIOy3d+DvXGwz17yj0IpLyHJbIGtAohcctCquPEvV8uOKDwrwF9JRdhOKkc
+         77Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jpfK5CYxI8iAPFcZqyQcL5PaZpDr+KrVab+ErVI0E9A=;
-        b=W2pew44VtueUFF6FzjeByfHzvx70hu2Ciz56ckwzgwZfzLQhUItyhAN9dTO5ZunpBK
-         yKYg0Oki1iqF7fYhibbcYbluCKqlsDPeSgULrY40UGr02NkTxbKwsdvlcvlYcVeyfcs4
-         95dIEZXe/xka65jwVCuTTII1b0ziFfolEXH2wbVANSA3t0RlZN1JTZAA/KRnzGAWgpy2
-         WPf8i/4j6RksMYaC0Dupvyjvx1oym4+6rdVIOBOtvqxvAVSeegSN8ue4IdieQiUfxV1P
-         NJU24yPhr/tutWA/bOI065dSBXAIdv/CkQCiSSEofLqIFF+KRZ2RPts3KyroTF+YwV0N
-         77iA==
-X-Gm-Message-State: AGi0PuZUS4A+cXrQ/oMtV/zRPZgaAfcQsFall4oberEZCgOygEXU+bHZ
-        Gb4nHaoCsQDb4SwBqVWoUaU=
-X-Google-Smtp-Source: APiQypIPnU/+DrVqHsBOAMuaMwGL5dXkm117kJM04jvdu64bzzV0k35KALXEyjji5Vk3p5vPMd/48A==
-X-Received: by 2002:a17:907:aab:: with SMTP id bz11mr2764943ejc.311.1585829540059;
-        Thu, 02 Apr 2020 05:12:20 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host250-251-dynamic.250-95-r.retail.telecomitalia.it. [95.250.251.250])
-        by smtp.googlemail.com with ESMTPSA id w20sm1083611ejv.40.2020.04.02.05.12.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Apr 2020 05:12:18 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Sham Muthayyan <smuthayy@codeaurora.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] PCIe: qcom: add Force GEN1 support
-Date:   Thu,  2 Apr 2020 14:11:47 +0200
-Message-Id: <20200402121148.1767-11-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200402121148.1767-1-ansuelsmth@gmail.com>
-References: <20200402121148.1767-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:to:cc:references:subject:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9100ZMfQ3eWaJVwdNq9pSQeHCEwHDV/UJ/zuKVucMxA=;
+        b=HKHDqahQqZ2Rmnr9v31Oypl1kFosLcJzRYsApOh+2yXMCJuWrgTlHipCl28mgK4X0c
+         2QYhgip3EhYMJCPR/mJsT33D6zxnt7rEUb1Ij2SlZt6pd+TQKHL0SI0IQwPIp8KRoz5i
+         1gZ14JJu9eyBAkCukK4IihzSAjoYkmBeX3MqNdWLD4ZqK+X1KiOS4hE6xOBfdkqcRhJp
+         4e6AhkMAKIZAxF5Tl06mJJJ3/8PclTxFRJohssiuSvC5u+rk8Mbi3Mps9W/QDt6aym4y
+         kiNOBkv5CPNHbqtbV9f5vS2TFiiJOvcza9JcX8+7YgjiJ4lKdeWqlzfBfZWTa+IvLkft
+         M1CQ==
+X-Gm-Message-State: AGi0PuaGmFT/Th+5ksbbLJ4LctIVB2LPLJ6rWC+di4Nu+fPSRplqBHoO
+        BWLcgvUHJnuC0Raouw9GerM=
+X-Google-Smtp-Source: APiQypKji7UWQsmE5huunWfu+sXG44AGFdjl0/jp9OPk+bxWF6qOU3UNOHuPQ1YmcSNtr/z7NyzQ1g==
+X-Received: by 2002:a5d:4c48:: with SMTP id n8mr3212293wrt.414.1585829807916;
+        Thu, 02 Apr 2020 05:16:47 -0700 (PDT)
+Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id y12sm4191207wrn.55.2020.04.02.05.16.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Apr 2020 05:16:47 -0700 (PDT)
+To:     helen.koike@collabora.com
+Cc:     dafna.hirschfeld@collabora.com, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, ezequiel@collabora.com,
+        heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+        karthik.poduval@gmail.com, kernel@collabora.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, mark.rutland@arm.com,
+        robh+dt@kernel.org
+References: <20200402000234.226466-2-helen.koike@collabora.com>
+Subject: Re: [PATCH 1/4] dt-bindings: phy: phy-rockchip-dphy-rx0: move
+ rockchip dphy rx0 bindings out of staging
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <bfefe00c-5673-ddcb-4e2a-425eb4771002@gmail.com>
+Date:   Thu, 2 Apr 2020 14:16:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200402000234.226466-2-helen.koike@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sham Muthayyan <smuthayy@codeaurora.org>
+Hi Helen,
 
-Add Force GEN1 support needed in some ipq806x board
-that needs to limit some pcie line to gen1 for some
-hardware limitation.
-This is set by the max-link-speed dts entry and needed
-by some soc based on ipq806x. (for example Netgear R7800
-router)
+> # SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> %YAML 1.2
+> ---
+> $id: http://devicetree.org/schemas/phy/rockchip-mipi-dphy-rx0.yaml#
+> $schema: http://devicetree.org/meta-schemas/core.yaml#
+> 
+> title: Rockchip SoC MIPI RX0 D-PHY Device Tree Bindings
+> 
+> maintainers:
+>   - Helen Koike <helen.koike@collabora.com>
+>   - Ezequiel Garcia <ezequiel@collabora.com>
+> 
+> description: |
+>   The Rockchip SoC has a MIPI D-PHY bus with an RX0 entry which connects to
+>   the ISP1 (Image Signal Processing unit v1.0) for CSI cameras.
+> 
+> properties:
+>   compatible:
+>     const: rockchip,rk3399-mipi-dphy-rx0
+> 
 
-Signed-off-by: Sham Muthayyan <smuthayy@codeaurora.org>
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+>   reg:
+>     maxItems: 1
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 8047ac7dc8c7..2212e9498b91 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -27,6 +27,7 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include "../../pci.h"
- #include "pcie-designware.h"
- 
- #define PCIE20_PARF_SYS_CTRL			0x00
-@@ -99,6 +100,8 @@
- #define PCIE20_v3_PARF_SLV_ADDR_SPACE_SIZE	0x358
- #define SLV_ADDR_SPACE_SZ			0x10000000
- 
-+#define PCIE20_LNK_CONTROL2_LINK_STATUS2        0xA0
-+
- #define DEVICE_TYPE_RC				0x4
- 
- #define QCOM_PCIE_2_1_0_MAX_SUPPLY	3
-@@ -199,6 +202,7 @@ struct qcom_pcie {
- 	struct phy *phy;
- 	struct gpio_desc *reset;
- 	const struct qcom_pcie_ops *ops;
-+	bool force_gen1;
- };
- 
- #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-@@ -441,6 +445,11 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
- 
- 	/* wait for clock acquisition */
- 	usleep_range(1000, 1500);
-+	if (pcie->force_gen1) {
-+		writel_relaxed((readl_relaxed(
-+		  pcie->pci->dbi_base + PCIE20_LNK_CONTROL2_LINK_STATUS2) | 1),
-+		  pcie->pci->dbi_base + PCIE20_LNK_CONTROL2_LINK_STATUS2);
-+	}
- 
- 
- 	/* Set the Max TLP size to 2K, instead of using default of 4K */
-@@ -1440,6 +1449,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
-+	ret = of_pci_get_max_link_speed(pdev->dev.of_node);
-+	if (ret == 1)
-+		pcie->force_gen1 = true;
-+
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "parf");
- 	pcie->parf = devm_ioremap_resource(dev, res);
- 	if (IS_ERR(pcie->parf)) {
--- 
-2.25.1
+If 'reg' is not used => remove it.
 
+> 
+>   clocks:
+>     items:
+>       - description: MIPI D-PHY ref clock
+>       - description: MIPI D-PHY RX0 cfg clock
+>       - description: Video in/out general register file clock
+> 
+>   clock-names:
+>     items:
+>       - const: dphy-ref
+>       - const: dphy-cfg
+>       - const: grf
+> 
+>   '#phy-cells':
+>     const: 0
+> 
+>   power-domains:
+>     description: Video in/out power domain.
+>     maxItems: 1
+> 
+> required:
+>   - compatible
+>   - clocks
+>   - clock-names
+>   - '#phy-cells'
+>   - power-domains
+> 
+> additionalProperties: false
+> 
+> examples:
+>   - |
+> 
+>     /*
+>      * MIPI D-PHY RX0 use registers in "general register files", it
+>      * should be a child of the GRF.
+>      *
+>      * grf: syscon@ff770000 {
+>      *  compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+>      *  ...
+>      * };
+>      */
+> 
+>     #include <dt-bindings/clock/rk3399-cru.h>
+>     #include <dt-bindings/power/rk3399-power.h>
+> 
+>     mipi_dphy_rx0: mipi-dphy-rx0 {
+>         compatible = "rockchip,rk3399-mipi-dphy-rx0";
+>         clocks = <&cru SCLK_MIPIDPHY_REF>,
+>                  <&cru SCLK_DPHY_RX0_CFG>,
+>                  <&cru PCLK_VIO_GRF>;
+>         clock-names = "dphy-ref", "dphy-cfg", "grf";
+>         power-domains = <&power RK3399_PD_VIO>;
+>         #phy-cells = <0>;
+>     };
