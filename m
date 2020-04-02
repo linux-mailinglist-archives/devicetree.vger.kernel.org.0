@@ -2,158 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6276319BF7D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 12:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E89F119BFAB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 12:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387709AbgDBKkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Apr 2020 06:40:15 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:35893 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728612AbgDBKkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 06:40:15 -0400
-Received: by mail-ua1-f67.google.com with SMTP id m15so231805uao.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 03:40:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EKz0BYCnAYaxNPQCfa65G2LlOu2wy+lcqbRhsvRTDzY=;
-        b=gbcQgrA22EAyItGP+TKMeDdvt9CVIT/R2GLUGHK8fjYaSwYAmzZjrigV8/ZEc97Cs/
-         RNx49zr/EmMLCKs3yICV3DbWcDYNC5Edq669CkOvAdg3+O1GS2jZbpZOCtZQ6l7yebBe
-         DcE5X2RyzxPvE4l95PLzY7VkQp2hTqveDSVtEZd9yAZEIGIIb1ayiV74u9DWw1el7iMl
-         tBMNVst2x0cB6yx6mL/+mwCZbUBehcbP9DWmWpXhe7ZdE/NU+bYYJ0T4rxkQk1zpYaZY
-         //r41sobGat2KcV4rgWj0zoDrb9ujZcg71SJcQQypNO3b7Zv+97mRrl5whWtKXgFY2t5
-         j6Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EKz0BYCnAYaxNPQCfa65G2LlOu2wy+lcqbRhsvRTDzY=;
-        b=EhCu5D7NLIzjXwrlur+t/sch6JVvQsNLzVqH9v2Xzjf5u1z4YYGs5fMl9wlK7+N8om
-         vVA93CL3gBB33becDW6eOmpShdEsZXFrT8mWM2NmryL8WbV8LEkpi4yhJnLilL0FsUYt
-         B29KOLDLnKkbUBI76gqZUHtYAgiGmbLbfxnCOWj5HCZNv/2SKFidq9sQreSWmRvCJewD
-         CakRvVsbu+ReZ1V0kHl/7csZcWr5/QPjxXS9O/obOfN+Ck8+vEvA6XKpdy8wpMBosUPn
-         j1emcqsd5gQ7Av4/60IBvwePf2ZUSHFpgzgmYQDD/Y3+kOBHM01nwKNVav1O8uQH/281
-         G3CQ==
-X-Gm-Message-State: AGi0PubKStemuyurkw4Ub9TvNoD/d9tGGVCWrLxeUtS5WCsGjjLbCc6+
-        jxnECsB+6kWvLFhLvE6yV+bwen00GdSUfbDK8t93dg==
-X-Google-Smtp-Source: APiQypI83QnOQ6D0d7POmo0QouJRjj7RkZV/O1KQNeqzJrIRwpmjlcrHV9wDaSFuXhDoh9ukC8k3b+Ye0lKDq5mhdK8=
-X-Received: by 2002:ab0:70d9:: with SMTP id r25mr2082703ual.67.1585824014129;
- Thu, 02 Apr 2020 03:40:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <1584966504-21719-1-git-send-email-Anson.Huang@nxp.com> <1584966504-21719-3-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1584966504-21719-3-git-send-email-Anson.Huang@nxp.com>
-From:   Amit Kucheria <amit.kucheria@verdurent.com>
-Date:   Thu, 2 Apr 2020 16:10:03 +0530
-Message-ID: <CAHLCerNG3ZBbWrTwXxCbd1BOfyHxuvpAuo5tW_bNKgWcO5zESA@mail.gmail.com>
-Subject: Re: [PATCH V3 3/3] arm64: dts: imx8mp: Add thermal zones support
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        id S2387990AbgDBKvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Apr 2020 06:51:35 -0400
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17854 "EHLO
+        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728612AbgDBKvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 06:51:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1585824653;
+        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
+        h=From:To:Cc:Message-ID:Subject:Date:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        bh=V1naS5Jb3/T3bL/D1LVRUiDK4v8P1YPjYMYwaqddEmE=;
+        b=T9aWlCUeCQDUa48ENhkUDlpY03v5VQKgzVq6ipYLhFPZYxhPnzKJm2m14wZeC5VT
+        0kV/AuX6Dfgf2EZ9NvwaXM/ydyA5CADR1dxjeHeiDhFfEvVDm9t8sEo5uYlLZG4yXSz
+        yBiAOixfjRy+mnQ0rxVyx49OPqJkinmKw3f9uAXQ=
+Received: from localhost.localdomain (39.155.141.144 [39.155.141.144]) by mx.zoho.com.cn
+        with SMTPS id 1585824651402683.1521658948714; Thu, 2 Apr 2020 18:50:51 +0800 (CST)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, horia.geanta@nxp.com,
-        peng.fan@nxp.com, Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>, Linux-imx@nxp.com
-Content-Type: text/plain; charset="UTF-8"
+        Huacai Chen <chenhc@lemote.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-ID: <20200402104851.368465-1-jiaxun.yang@flygoat.com>
+Subject: [PATCH 1/5] MIPS: Loongson64: Remove dead RTC code
+Date:   Thu,  2 Apr 2020 18:48:39 +0800
+X-Mailer: git-send-email 2.26.0.rc2
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-ZohoCNMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 23, 2020 at 6:05 PM Anson Huang <Anson.Huang@nxp.com> wrote:
->
-> i.MX8MP has a TMU inside which supports two thermal zones, add support
-> for them.
->
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+RTC is now enabled by devicetree. So platform code is
+no longer needed.
+
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+---
+ .../include/asm/mach-loongson64/mc146818rtc.h | 36 -----------------
+ arch/mips/loongson64/Kconfig                  |  4 --
+ arch/mips/loongson64/Makefile                 |  1 -
+ arch/mips/loongson64/rtc.c                    | 39 -------------------
+ arch/mips/loongson64/time.c                   |  8 +---
+ 5 files changed, 1 insertion(+), 87 deletions(-)
+ delete mode 100644 arch/mips/include/asm/mach-loongson64/mc146818rtc.h
+ delete mode 100644 arch/mips/loongson64/rtc.c
+
+diff --git a/arch/mips/include/asm/mach-loongson64/mc146818rtc.h b/arch/mip=
+s/include/asm/mach-loongson64/mc146818rtc.h
+deleted file mode 100644
+index ebdccfee50be..000000000000
+--- a/arch/mips/include/asm/mach-loongson64/mc146818rtc.h
++++ /dev/null
+@@ -1,36 +0,0 @@
+-/*
+- * This file is subject to the terms and conditions of the GNU General Pub=
+lic
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+- * Copyright (C) 1998, 2001, 03, 07 by Ralf Baechle (ralf@linux-mips.org)
+- *
+- * RTC routines for PC style attached Dallas chip.
+- */
+-#ifndef __ASM_MACH_LOONGSON64_MC146818RTC_H
+-#define __ASM_MACH_LOONGSON64_MC146818RTC_H
+-
+-#include <linux/io.h>
+-
+-#define RTC_PORT(x)=09(0x70 + (x))
+-#define RTC_IRQ=09=098
+-
+-static inline unsigned char CMOS_READ(unsigned long addr)
+-{
+-=09outb_p(addr, RTC_PORT(0));
+-=09return inb_p(RTC_PORT(1));
+-}
+-
+-static inline void CMOS_WRITE(unsigned char data, unsigned long addr)
+-{
+-=09outb_p(addr, RTC_PORT(0));
+-=09outb_p(data, RTC_PORT(1));
+-}
+-
+-#define RTC_ALWAYS_BCD=090
+-
+-#ifndef mc146818_decode_year
+-#define mc146818_decode_year(year) ((year) < 70 ? (year) + 2000 : (year) +=
+ 1970)
+-#endif
+-
+-#endif /* __ASM_MACH_LOONGSON64_MC146818RTC_H */
+diff --git a/arch/mips/loongson64/Kconfig b/arch/mips/loongson64/Kconfig
+index 48b29c198acf..c386b8a3c753 100644
+--- a/arch/mips/loongson64/Kconfig
++++ b/arch/mips/loongson64/Kconfig
+@@ -14,8 +14,4 @@ config RS780_HPET
+ =09  If unsure, say Yes.
+=20
+=20
+-config LOONGSON_MC146818
+-=09bool
+-=09default n
+-
+ endif # MACH_LOONGSON64
+diff --git a/arch/mips/loongson64/Makefile b/arch/mips/loongson64/Makefile
+index f04461839540..102a19aa92aa 100644
+--- a/arch/mips/loongson64/Makefile
++++ b/arch/mips/loongson64/Makefile
+@@ -8,6 +8,5 @@ obj-$(CONFIG_MACH_LOONGSON64) +=3D cop2-ex.o platform.o acp=
+i_init.o dma.o \
+ obj-$(CONFIG_SMP)=09+=3D smp.o
+ obj-$(CONFIG_NUMA)=09+=3D numa.o
+ obj-$(CONFIG_RS780_HPET) +=3D hpet.o
+-obj-$(CONFIG_LOONGSON_MC146818) +=3D rtc.o
+ obj-$(CONFIG_SUSPEND) +=3D pm.o
+ obj-$(CONFIG_PCI_QUIRKS) +=3D vbios_quirk.o
+diff --git a/arch/mips/loongson64/rtc.c b/arch/mips/loongson64/rtc.c
+deleted file mode 100644
+index 8d7628c0f513..000000000000
+--- a/arch/mips/loongson64/rtc.c
++++ /dev/null
+@@ -1,39 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- *  Lemote Fuloong platform support
+- *
+- *  Copyright(c) 2010 Arnaud Patard <apatard@mandriva.com>
+- */
+-
+-#include <linux/init.h>
+-#include <linux/kernel.h>
+-#include <linux/platform_device.h>
+-#include <linux/mc146818rtc.h>
+-
+-static struct resource loongson_rtc_resources[] =3D {
+-=09{
+-=09=09.start=09=3D RTC_PORT(0),
+-=09=09.end=09=3D RTC_PORT(1),
+-=09=09.flags=09=3D IORESOURCE_IO,
+-=09}, {
+-=09=09.start=09=3D RTC_IRQ,
+-=09=09.end=09=3D RTC_IRQ,
+-=09=09.flags=09=3D IORESOURCE_IRQ,
+-=09}
+-};
+-
+-static struct platform_device loongson_rtc_device =3D {
+-=09.name=09=09=3D "rtc_cmos",
+-=09.id=09=09=3D -1,
+-=09.resource=09=3D loongson_rtc_resources,
+-=09.num_resources=09=3D ARRAY_SIZE(loongson_rtc_resources),
+-};
+-
+-
+-static int __init loongson_rtc_platform_init(void)
+-{
+-=09platform_device_register(&loongson_rtc_device);
+-=09return 0;
+-}
+-
+-device_initcall(loongson_rtc_platform_init);
+diff --git a/arch/mips/loongson64/time.c b/arch/mips/loongson64/time.c
+index 1245f22cec84..91e842b58365 100644
+--- a/arch/mips/loongson64/time.c
++++ b/arch/mips/loongson64/time.c
+@@ -6,7 +6,7 @@
+  * Copyright (C) 2009 Lemote Inc.
+  * Author: Wu Zhangjin, wuzhangjin@gmail.com
+  */
+-#include <asm/mc146818-time.h>
++
+ #include <asm/time.h>
+ #include <asm/hpet.h>
+=20
+@@ -21,9 +21,3 @@ void __init plat_time_init(void)
+ =09setup_hpet_timer();
+ #endif
+ }
+-
+-void read_persistent_clock64(struct timespec64 *ts)
+-{
+-=09ts->tv_sec =3D mc146818_get_cmos_time();
+-=09ts->tv_nsec =3D 0;
+-}
+--=20
+2.26.0.rc2
 
 
-[snip]
-
->
-> +       thermal-zones {
-> +               cpu-thermal {
-> +                       polling-delay-passive = <250>;
-> +                       polling-delay = <2000>;
-> +                       thermal-sensors = <&tmu 0x0>;
-
-No need for 0x0, just use 0
-
-> +                       trips {
-> +                               cpu_alert0: trip0 {
-> +                                       temperature = <85000>;
-> +                                       hysteresis = <2000>;
-> +                                       type = "passive";
-> +                               };
-> +
-> +                               cpu_crit0: trip1 {
-> +                                       temperature = <95000>;
-> +                                       hysteresis = <2000>;
-> +                                       type = "critical";
-> +                               };
-> +                       };
-> +
-> +                       cooling-maps {
-> +                               map0 {
-> +                                       trip = <&cpu_alert0>;
-> +                                       cooling-device =
-> +                                               <&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                               <&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                               <&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                               <&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               soc-thermal {
-> +                       polling-delay-passive = <250>;
-> +                       polling-delay = <2000>;
-> +                       thermal-sensors = <&tmu 0x1>;
-
-No need for 0x1, just use 1
-
-> +                       trips {
-> +                               soc_alert0: trip0 {
-> +                                       temperature = <85000>;
-> +                                       hysteresis = <2000>;
-> +                                       type = "passive";
-> +                               };
-> +
-> +                               soc_crit0: trip1 {
-> +                                       temperature = <95000>;
-> +                                       hysteresis = <2000>;
-> +                                       type = "critical";
-> +                               };
-> +                       };
-
-You need a cooling-map here since you have a passive trip point.
-
-
-> +               };
-> +       };
-> +
->         timer {
->                 compatible = "arm,armv8-timer";
->                 interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
-> @@ -215,6 +271,13 @@
->                                 gpio-ranges = <&iomuxc 0 114 30>;
->                         };
->
-> +                       tmu: tmu@30260000 {
-> +                               compatible = "fsl,imx8mp-tmu";
-> +                               reg = <0x30260000 0x10000>;
-> +                               clocks = <&clk IMX8MP_CLK_TSENSOR_ROOT>;
-> +                               #thermal-sensor-cells = <1>;
-> +                       };
-> +
->                         wdog1: watchdog@30280000 {
->                                 compatible = "fsl,imx8mp-wdt", "fsl,imx21-wdt";
->                                 reg = <0x30280000 0x10000>;
-> --
-> 2.7.4
->
