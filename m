@@ -2,115 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 213DD19C4D2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 16:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A1919C58B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 17:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388837AbgDBOw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Apr 2020 10:52:58 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:47011 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388828AbgDBOw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 10:52:58 -0400
-Received: by mail-lj1-f195.google.com with SMTP id r7so3487138ljg.13;
-        Thu, 02 Apr 2020 07:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OL/tVc1Ch0fuHCWGLDW0Ztss4EfxD7apFgMsfQsUr7k=;
-        b=XXLJyF7xqJnLsf3hdgwiZ4/6fLutg8R+bEQTaJJqAeYpNor8HeBOvDfKkexPjnzahg
-         +frziBQdgK3hB1ePSeped/hKH0YLg2DoJjK+3kGLOUiymHQfuQELDwVhuCh1wN/AEsj3
-         zIfCwHuQfaSXAhgByi1w+ZRufw9ziTNKPlAT3+62tzm6ll/lgGnwVwyhIT+LjSrt55eG
-         k13OhX+VLhwvD+/C2RBX8+uvBlD8U5j3KjStGieqDeISRqPeeo2HHKtiCTSHgQjcsGYY
-         QYGBhtRdTaLNRCAAB13kjntO7MF6gYxJw9nw+cDxhtSkEN7UckHq+wKdtdzmvNDaHSQs
-         6nPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OL/tVc1Ch0fuHCWGLDW0Ztss4EfxD7apFgMsfQsUr7k=;
-        b=Gx9YYgIWYon/MuuxV0rs4Kt6CmCDzn4v46Xq5DNgsr9zmITu/1RrJBSxi8vWoQ7Aqw
-         jeYPBc9QFWQSLClQtHiO1gLYNJ0VHTynuwKxFKMUi38OjLNrxWGSgiXJJlMreGujEzim
-         0gNoV9h/uv0sKSmzJM3ARGqW0h1I9KaeuwtHEpTwMXVqlnzZnqhI84s7vD4SKYL3r2Pd
-         IDqTT5KzCOpXumzzudTabm0bt4g1Iiv68Zp4Lmgpqx4ovGq85dTpAfZ4JB2vwBydVoZZ
-         VXfqvIv1mr8iwWqvN+UcbiQlx7YuaP5WioCFfTnlxYKm/MwN6qHBPzzIeD4gimceXz3z
-         vaFA==
-X-Gm-Message-State: AGi0PuYsjzWzWwjUdZaOl60OhSvj+n4gYzBTuy3lutBFOXrAAizcRn15
-        tEAcgwr4bRDxRjWtdAIMqF0LIznv
-X-Google-Smtp-Source: APiQypLjaRISzAROt9vUoQ7mTnsDUyvNC/1ydvIVFNPjf8gKXPfxEOQBVVn2YEr/ZcVFzDNztZhQng==
-X-Received: by 2002:a2e:904b:: with SMTP id n11mr2225309ljg.171.1585839173690;
-        Thu, 02 Apr 2020 07:52:53 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
-        by smtp.googlemail.com with ESMTPSA id c22sm3976478lfi.41.2020.04.02.07.52.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Apr 2020 07:52:52 -0700 (PDT)
-Subject: Re: [PATCH v1 5/6] dt-bindings: ARM: tegra: Add ASUS Google Nexus 7
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        =?UTF-8?Q?Pedro_=c3=82ngelo?= <pangelo@void.io>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200331214327.6496-1-digetx@gmail.com>
- <20200331214327.6496-6-digetx@gmail.com>
- <20200402045008.GB11124@qmqm.qmqm.pl>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <4c059f4a-111a-086b-c165-eb8ae798d606@gmail.com>
-Date:   Thu, 2 Apr 2020 17:52:51 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S2389133AbgDBPI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Apr 2020 11:08:27 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:45549 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388937AbgDBPI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 11:08:27 -0400
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20200402150821epoutp03c12502d27ad64ffe71794c9b8e1857b9~CCSuZFoPj0940709407epoutp03T
+        for <devicetree@vger.kernel.org>; Thu,  2 Apr 2020 15:08:21 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20200402150821epoutp03c12502d27ad64ffe71794c9b8e1857b9~CCSuZFoPj0940709407epoutp03T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1585840101;
+        bh=6n/U4UXr1sadm5NpMP9GqwT5rx5fOlWjC/IaV5L6yFI=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=VOSnjOU3F90aQgXc10Zr3lnSf7D5vupy1FNDL5CHZ9DimK21wm1JldHQrPtSZZo05
+         ILBvL3TWhlFsabG3rJydz27e4qqmZNp5PIidZ2ZBA+MkcgysDec8AWLn8azUPFw/lv
+         UD6SrBHMU3HG22/MYJzVDgFHYrabT4pTypeswQ5s=
+Received: from epsmges5p1new.samsung.com (unknown [182.195.42.73]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20200402150820epcas5p3de6c9f31537388707edabd8a4a12df73~CCStqQfdI3224332243epcas5p3p;
+        Thu,  2 Apr 2020 15:08:20 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        54.91.04782.4EFF58E5; Fri,  3 Apr 2020 00:08:20 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200402150820epcas5p1d7438cd324271c43d54bd446e239f108~CCStIGjxQ2767827678epcas5p1g;
+        Thu,  2 Apr 2020 15:08:20 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200402150820epsmtrp26e18ee8b63dda67bfd570c016d798f08~CCStHTQBJ2842128421epsmtrp2Z;
+        Thu,  2 Apr 2020 15:08:20 +0000 (GMT)
+X-AuditID: b6c32a49-89bff700000012ae-a1-5e85ffe49d7c
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E8.1F.04024.4EFF58E5; Fri,  3 Apr 2020 00:08:20 +0900 (KST)
+Received: from alimakhtar02 (unknown [107.108.234.165]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20200402150817epsmtip2bc01951f013328dcb2a8973e30a4a8cd~CCSqSFhsN0906209062epsmtip2I;
+        Thu,  2 Apr 2020 15:08:17 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Avri Altman'" <Avri.Altman@wdc.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-scsi@vger.kernel.org>
+Cc:     <krzk@kernel.org>, <martin.petersen@oracle.com>,
+        <kwmad.kim@samsung.com>, <stanley.chu@mediatek.com>,
+        <cang@codeaurora.org>, <linux-samsung-soc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+In-Reply-To: <SN6PR04MB4640B92BC9EA5CFEB74BE5EAFCCD0@SN6PR04MB4640.namprd04.prod.outlook.com>
+Subject: RE: [PATCH v4 4/5] scsi: ufs-exynos: add UFS host support for
+ Exynos SoCs
+Date:   Thu, 2 Apr 2020 20:38:15 +0530
+Message-ID: <000001d60900$8b6f5e70$a24e1b50$@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20200402045008.GB11124@qmqm.qmqm.pl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKI+vJzlUBp7WIi19k8pRZBKIHK2gGl+w7dArc8+ogCfXKHn6bJNFzg
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEKsWRmVeSWpSXmKPExsWy7bCmlu6T/61xBh/nGFq8/HmVzeLT+mWs
+        FvOPnGO1OH9+A7vFzS1HWSw2Pb7GanF51xw2ixnn9zFZdF/fwWax/Pg/JovWvUfYLZZuvcno
+        wONxua+XyWPTqk42j81L6j1aTu5n8fj49BaLR9+WVYwenzfJebQf6GYK4IjisklJzcksSy3S
+        t0vgyliw2LngOU/F1Jf3mBsYV3F1MXJySAiYSOxZ9YKpi5GLQ0hgN6PE6h332SGcT4wS5589
+        ZwGpEhL4xigxfakqTEfn/l6oor2MEu+/voFy3jBKLJqzjxWkik1AV2LH4jY2EFtEoFZi8eQO
+        VpAiZpCx3/ZOBhvLKRAr8fPJNEYQW1ggROLG6+VgzSwCKhKrHt9iBrF5BSwl9i+7wAphC0qc
+        nPkErJdZQFti2cLXzBAnKUj8fLqMFWKZm8T7exOYIGrEJY7+7GEGWSwhsIxd4tO1dawQDS4S
+        lzadY4SwhSVeHd/CDmFLSXx+txfoag4gO1uiZ5cxRLhGYum8YywQtr3EgStzWEBKmAU0Jdbv
+        0odYxSfR+/sJE0Qnr0RHmxBEtapE87urUJ3SEhO7u6EO8JD423uIaQKj4iwkj81C8tgsJA/M
+        Qli2gJFlFaNkakFxbnpqsWmBYV5quV5xYm5xaV66XnJ+7iZGcErT8tzBOOuczyFGAQ5GJR5e
+        hoOtcUKsiWXFlbmHGCU4mJVEeB1nAIV4UxIrq1KL8uOLSnNSiw8xSnOwKInzTmK9GiMkkJ5Y
+        kpqdmlqQWgSTZeLglGpgDOdqszdfoWPp0h3DErrd+tVh3pR3G/m6YrX91nXt7MvcpeFblaNZ
+        s9jcaMN574ipu8S44meWpm0te7XQ/+qFuWfrvnsd/3f+74Nj4r/2/97Iozo5+k/RqSMZonuq
+        +7u5eCJPz2/pnvxm/5/7HMnXOvpaKib9rPoQabrr5JTnR4o+TvFzcd70QYmlOCPRUIu5qDgR
+        AF51hTZlAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSvO6T/61xBi3nuS1e/rzKZvFp/TJW
+        i/lHzrFanD+/gd3i5pajLBabHl9jtbi8aw6bxYzz+5gsuq/vYLNYfvwfk0Xr3iPsFku33mR0
+        4PG43NfL5LFpVSebx+Yl9R4tJ/ezeHx8eovFo2/LKkaPz5vkPNoPdDMFcERx2aSk5mSWpRbp
+        2yVwZTSe7GcrOMpT8enmN/YGxg6uLkZODgkBE4nO/b3sXYxcHEICuxklpq94ywKRkJa4vnEC
+        O4QtLLHy33OooleMEms6TjOBJNgEdCV2LG5jA0mICDQySiz+t4QRxGEW+MUo8WTtQyaIlglM
+        En8vLmUEaeEUiJX4+WQamC0sECTx/8RGNhCbRUBFYtXjW8wgNq+ApcT+ZRdYIWxBiZMzn4Dd
+        xCygLfH05lM4e9nC18wQ9ylI/Hy6DKxeRMBN4v29CUwQNeISR3/2ME9gFJ6FZNQsJKNmIRk1
+        C0nLAkaWVYySqQXFuem5xYYFhnmp5XrFibnFpXnpesn5uZsYwTGqpbmD8fKS+EOMAhyMSjy8
+        DAdb44RYE8uKK3MPMUpwMCuJ8DrOAArxpiRWVqUW5ccXleakFh9ilOZgURLnfZp3LFJIID2x
+        JDU7NbUgtQgmy8TBKdXAmMgiJcbzOX79dEt9Z8O3K5LP/Y+z3OGR8khQxdOunufQouN7LiZ3
+        OrQcm14nurfNs/xx4owcp52dnacO9uRXehVP+N/n1hC4OXq/auNPtuZJk8QOHtHWf/dr25Rn
+        8gzzr004/uqL0r1wj3RzsU79HQENrm7rzy2OerWQ042573KEtN/WaoYYJZbijERDLeai4kQA
+        sutWFs0CAAA=
+X-CMS-MailID: 20200402150820epcas5p1d7438cd324271c43d54bd446e239f108
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20200327171420epcas5p490e1e6d090a540eaf050e0728a39ba25
+References: <20200327170638.17670-1-alim.akhtar@samsung.com>
+        <CGME20200327171420epcas5p490e1e6d090a540eaf050e0728a39ba25@epcas5p4.samsung.com>
+        <20200327170638.17670-5-alim.akhtar@samsung.com>
+        <SN6PR04MB4640B92BC9EA5CFEB74BE5EAFCCD0@SN6PR04MB4640.namprd04.prod.outlook.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.04.2020 07:50, Michał Mirosław пишет:
-> On Wed, Apr 01, 2020 at 12:43:26AM +0300, Dmitry Osipenko wrote:
->> Add a binding for the Tegra30-based ASUS Google Nexus 7 tablet device.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/arm/tegra.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
->> index 7fd0b66c69b2..fb3bbf7a5fb4 100644
->> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
->> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
->> @@ -62,6 +62,13 @@ properties:
->>                - toradex,colibri_t30-eval-v3
->>            - const: toradex,colibri_t30
->>            - const: nvidia,tegra30
->> +      - items:
->> +          - const: asus,grouper
->> +          - const: nvidia,tegra30
->> +      - items:
->> +          - const: asus,tilapia
->> +          - const: asus,grouper
->> +          - const: nvidia,tegra30
->>        - items:
->>            - enum:
->>                - nvidia,dalmore
-> 
-> Is it really necessary to list every possible device using a SoC chip?
+Hi Avri
 
-Yes, otherwise make dtbs_check will give you a warning about the unknown
-compatible.
+> -----Original Message-----
+> From: Avri Altman <Avri.Altman=40wdc.com>
+> Sent: 28 March 2020 16:58
+> To: Alim Akhtar <alim.akhtar=40samsung.com>; robh+dt=40kernel.org;
+> devicetree=40vger.kernel.org; linux-scsi=40vger.kernel.org
+> Cc: krzk=40kernel.org; martin.petersen=40oracle.com; kwmad.kim=40samsung.=
+com;
+> stanley.chu=40mediatek.com; cang=40codeaurora.org; linux-samsung-
+> soc=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
+> kernel=40vger.kernel.org
+> Subject: RE: =5BPATCH v4 4/5=5D scsi: ufs-exynos: add UFS host support fo=
+r Exynos
+> SoCs
+>=20
+> Hi,
+>=20
+> > +
+> > +long exynos_ufs_calc_time_cntr(struct exynos_ufs *ufs, long period) =
+=7B
+> > +       const int precise =3D 10;
+> > +       long pclk_rate =3D ufs->pclk_rate;
+> > +       long clk_period, fraction;
+> > +
+> > +       clk_period =3D UNIPRO_PCLK_PERIOD(ufs);
+> > +       fraction =3D ((NSEC_PER_SEC % pclk_rate) * precise) / pclk_rate=
+;
+> > +
+> > +       return (period * precise) / ((clk_period * precise) +
+> > +fraction); =7D
+> This helper essentially calculates a factor f, and returns period x f.
+> Why not do that regardless of period?
+>=20
+The period can be different for different timing attributes, so this helper=
+ function takes the period and returns the timer counter value based on the=
+ pclk_rate.=20
 
-> Wouldn't it be enough to just list SoC value nvidia,tegraXYZ and allow
-> any other supplemental "compatibles"?
+> > +extern long exynos_ufs_calc_time_cntr(struct exynos_ufs *, long);
+> Why this factor needed to be exported?
+Yes, not needed, will correct this in next version, which I am planning to =
+post soon.
+Thanks for your time and review, let me know if you have more inputs.
 
-I don't know what was the initial intention of having boards defined in
-a way it's currently done, maybe Rob;Thierry;Stephen;Jon could clarify?
