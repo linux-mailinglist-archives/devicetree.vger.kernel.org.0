@@ -2,113 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA32919CD35
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 00:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC96819CD3F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 01:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388991AbgDBW6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Apr 2020 18:58:40 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:36026 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388630AbgDBW6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 18:58:39 -0400
-Received: by mail-vs1-f67.google.com with SMTP id 184so3766175vsu.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 15:58:37 -0700 (PDT)
+        id S2389821AbgDBXCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Apr 2020 19:02:06 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:39060 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389366AbgDBXCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 19:02:06 -0400
+Received: by mail-il1-f194.google.com with SMTP id r5so5405994ilq.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 16:02:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aWD0gE7Vrwy/cdOlV72v6o0XzVmYemF303k1PSNaq4k=;
-        b=W9lDsf9RQRgWPbt1c3OjVC4BGPVd7pdAsv+tVNSNuctUqBD8SELyyR9qwex6ROn24r
-         d4j4v93TDmqkLacUW8sRAuANhbTyryN7WRH6zDCTynzff3FG7JN3me0PR7vciwMNXLey
-         XiJok94xg+8kmBA1DjGznFhPAI1mgMofFv92Q=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8h9TNvv6CZ2PKXPL953qS4ZWG+3/jrimtqMPT6Mv1pU=;
+        b=QomA5NjtFvJQErByC8wHcdpBoa4FleTSJNfY747f268VshMlihtHC6OviHbjhlZBM6
+         yc3Nxmlb3GRhGQ5nmF22Xfy46volL/Us88RKVifpWoYcayJ1q5Hd4XZyOeh8E8knn4u9
+         g2KKzgTI5UZAYJxVUTae7wN3FCUs8sT3zy3k8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aWD0gE7Vrwy/cdOlV72v6o0XzVmYemF303k1PSNaq4k=;
-        b=ZTb6/ldAmZ+AxWweUEr2nbkIopMgjxRrelXN7IR/ONBMXGqZFGRr49vs/4qAlAtsMf
-         ZV+JfBGDpLk7WDeD38xMgf/8y4QHyZl1ubuY8WUmMfOBEPzKeJK7Mf2Og7gfRGQvqnog
-         7We72lcn3KKkBtBKwAOgTxLzyMes7IsS6G5XP2a+W0fUgJzHQPNIQKuzG5fhlfWa5tIB
-         nYMX3gVLs1t9ZEwndsaySmMPT+C1XuBH9iVQjZbjZAtJpzAtYlXNVzBOs35X/7lPmXLz
-         Ctu39M3Pvj4cAEc/wjp+yA10pHWxtXHPksxekW0Vd7+D3lj6G/C9SpLWSovkZ8RDQxYU
-         679Q==
-X-Gm-Message-State: AGi0PubOsqxZk/EdCmVzWAurfYxuS/Jq4hEn9cvAxrJSFg400ia4k8v+
-        Sbp2lKNehs/0cTKkccst3Wo7MBqRzLQ=
-X-Google-Smtp-Source: APiQypKOehtCNZTsFGkEcKgryH4LY+ZGRIjS2w6fGIBQCGhO8zKbEMVDvpQjAX3OPgaMfdkz+jUbtA==
-X-Received: by 2002:a67:1e03:: with SMTP id e3mr3942138vse.102.1585868316866;
-        Thu, 02 Apr 2020 15:58:36 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id 123sm1663911vsz.33.2020.04.02.15.58.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Apr 2020 15:58:35 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id x206so3760282vsx.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 15:58:35 -0700 (PDT)
-X-Received: by 2002:a05:6102:3204:: with SMTP id r4mr4114704vsf.109.1585868314963;
- Thu, 02 Apr 2020 15:58:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <1583747589-17267-1-git-send-email-sanm@codeaurora.org>
- <1583747589-17267-4-git-send-email-sanm@codeaurora.org> <CANcMJZCr646jav3h14K0xV=ANMxXg=U20wvSB546qrLX3TECBg@mail.gmail.com>
-In-Reply-To: <CANcMJZCr646jav3h14K0xV=ANMxXg=U20wvSB546qrLX3TECBg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 2 Apr 2020 15:58:22 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wd1Y-4RvS+jrwMmnZ7tZJdPnQOx8bpQ_QExgwkDNH0zg@mail.gmail.com>
-Message-ID: <CAD=FV=Wd1Y-4RvS+jrwMmnZ7tZJdPnQOx8bpQ_QExgwkDNH0zg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/9] phy: qcom-qusb2: Add generic QUSB2 V2 PHY support
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     Sandeep Maheswaram <sanm@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8h9TNvv6CZ2PKXPL953qS4ZWG+3/jrimtqMPT6Mv1pU=;
+        b=uYmx64cszGa3z9LTDEGqHhRSbDG/HdeJPHMtlf0IxhBpql6NjtqXcs14I/Cn0vKp2M
+         DwIHTIftgTiUAOBu/6K/x9A8seWhqtSZmXoN4GxU6QXLy00P94201oj1T2w+XRFMAVpk
+         R9zspb0gpX/9Uhcg2khykHrQ18zN8h3N04MtDncL9kzkP62GJIG3zjhyZKtJlsWvlsBG
+         femNQyE3GSLyl11xGdoPuSTKZ9jh23UqtgqfU1MD+xI9ckb5w7p7VAOJkPG18f1rpYp1
+         Lv6DNf+jh49hnkKer29wZO87tXbACipIaFm4ENQEI8ExQUEUS5BfxAouQCTbjP7RdYm9
+         vmDQ==
+X-Gm-Message-State: AGi0PubEpBpEhverlOzxUMKmAdwV4D8YrXZ0dH3FPFNbowAD5EroNVEy
+        XBeqTRVV9oMydKNnQB/iCmAdsh41RU8=
+X-Google-Smtp-Source: APiQypJfC8VUbwJAGR7sUSeGGe0EC41G2TO8QzvnR3qOZDxuY//+mCVxGZ3gqZhd37cWATOWh6pVDA==
+X-Received: by 2002:a92:d490:: with SMTP id p16mr5940369ilg.300.1585868525477;
+        Thu, 02 Apr 2020 16:02:05 -0700 (PDT)
+Received: from derch.Home (75-166-136-192.hlrn.qwest.net. [75.166.136.192])
+        by smtp.gmail.com with ESMTPSA id v24sm1808461iob.0.2020.04.02.16.02.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Apr 2020 16:02:04 -0700 (PDT)
+From:   Daniel Campello <campello@chromium.org>
+To:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Daniel Campello <campello@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Manu Gautam <mgautam@codeaurora.org>,
-        YongQin Liu <yongqin.liu@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
+Subject: [PATCH 1/2 v2] dt-bindings: iio: Add bindings for sx9310 sensor
+Date:   Thu,  2 Apr 2020 17:01:29 -0600
+Message-Id: <20200402165720.1.I6ed779cd21abf3e70f21c1562bbda81f590976ab@changeid>
+X-Mailer: git-send-email 2.26.0.292.g33ef6b2f38-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Adds device tree bandings for sx9310 sensor.
 
-On Thu, Apr 2, 2020 at 2:39 PM John Stultz <john.stultz@linaro.org> wrote:
->
-> On Mon, Mar 9, 2020 at 2:54 AM Sandeep Maheswaram <sanm@codeaurora.org> wrote:
-> > @@ -774,8 +774,8 @@ static const struct of_device_id qusb2_phy_of_match_table[] = {
-> >                 .compatible     = "qcom,msm8998-qusb2-phy",
-> >                 .data           = &msm8998_phy_cfg,
-> >         }, {
-> > -               .compatible     = "qcom,sdm845-qusb2-phy",
-> > -               .data           = &sdm845_phy_cfg,
-> > +               .compatible     = "qcom,qusb2-v2-phy",
-> > +               .data           = &qusb2_v2_phy_cfg,
-> >         },
-> >         { },
-> >  };
->
-> Just as a heads up, Yongqin (cc'ed) reported this patch (now upstream)
-> seems to be causing trouble on the db845c.
->
-> It seems like its removing support for the "qcom,sdm845-qusb2-phy"
-> compatible string, which is documented:
->   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml#n23
->
-> and already in use:
->    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845.dtsi#n2389
->
-> Should this instead have been an addition of the "qcom,qusb2-v2-phy",
-> line instead of replacing "qcom,sdm845-qusb2-phy"?
+Signed-off-by: Daniel Campello <campello@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v2 changes:
+ - Added power-supply
+ - Changed to dual license
 
-To avoid forking the discussion into two threads, I'll suggest that we
-focus on keeping the discussion in reply to your newly proposed patch.
-I've already replied there:
+ .../iio/proximity/semtech,sx9310.yaml         | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
 
-https://lore.kernel.org/r/CAD=FV=VGT75c4_ErQAJgNtcCd2Jzv0A2KpfEkS637GqOhamj9Q@mail.gmail.com
+diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+new file mode 100644
+index 00000000000000..b52ffdac678b54
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/semtech,sx9310.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Semtech's SX9310 capacitive proximity sensor
++
++maintainers:
++  - Daniel Campello <campello@chromium.org>
++
++description: |
++  Semtech's SX9310/SX9311 capacitive proximity/button solution.
++
++  Specifications about the devices can be found at:
++  https://www.semtech.com/products/smart-sensing/sar-sensors/sx9310
++
++properties:
++  compatible:
++    enum:
++      - semtech,sx9310
++      - semtech,sx9311
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      The sole interrupt generated by the device used to announce the
++      preceding reading request has finished and that data is
++      available or that a close/far proximity event has happened.
++    maxItems: 1
++
++  power-supply: true
++
++required:
++  - compatible
++  - reg
++  - power-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      proximity@28 {
++        compatible = "semtech,sx9310";
++        reg = <0x28>;
++        interrupt-parent = <&pio>;
++        interrupts = <5 IRQ_TYPE_LEVEL_LOW 5>;
++        power-supply = <...>;
++      };
++    };
+--
+2.26.0.292.g33ef6b2f38-goog
 
--Doug
