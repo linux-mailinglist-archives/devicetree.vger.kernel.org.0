@@ -2,344 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C15B819C3A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 16:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFCD19C555
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2020 17:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732349AbgDBOMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Apr 2020 10:12:00 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:40814 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731823AbgDBOL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 10:11:59 -0400
-Received: by mail-pg1-f193.google.com with SMTP id t24so1892613pgj.7;
-        Thu, 02 Apr 2020 07:11:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=KRil4IG/RY96nscl8h3n0Ow1s/U/cZE1l2gDbraOSck=;
-        b=PIC13765bN2s0STyZE3R63JlJatZkjsCAY9M0BYQONZWkYyBnMl2sf2DwT/Gasiipt
-         F+AZiTp3qjGJDYDj2ghb+i5NCNYR+rAxTbric07Rk/5uOXhSm+Csh7sWNt4w/IoQjDHp
-         SvHkozzTqBY23Ywc+3ggPWDcqkLVr8ORrUvlS+NqGO/lPv+1WMid7ndMiFHedP/l8mJN
-         vsViU3PVPMxlXQ8yZisLxOkEGjLLVMVZOUJCn5OsuZT2jA2DLTB4lNOKujN2PS0R5aRw
-         2kUuegfiWI+dXAwK3pQTCFUVmQyBwBaUvfDhj8ip20xR2GXc1UZz+/f0qg6QZlQ84LjG
-         UgNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=KRil4IG/RY96nscl8h3n0Ow1s/U/cZE1l2gDbraOSck=;
-        b=C/1IlQwHsWqkbUoN2BlFq/DhVdtFPWHt+vd/gVk80LeA8qqAylaJKyyF5hAoxwpps5
-         JMTkP6Qk4C3TaZw7QAGq1b1/JDmPscwgxh6+jDf439f5xB5S30vl3nt06BYpwQu+tlS+
-         pNYP0YfonWZX+bZ5YyUoqL9waAx3uZUbtgOupbAzM7gG7qZob/hB1ctZ7VyOSP/p3lvB
-         8iC+3BoF0Mrl0uunrtLFtd1Uj022VWaFGviAOCaKOgt5EugnJpVXvA3pnV6i6MfG+UNa
-         4dcT7Oi7ooQ5xjSzwe8QFSVeAE+CxNANmM4VB9UVPHzZspSucV0oNntEzK3Z2NDm8mAd
-         OrmA==
-X-Gm-Message-State: AGi0PubNmVRby3n4AVLtJ+rokst1+J5VbEvBiOCicjtSqSY2mhhTSrku
-        DkIhseEgCIc24xIcWeXIDzk+cYJf
-X-Google-Smtp-Source: APiQypIWILFF8219H+fW+mfg8OMS0kZ8gQYTFp44wgce3ClTX4l8bjO2uhgzCPWz03GlHvRVtmpcdw==
-X-Received: by 2002:a62:e20c:: with SMTP id a12mr3422338pfi.37.1585836716316;
-        Thu, 02 Apr 2020 07:11:56 -0700 (PDT)
-Received: from cnn ([42.111.167.250])
-        by smtp.gmail.com with ESMTPSA id h64sm3739427pfg.191.2020.04.02.07.11.45
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 Apr 2020 07:11:55 -0700 (PDT)
-Date:   Thu, 2 Apr 2020 19:41:35 +0530
-From:   Manikandan Elumalai <manikandan.hcl.ers.epl@gmail.com>
-To:     andrew@aj.id.au, joel@jms.id.au
-Cc:     sdasari@fb.com, vijaykhemka@fb.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org, manikandan.e@hcl.com
-Subject: [PATCH v8] ARM: dts: aspeed: Adding Facebook Yosemite V2 BMC
-Message-ID: <20200402141135.GA19190@cnn>
+        id S2388823AbgDBPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Apr 2020 11:03:25 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:57337 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388744AbgDBPDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Apr 2020 11:03:25 -0400
+Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MybX9-1j7PZQ1xzp-00z00b; Thu, 02 Apr 2020 17:03:09 +0200
+Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
+        by mail.cetitecgmbh.com (Postfix) with ESMTP id 097A0650AA7;
+        Thu,  2 Apr 2020 15:03:08 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at cetitec.com
+Received: from mail.cetitecgmbh.com ([127.0.0.1])
+        by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id qP8o4QmZzMyZ; Thu,  2 Apr 2020 17:03:07 +0200 (CEST)
+Received: from pflmari.corp.cetitec.com (unknown [10.8.5.56])
+        by mail.cetitecgmbh.com (Postfix) with ESMTPS id 9404064C938;
+        Thu,  2 Apr 2020 17:03:07 +0200 (CEST)
+Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
+        id 68B12804FB; Thu,  2 Apr 2020 16:16:54 +0200 (CEST)
+Date:   Thu, 2 Apr 2020 16:16:54 +0200
+From:   Alex Riesen <alexander.riesen@cetitec.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v4 9/9] arm64: dts: renesas: salvator: add a connection
+ from adv748x codec (HDMI input) to the R-Car SoC
+Message-ID: <20200402141654.GB4291@pflmari>
+Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <cover.1585218857.git.alexander.riesen@cetitec.com>
+ <ad15f80df51c95a7c24498bb0bd3a46f55fbb62e.1585218857.git.alexander.riesen@cetitec.com>
+ <CAMuHMdV+joeNWJotKySVPHNW9OoT8+iODBwhK5fACspq2SX_eg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <CAMuHMdV+joeNWJotKySVPHNW9OoT8+iODBwhK5fACspq2SX_eg@mail.gmail.com>
+X-Provags-ID: V03:K1:Is5uJxMg3JOTXfihWmw/yAJXlIzEj/786Ut3euQGsigzUph1yio
+ H5V1cBF7XgZEEeI7WsFwuZTxP2E6Hj6azmNrJh9qwFSuXDZ+zCCP81RCQlmSPJla0Sr6IY6
+ QSzQfPaUUl+mZtQjwdOV8zhedWfwf9gToq+Iv9Gat4KWV8g7VMTdPkti9uvTMfDtvqBdOTd
+ PDGuW+kIr2pCE6T9+kHjg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:FPfBvf1WZKE=:2e0MwuWr49u0npND5T8YEM
+ fXabhm3nmxL2DQkHlFFAFd/AZJcQQiHJROAR+13cGIK/BQ/5L5fhbKsr7QiYNSbpyhGhT1ZXC
+ DruPJmtG+lW129VEWTRpAKIV5wDbNozyUjfNELnMLoLiIgZrFxhzuYtOI4hT+pTegAreOtXuY
+ YfcTsBxuvY4dba3wKL2aYMR5m8DUoCn2hdNWbACXx4muJNO+uRItRcQSWagsMF3DlswZ5+Us2
+ B0+yMDRs7PtQd3w0V3y33k3JPgrBXnZ4w558yfeHQLg4kIWRIHpFhFo8ChpuzQWXxM2F0vQlv
+ HtSDfCZITzq7skt8OyjiMW/jnep2ho+Z9HY1Lxic6ZaS/c1oKGfmYEsa5yjLRoTRUFPiYRFGS
+ 4eWSizLGLgXzJCKL4UZjwwOQQo8F9tKigOvvEkmQqZszuPk2XWOxoop+EHnYkilEOa1eCL4sN
+ axL1Vs/QBvg0L3KWDLUSBXyuPLu1Rafzc9r5rXt+ffN/w75EG6YkVVacAiZC3sBbn4PsgddkC
+ uqAdlMvF1MSmd8W8OaNN1yeN3JuYYF4XRosNbKHSTjriS7k/zZvLxcWpWaZSh+szMs62045IH
+ 8VBAbwU/Wxez46XOtQkuodomLlPQ/dUWP7rllc2j8+g4nBltzexHbEmghcrGNssSjZT/zum//
+ 2jEC3qaNRVnKT06kQAI/jRiueES0WlRUmPhUre8tZGmxjSssxMHxNw5UWej9WOECkNcm3p8u4
+ Yl88JIj+7JtrYyzm88d18pAMmJkOZHw1SaJDqUVASOi5RnYxHDytRQaYe/XrkIqzmlwid6o0T
+ NeU6XqJ/1T6H0LTy6Lk4ke+UK68Rywv87xDbbBW0VOB/RHYoGHeNaIxr4Dl/Nmq4ENHwMYk
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Yosemite V2 is a facebook multi-node server
-platform that host four OCP server. The BMC
-in the Yosemite V2 platform based on AST2500 SoC.
+Hi Geert,
 
-This patch adds linux device tree entry related to
-Yosemite V2 specific devices connected to BMC SoC.
+I'm sorry for late reply. Some unrelated happenings here in south Germany.
 
-Signed-off-by: Manikandan Elumalai <manikandan.hcl.ers.epl@gmail.com>
-Acked-by     : Andrew Jeffery <andrew@aj.id.au>
-Reviewed-by  : Vijay Khemka <vkhemka@fb.com>
----
----      v8 - Added dtb entry in Makefile as review comment.
----           -Added IPMB bridge device details as review comment.
----      v7 - Added multi-host SOL feature.
----      v6 - Added device tree property for multi-host Mellanox NIC in the ncsi driver.
----      v5 - Spell and contributor name correction.
----           - License identifier changed to GPL-2.0-or-later.
----           - aspeed-gpio.h removed.
----           - FAN2 tacho channel changed.
----      v4 - Bootargs removed.
----      v3 - Uart1 Debug removed .
----      v2 - LPC and VUART removed .
----      v1 - Initial draft.
----
----
- arch/arm/boot/dts/Makefile                         |   1 +
- .../boot/dts/aspeed-bmc-facebook-yosemitev2.dts    | 231 +++++++++++++++++++++
- 2 files changed, 232 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+Geert Uytterhoeven, Mon, Mar 30, 2020 10:32:47 +0200:
+> On Thu, Mar 26, 2020 at 11:55 AM Alex Riesen <alexander.riesen@cetitec.com> wrote:
+> > --- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+> > @@ -510,6 +511,15 @@ adv7482_txb: endpoint {
+> >                                 remote-endpoint = <&csi20_in>;
+> >                         };
+> >                 };
+> > +
+> > +               port@c {
+> > +                       reg = <12>;
+> > +
+> > +                       adv7482_i2s: endpoint {
+> > +                               remote-endpoint = <&rsnd_endpoint3>;
+> > +                               system-clock-direction-out;
+> > +                       };
+> > +               };
+> 
+> As the adv748x driver just ignores "invalid" endpoints...
+> 
+> > @@ -758,8 +769,19 @@ &rcar_sound {
+> >                  <&cpg CPG_MOD 1020>, <&cpg CPG_MOD 1021>,
+> >                  <&cpg CPG_MOD 1019>, <&cpg CPG_MOD 1018>,
+> >                  <&audio_clk_a>, <&cs2000>,
+> > -                <&audio_clk_c>,
+> > +                <&adv7482_hdmi_in>,
+> >                  <&cpg CPG_CORE CPG_AUDIO_CLK_I>;
+> 
+> ... and the rsnd driver ignores nonexistent-clocks, the DT change has no
+> hard dependency on the driver change, and won't introduce regressions
+> when included, right?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index fcd607f..00b6649 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1289,6 +1289,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-wedge40.dtb \
- 	aspeed-bmc-facebook-wedge100.dtb \
- 	aspeed-bmc-facebook-yamp.dtb \
-+	aspeed-bmc-facebook-yosemitev2.dtb \
- 	aspeed-bmc-ibm-rainier.dtb \
- 	aspeed-bmc-intel-s2600wf.dtb \
- 	aspeed-bmc-inspur-fp5280g2.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-new file mode 100644
-index 0000000..8864e9c
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-@@ -0,0 +1,231 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright (c) 2018 Facebook Inc.
-+/dts-v1/;
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Yosemitev2 BMC";
-+	compatible = "facebook,yosemitev2-bmc", "aspeed,ast2500";
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	iio-hwmon {
-+		// VOLATAGE SENSOR
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0> , <&adc 1> , <&adc 2> ,  <&adc 3> ,
-+		<&adc 4> , <&adc 5> , <&adc 6> ,  <&adc 7> ,
-+		<&adc 8> , <&adc 9> , <&adc 10>, <&adc 11> ,
-+		<&adc 12> , <&adc 13> , <&adc 14> , <&adc 15> ;
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+	};
-+};
-+&uart1 {
-+	// Host1 Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd1_default
-+		     &pinctrl_rxd1_default>;
-+};
-+
-+&uart2 {
-+	// Host2 Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd2_default
-+		     &pinctrl_rxd2_default>;
-+
-+};
-+
-+&uart3 {
-+	// Host3 Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd3_default
-+		     &pinctrl_rxd3_default>;
-+};
-+
-+&uart4 {
-+	// Host4 Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd4_default
-+		     &pinctrl_rxd4_default>;
-+};
-+
-+&uart5 {
-+	// BMC Console
-+	status = "okay";
-+};
-+
-+&vuart {
-+	// Virtual UART
-+	status = "okay";
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii1_default>;
-+	use-ncsi;
-+	mlx,multi-host;
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default
-+			&pinctrl_adc1_default
-+			&pinctrl_adc2_default
-+			&pinctrl_adc3_default
-+			&pinctrl_adc4_default
-+			&pinctrl_adc5_default
-+			&pinctrl_adc6_default
-+			&pinctrl_adc7_default
-+			&pinctrl_adc8_default
-+			&pinctrl_adc9_default
-+			&pinctrl_adc10_default
-+			&pinctrl_adc11_default
-+			&pinctrl_adc12_default
-+			&pinctrl_adc13_default
-+			&pinctrl_adc14_default
-+			&pinctrl_adc15_default>;
-+};
-+
-+&i2c1 {
-+	//Host1 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb1@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	//Host2 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb3@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c5 {
-+	//Host3 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb5@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c7 {
-+	//Host4 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb7@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+	//FRU EEPROM
-+	eeprom@51 {
-+		compatible = "atmel,24c64";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+	tmp421@4e {
-+	//INLET TEMP
-+		compatible = "ti,tmp421";
-+		reg = <0x4e>;
-+	};
-+	//OUTLET TEMP
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+	//HSC
-+	adm1278@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	//MEZZ_TEMP_SENSOR
-+	tmp421@1f {
-+		compatible = "ti,tmp421";
-+		reg = <0x1f>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	//MEZZ_FRU
-+	eeprom@51 {
-+		compatible = "atmel,24c64";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&pwm_tacho {
-+	status = "okay";
-+	//FSC
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
-+	fan@0 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+	};
-+	fan@1 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x01>;
-+	};
-+};
--- 
-2.7.4
+Well, it maybe won't, but isn't it a little ... implicit?
+And I'm no haste to include the changes, if you mean I can (or should) submit
+the device tree patch separately.
+
+> > @@ -777,6 +799,21 @@ rsnd_endpoint0: endpoint {
+> >                                 capture  = <&ssi1 &src1 &dvc1>;
+> >                         };
+> >                 };
+> > +               rsnd_port3: port@3 {
+> > +                       reg = <3>;
+> > +                       rsnd_endpoint3: endpoint {
+> > +                               remote-endpoint = <&adv7482_i2s>;
+> > +
+> > +                               dai-tdm-slot-num = <8>;
+> > +                               dai-tdm-slot-width = <32>;
+> > +                               dai-format = "left_j";
+> > +                               mclk-fs = <256>;
+> > +                               bitclock-master = <&adv7482_i2s>;
+> > +                               frame-master = <&adv7482_i2s>;
+> > +
+> > +                               capture = <&ssi4>;
+> > +                       };
+> > +               };
+> >         };
+> >  };
+> 
+> However, as salvator-common.dtsi is shared by all Salvator-X(S) variants,
+> you'll have to add a dummy ssi4 node to r8a77961.dtsi first.
+
+I see. There are even two dummy SSI nodes already. I would prefer to submit
+the change together with other Salvator device tree changes. Is that alright?
+
+Regards,
+Alex
 
