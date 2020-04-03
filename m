@@ -2,63 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D57CC19DB36
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 18:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5190C19DB8F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 18:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404333AbgDCQQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Apr 2020 12:16:49 -0400
-Received: from mx-out2.startmail.com ([145.131.90.155]:46190 "EHLO
-        mx-out2.startmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404035AbgDCQQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 12:16:48 -0400
-Date:   Fri, 3 Apr 2020 19:21:54 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2017-11; t=1585930607;
-        bh=ipQrauf/RATph3AuYQzrJh8EzsblD3zQ5PJ+nD02B2M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J8G1Cgrjb1PcBHRAC4aMQlgyMJPyhCwBoYKwmYBPa9EkRjJeRitFhFgxygPrXXRav
-         q58jHnhWHVRpmlMsOGj4VwkYolIedboNlDZVv/Wt5UW8WIit66lxwCXlma+6rVtCvE
-         NmP7qTZhsgGGC+7qFgn/bCBydQORq/zt+k9cTIAn+I4RfNcx04+Y+CsXBTPNNzOCfQ
-         EaCNlW7/b316Jh6rPHVwe5poQcD1zHxhf81l2KzSrhGG9PiVdXyImAcCAYmPMjmuMy
-         Xwj/JIF2f+HpGYWNe5cRVumGcMycqSAeoTOqPOGjZT8OEnbIEWPNjv7lsPkO6eY7+d
-         CL8g/rW8ZGIPA==
-From:   Alexandru Lazar <alazar@startmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: Re: [PATCH v7 2/2] iio: adc: Add MAX1241 driver
-Message-ID: <20200403162154.GA8285@leena.republic>
-References: <20200403121323.1742-1-alazar@startmail.com>
- <20200403121323.1742-3-alazar@startmail.com>
- <CAHp75VcKEqM4nxvu3QtqNDpwtJU77zu=YfPwmCXn_L=LsGSuAQ@mail.gmail.com>
+        id S2403907AbgDCQZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Apr 2020 12:25:02 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:42242 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403971AbgDCQZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 12:25:01 -0400
+Received: by mail-lf1-f68.google.com with SMTP id s13so6271532lfb.9;
+        Fri, 03 Apr 2020 09:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=u7P0dsxmLlwmCnuhltg/uqrvRo4yoGJh1knnxv/mnF4=;
+        b=ausdS3HwKnqEo0svXRS60uo2DUISom82uTCbTiCDyjvqP4f7KtzZTvAB2fMnG9Lt5N
+         87B1CIW24mYQL4yK0JHZouy0UxvBBfoWyRTTsVcFonHOyCnGHy4atVPjsYhQDW/TQjJf
+         V4uLaVe1fQ3V/oFsQXfFE0HG8oit5FF8+umM0qKyGHKlwu3CEWhhsV4WBlf/VhXLQCGq
+         VXvrEr1JtkCzurVd5yU2f1xzofTQG/tet8UjPO6R18/+AiWZFKUN1+9GwyYZ2BY+YVCF
+         nhQM3XvF31EV7o5AbVnJ8by9wnXKtUp1e044Z0/wIydXQawPzXx9raleZfGN/SC27+0g
+         uiIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=u7P0dsxmLlwmCnuhltg/uqrvRo4yoGJh1knnxv/mnF4=;
+        b=Zi6ALK6Ad/mPATUnwVB/HHfXjk6V4rDJyzi3L5X8IH5W06bZbNIBNWEwPr3QO9WTO2
+         FGDib/adFBmXA/g80i9Karw5nTLAYCBCqvPRjkUhsbdCs3r0Ki/U9qCBDEaKZ2Zt2vK3
+         zwHcYWuMEqxPrXmPfl2wM2HeJdpaM0XIh2VP1bJ7v5XNKT4+j/JRXjYIWVSqub2ksVjZ
+         q+ixTE2bZVETuynhR9VzC15STqhgNhdDXMEnNAPRRThgveCAeWRhbbAxhbLhk8f+zsc8
+         0a1VGxlxQ8NSUzXJTQ45c9aJG7OEpcybpf4l4z/MiTUFI5ubZustFdKFR+gN3hRRDnwc
+         wUUQ==
+X-Gm-Message-State: AGi0PuYtGs3Ccrgu2XfhV2cVvQ9hKRI3NpRxRHVUdUh9KonO/TxVxL6h
+        rMLCbowCkuQP1JGxtXUARvlno4Mb
+X-Google-Smtp-Source: APiQypJJSXDhKFLZlI12icRGHHnXFRst1hlTrBfaZ8PVUrhvBcix1+mubcHb53j7ECG31VFXplCIyw==
+X-Received: by 2002:a19:9141:: with SMTP id y1mr5899567lfj.168.1585931097643;
+        Fri, 03 Apr 2020 09:24:57 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id q6sm5325848ljp.21.2020.04.03.09.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2020 09:24:57 -0700 (PDT)
+Subject: Re: [PATCH v2 2/7] clocksource: Add Tegra186 timers support
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200331221914.2966407-1-thierry.reding@gmail.com>
+ <20200331221914.2966407-3-thierry.reding@gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <edf08b18-ad19-7191-020d-a06d57747c45@gmail.com>
+Date:   Fri, 3 Apr 2020 19:24:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
+In-Reply-To: <20200331221914.2966407-3-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHp75VcKEqM4nxvu3QtqNDpwtJU77zu=YfPwmCXn_L=LsGSuAQ@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> FWIW,
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+01.04.2020 01:19, Thierry Reding пишет:
+...
+> +static int tegra186_wdt_set_timeout(struct watchdog_device *wdd,
+> +				    unsigned int timeout)
+> +{
+> +	struct tegra186_wdt *wdt = to_tegra186_wdt(wdd);
+> +
+> +	tegra186_wdt_disable(wdt);
+> +	wdt->base.timeout = timeout;
+> +	tegra186_wdt_enable(wdt);
 
-Thanks!
+Why changing timeout enables the watchdog?
 
-> > Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX1240-MAX1241.pdf
-> >
-> No blank line, but this can be fixed by maintainer, I think.
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_ops tegra186_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = tegra186_wdt_start,
+> +	.stop = tegra186_wdt_stop,
+> +	.ping = tegra186_wdt_ping,
+> +	.set_timeout = tegra186_wdt_set_timeout,
+> +};
 
-Oops! Not sure how I (and checkpatch.pl?) missed that! It's tiny enough
-to fix inline I guess, but it's not a problem to make a v8 with it if
-needed.
+...
+> +static int __maybe_unused tegra186_timer_suspend(struct device *dev)
+> +{
+> +	struct tegra186_timer *tegra = dev_get_drvdata(dev);
+> +
+> +	if (tegra->wdt)
+> +		tegra186_wdt_disable(tegra->wdt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused tegra186_timer_resume(struct device *dev)
+> +{
+> +	struct tegra186_timer *tegra = dev_get_drvdata(dev);
+> +
+> +	if (tegra->wdt)
+> +		tegra186_wdt_enable(tegra->wdt);
 
-Thanks,
-Alex
+What if watchdog is in a stopped state? Why it's enabled unconditionally?
+
+> +	return 0;
+> +}
+
+
