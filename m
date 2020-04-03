@@ -2,120 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B1719DE45
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 20:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E311919DE55
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 21:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728573AbgDCS45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Apr 2020 14:56:57 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:34816 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728552AbgDCS44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 14:56:56 -0400
-Received: by mail-wm1-f65.google.com with SMTP id i19so8875529wmb.0;
-        Fri, 03 Apr 2020 11:56:54 -0700 (PDT)
+        id S1728188AbgDCTGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Apr 2020 15:06:13 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39265 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbgDCTGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 15:06:12 -0400
+Received: by mail-oi1-f196.google.com with SMTP id d63so7069302oig.6
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2020 12:06:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=g5IL8lJ44sLe63OqUkMG0FhluuzRjw9oYGvmFBSOKwc=;
-        b=KsbqPZWt4iG8tl6/L8/xJaRgrb6adiEVUu2L8vrCblQ8fd9bys7mAmKFOvr+bxRoMr
-         +bDH2zrvm7Z2S/gX4YYLjke+OsongeJwD86C5kwgwp2Agr4A9xO+p+pnCfa3Qz+ag4EM
-         p/vTcaCkN9B7XuD3IjFojy/ChethSaBLv/jmE2/vEuDNwOpXeDT5dFLvt3scVSItAbMZ
-         BJTrL2++yFlE/XMAYGMgroG6ADcp9uxXQ7tPxuwh+BPNaNDyJ1gmOP6lLV32sK2BKIHa
-         VvOfWNIs8GXKvNOzth/W+tbinQTOCL79b7WCZxgtwOfO1fzbY3Sn0FfgBPjEy0iIPFCE
-         SmrA==
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wTReRqnZdM7LeM2kve1cUiMUJNylNm6ycb8la3HHaJ0=;
+        b=0aAsAdaHEwB0VgD8CzMLC5AdHyRM2ECSVANS25qkQSGLLNz4lq8tgw9c3PPmUgoyKJ
+         P9icSKnv076YOyWE7NZzVjx/DjmINtpCBwcQNMjac39LwoqveToVNhHQAkGUw694RPY6
+         fAvuoWFdJYzMW4Hp5xRFXJq4Spr3J5as4jzZjEX5f1MUCssfT7PrsCFVnW5vO+Ad6wNU
+         Vv3WwmH2vtaLgC9m8Bm8kZvQ1GLtbTiwUa1DCYJjxh8J1DC9L1Xq/OeiwnXV/ylCwECh
+         h598soyQVMTC8yoKgSk0OXUCSsUxF0AhTDaV5ZmYTxaNNMNWAAq3OuRb8sDEJI8r/d8O
+         8LdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=g5IL8lJ44sLe63OqUkMG0FhluuzRjw9oYGvmFBSOKwc=;
-        b=okrtxupXRz4dpCU1kQBes2kh1hk9eGvB8vBM8VZQviECIcdlOiyKAkbcYMd8UzMLrf
-         rwcKgplhZgK4dK+5mn5kYgxT4zv3Sd8GsRV6y008BbYQ5m8nUHNZhfc9XNd378cI9OlG
-         wIaiyCQF4uWSLQPFDy3j0t2etGZAyqLMECdRMeXHyDRk3M65rgxpAB03csy7bpgNrlH6
-         RleyBzvLIwmHHkcRUiMKsFUylNNc3FYC/I48EB7Xb7+6YgjcUOG4LQ5yK+H5P3hPkUBQ
-         HcaYPYc8CMRydf4AOelIOed6xJNgfq4D2c19vSPrLBPHpD9hFB3BCjP7ugIn8JdPfTDe
-         57fg==
-X-Gm-Message-State: AGi0PuYlBGdT+1kJxIzdFKVjvkdqcIY3Mfteomb+01YAjO/kwJ0qhZp+
-        /bbG//WHb0Dl91a9dxA+Bhs=
-X-Google-Smtp-Source: APiQypISdK/p0hNwYPL/cpMcWbAc5HTuGMWpnIvfl8NPGhTj5NckXqVCmuYf7O/Myd6yrS8kfdvHfA==
-X-Received: by 2002:a1c:8097:: with SMTP id b145mr10587211wmd.159.1585940214263;
-        Fri, 03 Apr 2020 11:56:54 -0700 (PDT)
-Received: from localhost (pD9E51CDC.dip0.t-ipconnect.de. [217.229.28.220])
-        by smtp.gmail.com with ESMTPSA id t8sm11904135wmi.43.2020.04.03.11.56.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2020 11:56:53 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] of: reserved-memory: Support multiple regions per device
-Date:   Fri,  3 Apr 2020 20:56:40 +0200
-Message-Id: <20200403185640.118569-5-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200403185640.118569-1-thierry.reding@gmail.com>
-References: <20200403185640.118569-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wTReRqnZdM7LeM2kve1cUiMUJNylNm6ycb8la3HHaJ0=;
+        b=XCMZgJieG78BGzMbavTMD9C2+P8MbyMVqlmAlgbWXUoQFHNLjw7DRThJrBXwl/UrBe
+         +yFh2XQh21a08+4AR237hcuNQ1FAyP86rOuVja+ezt1zF9iQ1pP+f03yh5dfIg8529bl
+         UNj8gWhYhLXgP0+WGEjtKIqznUc03yN1mwJqDnFhXCcy1xMZ+XYfrz+yYITkjyF4FKmG
+         RNew39WyenbfN0q+0DbR4md2wJch8XuvXdkmDapeKiC8f1tss13Q5Qd5faIQW0p0+7rP
+         fr937iMtjjWyvfFGxNMuDHVorB5RY+2xS/se1Joz19RSmBvHLiGcDvUHRmGXXB4yc+YP
+         /EYg==
+X-Gm-Message-State: AGi0PuZb59yRIrWnsm+GFiRtyj4gd7FisZFTGJZJDjuGkD+sZ8VQ99nt
+        mqYVM39Jn9GrvPWuICHXmhwy2oJISj293S9yMKnzqDyghFHLUzzn2Jc=
+X-Google-Smtp-Source: APiQypIsZ2d8AsAE4RSoHnHe+9bpshKUWvYMZnZRa/dpSiCKfPBZBvxkftK0/fqGsrj1dal3mc2tcGERHrw+aDERYzk=
+X-Received: by 2002:aca:5354:: with SMTP id h81mr4176546oib.164.1585940771598;
+ Fri, 03 Apr 2020 12:06:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200403182342.GA27383@x1>
+In-Reply-To: <20200403182342.GA27383@x1>
+From:   Drew Fustini <drew@beagleboard.org>
+Date:   Fri, 3 Apr 2020 21:06:41 +0200
+Message-ID: <CAPgEAj5RjC+p0fXEixtrKm7+JTMSrWNeSrDmHs_mV=AbNr4N8Q@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: Add vendor prefix for BeagleBoard.org
+To:     devicetree@vger.kernel.org
+Cc:     Jason Kridner <jkridner@gmail.com>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
+        Caleb Robey <c-robey@ti.com>, Jason Kridner <jdk@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, Apr 3, 2020 at 8:23 PM Drew Fustini <drew@beagleboard.org> wrote:
+>
+> Add vendor prefix for BeagleBoard.org Foundation
+>
+> Signed-off-by: Jason Kridner <jdk@ti.com>
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> ---
+> Changes in v3:
+>   - add SoB from drew@beagleboard.org
+>   - email patch from drew@beagleboard.org
+>
+> Changes in v2:
+>   - Use 'beagle' rather than 'beagleboard.org' to be shorter and avoid
+>     needing to quote within a yaml regular expression.
+>   - Assign 'from' to author e-mail address.
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 967e78c5ec0a..1cce6641b21b 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -139,6 +139,8 @@ patternProperties:
+>      description: Shenzhen AZW Technology Co., Ltd.
+>    "^bananapi,.*":
+>      description: BIPAI KEJI LIMITED
+> +  "^beagle,.*":
+> +    description: BeagleBoard.org Foundation
+>    "^bhf,.*":
+>      description: Beckhoff Automation GmbH & Co. KG
+>    "^bitmain,.*":
+> --
+> 2.17.1
 
-While the lookup/initialization code already supports multiple memory
-regions per device, the release code will only ever release the first
-matching memory region.
+Apologies, I just discovered that this does not apply to robh/for-next
+as Beacon was added on March 24th in
+f756619f26edf74ad55d2151a6757a260e660fa8
 
-Enhance the code to release all matching regions. Each attachment of
-a region to a device is uniquely identifiable using a struct device
-pointer and a pointer to the memory region's struct reserved_mem.
+I will send v4 rebased on that branch.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/of/of_reserved_mem.c | 22 ++++++++++------------
- 1 file changed, 10 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index dae70b147552..3ad24df0f673 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -388,24 +388,22 @@ EXPORT_SYMBOL_GPL(of_reserved_mem_device_init_by_name);
-  */
- void of_reserved_mem_device_release(struct device *dev)
- {
--	struct rmem_assigned_device *rd;
--	struct reserved_mem *rmem = NULL;
-+	struct rmem_assigned_device *rd, *tmp;
-+	LIST_HEAD(release_list);
- 
- 	mutex_lock(&of_rmem_assigned_device_mutex);
--	list_for_each_entry(rd, &of_rmem_assigned_device_list, list) {
--		if (rd->dev == dev) {
--			rmem = rd->rmem;
--			list_del(&rd->list);
--			kfree(rd);
--			break;
--		}
-+	list_for_each_entry_safe(rd, tmp, &of_rmem_assigned_device_list, list) {
-+		if (rd->dev == dev)
-+			list_move_tail(&rd->list, &release_list);
- 	}
- 	mutex_unlock(&of_rmem_assigned_device_mutex);
- 
--	if (!rmem || !rmem->ops || !rmem->ops->device_release)
--		return;
-+	list_for_each_entry_safe(rd, tmp, &release_list, list) {
-+		if (rd->rmem && rd->rmem->ops && rd->rmem->ops->device_release)
-+			rd->rmem->ops->device_release(rd->rmem, dev);
- 
--	rmem->ops->device_release(rmem, dev);
-+		kfree(rd);
-+	}
- }
- EXPORT_SYMBOL_GPL(of_reserved_mem_device_release);
- 
--- 
-2.24.1
-
+thanks,
+drew
