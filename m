@@ -2,189 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0605019DD61
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 20:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 365A119DDB4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 20:16:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728459AbgDCSCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Apr 2020 14:02:18 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:52313 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404454AbgDCSCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 14:02:17 -0400
-Received: by mail-wm1-f66.google.com with SMTP id t8so8041213wmi.2;
-        Fri, 03 Apr 2020 11:02:14 -0700 (PDT)
+        id S1728499AbgDCSQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Apr 2020 14:16:34 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:34565 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728066AbgDCSQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 14:16:34 -0400
+Received: by mail-pl1-f194.google.com with SMTP id a23so3033143plm.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2020 11:16:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=IxdQKl8R6YdM8K12dz41P09Nrimll4Ax/Xh/6JqmhUQ=;
-        b=pjLWh9fa3JaWmB//DkucFHLeWDoeVKvvYt/9ZAeV1bXCC2v/ae77zMcaue3hrhw380
-         Fhga1BX1j2XkVpnwXxuqT8gKFpDRXI44u4cpXQIca59sz9Biiv8imONtXD1bDCpo59Za
-         7rpMPLzna4YJ5J8xCVTnlHSsoOCrraK0/NkQ/KBorBYOPunpWcz/91cwj34Z6HFN7G33
-         L/wmEryLTVgdQUHxWemyJjdP8XQUNSD/saVs4rAfNXjSOsGDZ8u1rAcfqwA6VYxKcjMp
-         Rih0XpHt8Uau6PVh6MadenOVaNWSDXpLGsHy2qR1IXtRlmR/WeUGBPdfQACs1Slb5cBK
-         7NXA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=l9OtO5bBjU4ri0ecYRkCgiryeyjL/1OJpZNChQ7ItYI=;
+        b=NYx+sHPEuWXImveqC5saq7LPSHEW29HyBJwPIy0Wsv4qxJp8hwJZwCQLBGUxkDoz5n
+         NRTdcePZ89Ihj3Nr1q4SSWTYE9L6ixXMinliK5sCArFNnBmm0cTAjVAVEUR491pc7zx+
+         7TWCe9R7nyZui0z+kqVrFdlu5SedTFb/AKFV4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=IxdQKl8R6YdM8K12dz41P09Nrimll4Ax/Xh/6JqmhUQ=;
-        b=FmEjQMjubTlmf7l6WmmlHks9+HdrmKX5W+2kIdJ5Xxwa1Q32T+AbMqAUEoIPpyf0OH
-         U6v+tKJvGpb3m9DW/46OS3m2U7QAa05dIDIhAHtz/Y46E/ScQ/XWO2WTB6YCawqA4a73
-         98Nt5Bkj4jbbt6Jh/VLn2MtXLcdlUcS53ktbirewQ7xlWbtJm6H+5IWnF02RWVL2aoLf
-         BCO30gfLD/EJJBdqoEDWa0beEV+Yx9+UobdXU8YQ6p2lvI24NAdXXYP4EyBW0kK8ZAgf
-         9DCS9GDkyMrpFy3QlncT1+Hp4/uReQR9LHERTzWWM8zAz+LHUBddh0g6WihxJKEre47B
-         d+sw==
-X-Gm-Message-State: AGi0PubxmHXB+6XmiMrKiySDTCue5bXCBrPIYNLf1uhzC5bg5w6cJcwd
-        Ee3kgwWSt7AnNEm4cbMyjG9roCc8
-X-Google-Smtp-Source: APiQypImoK5ioimPgpiENe2Nn/IzH6MBtR5XoFVNl4JhD2f5ZPCGGVK9AMP9nAW1l7dTWem02KHOJw==
-X-Received: by 2002:a1c:3943:: with SMTP id g64mr9784987wma.9.1585936934139;
-        Fri, 03 Apr 2020 11:02:14 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id j11sm13005492wrt.14.2020.04.03.11.02.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 03 Apr 2020 11:02:13 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] ARM: dts: rockchip: sort includes of dtsi files
-Date:   Fri,  3 Apr 2020 20:01:59 +0200
-Message-Id: <20200403180159.13387-4-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200403180159.13387-1-jbx6244@gmail.com>
-References: <20200403180159.13387-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=l9OtO5bBjU4ri0ecYRkCgiryeyjL/1OJpZNChQ7ItYI=;
+        b=fn2/Oou6FUu9Po1ULajGfiC3aPn43p5urz65Z+IObAAa4KDs8vtJakNHWoVo+ZVI4O
+         1xawa3CEgd9QC67gLz/C5u93od175MjIAt46YHtpK+YDFFZUR1Z1cx5YzwW7SPrg9eTE
+         5N+V6wt904KMzsWb6ux3//wJYwZf5rDAUFWc4srvA17KZQgr6OdBpNMD4EilSBE1L0y/
+         c4jHdRxHbBM/1vPHk9s8Mrr/w+SG10Foa04Hmq1/JnvHd8fNMLtfO1NQiJuVWByRrmq5
+         bvJRB5ptJNul0EpjIqjS1snD0R4fnMizWjEJpc2H5ZF4lvrJnipbLjiAfRl6e9Ju0a9B
+         NLyQ==
+X-Gm-Message-State: AGi0PubLsObJrNXQTizZKXv5h5e3TUGC7OhrJY7L6kE1eomO+w0Z36ys
+        In+L0B+2XLXt1Ykq9YHzF0qEBA==
+X-Google-Smtp-Source: APiQypIGHcLKfA4BC6dhIJebo6CEcV70oa/S4T2XWdYpRNyxtEt21rnfykH5/137XQhZwQNCpuZxdQ==
+X-Received: by 2002:a17:902:d3cb:: with SMTP id w11mr8949903plb.257.1585937792655;
+        Fri, 03 Apr 2020 11:16:32 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id x3sm6250986pfp.167.2020.04.03.11.16.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2020 11:16:30 -0700 (PDT)
+Date:   Fri, 3 Apr 2020 11:16:29 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "Rajeshwari Ravindra Kamble (Temp)" <rkambl@codeaurora.org>
+Cc:     Amit Kucheria <amit.kucheria@verdurent.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        sivaa@codeaurora.org, Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Changed polling-delay in
+ Thermal-zones node
+Message-ID: <20200403181629.GP199755@google.com>
+References: <1584430804-8343-1-git-send-email-rkambl@codeaurora.org>
+ <CAD=FV=VLZ4RQQuji=1kKE5EnqrpY0M=U_G8XigAWAaZ8mxc=eg@mail.gmail.com>
+ <fc7f250e-aa85-0835-8bc4-8274235c74d0@codeaurora.org>
+ <CAHLCerMCrNdKUmRww4EFctU8cojh6Fqhs7gpux3SNCSwYUBOvQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAHLCerMCrNdKUmRww4EFctU8cojh6Fqhs7gpux3SNCSwYUBOvQ@mail.gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The includes of Rockchip dtsi files have been subject of
-several patch styles, so give them a little alphabetical sort.
+Hi Rajeshwari,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3036.dtsi        | 2 +-
- arch/arm/boot/dts/rk3066a.dtsi       | 2 +-
- arch/arm/boot/dts/rk3188.dtsi        | 2 +-
- arch/arm/boot/dts/rk322x.dtsi        | 2 +-
- arch/arm/boot/dts/rk3288-tinker.dtsi | 4 ++--
- arch/arm/boot/dts/rk3288.dtsi        | 4 ++--
- arch/arm/boot/dts/rv1108.dtsi        | 3 ++-
- 7 files changed, 10 insertions(+), 9 deletions(-)
+do you plan to send v2 with an updated commit message?
 
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index 8be47354d..55f3838b2 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -1,9 +1,9 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- 
-+#include <dt-bindings/clock/rk3036-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/rockchip.h>
--#include <dt-bindings/clock/rk3036-cru.h>
- #include <dt-bindings/soc/rockchip,boot-mode.h>
- 
- / {
-diff --git a/arch/arm/boot/dts/rk3066a.dtsi b/arch/arm/boot/dts/rk3066a.dtsi
-index 1cf7e1b38..9924def56 100644
---- a/arch/arm/boot/dts/rk3066a.dtsi
-+++ b/arch/arm/boot/dts/rk3066a.dtsi
-@@ -4,9 +4,9 @@
-  * Author: Heiko Stuebner <heiko@sntech.de>
-  */
- 
-+#include <dt-bindings/clock/rk3066a-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rockchip.h>
--#include <dt-bindings/clock/rk3066a-cru.h>
- #include <dt-bindings/power/rk3066-power.h>
- #include "rk3xxx.dtsi"
- 
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index 2298a8d84..e22bfc612 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -4,9 +4,9 @@
-  * Author: Heiko Stuebner <heiko@sntech.de>
-  */
- 
-+#include <dt-bindings/clock/rk3188-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rockchip.h>
--#include <dt-bindings/clock/rk3188-cru.h>
- #include <dt-bindings/power/rk3188-power.h>
- #include "rk3xxx.dtsi"
- 
-diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-index 86c4d62fc..d5a1aad17 100644
---- a/arch/arm/boot/dts/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rk322x.dtsi
-@@ -1,9 +1,9 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- 
-+#include <dt-bindings/clock/rk3228-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/rockchip.h>
--#include <dt-bindings/clock/rk3228-cru.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index 77ae303b0..60259d9eb 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -3,9 +3,9 @@
-  * Copyright (c) 2017 Fuzhou Rockchip Electronics Co., Ltd.
-  */
- 
--#include "rk3288.dtsi"
--#include <dt-bindings/input/input.h>
- #include <dt-bindings/clock/rockchip,rk808.h>
-+#include <dt-bindings/input/input.h>
-+#include "rk3288.dtsi"
- 
- / {
- 	chosen {
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index ace67aa7d..a56b4a58f 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1,12 +1,12 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- 
-+#include <dt-bindings/clock/rk3288-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/rockchip.h>
--#include <dt-bindings/clock/rk3288-cru.h>
- #include <dt-bindings/power/rk3288-power.h>
--#include <dt-bindings/thermal/thermal.h>
- #include <dt-bindings/soc/rockchip,boot-mode.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	#address-cells = <2>;
-diff --git a/arch/arm/boot/dts/rv1108.dtsi b/arch/arm/boot/dts/rv1108.dtsi
-index 7d2ef39db..06c46bed9 100644
---- a/arch/arm/boot/dts/rv1108.dtsi
-+++ b/arch/arm/boot/dts/rv1108.dtsi
-@@ -1,10 +1,11 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- 
-+#include <dt-bindings/clock/rv1108-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
--#include <dt-bindings/clock/rv1108-cru.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/thermal/thermal.h>
-+
- / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
--- 
-2.11.0
+Thanks
 
+Matthias
+
+On Wed, Mar 18, 2020 at 02:40:47PM +0530, Amit Kucheria wrote:
+> On Wed, Mar 18, 2020 at 11:49 AM Rajeshwari Ravindra Kamble (Temp)
+> <rkambl@codeaurora.org> wrote:
+> >
+> >
+> > On 3/17/2020 10:20 PM, Doug Anderson wrote:
+> >
+> > Hi,
+> >
+> > On Tue, Mar 17, 2020 at 12:42 AM Rajeshwari <rkambl@codeaurora.org> wrote:
+> >
+> > Changed polling-delay and polling-delay-passive to zero as per
+> > the requirement.
+> >
+> > Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 100 +++++++++++++++++------------------
+> >  1 file changed, 50 insertions(+), 50 deletions(-)
+> >
+> > It probably wouldn't hurt to mention in the commit message that this
+> > is because the thermal sensor interrupts are all hooked up and thus
+> > the polling is not a useful thing to do.  ...but other than that:
+> >
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> >
+> >
+> > Hi Douglas
+> >
+> > I didn't  get your comment.
+> >
+> > Thanks,
+> > Rajeshwari
+> 
+> I think he means that you haven't mentioned WHY this patch is needed
+> in the message. The reason you should mention is "to disable polling
+> mode of the framework since interrupts for tsens are already
+> configured."
+> 
+> Regards,
+> Amit
