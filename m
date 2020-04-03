@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A33DC19D021
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 08:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B0A19D00D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2020 08:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731040AbgDCGRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Apr 2020 02:17:41 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:46380 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730889AbgDCGRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 02:17:41 -0400
-Received: by mail-vs1-f67.google.com with SMTP id z125so4197120vsb.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 23:17:40 -0700 (PDT)
+        id S1732862AbgDCGM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Apr 2020 02:12:28 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:43931 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730550AbgDCGM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Apr 2020 02:12:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1585894347; x=1617430347;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=Nxf9ou59CVrUjihCB/PyPCcOUFYz+n94wClGPJdgy0Q=;
+  b=eROz3OEJ+dOGIGou6AJS9pLkZZ5s+YgudQjcJJ9o5dFx7eOzO3Ok8wjv
+   Ab3OXq50ZoJyotgqDRaomLORWyIFpjpYk70Bo3+l8VwkEK3bGwj3w77ba
+   n+GE7ZTFT9KdflmZ6Xtf5G4Al7+ypEn+15gR60zE2vyJ4T5II8lzRucl0
+   uFfM4gR9hzR+83k2Qc/WVKXKAU/JtEdYooqt8u24JV31jxYidnBFYK1KD
+   CHv0u5WCbz+WQADFWa9GP61tZ8Z53qyv/+dJ96DM08IyliO2/R9dpqeF5
+   Hf/6Xl2T3XEWIJ3UNipwMQj4PIcMBaTD9GbvJIf1NJN5lmtkp4lQlaK8W
+   A==;
+IronPort-SDR: HOI3pVWNoy8kZjS5jLDkjCbH5c2a4XdI/+h/qlaNckaOPEIRYxxAkyoePyPjvdqtdp8p/hGLPQ
+ CG02H2x8aKleBJsbF62RPDtJbgB7fzLfAdJU1uWDMN3+SiOSo40izE6itSMP1oSk/Vp0pXeLOF
+ rbsrX/AYCR5zH3wSAIcnBEQEo3sRrUVoTuhkdPEt2VG8qPcpO10kZwuEMgi2swCuRjYrBbiiCg
+ Ej3w4fZX1xAAQa+N7o5fcJiXCn/DKmuL67deCC3RA59fQqfxUYYyIUACTczogrBQJJXADbQwXR
+ bFg=
+X-IronPort-AV: E=Sophos;i="5.72,338,1580799600"; 
+   d="scan'208";a="69286922"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Apr 2020 23:12:27 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 2 Apr 2020 23:12:26 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 2 Apr 2020 23:12:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hMNiBisvRmF4HrRrypawLPxwiOai8jPbrWSoICKj7WtMQelqE67RsK4tcsZ1CrCU82kCkqT3wA9pF+jFbwkGZaOMAw5bZH6htXSj9Ds4j8j0b+cxxBYyvWRucI/9B8q3pvG8SH4sDXS/c45oY9oWuDFB7IhyB+IoAHWlGAQqdB6K+0LbJ8ezVTL4PdJndzTIqKlyZixvC6iihVtOFG2DBalOv+K+ibTqtgVUzTWjIePYeNjH9o60nCNN9Fm4qyFgriAHyCJ/e9j5M+IJ57Qwt/QhrCmLJt/qgTe7GcI6riJdNlVFlrTTDDBwvWeOXbbnwPU+FrTxjQwcSWCYBohTFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kWdTC6PymwkyS1Qb5cvOVoxNnkN6b9LG1Mfkg4mvVF4=;
+ b=Z23RQ3E274EZj6Dd7Z1ES739Yzj2g2SmeFGZ8GK9fNVrJeC0Y7DiENZagL/ojJwgu/bYlS3VZLQlhOlXChaxE393Ocm2m2NAcqusGx+0/XA+cK1xbewUfZXyzqqxqKDs4+S5HqOjeOcpU3W6Z5jzCJaDAJzPwRA95QB0gSPP1bS63zGDm4qDaIAX7uZDXZcxiBZjZq+ZoTV+6JcxHOGidcn+kiZqu+OfciSF6nE48l5he5/P0XKJjQ4m4PtLnmDEl3xhwswde2ylr5Z8buxr9vtpRToKflI4lFRl9eRXNZKAbM0zfdLWd7G5nE++QN505VLcqaQrPMLQFVuZNulbbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=V3yS2lItqVOfGsXBFcK1Q03oHDR0TygtC5pNqATurHQ=;
-        b=DtAiTGcqQSpV/avwmNRjvHO1qDLd3tZsNHf3k+C+AgpkKHnLK0/VqwekGEJ4JQQ0uq
-         wXTt47KxFzE5AetYqr4lZNkUqqQvCxPwyDnzOdlwb2XRAY3sI63HyI8fCcfwegKRCIJx
-         Wr/jdxxl1E+403E/ErpRJFCWlSoK8AeJ20XUk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V3yS2lItqVOfGsXBFcK1Q03oHDR0TygtC5pNqATurHQ=;
-        b=mM2QtP+id7HSHstGjxtCoHyoRCTW1PAnrfxKqNf4ms8iTtfbOxa9O/EvpHTldflh7+
-         1vt/U1+rtvXMd0iRBXvB41+wEkRJMWY4ZjjOUD27UZmtzxM2vZceIJPWJqARgU+mwkOQ
-         V7orFmQrb/rF0tcQ2CGnBi6lTYoKbbB23JrlMipZ8GTa2/OFQN/WKwaehQ0NU9c9K5NU
-         03EvIGrgEti3YbkPpJVXw+yPx/Yew5Ah8spwSgW97zBDekRTqqDSO4VeNi4E031e/SN0
-         iDiQ2Bgv0siaSy5yBbQ2d/I1xvcqlTwLsVTOxSn5jpkIWL1fPX+RAjzkyH5piwa+TZB6
-         QHoQ==
-X-Gm-Message-State: AGi0PuYN8Q+43OxglN+byJAiYsVsPKD3ZDMcnpd1yRTydMTrtNE9PhoP
-        473pmzGCBnK2EtNSGt7tNeonjijjUQk=
-X-Google-Smtp-Source: APiQypIFxkNQam01wnMgADkH44LRPKifzO7Ki2crfku0hcRKr1KLXTtll9fNrM+G9cbaPqzJsefAwA==
-X-Received: by 2002:a67:770f:: with SMTP id s15mr5383039vsc.199.1585894660198;
-        Thu, 02 Apr 2020 23:17:40 -0700 (PDT)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id r16sm1819262uam.15.2020.04.02.23.17.40
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Apr 2020 23:17:40 -0700 (PDT)
-Received: by mail-vs1-f46.google.com with SMTP id z125so4197108vsb.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2020 23:17:40 -0700 (PDT)
-X-Received: by 2002:a1f:1846:: with SMTP id 67mr5194780vky.32.1585894163062;
- Thu, 02 Apr 2020 23:09:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200403052900.258855-1-evanbenn@chromium.org>
-In-Reply-To: <20200403052900.258855-1-evanbenn@chromium.org>
-From:   Evan Benn <evanbenn@chromium.org>
-Date:   Fri, 3 Apr 2020 17:08:52 +1100
-X-Gmail-Original-Message-ID: <CAKz_xw1w=uKEV_p94cT8uL-4WN9mRkQE47N=4QdE+_NOFQ-2kg@mail.gmail.com>
-Message-ID: <CAKz_xw1w=uKEV_p94cT8uL-4WN9mRkQE47N=4QdE+_NOFQ-2kg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add a watchdog driver that uses ARM Secure Monitor Calls.
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Xingyu Chen <xingyu.chen@amlogic.com>,
-        Julius Werner <jwerner@chromium.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kWdTC6PymwkyS1Qb5cvOVoxNnkN6b9LG1Mfkg4mvVF4=;
+ b=Vs2WYatCEMe0uddSOWl/gMtJGgNBjXmfrOFWSaVzhpoX/rdfkoHUofQUNdlU+KM8rD89X2Vzo1j7NdikILGdnUw1KWafYMeCcUGRpSo7CuOCOnZarbzbEDMyFoaqA0tsg+Ch1lRAEnkF1doMC98Vb94K9bOJnJ+dU66EW42FO3A=
+Received: from BY5PR11MB4419.namprd11.prod.outlook.com (2603:10b6:a03:1c8::13)
+ by BY5PR11MB4183.namprd11.prod.outlook.com (2603:10b6:a03:18e::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16; Fri, 3 Apr
+ 2020 06:12:25 +0000
+Received: from BY5PR11MB4419.namprd11.prod.outlook.com
+ ([fe80::e918:9196:b47e:9692]) by BY5PR11MB4419.namprd11.prod.outlook.com
+ ([fe80::e918:9196:b47e:9692%3]) with mapi id 15.20.2856.019; Fri, 3 Apr 2020
+ 06:12:24 +0000
+From:   <Tudor.Ambarus@microchip.com>
+To:     <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <Ludovic.Desroches@microchip.com>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, <Tudor.Ambarus@microchip.com>
+Subject: [PATCH 1/5] ARM: dts: at91: sam9x60ek: Use quad mode in the spi-nor
+ flash
+Thread-Topic: [PATCH 1/5] ARM: dts: at91: sam9x60ek: Use quad mode in the
+ spi-nor flash
+Thread-Index: AQHWCX7XRQickBY2QEaJIS548D2E2Q==
+Date:   Fri, 3 Apr 2020 06:12:24 +0000
+Message-ID: <20200403061222.1277147-1-tudor.ambarus@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Tudor.Ambarus@microchip.com; 
+x-originating-ip: [94.177.32.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 21ecccee-91bd-44b6-e871-08d7d795fa71
+x-ms-traffictypediagnostic: BY5PR11MB4183:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR11MB4183B8B648AD0F1769D56FA8F0C70@BY5PR11MB4183.namprd11.prod.outlook.com>
+x-bypassexternaltag: True
+x-ms-oob-tlc-oobclassifiers: OLM:862;
+x-forefront-prvs: 0362BF9FDB
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4419.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10009020)(39860400002)(396003)(136003)(376002)(346002)(366004)(6512007)(6506007)(478600001)(2906002)(6636002)(2616005)(186003)(6486002)(71200400001)(1076003)(26005)(36756003)(316002)(66946007)(8936002)(4744005)(86362001)(54906003)(110136005)(66556008)(64756008)(66446008)(8676002)(81166006)(81156014)(4326008)(107886003)(5660300002)(91956017)(76116006)(66476007);DIR:OUT;SFP:1101;
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0buRVzxXZO4yWqjvW0NJCBlZvXoF7pj+Oq5tsZFKmoVvxK1kVR+cU9afXjs55DkC5xBUWMUyZTehboOaIDGqCmHSoevBwJPvv+67WlPPmPC1m/g+T+/CPAEuKBg6eh1w8T7kPajnIlVTHUYWFZ+75/UfREikjzMqro8GIQTNd5g+odZ73JlqhU89qHdIBMQcR83ZJZp/ViPazcQT24tt5MUHksayvsJvLmeVlrSwVrho3Scwi5UlBP1Zllza9bG1n8qfuJNKG3wXwK/X0Yyf382Zq8/0OslF3tLaWM6ZdVhAOUkQh5NT+Muo0NooG4GplZDDvgiFV8mXdAEmIFfIQtHedjHEg+61heTJP9VsorvBP3A/k3+iHjp+H5/yDqKkFgvtGyOtM875pgKDPjlJovr1zYPRT5CBX1q8WdxmJp2ND6+kNnHYKY/KDVXTjsLT
+x-ms-exchange-antispam-messagedata: quiwcC2uyRGgMjaeCKEFwWt54h7SGlpvtugNIVNt6l/QLI3kN5WipxgCftaKBDkTE7VlmFu8nCVYSrUmgSuNF/X/AvVLkEwTvALsz8/6WisnENfCPtGrBXdkCy3nQ+lDkB5djb+6I3VK5L/6i4kVDA==
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21ecccee-91bd-44b6-e871-08d7d795fa71
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2020 06:12:24.5673
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HCKXyTxCz2PNsyXeXrbadgpJjgh6EsTg84ZD2BdspXbba/IdnBAtMMZDi2F1OYVP22bgk9wzxGTBdErMLiddwRw6oPu33XiQl+fd3Ab04jQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4183
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apologies I forgot to add this note to my cover letter.
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-Xingyu do you mind seeing if you can modify your ATF firmware to match
-this driver?
-We can add a compatible or make other changes to suit you.
+Both the QSPI controller and the sst26vf064b flash support
+quad mode, enable it.
 
-Thanks
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+ arch/arm/boot/dts/at91-sam9x60ek.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-
-On Fri, Apr 3, 2020 at 4:29 PM Evan Benn <evanbenn@chromium.org> wrote:
->
-> This is currently supported in firmware deployed on oak, hana and elm mt8173
-> chromebook devices. The kernel driver is written to be a generic SMC
-> watchdog driver.
->
-> Arm Trusted Firmware upstreaming review:
->     https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405
->
-> Patch to add oak, hana, elm device tree:
->     https://lore.kernel.org/linux-arm-kernel/20200110073730.213789-1-hsinyi@chromium.org/
-> I would like to add the device tree support after the above patch is
-> accepted.
->
-> Changes in v3:
-> - Change name back to arm
-> - Add optional get_timeleft op
-> - change name to arm_smc_wdt
->
-> Changes in v2:
-> - Change name arm > mt8173
-> - use watchdog_stop_on_reboot
-> - use watchdog_stop_on_unregister
-> - use devm_watchdog_register_device
-> - remove smcwd_shutdown, smcwd_remove
-> - change error codes
->
-> Evan Benn (1):
->   dt-bindings: watchdog: Add ARM smc wdt for mt8173 watchdog
->
-> Julius Werner (1):
->   watchdog: Add new arm_smd_wdt watchdog driver
->
->  .../bindings/watchdog/arm-smc-wdt.yaml        |  30 +++
->  MAINTAINERS                                   |   7 +
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/watchdog/Kconfig                      |  13 ++
->  drivers/watchdog/Makefile                     |   1 +
->  drivers/watchdog/arm_smc_wdt.c                | 181 ++++++++++++++++++
->  6 files changed, 233 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/arm-smc-wdt.yaml
->  create mode 100644 drivers/watchdog/arm_smc_wdt.c
->
-> --
-> 2.26.0.292.g33ef6b2f38-goog
->
+diff --git a/arch/arm/boot/dts/at91-sam9x60ek.dts b/arch/arm/boot/dts/at91-=
+sam9x60ek.dts
+index b484745bf2d4..8c3f621efc4b 100644
+--- a/arch/arm/boot/dts/at91-sam9x60ek.dts
++++ b/arch/arm/boot/dts/at91-sam9x60ek.dts
+@@ -579,6 +579,8 @@
+ 		compatible =3D "jedec,spi-nor";
+ 		reg =3D <0>;
+ 		spi-max-frequency =3D <80000000>;
++		spi-tx-bus-width =3D <4>;
++		spi-rx-bus-width =3D <4>;
+ 		m25p,fast-read;
+=20
+ 		at91bootstrap@0 {
+--=20
+2.23.0
