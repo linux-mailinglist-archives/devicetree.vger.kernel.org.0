@@ -2,90 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D6819E480
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2020 12:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D55DA19E4BA
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2020 13:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbgDDK1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Apr 2020 06:27:48 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:36124 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725837AbgDDK1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Apr 2020 06:27:48 -0400
-Received: by mail-wm1-f66.google.com with SMTP id d202so10526975wmd.1;
-        Sat, 04 Apr 2020 03:27:46 -0700 (PDT)
+        id S1726057AbgDDLwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Apr 2020 07:52:35 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:50312 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726005AbgDDLwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Apr 2020 07:52:35 -0400
+Received: by mail-wm1-f65.google.com with SMTP id t128so9876211wma.0;
+        Sat, 04 Apr 2020 04:52:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=LKn/T/YOjm2g49N2GnTJO8IqVO2wTeZD3GHQLfr9788=;
-        b=dtRSXMGhG4s18xOq7nSqtCjqkc4ylms0u0M83uQs9rrN9ymNzrG/RR5hIC1Xr5vlND
-         HVpogzca5XksTkmZg0f8SU1Rc/9gXyOT3yvCbWRV44j51FJjThSZVFH63vTdk9HFx3uY
-         DwFS9xNp3YQKmjmd5suKwSBEePJjZInMSaMQt/GRVw56rmIEtesTPYU9c71qJi/+cs8z
-         P80A6ZMoUOfi0WDp2Zaa1XnxFae+FsgY+TLmNvGbYZXZwIAL+WLeh/tTMZirwziWkITb
-         Joux3aOdYMqYUepG5nDeb0ZfbHb6Ifoo7kdX4IsFG6fR4U+AF8ujKOfEbOdcwH3s5JPV
-         MfYg==
+        h=from:to:cc:subject:date:message-id;
+        bh=WdnAbDTj6jtP4VOMCJVjHgxV4qgpznX9InRBomX1p1U=;
+        b=J4E8Wx4pFqTYQ7rSPhEuNAo18XhTGgqc93isY+r8lRW8JlqL4VLWPVkNXDV3cHGQ9d
+         z1XXfTpQM9AF4+JDVVIUq5vfxYmmqJhuaDVy59FS0UEiJre7Tn+D4dvtzcpQQvzsAE+r
+         hvZECd7kZGJu0pSPWrIR/7Ry69C1ipi/47hKON1ZifHQ80qKgQSX7pPhYD6xxYWkknfX
+         Kq/ekhgWQIQgYy1tQgW5pGFkLWEW9VoBtIwrJPG/aLRQjcKQHRf74QabqtQtE8gQjXLN
+         hqT/KeB5AEcZLVBIDUyL9kjcg68Sz6O4XvmdfN40hR0/hH93yxlSA99yWBu0UEEQ2e4q
+         bG3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=LKn/T/YOjm2g49N2GnTJO8IqVO2wTeZD3GHQLfr9788=;
-        b=QrudkJnvY+35e7rZvaO+YNvDtaTczXAmGV2X9qrRM/VyjHSm4vcdRMxcYlOIomoRCg
-         +Nz7WIVf7JOOJP34CYqEEmzACHVT65wdQ1jM/erFaEnIWm/2G183cXTDkt1H+8sZS0py
-         HE4c/htgHKwmQJIOXfTx3nEP8NiEHqs3b70zEGCfIxBqleEB1Kg2CmNC95dhu5SPc3uu
-         ov5p0q8NSBFZEGrj1f48tbD9Y+9GdXk5RKL2Ydx6sL7bzPCc+T5n1phlLZ5NK4DPLWkH
-         X+Bz1HtvocjzeCHf9zWCmtF4FPK8GUq8oFTYy+QXplm9oKOfUOcox+VqTdsJUo6jEyOf
-         A0pg==
-X-Gm-Message-State: AGi0PuavjhKHBIVz4O5lzDAjOugxKo5okoca/P1m6miVjSV4NQFmR+zw
-        LgbiyMiPkkhj3Mea1AF01AU=
-X-Google-Smtp-Source: APiQypJ1TtPTEK86zb3XBL8CXguASyxCagcMjtYiJSPZja45TmT27ARgAd7NnAbtGutgz0SpzfoZCg==
-X-Received: by 2002:a1c:4805:: with SMTP id v5mr12759826wma.98.1585996066182;
-        Sat, 04 Apr 2020 03:27:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=WdnAbDTj6jtP4VOMCJVjHgxV4qgpznX9InRBomX1p1U=;
+        b=QntM3aNZpJ3DGo+YwJo2mSz5b1bto67AFFf3HvhINUDVFmu8zyHqEY1NxzOerAZ+24
+         0QLYuUhrPEf42oQnAuSIxDllZ2mCiRtDxDGlwSmUqt7Kpzt+gqugHCNzoqpXP6IzKgr/
+         UWEaof2EFtY57UQTVFrl5xYsGg60tS4ca/P5r8cVkLenxVP5N9cQCMq44t0UkyKPcJdQ
+         o8thMPy62OnmNSd45POTQDdnCiC/XEZ90G+K9P4EdiwwM0o3/a+oMDK/8vdhihBUGZmP
+         5r9urtfibcV9GmW367RJlU+Zy0vWFsmkeo4VFq2nFTB9DKejqq1Hu4XdlWpoFsrF6Pwo
+         mJPg==
+X-Gm-Message-State: AGi0PuZfeWvJ62fq+ujHXYOhUKCgQGLv90UBacDckrud2qrEvJSgwiWU
+        qiAjRAaBbn4Aza9uOWsW2y0=
+X-Google-Smtp-Source: APiQypLgvsrDXCY+fxQ+1NshaZ3Bzn9yeGXWoAfPDWIG/qG982FurHXkaoXmgyUD9FAl58gmD4wFrQ==
+X-Received: by 2002:a1c:f21a:: with SMTP id s26mr13636483wmc.187.1586001152742;
+        Sat, 04 Apr 2020 04:52:32 -0700 (PDT)
 Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id c18sm15833178wrx.5.2020.04.04.03.27.45
+        by smtp.gmail.com with ESMTPSA id g186sm16183276wmg.36.2020.04.04.04.52.31
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 04 Apr 2020 03:27:45 -0700 (PDT)
+        Sat, 04 Apr 2020 04:52:32 -0700 (PDT)
 From:   Johan Jonker <jbx6244@gmail.com>
-To:     jic23@kernel.org
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        heiko@sntech.de, robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     lgirdwood@gmail.com
+Cc:     broonie@kernel.org, heiko@sntech.de, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: iio: adc: rockchip-saradc: add description for px30
-Date:   Sat,  4 Apr 2020 12:27:30 +0200
-Message-Id: <20200404102730.3295-3-jbx6244@gmail.com>
+Subject: [PATCH v3 1/3] dt-bindings: sound: convert rockchip spdif bindings to yaml
+Date:   Sat,  4 Apr 2020 13:52:23 +0200
+Message-Id: <20200404115225.4314-1-jbx6244@gmail.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200404102730.3295-1-jbx6244@gmail.com>
-References: <20200404102730.3295-1-jbx6244@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description below is already in use for px30.dtsi,
-but was somehow never added to a document, so add
-"rockchip,px30-saradc", "rockchip,rk3399-saradc"
-for saradc nodes on a px30 platform to rockchip-saradc.yaml.
+Current dts files with 'spdif' nodes are manually verified.
+In order to automate this process rockchip-spdif.txt
+has to be converted to yaml.
+
+Also rk3188.dtsi, rk3288.dtsi use an extra fallback string,
+so change this in the documentation.
+
+Changed:
+"rockchip,rk3188-spdif", "rockchip,rk3066-spdif"
+"rockchip,rk3288-spdif", "rockchip,rk3066-spdif"
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-Changes v2:
-  Add acked by
----
- Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes v3:
+  Add reviewed by
+  Fix irq.h already included in arm-gic.h
+  Change rk3188-cru-common.h to rk3188-cru.h
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-index 7653aa480..bcff82a42 100644
---- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-@@ -17,6 +17,7 @@ properties:
-       - const: rockchip,rk3399-saradc
-       - items:
-           - enum:
-+            - rockchip,px30-saradc
-             - rockchip,rk3308-saradc
-             - rockchip,rk3328-saradc
-             - rockchip,rv1108-saradc
+Changed v2:
+  dmas and dma-names layout
+---
+ .../devicetree/bindings/sound/rockchip-spdif.txt   | 45 -----------
+ .../devicetree/bindings/sound/rockchip-spdif.yaml  | 93 ++++++++++++++++++++++
+ 2 files changed, 93 insertions(+), 45 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/rockchip-spdif.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/rockchip-spdif.txt b/Documentation/devicetree/bindings/sound/rockchip-spdif.txt
+deleted file mode 100644
+index ec20c1271..000000000
+--- a/Documentation/devicetree/bindings/sound/rockchip-spdif.txt
++++ /dev/null
+@@ -1,45 +0,0 @@
+-* Rockchip SPDIF transceiver
+-
+-The S/PDIF audio block is a stereo transceiver that allows the
+-processor to receive and transmit digital audio via an coaxial cable or
+-a fibre cable.
+-
+-Required properties:
+-
+-- compatible: should be one of the following:
+-   - "rockchip,rk3066-spdif"
+-   - "rockchip,rk3188-spdif"
+-   - "rockchip,rk3228-spdif"
+-   - "rockchip,rk3288-spdif"
+-   - "rockchip,rk3328-spdif"
+-   - "rockchip,rk3366-spdif"
+-   - "rockchip,rk3368-spdif"
+-   - "rockchip,rk3399-spdif"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- interrupts: should contain the SPDIF interrupt.
+-- dmas: DMA specifiers for tx dma. See the DMA client binding,
+-  Documentation/devicetree/bindings/dma/dma.txt
+-- dma-names: should be "tx"
+-- clocks: a list of phandle + clock-specifier pairs, one for each entry
+-  in clock-names.
+-- clock-names: should contain following:
+-   - "hclk": clock for SPDIF controller
+-   - "mclk" : clock for SPDIF bus
+-
+-Required properties on RK3288:
+-  - rockchip,grf: the phandle of the syscon node for the general register
+-                   file (GRF)
+-
+-Example for the rk3188 SPDIF controller:
+-
+-spdif: spdif@1011e000 {
+-	compatible = "rockchip,rk3188-spdif", "rockchip,rk3066-spdif";
+-	reg = <0x1011e000 0x2000>;
+-	interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-	dmas = <&dmac1_s 8>;
+-	dma-names = "tx";
+-	clock-names = "hclk", "mclk";
+-	clocks = <&cru HCLK_SPDIF>, <&cru SCLK_SPDIF>;
+-	#sound-dai-cells = <0>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+new file mode 100644
+index 000000000..bfd44fd8e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/rockchip-spdif.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip SPDIF transceiver
++
++description:
++  The S/PDIF audio block is a stereo transceiver that allows the
++  processor to receive and transmit digital audio via a coaxial or
++  fibre cable.
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,rk3066-spdif
++      - const: rockchip,rk3228-spdif
++      - const: rockchip,rk3328-spdif
++      - const: rockchip,rk3366-spdif
++      - const: rockchip,rk3368-spdif
++      - const: rockchip,rk3399-spdif
++      - items:
++          - enum:
++            - rockchip,rk3188-spdif
++            - rockchip,rk3288-spdif
++          - const: rockchip,rk3066-spdif
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: clock for SPDIF bus
++      - description: clock for SPDIF controller
++
++  clock-names:
++    items:
++      - const: mclk
++      - const: hclk
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: tx
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle of the syscon node for the GRF register.
++      Required property on RK3288.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: rockchip,rk3288-spdif
++
++then:
++  required:
++    - rockchip,grf
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3188-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    spdif: spdif@1011e000 {
++      compatible = "rockchip,rk3188-spdif", "rockchip,rk3066-spdif";
++      reg = <0x1011e000 0x2000>;
++      interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&cru SCLK_SPDIF>, <&cru HCLK_SPDIF>;
++      clock-names = "mclk", "hclk";
++      dmas = <&dmac1_s 8>;
++      dma-names = "tx";
++    };
 -- 
 2.11.0
 
