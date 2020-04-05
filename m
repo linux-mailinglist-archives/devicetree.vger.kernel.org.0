@@ -2,186 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 490DE19ED64
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 20:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC7E19ED85
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 21:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727076AbgDESpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Apr 2020 14:45:30 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:53418 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726771AbgDESpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 5 Apr 2020 14:45:30 -0400
-Received: by mail.z3ntu.xyz (Postfix, from userid 182)
-        id 66D30C4A48; Sun,  5 Apr 2020 18:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1586112327; bh=gcwe3ElP/7v212/hOuOpcAarEMfzryBhN3eyrrQNMAs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=QQTY4ckBmuk02vYdyVquWzcGkBYIMht5m93iBxL+mnlWWIIVOoV1JKJSHs36jlVr3
-         CMmiBY7zPdKxSDzdihpa9F2LjaxienpmcK2nsNNL2+7cjdXi0jXNNDtwRX+ztCo8Ya
-         ncJaqP7yE8m7swDvuAqLVNU/ngpNNDu3TN1hrPzw=
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on arch-vps
-X-Spam-Level: 
-X-Spam-Status: No, score=0.9 required=5.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.4
-Received: from g550jk.localnet (80-110-124-168.cgn.dynamic.surfer.at [80.110.124.168])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 02A56C4A0D;
-        Sun,  5 Apr 2020 18:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1586112315; bh=gcwe3ElP/7v212/hOuOpcAarEMfzryBhN3eyrrQNMAs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=thro8YDa0mNSr/5s68+qG0xZMKN7QlPuGqecmo2yOyzEFKtxlKOJtuMMbCcgwwna2
-         3NtganpJu5fSJ5DShL2C7Xl+ZW81M3ooLq8UNc+DlOkRgz5W6n0RW+D+L/Q24NRFir
-         M+yqPtaTmhcqn1tsJbEFCyT2rfrdPhMG6GKRjRrc=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>, Heiko Stuebner <heiko@sntech.de>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        id S1727390AbgDETXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Apr 2020 15:23:09 -0400
+Received: from mail-bgr052101131039.outbound.protection.outlook.com ([52.101.131.39]:36883
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727677AbgDETXI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 5 Apr 2020 15:23:08 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XQGwwEzzUONWWDNIGiyOpEzlbVVzbEBLK81s3notM6Ug/bEwUR5d5l0C5KactrSFXSLdq+IJwfWwQpecMRTV6FAX/+JhVqL2N6kuCwPlN1VclqRK9wZXlyY0k3d83pRWxPIU9WqUBZ2AN3CYWGHabdtSy4mkceAyKvc4dO02zb7udfcH51LLvfMpMp0r7Vubz6vKmqoUqc2Nt1xcO5XmhPq1RUIIKWOb/DQjJMFYE69UsI3XTjxXqBUkwg2hU6AXcD18Qr0M9zpS3ZC5yJJB7ZcwAprEPM/XXiTeU8e1p2G3dS9yE8fi3kutYYKw9Ra9ZjbEPhFFspW5rfK+z+GZKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Oei/HXHUctjpPeooJUQPO8FgYTE406Y1Muz/h8PRie4=;
+ b=IfCa4Uo1RBIvuhpQlxV/RIxhZ6NySW/ZXnRSCT+4CnJJ8aW4HAwirgT91wi2rlzhFM7+ccu9tER4w/2HRWQXkqaYYv3hVdzQ/8V/w0wcA+WxFLgtuINbXlgVcb8c57r9rd139lsjxucXomA60akXY9VygoOQUAiaKts4Cd43YGZ577PRO7A1UfvN1M7X0vjF0xcDmmJoC+2+21J7EFLdCL+bVVN5d5K7hnNptUWv/qfELNHOKw2+b105fdmb8SM674fvy3Nnex3uJRS8UoQQmbrXRGHgennEC1I89FjzcK2CqpOY2DMR3MzdG5z7+am+Mj+hPqBJlOGB1t4zbqrVcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Oei/HXHUctjpPeooJUQPO8FgYTE406Y1Muz/h8PRie4=;
+ b=cNa/Exsc1mv82j3E5JYggWe92ueLxuKG2+gFbEyijw0r105hjzPpE4DOeZoxB7gJF2uWG9SFZJfODXgGkfmaY659JwiJRhMrhmGrow/HT46rOJVSs6tl3Jcvv0kjNAoxfvzmau/KLGZC6KA2hIFsTXUaNdrFnfkFlCIRzHwQnsA=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=oleksandr.suvorov@toradex.com; 
+Received: from VI1PR05MB3279.eurprd05.prod.outlook.com (2603:10a6:802:1c::24)
+ by VI1PR05MB5373.eurprd05.prod.outlook.com (2603:10a6:803:b1::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.20; Sun, 5 Apr
+ 2020 19:22:54 +0000
+Received: from VI1PR05MB3279.eurprd05.prod.outlook.com
+ ([fe80::7cdd:4feb:a8b6:a6d2]) by VI1PR05MB3279.eurprd05.prod.outlook.com
+ ([fe80::7cdd:4feb:a8b6:a6d2%7]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
+ 19:22:54 +0000
+From:   Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+To:     devicetree@vger.kernel.org
+Cc:     Paul Barker <pbarker@konsulko.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] leds: add sgm3140 driver
-Date:   Sun, 05 Apr 2020 20:45:14 +0200
-Message-ID: <4437676.LvFx2qVVIh@g550jk>
-In-Reply-To: <CAHp75Vf6ZS1UGUv-okzzcDNnMtjjBjGbjsXb8w6TmGcgKdhhfA@mail.gmail.com>
-References: <20200330194757.2645388-1-luca@z3ntu.xyz> <20200330194757.2645388-3-luca@z3ntu.xyz> <CAHp75Vf6ZS1UGUv-okzzcDNnMtjjBjGbjsXb8w6TmGcgKdhhfA@mail.gmail.com>
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 1/6] dt-bindings: pwm: add PWM_NOFLAGS definition
+Date:   Sun,  5 Apr 2020 22:22:41 +0300
+Message-Id: <20200405192246.3741784-2-oleksandr.suvorov@toradex.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200405192246.3741784-1-oleksandr.suvorov@toradex.com>
+References: <20200405192246.3741784-1-oleksandr.suvorov@toradex.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GVAP278CA0017.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:710:20::27) To VI1PR05MB3279.eurprd05.prod.outlook.com
+ (2603:10a6:802:1c::24)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (82.193.109.226) by GVAP278CA0017.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:20::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend Transport; Sun, 5 Apr 2020 19:22:53 +0000
+X-Mailer: git-send-email 2.24.1
+X-Originating-IP: [82.193.109.226]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a4e92dc1-3b75-4e52-96f3-08d7d996bd4c
+X-MS-TrafficTypeDiagnostic: VI1PR05MB5373:|VI1PR05MB5373:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR05MB5373745DDAC23225D23116E6F9C50@VI1PR05MB5373.eurprd05.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Forefront-PRVS: 03648EFF89
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:VI1PR05MB3279.eurprd05.prod.outlook.com;PTR:;CAT:OSPM;SFTY:;SFS:(10019020)(4636009)(346002)(376002)(366004)(396003)(39840400004)(136003)(54906003)(6486002)(55236004)(81156014)(2906002)(8676002)(508600001)(86362001)(52116002)(6496006)(26005)(81166006)(316002)(8936002)(36756003)(6666004)(956004)(66946007)(2616005)(1076003)(186003)(16526019)(66556008)(66476007)(4744005)(44832011)(6916009)(5660300002)(4326008)(23200700001);DIR:OUT;SFP:1501;
+Received-SPF: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: x4kB8VhwXEbk3p2tfyksV1hda+DLeWCr8GOfvsZTOwhk1oPXJ+b+gm3kxEym6n6gcv7awfdRMMVZEcOkYkuPHrfoHb6DEnA/R/Ny7qIg6AgCocgA6n5VULBkC/wGq2OA3pfTTix0ggdGICtkj+BPThTnj78L203kiibDZygV/GInwMmI+xe4nqH2GcgcfSbtwXhAfEzWBFyKk3o1coH1e2Q79rYzBdBylYMhP05X6Mp9tR8pDlnadhVxYN2wUElrjkbYD+/5sF27Q6GKxHbpd6ceytyNvjl3kpfBTz0O2PwlRRWVtazEOwAvyA/d0CFi2IwUR5z9XzOvaODypZbOqnnTz08EteU7ga00gJUJVM5+BXI7mX8mfGQOf6TThQ9azt3Dyn7WG9t8/rGCOH0nPJYtWDQwkfpHBBgES0LEQbIrq51Ub8sEj4wFxWUZ3lna6ErWjo98Xy3IajbFt+5T3iUzIkrVxGKS++z0OGXtDywTORnrUObXbTPpIQedHS2C0kD0yvf6AjcTVcYGr6B1NR443Q5vs5X2ez8TJvqFL7B7UPqWize21GYRpBRjDkY3RgC1ZMZ9sc2YrQ28LxZiyRZp1C2HooqifcdD4hkgkj0zJ6aM4WnHw8ptubFX6UTgR+IYwJpToegsAGePHa5YpI8U4oitLXJqLwBLHzWhsg87tGpdO/YS6bTYEcDudXYV+zElvhHlWmRZqOpH/k1michbp89UcTWtRzGTO50IvvNTnSFM4yeAXe8nHua9K9bOnzTYj6k/aWPFU8MUwPbkZQ==
+X-MS-Exchange-AntiSpam-MessageData: RwyEA3b6hyKuWdSKMnudQsqMprY4Ns9mzLUyhvXIiyBzRw/gCOox6GlVdJMlcBg6zxiHHN0zzwXfzZywYcqjy3hgtGTmqke7z7jLNz3U8Z8Sm7oux39TOP0GeP6pK8un94GVE67Sgo3BQzhm6EbDWA==
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4e92dc1-3b75-4e52-96f3-08d7d996bd4c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 19:22:54.4487
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zhF+iCDgr9c2q/uttVlCk80A6PGKIP3QJx7sBvxWFKRoszzxu29DfCpL/P+/DaU2KKJ2PibS6czwREsifigaca6k20BHZNlwVbw2aBW/P5I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB5373
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+"pwms" property has the optional 3rd cell for modification flags,
+i.e. the flag for inverted polarity. Multiple pwms instances in child
+nodes all have to have or haven't this flags property. Now the value
+"no flags" codes with the raw constant "0".
 
-On Samstag, 4. April 2020 11:58:31 CEST Andy Shevchenko wrote:
-> On Mon, Mar 30, 2020 at 10:49 PM Luca Weiss <luca@z3ntu.xyz> wrote:
-> > Add a driver for the SGMICRO SGM3140 Buck/Boost Charge Pump LED driver.
-> > 
-> > This device is controlled by two GPIO pins, one for enabling and the
-> > second one for switching between torch and flash mode.
-> 
-> ...
-> 
-> > +config LEDS_SGM3140
-> > +       tristate "LED support for the SGM3140"
-> > +       depends on LEDS_CLASS_FLASH
-> > +       depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
-> > 
-> > +       depends on OF
-> 
-> depends on OF || COMPILE_TEST ?
-> But hold on...
-> 
-> ...
-> 
-> > +#include <linux/of.h>
-> 
-> Perhaps switch this to property.h and replace OF with more generic
-> device property / fwnode API?
-> 
+Define the PWM_NOFLAGS to use instead of the raw "0" value.
 
-I didn't find clear documentation on this, the functions in drivers/base/
-property.c can be used instead of the of_* (device tree) functions?
+Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+---
 
-As far as I can tell, the device_property_* functions are supposed to be used 
-for simple "give me a property for this 'struct device*'" while the fwnode_* 
-functions are used as generic equivalent of the of_* functions?
+Changes in v2:
+- Rename PWM_POLARITY_NORMAL to PWM_NOFLAGS to avoid possible
+  conflict with enum pwm_polarity in <linux/pwm.h>. Also, this name
+  reflects the sense of this value more precisely.
 
-So in this case I can replace 
+ include/dt-bindings/pwm/pwm.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-struct device_node *child_node;
-child_node = of_get_next_available_child(pdev->dev.of_node, NULL);
-
-with
-
-struct fwnode_handle *child_node;
-child_node = fwnode_get_next_available_child_node(pdev->dev.fwnode, NULL);
-
-and then instead of
-
-ret = of_property_read_u32(child_node, "flash-max-timeout-us",
-		   &priv->max_timeout);
-
-use
-
-ret = fwnode_property_read_u32(child_node, "flash-max-timeout-us",
-		            &priv->max_timeout);
-
-and finally instead of
-
-init_data.fwnode = of_fwnode_handle(child_node);
-
-I can probably directly do
-
-init_data.fwnode = child_node;
-
-Does that sound correct?
-
-> ...
-> 
-> > +struct sgm3140 {
-> > +       bool enabled;
-> > +       struct gpio_desc *flash_gpio;
-> > +       struct gpio_desc *enable_gpio;
-> > +       struct regulator *vin_regulator;
-> > +
-> > +       /* current timeout in us */
-> > +       u32 timeout;
-> > +       /* maximum timeout in us */
-> > +       u32 max_timeout;
-> > +
-> > 
-> > +       struct led_classdev_flash fled_cdev;
-> 
-> I guess it might be slightly better to make it first member of the
-> struct (I didn't check but the rationale is to put more often used
-> members at the beginning to utilize cachelines).
-> 
-> > +       struct v4l2_flash *v4l2_flash;
-> > +
-> > +       struct timer_list powerdown_timer;
-> > +};
-> 
-> ...
-> 
-> > +static struct sgm3140 *flcdev_to_sgm3140(struct led_classdev_flash
-> > *flcdev) +{
-> > +       return container_of(flcdev, struct sgm3140, fled_cdev);
-> > +}
-> 
-> ...and this becomes a no-op AFAICS (doesn't mean you need to remove it).
-> 
-> ...
-> 
-> > +       struct device_node *child_node;
-> > 
-> > +       child_node = of_get_next_available_child(pdev->dev.of_node, NULL);
-> > 
-> > +       ret = of_property_read_u32(child_node, "flash-max-timeout-us",
-> > +                                  &priv->max_timeout);
-> > 
-> > +       init_data.fwnode = of_fwnode_handle(child_node);
-> > 
-> > +       of_node_put(child_node);
-> 
-> Device property / fwnode API?
-> 
-> --
-> With Best Regards,
-> Andy Shevchenko
-
-Regards
-Luca
-
-
+diff --git a/include/dt-bindings/pwm/pwm.h b/include/dt-bindings/pwm/pwm.h
+index ab9a077e3c7d..f4cc763e159a 100644
+--- a/include/dt-bindings/pwm/pwm.h
++++ b/include/dt-bindings/pwm/pwm.h
+@@ -10,6 +10,7 @@
+ #ifndef _DT_BINDINGS_PWM_PWM_H
+ #define _DT_BINDINGS_PWM_PWM_H
+ 
++#define PWM_NOFLAGS				0
+ #define PWM_POLARITY_INVERTED			(1 << 0)
+ 
+ #endif
+-- 
+2.24.1
 
