@@ -2,395 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B9B19EB5E
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 14:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C996119EB83
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 15:39:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbgDEMzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Apr 2020 08:55:55 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:40269 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726473AbgDEMzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 08:55:54 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 035CtY81005504;
-        Sun, 5 Apr 2020 15:55:34 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
-        id 19229639B0; Sun,  5 Apr 2020 15:55:34 +0300 (IDT)
-From:   amirmizi6@gmail.com
-To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
-        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
-        robh+dt@kernel.org,
-        "benoit.houyere@st.com--to=mark.rutland"@arm.com,
-        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
-        Amir Mizinski <amirmizi6@gmail.com>,
-        Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH v5 7/7] tpm: tpm_tis: add tpm_tis_i2c driver
-Date:   Sun,  5 Apr 2020 15:53:52 +0300
-Message-Id: <20200405125352.183693-8-amirmizi6@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200405125352.183693-1-amirmizi6@gmail.com>
-References: <20200405125352.183693-1-amirmizi6@gmail.com>
+        id S1726740AbgDENjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Apr 2020 09:39:35 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:56267 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726556AbgDENjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 09:39:35 -0400
+X-UUID: 55f9515929204793aefd51cdfd46eb3b-20200405
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=UbTwFkXlKvsh7AL8yRvXou4qBQc6I/nzGcy+Hyh3Skw=;
+        b=jYry63KbM4o57brsLB2iD5/qb64G1u2dfWaTRrlKXNMVJ7o7RlURl9jJ/22FGh/6+TTcIygejwUZUvNQNl5+GPhIJrm9BGjt7h2HjdPIPywiHNTsRcBYaAn4VOedUDum1QTDEIsgj8z1IdHt5/Fl1J48ylwYsetpqE1nCQEjgBM=;
+X-UUID: 55f9515929204793aefd51cdfd46eb3b-20200405
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1909430432; Sun, 05 Apr 2020 21:39:14 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
+ (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 5 Apr
+ 2020 21:39:12 +0800
+Received: from [10.16.6.141] (10.16.6.141) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 5 Apr 2020 21:39:11 +0800
+Message-ID: <1586093949.10544.4.camel@mszsdaap41>
+Subject: Re: [PATCH v4 4/4] drm/mediatek: config mipitx impedance with
+ calibration data
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>, <huijuan.xie@mediatek.com>,
+        <stonea168@163.com>, <cawa.cheng@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>, <linux-arm-kernel@lists.infradead.org>
+Date:   Sun, 5 Apr 2020 21:39:09 +0800
+In-Reply-To: <CAAOTY_8vpzfKeyxVxXOVC7mDpw+QGGOX+8fJaQg5WduvndEmoA@mail.gmail.com>
+References: <20200331082725.81048-1-jitao.shi@mediatek.com>
+         <20200331082725.81048-5-jitao.shi@mediatek.com>
+         <CAAOTY_8vpzfKeyxVxXOVC7mDpw+QGGOX+8fJaQg5WduvndEmoA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: 3590BF9D5BA1AE18EC2E1E20178B6904B8159592795221EED6053E89AE35411F2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amir Mizinski <amirmizi6@gmail.com>
-
-Implements the functionality needed to communicate with an I2C TPM
-according to the TCG TPM I2C Interface Specification.
-
-Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-Tested-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/char/tpm/Kconfig       |  12 ++
- drivers/char/tpm/Makefile      |   1 +
- drivers/char/tpm/tpm_tis_i2c.c | 292 +++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
- create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
-
-diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
-index aacdeed..b166ad3 100644
---- a/drivers/char/tpm/Kconfig
-+++ b/drivers/char/tpm/Kconfig
-@@ -74,6 +74,18 @@ config TCG_TIS_SPI_CR50
- 	  If you have a H1 secure module running Cr50 firmware on SPI bus,
- 	  say Yes and it will be accessible from within Linux.
- 
-+config TCG_TIS_I2C
-+	tristate "TPM I2C Interface Specification"
-+	depends on I2C
-+	depends on CRC_CCITT
-+	select TCG_TIS_CORE
-+	---help---
-+	  If you have a TPM security chip which is connected to a regular
-+	  I2C master (i.e. most embedded platforms) that is compliant with the
-+	  TCG TPM I2C Interface Specification say Yes and it will be accessible from
-+	  within Linux. To compile this driver as a module, choose  M here;
-+	  the module will be called tpm_tis_i2c.
-+
- config TCG_TIS_I2C_ATMEL
- 	tristate "TPM Interface Specification 1.2 Interface (I2C - Atmel)"
- 	depends on I2C
-diff --git a/drivers/char/tpm/Makefile b/drivers/char/tpm/Makefile
-index 9567e51..97999cf 100644
---- a/drivers/char/tpm/Makefile
-+++ b/drivers/char/tpm/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_TCG_TIS_SPI) += tpm_tis_spi.o
- tpm_tis_spi-y := tpm_tis_spi_main.o
- tpm_tis_spi-$(CONFIG_TCG_TIS_SPI_CR50) += tpm_tis_spi_cr50.o
- 
-+obj-$(CONFIG_TCG_TIS_I2C) += tpm_tis_i2c.o
- obj-$(CONFIG_TCG_TIS_I2C_ATMEL) += tpm_i2c_atmel.o
- obj-$(CONFIG_TCG_TIS_I2C_INFINEON) += tpm_i2c_infineon.o
- obj-$(CONFIG_TCG_TIS_I2C_NUVOTON) += tpm_i2c_nuvoton.o
-diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-new file mode 100644
-index 0000000..83c0b3a
---- /dev/null
-+++ b/drivers/char/tpm/tpm_tis_i2c.c
-@@ -0,0 +1,292 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2014-2019 Nuvoton Technology corporation
-+ *
-+ * TPM TIS I2C
-+ *
-+ * TPM TIS I2C Device Driver Interface for devices that implement the TPM I2C
-+ * Interface defined by TCG PC Client Platform TPM Profile (PTP) Specification
-+ * Revision 01.03 v22 at www.trustedcomputinggroup.org
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/moduleparam.h>
-+#include <linux/slab.h>
-+#include <linux/interrupt.h>
-+#include <linux/wait.h>
-+#include <linux/acpi.h>
-+#include <linux/freezer.h>
-+#include <linux/crc-ccitt.h>
-+
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/gpio.h>
-+#include <linux/of_irq.h>
-+#include <linux/of_gpio.h>
-+#include <linux/tpm.h>
-+#include "tpm.h"
-+#include "tpm_tis_core.h"
-+
-+#define TPM_LOC_SEL                    0x04
-+#define TPM_I2C_INTERFACE_CAPABILITY   0x30
-+#define TPM_I2C_DEVICE_ADDRESS         0x38
-+#define TPM_DATA_CSUM_ENABLE           0x40
-+#define TPM_DATA_CSUM                  0x44
-+#define TPM_I2C_DID_VID                        0x48
-+#define TPM_I2C_RID                    0x4C
-+
-+//#define I2C_IS_TPM2 1
-+
-+struct tpm_tis_i2c_phy {
-+	struct tpm_tis_data priv;
-+	struct i2c_client *i2c_client;
-+	bool data_csum;
-+	u8 *iobuf;
-+};
-+
-+static inline struct tpm_tis_i2c_phy *to_tpm_tis_i2c_phy(struct tpm_tis_data *data)
-+{
-+	return container_of(data, struct tpm_tis_i2c_phy, priv);
-+}
-+
-+static u8 address_to_register(u32 addr)
-+{
-+	addr &= 0xFFF;
-+
-+	switch (addr) {
-+		// adapt register addresses that have changed compared to
-+		// older TIS versions
-+	case TPM_ACCESS(0):
-+		return 0x04;
-+	case TPM_LOC_SEL:
-+		return 0x00;
-+	case TPM_DID_VID(0):
-+		return 0x48;
-+	case TPM_RID(0):
-+		return 0x4C;
-+	default:
-+		return addr;
-+	}
-+}
-+
-+static int tpm_tis_i2c_read_bytes(struct tpm_tis_data *data, u32 addr,
-+				  u16 len, u8 *result)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	int ret = 0;
-+	int i = 0;
-+	u8 reg = address_to_register(addr);
-+	struct i2c_msg msgs[] = {
-+		{
-+			.addr = phy->i2c_client->addr,
-+			.len = sizeof(reg),
-+			.buf = &reg,
-+		},
-+		{
-+			.addr = phy->i2c_client->addr,
-+			.len = len,
-+			.buf = result,
-+			.flags = I2C_M_RD,
-+		},
-+	};
-+
-+	do {
-+		ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-+				   ARRAY_SIZE(msgs));
-+		usleep_range(250, 300); // wait default GUARD_TIME of 250µs
-+
-+	} while (ret < 0 && i++ < TPM_RETRY);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+
-+	return 0;
-+}
-+
-+static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr,
-+				   u16 len, const u8 *value)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	int ret = 0;
-+	int i = 0;
-+
-+	if (phy->iobuf) {
-+		if (len > TPM_BUFSIZE - 1)
-+			return -EIO;
-+
-+		phy->iobuf[0] = address_to_register(addr);
-+		memcpy(phy->iobuf + 1, value, len);
-+
-+		{
-+			struct i2c_msg msgs[] = {
-+				{
-+					.addr = phy->i2c_client->addr,
-+					.len = len + 1,
-+					.buf = phy->iobuf,
-+				},
-+			};
-+
-+			do {
-+				ret = i2c_transfer(phy->i2c_client->adapter,
-+						   msgs, ARRAY_SIZE(msgs));
-+				// wait default GUARD_TIME of 250µs
-+				usleep_range(250, 300);
-+			} while (ret < 0 && i++ < TPM_RETRY);
-+		}
-+	} else {
-+		u8 reg = address_to_register(addr);
-+
-+		struct i2c_msg msgs[] = {
-+			{
-+				.addr = phy->i2c_client->addr,
-+				.len = sizeof(reg),
-+				.buf = &reg,
-+			},
-+			{
-+				.addr = phy->i2c_client->addr,
-+				.len = len,
-+				.buf = (u8 *)value,
-+				.flags = I2C_M_NOSTART,
-+			},
-+		};
-+		do {
-+			ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-+					   ARRAY_SIZE(msgs));
-+			// wait default GUARD_TIME of 250µs
-+			usleep_range(250, 300);
-+		} while (ret < 0 && i++ < TPM_RETRY);
-+	}
-+
-+	if (ret < 0)
-+		return ret;
-+
-+
-+	return 0;
-+}
-+
-+static bool tpm_tis_i2c_check_data(struct tpm_tis_data *data,
-+				   const u8 *buf, size_t len)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	u16 crc, crc_tpm;
-+	int rc;
-+
-+	if (phy->data_csum) {
-+		crc = crc_ccitt(0x0000, buf, len);
-+		rc = tpm_tis_read16(data, TPM_DATA_CSUM, &crc_tpm);
-+		if (rc < 0)
-+			return false;
-+
-+		crc_tpm = be16_to_cpu(crc_tpm);
-+		return crc == crc_tpm;
-+	}
-+
-+	return true;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(tpm_tis_pm, tpm_pm_suspend, tpm_tis_resume);
-+
-+static int csum_state_store(struct tpm_tis_data *data, u8 new_state)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	u8 cur_state;
-+	int rc;
-+
-+	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-+				     1, &new_state);
-+	if (rc < 0)
-+		return rc;
-+
-+	rc = tpm_tis_i2c_read_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-+				    1, &cur_state);
-+	if (rc < 0)
-+		return rc;
-+
-+	if (new_state == cur_state)
-+		phy->data_csum = (bool)new_state;
-+
-+	return rc;
-+}
-+
-+static const struct tpm_tis_phy_ops tpm_i2c_phy_ops = {
-+	.read_bytes = tpm_tis_i2c_read_bytes,
-+	.write_bytes = tpm_tis_i2c_write_bytes,
-+	.check_data = tpm_tis_i2c_check_data,
-+};
-+
-+static int tpm_tis_i2c_probe(struct i2c_client *dev,
-+			     const struct i2c_device_id *id)
-+{
-+	struct tpm_tis_i2c_phy *phy;
-+	int rc;
-+	int CRC_Checksum = 0;
-+	const u8 loc_init = 0;
-+	struct device_node *np;
-+
-+	phy = devm_kzalloc(&dev->dev, sizeof(struct tpm_tis_i2c_phy),
-+			   GFP_KERNEL);
-+	if (!phy)
-+		return -ENOMEM;
-+
-+	phy->i2c_client = dev;
-+
-+	if (!i2c_check_functionality(dev->adapter, I2C_FUNC_NOSTART)) {
-+		phy->iobuf = devm_kmalloc(&dev->dev, TPM_BUFSIZE, GFP_KERNEL);
-+		if (!phy->iobuf)
-+			return -ENOMEM;
-+	}
-+
-+	// select locality 0 (the driver will access only via locality 0)
-+	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_LOC_SEL, 1, &loc_init);
-+	if (rc < 0)
-+		return rc;
-+
-+	// set CRC checksum calculation enable
-+	np = dev->dev.of_node;
-+	if (of_property_read_bool(np, "crc-checksum"))
-+		CRC_Checksum = 1;
-+
-+	rc = csum_state_store(&phy->priv, CRC_Checksum);
-+	if (rc < 0)
-+		return rc;
-+
-+	return tpm_tis_core_init(&dev->dev, &phy->priv, -1, &tpm_i2c_phy_ops,
-+					NULL);
-+}
-+
-+static const struct i2c_device_id tpm_tis_i2c_id[] = {
-+	{"tpm_tis_i2c", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-+
-+static const struct of_device_id of_tis_i2c_match[] = {
-+	{ .compatible = "tcg,tpm-tis-i2c", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
-+
-+static const struct acpi_device_id acpi_tis_i2c_match[] = {
-+	{"SMO0768", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(acpi, acpi_tis_i2c_match);
-+
-+static struct i2c_driver tpm_tis_i2c_driver = {
-+	.driver = {
-+		.owner = THIS_MODULE,
-+		.name = "tpm_tis_i2c",
-+		.pm = &tpm_tis_pm,
-+		.of_match_table = of_match_ptr(of_tis_i2c_match),
-+		.acpi_match_table = ACPI_PTR(acpi_tis_i2c_match),
-+	},
-+	.probe = tpm_tis_i2c_probe,
-+	.id_table = tpm_tis_i2c_id,
-+};
-+
-+module_i2c_driver(tpm_tis_i2c_driver);
-+
-+MODULE_DESCRIPTION("TPM Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+DQpPbiBTYXQsIDIwMjAtMDQtMDQgYXQgMjI6MjYgKzA4MDAsIENodW4tS3VhbmcgSHUgd3JvdGU6
+DQo+IEhpLCBKaXRhbzoNCj4gDQo+IEppdGFvIFNoaSA8aml0YW8uc2hpQG1lZGlhdGVrLmNvbT4g
+5pa8IDIwMjDlubQz5pyIMzHml6Ug6YCx5LqMIOS4i+WNiDQ6Mjjlr6vpgZPvvJoNCj4gPg0KPiA+
+IFJlYWQgY2FsaWJyYXRpb24gZGF0YSBmcm9tIG52bWVtLCBhbmQgY29uZmlnIG1pcGl0eCBpbXBl
+ZGFuY2Ugd2l0aA0KPiA+IGNhbGlicmF0aW9uIGRhdGEgdG8gbWFrZSBzdXJlIHRoZWlyIGltcGVk
+YW5jZSBhcmUgMTAwb2htLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxqaXRh
+by5zaGlAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0
+ZWsvbXRrX210ODE4M19taXBpX3R4LmMgfCA1NyArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEg
+ZmlsZSBjaGFuZ2VkLCA1NyBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19tdDgxODNfbWlwaV90eC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL21lZGlhdGVrL210a19tdDgxODNfbWlwaV90eC5jDQo+ID4gaW5kZXggZTRjYzk2Nzc1MGNi
+Li4wZjg3Y2QzZDFkN2QgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
+L210a19tdDgxODNfbWlwaV90eC5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
+L210a19tdDgxODNfbWlwaV90eC5jDQo+ID4gQEAgLTUsNiArNSw4IEBADQo+ID4gICAqLw0KPiA+
+DQo+ID4gICNpbmNsdWRlICJtdGtfbWlwaV90eC5oIg0KPiA+ICsjaW5jbHVkZSA8bGludXgvbnZt
+ZW0tY29uc3VtZXIuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4NCj4gPg0KPiA+ICAj
+ZGVmaW5lIE1JUElUWF9MQU5FX0NPTiAgICAgICAgICAgICAgICAweDAwMGMNCj4gPiAgI2RlZmlu
+ZSBSR19EU0lfQ1BIWV9UMURSVl9FTiAgICAgICAgICAgQklUKDApDQo+ID4gQEAgLTI4LDYgKzMw
+LDcgQEANCj4gPiAgI2RlZmluZSBNSVBJVFhfUExMX0NPTjQgICAgICAgICAgICAgICAgMHgwMDNj
+DQo+ID4gICNkZWZpbmUgUkdfRFNJX1BMTF9JQklBUyAgICAgICAgICAgICAgICgzIDw8IDEwKQ0K
+PiA+DQo+ID4gKyNkZWZpbmUgTUlQSVRYX0QyUF9SVENPREUgICAgICAweDAxMDANCj4gPiAgI2Rl
+ZmluZSBNSVBJVFhfRDJfU1dfQ1RMX0VOICAgIDB4MDE0NA0KPiA+ICAjZGVmaW5lIE1JUElUWF9E
+MF9TV19DVExfRU4gICAgMHgwMjQ0DQo+ID4gICNkZWZpbmUgTUlQSVRYX0NLX0NLTU9ERV9FTiAg
+ICAweDAzMjgNCj4gPiBAQCAtMTA4LDYgKzExMSw1OCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGNs
+a19vcHMgbXRrX21pcGlfdHhfcGxsX29wcyA9IHsNCj4gPiAgICAgICAgIC5yZWNhbGNfcmF0ZSA9
+IG10a19taXBpX3R4X3BsbF9yZWNhbGNfcmF0ZSwNCj4gPiAgfTsNCj4gPg0KPiA+ICtzdGF0aWMg
+dm9pZCBtdGtfbWlwaV90eF9jb25maWdfY2FsaWJyYXRpb25fZGF0YShzdHJ1Y3QgbXRrX21pcGlf
+dHggKm1pcGlfdHgpDQo+ID4gK3sNCj4gPiArICAgICAgIHUzMiAqYnVmOw0KPiA+ICsgICAgICAg
+dTMyIHJ0X2NvZGVbNV07DQo+ID4gKyAgICAgICBpbnQgaSwgajsNCj4gPiArICAgICAgIHN0cnVj
+dCBudm1lbV9jZWxsICpjZWxsOw0KPiA+ICsgICAgICAgc3RydWN0IGRldmljZSAqZGV2ID0gbWlw
+aV90eC0+ZGV2Ow0KPiA+ICsgICAgICAgc2l6ZV90IGxlbjsNCj4gPiArDQo+ID4gKyAgICAgICBj
+ZWxsID0gbnZtZW1fY2VsbF9nZXQoZGV2LCAiY2FsaWJyYXRpb24tZGF0YSIpOw0KPiA+ICsgICAg
+ICAgaWYgKElTX0VSUihjZWxsKSkgew0KPiA+ICsgICAgICAgICAgICAgICBkZXZfaW5mbyhkZXYs
+ICJudm1lbV9jZWxsX2dldCBmYWlsXG4iKTsNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuOw0K
+PiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIGJ1ZiA9ICh1MzIgKiludm1lbV9jZWxs
+X3JlYWQoY2VsbCwgJmxlbik7DQo+ID4gKw0KPiA+ICsgICAgICAgbnZtZW1fY2VsbF9wdXQoY2Vs
+bCk7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYgKElTX0VSUihidWYpKSB7DQo+ID4gKyAgICAgICAg
+ICAgICAgIGRldl9pbmZvKGRldiwgImNhbid0IGdldCBkYXRhXG4iKTsNCj4gPiArICAgICAgICAg
+ICAgICAgcmV0dXJuOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIGlmIChsZW4g
+PCAzICogc2l6ZW9mKHUzMikpIHsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2luZm8oZGV2LCAi
+aW52YWxpZCBjYWxpYnJhdGlvbiBkYXRhXG4iKTsNCj4gPiArICAgICAgICAgICAgICAga2ZyZWUo
+YnVmKTsNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsN
+Cj4gPiArICAgICAgIHJ0X2NvZGVbMF0gPSAoKGJ1ZlswXSA+PiA2ICYgMHgxZikgPDwgNSkgfCAo
+YnVmWzBdID4+IDExICYgMHgxZik7DQo+ID4gKyAgICAgICBydF9jb2RlWzFdID0gKChidWZbMV0g
+Pj4gMjcgJiAweDFmKSA8PCA1KSB8IChidWZbMF0gPj4gMSAmIDB4MWYpOw0KPiA+ICsgICAgICAg
+cnRfY29kZVsyXSA9ICgoYnVmWzFdID4+IDE3ICYgMHgxZikgPDwgNSkgfCAoYnVmWzFdID4+IDIy
+ICYgMHgxZik7DQo+ID4gKyAgICAgICBydF9jb2RlWzNdID0gKChidWZbMV0gPj4gNyAmIDB4MWYp
+IDw8IDUpIHwgKGJ1ZlsxXSA+PiAxMiAmIDB4MWYpOw0KPiA+ICsgICAgICAgcnRfY29kZVs0XSA9
+ICgoYnVmWzJdID4+IDI3ICYgMHgxZikgPDwgNSkgfCAoYnVmWzFdID4+IDIgJiAweDFmKTsNCj4g
+DQo+IFdoeSBub3QganVzdCBzYXZlIHJ0X2NvZGUgaW4gbnZtZW0gYW5kIHlvdSBkb24ndCBuZWVk
+IHRvIHRyYW5zbGF0ZSBoZXJlPw0KPiBJZiB5b3UgbmVlZCB0byBkbyBzbywgcGxlYXNlIGFkZCBk
+ZXNjcmlwdGlvbiBmb3IgdGhpcy4NCj4gDQo+IFJlZ2FyZHMsDQo+IENodW4tS3VhbmcuDQo+IA0K
+DQpIaSBDaHVuLUt1YW5nLA0KDQpUaGUgY2FsaWJyYXRpb24gZGF0YSBpcyBmbGFzaGVkIGluIHJv
+bSB3aGVuIHRoZSBJQyBGVCB0ZXN0DQpBbmQgdGhlIGRhdGEgc3RydWN0IGNhbid0IGJlIHN0b3Jl
+ZCBhZ2Fpbg0KDQpCZXN0IFJlZ2FyZHMNCkpJdGFvDQo+IA0KPiA+ICsNCj4gPiArICAgICAgIGZv
+ciAoaSA9IDA7IGkgPCA1OyBpKyspIHsNCj4gPiArICAgICAgICAgICAgICAgaWYgKChydF9jb2Rl
+W2ldICYgMHgxZikgPT0gMCkNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBydF9jb2RlW2ld
+IHw9IDB4MTA7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICBpZiAoKHJ0X2NvZGVbaV0gPj4g
+NSAmIDB4MWYpID09IDApDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcnRfY29kZVtpXSB8
+PSAweDEwIDw8IDU7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICBmb3IgKGogPSAwOyBqIDwg
+MTA7IGorKykNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBtdGtfbWlwaV90eF91cGRhdGVf
+Yml0cyhtaXBpX3R4LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUlQSVRY
+X0QyUF9SVENPREUgKiAoaSArIDEpICsgaiAqIDQsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAxLCBydF9jb2RlW2ldID4+IGogJiAxKTsNCj4gPiArICAgICAgIH0NCj4gPiAr
+DQo+ID4gKyAgICAgICBrZnJlZShidWYpOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICBzdGF0aWMgdm9p
+ZCBtdGtfbWlwaV90eF9wb3dlcl9vbl9zaWduYWwoc3RydWN0IHBoeSAqcGh5KQ0KPiA+ICB7DQo+
+ID4gICAgICAgICBzdHJ1Y3QgbXRrX21pcGlfdHggKm1pcGlfdHggPSBwaHlfZ2V0X2RydmRhdGEo
+cGh5KTsNCj4gPiBAQCAtMTMwLDYgKzE4NSw4IEBAIHN0YXRpYyB2b2lkIG10a19taXBpX3R4X3Bv
+d2VyX29uX3NpZ25hbChzdHJ1Y3QgcGh5ICpwaHkpDQo+ID4gICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBSR19EU0lfSFNUWF9MRE9fUkVGX1NFTCwNCj4gPiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIChtaXBpX3R4LT5taXBpdHhfZHJpdmUgLSAzMDAwKSAvIDIwMCA8PCA2
+KTsNCj4gPg0KPiA+ICsgICAgICAgbXRrX21pcGlfdHhfY29uZmlnX2NhbGlicmF0aW9uX2RhdGEo
+bWlwaV90eCk7DQo+ID4gKw0KPiA+ICAgICAgICAgbXRrX21pcGlfdHhfc2V0X2JpdHMobWlwaV90
+eCwgTUlQSVRYX0NLX0NLTU9ERV9FTiwgRFNJX0NLX0NLTU9ERV9FTik7DQo+ID4gIH0NCj4gPg0K
+PiA+IC0tDQo+ID4gMi4yMS4wDQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18NCj4gPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0DQo+ID4gZHJpLWRldmVs
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsDQoNCg0K
 
