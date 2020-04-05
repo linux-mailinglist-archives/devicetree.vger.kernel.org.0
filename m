@@ -2,114 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E42219EA8B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 12:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAF319EABA
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 13:24:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgDEKtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Apr 2020 06:49:40 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51038 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726388AbgDEKtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 06:49:25 -0400
-Received: by mail-wm1-f68.google.com with SMTP id x25so606099wmc.0;
-        Sun, 05 Apr 2020 03:49:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IaJsFC4mWmdWbyKkdQgRslfWupkpd121xwwCWiCDFic=;
-        b=Nv0iaaZun8PkGFqjzFCOX/XXu0sTlYO7LusRed2bei95p+rs4hZ7XH2/iv2jGKx862
-         oN9+2KsfkmGeiQfJDqT58NKoObV1zqDiDqgJygMerNwfmNjCl85s+ItAryXJsZDJOhVU
-         ylJ94U7G6a2oOSmrTYv3D6bN7o5DNh8+8++aG+PXhZ26+PVQzmimqgwKJLEx2OZm1B5T
-         2++Zq9V0Ui1hIHtTjFEck8Jn69LwAMDYikkRyvEJqip9WjViVZ/MFzqeMG3xsu9nqywq
-         104rznEUw6/mMPPP9kgjczn2DnWMfQDKfHjGzmwcoL/fR2O/Zay7Xdskguof+j5YnPr2
-         6xEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IaJsFC4mWmdWbyKkdQgRslfWupkpd121xwwCWiCDFic=;
-        b=dSDOlPhLSVYce8gzq2HkoSoG/BSvhRu08X+LbtnCYxiZk712F397C/nWmHJlOnzxC+
-         bDvUxIdk77VDVbylY6dcNLJX3JtZJ1qf2mEaBFhuZUQllo43jZaUqtk+TFsiTiBULzhJ
-         CzIzOxI5buxtaccQldMu4KbX/aD8c5CtIVbLlqXgzks8vDXyt8h2Md6+2eDpXimsu7JR
-         n+Vh+n6RkbL7C8Sls6H0LBYgS3xjVcRsRsgkJpWJp7iU0yTK31GNgUd21aaVrPFbGJVA
-         djAZTSRO6ZbqoklpB2U0t+Sl6/Y8PzDfQGCr0n/6qODDyClp5ke6XfFvWzXNyCduq9OX
-         aFCA==
-X-Gm-Message-State: AGi0PubQ/1XsxZ233l9kKirLOcw12d5QhGmMpgjdUbvMDU0Fba7VcMlJ
-        zzP4X8F6mptIjAaiBZL9nNE=
-X-Google-Smtp-Source: APiQypIS4eeDCAO10hAejWjIAXROTbLF+7oPU0gehy8YueTE+QgfA2pzVNpE3cbH4EFv4ULU0UCRmQ==
-X-Received: by 2002:a7b:cde8:: with SMTP id p8mr17359670wmj.87.1586083763912;
-        Sun, 05 Apr 2020 03:49:23 -0700 (PDT)
-Received: from localhost.localdomain (91-167-199-67.subs.proxad.net. [91.167.199.67])
-        by smtp.gmail.com with ESMTPSA id u13sm21606411wru.88.2020.04.05.03.49.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Apr 2020 03:49:23 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH 7/7] arm64: dts: allwinner: h6: Enable CPU and GPU opp tables for Beelink GS1
-Date:   Sun,  5 Apr 2020 12:49:13 +0200
-Message-Id: <20200405104913.22806-8-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200405104913.22806-1-peron.clem@gmail.com>
-References: <20200405104913.22806-1-peron.clem@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1726556AbgDELYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Apr 2020 07:24:33 -0400
+Received: from outgoing2.flk.host-h.net ([188.40.0.84]:45339 "EHLO
+        outgoing2.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726598AbgDELYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 07:24:33 -0400
+X-Greylist: delayed 1197 seconds by postgrey-1.27 at vger.kernel.org; Sun, 05 Apr 2020 07:24:32 EDT
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam3-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.92)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1jL34p-0007Uu-IF; Sun, 05 Apr 2020 13:04:33 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1jL34m-00027v-EM; Sun, 05 Apr 2020 13:04:28 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: enable WLAN for Mecer Xtreme Mini S6
+Date:   Sun,  5 Apr 2020 11:00:21 +0000
+Message-Id: <20200405110022.3849-1-justin.swartz@risingedge.co.za>
+X-Mailer: git-send-email 2.11.0
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.00700465061722)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0VxB0mWeGZk2wSOLROvd+japSDasLI4SayDByyq9LIhVCODMyKVUA5BF
+ Hq9af7rAaUTNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0jxJtcVJProrT987X1VDPOqN+OoDzRTdku7DidYUZdNf38Sp7Of4wP429AA
+ f49baR+f3He7jw4SoVhmTJ/3eP9ORQWVx8ds1M4qmk3/bYr2p8zbg4Paoa3pNVQ0zl7t/+UfQLYB
+ qEPnp1U88kqVD8AM2G81dFO0E3gi+MOI1foZYzDggRXhpvoPtF3cVkniFXU3qJSqpdJudO6+rkiw
+ E5i8Wl78Q18OeOfsy4h7jF1Uv9lnibl3vcBqVmvQB4A18adRHDV3Cg2VtHDZHoZSNr/jAVXirbLu
+ Jjy3NtnGWLbnBGfrUBEXB2fYGLNieGQuoHtJvp0r29Rf3ZjFwL+MhHEWw/0qBlNDp8uABz3dkWV+
+ ttWGem52QLIiDo2hv5/Q58JTycYLFeAN4+MGwnsp7SkU6CLbyF0Zq4b1/7rjUzETJrWks4pbbQJq
+ 6gWopI3ep45X19ZysgQ+31LcAX8eoFXAhohfegXGH2GIVQVglJFbK771YV8YbC29CtmpcTqTfSIf
+ CWq9oj7OiT8GwpAriB+3/81I3rvR8KJ2fK9jiDYgiuaWjWJ1lPr1Ev5xNW3FQUl1thv0hd9gZGlV
+ L/SEDgzCxVAfo0TfAdBm88UU/z2X2IjokNqZVv3KMEb5yncp4Gliqy40Rbjn7L/aSJSlbL1zKyEL
+ KRIlJqopKieSGgZIDDCaOnYR+e17nmKXMy4iUno/l2R44/7at9DP1rQ8e6dbF/Yfz7ZwWRFpJHQn
+ mVbGJJcMBQM8xFcyypgGsWJnLxUf4D3bkY2u9P2maVhPXuiOVOc6XrA4vsvWFPzHwIQ6neDt/vDy
+ PLUXN2ILHndC4hwbA2fIdq9z/kUhYTDkDb9GLLhZsgdKPiGhHoIVmEgc3vQE4bdGRg51xWZ402gC
+ TyXPOOUgfrQ68NrwMFh7KSObGsS+toWgXfk8WFHb2sU11qA6HXMtTTYLhUej0Yho17o8CVsONrMJ
+ uGzuoGnKTKcyMAVhaIz/fGNqyRYsGJ0LJeBqPlwuAReGWkPdwxr2XgmbPrJVQzt6iVRPsiDvDuTj
+ 4oYwO9PC4N2NoF8mn/qyLT9gcYZ23l4P3JrzWS8jWh8xuwZvHnAADkIPtamKuAZddoNrr+WHg4o5
+ S3beb97n9J0N63F3lSElipbV7k/tzvRn13OWvSfGlZ4x16b3bGBx
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CPU and GPU opp tables for Beelink GS1.
+The Mecer Xtreme Mini S6 features a wireless module, based on a
+Realtek 8723BS, which provides WLAN and Bluetooth connectivity via
+SDIO and UART interfaces respectively.
 
-This needs also to change the CPU regulator min/max voltage to fit
-the OPP table.
+Define a simple MMC power sequence that declares the GPIO pins
+connected to the module's WLAN Disable and Bluetooth Disable pins
+as active low reset signals, because both signals must be deasserted
+for WLAN radio operation.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
+Configure the host's SDIO interface for High Speed mode with 1.8v
+I/O signalling and IRQ detection over a 4-bit wide bus.
+
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 ---
- .../arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/rk3229-xms6.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index df6d872c34e2..8e65d56a7c85 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -4,6 +4,8 @@
- /dts-v1/;
- 
- #include "sun50i-h6.dtsi"
-+#include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -70,6 +72,10 @@
+diff --git a/arch/arm/boot/dts/rk3229-xms6.dts b/arch/arm/boot/dts/rk3229-xms6.dts
+index 679fc2b00..cdfcef41b 100644
+--- a/arch/arm/boot/dts/rk3229-xms6.dts
++++ b/arch/arm/boot/dts/rk3229-xms6.dts
+@@ -39,6 +39,12 @@
+ 		};
  	};
- };
  
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio2 26 GPIO_ACTIVE_LOW>,
++		              <&gpio2 29 GPIO_ACTIVE_LOW>;
++	};
 +
- &de {
+ 	vcc_host: vcc-host-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -202,6 +208,18 @@
  	status = "okay";
  };
-@@ -226,8 +232,8 @@
  
- 			reg_dcdca: dcdca {
- 				regulator-always-on;
--				regulator-min-microvolt = <810000>;
--				regulator-max-microvolt = <1080000>;
-+				regulator-min-microvolt = <820000>;
-+				regulator-max-microvolt = <1160000>;
- 				regulator-name = "vdd-cpu";
- 			};
- 
++&sdio {
++	bus-width = <4>;
++	cap-sd-highspeed;
++	cap-sdio-irq;
++	disable-wp;
++	mmc-pwrseq = <&sdio_pwrseq>;
++	non-removable;
++	num-slots = <1>;
++	vqmmc-supply = <&vccio_1v8>;
++	status = "okay";
++};
++
+ &sdmmc {
+ 	cap-mmc-highspeed;
+ 	disable-wp;
 -- 
-2.20.1
+2.11.0
 
