@@ -2,109 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5FA319EA72
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 12:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED03519EA8F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2020 12:49:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbgDEKis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Apr 2020 06:38:48 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:42447 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726399AbgDEKis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 06:38:48 -0400
-Received: by mail-pg1-f195.google.com with SMTP id g6so4108814pgs.9;
-        Sun, 05 Apr 2020 03:38:47 -0700 (PDT)
+        id S1726555AbgDEKtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Apr 2020 06:49:20 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34040 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbgDEKtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Apr 2020 06:49:19 -0400
+Received: by mail-wr1-f67.google.com with SMTP id 65so13898919wrl.1;
+        Sun, 05 Apr 2020 03:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qdLT95uUUHQQjan6IE7MImhuwtChu6BiQ6bgREKm7VM=;
-        b=MXLhu3KBzqbM7vGo8jZvb7194ZggQq+Rej3BI7Vu8KoJUXc36JHdoH3rU0SK24Q/N9
-         IdzsJGJ4LCDiyF0OfwAezRI30kFwJ08BUB8yJsFZz9EwPYD6JoiiLKBM3E/4qIv6HT6S
-         grhT/7ubthWiKfmBX95cGAsY3jVuTaLkP7V3ZpJZM54+jZoxtKhHCFfzK8z8BTdZTiTe
-         707weLjiVp+vnaIEsJClyv1vSvUL4YpocdJsP63n88sdSPK3CubOfMyw7LXqaL6d/FmG
-         UsOKCY6yzhfebMpt5GNWTIDIKfVf/GYUiUki1nEMB3eZSMH57CXpOlMaE/eArrZYhYl0
-         8EdQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yv9/IWXnJ1yoMpi3TirvEFglVe/Qk5su9GHmZ1S9fvw=;
+        b=mjExk6h0SjDMiFmot3d7kbacUhaCJ2rJUaHjRag6KYbL1sKo310SOL1FvgVioCuMJE
+         AfN74pbWGyQdoV9kbee/HsesCoTxJnVudn9an0lEC0jBKQRMT65byzkYEtchI8d1Ugy+
+         HDwJuMA0zHQUj4MxS9mTyxLmo9tNRGgJ0gpxcVIwcXxHPhlAP+0Qxjs3oy2mRdL0X8MT
+         MLt8AGq1PeoqPZeewzypXrFFgS1iOPhmUY0e7qobHLIEZ+d40UhKTuAhjX4o6Yr3oSyo
+         T7P+ZUavVbah3wm95NhoNRcYQylcqXoZZpNkjiYRIndGsw8iLsilqRcQ9faMcbfmV8la
+         uq8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qdLT95uUUHQQjan6IE7MImhuwtChu6BiQ6bgREKm7VM=;
-        b=ea0rNsaS8lE7K7f7u2XIzSwquQfvX7wU8WL2cO/THBuAfWlL4ziZJ3EYhqrCwu483q
-         bsAZkbOdzHVK7EsHIFibtwrtlNjsqwhlTMpNzmnMAmHEVVe32zxEvombij0H4grGEf3G
-         7N/hFGtpHjEKSWwE++NJZlu0ltUniUtHs8iJU0L0igUjhKsEAvJUTyv2zlcwqDg+yHqN
-         EWPpvJNCCnCIayLhJjzYURCKGz8P4fbhjA7NQwuU/quaUERCOYTWAE+GQodBNAiykxyd
-         P4Xvbau7cr0L7gmYEIqkcUhEnwYWzX9bydpJDZLZle7V5iu8trORoB+A2Rhzbluwncc+
-         HZKg==
-X-Gm-Message-State: AGi0Pua3Czw9nTzOTS5TL6WuSJBls9blWA+JhMjnEVlE4cDdW2/kBljf
-        /DXEvXF5E0gDbwra2r2qDqnfsvLivi4anzERGacf8ZP01LM=
-X-Google-Smtp-Source: APiQypIdZjZrO4aeX+/9G7UXEKP7hP1w5JadaMQbG06oUiIQ8NjExQZ7der4QrwRDuenrob6GM+iG+QvYzm3UfSS+fE=
-X-Received: by 2002:a63:1c1:: with SMTP id 184mr17155666pgb.203.1586083127176;
- Sun, 05 Apr 2020 03:38:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200401162416.24474-1-i.mikhaylov@yadro.com> <20200401162416.24474-3-i.mikhaylov@yadro.com>
- <CAHp75VcdDR-owtFuFMqNLFh_-L902fXODG14_6Dh416tTwjidA@mail.gmail.com>
- <1e2c9b590a3626abee330a28cca86cbae7affb39.camel@yadro.com>
- <CAHp75VdaM_pumyWyeHJxCQXrKUAW=ktJme1uYxH0w4e9an0X2A@mail.gmail.com> <20200405111341.0912468d@archlinux>
-In-Reply-To: <20200405111341.0912468d@archlinux>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 5 Apr 2020 13:38:36 +0300
-Message-ID: <CAHp75VeQ7LNve3bUEgzH2YrMwcihSDs+LHB3fgxy=b6pKH4RcA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] iio: proximity: Add driver support for vcnl3020
- proximity sensor
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yv9/IWXnJ1yoMpi3TirvEFglVe/Qk5su9GHmZ1S9fvw=;
+        b=SB/abBsgi6m8Neie8CNPYbQNd9Qa5N3KekCSojGV8PcZNBvwWfQ1E2XdtdZznxc780
+         wzSKc5JLbvMMkq67MXpJpYtgU4bT7bMl4MqX58uL/+w+lX+HXnpeZN6qUhxj8nvmW5Zy
+         Go3vem5WjsCpMaQpZ83maKCQ76PyDzEE8hq5cz9q24CLZRpQUHH8xVE44cc/7lt+UJyc
+         /33XT1Eh8QLLYjlVLpqhIpMR2NuPeKJKWbjUno+EwWFtYi6hbExy/thFqrUOmV20IJgh
+         sTdcz9TI+dVr+R8gGkglyeOM2y4QRX2e4LjORd9wr6V5utkN7RYVu7ahCnTNa/Dn9XwY
+         KlDA==
+X-Gm-Message-State: AGi0PuYmKXSCIkEVnLoLmqJ0JxhEcGLh+vwt6VFmgIfdyIrNpw6zjBY6
+        vC2+6ZbyYaee2yleeXA3hM/z/U121hM=
+X-Google-Smtp-Source: APiQypI5EMi4kSaqvdloUF+bXudrs3VbGb3tMM6vkimF6JXmXh9exzeuX4ABGCQELzS/I9fiEaAo0w==
+X-Received: by 2002:a05:6000:4:: with SMTP id h4mr18068000wrx.236.1586083756474;
+        Sun, 05 Apr 2020 03:49:16 -0700 (PDT)
+Received: from localhost.localdomain (91-167-199-67.subs.proxad.net. [91.167.199.67])
+        by smtp.gmail.com with ESMTPSA id u13sm21606411wru.88.2020.04.05.03.49.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Apr 2020 03:49:15 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH 0/7] Add support for Allwinner H6 DVFS
+Date:   Sun,  5 Apr 2020 12:49:06 +0200
+Message-Id: <20200405104913.22806-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 5, 2020 at 1:13 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> On Thu, 2 Apr 2020 15:42:02 +0300
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > On Thu, Apr 2, 2020 at 11:24 AM Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
-> > > On Wed, 2020-04-01 at 19:35 +0300, Andy Shevchenko wrote:
-> > > > On Wed, Apr 1, 2020 at 7:24 PM Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+Hi Sunxi maintainers and members,
 
-> > > > > +       indio_dev->name = VCNL_DRV_NAME;
-> > > >
-> > > > It's definitely not a driver name. You have to put part number here.
-> > >
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/light/tsl4531.c?h=v5.6#n199
-> That one is actually fine (if not very pretty) because the driver only supports one part and it happens
-> to also be the name of the driver.
->
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/light/max44009.c?h=v5.6#n507
-> Also only one part supported, so fine if liable to accidentally get broken if we support more parts.
->
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/light/vl6180.c?h=v5.6#n515
->
-> Again, one part supported and the driver has the same name.
->
-> >
-> > Let's Jonathan speak up.
->
-> So, the real point here is not the value being assigned but the fact it's
-> explicitly linked to the name of the driver.  I'd argue that you could use
-> VCNL_NAME as the define and that link is clearly broken. Or just put the string
-> inline in both places and don't worry about the tiny bit of replication!
+Now that required drivers are merged we can contibute on DVFS support for
+Allwinner H6.
 
-My comments, except this one, to this version are quite minor, so,
-after addressing this in a way Jonathan likes,
+This serie is based on Yangtao Li serie[0] and Megous works[1].
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Most of the OPP tables are taken from original vendor kernel[2].
+Plus there is a new CPU frequency @1.8GHz.
 
-P.S. Don't forget to include given tags in the commit message of next
-(fixed) version.
+I wrote a simple script to randomly set a frequency during a random time[3].
+With this script and using stress-ng during a day I didn't see any issue.
+Moreover I have tested specifically the 1.8GHz on my Beelink GS1, max thermal
+80°C is reached after ~10min and then the SoC oscillates quickly between 1.5
+and 1.8GHz.
+
+I also test that that offlining CPU0 and doing DVFS on other CPUs works.
+As CPU regulator is only set for CPU0.
+
+But maybe it doesn't cost much to set the regulator for all the CPUs?
+
+Jernej test the GPU devfreq on several H6 board particulary the Tanix TX6 which
+doesn't have a proper dedicated PMIC and doesn't had any trouble with it.
+
+Do you think I can enable GPU OPP for all H6 Boards?
+
+Also Yangtao Li enable DVFS for OrangePi and Pine64, as I can't test them I
+didn't reenable these boards. Please, let me know if you want me to add these
+boards in this serie.
+
+Thanks,
+Clément
+
+0: https://patchwork.kernel.org/cover/10815117/
+1: https://megous.com/git/linux/log/?h=ths-5.7
+2: https://github.com/orangepi-xunlong/OrangePiH6_Linux4_9/blob/master/arch/arm64/boot/dts/sunxi/sun50iw6p1.dtsi#L345-L517
+3: https://gist.github.com/clementperon/55a055dae3f13bbd14fb39c0069fe2e2
+
+Clément Péron (4):
+  arm64: dts: allwinner: h6: set thermal polling time
+  arm64: dts: allwinner: h6: Add GPU Operating Performance Points table
+  arm64: configs: Enable sun50i cpufreq nvmem
+  arm64: dts: allwinner: h6: Enable CPU and GPU opp tables for Beelink
+    GS1
+
+Ondrej Jirman (2):
+  arm64: dts: allwinner: h6: Add thermal trip points/cooling map
+  arm64: dts: allwinner: h6: Add CPU Operating Performance Points table
+
+Yangtao Li (1):
+  arm64: dts: allwinner: h6: Add clock to CPU cores
+
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  10 +-
+ .../boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi | 103 ++++++++++++++++++
+ .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi |  74 +++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  44 +++++++-
+ arch/arm64/configs/defconfig                  |   1 +
+ 5 files changed, 226 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.20.1
+
