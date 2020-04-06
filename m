@@ -2,286 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D683A19FBCF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 19:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDCB619FC05
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 19:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727738AbgDFRn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 13:43:58 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52966 "EHLO
+        id S1726521AbgDFRun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 13:50:43 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53188 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726703AbgDFRn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 13:43:58 -0400
+        with ESMTP id S1726491AbgDFRun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 13:50:43 -0400
 Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E65080E;
-        Mon,  6 Apr 2020 19:43:55 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 179D580E;
+        Mon,  6 Apr 2020 19:50:38 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1586195035;
-        bh=TEs3NzWpLHrpFcMT8pI7gku05SwpaHYibdYAcct2ZAI=;
+        s=mail; t=1586195439;
+        bh=3QLlghUrryaj5Iq6GY5ZQ+HMUYeI6nNN9lKy3CRAyZ8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZelhUvmBLBDidGrdYCAu1wlCuaLmKfdT+a2Ce84aGS9JvCh3+XaAexOUsOzAdxIHE
-         G8pDVnAzM3s2XOMem/bpSz1RpjcV8Y2vIwmgTpFH8y/8g+FzN3Vb2xXUDq9pyVo0bk
-         Pz3dAPoG58cLAGX1ruxW7VKzbQ4ljlE0IZ/i0LvU=
-Date:   Mon, 6 Apr 2020 20:43:46 +0300
+        b=qu5mbH/SEe7Yae8jmd/YMfOQSBJ59i6LkFn2pn4+Gh+phRwFZzlYx61pXxyc09jno
+         g+JwSdDY/u4+FTCX8BsO9cED/gOgw1VNgeNo0664j5rjTTeh10WmAeGN6QzsbjuEgD
+         Hx8MhzY1/t8hrtbAqWiKc5b+HBOVO+zUKG9JNL+8=
+Date:   Mon, 6 Apr 2020 20:50:28 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lad Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH v5 5/5] media: dt-bindings: media: i2c: convert ov5645
- bindings to json-schema
-Message-ID: <20200406174346.GH16885@pendragon.ideasonboard.com>
-References: <1586191361-16598-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1586191361-16598-6-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Yao <mark.yao@rock-chips.com>,
+        Sandy Huang <hjc@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH/RFC 4/6] dt-bindings: display: rockchip: dw-hdmi: Convert
+ binding to YAML
+Message-ID: <20200406175028.GI16885@pendragon.ideasonboard.com>
+References: <20200405233935.27599-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20200405233935.27599-5-laurent.pinchart+renesas@ideasonboard.com>
+ <20200406080032.zlszhkjqmjeoa4ti@gilmour.lan>
+ <20200406111927.GD4757@pendragon.ideasonboard.com>
+ <20200406170915.x2ztz4q446h6vx2y@gilmour.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1586191361-16598-6-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200406170915.x2ztz4q446h6vx2y@gilmour.lan>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Maxime,
 
-Thank you for the patch.
-
-On Mon, Apr 06, 2020 at 05:42:41PM +0100, Lad Prabhakar wrote:
-> Convert ov5645 bindings to json-schema.
+On Mon, Apr 06, 2020 at 07:09:15PM +0200, Maxime Ripard wrote:
+> On Mon, Apr 06, 2020 at 02:19:27PM +0300, Laurent Pinchart wrote:
+> > On Mon, Apr 06, 2020 at 10:00:32AM +0200, Maxime Ripard wrote:
+> > > On Mon, Apr 06, 2020 at 02:39:33AM +0300, Laurent Pinchart wrote:
+> > > > Convert the Rockchip HDMI TX text binding to YAML.
+> > > >
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > > ---
+> > > >  .../display/rockchip/dw_hdmi-rockchip.txt     |  74 --------
+> > > >  .../display/rockchip/rockchip,dw-hdmi.yaml    | 178 ++++++++++++++++++
+> > > >  2 files changed, 178 insertions(+), 74 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+> > > > deleted file mode 100644
+> > > > index 3d32ce137e7f..000000000000
+> > > > --- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+> > > > +++ /dev/null
+> > > > @@ -1,74 +0,0 @@
+> > > > -Rockchip DWC HDMI TX Encoder
+> > > > -============================
+> > > > -
+> > > > -The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
+> > > > -with a companion PHY IP.
+> > > > -
+> > > > -These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
+> > > > -Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt with the
+> > > > -following device-specific properties.
+> > > > -
+> > > > -
+> > > > -Required properties:
+> > > > -
+> > > > -- compatible: should be one of the following:
+> > > > -		"rockchip,rk3228-dw-hdmi"
+> > > > -		"rockchip,rk3288-dw-hdmi"
+> > > > -		"rockchip,rk3328-dw-hdmi"
+> > > > -		"rockchip,rk3399-dw-hdmi"
+> > > > -- reg: See dw_hdmi.txt.
+> > > > -- reg-io-width: See dw_hdmi.txt. Shall be 4.
+> > > > -- interrupts: HDMI interrupt number
+> > > > -- clocks: See dw_hdmi.txt.
+> > > > -- clock-names: Shall contain "iahb" and "isfr" as defined in dw_hdmi.txt.
+> > > > -- ports: See dw_hdmi.txt. The DWC HDMI shall have a single port numbered 0
+> > > > -  corresponding to the video input of the controller. The port shall have two
+> > > > -  endpoints, numbered 0 and 1, connected respectively to the vopb and vopl.
+> > > > -- rockchip,grf: Shall reference the GRF to mux vopl/vopb.
+> > > > -
+> > > > -Optional properties
+> > > > -
+> > > > -- ddc-i2c-bus: The HDMI DDC bus can be connected to either a system I2C master
+> > > > -  or the functionally-reduced I2C master contained in the DWC HDMI. When
+> > > > -  connected to a system I2C master this property contains a phandle to that
+> > > > -  I2C master controller.
+> > > > -- clock-names: See dw_hdmi.txt. The "cec" clock is optional.
+> > > > -- clock-names: May contain "cec" as defined in dw_hdmi.txt.
+> > > > -- clock-names: May contain "grf", power for grf io.
+> > > > -- clock-names: May contain "vpll", external clock for some hdmi phy.
+> > > > -- phys: from general PHY binding: the phandle for the PHY device.
+> > > > -- phy-names: Should be "hdmi" if phys references an external phy.
+> > > > -
+> > > > -Optional pinctrl entry:
+> > > > -- If you have both a "unwedge" and "default" pinctrl entry, dw_hdmi
+> > > > -  will switch to the unwedge pinctrl state for 10ms if it ever gets an
+> > > > -  i2c timeout.  It's intended that this unwedge pinctrl entry will
+> > > > -  cause the SDA line to be driven low to work around a hardware
+> > > > -  errata.
+> > > > -
+> > > > -Example:
+> > > > -
+> > > > -hdmi: hdmi@ff980000 {
+> > > > -	compatible = "rockchip,rk3288-dw-hdmi";
+> > > > -	reg = <0xff980000 0x20000>;
+> > > > -	reg-io-width = <4>;
+> > > > -	ddc-i2c-bus = <&i2c5>;
+> > > > -	rockchip,grf = <&grf>;
+> > > > -	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> > > > -	clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
+> > > > -	clock-names = "iahb", "isfr";
+> > > > -	ports {
+> > > > -		hdmi_in: port {
+> > > > -			#address-cells = <1>;
+> > > > -			#size-cells = <0>;
+> > > > -			hdmi_in_vopb: endpoint@0 {
+> > > > -				reg = <0>;
+> > > > -				remote-endpoint = <&vopb_out_hdmi>;
+> > > > -			};
+> > > > -			hdmi_in_vopl: endpoint@1 {
+> > > > -				reg = <1>;
+> > > > -				remote-endpoint = <&vopl_out_hdmi>;
+> > > > -			};
+> > > > -		};
+> > > > -	};
+> > > > -};
+> > > > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..8ff544ae0ac2
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> > > > @@ -0,0 +1,178 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Rockchip DWC HDMI TX Encoder
+> > > > +
+> > > > +maintainers:
+> > > > +  - Mark Yao <mark.yao@rock-chips.com>
+> > > > +
+> > > > +description: |
+> > > > +  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
+> > > > +  with a companion PHY IP.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - rockchip,rk3228-dw-hdmi
+> > > > +      - rockchip,rk3288-dw-hdmi
+> > > > +      - rockchip,rk3328-dw-hdmi
+> > > > +      - rockchip,rk3399-dw-hdmi
+> > > > +
+> > > > +  reg: true
+> > > > +
+> > > > +  reg-io-width:
+> > > > +    const: 4
+> > > > +
+> > > > +  clocks:
+> > > > +    minItems: 2
+> > > > +    maxItems: 5
+> > > > +    items:
+> > > > +      - description: The bus clock for either AHB and APB
+> > > > +      - description: The internal register configuration clock
+> > > > +      - description: The HDMI CEC controller main clock
+> > > > +      - description: Power for GRF IO
+> > > > +      - description: External clock for some HDMI PHY
+> > > > +
+> > > > +  clock-names:
+> > > > +    minItems: 2
+> > > > +    maxItems: 5
+> > > > +    items:
+> > > > +      - const: iahb
+> > > > +      - const: isfr
+> > > > +      - enum:
+> > > > +        - cec
+> > > > +        - grf
+> > > > +        - vpll
+> > > > +      - enum:
+> > > > +        - cec
+> > > > +        - grf
+> > > > +        - vpll
+> > > > +      - enum:
+> > > > +        - cec
+> > > > +        - grf
+> > > > +        - vpll
+> > >
+> > > IIRC Rob wanted us to standardize the order of the clocks if possible,
+> > > since it's a pain to support properly here, and your description won't
+> > > match what you describe here either (and in general it's just a best
+> > > practice), so if all your DTs have the same order you should just set
+> > > that order in stone.
+> >
+> > But how do we handle the case where any of the cec, grf and vpll clocks
+> > can be set ? Assuming, for instance, that
+> >
+> > 	clock-names = "iahb", "isfr", "cec";
+> > 	clock-names = "iahb", "isfr", "vpll";
+> > 	clock-names = "iahb", "isfr", "cec", "vpll";
+> >
+> > would all be valid.
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/media/i2c/ov5645.txt  |  52 --------
->  .../devicetree/bindings/media/i2c/ov5645.yaml | 126 ++++++++++++++++++
->  2 files changed, 126 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.yaml
+> It would be painful then...
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> deleted file mode 100644
-> index a55bb728ea48..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> +++ /dev/null
-> @@ -1,52 +0,0 @@
-> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
-> -
-> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
-> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
-> -interface.
-> -
-> -Required Properties:
-> -- compatible: Value should be "ovti,ov5645".
-> -- clocks: Reference to the xclk clock.
-> -- clock-names: Should be "xclk".
-> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
-> -  to the hardware pin PWDNB which is physically active low.
-> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
-> -  the hardware pin RESETB.
-> -- vdddo-supply: Chip digital IO regulator.
-> -- vdda-supply: Chip analog regulator.
-> -- vddd-supply: Chip digital core regulator.
-> -
-> -The device node must contain one 'port' child node for its digital output
-> -video port, in accordance with the video interface bindings defined in
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Example:
-> -
-> -	&i2c1 {
-> -		...
-> -
-> -		ov5645: ov5645@3c {
-> -			compatible = "ovti,ov5645";
-> -			reg = <0x3c>;
-> -
-> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&camera_rear_default>;
-> -
-> -			clocks = <&clks 200>;
-> -			clock-names = "xclk";
-> -
-> -			vdddo-supply = <&camera_dovdd_1v8>;
-> -			vdda-supply = <&camera_avdd_2v8>;
-> -			vddd-supply = <&camera_dvdd_1v2>;
-> -
-> -			port {
-> -				ov5645_ep: endpoint {
-> -					clock-lanes = <1>;
-> -					data-lanes = <0 2>;
-> -					remote-endpoint = <&csi0_ep>;
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ov5645.yaml
-> new file mode 100644
-> index 000000000000..d5cdcf9a1c76
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov5645.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ov5645.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision 1/4-Inch 5MP CMOS Digital Image Sensor
-> +
-> +maintainers:
-> +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description: |-
-> + The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
-> + an active array size of 2592H x 1944V. It is programmable through a serial I2C
-> + interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5645
-> +
-> +  reg:
-> +    description: I2C device address
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: External clock frequency should range between 6MHz to 27MHz.
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xclk
-> +
-> +  enable-gpios:
-> +    description: |-
-> +      Chip enable GPIO. This corresponds to the hardware pin PWDNB which is
-> +      physically active low.
-> +
-> +  reset-gpios:
-> +    description: Chip reset GPIO. This corresponds to the hardware pin RESETB.
-> +
-> +  vdddo-supply:
-> +    description: Chip digital IO regulator.
-> +
-> +  vdda-supply:
-> +    description: Chip analog regulator.
-> +
-> +  vddd-supply:
-> +    description: Chip digital core regulator.
-> +
-> +  # See ../video-interfaces.txt for more details
-> +  port:
-> +    type: object
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          data-lanes:
+> The easiest way to do so would be to simply use an enum there, and not
+> bother checking the array at all. You'll get a warning if there's
+> multiple occurences of the same string, and I guess that's what you
+> would be really concerned about.
+> 
+> However, now that I think about it, what's the interaction between the
+> generic binding and this one when it comes to the third clock? The
+> generic one expects it to be cec, and here you have other options?
 
-Don't you need
+I'm not too familiar with the platform, but as far as I understand, any
+of the cec, grf and vpll clock is optional (if someone could confirm
+that, it would be useful). I don't care so much about the order, but
+iahb and isfr are mandatory, and thus need to be specified as two const
+items in the beginning as far as I understand. It would be nice to set
+something along the lines of
 
-		minItems: 1
-		maxItems: 2
+  minItems: 2
+  maxItems: 5
+  items:
+    - const: iahb
+    - const: isfr
+    - enum:
+      - cec
+      - grf
+      - vpll
 
-here ?
+and have the enum automatically span the last three slots of the items.
+I understand this isn't possible, but an equivalent compact would to do
+so would be useful.
 
-> +            description: |-
-> +              The sensor supports either one-lane, or two-lane operation.
-> +              For one-lane operation the property must be set to <1> and
-> +              for two-lane operation the property must be set to <1 2>.
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +
-> +          clock-lanes:
+As for the base schema, it expects three clocks only, so
 
-Same here,
+	clock-names = "iahb", "isfr", "vpll";
 
-		maxItems: 1
-
-?
-
-> +            description:
-> +              should be set to <0> (clock lane on hardware lane 0).
-
-I think you can drop the description, with the items below it's clear
-that the value has to be <0>.
-
-> +            items:
-> +              - const: 0
-> +
-> +          remote-endpoint: true
-
-Should this be
-
-             remote-endpoint:
-	       $ref: /schemas/types.yaml#/definitions/phandle
-
-> +
-> +        required:
-> +          - data-lanes
-> +          - clock-lanes
-> +          - remote-endpoint
-> +
-> +        additionalProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - enable-gpios
-> +  - reset-gpios
-> +  - vdddo-supply
-> +  - vdda-supply
-> +  - vddd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov5645: sensor@3c {
-> +            compatible = "ovti,ov5645";
-> +            reg = <0x3c>;
-> +            clocks = <&ov5645_cl>;
-> +            clock-names = "xclk";
-> +            enable-gpios = <&gpio1 6 /* GPIO_ACTIVE_HIGH */>;
-> +            reset-gpios = <&gpio5 20 /* GPIO_ACTIVE_LOW */>;
-> +            vdddo-supply = <&camera_dovdd_1v8>;
-> +            vdda-supply = <&camera_avdd_2v8>;
-> +            vddd-supply = <&camera_dvdd_1v2>;
-> +
-> +            port {
-> +                ov5645_0: endpoint {
-> +                    remote-endpoint = <&csi1_ep>;
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <1 2>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+won't validate. I can't think of a way around that other than pulling
+constraints selectively from the base schema, or just not specifying it
+in the base schema at all.
 
 -- 
 Regards,
