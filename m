@@ -2,137 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 427E119F876
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 17:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46CF19F887
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 17:09:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728766AbgDFPGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 11:06:30 -0400
-Received: from mga14.intel.com ([192.55.52.115]:4461 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728695AbgDFPGa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Apr 2020 11:06:30 -0400
-IronPort-SDR: IpCH46fnrgIwOj0Uw5Z8/PBPcL309qndtdiBx0TUyB8iMunWD++KxLucXS1rePGTrOd9LZgXvH
- cbgA0L82J9+A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2020 08:06:28 -0700
-IronPort-SDR: mqw7ycFAc1LmPAC67DPTqIPgVgTjHFH2j8p8RoZfwndcKlL/z+tEfGOZN1CLbTbI2F7YfryUZ/
- sRgsmN8ohpTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; 
-   d="scan'208";a="450862810"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga005.fm.intel.com with ESMTP; 06 Apr 2020 08:06:23 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andy.shevchenko@gmail.com>)
-        id 1jLTKU-00GCiI-8A; Mon, 06 Apr 2020 18:06:26 +0300
-Date:   Mon, 6 Apr 2020 18:06:26 +0300
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 2/3] media: ov8856: Add devicetree support
-Message-ID: <20200406150626.GW3676135@smile.fi.intel.com>
-References: <20200331133346.372517-1-robert.foss@linaro.org>
- <20200331133346.372517-3-robert.foss@linaro.org>
- <CAHp75VfFKY6nzb8aEWmop73v2haZ0P5+aTsKDEU8M=uUPn0u3g@mail.gmail.com>
- <CAG3jFyuH5Kad16R7Oit-c_7RasiEfPycOpA68JYLVopbyQ749w@mail.gmail.com>
+        id S1728807AbgDFPJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 11:09:18 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:21680 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728709AbgDFPJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 11:09:18 -0400
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 036F4L40030332;
+        Mon, 6 Apr 2020 11:08:57 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 306m367g82-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Apr 2020 11:08:56 -0400
+Received: from ASHBMBX8.ad.analog.com (ashbmbx8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 036F8tq8064300
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Mon, 6 Apr 2020 11:08:55 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Mon, 6 Apr 2020
+ 11:08:54 -0400
+Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Mon, 6 Apr 2020 11:08:54 -0400
+Received: from NSA-L01.ad.analog.com (nsa-l01.ad.analog.com [10.32.224.203])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 036F8oIe002847;
+        Mon, 6 Apr 2020 11:08:51 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alexandru Ardelean <alexandru.Ardelean@analog.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: [PATCH v4 0/6] Support ADIS16475 and similar IMUs
+Date:   Mon, 6 Apr 2020 17:08:40 +0200
+Message-ID: <20200406150846.878-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAG3jFyuH5Kad16R7Oit-c_7RasiEfPycOpA68JYLVopbyQ749w@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-06_08:2020-04-06,2020-04-06 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0 mlxscore=0
+ mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004060124
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 06, 2020 at 03:37:24PM +0200, Robert Foss wrote:
-> On Tue, 31 Mar 2020 at 16:01, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > On Tue, Mar 31, 2020 at 4:36 PM Robert Foss <robert.foss@linaro.org> wrote:
+This series adds support for the adis16475 and similar IMUs. This driver
+will be the first user of some changes on the adis library. Hence, the
+first three patches are related to the library:
+ * Add anaged device functions for registering triggers with the library;
+ * Updates the way `irq_mask` is passed to `request_irq()`;
+ * It adds an update_bits() like API.
 
-...
+A new patch was introduced (iio: adis: Add burst_max_len variable) in
+order to make burst32 configuration at runtime.
 
-> > > +       if (ret < 0) {
-> >
-> > Do you need all ' < 0' parts all over the series?
-> 
-> Some checks are needed due to ACPI and DT support co-existing.
-> Maybe it would be better to just split the probing into an ACPI path
-> and a DT path.
-> 
-> I'll have a look through the series for redundant retval checks.
+Nuno Sá (6):
+  iio: imu: adis: Add Managed device functions
+  iio: imu: adis: Add irq mask variable
+  iio: adis: Add adis_update_bits() APIs
+  iio: adis: Support different burst sizes
+  iio: imu: Add support for adis16475
+  dt-bindings: iio: Add adis16475 documentation
 
-Drop where it is redundant.
-
-...
-
-> > > -       ret = fwnode_property_read_u32(fwnode, "clock-frequency", &mclk);
-> > > -       if (ret)
-> > > -               return ret;
-> >
-> > Where is it gone? Why?
-> 
-> It was replaced by a clk_get_rate call, which as Sakari pointed out,
-> isn't correct.
-> I'll rework the clock handling for v4.
-
-If it was in the driver it should stay -- properties is an ABI (between firmware and kernel).
-
-> > > +       ov8856->xvclk = devm_clk_get_optional(dev, "xvclk");
-> > > +       if (IS_ERR(ov8856->xvclk)) {
-> >
-> > > +               dev_err(dev, "could not get xvclk clock (%ld)\n",
-> > > +                       PTR_ERR(ov8856->xvclk));
-> >
-> > Also you may use %pe here and in similar cases.
-> 
-> Weirdly checkpatch complains about this.
-> But it builds and runs cleanly, so I'll add it in v4.
-
-%pe requires pointer, PTR_ERR converts pointer to integer.
-
-...
-
-> > > +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ov8856_supply_names),
-> > > +                                     ov8856->supplies);
-> > > +       if (ret) {
-> >
-> > > +               dev_warn(dev, "failed to get regulators\n");
-> >
-> > If it's a warning, why we return from here?
-> > Same question to all other places with same issue.
-> 
-> The issue I was seeing was the driver having to return a EDEFER here,
-> so this warning sheds some light on which exact component is returning
-> an EDEFER.
-> 
-> [   15.962623] ov8856 16-0010: Dropping the link to regulator.29
-> [   15.968464] ov8856 16-0010: failed to get regulators
-> [   15.973493] ov8856 16-0010: failed to get HW configuration: -517
-> [   15.979591] ov8856 16-0010: removing from PM domain titan_top_gdsc
-> [   15.985855] ov8856 16-0010: genpd_remove_device()
-> [   15.990672] i2c 16-0010: Driver ov8856 requests probe deferral
-> 
-> Personally I found it helpful to speed up debugging, but I'll happily
-> remove it if you prefer no warning.
-
-My point is that you have it in align:
- - if it is an error, print as an error and bail out, otherwise
- - if it is a warning, print it and continue.
-
-> > > +               return ret;
-> > >         }
+ .../bindings/iio/imu/adi,adis16475.yaml       |  137 ++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   25 +
+ drivers/iio/imu/adis16400.c                   |    2 +-
+ drivers/iio/imu/adis16475.c                   | 1333 +++++++++++++++++
+ drivers/iio/imu/adis_buffer.c                 |   58 +-
+ drivers/iio/imu/adis_trigger.c                |   72 +-
+ include/linux/iio/imu/adis.h                  |   87 +-
+ 10 files changed, 1725 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+ create mode 100644 drivers/iio/imu/adis16475.c
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
