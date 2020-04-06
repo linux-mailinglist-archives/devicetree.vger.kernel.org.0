@@ -2,163 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8A5119F7DA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 16:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBDD619F7FD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 16:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728696AbgDFOXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 10:23:55 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:47087 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728686AbgDFOXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 10:23:55 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200406142351euoutp02eaf21bde426ede7c9c60c2d7aebf7506~DQRAtdhWM0171401714euoutp02t
-        for <devicetree@vger.kernel.org>; Mon,  6 Apr 2020 14:23:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200406142351euoutp02eaf21bde426ede7c9c60c2d7aebf7506~DQRAtdhWM0171401714euoutp02t
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1586183031;
-        bh=80HiovpSACSa5iKWuDtXEGNMjiGgvGqhBPfk2+6zg2I=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Y9S1R0tpk3yqYW2uH+9884TfpcTEYO2pF84lZFKPXhwoYBc3gkBFO6OqyCH1+jTGC
-         T20P0WZ5F0EYNMBJc42m//fPODIqTgx52+aa81BSoufpKyfLnK3pQQn9XNc+MECcpD
-         i1iSdMn2lfk0sAkq6grWcDGvAnsDJGNU5oTk1MkY=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200406142351eucas1p176e16341c0ae5cba40259b3b3b64279e~DQRAfqxZE2343723437eucas1p1r;
-        Mon,  6 Apr 2020 14:23:51 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id F5.1A.61286.77B3B8E5; Mon,  6
-        Apr 2020 15:23:51 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200406142350eucas1p2524f266941cfedd66c0181f2fedcf388~DQRAJGFE81495514955eucas1p2N;
-        Mon,  6 Apr 2020 14:23:50 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200406142350eusmtrp1d2e992634175bcb2ae0fea4a3e778668~DQRAIQ9ax0348903489eusmtrp1a;
-        Mon,  6 Apr 2020 14:23:50 +0000 (GMT)
-X-AuditID: cbfec7f2-f0bff7000001ef66-ea-5e8b3b77753e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 01.CF.08375.67B3B8E5; Mon,  6
-        Apr 2020 15:23:50 +0100 (BST)
-Received: from [106.210.85.205] (unknown [106.210.85.205]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200406142350eusmtip1eccb47d1871edabd5397fc2de3e805dc~DQQ-biU9_1810518105eusmtip1e;
-        Mon,  6 Apr 2020 14:23:50 +0000 (GMT)
-Subject: Re: [PATCH v5 0/5] Genericize DW MIPI DSI bridge and add i.MX 6
- driver
-To:     Adrian Ratiu <adrian.ratiu@collabora.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
-        kernel@collabora.com, linux-stm32@st-md-mailman.stormreply.com,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <7b95e129-8035-df7f-3d50-2ae3c2e8af8d@samsung.com>
-Date:   Mon, 6 Apr 2020 16:23:49 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.6.0
+        id S1728639AbgDFObZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 10:31:25 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:16592 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728406AbgDFObZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 10:31:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1586183482;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=ey2GXzMvyqvroTPmaRXrrAz5iqe+P8aBisZEkCVhpDA=;
+        b=kIjXbZNo262/j1YJtknncryLNywq2RifZsfQEy6gQDoZVbRgjPZn+2LYPYZ7cZixNF
+        mNXHClDbYaaKKMS4GqASRDe9VBNwbdo4dAIQ6A3EtZ1eDXrU1xuIj7wpzvFOthvlAA6o
+        GIM4kS8q1km9yAcdPd0CBl8mhypnAxZo1e6yAlUi5Mdl+ay9NlDKIrcWigSE67B0aNnU
+        WFDgYk6ts8Qf7Ivp1FwKOjB7NnTAmNEs+WSHkE0UAxY4UOIikYErxnd3Ewlt/SDcOooj
+        9GiE+596A/wqKvroz5Oz1pEO7AGD+FAKm7UCznSWT5GdIBHdiAw+CVn6du36iqF9ULB4
+        HJ8Q==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j8Ic/MbIo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.2.1 DYNA|AUTH)
+        with ESMTPSA id u043b8w36EVK2fF
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Mon, 6 Apr 2020 16:31:20 +0200 (CEST)
+Date:   Mon, 6 Apr 2020 16:31:13 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Nick Reitemeyer <nick.reitemeyer@web.de>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 3/3] iio: magnetometer: ak8974: add Alps hscdtd008a
+Message-ID: <20200406143113.GA126707@gerhold.net>
+References: <20200406141350.162036-1-nick.reitemeyer@web.de>
+ <20200406141350.162036-3-nick.reitemeyer@web.de>
 MIME-Version: 1.0
-In-Reply-To: <20200330113542.181752-1-adrian.ratiu@collabora.com>
-Content-Transfer-Encoding: 8bit
-Content-Language: pl
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTYRDH83V3y7ahuBSQEYxiY6JouIIxm6Aoxod9EKM+qQlHkQ0Q21Ja
-        DlEjBJBAOUTw4jAQjoggqFQQiCFQCEiQIkcJJDQQqA8QDsuloIi0i5G338z855v5Tz4SExsI
-        FzJKEcuqFFKZhC/Em7o3BjwS/LKCvUsfiuiNvCaCLu3SE/TI2hKfNvyYxejeeQNOa/XZBJ35
-        uNKGbpgZJWjN5muMHm4t4dPLU9sYrRk1EedtmWZjJWKKMwoJ5nPeEI+ZzOrhMdrKJOb9YjOP
-        ac8pwJmONh9mpeHQFcFN4ZlwVhYVz6q8/EOFkbpOQmnad2ep7SeRjKpsNYgkgToFXYMyDRKS
-        YqoawcJ8H48LVhF8+j2Oc8EKguWhZzYaJLB2mKe6Ma7wCsGX7dJd1RICY043z6JyoK6CfjCd
-        b2FHKgb0jTWERYRRnTxYSa+3iviUO2xpx60iEeUPQ+W1yMI4dRTq5zKt7EQFgX56jOA09tBb
-        aMItLKACYD3dbGWMOgypjcUYx44wNp2GLMOAMtvA8PYIj9v7IhjNjwiOHWCu58Oun4PQV5CN
-        c5wEk9VpGNecgaDxXQvGFfxgQr/Jt5wM29n6basXlw6Aj4YKxF3SDsYW7Lkd7CC/6TnGpUWQ
-        kS7m1Edgsr9x90FnqPq6xs9DkqI9zor2uCna46bo/9wyhNcgZzZOLY9g1T4KNsFTLZWr4xQR
-        nrei5Q1o57P1/elZbkZrQ2E6RJFIYiu6LsgKFhPSeHWiXIeAxCSOIpeczGCxKFyaeJdVRYeo
-        4mSsWodcSVziLPItnw0SUxHSWPY2yypZ1b8qjxS4JKPSXMPZurGZGGX9E8Elj7Jjvxbvvfwu
-        7ovq/+bqWvGipeTCcZt2U8KD0yMzymKnXreClIYws/vTrRSTW5VyK1cwkqqr0cqlvuc2t94I
-        BxbTah0TT3a4pdi1hOYYPZxv3J+A6fzlJEVI3eV1o2v0ag+L9N4Z+xXa1c5A3YGga4GTElwd
-        KfU5ganU0r9uZjfdaAMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBIsWRmVeSWpSXmKPExsVy+t/xu7pl1t1xBr82mFj8nLCN1WL+kXOs
-        Fle+vmezuPr9JbPFyTdXWSw2n+thteicuITdYtPja6wWXb9WMltc3jWHzeLTg//MFl3XnrA6
-        8HjsuLuE0WN2x0xWjxMTLjF53O8+zuSxeUm9x8Z3O5g8DvROZvE4uM/Q4/MmuQDOKD2bovzS
-        klSFjPziElulaEMLIz1DSws9IxNLPUNj81grI1MlfTublNSczLLUIn27BL2MQ4dZC57wV7zf
-        94O1gXEpTxcjJ4eEgInExwfHmEFsIYGljBKXe70g4uISu+e/ZYawhSX+XOti62LkAqp5yyix
-        /fE2JpCEsECgxLmLbWwgtohAocSX6xvAipgFDjNJ7F02lR2iYwqjxIemVkaQKjYBTYm/m2+C
-        dfAK2ElcWrQaLM4ioCKx7lUnmC0qECvR37ybEaJGUOLkzCcsIDangKPEt7aPYDazgJnEvM0P
-        mSFseYnmrbOhbBGJG49aGCcwCs1C0j4LScssJC2zkLQsYGRZxSiSWlqcm55bbKhXnJhbXJqX
-        rpecn7uJERjL24793LyD8dLG4EOMAhyMSjy8EZzdcUKsiWXFlbmHGCU4mJVEeKV6O+OEeFMS
-        K6tSi/Lji0pzUosPMZoCPTeRWUo0OR+YZvJK4g1NDc0tLA3Njc2NzSyUxHk7BA7GCAmkJ5ak
-        ZqemFqQWwfQxcXBKNTD61jyd80V46Z2jM0M1Xwufq2LR3dcptittXrc7I3PXbcnnSk/cNvfs
-        2nfkusDU3Q2GcdN7TlxxK7h1Pd3Tr6rmu0+44+9ZftXHtjwISiu3SQ5u99vductMaBWn3p5V
-        pfKLprBp7P9fo2Z2Ri786nqLb0vL3QVPcM0wb1i1z9/7LfPF68+514orsRRnJBpqMRcVJwIA
-        Q/GjXvsCAAA=
-X-CMS-MailID: 20200406142350eucas1p2524f266941cfedd66c0181f2fedcf388
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200330113455eucas1p1441dc79d44de5081e9d90079e2020ca0
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200330113455eucas1p1441dc79d44de5081e9d90079e2020ca0
-References: <CGME20200330113455eucas1p1441dc79d44de5081e9d90079e2020ca0@eucas1p1.samsung.com>
-        <20200330113542.181752-1-adrian.ratiu@collabora.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200406141350.162036-3-nick.reitemeyer@web.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
+On Mon, Apr 06, 2020 at 04:13:53PM +0200, Nick Reitemeyer wrote:
+> The hscdtd008a is similar to the AK8974:
+> Only the whoami value and some registers are different.
+> 
+> Signed-off-by: Nick Reitemeyer <nick.reitemeyer@web.de>
 
-Due to different ways of work I use different mail client, so forgive me 
-if there are some misconfugrations.
+Thanks a lot for sending this patch upstream!
 
+I checked this with the datasheet available here:
+https://tech.alpsalpine.com/prod/c/pdf/sensor/geomagnetic/hscd/hscdtd008a_data.pdf
 
-W dniu 30.03.2020 o 13:35, Adrian Ratiu pisze:
-> Hello everyone,
->
-> The v5 series is a significantly cleaned up version from v4,
-> started by Ezequiel Garcia's suggestion of splitting out the
-> regmap infrastructure from the drivers (thank you!).
->
-> Turns out no changes are required to the existing drivers and
-> the bridge can transparently take care of the layout logic,
-> so there's no need to expose the regmap via plat_data anymore.
->
-> Starting from this version I also opted to add per-patch
-> changelogs. All review comments up to now have been addressed.
->
-> Tested on IMX6DL.
->
-> Adrian Ratiu (5):
->    drm: bridge: dw_mipi_dsi: add initial regmap infrastructure
->    drm: bridge: dw_mipi_dsi: abstract register access using reg_fields
->    drm: bridge: synopsis: add dsi v1.01 support
->    drm: imx: Add i.MX 6 MIPI DSI host platform driver
->    dt-bindings: display: add i.MX6 MIPI DSI host controller doc
->
->   .../display/imx/fsl,mipi-dsi-imx6.yaml        | 134 ++++
->   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 683 +++++++++++++-----
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
 
+... and it seems to produce reasonable values on samsung-golden:
 
-So we have above 400 lines more just to add slightly different register 
-layout of v1.01.
+Tested-by: Stephan Gerhold <stephan@gerhold.net>
 
-Quite big linecount for apparently small (?) functional change - I was 
-too lazy to check how many reg fields are really used (some are not used 
-at all), but it does not seem to be big enough to justyfy so big change IMO.
+Linus Walleij might want to test this on his samsung-skomer :)
 
-I will add more comments in specific patches.
+Thanks,
+Stephan
 
-
-Regards
-
-Andrzej
-
-
->   drivers/gpu/drm/imx/Kconfig                   |   7 +
->   drivers/gpu/drm/imx/Makefile                  |   1 +
->   drivers/gpu/drm/imx/dw_mipi_dsi-imx6.c        | 399 ++++++++++
->   5 files changed, 1049 insertions(+), 175 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mipi-dsi-imx6.yaml
->   create mode 100644 drivers/gpu/drm/imx/dw_mipi_dsi-imx6.c
->
+> ---
+>  drivers/iio/magnetometer/ak8974.c | 38 ++++++++++++++++++++++++-------
+>  1 file changed, 30 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iio/magnetometer/ak8974.c b/drivers/iio/magnetometer/ak8974.c
+> index d32996702110..ade4ed8f67d2 100644
+> --- a/drivers/iio/magnetometer/ak8974.c
+> +++ b/drivers/iio/magnetometer/ak8974.c
+> @@ -49,6 +49,7 @@
+>  #define AK8974_WHOAMI_VALUE_AMI306 0x46
+>  #define AK8974_WHOAMI_VALUE_AMI305 0x47
+>  #define AK8974_WHOAMI_VALUE_AK8974 0x48
+> +#define AK8974_WHOAMI_VALUE_HSCDTD008A 0x49
+> 
+>  #define AK8974_DATA_X		0x10
+>  #define AK8974_DATA_Y		0x12
+> @@ -140,6 +141,12 @@
+>  #define AK8974_INT_CTRL_PULSE	BIT(1) /* 0 = latched; 1 = pulse (50 usec) */
+>  #define AK8974_INT_CTRL_RESDEF	(AK8974_INT_CTRL_XYZEN | AK8974_INT_CTRL_POL)
+> 
+> +/* HSCDTD008A-specific control register */
+> +#define HSCDTD008A_CTRL4	0x1E
+> +#define HSCDTD008A_CTRL4_MMD	BIT(7)	/* must be set to 1 */
+> +#define HSCDTD008A_CTRL4_RANGE	BIT(4)	/* 0 = 14-bit output; 1 = 15-bit output */
+> +#define HSCDTD008A_CTRL4_RESDEF	(HSCDTD008A_CTRL4_MMD | HSCDTD008A_CTRL4_RANGE)
+> +
+>  /* The AMI305 has elaborate FW version and serial number registers */
+>  #define AMI305_VER		0xE8
+>  #define AMI305_SN		0xEA
+> @@ -241,10 +248,17 @@ static int ak8974_reset(struct ak8974 *ak8974)
+>  	ret = regmap_write(ak8974->map, AK8974_CTRL3, AK8974_CTRL3_RESDEF);
+>  	if (ret)
+>  		return ret;
+> -	ret = regmap_write(ak8974->map, AK8974_INT_CTRL,
+> -			   AK8974_INT_CTRL_RESDEF);
+> -	if (ret)
+> -		return ret;
+> +	if (ak8974->variant != AK8974_WHOAMI_VALUE_HSCDTD008A) {
+> +		ret = regmap_write(ak8974->map, AK8974_INT_CTRL,
+> +				   AK8974_INT_CTRL_RESDEF);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		ret = regmap_write(ak8974->map, HSCDTD008A_CTRL4,
+> +				   HSCDTD008A_CTRL4_RESDEF);
+> +		if (ret)
+> +			return ret;
+> +	}
+> 
+>  	/* After reset, power off is default state */
+>  	return ak8974_set_power(ak8974, AK8974_PWR_OFF);
+> @@ -267,6 +281,8 @@ static int ak8974_configure(struct ak8974 *ak8974)
+>  		if (ret)
+>  			return ret;
+>  	}
+> +	if (ak8974->variant == AK8974_WHOAMI_VALUE_HSCDTD008A)
+> +		return 0;
+>  	ret = regmap_write(ak8974->map, AK8974_INT_CTRL, AK8974_INT_CTRL_POL);
+>  	if (ret)
+>  		return ret;
+> @@ -495,6 +511,10 @@ static int ak8974_detect(struct ak8974 *ak8974)
+>  		name = "ak8974";
+>  		dev_info(&ak8974->i2c->dev, "detected AK8974\n");
+>  		break;
+> +	case AK8974_WHOAMI_VALUE_HSCDTD008A:
+> +		name = "hscdtd008a";
+> +		dev_info(&ak8974->i2c->dev, "detected hscdtd008a\n");
+> +		break;
+>  	default:
+>  		dev_err(&ak8974->i2c->dev, "unsupported device (%02x) ",
+>  			whoami);
+> @@ -674,18 +694,18 @@ static bool ak8974_writeable_reg(struct device *dev, unsigned int reg)
+>  	case AK8974_INT_CTRL:
+>  	case AK8974_INT_THRES:
+>  	case AK8974_INT_THRES + 1:
+> +		return true;
+>  	case AK8974_PRESET:
+>  	case AK8974_PRESET + 1:
+> -		return true;
+> +		return ak8974->variant != AK8974_WHOAMI_VALUE_HSCDTD008A;
+>  	case AK8974_OFFSET_X:
+>  	case AK8974_OFFSET_X + 1:
+>  	case AK8974_OFFSET_Y:
+>  	case AK8974_OFFSET_Y + 1:
+>  	case AK8974_OFFSET_Z:
+>  	case AK8974_OFFSET_Z + 1:
+> -		if (ak8974->variant == AK8974_WHOAMI_VALUE_AK8974)
+> -			return true;
+> -		return false;
+> +		return ak8974->variant == AK8974_WHOAMI_VALUE_AK8974 ||
+> +		       ak8974->variant == AK8974_WHOAMI_VALUE_HSCDTD008A;
+>  	case AMI305_OFFSET_X:
+>  	case AMI305_OFFSET_X + 1:
+>  	case AMI305_OFFSET_Y:
+> @@ -926,12 +946,14 @@ static const struct i2c_device_id ak8974_id[] = {
+>  	{"ami305", 0 },
+>  	{"ami306", 0 },
+>  	{"ak8974", 0 },
+> +	{"hscdtd008a", 0 },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, ak8974_id);
+> 
+>  static const struct of_device_id ak8974_of_match[] = {
+>  	{ .compatible = "asahi-kasei,ak8974", },
+> +	{ .compatible = "alps,hscdtd008a", },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, ak8974_of_match);
+> --
+> 2.26.0
+> 
