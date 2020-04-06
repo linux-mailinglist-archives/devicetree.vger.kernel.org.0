@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D87219F23F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 11:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CEB719F27F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 11:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726775AbgDFJPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 05:15:14 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:47793 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726744AbgDFJPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 05:15:14 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id DB10B58014F;
-        Mon,  6 Apr 2020 05:15:10 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 06 Apr 2020 05:15:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=Yo+kk4ssQ5zTwLnaP0Ele1F1y+q
-        26rLa/dshj8KwXRs=; b=Ro214fb4noi/VPI5Awh/ibsEBUH7Z0GDSeRdL6qHYNE
-        WSGTgsQP5+6VhuWw9Ijk1lgaOPmNONRf3EXjX8sa2BbJjqInAyBuf7Uv+Iy9M5+L
-        usgr7yewwEJCyjQBbXkhtq1iAOxPOgrQKjQn97RIGsIpyIvAbly7HOg72t48Anxc
-        8DH12mBcovs+0oMyKWConql2bipT4Xc3eACcVNNoXxKaaaWJfQMbqRSSel++g22P
-        88fpGjS/9ACxPKF+9zWSFkDNDfukHxY7Wq/CvlnVHC40a2M4Am/eO/w6YbA0mu2x
-        vcyPGvsuxx1bp4fA/89o74GRTRPjrTba2A8I+WhmUTQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Yo+kk4
-        ssQ5zTwLnaP0Ele1F1y+q26rLa/dshj8KwXRs=; b=FR5Grp1IpF2SHehuXf4r3T
-        jtjEpQUxE/4oUH49uBfa3ICmSkitQx0xtqkdtzt9M/hCnqxkETqV7RBMO/0CkIu9
-        xeBKOs9HQS2snUBhB3iidR9TZaoU3kG4SaTcsr8RKXhgLrHih+Muo4tTin/yFwEP
-        O6tLMUSLGUkCCNCRi0u9oLIkmmJoAUkyU/5TlYtTZsTBZmKxrVW74qoGeI5nnS+5
-        5VObxN3qoh1brt1cxFT5fdkNMERQrJ5AcqzOzqLGEtHAgV7TZaz7z+Si/AY3TobL
-        vZ4vzoDsgtCsa17DkciA/hIEqII76xDso8J5lB5yuSC5gLhGxnwXssch2lh5Jm2g
-        ==
-X-ME-Sender: <xms:HfOKXr5Nyxk6k1GVM9huhudZON1Hd0xo4IV5rT93EZvHaC1VzD3jTw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudefgdduhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
-    epkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
-    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
-    hordhtvggthh
-X-ME-Proxy: <xmx:HfOKXn0d3TaUbMsAZPubP-kvk10FGNh38AW9nbJRP30Fl6YIAcNAAg>
-    <xmx:HfOKXnn4plu2WCUixfRxj3e5hNUQWt_Gk-ZHD2dx30OJhCPOGFUKQw>
-    <xmx:HfOKXggQ-btirr7O0G8WO0ikBaRltjPaSejWBznZ5pkiSr3u8c_CCg>
-    <xmx:HvOKXmsisu5MBDr0BCoB62pLG6EMM8T4AHp8Oc61JSeoAWyA-6YXhw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 7C6C9328005D;
-        Mon,  6 Apr 2020 05:15:09 -0400 (EDT)
-Date:   Mon, 6 Apr 2020 11:15:07 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+        id S1726761AbgDFJ2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 05:28:20 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:34236 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726670AbgDFJ2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 05:28:20 -0400
+X-UUID: 3656757b538e40b09f487adb9db2799c-20200406
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Eb9PeHDUAD6Sk82KJ2hdDxB7g4C2DRSe1cr+DuQ+Mn4=;
+        b=KGR+0bgKXMvM7qweK5tOETDijq2A0M6NHep2PzMwb/R2lqJzZBMKL8AAVZe8kFJJy7xdnxuumU6FMbt7Vr2MOZFuLS4tBBrCedqrVBAHTCl0RrHf4zCvSSilap1ceUVQxSYs7f9PfHWrjwOpcl8Y8TG6MAheFMzLPVgVryhQdsE=;
+X-UUID: 3656757b538e40b09f487adb9db2799c-20200406
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chun-hung.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 80571671; Mon, 06 Apr 2020 17:28:03 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 6 Apr 2020 17:28:02 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 6 Apr 2020 17:28:01 +0800
+From:   Chun-Hung Wu <chun-hung.wu@mediatek.com>
+To:     <mirq-linux@rere.qmqm.pl>, Jonathan Hunter <jonathanh@nvidia.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ondrej Jirman <megous@megous.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v7 0/6] Allwinner sun6i message box support
-Message-ID: <20200406091507.jojdzjidru64sjhm@gilmour.lan>
-References: <20200223040853.2658-1-samuel@sholland.org>
- <59dc1ee9-a369-7cf9-df6a-4b5b99e24324@sholland.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Pan Bian <bianpan2016@163.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        Mathieu Malaterre <malat@debian.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Kuohong Wang <kuohong.wang@mediatek.com>
+CC:     <kernel-team@android.com>, <linux-kernel@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Subject: [PATCH v4 0/5] mmc: mediatek: add mmc cqhci support
+Date:   Mon, 6 Apr 2020 17:27:56 +0800
+Message-ID: <1586165281-11888-1-git-send-email-chun-hung.wu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xdzfhjy327jx4nkm"
-Content-Disposition: inline
-In-Reply-To: <59dc1ee9-a369-7cf9-df6a-4b5b99e24324@sholland.org>
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 5837B5355725B33750F6938581113CF1D07BE672A4C9846C0BF9FD8664FE73292000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+VGhpcyBzZXJpZXMgcHJvdmlkZXMgTWVkaWFUZWsgY3FoY2kgaW1wbGVtZW50YXRpb25zIGFzIGJl
+bG93Og0KICAtIEV4dGVuZCBtbWNfb2ZfcGFyc2UoKSB0byBwYXJzZSBDUUUgYmluZGluZ3MNCiAg
+LSBSZW1vdmUgcmVkdW5kYW50IGhvc3QgQ1FFIGJpbmRpbmdzDQogIC0gUmVmaW5lIG1zZGMgdGlt
+ZW91dCBhcGkgdG8gcmVkdWNlIHJlZHVuZGFudCBjb2RlDQogIC0gTWVkaWFUZWsgY29tbWFuZCBx
+dWV1ZSBzdXBwb3J0DQogIC0gZHQtYmluZGluZ3MgZm9yIG10Njc3OQ0KDQp2MSAtPiB2MjoNCiAg
+LSBBZGQgbW9yZSBwYXRjaCBkZXRhaWxzIGluIGNvbW1pdCBtZXNzYWdlDQogIC0gU2VwYXJhdGUg
+bXNkYyB0aW1lb3V0IGFwaSByZWZpbmUgdG8gaW5kaXZpZHVhbCBwYXRjaA0KDQp2MiAtPiB2MzoN
+CiAgLSBSZW1vdmUgQ1ItSWQsIENoYW5nZS1JZCBhbmQgRmVhdHVyZSBpbiBwYXRjaGVzDQogIC0g
+QWRkIFNpZ25lZC1vZmYtYnkgaW4gcGF0Y2hlcw0KDQp2MyAtPiB2NDoNCiAgLSBSZWZpbmUgQ1FF
+IGJpbmRpbmdzIGluIG1tY19vZl9wYXJzZSAoVWxmIEhhbnNzb24pDQogIC0gUmVtb3ZlIHJlZHVu
+ZGFudCBob3N0IENRRSBiaW5kaW5ncyAoTGludXggV2FsbGVpaikNCg0KQ2h1bi1IdW5nIFd1ICg1
+KToNCiAgWzEvNV0gbW1jOiBjb3JlOiBFeHRlbmQgbW1jX29mX3BhcnNlKCkgdG8gcGFyc2UgQ1FF
+IGJpbmRpbmdzDQogIFsyLzVdIG1tYzogaG9zdDogUmVtb3ZlIHJlZHVuZGFudCBDUUUgYmluZGlu
+Z3MNCiAgWzMvNV0gbW1jOiBtZWRpYXRlazogcmVmaW5lIG1zZGMgdGltZW91dCBhcGkNCiAgWzQv
+NV0gbW1jOiBtZWRpYXRlazogY29tbWFuZCBxdWV1ZSBzdXBwb3J0DQogIFs1LzVdIGR0LWJpbmRp
+bmdzOiBtbWM6IG1lZGlhdGVrOiBBZGQgZG9jdW1lbnQgZm9yIG10Njc3OQ0KDQogRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tdGstc2QudHh0IHwgICAxICsNCiBkcml2ZXJz
+L21tYy9jb3JlL2hvc3QuYyAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDUgKw0KIGRyaXZl
+cnMvbW1jL2hvc3QvbXRrLXNkLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDE1MSArKysrKysr
+KysrKysrKysrKysrKystLQ0KIGRyaXZlcnMvbW1jL2hvc3Qvc2RoY2ktYnJjbXN0Yi5jICAgICAg
+ICAgICAgICAgICB8ICAxMSArLQ0KIGRyaXZlcnMvbW1jL2hvc3Qvc2RoY2ktbXNtLmMgICAgICAg
+ICAgICAgICAgICAgICB8ICAgMyArLQ0KIGRyaXZlcnMvbW1jL2hvc3Qvc2RoY2ktb2YtYXJhc2Fu
+LmMgICAgICAgICAgICAgICB8ICAgMyAtDQogZHJpdmVycy9tbWMvaG9zdC9zZGhjaS10ZWdyYS5j
+ICAgICAgICAgICAgICAgICAgIHwgICAyICstDQogNyBmaWxlcyBjaGFuZ2VkLCAxNTUgaW5zZXJ0
+aW9ucygrKSwgMjEgZGVsZXRpb25zKC0pDQoNCi0tIA0KMS45LjENCg==
 
---xdzfhjy327jx4nkm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Apr 01, 2020 at 11:55:34AM -0500, Samuel Holland wrote:
-> On 2/22/20 10:08 PM, Samuel Holland wrote:
-> > Samuel Holland (6):
-> >   dt-bindings: mailbox: Add a binding for the sun6i msgbox
-> >   mailbox: sun6i-msgbox: Add a new mailbox driver
->
-> These two patches have been applied for 5.7[1], so the DTS changes should be
-> ready to apply as well.
->
-> [1]:
-> https://lore.kernel.org/lkml/CABb+yY0-q+5+pqP-rBHCYpw-LmT+h80+OU26XL34fTrXhO+T3Q@mail.gmail.com/
-
-Sorry, I missed that it was merged and sent for a PR.
-
-I've queued the DT changes for 5.8
-
-Maxime
-
---xdzfhjy327jx4nkm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXorzGwAKCRDj7w1vZxhR
-xfkjAQDQamF1U+7L7tVY2lQH6acuSJ6qmfCYNC0tJ9ZUu1NNmQD9H2qUHh5Aqh+d
-wYXK+j0yeHQAgMu9TwBZ32Dg/eeKRwU=
-=ay2J
------END PGP SIGNATURE-----
-
---xdzfhjy327jx4nkm--
