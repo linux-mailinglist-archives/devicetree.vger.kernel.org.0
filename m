@@ -2,39 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B4E19F97C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 17:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABDA119F990
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2020 18:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729229AbgDFP6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 11:58:31 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:17995 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729202AbgDFP6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Apr 2020 11:58:30 -0400
-X-Originating-IP: 78.193.40.249
-Received: from localhost (unknown [78.193.40.249])
-        (Authenticated sender: kamel.bouhara@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 0936F240012;
-        Mon,  6 Apr 2020 15:58:27 +0000 (UTC)
-From:   Kamel Bouhara <kamel.bouhara@bootlin.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: [PATCH 3/3] Input: add a rotary encoders based on counter devices
-Date:   Mon,  6 Apr 2020 17:58:06 +0200
-Message-Id: <20200406155806.1295169-4-kamel.bouhara@bootlin.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200406155806.1295169-1-kamel.bouhara@bootlin.com>
-References: <20200406155806.1295169-1-kamel.bouhara@bootlin.com>
+        id S1729058AbgDFQE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 12:04:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36066 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728982AbgDFQE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Apr 2020 12:04:29 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 36D1920B1F;
+        Mon,  6 Apr 2020 16:04:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586189069;
+        bh=qpa1esmnSCdujDJEAzPw7H6IbbTIQDzuZG08g5oE34Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=oiW5Kl69+HvhFuBsAjp4Pw6Q2azlgJG+oys3nyonDO2wlH/6spDtixEKADrUHPpOk
+         JjEo5PnQhBFekjN3jqvbq666jklv8Ci5Tr3d05PekALg3Mtr4YWo+7cBzS4wsQE5jJ
+         MXWqZjmCsSZ5m00qxF/LumrsqkeLfyHku3eHPfnI=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     linux-clk@vger.kernel.org
+Cc:     dinguyen@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com
+Subject: [PATCHv6 0/5] clk: agilex: add clock driver
+Date:   Mon,  6 Apr 2020 11:04:13 -0500
+Message-Id: <20200406160418.27476-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -42,207 +39,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This add support for rotary encoders that use the counter subsystem to
-expose an input device.
+Hi,
 
-Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
----
- drivers/input/misc/Kconfig                  |   9 ++
- drivers/input/misc/Makefile                 |   1 +
- drivers/input/misc/rotary_encoder_counter.c | 152 ++++++++++++++++++++
- 3 files changed, 162 insertions(+)
- create mode 100644 drivers/input/misc/rotary_encoder_counter.c
+This is version 6 of the patchset to add a clock driver to the Agilex
+platform.
 
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index 7e2e658d551c..b91b4257e337 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -619,6 +619,15 @@ config INPUT_GPIO_ROTARY_ENCODER
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called rotary_encoder.
- 
-+config INPUT_COUNTER_ROTARY_ENCODER
-+       tristate "Rotary encoders connected to counter devices"
-+       depends on COUNTER || COMPILE_TEST
-+       help
-+         Say Y here to add support for rotary encoders connected to counter devices.
-+
-+         To compile this driver as a module, choose M here: the
-+         module will be called rotary_encoder_counter.
-+
- config INPUT_RB532_BUTTON
- 	tristate "Mikrotik Routerboard 532 button interface"
- 	depends on MIKROTIK_RB532
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 8fd187f314bd..74bbe6d400a3 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
- obj-$(CONFIG_INPUT_RETU_PWRBUTTON)	+= retu-pwrbutton.o
- obj-$(CONFIG_INPUT_AXP20X_PEK)		+= axp20x-pek.o
- obj-$(CONFIG_INPUT_GPIO_ROTARY_ENCODER)	+= rotary_encoder.o
-+obj-$(CONFIG_INPUT_COUNTER_ROTARY_ENCODER) += rotary_encoder_counter.o
- obj-$(CONFIG_INPUT_RK805_PWRKEY)	+= rk805-pwrkey.o
- obj-$(CONFIG_INPUT_SC27XX_VIBRA)	+= sc27xx-vibra.o
- obj-$(CONFIG_INPUT_SGI_BTNS)		+= sgi_btns.o
-diff --git a/drivers/input/misc/rotary_encoder_counter.c b/drivers/input/misc/rotary_encoder_counter.c
-new file mode 100644
-index 000000000000..20017308f4f3
---- /dev/null
-+++ b/drivers/input/misc/rotary_encoder_counter.c
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * A rotary encoder driver using the generic counter interface.
-+ *
-+ * Author: Kamel Bouhara <kamel.bouhara@bootlin.com>
-+ *
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/interrupt.h>
-+#include <linux/input.h>
-+#include <linux/device.h>
-+#include <linux/platform_device.h>
-+#include <linux/counter.h>
-+#include <linux/slab.h>
-+#include <linux/of.h>
-+#include <linux/pm.h>
-+#include <linux/property.h>
-+
-+#define MAX_STEPS	24
-+
-+struct rotary_encoder {
-+	struct input_dev *input;
-+	u32 steps;
-+	u32 axis;
-+	bool relative_axis;
-+	bool rollover;
-+	long last_pos;
-+	struct counter_device *counter;
-+};
-+
-+static void rotary_encoder_poll(struct input_dev *input)
-+{
-+	struct rotary_encoder *encoder = input_get_drvdata(input);
-+	long rotary_pos;
-+	int ret;
-+
-+	ret = counter_count_get(encoder->counter, &rotary_pos);
-+	if (ret)
-+		return;
-+
-+	if (encoder->relative_axis) {
-+		input_report_rel(encoder->input, encoder->axis,
-+				 rotary_pos - encoder->last_pos);
-+	} else {
-+		if (encoder->rollover)
-+			rotary_pos %= encoder->steps;
-+		input_report_abs(encoder->input, encoder->axis, rotary_pos);
-+	}
-+
-+	encoder->last_pos = rotary_pos;
-+	input_sync(encoder->input);
-+}
-+
-+static int rotary_encoder_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct counter_device *counter;
-+	struct rotary_encoder *encoder;
-+	struct input_dev *input;
-+	int qdec_mode;
-+	u32 poll_interval;
-+	int err;
-+
-+	encoder = devm_kzalloc(dev, sizeof(struct rotary_encoder), GFP_KERNEL);
-+	if (!encoder)
-+		return -ENOMEM;
-+
-+	encoder->rollover =
-+		device_property_read_bool(dev, "rollover");
-+
-+	device_property_read_u32(dev, "steps", &encoder->steps);
-+
-+	device_property_read_u32(dev, "linux-axis", &encoder->axis);
-+
-+	encoder->relative_axis =
-+		device_property_read_bool(dev, "relative-axis");
-+
-+	counter = devm_counter_get(dev);
-+	if (IS_ERR(counter))
-+		return PTR_ERR(counter);
-+
-+	if (device_property_read_u32(dev, "qdec-mode", &qdec_mode)) {
-+		dev_err(dev, "Invalid or missing quadrature mode\n");
-+		return -EINVAL;
-+	}
-+
-+	err = counter_function_set(counter, qdec_mode);
-+	if (err) {
-+		dev_err(dev, "Failed to set quadrature mode %d\n",
-+			qdec_mode);
-+		return err;
-+	}
-+
-+	input = devm_input_allocate_device(dev);
-+	if (!input)
-+		return -ENOMEM;
-+
-+	input_set_drvdata(input, encoder);
-+	encoder->input = input;
-+	encoder->counter = counter;
-+	encoder->steps = (!encoder->steps) ? MAX_STEPS : encoder->steps;
-+	input->name = pdev->name;
-+	input->id.bustype = BUS_HOST;
-+	input->dev.parent = dev;
-+
-+	if (encoder->relative_axis)
-+		input_set_capability(input, EV_REL, encoder->axis);
-+	else
-+		input_set_abs_params(input, encoder->axis, 0,
-+				     encoder->steps, 0, 1);
-+
-+	err = input_setup_polling(input, rotary_encoder_poll);
-+	if (err)
-+		return err;
-+
-+	if (!device_property_read_u32(dev, "poll-interval",
-+				      &poll_interval))
-+		input_set_poll_interval(input, poll_interval);
-+
-+	err = input_register_device(input);
-+	if (err) {
-+		dev_err(dev, "failed to register device, err=%d\n", err);
-+		return err;
-+	}
-+
-+	platform_set_drvdata(pdev, encoder);
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id rotary_encoder_of_match[] = {
-+	{ .compatible = "rotary-encoder-counter", },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, rotary_encoder_of_match);
-+#endif
-+
-+static struct platform_driver rotary_encoder_driver = {
-+	.probe		= rotary_encoder_probe,
-+	.driver		= {
-+		.name	= "rotary-encoder-counter",
-+		.of_match_table = of_match_ptr(rotary_encoder_of_match),
-+	}
-+};
-+module_platform_driver(rotary_encoder_driver);
-+
-+MODULE_DESCRIPTION("Counter rotary encoder driver");
-+MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
-+MODULE_LICENSE("GPL v2");
+The change from v5 is fix build error from 'make dt_binding_check'.
+
+Thanks,
+
+Dinh Nguyen (5):
+  clk: socfpga: remove clk_ops enable/disable methods
+  clk: socfpga: add const to _ops data structures
+  dt-bindings: documentation: add clock bindings information for Agilex
+  clk: socfpga: agilex: add clock driver for the Agilex platform
+  arm64: dts: agilex: populate clock dts entries
+
+ .../bindings/clock/intel,agilex.yaml          |  46 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  72 +++
+ .../boot/dts/intel/socfpga_agilex_socdk.dts   |   8 +
+ drivers/clk/Makefile                          |   3 +-
+ drivers/clk/socfpga/Makefile                  |   2 +
+ drivers/clk/socfpga/clk-agilex.c              | 454 ++++++++++++++++++
+ drivers/clk/socfpga/clk-pll-a10.c             |   4 +-
+ drivers/clk/socfpga/clk-pll-s10.c             |  74 ++-
+ drivers/clk/socfpga/clk-pll.c                 |   4 +-
+ drivers/clk/socfpga/stratix10-clk.h           |   2 +
+ include/dt-bindings/clock/agilex-clock.h      |  70 +++
+ 11 files changed, 728 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/intel,agilex.yaml
+ create mode 100644 drivers/clk/socfpga/clk-agilex.c
+ create mode 100644 include/dt-bindings/clock/agilex-clock.h
+
 -- 
-2.25.0
+2.25.1
 
