@@ -2,133 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5731A108D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 17:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FAE1A112D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 18:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726840AbgDGPrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 11:47:55 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40240 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727473AbgDGPry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 11:47:54 -0400
-Received: by mail-oi1-f196.google.com with SMTP id y71so1903993oia.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Apr 2020 08:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=C5+Tj/x0seqvn19MWhPZoKn+VlDCEMR9Hc+Aq3tkzY8=;
-        b=AqvyHOEKa5D4KldSTXCJnWs49QR2eXk+zF16yQDJ/jO2g384gpvbB+mCb9j8OEA43m
-         A6MJ5P+j9YHQ9ALT8li8x+DrQzx4FYzIUF4jzdSTBguXP75zfrh9l/P+mR2yC9oUFmbh
-         Yn8a9rA4p42mGrhMH+ty00/pUaHnx9ZPa4dmFBsdcEWiR/R8eLwj7ps7YItEsiliVj9x
-         hc7+ZDQQTkrx9SU1xDncAFv/vXs+HvkGPU5/2aEF17mo20t2DhLi36900gUTcWnRYfiV
-         5jI4l5PaOBVH08bwik0C/yypiQ4cZP+kcrCOPLy8/Bm/UM9YAF3+Nh+1nBPDRQ+FHO80
-         SCBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C5+Tj/x0seqvn19MWhPZoKn+VlDCEMR9Hc+Aq3tkzY8=;
-        b=qfWg/v3sgtiwDynDJgOuxOjRsXVceeaWhfB3U7e9WcdZ/hBdJvOQwtu6xb0ZZw59hn
-         n6+SCjTKSy1CmJ8Fajl6USoqg6REYbb9zlhrKRwEKR2OMwse+cjhq2m8B0fF2xlIAENQ
-         9yp8EzuU5Ff+XKNm2XR6TVc/yYkCuCO3TueY21fVDMwBU/DW+/DZiWPM9zGSxEeLEOt8
-         LDkz3UTEzMwSF/ryC8j78jZEiGdKmUdWaiU7BBA+25BcfnV+4PkAXbAxk/tQBpF9MmCB
-         9nSdZiNFvuD3TpieKHu+W6Hu7xu9tiZ+ZkrlkHssJ8WfGetCqo4rtL7ETiLFdgqcRS/3
-         1TrQ==
-X-Gm-Message-State: AGi0PuYnsfSI/QODRSiwWha6lTyVx1IuVFX7FUKAX4eVcbuBJbOVFaUo
-        KM7jODudZe/5ol5/F/ArdjNnKCzMyhKS20UUnTWqTw==
-X-Google-Smtp-Source: APiQypJu3SjURBCeHG9XCeUMhTFUk1+T5l/kcmiOEHAKUxA8FMQScTewM/7d0CG0YpkFEyil0R95v+JbbO4tHHpx7Qg=
-X-Received: by 2002:aca:ab16:: with SMTP id u22mr2087293oie.133.1586274473098;
- Tue, 07 Apr 2020 08:47:53 -0700 (PDT)
+        id S1728239AbgDGQVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 12:21:33 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:40603 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728101AbgDGQV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 12:21:27 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 037GKnQp002260;
+        Tue, 7 Apr 2020 19:20:50 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
+        id D5EA7639B0; Tue,  7 Apr 2020 19:20:49 +0300 (IDT)
+From:   amirmizi6@gmail.com
+To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
+        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
+        Amir Mizinski <amirmizi6@gmail.com>
+Subject: [PATCH v6 0/7] Add tpm i2c ptp driver
+Date:   Tue,  7 Apr 2020 19:20:37 +0300
+Message-Id: <20200407162044.168890-1-amirmizi6@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20200331133346.372517-1-robert.foss@linaro.org>
- <20200331133346.372517-2-robert.foss@linaro.org> <20200401080705.j4goeqcqhoswhx4u@gilmour.lan>
- <CAG3jFyvUd08U9yNVPUD9Y=nd5Xpcx34GcHJRhtvAAycoq3qimg@mail.gmail.com>
- <20200403232736.GA6127@valkosipuli.retiisi.org.uk> <20200404093446.vuvwrhn5436h4d3s@gilmour.lan>
- <20200406083506.GE6127@valkosipuli.retiisi.org.uk> <20200407083647.4mocdl7aqa3x737q@gilmour.lan>
- <CAG3jFyvd32pWppubMoOoyH9eO2XLjwUXMC7p4xtv8m+JkPv6vw@mail.gmail.com> <20200407123232.ktvaifhqntgzvkap@gilmour.lan>
-In-Reply-To: <20200407123232.ktvaifhqntgzvkap@gilmour.lan>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 7 Apr 2020 17:47:41 +0200
-Message-ID: <CAG3jFysSrZJRE2TvL0bWoRFNnscgDGj8yGr-iwWBm4=1wMbJ9A@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] media: dt-bindings: ov8856: Document YAML bindings
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Apr 2020 at 14:32, Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Robert,
->
-> On Tue, Apr 07, 2020 at 01:29:05PM +0200, Robert Foss wrote:
-> > On Tue, 7 Apr 2020 at 10:36, Maxime Ripard <maxime@cerno.tech> wrote:
-> > > On Mon, Apr 06, 2020 at 11:35:07AM +0300, Sakari Ailus wrote:
-> > > > > But that 19.2MHz is not a limitation of the device itself, it's a
-> > > > > limitation of our implementation, so we can instead implement
-> > > > > something equivalent in Linux using a clk_set_rate to 19.2MHz (to make
-> > > > > sure that our parent clock is configured at the right rate) and the
-> > > > > clk_get_rate and compare that to 19.2MHz (to make sure that it's not
-> > > > > been rounded too far apart from the frequency we expect).
-> > > > >
-> > > > > This is doing exactly the same thing, except that we don't encode our
-> > > > > implementation limitations in the DT, but in the driver instead.
-> > > >
-> > > > What I really wanted to say that a driver that doesn't get the clock
-> > > > frequency from DT but still sets that frequency is broken.
-> > > >
-> > > > This frequency is highly system specific, and in many cases only a certain
-> > > > frequency is usable, for a few reasons: On many SoCs, not all common
-> > > > frequencies can be used (e.g. 9,6 MHz, 19,2 MHz and 24 MHz; while others
-> > > > are being used as well), and then that frequency affects the usable CSI-2
-> > > > bus frequencies directly --- and of those, only safe, known-good ones
-> > > > should be used. IOW, getting the external clock frequency wrong typically
-> > > > has an effect that that none of the known-good CSI-2 bus clock frequencies
-> > > > are available.
-> > >
-> > > So clock-frequency is not about the "Frequency of the xvclk clock in
-> > > Hertz", but the frequency at which that clock must run on this
-> > > particular SoC / board to be functional?
-> > >
-> > > If so, then yeah, we should definitely keep it, but the documentation
-> > > of the binding should be made clearer as well.
-> >
-> > Alright so, let me summarise the desired approach then.
->
-> There's a separate discussion on the same topic here:
-> https://lore.kernel.org/linux-media/20200407122106.GD4751@pendragon.ideasonboard.com/
+From: Amir Mizinski <amirmizi6@gmail.com>
 
-Thanks for the link.
+This patch set adds support for TPM devices that implement the I2C.
+Interface defined by TCG PTP specification:
+https://trustedcomputinggroup.org/wp-content/uploads/TCG_PC_Client_Platform_TPM_Profile_PTP_2.0_r1.03_v22.pdf
 
->
-> > ACPI:
-> >   - Fetch the "clock-frequency" property
-> >   - Verify it to be 19.2Mhz
-> >
-> > DT:
-> >   - Fetch the "clock-frequency" property
-> >   - Verify it to be 19.2Mhz
-> >   - Get xvclk clock
-> >   - Get xvclk clock rate
-> >   - Verify xvclk clock rate to be 19.2Mhz
->
-> The current status is that you should
-> 's/clock-frequency/link-frequencies/', and in order to replace
-> assigned-clock-rates, you'll want to have a clk_set_rate to 19.2MHz
-> between steps 3 and 4
+The driver was tested on Raspberry-Pie 3, using Nuvoton NPCT75X TPM.
 
-Would we want to 's/clock-frequency/link-frequencies/' for ACPI too?
-I imagine that would cause some breakage.
+Interrupts are not implemented yet, preparing it for the next patch.
+This patch is based on initial work by oshri Alkoby, Alexander Steffen and Christophe Ricard
+
+Changes since version 1:
+-"char:tpm:Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        - Fixed and extended commit description.
+        - Fixed an issue regarding handling max retries.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options":
+        -Converted "tpm_tis_i2c.txt" to "tpm-tis-i2c.yaml".
+        - Renamed "tpm_tis-i2c" to "tpm-tis-i2c".
+        - Removed interrupts properties.
+-"char: tpm: add tpm_tis_i2c driver"
+        - Replaced "tpm_tis-i2c" with "tpm-tis-i2c" in "tpm_tis_i2c.c".
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11236257/
+ - Rob Herring: https://patchwork.kernel.org/patch/11236253/
+
+Changes since version 2:
+- Added 2 new commits with improvements suggested by Benoit Houyere.
+        -"Fix expected bit handling  and send all bytes in one shot without last byte in exception"
+        -"Handle an exeption for TPM Firmware Update mode."
+- Updated patch to latest v5.5
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Added "interrupts" and "crc-checksum" to properties.
+        - Updated binding description and commit info.
+-"char: tpm: add tpm_tis_i2c driver" (suggested by Benoit Houyere)
+        - Added repeat I2C frame after NACK.
+        - Checksum I2C feature activation in DTS file configuration.
+Addressed comments from:
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1161287/
+
+Changes since version 3:
+- Updated patch to latest v5.6
+- Updated commits headlines and development credit format by Jarkko Sakkinen suggestion
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        - Updated commit description.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Fixed 'make dt_binding_check' errors on YAML file.
+        - Removed interrupts from required and examples since there is no use for them in current patch.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lore.kernel.org/patchwork/patch/1192101/
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1192099/
+
+Changes since version 4:
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        -Added a "Reviewed-by" tag:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        -Fixed credit typos.
+-"tpm: tpm_tis: rewrite "tpm_tis_req_canceled()""
+        -Added fixes tag and removed changes for STM.
+-"tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Fixed typos, edited description to be more clear, and added a "Suggested-by" tag.
+-"tpm: Handle an exception for TPM Firmware Update mode."
+        -Added a "Suggested-by" tag.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        -Fixed 'make dt_binding_check' errors.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -Added tested-by tag by Eddie James.
+        -Fixed indent in Kconfig file.
+        -Fixed 'MODULE_DESCRIPTION'.
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11467645/
+                https://patchwork.kernel.org/patch/11467655/
+                https://patchwork.kernel.org/patch/11467643/
+                https://patchwork.kernel.org/patch/11467659/
+                https://patchwork.kernel.org/patch/11467651/
+ - Rob Herring: https://patchwork.kernel.org/patch/11467653/
+ - Randy Dunlap: https://patchwork.kernel.org/patch/11467651/
+ - Eddie James: https://lore.kernel.org/patchwork/patch/1192104/
+
+Changes since version 5:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+	-Updated short description and fixed long description to be more clear.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lkml.org/lkml/2020/4/6/748
+
+Amir Mizinski (7):
+  tpm: tpm_tis: Make implementation of read16 read32 write32 optional
+  tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops
+  tpm: tpm_tis: rewrite "tpm_tis_req_canceled()"
+  tpm: tpm_tis: Fix expected bit handling and send all      bytes in one
+    shot without last byte in exception
+  tpm: Handle an exception for TPM Firmware Update mode.
+  dt-bindings: tpm: Add YAML schema for TPM TIS I2C options
+  tpm: tpm_tis: add tpm_tis_i2c driver
+
+ .../bindings/security/tpm/tpm-tis-i2c.yaml         |  47 ++++
+ drivers/char/tpm/Kconfig                           |  12 +
+ drivers/char/tpm/Makefile                          |   1 +
+ drivers/char/tpm/tpm2-cmd.c                        |   4 +
+ drivers/char/tpm/tpm_tis_core.c                    | 175 ++++++------
+ drivers/char/tpm/tpm_tis_core.h                    |  41 ++-
+ drivers/char/tpm/tpm_tis_i2c.c                     | 292 +++++++++++++++++++++
+ drivers/char/tpm/tpm_tis_spi_main.c                |  41 ---
+ include/linux/tpm.h                                |   1 +
+ 9 files changed, 486 insertions(+), 128 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+ create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
+
+-- 
+2.7.4
+
