@@ -2,104 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 926B71A079C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 08:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9C01A07AB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 08:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727464AbgDGGqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 02:46:52 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:31729 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727575AbgDGGqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 02:46:51 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1586242011; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=YNf79xvKi5JqIDaeZlfwyRyDgRV9sC+NNd4/lwc+Ngc=; b=RwfxFhp4i67FaZvjziWM6HSEgR23w7QWJ84h/V9K4mTsb3R8aw9fsAYrQgzqFhF8IhGgGOuO
- odokWH6w0Xj0Vk10uyrs3XWOlo/mbglpaOxogQ7PYx7NLlLT+AWhMENvOvqqBa91K+VM48KG
- xuz4x2MCDB7Nf5+mz5YhdcWYe1s=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e8c21cc.7f439206cbc8-smtp-out-n04;
- Tue, 07 Apr 2020 06:46:36 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 190F4C43636; Tue,  7 Apr 2020 06:46:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.0.6] (unknown [183.83.138.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akashast)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2C9DBC433D2;
-        Tue,  7 Apr 2020 06:46:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2C9DBC433D2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
-Subject: Re: [PATCH V3 2/8] soc: qcom: geni: Support for ICC voting
-To:     Evan Green <evgreen@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>, wsa@the-dreams.de,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>
-References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
- <1585652976-17481-3-git-send-email-akashast@codeaurora.org>
- <20200331233209.GF254911@minitux>
- <CAE=gft6B2UCBVaKVCJXED8waFWci8WJ+sTM3CT+3e_eYS=-BDQ@mail.gmail.com>
-From:   Akash Asthana <akashast@codeaurora.org>
-Message-ID: <66da4cc6-3873-1d39-ecb7-e9866320c469@codeaurora.org>
-Date:   Tue, 7 Apr 2020 12:16:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1726725AbgDGGvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 02:51:17 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:35295 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726030AbgDGGvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 02:51:17 -0400
+Received: by mail-qk1-f195.google.com with SMTP id k134so642772qke.2;
+        Mon, 06 Apr 2020 23:51:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Y4FAoei46Tkc3HfHlCIKmv+2BjR5V8f9xenFoOtsKN4=;
+        b=tQo4f6yKtMHTJ0hQi+oM3MZgcHaRvAV7aDsZGtxCuYln7mYN8W+9/TOLWGGm8S6wqa
+         95cxOdNcctfI6yKkFwoL3+EDY+0FDcP5lM7hdhohRJevf91pNFlupKSOIELe9XPccwMh
+         6N7ApC9NhFF8Scantpav7pS8TD21Oos/V0b4o0N3niIojk9Je+7GjdYvTvH1mccY4Nhl
+         5G15tkjpkK4wGPyZvs/1f40gLbUcERdUif9Hsd1qNRoa1wv/nyZ8NU8MMysm+5OZqwqm
+         rGHpvhZVnd8NttGewORj2Sd5not4n68zV3vJP8rtbJjKMtlkO01vWh1cx/YIFr0XMTt0
+         xh/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Y4FAoei46Tkc3HfHlCIKmv+2BjR5V8f9xenFoOtsKN4=;
+        b=LY/mobUyh/9MA/l8M2Ffxyxh3jUw6FgixQzxq/uaA660nXWC8NCIZ9bi8WmGiFA0Yn
+         bRzDGt3VVCKWMvE24/kW5UOHir05LWFKcLM8Ld9RWhnq5i5Eau9Ilgz0t0pnKvGa03ve
+         BRIbKpYQ93UcMEWUbncqPTMdQL+DBCzfUu+gFaXdwiNLU/npm1p7TVzmOkAekLD9IAhH
+         eo6rvoyaZt4STkDJK92HNF7J8afx9TCOFN51v/5yNj+e0iPBebpaduP05TrdS/9NYPE0
+         T+J8JOaE3czLHyF0IV3llGY9nhNyEL29JsKcOtO80cHksP14arKCXhBvgJz858RX7Pae
+         HlMg==
+X-Gm-Message-State: AGi0PubIKpk1sQIE0QUIyJMupWmWdbjngnSJiNTru7Fk9rsSjWtMNBc+
+        XrzV9Vt8GtTaUWYDM+gmB7z9XOrEOzXR1hv+98c=
+X-Google-Smtp-Source: APiQypLLsOdvypIFNxuaVrbiZeeORo8cVXBYb0ZNxxDoZPkW/yNo1thc2t6Xj2qD9Chy7pElS4GccL0R0thQRTsHmNg=
+X-Received: by 2002:a37:4ac2:: with SMTP id x185mr720414qka.413.1586242274672;
+ Mon, 06 Apr 2020 23:51:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAE=gft6B2UCBVaKVCJXED8waFWci8WJ+sTM3CT+3e_eYS=-BDQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20200407055837.3508017-1-alistair@alistair23.me> <20200407055837.3508017-2-alistair@alistair23.me>
+In-Reply-To: <20200407055837.3508017-2-alistair@alistair23.me>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Mon, 6 Apr 2020 23:50:48 -0700
+Message-ID: <CA+E=qVdQKS9TCG7Sa4aefAZbgWO3-rgA9u13v=iB6+TN7yQe=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] Bluetooth: hci_h5: Add support for binding
+ RTL8723BS with device tree
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     netdev <netdev@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>, alistair23@gmail.com,
+        arm-linux <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn, Evan,
-
->> Given that these two functions only switch the bandwidth request between
->> some value and 0, I really think we should carry a "bool enabled" on the
->> path and replace these two functions with
->> icc_bulk_enable()/icc_bulk_disable().
-So, if above is implementation "bool enabled" on path can be used 
-directly in aggregation of ICC votes on particular node without using 
-icc_set_bw call, if yes then I am not aware how? or we'll be using 
-icc_set_bw API indirectly inside icc_bulk APIs?
->> The added benefit of this would be that you call icc_set_bw() instead of
->> changing the geni_icc_path->{avg_bw,peak_bw} and don't need to keep
->> track of them here.
-
-Ok IIUC, we need to call icc_set_bw() from GENI driver only if we change 
-(avg_bw | peak_bw)?
-
-Regards,
-
-Akash
-
-> Yes yes! I had the same thought here [1].
+On Mon, Apr 6, 2020 at 10:58 PM Alistair Francis <alistair@alistair23.me> wrote:
 >
-> Georgi, what do you think?
-> -Evan
+> From: Vasily Khoruzhick <anarsoul@gmail.com>
 >
-> [1] https://lore.kernel.org/linux-arm-msm/CAE=gft58QsgTCUHMHKJhcM9ZxAeMiY16CrbNv2HaTCRqwtmt7A@mail.gmail.com/
+> RTL8723BS is often used in ARM boards, so add ability to bind it
+> using device tree.
+>
+> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  drivers/bluetooth/hci_h5.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/bluetooth/hci_h5.c b/drivers/bluetooth/hci_h5.c
+> index 106c110efe56..b0e25a7ca850 100644
+> --- a/drivers/bluetooth/hci_h5.c
+> +++ b/drivers/bluetooth/hci_h5.c
+> @@ -1019,6 +1019,8 @@ static const struct of_device_id rtl_bluetooth_of_match[] = {
+>         { .compatible = "realtek,rtl8822cs-bt",
+>           .data = (const void *)&rtl_vnd },
+>  #endif
+> +       { .compatible = "realtek,rtl8822bs-bt",
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
+Wrong compatible? Also you probably want to keep it over #endif.
+
+> +         .data = (const void *)&rtl_vnd },
+>         { },
+>  };
+>  MODULE_DEVICE_TABLE(of, rtl_bluetooth_of_match);
+> --
+> 2.25.1
+>
