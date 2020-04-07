@@ -2,84 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF351A0716
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 08:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892871A071F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 08:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgDGGOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 02:14:50 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:38304 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726877AbgDGGOt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Apr 2020 02:14:49 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B4B55200FFE;
-        Tue,  7 Apr 2020 08:14:47 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CD5AC200FF9;
-        Tue,  7 Apr 2020 08:14:43 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 84840402DD;
-        Tue,  7 Apr 2020 14:14:38 +0800 (SGT)
-From:   Biwen Li <biwen.li@oss.nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, ran.wang_1@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
-Subject: [PATCH 4/4] arm: dts: ls1021a: add ftm_alarm0 DT node
-Date:   Tue,  7 Apr 2020 14:10:54 +0800
-Message-Id: <20200407061054.16912-4-biwen.li@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200407061054.16912-1-biwen.li@oss.nxp.com>
-References: <20200407061054.16912-1-biwen.li@oss.nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726720AbgDGGQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 02:16:59 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:53331 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726232AbgDGGQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 02:16:58 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jLhXT-0007JL-Hs; Tue, 07 Apr 2020 08:16:47 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jLhXS-0008D1-Jd; Tue, 07 Apr 2020 08:16:46 +0200
+Date:   Tue, 7 Apr 2020 08:16:46 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+Cc:     devicetree@vger.kernel.org, Paul Barker <pbarker@konsulko.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [RFC PATCH v2 2/6] dt-bindings: pwm: document the PWM no-flag
+Message-ID: <20200407061646.pcglaw43kfmrag6a@pengutronix.de>
+References: <20200405192246.3741784-1-oleksandr.suvorov@toradex.com>
+ <20200405192246.3741784-3-oleksandr.suvorov@toradex.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200405192246.3741784-3-oleksandr.suvorov@toradex.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
+On Sun, Apr 05, 2020 at 10:22:42PM +0300, Oleksandr Suvorov wrote:
+> Add the description of PWM_NOFLAGS flag property.
+> 
+> Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
 
-The patch add ftm_alarm0 DT node
-	- add rcpm node
-	- add ftm_alarm0 node
-	- aliases ftm_alarm0 as rtc1
+As I already wrote in reply to the v1 series I'd prefer a name for 0
+that explicitly handles normal polarity.
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
- arch/arm/boot/dts/ls1021a.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Best regards
+Uwe
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 0855b1fe98e0..7bb7bb130b41 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -66,6 +66,7 @@
- 		serial4 = &lpuart4;
- 		serial5 = &lpuart5;
- 		sysclk = &sysclk;
-+		rtc1 = &ftm_alarm0;
- 	};
- 
- 	cpus {
-@@ -1002,5 +1003,19 @@
- 			big-endian;
- 		};
- 
-+		rcpm: rcpm@1ee2140 {
-+			compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
-+			reg = <0x0 0x1ee2140 0x0 0x8>;
-+			#fsl,rcpm-wakeup-cells = <2>;
-+		};
-+
-+		ftm_alarm0: timer0@29d0000 {
-+			compatible = "fsl,ls1021a-ftm-alarm";
-+			reg = <0x0 0x29d0000 0x0 0x10000>;
-+			reg-names = "ftm";
-+			fsl,rcpm-wakeup = <&rcpm 0x20000 0x0>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			big-endian;
-+		};
- 	};
- };
 -- 
-2.17.1
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
