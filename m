@@ -2,206 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 581851A09C8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 11:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC171A09F1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 11:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726562AbgDGJLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 05:11:11 -0400
-Received: from mail-vi1eur05on2051.outbound.protection.outlook.com ([40.107.21.51]:24653
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725817AbgDGJLL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Apr 2020 05:11:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mIAGM21XwbpsZATPe4BeDEgZo+pBkPoDCJBtQjCUMWeRKA6ozjzwVnnQn5Y5u2OEal0hhdWLi2BzQqidWO1fHhZgs7SGuuD4fqIrtel9Mcv4nEvg7FBr3/WxUXAzxlXB3v8BRF4bYAFqeUa52iTX/ig4iGSA/dbsh/K9bypsTx+HcvULVmyq5ue/vHnHUvUp1m6Qv5xWviiO1Mmi2a2cuBJB8ThEJPHWF5p1pJehkiLT9HzcNIkzCqNGoxFat6MNdXMfvr1lJayY29wkYIbxqXymBjnYSt8DyLldqnSgk9wxwsFV2/K5mjvAcYlQSAun2dwYQUlBMDRC/hGCmp7jVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4rBKPniWx+ylQ54Xkc1Drcnv51MYQVgQ/kEfF8Ifuhk=;
- b=NMskiodPJsmRl436JkSXgaTzA4Y1+HL3CysVpbOZC1Y/T0H6rJIl/MqN7gWvL2dQTFi2PXRmHaeJGMKUfXl4B64c2yI6NnKomVHONdF/iC9Rg66S+1KNLcV0zxlyImyAu5FiG6nMEQO867qwG5GV4EyFPJsqi2rsWTM8a5qt1h8JjVVaUenEe497/6G2bczJ0B8gvBTdoVv0frqqa/5I6xxMrmwMbYuspDVhwt5+Yi3IXVSnizP/0Y+WuWte0cat7Vf4UBd4dy13oYx2HHLxBKfbMjv5mMcTvS+fvj8vGz1LaROsbqbekZrPnFneX6Ky66G32d+8fCXsXWnyGj9JvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4rBKPniWx+ylQ54Xkc1Drcnv51MYQVgQ/kEfF8Ifuhk=;
- b=AjhSBOJvEpHMnzImjWDJTePqN2nb7sx++6u4ZAr0OLdCsS0ptfTP2ZyrNsDtOqwm7R2UZF5GKYsf702+HWBwfjBFkA8MNGGR+n+Tp/XhKN8TCf10f0DU9aWu6qt9Hh6ZFw2lSycoaSDVLTBUNPLh38YpMUckX08dNpTyFBGTO2s=
-Received: from VI1PR04MB6941.eurprd04.prod.outlook.com (2603:10a6:803:12e::23)
- by VI1PR04MB6095.eurprd04.prod.outlook.com (2603:10a6:803:f7::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.17; Tue, 7 Apr
- 2020 09:10:29 +0000
-Received: from VI1PR04MB6941.eurprd04.prod.outlook.com
- ([fe80::289c:fdf8:faf0:3200]) by VI1PR04MB6941.eurprd04.prod.outlook.com
- ([fe80::289c:fdf8:faf0:3200%2]) with mapi id 15.20.2878.016; Tue, 7 Apr 2020
- 09:10:29 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Adam Ford <aford173@gmail.com>
-CC:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@samsung.com>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2 8/8] arm64: dts: imx8m: Add NOC nodes
-Thread-Topic: [PATCH v2 8/8] arm64: dts: imx8m: Add NOC nodes
-Thread-Index: AQHWCDKCwo8em7bdXUyT4tjIdLJwuQ==
-Date:   Tue, 7 Apr 2020 09:10:29 +0000
-Message-ID: <VI1PR04MB69417FFDFF452FC46889B686EEC30@VI1PR04MB6941.eurprd04.prod.outlook.com>
-References: <cover.1585751281.git.leonard.crestez@nxp.com>
- <c167baa48d6830cf32b9ac51968eeadd684ebf2d.1585751281.git.leonard.crestez@nxp.com>
- <CAHCN7xKpwex8MQbTFAYKjGPQbQ1uOe7EywASmcakg8F_2w-iuA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [95.76.3.222]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 9e7681b7-d762-4354-17ec-08d7dad384dc
-x-ms-traffictypediagnostic: VI1PR04MB6095:|VI1PR04MB6095:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB6095F346EEF0D3DF7A6FAE11EEC30@VI1PR04MB6095.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
-x-forefront-prvs: 036614DD9C
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB6941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10009020)(4636009)(366004)(376002)(136003)(346002)(39860400002)(396003)(81156014)(81166006)(7416002)(2906002)(6506007)(7696005)(55016002)(8676002)(26005)(316002)(53546011)(9686003)(91956017)(86362001)(76116006)(66946007)(186003)(54906003)(44832011)(66556008)(66476007)(66446008)(33656002)(5660300002)(478600001)(64756008)(52536014)(71200400001)(6916009)(8936002)(4326008)(45080400002)(966005)(32563001);DIR:OUT;SFP:1101;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NgW7M1Q/JOT+0LVMZ1BqywpQjqdJbVAZKmLlOrAnD1+DvFwgYjKOfjYxPWiH7rxTXdiKqkJ8iSv1h2yrwoZ+9PG810Fz0qd+D8dfcVSaEc1r+o9UJ3YZxN1CV+1PuihYV8ZrS2LFpdMamizwUEcxT/nD9429WlEginkXTD/7o6drEZwA/H4eyZsI8xcdrmMecu/P3BDxfQB1c1iWuflfqMPOhgSCdN7JnEADtqlnK8/6a6L8mLuPCcIpNG3rPm2gOMTeu0/divyBfBrA0nts0YYikWaVAyYFHnnHcZpAIGkPt1FRZ6aMJMoNWwOFYvNInCJ4eYputI9LjIZZusLjGPlmhJvRZ4dA0E5ftcvaExlymVJzOYPjFi07Ahbff84w5dpuoiAUrG5KfS8BqKmq3O5k51aNiW3FtqViWEtpuWvZVEnbrxSSKFkknwdgjUZbc/A+w63PGj24KafY9vDbEesovEREEnHN5Z9S8hrCy5I7ojPCq2Qmlx5sM6vgiFnsYhx06TYmMP+3GDz2fTeL3ax+K4lffzShl3o6nRgN5XSjQg/7ct5qYold4DKSD/4v
-x-ms-exchange-antispam-messagedata: zbShVds7BkhxoLZsJpRct38cmVN7ZTje5f4fvrPUVQOsCIF/NIQBe6PK5Rhatd8o5N0E6Wv1kDNiy/DfeOFz/doyTQsfr0wOkg9LMmaob22R156PykgifSSffeqD8ERJCGO4byN5jwC9eaGG1EX2qg==
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+        id S1728074AbgDGJTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 05:19:47 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:50513 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726637AbgDGJTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 05:19:46 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1586251186; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=JkT2sTUJ8FGclBebPphK1ZlCoEL/hiXwiZW3sDem2YU=; b=fSDf9tiaFlUGKeDrGY/byYHs1C5bXtLS0XKg9+nlOLVSXJqI1W3zaWOpqaPmIeg+Sxhcbupx
+ a0Q2QWwozHINtdzGYiqi46t2Ro9ASXZLTEhCABr88F/UGv6dLlHV3cO0tVNAejxbbzemjPU7
+ zsKeCU6rXUg9hhAqCGQJIhqpfYs=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e8c45a9.7fb55a6fa688-smtp-out-n03;
+ Tue, 07 Apr 2020 09:19:37 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B635FC4478C; Tue,  7 Apr 2020 09:19:35 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.6] (unknown [183.83.138.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 26D7AC433F2;
+        Tue,  7 Apr 2020 09:19:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 26D7AC433F2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
+Subject: Re: [PATCH V3 6/8] tty: serial: qcom_geni_serial: Add interconnect
+ support
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, georgi.djakov@linaro.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, dianders@chromium.org,
+        evgreen@chromium.org
+References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
+ <1585652976-17481-7-git-send-email-akashast@codeaurora.org>
+ <20200331193949.GK199755@google.com>
+From:   Akash Asthana <akashast@codeaurora.org>
+Message-ID: <db7d1369-33aa-b0b3-ec44-2018ea382887@codeaurora.org>
+Date:   Tue, 7 Apr 2020 14:49:20 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e7681b7-d762-4354-17ec-08d7dad384dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2020 09:10:29.6184
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oAjxY31OtrgFtr+Y99uuHs0HdMLuVUfCX7GrD1rTyGt5VHk3uYnPhVHUyR+R/0rbiYVNtZMFqV/uN4GnMetChA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6095
+In-Reply-To: <20200331193949.GK199755@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-04-04 4:25 PM, Adam Ford wrote:=0A=
-> On Wed, Apr 1, 2020 at 9:35 AM Leonard Crestez <leonard.crestez@nxp.com> =
-wrote:=0A=
->>=0A=
->> Add nodes for the main interconnect of the imx8m series chips.=0A=
->>=0A=
->> These nodes are bound to by devfreq and interconnect drivers.=0A=
->>=0A=
->> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
->> ---=0A=
->>   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 24 +++++++++++++++++++++++=
-=0A=
->>   arch/arm64/boot/dts/freescale/imx8mn.dtsi | 24 +++++++++++++++++++++++=
-=0A=
->>   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 24 +++++++++++++++++++++++=
-=0A=
->>   3 files changed, 72 insertions(+)=0A=
->>=0A=
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot=
-/dts/freescale/imx8mm.dtsi=0A=
->> index 175c28ae10cf..41047b6709b6 100644=0A=
->> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi=0A=
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi=0A=
->> @@ -6,10 +6,11 @@=0A=
->>   #include <dt-bindings/clock/imx8mm-clock.h>=0A=
->>   #include <dt-bindings/gpio/gpio.h>=0A=
->>   #include <dt-bindings/input/input.h>=0A=
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>=0A=
->>   #include <dt-bindings/thermal/thermal.h>=0A=
->> +#include <dt-bindings/interconnect/imx8mm.h>=0A=
->>=0A=
->>   #include "imx8mm-pinfunc.h"=0A=
->>=0A=
->>   / {=0A=
->>          interrupt-parent =3D <&gic>;=0A=
->> @@ -860,10 +861,33 @@=0A=
->>                                  status =3D "disabled";=0A=
->>                          };=0A=
->>=0A=
->>                  };=0A=
->>=0A=
->> +               noc: interconnect@32700000 {=0A=
->> +                       compatible =3D "fsl,imx8mm-noc", "fsl,imx8m-noc"=
-;=0A=
->> +                       reg =3D <0x32700000 0x100000>;=0A=
->> +                       clocks =3D <&clk IMX8MM_CLK_NOC>;=0A=
->> +                       fsl,ddrc =3D <&ddrc>;=0A=
->> +                       #interconnect-cells =3D <1>;=0A=
->> +                       operating-points-v2 =3D <&noc_opp_table>;=0A=
->> +=0A=
->> +                       noc_opp_table: opp-table {=0A=
->> +                               compatible =3D "operating-points-v2";=0A=
->> +=0A=
->> +                               opp-150M {=0A=
->> +                                       opp-hz =3D /bits/ 64 <150000000>=
-;=0A=
->> +                               };=0A=
->> +                               opp-375M {=0A=
->> +                                       opp-hz =3D /bits/ 64 <375000000>=
-;=0A=
->> +                               };=0A=
->> +                               opp-750M {=0A=
->> +                                       opp-hz =3D /bits/ 64 <750000000>=
-;=0A=
-> =0A=
-> Out of curiosity, the 8M Mini runs up to 750M, and  the 8M Nano and=0A=
-> 8MQ run up to 800.  The 8MQ had a patch to increase the assigned clock=0A=
-> speed for the NOC to 800MHz=0A=
-> =0A=
-> See: https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F=
-git.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fnext%2Flinux-next.git%2=
-Fpatch%2Farch%2Farm64%2Fboot%2Fdts%2Ffreescale%3Fid%3D912b9dacf3f0ffad55e1a=
-1b3c5af0e433ebdb5dd&amp;data=3D02%7C01%7Cleonard.crestez%40nxp.com%7C32c365=
-5718e4459028e008d7d89baa31%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637=
-216035403876452&amp;sdata=3Dz%2B5afsPGbCk4HkRp4nR6QepOrm70Fi5B5dohyvaquxo%3=
-D&amp;reserved=3D0)=0A=
-> =0A=
-> The 8M Mini and 8M Nano appear to be setting the default speed to 0.=0A=
-=0A=
-I'm not sure what you mean about this, the noc clock is required for =0A=
-mostly everything.=0A=
-=0A=
-> Should the 8M Mini or 8M Nano do something similar to what the 8MQ=0A=
-> did, or does this series negate the need for such a patch?=0A=
-=0A=
-Instead of doing assigned-clocks noc frequency needs to be tweaked by =0A=
-adjusting OPPs in this list. The devfreq device for noc will overwrite =0A=
-other frequencies set for the noc.=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+Hi Matthias,
+
+On 4/1/2020 1:09 AM, Matthias Kaehlcke wrote:
+> Hi Akash,
+>
+> On Tue, Mar 31, 2020 at 04:39:34PM +0530, Akash Asthana wrote:
+>> Get the interconnect paths for Uart based Serial Engine device
+>> and vote according to the baud rate requirement of the driver.
+>>
+>> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+>> ---
+>> Changes in V2:
+>>   - As per Bjorn's comment, removed se == NULL check from geni_serial_icc_get
+>>   - As per Bjorn's comment, removed code to set se->icc_path* to NULL in failure
+>>   - As per Bjorn's comment, introduced and using devm_of_icc_get API for getting
+>>     path handle
+>>   - As per Matthias comment, added error handling for icc_set_bw call
+>>
+>> Changes in V3:
+>>   - As per Matthias comment, use common library APIs defined in geni-se
+>>     driver for ICC functionality.
+>>
+>>   drivers/tty/serial/qcom_geni_serial.c | 28 +++++++++++++++++++++++++---
+>>   1 file changed, 25 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+>> index 8c5d97c..2befe72 100644
+>> --- a/drivers/tty/serial/qcom_geni_serial.c
+>> +++ b/drivers/tty/serial/qcom_geni_serial.c
+>> @@ -965,6 +965,14 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
+>>   	ser_clk_cfg = SER_CLK_EN;
+>>   	ser_clk_cfg |= clk_div << CLK_DIV_SHFT;
+>>   
+>> +	/*
+>> +	 * Bump up BW vote on CPU path as driver supports FIFO mode only.
+>> +	 * Assume peak_bw as twice of avg_bw.
+>> +	 */
+>> +	port->se.from_cpu.avg_bw = Bps_to_icc(baud);
+>> +	port->se.from_cpu.peak_bw = Bps_to_icc(2 * baud);
+>> +	geni_icc_vote_on(&port->se);
+>> +
+>>   	/* parity */
+>>   	tx_trans_cfg = readl(uport->membase + SE_UART_TX_TRANS_CFG);
+>>   	tx_parity_cfg = readl(uport->membase + SE_UART_TX_PARITY_CFG);
+>> @@ -1202,11 +1210,14 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
+>>   	if (old_state == UART_PM_STATE_UNDEFINED)
+>>   		old_state = UART_PM_STATE_OFF;
+>>   
+>> -	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
+>> +	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF) {
+>> +		geni_icc_vote_on(&port->se);
+>>   		geni_se_resources_on(&port->se);
+>> -	else if (new_state == UART_PM_STATE_OFF &&
+>> -			old_state == UART_PM_STATE_ON)
+>> +	} else if (new_state == UART_PM_STATE_OFF &&
+>> +			old_state == UART_PM_STATE_ON) {
+>>   		geni_se_resources_off(&port->se);
+>> +		geni_icc_vote_off(&port->se);
+>> +	}
+>>   }
+>>   
+>>   static const struct uart_ops qcom_geni_console_pops = {
+>> @@ -1304,6 +1315,17 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>>   			return -ENOMEM;
+>>   	}
+>>   
+>> +	ret = geni_icc_get(&port->se, "qup-core", "qup-config", NULL);
+>> +	if (ret)
+>> +		return ret;
+>> +	/* Set the bus quota to a reasonable value */
+>> +	port->se.to_core.avg_bw = console ? GENI_DEFAULT_BW :
+>> +		Bps_to_icc(CORE_2X_50_MHZ);
+>> +	port->se.to_core.peak_bw = console ? GENI_DEFAULT_BW :
+>> +		Bps_to_icc(CORE_2X_100_MHZ);
+> I'm still unconvinced about the setting of the core bandwidth based on
+> whether the port is used as console or not. It could possibly break
+> consoles working at speeds > 115kbs and reserve more bandwidth than
+> necessary for ports with 'slow' devices.
+>
+> Why not scale the core bandwidth dynamically? You said earlier that there
+> is no clear/linear translation of port speed to bandwidth, but you could
+> use the same logic that is implicitly used here:
+>
+> 	if (baudrate <= 115200) {
+> 		avg_bw = GENI_DEFAULT_BW;
+> 		peak_bw = GENI_DEFAULT_BW;
+> 	} else {
+> 		avg_bw = Bps_to_icc(CORE_2X_50_MHZ);
+> 		peak_bw = Bps_to_icc(CORE_2X_100_MHZ);
+> 	}
+>
+> This would be more robust, power efficient and future readers of the
+> code don't have to wonder "why is the console special?" when our
+> discussions on this will be long forgotten.
+
+Okay, I will add this piece of code in set_termios call of the driver 
+because I don't have baudrate information during probe. It covers the 
+console case mentioned in probe function.
+
+Regards,
+
+Akash
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
