@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 507F31A02E9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 02:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A98151A029D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 02:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727421AbgDGAB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Apr 2020 20:01:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35662 "EHLO mail.kernel.org"
+        id S1726716AbgDGACh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Apr 2020 20:02:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37410 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727635AbgDGAB4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Apr 2020 20:01:56 -0400
+        id S1726709AbgDGACh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Apr 2020 20:02:37 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EA4DA20842;
-        Tue,  7 Apr 2020 00:01:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E661D2078A;
+        Tue,  7 Apr 2020 00:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586217715;
-        bh=pPQAnpLJ6swHilZZiXwdXrhXTemHxz69XOukH7cla4c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PVUNp2ASOJKjj9mc7IOVx+44rWDUsXxTcVZvT2RlwLc6Zku/yJsiLJHz5gMaXbkuV
-         vVWlcefeRbCfpWbT33wYkMjhj9Sqt3Q90mVOIATtBRHaI2YKE2ubUTQ6OXNKwceunq
-         R5HnPnFuaYuKFKlQsbp3kD5YUgPh1SRfUGcCowVY=
+        s=default; t=1586217756;
+        bh=VOfh+h2MtQqoZ+YNlZDh/acRHYS0plv1SE5C2r/svls=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mftwb1PFM1Tn+abTQFcfDb7yLIxR3icOBJY94ZcgeZ9hK6q8vvUXxyC+6TUM32tZx
+         eDv/NrFNEzy3Pu5izFXu2+dFFNgcITQOEzhg4cHlOmGPcL291xXa0NGThU60Vxtacl
+         JHsfyyi9ZA0LwWPy6C5QWkuhKdL3+RvBZxq1awUk=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 03/32] ARM: dts: Fix dm814x Ethernet by changing to use rgmii-id mode
-Date:   Mon,  6 Apr 2020 20:01:21 -0400
-Message-Id: <20200407000151.16768-3-sashal@kernel.org>
+Cc:     Ondrej Jirman <megous@megous.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 01/13] ARM: dts: sun8i-a83t-tbs-a711: HM5065 doesn't like such a high voltage
+Date:   Mon,  6 Apr 2020 20:02:22 -0400
+Message-Id: <20200407000234.17088-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200407000151.16768-1-sashal@kernel.org>
-References: <20200407000151.16768-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -42,81 +42,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tony Lindgren <tony@atomide.com>
+From: Ondrej Jirman <megous@megous.com>
 
-[ Upstream commit b46b2b7ba6e104d265ab705914859ec0db7a98c5 ]
+[ Upstream commit a40550952c000667b20082d58077bc647da6c890 ]
 
-Commit cd28d1d6e52e ("net: phy: at803x: Disable phy delay for RGMII mode")
-caused a regression for dm814x boards where NFSroot would no longer work.
+Lowering the voltage solves the quick image degradation over time
+(minutes), that was probably caused by overheating.
 
-Let's fix the issue by configuring "rgmii-id" mode as internal delays are
-needed that is no longer the case with "rgmii" mode.
-
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Ondrej Jirman <megous@megous.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/dm8148-evm.dts       | 4 ++--
- arch/arm/boot/dts/dm8148-t410.dts      | 4 ++--
- arch/arm/boot/dts/dra62x-j5eco-evm.dts | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/dm8148-evm.dts b/arch/arm/boot/dts/dm8148-evm.dts
-index 3931fb068ff09..91d1018ab75fc 100644
---- a/arch/arm/boot/dts/dm8148-evm.dts
-+++ b/arch/arm/boot/dts/dm8148-evm.dts
-@@ -24,12 +24,12 @@
- 
- &cpsw_emac0 {
- 	phy-handle = <&ethphy0>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
+diff --git a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
+index 49547a43cc90a..54cbdaf7ffdcc 100644
+--- a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
++++ b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
+@@ -318,8 +318,8 @@
  };
  
- &cpsw_emac1 {
- 	phy-handle = <&ethphy1>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
+ &reg_dldo3 {
+-	regulator-min-microvolt = <2800000>;
+-	regulator-max-microvolt = <2800000>;
++	regulator-min-microvolt = <1800000>;
++	regulator-max-microvolt = <1800000>;
+ 	regulator-name = "vdd-csi";
  };
  
- &davinci_mdio {
-diff --git a/arch/arm/boot/dts/dm8148-t410.dts b/arch/arm/boot/dts/dm8148-t410.dts
-index 9e43d5ec0bb2f..79ccdd4470f4c 100644
---- a/arch/arm/boot/dts/dm8148-t410.dts
-+++ b/arch/arm/boot/dts/dm8148-t410.dts
-@@ -33,12 +33,12 @@
- 
- &cpsw_emac0 {
- 	phy-handle = <&ethphy0>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- };
- 
- &cpsw_emac1 {
- 	phy-handle = <&ethphy1>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- };
- 
- &davinci_mdio {
-diff --git a/arch/arm/boot/dts/dra62x-j5eco-evm.dts b/arch/arm/boot/dts/dra62x-j5eco-evm.dts
-index 861ab90a3f3aa..c16e183822bee 100644
---- a/arch/arm/boot/dts/dra62x-j5eco-evm.dts
-+++ b/arch/arm/boot/dts/dra62x-j5eco-evm.dts
-@@ -24,12 +24,12 @@
- 
- &cpsw_emac0 {
- 	phy-handle = <&ethphy0>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- };
- 
- &cpsw_emac1 {
- 	phy-handle = <&ethphy1>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- };
- 
- &davinci_mdio {
 -- 
 2.20.1
 
