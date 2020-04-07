@@ -2,73 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 390D71A1879
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 01:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAACD1A17B5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 00:07:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbgDGXIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 19:08:45 -0400
-Received: from 9.mo179.mail-out.ovh.net ([46.105.76.148]:48049 "EHLO
-        9.mo179.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726380AbgDGXIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 19:08:45 -0400
-X-Greylist: delayed 4610 seconds by postgrey-1.27 at vger.kernel.org; Tue, 07 Apr 2020 19:08:44 EDT
-Received: from player692.ha.ovh.net (unknown [10.110.171.117])
-        by mo179.mail-out.ovh.net (Postfix) with ESMTP id 601E8162B98
-        for <devicetree@vger.kernel.org>; Tue,  7 Apr 2020 23:51:53 +0200 (CEST)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
-        (Authenticated sender: andi@etezian.org)
-        by player692.ha.ovh.net (Postfix) with ESMTPSA id CADFA1114F23A;
-        Tue,  7 Apr 2020 21:51:44 +0000 (UTC)
-Date:   Wed, 8 Apr 2020 00:51:43 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi@etezian.org>, linux-input@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mms114: document melfas,mms345l
- binding
-Message-ID: <20200407215143.GD207210@jack.zhora.eu>
-References: <20200405170904.61512-1-stephan@gerhold.net>
- <20200405170904.61512-2-stephan@gerhold.net>
+        id S1726406AbgDGWH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 18:07:26 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46506 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726386AbgDGWH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 18:07:26 -0400
+Received: by mail-pf1-f195.google.com with SMTP id q3so1422547pff.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Apr 2020 15:07:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xQ0CMqBW6HOiKsmKZ6VgVvjTVRhpyHMNm3H4n2IX4C8=;
+        b=Rw68i3XJ5JnnwX/K/8I3yzixlUVsVtJ2etjO5TZhfnYbsajRHoeks03BiJgc4IfBou
+         pplNLgCJb4AibRRMSKpOE+MgNY2ShgtRSuFxsEr0E7TMIntadjYbMmCzEJM82pfk37t5
+         7ySqepJeD5kpr2jRBpC2O3hCv5zKx89jMhXvZIFEkqcwpMe0Zetu9YvY924vkJS9kNyA
+         fq2slWBlcJ0DDuF/xaFlnd5Kx7z+uNpxn1I5a7EeBT7muxR+VxQ0iBnYWNlYN6s/07Gf
+         3u0ljmf5E8+2Jg2asB/+5DNamV2GqzhneAUcBvpTDHXD8SF4Flpjfu8WvXugWRFK67OK
+         pP9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xQ0CMqBW6HOiKsmKZ6VgVvjTVRhpyHMNm3H4n2IX4C8=;
+        b=MWEq2GQyp63LxETei4/qaH6N9S54svQsONP36aXOLL8rNFUH43xTRs/5tsN9FLfRDg
+         JduoC/tQil6dz7Z0k4kvNlYSbPJUIAePwBw5D9VFQaIxNkGgA8LxHhae4+x821RfAIr2
+         Vn+NvIvonfJldnQJMSVIV6MEQB4wS4UGzwKRc1JjPmtZ3OtYFw07Zs4k/2wHN3gxZ6Lm
+         g9Q0kfo4oHLw0ech+GofuXdnvXPZstaK0A+3LqzkqnKVEdXfpGng77I7Yg8sNv3lBNlb
+         i/FQ8Csm1dofSBePojbYOs+hN/Ww8SXhi9Tl6zsA15WopfnsFTeFSiyqIamnCSiXVi4i
+         lMTg==
+X-Gm-Message-State: AGi0PuZCq9M9P6gpYP/3OTGbucyLEsgcfKqIXnaYr5pCIkR4/sViTQf4
+        3+PdeDB6IzjwaLNyBqXKdw+Rrg==
+X-Google-Smtp-Source: APiQypImyD5jkZCA6R9BSgJ+PmtBP9/LG4f/aJX6aezk6OZplkgeFKHReg6Bg6r/hmACeL/V74aYKw==
+X-Received: by 2002:a62:75d0:: with SMTP id q199mr4566702pfc.72.1586297245671;
+        Tue, 07 Apr 2020 15:07:25 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id r9sm14091252pfg.2.2020.04.07.15.07.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Apr 2020 15:07:24 -0700 (PDT)
+Date:   Tue, 7 Apr 2020 15:07:30 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org, wsa@the-dreams.de,
+        broonie@kernel.org, mark.rutland@arm.com, robh+dt@kernel.org,
+        georgi.djakov@linaro.org, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        swboyd@chromium.org, mgautam@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-serial@vger.kernel.org,
+        mka@chromium.org, dianders@chromium.org, evgreen@chromium.org
+Subject: Re: [PATCH V3 2/8] soc: qcom: geni: Support for ICC voting
+Message-ID: <20200407220730.GK20625@builder.lan>
+References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
+ <1585652976-17481-3-git-send-email-akashast@codeaurora.org>
+ <20200331233209.GF254911@minitux>
+ <45191b98-60fa-cd49-3067-d58c128d2c9c@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200405170904.61512-2-stephan@gerhold.net>
-X-Ovh-Tracer-Id: 17724197810407588589
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrudeigddtvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieelvddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+In-Reply-To: <45191b98-60fa-cd49-3067-d58c128d2c9c@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+On Mon 06 Apr 23:45 PDT 2020, Akash Asthana wrote:
 
-On Sun, Apr 05, 2020 at 07:09:04PM +0200, Stephan Gerhold wrote:
-> The mms114 driver now supports MMS345L; document the
-> melfas,mms345l binding that is used for it.
+> Hi Bjorn,
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Andi Shyti <andi@etezian.org>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> On 4/1/2020 5:02 AM, Bjorn Andersson wrote:
+> > On Tue 31 Mar 04:09 PDT 2020, Akash Asthana wrote:
+> > 
+> > > Add necessary macros and structure variables to support ICC BW
+> > > voting from individual SE drivers.
+> > > 
+> > > Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+> > > ---
+> > > Changes in V2:
+> > >   - As per Bjorn's comment dropped enums for ICC paths, given the three
+> > >     paths individual members
+> > > 
+> > > Changes in V3:
+> > >   - Add geni_icc_get, geni_icc_vote_on and geni_icc_vote_off as helper API.
+> > >   - Add geni_icc_path structure in common header
+> > > 
+> > >   drivers/soc/qcom/qcom-geni-se.c | 98 +++++++++++++++++++++++++++++++++++++++++
+> > >   include/linux/qcom-geni-se.h    | 36 +++++++++++++++
+> > >   2 files changed, 134 insertions(+)
+> > > 
+> > > diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> > > index 7d622ea..9344c14 100644
+> > > --- a/drivers/soc/qcom/qcom-geni-se.c
+> > > +++ b/drivers/soc/qcom/qcom-geni-se.c
+> > > @@ -720,6 +720,104 @@ void geni_se_rx_dma_unprep(struct geni_se *se, dma_addr_t iova, size_t len)
+> > >   }
+> > >   EXPORT_SYMBOL(geni_se_rx_dma_unprep);
+> > > +int geni_icc_get(struct geni_se *se, const char *icc_core, const char *icc_cpu,
+> > > +		const char *icc_ddr)
+> > > +{
+> > > +	if (icc_core) {
+> > Afaict it's only this that might be passed as NULL, so please drop these
+> > conditionals (keep the last one).
+> IIUC you're suggesting to drop if (icc_core/cpu) but keep if (icc_ddr) ?
 
-just one nitpick, the signing should be sorted in chronological
-order, I see that you reverted it.
+Correct
 
-You first signed it as the author, then I reviewed it and the Rob
-acked it, so that it should be:
-
-  Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-  Reviewed-by: Andi Shyti <andi@etezian.org>
-  Acked-by: Rob Herring <robh@kernel.org>
-
-you reversed it.
-
-Other than that, I'm sorry I couldn't help you but I haven't
-received answers from Samsung about getting the prototypes.
-However I don't see reason for not applying the patch.
-
-Andi
+Thanks,
+Bjorn
