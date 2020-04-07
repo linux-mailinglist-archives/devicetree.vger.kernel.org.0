@@ -2,136 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 710E51A06C4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 07:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2C441A06E5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2020 07:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726917AbgDGFvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 01:51:49 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41538 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726884AbgDGFvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 01:51:48 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0375petX091483;
-        Tue, 7 Apr 2020 00:51:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1586238700;
-        bh=M2+4k8wmfwupbhN9ssnIg+wY4Ic8DPY+NyV+bVJoVFM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qeHuIkvm+kkMO+JvB9bifK5IEEAMDaXyhxc9ROGFV6HVmQ57OL3pcVnD0Vwkq5OQ9
-         g+R7S1GWNQRxjoww32erv6GjM6O4Jic083gaXAJ48U90h1iu6tzsRmKT/vGqBgCna3
-         2sGTTpqFAqTNg3iZcd6c1yUYt0qxZxFkkYniH8YA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0375pdYL041571
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Apr 2020 00:51:40 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 7 Apr
- 2020 00:51:39 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 7 Apr 2020 00:51:40 -0500
-Received: from a0393675ula.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0375pLdP017972;
-        Tue, 7 Apr 2020 00:51:36 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <rui.zhang@intel.com>, <robh+dt@kernel.org>,
-        <daniel.lezcano@linaro.org>
-CC:     <j-keerthy@ti.com>, <amit.kucheria@verdurent.com>,
-        <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <mark.rutland@arm.com>
-Subject: [PATCH v6 4/4] arm64: dts: ti: am654: Add thermal zones
-Date:   Tue, 7 Apr 2020 11:21:16 +0530
-Message-ID: <20200407055116.16082-5-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200407055116.16082-1-j-keerthy@ti.com>
-References: <20200407055116.16082-1-j-keerthy@ti.com>
+        id S1726232AbgDGF67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 01:58:59 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38603 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725817AbgDGF6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 01:58:50 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 678CC580307;
+        Tue,  7 Apr 2020 01:58:48 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 07 Apr 2020 01:58:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=luaDFvJ4QP7HzTgY7DFCyyfDI0
+        BXcg59edPeu9moQnE=; b=iWAedFWIY7AyUqXyEMCmfDoc8Nak2DLftjwUhJLLQk
+        KNRmOJFxDfJQelE4tQso8nqPqTCL31xTtxABsBPSsUcMfpIKe1bykpddaAqUbthw
+        /vl/Z9Jq9bNHA24yGTdB69hoCYVyLgtsVsk7fePlLWGZWDXCGTMZdXa8TOgiK85V
+        pd9dsCtIU1YBudJZhbVYYjac0Y5fLIArn6ezaAN9xQZ8SgqJ9uqFjcLMOMc8sYIz
+        pRYAU02EllzACZNByxAtfsQAs/LYL+tVt3ON7SLv7vLHKb1/P6OhdK+5WTx2v1+/
+        ZC3VWm3Fjv58Przl49QI2qupSTk3MVYS9A+WJ432J4eA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=luaDFvJ4QP7HzTgY7
+        DFCyyfDI0BXcg59edPeu9moQnE=; b=HU2zYuIb3dTywfn6VPUoR6iQ4DvjVfA6a
+        HM+TF/HO7pF27scVLRt1zH0A/0lI70UatZoD3GNQUy243gLrac3W2iCay50Ov+YT
+        K27RqrE9PzGeydBTzz+TX34aCWjfjGqUSjOQiuF3Yrf8V7jEkGczMYXQUOxhp6dF
+        /iBC2Hhu8aP65ZgX5Ldf7ZPKt3kIkaApsciNqonHlE920OwyE2Qfa78gcday7Qwp
+        YgfzosNZnOFO2keUO9YaeEk0bycSC7uosnwKgi/xES5kl3cwi1NmXCK05r9Zp5xc
+        7DftnpnfR8u1zPQkjZwM8FokfE80X/uvWlbHtWuIxC34zO2n7eDSQ==
+X-ME-Sender: <xms:lBaMXql_AK8NiqoqaaeLDZYYzQWffz2wIKyiEM7Yw5BBFWfrk_F9yA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudeggdellecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdroh
+    hrghenucfkphepjeefrdelfedrkeegrddvtdeknecuvehluhhsthgvrhfuihiivgeptden
+    ucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrghirhdvfe
+    drmhgv
+X-ME-Proxy: <xmx:lBaMXqBF7Q_unFFUXTNyMVF3JuktDwLWCQ_9obH00fUJqGWQx1og_w>
+    <xmx:lBaMXgsRucZ3VE9D9WFeHAiyxWkz-QH1boPQTPKGfsc80MYKdVyEsQ>
+    <xmx:lBaMXkuKECeRlmoFykZo8892QfqB5oSg-NiZ2_-VMXo7cF22NI8HZw>
+    <xmx:mBaMXnCjFgTFBSbWfIFyKYlmRZ3ZfVedIjjlZJfkBnVEJqixEVUmBA>
+Received: from alistair-xps-14z.alistair23.me (c-73-93-84-208.hsd1.ca.comcast.net [73.93.84.208])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 869D6328005A;
+        Tue,  7 Apr 2020 01:58:43 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marcel@holtmann.org, johan.hedberg@gmail.com,
+        linux-bluetooth@vger.kernel.org, mripard@kernel.org, wens@csie.org
+Cc:     anarsoul@gmail.com, devicetree@vger.kernel.org,
+        alistair23@gmail.com, linux-arm-kernel@lists.infradead.org,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v2 1/3] dt-bindings: net: bluetooth: Add rtl8723bs-bluetooth
+Date:   Mon,  6 Apr 2020 22:58:35 -0700
+Message-Id: <20200407055837.3508017-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The am654 SoC has three thermal zones namely MPU0, MPU1 and MCU
-zones.
+From: Vasily Khoruzhick <anarsoul@gmail.com>
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
+Add binding document for bluetooth part of RTL8723BS/RTL8723CS
+
+Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
 ---
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |  4 ++
- .../dts/ti/k3-am654-industrial-thermal.dtsi   | 45 +++++++++++++++++++
- 2 files changed, 49 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
+v2:
+ - Update bindings based on upstream feedback
+ - Add RTL8822CS
+ - Remove unused/unsupported fields
+ - Remove firmware-postfix field
+ - Small formatting changes
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index 98b89cf0ccdf..54a133fa1bf2 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -96,4 +96,8 @@
- 		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
- 		#thermal-sensor-cells = <1>;
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		#include "k3-am654-industrial-thermal.dtsi"
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
+ .../bindings/net/realtek,rtl8723bs-bt.yaml    | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek,rtl8723bs-bt.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl8723bs-bt.yaml b/Documentation/devicetree/bindings/net/realtek,rtl8723bs-bt.yaml
 new file mode 100644
-index 000000000000..cdc3d40c3f60
+index 000000000000..a03ce1bbc56f
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: GPL-2.0
++++ b/Documentation/devicetree/bindings/net/realtek,rtl8723bs-bt.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/realtek,rtl8723bs-bt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <dt-bindings/thermal/thermal.h>
++title: RTL8723BS/RTL8723CS/RTL8822CS Bluetooth Device Tree Bindings
 +
-+mpu0_thermal: mpu0_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 0>;
++maintainers:
++  - Vasily Khoruzhick <anarsoul@gmail.com>
++  - Alistair Francis <alistair@alistair23.me>
 +
-+	trips {
-+		mpu0_crit: mpu0_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
++description:
++  RTL8723CS/RTL8723CS/RTL8822CS is WiFi + BT chip. WiFi part is connected over
++  SDIO, while BT is connected over serial. It speaks H5 protocol with few
++  extra commands to upload firmware and change module speed.
 +
-+mpu1_thermal: mpu1_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 1>;
++properties:
++  compatible:
++    oneOf:
++      - "realtek,rtl8723bs-bt"
++      - "realtek,rtl8723cs-bt"
++      - "realtek,rtl8822cs-bt"
 +
-+	trips {
-+		mpu1_crit: mpu1_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
++  device-wake-gpios:
++    maxItems: 1
++    description:
++      GPIO specifier, used to wakeup the BT module
 +
-+mcu_thermal: mcu_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 2>;
++  enable-gpios:
++    maxItems: 1
++    description:
++      GPIO specifier, used to enable the BT module
 +
-+	trips {
-+		mcu_crit: mcu_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
++  host-wake-gpios:
++    maxItems: 1
++    desciption:
++      GPIO specifier, used to wakeup the host processor
++
++required:
++  - compatible
++
++examples:
++  - |
++    &uart1 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++        uart-has-rtscts = <1>;
++
++        bluetooth {
++            compatible = "realtek,rtl8723bs-bt";
++            device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
++            host-wakeup-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
++        };
++    };
 -- 
-2.17.1
+2.25.1
 
