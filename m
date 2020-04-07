@@ -2,560 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E121A1856
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 00:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6703D1A187A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 01:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbgDGWtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Apr 2020 18:49:00 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:16203 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726395AbgDGWtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 18:49:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1586299738; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=IFf+TsUeR2GLwyGXMEmsndxOiqKVvu6z0iQgkg9Rufg=; b=Za7+kWzVVN1lPmsTC3qUN964Yc/KuYmwNZi/T4rcKgXHhwECXPO0P2zzKd5LEsUQXVks+iSr
- 9Cgb9w6uo1Unx+g+lsCQAwAH7fXZ+d0bi0GyEMEOXdBXyil/QxJmUwUsKitYv1S+48whtAgp
- wy31mrHNrBZkFLgWLRDIprDpM6I=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e8d0351.7f9198941e68-smtp-out-n03;
- Tue, 07 Apr 2020 22:48:49 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5A483C433F2; Tue,  7 Apr 2020 22:48:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.0
-Received: from linuxdisplay-lab-04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tanmay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 10B40C433BA;
-        Tue,  7 Apr 2020 22:48:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 10B40C433BA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tanmay@codeaurora.org
-From:   Tanmay Shah <tanmay@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, seanpaul@chromium.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        abhinavk@codeaurora.org, robdclark@gmail.com,
-        aravindh@codeaurora.org, varar@codeaurora.org
-Cc:     Tanmay Shah <tanmay@codeaurora.org>
-Subject: [PATCH 2/2] drm/msm/dp: Add Hot Plug Detect feature
-Date:   Tue,  7 Apr 2020 15:48:29 -0700
-Message-Id: <1586299709-14222-2-git-send-email-tanmay@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1586299709-14222-1-git-send-email-tanmay@codeaurora.org>
-References: <1586299709-14222-1-git-send-email-tanmay@codeaurora.org>
+        id S1726406AbgDGXMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Apr 2020 19:12:32 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:46583 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726380AbgDGXMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Apr 2020 19:12:32 -0400
+Received: by mail-lf1-f68.google.com with SMTP id m19so1677410lfq.13;
+        Tue, 07 Apr 2020 16:12:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RwBDvU/d/RuyuOicf+LMSeUuB7FpaSGPCFNY8uUMcT8=;
+        b=ITb0PCiLvFvAVN7bpWpJlckTjQ8s/wjqbxLsbWXCFsj+XrR6vru92/JlT6lzOgpb0u
+         GvSyCbY86jIPTEp7Rr6UG3CpHXhrlyN6C7QMfn9hGHT5V94hmDalVuuw6l9Uj+jhnEpL
+         0w+zGOx2K4nyKvpPS1itml53GKUo/T2CDvs+jNKP83LXgAiqyUEMkQukAExr3FGhUMK0
+         /q2xBHo/iw98t6r1GJ1gaaC8/QbQZmkYgHikswey901fj0KneeQkZ/8Oq6B4+5lXpTPy
+         QCx3IlR4i1XwPUTGs2RiyEngHTxoZVbLXWuUTpGiGD93wuoUcU/BPwTEWWiry2rngf2P
+         dYpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RwBDvU/d/RuyuOicf+LMSeUuB7FpaSGPCFNY8uUMcT8=;
+        b=A8cj4Mm/6m7HBUghxwF8KyDY8QfJD5MoDA5jW8IJuOMEmFWCA6o3ihf2QRPynMe/9r
+         Hy9a1L7ur3XRdLN21rzampW7+uxxC+jypwsQe49wK4ZYGXEkMsfN5g50G9qBk/D+O27r
+         fT8j/ExA6jz8VSiE14WfNBACgYMY6471MnSbv+sRlU9aS1oP3wc6q7P4SgQNDCH39zEP
+         tDwkVeK9THQ0iv9o3nY8euBNmGokrOGuGm1v994Ckn613Gc7vzyrq5wgwNzcllPGynZM
+         qHhycVQ8jStsP3pay3g35A7mWT7LEJXZgSg1c2712EgsqlV3m7DTG/4hu3JhY7idIrCe
+         vDYw==
+X-Gm-Message-State: AGi0PuatZMcSzG14cIesifDWQDDJG8I2gc48bLlbKibvskhFrwa7tQZI
+        IyGILgnDNkiIXiD2dJRrKh4zTns6
+X-Google-Smtp-Source: APiQypLgfZ7BpY4nMrnJrXTT3z+5gBIe2iOt5bl8wLbbK0kgy8mwEcvrUJhccF8GU5G5Zh9WGlI4uw==
+X-Received: by 2002:ac2:5607:: with SMTP id v7mr2758744lfd.212.1586301148120;
+        Tue, 07 Apr 2020 16:12:28 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id c2sm14650894lfb.43.2020.04.07.16.12.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Apr 2020 16:12:27 -0700 (PDT)
+Subject: Re: [RFC PATCH v6 6/9] media: tegra: Add Tegra210 Video input driver
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        hverkuil@xs4all.nl, sakari.ailus@iki.fi, helen.koike@collabora.com
+Cc:     sboyd@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1585963507-12610-1-git-send-email-skomatineni@nvidia.com>
+ <1585963507-12610-7-git-send-email-skomatineni@nvidia.com>
+ <200bb96e-2d07-764f-9e14-55538dc742fd@gmail.com>
+ <23bfab09-b464-6e51-9843-06d13000e9b9@nvidia.com>
+ <be77b0ef-d605-8357-4180-f40b2886d07a@gmail.com>
+ <08cd31d5-e8b9-4d3a-fb0e-0e4462947d96@nvidia.com>
+ <12a834ac-52b1-6dc0-7d3a-3e6a1fa85a2a@gmail.com>
+ <e3712e7b-b335-b35b-a94f-24eb85122dca@nvidia.com>
+ <b1726d33-0d35-9323-a747-407148d0104e@gmail.com>
+ <eb80178f-30f4-8f46-51cd-ea3f4914b81d@nvidia.com>
+ <dd16c560-ba8f-e7df-5dc4-5227e0043196@nvidia.com>
+ <fea4f0a1-4a20-34d4-9eda-e4a599eeeffc@nvidia.com>
+ <760d071e-0cbc-b3eb-9231-fb9f9ecb44a6@nvidia.com>
+ <9e317f65-8a02-3b15-cfec-8e0d8374130e@gmail.com>
+ <97b35910-4c93-123a-43a0-eb14476ed0f3@nvidia.com>
+ <84ad4e2d-6ac1-e1f4-1c55-5edaae850631@nvidia.com>
+ <15a879b3-8fb9-6821-3cdc-104ba583ac12@gmail.com>
+ <0c425505-347f-7418-af7e-d121fe0d06dc@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <db7c7051-5674-cdb9-0aa4-ee94125b3024@gmail.com>
+Date:   Wed, 8 Apr 2020 02:12:26 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+MIME-Version: 1.0
+In-Reply-To: <0c425505-347f-7418-af7e-d121fe0d06dc@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure HPD registers and interrupts to detect connect and
-disconnect pulses on HPD pin and issue hot plug accordingly.
+08.04.2020 01:22, Sowjanya Komatineni пишет:
+> 
+> On 4/7/20 3:08 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> 08.04.2020 00:08, Sowjanya Komatineni пишет:
+>> ...
+>>>>> I think you need a semaphore with resource count = 2.
+>>>> we hold on to issuing capture if more than 2 buffers are queued and it
+>>>> continues only after fifo has min 1 slot empty
+>>>
+>>> Just want to close on this part of feedback. Hope above explanation is
+>>> clear regarding triggering/issuing at max 2 frame capture to VI HW and
+>>> also regarding capture threads where they use wait_event_interruptible
+>>> to prevent blocking waiting for buffers to be available for captures.
+>>>
+>>> So no changes related to this part are needed in v7.
+>>  From what I see in the code, you "hold on" by making kthread to spin in
+>> a busy-loop while caps_inflight >= SYNCPT_FIFO_DEPTH. So some change
+>> should be needed to prevent this.
+>>
+>> The wait_event_interruptible seems should be okay.
+> 
+> We don't want to prevent that as we already have buffers available for
+> capture so as soon as VI HW issuing single shot is done and when min 1
+> slot is empty we should continue with issuing for another capture.
+> 
+> As long as buffers are available, we should continue to capture and
+> should not hold
+> 
 
-This patch depends on:
-	https://patchwork.kernel.org/patch/11468511
-	https://patchwork.kernel.org/patch/11468715
-	https://patchwork.kernel.org/patch/11468519
-	https://patchwork.kernel.org/patch/11468515
-
-Signed-off-by: Tanmay Shah <tanmay@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c |  18 ++++++
- drivers/gpu/drm/msm/dp/dp_catalog.c     |  69 +++++++++++++-------
- drivers/gpu/drm/msm/dp/dp_catalog.h     |   5 +-
- drivers/gpu/drm/msm/dp/dp_ctrl.c        |   1 -
- drivers/gpu/drm/msm/dp/dp_display.c     | 110 +++++++++++++++++++++++++++++---
- drivers/gpu/drm/msm/dp/dp_hpd.h         |   3 +
- drivers/gpu/drm/msm/dp/dp_parser.c      |  28 ++++++++
- drivers/gpu/drm/msm/dp/dp_parser.h      |   7 +-
- drivers/gpu/drm/msm/dp/dp_reg.h         |  12 ++++
- drivers/gpu/drm/msm/msm_drv.h           |   6 ++
- 10 files changed, 222 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 3440566..31d53be 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -765,6 +765,23 @@ static void dpu_irq_preinstall(struct msm_kms *kms)
- 	dpu_core_irq_preinstall(dpu_kms);
- }
- 
-+static int dpu_irq_postinstall(struct msm_kms *kms)
-+{
-+	struct msm_drm_private *priv;
-+	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
-+
-+	if (!dpu_kms || !dpu_kms->dev)
-+		return -EINVAL;
-+
-+	priv = dpu_kms->dev->dev_private;
-+	if (!priv)
-+		return -EINVAL;
-+
-+	msm_dp_irq_postinstall(priv->dp);
-+
-+	return 0;
-+}
-+
- static void dpu_irq_uninstall(struct msm_kms *kms)
- {
- 	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
-@@ -775,6 +792,7 @@ static void dpu_irq_uninstall(struct msm_kms *kms)
- static const struct msm_kms_funcs kms_funcs = {
- 	.hw_init         = dpu_kms_hw_init,
- 	.irq_preinstall  = dpu_irq_preinstall,
-+	.irq_postinstall = dpu_irq_postinstall,
- 	.irq_uninstall   = dpu_irq_uninstall,
- 	.irq             = dpu_irq,
- 	.enable_commit   = dpu_kms_enable_commit,
-diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-index 0714868..7987eb3 100644
---- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-+++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-@@ -16,7 +16,6 @@
- #define POLLING_SLEEP_US			1000
- #define POLLING_TIMEOUT_US			10000
- 
--#define REFTIMER_DEFAULT_VALUE			0x20000
- #define SCRAMBLER_RESET_COUNT_VALUE		0xFC
- 
- #define DP_INTERRUPT_STATUS_ACK_SHIFT	1
-@@ -703,35 +702,57 @@ void dp_catalog_ctrl_enable_irq(struct dp_catalog *dp_catalog,
- 	}
- }
- 
--void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog, bool en)
-+void dp_catalog_hpd_config_intr(struct dp_catalog *dp_catalog,
-+			u32 intr_mask, bool en)
- {
- 	struct dp_catalog_private *catalog = container_of(dp_catalog,
- 				struct dp_catalog_private, dp_catalog);
- 
--	if (en) {
--		u32 reftimer = dp_read_aux(catalog, REG_DP_DP_HPD_REFTIMER);
-+	u32 config = dp_read_aux(catalog, REG_DP_DP_HPD_INT_MASK);
- 
--		dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
--				DP_DP_HPD_PLUG_INT_ACK |
--				DP_DP_IRQ_HPD_INT_ACK |
--				DP_DP_HPD_REPLUG_INT_ACK |
--				DP_DP_HPD_UNPLUG_INT_ACK);
--		dp_write_aux(catalog, REG_DP_DP_HPD_INT_MASK,
--				DP_DP_HPD_PLUG_INT_MASK |
--				DP_DP_IRQ_HPD_INT_MASK |
--				DP_DP_HPD_REPLUG_INT_MASK |
--				DP_DP_HPD_UNPLUG_INT_MASK);
-+	config = (en ? config | intr_mask : config & ~intr_mask);
- 
--		/* Configure REFTIMER */
--		reftimer |= REFTIMER_DEFAULT_VALUE;
--		dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
--		/* Enable HPD */
--		dp_write_aux(catalog, REG_DP_DP_HPD_CTRL,
--				DP_DP_HPD_CTRL_HPD_EN);
--	} else {
--		/* Disable HPD */
--		dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, 0x0);
--	}
-+	dp_write_aux(catalog, REG_DP_DP_HPD_INT_MASK,
-+				config & DP_DP_HPD_INT_MASK);
-+}
-+
-+void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog)
-+{
-+	struct dp_catalog_private *catalog = container_of(dp_catalog,
-+				struct dp_catalog_private, dp_catalog);
-+
-+	u32 reftimer = dp_read_aux(catalog, REG_DP_DP_HPD_REFTIMER);
-+
-+	/* enable HPD interrupts */
-+	dp_catalog_hpd_config_intr(dp_catalog,
-+		DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK
-+		| DP_DP_HPD_UNPLUG_INT_MASK, true);
-+
-+	/* Configure REFTIMER and enable it */
-+	reftimer |= DP_DP_HPD_REFTIMER_ENABLE;
-+	dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
-+
-+	/* connect time is 250us and disconnect time is 2ms */
-+	dp_write_aux(catalog, REG_DP_DP_HPD_EVENT_TIME_0,
-+				DP_DP_HPD_EVENT_TIME_0_VAL);
-+	dp_write_aux(catalog, REG_DP_DP_HPD_EVENT_TIME_1,
-+				DP_DP_HPD_EVENT_TIME_1_VAL);
-+
-+	/* Enable HPD */
-+	dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, DP_DP_HPD_CTRL_HPD_EN);
-+}
-+
-+u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog)
-+{
-+	struct dp_catalog_private *catalog = container_of(dp_catalog,
-+				struct dp_catalog_private, dp_catalog);
-+	int isr = 0;
-+
-+	isr = dp_read_aux(catalog, REG_DP_DP_HPD_INT_STATUS);
-+	dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
-+				 (isr & DP_DP_HPD_INT_MASK));
-+
-+	return isr;
- }
- 
- int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog)
-diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.h b/drivers/gpu/drm/msm/dp/dp_catalog.h
-index 86b82d4..23d1cec 100644
---- a/drivers/gpu/drm/msm/dp/dp_catalog.h
-+++ b/drivers/gpu/drm/msm/dp/dp_catalog.h
-@@ -60,7 +60,10 @@ void dp_catalog_ctrl_config_msa(struct dp_catalog *dp_catalog, u32 rate,
- void dp_catalog_ctrl_usb_reset(struct dp_catalog *dp_catalog, bool flip);
- bool dp_catalog_ctrl_mainlink_ready(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_enable_irq(struct dp_catalog *dp_catalog, bool enable);
--void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog, bool enable);
-+void dp_catalog_hpd_config_intr(struct dp_catalog *dp_catalog,
-+			u32 intr_mask, bool en);
-+void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog);
-+u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_phy_reset(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_phy_lane_cfg(struct dp_catalog *dp_catalog, bool flipped,
- 				u8 lane_cnt);
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-index aaa7bc8..fa15d65 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-@@ -1568,7 +1568,6 @@ int dp_ctrl_on(struct dp_ctrl *dp_ctrl)
- 	rate = ctrl->panel->link_info.rate;
- 
- 	dp_power_clk_enable(ctrl->power, DP_CORE_PM, true);
--	dp_catalog_ctrl_hpd_config(ctrl->catalog, true);
- 
- 	if (ctrl->link->sink_request & DP_TEST_LINK_PHY_TEST_PATTERN) {
- 		DRM_DEBUG_DP("using phy test link parameters\n");
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index ddcb9fc..0cc94ca 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -17,6 +17,7 @@
- #include "dp_power.h"
- #include "dp_catalog.h"
- #include "dp_aux.h"
-+#include "dp_reg.h"
- #include "dp_link.h"
- #include "dp_panel.h"
- #include "dp_ctrl.h"
-@@ -35,6 +36,7 @@ struct dp_display_private {
- 	bool power_on;
- 	bool hpd_irq_on;
- 	bool audio_supported;
-+	atomic_t hpd_isr_status;
- 
- 	struct platform_device *pdev;
- 	struct dentry *root;
-@@ -52,6 +54,8 @@ struct dp_display_private {
- 	struct dp_usbpd_cb usbpd_cb;
- 	struct dp_display_mode dp_mode;
- 	struct msm_dp dp_display;
-+
-+	struct delayed_work config_hpd_work;
- };
- 
- static const struct of_device_id dp_dt_match[] = {
-@@ -102,6 +106,20 @@ static int dp_get_pll(struct dp_display_private *dp_priv)
- static irqreturn_t dp_display_irq(int irq, void *dev_id)
- {
- 	struct dp_display_private *dp = dev_id;
-+	irqreturn_t ret = IRQ_HANDLED;
-+	u32 hpd_isr_status;
-+
-+	if (!dp) {
-+		DRM_ERROR("invalid data\n");
-+		return IRQ_NONE;
-+	}
-+
-+	hpd_isr_status = dp_catalog_hpd_get_intr_status(dp->catalog);
-+
-+	if (hpd_isr_status & DP_DP_HPD_INT_MASK) {
-+		atomic_set(&dp->hpd_isr_status, hpd_isr_status);
-+		ret = IRQ_WAKE_THREAD;
-+	}
- 
- 	/* DP controller isr */
- 	dp_ctrl_isr(dp->ctrl);
-@@ -109,6 +127,54 @@ static irqreturn_t dp_display_irq(int irq, void *dev_id)
- 	/* DP aux isr */
- 	dp_aux_isr(dp->aux);
- 
-+	return ret;
-+}
-+
-+static irqreturn_t dp_display_hpd_isr_work(int irq, void *data)
-+{
-+	struct dp_display_private *dp;
-+	struct dp_usbpd *hpd;
-+	u32 isr = 0;
-+
-+	dp = (struct dp_display_private *)data;
-+	if (!dp)
-+		return IRQ_NONE;
-+
-+	isr = atomic_read(&dp->hpd_isr_status);
-+
-+	/* reset to default */
-+	atomic_set(&dp->hpd_isr_status, 0);
-+
-+	hpd = dp->usbpd;
-+	if (!hpd)
-+		return IRQ_NONE;
-+
-+	if (isr & DP_DP_HPD_PLUG_INT_MASK &&
-+		isr & DP_DP_HPD_STATE_STATUS_CONNECTED) {
-+		hpd->hpd_high = 1;
-+		dp->usbpd_cb.configure(&dp->pdev->dev);
-+	} else if (isr & DP_DP_HPD_UNPLUG_INT_MASK &&
-+		(isr & DP_DP_HPD_STATE_STATUS_MASK) ==
-+			 DP_DP_HPD_STATE_STATUS_DISCONNECTED) {
-+
-+		/* disable HPD plug interrupt until disconnect is done
-+		 */
-+		dp_catalog_hpd_config_intr(dp->catalog,
-+			DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK,
-+			false);
-+
-+		hpd->hpd_high = 0;
-+
-+		/* We don't need separate work for disconnect as
-+		 * connect/attention interrupts are disabled
-+		 */
-+		dp->usbpd_cb.disconnect(&dp->pdev->dev);
-+
-+		dp_catalog_hpd_config_intr(dp->catalog,
-+			DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK,
-+			true);
-+	}
-+
- 	return IRQ_HANDLED;
- }
- 
-@@ -245,8 +311,6 @@ static int dp_display_process_hpd_high(struct dp_display_private *dp)
- 	int rc = 0;
- 	struct edid *edid;
- 
--	dp_aux_init(dp->aux, dp->parser->aux_cfg);
--
- 	if (dp->link->psm_enabled)
- 		goto notify;
- 
-@@ -293,7 +357,7 @@ static void dp_display_host_init(struct dp_display_private *dp)
- 
- 	dp_power_init(dp->power, flip);
- 	dp_ctrl_host_init(dp->ctrl, flip);
--	enable_irq(dp->irq);
-+	dp_aux_init(dp->aux, dp->parser->aux_cfg);
- 	dp->core_initialized = true;
- }
- 
-@@ -304,10 +368,6 @@ static void dp_display_host_deinit(struct dp_display_private *dp)
- 		return;
- 	}
- 
--	dp_ctrl_host_deinit(dp->ctrl);
--	dp_aux_deinit(dp->aux);
--	dp_power_deinit(dp->power);
--	disable_irq(dp->irq);
- 	dp->core_initialized = false;
- }
- 
-@@ -649,7 +709,8 @@ int dp_display_request_irq(struct msm_dp *dp_display)
- 		return rc;
- 	}
- 
--	rc = devm_request_irq(&dp->pdev->dev, dp->irq, dp_display_irq,
-+	rc = devm_request_threaded_irq(&dp->pdev->dev, dp->irq,
-+		dp_display_irq, dp_display_hpd_isr_work,
- 		IRQF_TRIGGER_HIGH, "dp_display_isr", dp);
- 	if (rc < 0) {
- 		DRM_ERROR("failed to request IRQ%u: %d\n",
-@@ -820,6 +881,39 @@ void __exit msm_dp_unregister(void)
- 	platform_driver_unregister(&dp_display_driver);
- }
- 
-+static void dp_display_config_hpd_work(struct work_struct *work)
-+{
-+	struct dp_display_private *dp;
-+	struct delayed_work *dw = to_delayed_work(work);
-+
-+	dp = container_of(dw, struct dp_display_private, config_hpd_work);
-+
-+	dp_display_host_init(dp);
-+	dp_catalog_ctrl_hpd_config(dp->catalog);
-+
-+	/* set default to 0 */
-+	atomic_set(&dp->hpd_isr_status, 0);
-+
-+	/* Enable interrupt first time
-+	 * we are leaving dp clocks on during disconnect
-+	 * and never disable interrupt
-+	 */
-+	enable_irq(dp->irq);
-+}
-+
-+void msm_dp_irq_postinstall(struct msm_dp *dp_display)
-+{
-+	struct dp_display_private *dp;
-+
-+	dp = container_of(dp_display, struct dp_display_private, dp_display);
-+
-+	if (!dp->parser->hpd_gpio)
-+		return;
-+
-+	INIT_DELAYED_WORK(&dp->config_hpd_work, dp_display_config_hpd_work);
-+	queue_delayed_work(system_wq, &dp->config_hpd_work, HZ * 10);
-+}
-+
- int msm_dp_modeset_init(struct msm_dp *dp_display, struct drm_device *dev,
- 			struct drm_encoder *encoder)
- {
-diff --git a/drivers/gpu/drm/msm/dp/dp_hpd.h b/drivers/gpu/drm/msm/dp/dp_hpd.h
-index c0178524..d06a0b7 100644
---- a/drivers/gpu/drm/msm/dp/dp_hpd.h
-+++ b/drivers/gpu/drm/msm/dp/dp_hpd.h
-@@ -10,6 +10,9 @@
- 
- #include <linux/types.h>
- #include <linux/device.h>
-+#include <linux/of_gpio.h>
-+
-+#include "dp_parser.h"
- 
- enum plug_orientation {
- 	ORIENTATION_NONE,
-diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
-index dbf64ee..08c1abe 100644
---- a/drivers/gpu/drm/msm/dp/dp_parser.c
-+++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-@@ -241,6 +241,19 @@ static int dp_parser_pinctrl(struct dp_parser *parser)
- 		return -EINVAL;
- 	}
- 
-+	if (parser->hpd_gpio) {
-+		pinctrl->state_hpd_active = pinctrl_lookup_state(pinctrl->pin,
-+					"mdss_dp_hpd_ctrl");
-+		if (IS_ERR_OR_NULL(pinctrl->state_hpd_active)) {
-+			DRM_ERROR("failed to get dp hpd pinctrl state %d\n",
-+				PTR_ERR_OR_ZERO(pinctrl->state_hpd_active));
-+			return -EINVAL;
-+		}
-+
-+		return pinctrl_select_state(pinctrl->pin,
-+				 pinctrl->state_hpd_active);
-+	}
-+
- 	pinctrl->state_active = pinctrl_lookup_state(pinctrl->pin,
- 					"mdss_dp_active");
- 	if (IS_ERR(pinctrl->state_active)) {
-@@ -265,6 +278,15 @@ static int dp_parser_gpio(struct dp_parser *parser)
- 	struct device *dev = &parser->pdev->dev;
- 	struct device_node *of_node = dev->of_node;
- 
-+	if (of_find_property(of_node, "qcom,dp-hpd-gpio", NULL)) {
-+		parser->hpd_gpio = of_get_named_gpio(of_node,
-+					"qcom,dp-hpd-gpio", 0);
-+		parser->usbplug_cc_gpio = -EINVAL;
-+		parser->aux_en_gpio = -EINVAL;
-+		parser->aux_sel_gpio = -EINVAL;
-+		return 0;
-+	}
-+
- 	parser->usbplug_cc_gpio = of_get_named_gpio(of_node,
- 					"usbplug-cc-gpio", 0);
- 	if (!gpio_is_valid(parser->usbplug_cc_gpio)) {
-@@ -455,6 +477,12 @@ static int dp_parser_parse(struct dp_parser *parser)
- 	}
- 
- 	rc = dp_parser_pinctrl(parser);
-+
-+	if (rc)
-+		parser->hpd_gpio = -EINVAL;
-+	else if (parser->hpd_gpio >= 0)
-+		parser->combo_phy_en = false;
-+
- 	return rc;
- }
- 
-diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h b/drivers/gpu/drm/msm/dp/dp_parser.h
-index 1539866..f9c572e 100644
---- a/drivers/gpu/drm/msm/dp/dp_parser.h
-+++ b/drivers/gpu/drm/msm/dp/dp_parser.h
-@@ -187,9 +187,10 @@ struct dp_parser {
- 	struct platform_device *pdev;
- 	struct dss_module_power mp[DP_MAX_PM];
- 	struct dp_pinctrl pinctrl;
--	unsigned int aux_en_gpio;
--	unsigned int aux_sel_gpio;
--	unsigned int usbplug_cc_gpio;
-+	int aux_en_gpio;
-+	int aux_sel_gpio;
-+	int usbplug_cc_gpio;
-+	int hpd_gpio;
- 	bool combo_phy_en;
- 	struct dp_io io;
- 	struct dp_display_data disp_data;
-diff --git a/drivers/gpu/drm/msm/dp/dp_reg.h b/drivers/gpu/drm/msm/dp/dp_reg.h
-index 28c1682..fbc1874 100644
---- a/drivers/gpu/drm/msm/dp/dp_reg.h
-+++ b/drivers/gpu/drm/msm/dp/dp_reg.h
-@@ -38,10 +38,22 @@
- #define DP_DP_IRQ_HPD_INT_MASK			(0x00000002)
- #define DP_DP_HPD_REPLUG_INT_MASK		(0x00000004)
- #define DP_DP_HPD_UNPLUG_INT_MASK		(0x00000008)
-+#define DP_DP_HPD_INT_MASK			(DP_DP_HPD_PLUG_INT_MASK | \
-+						DP_DP_IRQ_HPD_INT_MASK | \
-+						DP_DP_HPD_REPLUG_INT_MASK | \
-+						DP_DP_HPD_UNPLUG_INT_MASK)
-+#define DP_DP_HPD_STATE_STATUS_CONNECTED	(0x40000000)
-+#define DP_DP_HPD_STATE_STATUS_PENDING		(0x20000000)
-+#define DP_DP_HPD_STATE_STATUS_DISCONNECTED	(0x00000000)
-+#define DP_DP_HPD_STATE_STATUS_MASK		(0xE0000000)
- 
- #define REG_DP_DP_HPD_REFTIMER			(0x00000018)
-+#define DP_DP_HPD_REFTIMER_ENABLE		(1 << 16)
-+
- #define REG_DP_DP_HPD_EVENT_TIME_0		(0x0000001C)
- #define REG_DP_DP_HPD_EVENT_TIME_1		(0x00000020)
-+#define DP_DP_HPD_EVENT_TIME_0_VAL		(0x3E800FA)
-+#define DP_DP_HPD_EVENT_TIME_1_VAL		(0x1F407D0)
- 
- #define REG_DP_AUX_CTRL				(0x00000030)
- #define DP_AUX_CTRL_ENABLE			(0x00000001)
-diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-index d72694c..15a33b2 100644
---- a/drivers/gpu/drm/msm/msm_drv.h
-+++ b/drivers/gpu/drm/msm/msm_drv.h
-@@ -387,6 +387,7 @@ int msm_dp_modeset_init(struct msm_dp *dp_display, struct drm_device *dev,
- void msm_dp_display_mode_set(struct msm_dp *dp, struct drm_encoder *encoder,
- 				struct drm_display_mode *mode,
- 				struct drm_display_mode *adjusted_mode);
-+void msm_dp_irq_postinstall(struct msm_dp *dp_display);
- 
- #else
- static inline int __init msm_dp_register(void)
-@@ -418,6 +419,11 @@ static inline void msm_dp_display_mode_set(struct msm_dp *dp,
- 				struct drm_display_mode *adjusted_mode)
- {
- }
-+
-+static void msm_dp_irq_postinstall(struct msm_dp *dp_display)
-+{
-+}
-+
- #endif
- 
- void __init msm_mdp_register(void);
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+I suppose that taking a shot takes at least few milliseconds, which
+should be unacceptable to waste.
