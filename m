@@ -2,101 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F35451A1CBB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 09:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F6401A1D44
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 10:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726545AbgDHHgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 03:36:19 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:33319 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbgDHHgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 03:36:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1586331375;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=sjnB8w1eg3xxKwvMLCRQkJECWsSSDwKnucOYw682BT8=;
-        b=rjfLrzj21oEGMXHJsrWhM+bziAdnhuwHI/tuY57+5xA3mgRl6nf/dVsx03Cwzh2RTb
-        H1lWFZoL/v8s3WoNGo/BROyu0Cvmdl+1GsezyZhwYdydupWOQWRjzvN0+k4ey6zxZRRL
-        bIweLHmZcqox7rC7U7YrLhmnxkDtl1eZz/ZHQgRYzMV/iep/HJiHYOSXR3Y0pAXoLuad
-        nnwpacrUFEbjL+YLB3nTV2v1uGCP4XeLkKXuwR+D1LAO1WPi2JBtAaofnSqTnN07kKgs
-        na4m7IIBk6W9g0INw+uNPoExgkOYMpTz3OBeNe9dmhqnSH/WGAzeRNLOsadVt9MBV1oO
-        iZRQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcfFBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 46.2.1 DYNA|AUTH)
-        with ESMTPSA id u043b8w387a8EA4
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Wed, 8 Apr 2020 09:36:08 +0200 (CEST)
-Date:   Wed, 8 Apr 2020 09:36:03 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andi Shyti <andi@etezian.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mms114: document melfas,mms345l
- binding
-Message-ID: <20200408073603.GA948@gerhold.net>
-References: <20200405170904.61512-1-stephan@gerhold.net>
- <20200405170904.61512-2-stephan@gerhold.net>
- <20200407215143.GD207210@jack.zhora.eu>
+        id S1726876AbgDHIPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 04:15:52 -0400
+Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:41314 "EHLO
+        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
+        with ESMTP id S1726636AbgDHIPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 04:15:51 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id E2E412008E88;
+        Wed,  8 Apr 2020 16:10:30 +0800 (HKT)
+X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
+Received: from mail.gtsys.com.hk ([127.0.0.1])
+        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id D8T_60G7NNbU; Wed,  8 Apr 2020 16:10:30 +0800 (HKT)
+Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id CA1132008987;
+        Wed,  8 Apr 2020 16:10:30 +0800 (HKT)
+Received: from armhf2.gtsys.com.hk (unknown [10.128.4.15])
+        by s01.gtsys.com.hk (Postfix) with ESMTP id C5E58C01F8A;
+        Wed,  8 Apr 2020 16:10:30 +0800 (HKT)
+Received: by armhf2.gtsys.com.hk (Postfix, from userid 1000)
+        id BF63D201602; Wed,  8 Apr 2020 16:10:30 +0800 (HKT)
+From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     Chris Ruehl <chris.ruehl@gtsys.com.hk>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: iio/dac: ltc2632.txt
+Date:   Wed,  8 Apr 2020 16:10:24 +0800
+Message-Id: <20200408081029.11167-1-chris.ruehl@gtsys.com.hk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200407215143.GD207210@jack.zhora.eu>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 08, 2020 at 12:51:43AM +0300, Andi Shyti wrote:
-> Hi Stephan,
-> 
-> On Sun, Apr 05, 2020 at 07:09:04PM +0200, Stephan Gerhold wrote:
-> > The mms114 driver now supports MMS345L; document the
-> > melfas,mms345l binding that is used for it.
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Andi Shyti <andi@etezian.org>
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> 
-> just one nitpick, the signing should be sorted in chronological
-> order, I see that you reverted it.
-> 
-> You first signed it as the author, then I reviewed it and the Rob
-> acked it, so that it should be:
-> 
->   Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
->   Reviewed-by: Andi Shyti <andi@etezian.org>
->   Acked-by: Rob Herring <robh@kernel.org>
-> 
-> you reversed it.
-> 
+This patch add support for Analog Devices (Linear Technology)
+LTC26234 Quad 12-/10-/8-Bit Rail-to-Rail DAC.
+Update ltc2632.txt with the expansions for it.
 
-I didn't really "reverse" it, I didn't know the order of these tags is
-important at all. :) Is this documented somewhere?
+Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+---
+ Documentation/devicetree/bindings/iio/dac/ltc2632.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-Since I have added the tags and re-sent the patch,
-I thought it would make sense have my Signed-off-by last.
+diff --git a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+index 338c3220f01a..1ab9570cf219 100644
+--- a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
++++ b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+@@ -1,4 +1,4 @@
+-Linear Technology LTC2632/2636 DAC
++Linear Technology LTC2632/2634/2636 DAC
+ 
+ Required properties:
+  - compatible: Has to contain one of the following:
+@@ -8,6 +8,12 @@ Required properties:
+ 	lltc,ltc2632-h12
+ 	lltc,ltc2632-h10
+ 	lltc,ltc2632-h8
++	lltc,ltc2634-l12
++	lltc,ltc2634-l10
++	lltc,ltc2634-l8
++	lltc,ltc2634-h12
++	lltc,ltc2634-h10
++	lltc,ltc2634-h8
+ 	lltc,ltc2636-l12
+ 	lltc,ltc2636-l10
+ 	lltc,ltc2636-l8
+-- 
+2.20.1
 
-I suppose this can be easily fixed up if Dmitry wants to apply the
-patch. But if I should re-send with the order changed in some way,
-just let me know. :)
-
-> Other than that, I'm sorry I couldn't help you but I haven't
-> received answers from Samsung about getting the prototypes.
-> However I don't see reason for not applying the patch.
-
-It's fine, don't worry :)
-
-I just think at this point we should either take my patch
-(and preserve existing behavior for all currently supported devices),
-or accept the potential breakage when refactoring the driver
-(because seemingly no-one is able to test it on the other versions
-at the moment).
-
-Thanks,
-Stephan
