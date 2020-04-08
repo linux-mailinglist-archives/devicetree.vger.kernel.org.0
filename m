@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ADAC1A29C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBA5C1A29CD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730246AbgDHTwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:52:03 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:35489 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730184AbgDHTwC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:02 -0400
-Received: by mail-lf1-f66.google.com with SMTP id r17so6120040lff.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:01 -0700 (PDT)
+        id S1730248AbgDHTwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:52:06 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:36910 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730244AbgDHTwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:06 -0400
+Received: by mail-lf1-f68.google.com with SMTP id t11so6124537lfe.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Eb49ZuvI3f7DDW48zoIuxR6GcmzkcmV13fqoE06Migw=;
-        b=RgHB+vU0JT/cP5j8wdXpTw2ra/VmeMQfZY2OkY+7pKt7dCJdWgSbGOr/7hSXGWRUEP
-         S5H4Uw+n0I04CmNzsTgYfZczuwqF5eSlv83tvexHfMcaHcg0Vd4m1H4gkbyyoqL6VgZF
-         xILgSKhZbrx7dGPLjc1ShxKfMMPAjsD00Ka12wWylEZeLxgdVwYzhOK1EIu1GHhf/euU
-         fdGBJKe0SRILvZGlYBVn+mCMK+kEHMGMqotQC+wFluWViAynEROPErtuJcsvRHhYjtvy
-         6TmhPmGy2teKId5XLe98cZXJkW8JQjRa6yMnDkf0CypxomPWe+AFzsDrQe0pi5Nt3HRE
-         ZlvA==
+        bh=LNUYG492p0LzUw743VYzwd+v9kMLkVKaGJFhNA4+IGs=;
+        b=mN+q9T2Ox9nNdGI+Bg0QEtZ1gPcvLhLG9wEc3hS7zX1zyZfPfm45LpNnSNu3evoS7W
+         fAFVjROotSXtb6Cr/JB4+/iCId9emJM5teg/6n9SXxBAspCr3xTBGYHp1HQgn/wR4pBs
+         9ZCxqaY5xxraCyezt9autnPhyalqeuwGmzEEJ+GAWUtjb/bbVFoPrltEMtrwvkxloGfQ
+         Q/XemAyoHHOrBw0oe+tO01d/LPzlUUhzcySwncf8jzs0L7+8N6uKA5oD9pChPGzxfJWW
+         4wQ32Eqgk5unl3pqwjqls/KkAs7Vl2C8nYwQVxUPuk/gwfyaLS/EcseEaUAt/R9llmWq
+         cgBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=Eb49ZuvI3f7DDW48zoIuxR6GcmzkcmV13fqoE06Migw=;
-        b=U6JrxKCcIPWRcKadwX7sLQnfqbhK99gfJRkPzhttIwO/IFeO8He6VcOHpj1qh9UeuZ
-         5itjK4WKPyP2nMxuXxh2r2DVrTOn5NeKkSjvTsXSg7xcpGJf6utmUilAybxB4mQMMHic
-         RmEmCx8rQYlgcwoqpJmXpo3bo8OW/3y8zCr05rqGAQJtPuVgRTX2MpLrrgb9mvmo+ZAz
-         2j2oNuHEmfl8ZL8OET0AUj6U3Ip8w9QF3ZxvYoJrofZ1Vz2Cve2nuAiqj8FRopg10a7W
-         fTXBnBj1HACdqrf9qif+XWucr8ArfG46RysYzhKrDM6ZcO16s4mNArZbP6TqY++6ssnv
-         vwoQ==
-X-Gm-Message-State: AGi0PuZgNiTaZ24k780AHtzeaeg7xQ3plOBjl9zFmnbadnpy2vpVtdAK
-        q+kilblOfQ0KvExSsfTXYcU=
-X-Google-Smtp-Source: APiQypLtbfFhvPCLUgnNiNW/30yqgnvPpjBjpJhOgDTx8jktct5hMNJjGyD95RkAZONZ9dfuqv6hsA==
-X-Received: by 2002:a19:ac41:: with SMTP id r1mr5536385lfc.113.1586375520379;
-        Wed, 08 Apr 2020 12:52:00 -0700 (PDT)
+        bh=LNUYG492p0LzUw743VYzwd+v9kMLkVKaGJFhNA4+IGs=;
+        b=r8AJn/JlNTDzl+nmK+w0d9BQ8KKfIPJO/ChTyB18YCGrUxlE0kWwejqG18N4fBdmi7
+         IeT7hyYPuHE9+ZASDafYiELd+4qosUb6y3a6Lu4bT0plpkNEXAgGO8rsk05RmugYSxXr
+         rTNhYUaCg2NbbvMNEoC3HzbMih2QL2Yz/BR1mquSLjB7O9522VI0+03ynV/V0RHS/zGI
+         oZxnZU3vyISa/PIeUEydQ8Z3li+E0dGha53amn579WH2huREAWRhYFCNgd+qn4JP5H4B
+         HLm2o5U3jHKHl2nMI2ieVyh3O6I1EqidWL4NBOv+ySpiXu65lmkloIyI3TuI/Ev+pp8m
+         OHbg==
+X-Gm-Message-State: AGi0PuZtMvpJ0GK6k4QZy2plxOjNDkj5iJwHQQ6WhbC2TGQrVLxnLkIz
+        fXXQo4QYctJJKFXWp5fD6t8=
+X-Google-Smtp-Source: APiQypIQDyNx4KNt5NxFsFdlnGw/HmO+tJL9kmeWTmTA6imYTfVNhAX3quWG+Z03RN9unpofs2Hhqw==
+X-Received: by 2002:ac2:4426:: with SMTP id w6mr5559037lfl.8.1586375521479;
+        Wed, 08 Apr 2020 12:52:01 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.51.59
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:51:59 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:01 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
 Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Robert Chiras <robert.chiras@nxp.com>
-Subject: [PATCH v2 18/36] dt-bindings: display: convert raydium,rm67191 to DT Schema
-Date:   Wed,  8 Apr 2020 21:50:51 +0200
-Message-Id: <20200408195109.32692-19-sam@ravnborg.org>
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Purism Kernel Team <kernel@puri.sm>
+Subject: [PATCH v2 19/36] dt-bindings: display: convert rocktech,jh057n00900 to DT Schema
+Date:   Wed,  8 Apr 2020 21:50:52 +0200
+Message-Id: <20200408195109.32692-20-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -65,120 +67,91 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 v2:
   - Fix entry in MAINTAINERS
-  - Add reg number to node name (Rob)
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Chiras <robert.chiras@nxp.com>
+Reviewed-by: Guido Günther <agx@sigxcpu.org>
+Cc: "Guido Günther" <agx@sigxcpu.org>
+Cc: Purism Kernel Team <kernel@puri.sm>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../display/panel/raydium,rm67191.txt         | 41 ----------
- .../display/panel/raydium,rm67191.yaml        | 75 +++++++++++++++++++
+ .../display/panel/rocktech,jh057n00900.txt    | 23 --------
+ .../display/panel/rocktech,jh057n00900.yaml   | 57 +++++++++++++++++++
  MAINTAINERS                                   |  2 +-
- 3 files changed, 76 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+ 3 files changed, 58 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
 deleted file mode 100644
-index 10424695aa02..000000000000
---- a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
+index a372c5d84695..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
 +++ /dev/null
-@@ -1,41 +0,0 @@
--Raydium RM67171 OLED LCD panel with MIPI-DSI protocol
+@@ -1,23 +0,0 @@
+-Rocktech jh057n00900 5.5" 720x1440 TFT LCD panel
 -
 -Required properties:
--- compatible: 		"raydium,rm67191"
--- reg:			virtual channel for MIPI-DSI protocol
--			must be <0>
--- dsi-lanes:		number of DSI lanes to be used
--			must be <3> or <4>
--- port: 		input port node with endpoint definition as
--			defined in Documentation/devicetree/bindings/graph.txt;
--			the input port should be connected to a MIPI-DSI device
--			driver
--
--Optional properties:
--- reset-gpios:		a GPIO spec for the RST_B GPIO pin
--- v3p3-supply:		phandle to 3.3V regulator that powers the VDD_3V3 pin
--- v1p8-supply:		phandle to 1.8V regulator that powers the VDD_1V8 pin
--- width-mm:		see panel-common.txt
--- height-mm:		see panel-common.txt
--- video-mode:		0 - burst-mode
--			1 - non-burst with sync event
--			2 - non-burst with sync pulse
+-- compatible: should be "rocktech,jh057n00900"
+-- reg: DSI virtual channel of the peripheral
+-- reset-gpios: panel reset gpio
+-- backlight: phandle of the backlight device attached to the panel
+-- vcc-supply: phandle of the regulator that provides the vcc supply voltage.
+-- iovcc-supply: phandle of the regulator that provides the iovcc supply
+-  voltage.
 -
 -Example:
 -
--	panel@0 {
--		compatible = "raydium,rm67191";
--		reg = <0>;
--		pinctrl-0 = <&pinctrl_mipi_dsi_0_1_en>;
--		pinctrl-names = "default";
--		reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
--		dsi-lanes = <4>;
--		width-mm = <68>;
--		height-mm = <121>;
--
--		port {
--			panel_in: endpoint {
--				remote-endpoint = <&mipi_out>;
--			};
+-	&mipi_dsi {
+-		panel@0 {
+-			compatible = "rocktech,jh057n00900";
+-			reg = <0>;
+-			backlight = <&backlight>;
+-			reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
+-			vcc-supply = <&reg_2v8_p>;
+-			iovcc-supply = <&reg_1v8_p>;
 -		};
 -	};
-diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
 new file mode 100644
-index 000000000000..8fdd4e56aedf
+index 000000000000..827417bbff63
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
-@@ -0,0 +1,75 @@
++++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
+@@ -0,0 +1,57 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/panel/raydium,rm67191.yaml#
++$id: http://devicetree.org/schemas/display/panel/rocktech,jh057n00900.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Raydium RM67171 OLED LCD panel with MIPI-DSI protocol
++title: Rocktech jh057n00900 5.5" 720x1440 TFT LCD panel
 +
 +maintainers:
-+  - Robert Chiras <robert.chiras@nxp.com>
++  - Guido Günther <agx@sigxcpu.org>
 +
 +allOf:
 +  - $ref: panel-common.yaml#
 +
 +properties:
 +  compatible:
-+    const: raydium,rm67191
++    const: rocktech,jh057n00900
 +
 +  reg: true
-+  port: true
 +  reset-gpios: true
-+  width-mm: true
-+  height-mm: true
-+ 
-+  dsi-lanes:
-+    description: Number of DSI lanes to be used must be <3> or <4>
-+    enum: [3, 4]
++  backlight: true
 +
-+  v3p3-supply:
-+    description: phandle to 3.3V regulator that powers the VDD_3V3 pin
++  vcc-supply:
++    description: The regulator that provides the vcc supply voltage
 +
-+  v1p8-supply:
-+    description: phandle to 1.8V regulator that powers the VDD_1V8 pin
-+
-+  video-mode:
-+    description: |
-+      0 - burst-mode
-+      1 - non-burst with sync event
-+      2 - non-burst with sync pulse
-+    enum: [0, 1, 2]
++  iovcc-supply:
++    description: The regulator that provides the iovcc supply voltage
 +
 +required:
 +  - compatible
 +  - reg
-+  - dsi-lanes
-+  - port
++  - reset-gpios
++  - backlight
++  - vcc-supply
++  - iovcc-supply
 +
 +additionalProperties: false
 +
@@ -191,35 +164,28 @@ index 000000000000..8fdd4e56aedf
 +        #size-cells = <0>;
 +
 +        panel@0 {
-+            compatible = "raydium,rm67191";
++            compatible = "rocktech,jh057n00900";
 +            reg = <0>;
-+            reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+            dsi-lanes = <4>;
-+            width-mm = <68>;
-+            height-mm = <121>;
-+            video-mode = <1>;
-+
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&mipi_out>;
-+                };
-+            };
++            backlight = <&backlight>;
++            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
++            vcc-supply = <&reg_2v8_p>;
++            iovcc-supply = <&reg_1v8_p>;
 +        };
 +    };
 +
 +...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index dba84e7726b7..33dbe94e03ab 100644
+index 33dbe94e03ab..eec316171b5e 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -5388,7 +5388,7 @@ DRM DRIVER FOR RAYDIUM RM67191 PANELS
- M:	Robert Chiras <robert.chiras@nxp.com>
+@@ -5400,7 +5400,7 @@ M:	Guido Günther <agx@sigxcpu.org>
+ R:	Purism Kernel Team <kernel@puri.sm>
  S:	Maintained
- F:	drivers/gpu/drm/panel/panel-raydium-rm67191.c
--F:	Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
-+F:	Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+ F:	drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
+-F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
++F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
  
- DRM DRIVER FOR RAGE 128 VIDEO CARDS
+ DRM DRIVER FOR SAVAGE VIDEO CARDS
  S:	Orphan / Obsolete
 -- 
 2.20.1
