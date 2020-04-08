@@ -2,233 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E4D1A2774
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 18:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCF21A27BD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 19:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728651AbgDHQrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 12:47:05 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:55206 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728955AbgDHQrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 12:47:05 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 535B328CC6F
-Subject: Re: [PATCH] arm64: dts: mt8173: Add gce setting in mmsys and display
- node
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20191118104252.228406-1-hsinyi@chromium.org>
- <CAFqH_528vidMhTFxNZ=b7SFD2K12UwtdX3uTUzW4YUgeDWkg5A@mail.gmail.com>
- <CAAOTY_8RMboOuKVKPANZ1QN+mt0jvOr13o84VhWKGY1QZqbPDg@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <e22e0400-56e0-2ff4-72d8-5231b7fa58fc@collabora.com>
-Date:   Wed, 8 Apr 2020 18:46:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1730509AbgDHRJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 13:09:41 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:36546 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726663AbgDHRJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 13:09:41 -0400
+Received: by mail-pg1-f193.google.com with SMTP id c23so3603055pgj.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 10:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=AHziH+dvb20W54djSeStIqMRFUtsTKUD7rAxti8gSRo=;
+        b=UfCqr7nW9oVwE/+3fDL2f/0drVAie/Gdd49JNzuAxmorHNRLKlrYPhlG11rr3bgejy
+         xkUe3E27ZRhPnu1zmh6s8BOyTOxFWxFtBYB6VVdIzkwz1k1M39weBC9nYeM17DDXtam8
+         cup6jFVztqp+DixZ5tXPe13GR4v5OaprUy27s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=AHziH+dvb20W54djSeStIqMRFUtsTKUD7rAxti8gSRo=;
+        b=YWXNrYpWnd3ZENdbeVgMCJZEPLsC8FW0awWse5x0RNyTT79xEkzv0HhsdNBLRZNI/y
+         fOh4co7XOtT8ndFryaGGCaxKkpdjIHQy7eKVCqK8NYsRbumGVprj6NjqhmI8GHsZ1g30
+         uOwQvroMUEegMbm0NRTE4sbxD5ZbWO8cla4U2J3krf3Ki7bfSKDVNQKLwRnOaNbV0UBC
+         /qEcMG1fXDO+QfTC0dq6JO3AbpAZ1Yh0NckeLd1Jh9MRw4VSg1mHRCTfJb3qFLkYJ9dr
+         Yc9a3sLlMbGU4G9sDWlOSacDHc+wqEY/TRnTvP9fkBVMfxxFH5qOiX1jvDozggE/nUn/
+         +evw==
+X-Gm-Message-State: AGi0PuZxynGQbf5d/IGAURfbeKryRG5q3nSmegE2VaniWyqWpHtgxIQI
+        KxeNK6rbI0g9EhHO1ffyFQu1sQ==
+X-Google-Smtp-Source: APiQypKGNnlb36etT59dCY18zVMEKPnBzgK1wnTk5VhhNMgMuyWQeel0X5RkoYsKiR6opA9JBVYRoA==
+X-Received: by 2002:a63:1f14:: with SMTP id f20mr7742513pgf.411.1586365778377;
+        Wed, 08 Apr 2020 10:09:38 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id s10sm2317753pfd.124.2020.04.08.10.09.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Apr 2020 10:09:37 -0700 (PDT)
+Date:   Wed, 8 Apr 2020 10:09:36 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, georgi.djakov@linaro.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, dianders@chromium.org,
+        evgreen@chromium.org
+Subject: Re: [PATCH V3 3/8] soc: qcom-geni-se: Add interconnect support to
+ fix earlycon crash
+Message-ID: <20200408170936.GR199755@google.com>
+References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
+ <1585652976-17481-4-git-send-email-akashast@codeaurora.org>
+ <20200331182457.GH199755@google.com>
+ <7a4e13bf-a4b7-d75b-df42-bf5e4125258a@codeaurora.org>
+ <20200407172604.GQ199755@google.com>
+ <9e91aaa8-88f0-656f-b9f5-7e64014bad7a@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <CAAOTY_8RMboOuKVKPANZ1QN+mt0jvOr13o84VhWKGY1QZqbPDg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <9e91aaa8-88f0-656f-b9f5-7e64014bad7a@codeaurora.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Kuang
+On Wed, Apr 08, 2020 at 05:08:01PM +0530, Akash Asthana wrote:
+> Hi Matthias,
+> 
+> On 4/7/2020 10:56 PM, Matthias Kaehlcke wrote:
+> > Hi Akash,
+> > 
+> > On Tue, Apr 07, 2020 at 05:04:17PM +0530, Akash Asthana wrote:
+> > > Hi Matthias,
+> > > 
+> > > 
+> > > > >    static int geni_se_probe(struct platform_device *pdev)
+> > > > >    {
+> > > > >    	struct device *dev = &pdev->dev;
+> > > > > @@ -845,6 +868,34 @@ static int geni_se_probe(struct platform_device *pdev)
+> > > > >    		}
+> > > > >    	}
+> > > > > +#ifdef CONFIG_SERIAL_EARLYCON
+> > > > > +	wrapper->to_core.path = devm_of_icc_get(dev, "qup-core");
+> > > > > +	if (IS_ERR(wrapper->to_core.path))
+> > > > > +		return PTR_ERR(wrapper->to_core.path);
+> > > > > +	/*
+> > > > > +	 * Put minmal BW request on core clocks on behalf of early console.
+> > > > > +	 * The vote will be removed earlycon exit function.
+> > > > > +	 *
+> > > > > +	 * Note: We are putting vote on each QUP wrapper instead only to which
+> > > > > +	 * earlycon is connected because QUP core clock of different wrapper
+> > > > > +	 * share same voltage domain. If core1 is put to 0, then core2 will
+> > > > > +	 * also run at 0, if not voted. Default ICC vote will be removed ASA
+> > > > > +	 * we touch any of the core clock.
+> > > > > +	 * core1 = core2 = max(core1, core2)
+> > > > > +	 */
+> > > > I don't really understand this part. According to the comment if we vote
+> > > > (let's say) for core2 but not for core1 then:
+> > > > 
+> > > > core1: 0
+> > > > core2: GENI_DEFAULT_BW
+> > > > 
+> > > > core1 = core2 = max(core1, core2)
+> > > >     or
+> > > > core1 = core2 = max(0, GENI_DEFAULT_BW)
+> > > > 
+> > > > hence
+> > > > 
+> > > > core1 = core2 = GENI_DEFAULT_BW
+> > > > 
+> > > > What am I missing, why is it necessary to vote for both/all?
+> > > say core1 is for earlycon usecase
+> > > 
+> > > There is common switch to control both the QUP core clock. I guess most
+> > > appropriate description would be     switch = max(vote_on_core1,
+> > > vote_on_core2) + default_vote.
+> > > 
+> > > During early bootup, vote_on_core1 = 0, vote_on_core2 = 0;
+> > > 
+> > > As earlycon was working even without voting it's core need because there was
+> > > some default vote present on the core switch by ICC during bootup.
+> > > 
+> > > So if any child(say SPI) of other QUP wrapper resumed and suspended before
+> > > earlycon wrapper comes up. This will make core clock to run at zero and will
+> > > cause NOC issue because vote_on_core1 = 0, vote_on_core2 = 0; and it seems
+> > > default votes from core switch is removed  ASA it's voted on any core.
+> > Thanks for the explication!
+> > 
+> > You are probably totally right, but for some reason my brain still resists
+> > to get it ...
+> > 
+> > With the above my current interpretation is (assuming earlycon only votes on
+> > core1):
+> > 
+> >                        core1   core2  default  switch
+> > early boot              0       0        1       1
+> > SPI resume (core2)      0       1        0       1
+> > SPI suspend (core2)     0       0        0       0
+> > earlycon init 		1	0        0       1
+> > 
+> > 
+> > What is wrong in the above table?
+> > 
+> > Thanks for bearing with me :)
+> NP :)
+> 
+> I guess you meant QUP WRAPPER 1 probe by "earlycon init".
+> 
+>                       core1   core2  default  switch	Time
+> early boot              0       0        1       1	0s
+> SPI resume (core2)      0       1        0       1	3.2s
+> SPI suspend (core2)     0       0        0       0	3.3s
+> QUP WRAPPER 1(probe)	1	0        0       1	5s (say)
+> 
+> So switch is at 0 in time interval [3.3, 5] that will make core clock to run at 0.
+> If we use earlycon during this time interval it will reset the board.
+> 
+> Did above answered the query?
 
-Many thanks to let us know this, I completely missed.
-
-On 8/4/20 18:09, Chun-Kuang Hu wrote:
-> Hi, Hsin-Yi:
-> 
-> Enric Balletbo Serra <eballetbo@gmail.com> 於 2020年4月8日 週三 下午11:48寫道：
->>
->> Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dl., 18 de nov.
->> 2019 a les 11:43:
->>>
->>> In order to use GCE function, we need add some informations
->>> into display node (mboxes, mediatek,gce-client-reg, mediatek,gce-events).
->>>
->>> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->>
->> With the fix provided by Hsin-Yi [1] and after the mmsys patches
->> landed I get GCE function working on mt8173, so
->>
->> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->>
->> [1] https://lore.kernel.org/lkml/20200406051131.225748-1-hsinyi@chromium.org/
->>
->> Thanks,
->>  Enric
->>
->>> ---
->>> - This is based on series "support gce on mt8183 platform"
->>>   https://patchwork.kernel.org/cover/11208309/
->>> - gce setting in 8183:
->>>   https://patchwork.kernel.org/patch/11127105/
->>> ---
->>>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> index 15f1842f6df3..e84ec3f95d81 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> @@ -911,6 +911,11 @@ mmsys: clock-controller@14000000 {
->>>                         assigned-clocks = <&topckgen CLK_TOP_MM_SEL>;
->>>                         assigned-clock-rates = <400000000>;
->>>                         #clock-cells = <1>;
->>> +                       mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST 1>,
->>> +                                <&gce 1 CMDQ_THR_PRIO_HIGHEST 1>;
-> 
-> Because of patch [1], atomic_exec parameter should be removed.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200408&id=19d8e335d58a961a7ed377e5e2e63664b92c0b9c
-> 
-
-Many thanks to point this. Hsin-Yi, as the mt8173 device-tree will not land in
-current merge window (Matthias correct me if I am  wrong) maybe you could send a
-new version of the device-tree including these changes?
-
-
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->>> +                       mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
->>> +                                             <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-> 
-> Because of patch [2], these events should be moved to mutex node.
-> 
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v5.6&id=60fa8c13ab1a33b8b958efb1510ec2fd8a064bcc
-> 
-
-Hsin-Yi, note this will also impact your fixes patch [1].
-
-[1] https://lore.kernel.org/lkml/20200406051131.225748-1-hsinyi@chromium.org/
-
-Thanks,
- Enric
-
-> Regards,
-> Chun-Kuang.
-> 
->>>                 };
->>>
->>>                 mdp_rdma0: rdma@14001000 {
->>> @@ -991,6 +996,7 @@ ovl0: ovl@1400c000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_OVL0>;
->>>                         iommus = <&iommu M4U_PORT_DISP_OVL0>;
->>>                         mediatek,larb = <&larb0>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
->>>                 };
->>>
->>>                 ovl1: ovl@1400d000 {
->>> @@ -1001,6 +1007,7 @@ ovl1: ovl@1400d000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_OVL1>;
->>>                         iommus = <&iommu M4U_PORT_DISP_OVL1>;
->>>                         mediatek,larb = <&larb4>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
->>>                 };
->>>
->>>                 rdma0: rdma@1400e000 {
->>> @@ -1011,6 +1018,7 @@ rdma0: rdma@1400e000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_RDMA0>;
->>>                         iommus = <&iommu M4U_PORT_DISP_RDMA0>;
->>>                         mediatek,larb = <&larb0>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
->>>                 };
->>>
->>>                 rdma1: rdma@1400f000 {
->>> @@ -1021,6 +1029,7 @@ rdma1: rdma@1400f000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_RDMA1>;
->>>                         iommus = <&iommu M4U_PORT_DISP_RDMA1>;
->>>                         mediatek,larb = <&larb4>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
->>>                 };
->>>
->>>                 rdma2: rdma@14010000 {
->>> @@ -1031,6 +1040,7 @@ rdma2: rdma@14010000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_RDMA2>;
->>>                         iommus = <&iommu M4U_PORT_DISP_RDMA2>;
->>>                         mediatek,larb = <&larb4>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
->>>                 };
->>>
->>>                 wdma0: wdma@14011000 {
->>> @@ -1041,6 +1051,7 @@ wdma0: wdma@14011000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_WDMA0>;
->>>                         iommus = <&iommu M4U_PORT_DISP_WDMA0>;
->>>                         mediatek,larb = <&larb0>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
->>>                 };
->>>
->>>                 wdma1: wdma@14012000 {
->>> @@ -1051,6 +1062,7 @@ wdma1: wdma@14012000 {
->>>                         clocks = <&mmsys CLK_MM_DISP_WDMA1>;
->>>                         iommus = <&iommu M4U_PORT_DISP_WDMA1>;
->>>                         mediatek,larb = <&larb4>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
->>>                 };
->>>
->>>                 color0: color@14013000 {
->>> @@ -1059,6 +1071,7 @@ color0: color@14013000 {
->>>                         interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_LOW>;
->>>                         power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->>>                         clocks = <&mmsys CLK_MM_DISP_COLOR0>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x3000 0x1000>;
->>>                 };
->>>
->>>                 color1: color@14014000 {
->>> @@ -1067,6 +1080,7 @@ color1: color@14014000 {
->>>                         interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_LOW>;
->>>                         power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->>>                         clocks = <&mmsys CLK_MM_DISP_COLOR1>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
->>>                 };
->>>
->>>                 aal@14015000 {
->>> @@ -1075,6 +1089,7 @@ aal@14015000 {
->>>                         interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_LOW>;
->>>                         power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->>>                         clocks = <&mmsys CLK_MM_DISP_AAL>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
->>>                 };
->>>
->>>                 gamma@14016000 {
->>> @@ -1083,6 +1098,7 @@ gamma@14016000 {
->>>                         interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_LOW>;
->>>                         power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->>>                         clocks = <&mmsys CLK_MM_DISP_GAMMA>;
->>> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x6000 0x1000>;
->>>                 };
->>>
->>>                 merge@14017000 {
->>> --
->>> 2.24.0.432.g9d3f5f5b63-goog
->>>
->>>
->>> _______________________________________________
->>> Linux-mediatek mailing list
->>> Linux-mediatek@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
->>
->> _______________________________________________
->> Linux-mediatek mailing list
->> Linux-mediatek@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+now it finally made 'click', thanks :)
