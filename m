@@ -2,122 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 456B81A28FE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E53D1A2950
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:27:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728368AbgDHTAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:00:19 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:44476 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726730AbgDHTAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:00:19 -0400
-Received: by mail-io1-f68.google.com with SMTP id h6so1190645iok.11;
-        Wed, 08 Apr 2020 12:00:18 -0700 (PDT)
+        id S1728611AbgDHT1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:27:15 -0400
+Received: from mail-qv1-f67.google.com ([209.85.219.67]:32870 "EHLO
+        mail-qv1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727717AbgDHT1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:27:15 -0400
+Received: by mail-qv1-f67.google.com with SMTP id p19so4310108qve.0;
+        Wed, 08 Apr 2020 12:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UDOGux9OnwcLCVvDL8z/SzrW7VhDkSyO73EN0gWoFZo=;
-        b=UVl7GPAKW++tURxy6THgSLiuvtOk21CT1Xt8akTipbQcraT3551XJQHeDQ2+LXClzO
-         Ty/KEXudk26DqFo9enLwrfsCWTG8cM0VqDVsAHRBsYJFynBCwTcadbuhx7c1NUJVUghh
-         LadzkTAtBe/9+39KKLoJrQtfxAt9/IcFfWN5vvm64p1Zn8YsDuCa5edne5kk+NNQL1rE
-         6Z8A+hlQrFNucfDP+upSPTPKnygFJZWAOlrryiA2233asov6nBrDc5lAmLW845kAapAd
-         k9z4U6AIQpTa+AHxDaFY+XvF64LihFmQ++uHe6GVfCIh9cs+0XtvV1tcBr/0qsXRPWMO
-         E5lg==
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oJV+TvCO+VY9DO+jZTnnzXFI3BZ6Ed8DSfpwoOZDIjE=;
+        b=m8rt2XhycVFsFwCJs971W8tfd4kvUrZ1DGawZM4WWJZfOJO8ATmciRBkiNvxCt+Y22
+         HJvU6OGiO2GBAhyiU0BzCiVe9mEMTgcwAILdykWB+Ei6v9/dtVAreQ1QfwiSfJAYtbp5
+         Hp8jD05EUdJ3kkVb4JnT2lL/ckqY0xg1SF3ESxlBrFSgEDFcCl0ZgQ6WhR/zC6K2zl9U
+         4mQd1QA3rVBTN1cbIRxXZUOoDYW/nEIejkXcbjeMjbNXku8OXka6f5f20dyBv22kJbEd
+         eeKZTgU5UW9cnaFudA5TbukVoXfj8G9Vypqv0pFVmL3AvzfffHeaZZhztoyIqmz6LHm/
+         2zmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UDOGux9OnwcLCVvDL8z/SzrW7VhDkSyO73EN0gWoFZo=;
-        b=oe3Ix6CKn79mSNToBvNUNdR6aWdzmbrO4Ap4FkGe2Whsd91VFTluszKSH3Vy7n7WDt
-         RAb4qOlHQYt4+jWpAPp+ScgNGNLHfZgAJpVeIogEmHJDmdGTwfIjdf0Ll+nVcTEBO/Wa
-         n6un7E5chNb+l7opa1ws6ka+ZiTpk15MMSMJelMTvaPp4Y3HOCAfsWggQS5mwQIPaN/j
-         eL3CJ6pHylLPpQ9+gCcdDlHo7FL9KKo66LiLvpgGsZsLOkA/KF2sEbQIzjMOS1qg6PTL
-         2bIV8BTw6K3u2U4TiotwQaZwysJ8qIMohVXpgSl4UBIqbM4fAAyi3FbasjL2wL0Yba2t
-         L2Lg==
-X-Gm-Message-State: AGi0PuafJopnhktKXEsoLjje7gb3HV9MdqijNEIYNtStZteudeSkDr5O
-        EA1hQk7QeH/ZAAQJG5zfH6gU99H8Ul2g83H2BMA=
-X-Google-Smtp-Source: APiQypLJjj8ZBg6Mt5DZq9kqoXz/BVCXrfODGbWgtNmw50cx1Z6OgxhRqhXjMW201TFjaKkCtUeg1WgTmVbYFzaIpwU=
-X-Received: by 2002:a6b:5116:: with SMTP id f22mr8425922iob.15.1586372417265;
- Wed, 08 Apr 2020 12:00:17 -0700 (PDT)
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oJV+TvCO+VY9DO+jZTnnzXFI3BZ6Ed8DSfpwoOZDIjE=;
+        b=UElA1umSQZj2RORnWYFR2XaVXpiRtVZMN/Nqz0mjKV9HZFLwFLszX1SQdt+cMEH92O
+         xNNcCr3n/DnHlqem+PWkih3M5OSU/tDQZ/1080/CG0hlS0HC9FJb0b4GVWcRk5R8M0ls
+         V5hyG0L8g+wtRYhWjt4o6iUjOwrIbDzItVpKr3RqX9IiwNGHzEBznAj85SI/j1m4O28Y
+         qkoXghMnUv56jntecA/+SaAJl0YWI5jYmPXBUA8/IX7WdF9GCyMhWdea5NWAr7kT+yrU
+         bBeDpUJ9EgMxoK+7qk6QVqsIWBawjxwbslnZa8mvLv5+ERTw4q0zBp+t9/oYBBC6G2lX
+         F+SA==
+X-Gm-Message-State: AGi0PuYlEZTTqj6KUlcLYkKCYOMUQNzJxqhLIj0V46nlsRlNWxAIsDW4
+        4R9JY2W9G7u4aI8gaPysvcQ=
+X-Google-Smtp-Source: APiQypJT1y2+pe84RYUVofBuROMqGUOExowdWQXdnWGTNSf3OUWv6Wa4vkyfGj3ws9+DFIgs9LK74w==
+X-Received: by 2002:ad4:5448:: with SMTP id h8mr9106996qvt.23.1586374033710;
+        Wed, 08 Apr 2020 12:27:13 -0700 (PDT)
+Received: from [192.168.1.46] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id a136sm20267507qkb.15.2020.04.08.12.27.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 08 Apr 2020 12:27:13 -0700 (PDT)
+Subject: Re: [PATCH] of: remove unneeded variable
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Ding Xiang <dingxiang@cmss.chinamobile.com>, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1585562702-360-1-git-send-email-dingxiang@cmss.chinamobile.com>
+ <92c6b7e9-4d55-a5c3-8c7f-5611edeb55c9@gmail.com>
+Message-ID: <94145488-c077-4b40-943f-f53f21f660c4@gmail.com>
+Date:   Wed, 8 Apr 2020 14:27:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20200408181406.40389-1-alcooperx@gmail.com> <20200408182557.GR3676135@smile.fi.intel.com>
-In-Reply-To: <20200408182557.GR3676135@smile.fi.intel.com>
-From:   Alan Cooper <alcooperx@gmail.com>
-Date:   Wed, 8 Apr 2020 15:00:05 -0400
-Message-ID: <CAOGqxeVZpT2Li86kJSgw7D9hv76Knw8-aTAmq+T03nFf5Q1a4g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Add XHCI, EHCI and OHCI support for Broadcom STB SoS's
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     ": Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <92c6b7e9-4d55-a5c3-8c7f-5611edeb55c9@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 8, 2020 at 2:25 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Apr 08, 2020 at 02:14:02PM -0400, Al Cooper wrote:
-> > v3 - Addressed all of Andy Shevchenko's review comments for
-> >      ehci-brcm.c.
-> >    - Fixed the brcm,bcm7445-ehci.yaml dt-bindings document,
-> >      dt_binding_check now passes.
-> >    - Added the XHCI functionality to xhci-plat.c instead of creating
-> >      new brcmstb files, as suggested by Mathias Nyman.
->
-> It's nice, but have you heard what Mathias asked / proposed?
+On 4/8/20 11:00 AM, Frank Rowand wrote:
+> On 3/30/20 5:05 AM, Ding Xiang wrote:
+>> rc is unneeded, just return 0.
+> 
+> of: of_detach_node() remove unneeded local return variable
 
-I thought that was what I did.
+never mind, this is not the subject line...  My mistake.
 
-Al
+-Frank
 
-...
+> 
+>>
+>> Signed-off-by: Ding Xiang <dingxiang@cmss.chinamobile.com>
+>> ---
+>>  drivers/of/dynamic.c | 3 +--
+>>  1 file changed, 1 insertion(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+>> index 08fd823..fe64430 100644
+>> --- a/drivers/of/dynamic.c
+>> +++ b/drivers/of/dynamic.c
+>> @@ -286,7 +286,6 @@ int of_detach_node(struct device_node *np)
+>>  {
+>>  	struct of_reconfig_data rd;
+>>  	unsigned long flags;
+>> -	int rc = 0;
+>>  
+>>  	memset(&rd, 0, sizeof(rd));
+>>  	rd.dn = np;
+>> @@ -301,7 +300,7 @@ int of_detach_node(struct device_node *np)
+>>  
+>>  	of_reconfig_notify(OF_RECONFIG_DETACH_NODE, &rd);
+>>  
+>> -	return rc;
+>> +	return 0;
+>>  }
+>>  EXPORT_SYMBOL_GPL(of_detach_node);
+>>  
+>>
+> 
+> 
+> Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+> 
 
-
->
-> > v2 - Addressed Andy Shevchenko's review comments.
-> >    - Fixed dt_binding_check error pointed out by Rob Herring.
-> >    - Removed pr_info message in ehci_brcm_init as suggested by
-> >      Greg Kroah-Hartman.
-> >
-> > This adds support for the XHCI, EHCI and OHCI host controllers found
-> > in Broadcom STB SoC's. These drivers depend on getting access to the
-> > new Broadcom STB USB PHY driver through a device-tree phandle and
-> > will fail if the driver is not available.
-> >
-> > Al Cooper (4):
-> >   dt-bindings: Add Broadcom STB USB support
-> >   usb: xhci: xhci-plat: Add support for Broadcom STB SoC's
-> >   usb: ehci: Add new EHCI driver for Broadcom STB SoC's
-> >   usb: host: Add ability to build new Broadcom STB USB drivers
-> >
-> >  .../bindings/usb/brcm,bcm7445-ehci.yaml       |  60 ++++
-> >  .../devicetree/bindings/usb/usb-xhci.txt      |   1 +
-> >  MAINTAINERS                                   |   8 +
-> >  drivers/usb/host/Kconfig                      |  16 +
-> >  drivers/usb/host/Makefile                     |  16 +-
-> >  drivers/usb/host/ehci-brcm.c                  | 286 ++++++++++++++++++
-> >  drivers/usb/host/xhci-plat.c                  |  10 +
-> >  7 files changed, 391 insertions(+), 6 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
-> >  create mode 100644 drivers/usb/host/ehci-brcm.c
-> >
-> > --
-> > 2.17.1
-> >
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
