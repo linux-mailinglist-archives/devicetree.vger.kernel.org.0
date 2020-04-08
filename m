@@ -2,78 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 117251A2B9D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 23:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A211A2C58
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 01:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727001AbgDHV4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 17:56:30 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:50889 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726937AbgDHV43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 17:56:29 -0400
-X-Originating-IP: 86.202.105.35
-Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 267BCC0006;
-        Wed,  8 Apr 2020 21:56:26 +0000 (UTC)
-Date:   Wed, 8 Apr 2020 23:56:25 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     Kamel Bouhara <kamel.bouhara@bootlin.com>,
+        id S1726510AbgDHXaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 19:30:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38192 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726504AbgDHXaK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Apr 2020 19:30:10 -0400
+Received: from localhost (mobile-166-175-188-68.mycingular.net [166.175.188.68])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BD0ED20730;
+        Wed,  8 Apr 2020 23:30:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586388610;
+        bh=BS0ZFoiAjqfPxe9bkyobcDKcwdePpxw1588Rc7wSJJc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=Tq87FDiJYzSROkNza6MmRJ2L1MvMFuSLJty0f8QCOXhEryVgro3JUW+LY/jpx7JPt
+         A7jaNs8uU86tY53XAVsYf0RTGTgLzLVqKwY6wAnzho8QsVNndmxcHD9JMQQexFAcsh
+         uoCvMiiFs+QBCqEiVWGbNzi82E0hU7wSdJzZzKRs=
+Date:   Wed, 8 Apr 2020 18:30:08 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 3/3] counter: Add atmel TCB capture counter
-Message-ID: <20200408215625.GS3628@piout.net>
-References: <20200406155320.1291701-1-kamel.bouhara@bootlin.com>
- <20200406155320.1291701-4-kamel.bouhara@bootlin.com>
- <20200408213013.GA30867@icarus>
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        linux-rockchip@lists.infradead.org,
+        Lad Prabhakar <prabhakar.csengg@gmail.com>
+Subject: Re: [PATCH v7 2/8] PCI: rcar: Move shareable code to a common file
+Message-ID: <20200408233008.GA150200@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200408213013.GA30867@icarus>
+In-Reply-To: <1586360280-10956-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi William,
+On Wed, Apr 08, 2020 at 04:37:54PM +0100, Lad Prabhakar wrote:
+> This patch moves sharable code to common file pcie-rcar.c and the #defines
+> to pcie-rcar.h so that the common code can be reused with endpoint driver.
+> There are no functional changes with this patch for the host controller
+> driver.
 
-On 08/04/2020 17:31:03-0400, William Breathitt Gray wrote:
-> On Mon, Apr 06, 2020 at 05:53:20PM +0200, Kamel Bouhara wrote:
-> > This drivers allows to use the capture mode of the Timer Counter Block
-> > hardware block available in Atmel SoCs through the counter subsystem.
-> > 
-> > Two functions of the counter are supported for the moment: period
-> > capture and quadrature decoder. The latter is only supported by the
-> > SAMA5 series of SoCs.
-> > 
-> > For the period capture mode a basic setup has been chosen that will
-> > reset the counter each time the period is actually reached. Of course
-> > the device offers much more possibilities.
-> > 
-> > For quadrature mode, both channel 0 and 1 must be configured even if we
-> > only capture the position (no revolution/rotation).
-> > 
-> > Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> 
-> Hi Kamel,
-> 
-> Thank you for submitting support for this driver. Since this is a new
-> counter driver, make sure to create an entry for it in the top-level
-> MAINTAINERS file so users know who to contact to report bugs and other
-> issues.
-> 
-
-The file name already matches for the at91 maintainers so I think we are
-good on this front.
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+s/This patch moves/Move/
+s/sharable/shareable/
