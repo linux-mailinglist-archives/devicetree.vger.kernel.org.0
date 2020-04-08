@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 516E41A22AE
+	by mail.lfdr.de (Postfix) with ESMTP id BA9841A22AF
 	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 15:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729016AbgDHNKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 09:10:47 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35131 "EHLO
+        id S1729043AbgDHNKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 09:10:49 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:35943 "EHLO
         mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727942AbgDHNKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 09:10:47 -0400
-Received: by mail-wm1-f65.google.com with SMTP id r26so5399306wmh.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 06:10:46 -0700 (PDT)
+        with ESMTP id S1729020AbgDHNKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 09:10:48 -0400
+Received: by mail-wm1-f65.google.com with SMTP id d202so5394902wmd.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 06:10:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JYXlDfYBhiWgPgJU0Q/nJhdlPceCvlDUE/4GyWKcH6g=;
-        b=QHL4MXPEljvtIQGjunB5zOVtcdXGVKmlw4SZOnXhxkT1G/idNJYDWnJFfBVSZA6ur3
-         XLz9bz/BqDPWhdQatlMyK6MmtNW8HxbZeVjK0G1uqi7z9jMag7KM2wUrQWsgkoABLzNs
-         oYhqehOttVSx8OlDnxRpDf36Pjdevb/n571RX6/ccykz1GdjpgOarVQkS4Bm9+QTsEy0
-         UbUITpFmgxApWyw5xc28x/GA0O2u/y+CJhdZhLfIxQwoqqqjCYFGVNm594e3V6ypu9Lr
-         UWvi+6+0ZKt423SaS92K/1Xh7qfhb+YaYr0a0RE4bUjQ2SNqU3UJArWVOsEbiLCXMGU4
-         CArg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=NlDlRv555GH3IWzPThM2PIkVo5dnbd1J1aXXNjhdRgU=;
+        b=aFWPOjD+POZxqE+i+gRicc1Ttn6UlDSIUKWVEXYrw6mfX2v20gZgt82l4KRhjiIe9A
+         b7eh6/OF5TAIN8zLoLVxFZu6TXaYtFE7/efNaS8sZKDyPnHEaYTT/n35OdxMY05APuOt
+         rlWYwUne8HTx4HnFmTSaPsuQsXqpfgebNO4ZoJARRorQ9DkoYG3cYPagjmaYqCRxy/5p
+         rnFMxw1K+6Rzmgrq1DW3Fnq4at0dmmS01p0cbFLJdKNnxjXp8BkfZrycWl7oUXu+s+cK
+         d/adjUK3FZcpZfWktEdbNJoad3EocqLejBbg1sRQ265bF0LqSaopWWshBlwmpvodh1TX
+         BEag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JYXlDfYBhiWgPgJU0Q/nJhdlPceCvlDUE/4GyWKcH6g=;
-        b=SFWWlttDEYuWg6DGWFz/huQ7KIVSOUI3jCDCdrL5KHrQNROZ3MpJkTz95LnK3SfhMP
-         8rbILaA483CpIDKyYG2fSZzrzh5nr1WVxwK6CNn1T+M2PSKFwJbfwnKqS0qIAs21p2eg
-         OI97nE74ujq/DaumL8Apa4/FwIHlSfu332EaH+686OzVb3CCJWIU3uwRWFPvRQ0NFXZX
-         vRBBaY4U80N4mdnwjglaVGGFexKGv7vFm3LoN/Uc0JNtPwkFhdtSm+PQBMRQD86Vg9hp
-         ZLZggJpinNK9u3ZK3zt7j42dndnYcgvGFTb17Sd/jqte0dSyiRo1S2Yf/F+YP13rAnHh
-         4ylQ==
-X-Gm-Message-State: AGi0PuZdiXY4xZLtioI+RpQ8ulOuOLLtv4uH0gAeQiUADNJijx01L4LR
-        Qeh2nTgBt90l7106NOmxGObo2A==
-X-Google-Smtp-Source: APiQypJze0ARzAXgLTH/rmOlQ2KeFXFto1u/pWx1vCgzC7LIu7QenfXc92GJkM+v/zzhBPo68YSeJA==
-X-Received: by 2002:a1c:2c85:: with SMTP id s127mr4663487wms.18.1586351445367;
-        Wed, 08 Apr 2020 06:10:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=NlDlRv555GH3IWzPThM2PIkVo5dnbd1J1aXXNjhdRgU=;
+        b=Nfv49HdzYt5hizlp+PEsWQi6cuJkMjPzHnGu3JZVbh9h9jXM5de1s8hdQQaxBbBAx5
+         yKEB/pXMbUA3WTE3KyMPlWUZ5+NQs3JX2kvFuNq4lk4IcBcl+0TEqqP93CL7SAcN1Z58
+         AylF8Ztv2VLIisWn/d07ozYgE0U4OgkmjJvRNIDfmLjNmTIQZ0xetDYy2U9gB6IySIyp
+         X2nwbWj1q+ymBUwMkZYRrRAGtMEvLSeYUVdf94/m6CKz8M8zpBA6heMWvvJ7L4vDH4/3
+         zu7aWAn0EOi/enJ0HFgkSzGweMELfURObACsCVaSiCytPCTp/90wmCBInNkU7S5MbCL0
+         c8PA==
+X-Gm-Message-State: AGi0PubHI4gFjsyWzuJGo9GxxJH4dVwLYgKFegHpNgZNp4ngFV0jqhoY
+        +wuUHgsQPeKetqg8dR+Ha31S3Q==
+X-Google-Smtp-Source: APiQypKFGiJ+gX60BLbUE1LDlC51Duk6XfC5j/frP0y9C+JdDx5KsdFSZwr18YptOjMFQlBlrJHuCg==
+X-Received: by 2002:a7b:c1da:: with SMTP id a26mr3107514wmj.125.1586351446839;
+        Wed, 08 Apr 2020 06:10:46 -0700 (PDT)
 Received: from localhost.localdomain ([37.120.50.78])
-        by smtp.gmail.com with ESMTPSA id f4sm18428044wrp.80.2020.04.08.06.10.43
+        by smtp.gmail.com with ESMTPSA id f4sm18428044wrp.80.2020.04.08.06.10.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 06:10:44 -0700 (PDT)
+        Wed, 08 Apr 2020 06:10:46 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
@@ -55,10 +55,12 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         Loic Poulain <loic.poulain@linaro.org>,
         Luca Weiss <luca@z3ntu.xyz>
 Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v4 0/6] Qualcomm CCI & Camera for db410c & db845c
-Date:   Wed,  8 Apr 2020 15:09:53 +0200
-Message-Id: <20200408130959.2717409-1-robert.foss@linaro.org>
+Subject: [PATCH v4 1/6] arm64: dts: msm8916: Add i2c-qcom-cci node
+Date:   Wed,  8 Apr 2020 15:09:54 +0200
+Message-Id: <20200408130959.2717409-2-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200408130959.2717409-1-robert.foss@linaro.org>
+References: <20200408130959.2717409-1-robert.foss@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,36 +68,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series depends on the Qualcom CCI I2C driver series:
-https://patchwork.kernel.org/project/linux-arm-msm/list/?series=267371
+From: Loic Poulain <loic.poulain@linaro.org>
 
-And the ov8856 device tree series:
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=268013
+The msm8916 CCI controller provides one CCI/I2C bus.
 
-This series enables basic camera functionality on the Qualcomm db410c and
-db845c (RB3) platforms.
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
-This includes building drivers as modules, adding devicetree nodes
-for camera controllers, clocks, regulators and sensor nodes.
+Changes since v1:
+ - Add label to cci node
+ - Sort cci node by address
+ - Relabel cci0 i2c bus to cci-i2c0
 
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Loic Poulain (2):
-  arm64: dts: msm8916: Add i2c-qcom-cci node
-  arm64: dts: apq8016-sbc: Add CCI/Sensor nodes
-
-Robert Foss (4):
-  arm64: dts: sdm845: Add i2c-qcom-cci node
-  arm64: dts: sdm845-db845c: Add pm_8998 gpio names
-  arm64: dts: sdm845-db845c: Add ov8856 & ov7251 camera nodes
-  arm64: defconfig: Enable QCOM CAMCC, CAMSS and CCI drivers
-
- arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi  |  76 ++++++++
- arch/arm64/boot/dts/qcom/msm8916.dtsi      |  27 +++
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 204 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sdm845.dtsi       |  92 ++++++++++
- arch/arm64/configs/defconfig               |   3 +
- 5 files changed, 402 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index a88a15f2352b..cad0ac482367 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1603,6 +1603,33 @@ ports {
+ 		};
+ 	};
+ 
++	cci: cci@1b0c000 {
++		compatible = "qcom,msm8916-cci";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x1b0c000 0x1000>;
++		interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
++		clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>,
++			<&gcc GCC_CAMSS_CCI_AHB_CLK>,
++			<&gcc GCC_CAMSS_CCI_CLK>,
++			<&gcc GCC_CAMSS_AHB_CLK>;
++		clock-names = "camss_top_ahb", "cci_ahb",
++				  "cci", "camss_ahb";
++		assigned-clocks = <&gcc GCC_CAMSS_CCI_AHB_CLK>,
++				  <&gcc GCC_CAMSS_CCI_CLK>;
++		assigned-clock-rates = <80000000>, <19200000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&cci0_default>;
++		status = "disabled";
++
++		cci_i2c0: i2c-bus@0 {
++			reg = <0>;
++			clock-frequency = <400000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++
+ 	smd {
+ 		compatible = "qcom,smd";
+ 
 -- 
 2.25.1
 
