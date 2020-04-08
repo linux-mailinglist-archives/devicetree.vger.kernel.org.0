@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F07D1A29DB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CF4C1A29D7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730268AbgDHTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1730265AbgDHTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 8 Apr 2020 15:52:14 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:39255 "EHLO
-        mail-lj1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730263AbgDHTwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:14 -0400
-Received: by mail-lj1-f177.google.com with SMTP id i20so8991303ljn.6
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:11 -0700 (PDT)
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:44194 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730241AbgDHTwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:13 -0400
+Received: by mail-lj1-f193.google.com with SMTP id z26so4884540ljz.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=iLwmLLXxp+3at3NXYeHsZbtqN22J5m0j84C8EY0Tpvw=;
-        b=SEaJe1JCrR9zDU7Y5BWPoYjiMOXkt9vafq1EBfXteVwRxHKgifJ+HakQtmQ/Si6ZY7
-         ekAXqqx2IVDfAjaBmxvkCPvuAqtzgdErjtQB7J7hgbY75nP31S7zcT3qGiTt0AuV0yze
-         6cuRxXpdCcqE4HwfRIRCM5idnU8NyCzQbxH9psr4tPYShikjPWDpdfOBHL4iG5Z0jJOS
-         TlYbyoyyNqUr4TW4LEZVR4edb5QkIZpEt/at7qqV7SD8w68yiON56vJhuZkv2ROWHTej
-         oxFIW8okNZ8L9gx2P5aApRjDThaYbWsUgt9Bxj578teWqu/Dg7qr1pC/lsT23sqTolKV
-         TsUA==
+        bh=6D6qYDVAoDX49O3pqM7t4Fg8LndWENhGAQHVsmY5Z5o=;
+        b=XXutsEU3l6r+yPO9oJgX925/EDBqLG+ysEOjCx8DGzfZCFdjWwBb5YErtaIjok8IsY
+         I/cHrBMUtYMWwnEm/3A/VDSnpY3BsPhb4/TC5NmFIEj/5kqLZobOSL7ZfTegy00rNoUI
+         tzqjFODTBjWuonPRDA7ypa72lBvL7i4woLyBpa3Aj89AZO1XWzckF9HHFLWpvNEYkY5/
+         NKS0dcOMUVTFe8qngfzfQF+m5KPSHggKQjcjDdqn0XuT9VjV3hbk8wyiAlOIYi8WFgQT
+         uKrEZasT4W9KZ5ab70JIsGnm/7qu1pvm/QezA1Z5Mws2KO8cMM1J2XIbXiNjFx5qvm1w
+         pDgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=iLwmLLXxp+3at3NXYeHsZbtqN22J5m0j84C8EY0Tpvw=;
-        b=Od6GSSzRQmXJf9bLYle+BMMUo4P+uRXgkl19ol+0AMA4QRFOzvZ74jDVHD/xHOh6Hh
-         euQq1MiagN11ghKFGsOv4fiGoo0UiWoOzdhsyevbXJl1HYIqC0zgw+Lk3hYUGX0c6Dht
-         V5HR40yp+ruZyh/kNzz2qX5Rw0IiHMdvq2umP2hoQx7N6H9DvMi0VF/ZfUmZu8+oljsR
-         nN32ehMMaq71ei00q30k6nj4lBf8ZjKFDTHPLEb59IMrebYg6mymblc10XXdnOLv+Yic
-         +y6eqfRUUKIligSGhkZYzX4NKDeqmHsuZKVdRS796lx5jHYZled6CBC0ebcgB/xSWaY1
-         POdQ==
-X-Gm-Message-State: AGi0PuYssZdnIvEwTCJ0YDx15eE7wIpjWOwPD4ZwoAiw/b1V2T25EK7Z
-        SbCIP3prnd3mTf+37bsgYg0=
-X-Google-Smtp-Source: APiQypJux+tS4zCz4JUzc/4t/XTEpugkfLJZ0kNiGF6FynCxhE+ZODVIFmH2shE8oLIJFFG/2qxtIQ==
-X-Received: by 2002:a2e:9a89:: with SMTP id p9mr6062408lji.222.1586375530300;
-        Wed, 08 Apr 2020 12:52:10 -0700 (PDT)
+        bh=6D6qYDVAoDX49O3pqM7t4Fg8LndWENhGAQHVsmY5Z5o=;
+        b=aaGPSYDG0IMSjGqeMN2rqeQ5S+CipGOP8HMGRbtTMm5/gD8GzfXPM27v+9GkGf/Gpp
+         QVieBZWVV/pk52xCMwzshaZleQXvVGmWbOve/dxnAAsUAaEVGCjtIAb3MkKdK9ASfbfh
+         LecNB9cc3yqS4zfJaU4qN2Fl1aHyPv0VXELNTbIXE+SYyfG1NgT81UQDEq7f4Zh77hGo
+         F9Eb2UnMRns06OsgWDKFOCw9nMIlw79m/Y4U4xk1XE3BZGCduvV0ig7DrFx/+BBdS3GE
+         DoFGQ41eULLPNodqMBEwNacu8U1bGubWooyZ7JXgZm1G9iuYlqIO4dUenkp+s2IawI3Q
+         lChQ==
+X-Gm-Message-State: AGi0PuanfpU8u/xbR+rV6Ujy6uJmkt0ZCUTOZWX4mQBKelsJTMAxYfJ0
+        h+/cRFyrouVgwMw4iXq5EmE=
+X-Google-Smtp-Source: APiQypKNYRQcSSHozxvibYIjkxAF3kS1iwCxc1DBka0R8azioQKkkgz4VifSElVsqxT/YIokQcgAUg==
+X-Received: by 2002:a2e:6809:: with SMTP id c9mr5871304lja.251.1586375531273;
+        Wed, 08 Apr 2020 12:52:11 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.09
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:52:09 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:10 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     Sam Ravnborg <sam@ravnborg.org>, Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH v2 27/36] dt-bindings: display: convert sitronix,st7789v to DT Schema
-Date:   Wed,  8 Apr 2020 21:51:00 +0200
-Message-Id: <20200408195109.32692-28-sam@ravnborg.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v2 28/36] dt-bindings: display: drop unused simple-panel.txt
+Date:   Wed,  8 Apr 2020 21:51:01 +0200
+Message-Id: <20200408195109.32692-29-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
@@ -62,133 +62,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2:
-    - dropped use of spi-slave.yaml (Maxime)
-    - added unevaluatedProperties (Maxime)
+There are no more references to simple-panel.txt.
+Delete it.
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Maxime Ripard <mripard@kernel.org>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../display/panel/sitronix,st7789v.txt        | 37 -----------
- .../display/panel/sitronix,st7789v.yaml       | 63 +++++++++++++++++++
- 2 files changed, 63 insertions(+), 37 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/sitronix,st7789v.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+ Documentation/devicetree/bindings/display/panel/simple-panel.txt | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/simple-panel.txt
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.txt b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/simple-panel.txt b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
 deleted file mode 100644
-index c6995dde641b..000000000000
---- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.txt
+index e11208fb7da8..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/simple-panel.txt
 +++ /dev/null
-@@ -1,37 +0,0 @@
--Sitronix ST7789V RGB panel with SPI control bus
--
--Required properties:
--  - compatible: "sitronix,st7789v"
--  - reg: Chip select of the panel on the SPI bus
--  - reset-gpios: a GPIO phandle for the reset pin
--  - power-supply: phandle of the regulator that provides the supply voltage
--
--Optional properties:
--  - backlight: phandle to the backlight used
--
--The generic bindings for the SPI slaves documented in [1] also applies
--
--The device node can contain one 'port' child node with one child
--'endpoint' node, according to the bindings defined in [2]. This
--node should describe panel's video bus.
--
--[1]: Documentation/devicetree/bindings/spi/spi-bus.txt
--[2]: Documentation/devicetree/bindings/graph.txt
--
--Example:
--
--panel@0 {
--	compatible = "sitronix,st7789v";
--	reg = <0>;
--	reset-gpios = <&pio 6 11 GPIO_ACTIVE_LOW>;
--	backlight = <&pwm_bl>;
--	spi-max-frequency = <100000>;
--	spi-cpol;
--	spi-cpha;
--
--	port {
--		panel_input: endpoint {
--			remote-endpoint = <&tcon0_out_panel>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-new file mode 100644
-index 000000000000..fa46d151e7b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/sitronix,st7789v.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sitronix ST7789V RGB panel with SPI control bus
-+
-+description: |
-+  The panel must obey the rules for a SPI slave device as specified in
-+  spi/spi-controller.yaml
-+
-+maintainers:
-+  - Maxime Ripard <mripard@kernel.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sitronix,st7789v
-+
-+  reg: true
-+  reset-gpios: true
-+  power-supply: true
-+  backlight: true
-+  port: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - power-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "sitronix,st7789v";
-+            reg = <0>;
-+            reset-gpios = <&pio 6 11 GPIO_ACTIVE_LOW>;
-+            backlight = <&pwm_bl>;
-+            power-supply = <&power>;
-+            spi-max-frequency = <100000>;
-+            spi-cpol;
-+            spi-cpha;
-+
-+            port {
-+                panel_input: endpoint {
-+                    remote-endpoint = <&tcon0_out_panel>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
+@@ -1 +0,0 @@
+-See panel-common.yaml in this directory.
 -- 
 2.20.1
 
