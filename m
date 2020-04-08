@@ -2,143 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B271A2963
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:38:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B5651A29A6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730028AbgDHTi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:38:26 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:2985 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728725AbgDHTiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:38:25 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e8e27c90000>; Wed, 08 Apr 2020 12:36:41 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 08 Apr 2020 12:38:24 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 08 Apr 2020 12:38:24 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 8 Apr
- 2020 19:38:24 +0000
-Received: from [10.2.171.241] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 8 Apr 2020
- 19:38:23 +0000
-Subject: Re: [RFC PATCH v6 6/9] media: tegra: Add Tegra210 Video input driver
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <helen.koike@collabora.com>
-CC:     <sboyd@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1585963507-12610-1-git-send-email-skomatineni@nvidia.com>
- <b1726d33-0d35-9323-a747-407148d0104e@gmail.com>
- <eb80178f-30f4-8f46-51cd-ea3f4914b81d@nvidia.com>
- <dd16c560-ba8f-e7df-5dc4-5227e0043196@nvidia.com>
- <fea4f0a1-4a20-34d4-9eda-e4a599eeeffc@nvidia.com>
- <760d071e-0cbc-b3eb-9231-fb9f9ecb44a6@nvidia.com>
- <9e317f65-8a02-3b15-cfec-8e0d8374130e@gmail.com>
- <97b35910-4c93-123a-43a0-eb14476ed0f3@nvidia.com>
- <84ad4e2d-6ac1-e1f4-1c55-5edaae850631@nvidia.com>
- <15a879b3-8fb9-6821-3cdc-104ba583ac12@gmail.com>
- <0c425505-347f-7418-af7e-d121fe0d06dc@nvidia.com>
- <db7c7051-5674-cdb9-0aa4-ee94125b3024@gmail.com>
- <1a31cd60-739f-0660-1c45-31487d2f2128@nvidia.com>
- <603084a5-249a-4fe2-3646-e9335ef9ab43@nvidia.com>
- <7895b9c6-f27d-8939-73d7-67d785e1a8b7@nvidia.com>
- <ea60b489-990e-4b15-e215-d93381a1371e@nvidia.com>
- <b2405c2a-73c0-ad69-ccea-0388caf8045c@gmail.com>
- <15d8b525-67b5-b437-f7fd-89f80cd0d9f6@nvidia.com>
- <a638bb8e-bb50-7aa5-05a0-8de1c6207ba7@nvidia.com>
-Message-ID: <ced73258-6f4b-e970-4ca5-ecdf1808a4c3@nvidia.com>
-Date:   Wed, 8 Apr 2020 12:38:21 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1730121AbgDHTve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:51:34 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:34700 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727903AbgDHTve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:51:34 -0400
+Received: by mail-lf1-f68.google.com with SMTP id x23so6120470lfq.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:51:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2PgRZe5K3hgz/0aN2c1spKhXvZT+RoAd8uSZ0YtrmTw=;
+        b=ZYaTzx++qIs/LJZVu17e6p3xXI0uZ3jGHY+OBpFRwvjgstZiGoKOog8Vm3wAIOU9Km
+         sv1MNhmhyH2g7CAkSkxIZc3RDp5v/Sa5EO5bzyl8BPEYVXTk9i4prVRWJ48C7T/4ZqBL
+         +Gw2UFMjio5KHrvnu29HCotFXziKq8TH4wwMKrc0DgXqGIYveuW6G4K8bH/BnuXHW6M9
+         ePiocOttgFKJL1Yppm/9tkodvuDJKYq3CWcO/2iqXkXXMDXgjtQ3QV3XgCgtbtkxXnWC
+         nGySA0VaOCpVMCDordnH988wi4l7DZGiZUPEeIcjFBKX8V184/O5SBAPA+uouxP07L1+
+         05cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=2PgRZe5K3hgz/0aN2c1spKhXvZT+RoAd8uSZ0YtrmTw=;
+        b=GO5HQcrbw6BiJD9pT5EtK6rAA+meiCK8NOGqH9Ush9ZERolOIa4CBCtIhgJXPL6SZF
+         DWggg4YHz/NCtsb4X9H3IlC3jl4X4Uv8qHhfAQE0CWmX08TzoSB3xNAViiwawGga1vz6
+         EPjaunjKLe5potq6vhKsf8bUkyHTesTIfCRL3jL9/otjQOZZBAx39W3xmCbHoJ7AqEYm
+         HTtBaYh4+p63NqXmVGIVImqIsg13QZ9/HRCapgTTkPvQPw7nss4uEaoxnlnqM+IAa1Ue
+         Osx7n1vjQy0fTq+F0Zwo1qqLRgQPQXXwc66CDEaQr62XnOlj1ZqYvNueMRZH5Bo7l7Iw
+         4SMQ==
+X-Gm-Message-State: AGi0PuaLM9vb2G2IzXwUo3CBYw9cXsN0NIs1TejWD1EuFOoLSAebrvvg
+        juYCwHWFxhkjXN2DLVDsUdM=
+X-Google-Smtp-Source: APiQypIGmDNboC6YC15eD7ycLUQBrs1CcPf0AXqXZBDkMRsKylev2NE+G+B7gF/eN02dUy0Tk8uWWw==
+X-Received: by 2002:ac2:4554:: with SMTP id j20mr5605297lfm.91.1586375491291;
+        Wed, 08 Apr 2020 12:51:31 -0700 (PDT)
+Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Apr 2020 12:51:30 -0700 (PDT)
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     dri-devel@lists.freedesktop.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Brian Masney <masneyb@onstation.org>,
+        Chris Zhong <zyw@rock-chips.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Heiko Schocher <hs@denx.de>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lin Huang <hl@rock-chips.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Marco Franchi <marco.franchi@nxp.com>,
+        Marek Belisko <marek@goldelico.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Nickey Yang <nickey.yang@rock-chips.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Peter Rosin <peda@axentia.se>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sandeep Panda <spanda@codeaurora.org>,
+        Stefan Mavrodiev <stefan@olimex.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Vinay Simha BN <simhavcs@gmail.com>,
+        Werner Johansson <werner.johansson@sonymobile.com>
+Subject: [PATCH v2 0/36] dt-bindings: display: convert remaning panel bindings to DT Schema
+Date:   Wed,  8 Apr 2020 21:50:33 +0200
+Message-Id: <20200408195109.32692-1-sam@ravnborg.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <a638bb8e-bb50-7aa5-05a0-8de1c6207ba7@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1586374601; bh=FzCCMH0FVXQ03sPS9Blx8PYycG7R5/dfGRSA6QuVW5w=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=j2P10VzgKY91EKABc27qxtQBRmIqqfjS1JYnmAPKBKrO/B1S8IJz56Q6xmD/MtHfG
-         VXYbHE/JpFA8Xw2kp9vHG2MGewgoJcZyWCjSm8XGlU+XGpMhYOouL/BGv7ezZPrUFC
-         cGXAuMuS3wuEmHE8eftH0PY49aejq25IOi4CxPrk5Ry6IVOlpduPSCYNYgUDHQ7KQ6
-         ZA02y6Lodd1Mc+YxkyNuSzIRy58FxS0zFl8GDQYW/Z/4HIOVgZyCOq5UmsTB07ae++
-         C9KJoEj5LNi6MwcigyxrOZoEwXjD5PwYPz0XHDug/yd27NZNz80m+0XTli9nvmcuQH
-         E5E7NarLS5OXg==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert remaining(*) panel bindings to DT Schema.
 
-On 4/8/20 11:58 AM, Sowjanya Komatineni wrote:
->
-> On 4/8/20 10:45 AM, Sowjanya Komatineni wrote:
->>
->> On 4/8/20 7:21 AM, Dmitry Osipenko wrote:
->>> External email: Use caution opening links or attachments
->>>
->>>
->>> 08.04.2020 03:00, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>> ...
->>>>>>>> I suppose that taking a shot takes at least few milliseconds,=20
->>>>>>>> which
->>>>>>>> should be unacceptable to waste.
->>>>>>> As long as buffers are in queue we have to keep processing each
->>>>>>> buffer and between buffers obviously we have to wait for previous
->>>>>>> frames to finish and this why we have separate thread for frame
->>>>>>> finish where we can have next buffer capture ready and issue while
->>>>>>> previous frame memory write happens
->>>>> Also we specified numbers buffers as 3 to vb2 queue. So this is rare
->>>>> case but to prevent issuing more than 2 at a time as VI HW is only
->>>>> double buffered and syncpt fifo max depth is 2 added this to be=20
->>>>> safer.
->>>> To be more clear, when more buffers are enqueued from userspace always
->>>> capture list will be full and thread will be busy in capture till=20
->>>> either
->>>> error or stop stream request happens.
->>>>
->>> If kthreads take more than 1% of CPU time during capture (video) with
->>> more than 2 buffers in queue, then it's not good and I think you should
->>> do something about it. If kthreads stay at ~0%, then it should be okay
->>> as-is.
->>
->> VI outstanding requests max can only be 2=C2=A0 as syncpt fifo depth is =
-2=C2=A0=20
->> and waiting to issue next capture when already 2 captures are=20
->> inflight happens only during beginning of streaming where buffers=20
->> allocated go thru capture for first time after queuing.
->>
->> same buffers are returned to userspace after capture and same=20
->> allocated buffers will be queued back for subsequent captures.
->>
->> So this case of holding to issue single shot when already single shot=20
->> is issue for 2 frames simultaneous happens only during beginning of=20
->> start stream and also we set num_buffers to allocate for queue as 3=20
->> although 2 is good enough where we will not hit this case even during=20
->> streaming start with 2 buffers
->>
-> As 2 buffers are good enough to be clear will update in v7 to use 2=20
-> buffers so we don't need to check for more than 2 outstanding buffers.
+To prepare for the migration a preparation
+patch was required:
 
-correction: With 3 buffers, as soon as buffer is available capture=20
-starts. So right most times I see it waiting for few ms before 3rd=20
-capture to get through.
+- te-gpios is now added to panel-common - as this
+  property is used by a few bindings.
 
-As only 2 frames single shot can be issued in sequence (inflight=20
-requests), instead of waiting for 1 of the request to finish, we can use=20
-2 buffers and avoid waiting as 2 buffers are good enough. Will change=20
-this in v7.
+The original author of the panel bindings are listed as maintainer
+in the DT Schema. In the few cases the panel binding was also
+listed in MAINTAINERS I checked that there was a match.
+It was done manually so I may have missed someone.
 
+All bindings pass dt_binding_check with no warnings.
+
+Changes in v2 - see individual commits for more details:
+
+- Dropped spi-slave.yaml. This was a gross misunderstandign from my side
+- Introduced unevaluatedProperties for all SPI slaves
+- Updated MAINTAINERS when relevant - in the individual patches
+- Dropped a few bindings as they was converted by others
+- Updates examples, mostly based on feedback from Rob
+- Moved DSI panels to panel-simple-dsi, and fixed a patch
+  that did this wrong too
+- Added a lot of r-b, a-b - thanks!
+
+I have tried to fix so cover letter is sent to all, but individual patches
+are only sent to a few selected + people listed in Cc:
+Then it is easier for the receiver (you) to see where feedback is expected.
+So if I succeeded and you received only a few bindings as follow-up,
+please provide ack or other feedback.
+
+Patches made on top of drm-misc-next as of today with no other patches.
+
+(*) Two .txt files reamins:
+- display-timing.txt, points to display-timings.yaml
+- panel-dsi-cm.txt, conversion is included in another patch-set
+
+        Sam
+
+Cc: Alexandre Courbot <acourbot@chromium.org>
+Cc: Andrzej Hajda <a.hajda@samsung.com>
+Cc: Brian Masney <masneyb@onstation.org>
+Cc: Chris Zhong <zyw@rock-chips.com>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc: "Guido Günther" <agx@sigxcpu.org>
+Cc: Heiko Schocher <hs@denx.de>
+Cc: H. Nikolaus Schaller <hns@goldelico.com>
+Cc: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Cc: Jerry Han <hanxu5@huaqin.corp-partner.google.com>
+Cc: Jonathan Bakker <xc-racer2@live.ca>
+Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Lin Huang <hl@rock-chips.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Marco Franchi <marco.franchi@nxp.com>
+Cc: Marek Belisko <marek@goldelico.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Nickey Yang <nickey.yang@rock-chips.com>
+Cc: Paul Cercueil <paul@crapouillou.net>
+Cc: Peter Rosin <peda@axentia.se>
+Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc: Purism Kernel Team <kernel@puri.sm>
+Cc: Robert Chiras <robert.chiras@nxp.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Sandeep Panda <spanda@codeaurora.org>
+Cc: Stefan Mavrodiev <stefan@olimex.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Vinay Simha BN <simhavcs@gmail.com>
+Cc: Werner Johansson <werner.johansson@sonymobile.com>
+
+
+Sam Ravnborg (36):
+      dt-bindings: display: allow port and ports in panel-lvds
+      dt-bindings: display: look for dsi* nodes in dsi-controller
+      dt-bindings: display: add te-gpios to panel-common
+      dt-bindings: display: convert samsung,s6e63m0 to DT Schema
+      dt-bindings: display: convert arm,versatile-tft-panel to DT Schema
+      dt-bindings: display: convert boe,himax8279d to DT Schema
+      dt-bindings: display: convert ilitek,ili9322 to DT Schema
+      dt-bindings: display: convert ilitek,ili9881c to DT Schema
+      dt-bindings: display: convert innolux,p079zca to DT Schema
+      dt-bindings: display: convert innolux,p097pfg to DT Schema
+      dt-bindings: display: convert innolux,p120zdg-bf1 to DT Schema
+      dt-bindings: display: convert jdi,lt070me05000 to DT Schema
+      dt-bindings: display: convert kingdisplay,kd035g6-54nt to DT Schema
+      dt-bindings: display: convert kingdisplay,kd097d04 to DT Schema
+      dt-bindings: display: convert simple lg panels to DT Schema
+      dt-bindings: display: convert lg,lg4573 to DT Schema
+      dt-bindings: display: convert osddisplays,osd101t2587-53ts to DT Schema
+      dt-bindings: display: convert raydium,rm67191 to DT Schema
+      dt-bindings: display: convert rocktech,jh057n00900 to DT Schema
+      dt-bindings: display: convert samsung AMOLED to DT Schema
+      dt-bindings: display: convert samsung,s6d16d0 to DT Schema
+      dt-bindings: display: convert samsung,ld9040 to DT Schema
+      dt-bindings: display: convert samsung,s6e8aa0 to DT Schema
+      dt-bindings: display: convert toppoly panels to DT Schema
+      dt-bindings: display: convert startek,startek-kd050c to DT Schema
+      dt-bindings: display: convert sony,acx565akm to DT Schema
+      dt-bindings: display: convert sitronix,st7789v to DT Schema
+      dt-bindings: display: drop unused simple-panel.txt
+      dt-bindings: display: convert sharp,ls043t1le01 to DT Schema
+      dt-bindings: display: convert sharp,lq101r1sx01 to DT Schema
+      dt-bindings: display: convert sharp,ls037v7dw01 to DT Schema
+      dt-bindings: display: convert sharp,lq150x1lg11 to DT Schema
+      dt-bindings: display: convert seiko,43wvf1g to DT Schema
+      dt-bindings: display: convert lgphilips,lb035q02 to DT Schema
+      dt-bindings: display: convert olimex,lcd-olinuxino to DT Schema
+      dt-bindings: display: move DSI panels to panel-simple-dsi
+
+ .../display/allwinner,sun6i-a31-mipi-dsi.yaml      |   2 +-
+ .../bindings/display/dsi-controller.yaml           |   4 +-
+ .../display/panel/arm,versatile-tft-panel.txt      |  31 ------
+ .../display/panel/arm,versatile-tft-panel.yaml     |  51 ++++++++++
+ .../bindings/display/panel/boe,himax8279d.txt      |  24 -----
+ .../bindings/display/panel/boe,himax8279d.yaml     |  59 ++++++++++++
+ .../bindings/display/panel/ilitek,ili9322.txt      |  49 ----------
+ .../bindings/display/panel/ilitek,ili9322.yaml     |  71 ++++++++++++++
+ .../bindings/display/panel/ilitek,ili9881c.txt     |  20 ----
+ .../bindings/display/panel/ilitek,ili9881c.yaml    |  50 ++++++++++
+ .../bindings/display/panel/innolux,p079zca.txt     |  22 -----
+ .../bindings/display/panel/innolux,p097pfg.txt     |  24 -----
+ .../bindings/display/panel/innolux,p097pfg.yaml    |  56 +++++++++++
+ .../bindings/display/panel/innolux,p120zdg-bf1.txt |  22 -----
+ .../display/panel/innolux,p120zdg-bf1.yaml         |  43 +++++++++
+ .../bindings/display/panel/jdi,lt070me05000.txt    |  31 ------
+ .../bindings/display/panel/jdi,lt070me05000.yaml   |  69 +++++++++++++
+ .../display/panel/kingdisplay,kd035g6-54nt.txt     |  42 --------
+ .../display/panel/kingdisplay,kd035g6-54nt.yaml    |  65 +++++++++++++
+ .../display/panel/kingdisplay,kd097d04.txt         |  22 -----
+ .../bindings/display/panel/lg,acx467akm-7.txt      |   7 --
+ .../bindings/display/panel/lg,ld070wx3-sl01.txt    |   7 --
+ .../bindings/display/panel/lg,lg4573.txt           |  19 ----
+ .../bindings/display/panel/lg,lg4573.yaml          |  45 +++++++++
+ .../bindings/display/panel/lg,lh500wx1-sd03.txt    |   7 --
+ .../bindings/display/panel/lgphilips,lb035q02.txt  |  33 -------
+ .../bindings/display/panel/lgphilips,lb035q02.yaml |  59 ++++++++++++
+ .../devicetree/bindings/display/panel/lvds.yaml    |   8 +-
+ .../display/panel/olimex,lcd-olinuxino.txt         |  42 --------
+ .../display/panel/olimex,lcd-olinuxino.yaml        |  70 ++++++++++++++
+ .../display/panel/osddisplays,osd101t2587-53ts.txt |  14 ---
+ .../bindings/display/panel/panel-common.yaml       |   7 ++
+ .../bindings/display/panel/panel-simple-dsi.yaml   |  12 +++
+ .../bindings/display/panel/panel-simple.yaml       |   8 +-
+ .../bindings/display/panel/raydium,rm67191.txt     |  41 --------
+ .../bindings/display/panel/raydium,rm67191.yaml    |  75 +++++++++++++++
+ .../display/panel/rocktech,jh057n00900.txt         |  23 -----
+ .../display/panel/rocktech,jh057n00900.yaml        |  57 +++++++++++
+ .../display/panel/samsung,amoled-mipi-dsi.yaml     |  65 +++++++++++++
+ .../bindings/display/panel/samsung,ld9040.txt      |  66 -------------
+ .../bindings/display/panel/samsung,ld9040.yaml     | 107 +++++++++++++++++++++
+ .../bindings/display/panel/samsung,s6d16d0.txt     |  30 ------
+ .../bindings/display/panel/samsung,s6d16d0.yaml    |  56 +++++++++++
+ .../bindings/display/panel/samsung,s6e3ha2.txt     |  31 ------
+ .../bindings/display/panel/samsung,s6e63j0x03.txt  |  24 -----
+ .../bindings/display/panel/samsung,s6e63m0.txt     |  33 -------
+ .../bindings/display/panel/samsung,s6e63m0.yaml    |  60 ++++++++++++
+ .../bindings/display/panel/samsung,s6e8aa0.txt     |  56 -----------
+ .../bindings/display/panel/samsung,s6e8aa0.yaml    |  96 ++++++++++++++++++
+ .../bindings/display/panel/seiko,43wvf1g.txt       |  23 -----
+ .../bindings/display/panel/seiko,43wvf1g.yaml      |  49 ++++++++++
+ .../bindings/display/panel/sharp,lq101r1sx01.txt   |  49 ----------
+ .../bindings/display/panel/sharp,lq101r1sx01.yaml  |  85 ++++++++++++++++
+ .../bindings/display/panel/sharp,lq150x1lg11.txt   |  36 -------
+ .../bindings/display/panel/sharp,lq150x1lg11.yaml  |  58 +++++++++++
+ .../bindings/display/panel/sharp,ls037v7dw01.txt   |  43 ---------
+ .../bindings/display/panel/sharp,ls037v7dw01.yaml  |  68 +++++++++++++
+ .../bindings/display/panel/sharp,ls043t1le01.txt   |  22 -----
+ .../bindings/display/panel/sharp,ls043t1le01.yaml  |  51 ++++++++++
+ .../bindings/display/panel/simple-panel.txt        |   1 -
+ .../bindings/display/panel/sitronix,st7789v.txt    |  37 -------
+ .../bindings/display/panel/sitronix,st7789v.yaml   |  63 ++++++++++++
+ .../bindings/display/panel/sony,acx565akm.txt      |  30 ------
+ .../bindings/display/panel/sony,acx565akm.yaml     |  57 +++++++++++
+ .../display/panel/startek,startek-kd050c.txt       |   4 -
+ .../display/panel/startek,startek-kd050c.yaml      |  33 +++++++
+ .../devicetree/bindings/display/panel/tpo,td.yaml  |  65 +++++++++++++
+ .../bindings/display/panel/tpo,td028ttec1.txt      |  32 ------
+ .../bindings/display/panel/tpo,td043mtea1.txt      |  33 -------
+ MAINTAINERS                                        |  10 +-
+ 70 files changed, 1721 insertions(+), 1043 deletions(-)
 
 
