@@ -2,222 +2,467 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 362531A2A91
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 22:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F2F1A2AF0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 23:20:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729481AbgDHUlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 16:41:21 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:45719 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729148AbgDHUlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 16:41:12 -0400
-Received: by mail-lf1-f67.google.com with SMTP id f8so6178053lfe.12;
-        Wed, 08 Apr 2020 13:41:11 -0700 (PDT)
+        id S1729578AbgDHVUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 17:20:06 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:54173 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726663AbgDHVUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 17:20:06 -0400
+Received: by mail-wm1-f65.google.com with SMTP id d77so1387040wmd.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 14:20:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fiPLo7L7o5X3XMTpFhfcFXYBuEPLy7YCy7cOsYfZsCQ=;
-        b=HEMX7DFkwIUIOCjFojR26SSvaWwE1IXCm4PvhD/mO+4f+XTiQho3ipYvy8qkJu/+X8
-         UQ131ozajkQsNhqU2ZM/MnkFvGYRgKYfR/WQjLzdqO5yPl/i5qY9GfV4h3pee+JX4nTn
-         4z1CKWr6fjM9/t2XPT3QzfpcpHyLYqGjoNOeJW8Sp+McENVjwujx2aDBxf5TTUdTl8oi
-         x51v9UZsB6kbTzAt1USXdavPIVWfwSQemIXgpUFQxzSGj2WUuZIizqGCcTmtdowcxiqK
-         ObZzTqfeIBWN7Oo3il+MJrlJK0t8N6xMtVxl+3POHVRQkyfUbGiS/fzpC33WF140W1gQ
-         U5ew==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mlooLY7Sz99r4w5SxW3vhlXWplWMMsvRGvuuen3K1G4=;
+        b=dN4B/PDUnB4ESD02bEyepRx8xOEgSxpQkBnOn1PcFRiLJHlhzDqu+5FzsTHHtqwmyu
+         p0t1WW1FOGeUBGOvvWYNRZOM7PPegLuwU3C02BYEmf39qCifISHTYbOE//7hXGTkvULF
+         69CBbB0SZnHe15+XLIEJwmIbv7QeXPZ+VIhdQ9yYEoUNLe/scixvX+TEHrnNVitj3oD2
+         aPU2mOKUTycAypK/EIINnP3sRPGb5j67LPA3abnn6YqD3bZT1fEtoMpur7YkoaBr8ucR
+         ZsgSHpx+NkPj+kkMao8gKvAfQNiTq6eGyaarUtfHNr85qgPoOUmiDq/KTtEugZoamFbW
+         dFOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fiPLo7L7o5X3XMTpFhfcFXYBuEPLy7YCy7cOsYfZsCQ=;
-        b=OMF8fVhNff+3TDv4BYiSuJF6UBxDuy4RVSAiJi451NRtxV4Los6Em9kRaqXTAaUw9j
-         giIh1kEhT6qwdNGIB7RLsAjfzZ6WzVH25oXKkjnzcczCq+MUaFM32QEwOdk+7ME2VvC4
-         eRiWmomFc9cpLRP72gVf7cqEeJREbFThpXQEAt0OdjBQy41Zru+EJeLpsZgr+Dqjfl/7
-         I+Mhtb0hyQFEe5uftEFmAkvyonWyew/GVbVwstGw2vmJIe2U3ywCQoC1rsMz6c227i9Y
-         OdLep1JqCaKMYOjuZTmhBdJruyVQ649uOT7gGwkEgYljDexg3r5z6oaMmYkjoHqzrvuF
-         BOaA==
-X-Gm-Message-State: AGi0PuabChsi0dT89CAiC4VPocWKPrjr1gOWZutRzk+UhLkP36BrKkKr
-        bU9zj9uz59Op4RPotQAFgd0=
-X-Google-Smtp-Source: APiQypIEcMpVq/6zkrDHZungyqrgS3b2nYnZfFHqfSGs3p0LQZkA9n+LGlpNjL0YDGP4XGsjZuGmZg==
-X-Received: by 2002:a05:6512:79:: with SMTP id i25mr5707058lfo.87.1586378470683;
-        Wed, 08 Apr 2020 13:41:10 -0700 (PDT)
-Received: from localhost.localdomain (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
-        by smtp.gmail.com with ESMTPSA id p14sm13189727lfe.87.2020.04.08.13.41.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 13:41:10 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
-        David Heidelberg <david@ixit.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        =?UTF-8?q?Pedro=20=C3=82ngelo?= <pangelo@void.io>,
-        Matt Merhar <mattmerhar@protonmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] ARM: tegra_defconfig: Enable options useful for Nexus 7 and Acer A500
-Date:   Wed,  8 Apr 2020 23:39:45 +0300
-Message-Id: <20200408203945.10329-7-digetx@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200408203945.10329-1-digetx@gmail.com>
-References: <20200408203945.10329-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mlooLY7Sz99r4w5SxW3vhlXWplWMMsvRGvuuen3K1G4=;
+        b=D9VXdvncY1SJ1KVcygzaQI9yaUJASLXsdVmQ7vOV0XoVuByGu8LvUAVHmXfSfS5xpg
+         G/rJTo0TmGM4KmO8Ia17ojWTOzO8iU7xVeNlnb+5TJ4WKo74QbHfLHM9DLgahLq0UUoc
+         z3GUdHsf+VJfd6h3TBdvRPp3NDgTboT9ezAbbVHQXO8R4l+ONoZWe48MrqZTlrv5PY11
+         esIcpKpHJ8HKiDeYL4cuNMlonGusSEFbRhoS7hH4q9/grOwNpBmeqqxzNa/ymjX6Da7B
+         V1ILAOU6IiwpKpUUCJ0cWj9x2eSZaBuYpRl31FDPtLDY3bcVop4Bfxt7rAZvSe7B9pu2
+         GDYg==
+X-Gm-Message-State: AGi0PuamOhECSKzMjxU4FuvuzNyNEDMe9c/hqITlbIuu53Es7oScAS1y
+        zxwr7hTPXX4aAC6Dvui5h6iB7FckKPzqx1x+7NpWh1z6db2ZbQ==
+X-Google-Smtp-Source: APiQypKhHUwAsJjYzyYB5VHXHzMmc8iH+YM/uo2cJCDxrNfExZKJ40xBSX/01K7muRDVNEhwkWslWZLPCv77qbEK1j4=
+X-Received: by 2002:adf:e282:: with SMTP id v2mr10444096wri.329.1586380803307;
+ Wed, 08 Apr 2020 14:20:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200323124310.1.I6ed779cd21abf3e70f21c1562bbda81f590976ab@changeid>
+ <20200323124310.2.I1f56fe698017f22d6e825c913c256d5afc2ad69f@changeid> <CAHp75VfHiKqjaEKPGa=ymmsu44AMB5FCNKFEKhDeazW5vWZkBg@mail.gmail.com>
+In-Reply-To: <CAHp75VfHiKqjaEKPGa=ymmsu44AMB5FCNKFEKhDeazW5vWZkBg@mail.gmail.com>
+From:   Daniel Campello <campello@google.com>
+Date:   Wed, 8 Apr 2020 15:19:26 -0600
+Message-ID: <CAHcu+VZW_giesTmJRoy35b7-6V04BW8Npgz+GAN6NSYH81ZYZQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2 v5] iio: Add SEMTECH SX9310/9311 sensor driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Enrico Granata <egranata@chromium.org>,
+        Andreas Klinger <ak@it-klinger.de>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio <linux-iio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable several drivers for hardware that is found on Nexus 7 and Acer A500
-tablet devices. Please note that some drivers may require firmware files
-extracted from original Android image.
+On Tue, Mar 24, 2020 at 10:18 AM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Mon, Mar 23, 2020 at 8:46 PM Daniel Campello <campello@chromium.org> wrote:
+> >
+> > Add SEMTECH SX9310/9311 driver.
+> >
+> > The device has the following entry points:
+> >
+> > Usual frequency:
+> > - sampling_frequency
+> > - sampling_frequency_available
+> >
+> > Instant reading of current values for different sensors:
+> > - in_proximity0_raw
+> > - in_proximity1_raw
+> > - in_proximity2_raw
+> > - in_proximity3_comb_raw
+> > and associated events in events/
+>
+> ...
+>
+> > +#include <linux/acpi.h>
+>
+> > +#include <linux/of.h>
+>
+> No users for these (see ID table handling below), but property.h would
+> be needed.
+>
+>
 
-Link: https://github.com/digetx/linux-firmware
-Link: https://github.com/digetx/alsa-ucm-conf
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/configs/tegra_defconfig | 38 ++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+I removed of.h but kept acpi.h in v6 since it was needed for other
+ACPI macros on the probe function
+>
+> ...
+>
+> > +#define   SX9310_EVENT_IRQ                             (SX9310_FAR_IRQ | \
+> > +                                                        SX9310_CLOSE_IRQ)
+>
+> Better formatting is
+> #define FOO \
+>   (BAR | ZOO)
+>
+> ...
+>
+> > +struct sx9310_data {
+>
+> > +       struct i2c_client *client;
+>
+> Do you really need client? Perhaps struct device will be enough?
 
-diff --git a/arch/arm/configs/tegra_defconfig b/arch/arm/configs/tegra_defconfig
-index 0029259a6bf5..6644cbc7ab4f 100644
---- a/arch/arm/configs/tegra_defconfig
-+++ b/arch/arm/configs/tegra_defconfig
-@@ -63,11 +63,17 @@ CONFIG_BT_RFCOMM=y
- CONFIG_BT_BNEP=y
- CONFIG_BT_HIDP=y
- CONFIG_BT_HCIBTUSB=m
-+CONFIG_BT_HCIUART=y
-+CONFIG_BT_HCIUART_BCM=y
- CONFIG_CFG80211=y
- CONFIG_MAC80211=y
- CONFIG_RFKILL=y
- CONFIG_RFKILL_INPUT=y
- CONFIG_RFKILL_GPIO=y
-+CONFIG_NFC=y
-+CONFIG_NFC_HCI=y
-+CONFIG_NFC_SHDLC=y
-+CONFIG_NFC_PN544_I2C=y
- CONFIG_PCI=y
- CONFIG_PCIEPORTBUS=y
- CONFIG_PCI_MSI=y
-@@ -106,20 +112,24 @@ CONFIG_INPUT_JOYDEV=y
- CONFIG_INPUT_EVDEV=y
- CONFIG_KEYBOARD_GPIO=y
- CONFIG_KEYBOARD_TEGRA=y
-+CONFIG_KEYBOARD_CAP11XX=y
- CONFIG_KEYBOARD_CROS_EC=y
- CONFIG_MOUSE_PS2_ELANTECH=y
- CONFIG_INPUT_TOUCHSCREEN=y
- CONFIG_TOUCHSCREEN_ATMEL_MXT=y
-+CONFIG_TOUCHSCREEN_ELAN=y
- CONFIG_TOUCHSCREEN_WM97XX=y
- # CONFIG_TOUCHSCREEN_WM9705 is not set
- # CONFIG_TOUCHSCREEN_WM9713 is not set
- CONFIG_TOUCHSCREEN_STMPE=y
- CONFIG_INPUT_MISC=y
-+CONFIG_INPUT_GPIO_VIBRA=y
- # CONFIG_LEGACY_PTYS is not set
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
- CONFIG_SERIAL_OF_PLATFORM=y
- CONFIG_SERIAL_TEGRA=y
-+CONFIG_SERIAL_DEV_BUS=y
- # CONFIG_HW_RANDOM is not set
- # CONFIG_I2C_COMPAT is not set
- CONFIG_I2C_CHARDEV=y
-@@ -135,6 +145,7 @@ CONFIG_PINCTRL_PALMAS=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_PCA953X=y
- CONFIG_GPIO_PCA953X_IRQ=y
-+CONFIG_GPIO_MAX77620=y
- CONFIG_GPIO_PALMAS=y
- CONFIG_GPIO_TPS6586X=y
- CONFIG_GPIO_TPS65910=y
-@@ -142,13 +153,21 @@ CONFIG_POWER_RESET=y
- CONFIG_POWER_RESET_AS3722=y
- CONFIG_POWER_RESET_GPIO=y
- CONFIG_BATTERY_SBS=y
-+CONFIG_BATTERY_BQ27XXX=y
-+CONFIG_CHARGER_GPIO=y
-+CONFIG_CHARGER_SMB347=y
- CONFIG_CHARGER_TPS65090=y
- CONFIG_SENSORS_LM90=y
- CONFIG_SENSORS_LM95245=y
-+CONFIG_THERMAL=y
-+CONFIG_THERMAL_STATISTICS=y
-+CONFIG_CPU_THERMAL=y
- CONFIG_WATCHDOG=y
-+CONFIG_MAX77620_WATCHDOG=y
- CONFIG_TEGRA_WATCHDOG=y
- CONFIG_MFD_AS3722=y
- CONFIG_MFD_CROS_EC=y
-+CONFIG_MFD_MAX77620=y
- CONFIG_MFD_MAX8907=y
- CONFIG_MFD_STMPE=y
- CONFIG_MFD_PALMAS=y
-@@ -159,6 +178,7 @@ CONFIG_REGULATOR=y
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
- CONFIG_REGULATOR_AS3722=y
- CONFIG_REGULATOR_GPIO=y
-+CONFIG_REGULATOR_MAX77620=y
- CONFIG_REGULATOR_MAX8907=y
- CONFIG_REGULATOR_PALMAS=y
- CONFIG_REGULATOR_TPS51632=y
-@@ -174,7 +194,10 @@ CONFIG_USB_GSPCA=y
- CONFIG_DRM=y
- CONFIG_DRM_NOUVEAU=m
- CONFIG_DRM_TEGRA=y
-+CONFIG_DRM_TEGRA_STAGING=y
-+CONFIG_DRM_PANEL_LVDS=y
- CONFIG_DRM_PANEL_SIMPLE=y
-+CONFIG_DRM_LVDS_CODEC=y
- # CONFIG_LCD_CLASS_DEVICE is not set
- CONFIG_BACKLIGHT_CLASS_DEVICE=y
- # CONFIG_BACKLIGHT_GENERIC is not set
-@@ -238,6 +261,7 @@ CONFIG_RTC_CLASS=y
- CONFIG_RTC_DRV_AS3722=y
- CONFIG_RTC_DRV_DS1307=y
- CONFIG_RTC_DRV_MAX8907=y
-+CONFIG_RTC_DRV_MAX77686=y
- CONFIG_RTC_DRV_PALMAS=y
- CONFIG_RTC_DRV_TPS6586X=y
- CONFIG_RTC_DRV_TPS65910=y
-@@ -259,11 +283,18 @@ CONFIG_ARCH_TEGRA_2x_SOC=y
- CONFIG_ARCH_TEGRA_3x_SOC=y
- CONFIG_ARCH_TEGRA_114_SOC=y
- CONFIG_ARCH_TEGRA_124_SOC=y
-+CONFIG_PM_DEVFREQ=y
-+CONFIG_ARM_TEGRA_DEVFREQ=y
-+CONFIG_ARM_TEGRA20_DEVFREQ=y
- CONFIG_MEMORY=y
- CONFIG_IIO=y
-+CONFIG_KXCJK1013=y
- CONFIG_MPU3050_I2C=y
-+CONFIG_INV_MPU6050_I2C=y
-+CONFIG_AL3010=y
- CONFIG_SENSORS_ISL29018=y
- CONFIG_SENSORS_ISL29028=y
-+CONFIG_AK8974=y
- CONFIG_AK8975=y
- CONFIG_PWM=y
- CONFIG_PWM_TEGRA=y
-@@ -283,6 +314,13 @@ CONFIG_TMPFS_POSIX_ACL=y
- CONFIG_SQUASHFS=y
- CONFIG_SQUASHFS_LZO=y
- CONFIG_SQUASHFS_XZ=y
-+CONFIG_PSTORE=y
-+CONFIG_PSTORE_LZO_COMPRESS=y
-+CONFIG_PSTORE_LZ4_COMPRESS=y
-+CONFIG_PSTORE_LZ4HC_COMPRESS=y
-+CONFIG_PSTORE_842_COMPRESS=y
-+CONFIG_PSTORE_CONSOLE=y
-+CONFIG_PSTORE_RAM=y
- CONFIG_NFS_FS=y
- CONFIG_NFS_V4=y
- CONFIG_ROOT_NFS=y
--- 
-2.25.1
 
+There are references to client->irq in some places
+
+>
+>
+> > +       struct iio_trigger *trig;
+> > +       struct regmap *regmap;
+> > +       /*
+> > +        * Last reading of the proximity status for each channel.
+> > +        * We only send an event to user space when this changes.
+> > +        */
+> > +       bool prox_stat[SX9310_NUM_CHANNELS];
+> > +       bool trigger_enabled;
+>
+> > +       __be16 buffer[SX9310_NUM_CHANNELS +
+> > +                     4]; /* 64-bit data + 64-bit timestamp */
+>
+> Please, fix formatting.
+>
+> > +};
+>
+> ...
+>
+> > +static int sx9310_update_chan_en(struct sx9310_data *data,
+> > +                                unsigned int chan_read,
+> > +                                unsigned int chan_event)
+> > +{
+> > +       int ret;
+> > +
+>
+> > +       if ((data->chan_read | data->chan_event) != (chan_read | chan_event)) {
+> > +               ret = regmap_update_bits(data->regmap, SX9310_REG_PROX_CTRL0,
+> > +                                        SX9310_CHAN_ENABLED_MASK,
+> > +                                        chan_read | chan_event);
+>
+> unsigned int readevent = chan_read | chan_event;
+> ...
+> if (... != readevent) {
+>   ..., readevent);
+> }
+>
+> > +               if (ret)
+> > +                       return ret;
+> > +       }
+> > +       data->chan_read = chan_read;
+> > +       data->chan_event = chan_event;
+> > +       return 0;
+> > +}
+>
+> ...
+>
+> > +static int sx9310_read_prox_data(struct sx9310_data *data,
+> > +                                const struct iio_chan_spec *chan, __be16 *val)
+> > +{
+> > +       int ret;
+> > +
+> > +       ret = regmap_write(data->regmap, SX9310_REG_SENSOR_SEL, chan->channel);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+>
+> > +       return regmap_bulk_read(data->regmap, chan->address, val, 2);
+>
+> sizeof()?
+>
+> > +}
+>
+> ...
+>
+> > +       if (data->client->irq > 0) {
+> > +               ret = wait_for_completion_interruptible(&data->completion);
+> > +               reinit_completion(&data->completion);
+>
+> Logically reinit better to be called before you start measurement.
+>
+I think this is effectively before measurement, minus error/locking handling.
+
+> > +       } else {
+> > +               ret = sx9310_wait_for_sample(data);
+> > +       }
+>
+> ...
+>
+> > +       *val = sign_extend32(be16_to_cpu(rawval),
+> > +                            (chan->address == SX9310_REG_DIFF_MSB ? 11 : 15));
+>
+> Too many parentheses.
+>
+> ...
+>
+> > +       mutex_lock(&data->mutex);
+> > +
+> > +       ret = regmap_update_bits(data->regmap, SX9310_REG_PROX_CTRL0,
+> > +                                SX9310_SCAN_PERIOD_MASK,
+> > +                                i << SX9310_SCAN_PERIOD_SHIFT);
+> > +
+> > +       mutex_unlock(&data->mutex);
+>
+> Btw, can you use locking provided by regmap?
+
+
+The lock is protecting critical sections that include multiple regmap
+and other operations together in other parts of the code.
+>
+>
+> ...
+>
+> > +       /*
+> > +        * Even if no event is enabled, we need to wake the thread to
+>
+> > +        * clear the interrupt state by reading SX9310_REG_IRQ_SRC.  It
+>
+> Move it to the next line.
+>
+> > +        * is not possible to do that here because regmap_read takes a
+> > +        * mutex.
+> > +        */
+>
+> ...
+>
+> > +       for (chan = 0; chan < SX9310_NUM_CHANNELS; chan++) {
+> > +               int dir;
+> > +               u64 ev;
+> > +               bool new_prox = val & BIT(chan);
+> > +
+>
+> > +               if (!(data->chan_event & BIT(chan)))
+> > +                       continue;
+>
+> for_each_set_bit()
+
+
+Thanks, more clear now!
+>
+>
+> > +               if (new_prox == data->prox_stat[chan])
+> > +                       /* No change on this channel. */
+> > +                       continue;
+>
+> > +       }
+>
+> ...
+>
+> > +static struct attribute *sx9310_attributes[] = {
+> > +       &iio_dev_attr_sampling_frequency_available.dev_attr.attr,
+>
+> > +       NULL,
+>
+> Comma is not needed for terminator.
+>
+> > +};
+>
+> ...
+>
+> > +static int sx9310_buffer_preenable(struct iio_dev *indio_dev)
+> > +{
+> > +       struct sx9310_data *data = iio_priv(indio_dev);
+> > +       unsigned int channels = 0;
+> > +       int bit, ret;
+> > +
+> > +       mutex_lock(&data->mutex);
+> > +       for_each_set_bit(bit, indio_dev->active_scan_mask,
+> > +                        indio_dev->masklength)
+>
+> > +               channels |= BIT(indio_dev->channels[bit].channel);
+>
+> unsigned long channels;
+> ...
+> __set_bit(...);
+>
+> > +       ret = sx9310_update_chan_en(data, channels, data->chan_event);
+> > +       mutex_unlock(&data->mutex);
+> > +       return ret;
+> > +}
+>
+> ...
+>
+> > +#define SX_INIT(_reg, _def)                    \
+> > +       {                                       \
+> > +               .reg = SX9310_REG_##_reg,       \
+> > +               .def = _def,                    \
+> > +       }
+>
+> Usually it's a good tone to #undef custom macro when they are not
+> needed anymore.
+>
+> ...
+>
+> > +       for (i = 100; i >= 0; i--) {
+> > +               msleep(20);
+> > +               ret = regmap_read(data->regmap, SX9310_REG_STAT1, &val);
+> > +               if (ret < 0)
+> > +                       goto out;
+> > +               if (!(val & SX9310_COMPSTAT_MASK))
+> > +                       break;
+> > +       }
+>
+> NIH of regmap_real_poll_timeout();
+
+
+Sorry, somehow I overlooked this on v6, I'll send v7 with it
+
+>
+>
+> > +
+> > +       if (i < 0) {
+> > +               dev_err(&data->client->dev,
+> > +                       "initial compensation timed out: 0x%02x", val);
+> > +               ret = -ETIMEDOUT;
+> > +       }
+>
+> ...
+>
+> > +               ret = regmap_write(data->regmap, initval->reg, initval->def);
+> > +               if (ret < 0)
+>
+> Do you need all these ' < 0'?
+
+
+Not sure what do you mean? This one in particular is trying to fail
+fast the probe
+>
+>
+> > +                       return ret;
+>
+> ...
+>
+> > +       const struct acpi_device_id *acpi_id;
+>
+> > +       /* id will be NULL when enumerated via ACPI */
+> > +       if (id) {
+> > +               if (id->driver_data != whoami)
+> > +                       dev_err(dev, "WHOAMI does not match i2c_device_id: %s",
+> > +                               id->name);
+> > +       } else if (ACPI_HANDLE(dev)) {
+> > +               acpi_id = acpi_match_device(dev->driver->acpi_match_table, dev);
+> > +               if (!acpi_id)
+> > +                       return -ENODEV;
+> > +               if (acpi_id->driver_data != whoami)
+> > +                       dev_err(dev, "WHOAMI does not match acpi_device_id: %s",
+> > +                               acpi_id->id);
+> > +       } else
+> > +               return -ENODEV;
+>
+> device_get_match_data().
+>
+THANKS! I was happy to learn about this after you pointed it out!
+>
+> ...
+>
+> > +static int sx9310_probe(struct i2c_client *client,
+> > +                       const struct i2c_device_id *id)
+>
+> Can you switch to ->probe_new()?
+>
+> ...
+>
+> > +       indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>
+> > +       if (indio_dev == NULL)
+>
+> if (!indio_dev)
+>
+> > +               return -ENOMEM;
+>
+> ...
+>
+> > +               dev_err(&client->dev, "error in reading WHOAMI register: %d",
+> > +                       ret);
+>
+> If you introduce temporary variable the code will be better to read
+>
+>   struct device *dev = &client->dev;
+>
+> > +       ret = sx9310_set_indio_dev_name(&client->dev, indio_dev, id,
+> > +                                       data->whoami);
+> > +       if (ret < 0)
+> > +               return ret;
+>
+> ...
+>
+> > +static const struct acpi_device_id sx9310_acpi_match[] = {
+> > +       { "STH9310", SX9310_WHOAMI_VALUE },
+> > +       { "STH9311", SX9311_WHOAMI_VALUE },
+>
+> Hmm... May I ask some official proof that these IDs are real and
+> issued by vendor?
+
+
+Not sure how to prove this but they are live in device firmware right
+now. One example:
+https://chromium.googlesource.com/chromiumos/third_party/coreboot/+/b905beb46935c114ebc416583bb2e5407183af35/src/mainboard/google/zoombini/variants/meowth/devicetree.cb
+>
+>
+> > +       {},
+>
+> No comma.
+>
+> > +};
+> > +MODULE_DEVICE_TABLE(acpi, sx9310_acpi_match);
+>
+> > +static const struct of_device_id sx9310_of_match[] = {
+> > +       { .compatible = "semtech,sx9310" },
+> > +       { .compatible = "semtech,sx9311" },
+>
+> > +       {},
+>
+> No comma.
+>
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sx9310_of_match);
+> > +
+> > +static const struct i2c_device_id sx9310_id[] = {
+> > +       { "sx9310", SX9310_WHOAMI_VALUE },
+> > +       { "sx9311", SX9311_WHOAMI_VALUE },
+>
+> > +       {},
+>
+> No comma.
+>
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, sx9310_id);
+>
+> ...
+>
+> > +               .acpi_match_table = ACPI_PTR(sx9310_acpi_match),
+> > +               .of_match_table = of_match_ptr(sx9310_of_match),
+>
+> Drop these macros. You probably didn't test with !ACPI and/or !OF --
+> should be compiler warning.
+
+
+Why do we want to drop these? I tried compiling with either and both
+disabled and did not see a warning on my system.
+>
+>
+> > +               .pm = &sx9310_pm_ops,
+> > +       },
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+
+Thanks for the review. Sorry for the delay on this email after sending v6.
+
+Regards,
+Daniel
