@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF4C1A29D7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2491A29DD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730265AbgDHTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:52:14 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44194 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730241AbgDHTwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:13 -0400
-Received: by mail-lj1-f193.google.com with SMTP id z26so4884540ljz.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:12 -0700 (PDT)
+        id S1730263AbgDHTwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:52:15 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:43841 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730264AbgDHTwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:14 -0400
+Received: by mail-lf1-f65.google.com with SMTP id k28so6091843lfe.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6D6qYDVAoDX49O3pqM7t4Fg8LndWENhGAQHVsmY5Z5o=;
-        b=XXutsEU3l6r+yPO9oJgX925/EDBqLG+ysEOjCx8DGzfZCFdjWwBb5YErtaIjok8IsY
-         I/cHrBMUtYMWwnEm/3A/VDSnpY3BsPhb4/TC5NmFIEj/5kqLZobOSL7ZfTegy00rNoUI
-         tzqjFODTBjWuonPRDA7ypa72lBvL7i4woLyBpa3Aj89AZO1XWzckF9HHFLWpvNEYkY5/
-         NKS0dcOMUVTFe8qngfzfQF+m5KPSHggKQjcjDdqn0XuT9VjV3hbk8wyiAlOIYi8WFgQT
-         uKrEZasT4W9KZ5ab70JIsGnm/7qu1pvm/QezA1Z5Mws2KO8cMM1J2XIbXiNjFx5qvm1w
-         pDgA==
+        bh=azOZ7kPdKDKE87CbcQj8S1GR4y4K/OoMeP9jpkMqrjY=;
+        b=Wcyly17xbNloQHRr3gJ1Ewo80JQgqvyC16Teu59a9OL4uWC9pb2LvxXD8VL5Qu5Nnp
+         Nzv9yu9GSTjnHVQT/33P5xVr2d7FEKBCuzZQv5Wj8V7H5r2TfGVFVItBmbfmm4RRzpfX
+         rVOzVdK5FIvgihaMttBf3FIKAL065klTZ/ayHg3MkfLg8SBHz8p3OYpfClosojeXaqm5
+         A0wE73PgqWp/Chbv9iI+A3FWyDAPPkmDcDRalbiYpRB0inc1GBh2f9EQ3juh1UuiooLQ
+         WT0POz957Jf8amAFare1gdJ5SSSKKEAhG8DiZNjjBIHCRRJ0kEHAAmLaZ7Kd0WSo2z5l
+         cAZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=6D6qYDVAoDX49O3pqM7t4Fg8LndWENhGAQHVsmY5Z5o=;
-        b=aaGPSYDG0IMSjGqeMN2rqeQ5S+CipGOP8HMGRbtTMm5/gD8GzfXPM27v+9GkGf/Gpp
-         QVieBZWVV/pk52xCMwzshaZleQXvVGmWbOve/dxnAAsUAaEVGCjtIAb3MkKdK9ASfbfh
-         LecNB9cc3yqS4zfJaU4qN2Fl1aHyPv0VXELNTbIXE+SYyfG1NgT81UQDEq7f4Zh77hGo
-         F9Eb2UnMRns06OsgWDKFOCw9nMIlw79m/Y4U4xk1XE3BZGCduvV0ig7DrFx/+BBdS3GE
-         DoFGQ41eULLPNodqMBEwNacu8U1bGubWooyZ7JXgZm1G9iuYlqIO4dUenkp+s2IawI3Q
-         lChQ==
-X-Gm-Message-State: AGi0PuanfpU8u/xbR+rV6Ujy6uJmkt0ZCUTOZWX4mQBKelsJTMAxYfJ0
-        h+/cRFyrouVgwMw4iXq5EmE=
-X-Google-Smtp-Source: APiQypKNYRQcSSHozxvibYIjkxAF3kS1iwCxc1DBka0R8azioQKkkgz4VifSElVsqxT/YIokQcgAUg==
-X-Received: by 2002:a2e:6809:: with SMTP id c9mr5871304lja.251.1586375531273;
-        Wed, 08 Apr 2020 12:52:11 -0700 (PDT)
+        bh=azOZ7kPdKDKE87CbcQj8S1GR4y4K/OoMeP9jpkMqrjY=;
+        b=mNL+DVxlpTm3C2ilSkRqC1ecEd8wmg+fQEVJzkh+ePjniDT+nNv0I4Sf6ggwinIHNw
+         9kyZNgoI0YrNSOj6eqLv5nn1dxc1gbBo0HN7V7SwVnCifyTd83b42pot4/OXQBogpivl
+         v3157sH+4RzA1exkmyWrgIptg20Mpo8CsIMjj7Pg4jrzarNeCHAO6LYrzeOtA0NCY6bQ
+         41tM962TsxqYEilEosVi0Qcs69B6sQBC94sWFUrXG7mNNM58kMlemtoZgmFC4/4cBYdz
+         sDS71Tbawc4YR44G8MLO58n4XBvpDyVmByReEHHwaQfDNJJ4g8eljppN0wmlPuam+AyV
+         Q9jw==
+X-Gm-Message-State: AGi0PuZ2MmZr8A9xfyBy4SagVNbcVXTceAXvBzq8w7ce6hqJ6SIIOr6e
+        6rXJ8IZO2OHZonXJ7AuULnG6S6ZfUdU=
+X-Google-Smtp-Source: APiQypLO+c4OXBSTHGpgaACmk6IGVQPJyFCaU+CRJeR0O5n7ofrpY+O9NkbTWmTaG/uewke3JHvs+A==
+X-Received: by 2002:ac2:52b9:: with SMTP id r25mr2288925lfm.133.1586375532330;
+        Wed, 08 Apr 2020 12:52:12 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.10
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:52:10 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:11 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH v2 28/36] dt-bindings: display: drop unused simple-panel.txt
-Date:   Wed,  8 Apr 2020 21:51:01 +0200
-Message-Id: <20200408195109.32692-29-sam@ravnborg.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Werner Johansson <werner.johansson@sonymobile.com>
+Subject: [PATCH v2 29/36] dt-bindings: display: convert sharp,ls043t1le01 to DT Schema
+Date:   Wed,  8 Apr 2020 21:51:02 +0200
+Message-Id: <20200408195109.32692-30-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
@@ -62,24 +63,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are no more references to simple-panel.txt.
-Delete it.
+The txt binding specified the property "power-supply".
+But the example and the actual implementation in the linux-kernel
+uses "avdd-supply".
+So the binding is adjusted to use avdd-supply as this seems
+to be the correct choice.
+There are no DT files in the linux kernel to check.
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+Cc: Werner Johansson <werner.johansson@sonymobile.com>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- Documentation/devicetree/bindings/display/panel/simple-panel.txt | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/simple-panel.txt
+ .../display/panel/sharp,ls043t1le01.txt       | 22 --------
+ .../display/panel/sharp,ls043t1le01.yaml      | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/simple-panel.txt b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
 deleted file mode 100644
-index e11208fb7da8..000000000000
---- a/Documentation/devicetree/bindings/display/panel/simple-panel.txt
+index 3770a111968b..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
 +++ /dev/null
-@@ -1 +0,0 @@
--See panel-common.yaml in this directory.
+@@ -1,22 +0,0 @@
+-Sharp Microelectronics 4.3" qHD TFT LCD panel
+-
+-Required properties:
+-- compatible: should be "sharp,ls043t1le01-qhd"
+-- reg: DSI virtual channel of the peripheral
+-- power-supply: phandle of the regulator that provides the supply voltage
+-
+-Optional properties:
+-- backlight: phandle of the backlight device attached to the panel
+-- reset-gpios: a GPIO spec for the reset pin
+-
+-Example:
+-
+-	mdss_dsi@fd922800 {
+-		panel@0 {
+-			compatible = "sharp,ls043t1le01-qhd";
+-			reg = <0>;
+-			avdd-supply = <&pm8941_l22>;
+-			backlight = <&pm8941_wled>;
+-			reset-gpios = <&pm8941_gpios 19 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
+new file mode 100644
+index 000000000000..a90d0d8bf7c9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sharp,ls043t1le01.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sharp Microelectronics 4.3" qHD TFT LCD panel
++
++maintainers:
++  - Werner Johansson <werner.johansson@sonymobile.com>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sharp,ls043t1le01-qhd
++
++  reg: true
++  backlight: true
++  reset-gpios: true
++  port: true
++
++  avdd-supply:
++    description: handle of the regulator that provides the supply voltage
++
++required:
++  - compatible
++  - reg
++  - avdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "sharp,ls043t1le01-qhd";
++            reg = <0>;
++            avdd-supply = <&pm8941_l22>;
++            backlight = <&pm8941_wled>;
++            reset-gpios = <&pm8941_gpios 19 GPIO_ACTIVE_HIGH>;
++        };
++    };
++
++...
 -- 
 2.20.1
 
