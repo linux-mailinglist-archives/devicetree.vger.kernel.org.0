@@ -2,407 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA9D1A28C3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 20:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844891A2911
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729285AbgDHSga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 14:36:30 -0400
-Received: from mga05.intel.com ([192.55.52.43]:6163 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726860AbgDHSga (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Apr 2020 14:36:30 -0400
-IronPort-SDR: 2rIbwi+zxbaXPYHK9KlpQ7558VO2+9Zvxg9X15PnBLWZV0X5kSZKoYjRgKgXVv1isozYBgaMXH
- UEGCrcMSx67g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2020 11:36:29 -0700
-IronPort-SDR: qam+RlaVYNm5R9009PX3tqio/NXNrkS3KdknY+h/6B87106pSObCMmNvziSc3durSFEUaakrVV
- poE8avCo3xrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,359,1580803200"; 
-   d="scan'208";a="361919298"
-Received: from pratuszn-mobl.ger.corp.intel.com (HELO localhost) ([10.252.40.202])
-  by fmsmga001.fm.intel.com with ESMTP; 08 Apr 2020 11:36:19 -0700
-Date:   Wed, 8 Apr 2020 21:36:18 +0300
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     amirmizi6@gmail.com
-Cc:     Eyal.Cohen@nuvoton.com, oshrialkoby85@gmail.com,
-        alexander.steffen@infineon.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
-        Eddie James <eajames@linux.ibm.com>
-Subject: Re: [PATCH v6 7/7] tpm: tpm_tis: add tpm_tis_i2c driver
-Message-ID: <20200408183618.GC33486@linux.intel.com>
-References: <20200407162044.168890-1-amirmizi6@gmail.com>
- <20200407162044.168890-8-amirmizi6@gmail.com>
+        id S1728820AbgDHTGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:06:02 -0400
+Received: from gproxy5-pub.mail.unifiedlayer.com ([67.222.38.55]:58290 "EHLO
+        gproxy5-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726730AbgDHTGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:06:01 -0400
+X-Greylist: delayed 1313 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Apr 2020 15:06:01 EDT
+Received: from cmgw14.unifiedlayer.com (unknown [10.9.0.14])
+        by gproxy5.mail.unifiedlayer.com (Postfix) with ESMTP id 4CD1F140586
+        for <devicetree@vger.kernel.org>; Wed,  8 Apr 2020 12:44:06 -0600 (MDT)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id MFgBjlwvYKxvrMFgDjm3H3; Wed, 08 Apr 2020 12:44:06 -0600
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.3 cv=FaEZOq26 c=1 sm=1 tr=0
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=cl8xLZFz6L8A:10:nop_rcvd_month_year
+ a=oz0wMknONp8A:10:endurance_base64_authed_username_1 a=vU9dKmh3AAAA:8
+ a=tc3lRw1TNdAtvppHo30A:9 a=RhmxLcqiqS2McG0f:21 a=B6lwo8GZ6FleYYhm:21
+ a=rsP06fVo5MYu2ilr0aT5:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=/vZs5cp/1KyMqmoUOON5sUkL1L/NlNQhIL8DFDb+LLA=; b=UgirD3KqGYiKVQLgYkZIldYcB/
+        ocB0dsc7IwyI+Zy+BzZrB3bWc6EG3ZXhC57sh/JsdxtnO8FgYgxsOZBPu+v70EF+6CdKm+3J/93EJ
+        FXxI5rx0Bnr446eMlhzPMbTkuCUmt3M4S8zHzqCBLRd2DgoYPZwDd3HlX+tX1vnDqaygocFwuP8eU
+        7T69ghhXOh8BCKkNLPrXNvuk3e8na3D5dUf4M6oxhA7K18g6mEyLs3hmKl9OYp21TqXGCL227Nkvl
+        fLvRQvGQ8h1r3bigDHYKIu2UaFPCmuXEXWu+ozXyLzAnx9X3d5/XwOC9YyyNlD95qqD9v2VhdbpxR
+        dF+mQ/Rg==;
+Received: from dslb-002-205-079-159.002.205.pools.vodafone-ip.de ([2.205.79.159]:46518 helo=parthiban.fritz.box)
+        by md-in-79.webhostbox.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <parthiban@linumiz.com>)
+        id 1jMFgA-003UGH-Rs; Wed, 08 Apr 2020 18:44:03 +0000
+From:   Parthiban Nallathambi <parthiban@linumiz.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Parthiban Nallathambi <parthiban@linumiz.com>
+Subject: [PATCH] ARM: dts: imx6ull: add MYiR MYS-6ULX SBC
+Date:   Wed,  8 Apr 2020 20:43:51 +0200
+Message-Id: <20200408184351.135716-1-parthiban@linumiz.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200407162044.168890-8-amirmizi6@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 2.205.79.159
+X-Source-L: No
+X-Exim-ID: 1jMFgA-003UGH-Rs
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: dslb-002-205-079-159.002.205.pools.vodafone-ip.de (parthiban.fritz.box) [2.205.79.159]:46518
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 3
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 07, 2020 at 07:20:44PM +0300, amirmizi6@gmail.com wrote:
-> From: Amir Mizinski <amirmizi6@gmail.com>
-> 
-> Implements the functionality needed to communicate with an I2C TPM
-> according to the TCG TPM I2C Interface Specification.
-> 
-> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-> Tested-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/char/tpm/Kconfig       |  12 ++
->  drivers/char/tpm/Makefile      |   1 +
->  drivers/char/tpm/tpm_tis_i2c.c | 292 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 305 insertions(+)
->  create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
-> 
-> diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
-> index aacdeed..b166ad3 100644
-> --- a/drivers/char/tpm/Kconfig
-> +++ b/drivers/char/tpm/Kconfig
-> @@ -74,6 +74,18 @@ config TCG_TIS_SPI_CR50
->  	  If you have a H1 secure module running Cr50 firmware on SPI bus,
->  	  say Yes and it will be accessible from within Linux.
->  
-> +config TCG_TIS_I2C
-> +	tristate "TPM I2C Interface Specification"
-> +	depends on I2C
-> +	depends on CRC_CCITT
-> +	select TCG_TIS_CORE
-> +	---help---
-> +	  If you have a TPM security chip which is connected to a regular
-> +	  I2C master (i.e. most embedded platforms) that is compliant with the
-> +	  TCG TPM I2C Interface Specification say Yes and it will be accessible from
-> +	  within Linux. To compile this driver as a module, choose  M here;
-> +	  the module will be called tpm_tis_i2c.
-> +
->  config TCG_TIS_I2C_ATMEL
->  	tristate "TPM Interface Specification 1.2 Interface (I2C - Atmel)"
->  	depends on I2C
-> diff --git a/drivers/char/tpm/Makefile b/drivers/char/tpm/Makefile
-> index 9567e51..97999cf 100644
-> --- a/drivers/char/tpm/Makefile
-> +++ b/drivers/char/tpm/Makefile
-> @@ -26,6 +26,7 @@ obj-$(CONFIG_TCG_TIS_SPI) += tpm_tis_spi.o
->  tpm_tis_spi-y := tpm_tis_spi_main.o
->  tpm_tis_spi-$(CONFIG_TCG_TIS_SPI_CR50) += tpm_tis_spi_cr50.o
->  
-> +obj-$(CONFIG_TCG_TIS_I2C) += tpm_tis_i2c.o
->  obj-$(CONFIG_TCG_TIS_I2C_ATMEL) += tpm_i2c_atmel.o
->  obj-$(CONFIG_TCG_TIS_I2C_INFINEON) += tpm_i2c_infineon.o
->  obj-$(CONFIG_TCG_TIS_I2C_NUVOTON) += tpm_i2c_nuvoton.o
-> diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-> new file mode 100644
-> index 0000000..83c0b3a
-> --- /dev/null
-> +++ b/drivers/char/tpm/tpm_tis_i2c.c
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2014-2019 Nuvoton Technology corporation
-> + *
-> + * TPM TIS I2C
-> + *
-> + * TPM TIS I2C Device Driver Interface for devices that implement the TPM I2C
-> + * Interface defined by TCG PC Client Platform TPM Profile (PTP) Specification
-> + * Revision 01.03 v22 at www.trustedcomputinggroup.org
-> + */
-> +
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/moduleparam.h>
-> +#include <linux/slab.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/wait.h>
-> +#include <linux/acpi.h>
-> +#include <linux/freezer.h>
-> +#include <linux/crc-ccitt.h>
-> +
-> +#include <linux/module.h>
-> +#include <linux/i2c.h>
-> +#include <linux/gpio.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/tpm.h>
-> +#include "tpm.h"
-> +#include "tpm_tis_core.h"
-> +
-> +#define TPM_LOC_SEL                    0x04
-> +#define TPM_I2C_INTERFACE_CAPABILITY   0x30
-> +#define TPM_I2C_DEVICE_ADDRESS         0x38
-> +#define TPM_DATA_CSUM_ENABLE           0x40
-> +#define TPM_DATA_CSUM                  0x44
-> +#define TPM_I2C_DID_VID                        0x48
-> +#define TPM_I2C_RID                    0x4C
-> +
-> +//#define I2C_IS_TPM2 1
-> +
-> +struct tpm_tis_i2c_phy {
-> +	struct tpm_tis_data priv;
-> +	struct i2c_client *i2c_client;
-> +	bool data_csum;
-> +	u8 *iobuf;
-> +};
-> +
-> +static inline struct tpm_tis_i2c_phy *to_tpm_tis_i2c_phy(struct tpm_tis_data *data)
-> +{
-> +	return container_of(data, struct tpm_tis_i2c_phy, priv);
-> +}
-> +
-> +static u8 address_to_register(u32 addr)
-> +{
-> +	addr &= 0xFFF;
-> +
-> +	switch (addr) {
-> +		// adapt register addresses that have changed compared to
-> +		// older TIS versions
-> +	case TPM_ACCESS(0):
-> +		return 0x04;
-> +	case TPM_LOC_SEL:
-> +		return 0x00;
-> +	case TPM_DID_VID(0):
-> +		return 0x48;
-> +	case TPM_RID(0):
-> +		return 0x4C;
-> +	default:
-> +		return addr;
-> +	}
-> +}
-> +
-> +static int tpm_tis_i2c_read_bytes(struct tpm_tis_data *data, u32 addr,
-> +				  u16 len, u8 *result)
-> +{
-> +	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-> +	int ret = 0;
-> +	int i = 0;
-> +	u8 reg = address_to_register(addr);
-> +	struct i2c_msg msgs[] = {
-> +		{
-> +			.addr = phy->i2c_client->addr,
-> +			.len = sizeof(reg),
-> +			.buf = &reg,
-> +		},
-> +		{
-> +			.addr = phy->i2c_client->addr,
-> +			.len = len,
-> +			.buf = result,
-> +			.flags = I2C_M_RD,
-> +		},
-> +	};
-> +
-> +	do {
-> +		ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-> +				   ARRAY_SIZE(msgs));
-> +		usleep_range(250, 300); // wait default GUARD_TIME of 250µs
-> +
-> +	} while (ret < 0 && i++ < TPM_RETRY);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +
-> +	return 0;
-> +}
-> +
-> +static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr,
-> +				   u16 len, const u8 *value)
-> +{
-> +	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-> +	int ret = 0;
-> +	int i = 0;
-> +
-> +	if (phy->iobuf) {
-> +		if (len > TPM_BUFSIZE - 1)
-> +			return -EIO;
-> +
-> +		phy->iobuf[0] = address_to_register(addr);
-> +		memcpy(phy->iobuf + 1, value, len);
-> +
-> +		{
-> +			struct i2c_msg msgs[] = {
-> +				{
-> +					.addr = phy->i2c_client->addr,
-> +					.len = len + 1,
-> +					.buf = phy->iobuf,
-> +				},
-> +			};
-> +
-> +			do {
-> +				ret = i2c_transfer(phy->i2c_client->adapter,
-> +						   msgs, ARRAY_SIZE(msgs));
-> +				// wait default GUARD_TIME of 250µs
-> +				usleep_range(250, 300);
-> +			} while (ret < 0 && i++ < TPM_RETRY);
-> +		}
-> +	} else {
-> +		u8 reg = address_to_register(addr);
-> +
-> +		struct i2c_msg msgs[] = {
-> +			{
-> +				.addr = phy->i2c_client->addr,
-> +				.len = sizeof(reg),
-> +				.buf = &reg,
-> +			},
-> +			{
-> +				.addr = phy->i2c_client->addr,
-> +				.len = len,
-> +				.buf = (u8 *)value,
-> +				.flags = I2C_M_NOSTART,
-> +			},
-> +		};
-> +		do {
-> +			ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-> +					   ARRAY_SIZE(msgs));
-> +			// wait default GUARD_TIME of 250µs
-> +			usleep_range(250, 300);
-> +		} while (ret < 0 && i++ < TPM_RETRY);
-> +	}
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +
-> +	return 0;
-> +}
-> +
-> +static bool tpm_tis_i2c_check_data(struct tpm_tis_data *data,
-> +				   const u8 *buf, size_t len)
-> +{
-> +	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-> +	u16 crc, crc_tpm;
-> +	int rc;
-> +
-> +	if (phy->data_csum) {
-> +		crc = crc_ccitt(0x0000, buf, len);
-> +		rc = tpm_tis_read16(data, TPM_DATA_CSUM, &crc_tpm);
-> +		if (rc < 0)
-> +			return false;
-> +
-> +		crc_tpm = be16_to_cpu(crc_tpm);
-> +		return crc == crc_tpm;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(tpm_tis_pm, tpm_pm_suspend, tpm_tis_resume);
-> +
-> +static int csum_state_store(struct tpm_tis_data *data, u8 new_state)
-> +{
-> +	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-> +	u8 cur_state;
-> +	int rc;
-> +
-> +	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-> +				     1, &new_state);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	rc = tpm_tis_i2c_read_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-> +				    1, &cur_state);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	if (new_state == cur_state)
-> +		phy->data_csum = (bool)new_state;
-> +
-> +	return rc;
-> +}
-> +
-> +static const struct tpm_tis_phy_ops tpm_i2c_phy_ops = {
-> +	.read_bytes = tpm_tis_i2c_read_bytes,
-> +	.write_bytes = tpm_tis_i2c_write_bytes,
-> +	.check_data = tpm_tis_i2c_check_data,
-> +};
-> +
-> +static int tpm_tis_i2c_probe(struct i2c_client *dev,
-> +			     const struct i2c_device_id *id)
-> +{
-> +	struct tpm_tis_i2c_phy *phy;
-> +	int rc;
-> +	int CRC_Checksum = 0;
-> +	const u8 loc_init = 0;
-> +	struct device_node *np;
-> +
-> +	phy = devm_kzalloc(&dev->dev, sizeof(struct tpm_tis_i2c_phy),
-> +			   GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	phy->i2c_client = dev;
-> +
-> +	if (!i2c_check_functionality(dev->adapter, I2C_FUNC_NOSTART)) {
-> +		phy->iobuf = devm_kmalloc(&dev->dev, TPM_BUFSIZE, GFP_KERNEL);
-> +		if (!phy->iobuf)
-> +			return -ENOMEM;
-> +	}
-> +
-> +	// select locality 0 (the driver will access only via locality 0)
-> +	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_LOC_SEL, 1, &loc_init);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	// set CRC checksum calculation enable
-> +	np = dev->dev.of_node;
-> +	if (of_property_read_bool(np, "crc-checksum"))
-> +		CRC_Checksum = 1;
-> +
-> +	rc = csum_state_store(&phy->priv, CRC_Checksum);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	return tpm_tis_core_init(&dev->dev, &phy->priv, -1, &tpm_i2c_phy_ops,
-> +					NULL);
-> +}
-> +
-> +static const struct i2c_device_id tpm_tis_i2c_id[] = {
-> +	{"tpm_tis_i2c", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-> +
-> +static const struct of_device_id of_tis_i2c_match[] = {
-> +	{ .compatible = "tcg,tpm-tis-i2c", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
-> +
-> +static const struct acpi_device_id acpi_tis_i2c_match[] = {
-> +	{"SMO0768", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(acpi, acpi_tis_i2c_match);
-> +
-> +static struct i2c_driver tpm_tis_i2c_driver = {
-> +	.driver = {
-> +		.owner = THIS_MODULE,
-> +		.name = "tpm_tis_i2c",
-> +		.pm = &tpm_tis_pm,
-> +		.of_match_table = of_match_ptr(of_tis_i2c_match),
-> +		.acpi_match_table = ACPI_PTR(acpi_tis_i2c_match),
-> +	},
-> +	.probe = tpm_tis_i2c_probe,
-> +	.id_table = tpm_tis_i2c_id,
-> +};
-> +
-> +module_i2c_driver(tpm_tis_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("TPM Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.7.4
-> 
+Add support for the MYiR imx6ULL based single board computer
+equipped with on board 256MB NAND & RAM. The board also
+provides expansion header for expansion board, but this
+commit adds only support for SBC.
 
-This patch is in corrupted state essentially. No reason to review it.
-Not even checkpatch errors have been fixed.
+Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+---
+ arch/arm/boot/dts/Makefile                       |   1 +
+ arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts |  19 ++
+ arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi     | 247 +++++++++++++++++++++++
+ 3 files changed, 267 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index e8dd99201397..eab86051d782 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -612,6 +612,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+ 	imx6ull-14x14-evk.dtb \
+ 	imx6ull-colibri-eval-v3.dtb \
+ 	imx6ull-colibri-wifi-eval-v3.dtb \
++	imx6ull-myir-mys-6ulx-nand.dtb \
+ 	imx6ull-opos6uldev.dtb \
+ 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
+ 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
+diff --git a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
+new file mode 100644
+index 000000000000..6eaba8a8d7a9
+--- /dev/null
++++ b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
+@@ -0,0 +1,19 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2020 Linumiz
++ * Author: Parthiban Nallathambi <parthiban@linumiz.com>
++ */
++
++/dts-v1/;
++#include "imx6ull.dtsi"
++#include "imx6ull-myir-mys-6ulx.dtsi"
++
++/ {
++	model = "MYiR i.MX6ULL MYS-6ULX Single Board Computer with NAND";
++	compatible = "myir,imx6ul-mys-6ulx-nand", "myir,imx6ul-mys-6ulx",
++		     "fsl,imx6ull";
++};
++
++&gpmi {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
+new file mode 100644
+index 000000000000..f0a514187c21
+--- /dev/null
++++ b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
+@@ -0,0 +1,247 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2020 Linumiz
++ * Author: Parthiban Nallathambi <parthiban@linumiz.com>
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/pwm/pwm.h>
++
++/ {
++	model = "MYiR MYS-6ULX Single Board Computer";
++	compatible = "myir,imx6ull-mys-6ulx", "fsl,imx6ull";
++
++	chosen {
++		stdout-path = &uart1;
++	};
++
++	regulators: regulators {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		vdd_5v: regulator@0 {
++			compatible = "regulator-fixed";
++			regulator-name = "VDD_5V";
++			regulator-min-microvolt = <5000000>;
++			regulator-max-microvolt = <5000000>;
++			regulator-always-on;
++			regulator-boot-on;
++		};
++
++		vdd_3v3: regulator@1 {
++			compatible = "regulator-fixed";
++			regulator-name = "VDD_3V3";
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3300000>;
++			regulator-always-on;
++			vin-supply = <&vdd_5v>;
++		};
++	};
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_enet1>;
++	phy-mode = "rmii";
++	phy-handle = <&ethphy0>;
++	phy-supply = <&vdd_3v3>;
++	status = "okay";
++
++	mdio: mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			reg = <0>;
++			compatible = "ethernet-phy-ieee802.3-c22";
++			interrupt-parent = <&gpio5>;
++			interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&clks IMX6UL_CLK_ENET_REF>;
++			clock-names = "rmii-ref";
++			status = "okay";
++		};
++	};
++};
++
++&gpmi {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpmi_nand>;
++	nand-on-flash-bbt;
++	status = "disabled";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++&usbotg1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usb_otg1_id>;
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usbotg2 {
++	dr_mode = "host";
++	disable-over-current;
++	status = "okay";
++};
++
++&usdhc1 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
++	cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
++	no-1-8-v;
++	keep-power-in-suspend;
++	wakeup-source;
++	vmmc-supply = <&vdd_3v3>;
++	status = "okay";
++};
++
++&usdhc2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc2>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	keep-power-in-suspend;
++	vmmc-supply = <&vdd_3v3>;
++	status = "disabled";
++};
++
++&iomuxc {
++	pinctrl_enet1: enet1grp {
++		fsl,pins = <
++			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
++			MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
++			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
++			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
++			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x1b0b0
++			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x1b0b0
++			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
++			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
++			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
++			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
++			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x1b0b0
++		>;
++	};
++
++	pinctrl_gpmi_nand: gpminandgrp {
++		fsl,pins = <
++			MX6UL_PAD_NAND_CLE__RAWNAND_CLE		0x0b0b1
++			MX6UL_PAD_NAND_ALE__RAWNAND_ALE		0x0b0b1
++			MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B	0x0b0b1
++			MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0x0b000
++			MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B	0x0b0b1
++			MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B	0x0b0b1
++			MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B	0x0b0b1
++			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0x0b0b1
++			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0x0b0b1
++			MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02	0x0b0b1
++			MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03	0x0b0b1
++			MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04	0x0b0b1
++			MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05	0x0b0b1
++			MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06	0x0b0b1
++			MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07	0x0b0b1
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
++			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
++		>;
++	};
++
++	pinctrl_usb_otg1_id: usbotg1idgrp {
++		fsl,pins = <
++			MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID	0x17059
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
++			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
++			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
++			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
++			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
++			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
++			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x17059
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
++		fsl,pins = <
++			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
++			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
++			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
++			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
++			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
++			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
++		fsl,pins = <
++			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
++			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
++			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
++			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
++			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
++			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x10069
++			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x17059
++			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x17059
++			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x17059
++			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x17059
++			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x17059
++			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x17059
++			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x17059
++			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x17059
++			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x17059
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
++		fsl,pins = <
++			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x100b9
++			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x170b9
++			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x170b9
++			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x170b9
++			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x170b9
++			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x170b9
++			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x170b9
++			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x170b9
++			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x170b9
++			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x170b9
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
++		fsl,pins = <
++			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x100f9
++			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x170f9
++			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x170f9
++			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x170f9
++			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x170f9
++			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x170f9
++			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x170f9
++			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x170f9
++			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x170f9
++			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x170f9
++		>;
++	};
++};
+-- 
+2.11.0
+
