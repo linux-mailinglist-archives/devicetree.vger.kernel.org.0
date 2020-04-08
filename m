@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2491A29DD
+	by mail.lfdr.de (Postfix) with ESMTP id 17E241A29DE
 	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730263AbgDHTwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:52:15 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:43841 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730264AbgDHTwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:14 -0400
-Received: by mail-lf1-f65.google.com with SMTP id k28so6091843lfe.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:13 -0700 (PDT)
+        id S1730269AbgDHTwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:52:16 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:33688 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730241AbgDHTwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:15 -0400
+Received: by mail-lj1-f196.google.com with SMTP id q22so5253825ljg.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=azOZ7kPdKDKE87CbcQj8S1GR4y4K/OoMeP9jpkMqrjY=;
-        b=Wcyly17xbNloQHRr3gJ1Ewo80JQgqvyC16Teu59a9OL4uWC9pb2LvxXD8VL5Qu5Nnp
-         Nzv9yu9GSTjnHVQT/33P5xVr2d7FEKBCuzZQv5Wj8V7H5r2TfGVFVItBmbfmm4RRzpfX
-         rVOzVdK5FIvgihaMttBf3FIKAL065klTZ/ayHg3MkfLg8SBHz8p3OYpfClosojeXaqm5
-         A0wE73PgqWp/Chbv9iI+A3FWyDAPPkmDcDRalbiYpRB0inc1GBh2f9EQ3juh1UuiooLQ
-         WT0POz957Jf8amAFare1gdJ5SSSKKEAhG8DiZNjjBIHCRRJ0kEHAAmLaZ7Kd0WSo2z5l
-         cAZA==
+        bh=suEzlqh4afqhEw2Ww2mplEXF7wOhnfd4sMyHNvHCYpk=;
+        b=vJCodok97LC8P6Lvhb5ZqFYpj7CCVZYMer7kVf9Yxa+TvurROq/YQaaOUTHnuApn1h
+         v7P9MXCoHl4BWNwY3hK0Adz2tRJBNIHZPOy14PTpb9xpQfNqppblrnUD3Aw7olHxi2YM
+         LHC72hkN5kw0kU/ADaKdg4EktaOd0/F9BT4pKoGHnX2qRBfmFzFlO3jm8JbZ2COuc9vz
+         2uvU8QsK+lbPg1Vt+OxAH3O/UfcsInZMBkvB/g8z7XfjrqWpqvvhV4O/2jqds2MBqg+t
+         7MMWtcPorHT3zp9Vav7+zx2wTxNHxamlkNKIJWLAhSk32sOy59ry6/6uIl0TE8hSdnE7
+         ZaQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=azOZ7kPdKDKE87CbcQj8S1GR4y4K/OoMeP9jpkMqrjY=;
-        b=mNL+DVxlpTm3C2ilSkRqC1ecEd8wmg+fQEVJzkh+ePjniDT+nNv0I4Sf6ggwinIHNw
-         9kyZNgoI0YrNSOj6eqLv5nn1dxc1gbBo0HN7V7SwVnCifyTd83b42pot4/OXQBogpivl
-         v3157sH+4RzA1exkmyWrgIptg20Mpo8CsIMjj7Pg4jrzarNeCHAO6LYrzeOtA0NCY6bQ
-         41tM962TsxqYEilEosVi0Qcs69B6sQBC94sWFUrXG7mNNM58kMlemtoZgmFC4/4cBYdz
-         sDS71Tbawc4YR44G8MLO58n4XBvpDyVmByReEHHwaQfDNJJ4g8eljppN0wmlPuam+AyV
-         Q9jw==
-X-Gm-Message-State: AGi0PuZ2MmZr8A9xfyBy4SagVNbcVXTceAXvBzq8w7ce6hqJ6SIIOr6e
-        6rXJ8IZO2OHZonXJ7AuULnG6S6ZfUdU=
-X-Google-Smtp-Source: APiQypLO+c4OXBSTHGpgaACmk6IGVQPJyFCaU+CRJeR0O5n7ofrpY+O9NkbTWmTaG/uewke3JHvs+A==
-X-Received: by 2002:ac2:52b9:: with SMTP id r25mr2288925lfm.133.1586375532330;
-        Wed, 08 Apr 2020 12:52:12 -0700 (PDT)
+        bh=suEzlqh4afqhEw2Ww2mplEXF7wOhnfd4sMyHNvHCYpk=;
+        b=mvBnnLSpGCYqemdIkj6/By3SY0OSftbV/9L7VUNmi5Pbz5JMeu2jDaSU8XSX6KKXmq
+         SzGsPr/p2tN0B8iof44diVgvqcob008fLVdOSn3jNyMm7gLqNNAlNHk3q2KI0E/r0sgc
+         EZJKJWy5XK36Kv8kt786WqsbAR7tzTsw/VVQwkDlAleuUZS7V9f/IW5Nso6Yiv5oJ0y5
+         Y94OAKTUzbSbszJmk7xQBVP6oI3QSsB/dAIxq5CDyHAxb419NXD8EQuM9KVg3ULmOZHl
+         BpAjupLJWZW09D+axsFSMddt0T9Rs75A2uaPa09p+aV/prXkEzY6Aow9fTjbVT0rcdYo
+         g17w==
+X-Gm-Message-State: AGi0PuYGOmTprawgoslY8lF3v9lpj8GbzLe+Sl41CVLZEesV65b1Mc/0
+        UxYWOAfsvwS3NFE9+FLll0Y=
+X-Google-Smtp-Source: APiQypIDDL0YGzy2cn/gU/4C+B8rnL9iXWO5mnpo/vhV4zasXGY0NQzkcPYldKWuIKqKqBjIsDD0Qg==
+X-Received: by 2002:a2e:8914:: with SMTP id d20mr5771584lji.148.1586375533346;
+        Wed, 08 Apr 2020 12:52:13 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.11
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:52:11 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:12 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Werner Johansson <werner.johansson@sonymobile.com>
-Subject: [PATCH v2 29/36] dt-bindings: display: convert sharp,ls043t1le01 to DT Schema
-Date:   Wed,  8 Apr 2020 21:51:02 +0200
-Message-Id: <20200408195109.32692-30-sam@ravnborg.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v2 30/36] dt-bindings: display: convert sharp,lq101r1sx01 to DT Schema
+Date:   Wed,  8 Apr 2020 21:51:03 +0200
+Message-Id: <20200408195109.32692-31-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
@@ -63,105 +62,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The txt binding specified the property "power-supply".
-But the example and the actual implementation in the linux-kernel
-uses "avdd-supply".
-So the binding is adjusted to use avdd-supply as this seems
-to be the correct choice.
-There are no DT files in the linux kernel to check.
+This binding describes a panel with a secondary channel.
+
+v2:
+  - add check for required properties if link2 is present (Rob)
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Werner Johansson <werner.johansson@sonymobile.com>
+Cc: Rob Herring <robh@kernel.org>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../display/panel/sharp,ls043t1le01.txt       | 22 --------
- .../display/panel/sharp,ls043t1le01.yaml      | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
+ .../display/panel/sharp,lq101r1sx01.txt       | 49 -----------
+ .../display/panel/sharp,lq101r1sx01.yaml      | 85 +++++++++++++++++++
+ 2 files changed, 85 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.txt b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.txt
 deleted file mode 100644
-index 3770a111968b..000000000000
---- a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.txt
+index f522bb8e47e1..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.txt
 +++ /dev/null
-@@ -1,22 +0,0 @@
--Sharp Microelectronics 4.3" qHD TFT LCD panel
+@@ -1,49 +0,0 @@
+-Sharp Microelectronics 10.1" WQXGA TFT LCD panel
+-
+-This panel requires a dual-channel DSI host to operate. It supports two modes:
+-- left-right: each channel drives the left or right half of the screen
+-- even-odd: each channel drives the even or odd lines of the screen
+-
+-Each of the DSI channels controls a separate DSI peripheral. The peripheral
+-driven by the first link (DSI-LINK1), left or even, is considered the primary
+-peripheral and controls the device. The 'link2' property contains a phandle
+-to the peripheral driven by the second link (DSI-LINK2, right or odd).
+-
+-Note that in video mode the DSI-LINK1 interface always provides the left/even
+-pixels and DSI-LINK2 always provides the right/odd pixels. In command mode it
+-is possible to program either link to drive the left/even or right/odd pixels
+-but for the sake of consistency this binding assumes that the same assignment
+-is chosen as for video mode.
 -
 -Required properties:
--- compatible: should be "sharp,ls043t1le01-qhd"
+-- compatible: should be "sharp,lq101r1sx01"
 -- reg: DSI virtual channel of the peripheral
+-
+-Required properties (for DSI-LINK1 only):
+-- link2: phandle to the DSI peripheral on the secondary link. Note that the
+-  presence of this property marks the containing node as DSI-LINK1.
 -- power-supply: phandle of the regulator that provides the supply voltage
 -
--Optional properties:
+-Optional properties (for DSI-LINK1 only):
 -- backlight: phandle of the backlight device attached to the panel
--- reset-gpios: a GPIO spec for the reset pin
 -
 -Example:
 -
--	mdss_dsi@fd922800 {
--		panel@0 {
--			compatible = "sharp,ls043t1le01-qhd";
+-	dsi@54300000 {
+-		panel: panel@0 {
+-			compatible = "sharp,lq101r1sx01";
 -			reg = <0>;
--			avdd-supply = <&pm8941_l22>;
--			backlight = <&pm8941_wled>;
--			reset-gpios = <&pm8941_gpios 19 GPIO_ACTIVE_HIGH>;
+-
+-			link2 = <&secondary>;
+-
+-			power-supply = <...>;
+-			backlight = <...>;
 -		};
 -	};
-diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
+-
+-	dsi@54400000 {
+-		secondary: panel@0 {
+-			compatible = "sharp,lq101r1sx01";
+-			reg = <0>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
 new file mode 100644
-index 000000000000..a90d0d8bf7c9
+index 000000000000..956608cada77
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sharp,ls043t1le01.yaml
-@@ -0,0 +1,51 @@
++++ b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
+@@ -0,0 +1,85 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/panel/sharp,ls043t1le01.yaml#
++$id: http://devicetree.org/schemas/display/panel/sharp,lq101r1sx01.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Sharp Microelectronics 4.3" qHD TFT LCD panel
++title: Sharp Microelectronics 10.1" WQXGA TFT LCD panel
 +
 +maintainers:
-+  - Werner Johansson <werner.johansson@sonymobile.com>
++  - Thierry Reding <treding@nvidia.com>
++
++description: |
++  This panel requires a dual-channel DSI host to operate. It supports two modes:
++  - left-right: each channel drives the left or right half of the screen
++  - even-odd: each channel drives the even or odd lines of the screen
++
++  Each of the DSI channels controls a separate DSI peripheral. The peripheral
++  driven by the first link (DSI-LINK1), left or even, is considered the primary
++  peripheral and controls the device. The 'link2' property contains a phandle
++  to the peripheral driven by the second link (DSI-LINK2, right or odd).
++
++  Note that in video mode the DSI-LINK1 interface always provides the left/even
++  pixels and DSI-LINK2 always provides the right/odd pixels. In command mode it
++  is possible to program either link to drive the left/even or right/odd pixels
++  but for the sake of consistency this binding assumes that the same assignment
++  is chosen as for video mode.
 +
 +allOf:
 +  - $ref: panel-common.yaml#
 +
 +properties:
 +  compatible:
-+    const: sharp,ls043t1le01-qhd
++    const: sharp,lq101r1sx01
 +
 +  reg: true
++  power-supply: true
 +  backlight: true
-+  reset-gpios: true
-+  port: true
 +
-+  avdd-supply:
-+    description: handle of the regulator that provides the supply voltage
++  link2:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: |
++      phandle to the DSI peripheral on the secondary link. Note that the
++      presence of this property marks the containing node as DSI-LINK1
 +
 +required:
 +  - compatible
 +  - reg
-+  - avdd-supply
++
++if:
++  required:
++    - link2
++then:
++  required:
++    - power-supply
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
++    dsi0 {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +
-+        panel@0 {
-+            compatible = "sharp,ls043t1le01-qhd";
++        panel: panel@0 {
++            compatible = "sharp,lq101r1sx01";
 +            reg = <0>;
-+            avdd-supply = <&pm8941_l22>;
-+            backlight = <&pm8941_wled>;
-+            reset-gpios = <&pm8941_gpios 19 GPIO_ACTIVE_HIGH>;
++
++            link2 = <&secondary>;
++
++            power-supply = <&power>;
++            backlight = <&backlight>;
++        };
++    };
++
++    dsi1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        secondary: panel@0 {
++            compatible = "sharp,lq101r1sx01";
++            reg = <0>;
 +        };
 +    };
 +
