@@ -2,47 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0630A1A25C5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 17:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 185991A25FD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 17:47:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729721AbgDHPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 11:46:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49558 "EHLO mail.kernel.org"
+        id S1729812AbgDHPrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 11:47:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49388 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729690AbgDHPqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1729702AbgDHPqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Wed, 8 Apr 2020 11:46:33 -0400
 Received: from mail.kernel.org (ip5f5ad4d8.dynamic.kabel-deutschland.de [95.90.212.216])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F1957221ED;
-        Wed,  8 Apr 2020 15:46:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 05490221F6;
+        Wed,  8 Apr 2020 15:46:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=default; t=1586360792;
-        bh=9Y31naY1EvKUzeBtNXH9yLcsi4Q9S83JSI6RN3kfVpY=;
+        bh=4l77Yn2wW/bRDMs12FfVArUGIzMtsVYGB6DvYUarqs0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tsgcmjmKJvEsykOhbhneuXgALWi3DZUG6PeK6tKsuiCpyxAF0eRNcJQW+kOLQ23Jo
-         TiuMKmNUD04eGycwukqX37pEATv3blbXtUprAgSohyoGT/IjUULpxWsDlglsFYurNQ
-         IcV2ozRTLNNwG7Pijm3ZElFADoHObDJ4PrXz9SO0=
+        b=VF6H0x7Ot7lxgI1ISZI/YaviI/NzcKJPIZRwbZ4mM/xbQrZrwEL38pg10zez1SP5E
+         xuOIgatlYINtigXbwOO+bL9qeFHD/iYMHVqtlniNhRBnLGE6sEwI9jcuhPBLVXWwWK
+         0ZtgiYvnGF9as+3xSzHcfydypiHgf9tO1mkp/qR8=
 Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
         (envelope-from <mchehab@kernel.org>)
-        id 1jMCuM-000cCV-3n; Wed, 08 Apr 2020 17:46:30 +0200
+        id 1jMCuM-000cCe-6M; Wed, 08 Apr 2020 17:46:30 +0200
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
 Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Matthias Brugger <mbrugger@suse.com>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 28/35] docs: dt: qcom,dwc3.txt: fix cross-reference for a converted file
-Date:   Wed,  8 Apr 2020 17:46:20 +0200
-Message-Id: <24b30222392569e7aa5d61d46642a4c38a964512.1586359676.git.mchehab+huawei@kernel.org>
+Subject: [PATCH 30/35] docs: dt: fix a broken reference for a file converted to json
+Date:   Wed,  8 Apr 2020 17:46:22 +0200
+Message-Id: <402922bc26fe9b340dff8693bab57142820f1fc7.1586359676.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <cover.1586359676.git.mchehab+huawei@kernel.org>
 References: <cover.1586359676.git.mchehab+huawei@kernel.org>
@@ -53,29 +48,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The qcom-qusb2-phy.txt file was converted and renamed to yaml.
-Update cross-reference accordingly.
+Changeset 32ced09d7903 ("dt-bindings: serial: Convert slave-device bindings to json-schema")
+moved a binding to json and updated the links. Yet, one link
+was forgotten.
 
-Fixes: 8ce65d8d38df ("dt-bindings: phy: qcom,qusb2: Convert QUSB2 phy bindings to yaml")
+Update this one too.
+
+Fixes: 32ced09d7903 ("dt-bindings: serial: Convert slave-device bindings to json-schema")
 Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- Documentation/devicetree/bindings/usb/qcom,dwc3.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.txt b/Documentation/devicetree/bindings/usb/qcom,dwc3.txt
-index cb695aa3fba4..fbdd01756752 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.txt
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.txt
-@@ -52,8 +52,8 @@ A child node must exist to represent the core DWC3 IP block. The name of
- the node is not important. The content of the node is defined in dwc3.txt.
+diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+index badf597c0e58..aad2632c6443 100644
+--- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
++++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+@@ -30,7 +30,7 @@ Required properties for compatible string qcom,wcn399x-bt:
  
- Phy documentation is provided in the following places:
--Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt   - USB3 QMP PHY
--Documentation/devicetree/bindings/phy/qcom-qusb2-phy.txt - USB2 QUSB2 PHY
-+Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt    - USB3 QMP PHY
-+Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml - USB2 QUSB2 PHY
+ Optional properties for compatible string qcom,wcn399x-bt:
  
- Example device nodes:
+- - max-speed: see Documentation/devicetree/bindings/serial/slave-device.txt
++ - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+  - firmware-name: specify the name of nvm firmware to load
+  - clocks: clock provided to the controller
  
 -- 
 2.25.2
