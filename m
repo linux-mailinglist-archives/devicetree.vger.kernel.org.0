@@ -2,161 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ECBE1A1F70
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 13:08:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7611A1FA7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 13:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728309AbgDHLIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 07:08:30 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:34316 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728298AbgDHLI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 07:08:29 -0400
-Received: by mail-wr1-f68.google.com with SMTP id 65so7368677wrl.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 04:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jeVjBN/6H/gI6gMyuL/+Tdutryht/EUxewf1jqrLbh8=;
-        b=CoSrQxuOgUErP6j4vE5Hnof3IlCEsZecLbmey7kO4uUjcv82/taslS3HKv0A+42o5L
-         OfbEuUrdi0sjmzf9L9MH44bGbnbnhN2vWSuWO9+xJYWDm2mS2PpB9tDa4GSJWUxr1xxA
-         Q8B6NmnYq8CJAjZTwoUszgiOYZ0nNUxeRS6/TuV7+U9ZbMFMgvjwdd3i489E21poNS/e
-         qfg63B8lm51EjOhKSrh+40rsC7XGQrzqGvAHzE7ZZZ3sS6llZOha4jGpQBPQ8Y0ZquY+
-         YNXfDO3eRm56/YZHWf9E94HQkGmp4nJza9reFnnWVLLTGS50ED2VdfYH+rExUOCIdMJM
-         /UGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jeVjBN/6H/gI6gMyuL/+Tdutryht/EUxewf1jqrLbh8=;
-        b=eTbWqyuurR+6elucej54ogMZtg8NjxWwkfejZL6ETSoHLikuSw5/455cJJU9hXM3dl
-         PgtjtatVo2XPOfz8WMq0SG/uaVrpf9YBPQen1V5Wn/EqGeJK18O9qrXI5X+aqH3fEalq
-         FX/WPOayq/+xtAP7FYIctJtxr55pkpBangdhOqsrCNB7B8Ry/SqcCwlH0t+v7pMMbuG4
-         6qq5ltNXNuOXqNhJzLlDAJZ2DEsL49+Ga56NWVmX3l7uV32pLiW68+ij8oMy7oU8H+R/
-         CvOdF5QAW3av38oBBRE6ZChx5QtM4N8njgnGHv5Q73Sfp4fqyZ2qmFkOi0Zuy56U4mxm
-         kiRg==
-X-Gm-Message-State: AGi0PuaNYBNQeOS9I4IATNSvLo/O0NqzPWWHm4nnP7ZGthK8BwPKyvJI
-        KerIOcvLteDq4jsxDk51KM7bjQ==
-X-Google-Smtp-Source: APiQypLzDqcFeNJoAa/AvreW1err4IF4jkgQFP1M6cVKPw6A9RRXkIJZFlBSKVJUggBN9Dvq+Tnp2g==
-X-Received: by 2002:a5d:4306:: with SMTP id h6mr7558068wrq.234.1586344107109;
-        Wed, 08 Apr 2020 04:08:27 -0700 (PDT)
-Received: from localhost.localdomain ([37.120.50.78])
-        by smtp.gmail.com with ESMTPSA id i8sm37596253wrb.41.2020.04.08.04.08.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 04:08:26 -0700 (PDT)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v4 3/3] media: ov8856: Implement sensor module revision identification
-Date:   Wed,  8 Apr 2020 13:08:16 +0200
-Message-Id: <20200408110816.2712841-4-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200408110816.2712841-1-robert.foss@linaro.org>
-References: <20200408110816.2712841-1-robert.foss@linaro.org>
+        id S1728288AbgDHLOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 07:14:08 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:33412 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728100AbgDHLOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 07:14:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1586344447; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=dNLnnym4VtOUg1n6xG1Oo6xj/LOdUkzfToVq8XZ0xqo=; b=MjDTBqYQRZu2Yji4/As7wAbBfwL7QHcTidC57dr4+n1ffltJylGn4UVPJquG+YuP2/814z+b
+ 6LosFMRovF9J+JOBG5qq8swVYKGPjqKhzkpQgHFkWg3FoAMo9H/eT7IAhA2Det8SOiQRi75U
+ vKF3L5QjVreAA6VoZKVtXqq0J+U=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e8db1e6.7f04e41d63e8-smtp-out-n02;
+ Wed, 08 Apr 2020 11:13:42 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 572C3C44791; Wed,  8 Apr 2020 11:13:41 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.6] (unknown [183.83.138.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E552BC433F2;
+        Wed,  8 Apr 2020 11:13:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E552BC433F2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
+Subject: Re: [PATCH V3 2/8] soc: qcom: geni: Support for ICC voting
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>, wsa@the-dreams.de,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
+References: <1585652976-17481-1-git-send-email-akashast@codeaurora.org>
+ <1585652976-17481-3-git-send-email-akashast@codeaurora.org>
+ <20200331233209.GF254911@minitux>
+ <CAE=gft6B2UCBVaKVCJXED8waFWci8WJ+sTM3CT+3e_eYS=-BDQ@mail.gmail.com>
+ <66da4cc6-3873-1d39-ecb7-e9866320c469@codeaurora.org>
+ <866a5cac-9f05-703e-8c3c-168d8f219c4d@linaro.org>
+From:   Akash Asthana <akashast@codeaurora.org>
+Message-ID: <6f738ea2-d50c-3524-798c-b60e982f2c25@codeaurora.org>
+Date:   Wed, 8 Apr 2020 16:43:30 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <866a5cac-9f05-703e-8c3c-168d8f219c4d@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Query the sensor for its module revision, and compare it
-to known revisions.
-Currently only the '1B' revision has been added.
+Hi Georgi, Bjorn, Evan,
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
+On 4/7/2020 3:28 PM, Georgi Djakov wrote:
+> Hi,
+>
+> On 4/7/20 09:46, Akash Asthana wrote:
+>> Hi Bjorn, Evan,
+>>
+>>>> Given that these two functions only switch the bandwidth request between
+>>>> some value and 0, I really think we should carry a "bool enabled" on the
+>>>> path and replace these two functions with
+>>>> icc_bulk_enable()/icc_bulk_disable().
+>> So, if above is implementation "bool enabled" on path can be used directly in
+>> aggregation of ICC votes on particular node without using icc_set_bw call, if
+>> yes then I am not aware how? or we'll be using icc_set_bw API indirectly inside
+>> icc_bulk APIs?
+> If there is a repeated pattern to switch between some bandwidth value and zero,
+> it really makes sense to introduce such functions in the framework core. I think
+> that this might be very useful especially for suspend and resume cases.
+> Something like icc_{enable,disable}(struct icc_path *path) functions and also
+> the bulk versions, that will flag the path as disabled, re-aggregate and do
+> icc_set_bw().
 
-- Changes since v3:
-  * Actually add module revision 2A
+This appears to be a non-trivial change to ICC core, as my understanding 
+of ICC core is limited as of now hence, I am not very clear of the 
+implementation of icc_bulk APIs.
 
-- Changes since v2:
-  * Add module revision 2A
-  * Sakari: Remove ov8856_check_revision()
-  * Sakari: Stop EEPROM streaming mode
+Will it be okay if I keep geni_icc_vote_on/off API as 
+is@https://patchwork.kernel.org/patch/11467511/ for now and later will 
+switch to icc_bulk once it's introduced in ICC core.
 
- drivers/media/i2c/ov8856.c | 53 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+Regards,
 
-diff --git a/drivers/media/i2c/ov8856.c b/drivers/media/i2c/ov8856.c
-index 473d3245344a..de0b484b85d0 100644
---- a/drivers/media/i2c/ov8856.c
-+++ b/drivers/media/i2c/ov8856.c
-@@ -32,6 +32,19 @@
- #define OV8856_MODE_STANDBY		0x00
- #define OV8856_MODE_STREAMING		0x01
- 
-+/* module revisions */
-+#define OV8856_2A_MODULE		0x01
-+#define OV8856_1B_MODULE		0x02
-+
-+/* the OTP read-out buffer is at 0x7000 and 0xf is the offset
-+ * of the byte in the OTP that means the module revision
-+ */
-+#define OV8856_MODULE_REVISION		0x700f
-+#define OV8856_OTP_MODE_CTRL		0x3d84
-+#define OV8856_OTP_LOAD_CTRL		0x3d81
-+#define OV8856_OTP_MODE_AUTO		0x00
-+#define OV8856_OTP_LOAD_CTRL_ENABLE	BIT(0)
-+
- /* vertical-timings from sensor */
- #define OV8856_REG_VTS			0x380e
- #define OV8856_VTS_MAX			0x7fff
-@@ -1152,6 +1165,46 @@ static int ov8856_identify_module(struct ov8856 *ov8856)
- 		return -ENXIO;
- 	}
- 
-+	ret = ov8856_write_reg(ov8856, OV8856_REG_MODE_SELECT,
-+			       OV8856_REG_VALUE_08BIT, OV8856_MODE_STREAMING);
-+	if (ret)
-+		return ret;
-+
-+	ret = ov8856_write_reg(ov8856, OV8856_OTP_MODE_CTRL,
-+			       OV8856_REG_VALUE_08BIT, OV8856_OTP_MODE_AUTO);
-+	if (ret) {
-+		dev_err(&client->dev, "failed to set otp mode");
-+		return ret;
-+	}
-+
-+	ret = ov8856_write_reg(ov8856, OV8856_OTP_LOAD_CTRL,
-+			       OV8856_REG_VALUE_08BIT,
-+			       OV8856_OTP_LOAD_CTRL_ENABLE);
-+	if (ret) {
-+		dev_err(&client->dev, "failed to enable load control");
-+		return ret;
-+	}
-+
-+	ret = ov8856_read_reg(ov8856, OV8856_MODULE_REVISION,
-+			      OV8856_REG_VALUE_08BIT, &val);
-+	if (ret) {
-+		dev_err(&client->dev, "failed to read module revision");
-+		return ret;
-+	}
-+
-+	dev_info(&client->dev, "OV8856 revision %x (%s) at address 0x%02x\n",
-+		val,
-+		val == OV8856_2A_MODULE ? "2A" :
-+		val == OV8856_1B_MODULE ? "1B" : "unknown revision",
-+		client->addr);
-+
-+	ret = ov8856_write_reg(ov8856, OV8856_REG_MODE_SELECT,
-+			       OV8856_REG_VALUE_08BIT, OV8856_MODE_STANDBY);
-+	if (ret) {
-+		dev_err(&client->dev, "failed to exit streaming mode");
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
+Akash
+
+>>>> The added benefit of this would be that you call icc_set_bw() instead of
+>>>> changing the geni_icc_path->{avg_bw,peak_bw} and don't need to keep
+>>>> track of them here.
+>> Ok IIUC, we need to call icc_set_bw() from GENI driver only if we change (avg_bw
+>> | peak_bw)?
+> Yes, exactly.
+>
+> Thanks,
+> Georgi
+>
+>> Regards,
+>>
+>> Akash
+>>
+>>> Yes yes! I had the same thought here [1].
+>>>
+>>> Georgi, what do you think?
+>>> -Evan
+>>>
+>>> [1]
+>>> https://lore.kernel.org/linux-arm-msm/CAE=gft58QsgTCUHMHKJhcM9ZxAeMiY16CrbNv2HaTCRqwtmt7A@mail.gmail.com/
+>>>
 -- 
-2.25.1
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
