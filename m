@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C9F1A29BE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3782B1A29C1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730209AbgDHTv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:51:57 -0400
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:35359 "EHLO
-        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730196AbgDHTv5 (ORCPT
+        id S1730214AbgDHTv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:51:58 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:44163 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730187AbgDHTv5 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:51:57 -0400
-Received: by mail-lj1-f180.google.com with SMTP id k21so9043223ljh.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:51:55 -0700 (PDT)
+Received: by mail-lj1-f194.google.com with SMTP id z26so4883742ljz.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gts8IBK9sE8CfYbVSsVTkwe650OyDr0ovRiE3fWcD5w=;
-        b=fy7py9mJ7xLW9YoKJCavc0rM7N1S2ZJ1i2xWM6bPxAfKhwNLe085VmXMVqSFZ/BUuh
-         DsNmYNbLxMgblA74MbUTxY9fwU+cpiKnMoMbWVD00TAjeB0Nmjygu+/zH+ynalzvQYqR
-         zdhs8r3/xXKItmbxdnF1Ea7WfXCkPe532WQ0fDXtCBsUSN7CEl/cskfKB43sw2Bbd5Ec
-         8AEsA/JTiSn90W1GSBIKwnO7MZyCbB/DBy3zNIaxBIR2fkMORHKNEOb0xoMT/WyDxjR2
-         uPEyG7llbcRBVWdqT+KsVUNzsnmxmj74vkKpcu1SJFg/h8fDSN0x745/5wZ71wEVMq6u
-         zOLQ==
+        bh=DaICPVhWGMzYWehtRVbV/jO9Up7YjJ7XLHT6tmeYB5E=;
+        b=HYnB/to8RJXQKnyDwMdbAnEqtL8JJbJA987j6GgWeJtT7Fz1wkLdhsfcoO7MkdcVol
+         o0KcR5zXEZVl6NQbrBkGlbx14iQpYH755wNkDfJ2KHJ8EtRqleoUuVRHSCONchLtd/KD
+         Hu7fdoiSZpbjJAdWStNO6AsKlzJQeZU5zR+EEs7JqkGI5UauudPO2qzDQws2pg64twl9
+         Z6gshauG8+8Lnh4s4W3rZAdL0elmyp03uxO3k82X8d/FETZqm8BB1lyVEB8Sp4K71EPg
+         vFNWfAGbmVvnYFclGoS5r/relJTypd2ifH6LsWU9uwegneI5LwzhLmFfhVh8UU5VMG7s
+         J8fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=gts8IBK9sE8CfYbVSsVTkwe650OyDr0ovRiE3fWcD5w=;
-        b=YwDZFDs6NuG3Eq62ZqBdzEblMBD61IpcuMHNaJ/giraOMLYbTqbgHP2K7Tek74oomX
-         /vM52BJjC3rtPggXEd7qzlNcjN3QO5JuQtd2MwJ31QxJhXmr6V11kuD3X2jsHHVsF0gX
-         bbCPvSJbcUA7p7hPh86E1NxTs99V+UyNNgndu5rGReBts95zt9slJ4a7mqPFVp6M4dWH
-         9ivsNMJvMy+Vj/NBHTw/hoNMrF8E5vuHe9ozATwHzEVVKk+Su5pGnG2B/1/Wmz7E7PHX
-         kyXZH/w8jXo8hB0ncC/vdh2p5tHMZP8f79/PggRaJtrG3s7OjQ9ZfrdVrbtyrakIQGwZ
-         IRAQ==
-X-Gm-Message-State: AGi0PuaXdEHfGUb8RyDWMBhSa7qdg9Y2xEy7863oTv8fxh7saSUuL/Ow
-        WEP53dSseN7GAXaMAuy5H28=
-X-Google-Smtp-Source: APiQypKE90E7N2o/yHSibcHm+rJeb50Ogag0nb6GTjwrAzUJENGsLHHdGJo+6lW9xokMMiEI0l9e3Q==
-X-Received: by 2002:a2e:900c:: with SMTP id h12mr3845652ljg.290.1586375515137;
-        Wed, 08 Apr 2020 12:51:55 -0700 (PDT)
+        bh=DaICPVhWGMzYWehtRVbV/jO9Up7YjJ7XLHT6tmeYB5E=;
+        b=tpM4sGiWgWBs1vMZGU2Jp4IVReLwsp05yGxiF6QGgHzYGAVot5LBh2TjqqR9ecmIKT
+         byvXrR+b6KuAO6WvNc95KCIV+3lxdIyDfWM5Kz2TVrxjMYTJY5/ApQnhRsvDIYaqZ+sB
+         xBH+zabzVWibQ5SlBT5zYdIA+R9WXcr+dVns12yGJNsT57zS9QAV4B/zpbpwceHFMPhP
+         pXLxjlrJxTTJEg1X/ovq8wsGigQ9xlxW6QXtmZuy/BHet36DC/w+ncRUNFsOLbR/y0Pf
+         U9rccgRju5Z+QH9r2nnamov0+PZ8KHMCvRlgpyBz53m4k9tVb3+IOnkLhwEoOrQ72n/1
+         sjGA==
+X-Gm-Message-State: AGi0PuY62yTQk2ER1jYQe3xNWYtbWRZCWiXQ7ZMqIbKXtXyFWFyfeeFl
+        5qEXkPJCHa6a9jPNTugXthg=
+X-Google-Smtp-Source: APiQypIRlLDB66S2v+CD42pwXG2CjA3QxlWHexQl/bSzdmSMgYVVWvSsx2LYOSWCZeX3WsoKJQEGGA==
+X-Received: by 2002:a2e:8612:: with SMTP id a18mr5580381lji.250.1586375516188;
+        Wed, 08 Apr 2020 12:51:56 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.51.54
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.51.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:51:54 -0700 (PDT)
+        Wed, 08 Apr 2020 12:51:55 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
 Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH v2 13/36] dt-bindings: display: convert kingdisplay,kd035g6-54nt to DT Schema
-Date:   Wed,  8 Apr 2020 21:50:46 +0200
-Message-Id: <20200408195109.32692-14-sam@ravnborg.org>
+        Nickey Yang <nickey.yang@rock-chips.com>
+Subject: [PATCH v2 14/36] dt-bindings: display: convert kingdisplay,kd097d04 to DT Schema
+Date:   Wed,  8 Apr 2020 21:50:47 +0200
+Message-Id: <20200408195109.32692-15-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
@@ -64,142 +63,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2:
-  - Drop use of spi-slave.yaml (Maxime)
-  - Introduce unevaluatedProperties (Maxime)
+kingdisplay,kd097d04 matches the panel-simple-dsi binding.
+The only difference is that enable-gpios is now an optional
+property.
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Paul Cercueil <paul@crapouillou.net>
+Cc: Nickey Yang <nickey.yang@rock-chips.com>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../panel/kingdisplay,kd035g6-54nt.txt        | 42 ------------
- .../panel/kingdisplay,kd035g6-54nt.yaml       | 65 +++++++++++++++++++
- 2 files changed, 65 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.yaml
+ .../display/panel/kingdisplay,kd097d04.txt    | 22 -------------------
+ .../display/panel/panel-simple-dsi.yaml       |  2 ++
+ 2 files changed, 2 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd097d04.txt
 
-diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd097d04.txt b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd097d04.txt
 deleted file mode 100644
-index fa9596082e44..000000000000
---- a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
+index cfefff688614..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd097d04.txt
 +++ /dev/null
-@@ -1,42 +0,0 @@
--King Display KD035G6-54NT 3.5" (320x240 pixels) 24-bit TFT LCD panel
+@@ -1,22 +0,0 @@
+-Kingdisplay KD097D04 9.7" 1536x2048 TFT LCD panel
 -
 -Required properties:
--- compatible: should be "kingdisplay,kd035g6-54nt"
--- power-supply: See panel-common.txt
--- reset-gpios: See panel-common.txt
+-- compatible: should be "kingdisplay,kd097d04"
+-- reg: DSI virtual channel of the peripheral
+-- power-supply: phandle of the regulator that provides the supply voltage
+-- enable-gpios: panel enable gpio
 -
 -Optional properties:
--- backlight: see panel-common.txt
--
--The generic bindings for the SPI slaves documented in [1] also apply.
--
--The device node can contain one 'port' child node with one child
--'endpoint' node, according to the bindings defined in [2]. This
--node should describe panel's video bus.
--
--[1]: Documentation/devicetree/bindings/spi/spi-bus.txt
--[2]: Documentation/devicetree/bindings/graph.txt
+-- backlight: phandle of the backlight device attached to the panel
 -
 -Example:
 -
--&spi {
--	panel@0 {
--		compatible = "kingdisplay,kd035g6-54nt";
--		reg = <0>;
--
--		spi-max-frequency = <3125000>;
--		spi-3wire;
--		spi-cs-high;
--
--		reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
--
--		backlight = <&backlight>;
--		power-supply = <&ldo6>;
--
--		port {
--			panel_input: endpoint {
--				remote-endpoint = <&panel_output>;
--			};
+-	&mipi_dsi {
+-		panel@0 {
+-			compatible = "kingdisplay,kd097d04";
+-			reg = <0>;
+-			power-supply = <...>;
+-			backlight = <&backlight>;
+-			enable-gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
 -		};
 -	};
--};
-diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.yaml b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.yaml
-new file mode 100644
-index 000000000000..6960036975fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/kingdisplay,kd035g6-54nt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: King Display KD035G6-54NT 3.5" (320x240 pixels) 24-bit TFT LCD panel
-+
-+description: |
-+  The panel must obey the rules for a SPI slave device as specified in
-+  spi/spi-controller.yaml
-+
-+maintainers:
-+  - Paul Cercueil <paul@crapouillou.net>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: kingdisplay,kd035g6-54nt
-+
-+  backlight: true
-+  port: true
-+  power-supply: true
-+  reg: true
-+  reset-gpios: true
-+
-+required:
-+  - compatible
-+  - power-supply
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "kingdisplay,kd035g6-54nt";
-+            reg = <0>;
-+
-+            spi-max-frequency = <3125000>;
-+            spi-3wire;
-+            spi-cs-high;
-+
-+            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
-+
-+            backlight = <&backlight>;
-+            power-supply = <&ldo6>;
-+
-+            port {
-+                panel_input: endpoint {
-+                    remote-endpoint = <&panel_output>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index b2e8742fd6af..949371db0a16 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -29,6 +29,8 @@ properties:
+       # compatible must be listed in alphabetical order, ordered by compatible.
+       # The description in the comment is mandatory for each compatible.
+ 
++        # Kingdisplay KD097D04 9.7" 1536x2048 TFT LCD panel
++      - kingdisplay,kd097d04
+         # Panasonic 10" WUXGA TFT LCD panel
+       - panasonic,vvx10f034n00
+ 
 -- 
 2.20.1
 
