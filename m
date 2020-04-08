@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D521A29D4
+	by mail.lfdr.de (Postfix) with ESMTP id F10671A29D6
 	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729564AbgDHTwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:52:11 -0400
-Received: from mail-lj1-f171.google.com ([209.85.208.171]:41326 "EHLO
-        mail-lj1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730247AbgDHTwK (ORCPT
+        id S1730260AbgDHTwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:52:10 -0400
+Received: from mail-lj1-f182.google.com ([209.85.208.182]:33023 "EHLO
+        mail-lj1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729564AbgDHTwK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:10 -0400
-Received: by mail-lj1-f171.google.com with SMTP id n17so8977115lji.8
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:07 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id q22so5253575ljg.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=7+CVMxbsPicV/fwxP5mLwljkIZSzu8S5meR2w3434dc=;
-        b=VUScjKUJ3sRl7kSkeR5/ppr6loUiu+5tonJIGWpPCL4kNi8kR5Zoy7JiymR25oaCA/
-         nJeOn2hvFFWA5WOSMJetivEqX3v71zZx5Wa4qNi5J6Nfa7K9G5+bmsca3b6CihJf5r3F
-         xqPPR8zpcvzEpN/5XcELi5QROI+ps1g8VjaC9azMRmwvCGwDMtEfJ4V/Bcvoz9gJizkU
-         z1hqxliuOC+Xwyh3gqKIuPZqbJ3Dwtxe9iQB4aR1kQoaWbgmrmmlHY4Qli+xK1QA8hmH
-         oEENC4oeIjQGIvp2YXQj2dyqFyjlLssBYmkXrE4aclCdclO5ZEQS3JIt8L81dehUocjK
-         1BCA==
+        bh=VLNfyRlmaYQ3/Tah2cpzN27telonR8g89G9XuIdJiRY=;
+        b=lzzcPZNk3D+gr/CuCxW+wG0s2eiBtcOwaQ+4kVNKOjv0ELjFALUSyfhD6PMy82Is6W
+         rfi0xNy6EBM6iiEwzcuMSyPtq25HJZrUGKE1dM5IaT7lgnO92QrVQrP/QveCFdPDQoB7
+         fiNdNwH+Ut2D6kPE6+EgGEnNd3SIyqEO2XocbnaHXOyjHkFRbbRjasw4y/i9drd/aZSv
+         o9Q7avZnj+YocaKUVMmIDhcKZOU88P9WtXCdyi9EplgE0PdAtMCYxcWEdD2TNNzBL8TD
+         dpU1JaHDKISHIKJtTyKFuT2cRcbs3qVu5sSiW8wbsugOAL846McmY+wnFHjssBf0AM46
+         u4Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=7+CVMxbsPicV/fwxP5mLwljkIZSzu8S5meR2w3434dc=;
-        b=WAWsT31N4AwbC6mIj38O8jO5yIx1gd8t03x3i4gG8sXOT6FUtwedL0Nez2KjSY3Djj
-         IELRluZ6CyM07uo25eZn2YzZLz0lyGHBptJD3YHYQV4txtsQugmtThkniQyX+HuKxmUB
-         2CVSx7U+9L7y1DLoues7z2nh/TtE12qU5dgyDBlOnNspoGTp/5mzvwDkW66P61dq2KWx
-         GcVfxyPbtm/rHoxbs0fnEhhUnlbz8svyoiX1IEehvcFu2rbitSDXmQ3xLmr+samySzMV
-         bTtK8tcGotvr5/kD83VTEXGg91Pf1aVCnuB5v84gNvKKNr1ECOfvz/HFpuiZlWBwK7bF
-         TUWA==
-X-Gm-Message-State: AGi0PuZ9CO7AGDO/a3h10Hm1PtHbxfgqV5L0NA9eKcQd/EH+pdjdj1HP
-        ZIwg6xatijg3yetijn8gBCM=
-X-Google-Smtp-Source: APiQypIal03E0aeSlBE0puxuSkmOeXenB82LUpmrGBHh3y9Jup2eKAtFoxcs2ML/dx2TxC9LBhctiw==
-X-Received: by 2002:a2e:804a:: with SMTP id p10mr6314584ljg.289.1586375527126;
-        Wed, 08 Apr 2020 12:52:07 -0700 (PDT)
+        bh=VLNfyRlmaYQ3/Tah2cpzN27telonR8g89G9XuIdJiRY=;
+        b=jrDavwXNeQYCgKbi+aolIUsNytxRixs/OtylraPRev8SO4tuvNrnbxS6Q8Uiq397TV
+         rDqVwllSu7PEFvYyGOgV5DHFfHI60HkzGsJWOC4zdsWB33oq1486X0DaeLux0Mfn6Xcw
+         rfm3I5tTlm3aEZp3V8l7Jbax9sTeg9thE5mrd86cDm1MgkVUFg0zpj9Asv2llm/M/VM8
+         9oUYrOQbwokX4as9O1ECRBBxGZAO2TpsnH5W0CohJai8iclnwWa9pywKGLVuC+tIEsLh
+         Pvc/50JUfJdz0hz/7VFJu7SxghgySPYnnKHqW3YnXS06DcF7Oh5EVZkJ0Uy5Qa3bfZWk
+         e/PA==
+X-Gm-Message-State: AGi0PuZTSVwR8mRqyvyl9ZFnDE76SfBvpPG4PMhoGiQ2lKsmgFGtit1i
+        jyeJAZB43Jz7S1QDqqWyYSA=
+X-Google-Smtp-Source: APiQypJyrRv0aS4Yh2ooLaXwJplXtwi5QzSmKmOw4hVeMqh0eP+Sek81CoQP0pujKQ7qi07udXd0ag==
+X-Received: by 2002:a05:651c:c7:: with SMTP id 7mr5972954ljr.124.1586375528305;
+        Wed, 08 Apr 2020 12:52:08 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.06
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:52:06 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:07 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
 Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Marek Belisko <marek@goldelico.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2 24/36] dt-bindings: display: convert toppoly panels to DT Schema
-Date:   Wed,  8 Apr 2020 21:50:57 +0200
-Message-Id: <20200408195109.32692-25-sam@ravnborg.org>
+        Marek Belisko <marek@goldelico.com>
+Subject: [PATCH v2 25/36] dt-bindings: display: convert startek,startek-kd050c to DT Schema
+Date:   Wed,  8 Apr 2020 21:50:58 +0200
+Message-Id: <20200408195109.32692-26-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
@@ -65,173 +63,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2:
-  - dropped use of spi-slave.yaml (Maxime)
-  - added unevaluatedProperties (Maxime)
-
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Maxime Ripard <mripard@kernel.org>
 Cc: Marek Belisko <marek@goldelico.com>
-Cc: H. Nikolaus Schaller <hns@goldelico.com>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../bindings/display/panel/tpo,td.yaml        | 65 +++++++++++++++++++
- .../bindings/display/panel/tpo,td028ttec1.txt | 32 ---------
- .../bindings/display/panel/tpo,td043mtea1.txt | 33 ----------
- 3 files changed, 65 insertions(+), 65 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/tpo,td.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/panel/tpo,td028ttec1.txt
- delete mode 100644 Documentation/devicetree/bindings/display/panel/tpo,td043mtea1.txt
+ .../display/panel/startek,startek-kd050c.txt  |  4 ---
+ .../display/panel/startek,startek-kd050c.yaml | 33 +++++++++++++++++++
+ 2 files changed, 33 insertions(+), 4 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+diff --git a/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.txt b/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.txt
+deleted file mode 100644
+index 70cd8d18d841..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.txt
++++ /dev/null
+@@ -1,4 +0,0 @@
+-Startek Electronic Technology Co. KD050C 5.0" WVGA TFT LCD panel
+-
+-Required properties:
+-- compatible: should be "startek,startek-kd050c"
+diff --git a/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml b/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
 new file mode 100644
-index 000000000000..4aa605613445
+index 000000000000..fd668640afd1
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
-@@ -0,0 +1,65 @@
++++ b/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
+@@ -0,0 +1,33 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/panel/tpo,td.yaml#
++$id: http://devicetree.org/schemas/display/panel/startek,startek-kd050c.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Toppoly TD Panels
-+
-+description: |
-+  The panel must obey the rules for a SPI slave device as specified in
-+  spi/spi-controller.yaml
++title: Startek Electronic Technology Co. KD050C 5.0" WVGA TFT LCD panel
 +
 +maintainers:
-+  - Marek Belisko <marek@goldelico.com>
-+  - H. Nikolaus Schaller <hns@goldelico.com>
++  - Nikita Kiryanov <nikita@compulab.co.il>
 +
 +allOf:
-+  - $ref: panel-common.yaml#
++  - $ref: panel-dpi.yaml#
 +
 +properties:
 +  compatible:
-+    enum:
-+        # Toppoly TD028TTEC1 Panel
-+      - tpo,td028ttec1
-+        # Toppoly TD043MTEA1 Panel
-+      - tpo,td043mtea1
++    items:
++      - const: startek,startek-kd050c
++      - {} # panel-dpi, but not listed here to avoid false select
 +
-+  reg: true
-+  label: true
-+  reset-gpios: true
 +  backlight: true
++  enable-gpios: true
++  height-mm: true
++  label: true
++  panel-timing: true
 +  port: true
++  power-supply: true
++  reset-gpios: true
++  width-mm: true
 +
-+required:
-+  - compatible
-+  - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel: panel@0 {
-+            compatible = "tpo,td043mtea1";
-+            reg = <0>;
-+            spi-max-frequency = <100000>;
-+            spi-cpol;
-+            spi-cpha;
-+
-+            label = "lcd";
-+
-+            reset-gpios = <&gpio7 7 0>;
-+
-+            port {
-+                lcd_in: endpoint {
-+                    remote-endpoint = <&dpi_out>;
-+                };
-+            };
-+        };
-+    };
++additionalProperties: false
 +
 +...
-diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td028ttec1.txt b/Documentation/devicetree/bindings/display/panel/tpo,td028ttec1.txt
-deleted file mode 100644
-index 898e06ecf4ef..000000000000
---- a/Documentation/devicetree/bindings/display/panel/tpo,td028ttec1.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--Toppoly TD028TTEC1 Panel
--========================
--
--Required properties:
--- compatible: "tpo,td028ttec1"
--
--Optional properties:
--- label: a symbolic name for the panel
--- backlight: phandle of the backlight device
--
--Required nodes:
--- Video port for DPI input
--
--Example
---------
--
--lcd-panel: td028ttec1@0 {
--	compatible = "tpo,td028ttec1";
--	reg = <0>;
--	spi-max-frequency = <100000>;
--	spi-cpol;
--	spi-cpha;
--
--	label = "lcd";
--	backlight = <&backlight>;
--	port {
--		lcd_in: endpoint {
--			remote-endpoint = <&dpi_out>;
--		};
--	};
--};
--
-diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td043mtea1.txt b/Documentation/devicetree/bindings/display/panel/tpo,td043mtea1.txt
-deleted file mode 100644
-index ec6d62975162..000000000000
---- a/Documentation/devicetree/bindings/display/panel/tpo,td043mtea1.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--TPO TD043MTEA1 Panel
--====================
--
--Required properties:
--- compatible: "tpo,td043mtea1"
--- reset-gpios: panel reset gpio
--
--Optional properties:
--- label: a symbolic name for the panel
--
--Required nodes:
--- Video port for DPI input
--
--Example
---------
--
--lcd-panel: panel@0 {
--	compatible = "tpo,td043mtea1";
--	reg = <0>;
--	spi-max-frequency = <100000>;
--	spi-cpol;
--	spi-cpha;
--
--	label = "lcd";
--
--	reset-gpios = <&gpio7 7 0>;
--
--	port {
--		lcd_in: endpoint {
--			remote-endpoint = <&dpi_out>;
--		};
--	};
--};
 -- 
 2.20.1
 
