@@ -2,384 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 844891A2911
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A131A28F5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 20:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728820AbgDHTGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:06:02 -0400
-Received: from gproxy5-pub.mail.unifiedlayer.com ([67.222.38.55]:58290 "EHLO
-        gproxy5-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726730AbgDHTGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:06:01 -0400
-X-Greylist: delayed 1313 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Apr 2020 15:06:01 EDT
-Received: from cmgw14.unifiedlayer.com (unknown [10.9.0.14])
-        by gproxy5.mail.unifiedlayer.com (Postfix) with ESMTP id 4CD1F140586
-        for <devicetree@vger.kernel.org>; Wed,  8 Apr 2020 12:44:06 -0600 (MDT)
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-        by cmsmtp with ESMTP
-        id MFgBjlwvYKxvrMFgDjm3H3; Wed, 08 Apr 2020 12:44:06 -0600
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.3 cv=FaEZOq26 c=1 sm=1 tr=0
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=cl8xLZFz6L8A:10:nop_rcvd_month_year
- a=oz0wMknONp8A:10:endurance_base64_authed_username_1 a=vU9dKmh3AAAA:8
- a=tc3lRw1TNdAtvppHo30A:9 a=RhmxLcqiqS2McG0f:21 a=B6lwo8GZ6FleYYhm:21
- a=rsP06fVo5MYu2ilr0aT5:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-        ; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
-        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=/vZs5cp/1KyMqmoUOON5sUkL1L/NlNQhIL8DFDb+LLA=; b=UgirD3KqGYiKVQLgYkZIldYcB/
-        ocB0dsc7IwyI+Zy+BzZrB3bWc6EG3ZXhC57sh/JsdxtnO8FgYgxsOZBPu+v70EF+6CdKm+3J/93EJ
-        FXxI5rx0Bnr446eMlhzPMbTkuCUmt3M4S8zHzqCBLRd2DgoYPZwDd3HlX+tX1vnDqaygocFwuP8eU
-        7T69ghhXOh8BCKkNLPrXNvuk3e8na3D5dUf4M6oxhA7K18g6mEyLs3hmKl9OYp21TqXGCL227Nkvl
-        fLvRQvGQ8h1r3bigDHYKIu2UaFPCmuXEXWu+ozXyLzAnx9X3d5/XwOC9YyyNlD95qqD9v2VhdbpxR
-        dF+mQ/Rg==;
-Received: from dslb-002-205-079-159.002.205.pools.vodafone-ip.de ([2.205.79.159]:46518 helo=parthiban.fritz.box)
-        by md-in-79.webhostbox.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <parthiban@linumiz.com>)
-        id 1jMFgA-003UGH-Rs; Wed, 08 Apr 2020 18:44:03 +0000
-From:   Parthiban Nallathambi <parthiban@linumiz.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Parthiban Nallathambi <parthiban@linumiz.com>
-Subject: [PATCH] ARM: dts: imx6ull: add MYiR MYS-6ULX SBC
-Date:   Wed,  8 Apr 2020 20:43:51 +0200
-Message-Id: <20200408184351.135716-1-parthiban@linumiz.com>
-X-Mailer: git-send-email 2.26.0
+        id S1728687AbgDHS64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 14:58:56 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:13573 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726730AbgDHS64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 14:58:56 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e8e1eba0001>; Wed, 08 Apr 2020 11:58:02 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 08 Apr 2020 11:58:55 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 08 Apr 2020 11:58:55 -0700
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 8 Apr
+ 2020 18:58:55 +0000
+Received: from [10.2.171.241] (10.124.1.5) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 8 Apr 2020
+ 18:58:53 +0000
+Subject: Re: [RFC PATCH v6 6/9] media: tegra: Add Tegra210 Video input driver
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <helen.koike@collabora.com>
+CC:     <sboyd@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1585963507-12610-1-git-send-email-skomatineni@nvidia.com>
+ <e3712e7b-b335-b35b-a94f-24eb85122dca@nvidia.com>
+ <b1726d33-0d35-9323-a747-407148d0104e@gmail.com>
+ <eb80178f-30f4-8f46-51cd-ea3f4914b81d@nvidia.com>
+ <dd16c560-ba8f-e7df-5dc4-5227e0043196@nvidia.com>
+ <fea4f0a1-4a20-34d4-9eda-e4a599eeeffc@nvidia.com>
+ <760d071e-0cbc-b3eb-9231-fb9f9ecb44a6@nvidia.com>
+ <9e317f65-8a02-3b15-cfec-8e0d8374130e@gmail.com>
+ <97b35910-4c93-123a-43a0-eb14476ed0f3@nvidia.com>
+ <84ad4e2d-6ac1-e1f4-1c55-5edaae850631@nvidia.com>
+ <15a879b3-8fb9-6821-3cdc-104ba583ac12@gmail.com>
+ <0c425505-347f-7418-af7e-d121fe0d06dc@nvidia.com>
+ <db7c7051-5674-cdb9-0aa4-ee94125b3024@gmail.com>
+ <1a31cd60-739f-0660-1c45-31487d2f2128@nvidia.com>
+ <603084a5-249a-4fe2-3646-e9335ef9ab43@nvidia.com>
+ <7895b9c6-f27d-8939-73d7-67d785e1a8b7@nvidia.com>
+ <ea60b489-990e-4b15-e215-d93381a1371e@nvidia.com>
+ <b2405c2a-73c0-ad69-ccea-0388caf8045c@gmail.com>
+ <15d8b525-67b5-b437-f7fd-89f80cd0d9f6@nvidia.com>
+Message-ID: <a638bb8e-bb50-7aa5-05a0-8de1c6207ba7@nvidia.com>
+Date:   Wed, 8 Apr 2020 11:58:52 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 2.205.79.159
-X-Source-L: No
-X-Exim-ID: 1jMFgA-003UGH-Rs
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: dslb-002-205-079-159.002.205.pools.vodafone-ip.de (parthiban.fritz.box) [2.205.79.159]:46518
-X-Source-Auth: parthiban@linumiz.com
-X-Email-Count: 3
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
+In-Reply-To: <15d8b525-67b5-b437-f7fd-89f80cd0d9f6@nvidia.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1586372282; bh=WiXwOMB6IdZZe61YJiuIGQp9xJN94uE559/iv1nBzAs=;
+        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=fFyW9LaIcFrNndkItDjS2qGndrz4UgUFDjPq4tudYfhTi00UY4WZy0FIKk49HhNOE
+         NiJdPomwPyEIz+VIalXMiDC6qJU6BPFqDxGZkq6UXKcKW/u60DaHkWo/v0iWh7x/a+
+         5QqsZHrpmgPppeExol8f4P9/lJZhWP+kVoCGIjmk1UrjVbG8I11ox652XWtQPtzHHl
+         ++wD38kDFinJCbzgj7lt3tLLMnk1oizZVxNhvsHi27rFlAszVe82VkBAjKFBvTtvQe
+         mMCA4jKF/OsWzOWNHE7Ef3fmHjDZbau4v+XZUdGoNrVAFrwqPdkXsQxlgdqZtOjLAK
+         6F9w/AXFhy1CQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the MYiR imx6ULL based single board computer
-equipped with on board 256MB NAND & RAM. The board also
-provides expansion header for expansion board, but this
-commit adds only support for SBC.
 
-Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
----
- arch/arm/boot/dts/Makefile                       |   1 +
- arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts |  19 ++
- arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi     | 247 +++++++++++++++++++++++
- 3 files changed, 267 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
- create mode 100644 arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e8dd99201397..eab86051d782 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -612,6 +612,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-14x14-evk.dtb \
- 	imx6ull-colibri-eval-v3.dtb \
- 	imx6ull-colibri-wifi-eval-v3.dtb \
-+	imx6ull-myir-mys-6ulx-nand.dtb \
- 	imx6ull-opos6uldev.dtb \
- 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
- 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
-diff --git a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
-new file mode 100644
-index 000000000000..6eaba8a8d7a9
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-nand.dts
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 Linumiz
-+ * Author: Parthiban Nallathambi <parthiban@linumiz.com>
-+ */
-+
-+/dts-v1/;
-+#include "imx6ull.dtsi"
-+#include "imx6ull-myir-mys-6ulx.dtsi"
-+
-+/ {
-+	model = "MYiR i.MX6ULL MYS-6ULX Single Board Computer with NAND";
-+	compatible = "myir,imx6ul-mys-6ulx-nand", "myir,imx6ul-mys-6ulx",
-+		     "fsl,imx6ull";
-+};
-+
-+&gpmi {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
-new file mode 100644
-index 000000000000..f0a514187c21
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx.dtsi
-@@ -0,0 +1,247 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 Linumiz
-+ * Author: Parthiban Nallathambi <parthiban@linumiz.com>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	model = "MYiR MYS-6ULX Single Board Computer";
-+	compatible = "myir,imx6ull-mys-6ulx", "fsl,imx6ull";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	regulators: regulators {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		vdd_5v: regulator@0 {
-+			compatible = "regulator-fixed";
-+			regulator-name = "VDD_5V";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		vdd_3v3: regulator@1 {
-+			compatible = "regulator-fixed";
-+			regulator-name = "VDD_3V3";
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-always-on;
-+			vin-supply = <&vdd_5v>;
-+		};
-+	};
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet1>;
-+	phy-mode = "rmii";
-+	phy-handle = <&ethphy0>;
-+	phy-supply = <&vdd_3v3>;
-+	status = "okay";
-+
-+	mdio: mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			reg = <0>;
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			interrupt-parent = <&gpio5>;
-+			interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&clks IMX6UL_CLK_ENET_REF>;
-+			clock-names = "rmii-ref";
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&gpmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpmi_nand>;
-+	nand-on-flash-bbt;
-+	status = "disabled";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_otg1_id>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	wakeup-source;
-+	vmmc-supply = <&vdd_3v3>;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	keep-power-in-suspend;
-+	vmmc-supply = <&vdd_3v3>;
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_enet1: enet1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
-+			MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
-+			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
-+			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
-+			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x1b0b0
-+			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x1b0b0
-+			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
-+			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
-+			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
-+			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
-+			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_gpmi_nand: gpminandgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_CLE__RAWNAND_CLE		0x0b0b1
-+			MX6UL_PAD_NAND_ALE__RAWNAND_ALE		0x0b0b1
-+			MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B	0x0b0b1
-+			MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0x0b000
-+			MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B	0x0b0b1
-+			MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B	0x0b0b1
-+			MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B	0x0b0b1
-+			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0x0b0b1
-+			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0x0b0b1
-+			MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02	0x0b0b1
-+			MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03	0x0b0b1
-+			MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04	0x0b0b1
-+			MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05	0x0b0b1
-+			MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06	0x0b0b1
-+			MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07	0x0b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usb_otg1_id: usbotg1idgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID	0x17059
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-+			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x17059
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x10069
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x17059
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x17059
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x17059
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x17059
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x17059
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x17059
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x17059
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x17059
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x17059
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x100b9
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x170b9
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x170b9
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x170b9
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x170b9
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x170b9
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x170b9
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x170b9
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x170b9
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x170b9
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x100f9
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x170f9
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x170f9
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x170f9
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x170f9
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x170f9
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x170f9
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x170f9
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x170f9
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x170f9
-+		>;
-+	};
-+};
--- 
-2.11.0
-
+On 4/8/20 10:45 AM, Sowjanya Komatineni wrote:
+>
+> On 4/8/20 7:21 AM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> 08.04.2020 03:00, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> ...
+>>>>>>> I suppose that taking a shot takes at least few milliseconds, which
+>>>>>>> should be unacceptable to waste.
+>>>>>> As long as buffers are in queue we have to keep processing each
+>>>>>> buffer and between buffers obviously we have to wait for previous
+>>>>>> frames to finish and this why we have separate thread for frame
+>>>>>> finish where we can have next buffer capture ready and issue while
+>>>>>> previous frame memory write happens
+>>>> Also we specified numbers buffers as 3 to vb2 queue. So this is rare
+>>>> case but to prevent issuing more than 2 at a time as VI HW is only
+>>>> double buffered and syncpt fifo max depth is 2 added this to be safer.
+>>> To be more clear, when more buffers are enqueued from userspace always
+>>> capture list will be full and thread will be busy in capture till=20
+>>> either
+>>> error or stop stream request happens.
+>>>
+>> If kthreads take more than 1% of CPU time during capture (video) with
+>> more than 2 buffers in queue, then it's not good and I think you should
+>> do something about it. If kthreads stay at ~0%, then it should be okay
+>> as-is.
+>
+> VI outstanding requests max can only be 2=C2=A0 as syncpt fifo depth is 2=
+=C2=A0=20
+> and waiting to issue next capture when already 2 captures are inflight=20
+> happens only during beginning of streaming where buffers allocated go=20
+> thru capture for first time after queuing.
+>
+> same buffers are returned to userspace after capture and same=20
+> allocated buffers will be queued back for subsequent captures.
+>
+> So this case of holding to issue single shot when already single shot=20
+> is issue for 2 frames simultaneous happens only during beginning of=20
+> start stream and also we set num_buffers to allocate for queue as 3=20
+> although 2 is good enough where we will not hit this case even during=20
+> streaming start with 2 buffers
+>
+As 2 buffers are good enough to be clear will update in v7 to use 2=20
+buffers so we don't need to check for more than 2 outstanding buffers.
