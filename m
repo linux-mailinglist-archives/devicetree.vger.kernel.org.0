@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FECA1A29E1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E86C71A29E6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2020 21:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730264AbgDHTwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Apr 2020 15:52:19 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:37455 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730271AbgDHTwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:19 -0400
-Received: by mail-lj1-f196.google.com with SMTP id r24so9016774ljd.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:18 -0700 (PDT)
+        id S1730271AbgDHTwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Apr 2020 15:52:22 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:41850 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730270AbgDHTwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Apr 2020 15:52:21 -0400
+Received: by mail-lf1-f67.google.com with SMTP id z23so6109011lfh.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2020 12:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=glF1/rVfsCqrnm2QIZUd5FUTcYcMxvbPO7G9VlD0g4o=;
-        b=TXoGtZr+nOtgB4VYGHxmb1dac8cIditt0jI3CI66PoqGALYR0EUPgcdkMG6+2+M4+J
-         3WlTyLSL0z+kidOINhHYirgfHe+zZmaVoVraqDorCICi48DE4hB/XVwmM/SGmP2qQsBp
-         4aJYupEbERILN8JBTfBdnvJUIJMEc4XlAAzxC+HTu/uU1p0wn5UuLPUbNyhhnpxtM9sC
-         PPaJ+U81+HTYa1RyklZQ5EnBiiZ+TbLFX4muBDB6LWL+bnH0P5Cc5k8BrKBzD7hS5QtC
-         b6rfukPO9Jt/ix6KSRBODx8Fr4hzgbKEksq7C1aS+MpiQAAtPG+ucKOUrEkO4SGYyXiz
-         Mmlg==
+        bh=VJCCkRIdQYZizf3lrj9PmXMBXsnQM3CNWOz+i68b5qs=;
+        b=ioDaWnCBdekR5Uypkvp87fPf4bKJMGHIPurqS6rJwzGNrZtdwBS7Zxch4a7PKgxkXN
+         t1oeMHRrRDQmNJVweBUgYnMyupHxdidXPOR7CDTnvp0GAdNIg2Wm9mevleve2AT2kq7i
+         8QWozhl+s4iO1DXIjUDYnwYKNa5RVgNmLba+rBweF4aQb7s07wDXbKqJJhPY37EMeoqX
+         yF9f6tdGZ0yS6m3cIUZFk7uJIftWEtiqRHZ6LiYFWm7Fm9hvjRPEB/qH5Ch1wgtueALA
+         deT9tGAZprpHlRFhXk9O/TiCh1m9PPE9h3jQ0puWydDuBDcpsgzjgrA489O/r/oAltMR
+         DQ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=glF1/rVfsCqrnm2QIZUd5FUTcYcMxvbPO7G9VlD0g4o=;
-        b=lZDjRbzwuriWzEoYVv+u6FpUMOUYonn93TDb72aSsWyqMRumPVlj6+nCnKBr2x1xH0
-         nnQnUm33YNVagYLMZHbMnKFDLPJynevkNo2YQ1fYcfvzlzZm3X0qfFTJpkg0WxDdl/CN
-         3qnLcj6YFBTJuZKb4R6rkBDoxzJcNyURlhNIHvUD1FSGSe9YlFad8k/kNhSxz8EmpObs
-         gcF9oQK8yTTdHYLXWfiIbCkH38Ri8DYftklehJaQjBqww4a+Hf9+DBcnjZ8Pu9piL2ES
-         JSzspBRHXYDGnfGb9iGt7w0nJeb36CetytW+tkW3RmxLYhskQubYoT7Lzw27XeOYQMsI
-         6uiA==
-X-Gm-Message-State: AGi0PuZypofpTPMtQvpbdsi9oWYuiUJ/tiq8yb2TpS9XBcwvi3KWIy3s
-        cE79HLeQu7CsOAHfvu8IV+g=
-X-Google-Smtp-Source: APiQypJnTzh3Rj9Tbc9V7SJA2WdEqENi7hFVY0Mw/3rDIyFcahVAgmxEafb6PRDsyIx8x0U6Fe5MpA==
-X-Received: by 2002:a2e:a549:: with SMTP id e9mr845431ljn.28.1586375537466;
-        Wed, 08 Apr 2020 12:52:17 -0700 (PDT)
+        bh=VJCCkRIdQYZizf3lrj9PmXMBXsnQM3CNWOz+i68b5qs=;
+        b=KN4vhxt+/ReT1GboKWJO6Pxs0zVjdrGfWHGyYAsQMaSj0hUyIwIVKlSa9s5Xm5OxyM
+         p+tZboSmLyIEMdLkyBd3vRJysjE1OftdTRhUJEivI02ieXk79PbYi13ei1vp0/IoLSeq
+         q+tcZc5Y3mxfr63lLw4bBfzXBojvDCfpXPUli1n4VYL9fqnTsCPD8PCVUv21c28W2vyJ
+         a7NUtnTpuB9/5VZ20Cr6+8CBoSJ695U5c0Ivj9ipzLD3IiaayrtG7XU40YU87SGPt1Kf
+         8NghI6TDQ6omR9SZNxL3/A6oLdgxxBumIRrL8sIKrcTHdB4ndSFU1AqI2OY8d12VzU6I
+         kTEw==
+X-Gm-Message-State: AGi0PuYE42XWSjPRPWQgJiGzHCoPGCejKEvrEeH70EGctHVelhotIzvP
+        XmfNp6HD2jDDgj6oUn6U1zMy1xKsPE0=
+X-Google-Smtp-Source: APiQypL2DbbPq8gMuU8zl3cgNaQitOS0YkG5vNPE+/UUfphZWIW1fa7PoalWduD5LbMTKMGom2c0ZQ==
+X-Received: by 2002:ac2:489b:: with SMTP id x27mr5601399lfc.60.1586375538493;
+        Wed, 08 Apr 2020 12:52:18 -0700 (PDT)
 Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
-        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.16
+        by smtp.gmail.com with ESMTPSA id i20sm3961304lfe.15.2020.04.08.12.52.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 12:52:17 -0700 (PDT)
+        Wed, 08 Apr 2020 12:52:18 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
 Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH v2 34/36] dt-bindings: display: convert lgphilips,lb035q02 to DT Schema
-Date:   Wed,  8 Apr 2020 21:51:07 +0200
-Message-Id: <20200408195109.32692-35-sam@ravnborg.org>
+        Stefan Mavrodiev <stefan@olimex.com>
+Subject: [PATCH v2 35/36] dt-bindings: display: convert olimex,lcd-olinuxino to DT Schema
+Date:   Wed,  8 Apr 2020 21:51:08 +0200
+Message-Id: <20200408195109.32692-36-sam@ravnborg.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200408195109.32692-1-sam@ravnborg.org>
 References: <20200408195109.32692-1-sam@ravnborg.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -65,125 +65,158 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 v2:
-  - drop use of spi-slave.yaml (Maxime)
-  - added unevaluatedProperties (maxime)
+  - use "ic2" node name in example (Rob)
 
 Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stefan Mavrodiev <stefan@olimex.com>
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../display/panel/lgphilips,lb035q02.txt      | 33 -----------
- .../display/panel/lgphilips,lb035q02.yaml     | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+ .../display/panel/olimex,lcd-olinuxino.txt    | 42 -----------
+ .../display/panel/olimex,lcd-olinuxino.yaml   | 70 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 71 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.txt b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.txt
+diff --git a/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.txt b/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.txt
 deleted file mode 100644
-index 1a1e653e5407..000000000000
---- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.txt
+index a89f9c830a85..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.txt
 +++ /dev/null
-@@ -1,33 +0,0 @@
--LG.Philips LB035Q02 Panel
--=========================
+@@ -1,42 +0,0 @@
+-Binding for Olimex Ltd. LCD-OLinuXino bridge panel.
+-
+-This device can be used as bridge between a host controller and LCD panels.
+-Currently supported LCDs are:
+-  - LCD-OLinuXino-4.3TS
+-  - LCD-OLinuXino-5
+-  - LCD-OLinuXino-7
+-  - LCD-OLinuXino-10
+-
+-The panel itself contains:
+-  - AT24C16C EEPROM holding panel identification and timing requirements
+-  - AR1021 resistive touch screen controller (optional)
+-  - FT5x6 capacitive touch screnn controller (optional)
+-  - GT911/GT928 capacitive touch screen controller (optional)
+-
+-The above chips share same I2C bus. The EEPROM is factory preprogrammed with
+-device information (id, serial, etc.) and timing requirements.
+-
+-Touchscreen bingings can be found in these files:
+-  - input/touchscreen/goodix.txt
+-  - input/touchscreen/edt-ft5x06.txt
+-  - input/touchscreen/ar1021.txt
 -
 -Required properties:
--- compatible: "lgphilips,lb035q02"
--- enable-gpios: panel enable gpio
+-  - compatible: should be "olimex,lcd-olinuxino"
+-  - reg: address of the configuration EEPROM, should be <0x50>
+-  - power-supply: phandle of the regulator that provides the supply voltage
 -
 -Optional properties:
--- label: a symbolic name for the panel
+-  - enable-gpios: GPIO pin to enable or disable the panel
+-  - backlight: phandle of the backlight device attacked to the panel
 -
--Required nodes:
--- Video port for DPI input
--
--Example
---------
--
--lcd-panel: panel@0 {
--	compatible = "lgphilips,lb035q02";
--	reg = <0>;
--	spi-max-frequency = <100000>;
--	spi-cpol;
--	spi-cpha;
--
--	label = "lcd";
--
--	enable-gpios = <&gpio7 7 0>;
--
--	port {
--		lcd_in: endpoint {
--			remote-endpoint = <&dpi_out>;
--		};
+-Example:
+-&i2c2 {
+-	panel@50 {
+-		compatible = "olimex,lcd-olinuxino";
+-		reg = <0x50>;
+-		power-supply = <&reg_vcc5v0>;
+-		enable-gpios = <&pio 7 8 GPIO_ACTIVE_HIGH>;
+-		backlight = <&backlight>;
 -	};
 -};
-diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+diff --git a/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml b/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
 new file mode 100644
-index 000000000000..830e335ddb53
+index 000000000000..2329d9610f83
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
-@@ -0,0 +1,59 @@
++++ b/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
+@@ -0,0 +1,70 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/panel/lgphilips,lb035q02.yaml#
++$id: http://devicetree.org/schemas/display/panel/olimex,lcd-olinuxino.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: LG.Philips LB035Q02 Panel
-+
-+description: |
-+  The panel must obey the rules for a SPI slave device as specified in
-+  spi/spi-controller.yaml
++title: Binding for Olimex Ltd. LCD-OLinuXino bridge panel.
 +
 +maintainers:
-+  - Tomi Valkeinen <tomi.valkeinen@ti.com>
++  - Stefan Mavrodiev <stefan@olimex.com>
++
++description: |
++  This device can be used as bridge between a host controller and LCD panels.
++  Currently supported LCDs are:
++    - LCD-OLinuXino-4.3TS
++    - LCD-OLinuXino-5
++    - LCD-OLinuXino-7
++    - LCD-OLinuXino-10
++
++  The panel itself contains:
++    - AT24C16C EEPROM holding panel identification and timing requirements
++    - AR1021 resistive touch screen controller (optional)
++    - FT5x6 capacitive touch screnn controller (optional)
++    - GT911/GT928 capacitive touch screen controller (optional)
++
++  The above chips share same I2C bus. The EEPROM is factory preprogrammed with
++  device information (id, serial, etc.) and timing requirements.
++
++  Touchscreen bingings can be found in these files:
++    - input/touchscreen/goodix.yaml
++    - input/touchscreen/edt-ft5x06.txt
++    - input/touchscreen/ar1021.txt
 +
 +allOf:
 +  - $ref: panel-common.yaml#
 +
 +properties:
 +  compatible:
-+    const: lgphilips,lb035q02
++    const: olimex,lcd-olinuxino
 +
-+  label: true
++  backlight: true
 +  enable-gpios: true
-+  port: true
++  power-supply: true
++  reg: true
 +
 +required:
 +  - compatible
-+  - enable-gpios
-+  - port
++  - reg
++  - power-supply
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    spi {
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +
-+        panel: panel@0 {
-+            compatible = "lgphilips,lb035q02";
-+            reg = <0>;
-+            spi-max-frequency = <100000>;
-+            spi-cpol;
-+            spi-cpha;
-+
-+            label = "lcd";
-+
-+            enable-gpios = <&gpio7 7 0>;
-+
-+            port {
-+                lcd_in: endpoint {
-+                    remote-endpoint = <&dpi_out>;
-+                };
-+            };
++        panel@50 {
++            compatible = "olimex,lcd-olinuxino";
++            reg = <0x50>;
++            power-supply = <&reg_vcc5v0>;
++            enable-gpios = <&pio 7 8 GPIO_ACTIVE_HIGH>;
++            backlight = <&backlight>;
 +        };
 +    };
 +
 +...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index eec316171b5e..22e63341006e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5356,7 +5356,7 @@ DRM DRIVER FOR OLIMEX LCD-OLINUXINO PANELS
+ M:	Stefan Mavrodiev <stefan@olimex.com>
+ S:	Maintained
+ F:	drivers/gpu/drm/panel/panel-olimex-lcd-olinuxino.c
+-F:	Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.txt
++F:	Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
+ 
+ DRM DRIVER FOR PERVASIVE DISPLAYS REPAPER PANELS
+ M:	Noralf Trønnes <noralf@tronnes.org>
 -- 
 2.20.1
 
