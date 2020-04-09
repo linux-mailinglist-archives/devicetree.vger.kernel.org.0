@@ -2,185 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8676C1A34D0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 15:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C46B1A3DF9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 04:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726786AbgDINZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Apr 2020 09:25:11 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:38042 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726632AbgDINZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 09:25:11 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 0A542297B00
-Subject: Re: [PATCH v2] arm64: dts: mt8173: Add gce setting in mmsys and
- display node
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-References: <20200409055012.199320-1-hsinyi@chromium.org>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <63058ea1-9cce-2c2e-0041-9369033a7b33@collabora.com>
-Date:   Thu, 9 Apr 2020 15:25:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1726680AbgDJCHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Apr 2020 22:07:43 -0400
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.115]:32506 "EHLO
+        mail1.bemta26.messagelabs.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725987AbgDJCHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 22:07:41 -0400
+Received: from [100.113.5.56] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-4.bemta.az-b.eu-central-1.aws.symcld.net id 33/F6-46409-AE4DF8E5; Fri, 10 Apr 2020 02:07:38 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAIsWRWlGSWpSXmKPExsVy8MN7Xd1XV/r
+  jDKYs5raYf+Qcq8XhRS8YLW5++sZqcXnXHDaLpdcvMlm07j3C7sDmsWbeGkaPnbPusntsWtXJ
+  5vF5k1wASxRrZl5SfkUCa8bbC+1sBQc0K952aDYw7lLqYuTiEBJYyyjx/WI7excjJ5BTKfH/9
+  zk2EJtXIELizeHXYDangJnEmbYeqBpTiUXt9xhBbDYBHYlHM9czgdgsAioSjU03mUFsYYFQiZ
+  2H3oP1igiUSxz4OJMVZBmzwDRGiT0fDzNDLBCUODnzCQuIzSwgIXHwxQtmiAVaEufWrGKcwMg
+  7C0nZLCRlCxiZVjFaJBVlpmeU5CZm5ugaGhjoGhoa65rompnpJVbpJumlluomp+aVFCUCJfUS
+  y4v1iitzk3NS9PJSSzYxAoM1pZDFaQfj3zXv9Q4xSnIwKYnynjzVHyfEl5SfUpmRWJwRX1Sak
+  1p8iFGGg0NJgrfgMlBOsCg1PbUiLTMHGDkwaQkOHiUR3neXgNK8xQWJucWZ6RCpU4zGHL83LF
+  nEzPHg6r1VzEIsefl5qVLivEEgkwRASjNK8+AGwSL6EqOslDAvIwMDgxBPQWpRbmYJqvwrRnE
+  ORiVhXgOQhTyZeSVw+14BncIEdMrhcLBTShIRUlINTOZLrQLN89tf91rpeATVzP/1cr/mDtv2
+  DX+zhMs3fpFOUl++5/ofPs3QdNHL5Ufefn4/YU2umV/bi/3lLSw+Aame2Z+u5i8xWOETO6d73
+  5d+UcHZTy4d3/v6Y19SSQTji6DYFa+CD+eIHpqRl/Lia+rOt8mJ/upPZ10utTd6zXo5dvrOxN
+  qnuhdUrse3Vy3I+fL7w5H8htNPTyVs6zKQ/u77vmXCFmXm7YXCd9WfZc/LPMO8zIq9dLF84/e
+  s4pvMWr222z/5fsoMSqwW3iUc8Nlu8+EzjDs+lBSdcT5TJfrlqIzmygATDQ01ffPsEJ2NkYeZ
+  V5sw7Orela4UZ/4nc+aELxqpm9iSInaySHnxKrEUZyQaajEXFScCAJt3cPFjAwAA
+X-Env-Sender: roy.im.opensource@diasemi.com
+X-Msg-Ref: server-24.tower-239.messagelabs.com!1586484457!2817432!3
+X-Originating-IP: [193.240.239.45]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.50.1; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 26357 invoked from network); 10 Apr 2020 02:07:38 -0000
+Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
+  by server-24.tower-239.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 10 Apr 2020 02:07:38 -0000
+Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
+ NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
+ 14.3.468.0; Fri, 10 Apr 2020 04:07:35 +0200
+Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
+ 7F43113F673; Fri, 10 Apr 2020 11:07:34 +0900 (KST)
+Message-ID: <510b69cad56ee655c07b2e5dbc6f8699f3b426dd.1586439647.git.Roy.Im@diasemi.com>
+In-Reply-To: <cover.1586439647.git.Roy.Im@diasemi.com>
+References: <cover.1586439647.git.Roy.Im@diasemi.com>
+From:   Roy Im <roy.im.opensource@diasemi.com>
+Date:   Thu, 9 Apr 2020 22:40:47 +0900
+Subject: [RESEND PATCH V11 2/3] dt-bindings: input: Add document bindings for
+ DA7280
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Support Opensource <support.opensource@diasemi.com>,
+        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200409055012.199320-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+Add device tree binding information for DA7280 haptic driver.
+Example bindings for DA7280 are added.
 
-Thanks for sending the patch upstream
+Reviewed-by: Rob Herring <robh@kernel.org>.
 
-On 9/4/20 7:50, Hsin-Yi Wang wrote:
-> In order to use GCE function, we need add some informations
-> into display node (mboxes, mediatek,gce-client-reg, mediatek,gce-events).
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+Signed-off-by: Roy Im <roy.im.opensource@diasemi.com>
 
-Tested on my Acer Chromebook R13, so
+---
+v11: No changes.
+v10: No changes.
+v9: No changes.
+v8: Updated descriptions for new properties.
+v7: No changes.
+v6: No changes.
+v5: Updated descriptions and fixed errors.
+v4: Fixed commit message, properties.
+v3: Fixed subject format.
+v2: No changes
 
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-> ---
-> change log:
-> v1->v2: align with
-> 19d8e335d58a ("dt-binding: gce: remove atomic_exec in mboxes property")
-> 60fa8c13ab1a ("drm/mediatek: Move gce event property to mutex device node")
-> ---
->  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index ccb8e88a60c5..8337ba42845d 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -549,7 +549,7 @@ gce: mailbox@10212000 {
->  			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
->  			clocks = <&infracfg CLK_INFRA_GCE>;
->  			clock-names = "gce";
-> -			#mbox-cells = <3>;
-> +			#mbox-cells = <2>;
->  		};
->  
->  		mipi_tx0: mipi-dphy@10215000 {
-> @@ -916,6 +916,9 @@ mmsys: clock-controller@14000000 {
->  			assigned-clocks = <&topckgen CLK_TOP_MM_SEL>;
->  			assigned-clock-rates = <400000000>;
->  			#clock-cells = <1>;
-> +			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> +				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->  		};
->  
->  		mdp_rdma0: rdma@14001000 {
-> @@ -996,6 +999,7 @@ ovl0: ovl@1400c000 {
->  			clocks = <&mmsys CLK_MM_DISP_OVL0>;
->  			iommus = <&iommu M4U_PORT_DISP_OVL0>;
->  			mediatek,larb = <&larb0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
->  		};
->  
->  		ovl1: ovl@1400d000 {
-> @@ -1006,6 +1010,7 @@ ovl1: ovl@1400d000 {
->  			clocks = <&mmsys CLK_MM_DISP_OVL1>;
->  			iommus = <&iommu M4U_PORT_DISP_OVL1>;
->  			mediatek,larb = <&larb4>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
->  		};
->  
->  		rdma0: rdma@1400e000 {
-> @@ -1016,6 +1021,7 @@ rdma0: rdma@1400e000 {
->  			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
->  			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
->  			mediatek,larb = <&larb0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
->  		};
->  
->  		rdma1: rdma@1400f000 {
-> @@ -1026,6 +1032,7 @@ rdma1: rdma@1400f000 {
->  			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
->  			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
->  			mediatek,larb = <&larb4>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
->  		};
->  
->  		rdma2: rdma@14010000 {
-> @@ -1036,6 +1043,7 @@ rdma2: rdma@14010000 {
->  			clocks = <&mmsys CLK_MM_DISP_RDMA2>;
->  			iommus = <&iommu M4U_PORT_DISP_RDMA2>;
->  			mediatek,larb = <&larb4>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
->  		};
->  
->  		wdma0: wdma@14011000 {
-> @@ -1046,6 +1054,7 @@ wdma0: wdma@14011000 {
->  			clocks = <&mmsys CLK_MM_DISP_WDMA0>;
->  			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
->  			mediatek,larb = <&larb0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
->  		};
->  
->  		wdma1: wdma@14012000 {
-> @@ -1056,6 +1065,7 @@ wdma1: wdma@14012000 {
->  			clocks = <&mmsys CLK_MM_DISP_WDMA1>;
->  			iommus = <&iommu M4U_PORT_DISP_WDMA1>;
->  			mediatek,larb = <&larb4>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
->  		};
->  
->  		color0: color@14013000 {
-> @@ -1064,6 +1074,7 @@ color0: color@14013000 {
->  			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->  			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x3000 0x1000>;
->  		};
->  
->  		color1: color@14014000 {
-> @@ -1072,6 +1083,7 @@ color1: color@14014000 {
->  			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->  			clocks = <&mmsys CLK_MM_DISP_COLOR1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
->  		};
->  
->  		aal@14015000 {
-> @@ -1080,6 +1092,7 @@ aal@14015000 {
->  			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->  			clocks = <&mmsys CLK_MM_DISP_AAL>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
->  		};
->  
->  		gamma@14016000 {
-> @@ -1088,6 +1101,7 @@ gamma@14016000 {
->  			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->  			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x6000 0x1000>;
->  		};
->  
->  		merge@14017000 {
-> @@ -1193,6 +1207,8 @@ mutex: mutex@14020000 {
->  			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
->  			clocks = <&mmsys CLK_MM_MUTEX_32K>;
-> +			mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
-> +                                              <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
->  		};
->  
->  		larb0: larb@14021000 {
-> 
+ .../devicetree/bindings/input/dlg,da7280.txt       | 109 +++++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
+
+diff --git a/Documentation/devicetree/bindings/input/dlg,da7280.txt b/Documentation/devicetree/bindings/input/dlg,da7280.txt
+new file mode 100644
+index 0000000..e6b719d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/dlg,da7280.txt
+@@ -0,0 +1,109 @@
++Dialog Semiconductor DA7280 Haptics bindings
++
++Required properties:
++- compatible: Should be "dlg,da7280".
++- reg: Specifies the I2C slave address.
++
++- interrupt-parent : Specifies the phandle of the interrupt controller to
++  which the IRQs from DA7280 are delivered to.
++
++- dlg,actuator-type: Set Actuator type. it should be one of:
++  "LRA" - Linear Resonance Actuator type.
++  "ERM-bar" - Bar type Eccentric Rotating Mass.
++  "ERM-coin" - Coin type Eccentric Rotating Mass.
++
++- dlg,const-op-mode: Haptic operation mode for FF_CONSTANT.
++  Possible values:
++	1 - Direct register override(DRO) mode triggered by i2c(default),
++	2 - PWM data source mode controlled by PWM duty,
++- dlg,periodic-op-mode: Haptic operation mode for FF_PERIODIC.
++  Possible values:
++	1 - Register triggered waveform memory(RTWM) mode, the pattern
++	    assigned to the PS_SEQ_ID played as much times as PS_SEQ_LOOP,
++	2 - Edge triggered waveform memory(ETWM) mode, external GPI(N)
++	    control are required to enable/disable and it needs to keep
++	    device enabled by sending magnitude (X > 0),
++	    the pattern is assigned to the GPI(N)_SEQUENCE_ID below.
++	The default value is 1 for both of the operation modes.
++	For more details, please see the datasheet.
++
++- dlg,nom-microvolt: Nominal actuator voltage rating.
++  Valid values: 0 - 6000000.
++- dlg,abs-max-microvolt: Absolute actuator maximum voltage rating.
++  Valid values: 0 - 6000000.
++- dlg,imax-microamp: Actuator max current rating.
++  Valid values: 0 - 252000.
++  Default: 130000.
++- dlg,impd-micro-ohms: the impedance of the actuator in micro ohms.
++  Valid values: 0 - 1500000000.
++
++Optional properties:
++- pwms : phandle to the physical PWM(Pulse Width Modulation) device.
++  PWM properties should be named "pwms". And number of cell is different
++  for each pwm device.
++  (See Documentation/devicetree/bindings/pwm/pwm.txt
++   for further information relating to pwm properties)
++
++- dlg,ps-seq-id: the PS_SEQ_ID(pattern ID in waveform memory inside chip)
++  to play back when RTWM-MODE is enabled.
++  Valid range: 0 - 15.
++- dlg,ps-seq-loop: the PS_SEQ_LOOP, Number of times the pre-stored sequence
++  pointed to by PS_SEQ_ID or GPI(N)_SEQUENCE_ID is repeated.
++  Valid range: 0 - 15.
++- dlg,gpiN-seq-id: the GPI(N)_SEQUENCE_ID, pattern to play
++  when gpi0 is triggered, 'N' must be 0 - 2.
++  Valid range: 0 - 15.
++- dlg,gpiN-mode: the pattern mode which can select either
++  "Single-pattern" or "Multi-pattern", 'N' must be 0 - 2.
++- dlg,gpiN-polarity: gpiN polarity which can be chosen among
++  "Rising-edge", "Falling-edge" and "Both-edge",
++  'N' must be 0 - 2
++  Haptic will work by this edge option in case of ETWM mode.
++
++- dlg,resonant-freq-hz: use in case of LRA.
++  the frequency range: 50 - 300.
++  Default: 205.
++
++- dlg,bemf-sens-enable: Enable for internal loop computations.
++- dlg,freq-track-enable: Enable for resonant frequency tracking.
++- dlg,acc-enable: Enable for active acceleration.
++- dlg,rapid-stop-enable: Enable for rapid stop.
++- dlg,amp-pid-enable: Enable for the amplitude PID.
++- dlg,mem-array: Customized waveform memory(patterns) data downloaded to
++  the device during initialization. This is an array of 100 values(u8).
++
++For further information, see device datasheet.
++
++======
++
++Example:
++
++	haptics: da7280-haptics@4a {
++		compatible = "dlg,da7280";
++		reg = <0x4a>;
++		interrupt-parent = <&gpio6>;
++		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
++		dlg,actuator-type = "LRA";
++		dlg,dlg,const-op-mode = <1>;
++		dlg,dlg,periodic-op-mode = <1>;
++		dlg,nom-microvolt = <2000000>;
++		dlg,abs-max-microvolt = <2000000>;
++		dlg,imax-microamp = <170000>;
++		dlg,resonant-freq-hz = <180>;
++		dlg,impd-micro-ohms = <10500000>;
++		dlg,freq-track-enable;
++		dlg,rapid-stop-enable;
++		dlg,mem-array = <
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++		>;
++
++	};
+-- 
+end-of-patch for RESEND PATCH V11
+
