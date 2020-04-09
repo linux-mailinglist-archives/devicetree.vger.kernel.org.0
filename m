@@ -2,95 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7F51A3CCC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 01:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCAF11A3D09
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 01:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726779AbgDIXLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Apr 2020 19:11:12 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:41404 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbgDIXLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 19:11:11 -0400
-Received: by mail-il1-f195.google.com with SMTP id t6so348848ilj.8;
-        Thu, 09 Apr 2020 16:11:11 -0700 (PDT)
+        id S1726916AbgDIXoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Apr 2020 19:44:21 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:43195 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbgDIXoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 19:44:21 -0400
+Received: by mail-lj1-f193.google.com with SMTP id h25so343169lja.10;
+        Thu, 09 Apr 2020 16:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eplP7HigK8Ewza+SjO81i9tb9swgjSdpeTM2vE+t2FI=;
+        b=Z+OFqTSEtWD+OR0/pzr+dM8ugXHWeikyhxm/KgbzcPr0hpv7bgSSKGq1REFh393r9Y
+         +cjiNaten3HWmd7TxIHO3zqw54SrSOcpfrZFCIrd6ZPeX8z3tuYZGZybmwKgVsYzYMZv
+         eaHQahH+nMqmL8ymsrSYu0pUiacrioYnJ+jb4B6zLDyFv07S2Qenm395qW5Z3Ua0fx6y
+         zL6ESY9Mh8/zrOc1NJEE1+dZEp9WaL/bG8glG3/JD0+fyAPuMQSuHsCUVj0MRqVMxj9o
+         VmddSw5J9OruFahcTsOUaNrxs4X1GoXvMZIfHrSbUf+tKQtQIkzoFZvCZDQ5jUc14PLx
+         nViw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XHTHGCsgfXX19VGzpIF+rrRJOUUg2k/5itbti4Sluiw=;
-        b=IzHZU48K1YiX/+21sbw6ltl0cfMlPd0AJL++uHe1cm1SPfBeZNavnNLgE6/Ik15p4Z
-         ST0rof2SNOW/1KF/xia/N0ovS0yDmSlaMvtefia3gvxXiiGRoef/gEWiNYhqUhDxEiFt
-         Q2EY/Zwm86nzQJNLzeZ/D/KKMMv8OrYXYPKAeYYAKdgHKrTxqAb0jK4yr0jcrmhdlOT2
-         V8e4UqzdSw4wKDUPKmWoUifEq0flZzmi559PSQV4rrM6e5opxeUtgabZgcwsvdmaozbq
-         TdP51W6/47WYVcNrvV43E4W55wZ8jPsaJaISuc+EsgYjKa1jmPcYI1OLlpL8RjcgNYLQ
-         F+Sg==
-X-Gm-Message-State: AGi0PuYfJ7sF8xy3eHVtrJnBnvhr+fXXQsvbct3FsqDJ59dWuDBSS0Nk
-        ouEFZx/Vhpm1wwQJb0ypHg==
-X-Google-Smtp-Source: APiQypLqo2zaWnSheojFEJB8E++9Zq1uWFEbh1m5g1x8qcvNxZ1Pn4QvM+fA/kuyDlypQvUKQCdWKQ==
-X-Received: by 2002:a92:912:: with SMTP id y18mr2357154ilg.299.1586473871414;
-        Thu, 09 Apr 2020 16:11:11 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h29sm157861ili.19.2020.04.09.16.11.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Apr 2020 16:11:10 -0700 (PDT)
-Received: (nullmailer pid 26485 invoked by uid 1000);
-        Thu, 09 Apr 2020 23:11:08 -0000
-Date:   Thu, 9 Apr 2020 17:11:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc:     William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: counter: atmel-tcb-capture counter
-Message-ID: <20200409231108.GA25954@bogus>
-References: <20200409141401.321222-1-kamel.bouhara@bootlin.com>
- <20200409141401.321222-3-kamel.bouhara@bootlin.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eplP7HigK8Ewza+SjO81i9tb9swgjSdpeTM2vE+t2FI=;
+        b=EOnMeZe7c9xA2nP2VytTEEU3JPgaHLGV2ZEpRo2Hc6gfVeHJy1Ad5h3vmbEXg+m5J8
+         5nJaPXUuobpIgh6UVB3zyZ7fNMKm88tkMoXK1g8B2RUo/io3YWqgQj0cy47IZDEqJR3x
+         EMyePe8wGGSmFyuhSLMEJJl0kaRfMJjBHBd87H4qgHUP861v5DZxqQO3vp3+TpAbYjPx
+         nKEjE6Ark+3aFgWCJMo940P6xR0Y7wUYplAiHJoUaSh01yulmkHJP+nKUdFImQGMyO00
+         SMVVYdsn/Ghfse57Y12+KtazSuAkYeGT/Pm0pRl9Qpt2GSlXDX7bGdnwFBlsF86dGyOi
+         AKfg==
+X-Gm-Message-State: AGi0PuaEQF5Vi8aC0E7bfXrGubTANfFSuWM9W4wjZhj/QYfrf7yBw3JX
+        EyGTHfYF56gnhHlEm+qWGkM=
+X-Google-Smtp-Source: APiQypKOjhusE3Y7SNrXp1CXEoE/mqfoQN6rYgf5UIc2VAPmQ3PefCXTqRsbwrmhttzvDhBHDOpurA==
+X-Received: by 2002:a2e:8511:: with SMTP id j17mr1356714lji.292.1586475858785;
+        Thu, 09 Apr 2020 16:44:18 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id 64sm283254lfh.32.2020.04.09.16.44.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Apr 2020 16:44:17 -0700 (PDT)
+Subject: Re: [PATCH v6 11/14] memory: tegra: Support derated timings on
+ Tegra210
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joseph Lo <josephl@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200409175238.3586487-1-thierry.reding@gmail.com>
+ <20200409175238.3586487-12-thierry.reding@gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <7f23f140-4c56-3d9a-946e-f29bc569f40c@gmail.com>
+Date:   Fri, 10 Apr 2020 02:44:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200409141401.321222-3-kamel.bouhara@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200409175238.3586487-12-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  9 Apr 2020 16:14:00 +0200, Kamel Bouhara wrote:
-> Describe the devicetree binding for the ATMEL TCB counter. Each counter
-> blocks exposes three independent counters.
-> 
-> However, when configured in quadrature decoder, both channel <0> and <1>
-> are required for speed/position and rotation capture (yet only the
-> position is captured).
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> ---
->  .../bindings/counter/atmel-tcb-capture.yaml   | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/counter/atmel-tcb-capture.yaml
-> 
+09.04.2020 20:52, Thierry Reding пишет:
+...
+>  	tegra210_emc_debugfs_init(emc);
+>  
+> +	cd = devm_thermal_of_cooling_device_register(emc->dev, np, "emc", emc,
+> +						     &tegra210_emc_cd_ops);
+> +	if (IS_ERR(cd)) {
+> +		err = PTR_ERR(cd);
+> +		dev_err(emc->dev, "failed to register cooling device: %d\n",
+> +			err);
 
-My bot found errors running 'make dt_binding_check' on your patch:
+> +		goto detach;
 
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dts:20.17-32: Warning (reg_format): /example-0/timer@f800c000/timer@0:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dts:18.27-21.15: Warning (avoid_default_addr_size): /example-0/timer@f800c000/timer@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/counter/atmel-tcb-capture.example.dts:18.27-21.15: Warning (avoid_default_addr_size): /example-0/timer@f800c000/timer@0: Relying on default #size-cells value
-
-See https://patchwork.ozlabs.org/patch/1268623
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+I think it's not really worthwhile to fail whole EMC driver because of
+the failed CDEV.
