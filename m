@@ -2,101 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1CEB1A37D4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 18:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3423D1A37FE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 18:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728398AbgDIQLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Apr 2020 12:11:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40970 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728254AbgDIQLW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Apr 2020 12:11:22 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E81521973
-        for <devicetree@vger.kernel.org>; Thu,  9 Apr 2020 16:11:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586448682;
-        bh=dY4y3+4XbjvyakdB/uUdMrfzN4g/tqUzd0PNclNSbKY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Y6Kkz4YffGxvN/26LWVTywp6KjT9Bo0OWatb6LvFCbHM5RTBHAhNv1dUsPr/8Ihqs
-         j5P/0ncVLiCgI6SGumdrR+scvugGw58Y0uXtyHaQ+fpsSj+5FVBPrE39jVh6URWWmN
-         /0VgOzgKjsf3HYM+csRMdIkODW12sdmHj1MfDENk=
-Received: by mail-qk1-f169.google.com with SMTP id c63so4526607qke.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2020 09:11:22 -0700 (PDT)
-X-Gm-Message-State: AGi0Pua5dJ6s3HKjKQh+Mry+xqG09DVsbMpasv+FDOK2TbKyyV5h5k/w
-        Tc4/72atkEsO46TjMTRjovc2c7dTJder3e3QDQ==
-X-Google-Smtp-Source: APiQypLHsZq1dcUUjmhrUwi046XKEZhwxT7wbBhFjz2qi6S6YZ3km9QRZscpkxJrdVKvm7zomaEcxWOLtAO8qAUOKpA=
-X-Received: by 2002:a37:c43:: with SMTP id 64mr539234qkm.119.1586448681197;
- Thu, 09 Apr 2020 09:11:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200408195109.32692-1-sam@ravnborg.org> <20200408195109.32692-2-sam@ravnborg.org>
-In-Reply-To: <20200408195109.32692-2-sam@ravnborg.org>
+        id S1726917AbgDIQ2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Apr 2020 12:28:07 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:45143 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726706AbgDIQ2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 12:28:07 -0400
+Received: by mail-io1-f67.google.com with SMTP id i19so125519ioh.12;
+        Thu, 09 Apr 2020 09:28:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=LkaY19j/MwuQxSFAk1XCaS+Ipv9wMJuPl6+2h930Pi8=;
+        b=V+X+T4EMXci+LEgARr1orOrFc7TiRhDIgc1arUDbKqV3Oz92Cdd5YTNXJRTduaIHpm
+         IT7HaJNd1T+1pD3EJ6aEFzVKMbNLiP/KkhQ0niCsUyW0mt2c0m9Iua/W8ndMJPkEFIA6
+         oeEx/AzJDCuEX24lT+1JnXXdmzHHRF100d2pgPP4ZdJ0qcF3oSi2C+oXjVSTzRT09g+H
+         QdttLh6GMJ1Kf7k+VsE0+XOqzLJpjb8ur1Q9cegmU5laz7XkZ6VX598gkhkb8IjXDMrL
+         dUtZlZLU54auQwgzcIUeYh88sJZTICn+P4Wyn25Fl91QXQIFTlZZ1WRY6jG+8dySmxbi
+         tY1w==
+X-Gm-Message-State: AGi0Pua6nMkille0UiKHZGhrio7Cxtu+oR+9oQEDg8ONr6YbqH8GosH0
+        j7XxzNhnF/r+9XWPJs0hDwjpAqQ=
+X-Google-Smtp-Source: APiQypL6aLrtx6GwXLHD2x3wPcGDofdV2eGkjRpxhtk6rNI8MML2/IJMe7RHRqvZ7urbs0/hiih6Zw==
+X-Received: by 2002:a02:9f91:: with SMTP id a17mr229200jam.65.1586449687298;
+        Thu, 09 Apr 2020 09:28:07 -0700 (PDT)
+Received: from rob-hp-laptop ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z2sm9271994ilp.21.2020.04.09.09.28.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Apr 2020 09:28:06 -0700 (PDT)
+Received: (nullmailer pid 25790 invoked by uid 1000);
+        Thu, 09 Apr 2020 16:28:05 -0000
+Date:   Thu, 9 Apr 2020 10:28:05 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Apr 2020 10:11:10 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKp9r6sQuyKtqZnx26-2kzwkQSaa7N6Lbs2g6rC-Rpx1w@mail.gmail.com>
-Message-ID: <CAL_JsqKp9r6sQuyKtqZnx26-2kzwkQSaa7N6Lbs2g6rC-Rpx1w@mail.gmail.com>
-Subject: Re: [PATCH v2 01/36] dt-bindings: display: allow port and ports in panel-lvds
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     jic23@kernel.org, robh+dt@kernel.org, alexandru.tachici@analog.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: dac: ad5770r: Add vendor to
+ compatible string
+Message-ID: <20200409162805.GA25723@bogus>
+References: <20200327131825.23650-1-festevam@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200327131825.23650-1-festevam@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 8, 2020 at 1:51 PM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Both port and ports names may be used.
-> port - for a single port
-> ports - if there is more than one port in sub-nodes
->
-> Fixes the following warning:
-> advantech,idk-2121wr.example.dt.yaml: panel-lvds: 'port' is a required property
->
-> advantech,idk-2121wr.yaml needs several ports, so uses a ports node.
->
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
+On Fri, 27 Mar 2020 10:18:23 -0300, Fabio Estevam wrote:
+> The compatible string in the example misses the vendor information.
+> 
+> Pass the "adi" vendor to fix it.
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  Documentation/devicetree/bindings/display/panel/lvds.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> index d0083301acbe..f9132d50821c 100644
-> --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> @@ -102,6 +102,12 @@ required:
->    - width-mm
->    - height-mm
->    - panel-timing
-> -  - port
-> +
-> +if:
-> +  required:
-> +    - port
-> +else:
-> +  required:
-> +    - ports
-
-Humm, I guess 'then' is not required. That's a bit weird IMO.
-
-I usually do a 'oneOf' for these cases.
-
-Either way, please apply this to drm-misc-fixes (or
-drm-misc-next-fixes depending on the state of the tree). Or I can take
-it. I'd like to get all the warnings cleared up by rc2.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
 
 Rob
