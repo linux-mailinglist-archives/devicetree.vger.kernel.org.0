@@ -2,123 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C03EB1A31E7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 11:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0DE11A3230
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2020 12:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbgDIJiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Apr 2020 05:38:06 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:42198 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725997AbgDIJiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 05:38:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=RGFwgNOxy2c5vC5HpDYOZgBADwWmZdC/mr6ZrB/I1+o=; b=vWxBeDjoSh9OhHIils63Rrjju
-        X/UBHlDShAXNcg2MZNhY2NIIxfBNU+JSAlmkVRvUgQTBlghcFNPpiUHZowfdnxdTq/fb/Gxa7Jvrj
-        e1vCU5nLZN0NfaVhjPldRoZYQtw2ngYAd7Lu8YqTLNyziLFO/NDGA27gn3k1O5gkRSYjpcxRk9b6d
-        yCA6MyIqCWhIXGJubHG302XX8XoW9PQpkhvI06Af6M5D/f9NwvXvPOmvp+/vX/NlrfNQVYrev9aSU
-        dV3Qb/227TVaUkKHkKyOxPUZMgLbaPl04sL9OuxGSqtBG+Vy83yj7vHALT3TTgPgDk6j2DWgKIrFN
-        O+3l+XINw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47690)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1jMTdC-00035R-OS; Thu, 09 Apr 2020 10:37:54 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1jMTdA-0002hb-Ax; Thu, 09 Apr 2020 10:37:52 +0100
-Date:   Thu, 9 Apr 2020 10:37:52 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Hui Song <hui.song_1@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH] gpio: mpc8xxx: Add shutdown function.
-Message-ID: <20200409093752.GV25745@shell.armlinux.org.uk>
-References: <20200409090259.13126-1-hui.song_1@nxp.com>
+        id S1725987AbgDIKFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Apr 2020 06:05:20 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33189 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725783AbgDIKFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Apr 2020 06:05:20 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 103so3519923otv.0;
+        Thu, 09 Apr 2020 03:05:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=339j4MaqRyQUqdJT33toZfwVsRBRNf1r0tP9u8tA6/k=;
+        b=E1dFeILKHlqqZAzfS0yB6UoHzzwrLRtZ8X8WHp+c1guK812Ac3v1D8MqHQms5kdfj0
+         3yyMWYgtrOyTvMYdbGk7LG3bqCNXBbKmyVByy1WkLVRcyRNNHIKtAC/Ff/Ffrx0Eyxwg
+         34jnSSD42/QryQnaEchzDT17xTYgVRNKJotdWuyJBww1ox8bXhVVLeVPnmnemwEUjJ19
+         /vNgWYmIKQfliHgiboJ5yKJveN5HoiD5xnCDzFwefHb0Kx4WaqeSCvuqR7IYEwoGbmfa
+         xnjM1LOH0HynOtlqdJOWztV53gpIugfHYz9hYfqAXd12Wk/G21Z6fXwZK3+8Fm31/kRz
+         KE2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=339j4MaqRyQUqdJT33toZfwVsRBRNf1r0tP9u8tA6/k=;
+        b=h30BwOqb943WWLPKJDgPZV6lL+NL7sISAyPkNuJ9D6lLf9mwgvyARvISazHMLHBJ/J
+         zGU6EiBEHX7cf7g2LOxasCBv+Xp6wfAb4b5jqByxObQqG2FmgQVTUuPmh5YoiKMxy3n9
+         O0GJUtQwF7Y+Ekt8BnjR7Agp5dE0RL6uaGXuvKRn0gPusvwjy4uZ+o8WGgX61ZCTDdXL
+         5S6/ZlkO5QYdgvfOdcM+hp8V1GKr4pyHBcWP/sUnyB2mh1uz/o1T3vfYAXJSpQPUmpNh
+         5JjkAi6TSpQGc3rYHRiYebkBmMQoQq/w7vPWkpAO7TlnzUVoOSGlWzsS9vjmlB+NWir/
+         smnQ==
+X-Gm-Message-State: AGi0PuYh9GO3mc3Zu2qlNvDDlsNJTyh4Xxh2/0JWswsOtVToyt0eVrsg
+        0YOn2Lrumt52fNrOlGdctgVl+ZAg/ZbzVIT+A04=
+X-Google-Smtp-Source: APiQypI1ZTh7a2IVl4I8tXE41Mc3lGPBZY4nosM1GN+H5r+AL5nH4NCX6DGIGvQhFATTRXa0MRQAoqev/aam1hCwyf0=
+X-Received: by 2002:a9d:ef6:: with SMTP id 109mr2955843otj.43.1586426718309;
+ Thu, 09 Apr 2020 03:05:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200409090259.13126-1-hui.song_1@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1586360280-10956-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1586360280-10956-8-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com> <e3f5fa77-f78e-edbf-9efc-53b5ea620460@cogentembedded.com>
+In-Reply-To: <e3f5fa77-f78e-edbf-9efc-53b5ea620460@cogentembedded.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 9 Apr 2020 11:04:52 +0100
+Message-ID: <CA+V-a8s1E_kq_GENBTw3zGxKSPFnVKNY-ta9+c8W8nV4JFyEEw@mail.gmail.com>
+Subject: Re: [PATCH v7 7/8] PCI: Add Renesas R8A774C0 device ID
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 09, 2020 at 05:02:59PM +0800, Hui Song wrote:
-> From: Song Hui <hui.song_1@nxp.com>
-> 
-> When the kexec command is executed, the memory area will be re-paginated.
-> The shutdown function needed to make interrupt handler to be NULL.If
-> not, an interrupt will be generated during this period. When the interrupt
-> handler is executed,the handler function address changed and crash will
-> occur.
+Hi Sergei and Bjorn,
 
-I still don't think this is adequate.
+On Thu, Apr 9, 2020 at 10:36 AM Sergei Shtylyov
+<sergei.shtylyov@cogentembedded.com> wrote:
+>
+> Hello!
+>
+> On 08.04.2020 18:37, Lad Prabhakar wrote:
+>
+> > Add R8A774C0 device ID so that this can be used by
+> > pci_endpoint_test driver.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > ---
+> >   include/linux/pci_ids.h | 1 +
+> >   1 file changed, 1 insertion(+)
+> >
+> > diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> > index 1dfc4e1dcb94..9e957c18abeb 100644
+> > --- a/include/linux/pci_ids.h
+> > +++ b/include/linux/pci_ids.h
+> > @@ -2460,6 +2460,7 @@
+> >   #define PCI_DEVICE_ID_RENESAS_SH7763        0x0004
+> >   #define PCI_DEVICE_ID_RENESAS_SH7785        0x0007
+> >   #define PCI_DEVICE_ID_RENESAS_SH7786        0x0010
+> > +#define PCI_DEVICE_ID_RENESAS_R8A774C0       0x002d
+>
+>     We don't add the device IDs in this file, unless used in several places.
+> Is it?
+>
+My bad I should have checked it before making this change actually it
+was suggested in my previous version of the series but anyway atm this
+was planned to be  used only in pci_endpoint_test driver, so in that
+case Ill drop this patch.
 
-When kexec takes effect, the existing kernel is shutdown and replaced
-with the new kernel, and it completely takes over the system.  The
-dynamically allocated structures (which include pointers for the parent
-interrupt for mpc8xxx) are irrelevant, as they will need to be
-reallocated.  It feels like you're just putting a band-aid over a real
-problem.
+Cheers,
+--Prabhakar
 
-I think rather than producing a patch, you need to give details of the
-crash you are seeing.  Probably having the kernel message log across
-the kexec and into the new kernel up to the point where the crash occurs
-would be a good idea.
-
-> 
-> Signed-off-by: Song Hui <hui.song_1@nxp.com>
-> ---
->  drivers/gpio/gpio-mpc8xxx.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
-> index 604dfec..a24e6c5 100644
-> --- a/drivers/gpio/gpio-mpc8xxx.c
-> +++ b/drivers/gpio/gpio-mpc8xxx.c
-> @@ -446,9 +446,21 @@ static int mpc8xxx_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static int mpc8xxx_shutdown(struct platform_device *pdev)
-> +{
-> +	struct mpc8xxx_gpio_chip *mpc8xxx_gc = platform_get_drvdata(pdev);
-> +
-> +	if (mpc8xxx_gc->irq) {
-> +		irq_set_chained_handler_and_data(mpc8xxx_gc->irqn, NULL, NULL);
-> +		irq_domain_remove(mpc8xxx_gc->irq);
-> +	}
-> +
-> +	return 0;
-> +}
->  static struct platform_driver mpc8xxx_plat_driver = {
->  	.probe		= mpc8xxx_probe,
->  	.remove		= mpc8xxx_remove,
-> +	.shutdown	= mpc8xxx_shutdown,
->  	.driver		= {
->  		.name = "gpio-mpc8xxx",
->  		.of_match_table	= mpc8xxx_gpio_ids,
-> -- 
-> 2.9.5
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 10.2Mbps down 587kbps up
+> [...]
+>
+> MBR, Sergei
