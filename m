@@ -2,264 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79BA01A4922
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7351A4938
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726836AbgDJRhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Apr 2020 13:37:25 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43418 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726203AbgDJRhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:37:25 -0400
-Received: by mail-ot1-f67.google.com with SMTP id n25so2482814otr.10;
-        Fri, 10 Apr 2020 10:37:25 -0700 (PDT)
+        id S1726916AbgDJRiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 13:38:06 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38547 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726177AbgDJRiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:38:06 -0400
+Received: by mail-ot1-f68.google.com with SMTP id d18so2517091otc.5;
+        Fri, 10 Apr 2020 10:38:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IKIGQg5IB7jY2yhSBUU/mNdMXcGYQV34ZHgFgy9p1/U=;
-        b=KHf1ca+3FzkmgIxALeGoKUoTd7GfoVT0Bg2tR3D4+gy+e01LWJeN9P+SeRROqk3hCi
-         CWZZzS7xObUaqgBa2KyJ+e2sT+EBmvOP1DjgtJ5NXQ2NZG8CGCRhbwSKO+6ngU1YWvL+
-         N9vL/HI/Qdc7bcnZXI+5Zx4hoJE2dS0RP3k7j11Yu+EeWdQ/4XP/GQxZIbDzR4O6TAec
-         bLf4snN5hWESgb2dMezOUs9R5FpoIJNOXXaK4x45w8D9GnP8q7xotWVKyVc4G6MsjPwL
-         U0LZvjwGd5RuIAXs/wHISffzTMNKfAH5Ho6otTiTvf1IUwAUYvaH3sC3bbGocz9IlR0y
-         7v2A==
-X-Gm-Message-State: AGi0PubA68C5S2zvZ2PSnhaMdXVNBLxumUB3o5fZKVsmWO5LSQNdUa32
-        kJ2dRv+xs0vBshz84DAyfg==
-X-Google-Smtp-Source: APiQypKH2qK7SEAVFycM8zXG3BjPfuwwwLP6dGhClR2Rd11CShp1SRXfJrGuF2ugxsp1IBglCNzGSA==
-X-Received: by 2002:a9d:2002:: with SMTP id n2mr5277908ota.127.1586540244705;
-        Fri, 10 Apr 2020 10:37:24 -0700 (PDT)
+        bh=50MgVueUpRLYPxEqiQO+BlISCgjHmB6+RHj/Bt+hChk=;
+        b=i1Uw3rj9Jsi/ZJ4eQGCFxr5twSHq39BbAslofbSweiI6oUTPt5YgoAB7GsOcN8QjjA
+         BflfAL3ub7qWuTYA0RzExLS85xlaPTCGyh3eS3ObpxidVKCYoW55cWjrY8Rcn3tGTgkK
+         CptI8vOjfA5234pPy00dtTmfg8XRLbnaGmIVHp1OQvMxrSLkMllixfFpSTiicCaFWAAz
+         HWv6p5hWCFPCZaFJVDjcAsR0OCLkdQvJCjYPi3zkT9HIEji5Eq+yO7ntv6Dy5qE1F2hv
+         z5YFhtTRLlAll5xk8UIdtgu4u8oyBoN1iRQTf9+ox9PMG029Q3ceZBBvajZE6Dci7Ruu
+         Rrvg==
+X-Gm-Message-State: AGi0PuagJdBqh0hihpp3e+yktSnqf6ELyCoE14rOEw2qmQXjfuAvbWxZ
+        aIpvG1sXP8iKPb0HoEkxIS3ONb0=
+X-Google-Smtp-Source: APiQypLT0MlacQQNQZZQqIkajF6n5AyLq3+3It3FwTj1+j2Ey5SGoCvK6DDLKSDwBXipp0K8VdxJDA==
+X-Received: by 2002:a9d:5a9:: with SMTP id 38mr4505161otd.331.1586540285527;
+        Fri, 10 Apr 2020 10:38:05 -0700 (PDT)
 Received: from rob-hp-laptop (ip-99-203-29-27.pools.spcsdns.net. [99.203.29.27])
-        by smtp.gmail.com with ESMTPSA id 202sm1552502oie.38.2020.04.10.10.37.20
+        by smtp.gmail.com with ESMTPSA id c18sm1554480oig.53.2020.04.10.10.38.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2020 10:37:24 -0700 (PDT)
-Received: (nullmailer pid 22356 invoked by uid 1000);
-        Fri, 10 Apr 2020 16:59:15 -0000
-Date:   Fri, 10 Apr 2020 11:59:15 -0500
+        Fri, 10 Apr 2020 10:38:04 -0700 (PDT)
+Received: (nullmailer pid 29638 invoked by uid 1000);
+        Fri, 10 Apr 2020 17:04:35 -0000
+Date:   Fri, 10 Apr 2020 12:04:35 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     rafael@kernel.org, Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: thermal: Add the idle cooling device
-Message-ID: <20200410165915.GA12708@bogus>
-References: <20200329220324.8785-1-daniel.lezcano@linaro.org>
- <20200329220324.8785-2-daniel.lezcano@linaro.org>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] i2c: regroup documentation of bindings
+Message-ID: <20200410170435.GA23398@bogus>
+References: <20200330002220.3575-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200329220324.8785-2-daniel.lezcano@linaro.org>
+In-Reply-To: <20200330002220.3575-1-wsa+renesas@sang-engineering.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 30, 2020 at 12:03:18AM +0200, Daniel Lezcano wrote:
-> Some devices are not able to cool down by reducing their voltage /
-> frequency because it could be not available or the system does not
-> allow voltage scaling. In this configuration, it is not possible to
-> use this strategy and the idle injection cooling device can be used
-> instead.
+On Mon, Mar 30, 2020 at 02:22:20AM +0200, Wolfram Sang wrote:
+> Some bindings are for the bus master, some are for the slaves.
+> Regroup them and give them seperate headings to make it clear.
 > 
-> One idle cooling device is now present for the CPU as implemented by
-> the combination of the idle injection framework belonging to the power
-> capping framework and the thermal cooling device. The missing part is
-> the DT binding providing a way to describe how the cooling device will
-> work on the system.
-> 
-> A first iteration was done by making the cooling device to point to
-> the idle state. Unfortunately it does not make sense because it would
-> need to duplicate the idle state description for each CPU in order to
-> have a different phandle and make the thermal internal framework
-> happy.
-> 
-> It was proposed to add an cooling-cells to <3>, unfortunately the
-> thermal framework is expecting a value of <2> as stated by the
-> documentation and it is not possible from the cooling device generic
-> code to loop this third value to the back end cooling device.
-> 
-> Another proposal was to add a child 'thermal-idle' node as the SCMI
-> does. This approach allows to have a self-contained configuration for
-> the idle cooling device without colliding with the cpufreq cooling
-> device which is based on the CPU node. In addition, it allows to have
-> the cpufreq cooling device and the idle cooling device to co-exist
-> together as showed in the example.
-> 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  .../bindings/thermal/thermal-idle.yaml        | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+>  Documentation/devicetree/bindings/i2c/i2c.txt | 63 +++++++++++--------
+>  1 file changed, 38 insertions(+), 25 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> new file mode 100644
-> index 000000000000..f9f59cfa3c36
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> @@ -0,0 +1,145 @@
-> +# SPDX-License-Identifier: (GPL-2.0)
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+> index 9a53df4243c6..aa74dd0e63e3 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+> @@ -2,10 +2,10 @@ Generic device tree bindings for I2C busses
+>  ===========================================
+>  
+>  This document describes generic bindings which can be used to describe I2C
+> -busses in a device tree.
+> +busses and their child devices in a device tree.
+>  
+> -Required properties
+> --------------------
+> +Required properties (per bus)
+> +-----------------------------
+>  
+>  - #address-cells  - should be <1>. Read more about addresses below.
+>  - #size-cells     - should be <0>.
+> @@ -16,18 +16,13 @@ For other required properties e.g. to describe register sets,
+>  clocks, etc. check the binding documentation of the specific driver.
+>  
+>  The cells properties above define that an address of children of an I2C bus
+> -are described by a single value. This is usually a 7 bit address. However,
+> -flags can be attached to the address. I2C_TEN_BIT_ADDRESS is used to mark a 10
+> -bit address. It is needed to avoid the ambiguity between e.g. a 7 bit address
+> -of 0x50 and a 10 bit address of 0x050 which, in theory, can be on the same bus.
+> -Another flag is I2C_OWN_SLAVE_ADDRESS to mark addresses on which we listen to
+> -be devices ourselves.
+> +are described by a single value.
+>  
+> -Optional properties
+> --------------------
+> +Optional properties (per bus)
+> +-----------------------------
+>  
+>  These properties may not be supported by all drivers. However, if a driver
+> -wants to support one of the below features, it should adapt the bindings below.
+> +wants to support one of the below features, it should adapt these bindings.
+>  
+>  - clock-frequency
+>  	frequency of bus clock in Hz.
+> @@ -73,31 +68,49 @@ wants to support one of the below features, it should adapt the bindings below.
+>  	i2c bus clock frequency (clock-frequency).
+>  	Specified in Hz.
+>  
+> -- interrupts
+> -	interrupts used by the device.
+> -
+> -- interrupt-names
+> -	"irq", "wakeup" and "smbus_alert" names are recognized by I2C core,
+> -	other names are	left to individual drivers.
+> -
+> -- host-notify
+> -	device uses SMBus host notify protocol instead of interrupt line.
+> -
+>  - multi-master
+>  	states that there is another master active on this bus. The OS can use
+>  	this information to adapt power management to keep the arbitration awake
+>  	all the time, for example.
+>  
+> -- wakeup-source
+> -	device can be used as a wakeup source.
+> +Required properties (per child device)
+> +--------------------------------------
+> +
+> +- compatible
+> +	name of I2C slave device following generic names recommended practice.
 
-Dual license please.
+generic names is for node names not compatibles.
 
-> +# Copyright 2020 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/thermal-idle.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  - reg
+> -	I2C slave addresses
+> +	One or many I2C slave addresses. These are usually a 7 bit addresses.
+> +	However, flags can be attached to an address. I2C_TEN_BIT_ADDRESS is
+> +	used to mark a 10 bit address. It is needed to avoid the ambiguity
+> +	between e.g. a 7 bit address of 0x50 and a 10 bit address of 0x050
+> +	which, in theory, can be on the same bus.
+> +	Another flag is I2C_OWN_SLAVE_ADDRESS to mark addresses on which we
+> +	listen to be devices ourselves.
 > +
-> +title: Thermal idle cooling device binding
+> +Optional properties (per child device)
+> +--------------------------------------
 > +
-> +maintainers:
-> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
+> +These properties may not be supported by all drivers. However, if a driver
+> +wants to support one of the below features, it should adapt these bindings.
 > +
-> +description: |
-> +  The thermal idle cooling device allows the system to passively
-> +  mitigate the temperature on the device by injecting idle cycles,
-> +  forcing it to cool down.
+> +- host-notify
+> +	device uses SMBus host notify protocol instead of interrupt line.
 > +
-> +  This binding describes the thermal idle node.
+> +- interrupts
+> +	interrupts used by the device.
 > +
-> +properties:
-> +   $nodename:
-> +     const: thermal-idle
-> +     description: |
-> +        A /thermal-idle node describes the idle cooling device properties to
-
-/thermal-idle would be at the root node.
-
-> +        cool down efficiently the attached thermal zone.
+> +- interrupt-names
+> +	"irq", "wakeup" and "smbus_alert" names are recognized by I2C core,
+> +	other names are	left to individual drivers.
+>  
+>  - reg-names
+>  	Names of map programmable addresses.
+>  	It can contain any map needing another address than default one.
+>  
+> +- wakeup-source
+> +	device can be used as a wakeup source.
 > +
-> +   '#cooling-cells':
-> +      const: 2
-> +      description: |
-> +         Must be 2, in order to specify minimum and maximum cooling state used in
-> +         the cooling-maps reference. The first cell is the minimum cooling state
-> +         and the second cell is the maximum cooling state requested.
-> +
-> +   duration:
-> +      $ref: /schemas/types.yaml#/definitions/uint32
-> +      description: |
-> +         The idle duration in microsecond the device begins to cool down.
-> +
-> +   latency:
-> +      $ref: /schemas/types.yaml#/definitions/uint32
-> +      description: |
-> +         The exit latency constraint in microsecond for the injected
-> +         idle state for the device.
-
-Both of these should have unit suffix. And then they don't need a type 
-def.
-
-> +
-> +required:
-> +  - '#cooling-cells'
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/thermal/thermal.h>
-> +
-> +    // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
-> +    cpus {
-> +            #address-cells = <2>;
-> +            #size-cells = <0>;
-> +
-> +            /* ... */
-> +
-> +                 cpu_b0: cpu@100 {
-> +                         device_type = "cpu";
-> +                         compatible = "arm,cortex-a72";
-> +                         reg = <0x0 0x100>;
-> +                         enable-method = "psci";
-> +                         capacity-dmips-mhz = <1024>;
-> +                         dynamic-power-coefficient = <436>;
-> +                         #cooling-cells = <2>; /* min followed by max */
-> +                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                         idle-thermal {
-
-thermal-idle...
-
-> +                                 #cooling-cells = <2>;
-> +                                 duration = <10000>;
-> +                                 latency = <500>;
-> +                         };
-> +                };
-> +
-> +                cpu_b1: cpu@101 {
-> +                        device_type = "cpu";
-> +                        compatible = "arm,cortex-a72";
-> +                        reg = <0x0 0x101>;
-> +                        enable-method = "psci";
-> +                        capacity-dmips-mhz = <1024>;
-> +                        dynamic-power-coefficient = <436>;
-> +                        #cooling-cells = <2>; /* min followed by max */
-> +                        cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                        idle-thermal {
-> +                                #cooling-cells = <2>;
-> +                                duration = <10000>;
-> +                                latency = <500>;
-> +                        };
-> +                 };
-> +
-> +          /* ... */
-> +
-> +    };
-> +
-> +    /* ... */
-> +
-> +    thermal_zones {
-> +         cpu_thermal: cpu {
-> +                polling-delay-passive = <100>;
-> +                polling-delay = <1000>;
-> +
-> +                /* ... */
-> +
-> +                trips {
-> +                        cpu_alert0: cpu_alert0 {
-> +                                    temperature = <65000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "passive";
-> +                        };
-> +
-> +                        cpu_alert1: cpu_alert1 {
-> +                                    temperature = <70000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "passive";
-> +                        };
-> +
-> +                        cpu_alert2: cpu_alert2 {
-> +                                    temperature = <75000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "passive";
-> +                        };
-> +
-> +                        cpu_crit: cpu_crit {
-> +                                    temperature = <95000>;
-> +                                    hysteresis = <2000>;
-> +                                    type = "critical";
-> +                        };
-> +                };
-> +
-> +                cooling-maps {
-> +                        map0 {
-> +                             trip = <&cpu_alert1>;
-> +                             cooling-device = <&{/cpus/cpu@100/idle-thermal} 0 15 >,
-> +                                              <&{/cpus/cpu@101/idle-thermal} 0 15>;
-> +                        };
-> +
-> +                        map1 {
-> +                             trip = <&cpu_alert2>;
-> +                             cooling-device =
-> +                                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                       };
-> +                };
-> +          };
-> +    };
+>  Binding may contain optional "interrupts" property, describing interrupts
+>  used by the device. I2C core will assign "irq" interrupt (or the very first
+>  interrupt if not using interrupt names) as primary interrupt for the slave.
 > -- 
-> 2.17.1
+> 2.20.1
 > 
