@@ -2,81 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02FEF1A42E1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 09:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 935F31A438B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 10:32:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726648AbgDJHRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Apr 2020 03:17:44 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55079 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726650AbgDJHRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 03:17:44 -0400
-X-UUID: f31927d3540146769e684233bfe988e4-20200410
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ygWe+eLtAFpl7pbb42yoKAd2QeY0+GuA6Di3Dh7DXzY=;
-        b=HCaRMZW4ivGsHsJ1BJ+bY+/A8A2Nb72V8QzlxhUuMredEpdQOg5hrcwcBFhmPPoTnZLFuF579QEHykwT73qfn6++1trN7FG7cFoD9+uZ6ZIwWkV7jFT1NtNlHlOc/c3waZ6FmSApCwObVqfVW6w4MXGHJv2IAZVaSqbvdSfbybc=;
-X-UUID: f31927d3540146769e684233bfe988e4-20200410
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <louis.kuo@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1426561054; Fri, 10 Apr 2020 15:17:38 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 10 Apr 2020 15:17:30 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 10 Apr 2020 15:17:31 +0800
-From:   Louis Kuo <louis.kuo@mediatek.com>
-To:     <hans.verkuil@cisco.com>,
-        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
-        <keiichiw@chromium.org>, <matthias.bgg@gmail.com>,
-        <mchehab@kernel.org>
-CC:     <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <louis.kuo@mediatek.com>, <frederic.chen@mediatek.com>,
-        <Jerry-ch.Chen@mediatek.com>, <jungo.lin@mediatek.com>,
-        <linux-media@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>
-Subject: [RFC PATCH V6 3/3] dts: arm64: mt8183: Add sensor interface nodes
-Date:   Fri, 10 Apr 2020 15:17:23 +0800
-Message-ID: <20200410071723.19720-4-louis.kuo@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200410071723.19720-1-louis.kuo@mediatek.com>
-References: <20200410071723.19720-1-louis.kuo@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1725858AbgDJIcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 04:32:22 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:44042 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725839AbgDJIcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 04:32:21 -0400
+Received: by mail-pl1-f194.google.com with SMTP id h11so449664plr.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2020 01:32:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=azwLK/8evjxZTAFR/APBM9i2m7fC4tyoIBQXzhuORRI=;
+        b=mI4YDsRwzftm/e7+yrQjJmusiRQT1L9mOvqB6xVm9I7P/sVQNz/bqC1BvTfgIY4/J+
+         ZKrXBGgw2Mw5OBBt1A7jFNNpwtZofRjfPiQgugA9egtqoL25eCavGD/hUb0Ljkw8G+2c
+         LSwE5fgJbRA7IOFd4+ObyLdDWkY+7/BzFWdFqQjXUB7DzpWGvo2Sbmzmla4lgm7YRNQ+
+         CAZUQEEn062/z1u7VuAyPUdUZBHqvaQ6mVuz++q7rImD6QOQMFwF7M5EfLNmc6iYmHim
+         Vqr5pSlN9cpiAfJdAmUJsiScy/89mxRiYawauzQYDY3thExX2OYWkiOhyxKC5gf4n2Gr
+         79rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=azwLK/8evjxZTAFR/APBM9i2m7fC4tyoIBQXzhuORRI=;
+        b=VPILxeE3pCuLx9/fL9jlKxK8lpNnb1Zy1hk3W9hziR7YKPdj9JZPmXQzKz8a31P/QC
+         wVsz75TY1gJHjH8YlVmj5hweSLs1v1crjUup+9jhZxsQIai3T5qd/k6v5EAB3+mIYrGM
+         LvCvtUdhJz4HgJzXdY+fRQir3S8HvF6eWp20NdsHAR+W+BVyPcGB4ZAGdyAj5rJKk0L0
+         BLMAZpFXfd5+zKqH6HAVbB3O547tN4zfSnDeQjaNhIaIqOzU5bBAm1ao7y5w62sgsJjB
+         3g7+NEaYjplNtVVWIsv5KMf1ojk6vbx3VwsgnWB2d1sJYflPmQkf1SzCx+5USoClu3d8
+         mTFg==
+X-Gm-Message-State: AGi0PuZ8y4fHcV0K1Mzy/KUZK7716/Ho4WOYAdeTEQdAo84F8RSrzYsq
+        yFGG5w5fJ+oT2MyLVBQQ0eFLht0JYN0=
+X-Google-Smtp-Source: APiQypJkzeSUcrjaRCmU24+j0VNpteFUtI9d2Wu2Y2T6WrvIHgHuwnFUk1Xc85+XGlFPF39+yycLqw==
+X-Received: by 2002:a17:90a:1681:: with SMTP id o1mr4182714pja.55.1586507541084;
+        Fri, 10 Apr 2020 01:32:21 -0700 (PDT)
+Received: from wyqt-MI.mioffice.cn ([43.224.245.180])
+        by smtp.gmail.com with ESMTPSA id a13sm1182475pfc.26.2020.04.10.01.32.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Apr 2020 01:32:20 -0700 (PDT)
+From:   tangjianqiang <wyqt1985@gmail.com>
+X-Google-Original-From: tangjianqiang <tangjianqiang@xiaomi.com>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Tang Jianqiang <wyqt1985@gmail.com>,
+        tangjianqiang <tangjianqiang@xiaomi.com>
+Subject: [PATCH] of: fix the warnings from command line.
+Date:   Fri, 10 Apr 2020 16:32:04 +0800
+Message-Id: <1586507524-3987-1-git-send-email-tangjianqiang@xiaomi.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIG5vZGVzIGZvciBNZWRpYXRlaydzIHNlbnNvciBpbnRlcmZhY2UgZGV2aWNlLiBTZW5zb3Ig
-aW50ZXJmYWNlIG1vZHVsZQ0KZW1iZWRkZWQgaW4gTWVkaWF0ZWsgU09Dcywgd29ya3MgYXMgYSBI
-VyBjYW1lcmEgaW50ZXJmYWNlIGNvbnRyb2xsZXINCmludGVuZGVkIGZvciBpbWFnZSBhbmQgZGF0
-YSB0cmFuc21pc3Npb24gYmV0d2VlbiBjYW1lcmFzIGFuZCBob3N0IGRldmljZXMuDQoNClNpZ25l
-ZC1vZmYtYnk6IExvdWlzIEt1byA8bG91aXMua3VvQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGFyY2gv
-YXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kgfCAyNSArKysrKysrKysrKysrKysr
-KysrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0
-IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaSBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCmluZGV4IDQzM2M2MmVmYWIyZC4uNWM3YmVk
-NWE2ZjMyIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMu
-ZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaQ0KQEAg
-LTcxNSw1ICs3MTUsMzAgQEANCiAJCQlyZWcgPSA8MCAweDFhMDAwMDAwIDAgMHgxMDAwPjsNCiAJ
-CQkjY2xvY2stY2VsbHMgPSA8MT47DQogCQl9Ow0KKwkJc2VuaW5mOiBzZW5pbmZAMWEwNDAwMDAg
-ew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLXNlbmluZiI7DQorCQkJcmVnID0g
-PDAgMHgxYTA0MDAwMCAwIDB4ODAwMD4sDQorCQkJICAgICAgPDAgMHgxMWM4MDAwMCAwIDB4NjAw
-MD47DQorCQkJcmVnLW5hbWVzID0gImJhc2UiLCAicngiOw0KKwkJCWludGVycnVwdHMgPSA8R0lD
-X1NQSSAyNTEgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJCQlwb3dlci1kb21haW5zID0gPCZzY3Bz
-eXMgTVQ4MTgzX1BPV0VSX0RPTUFJTl9DQU0+Ow0KKwkJCWNsb2NrcyA9IDwmY2Ftc3lzIENMS19D
-QU1fU0VOSU5GPiwNCisJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9NVVhfU0VOSU5GPjsNCisJCQlj
-bG9jay1uYW1lcyA9ICJjbGtfY2FtX3NlbmluZiIsICJjbGtfdG9wX211eF9zZW5pbmYiOw0KKwkJ
-CXN0YXR1cyA9ICJkaXNhYmxlZCI7DQorDQorCQkJcG9ydHMgew0KKwkJCQkjYWRkcmVzcy1jZWxs
-cyA9IDwxPjsNCisJCQkJI3NpemUtY2VsbHMgPSA8MD47DQorDQorCQkJCXBvcnRANCB7DQorCQkJ
-CQlyZWcgPSA8ND47DQorDQorCQkJCQlzZW5pbmZfY2FtaXNwX2VuZHBvaW50OiBlbmRwb2ludCB7
-DQorCQkJCQkJcmVtb3RlLWVuZHBvaW50ID0gPCZjYW1pc3BfZW5kcG9pbnQ+Ow0KKwkJCQkJfTsN
-CisJCQkJfTsNCisJCQl9Ow0KKwkJfTsNCiAJfTsNCiB9Ow0KLS0gDQoyLjE4LjANCg==
+Gerrit will complain with this warnings:
+ERROR: (foo*) should be (foo *)
+
+Signed-off-by: tangjianqiang <tangjianqiang@xiaomi.com>
+---
+ drivers/of/fdt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 2cdf64d..8a8e07a 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1078,7 +1078,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ #endif
+ #endif /* CONFIG_CMDLINE */
+ 
+-	pr_debug("Command line is: %s\n", (char*)data);
++	pr_debug("Command line is: %s\n", (char *)data);
+ 
+ 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+ 	if (rng_seed && l > 0) {
+-- 
+2.7.4
 
