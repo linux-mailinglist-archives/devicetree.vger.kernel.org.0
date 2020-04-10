@@ -2,170 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD961A4909
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD641A4959
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbgDJRgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Apr 2020 13:36:49 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:46334 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726234AbgDJRgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:36:49 -0400
-Received: by mail-oi1-f193.google.com with SMTP id q204so1937206oia.13;
-        Fri, 10 Apr 2020 10:36:49 -0700 (PDT)
+        id S1726666AbgDJRjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 13:39:25 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:42505 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726595AbgDJRjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:39:25 -0400
+Received: by mail-oi1-f195.google.com with SMTP id e4so1954361oig.9;
+        Fri, 10 Apr 2020 10:39:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QBEtm9wj9+GCsvuO7AqmsQRpKjkshfnjy93bDn3pJjg=;
-        b=OzZlldKPcVDPnfJFdyCTsCVHKEvLo0BvyitGBt+6ZhWuJc37oDJNyUndUgQm9x4ApQ
-         zFdE5yUOjF30BCEc3Zfqcv3Bdh/2sMOCOSWzvTUYGR2plwAtimFoeHnbT39/sLhMS+YU
-         Z+v+bko8cbKyTA52rwDViNrRRz9jfIBs3AZU/u/DHvjWUnaggPX0LWlJNbENMDH3WHvJ
-         RDcpPa29FrAO4GPOt6n8/iZJwZRPVp3mvw4IcJGZhF4rZIsmQm7ur6UX/qkNrU6GuceX
-         /vzBPBKPAVXmnxbtDVFxcQ994A+CTYYDTvhELukMeRjencK6+jsFIMw/xPfWbbyVNWRI
-         TtHA==
-X-Gm-Message-State: AGi0PuaXxdcJCxHNEG0X8PrqDJV4y3/ssPVLhWpyzHnH/GjH9T2PBnGL
-        R4dEssFFHySYsoJbDiZHsw==
-X-Google-Smtp-Source: APiQypJvIzXiGQUkFI9BjUhby/lCJa4wLGEtjD/gV8K12mkSAWYPQSvkgPt6INjIArj9sD7aK4V+Kg==
-X-Received: by 2002:aca:34c6:: with SMTP id b189mr4027120oia.63.1586540208773;
-        Fri, 10 Apr 2020 10:36:48 -0700 (PDT)
+        bh=UVlxIE0CSKdKwuyXIBQDvbaJJFV3N43f9jUNTBByOKM=;
+        b=oV6SLID4+Gi2Tugy1dlLl9zVvXhpadhUPmlPgEKPqC+Q5ihE9il4EtDc/MavWkerEI
+         3aK5pQ7zZMvzX3ovdmDRnU3z/SjNR1OWYWJ+A88l/2W+uypQ/7iJYS+No/UoQHmM84X8
+         NNIFqjgtH/PDr1tikW+DsYjuqVYxp/IjUFUezNgtiNjgq5ktZkm6mqo/6danKssxzvl0
+         +WGJ9b4zyFlNfeNqzta3zZE6veCtzQr68/7ZSU2nuJ8v6M3X4e9WgoYOqmS1J2qK4E2Q
+         JN+xp3vDqQ8oIUo4L/4iIa3oxHWajHiL1iAsw1ZFeAuYcj3TEH/nIuiTNaPSKwUt9fYQ
+         mLgA==
+X-Gm-Message-State: AGi0PuZtGcZmcqwCtMX79L4accWSNqkKSrxrvQiBCpV3yYqjF0tcNORg
+        XDQQP933XWIaXlMQjbs/rA==
+X-Google-Smtp-Source: APiQypIbEr9eAuDn8ap/2ErWe8F05Nq4R1u7xjJ+3zCkjJKKNwFWVUzijYYdI42B6WOSqS3yiJsmAw==
+X-Received: by 2002:a05:6808:1c1:: with SMTP id x1mr3845478oic.55.1586540363863;
+        Fri, 10 Apr 2020 10:39:23 -0700 (PDT)
 Received: from rob-hp-laptop (ip-99-203-29-27.pools.cgn.spcsdns.net. [99.203.29.27])
-        by smtp.gmail.com with ESMTPSA id q187sm1541807oih.48.2020.04.10.10.36.40
+        by smtp.gmail.com with ESMTPSA id d21sm1480776otp.39.2020.04.10.10.39.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2020 10:36:47 -0700 (PDT)
-Received: (nullmailer pid 27880 invoked by uid 1000);
-        Fri, 10 Apr 2020 17:25:27 -0000
-Date:   Fri, 10 Apr 2020 12:25:27 -0500
+        Fri, 10 Apr 2020 10:39:23 -0700 (PDT)
+Received: (nullmailer pid 6854 invoked by uid 1000);
+        Fri, 10 Apr 2020 17:33:24 -0000
+Date:   Fri, 10 Apr 2020 12:33:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
-        mark.rutland@arm.com, sakari.ailus@linux.intel.com,
-        drinkcat@chromium.org, tfiga@chromium.org, matthias.bgg@gmail.com,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V4, 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
- entry
-Message-ID: <20200410172527.GA24529@bogus>
-References: <20200330123634.363-1-dongchun.zhu@mediatek.com>
- <20200330123634.363-2-dongchun.zhu@mediatek.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        sfr@canb.auug.org.au, maz@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        Alistair Popple <alistair@popple.id.au>,
+        Allison Randal <allison@lohutok.net>,
+        Andrew Donnellan <ajd@linux.ibm.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Desnes A. Nunes do Rosario" <desnesn@linux.ibm.com>,
+        Dmitry Vyukov <dvyukov@google.com>,
+        Enrico Weigelt <info@metux.net>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matt Porter <mporter@kernel.crashing.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Paul Mackerras <paulus@samba.org>,
+        Sasha Levin <sashal@kernel.org>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wei Hu <weh@microsoft.com>, YueHaibing <yuehaibing@huawei.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v2 2/2] powerpc: Remove Xilinx PPC405/PPC440 support
+Message-ID: <20200410173324.GA28512@bogus>
+References: <cover.1585575111.git.michal.simek@xilinx.com>
+ <9c3e02ffa9812c6f046708b45932d40f33e8817a.1585575111.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200330123634.363-2-dongchun.zhu@mediatek.com>
+In-Reply-To: <9c3e02ffa9812c6f046708b45932d40f33e8817a.1585575111.git.michal.simek@xilinx.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 30, 2020 at 08:36:33PM +0800, Dongchun Zhu wrote:
-> This patch is to add the Devicetreee binding documentation and
-> MAINTAINERS entry for dw9768 actuator.
+On Mon, Mar 30, 2020 at 03:32:17PM +0200, Michal Simek wrote:
+> The latest Xilinx design tools called ISE and EDK has been released in
+> October 2013. New tool doesn't support any PPC405/PPC440 new designs.
+> These platforms are no longer supported and tested.
 > 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> PowerPC 405/440 port is orphan from 2013 by
+> commit cdeb89943bfc ("MAINTAINERS: Fix incorrect status tag") and
+> commit 19624236cce1 ("MAINTAINERS: Update Grant's email address and maintainership")
+> that's why it is time to remove the support fot these platforms.
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Acked-by: Arnd Bergmann <arnd@arndb.de>
 > ---
->  .../bindings/media/i2c/dongwoon,dw9768.yaml        | 62 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 +++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
-> new file mode 100644
-> index 0000000..8a353dc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2020 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9768.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Dongwoon Anatech DW9768 Voice Coil Motor (VCM) Device Tree Bindings
-> +
-> +maintainers:
-> +  - Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +
-> +description: |-
-> +  The Dongwoon DW9768 is a single 10-bit digital-to-analog (DAC) converter
-> +  with 100 mA output current sink capability. VCM current is controlled with
-> +  a linear mode driver. The DAC is controlled via a 2-wire (I2C-compatible)
-> +  serial interface that operates at clock rates up to 1MHz. This chip
-> +  integrates Advanced Actuator Control (AAC) technology and is intended for
-> +  driving voice coil lenses in camera modules.
-> +
-> +properties:
-> +  compatible:
-> +    const: dongwoon,dw9768
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vin-supply:
-> +    description:
-> +      Definition of the regulator used as I2C I/O interface power supply.
-> +    maxItems: 1
+> Changes in v2:
+> - Based on my chat with Arnd I removed arch/powerpc/xmon/ changes done in
+>   v1 to keep them the same as before. (kbuild reported some issues with it
+>   too)
+> 
+>  Documentation/devicetree/bindings/xilinx.txt | 143 ------
 
-You can drop this. *-supply is always a single entry.
+Acked-by: Rob Herring <robh@kernel.org>
 
-> +
-> +  vdd-supply:
-> +    description:
-> +      Definition of the regulator used as VCM chip power supply.
-> +    maxItems: 1
-
-Same here.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vin-supply
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c2: i2c@11009000 {
-
-i2c {
-
-> +        clock-frequency = <400000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dw9768: camera-lens@c {
-> +            compatible = "dongwoon,dw9768";
-> +            reg = <0x0c>;
-> +
-> +            vin-supply = <&mt6358_vcamio_reg>;
-> +            vdd-supply = <&mt6358_vcama2_reg>;
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 38fe2f3..5e124d2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5134,6 +5134,13 @@ S:	Maintained
->  F:	drivers/media/i2c/dw9714.c
->  F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
->  
-> +DONGWOON DW9768 LENS VOICE COIL DRIVER
-> +M:	Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
-> +
->  DONGWOON DW9807 LENS VOICE COIL DRIVER
->  M:	Sakari Ailus <sakari.ailus@linux.intel.com>
->  L:	linux-media@vger.kernel.org
-> -- 
-> 2.9.2
+>  Documentation/powerpc/bootwrapper.rst        |  28 +-
+>  MAINTAINERS                                  |   6 -
+>  arch/powerpc/Kconfig.debug                   |   2 +-
+>  arch/powerpc/boot/Makefile                   |   7 +-
+>  arch/powerpc/boot/dts/Makefile               |   1 -
+>  arch/powerpc/boot/dts/virtex440-ml507.dts    | 406 ----------------
+>  arch/powerpc/boot/dts/virtex440-ml510.dts    | 466 -------------------
+>  arch/powerpc/boot/ops.h                      |   1 -
+>  arch/powerpc/boot/serial.c                   |   5 -
+>  arch/powerpc/boot/uartlite.c                 |  79 ----
+>  arch/powerpc/boot/virtex.c                   |  97 ----
+>  arch/powerpc/boot/virtex405-head.S           |  31 --
+>  arch/powerpc/boot/wrapper                    |   8 -
+>  arch/powerpc/configs/40x/virtex_defconfig    |  75 ---
+>  arch/powerpc/configs/44x/virtex5_defconfig   |  74 ---
+>  arch/powerpc/configs/ppc40x_defconfig        |   8 -
+>  arch/powerpc/configs/ppc44x_defconfig        |   8 -
+>  arch/powerpc/include/asm/xilinx_intc.h       |  16 -
+>  arch/powerpc/include/asm/xilinx_pci.h        |  21 -
+>  arch/powerpc/kernel/cputable.c               |  39 --
+>  arch/powerpc/platforms/40x/Kconfig           |  31 --
+>  arch/powerpc/platforms/40x/Makefile          |   1 -
+>  arch/powerpc/platforms/40x/virtex.c          |  54 ---
+>  arch/powerpc/platforms/44x/Kconfig           |  37 --
+>  arch/powerpc/platforms/44x/Makefile          |   2 -
+>  arch/powerpc/platforms/44x/virtex.c          |  60 ---
+>  arch/powerpc/platforms/44x/virtex_ml510.c    |  30 --
+>  arch/powerpc/platforms/Kconfig               |   4 -
+>  arch/powerpc/sysdev/Makefile                 |   2 -
+>  arch/powerpc/sysdev/xilinx_intc.c            |  88 ----
+>  arch/powerpc/sysdev/xilinx_pci.c             | 132 ------
+>  drivers/char/Kconfig                         |   2 +-
+>  drivers/video/fbdev/Kconfig                  |   2 +-
+>  34 files changed, 7 insertions(+), 1959 deletions(-)
