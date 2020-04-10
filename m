@@ -2,183 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2AE1A493C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79BA01A4922
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726666AbgDJRiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Apr 2020 13:38:17 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38419 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726177AbgDJRiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:38:17 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w2so1969304oic.5;
-        Fri, 10 Apr 2020 10:38:15 -0700 (PDT)
+        id S1726836AbgDJRhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 13:37:25 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:43418 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726203AbgDJRhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:37:25 -0400
+Received: by mail-ot1-f67.google.com with SMTP id n25so2482814otr.10;
+        Fri, 10 Apr 2020 10:37:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xMUIst4uwZNit/kezR50BEXwVLAD+7IMlqqlt2PZF4M=;
-        b=MwN06PBL/Zz+t7pQqPpKtwGRhwv0uLVp6kWSeLkTUWLmw/YSEClMMAkk/0rMo5TLmv
-         fwcEo8nSrl/yW1Ra35tB+Qx48Cpl3z8rrY9CHpTiZf9ed0ZQqgyLnUvt31oLWhzB4Hfy
-         ErErJHK5ocFhbRhFaJWSykerVd1H31RyOC6PMMafzOGRl2Kzw65+xf3zwMPrV3r278tr
-         /oPJ+ox2bY1yXvGeqwG7rirZLfI+mvESXlvb5QZ5kOSJbNLxyhaaEQTGmld14MGG/ARe
-         VilhMp/GeVxz9DSiquYqkgmCFZ0aVxHKwE5k+LSoLErU8gJr9fNXh8HV6qBS8IvtvijZ
-         xQFw==
-X-Gm-Message-State: AGi0Pua0W++e08jKEEoo2WlJLxqz+oERP+omUjTabVkfoekaMFEt9kHa
-        f7IO+ZR6vhiAsPOWfWoFaouQ36M=
-X-Google-Smtp-Source: APiQypJwusuEqgU1CYkOWOgcrzLL32tqNKeweZKcGAtisZ1kThdf4338Sn41hKMfM5QqP5/sISiZCg==
-X-Received: by 2002:aca:891:: with SMTP id 139mr4109648oii.137.1586540295214;
-        Fri, 10 Apr 2020 10:38:15 -0700 (PDT)
-Received: from rob-hp-laptop (ip-99-203-29-27.pools.cgn.spcsdns.net. [99.203.29.27])
-        by smtp.gmail.com with ESMTPSA id 89sm1469196otj.66.2020.04.10.10.38.07
+        bh=IKIGQg5IB7jY2yhSBUU/mNdMXcGYQV34ZHgFgy9p1/U=;
+        b=KHf1ca+3FzkmgIxALeGoKUoTd7GfoVT0Bg2tR3D4+gy+e01LWJeN9P+SeRROqk3hCi
+         CWZZzS7xObUaqgBa2KyJ+e2sT+EBmvOP1DjgtJ5NXQ2NZG8CGCRhbwSKO+6ngU1YWvL+
+         N9vL/HI/Qdc7bcnZXI+5Zx4hoJE2dS0RP3k7j11Yu+EeWdQ/4XP/GQxZIbDzR4O6TAec
+         bLf4snN5hWESgb2dMezOUs9R5FpoIJNOXXaK4x45w8D9GnP8q7xotWVKyVc4G6MsjPwL
+         U0LZvjwGd5RuIAXs/wHISffzTMNKfAH5Ho6otTiTvf1IUwAUYvaH3sC3bbGocz9IlR0y
+         7v2A==
+X-Gm-Message-State: AGi0PubA68C5S2zvZ2PSnhaMdXVNBLxumUB3o5fZKVsmWO5LSQNdUa32
+        kJ2dRv+xs0vBshz84DAyfg==
+X-Google-Smtp-Source: APiQypKH2qK7SEAVFycM8zXG3BjPfuwwwLP6dGhClR2Rd11CShp1SRXfJrGuF2ugxsp1IBglCNzGSA==
+X-Received: by 2002:a9d:2002:: with SMTP id n2mr5277908ota.127.1586540244705;
+        Fri, 10 Apr 2020 10:37:24 -0700 (PDT)
+Received: from rob-hp-laptop (ip-99-203-29-27.pools.spcsdns.net. [99.203.29.27])
+        by smtp.gmail.com with ESMTPSA id 202sm1552502oie.38.2020.04.10.10.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2020 10:38:14 -0700 (PDT)
-Received: (nullmailer pid 12197 invoked by uid 1000);
-        Fri, 10 Apr 2020 16:52:01 -0000
-Date:   Fri, 10 Apr 2020 11:52:01 -0500
+        Fri, 10 Apr 2020 10:37:24 -0700 (PDT)
+Received: (nullmailer pid 22356 invoked by uid 1000);
+        Fri, 10 Apr 2020 16:59:15 -0000
+Date:   Fri, 10 Apr 2020 11:59:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     rafael@kernel.org, Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        James Hogan <jhogan@kernel.org>,
-        Philipp Rossak <embed3d@gmail.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        OpenPVRSGX Linux Driver Group <openpvrsgx-devgroup@letux.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v5 1/8] dt-bindings: add img,pvrsgx.yaml for Imagination
- GPUs
-Message-ID: <20200410165201.GA9521@bogus>
-References: <cover.1585503505.git.hns@goldelico.com>
- <000359713a45bb1a1adc0b609e4e659aedf99e6c.1585503505.git.hns@goldelico.com>
- <0E273453-861D-45A2-8FA4-D5EC4B78F490@goldelico.com>
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: thermal: Add the idle cooling device
+Message-ID: <20200410165915.GA12708@bogus>
+References: <20200329220324.8785-1-daniel.lezcano@linaro.org>
+ <20200329220324.8785-2-daniel.lezcano@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0E273453-861D-45A2-8FA4-D5EC4B78F490@goldelico.com>
+In-Reply-To: <20200329220324.8785-2-daniel.lezcano@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 07, 2020 at 09:00:48AM +0200, H. Nikolaus Schaller wrote:
+On Mon, Mar 30, 2020 at 12:03:18AM +0200, Daniel Lezcano wrote:
+> Some devices are not able to cool down by reducing their voltage /
+> frequency because it could be not available or the system does not
+> allow voltage scaling. In this configuration, it is not possible to
+> use this strategy and the idle injection cooling device can be used
+> instead.
 > 
-> > Am 29.03.2020 um 19:38 schrieb H. Nikolaus Schaller <hns@goldelico.com>:
-> > 
-> > The Imagination PVR/SGX GPU is part of several SoC from
-> > multiple vendors, e.g. TI OMAP, Ingenic JZ4780, Intel Poulsbo,
-> > Allwinner A83 and others.
-> > 
-> > With this binding, we describe how the SGX processor is
-> > interfaced to the SoC (registers, interrupt etc.).
-> > 
-> > In most cases, Clock, Reset and power management is handled
-> > by a parent node or elsewhere (e.g. code in the driver).
-> > 
-> > Tested by make dt_binding_check dtbs_check
-> > 
-> > Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> > ---
-> > .../devicetree/bindings/gpu/img,pvrsgx.yaml   | 109 ++++++++++++++++++
-> > 1 file changed, 109 insertions(+)
-> > create mode 100644 Documentation/devicetree/bindings/gpu/img,pvrsgx.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpu/img,pvrsgx.yaml b/Documentation/devicetree/bindings/gpu/img,pvrsgx.yaml
-> > new file mode 100644
-> > index 000000000000..aadfb2d9b012
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpu/img,pvrsgx.yaml
-> > @@ -0,0 +1,109 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpu/img,pvrsgx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Imagination PVR/SGX GPU
-> > +
-> > +maintainers:
-> > +  - H. Nikolaus Schaller <hns@goldelico.com>
-> > +
-> > +description: |+
-> > +  This binding describes the Imagination SGX5 series of 3D accelerators which
-> > +  are found in several different SoC like TI OMAP, Sitara, Ingenic JZ4780,
-> > +  Allwinner A83, and Intel Poulsbo and CedarView and more.
-> > +
-> > +  For an extensive list see: https://en.wikipedia.org/wiki/PowerVR#Implementations
-> > +
-> > +  The SGX node is usually a child node of some DT node belonging to the SoC
-> > +  which handles clocks, reset and general address space mapping of the SGX
-> > +  register area.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: SGX530-121 based SoC
-> > +        items:
-> > +          - enum:
-> > +            - ti,omap3-sgx530-121 # BeagleBoard A/B/C, OpenPandora 600MHz and similar
-> > +          - const: img,sgx530-121
-> > +          - const: img,sgx530
-> > +
-> > +      - description: SGX530-125 based SoC
-> > +        items:
-> > +          - enum:
-> > +            - ti,am3352-sgx530-125 # BeagleBone Black
-> > +            - ti,am3517-sgx530-125
-> > +            - ti,am4-sgx530-125
-> > +            - ti,omap3-sgx530-125 # BeagleBoard XM, GTA04, OpenPandora 1GHz and similar
-> > +            - ti,ti81xx-sgx530-125
-> > +          - const: ti,omap3-sgx530-125
-> > +          - const: img,sgx530-125
-> > +          - const: img,sgx530
-> > +
-> > +      - description: SGX535-116 based SoC
-> > +        items:
-> > +          - const: intel,poulsbo-gma500-sgx535 # Atom Z5xx
-> > +          - const: img,sgx535-116
-> > +          - const: img,sgx535
-> > +
-> > +      - description: SGX540-116 based SoC
-> > +        items:
-> > +          - const: intel,medfield-gma-sgx540 # Atom Z24xx
-> > +          - const: img,sgx540-116
-> > +          - const: img,sgx540
-> > +
-> > +      - description: SGX540-120 based SoC
-> > +        items:
-> > +          - enum:
-> > +            - ingenic,jz4780-sgx540-120 # CI20
-> > +            - ti,omap4-sgx540-120 # Pandaboard, Pandaboard ES and similar
-> > +          - const: img,sgx540-120
-> > +          - const: img,sgx540
-> > +
-> > +      - description: SGX544-112 based SoC
-> > +        items:
-> > +          - const: ti,omap4-sgx544-112
-> > +          - const: img,sgx544-112
-> > +          - const: img,sgx544
-> > +
-> > +      - description: SGX544-116 based SoC
-> > +        items:
-> > +          - enum:
-> > +            - allwinner,sun8i-a83t-sgx544-116 # Banana-Pi-M3 (Allwinner A83T) and similar
+> One idle cooling device is now present for the CPU as implemented by
+> the combination of the idle injection framework belonging to the power
+> capping framework and the thermal cooling device. The missing part is
+> the DT binding providing a way to describe how the cooling device will
+> work on the system.
 > 
-> Philipp Rossak reported on a different list [1] that the a83t tells to have a sgx544-115 inside.
+> A first iteration was done by making the cooling device to point to
+> the idle state. Unfortunately it does not make sense because it would
+> need to duplicate the idle state description for each CPU in order to
+> have a different phandle and make the thermal internal framework
+> happy.
 > 
-> So it needs a separate entry.
+> It was proposed to add an cooling-cells to <3>, unfortunately the
+> thermal framework is expecting a value of <2> as stated by the
+> documentation and it is not possible from the cooling device generic
+> code to loop this third value to the back end cooling device.
+> 
+> Another proposal was to add a child 'thermal-idle' node as the SCMI
+> does. This approach allows to have a self-contained configuration for
+> the idle cooling device without colliding with the cpufreq cooling
+> device which is based on the CPU node. In addition, it allows to have
+> the cpufreq cooling device and the idle cooling device to co-exist
+> together as showed in the example.
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>  .../bindings/thermal/thermal-idle.yaml        | 145 ++++++++++++++++++
+>  1 file changed, 145 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> new file mode 100644
+> index 000000000000..f9f59cfa3c36
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> @@ -0,0 +1,145 @@
+> +# SPDX-License-Identifier: (GPL-2.0)
 
-Okay, it looks fine otherwise.
+Dual license please.
 
-Rob
+> +# Copyright 2020 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/thermal-idle.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Thermal idle cooling device binding
+> +
+> +maintainers:
+> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
+> +
+> +description: |
+> +  The thermal idle cooling device allows the system to passively
+> +  mitigate the temperature on the device by injecting idle cycles,
+> +  forcing it to cool down.
+> +
+> +  This binding describes the thermal idle node.
+> +
+> +properties:
+> +   $nodename:
+> +     const: thermal-idle
+> +     description: |
+> +        A /thermal-idle node describes the idle cooling device properties to
+
+/thermal-idle would be at the root node.
+
+> +        cool down efficiently the attached thermal zone.
+> +
+> +   '#cooling-cells':
+> +      const: 2
+> +      description: |
+> +         Must be 2, in order to specify minimum and maximum cooling state used in
+> +         the cooling-maps reference. The first cell is the minimum cooling state
+> +         and the second cell is the maximum cooling state requested.
+> +
+> +   duration:
+> +      $ref: /schemas/types.yaml#/definitions/uint32
+> +      description: |
+> +         The idle duration in microsecond the device begins to cool down.
+> +
+> +   latency:
+> +      $ref: /schemas/types.yaml#/definitions/uint32
+> +      description: |
+> +         The exit latency constraint in microsecond for the injected
+> +         idle state for the device.
+
+Both of these should have unit suffix. And then they don't need a type 
+def.
+
+> +
+> +required:
+> +  - '#cooling-cells'
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/thermal/thermal.h>
+> +
+> +    // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
+> +    cpus {
+> +            #address-cells = <2>;
+> +            #size-cells = <0>;
+> +
+> +            /* ... */
+> +
+> +                 cpu_b0: cpu@100 {
+> +                         device_type = "cpu";
+> +                         compatible = "arm,cortex-a72";
+> +                         reg = <0x0 0x100>;
+> +                         enable-method = "psci";
+> +                         capacity-dmips-mhz = <1024>;
+> +                         dynamic-power-coefficient = <436>;
+> +                         #cooling-cells = <2>; /* min followed by max */
+> +                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
+> +                         idle-thermal {
+
+thermal-idle...
+
+> +                                 #cooling-cells = <2>;
+> +                                 duration = <10000>;
+> +                                 latency = <500>;
+> +                         };
+> +                };
+> +
+> +                cpu_b1: cpu@101 {
+> +                        device_type = "cpu";
+> +                        compatible = "arm,cortex-a72";
+> +                        reg = <0x0 0x101>;
+> +                        enable-method = "psci";
+> +                        capacity-dmips-mhz = <1024>;
+> +                        dynamic-power-coefficient = <436>;
+> +                        #cooling-cells = <2>; /* min followed by max */
+> +                        cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
+> +                        idle-thermal {
+> +                                #cooling-cells = <2>;
+> +                                duration = <10000>;
+> +                                latency = <500>;
+> +                        };
+> +                 };
+> +
+> +          /* ... */
+> +
+> +    };
+> +
+> +    /* ... */
+> +
+> +    thermal_zones {
+> +         cpu_thermal: cpu {
+> +                polling-delay-passive = <100>;
+> +                polling-delay = <1000>;
+> +
+> +                /* ... */
+> +
+> +                trips {
+> +                        cpu_alert0: cpu_alert0 {
+> +                                    temperature = <65000>;
+> +                                    hysteresis = <2000>;
+> +                                    type = "passive";
+> +                        };
+> +
+> +                        cpu_alert1: cpu_alert1 {
+> +                                    temperature = <70000>;
+> +                                    hysteresis = <2000>;
+> +                                    type = "passive";
+> +                        };
+> +
+> +                        cpu_alert2: cpu_alert2 {
+> +                                    temperature = <75000>;
+> +                                    hysteresis = <2000>;
+> +                                    type = "passive";
+> +                        };
+> +
+> +                        cpu_crit: cpu_crit {
+> +                                    temperature = <95000>;
+> +                                    hysteresis = <2000>;
+> +                                    type = "critical";
+> +                        };
+> +                };
+> +
+> +                cooling-maps {
+> +                        map0 {
+> +                             trip = <&cpu_alert1>;
+> +                             cooling-device = <&{/cpus/cpu@100/idle-thermal} 0 15 >,
+> +                                              <&{/cpus/cpu@101/idle-thermal} 0 15>;
+> +                        };
+> +
+> +                        map1 {
+> +                             trip = <&cpu_alert2>;
+> +                             cooling-device =
+> +                                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                       };
+> +                };
+> +          };
+> +    };
+> -- 
+> 2.17.1
+> 
