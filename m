@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4843E1A4951
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC901A4941
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 19:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726687AbgDJRjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Apr 2020 13:39:00 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41403 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726595AbgDJRjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:39:00 -0400
-Received: by mail-ot1-f66.google.com with SMTP id f52so2501023otf.8;
-        Fri, 10 Apr 2020 10:38:59 -0700 (PDT)
+        id S1726683AbgDJRiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 13:38:24 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33909 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726177AbgDJRiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 13:38:23 -0400
+Received: by mail-oi1-f194.google.com with SMTP id 7so1125975oij.1;
+        Fri, 10 Apr 2020 10:38:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9dA79p/fJYP1exJyfDyndCj6b9oBdHgsFtR15+WKLmA=;
-        b=KXeQdKkADYWKcnZqXN1VzyKADRNdyTWUYZFvQDL84YBE6o1gjop3iJO4xq3kzKP39/
-         su4kTNRpJGlb6F9i462izwFioO/MU+JUBm6JNazX0zUwF7ct4QTeNiK0sekxfKBURbEE
-         ZKMEzzc1p7kquWjGYLRl4D8Mi0j20BuCS4v/t9Bk62g6Wij6AI/wkei69jyAp25Y3JDO
-         ww5fZN0ENVAnxpTI7Ow7026LxBalL4lr6i8hxPSXSJoZjjfeRiqk83bN3VTItyxZGUua
-         yrkXFaKOgJaNEq0dQ222DIiFZFKcvnh11c3NbPqFWMzG/9/UKmo6xFQvtiDtWe5lbe/R
-         E6bg==
-X-Gm-Message-State: AGi0PuZ3jub7NTSMwAxjLsK65buh0xVudJNoLNov2BaPg19OKxWseVVm
-        a+jcMjt2pBnyw5NysYmGwA==
-X-Google-Smtp-Source: APiQypLnV0lWs3/a0m0yM5wOMFXyJ6eGdqLn+x7dWPvHkUdeb3HuMNfRq1B+n0WGttYYQQyMwRIjFw==
-X-Received: by 2002:a9d:2056:: with SMTP id n80mr5211844ota.281.1586540338638;
-        Fri, 10 Apr 2020 10:38:58 -0700 (PDT)
+        bh=n6yX0b8Hm0JPUuZWcgvM4ULeOvzJFOtIDNl+L5FLnKg=;
+        b=fGURTeQRg4yuyxdWnhDgKaPJcSGLNC0X0/y4dBycuDf+nhPRk8byvTqjqE8h6JLRiZ
+         4sgtN/OzTVb28X6h6WF+9RAcK/1+PeM0SyZZ71VoxRVm5/TuZ0Zmdm/tZRt5a/JUIoz+
+         Phb7FWHg21tKb7tyCvxUkv90HYy4kB5dIZsJthtKyPmqoypekkc/4JYbxCRN7TG3d7St
+         ATXARfYvnK/MGvFlobFk6ZEQUZaudEQ/sX23OShyih4XwvVAnMd/zHqYWIqWFymq5dRX
+         qIuRdZCKcl130VvaVq9lrd3RBF3Tw/Ddgg5yxvUP8bRS41g8g6gRSeI98mkYVElQmOZf
+         BCuA==
+X-Gm-Message-State: AGi0Pub7rZKe831fTfwO/z6Lf6hVNXIL6JhWr/eb0khwR3HSTqwTgAJZ
+        FEUwt0QDXDda0GrPu57Awg==
+X-Google-Smtp-Source: APiQypLKMR+p1kanXyT4GdXxKgvLIIesn44nxyyn3jlU9qHM+24UxE9ucdA80WfebHRxZeQ5740vzg==
+X-Received: by 2002:aca:3745:: with SMTP id e66mr3938591oia.153.1586540303586;
+        Fri, 10 Apr 2020 10:38:23 -0700 (PDT)
 Received: from rob-hp-laptop (ip-99-203-29-27.pools.spcsdns.net. [99.203.29.27])
-        by smtp.gmail.com with ESMTPSA id x17sm1544589oif.28.2020.04.10.10.38.55
+        by smtp.gmail.com with ESMTPSA id e21sm1635967ooh.31.2020.04.10.10.38.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2020 10:38:57 -0700 (PDT)
-Received: (nullmailer pid 23157 invoked by uid 1000);
-        Fri, 10 Apr 2020 16:37:18 -0000
-Date:   Fri, 10 Apr 2020 11:37:18 -0500
+        Fri, 10 Apr 2020 10:38:22 -0700 (PDT)
+Received: (nullmailer pid 24581 invoked by uid 1000);
+        Fri, 10 Apr 2020 16:38:17 -0000
+Date:   Fri, 10 Apr 2020 11:38:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/5] dt-bindings: sram: Add Amlogic SCP SRAM compatibles
-Message-ID: <20200410163718.GA22705@bogus>
-References: <20200326165958.19274-1-narmstrong@baylibre.com>
- <20200326165958.19274-2-narmstrong@baylibre.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: cadence: Deprecate
+ inbound/outbound specific bindings
+Message-ID: <20200410163817.GA24330@bogus>
+References: <20200327104727.4708-1-kishon@ti.com>
+ <20200327104727.4708-2-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200326165958.19274-2-narmstrong@baylibre.com>
+In-Reply-To: <20200327104727.4708-2-kishon@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Mar 2020 17:59:54 +0100, Neil Armstrong wrote:
-> Add compatibles for the Amlogic SCP SRAM memory zones.
+On Fri, 27 Mar 2020 16:17:25 +0530, Kishon Vijay Abraham I wrote:
+> Deprecate cdns,max-outbound-regions and cdns,no-bar-match-nbits for
+> host mode as both these could be derived from "ranges" and "dma-ranges"
+> property. "cdns,max-outbound-regions" property would still be required
+> for EP mode.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  Documentation/devicetree/bindings/sram/sram.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/pci/cdns,cdns-pcie-ep.yaml       |  2 +-
+>  .../bindings/pci/cdns,cdns-pcie-host.yaml     |  3 +--
+>  .../devicetree/bindings/pci/cdns-pcie-ep.yaml | 25 +++++++++++++++++++
+>  .../bindings/pci/cdns-pcie-host.yaml          | 10 ++++++++
+>  .../devicetree/bindings/pci/cdns-pcie.yaml    |  8 ------
+>  5 files changed, 37 insertions(+), 11 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml
 > 
 
-Applied, thanks.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
