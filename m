@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5527C1A3EF6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 05:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BC2D1A4205
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2020 06:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbgDJDqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Apr 2020 23:46:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726821AbgDJDqt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Apr 2020 23:46:49 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2CED320BED;
-        Fri, 10 Apr 2020 03:46:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586490409;
-        bh=u8YqO5KRkDMJkvpaDUQlB5lQevXHKx6UCjjbjXQemGU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FyehbGI3uKjc/GZqo3fKv7NKyuTxGogTcBsEaUy737dVauoUXEbgJKYQlQREV76dY
-         DieQNIysfQ3M/iI/FTUHFWwlRULY0rOlYo3PwI+OMG6t7CBzkbDX6vkZYArM0jkoXl
-         zJE5lVgAYyBOiGla1b0Pxr/9Vz9jsx+Q3f78jtG8=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Mohammad Rasim <mohammad.rasim96@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.6 11/68] media: arm64: dts: amlogic: add rc-videostrong-kii-pro keymap
-Date:   Thu,  9 Apr 2020 23:45:36 -0400
-Message-Id: <20200410034634.7731-11-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200410034634.7731-1-sashal@kernel.org>
-References: <20200410034634.7731-1-sashal@kernel.org>
+        id S1725839AbgDJEdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Apr 2020 00:33:12 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:37498 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725844AbgDJEdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Apr 2020 00:33:11 -0400
+X-UUID: a5164d5f471748adaa8ab44dccc8d29b-20200410
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=C7sVVd26PpyUXemamJ7aJZN4l0qAkmHAAOQgcekYw+c=;
+        b=sNdv4wqFg9uhOd0lEcLXpPid8yDYhkgrvc/vBjRULoRMnIRb2h9DhooJiZTEPQiluh/T43lHBB6uxMe4oyqjkSnv7gQ7L8lsoSX2R+NLASAaxKu8avDe6vWvHvrEEBHnjWzs1uLbzRezId24rghlmAnYJqtlOoxBm4Xs22ESCwU=;
+X-UUID: a5164d5f471748adaa8ab44dccc8d29b-20200410
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 201238961; Fri, 10 Apr 2020 12:32:53 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
+ (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 10 Apr
+ 2020 12:32:50 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Fri, 10 Apr 2020 12:32:49 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
+        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
+        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>
+Subject: [PATCH v5 0/4] Config mipi tx current and impedance
+Date:   Fri, 10 Apr 2020 12:32:44 +0800
+Message-ID: <20200410043248.114384-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 0F6119A2BA4805AE6F0F6CED4E26971655287E7DC5310E7440F285811C225A4C2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mohammad Rasim <mohammad.rasim96@gmail.com>
-
-[ Upstream commit 806d06161af045dba29f3c7747550c93b2ea3ca9 ]
-
-videostrong kii pro comes with a nec rc, add the keymap to the dts
-
-Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Sean Young <sean@mess.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-index 2f1f829450a29..6c9cc45fb417e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-@@ -76,3 +76,7 @@
- 		};
- 	};
- };
-+
-+&ir {
-+	linux,rc-map-name = "rc-videostrong-kii-pro";
-+};
--- 
-2.20.1
+Q2hhbmdlcyBzaW5jZSB2NDoNCiAtIGFkZCBSZXZpZXdlZC1ieToNCiAtIG1vdmUgdGhlIGdldCB0
+aGUgY2FsaWJyYXRpb24gZGF0YSBjb2RlIHRvIHByb2JlLg0KDQpDaGFuZ2VzIHNpbmNlIHYzOg0K
+IC0gcmVmaW5lIGRyaXZlLXN0cmVuZ3RoLW1pY3JvYW1wIGFzIGZyb20gMzAwMCB0byA2MDAwLg0K
+DQpDaGFuZ2VzIHNpbmNlIHYyOg0KIC0gZml4IHRoZSB0aXRsZSBvZiBjb21taXQgbWVzc2FnZS4N
+CiAtIHJlbmFtZSBtaXBpdHgtY3VycmVudC1kcml2ZSB0byBkcml2ZS1zdHJlbmd0aC1taWNyb2Ft
+cA0KDQpDaGFuZ2VzIHNpbmNlIHYxOg0KIC0gZml4IGNvZGluZyBzdHlsZS4NCiAtIGNoYW5nZSBt
+dGtfbWlwaV90eF9jb25maWdfY2FsaWJyYXRpb25fZGF0YSgpIHRvIHZvaWQNCg0KSml0YW8gU2hp
+ICg0KToNCiAgZHQtYmluZGluZ3M6IGRpc3BsYXk6IG1lZGlhdGVrOiBhZGQgcHJvcGVydHkgdG8g
+Y29udHJvbCBtaXBpIHR4IGRyaXZlDQogICAgY3VycmVudA0KICBkdC1iaW5kaW5nczogZGlzcGxh
+eTogbWVkaWF0ZWs6IGdldCBtaXBpdHggY2FsaWJyYXRpb24gZGF0YSBmcm9tIG52bWVtDQogIGRy
+bS9tZWRpYXRlazogYWRkIHRoZSBtaXBpdHggZHJpdmluZyBjb250cm9sDQogIGRybS9tZWRpYXRl
+azogY29uZmlnIG1pcGl0eCBpbXBlZGFuY2Ugd2l0aCBjYWxpYnJhdGlvbiBkYXRhDQoNCiAuLi4v
+ZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkc2kudHh0ICAgICAgICAgfCAxMCArKysrDQogZHJp
+dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19taXBpX3R4LmMgICAgICAgIHwgNTQgKysrKysrKysr
+KysrKysrKysrKw0KIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfbWlwaV90eC5oICAgICAg
+ICB8ICA0ICsrDQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19tdDgxODNfbWlwaV90eC5j
+IHwgMjggKysrKysrKysrKw0KIDQgZmlsZXMgY2hhbmdlZCwgOTYgaW5zZXJ0aW9ucygrKQ0KDQot
+LSANCjIuMjEuMA0K
 
