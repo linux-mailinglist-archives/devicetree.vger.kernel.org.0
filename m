@@ -2,39 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F59C1A590B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D89441A5904
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:34:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729221AbgDKXeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Apr 2020 19:34:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47112 "EHLO mail.kernel.org"
+        id S1728772AbgDKXJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Apr 2020 19:09:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47210 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727605AbgDKXJX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Apr 2020 19:09:23 -0400
+        id S1729231AbgDKXJ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Apr 2020 19:09:26 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0CBA720708;
-        Sat, 11 Apr 2020 23:09:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id AE51221744;
+        Sat, 11 Apr 2020 23:09:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586646563;
-        bh=rQ+FMFDbzRJVIClmJqZrm30Jm4qhTCvvooV36aXECIo=;
+        s=default; t=1586646566;
+        bh=b8AGve6QsN7S5z6hZ5RO+3duXtCICqIIFesS5kE2Seo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vNm7SFIM03zhfOnbAyN6fP3cFVKryAkv7pzx7wslurpTYI7Ye4HqIugtEkZn7f1Qz
-         KXvkf2IOtvVkAw+wu4ZWEHpbYjXef0poldt4NnSUX7Ch5PdJXTSGDVdx8H9UxWvIMA
-         Nr3MQv+0nvBCSjf2BvjioFIZPoG6/3zqvcsLQkfA=
+        b=IGnQTuqa4vbpWbGuMjffiXvTbnKibbUCPvkACfkaMZbZRgjZCXuAfy3wxBtACxjgy
+         l47aIIcsST48RtTCs1ZtmQJMPzzXi0p453NawMX2NWUMzVab2V4fOfootafB5FjJjo
+         5A8CjNRhjOj8Ogk34Azbnpf+XQOuPguGiTmpTAWI=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>, Tim <elatllat@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Dongjin Kim <tobetter@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 111/121] arm64: dts: g12-common: add parkmode_disable_ss_quirk on DWC3 controller
-Date:   Sat, 11 Apr 2020 19:06:56 -0400
-Message-Id: <20200411230706.23855-111-sashal@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 114/121] arm64: dts: qcom: msm8998-mtp: Disable funnel 4 and 5
+Date:   Sat, 11 Apr 2020 19:06:59 -0400
+Message-Id: <20200411230706.23855-114-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200411230706.23855-1-sashal@kernel.org>
 References: <20200411230706.23855-1-sashal@kernel.org>
@@ -47,44 +44,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-[ Upstream commit a81bcfb6ac20cdd2e8dec3da14c8bbe1d18f6321 ]
+[ Upstream commit 3498d9c05f804414c4645a2c0bba0187630fe5f0 ]
 
-When high load on the DWC3 SuperSpeed port, the controller crashes with:
-[  221.141621] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.157631] xhci-hcd xhci-hcd.0.auto: Host halt failed, -110
-[  221.157635] xhci-hcd xhci-hcd.0.auto: xHCI host controller not responding, assume dead
-[  221.159901] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.159961] hub 2-1.1:1.0: hub_ext_port_status failed (err = -22)
-[  221.160076] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
-[  221.165946] usb 2-1.1-port1: cannot reset (err = -22)
+Disable Coresight funnel 4 and 5, for now, as these causes the MTP to
+crash when clock late_initcall disables unused clocks.
 
-Setting the parkmode_disable_ss_quirk quirk fixes the issue.
-
-Reported-by: Tim <elatllat@gmail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>
-CC: Dongjin Kim <tobetter@gmail.com>
-Link: https://lore.kernel.org/r/20200221091532.8142-4-narmstrong@baylibre.com
+Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/20200308055445.1992189-1-bjorn.andersson@linaro.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 7fabc8d9654a5..46eea2bdbeabd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2197,6 +2197,7 @@
- 				dr_mode = "host";
- 				snps,dis_u2_susphy_quirk;
- 				snps,quirk-frame-length-adjustment;
-+				snps,parkmode-disable-ss-quirk;
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+index e08fcb426bbf8..38cc7cb347b74 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+@@ -95,11 +95,15 @@
+ };
  
+ &funnel4 {
+-	status = "okay";
++	// FIXME: Figure out why clock late_initcall crashes the board with
++	// this enabled.
++	// status = "okay";
+ };
+ 
+ &funnel5 {
+-	status = "okay";
++	// FIXME: Figure out why clock late_initcall crashes the board with
++	// this enabled.
++	// status = "okay";
+ };
+ 
+ &pm8005_lsid1 {
 -- 
 2.20.1
 
