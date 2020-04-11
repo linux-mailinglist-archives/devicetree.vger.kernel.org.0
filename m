@@ -2,89 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0FDB1A5348
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2020 20:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA591A53B4
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2020 22:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726695AbgDKSV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Apr 2020 14:21:29 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:43370 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726129AbgDKSV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Apr 2020 14:21:28 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id D8BA18030786;
-        Sat, 11 Apr 2020 18:21:26 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jxLEWrmPJugI; Sat, 11 Apr 2020 21:21:26 +0300 (MSK)
-Date:   Sat, 11 Apr 2020 21:21:59 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: dma: dw: Add max burst transaction
- length property bindings
-Message-ID: <20200411182159.fjjazqn6jjl3icep@ubsrv2.baikal.int>
-References: <20200306131035.10937-1-Sergey.Semin@baikalelectronics.ru>
- <20200306131049.37EDD8030708@mail.baikalelectronics.ru>
- <20200312213330.GA30463@bogus>
+        id S1726837AbgDKUjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Apr 2020 16:39:13 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:45074 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726167AbgDKUjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Apr 2020 16:39:13 -0400
+Received: by mail-lf1-f68.google.com with SMTP id f8so3714112lfe.12;
+        Sat, 11 Apr 2020 13:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dUvGhh7rtUygLtFL6NkahS3nxFZQQQrd2UgQKXcfbs8=;
+        b=p6IKm4P6WSbEAcbj6S3ltnZ2NHV2t8qTSW0NL2+R1TTGZLa2zbXXAMYSPOg3HVBLlL
+         B0yFCzrnvUvMCA115IQVPj0FnoUHUGTnoN2E9xgDUJlhqT2ELFNVI2zKmxrqx1KgPA44
+         UM48pJIiGIqE+sZgpbvelQmutKABl6UJE8DP+wwgnfTiamSfHHZu7Cbaxqj0makocRSi
+         Gib5ayNACzWZla1dCsAZi0BHo0ltCbFGSQw8nxkcsvEE61nImKKS9veEH2g+6hrXjGwb
+         Dc9V+WHNF7ldjSXauscKvQNCzhQMlN4G6jUkSRkXs0C5elMngQ+xd/8Kx+av69ix8NH8
+         d1BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dUvGhh7rtUygLtFL6NkahS3nxFZQQQrd2UgQKXcfbs8=;
+        b=EBcr89trwDBhipjacftYPV4nu1ShuduBdAEM+z4j7Wnn8PN2/ues6b2uZ0NX2UP9hJ
+         Kv7d8nRtrj/X94dglN5yCYxjs51l+fLVkH2oiE77veLw79t+qBNRtDT0IQvSlacF1inw
+         UDTTF9iJc6iBCO2KXmXdewhZgw85QqRC24Z0K1JkaORJhwIPWMiIpxLGgGsmuws8qHIQ
+         f/biw4WPkavS/R0NGH4r+5CeIs/pQWgxZaQcjdKac5u8IIXIHS1T4FSJI8m8HRhWxKjL
+         2/s3jRIRhgwXbOzhSxcpr5kLeqLi5pPczqeP4s/4lGeNrXhDO2bs57DRrQiT5oCyqVOK
+         QdzA==
+X-Gm-Message-State: AGi0PuYwmXixWnDyshg/pVB41CSq8RvcJKP9TvwnP4vRu4hpWJV1Afnn
+        ETLm/VDYrHj5MPOuf41Bad0=
+X-Google-Smtp-Source: APiQypITUq6qdmf7TaiDE8oKDktp99wvNTm7FyxMm+PVWG07LwV9SMzTF9rfMVSJnQ9VQ9hHrT6pog==
+X-Received: by 2002:ac2:43b1:: with SMTP id t17mr6149082lfl.9.1586637550065;
+        Sat, 11 Apr 2020 13:39:10 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id u19sm2435448lji.61.2020.04.11.13.39.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Apr 2020 13:39:09 -0700 (PDT)
+Subject: Re: [PATCH v6 09/14] memory: tegra: Add EMC scaling support code for
+ Tegra210
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joseph Lo <josephl@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200409175238.3586487-1-thierry.reding@gmail.com>
+ <20200409175238.3586487-10-thierry.reding@gmail.com>
+ <3e518dfa-cb3d-e2ce-a9b8-5e143e02fc61@gmail.com>
+Message-ID: <6976796c-6972-328e-3e9f-60c1737cf0e2@gmail.com>
+Date:   Sat, 11 Apr 2020 23:39:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200312213330.GA30463@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <3e518dfa-cb3d-e2ce-a9b8-5e143e02fc61@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 12, 2020 at 04:33:30PM -0500, Rob Herring wrote:
-> On Fri, Mar 06, 2020 at 04:10:31PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > This array property is used to indicate the maximum burst transaction
-> > length supported by each DMA channel.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > Cc: Paul Burton <paulburton@kernel.org>
-> > Cc: Ralf Baechle <ralf@linux-mips.org>
-> > ---
-> >  .../devicetree/bindings/dma/snps,dma-spear1340.yaml  | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-> > index d7f9383ceb8f..308ec6482064 100644
-> > --- a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-> > @@ -126,6 +126,18 @@ properties:
-> >            enum: [0, 1]
-> >            default: 0
-> >  
-> > +  snps,max-burst-len:
-> > +    description: |
-> > +      Maximum length of burst transactions supported by hardware.
-> > +      It's an array property with one cell per channel in units of
-> > +      CTLx register SRC_TR_WIDTH/DST_TR_WIDTH field.
-> > +    allOf:
-> > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +      - maxItems: 8
-> > +        items:
-> > +          enum: [4, 8, 16, 32, 64, 128, 256]
-> > +          default: 0
-> 
-> The default needs to be an allowed value in the enum.
+> ...
+>> +#define TRIM_REG(chan, rank, reg, byte)					\
+>> +	(((EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ## reg ##	\
+>> +	   _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte ## _MASK &	\
+>> +	   next->trim_regs[EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ##		\
+>> +				 rank ## _ ## reg ## _INDEX]) >>	\
+>> +	  EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ## reg ##	\
+>> +	  _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte ## _SHIFT)	\
+>> +	 +								\
+>> +	 (((EMC_DATA_BRLSHFT_ ## rank ## _RANK ## rank ## _BYTE ##	\
+>> +	    byte ## _DATA_BRLSHFT_MASK &				\
+>> +	    next->trim_perch_regs[EMC ## chan ##			\
+>> +			      _EMC_DATA_BRLSHFT_ ## rank ## _INDEX]) >>	\
+>> +	   EMC_DATA_BRLSHFT_ ## rank ## _RANK ## rank ## _BYTE ##	\
+>> +	   byte ## _DATA_BRLSHFT_SHIFT) * 64))
+>> +
+>> +#define CALC_TEMP(rank, reg, byte1, byte2, n)				\
+>> +	(((new[n] << EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ##	\
+>> +	   reg ## _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte1 ## _SHIFT) & \
+>> +	  EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ## reg ##	\
+>> +	  _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte1 ## _MASK)	\
+>> +	 |								\
+>> +	 ((new[n + 1] << EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ##\
+>> +	   reg ## _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte2 ## _SHIFT) & \
+>> +	  EMC_PMACRO_OB_DDLL_LONG_DQ_RANK ## rank ## _ ## reg ##	\
+>> +	  _OB_DDLL_LONG_DQ_RANK ## rank ## _BYTE ## byte2 ## _MASK))
 
-Right. I'll fix it.
+What about replacing those barely readable concatenated macros with a
+raw values?
 
--Sergey
+Like:
 
-> 
-> Rob
+TRIM_REG(brlshft_idx, ob_ddll_long_dq_rank_mask, ...)
