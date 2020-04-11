@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9730D1A575D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CB61A56AE
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729969AbgDKXNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Apr 2020 19:13:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54084 "EHLO mail.kernel.org"
+        id S1729943AbgDKXOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Apr 2020 19:14:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55584 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730355AbgDKXNL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Apr 2020 19:13:11 -0400
+        id S1729121AbgDKXOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Apr 2020 19:14:05 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5902A20787;
-        Sat, 11 Apr 2020 23:13:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B981720CC7;
+        Sat, 11 Apr 2020 23:14:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586646791;
-        bh=5E5acoX/23TDJSuUqQEMj3LTgMnNc8iD56xVZ48yBxg=;
+        s=default; t=1586646845;
+        bh=ZdMmlu8rq6FnZHNvz1fx4gohu8sKPOucgZZcA5ktuyM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RF5KHJJIlTK7h5p3ZC2BtivGXPdrGmCk4xhbGuX/lO3W3VUIsgUU7ZiiEaIQCtm8c
-         J8tA+Ml2YLHZeHIy4iUQXs3jp3hlL7K+67ce8A/V7CRmLHBdQ7MGgFPfLg+GTu/m+d
-         eiK7zM3nwrjQjj2n3/NjmgF9gY+xfisUjWPP2P1s=
+        b=tYWgS0EsFnmmr5/0derzhgchageuw0Rcoz1xiwcAwkLQngGBiMTDurb8HSGygYYkd
+         Xh0X9OPc9xguE9oVC9ecG2HCWaAfjNEhhJDI1VMvlms7dDBnvCILRXQKHycJ0F0Cdl
+         8VHLIPMDhpoKFx6Ml2fLYccZQHCPj7Vc104ZuN2I=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Patrick Daly <pdaly@codeaurora.org>,
         "Isaac J . Manjarres" <isaacm@codeaurora.org>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 55/66] of: of_reserved_mem: Increase limit on number of reserved regions
-Date:   Sat, 11 Apr 2020 19:11:52 -0400
-Message-Id: <20200411231203.25933-55-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 32/37] of: of_reserved_mem: Increase limit on number of reserved regions
+Date:   Sat, 11 Apr 2020 19:13:21 -0400
+Message-Id: <20200411231327.26550-32-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200411231203.25933-1-sashal@kernel.org>
-References: <20200411231203.25933-1-sashal@kernel.org>
+In-Reply-To: <20200411231327.26550-1-sashal@kernel.org>
+References: <20200411231327.26550-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -68,10 +68,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 895c83e0c7b6c..794308b3b8b9a 100644
+index 32771c2ced7bb..fd89159bf5162 100644
 --- a/drivers/of/of_reserved_mem.c
 +++ b/drivers/of/of_reserved_mem.c
-@@ -21,7 +21,7 @@
+@@ -25,7 +25,7 @@
  #include <linux/sort.h>
  #include <linux/slab.h>
  
