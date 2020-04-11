@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D89441A5904
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5031A580D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2020 01:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728772AbgDKXJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Apr 2020 19:09:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47210 "EHLO mail.kernel.org"
+        id S1729949AbgDKXLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Apr 2020 19:11:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51276 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729231AbgDKXJ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Apr 2020 19:09:26 -0400
+        id S1729945AbgDKXLf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Apr 2020 19:11:35 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AE51221744;
-        Sat, 11 Apr 2020 23:09:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 70C792166E;
+        Sat, 11 Apr 2020 23:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586646566;
-        bh=b8AGve6QsN7S5z6hZ5RO+3duXtCICqIIFesS5kE2Seo=;
+        s=default; t=1586646695;
+        bh=omF1iRanyQ8S752QBPEFo8RD9YAGvCRHuHarTQ18A/E=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IGnQTuqa4vbpWbGuMjffiXvTbnKibbUCPvkACfkaMZbZRgjZCXuAfy3wxBtACxjgy
-         l47aIIcsST48RtTCs1ZtmQJMPzzXi0p453NawMX2NWUMzVab2V4fOfootafB5FjJjo
-         5A8CjNRhjOj8Ogk34Azbnpf+XQOuPguGiTmpTAWI=
+        b=PA20Y21KYVtl43pwTruFAxvNfFtQPS02sTtpj5aCgbSAocfHVl6fyZFCcvGaBQVsj
+         jLz+94hmxGUM79xwC0VvUKWUwh7GU4nAjfjLUn3F0puLmPzzu9VdSbLXfI9cCaq4/R
+         ErFEotWaLMN6Yk6dRZt7k/QvcdA7glWWX5L2w2GU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+Cc:     Patrick Daly <pdaly@codeaurora.org>,
+        "Isaac J . Manjarres" <isaacm@codeaurora.org>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 114/121] arm64: dts: qcom: msm8998-mtp: Disable funnel 4 and 5
-Date:   Sat, 11 Apr 2020 19:06:59 -0400
-Message-Id: <20200411230706.23855-114-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 089/108] of: of_reserved_mem: Increase limit on number of reserved regions
+Date:   Sat, 11 Apr 2020 19:09:24 -0400
+Message-Id: <20200411230943.24951-89-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200411230706.23855-1-sashal@kernel.org>
-References: <20200411230706.23855-1-sashal@kernel.org>
+In-Reply-To: <20200411230943.24951-1-sashal@kernel.org>
+References: <20200411230943.24951-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,44 +44,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+From: Patrick Daly <pdaly@codeaurora.org>
 
-[ Upstream commit 3498d9c05f804414c4645a2c0bba0187630fe5f0 ]
+[ Upstream commit 632c99084052aef1c9dcfe43d2720306026d6d21 ]
 
-Disable Coresight funnel 4 and 5, for now, as these causes the MTP to
-crash when clock late_initcall disables unused clocks.
+Certain SoCs need to support a large amount of reserved memory
+regions. For example, Qualcomm's SM8150 SoC requires that 20
+regions of memory be reserved for a variety of reasons (e.g.
+loading a peripheral subsystem's firmware image into a
+particular space).
 
-Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/20200308055445.1992189-1-bjorn.andersson@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+When adding more reserved memory regions to cater to different
+usecases, the remaining number of reserved memory regions--12
+to be exact--becomes too small. Thus, double the existing
+limit of reserved memory regions.
+
+Signed-off-by: Patrick Daly <pdaly@codeaurora.org>
+Signed-off-by: Isaac J. Manjarres <isaacm@codeaurora.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/of/of_reserved_mem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-index e08fcb426bbf8..38cc7cb347b74 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-@@ -95,11 +95,15 @@
- };
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 6bd610ee2cd73..1a84bc0d5fa80 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -22,7 +22,7 @@
+ #include <linux/slab.h>
+ #include <linux/memblock.h>
  
- &funnel4 {
--	status = "okay";
-+	// FIXME: Figure out why clock late_initcall crashes the board with
-+	// this enabled.
-+	// status = "okay";
- };
+-#define MAX_RESERVED_REGIONS	32
++#define MAX_RESERVED_REGIONS	64
+ static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
+ static int reserved_mem_count;
  
- &funnel5 {
--	status = "okay";
-+	// FIXME: Figure out why clock late_initcall crashes the board with
-+	// this enabled.
-+	// status = "okay";
- };
- 
- &pm8005_lsid1 {
 -- 
 2.20.1
 
