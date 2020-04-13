@@ -2,122 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 197611A6B4B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 19:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8B7A1A6B82
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 19:37:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732746AbgDMRUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 13:20:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58574 "EHLO
+        id S1732856AbgDMRhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 13:37:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1732579AbgDMRUu (ORCPT
+        by vger.kernel.org with ESMTP id S1732835AbgDMRhG (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Apr 2020 13:20:50 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98C5C0A3BDC;
-        Mon, 13 Apr 2020 10:20:49 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id k11so10316307wrp.5;
-        Mon, 13 Apr 2020 10:20:49 -0700 (PDT)
+        Mon, 13 Apr 2020 13:37:06 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6F5AC0A3BDC;
+        Mon, 13 Apr 2020 10:37:05 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id z6so10809234wml.2;
+        Mon, 13 Apr 2020 10:37:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kWgwtw6mnshP7OT2kiE97Ap+wsoZZptwcvaDrs1tDsI=;
-        b=bVh1MHnIU7qEHoYKTXnX8K/41raLAhstyBAr9OgkIlaMU8CkeYDVbSuj2MVqY6E5dC
-         qLA+7Z8aDDgXtfRRRqEt0JirV+9D3Kq0As4DptSjqE9XC0ru6jAEs0RursW6IqmT1Zig
-         sI5edIfwkeSg6nTxBG35L3EVBdv/yJQ/xXc/2hlNlq1c87BhsJFy0UQbTYqwrCW9wi+m
-         +UMcaGJA1UvnpJqFD/eQh1Kb4j9Rttzq1LN53LMaa6FQiRsPQtUzk7u8/c6uuQi/fWnZ
-         FUJhWMCikBA3WxTFmBgTIrX+2cTVVd4s1z5j5ATbYWQ5BQnVkFcCL7dNGbK7P1nIsN/d
-         axFw==
+        h=from:to:cc:subject:date:message-id;
+        bh=4qxTkcHl6N0UyqcZicmKtRt4TNllmPv3Es3wEM33D6Y=;
+        b=Nu60P9lRbYJGRzKDmP6N0d+O8zNaI9W/10CW9NbgVWKODKWmXq18Sr7sSFQD5CiHZs
+         3hEXu0+KlbLt8fNTP6zReYl8S+mvg76uTXgAcmW5WjArXDlaef+0RlUL3s5oIL+jtrfK
+         GM5IXFnmEyP/7/Ibt3WdXEKZHijkbvWe/FO+nD+tCSrxeeE0KwSN1mOMIKy3ZQlTJV8C
+         W6JR35ox2XH7MJAkqAtb+5eQStYgrByA7bwIyeLc+d3Scbd4jocpiusaFNUTYUx/Q/Sk
+         S3m5uEMNKVF/GlV5A1zH6Ux7+gmjmaRbkg7sA3v0K/QtSvbb4z/C52uDDzpe5OmcYmfl
+         0JZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kWgwtw6mnshP7OT2kiE97Ap+wsoZZptwcvaDrs1tDsI=;
-        b=Ryse9ZksgEQsHvy42kpIfmiCut9nMkbLvkhedcFApneXqfMbKjjRGT2dBss9OhBdKY
-         clNF4UZtfNhAfHFfPHQ9n5RZ9i5SogpdMPcsSWcnF0uE19hI+yrbJUGpiwQCVBZk51Qz
-         rzsKLAE+RNZgsrdmhF3WrDAkFgxJGbpESOB/1bnNGlAc+B4v6wCNlPxi3E/JtsUuYKXb
-         L+7BfTYC6iWdMVnGM2ZIzfl0V9xvv6RjIOPg7u8rEQ2XPkzqSncdRyOA5YFPMmw/beFY
-         a+7b+mTzXy/GN+KpRdFiai7kHFrEvwKgvu7NB8A0e5eFZrn8oXHiy35eYfiaPmwAUup1
-         u2Rg==
-X-Gm-Message-State: AGi0PubrV/S4wvGM7Ky18UmX0W9CSLYZMUFXsHFtE6Db3as99yGKwGOK
-        D4G6qV3F1sqd1H+yJQlZ4WM=
-X-Google-Smtp-Source: APiQypIs6QMkRZ3InN+DdxIArcJcpkp8vBmkZ8YZyLT4LbLHkZc845IeZsR13A1TTF2jkLK0weALmQ==
-X-Received: by 2002:a5d:698f:: with SMTP id g15mr5867707wru.135.1586798448730;
-        Mon, 13 Apr 2020 10:20:48 -0700 (PDT)
-Received: from linux-gy6r.site ([213.195.113.243])
-        by smtp.gmail.com with ESMTPSA id d13sm6835546wmb.39.2020.04.13.10.20.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Apr 2020 10:20:48 -0700 (PDT)
-Subject: Re: [PATCH v7 5/5] media: mtk-mdp: Use correct aliases name
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Daniel Kurtz <djkurtz@chromium.org>
-References: <20200210063523.133333-1-hsinyi@chromium.org>
- <20200210063523.133333-6-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-X-Pep-Version: 2.0
-Message-ID: <7f08c5a8-8635-7e97-9585-601ac9c21ded@gmail.com>
-Date:   Mon, 13 Apr 2020 19:20:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20200210063523.133333-6-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=4qxTkcHl6N0UyqcZicmKtRt4TNllmPv3Es3wEM33D6Y=;
+        b=l2kiFuiPvuf46QhOvFfwqTQiXsKNROR8XGEZk0zaQIbhxOYSeiefF5cLXexbVR/hEC
+         8JOyKAZlJsVxTJc+wBM2naI4EmAz/ySKuc4x0OGyl1/W8K5iUYDROjSvVd8x1fZVd7w8
+         W4L9ifs1CO5GyN4aYKfDKPIK1UvJsY/+zIeVqkraybli6eFq+LNd7ExWSsLAgIByJztq
+         auyjCfCjd/NgZRAzY+WI+Cbr5cnHuZe74HlmKOFUKiNEKyes0QRM3Qcl7hXYLHX8pbx1
+         QvIWlOdBA/EJhWQlntxcZtwRfm6EMzUAvIzUa14Dy1zA8PaoBwKYjQUHUkGWW3/K5NYC
+         X3RQ==
+X-Gm-Message-State: AGi0Pua5sXXmSqMg2TuIKo7vqZBDvdqhniFZgfRbg2olu7M06ceHcBOA
+        nAF/YqJPSYuTmKBbOdMPuvs=
+X-Google-Smtp-Source: APiQypKmjb37yW1hU7Kiy+NVmLei3M0xqktoJJ90AHbisd6y8uUW4daEz6C2zp0HZT5bAwQKsRWCYA==
+X-Received: by 2002:a05:600c:21d6:: with SMTP id x22mr20552601wmj.95.1586799424443;
+        Mon, 13 Apr 2020 10:37:04 -0700 (PDT)
+Received: from localhost.localdomain (p5B3F6AD5.dip0.t-ipconnect.de. [91.63.106.213])
+        by smtp.gmail.com with ESMTPSA id a205sm11141465wmh.29.2020.04.13.10.37.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Apr 2020 10:37:03 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v8 0/6] Add battery charger driver support for MP2629
+Date:   Mon, 13 Apr 2020 19:36:50 +0200
+Message-Id: <20200413173656.28522-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes in v8:
+ - fixed order of call in probe/remove in iio adc
+ - add ABI documentation for mp2629 power supply
 
+changes in v7:
+ - fixed probe/remove order, managed and unmanaged call mix use in adc.
+ - Documentation dual license, i2c node with controller address
 
-On 2/10/20 7:35 AM, Hsin-Yi Wang wrote:
-> aliases property name must include only lowercase and '-'. Fix in dts
-> and driver.
->=20
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c b/drivers/me=
-dia/platform/mtk-mdp/mtk_mdp_comp.c
-> index 9afe8161a8c0..0c4788af78dd 100644
-> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+changes in v6:
+ - removed includes types.h in mfd, of_device.h in adc.
+ - fixed review comments parentheses, err check, kstrtouint
 
-When resubmitting this, please make sure to use
-scripts/get_maintainer.pl
+changes in v5:
+ - removed platfrom data stored in mfd and directly accessed mfd struct in child
+ - fixed spell check and capitalization in mfd and documentation
 
-The To and CC list are missing the relevant people and mailinglists,
-porbably that's why you never got a response. The patch is trivial feel
-free to add:
+changes in v4:
+ - fixed capitalization in mfg Kconfig and documentation
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+changes in v3:
+ - regmap for children passed using platform data and remove mfd driver info
+   access directly from children
 
-> @@ -15,10 +15,10 @@
-> =20
-> =20
->  static const char * const mtk_mdp_comp_stem[MTK_MDP_COMP_TYPE_MAX] =3D=
- {
-> -	"mdp_rdma",
-> -	"mdp_rsz",
-> -	"mdp_wdma",
-> -	"mdp_wrot",
-> +	"mdp-rdma",
-> +	"mdp-rsz",
-> +	"mdp-wdma",
-> +	"mdp-wrot",
->  };
-> =20
->  struct mtk_mdp_comp_match {
->=20
+changes in v2:
+ - removed EXPORT_SYMBOL of register set/get helper
+ - regmap bit filed used, fixed other review comments
+
+This patch series add support for Battery charger control driver for Monolithic
+Power System's MP2629 chipset, includes MFD driver for ADC battery & input
+power supply measurement and battery charger control driver.
+
+Thanks,
+Saravanan
+
+Saravanan Sekar (6):
+  dt-bindings: mfd: add document bindings for mp2629
+  mfd: mp2629: Add support for mps battery charger
+  iio: adc: mp2629: Add support for mp2629 ADC driver
+  power: supply: Add support for mps mp2629 battery charger
+  power: supply: mp2629: Add impedance compenstation config
+  MAINTAINERS: Add entry for mp2629 Battery Charger driver
+
+ .../ABI/testing/sysfs-class-power-mp2629      |   8 +
+ .../devicetree/bindings/mfd/mps,mp2629.yaml   |  60 ++
+ MAINTAINERS                                   |   5 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/mp2629_adc.c                  | 208 ++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mp2629.c                          |  86 +++
+ drivers/power/supply/Kconfig                  |  10 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/mp2629_charger.c         | 687 ++++++++++++++++++
+ include/linux/mfd/mp2629.h                    |  28 +
+ 13 files changed, 1115 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-mp2629
+ create mode 100644 Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+ create mode 100644 drivers/iio/adc/mp2629_adc.c
+ create mode 100644 drivers/mfd/mp2629.c
+ create mode 100644 drivers/power/supply/mp2629_charger.c
+ create mode 100644 include/linux/mfd/mp2629.h
+
+-- 
+2.17.1
 
