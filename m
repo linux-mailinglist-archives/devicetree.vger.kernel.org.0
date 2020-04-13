@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C7F11A6D07
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 22:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6905B1A6D22
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 22:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733246AbgDMUOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 16:14:43 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:10470 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733229AbgDMUOl (ORCPT
+        id S2388277AbgDMUU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 16:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2388255AbgDMUU4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Apr 2020 16:14:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1586808880; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=CVKwdv1dL/6/p21AAAZ4seiEJbEjLRqpVCT2OHJoL4k=; b=hwhH5mB6q9QU2tqXkoyjdVfCpiRIcBPGDysghI63r4dDv0PNIun7FMsxs8/zzwZRF14QP0ho
- rYwLkb20nxGX50NIXEGuj5n4ad8Swy/RpKUSTJvd9Zm9N95C0Iiht4iEi1Ryec0VGvjX8Odl
- cA3PKEwpcnvbYExb/nua7URDCCI=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e94c830.7f7cd8672e68-smtp-out-n02;
- Mon, 13 Apr 2020 20:14:40 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8629FC4478C; Mon, 13 Apr 2020 20:14:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3CF98C433CB;
-        Mon, 13 Apr 2020 20:14:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3CF98C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, p.zabel@pengutronix.de,
-        mgautam@codeaurora.org, vkoul@kernel.org, sboyd@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v7 5/5] phy: qcom-qmp: Rename UFS PCS QMP v4 registers
-Date:   Mon, 13 Apr 2020 13:14:26 -0700
-Message-Id: <1586808866-21350-6-git-send-email-wcheng@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1586808866-21350-1-git-send-email-wcheng@codeaurora.org>
-References: <1586808866-21350-1-git-send-email-wcheng@codeaurora.org>
+        Mon, 13 Apr 2020 16:20:56 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABD79C0A3BDC;
+        Mon, 13 Apr 2020 13:20:54 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id m16so3811313pls.4;
+        Mon, 13 Apr 2020 13:20:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rhP8togHEFOdKrEhVMamW4MRO722aEfkopEuZNN/wOI=;
+        b=muwUYuehGhzwsgmvrzKmt4pgdN4QkY+03DonmZB9ONRyVR3wLUNGv4QmN/mlS95AEP
+         QAKBUY6ZVRYMN3mCDf9Px0fpWYYsN1ivAllgSX9ZhTZs48PYiSoWvq7Mr+hroAmUXZRK
+         jdZXh8S9NsD5Vplx6KHkljE4S/P7mXMfpMo2RPcoI0e6B8wc9jH2YsllR1gE3YagnZAn
+         RDeCSxaduKyp8Lhog0moA43DdJxf7LZCA2Z4qpOX3AE1M0b8vm0x8GfnTVKXocWyZaZo
+         GMSy45tMweLjHjzteh/dZH+XEqx9wNuF9/i7SvczCMvF6nLN4AVzxvb3tcQKoDsAMlKR
+         fP+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rhP8togHEFOdKrEhVMamW4MRO722aEfkopEuZNN/wOI=;
+        b=Ou8RE0ix9xzA3+FZwBx8+gA78GwO9Oo8P//hCVAr1p85EUuJxC6NiQVf96p4n5zwpi
+         J/3gLw272faInCAeabAT1dAvqOZSS1zNUOo2YihFpBrjnVUqpvcm8VMCHBZiwXaQQGW4
+         C12q6zZOmuHhVjsHhtjSYDbqsnbWxPr5vBPrkh5vVccjIGR5YhYsps5/q7vIVtty7Xq/
+         nvHvssfCcoeSYjrHD+BGf71LI2XsM8KsKbPFXzWBdH+uonShRblY+ID4QmjUt6HwB8Vq
+         vB7jbJGl5VhWps7RFnR0Com7mhM8P47TjYTtg8Qz9t5LMR6fotBcw+hw/p5SyuGjVfNg
+         VrUw==
+X-Gm-Message-State: AGi0PuYVmreznnVuPyEq9VrevwpB8Fm7bUoj4glZgoFNWGYioefPnVUY
+        CPNr16t+mEcos6ZKtkPmYF6jKNTwNUc05PL1tBE=
+X-Google-Smtp-Source: APiQypIgRVIiNAo/CmIcX7f33PN0CQ9kB3cxHtZlVhBp3gUUznxaxkngllL8DZt3NoX6LOk97BucPhJbTgIWavQIXAM=
+X-Received: by 2002:a17:902:5985:: with SMTP id p5mr14336982pli.262.1586809254098;
+ Mon, 13 Apr 2020 13:20:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200412183658.6755-1-mani@kernel.org> <20200412183658.6755-3-mani@kernel.org>
+In-Reply-To: <20200412183658.6755-3-mani@kernel.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 13 Apr 2020 23:20:42 +0300
+Message-ID: <CAHp75VdCK26wXiw0c=1fc0vKsea4w=tthCBrroLOqqaDbwuMVQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] iio: chemical: Add support for external Reset and
+ Wakeup in CCS811
+To:     mani@kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, narcisaanamaria12@gmail.com,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UFS QMP v4 PHY has a largely different register set versus USB and
-PCIe.  Rename the register offsets to denote that the value is specific for
-the UFS PCS register.
+On Mon, Apr 13, 2020 at 8:34 AM <mani@kernel.org> wrote:
+>
+> From: Manivannan Sadhasivam <mani@kernel.org>
+>
+> CCS811 VOC sensor exposes nRESET and nWAKE pins which can be connected
+> to GPIO pins of the host controller. These pins can be used to externally
+> release the device from reset and also to wake it up before any I2C
+> transaction. The initial driver support assumed that the nRESET pin is not
+> connected and the nWAKE pin is tied to ground.
+>
+> This commit improves it by adding support for controlling those two pins
+> externally using a host controller. For the case of reset, if the hardware
+> reset is not available, the mechanism to do software reset is also added.
+>
+> As a side effect of doing this, the IIO device allocation needs to be
+> slightly moved to top of probe to make use of priv data early.
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 20 +++++++++----------
- drivers/phy/qualcomm/phy-qcom-qmp.h | 40 ++++++++++++++++++-------------------
- 2 files changed, 30 insertions(+), 30 deletions(-)
+...
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index 5363a99..9400748 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -174,9 +174,9 @@ enum qphy_reg_layout {
- };
- 
- static const unsigned int sm8150_ufsphy_regs_layout[] = {
--	[QPHY_START_CTRL]		= QPHY_V4_PHY_START,
--	[QPHY_PCS_READY_STATUS]		= QPHY_V4_PCS_READY_STATUS,
--	[QPHY_SW_RESET]			= QPHY_V4_SW_RESET,
-+	[QPHY_START_CTRL]		= QPHY_V4_PCS_UFS_PHY_START,
-+	[QPHY_PCS_READY_STATUS]		= QPHY_V4_PCS_UFS_READY_STATUS,
-+	[QPHY_SW_RESET]			= QPHY_V4_PCS_UFS_SW_RESET,
- };
- 
- static const struct qmp_phy_init_tbl msm8996_pcie_serdes_tbl[] = {
-@@ -971,13 +971,13 @@ enum qphy_reg_layout {
- };
- 
- static const struct qmp_phy_init_tbl sm8150_ufsphy_pcs_tbl[] = {
--	QMP_PHY_INIT_CFG(QPHY_V4_RX_SIGDET_CTRL2, 0x6d),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_LARGE_AMP_DRV_LVL, 0x0a),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_SMALL_AMP_DRV_LVL, 0x02),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_MID_TERM_CTRL1, 0x43),
--	QMP_PHY_INIT_CFG(QPHY_V4_DEBUG_BUS_CLKSEL, 0x1f),
--	QMP_PHY_INIT_CFG(QPHY_V4_RX_MIN_HIBERN8_TIME, 0xff),
--	QMP_PHY_INIT_CFG(QPHY_V4_MULTI_LANE_CTRL1, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2, 0x6d),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0a),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1f),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xff),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
- };
- 
- static const struct qmp_phy_init_tbl sm8150_usb3_serdes_tbl[] = {
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-index 22c9009..d78acbf 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-@@ -425,26 +425,26 @@
- #define QSERDES_V4_RX_VTH_CODE				0x1c4
- 
- /* Only for QMP V4 PHY - UFS PCS registers */
--#define QPHY_V4_PHY_START				0x000
--#define QPHY_V4_POWER_DOWN_CONTROL			0x004
--#define QPHY_V4_SW_RESET				0x008
--#define QPHY_V4_TIMER_20US_CORECLK_STEPS_MSB		0x00c
--#define QPHY_V4_TIMER_20US_CORECLK_STEPS_LSB		0x010
--#define QPHY_V4_PLL_CNTL				0x02c
--#define QPHY_V4_TX_LARGE_AMP_DRV_LVL			0x030
--#define QPHY_V4_TX_SMALL_AMP_DRV_LVL			0x038
--#define QPHY_V4_BIST_FIXED_PAT_CTRL			0x060
--#define QPHY_V4_TX_HSGEAR_CAPABILITY			0x074
--#define QPHY_V4_RX_HSGEAR_CAPABILITY			0x0b4
--#define QPHY_V4_DEBUG_BUS_CLKSEL			0x124
--#define QPHY_V4_LINECFG_DISABLE				0x148
--#define QPHY_V4_RX_MIN_HIBERN8_TIME			0x150
--#define QPHY_V4_RX_SIGDET_CTRL2				0x158
--#define QPHY_V4_TX_PWM_GEAR_BAND			0x160
--#define QPHY_V4_TX_HS_GEAR_BAND				0x168
--#define QPHY_V4_PCS_READY_STATUS			0x180
--#define QPHY_V4_TX_MID_TERM_CTRL1			0x1d8
--#define QPHY_V4_MULTI_LANE_CTRL1			0x1e0
-+#define QPHY_V4_PCS_UFS_PHY_START				0x000
-+#define QPHY_V4_PCS_UFS_POWER_DOWN_CONTROL			0x004
-+#define QPHY_V4_PCS_UFS_SW_RESET				0x008
-+#define QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB		0x00c
-+#define QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB		0x010
-+#define QPHY_V4_PCS_UFS_PLL_CNTL				0x02c
-+#define QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL			0x030
-+#define QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL			0x038
-+#define QPHY_V4_PCS_UFS_BIST_FIXED_PAT_CTRL			0x060
-+#define QPHY_V4_PCS_UFS_TX_HSGEAR_CAPABILITY			0x074
-+#define QPHY_V4_PCS_UFS_RX_HSGEAR_CAPABILITY			0x0b4
-+#define QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL			0x124
-+#define QPHY_V4_PCS_UFS_LINECFG_DISABLE				0x148
-+#define QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME			0x150
-+#define QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2				0x158
-+#define QPHY_V4_PCS_UFS_TX_PWM_GEAR_BAND			0x160
-+#define QPHY_V4_PCS_UFS_TX_HS_GEAR_BAND				0x168
-+#define QPHY_V4_PCS_UFS_READY_STATUS			0x180
-+#define QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1			0x1d8
-+#define QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1			0x1e0
- 
- /* Only for QMP V4 PHY - USB/PCIe PCS registers */
- #define QPHY_V4_PCS_SW_RESET				0x000
+> +#define CCS811_SW_RESET                0xFF
+
+
+> +       reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
+> +                                            GPIOD_OUT_LOW);
+> +       if (IS_ERR(reset_gpio)) {
+> +               dev_err(&client->dev, "Failed to acquire reset gpio\n");
+
+> +               return -EINVAL;
+
+Do not shadow actual error code.
+
+> +       }
+> +
+> +       /* Try to reset using nRESET pin if available else do SW reset */
+> +       if (reset_gpio) {
+> +               gpiod_set_value(reset_gpio, 1);
+> +               usleep_range(20, 30);
+> +               gpiod_set_value(reset_gpio, 0);
+> +       } else {
+
+> +               static const u8 reset_seq[] = {
+> +                       0xFF, 0x11, 0xE5, 0x72, 0x8A,
+> +               };
+
+Is 0xFF here is CCS811_SW_RESET? If so, can you put it explicitly?
+
+> +               ret = i2c_smbus_write_i2c_block_data(client, CCS811_SW_RESET,
+> +                                            sizeof(reset_seq), reset_seq);
+> +               if (ret < 0) {
+> +                       dev_err(&client->dev, "Failed to reset sensor\n");
+> +                       return ret;
+> +               }
+> +       }
+
+...
+
+> +       data->wakeup_gpio = devm_gpiod_get_optional(&client->dev, "wakeup",
+> +                                                   GPIOD_OUT_HIGH);
+> +       if (IS_ERR(data->wakeup_gpio)) {
+> +               dev_err(&client->dev, "Failed to acquire wakeup gpio\n");
+
+> +               return -EINVAL;
+
+Ditto.
+
+> +       }
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+With Best Regards,
+Andy Shevchenko
