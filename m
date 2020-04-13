@@ -2,135 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E21B1A6560
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 12:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A23011A6646
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 14:20:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728764AbgDMKtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 06:49:20 -0400
-Received: from esa4.hgst.iphmx.com ([216.71.154.42]:2842 "EHLO
-        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728011AbgDMKtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 06:49:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1586774959; x=1618310959;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=cXrBHSYwDJETMu57qlB6ZWhmCg2C/tC6KLvHIrTHt28=;
-  b=ChXLd26khKDTJYmY+dqelL93yrjRCXPOPk3PHDiKFqM725RPGb/uMF2E
-   yqvxqJNlkyOMVN5jayPOOoGcqQcu8xEHOEgTCpit6W+xnVesGajHb4xDH
-   b/a16nMdm3uWUJY7tAbA4H4lwxqY7l6j4Lb8llVraQRKzaPQBH38ph6zr
-   mBrO20O34KeJsDUVkQpM4p8bMH67kxVIkDdyYx0PYHKqiRWOKAH3XVbfC
-   V74LVdrWZuP5mykuuvLiu76tQ9TcoGeK8xN+LXJkPK9whwoV7fJM7ArA4
-   BkQm57kf6Ja6Fauil+QOtiSr8I9AeamXJ3mNU7AnOoc62Nc6FweFpPm42
-   w==;
-IronPort-SDR: Z3Ly5NLTpWqOoFV4uT9YabvDY6+rPWbaqLwZwYiUgvC1k4dQMQKJ3td73IffE0ROnakv//Lmdl
- bLpMBTZt+/wLe9ZmWSHh7RrcZL/odXELLbByKkxfLjrZK3wkVuyOXLTGNSfKYh1U7wvOTkxAi3
- 7Zcpk3auo1k1YcijHVQP5abvYv5wFFabUguqx5P8L+1s+zzGmIGVsceATgvYTrDABaB6+rCoDW
- lYGtmqxZ3SxWBVVZa4Tsp7tH6BZk2d4nhuJjcZgjksv7LS50BCe4JIYl3/YRKkKasxrVAf33L9
- JJY=
-X-IronPort-AV: E=Sophos;i="5.72,378,1580745600"; 
-   d="scan'208";a="135212751"
-Received: from mail-bn8nam11lp2177.outbound.protection.outlook.com (HELO NAM11-BN8-obe.outbound.protection.outlook.com) ([104.47.58.177])
-  by ob1.hgst.iphmx.com with ESMTP; 13 Apr 2020 18:49:17 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=il3Jje+njS2uki92Upoy287eivMhprkDffkdlfHPFlQKQMwHCb11gTybjsuAqAxgZFuejiMar1HOq+iiBTjooTbbmpy1X1ZDaNlqdVrvbnt4lRnLAD79BXGdTcvWv7Qrct/zgxPqvNX++GAfepz3q+7AyBocI2it8mCrJiRJKCJycEKIhgB+dZUYm67DPeQCk95ZZmbDrIkuWSvnViWPb2HXbttmJG2qzeQ6suy9fyYw0ovxFzG9lJ+nXclM81ZKENEIA2fEb53N6n+3/JqGeE9ZOXT7DslUrUCtf5/Tn09p+6+3pDxopPq2aKdclCPM9eCwxCqstiYTPdu+cd4EhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cXrBHSYwDJETMu57qlB6ZWhmCg2C/tC6KLvHIrTHt28=;
- b=ERlJ+dedtyzhMSq2/fvkM14ThEysUtzWzCUEIRlw1Ab6L9qy3x9agKXRnJyWv+8JKZBKvxzesc6SD1av8UkSEy4N1b2h5EeG2hp4e6QRtdSxq1jN+X0iZxb4sWE4Ry2B1IaJS5pcY9qBkkJFBsSip7mwr4bwPeEHRUFYsr8V82QC6PPIEZZF7e7t4hfST1YgGQ8G3XRm8jq3xKbClxe7i9o51cck3c4Kdk1ZI1QUklNYXwn4X+Kyuz+QKYZpszUPpkZo0rvuuZgJSzUck2J+2QPv3eKVMfv4LI76BXx/LjfDxWXTtVliCHJ/1rDsoadoEraJSiQWvM+MuKBoIufwbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
+        id S1729456AbgDMMTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 08:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728344AbgDMMTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Apr 2020 08:19:43 -0400
+X-Greylist: delayed 487 seconds by postgrey-1.27 at vger.kernel.org; Mon, 13 Apr 2020 08:19:42 EDT
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4794AC03BC80;
+        Mon, 13 Apr 2020 05:11:35 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id h2so9096521wmb.4;
+        Mon, 13 Apr 2020 05:11:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cXrBHSYwDJETMu57qlB6ZWhmCg2C/tC6KLvHIrTHt28=;
- b=szvMWsA7BgY9R5AYlv1WlLvHqzCCf2fbBVy/p+knVE2+2u9VCg8uNVgHAxcB/foskBo22BnsB1ZUBUaC0FAf4nSvyu7nMT/BDrujFX0bFKwq+OIbqfL6RxUg4u/05dA9usMjeXAGJwlkpDTBbGeSPuny5lPr1bbQoNkbz5JDQkI=
-Received: from SN6PR04MB4640.namprd04.prod.outlook.com (2603:10b6:805:a4::19)
- by SN6PR04MB4015.namprd04.prod.outlook.com (2603:10b6:805:3f::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.24; Mon, 13 Apr
- 2020 10:49:16 +0000
-Received: from SN6PR04MB4640.namprd04.prod.outlook.com
- ([fe80::3877:5e49:6cdd:c8b]) by SN6PR04MB4640.namprd04.prod.outlook.com
- ([fe80::3877:5e49:6cdd:c8b%5]) with mapi id 15.20.2900.028; Mon, 13 Apr 2020
- 10:49:16 +0000
-From:   Avri Altman <Avri.Altman@wdc.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-CC:     "krzk@kernel.org" <krzk@kernel.org>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "kwmad.kim@samsung.com" <kwmad.kim@samsung.com>,
-        "stanley.chu@mediatek.com" <stanley.chu@mediatek.com>,
-        "cang@codeaurora.org" <cang@codeaurora.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Seungwon Jeon <essuuj@gmail.com>
-Subject: RE: [PATCH v5 4/5] scsi: ufs-exynos: add UFS host support for Exynos
- SoCs
-Thread-Topic: [PATCH v5 4/5] scsi: ufs-exynos: add UFS host support for Exynos
- SoCs
-Thread-Index: AQHWEJ3tZZYUB/0KkkO5PNiaFbmGc6h24Mtw
-Date:   Mon, 13 Apr 2020 10:49:15 +0000
-Message-ID: <SN6PR04MB46402903F25BF57C2EA3DAC1FCDD0@SN6PR04MB4640.namprd04.prod.outlook.com>
-References: <20200412073159.37747-1-alim.akhtar@samsung.com>
-        <CGME20200412074218epcas5p3ef7973c8a47533a15a359b069da8003c@epcas5p3.samsung.com>
- <20200412073159.37747-5-alim.akhtar@samsung.com>
-In-Reply-To: <20200412073159.37747-5-alim.akhtar@samsung.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Avri.Altman@wdc.com; 
-x-originating-ip: [77.138.4.172]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 61c28761-1ab0-40ef-befc-08d7df984fbb
-x-ms-traffictypediagnostic: SN6PR04MB4015:
-x-microsoft-antispam-prvs: <SN6PR04MB401523E4836EC814F97122FDFCDD0@SN6PR04MB4015.namprd04.prod.outlook.com>
-wdcipoutbound: EOP-TRUE
-x-ms-oob-tlc-oobclassifiers: OLM:483;
-x-forefront-prvs: 037291602B
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR04MB4640.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(6029001)(4636009)(366004)(136003)(396003)(39860400002)(376002)(346002)(66476007)(66446008)(64756008)(66946007)(6506007)(76116006)(478600001)(186003)(66556008)(54906003)(316002)(110136005)(4744005)(7696005)(71200400001)(52536014)(5660300002)(86362001)(4326008)(26005)(7416002)(33656002)(55016002)(9686003)(8676002)(2906002)(8936002)(81156014);DIR:OUT;SFP:1102;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2vrURz5+rrDaRkHSrIZO5ICagq0Fxrtzfp2tykPkx77j/ssGLQDd4aDjVM95jyDhouFpU0RaMbWdPX9eFyTncKgO+eOCJmoZF+KNhhO6jrKR01mO+vYBWxMkrNcT2HtoRtMIm+80c7XRJ/RdOuEIn/CieygGMtJcZlo4/IHqpo7PWSM2GpYY72YBXcHnLUru4xHvzydOF3EdX+C9yc2HptKoWeEAq36BiKbhraXV/Y7EB8XlEx3eIV/LRWfJDP3XFHpVgF5/KpYGvcPCooFCwSsHqSVPiWXjlJCzPsU2gs921/LjGVPPpRGEDcj4AHXdeHPmTkX9watOKjh4ogoMs+omSm/HzGY0PAURH7HO9pXZyV8wDJAzeEx14iQZMvQOP1EVhxmVg8f1Q+tsakufV2A1bdz90YBZsie75qdBbMSNfHz+xVHtj5/AzvTONXo+
-x-ms-exchange-antispam-messagedata: eE6Ly8ehoz/lXwhvwM/vv3tNaiUPoKPVxDFSejQQovTxTpG9ikeexDi3qymJBt0mSLzUcmfy0oaX92DmrUgEOFT0DBEq0eXL9Vk95TdjU0zDv0qAc/eXJQx4rm5gy0yho5U1h/4vbLbhTqW+1iCajQ==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sDwufY0StyILZp3PnMldwC+D1HdNes1kw0On06OjlNc=;
+        b=QEzpxnaj561i77JZ7ZNh0LM/iLxJwlEiaDrn7dsRcTFkvaNFGcumBPUMQd05Ux0BYK
+         F/LQz2RoIXPuCmlpR76yCbRN9I70l2370ijzF+kRxy9jalAJyGuw8oRjzV4dq6/WfQLA
+         1b6dQQ6pHi4qr7xjcNZCPjIj9RwKCkhvRK2pG3DCLjtXA10xkqEBk2uXl3VuYdsFYv2c
+         0SBzg344UBOVx8gVqvNXNFcHm3KwQz3sfbJCw/Xn2MhLH39M8TPPW92ksyfb0E6ZJnC+
+         P6r4CBTAipE7aAh8117KNByDS8XzKiQ8VVF3+dlC6uAtij0JqI6dA3PtcT4d8n1vCPiH
+         DRtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sDwufY0StyILZp3PnMldwC+D1HdNes1kw0On06OjlNc=;
+        b=GqCJPp1Uyp31UWUX1Ujby/AFQT8wcm76JbtWKIcQN7Cm1myQknQJKiH0xzpMyXuDsu
+         U1xVM1UqrmAES1PSB6vASwBISVEqb7jdyP1DYwIC1pVkHMNhYrKvElPhUMgmO17asG4n
+         Y9vwZs5MTUiJKDJAjJMiTZUkhNzr36T1FuH/g0T9mX93qlE3a8lldSRk/L36yEyIeaAl
+         13PwbhvlumvNZaUfTGnWTDQZ3R2wGsa/+RMDQa+wHPkF7MiWS3JX7M3WrkJ4qpJlTMn7
+         PQ72wMvVYR9GKLEfULyn+mQgXBOU+1wnQUgVtMcjFf99ol6rSLw6BFxqziOVyxU/Y8kN
+         HoSw==
+X-Gm-Message-State: AGi0PuYpUDYJoMztYHAQNJ+4x73XRrSNK/poWo9JNPnwfWZo+IPREzdL
+        H8Ixean4+cIpqMRWZzBZBmWSDJbYyZ4=
+X-Google-Smtp-Source: APiQypJQ7DrprTjeXvq8sveC8OXT02qGyxyLpRoUKZrLIBevOvVFkBeHAB/K6XO4aeY6ZcAxdyiibQ==
+X-Received: by 2002:a05:600c:21d6:: with SMTP id x22mr19342632wmj.95.1586779863908;
+        Mon, 13 Apr 2020 05:11:03 -0700 (PDT)
+Received: from linux-gy6r.site ([213.195.113.243])
+        by smtp.gmail.com with ESMTPSA id p16sm8136294wro.21.2020.04.13.05.11.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Apr 2020 05:11:03 -0700 (PDT)
+Subject: Re: [PATCH v2] arm64: dts: mt8173: Add gce setting in mmsys and
+ display node
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+References: <20200409055012.199320-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+X-Pep-Version: 2.0
+Message-ID: <032911c9-ba57-4586-969b-90358be19a10@gmail.com>
+Date:   Mon, 13 Apr 2020 14:11:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61c28761-1ab0-40ef-befc-08d7df984fbb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2020 10:49:16.0772
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UajJMu34pmO1JwiFlT1lqG2UvTymXKtPLyGpggj9+FhRfEwUyem7MvZGJYLNK7xbV98VTb7SU4E5zRys+KZmFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB4015
+In-Reply-To: <20200409055012.199320-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiANCj4gVGhpcyBwYXRjaCBpbnRyb2R1Y2VzIEV4eW5vcyBVRlMgaG9zdCBjb250cm9sbGVyIGRy
-aXZlciwNCj4gd2hpY2ggbWFpbmx5IGhhbmRsZXMgdmVuZG9yLXNwZWNpZmljIG9wZXJhdGlvbnMg
-aW5jbHVkaW5nDQo+IGxpbmsgc3RhcnR1cCwgcG93ZXIgbW9kZSBjaGFuZ2UgYW5kIGhpYmVybmF0
-aW9uL3VuaGliZXJuYXRpb24uDQo+IA0KPiBSZXBvcnRlZC1ieToga2J1aWxkIHRlc3Qgcm9ib3Qg
-PGxrcEBpbnRlbC5jb20+DQo+IFJlcG9ydGVkLWJ5OiBKdWxpYSBMYXdhbGwgPGp1bGlhLmxhd2Fs
-bEBsaXA2LmZyPg0KPiBbcm9ib3Q6IGRyaXZlcnMvc2NzaS91ZnMvdWZzLWV4eW5vcy5jOjkzMTo4
-LTEwOg0KPiAgV0FSTklORzogcG9zc2libGUgY29uZGl0aW9uIHdpdGggbm8gZWZmZWN0IChpZiA9
-PSBlbHNlKQ0KPiBdDQo+IFJldmlld2VkLWJ5OiBLaXdvb25nIEtpbSA8a3dtYWQua2ltQHNhbXN1
-bmcuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBTZXVuZ3dvbiBKZW9uIDxlc3N1dWpAZ21haWwuY29t
-Pg0KPiBTaWduZWQtb2ZmLWJ5OiBBbGltIEFraHRhciA8YWxpbS5ha2h0YXJAc2Ftc3VuZy5jb20+
-DQo+IFRlc3RlZC1ieTogUGF3ZcWCIENobWllbCA8cGF3ZWwubWlrb2xhai5jaG1pZWxAZ21haWwu
-Y29tPg0KUmV2aWV3ZWQtYnk6IEF2cmkgQWx0bWFuIDxhdnJpLmFsdG1hbkB3ZGMuY29tPg0KDQo=
+
+
+On 4/9/20 7:50 AM, Hsin-Yi Wang wrote:
+> In order to use GCE function, we need add some informations
+> into display node (mboxes, mediatek,gce-client-reg, mediatek,gce-events=
+).
+>=20
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+
+Applied to v5.7-next/dts64
+
+Thanks!
+
+> change log:
+> v1->v2: align with
+> 19d8e335d58a ("dt-binding: gce: remove atomic_exec in mboxes property")=
+
+> 60fa8c13ab1a ("drm/mediatek: Move gce event property to mutex device no=
+de")
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8173.dtsi
+> index ccb8e88a60c5..8337ba42845d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> @@ -549,7 +549,7 @@ gce: mailbox@10212000 {
+>  			interrupts =3D <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
+>  			clocks =3D <&infracfg CLK_INFRA_GCE>;
+>  			clock-names =3D "gce";
+> -			#mbox-cells =3D <3>;
+> +			#mbox-cells =3D <2>;
+>  		};
+> =20
+>  		mipi_tx0: mipi-dphy@10215000 {
+> @@ -916,6 +916,9 @@ mmsys: clock-controller@14000000 {
+>  			assigned-clocks =3D <&topckgen CLK_TOP_MM_SEL>;
+>  			assigned-clock-rates =3D <400000000>;
+>  			#clock-cells =3D <1>;
+> +			mboxes =3D <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
+> +				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX 0 0x1000>;
+>  		};
+> =20
+>  		mdp_rdma0: rdma@14001000 {
+> @@ -996,6 +999,7 @@ ovl0: ovl@1400c000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_OVL0>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_OVL0>;
+>  			mediatek,larb =3D <&larb0>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
+>  		};
+> =20
+>  		ovl1: ovl@1400d000 {
+> @@ -1006,6 +1010,7 @@ ovl1: ovl@1400d000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_OVL1>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_OVL1>;
+>  			mediatek,larb =3D <&larb4>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
+>  		};
+> =20
+>  		rdma0: rdma@1400e000 {
+> @@ -1016,6 +1021,7 @@ rdma0: rdma@1400e000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_RDMA0>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_RDMA0>;
+>  			mediatek,larb =3D <&larb0>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
+>  		};
+> =20
+>  		rdma1: rdma@1400f000 {
+> @@ -1026,6 +1032,7 @@ rdma1: rdma@1400f000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_RDMA1>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_RDMA1>;
+>  			mediatek,larb =3D <&larb4>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
+>  		};
+> =20
+>  		rdma2: rdma@14010000 {
+> @@ -1036,6 +1043,7 @@ rdma2: rdma@14010000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_RDMA2>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_RDMA2>;
+>  			mediatek,larb =3D <&larb4>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0 0x1000>;
+>  		};
+> =20
+>  		wdma0: wdma@14011000 {
+> @@ -1046,6 +1054,7 @@ wdma0: wdma@14011000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_WDMA0>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_WDMA0>;
+>  			mediatek,larb =3D <&larb0>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
+>  		};
+> =20
+>  		wdma1: wdma@14012000 {
+> @@ -1056,6 +1065,7 @@ wdma1: wdma@14012000 {
+>  			clocks =3D <&mmsys CLK_MM_DISP_WDMA1>;
+>  			iommus =3D <&iommu M4U_PORT_DISP_WDMA1>;
+>  			mediatek,larb =3D <&larb4>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
+>  		};
+> =20
+>  		color0: color@14013000 {
+> @@ -1064,6 +1074,7 @@ color0: color@14013000 {
+>  			interrupts =3D <GIC_SPI 187 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
+>  			clocks =3D <&mmsys CLK_MM_DISP_COLOR0>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x3000 0x1000>;
+>  		};
+> =20
+>  		color1: color@14014000 {
+> @@ -1072,6 +1083,7 @@ color1: color@14014000 {
+>  			interrupts =3D <GIC_SPI 188 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
+>  			clocks =3D <&mmsys CLK_MM_DISP_COLOR1>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
+>  		};
+> =20
+>  		aal@14015000 {
+> @@ -1080,6 +1092,7 @@ aal@14015000 {
+>  			interrupts =3D <GIC_SPI 189 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
+>  			clocks =3D <&mmsys CLK_MM_DISP_AAL>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
+>  		};
+> =20
+>  		gamma@14016000 {
+> @@ -1088,6 +1101,7 @@ gamma@14016000 {
+>  			interrupts =3D <GIC_SPI 190 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
+>  			clocks =3D <&mmsys CLK_MM_DISP_GAMMA>;
+> +			mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0x6000 0x1000>;
+>  		};
+> =20
+>  		merge@14017000 {
+> @@ -1193,6 +1207,8 @@ mutex: mutex@14020000 {
+>  			interrupts =3D <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
+>  			clocks =3D <&mmsys CLK_MM_MUTEX_32K>;
+> +			mediatek,gce-events =3D <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
+> +                                              <CMDQ_EVENT_MUTEX1_STREA=
+M_EOF>;
+>  		};
+> =20
+>  		larb0: larb@14021000 {
+>=20
+
