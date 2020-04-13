@@ -1,99 +1,100 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from vger.kernel.org (unknown [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F5851A63D4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 09:53:51 +0200 (CEST)
+Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
+	by mail.lfdr.de (Postfix) with ESMTP id 70A7B1A6440
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 10:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729460AbgDMHxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 03:53:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.18]:37240 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727480AbgDMHxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 03:53:44 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E97C008651;
-        Mon, 13 Apr 2020 00:53:42 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id k11so8657169wrp.5;
-        Mon, 13 Apr 2020 00:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=spiyZxT4E+JmLBsDsV1seik/2tk8bWL3YTlzlnavzgI=;
-        b=f7pV8rfFH7lOGO3h5/nULD5HFllQxOEL05FTUF2SiEU7MAF1JJPc8mKH7k/3mp1dKC
-         FdUtjdGVIhPaaHxiz+2ZaWsvZCsBdBLkUc0vwbtipe+jfJJ55AY7x9j9o7z3iU3ftoEb
-         Bv3Ej6Xplpkv9hOYt6QwjKJzP4A3G62gst9hKhD5eBAYTvgF9Wr4JygtFDUu1AyZxBEn
-         wNjlO5+VD0sorsLos6LHRByHb8qvslGj1FTporIbvRQfVEods0O9oLMrmXmySRNdjWmj
-         QcA6UC/bsomklfXgRa3zN0/xG2DhA+CKHljfC40QOQW0cpHOsm/s4JnXCNvoy3PfS2Za
-         3XdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=spiyZxT4E+JmLBsDsV1seik/2tk8bWL3YTlzlnavzgI=;
-        b=DIMJWxM4zBkKNwQ6oMnScO2gTlJCd+r3SgpUlLO4gpNWyo9Ie+BZt3Mj85LlYmkR9Z
-         B3hfhU9kTwcwk1ULP0xNNblvPOYaFEHsoJCxbSvNnGuXJFMMXwKX4/NgMAvCAqpwFZYW
-         Gfob1fCSvP1XWaG8ZG7H9IUZRzCD1cl9MwkxOPAtM8fhVa03yhH7xM1MeCgOa6yIz5Cn
-         K5uAui3L2y/CccFwe16om9VvBG3ociv8fmrFE0EZh90JhaC1Y4pD0suG97iCfgEG38nL
-         nzDUusyGIiUvMViJBLPFIRfyDwmVbCLV5IddqVIZD3AKQJGpfUosDlwjtG0pJ8gPUgeF
-         DPYQ==
-X-Gm-Message-State: AGi0Pua9lwaUaflpYSub3eCaYGYNoiLQb1lojdsk2ZS86JgSvjxtDu1X
-        xF/s4nrl/90CiV0vg3kG3aU=
-X-Google-Smtp-Source: APiQypI3ADIddYujUXFFd3J7qJbmarkuNkmp+vZH8NiU3NHgBxky845LmO+SMRcLmZhfAGYfIIblKg==
-X-Received: by 2002:a5d:6785:: with SMTP id v5mr3023648wru.376.1586764421177;
-        Mon, 13 Apr 2020 00:53:41 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2da9:2f00:c0be:812e:7fb0:ebe0])
-        by smtp.gmail.com with ESMTPSA id s14sm14009619wme.33.2020.04.13.00.53.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Apr 2020 00:53:40 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Maxime Ripard <maxime@cerno.tech>, Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Joe Perches <joe@perches.com>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: point to display schemas in DRM DRIVERS FOR ALLWINNER A10
-Date:   Mon, 13 Apr 2020 09:53:29 +0200
-Message-Id: <20200413075329.10717-1-lukas.bulwahn@gmail.com>
+        id S1728064AbgDMIf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 04:35:28 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:61996 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727789AbgDMIZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Apr 2020 04:25:17 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03D8IM2v003751;
+        Mon, 13 Apr 2020 04:24:56 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 30bat4p9c1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Apr 2020 04:24:56 -0400
+Received: from SCSQMBX11.ad.analog.com (scsqmbx11.ad.analog.com [10.77.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 03D8OsxW020716
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Mon, 13 Apr 2020 04:24:54 -0400
+Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX11.ad.analog.com
+ (10.77.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Mon, 13 Apr
+ 2020 01:24:53 -0700
+Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX10.ad.analog.com
+ (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Mon, 13 Apr 2020 01:24:53 -0700
+Received: from NSA-L01.ad.analog.com (nsa-l01.ad.analog.com [10.32.224.203])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 03D8Om3s026405;
+        Mon, 13 Apr 2020 04:24:48 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alexandru Ardelean <alexandru.Ardelean@analog.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: [PATCH v5 0/6] Support ADIS16475 and similar IMUs
+Date:   Mon, 13 Apr 2020 10:24:39 +0200
+Message-ID: <20200413082445.17324-1-nuno.sa@analog.com>
 X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-13_02:2020-04-12,2020-04-13 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004130074
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit f5a98bfe7b37 ("dt-bindings: display: Convert Allwinner display
-pipeline to schemas") replaced sunxi/sun4i-drm.txt with
-allwinner,sun*.yaml files in Documentation/devicetree/bindings/display/,
-but did not adjust DRM DRIVERS FOR ALLWINNER A10.
+This series adds support for the adis16475 and similar IMUs. This driver
+will be the first user of some changes on the adis library. Hence, the
+first three patches are related to the library:
+ * Add anaged device functions for registering triggers with the library;
+ * Updates the way `irq_mask` is passed to `request_irq()`;
+ * It adds an update_bits() like API.
 
-Since then, ./scripts/get_maintainer.pl --self-test complains:
+A new patch was introduced (iio: adis: Add burst_max_len variable) in
+order to make burst32 configuration at runtime.
 
-  warning: no file matches \
-  F: Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt
+Nuno Sá (6):
+  iio: imu: adis: Add Managed device functions
+  iio: imu: adis: Add irq mask variable
+  iio: adis: Add adis_update_bits() APIs
+  iio: adis: Support different burst sizes
+  iio: imu: Add support for adis16475
+  dt-bindings: iio: Add adis16475 documentation
 
-Point to allwinner display schemas in DRM DRIVERS FOR ALLWINNER A10.
+ .../bindings/iio/imu/adi,adis16475.yaml       |  137 ++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   25 +
+ drivers/iio/imu/adis16400.c                   |    2 +-
+ drivers/iio/imu/adis16475.c                   | 1336 +++++++++++++++++
+ drivers/iio/imu/adis_buffer.c                 |   58 +-
+ drivers/iio/imu/adis_trigger.c                |   72 +-
+ include/linux/iio/imu/adis.h                  |   87 +-
+ 10 files changed, 1728 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+ create mode 100644 drivers/iio/imu/adis16475.c
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-Maxime, please ack.
-Rob, please pick this non-urgent minor clean-up patch.
-
-
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e64e5db31497..1f6c9bec872a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5552,7 +5552,7 @@ M:	Chen-Yu Tsai <wens@csie.org>
- L:	dri-devel@lists.freedesktop.org
- S:	Supported
- T:	git git://anongit.freedesktop.org/drm/drm-misc
--F:	Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt
-+F:	Documentation/devicetree/bindings/display/allwinner,sun*.yaml
- F:	drivers/gpu/drm/sun4i/
- 
- DRM DRIVERS FOR AMLOGIC SOCS
 -- 
 2.17.1
 
