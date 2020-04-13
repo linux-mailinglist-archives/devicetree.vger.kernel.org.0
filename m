@@ -2,137 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (unknown [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C71E51A6307
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 08:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF52E1A635B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 09:00:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728335AbgDMGY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 02:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.18]:50128 "EHLO
+        id S1728874AbgDMHAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 03:00:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.18]:55942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728279AbgDMGY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 02:24:56 -0400
-Received: from mail.siol.net (mailoutvs18.siol.net [185.57.226.209])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A306C0A3BE0;
-        Sun, 12 Apr 2020 23:24:57 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTP id BCF35522E4F;
-        Mon, 13 Apr 2020 08:24:55 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Mzr1GCkd2ohL; Mon, 13 Apr 2020 08:24:55 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTPS id 67A33522E48;
-        Mon, 13 Apr 2020 08:24:55 +0200 (CEST)
-Received: from localhost.localdomain (89-212-178-211.dynamic.t-2.net [89.212.178.211])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Zimbra) with ESMTPSA id 20C81522E4F;
-        Mon, 13 Apr 2020 08:24:53 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Sebastian Meyer <git-commit@mailhell.seb7.de>
-Subject: [PATCH 3/3] arm64: allwinner: h6: orangepi-lite2: Support BT+WIFI combo module
-Date:   Mon, 13 Apr 2020 08:24:33 +0200
-Message-Id: <20200413062433.1145043-4-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200413062433.1145043-1-jernej.skrabec@siol.net>
-References: <20200413062433.1145043-1-jernej.skrabec@siol.net>
+        with ESMTP id S1727692AbgDMHAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 03:00:42 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82575C008651;
+        Mon, 13 Apr 2020 00:00:41 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id i3so67133pgk.1;
+        Mon, 13 Apr 2020 00:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vq9fVC/+atcm9sq/MZsavv/suvJU7kj+o+ueUYxNyc4=;
+        b=CR8c8HlxxuKiXNyCthLNzWYOFiWWWq/N2EQHg+YZb11uAbVxigFRy6IHJFMOy07j/i
+         Qt1LJfKU7HudAz5rsUO7sCAOTSPeqkjXR8qjS8LPCfnt/ymY8xXDHTeQK0iB+V+6mgKs
+         WJe3AaawQB54O2xlpb7A1YXAWUUrQhmqntkwSVanEw7sHLXg96bEVSJAaPGavaySrtOT
+         Ds9cjEztjHzfZmUEGnCr5RVmsDAaJp+SfEdVGX1bl914YR9KHfwJ+GZOT9CENuBGQJdu
+         6LwCgY2Lgf2cQjBE5JgWozwcUGJvSgCIQx0I7kXkpqNSlk/uD+PRAVKnhybHWf2nmU1+
+         d+lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vq9fVC/+atcm9sq/MZsavv/suvJU7kj+o+ueUYxNyc4=;
+        b=RjMEU/tc2Lcj1JvCXkqYpO8M7Y2Cp0ckXGx+ywhkjQAk+Q6phu4XRmyAmoak6LK6xH
+         9FCmEYSiQO5NKvmloc1X7FxQMx4c6UfVyxow/7emzE3rUeSW3UbRwxLXALa69N9yFsT3
+         KE7S1tuAyGIa2mYM2Xaw3A/LlQAI2PMARWLmqLvSBwheKe5VETQGTYaucfmWKH5IWq/J
+         EZZ0M0BIAi5runRy0ucX0/QlgmXStgI//hLCmyrp2YIbztZT6R1+Vj4MWnPuth4FZy64
+         rQzZEkVAYzRFzUjvVI/i26VTyjXCtnE0ZADJiLH7wr4tv4euTwm0XqxAa0ShpwV2lh+v
+         rW6Q==
+X-Gm-Message-State: AGi0PuaVkeN2qpnt8nj8QTg+K9j4A89WNd3evfazZ8Yc3ApjOHQaxR+E
+        z1NMP3gWtfzZWnQaWQiu5RQ=
+X-Google-Smtp-Source: APiQypJXOLKJmWnL8c+MQV5lQGIKFp6AH0keWS6hBKsja5EQEQiaT3oQ5MtfGpxL0FMP2zNbuBvbrg==
+X-Received: by 2002:a63:230f:: with SMTP id j15mr15933448pgj.393.1586761241161;
+        Mon, 13 Apr 2020 00:00:41 -0700 (PDT)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id p4sm7815670pfg.163.2020.04.13.00.00.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Apr 2020 00:00:40 -0700 (PDT)
+From:   zhang.lyra@gmail.com
+To:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: [RFC PATCH v1 0/2] allow idle state to be found as deepest state for s2idle only
+Date:   Mon, 13 Apr 2020 15:00:12 +0800
+Message-Id: <20200413070014.12960-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sebastian Meyer <git-commit@mailhell.seb7.de>
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-OrangePi Lite2 has AP6255 BT+WIFI combo chip. Add support for it.
+We can add a new c-state to let system suspend enter into the same deep
+state as s2ram when using s2idle, but we don't want other cases to use
+that c-state, such as play_idle() which would find the deepest state by
+invoking find_deepest_state() as well. This patch-set provides users
+an option which can restrict c-state to be found as deepest state for
+s2idle only.
 
-Signed-off-by: Sebastian Meyer <git-commit@mailhell.seb7.de>
-[merged BT and WIFI patches and updated commit message]
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- .../allwinner/sun50i-h6-orangepi-lite2.dts    | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
+Chunyan Zhang (2):
+  cpuidle: allow idle state to be found as deepest state for s2idle only
+  dt-bindings: arm: Add description to the new property for-s2idle-only
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dts b=
-/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dts
-index e7ca75c0d0f7..e8770858b5d0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dts
-@@ -6,4 +6,69 @@
- / {
- 	model =3D "OrangePi Lite2";
- 	compatible =3D "xunlong,orangepi-lite2", "allwinner,sun50i-h6";
-+
-+	aliases {
-+		serial1 =3D &uart1; /* BT-UART */
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible =3D "mmc-pwrseq-simple";
-+		clocks =3D <&rtc 1>;
-+		clock-names =3D "ext_clock";
-+		reset-gpios =3D <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-+		post-power-on-delay-ms =3D <200>;
-+	};
-+};
-+
-+&mmc1 {
-+	vmmc-supply =3D <&reg_cldo2>;
-+	vqmmc-supply =3D <&reg_bldo3>;
-+	mmc-pwrseq =3D <&wifi_pwrseq>;
-+	bus-width =3D <4>;
-+	non-removable;
-+	status =3D "okay";
-+
-+	brcm: sdio-wifi@1 {
-+		reg =3D <1>;
-+		compatible =3D "brcm,bcm4329-fmac";
-+		interrupt-parent =3D <&r_pio>;
-+		interrupts =3D <1 0 IRQ_TYPE_LEVEL_LOW>;	/* PM0 */
-+		interrupt-names =3D "host-wake";
-+	};
-+};
-+
-+&reg_cldo2 {
-+	/*
-+	 * This regulator is connected with CLDO3.
-+	 * Before the kernel can support synchronized
-+	 * enable of coupled regulators, keep them
-+	 * both always on as a ugly hack.
-+	 */
-+	regulator-always-on;
-+};
-+
-+&reg_cldo3 {
-+	/*
-+	 * This regulator is connected with CLDO2.
-+	 * See the comments for CLDO2.
-+	 */
-+	regulator-always-on;
-+};
-+
-+/* There's the BT part of the AP6255 connected to that UART */
-+&uart1 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status =3D "okay";
-+
-+	bluetooth {
-+		compatible =3D "brcm,bcm4345c5";
-+		clocks =3D <&rtc 1>;
-+		clock-names =3D "lpo";
-+		device-wakeup-gpios =3D <&r_pio 1 2 GPIO_ACTIVE_HIGH>; /* PM2 */
-+		host-wakeup-gpios =3D <&r_pio 1 1 GPIO_ACTIVE_HIGH>; /* PM1 */
-+		shutdown-gpios =3D <&r_pio 1 4 GPIO_ACTIVE_HIGH>; /* PM4 */
-+		max-speed =3D <1500000>;
-+	};
- };
---=20
-2.26.0
+ Documentation/devicetree/bindings/arm/idle-states.yaml | 10 +++++++++-
+ drivers/cpuidle/cpuidle.c                              |  3 ++-
+ drivers/cpuidle/dt_idle_states.c                       |  3 +++
+ include/linux/cpuidle.h                                |  1 +
+ 4 files changed, 15 insertions(+), 2 deletions(-)
+
+-- 
+2.20.1
 
