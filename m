@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (unknown [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E824B1A6303
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 08:25:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B971A6305
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 08:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728264AbgDMGYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 02:24:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.18]:50114 "EHLO
+        id S1728297AbgDMGYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 02:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.18]:50122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727471AbgDMGYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 02:24:51 -0400
+        with ESMTP id S1728279AbgDMGYx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Apr 2020 02:24:53 -0400
 Received: from mail.siol.net (mailoutvs18.siol.net [185.57.226.209])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8350C0A3BE0;
-        Sun, 12 Apr 2020 23:24:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A79C0A3BE0;
+        Sun, 12 Apr 2020 23:24:54 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTP id 2137A522E3E;
-        Mon, 13 Apr 2020 08:24:51 +0200 (CEST)
+        by mail.siol.net (Zimbra) with ESMTP id 5C5E1522E4D;
+        Mon, 13 Apr 2020 08:24:53 +0200 (CEST)
 X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
 Received: from mail.siol.net ([127.0.0.1])
         by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id NvdWUDaGcZ_S; Mon, 13 Apr 2020 08:24:50 +0200 (CEST)
+        with ESMTP id 8Np3a-S-7_aZ; Mon, 13 Apr 2020 08:24:53 +0200 (CEST)
 Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTPS id D3E42522E48;
-        Mon, 13 Apr 2020 08:24:50 +0200 (CEST)
+        by mail.siol.net (Zimbra) with ESMTPS id 1BC9C522E48;
+        Mon, 13 Apr 2020 08:24:53 +0200 (CEST)
 Received: from localhost.localdomain (89-212-178-211.dynamic.t-2.net [89.212.178.211])
         (Authenticated sender: 031275009)
-        by mail.siol.net (Zimbra) with ESMTPSA id 4ECB5522E3E;
-        Mon, 13 Apr 2020 08:24:48 +0200 (CEST)
+        by mail.siol.net (Zimbra) with ESMTPSA id D8CA3522E4D;
+        Mon, 13 Apr 2020 08:24:50 +0200 (CEST)
 From:   Jernej Skrabec <jernej.skrabec@siol.net>
 To:     mripard@kernel.org, wens@csie.org
 Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-sunxi@googlegroups.com
-Subject: [PATCH 1/3] arm64: dts: allwinner: h6: orangepi: Add gpio power supply
-Date:   Mon, 13 Apr 2020 08:24:31 +0200
-Message-Id: <20200413062433.1145043-2-jernej.skrabec@siol.net>
+Subject: [PATCH 2/3] arm64: dts: allwinner: h6: orangepi: Disable OTG mode
+Date:   Mon, 13 Apr 2020 08:24:32 +0200
+Message-Id: <20200413062433.1145043-3-jernej.skrabec@siol.net>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200413062433.1145043-1-jernej.skrabec@siol.net>
 References: <20200413062433.1145043-1-jernej.skrabec@siol.net>
@@ -46,43 +46,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-OrangePi Lite2 and One Plus have GPIO ports powered by same power
-supplies. Add them in common DT.
+As can be seen from OrangePi Lite 2 and One Plus schematics, VBUS pin on
+USB OTG port is directly connected to 5 V power supply. This mean that
+OTG port can safely operate only in host mode, even though these two
+boards have ID pin connected.
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch=
 /arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index 9287976c4a50..f1be3dd558ca 100644
+index f1be3dd558ca..ebc120a9232f 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -106,6 +106,12 @@ &ohci3 {
+@@ -251,7 +251,12 @@ &uart0 {
+ };
+=20
+ &usb2otg {
+-	dr_mode =3D "otg";
++	/*
++	 * OrangePi Lite 2 and One Plus, where this DT is used, don't
++	 * have a controllable VBUS even though they do have an ID pin.
++	 * Using it as anything but a USB host is unsafe.
++	 */
++	dr_mode =3D "host";
  	status =3D "okay";
  };
 =20
-+&pio {
-+	vcc-pc-supply =3D <&reg_bldo2>;
-+	vcc-pd-supply =3D <&reg_cldo1>;
-+	vcc-pg-supply =3D <&reg_aldo1>;
-+};
-+
- &r_i2c {
- 	status =3D "okay";
-=20
-@@ -230,6 +236,10 @@ &r_ir {
- 	status =3D "okay";
- };
-=20
-+&r_pio {
-+	vcc-pm-supply =3D <&reg_bldo3>;
-+};
-+
- &rtc {
- 	clocks =3D <&ext_osc32k>;
- };
 --=20
 2.26.0
 
