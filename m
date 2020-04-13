@@ -2,248 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA271A6430
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 10:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 202261A6459
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2020 10:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727817AbgDMIf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 04:35:29 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:65172 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728172AbgDMIZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Apr 2020 04:25:22 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03D8Ovuf029256;
-        Mon, 13 Apr 2020 04:25:05 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 30b7r5xprc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Apr 2020 04:25:05 -0400
-Received: from ASHBMBX8.ad.analog.com (ashbmbx8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 03D8P4eO002514
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 13 Apr 2020 04:25:04 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Mon, 13 Apr
- 2020 04:25:03 -0400
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 13 Apr 2020 04:25:03 -0400
-Received: from NSA-L01.ad.analog.com (nsa-l01.ad.analog.com [10.32.224.203])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 03D8Om40026405;
-        Mon, 13 Apr 2020 04:25:01 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexandru Ardelean <alexandru.Ardelean@analog.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: [PATCH v5 6/6] dt-bindings: iio: Add adis16475 documentation
-Date:   Mon, 13 Apr 2020 10:24:45 +0200
-Message-ID: <20200413082445.17324-7-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200413082445.17324-1-nuno.sa@analog.com>
-References: <20200413082445.17324-1-nuno.sa@analog.com>
+        id S1727888AbgDMIyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Apr 2020 04:54:40 -0400
+Received: from smtp1.inmail.cz ([217.198.120.100]:59511 "EHLO smtp1.inmail.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727768AbgDMIyj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Apr 2020 04:54:39 -0400
+X-Greylist: delayed 439 seconds by postgrey-1.27 at vger.kernel.org; Mon, 13 Apr 2020 04:54:39 EDT
+Received: from 105.112.178.182.webmail.zoner.com (webmail.zoner.com [217.198.120.14])
+        (Authenticated sender: michalmihalko@inmail.sk)
+        by smtp1.inmail.cz (Postfix) with ESMTPA id CA9B01001409;
+        Mon, 13 Apr 2020 10:47:18 +0200 (CEST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-04-13_02:2020-04-12,2020-04-13 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 malwarescore=0 adultscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2003020000 definitions=main-2004130075
+Date:   Mon, 13 Apr 2020 01:47:18 -0700
+From:   "Mr. michal  Xia Shuyi" <michalmihalko@inmail.sk>
+To:     rebif@inmail.sk
+Subject: Re: Heel belangrijk
+User-Agent: ZONER Webmail
+Message-ID: <ff7d7a04189caaecf1e7fdb9c5b7851c@inmail.sk>
+X-Sender: michalmihalko@inmail.sk
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the ADIS16475 device devicetree bindings
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
-Changes in v2:
- * Remove burst32 property;
- * Rename clk-mode to adi,sync-mode;
- * Remove clock-names;
- * Add conditionals to state that clocks is only needed depending on adi,sync-mode property.
 
-Changes in v3:
- * Make use of 'allOf' in conditionals.
-
-Changes in v4:
- * Nothing changed.
-
-Changes in v5:
- * Nothing changed.
-
- .../bindings/iio/imu/adi,adis16475.yaml       | 137 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 138 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-new file mode 100644
-index 000000000000..98baecb4b98a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/imu/adi,adis16475.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADIS16475 and similar IMUs
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices ADIS16475 and similar IMUs
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADIS16475.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adis16475-1
-+      - adi,adis16475-2
-+      - adi,adis16475-3
-+      - adi,adis16477-1
-+      - adi,adis16477-2
-+      - adi,adis16477-3
-+      - adi,adis16470
-+      - adi,adis16465-1
-+      - adi,adis16465-2
-+      - adi,adis16465-3
-+      - adi,adis16467-1
-+      - adi,adis16467-2
-+      - adi,adis16467-3
-+      - adi,adis16500
-+      - adi,adis16505-1
-+      - adi,adis16505-2
-+      - adi,adis16505-3
-+      - adi,adis16507-1
-+      - adi,adis16507-2
-+      - adi,adis16507-3
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  spi-max-frequency:
-+    maximum: 2000000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Must be the device tree identifier of the RESET pin. If specified,
-+      it will be asserted during driver probe. As the line is active low,
-+      it should be marked GPIO_ACTIVE_LOW.
-+    maxItems: 1
-+
-+  adi,sync-mode:
-+    description:
-+      Configures the device SYNC pin. The following modes are supported
-+      0 - output_sync
-+      1 - direct_sync
-+      2 - scaled_sync
-+      3 - pulse_sync
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 3
-+
-+  adi,scaled-output-hz:
-+    description:
-+      This property must be present if the clock mode is scaled-sync through
-+      clock-names property. In this mode, the input clock can have a range
-+      of 1Hz to 128HZ which must be scaled to originate an allowable sample
-+      rate. This property specifies that rate.
-+    minimum: 1900
-+    maximum: 2100
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - spi-cpha
-+  - spi-cpol
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,adis16500
-+              - adi,adis16505-1
-+              - adi,adis16505-2
-+              - adi,adis16505-3
-+              - adi,adis16507-1
-+              - adi,adis16507-2
-+              - adi,adis16507-3
-+
-+    then:
-+      properties:
-+        adi,sync-mode:
-+          minimum: 0
-+          maximum: 2
-+
-+  - if:
-+      properties:
-+        adi,sync-mode:
-+          enum: [1, 2, 3]
-+
-+    then:
-+      dependencies:
-+        adi,sync-mode: [ clocks ]
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            adis16475: adis16475-3@0 {
-+                    compatible = "adi,adis16475-3";
-+                    reg = <0>;
-+                    spi-cpha;
-+                    spi-cpol;
-+                    spi-max-frequency = <2000000>;
-+                    interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-+                    interrupt-parent = <&gpio>;
-+            };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a2ff8322c184..0828302accd8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1015,6 +1015,7 @@ L:	linux-iio@vger.kernel.org
- W:	http://ez.analog.com/community/linux-device-drivers
- S:	Supported
- F:	drivers/iio/imu/adis16475.c
-+F:	Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
- 
- ANALOG DEVICES INC ADM1177 DRIVER
- M:	Beniamin Bia <beniamin.bia@analog.com>
 -- 
-2.17.1
+Hallo,
 
+Ik wil beginnen met mezelf voor te stellen. Mijn naam is Xia Shuyi, ben 
+een business consultant, analist en dealmaker. Ik woon in Canada. Ik heb 
+een zakelijk voorstel voor je.
+
+Ik heb een klant die op zoek is naar een winstgevend bedrijfs- / 
+vastgoedproject om zijn geld privé te investeren, ik heb contact met u 
+opgenomen om te zien of u geïnteresseerd zou zijn in dit aanbod, 
+aangezien een aanzienlijke vergoeding ons als projectmanager wordt 
+aangeboden als u kunt helpen sluit deze deal. Meer informatie is 
+beschikbaar zodra we van u hebben gelezen. Ik wacht om van u te horen 
+voor meer details van mij. Houd er rekening mee dat ik deze brief heb 
+vertaald om het te begrijpen, u kunt mij in het Engels schrijven.
+
+Vriendelijke groeten,
+
+Xia Shuyi
