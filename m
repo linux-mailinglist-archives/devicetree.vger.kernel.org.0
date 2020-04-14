@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E537B1A8F08
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A801A8EF6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:14:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731254AbgDNXTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 19:19:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731159AbgDNXTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 19:19:46 -0400
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53A6C061A0E;
-        Tue, 14 Apr 2020 16:12:11 -0700 (PDT)
-Received: by mail-ot1-x341.google.com with SMTP id e20so1570145otl.2;
-        Tue, 14 Apr 2020 16:12:11 -0700 (PDT)
+        id S1732619AbgDNXNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 19:13:10 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:43764 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729358AbgDNXNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 19:13:09 -0400
+Received: by mail-oi1-f196.google.com with SMTP id j16so11979822oih.10;
+        Tue, 14 Apr 2020 16:13:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3LvyUE2GUTR0pHYEnmT2tUO1UdeQFGwAkp9xm1vgbDE=;
-        b=r7KnoE1Rf0QB6fpyKgG1zNAtU62O5MI8aVvjcVSHWL09B+7LTqa9uSItn7s/TC8aSw
-         KogZXmBpftxyvLGDLWwleZITx9MGqvghol0yYRRiuOf1yNe49/VmosnldvFbZrTSCY2a
-         vThVGqtqJax2MZEnCS3LsnXhMqSeC9lxGMk8G4Uf/3iMzQx3nac6SRGiAFw0BGM7ZO0u
-         y5nQWtzw23+GyuNHpHu02Xx/sGTcszMtZa6kt/E3h+y54f9ixkouBorScxcRsgekFM2W
-         PpcbMQ/OwWgN1ibdYXNgojQm8HMoNK6nghQHJiKBVdrQrIQ0JozWVI0Cdy3WlIU4B5A8
-         sFlw==
-X-Gm-Message-State: AGi0PuZnKo4ZSXoqhCubfVZkC/6rzsTee3MnMkJcPn9i0fvaFJop5+yJ
-        KuffyQvXSogL5Fbk/Ro6liY4oFc=
-X-Google-Smtp-Source: APiQypLk3qLcQHFn2yII+iHdQeLwDivd6L18ckP1XjH5hhG+LHdjUeIJ5HA6/l0lOU/TzU6subtL1Q==
-X-Received: by 2002:a9d:5381:: with SMTP id w1mr10846785otg.288.1586905930992;
-        Tue, 14 Apr 2020 16:12:10 -0700 (PDT)
+        bh=VvYN+POzUP/HxZIW68dFGmEkR5GANu8XsXmHkqwh3r4=;
+        b=LuYvRXYeP411lHfgR4fLTUPU7Og85b7wQxEkF2BBtbTvlzLrtELtbYrXQ0IwZQ1J2o
+         6vhiT5fDDdNlnVLNr+/DU3LgmscXOzpPiHDXL+oRf/95CZey2gmLM651cchi+GHUAxmI
+         brIgLwKhPZkR8dfeI47chcH18/I/VYav0iVOUqPf/QQy4LSDI6pGaABXfEK1kdUeOsGI
+         /VQqbNMwhYPFg4O3NmLPpwQaTEi2PNJHEBp0W13QXisQsda464B95Ezhc1U5hRod9cgQ
+         xitniWvRx5odmlTfrdFBgb1yD6OY877KFoF8V0Ji56liLQCsmYdOp4bl4OSzlJACvC35
+         IZMA==
+X-Gm-Message-State: AGi0PubKXB/F40v1Z6NJLiQswXheK3goSsq678YJXWy2IsAFbqZXdxcz
+        I8utuO3hCf7WTBU4tc1FzQ==
+X-Google-Smtp-Source: APiQypK61RTHR9kuSvlYPwIECBbuocsSAp6KyPuha5OGWWkV7afY5lGlf+sLaVr7JcOhZjc7RQrgHw==
+X-Received: by 2002:aca:403:: with SMTP id 3mr12694157oie.166.1586905989246;
+        Tue, 14 Apr 2020 16:13:09 -0700 (PDT)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n184sm5538526oih.58.2020.04.14.16.12.10
+        by smtp.gmail.com with ESMTPSA id i7sm5911183otl.12.2020.04.14.16.13.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 16:12:10 -0700 (PDT)
-Received: (nullmailer pid 7707 invoked by uid 1000);
-        Tue, 14 Apr 2020 23:12:09 -0000
-Date:   Tue, 14 Apr 2020 18:12:09 -0500
+        Tue, 14 Apr 2020 16:13:08 -0700 (PDT)
+Received: (nullmailer pid 9163 invoked by uid 1000);
+        Tue, 14 Apr 2020 23:13:06 -0000
+Date:   Tue, 14 Apr 2020 18:13:06 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Felix Fietkau <nbd@nbd.name>
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: net: wireless: mt76: document
- mediatek,eeprom-merge-otp property
-Message-ID: <20200414231209.GA7642@bogus>
-References: <20200406102203.54450-1-nbd@nbd.name>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hyunki Koo <hyunki00.koo@samsung.com>
+Subject: Re: [PATCH] dt-bindings: memory-controllers: exynos-srom: Remove
+ unneeded type for reg-io-width
+Message-ID: <20200414231306.GA9106@bogus>
+References: <20200406104554.29773-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200406102203.54450-1-nbd@nbd.name>
+In-Reply-To: <20200406104554.29773-1-krzk@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  6 Apr 2020 12:22:00 +0200, Felix Fietkau wrote:
-> It is used to enable merging of Flash EEPROM data with OTP ROM calibration.
+On Mon,  6 Apr 2020 12:45:54 +0200, Krzysztof Kozlowski wrote:
+> 'reg-io-width' property is an enum so there is no need to specify its
+> type.
 > 
-> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  .../devicetree/bindings/net/wireless/mediatek,mt76.txt         | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/memory-controllers/exynos-srom.yaml   | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
