@@ -2,66 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B23B21A88FA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9720B1A8913
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503719AbgDNSPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 14:15:48 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:33284 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2503715AbgDNSPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:15:42 -0400
-Received: by mail-oi1-f196.google.com with SMTP id m14so11278769oic.0;
-        Tue, 14 Apr 2020 11:15:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bhkTVVrUOWVaLgCOuelNNGDtyH1myTqju9jYNZEaSms=;
-        b=KlL+Jk+mY13wty9l9Fin0cUXTFeOWfnOD/z1s9bc7sb/OZc7wpl52Me6451WWT7QjH
-         GpYxSjjUluMGyXon17rz4BjC8wZlZThxxCbLEzt6BL3ksX8bgiVOunsQGmSzNSQIUD0V
-         jnkMvpo/jXPaTZky971AwqfkyeqlW+3S7T++TCvNQ6KcJYYQgdW12O4ZmEcmqvuPOjk+
-         UaEAoDhdL9iQIVJF6DgChDiljorRlqIsZ+eG5HRQLfXhJbwGaOo1NIK5tNoJV5nFe7os
-         rkLJ5esSgU0VKJ54BBukT4uBWY/A12h1TaiECiIn7T17BcrilnjWVrZ4Yp87smL32idi
-         uWUQ==
-X-Gm-Message-State: AGi0PuaF7+knPqHqwWoXUIuRibg8ZBCLQEI8FzviCgUpmzQyYpxGEzwV
-        kEoIH/3zBsknEkuXuY6FnA==
-X-Google-Smtp-Source: APiQypJhz+Cij10iNw4FM5iI4HyAhmq6Qeb2dhBZcO5cUhK6At8Krdfh0s0agGUa9KTaJkteGaSzQQ==
-X-Received: by 2002:aca:3302:: with SMTP id z2mr16715406oiz.3.1586888141956;
-        Tue, 14 Apr 2020 11:15:41 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z24sm1519586otq.75.2020.04.14.11.15.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 11:15:41 -0700 (PDT)
-Received: (nullmailer pid 20117 invoked by uid 1000);
-        Tue, 14 Apr 2020 18:15:40 -0000
-Date:   Tue, 14 Apr 2020 13:15:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-clk@vger.kernel.org, aford@beaconembedded.com,
-        charles.stevens@logicpd.com, Adam Ford <aford173@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt: Add bindings for IDT VersaClock 5P49V5925
-Message-ID: <20200414181540.GA20033@bogus>
-References: <20200404161537.2312297-1-aford173@gmail.com>
- <20200404161537.2312297-2-aford173@gmail.com>
+        id S2503764AbgDNSSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:18:53 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:43818 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2503749AbgDNSSw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:18:52 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id ABE0380441;
+        Tue, 14 Apr 2020 20:18:48 +0200 (CEST)
+Date:   Tue, 14 Apr 2020 20:18:47 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
+        linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: Document the Synopsys ARC HDMI TX
+ bindings
+Message-ID: <20200414181847.GB21071@ravnborg.org>
+References: <20200414144402.27643-1-Eugeniy.Paltsev@synopsys.com>
+ <20200414144402.27643-3-Eugeniy.Paltsev@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200404161537.2312297-2-aford173@gmail.com>
+In-Reply-To: <20200414144402.27643-3-Eugeniy.Paltsev@synopsys.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=jIQo8A4GAAAA:8
+        a=7gkXJVJtAAAA:8 a=gEfo2CItAAAA:8 a=_sfh-jedi5NWomO9Eu8A:9
+        a=Bidoa8gpE23jXAbx:21 a=7WcnEqVqqvUY8Xlb:21 a=CjuIK1q_8ugA:10
+        a=Lf5xNeLK5dgiOs8hzIjU:22 a=E9Po1WZjFZOl8hwRPBS3:22
+        a=sptkURWiP4Gy88Gu7hUp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  4 Apr 2020 11:15:36 -0500, Adam Ford wrote:
-> IDT VersaClock 5 5P49V6965 has 5 clock outputs, 4 fractional dividers.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
+Hi Eugeniy.
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Tue, Apr 14, 2020 at 05:44:02PM +0300, Eugeniy Paltsev wrote:
+> This patch adds documentation of device tree bindings for the Synopsys
+> HDMI 2.0 TX encoder driver for ARC SoCs.
+> 
+> Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+with a few nits addressed.
+
+As already mentioned - the filename confuses.
+Maybe tell why in changelog - og fix filename to follow compatible.
+
+> ---
+>  .../display/bridge/snps,arc-dw-hdmi.yaml      | 131 ++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.yaml
+> new file mode 100644
+> index 000000000000..f52fc3b114b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.yaml
+> @@ -0,0 +1,131 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/snps,arc-dw-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare HDMI 2.0 TX encoder driver
+> +
+> +maintainers:
+> +  - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> +
+> +description: |
+> +  The HDMI transmitter is a Synopsys DesignWare HDMI 2.0 TX controller IP
+> +  with a companion of Synopsys DesignWare HDMI 2.0 TX PHY IP.
+> +
+> +  These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
+> +  Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt
+> +  with the following device-specific properties.
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,dw-hdmi-hsdk
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      Memory mapped base address and length of the DWC HDMI TX registers.
+> +
+> +  clocks:
+> +    items:
+> +      - description: The bus clock for AHB / APB
+> +      - description: The internal register configuration clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iahb
+> +      - const: isfr
+> +
+> +  reg-io-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 4]
+> +        description:
+> +          Width of the registers specified by the reg property. The
+> +          value is expressed in bytes and must be equal to 1 or 4 if specified.
+> +          The register width defaults to 1 if the property is not present.
+> +
+> +  ports:
+> +    type: object
+> +    description: |
+> +      A ports node with endpoint definitions as defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        description: |
+> +          Video input endpoints of the controller.
+> +          Usually the associated with PGU.
+Please rephrase this sentence. I am not sure how to read it.
+
+> +
+> +      port@1:
+> +        type: object
+> +        description: |
+> +          Output endpoints of the controller. HDMI connector.
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    hdmi: hdmi@0x10000 {
+hdmi
+> +        compatible = "snps,dw-hdmi-hsdk";
+> +        reg = <0x10000 0x10000>;
+> +        reg-io-width = <4>;
+> +        interrupts = <14>;
+> +        clocks = <&apbclk>, <&hdmi_pix_clk>;
+> +        clock-names = "iahb", "isfr";
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +                hdmi_enc_input: endpoint {
+> +                    remote-endpoint = <&pgu_output>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                hdmi_enc_out: endpoint {
+> +                    remote-endpoint = <&hdmi_con>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +    hdmi-out {
+> +        port {
+> +            hdmi_con: endpoint {
+> +                remote-endpoint = <&hdmi_enc_out>;
+> +            };
+> +        };
+> +    };
+> +
+> +    pgu {
+> +        port_o: port {
+> +            pgu_output: endpoint {
+> +                remote-endpoint = <&hdmi_enc_input>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.21.1
