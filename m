@@ -2,134 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1471C1A71DB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 05:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C3F1A72F8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 07:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404793AbgDNDdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Apr 2020 23:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49786 "EHLO
+        id S2405497AbgDNF0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 01:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2404802AbgDNDdu (ORCPT
+        by vger.kernel.org with ESMTP id S1726552AbgDNF0e (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Apr 2020 23:33:50 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1BEC0A3BDC;
-        Mon, 13 Apr 2020 20:33:50 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id r4so5417338pgg.4;
-        Mon, 13 Apr 2020 20:33:50 -0700 (PDT)
+        Tue, 14 Apr 2020 01:26:34 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F68C0A3BDC
+        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2020 22:26:34 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id cb27so15315208edb.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2020 22:26:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cqkf7LycevmgLpVmZeBhW8pIulT8kk5Dc9E7315h7UE=;
-        b=iVj3ydEAh62CBoXht/+aCOXhTYwDNNjnDe8lhYUYSTLwZ3LxeEis04wto1rgkhSlqW
-         y1P2YjAtSwKkjjRRWTSI/ioYWE4LHNoG5PysOhGTkFbBP7RwgzBDbAMjMOKJ9n1FeqjZ
-         b8ctz0UsvKDI3yl7lXuNwoVXDXHv/dTyEwpnuRB87YMIcchpYJfUnnipzL4eRz4xS21B
-         61jRmdLVjsFqed24Wz31wb7p9uCnjN8eAN5ewfQ27nUH/HeZ9d3gEz5aRmK3Nc+rGdqb
-         XdH+mzOKu6aztqb1i6rMGiyrvHgyUw8rVdtF1k8DwlHUS2xk1YcM3XzFoaGvBqDQ/a3k
-         K29w==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uuPdzsYrCELKJnGVxoANM1PIXJOyrUjt5nhJHbZTcKo=;
+        b=IYW4YTrYfy+kuwOU/lYSO3bgdbsS6ahDQGbWQz2pVXyf3gpqKiVGpSqAGXtloLGD2M
+         WA6XxacLcQak2MEzhhTV0X5U/dR3yiLyx5qEePcdC4cRvL0T7jdFdGi3CGg8DESOCPws
+         lsm3aaw0P2r+rWFW6Jf015OyCD5/EKke57c2kACRLYYaHvTXrpOJn8pSD0QXt63mP9H2
+         NunKHb4PkJIIeZPyu3B0BstWYB74PnnGOaUD6TXxgbVwrVMYLY1FJV/Hp2oxnAh234Zl
+         xFnItRaPtPJptW3rvZuQD06WVCaVjjK96ry+TXpdxrM5IgHrbsgb77anjgstT6SY1QLw
+         ZSug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cqkf7LycevmgLpVmZeBhW8pIulT8kk5Dc9E7315h7UE=;
-        b=axHrTbHCVOgq7uh98p96Cm9LY0G1yH55HFSnEJlXTXFT3BfPuOTWE/tZWcF4eDskg0
-         56YftB2MyL3E5FuSCRoLblbrZyUo/oACN2pLNjWv0+rifS5pfBshKtngc0tsN5rKIgPo
-         5KBsn8oUalcfJ1NEWxrwUqx1gLbq9GQS3+ug9CMlLnE5DhwB+UhAApnBep1pN9p2bEze
-         7Nb+gC0T3UmeQ3nAgigCaG9kUFKzZ7SSO4yBnijTEnI7DO7bA+up44RH19422XJrdqba
-         +EWGJxFjddemPxFyoqb2jt4EbYR+jEaATB0Kp2Nk77lcYcvxiJ6O/Opnzc6e+RNsZt2Q
-         2ZNQ==
-X-Gm-Message-State: AGi0Pub+95lwmRGJ9Wi06u55ZPCrEylsffUFnGb+cpRoq5W+55HUaEoN
-        X5f2kwvICnLzAW8VlMT0wPE=
-X-Google-Smtp-Source: APiQypIJziMZE+6YUsFjdE6JClcRXH7crwIdbG3eyClM6w5FDgQJQmSKAjEX7nGKilsRcmRUdNaCdg==
-X-Received: by 2002:a63:eb15:: with SMTP id t21mr19840234pgh.279.1586835229655;
-        Mon, 13 Apr 2020 20:33:49 -0700 (PDT)
-Received: from ubt.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id 140sm5612440pge.49.2020.04.13.20.33.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Apr 2020 20:33:49 -0700 (PDT)
-From:   zhang.lyra@gmail.com
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: [PATCH v2 4/4] clk: sprd: add mipi_csi_xx gate clocks
-Date:   Tue, 14 Apr 2020 11:33:25 +0800
-Message-Id: <20200414033325.26536-5-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200414033325.26536-1-zhang.lyra@gmail.com>
-References: <20200414033325.26536-1-zhang.lyra@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uuPdzsYrCELKJnGVxoANM1PIXJOyrUjt5nhJHbZTcKo=;
+        b=FuG0xKnQmJuL5ZBNKWqLsfjA4tS0mOkPgU7uKMD5IJu3m3YZe6LWNq2BqN2DfL4Fjy
+         J7rspHSM+vXJLR911vAv6Xwu/ukRcJsSU6tw/F4bRryJNDxoYIcpbR0g8W1LdOtED8Of
+         ewjlw7RgB8FqhHRrYqOAo+1XtZB8J6l3Q+nBYu6kAFO6AT4BJI5C2KgfnZgSJCYjP5QZ
+         rDk/wu0fa6xavfaY0Nz9O368X/daRNQm3BVriO27dMb9dSp19VjmLt/oR6R15bKN/eiZ
+         0xTsFVt30zrA53FqQTDiYFocexrOxddmMHJM++ECtxKNWaXNq3jggAUrDKdkSwvbQeSL
+         tf3Q==
+X-Gm-Message-State: AGi0Pubj4ihwAHvWCs0v325JEFek8RdP+DvBB1A2Pw+b0PmMyaSziwPE
+        mbmXQJymeMDDHYrn5T90FWW39a7eCLSvM0k6Id4DDQ==
+X-Google-Smtp-Source: APiQypI+OHSx7I0zAFNl0j3kM4YuBCc2AJy2aRhhIsVV8UZqht0LfkdSl9kXkAtfkBw1fMhlpmo+n7+6X8Ap0UyfKBQ=
+X-Received: by 2002:a50:d71e:: with SMTP id t30mr969087edi.246.1586841992805;
+ Mon, 13 Apr 2020 22:26:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1586353607-32222-1-git-send-email-rnayak@codeaurora.org>
+ <1586353607-32222-3-git-send-email-rnayak@codeaurora.org> <20200409174511.GS199755@google.com>
+ <CABymUCNdX=K1vFuC0Rt-u0h-CRYcKtXogyOkAiGZpDfKSVAYqA@mail.gmail.com> <13907000-e3b0-12d6-0768-fd8a7ab100d9@codeaurora.org>
+In-Reply-To: <13907000-e3b0-12d6-0768-fd8a7ab100d9@codeaurora.org>
+From:   Jun Nie <jun.nie@linaro.org>
+Date:   Tue, 14 Apr 2020 13:26:21 +0800
+Message-ID: <CABymUCM+WjSxKhhvqbBSxub_3wxvnJ8aOVgtWD9JOoxA3MuY2A@mail.gmail.com>
+Subject: Re: [PATCH 02/21] tty: serial: qcom_geni_serial: Use OPP API to set
+ clk/perf state
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>, sboyd@kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        linux-serial@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+Rajendra Nayak <rnayak@codeaurora.org> =E4=BA=8E2020=E5=B9=B44=E6=9C=8813=
+=E6=97=A5=E5=91=A8=E4=B8=80 =E4=B8=8B=E5=8D=8810:22=E5=86=99=E9=81=93=EF=BC=
+=9A
+>
+>
+>
+> On 4/10/2020 2:06 PM, Jun Nie wrote:
+> >>> @@ -961,7 +962,7 @@ static void qcom_geni_serial_set_termios(struct u=
+art_port *uport,
+> >>>                goto out_restart_rx;
+> >>>
+> >>>        uport->uartclk =3D clk_rate;
+> >>> -     clk_set_rate(port->se.clk, clk_rate);
+> >>> +     dev_pm_opp_set_rate(uport->dev, clk_rate);
+> >
+> > Hi Rajendra,
+>
+> Hi Jun,
+>
+> > I see lowest rpmhpd_opp_low_svs opp is for 75MHz. It is a bit higher
+> > for a serial.
+> > I am just curious about this.
+>
+> Well these OPP tables are technically what we call as fmax tables, which =
+means
+> you can get the clock to a max of 75MHz at that perf level. You need to g=
+o
+> to the next perf level if you want to go higher.
+> That however does not mean that serial cannot run at clocks lower than 75=
+Mhz.
+>
+> > I also want to confirm that the rpmhpd_opp_low_svs voltage restriction
+> > is for serial
+> > controller, not for clock controller? Because I see there is similar
+> > restriction to clock
+> > controller on another platform, the restriction is for branch clock,
+> > not leaf clock that
+> > consumer device will get.
+>
+> yes, its a serial controller restriction and not of the clock provider.
+> On your note on the branch clock vs leaf clock I am not sure I understand
+> the point you are making.
 
-mipi_csi_xx clocks are used by camera sensors.
+For the leaf clock, I mean the clock that consumer get with devm_clk_get().=
+ The
+branch clock means it is not for consumer directly, and its child
+clock or grandchild
+clock is for consumer. In that case, the restriction has to be done in
+clock driver,
+not in clock consumer driver. Sorry for confusing you. I just want to
+know more about
+what function this patch set provide. Because I am working on the
+clock controller
+restriction of fmax/voltage. Thanks!
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- drivers/clk/sprd/sc9863a-clk.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
-
-diff --git a/drivers/clk/sprd/sc9863a-clk.c b/drivers/clk/sprd/sc9863a-clk.c
-index a0631f7756cf..f67bd08f225c 100644
---- a/drivers/clk/sprd/sc9863a-clk.c
-+++ b/drivers/clk/sprd/sc9863a-clk.c
-@@ -1615,6 +1615,36 @@ static const struct sprd_clk_desc sc9863a_mm_gate_desc = {
- 	.hw_clks	= &sc9863a_mm_gate_hws,
- };
- 
-+/* camera sensor clocks */
-+static SPRD_GATE_CLK_HW(mipi_csi_clk, "mipi-csi-clk", &mahb_ckg_eb.common.hw,
-+			0x20, BIT(16), 0, SPRD_GATE_NON_AON);
-+static SPRD_GATE_CLK_HW(mipi_csi_s_clk, "mipi-csi-s-clk", &mahb_ckg_eb.common.hw,
-+			0x24, BIT(16), 0, SPRD_GATE_NON_AON);
-+static SPRD_GATE_CLK_HW(mipi_csi_m_clk, "mipi-csi-m-clk", &mahb_ckg_eb.common.hw,
-+			0x28, BIT(16), 0, SPRD_GATE_NON_AON);
-+
-+static struct sprd_clk_common *sc9863a_mm_clk_clks[] = {
-+	/* address base is 0x60900000 */
-+	&mipi_csi_clk.common,
-+	&mipi_csi_s_clk.common,
-+	&mipi_csi_m_clk.common,
-+};
-+
-+static struct clk_hw_onecell_data sc9863a_mm_clk_hws = {
-+	.hws	= {
-+		[CLK_MIPI_CSI]		= &mipi_csi_clk.common.hw,
-+		[CLK_MIPI_CSI_S]	= &mipi_csi_s_clk.common.hw,
-+		[CLK_MIPI_CSI_M]	= &mipi_csi_m_clk.common.hw,
-+	},
-+	.num	= CLK_MM_CLK_NUM,
-+};
-+
-+static const struct sprd_clk_desc sc9863a_mm_clk_desc = {
-+	.clk_clks	= sc9863a_mm_clk_clks,
-+	.num_clk_clks	= ARRAY_SIZE(sc9863a_mm_clk_clks),
-+	.hw_clks	= &sc9863a_mm_clk_hws,
-+};
-+
- static SPRD_SC_GATE_CLK_FW_NAME(sim0_eb,	"sim0-eb",	"ext-26m", 0x0,
- 				0x1000, BIT(0), 0, 0);
- static SPRD_SC_GATE_CLK_FW_NAME(iis0_eb,	"iis0-eb",	"ext-26m", 0x0,
-@@ -1737,6 +1767,8 @@ static const struct of_device_id sprd_sc9863a_clk_ids[] = {
- 	  .data = &sc9863a_aonapb_gate_desc },
- 	{ .compatible = "sprd,sc9863a-mm-gate",	/* 0x60800000 */
- 	  .data = &sc9863a_mm_gate_desc },
-+	{ .compatible = "sprd,sc9863a-mm-clk",	/* 0x60900000 */
-+	  .data = &sc9863a_mm_clk_desc },
- 	{ .compatible = "sprd,sc9863a-apapb-gate",	/* 0x71300000 */
- 	  .data = &sc9863a_apapb_gate_desc },
- 	{ }
--- 
-2.20.1
-
+Jun
+>
+> --
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
