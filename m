@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E0C31A81A3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 17:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0351A8179
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 17:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440262AbgDNPLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 11:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440254AbgDNPIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 11:08:19 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EA3FC061A0C;
-        Tue, 14 Apr 2020 08:08:18 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id k11so14110403wrp.5;
-        Tue, 14 Apr 2020 08:08:18 -0700 (PDT)
+        id S2440308AbgDNPJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 11:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2440317AbgDNPJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 11:09:02 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4ACC061A0C;
+        Tue, 14 Apr 2020 08:09:02 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id w65so27508pfc.12;
+        Tue, 14 Apr 2020 08:09:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=k7q0i04JrV/LeWRv8qAlwGssC6S97Ez37RZ9eJFf4jw=;
-        b=s8K8q5iRtggqNP5qEoyp9NKhh1FcI+I/WpvocM2IwWOsRGN2OhmPWCtRPpKF0pSqur
-         kk6vqF/IOvEFrkaVsK25+SsTVR3Q33zsGE500TdhYf4fhtYvOROG/nhZJGYsK8vBIzQw
-         jTdQSgEfOfsUMZkimdJNkyvA2AyPfUP607BuhA2QDyUpyaTAgDwODdgJne/fIoF4Wax+
-         njNtUfZ0TJJX6fUbBlsxihKkggxTV5g+hv8GKrdrrUqpfu6QshbWFu9rtMQrmS5kxVss
-         BbkYk/46kdC1TtrT4Zte7uDcDIN0OYATpc38YKttt6+IXg1ZQFuaOdgwqY8bNqBQdBWr
-         xuZA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iIwIisg8wJsKulzHMel4nnap62IsdUq5I7BD8EdMy3U=;
+        b=P6sHGcFsX1qm5pPBVeNB8LSBcEJG8cqvJ/iXSAAlTRjJmNwGQlzdBYyGlDGi5y2soU
+         NxQqLtXnCKnYU92WMkjzF8j40JGiyiOM7CEH/QkTX9p7nf+rG7XXIar2rYTSofk0cjzt
+         CfQuWMXqBhUh84K95BlmyeNJNtElrONAcreildOOnByS3pOd9oNstYX01mELuBZ5IX5j
+         28ummg1turkUdKROs6ZKIgp7SJH5gDnTZ6fzJlMEPC2g9UnbuBPBQCB5u37vdjctfhxL
+         mLwj3UmKDHrvJofVKg7y5QQGdp5ZiW5qAgsEtX5YdF5BUJzpZKPFqbn6aBludu3y73h4
+         Qrow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=k7q0i04JrV/LeWRv8qAlwGssC6S97Ez37RZ9eJFf4jw=;
-        b=QioGmIUUQHT58s8g5U9htyI0Oifnb6KvLFEmoRzcHFs1Roe16AakPSlSr97mbOgJuZ
-         wXWyxaV6TODaG2qmeMsNFNT/RXdXVcv1YV4tD3VkD9YHoRwKkbeUWJ5KmKfIKyCk1GUC
-         H+AxaQEj/FKBQuVHMJq9b8I/WE4f9M4AFl25HDcJSuy0PjtkX9IV5cXv5WLmQ9j7t+zt
-         VWCCYp9uOsq1H+r0cBbauukHh+Tz36ZvL1tfiqVUkoL/zqFR8mLxD1y9ILEGZXScI+gO
-         1P3vTHB7mZ7zqycryYpRZptFD5IfcQuQJ+pMZt4HYcGi89RU/WtQmpKB+2KwT/UjFPIl
-         96ng==
-X-Gm-Message-State: AGi0PubG8xeHGWT8/PGOAofts4D9W7PXFDzt+gkIDVB0UCcVhzl0WvXV
-        ivdO9hQ8Z+n6CSOwquEJums=
-X-Google-Smtp-Source: APiQypLR+uWxiXs63aPjYfFPWMFe2n0Nn/f6HhopnZJbUeLcgUQfMkrWPO84Tz3WWOc4Hxo4F/dUmA==
-X-Received: by 2002:a5d:658e:: with SMTP id q14mr25214585wru.92.1586876897235;
-        Tue, 14 Apr 2020 08:08:17 -0700 (PDT)
-Received: from localhost (pD9E51D62.dip0.t-ipconnect.de. [217.229.29.98])
-        by smtp.gmail.com with ESMTPSA id m14sm17431931wrs.76.2020.04.14.08.08.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 08:08:15 -0700 (PDT)
-Date:   Tue, 14 Apr 2020 17:08:15 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Joseph Lo <josephl@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 09/14] memory: tegra: Add EMC scaling support code for
- Tegra210
-Message-ID: <20200414150815.GM3593749@ulmo>
-References: <20200409175238.3586487-1-thierry.reding@gmail.com>
- <20200409175238.3586487-10-thierry.reding@gmail.com>
- <e015e35b-3f82-56e1-2d86-ebc467eb92f7@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iIwIisg8wJsKulzHMel4nnap62IsdUq5I7BD8EdMy3U=;
+        b=QZzvLUIlEqDV1kTjmREUhIRM3aSvZw+LyDMjNcUPUfEHzPTQbYMhYIt2EHqyqJnhUK
+         IEV4fdeqIzU0ZfpF46bD6fET2eGaG4eJHtQMlF4b1AOy6qbsBTi7iWaDJn7QiuQpOf9e
+         8AbzxqduOL1w2k60SU+PQqNA3kUQy2HVHBh0YoQN9JZ+IENDTHhV5YDLx6fIcqG7dX8t
+         BzK7+D7M0sY9CSynD9OEkGiYEnzuVlN47znXSUzexGrEoWyg/sQUy0swdXtCcx2ALLTA
+         PWMQQU2YBSroqKAfxoG9zF+B0y48rSZs/jooEeXqSnfX5lO1SYpzmkAafhsMertMpMqm
+         pQXA==
+X-Gm-Message-State: AGi0PuY/7i26CWXD5nBm621xLECHXHlTAzBCbhczfPx9SjACD928LkNv
+        g8LRjdAAg0GVKwjt2ZM9WPJ8HRa+XWG8dNHHLMBWD7+QMlY=
+X-Google-Smtp-Source: APiQypIV3Zd98XVLtAsSdItRS2H+IZAJWUv+z9c5WVBVR9hPzW7VmKVLVj0gbXBqyItcafrn5j3EEUKAUw2MVwvbnpo=
+X-Received: by 2002:a63:5511:: with SMTP id j17mr6514062pgb.4.1586876941742;
+ Tue, 14 Apr 2020 08:09:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="75WsOQSofUOhcSOp"
-Content-Disposition: inline
-In-Reply-To: <e015e35b-3f82-56e1-2d86-ebc467eb92f7@gmail.com>
-User-Agent: Mutt/1.13.1 (2019-12-14)
+References: <20200413164402.v9.1.I6ed779cd21abf3e70f21c1562bbda81f590976ab@changeid>
+ <20200413164402.v9.2.I1f56fe698017f22d6e825c913c256d5afc2ad69f@changeid>
+In-Reply-To: <20200413164402.v9.2.I1f56fe698017f22d6e825c913c256d5afc2ad69f@changeid>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 14 Apr 2020 18:08:54 +0300
+Message-ID: <CAHp75Vfe3HAdKFbkXKrwVCnp=oziPY5GDrHTYJWPTW7OOX3LwQ@mail.gmail.com>
+Subject: Re: [PATCH v9 2/2] iio: Add SEMTECH SX9310/9311 sensor driver
+To:     Daniel Campello <campello@chromium.org>
+Cc:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Enrico Granata <egranata@chromium.org>,
+        Andreas Klinger <ak@it-klinger.de>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio <linux-iio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Apr 14, 2020 at 4:43 PM Daniel Campello <campello@chromium.org> wrote:
+>
+> Add SEMTECH SX9310/9311 driver.
+>
+> The device has the following entry points:
+>
+> Usual frequency:
+> - sampling_frequency
+> - sampling_frequency_available
+>
+> Instant reading of current values for different sensors:
+> - in_proximity0_raw
+> - in_proximity1_raw
+> - in_proximity2_raw
+> - in_proximity3_comb_raw
+> and associated events in events/
+>
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> Signed-off-by: Enrico Granata <egranata@chromium.org>
+> Signed-off-by: Daniel Campello <campello@chromium.org>
+> ---
+>
+> Changes in v9:
+>   - Updated Copyright
+>   - Updated macro definitions
+>   - Simplified return condition checks
+>   - Removed ACPI and of table macros
 
---75WsOQSofUOhcSOp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for an update.
+It seems you missed few comments from previous round.
 
-On Fri, Apr 10, 2020 at 05:25:06PM +0300, Dmitry Osipenko wrote:
-> 09.04.2020 20:52, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> ...
-> > +static int tegra210_emc_remove(struct platform_device *pdev)
-> > +{
-> > +	struct tegra210_emc *emc =3D platform_get_drvdata(pdev);
-> > +
-> > +	debugfs_remove_recursive(emc->debugfs.root);
-> > +	tegra210_clk_emc_detach(emc->clk);
->=20
-> It's great that you want to make this driver modular, but I don't think
-> that it's a good idea to suddenly rip off the EMC clock from the users.
->=20
-> It should be better to simply disallow unloading of this driver once
-> it's loaded.
-
-That's not what we're doing. The clock is going to stay around and users
-will be able to access it. The only thing that the above does is take
-away the possibility to change the rate of the EMC clock.
-
-So I think this actually makes this really nice both for testing that
-unload/reload works and it also gives users an easy way to disable EMC
-frequency scaling by simply blacklisting the module.
-
-Thierry
-
---75WsOQSofUOhcSOp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl6V0d4ACgkQ3SOs138+
-s6GsWw/+M5/HCC6YVqevVHN5rlOJp1Ymn8G8PfobgyJaQ+IQ5YBian1VcklzBhNx
-jqEPh0NaQTMm8Lq30si3Es6lnPugjOhhsYpGP2PVQ8Fpgr33hqoileVYzHYe4uMP
-uk7SUYzZMoBAdO936koxzvfVIS86NGqzVciHH7xDQqndF1PoRShxkHA+Fmg7FuwA
-BNKrTPyYObiEZD0KO45fHkyWxrBl7lfk6Qm9gMyM5wpp80JHI/gGkmE3kUocMW/w
-zYXnGLES5NcrDgBDv1aRAlt8pafa1TrFtZIpADX2Y3q533/TEojbb3f9BtYkLCAP
-8cfmAfFdHK9gOo68OGpPFePzFZRYdxEH3xCGOsISgMoE5PRIKpLhVZW1/zlaVGHG
-yQUuKR2c/G+qlPgD1vb42B7b7cPmA3DU7KGZn7aUhDTuR8ovDd29Xzzqzvf9Gq52
-CKZFYirYrVuNF4Yu81JCQejfoOy3dah1EILZ/H4rwsIZGbNmzNt8uMPJ9/b0UAht
-9aCgJJC05SNFFeWT7PYgleJHLLl5zpdStTbZgSHdjyS7az2+hTCU/ZxEFVUbfARp
-yMauGoTgjC+Tmlo2i8u/TO91xvVVLx0jnhAT9QETnjYkTZtr1T5h8jh9u2EIguHb
-oFtPdGtkf4+73XZxomkd6XA3sThbRwKYCuzJUIupCz+fwe2ByZQ=
-=UtAs
------END PGP SIGNATURE-----
-
---75WsOQSofUOhcSOp--
+-- 
+With Best Regards,
+Andy Shevchenko
