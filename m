@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2C11A7871
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 12:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B55C1A78F3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 12:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438345AbgDNKci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 06:32:38 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56379 "EHLO
+        id S2438781AbgDNK5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 06:57:41 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35121 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438356AbgDNKcK (ORCPT
+        with ESMTP id S2438360AbgDNKcK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 06:32:10 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jOIrN-0007BU-EA; Tue, 14 Apr 2020 12:32:05 +0200
+        id 1jOIrN-0007BV-EB; Tue, 14 Apr 2020 12:32:05 +0200
 Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jOIrM-000181-SH; Tue, 14 Apr 2020 12:32:04 +0200
+        id 1jOIrM-000183-Sm; Tue, 14 Apr 2020 12:32:04 +0200
 From:   Michael Tretter <m.tretter@pengutronix.de>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
@@ -26,10 +26,12 @@ Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
         Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
         Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v2 0/6] soc: xilinx: vcu: provide interfaces for other drivers
-Date:   Tue, 14 Apr 2020 12:31:56 +0200
-Message-Id: <20200414103202.4288-1-m.tretter@pengutronix.de>
+Subject: [PATCH v2 1/6] soc: xilinx: vcu: drop useless success message
+Date:   Tue, 14 Apr 2020 12:31:57 +0200
+Message-Id: <20200414103202.4288-2-m.tretter@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200414103202.4288-1-m.tretter@pengutronix.de>
+References: <20200414103202.4288-1-m.tretter@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
@@ -41,48 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The message that the driver was successfully probed only adds useless
+noise. Drop the message.
 
-This is v2 of the series to add interfaces that can be used by other drivers
-to the xlnx_vcu driver. See [0] for the full motivation for this patch series.
-
-In v2, the driver now also unregisters the registered clocks. I also dropped
-the workaround for the syscon compatible in the dt bindings.
-
-I would actually really appreciate feedback by Xilinx, because there are some
-patches in the Xilinx downstream kernel that also try to expose the VCU
-System-Level Control in an (IMHO) non-upstream-compatible way.
-
-Michael
-
-[0] https://lore.kernel.org/linux-arm-kernel/20200317094115.15896-1-m.tretter@pengutronix.de/
-
+Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+---
 Changelog:
 
 v1 -> v2:
-- drop custom select for syscon
-- unregister registered clocks on driver remove
+- none
+---
+ drivers/soc/xilinx/xlnx_vcu.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-
-Michael Tretter (6):
-  soc: xilinx: vcu: drop useless success message
-  ARM: dts: define indexes for output clocks
-  soc: xilinx: vcu: implement clock provider for output clocks
-  dt-bindings: soc: xlnx: extract xlnx,vcu-settings to separate binding
-  soc: xilinx: vcu: use vcu-settings syscon registers
-  soc: xilinx: vcu: add missing register NUM_CORE
-
- .../soc/xilinx/xlnx,vcu-settings.yaml         |  34 ++++
- .../bindings/soc/xilinx/xlnx,vcu.txt          |   9 +-
- drivers/soc/xilinx/Kconfig                    |   3 +-
- drivers/soc/xilinx/xlnx_vcu.c                 | 170 ++++++++++++------
- include/dt-bindings/clock/xlnx-vcu.h          |  15 ++
- include/linux/mfd/syscon/xlnx-vcu.h           |  39 ++++
- 6 files changed, 212 insertions(+), 58 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
- create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
- create mode 100644 include/linux/mfd/syscon/xlnx-vcu.h
-
+diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
+index a3aa40996f13..dcd8e7824b06 100644
+--- a/drivers/soc/xilinx/xlnx_vcu.c
++++ b/drivers/soc/xilinx/xlnx_vcu.c
+@@ -571,8 +571,6 @@ static int xvcu_probe(struct platform_device *pdev)
+ 
+ 	dev_set_drvdata(&pdev->dev, xvcu);
+ 
+-	dev_info(&pdev->dev, "%s: Probed successfully\n", __func__);
+-
+ 	return 0;
+ 
+ error_pll_ref:
 -- 
 2.20.1
 
