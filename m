@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3D61A8EF2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E537B1A8F08
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441028AbgDNXLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 19:11:25 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39619 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441018AbgDNXLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 19:11:22 -0400
-Received: by mail-ot1-f66.google.com with SMTP id x11so1530969otp.6;
-        Tue, 14 Apr 2020 16:11:21 -0700 (PDT)
+        id S1731254AbgDNXTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 19:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1731159AbgDNXTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 19:19:46 -0400
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53A6C061A0E;
+        Tue, 14 Apr 2020 16:12:11 -0700 (PDT)
+Received: by mail-ot1-x341.google.com with SMTP id e20so1570145otl.2;
+        Tue, 14 Apr 2020 16:12:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=uQbA1hm4F1ECx3Q8+dWpAWgcwSDF1dFS3d3ZIaptT0s=;
-        b=DB+mBfYobMoaRdKaeemG2Q+iQOYlDdFnCv1P+j7Y0Fn5/z+SW50st5Q0ia8dBJltsE
-         MqYWKxDyofYFgDEVh09THB/xPjOHpa1duij6TFlgV5Y6zTIwriclfRxRdXIdV1v+Frsa
-         qQwcPz+4Gb3IwbnyXU/pvKsLWQW6OwWc2lrqv1K6RVVP2VMaLXbMMa1c5qrcwFxTT3uM
-         I9wc+Qa8ne925YtCiy/U4uxOG4xpSY+yAO1R6wR5vLAp8lRPnf3BFGuGf+bh5caLwzKC
-         tDNDsDH3JqdDw2k/5za9POGcXt6tbiufvb/+nu9od2B/f9gFmU/azQJrkO2rzt/fJzpi
-         j9CA==
-X-Gm-Message-State: AGi0PuZ1gwE1+DPLrm68YlUZjHGeB9XVkvrqXLkl54zSY7OQxsJJs0yh
-        x7V6ztt401/iPGi1OJbk4A==
-X-Google-Smtp-Source: APiQypK8ZzZ8C2d2xHIP7/hVcEIpx48D8sjnAVUS4VjaxOXBvRO5TMBQWpnOXEbSUqJLeeI5tihRSg==
-X-Received: by 2002:a4a:e151:: with SMTP id p17mr16389352oot.28.1586905879376;
-        Tue, 14 Apr 2020 16:11:19 -0700 (PDT)
+        bh=3LvyUE2GUTR0pHYEnmT2tUO1UdeQFGwAkp9xm1vgbDE=;
+        b=r7KnoE1Rf0QB6fpyKgG1zNAtU62O5MI8aVvjcVSHWL09B+7LTqa9uSItn7s/TC8aSw
+         KogZXmBpftxyvLGDLWwleZITx9MGqvghol0yYRRiuOf1yNe49/VmosnldvFbZrTSCY2a
+         vThVGqtqJax2MZEnCS3LsnXhMqSeC9lxGMk8G4Uf/3iMzQx3nac6SRGiAFw0BGM7ZO0u
+         y5nQWtzw23+GyuNHpHu02Xx/sGTcszMtZa6kt/E3h+y54f9ixkouBorScxcRsgekFM2W
+         PpcbMQ/OwWgN1ibdYXNgojQm8HMoNK6nghQHJiKBVdrQrIQ0JozWVI0Cdy3WlIU4B5A8
+         sFlw==
+X-Gm-Message-State: AGi0PuZnKo4ZSXoqhCubfVZkC/6rzsTee3MnMkJcPn9i0fvaFJop5+yJ
+        KuffyQvXSogL5Fbk/Ro6liY4oFc=
+X-Google-Smtp-Source: APiQypLk3qLcQHFn2yII+iHdQeLwDivd6L18ckP1XjH5hhG+LHdjUeIJ5HA6/l0lOU/TzU6subtL1Q==
+X-Received: by 2002:a9d:5381:: with SMTP id w1mr10846785otg.288.1586905930992;
+        Tue, 14 Apr 2020 16:12:10 -0700 (PDT)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p130sm5952795oig.51.2020.04.14.16.11.18
+        by smtp.gmail.com with ESMTPSA id n184sm5538526oih.58.2020.04.14.16.12.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 16:11:18 -0700 (PDT)
-Received: (nullmailer pid 6378 invoked by uid 1000);
-        Tue, 14 Apr 2020 23:11:18 -0000
-Date:   Tue, 14 Apr 2020 18:11:18 -0500
+        Tue, 14 Apr 2020 16:12:10 -0700 (PDT)
+Received: (nullmailer pid 7707 invoked by uid 1000);
+        Tue, 14 Apr 2020 23:12:09 -0000
+Date:   Tue, 14 Apr 2020 18:12:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org,
-        Maxime Ripard <maxime@cerno.tech>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Yao <mark.yao@rock-chips.com>,
-        Sandy Huang <hjc@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH/RFC 6/6] dt-bindings: display: bridge: Remove deprecated
- dw_hdmi.txt
-Message-ID: <20200414231118.GA6328@bogus>
-References: <20200405233935.27599-1-laurent.pinchart+renesas@ideasonboard.com>
- <20200405233935.27599-7-laurent.pinchart+renesas@ideasonboard.com>
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: net: wireless: mt76: document
+ mediatek,eeprom-merge-otp property
+Message-ID: <20200414231209.GA7642@bogus>
+References: <20200406102203.54450-1-nbd@nbd.name>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200405233935.27599-7-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20200406102203.54450-1-nbd@nbd.name>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  6 Apr 2020 02:39:35 +0300, Laurent Pinchart wrote:
-> dw_hdmi.txt has been replaced with synopsys,dw-hdmi.yaml, and all
-> references to the old file have been converted. Remove it.
+On Mon,  6 Apr 2020 12:22:00 +0200, Felix Fietkau wrote:
+> It is used to enable merging of Flash EEPROM data with OTP ROM calibration.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
 > ---
->  .../bindings/display/bridge/dw_hdmi.txt       | 33 -------------------
->  1 file changed, 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt
+>  .../devicetree/bindings/net/wireless/mediatek,mt76.txt         | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
