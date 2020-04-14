@@ -2,134 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12B751A8B05
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 21:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F1F91A8B3B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 21:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2504958AbgDNTiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 15:38:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2504930AbgDNThE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 15:37:04 -0400
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACF0C061A10;
-        Tue, 14 Apr 2020 12:37:04 -0700 (PDT)
-Received: by mail-qk1-x744.google.com with SMTP id t3so10850936qkg.1;
-        Tue, 14 Apr 2020 12:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XCcn0Oez3DHMoLsnomZlIHgSagkv3wP7zr1RDul2frQ=;
-        b=Ji2pnni81H/QdQEs26s4Z6fXdwADroSrbLcjIJGMVTNTartbwX0XW392IuZrXc7Ifw
-         oVFoF81CFjbTDEMGWse+IvV1faRL/tWjexR9bvnoVMGlhRDKFSKAzxi1L/RPKLX4BPzR
-         LIxUVeB2M5eShpy2usCUat2ZqVtGUF9SWq6u1oqrdGD+/kvVu05SgP3C8Xg7E9L/xx4P
-         yycRmLDE8sbIQj7w35UdiFT/BioiV+iRDHr1DPK9roYbKEwr3ttEL/nNDejoNJHEft6v
-         CId+3TA/LhVEw8rM4sY6hCSzrhDuhaS29UhN9piZKncmqlE9rULhx6n6vG/6g4QBC+Vx
-         2KZw==
+        id S2504935AbgDNTlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 15:41:00 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:41189 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2505065AbgDNTk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 15:40:57 -0400
+Received: by mail-ot1-f67.google.com with SMTP id f52so914914otf.8;
+        Tue, 14 Apr 2020 12:40:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XCcn0Oez3DHMoLsnomZlIHgSagkv3wP7zr1RDul2frQ=;
-        b=BRa9JW/NAIoeGa88tjNqn0Vb/cmMpFEWyNpMpGajp/9MD8Yj2SpsfTrKiQZ3HPY8yi
-         lR6VEcvARDKX0jzMimJym0geYcsBZwOGEi8MFDdmRW4TxNbL0ESZrHIHbQhRpfNL24px
-         AAx/TztcUs4xEoPRgoioZ7xjUgWTWUS1IScnOqxMzx6vxqDlq95WOCN5QEkxsnWhVXDr
-         vVTiDGqrNaLoJsdxhQS1HDO+zhvOj7H5L+gZCBGifz96H55PqBBtaPZJvJQPMACR4NAk
-         b2U6nZCQwM2oJ9EiIt71NTV6RbgxMzp7x9gjzrSA+LhOgYEpN2w2ui0c0qUlVis2y9hN
-         5MTA==
-X-Gm-Message-State: AGi0PuYeRalQ8Fiba6x1hwFO8TJsUOyDUnL1Rdb9riF2LZnV9/psM01R
-        42Z/IZ36JAzZuwtNWGoF94GuuZB7r4w=
-X-Google-Smtp-Source: APiQypKKOaQjuwK0bBkDSboSxAgdBaOaejp9+0c2qyAgukhvcvo6tpyUJaIA8t7Avkf2ff2IiVKRaQ==
-X-Received: by 2002:ae9:e214:: with SMTP id c20mr11125186qkc.107.1586893023363;
-        Tue, 14 Apr 2020 12:37:03 -0700 (PDT)
-Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id t15sm11960197qtc.64.2020.04.14.12.37.01
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rA3IETH0xgn8ebwBJlBRbndhRKsHnPU2NvYNY3hNsKA=;
+        b=nZFluG9hEo7sfn8b+ldOOvfj2fhe2WTx3SjvcYS5A0qWJYOytQr42p7WhgMn3avC9m
+         WNXL4dLpQ+MBgjC1tSOVwQ29ntDd1nssIuN4CZHlbazbyaqtirEv6nSpnPDVun9I7j0B
+         qJ9WnJNr7iMIjLjoYF3I8Fcdjl1PmBnCDux0UuUWlcJrXG6XRJnjpq8jJOiscx40iFYj
+         FSw9XmwfuXuylYgpe/CpS1UGMMNfbZWLSLsZNu+SPlHtfHDbl+l1fgM46rb8gdru8a26
+         d6up8Z+KGDPHnk93sXSudBYw5qN+4HB73E+4OCaauP+DaD4gG5P7kS3vgm+2YEG8ph3N
+         P8MA==
+X-Gm-Message-State: AGi0PuZWr3MwdPckGVjBM4JAEfXZMgMVFIAzK1AiXljfIoqDyL45WHFd
+        RCSM2elKrR03/kgjMzU0uA==
+X-Google-Smtp-Source: APiQypLI/AKUFg7kJsQaGhZnEKT2eudBr8nOypqMfZWA4MgD+9PzQn1dP3iPfKOpVxnuDsfLnEXp4g==
+X-Received: by 2002:a9d:24a4:: with SMTP id z33mr18571236ota.326.1586893255888;
+        Tue, 14 Apr 2020 12:40:55 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h14sm2044908oov.11.2020.04.14.12.40.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 12:37:02 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     aford@beaconembedded.com, charles.stevens@logicpd.com,
-        Adam Ford <aford173@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt: Add additional option bindings for IDT VersaClock
-Date:   Tue, 14 Apr 2020 14:36:16 -0500
-Message-Id: <20200414193616.1368209-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200414193616.1368209-1-aford173@gmail.com>
-References: <20200414193616.1368209-1-aford173@gmail.com>
+        Tue, 14 Apr 2020 12:40:55 -0700 (PDT)
+Received: (nullmailer pid 14986 invoked by uid 1000);
+        Tue, 14 Apr 2020 19:40:54 -0000
+Date:   Tue, 14 Apr 2020 14:40:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH v1 3/4] dt-bindings: media: add wiring property to
+ video-interfaces
+Message-ID: <20200414194054.GB29184@bogus>
+References: <20200412182012.27515-1-sam@ravnborg.org>
+ <20200412182012.27515-4-sam@ravnborg.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200412182012.27515-4-sam@ravnborg.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VersaClock driver now supports some additional bindings to support
-child nodes which can configure optional settings like mode, voltage
-and slew.
+On Sun, Apr 12, 2020 at 08:20:11PM +0200, Sam Ravnborg wrote:
+> The wiring property is used to describe the wiring between
+> the connector and the panel. The property can be used when the
+> wiring is used to change the mode from for example
+> BGR to RGB. The first users are the at91sam9 family where
+> such a wiring trick is sometimes used.
+> The possilbe values are so far limited to what is required
+> by the at91sam9 family, but using "text" allows us to extend
+> this in the future.
+> 
+> There exists similar properties today:
+>  - display/tilcdc/tilcdc.txt: blue-and-red-wiring
+>  - display/atmel,lcdc.txt: atmel,lcd-wiring-mode
+> 
+> Neither of the above are defined as endpoint properties.
+> 
+> The new property "wiring" has a more general name and
+> is defined as an endpoint property.
+> It will replace atmel,lcd-wiring-mode and may replace
+> blue-and-red-wiring.
+> 
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Hans Verkuil <hverkuil@xs4all.nl>
+> Cc: linux-media@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/media/video-interfaces.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> index f884ada0bffc..c3bb87c5c9a9 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> @@ -141,6 +141,9 @@ Optional endpoint properties
+>  - link-frequencies: Allowed data bus frequencies. For MIPI CSI-2, for
+>    instance, this is the actual frequency of the bus, not bits per clock per
+>    lane value. An array of 64-bit unsigned integers.
+> +- wiring: Wiring of data lines to display.
+> +  "straight" - normal wiring.
 
-This patch updates the binding document to describe what is available
-in the driver.
+Don't really need a property to express this...
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+> +  "red-blue-reversed" - red and blue lines reversed.
 
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt b/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-index bcff681a4bd0..6165b6ddb1a9 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-@@ -31,6 +31,29 @@ Required properties:
- 		- 5p49v5933 and
- 		- 5p49v5935: (optional) property not present or "clkin".
- 
-+For all output ports, a corresponding, optional child node named OUT1,
-+OUT2, etc. can represent a each output, and the node can be used to
-+specify the following:
-+
-+- itd,mode: can be one of the following:
-+                 - VC5_LVPECL
-+                 - VC5_CMOS
-+                 - VC5_HCSL33
-+                 - VC5_LVDS
-+                 - VC5_CMOS2
-+                 - VC5_CMOSD
-+                 - VC5_HCSL25
-+
-+- idt,voltage-microvolts:  can be one of the following
-+                 - 1800000
-+                 - 2500000
-+                 - 3300000
-+-  idt,slew-percent: Percent of normal, can be one of
-+                 - 80
-+                 - 85
-+                 - 90
-+                 - 100
-+
- ==Mapping between clock specifier and physical pins==
- 
- When referencing the provided clock in the DT using phandle and
-@@ -81,6 +104,16 @@ i2c-master-node {
- 		/* Connect XIN input to 25MHz reference */
- 		clocks = <&ref25m>;
- 		clock-names = "xin";
-+
-+		OUT1 {
-+			itd,mode = <VC5_CMOS>;
-+			idt,voltage-microvolts = <1800000>;
-+			idt,slew-percent = <80>;
-+		};
-+		OUT2 {
-+			...
-+		};
-+		...
- 	};
- };
- 
--- 
-2.25.1
+For a common property, I think this needs to be looked at in terms of 
+formats and some of the format negotiation work Boris was doing.
 
+Rob
