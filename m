@@ -2,141 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF891A784A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 12:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2C11A7871
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 12:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438228AbgDNKRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 06:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2438220AbgDNKR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 06:17:26 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA9CC061A0F;
-        Tue, 14 Apr 2020 03:17:25 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id m16so4494529pls.4;
-        Tue, 14 Apr 2020 03:17:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nJqmAn8rCaC2zzDR7gsuH+oKcMAGO2Lxph4F4d0uXF4=;
-        b=pOQVp73DmQfEEJ8VRBOL1zEL5JOuSlYiE/ZY73ciJ/35tl90AEHo7vD0NAJtDGhcDK
-         ioZJNqXKHzRnztzNQ5PTHPwf5un7tLf73kgtkYZArjDAmqqST01HOXw5K03Qxtn9D4tp
-         Wft7oIZhFxFIag9i4eXubo908qxWffAipcLg5q20XUVb/nIpyNMbPo1ci+whslW4kUjP
-         MzS8HC7zw6x5/h4oVndR8+0ugtslhyTPwykCjCdmfSkDFEw9hiXlL9Hp9ey1mxV3fjpl
-         i5MtdGR2tu8eA/WOQYzuqydEZ/05jHToYu3kpa9W4k1bxwAdy3OTbOYFjU1GbO6fpnr9
-         NkSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nJqmAn8rCaC2zzDR7gsuH+oKcMAGO2Lxph4F4d0uXF4=;
-        b=FJ/g5WYNimZRHpnQLcQBClEC9QlzCzKTDXVkRcPQ5EURcVrPfv5w0yPRoi91kUCI8C
-         YKUTono3bM83Do6P6MWiWhjz0rRcmuXJZsVAz6XwYxFwfre0axU24/Irmam/mRJBD78y
-         W03ic2ThbOT5rVoZSnCrT/pGE0zyFNoIEP77sB7ajbeGip5XGT2gOhAZyUzc9xbhYxVl
-         XX0HqLp9uVlFu/OFM+1o4+NDMpzIGz/3z8M0qLNgd2SkzEDv0U48PvAistzPNXbNrDLY
-         JTcEsB1fJFPEcjsYpgeQim/RMK214Z81IW1saHUEL99vRM2T2cFgjf2Py5iI8BY580xb
-         0elw==
-X-Gm-Message-State: AGi0PuYURP885Jgq70ZK++zu491TJLxsV2w09gzsZw7pIwPjayIKZhdy
-        5m+PQccsgKAYpXeJL8Wkc9mD/ZMNju0=
-X-Google-Smtp-Source: APiQypIpjF4jLy/Gs0Rx/IKhvZz5HygOEGHGnPXNy01Z7A3dG6YdziaxF6n5t/3yk97CM7ysXnIOjw==
-X-Received: by 2002:a17:90a:e64e:: with SMTP id ep14mr9840194pjb.190.1586859445415;
-        Tue, 14 Apr 2020 03:17:25 -0700 (PDT)
-Received: from ubt.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id r189sm9870182pgr.31.2020.04.14.03.17.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 03:17:24 -0700 (PDT)
-From:   zhang.lyra@gmail.com
-To:     soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: [RESEND PATCH 2/2] arm64: dts: Add SC9863A emmc and sd card nodes
-Date:   Tue, 14 Apr 2020 18:16:36 +0800
-Message-Id: <20200414101636.24503-3-zhang.lyra@gmail.com>
+        id S2438345AbgDNKci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 06:32:38 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:56379 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438356AbgDNKcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 06:32:10 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1jOIrN-0007BU-EA; Tue, 14 Apr 2020 12:32:05 +0200
+Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1jOIrM-000181-SH; Tue, 14 Apr 2020 12:32:04 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH v2 0/6] soc: xilinx: vcu: provide interfaces for other drivers
+Date:   Tue, 14 Apr 2020 12:31:56 +0200
+Message-Id: <20200414103202.4288-1-m.tretter@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200414101636.24503-1-zhang.lyra@gmail.com>
-References: <20200414101636.24503-1-zhang.lyra@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+Hello,
 
-Add emmc and sd card devicetree nodes for SC9863A.
+This is v2 of the series to add interfaces that can be used by other drivers
+to the xlnx_vcu driver. See [0] for the full motivation for this patch series.
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- arch/arm64/boot/dts/sprd/sc9863a.dtsi | 42 +++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+In v2, the driver now also unregisters the registered clocks. I also dropped
+the workaround for the syscon compatible in the dt bindings.
 
-diff --git a/arch/arm64/boot/dts/sprd/sc9863a.dtsi b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-index 1ad6f6e95bca..8cf4a6575980 100644
---- a/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2019, Unisoc Inc.
-  */
- 
-+#include <dt-bindings/clock/sprd,sc9863a-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include "sharkl3.dtsi"
- 
-@@ -543,5 +544,46 @@
- 				};
- 			};
- 		};
-+
-+		ap-ahb {
-+			compatible = "simple-bus";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			sdio0: sdio@20300000 {
-+				compatible  = "sprd,sdhci-r11";
-+				reg = <0 0x20300000 0 0x1000>;
-+				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				clock-names = "sdio", "enable";
-+				clocks = <&aon_clk CLK_SDIO0_2X>,
-+					 <&apahb_gate CLK_SDIO0_EB>;
-+				assigned-clocks = <&aon_clk CLK_SDIO0_2X>;
-+				assigned-clock-parents = <&rpll CLK_RPLL_390M>;
-+
-+				bus-width = <4>;
-+				no-sdio;
-+				no-mmc;
-+			};
-+
-+			sdio3: sdio@20600000 {
-+				compatible  = "sprd,sdhci-r11";
-+				reg = <0 0x20600000 0 0x1000>;
-+				interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				clock-names = "sdio", "enable";
-+				clocks = <&aon_clk CLK_EMMC_2X>,
-+					 <&apahb_gate CLK_EMMC_EB>;
-+				assigned-clocks = <&aon_clk CLK_EMMC_2X>;
-+				assigned-clock-parents = <&rpll CLK_RPLL_390M>;
-+
-+				bus-width = <8>;
-+				non-removable;
-+				no-sdio;
-+				no-sd;
-+				cap-mmc-hw-reset;
-+			};
-+		};
- 	};
- };
+I would actually really appreciate feedback by Xilinx, because there are some
+patches in the Xilinx downstream kernel that also try to expose the VCU
+System-Level Control in an (IMHO) non-upstream-compatible way.
+
+Michael
+
+[0] https://lore.kernel.org/linux-arm-kernel/20200317094115.15896-1-m.tretter@pengutronix.de/
+
+Changelog:
+
+v1 -> v2:
+- drop custom select for syscon
+- unregister registered clocks on driver remove
+
+
+Michael Tretter (6):
+  soc: xilinx: vcu: drop useless success message
+  ARM: dts: define indexes for output clocks
+  soc: xilinx: vcu: implement clock provider for output clocks
+  dt-bindings: soc: xlnx: extract xlnx,vcu-settings to separate binding
+  soc: xilinx: vcu: use vcu-settings syscon registers
+  soc: xilinx: vcu: add missing register NUM_CORE
+
+ .../soc/xilinx/xlnx,vcu-settings.yaml         |  34 ++++
+ .../bindings/soc/xilinx/xlnx,vcu.txt          |   9 +-
+ drivers/soc/xilinx/Kconfig                    |   3 +-
+ drivers/soc/xilinx/xlnx_vcu.c                 | 170 ++++++++++++------
+ include/dt-bindings/clock/xlnx-vcu.h          |  15 ++
+ include/linux/mfd/syscon/xlnx-vcu.h           |  39 ++++
+ 6 files changed, 212 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+ create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
+ create mode 100644 include/linux/mfd/syscon/xlnx-vcu.h
+
 -- 
 2.20.1
 
