@@ -2,194 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 268061A8956
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32A71A895B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729690AbgDNSZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 14:25:53 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41321 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727959AbgDNSZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:25:52 -0400
-Received: by mail-ot1-f68.google.com with SMTP id f52so650378otf.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 11:25:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dD0ZWW42NAG1gRumaqOnEXSg/sKXKfXPIbvoNmXY8HM=;
-        b=cJU7HglaFQ76kZF+6Q5Fr1k+wnp4doiQtP/kSFh5z13PaoXjTt77h/7n0HehsY1UIx
-         gf6t8w0sCZA4FKbmDlTg5JDirSwmNPa/czL3vINeii8deTcXA5SygKnBD6HyuhrLsXih
-         B4NyUbOQbDMlbb03GfhhxkQAO+ISYgj0Yb3ojYJgdiAdLA+WZEUQ+sxAjrueao/Oars5
-         YR3lA1eJA6M98Ro2OBPf+XnYXhD3lVktGcj8GoUE21OM5ht8U5s5YnGV4HE1phWBZ1gk
-         g5IxHb0ahtgDO2CTX3YVkQcfBcQD8AdX3KEvS4UgWx7zmzJrgvHPNGHvOz87NKGdZQ4L
-         p5dg==
-X-Gm-Message-State: AGi0PuZXrhhV6vCxXOn/AftlRDtUromaENCDs5jkfPn1eT3BIgbs4lIN
-        jMp10CYeOa9Y8ysjRzgPRhXkSJg=
-X-Google-Smtp-Source: APiQypLTQ+JWMb4O8WO7JeWbNb15oh1VRbQbgkZtfsEiWTGIDqZ+ppH/wFL7hXDLjdW1jt2onHjj1g==
-X-Received: by 2002:a9d:6413:: with SMTP id h19mr17984845otl.203.1586888751210;
-        Tue, 14 Apr 2020 11:25:51 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n184sm1183752oia.40.2020.04.14.11.25.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 11:25:50 -0700 (PDT)
-Received: (nullmailer pid 16456 invoked by uid 1000);
-        Tue, 14 Apr 2020 18:25:49 -0000
-Date:   Tue, 14 Apr 2020 13:25:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org,
-        Jerry Han <hanxu5@huaqin.corp-partner.google.com>
-Subject: Re: [PATCH v2 06/36] dt-bindings: display: convert boe,himax8279d to
- DT Schema
-Message-ID: <20200414182549.GA11086@bogus>
-References: <20200408195109.32692-1-sam@ravnborg.org>
- <20200408195109.32692-7-sam@ravnborg.org>
+        id S1729776AbgDNS1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:27:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38434 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729695AbgDNS1D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 14:27:03 -0400
+Received: from Mani-XPS-13-9360 (unknown [157.50.36.11])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 695D420575;
+        Tue, 14 Apr 2020 18:26:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586888822;
+        bh=hFNLUX5d/6VjCP7/nuZYKMX4WhCYb5wTCkL0pjVz/cc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XfkRvFH+I62D7vY0osPBoSlwtLFj+YlTQoGNl+0cFfI0eT8RGcsAOzn9YFaFgBr30
+         yYmRl17e3QJGZhIT+P46p+34M/AZjL9kgNbvoIAPXaroKE/5s9lvflOytQJkBEaLHD
+         z/MAq1RwZ2lakZ8V3g78Ch4POz83wHQ77jekgUKU=
+Date:   Tue, 14 Apr 2020 23:56:52 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, narcisaanamaria12@gmail.com,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] iio: chemical: Add support for external Reset and
+ Wakeup in CCS811
+Message-ID: <20200414182652.GA29921@Mani-XPS-13-9360>
+References: <20200414153415.957-1-mani@kernel.org>
+ <20200414153415.957-3-mani@kernel.org>
+ <CAHp75Vf1wzBD+r5L7XFPW=ydxFLBfBNr6Jc4b6sMWR4Rci-Acw@mail.gmail.com>
+ <20200414170547.GB3334@Mani-XPS-13-9360>
+ <CAHp75Vfk3aw30j8U+BJiobU6s2KsOis_VyUv4+6csbYLFnV9eg@mail.gmail.com>
+ <20200414191259.5fbfdc2a@archlinux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200408195109.32692-7-sam@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200414191259.5fbfdc2a@archlinux>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 08, 2020 at 09:50:39PM +0200, Sam Ravnborg wrote:
-> v2:
->   - Fix entry in MAINTAINERS
+On Tue, Apr 14, 2020 at 07:12:59PM +0100, Jonathan Cameron wrote:
+> On Tue, 14 Apr 2020 20:54:49 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 > 
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Jerry Han <hanxu5@huaqin.corp-partner.google.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> ---
->  .../bindings/display/panel/boe,himax8279d.txt | 24 --------
->  .../display/panel/boe,himax8279d.yaml         | 59 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 60 insertions(+), 25 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt
->  create mode 100644 Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
+> > On Tue, Apr 14, 2020 at 8:06 PM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > > On Tue, Apr 14, 2020 at 07:42:24PM +0300, Andy Shevchenko wrote:  
+> > > > On Tue, Apr 14, 2020 at 6:34 PM <mani@kernel.org> wrote:  
+> > 
+> > ...
+> > 
+> > > > > +       reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
+> > > > > +                                            GPIOD_OUT_LOW);
+> > > > > +       if (IS_ERR(reset_gpio)) {  
+> > > >  
+> > > > > +               dev_err(&client->dev, "Failed to acquire reset gpio\n");  
+> > > >
+> > > > If it's a deferred probe, it would spam the log.
+> > > >  
+> > >
+> > > Hmm. But error is an error isn't it? Would you recommend doing a debug print
+> > > or completely removing the logging?  
+> > 
+> > I would remove completely, but better to wait for Jonathan to comment.
+> > Maybe he prefers something like
+> >   if (err != EPROBE_DEFER)
+> >     dev_err()
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt b/Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt
-> deleted file mode 100644
-> index 3caea2172b1b..000000000000
-> --- a/Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -Boe Himax8279d 1200x1920 TFT LCD panel
-> -
-> -Required properties:
-> -- compatible: should be "boe,himax8279d8p" and one of: "boe,himax8279d10p"
-> -- reg: DSI virtual channel of the peripheral
-> -- enable-gpios: panel enable gpio
-> -- pp33-gpios: a GPIO phandle for the 3.3v pin that provides the supply voltage
-> -- pp18-gpios: a GPIO phandle for the 1.8v pin that provides the supply voltage
-> -
-> -Optional properties:
-> -- backlight: phandle of the backlight device attached to the panel
-> -
-> -Example:
-> -
-> -	&mipi_dsi {
-> -		panel {
-> -			compatible = "boe,himax8279d8p", "boe,himax8279d10p";
-> -			reg = <0>;
-> -			backlight = <&backlight>;
-> -			enable-gpios = <&gpio 45 GPIO_ACTIVE_HIGH>;
-> -			pp33-gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
-> -			pp18-gpios = <&gpio 36 GPIO_ACTIVE_HIGH>;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml b/Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
-> new file mode 100644
-> index 000000000000..e42b6a8ae176
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/boe,himax8279d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Boe Himax8279d 1200x1920 TFT LCD panel
-> +
-> +maintainers:
-> +  - Jerry Han <jerry.han.hq@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: boe,himax8279d8p
-> +      - const: boe,himax8279d10p
-> +
-> +  backlight: true
-> +  enable-gpios: true
-> +  reg: true
-> +
-> +  pp33-gpios:
-> +    maxItems: 1
-> +    description: GPIO for the 3.3v pin that provides the supply voltage
-> +
-> +  pp18-gpios:
-> +    maxItems: 1
-> +    description: GPIO for the 1.8v pin that provides the supply voltage
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - pp33-gpios
-> +  - pp18-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        panel {
+> Not fussed.  Either drop it or do the check for defer - one I leave up to the
+> author.
+> 
 
-panel@0
+Okay, will just drop it.
 
-With that,
+Thanks,
+Mani
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-Double check the others. I won't repeat myself.
-
-> +            compatible = "boe,himax8279d8p", "boe,himax8279d10p";
-> +            reg = <0>;
-> +            backlight = <&backlight>;
-> +            enable-gpios = <&gpio 45 GPIO_ACTIVE_HIGH>;
-> +            pp33-gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
-> +            pp18-gpios = <&gpio 36 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2b99fa16ba08..dba84e7726b7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5255,7 +5255,7 @@ DRM DRIVER FOR BOE HIMAX8279D PANELS
->  M:	Jerry Han <hanxu5@huaqin.corp-partner.google.com>
->  S:	Maintained
->  F:	drivers/gpu/drm/panel/panel-boe-himax8279d.c
-> -F:	Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt
-> +F:	Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
->  
->  DRM DRIVER FOR FARADAY TVE200 TV ENCODER
->  M:	Linus Walleij <linus.walleij@linaro.org>
-> -- 
-> 2.20.1
+> > 
+> > > > > +               return PTR_ERR(reset_gpio);
+> > > > > +       }  
+> > > >
+> > > > ...
+> > > >  
+> > > > > +               static const u8 reset_seq[] = {
+> > > > > +                       0xFF, 0x11, 0xE5, 0x72, 0x8A,
+> > > > > +               };  
+> > > >
+> > > > I would suggest to comment above from where you got this and the
+> > > > meaning of the numbers.
+> > > >  
+> > >
+> > > The datasheet doesn't specify the meaning of these values. But will add a
+> > > comment.  
+> > 
+> > Thanks!
+> > 
+> > > Btw, just noticed that 0xFF is not needed and only 4 values are
+> > > sufficient for SW reset.  
+> > 
+> > Better to do exactly what datasheet suggests (in case it's not clear
+> > or deductible what is going on).
+> > 
 > 
