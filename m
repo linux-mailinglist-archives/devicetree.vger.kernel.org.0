@@ -2,66 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB411A81CD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 17:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 840E21A821D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 17:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437458AbgDNPPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 11:15:14 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:36710 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437266AbgDNPPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 11:15:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=Wb8f39hCjGcYV8+AHNSAescCyaLfOVyVKTEaqlWfHFA=; b=rXukUfJulQmi7iSIMYWiAq9QR6
-        JXRXBujHbPtK1TQRqgGBlXbmwkIa5/8xprYf1whWGTnGar8OAbVX+Qel6l8H0iYPf4kpQGsFnCxYo
-        F0NYB3fyVHQtiPMsP1pPBLoC+PP88zvzGx82OwcsQEXCaZWQT+LEw/Tpz5fT9Fv2a7ho=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jONH8-002fp9-VA; Tue, 14 Apr 2020 17:14:58 +0200
-Date:   Tue, 14 Apr 2020 17:14:58 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Christophe ROULLIER <christophe.roullier@st.com>
-Cc:     Alexandre TORGUE <alexandre.torgue@st.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "joabreu@synopsys.com" <joabreu@synopsys.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        Peppe CAVALLARO <peppe.cavallaro@st.com>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: [PATCHv2 1/1] net: ethernet: stmmac: simplify phy modes
- management for stm32
-Message-ID: <20200414151458.GA637127@lunn.ch>
-References: <20200316090907.18488-1-christophe.roullier@st.com>
- <cb0a5dd3-02da-7d60-7069-a8ee080ad239@st.com>
- <ecbfd26c-8dcb-3763-c1aa-ccc4c110aefa@st.com>
+        id S2407357AbgDNPSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 11:18:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2407351AbgDNPSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 11:18:33 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2219C061A0E;
+        Tue, 14 Apr 2020 08:18:32 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id f8so3535lfe.12;
+        Tue, 14 Apr 2020 08:18:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EaqdjDcz077guZZFx5utO0urvqfVvTtoCeZlyZLJ4kY=;
+        b=YIhYIz+CpSklWfCMJiTQBwpRgBV0ctYIjrrVfeiHT9KHQexJd3U4HTtPCr4YalaSor
+         Nb/P9+fWUhEsKtY7TsxML4gIPd5EAK5Ea/FBa2dXkvA/Ka/S2TcspycJTVowoi8l/lvV
+         bK0PHJg39vlv9KuSwx8jW5cpVUz2xh6WeiWBTOgDFSmo5jjUx8+nRixvPGoTu/sRCl53
+         xYmnFJQ/Dj6jC6TBu2wwg9vVcia08ijGsDcewfTfwArjgo7QZT4pzKdYLV5PCAdO/Dvg
+         fh12n66uiF5FpV8ODdEGvsRqDELFXYsEYpdgoT76TZ+yn5bYItrrl54uRhcevznrgAQW
+         Pd+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EaqdjDcz077guZZFx5utO0urvqfVvTtoCeZlyZLJ4kY=;
+        b=GqQ+0toOZ8vyW9tFLcR/Knkn2LgjVR3IzbDMdwI0C1lyIGPSnkOuw8eVoLwAMqfjUw
+         STpGymBaN/eiA4Dd0pAmkfIsHUf38Xx/uRE/oABlJq6kKIrAGyhDKEzzE9hb8w4f98eW
+         H2gdUdPsL0OUqPE9SwAknxTTDpdHp86mSaVMFf6+1P6K7aulQikUsQspsbB5eUw3Cy2L
+         2qI0JLdPgS1TXsV7HZALNorOAD4jiI+J9gcfF3ePY3Wx8RnqlCLFJn+gOLFiK4WLWZxN
+         ILBZYv7PG9z5n+XJ7jKAMlIRHlkCZQyOkuY86veXSnh0GmcU7ic5lWFg+p4s/yej6FDa
+         JRRA==
+X-Gm-Message-State: AGi0PubQUvAkqRl7ntjGBoN8AdI0w5UoMbTW7SCO53Ar5jEG7yhCpgYU
+        ktx0yUUUngXYlbsUjSWNqPw=
+X-Google-Smtp-Source: APiQypLUTnN9jhL1/kjbd/qXnyU7SH/YSbBa5XG5eUCrFPojjrbpHlIpRKG9PuFRu/KbkQRc6zRgEg==
+X-Received: by 2002:a19:c14e:: with SMTP id r75mr221935lff.62.1586877510987;
+        Tue, 14 Apr 2020 08:18:30 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id j14sm9865266lfm.73.2020.04.14.08.18.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Apr 2020 08:18:30 -0700 (PDT)
+Subject: Re: [PATCH v6 07/14] clk: tegra: Implement Tegra210 EMC clock
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joseph Lo <josephl@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200409175238.3586487-1-thierry.reding@gmail.com>
+ <20200409175238.3586487-8-thierry.reding@gmail.com>
+ <8dc000fb-8867-cf8f-8204-a9e1e79a4811@gmail.com>
+ <20200414143424.GG3593749@ulmo>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <92eb73ba-73e4-f9f1-bb22-9b515e32cee6@gmail.com>
+Date:   Tue, 14 Apr 2020 18:18:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ecbfd26c-8dcb-3763-c1aa-ccc4c110aefa@st.com>
+In-Reply-To: <20200414143424.GG3593749@ulmo>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 14, 2020 at 03:10:26PM +0000, Christophe ROULLIER wrote:
-> Hi,
+14.04.2020 17:34, Thierry Reding пишет:
+> On Thu, Apr 09, 2020 at 09:24:31PM +0300, Dmitry Osipenko wrote:
+>> 09.04.2020 20:52, Thierry Reding пишет:
+>> ...
+>>> +static long tegra210_clk_emc_round_rate(struct clk_hw *hw, unsigned long rate,
+>>> +					unsigned long *prate)
+>>> +{
+>>> +	struct tegra210_clk_emc *emc = to_tegra210_clk_emc(hw);
+>>> +	struct tegra210_clk_emc_provider *provider = emc->provider;
+>>> +	unsigned int i;
+>>> +
+>>> +	if (!provider || !provider->configs || provider->num_configs == 0)
+>>> +		return clk_hw_get_rate(hw);
+>>
+>> This still looks wrong to me. Nobody should be able to get EMC clock
+>> until provider is registered.
 > 
-> Gentle reminder
+> The EMC clock is mostly orthogonal to the provider. The provider really
+> only allows you to actually change the frequency. The clock will still
+> remain even if the provider goes away, it just will loose the ability to
+> change rate.
 
-Hi Christophe
+It's not only about changing the clock rate, but also about rounding the
+rate and etc.
 
-You are more likely to have success if you repost.
+Besides, you won't be able to change the rate until provider is
+registered, which might be a quite big problem by itself.
 
-    Andrew
+>> This is troublesome, especially given that you're allowing the EMC
+>> driver to be compiled as a loadable module. For example, this won't work
+>> with the current ACTMON driver because it builds OPP table based on the
+>> clk-rate rounding during the driver's probe, so it won't be able to do
+>> it properly if provider is "temporarily" missing.
+>>
+>> ... I think that in a longer run we should stop manually building the
+>> ACTMON's OPP table and instead define a proper OPP table (per-HW Speedo
+>> ID, with voltages) in a device-tree. But this is just a vague plans for
+>> the future for now.
+> 
+> This code only applies to Tegra210 and we don't currently support ACTMON
+> on Tegra210. I'm also not sure we'll ever do because using interconnects
+> to describe paths to system memory and then using ICC requests for each
+> driver to submit memory bandwidth requests seems like a better way of
+> dealing with this problem than using ACTMON to monitor activity because
+> that only allows you to react, whereas we really want to be able to
+> allocate memory bandwidth upfront.
+
+You absolutely have to have the ACTMON support if you want to provide a
+good user experience because interconnect won't take into account the
+dynamic CPU memory traffic. Without ACTMON support CPU will turn into a
+"turtle" if memory runs on a lowest freq, while CPU needs the highest.
+
+Secondly, the interconnect could underestimate the memory BW requirement
+because memory performance depends quite a lot on the memory-accessing
+patterns and it's not possible to predict it properly. Otherwise you may
+need to always overestimate the BW, which perhaps is not what anyone
+would really want to have.
+
+I'm not sure why you're resisting to do it all properly from the start,
+it looks to me that it will take you just a few lines of code (like in a
+case of the T20/30 EMC).
