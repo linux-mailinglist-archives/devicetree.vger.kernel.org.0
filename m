@@ -2,115 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 522A71A8E00
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 23:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7351A8E09
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 23:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440776AbgDNVts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 17:49:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2440752AbgDNVtr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 17:49:47 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF8AC061A0F
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 14:49:46 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id y24so16159492wma.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 14:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lLu0lDjOuieHB5rYFFB3f7WiEo1gndmAxrF4xwTxJdI=;
-        b=DhsWQxH8nmCAK1PslhefQsGiSmVRGPV2C48zxDbAw+oQWBdo9hCDs8vO1ONpqDN/ZZ
-         0bz/HssycdFvoO7X3Iesav1WJkrV/TzZ8z1A2cYIFwxDLpmiHDaHFAWeW1CL6SPLhYmU
-         lZHTH7t8+H+50T6hyqE/VczVZrP0k7Yam75JGCk4tqKGgVg/hd8f5PzicIVTsN8l8wf9
-         0d7w2hKZQlina8KT9FJPENgYhD12ZaSSfJ9EFc5c82a/zaqtSwByCfK5H7WE/lt/S0RJ
-         ZqXOLu6xUN/HVpfbnQ/0i/WvJqbIY+SX3vK/d/QuS5EuF4moAadgaBELrhQpbFEgXMGh
-         noPQ==
+        id S2440925AbgDNVuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 17:50:55 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:37595 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2440819AbgDNVuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 17:50:19 -0400
+Received: by mail-ot1-f68.google.com with SMTP id z17so1346921oto.4;
+        Tue, 14 Apr 2020 14:50:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lLu0lDjOuieHB5rYFFB3f7WiEo1gndmAxrF4xwTxJdI=;
-        b=M57X+2NE7uUZg23+lREt1KJ94SHqsgQH/+Ib/A2hKdrn+pdekZu2mYGYtbuH0JlUFn
-         HMFu9uiQzqiBugrsh7UAcr2jtibjwfeZCtC7GbjhcRunCOpRL8z1EBMw+3SGyOVaxK39
-         UwMN5uyJXnRZ+GKvg+rKBUEE58qawg0a0OaBI4vYHnafIl0L61TbbuAfnFirN4/BfrTg
-         xAETJn7k5CpBp34pHKOfJ2G0rKjZJ2wt6wJs35Vc7R6EIY6ayEfRo4LpTj9JsnVAvGI3
-         QZ2cf+lNd/ltdGoxzXxwJ4tK8mBu9LHDeaZt5YZnxVlN2QlUV7WJiniJ+QFEX6gVeUKx
-         xaAQ==
-X-Gm-Message-State: AGi0Pua1/T/llMXZh+e6v/46XJ/jGz1DFd7Yro+O5HSod+92FihSWBGL
-        ZMAGBo2QGbbGTkbAIyDiYMczeg==
-X-Google-Smtp-Source: APiQypL0+9U7VuiJ8stS+8CjpDdryFrogKFubugLUq0tYDBk79fADkOCK7EquRDegrfCnG/uugEJyQ==
-X-Received: by 2002:a1c:1d4b:: with SMTP id d72mr1784657wmd.19.1586900985207;
-        Tue, 14 Apr 2020 14:49:45 -0700 (PDT)
-Received: from [192.168.0.41] (lns-bzn-59-82-252-135-148.adsl.proxad.net. [82.252.135.148])
-        by smtp.googlemail.com with ESMTPSA id b4sm15868876wrv.42.2020.04.14.14.49.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Apr 2020 14:49:44 -0700 (PDT)
-Subject: Re: [PATCH v2 2/4] dt-bindings: thermal: Add the idle cooling device
-To:     Rob Herring <robh@kernel.org>
-Cc:     rui.zhang@intel.com, amit.kucheria@verdurent.com,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20200414162634.1867-1-daniel.lezcano@linaro.org>
- <20200414162634.1867-2-daniel.lezcano@linaro.org>
- <20200414214509.GA10673@bogus>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <882e9605-a2e6-1af8-26e3-b03f2a7bcb5e@linaro.org>
-Date:   Tue, 14 Apr 2020 23:49:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=r6xzZ1b4JHWGtxEECvqX1ZeFiRv8Q65WRsOrzmnGvfQ=;
+        b=pbJpBVaGtsjyamyR7k92/WWs2lcU0j2mDUF6sDJo12fDCEpi267bV4fX/0qnokVSiB
+         EBLlEfm/DdYmMA2U2FgRDulbZWS4ITC0CbqL0hOGE1xPpGJJkOiFjUijqpxWKBa0NyC7
+         i/Jo9yq+rVSEifohUO1Njb5/RJLFD22WuJpvvQs1jFZ/bjWOZxCM2+mVTzPYmmxTNluV
+         6Z2iHFhPgWGoXqR3P4pTPG/y/UuqQGjyfvolooQZkWtLm2lkDgaz0cRqZd+PRERc2azR
+         +B8+KeUB+UxQMiDaW0SvJ9+whzWn64DADT0Fg4OegnCd43u1247T9P6Ios+Gq2kYCkNr
+         Fx2A==
+X-Gm-Message-State: AGi0PuZRFxoc0gFxuUUZDjpxzhITaHSzAzQFUhDFZ4xLrwK1oupYrg0w
+        erj9dyQSGWycQyS/N47QUQ==
+X-Google-Smtp-Source: APiQypI4T5IhspzuZMGUVQLSFU+HW4jJmxEf4RMXRC/Ht0Wg9mRzSEMEd8lT6Oa91uUR9Pib4mx+KA==
+X-Received: by 2002:a05:6830:1b64:: with SMTP id d4mr19628904ote.368.1586901018496;
+        Tue, 14 Apr 2020 14:50:18 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t20sm2576523ott.51.2020.04.14.14.50.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Apr 2020 14:50:17 -0700 (PDT)
+Received: (nullmailer pid 22631 invoked by uid 1000);
+        Tue, 14 Apr 2020 21:50:16 -0000
+Date:   Tue, 14 Apr 2020 16:50:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     Tomas Novotny <tomas@novotny.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: iio: light: vcnl4000: Add
+ proximity-near-level
+Message-ID: <20200414215016.GA22563@bogus>
+References: <cover.1586094535.git.agx@sigxcpu.org>
+ <9bbbc30e5e8e67e50ddacb4cadc180fa5c7f7bd0.1586094535.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-In-Reply-To: <20200414214509.GA10673@bogus>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <9bbbc30e5e8e67e50ddacb4cadc180fa5c7f7bd0.1586094535.git.agx@sigxcpu.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2020 23:45, Rob Herring wrote:
-> On Tue, 14 Apr 2020 18:26:27 +0200, Daniel Lezcano wrote:
-
-[ ... ]
-
-> My bot found errors running 'make dt_binding_check' on your patch:
+On Sun,  5 Apr 2020 15:50:30 +0200, =?UTF-8?q?Guido=20G=C3=BCnther?= wrote:
+> This value indicates when userspace should consider an object
+> near to the sensor/device.
 > 
-> Documentation/devicetree/bindings/thermal/thermal-idle.yaml:  while scanning a block scalar
->   in "<unicode string>", line 39, column 20
-> found a tab character where an indentation space is expected
->   in "<unicode string>", line 44, column 1
-> Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/thermal/thermal-idle.example.dts' failed
-> make[1]: *** [Documentation/devicetree/bindings/thermal/thermal-idle.example.dts] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> warning: no schema found in file: Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/thermal-idle.yaml: ignoring, error parsing file
-> Makefile:1264: recipe for target 'dt_binding_check' failed
-> make: *** [dt_binding_check] Error 2
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> ---
+>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml     | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> See https://patchwork.ozlabs.org/patch/1270492
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure dt-schema is up to date:
-> 
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> 
-> Please check and re-submit.
 
-Sorry for that, I forgot to re-run the binding check and my editor is
-automatically replacing spaces with tabs.
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org â”‚ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Reviewed-by: Rob Herring <robh@kernel.org>
