@@ -2,83 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 223981A78EF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 12:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 339081A7939
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 13:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438774AbgDNK5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 06:57:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35212 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2438770AbgDNK52 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 06:57:28 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A1A74206D5;
-        Tue, 14 Apr 2020 10:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586861848;
-        bh=HC/z7X/QOJ8n4Wel61R5j+aAnU/kKVm52z0JLKdp0dI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SzjGmVqJ/kf8kEdv3afqCuLT3+MrPHN0Fboi86rFJN8W8mAe9WXxfRJdn0vaU1Ad5
-         LU49xOnYCFOPDfF5bu2fwWU2COv/EELobDLaumXwjNWBUGLVxmkrNScdekGPIVNb7G
-         00wKGGh73UoT+IpvnTqKZanz2v6TGDRmdVBb6v2g=
-Date:   Tue, 14 Apr 2020 11:57:25 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 0/3] regulator: max77826: Add MAX77826 support
-Message-ID: <20200414105725.GB5412@sirena.org.uk>
-References: <20200413164440.1138178-1-iskren.chernev@gmail.com>
+        id S2390855AbgDNLQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 07:16:09 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:58671 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390852AbgDNLQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 07:16:07 -0400
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E9207240008;
+        Tue, 14 Apr 2020 11:16:00 +0000 (UTC)
+Date:   Tue, 14 Apr 2020 13:16:00 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Claudiu.Beznea@microchip.com
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org, mark.rutland@arm.com,
+        Nicolas.Ferre@microchip.com, Ludovic.Desroches@microchip.com,
+        tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] ARM: dts: sam9x60: add rtt
+Message-ID: <20200414111600.GE34509@piout.net>
+References: <1586536019-12348-1-git-send-email-claudiu.beznea@microchip.com>
+ <1586536019-12348-5-git-send-email-claudiu.beznea@microchip.com>
+ <20200410222658.GB3628@piout.net>
+ <c4d46198-488b-c5d6-2a66-865a16840dc4@microchip.com>
+ <20200413104652.GE3628@piout.net>
+ <3116d1fc-af96-1e0c-aa07-3b34cbd58209@microchip.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="61jdw2sOBCFtR2d/"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200413164440.1138178-1-iskren.chernev@gmail.com>
-X-Cookie: I've only got 12 cards.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <3116d1fc-af96-1e0c-aa07-3b34cbd58209@microchip.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/04/2020 08:42:08+0000, Claudiu.Beznea@microchip.com wrote:
+> > Why would one use the RTT while the RTC is far superior?
+> 
+> I didn't enabled this for a particular use case, but: couldn't this be used
+> by some user that wants to generate multiple alarms? from multiple RTCs?
+> 
 
---61jdw2sOBCFtR2d/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I very much doubt that as Linux is able to properly multiplex alarms and
+basically, the only one we are interested in is actually wakeup.
 
-On Mon, Apr 13, 2020 at 07:44:37PM +0300, Iskren Chernev wrote:
-> The MAX77826 is a PMIC found on the Samsung Galaxy S5 (klte) and possibly=
- other
-> devices. It is produced by Maxim Integrated and contains 15 LDOs a buck a=
-nd
-> a buck boost regulator.
->=20
-> Iskren Chernev (3):
->   regulator: max77826: Add max77826 regulator driver
->   dt-bindings: regulator: Add document bindings for max77826
+> Moreover, this IP's counter has the possibility of being clocked at 1Hz.
+> Couldn't this minimize the power consumption while being in a power saving
+> mode?
+> 
 
-Aside from the compatible string and the subject prefix on the DT
-binding patch this looks good to me.
+And that 1Hz clock is coming from the RTC so using the RTC is
+definitively consuming less power.
 
---61jdw2sOBCFtR2d/
-Content-Type: application/pgp-signature; name="signature.asc"
+> > 
+> >>>
+> >>> In any case, this diff should be merge with the other at91-sam9x60ek.dts
+> >>> change instead of being with the dtsi change.
+> >>
+> >> The changes in this patch are related to enabling the RTT. The other dts
+> >> change is related to enabling gpbr. The RTT uses that enabled gpbr -> one
+> >> change per patch.
+> >>
+> >> If you still want to merge then, I'll do it, but then it becomes mixed.
+> >>
+> > 
+> > This patch is already mixing add the gpbr in sam9x60ek and add the node
+> > in sam9x60.dtsi which is worse.
+> 
+> This patch is like this:
+> 
+> diff --git a/arch/arm/boot/dts/at91-sam9x60ek.dts
+> b/arch/arm/boot/dts/at91-sam9x60ek.dts
+> index ab3d2d9a420a..4020e79a958e 100644
+> --- a/arch/arm/boot/dts/at91-sam9x60ek.dts
+> +++ b/arch/arm/boot/dts/at91-sam9x60ek.dts
+> @@ -617,6 +617,11 @@
+>  	};
+>  };
+> 
+> +&rtt {
+> +	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> +	status = "okay";
+> +};
+> +
+>  &shutdown_controller {
+>  	atmel,shdwc-debouncer = <976>;
+>  	status = "okay";
+> diff --git a/arch/arm/boot/dts/sam9x60.dtsi b/arch/arm/boot/dts/sam9x60.dtsi
+> index 326b39328b58..e1d8e3a4cb0b 100644
+> --- a/arch/arm/boot/dts/sam9x60.dtsi
+> +++ b/arch/arm/boot/dts/sam9x60.dtsi
+> @@ -661,6 +661,13 @@
+>  				status = "disabled";
+>  			};
+> 
+> +			rtt: rtt@fffffe20 {
+> +				compatible = "microchip,sam9x60-rtt";
+> +				reg = <0xfffffe20 0x20>;
+> +				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+> +				clocks = <&clk32k 0>;
+> +			};
+> +
+> 
+> It doesn't adds the GPBR in sam9x60ek, it adds rtt in sam9x60ek which uses
+> GPBR.
+> 
+> > 
+> > Just have one patch adding the rtt node to the sam9x60.dtsi and then a
+> > patch adding the RTT to sam9x60ek.
+> 
+> Ok, I understand this.
+> 
+> > Because the RTT uses the gpbr, it is
+> > a good time to add enable the gpbr, this is a single functionnal change.
+> > 
+> > Let's say that for some reason, the RTT patch on sam9x60ek has to be
+> > reverted, then the RTT node is still defined which is good for all the
+> > other eventual users.
+> 
+> RTT node would still be defined but GPBR node will not be enabled.
+> 
+> If RTT patch contains this change that I understand you want me to merge here:
+> 
+> +&gpbr {
+> +	status = "okay";
+> +};
+> +
+> 
+> then, theoretically, some other IPs using the GPBR (RTC have the
+> possibility of doing this), may be broken by reverting the RTT patch that
+> includes the GPBR enabling patch.
+> 
 
------BEGIN PGP SIGNATURE-----
+But this is very unlikely to happen because this would be limited to a
+single board device tree instead of impact every sam9x60 based boards.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl6VlxQACgkQJNaLcl1U
-h9D46Af/SJxcfNXW9eOmfK1epWMpCJsjv6HU6xLEC+756AfV+YFPeduENlTju/oX
-NCYmt5UxMC5JjjtTjdYgRhFQCUJfeyLxYP4GtMHLl3b11lzhykvkAyvBYw+/Pcim
-du97gWPk/ELVGejGc2Dgjp3OeyHqCPf3P5v2/44vHEtqBIHBDr8xhbTwrS+zLNsF
-sykjBqvvg1SdNFWrt1CXyuPzY9nePYDpiJw+vm/ePFg99EMWLUic6lYHhU3izbx0
-oU/w9PVg2SYuBjtql2799kt4cGcqBlf+iohZCkaTBJ+cCoKC4rshi45t8nWoM3PF
-QXXiMsXnT5SeQEs+pSByZ62t+I/8dQ==
-=PcSI
------END PGP SIGNATURE-----
 
---61jdw2sOBCFtR2d/--
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
