@@ -2,105 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88BF61A8F05
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B0C81A8F1D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 01:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392091AbgDNXSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 19:18:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392083AbgDNXSv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 19:18:51 -0400
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1731546AbgDNX3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 19:29:45 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:51542 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731159AbgDNX3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 19:29:44 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D68C2072D;
-        Tue, 14 Apr 2020 23:18:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586906330;
-        bh=TIDIviyEYvN23MqFWk6rl7nwsfElsevepgo9cj0fDa0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BlTi57WWPhRfW7sJMv5MxtonFNkCoY3uTo3bX4GCktl3OJfOEMkXo/jFDOgJC3Xhx
-         YYZwkDurIo88TwaWUqFS6rvVSLyvaJpZb+mYFSf0te1Mrgh938AILR0wS/rK6kk+wG
-         zu0wwxVhweZhfP5OXayIki3MMJ01LkvWJNk014kg=
-Received: by mail-ed1-f44.google.com with SMTP id s10so1941321edy.9;
-        Tue, 14 Apr 2020 16:18:50 -0700 (PDT)
-X-Gm-Message-State: AGi0PuaXBhiHzKA+fXdcC18G/yCx4pfV5NTJRnBkoXF4KiJeysm0wNhl
-        QYzYb1EV/IczxYeoL+msTnchvztQi0CDJpk6UA==
-X-Google-Smtp-Source: APiQypLlqRYq43AAFMZg/IO4wBtIyFmNe19LoGBoUzW3+lEwF9tJ5dD9i42daP7Zkk0pVFZPG7mhoy00oQKf+v9hKRU=
-X-Received: by 2002:aa7:c649:: with SMTP id z9mr8144084edr.288.1586906328844;
- Tue, 14 Apr 2020 16:18:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200414030815.192104-1-hsinyi@chromium.org> <20200414030815.192104-2-hsinyi@chromium.org>
-In-Reply-To: <20200414030815.192104-2-hsinyi@chromium.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 15 Apr 2020 07:18:37 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__oL1LxFxmBSp+cC__ZcGVifQ3f+gPKSWFZKJV4aRCDJw@mail.gmail.com>
-Message-ID: <CAAOTY__oL1LxFxmBSp+cC__ZcGVifQ3f+gPKSWFZKJV4aRCDJw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: mtk-mdp: Use correct aliases name
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Houlong Wei <houlong.wei@mediatek.com>,
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id D0DC6C00CC;
+        Tue, 14 Apr 2020 23:29:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1586906982; bh=cbwVPNBBMDU3Qsse2SdkAJsbA5fiCp4ztKxUhtvleWQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=I9YbktXPbOUEqFICj4aMMImlRJrFxMgJgrPXue5z/GF4twcfeXC/PudnuBQn/VckG
+         UR6hyiuapJKc6nnZJDCLPw9BhOl2EvPC3lUesbR3nRrOEupwJl/JhCZI0Qq3qpqaSi
+         s3vpDOALJcUmc5XQnImHE2OW97N8JMnMhcns0wW8/Yz4A5AJQsu6X42DHNof/xPm3T
+         vU79f60Ouz3TYNOu9mPeLnfLmNjj/l9XwNgQDGTO9ny9ZV32AtbPMnqeYa7v96JpZ7
+         NjleVLXs3Rs23sIhNZkjNnuwq5KLIDG+s6ITwpIUXowkS/VvMPE62/Vd3Rm7Jd3IrZ
+         x3+BBCnZoG6uQ==
+Received: from paltsev-e7480.internal.synopsys.com (ru20-e7250.internal.synopsys.com [10.225.48.89])
+        by mailhost.synopsys.com (Postfix) with ESMTP id C1FB0A005C;
+        Tue, 14 Apr 2020 23:29:35 +0000 (UTC)
+From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+To:     dri-devel@lists.freedesktop.org,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>
+Cc:     linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Subject: [PATCH v3 0/2] DRM: ARC: add HDMI 2.0 TX encoder support
+Date:   Wed, 15 Apr 2020 02:29:27 +0300
+Message-Id: <20200414232929.22788-1-Eugeniy.Paltsev@synopsys.com>
+X-Mailer: git-send-email 2.21.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Hsin-Yi:
+Changes v1->v2:
+ * use DT Schema format please (.yaml files) for DT bindings
 
-Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2020=E5=B9=B44=E6=9C=8814=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8811:08=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> aliases property name must include only lowercase and '-'. Fix in dts
-> and driver.
->
+Changes v2->v3:
+ * Add missing 'interrupts' property in DT bindings
+ * Drop dummy 'dw_hdmi_bridge_mode_valid'
+ * Change bracing format of 'of_device_id' structure
+ * Change compatible string to "snps,arc-dw-hdmi-hsdk"
+   Now DT binding file is snps,arc-dw-hdmi.yaml and compatible is
+   "snps,arc-dw-hdmi-<soc/board>"
+ * Minor fixes
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Eugeniy Paltsev (2):
+  DRM: ARC: add HDMI 2.0 TX encoder support
+  dt-bindings: Document the Synopsys ARC HDMI TX bindings
 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
->  drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c b/drivers/medi=
-a/platform/mtk-mdp/mtk_mdp_comp.c
-> index 14991685adb7..58abfbdfb82d 100644
-> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> @@ -15,10 +15,10 @@
->
->
->  static const char * const mtk_mdp_comp_stem[MTK_MDP_COMP_TYPE_MAX] =3D {
-> -       "mdp_rdma",
-> -       "mdp_rsz",
-> -       "mdp_wdma",
-> -       "mdp_wrot",
-> +       "mdp-rdma",
-> +       "mdp-rsz",
-> +       "mdp-wdma",
-> +       "mdp-wrot",
->  };
->
->  struct mtk_mdp_comp_match {
-> --
-> 2.26.0.110.g2183baf09c-goog
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+ .../display/bridge/snps,arc-dw-hdmi.yaml      | 136 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/Makefile                      |   2 +-
+ drivers/gpu/drm/arc/Kconfig                   |   7 +
+ drivers/gpu/drm/arc/Makefile                  |   1 +
+ drivers/gpu/drm/arc/arc-dw-hdmi.c             | 116 +++++++++++++++
+ 6 files changed, 267 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,arc-dw-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/arc/arc-dw-hdmi.c
+
+-- 
+2.21.1
+
