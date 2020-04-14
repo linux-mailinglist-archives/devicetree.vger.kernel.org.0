@@ -2,66 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 589F51A868E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 19:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB5E1A86E5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 19:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388209AbgDNRED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 13:04:03 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38546 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728549AbgDNREA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 13:04:00 -0400
-Received: by mail-ot1-f65.google.com with SMTP id k21so357300otl.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 10:04:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5E6AKPFuk4jOgvMShpUokg4KhfWDylI23zxNYnDyJ7Q=;
-        b=NZ7rQIHRpK7TjKFE0nLucCFby9fhryotcYRR0UIv9DcPx90PzE0n/8s0BtWORhkFJ7
-         37JbuFRlssynnZHAPW0gDO7jyx9brOf0niPh1Kwams7Pmblubd2uWzCewbKtZFbk/GQA
-         jeNB1xn+dzXT5W1px3/rR2as9MUZYiXyKxaXcjcDJGd1t+/1aecmGr5eaPRC9JRaiHyc
-         P2jIV7qyNdzPmT25qHYC3K8wKzPJcZhhNu6H0o+yQ4Fj6DymDbsQyf1lxAWyFchtSBv4
-         0JDnjRtGDhOX3wkPEBFvEecY1I0V43Y/3krfEywjEVKFEZz+Le1id7zl1M3URQyU0+zv
-         CHIA==
-X-Gm-Message-State: AGi0PuYTOFEF2xSct8hFGKkY/RFknhRnmXC0vCBWiU++F18UxrknFwp6
-        +YP2SfwQguw2BoODYGkTcg==
-X-Google-Smtp-Source: APiQypLiWvkykoVJFzDScXjYv0x+U0TCtMh8u7TgEYjyNtOGiw1gvQZVhdg8XLOJK7dca7uWg2RjcQ==
-X-Received: by 2002:a4a:c3c9:: with SMTP id e9mr12430120ooq.51.1586883839887;
-        Tue, 14 Apr 2020 10:03:59 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y92sm111172ota.33.2020.04.14.10.03.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 10:03:59 -0700 (PDT)
-Received: (nullmailer pid 7301 invoked by uid 1000);
-        Tue, 14 Apr 2020 17:03:58 -0000
-Date:   Tue, 14 Apr 2020 12:03:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
-        festevam@gmail.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: imx: add kontron smarc to schema
-Message-ID: <20200414170358.GA7268@bogus>
-References: <20200402083436.24710-1-m.felsch@pengutronix.de>
+        id S2388692AbgDNRGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 13:06:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58736 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732423AbgDNRGA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 13:06:00 -0400
+Received: from Mani-XPS-13-9360 (unknown [157.50.36.11])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3116120678;
+        Tue, 14 Apr 2020 17:05:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586883959;
+        bh=Xcd8OczNfFdGZEF3wPW0kOHvO/XmMZqNiHT1ft2gcp4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MAYu5Wo6SyKz8OOXUZxB0yCmcnYI/DANdYKf/LLtqG58SEPGSGt3QieOisCBupp8O
+         vcJ5lrB5Tw3WUxzV7qtaa6JNmagze/ZLZ6yLqOYv5AOTziSR15RGF7sSU+Db+w0MLz
+         zYf4DKe5j9ROPxXB1JQgmDIdC6VJa1d1VMeqFamY=
+Date:   Tue, 14 Apr 2020 22:35:47 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, narcisaanamaria12@gmail.com,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] iio: chemical: Add support for external Reset and
+ Wakeup in CCS811
+Message-ID: <20200414170547.GB3334@Mani-XPS-13-9360>
+References: <20200414153415.957-1-mani@kernel.org>
+ <20200414153415.957-3-mani@kernel.org>
+ <CAHp75Vf1wzBD+r5L7XFPW=ydxFLBfBNr6Jc4b6sMWR4Rci-Acw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200402083436.24710-1-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAHp75Vf1wzBD+r5L7XFPW=ydxFLBfBNr6Jc4b6sMWR4Rci-Acw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  2 Apr 2020 10:34:36 +0200, Marco Felsch wrote:
-> Add Kontron SMARC module compatibles to the schema so we can make use of
-> them for the validation.
+On Tue, Apr 14, 2020 at 07:42:24PM +0300, Andy Shevchenko wrote:
+> On Tue, Apr 14, 2020 at 6:34 PM <mani@kernel.org> wrote:
+> >
+> > From: Manivannan Sadhasivam <mani@kernel.org>
+> >
+> > CCS811 VOC sensor exposes nRESET and nWAKE pins which can be connected
+> > to GPIO pins of the host controller. These pins can be used to externally
+> > release the device from reset and also to wake it up before any I2C
+> > transaction. The initial driver support assumed that the nRESET pin is not
+> > connected and the nWAKE pin is tied to ground.
+> >
+> > This commit improves it by adding support for controlling those two pins
+> > externally using a host controller. For the case of reset, if the hardware
+> > reset is not available, the mechanism to do software reset is also added.
+> >
+> > As a side effect of doing this, the IIO device allocation needs to be
+> > slightly moved to top of probe to make use of priv data early.
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Thank you for an update, my comments below.
+> 
+> ...
+> 
+> > +       reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
+> > +                                            GPIOD_OUT_LOW);
+> > +       if (IS_ERR(reset_gpio)) {
+> 
+> > +               dev_err(&client->dev, "Failed to acquire reset gpio\n");
+> 
+> If it's a deferred probe, it would spam the log.
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hmm. But error is an error isn't it? Would you recommend doing a debug print
+or completely removing the logging?
+
+> > +               return PTR_ERR(reset_gpio);
+> > +       }
+> 
+> ...
+> 
+> > +               static const u8 reset_seq[] = {
+> > +                       0xFF, 0x11, 0xE5, 0x72, 0x8A,
+> > +               };
+> 
+> I would suggest to comment above from where you got this and the
+> meaning of the numbers.
+> 
+
+The datasheet doesn't specify the meaning of these values. But will add a
+comment. Btw, just noticed that 0xFF is not needed and only 4 values are
+sufficient for SW reset.
+
+Thanks,
+Mani
+
+> ...
+> 
+> > +       data->wakeup_gpio = devm_gpiod_get_optional(&client->dev, "wakeup",
+> > +                                                   GPIOD_OUT_HIGH);
+> > +       if (IS_ERR(data->wakeup_gpio)) {
+> 
+> > +               dev_err(&client->dev, "Failed to acquire wakeup gpio\n");
+> 
+> Ditto.
+> 
+> > +               return PTR_ERR(data->wakeup_gpio);
+> > +       }
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
