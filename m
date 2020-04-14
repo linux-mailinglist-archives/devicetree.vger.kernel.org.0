@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B9C1A881C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 19:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357691A8851
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503150AbgDNR7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 13:59:17 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:37706 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729303AbgDNR7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 13:59:14 -0400
-Received: by mail-oi1-f196.google.com with SMTP id r25so1340731oij.4;
-        Tue, 14 Apr 2020 10:59:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MbLt7+mg6Oetm1gbvDN0HE/9QqLc7vIPQSx4pz/IWko=;
-        b=dxorrDcMwUzU5gYAGXv9SoiVa8EjmJt7ntOXAyTvSxFQsXS6gEK7jcpuxl/Md0eIUj
-         narcCeej6DaoGcyYTaeq3VfE7zQ00s7MRH4p/LQJwDnhOG7B+mssKjRdYwED1zRffH1K
-         yy5SvsCQu5XmySV0nha9PJSkSPsPqqFOT0RLXfzgHCItoKIpna7XpyQ4ov7l6olB7ybL
-         9Fe5Pci1pSkbGCOfpLXFu5eRezwPwSTU3diIWMiMq6YFsq27hmg0oLAtY1vmR1f0jDWU
-         LILCzBd39OVDXg1VF9zyagmg+X63phBKeHJiBWt88ZfsUo2IVygTNSDwRvmopPEScOBq
-         duVQ==
-X-Gm-Message-State: AGi0PuaQZPnRoG1uhWhxEpmWXg5Kts3QXxIawXJwiw1om+DqIoxqG4Hh
-        xznqSWz2R0VdGccuhW1nEQ==
-X-Google-Smtp-Source: APiQypJlaXG4zu9PmD/DgToYH3heydOg9ica+o6s8kLB78gY3Gm05N1iYUwxCQz5c3+ZNDu+sl4n8A==
-X-Received: by 2002:aca:f491:: with SMTP id s139mr16592669oih.128.1586887153366;
-        Tue, 14 Apr 2020 10:59:13 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k64sm5691828oia.57.2020.04.14.10.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 10:59:12 -0700 (PDT)
-Received: (nullmailer pid 4704 invoked by uid 1000);
-        Tue, 14 Apr 2020 17:59:11 -0000
-Date:   Tue, 14 Apr 2020 12:59:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, hjc@rock-chips.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: display: convert rockchip rk3066 hdmi
- bindings to yaml
-Message-ID: <20200414175911.GA4583@bogus>
-References: <20200403133630.7377-1-jbx6244@gmail.com>
+        id S2503284AbgDNSCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:02:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58798 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2503187AbgDNSB1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 14:01:27 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3922A20767;
+        Tue, 14 Apr 2020 18:01:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586887287;
+        bh=PtAFfHJJmm+j+Kb6LPSRoxHltnduIZpLutVkxDiIp6M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PNGC55v0Lk+cz0A6FXEaVrU1+fhb/3ILrbT3nI3yKEMti6V/jdpmJEqkcIzPAVtUW
+         pm/J+Q3/0/XbKwkpE9qJ1O0MrF/cz56h3K53dF2MyIKuWxOxyUCAwXHqHcvviyZkzq
+         3Xpro0hMvZ+5shzFBI0w52SsOG8ok9SJpGIQZQeE=
+Date:   Tue, 14 Apr 2020 19:01:22 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Steve Winslow <swinslow@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] iio: patch set ltc2632
+Message-ID: <20200414190122.6881a478@archlinux>
+In-Reply-To: <20200414062648.19013-1-chris.ruehl@gtsys.com.hk>
+References: <20200414062648.19013-1-chris.ruehl@gtsys.com.hk>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200403133630.7377-1-jbx6244@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  3 Apr 2020 15:36:30 +0200, Johan Jonker wrote:
-> Current dts files with 'hdmi' nodes for rk3066 are manually verified.
-> In order to automate this process rockchip,rk3066-hdmi.txt
-> has to be converted to yaml.
+On Tue, 14 Apr 2020 14:26:43 +0800
+Chris Ruehl <chris.ruehl@gtsys.com.hk> wrote:
+
+> Patchset to extend ltc2632 spi driver to support the similar chip set
+> ltc2634.
+> * Patch v2 1/3 update documentation struct ltc2632_chip_info
+> * Patch v2 2/3 patch ltc2632.c,Kconfig,ltc2632.txt(devtree)
+> * Patch v2 3/3 convert ltc2632.txt to yaml format named lltc,ltc2632.yaml
+Hi Chris,
+
+Still something going on with your git send-email.  Are you sending these one
+by one perhaps?  Or maybe have something odd in your .git/config?
+
+These have turned up as a series of independent messages as the in-reply-to
+field isn't set in the patches (which should point to this one).
+git-send-email will do that automatically by default if pointed at all the
+files in one go.
+
+Thanks,
+
+Jonathan
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
 > ---
-> Changes v2:
->   Fix irq.h already included in arm-gic.h
-> ---
->  .../display/rockchip/rockchip,rk3066-hdmi.txt      |  72 -----------
->  .../display/rockchip/rockchip,rk3066-hdmi.yaml     | 140 +++++++++++++++++++++
->  2 files changed, 140 insertions(+), 72 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
