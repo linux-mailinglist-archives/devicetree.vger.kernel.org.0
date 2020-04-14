@@ -2,127 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF1541A88E6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1E71A88B0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503658AbgDNSOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 14:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2503656AbgDNSOb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 14:14:31 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9BB1C061A0C
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 11:14:30 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id d17so8674947wrg.11
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 11:14:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JkyvlKP4pHrJ8AdiuVHbCpIXULnDIYo0wPYklEdrEI0=;
-        b=i3/RJsjOiDyODApqcCHy5k6pUbD94Xgeu24o+JvyJIO0/hUev+OnyeoBeZUgiakGf8
-         cp1FGWJ2T3J5BY1mSv0W+CQD8k6aIy13OhLWPyvd5Oir5QAl47ngBE9vCogp28eH8FFu
-         Kr03rbEX2PcMMC7gxtPsrcLvZY3Qj+IlDw70oBumA/eMaZBjBNF/ISO0zfnTl787SSs+
-         fC05nyPsgEObHjd9uYNHw6MRJtN69fmlMOikk5tkQhbTgqalmG1MvrKL1xcQ6n51LLHr
-         +lQaCzUSSvF/GP/5639o77troTwlp4ZsiEl0z1wfoTkQJWNNzdgPzH8Y9QeMeL3jU7qe
-         jFRA==
+        id S2503447AbgDNSK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:10:59 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:35476 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2503444AbgDNSK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:10:57 -0400
+Received: by mail-oi1-f195.google.com with SMTP id b7so8676949oic.2;
+        Tue, 14 Apr 2020 11:10:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JkyvlKP4pHrJ8AdiuVHbCpIXULnDIYo0wPYklEdrEI0=;
-        b=D2xCXROLhFBKFDP9FBO+GljcK6aJOtajSkgq+HdhWrSre5aMzqyd/zwS2DKgIGc/yl
-         ddQo8npk22pRPkc8Ynq5AVrb2OBeziP/RlQmmyGGRo4rg0grmoVvG+Blr/oGiq6TQdyu
-         qXkWJK0QUwVHv++JOP4n45zkbvj767pd2vOHAQkEacC0vnw1j4M1KeyzQ27z34TlZUKk
-         VJvGXqwb2t1gDbxg9ip2OaSbHLjApbXhY419B7QPvNvIedKN0YrRYDyhCxWdy2WHlure
-         ZdmXM3dBnQxMSCTdm4SEFyu2PiLrtiki6uU+7IuLVP64KFppBUt9BUfVIqLdT204iZqM
-         rhEg==
-X-Gm-Message-State: AGi0Pub9K+Kd+pYjXckL7gBSEsxAjVRp0FzyfQLCnEWscdSWJlRWeeNG
-        sh2dXg2zW0AL3W2lb4ueCRenTg==
-X-Google-Smtp-Source: APiQypKuhwoq30JHZAbW4ywOg0qHXXSg5sZ8KHXcL7JXIhJgwQOYdAIWuzx+IL/PNq9ZS+9GksFmwg==
-X-Received: by 2002:a5d:4306:: with SMTP id h6mr24048996wrq.234.1586888069502;
-        Tue, 14 Apr 2020 11:14:29 -0700 (PDT)
-Received: from localhost.localdomain (dh207-97-22.xnet.hr. [88.207.97.22])
-        by smtp.googlemail.com with ESMTPSA id w12sm5387763wrk.56.2020.04.14.11.14.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=oB5sk2MwSbhiUy+W0G0Bl9g/juUf3p/EcmLYPl57Few=;
+        b=EPLmX7CdpsVtVPzojcNFk/zSCxQZc8E1Pw//KCxXfWaoErkFJHJh4bmrJzxnmHOijM
+         lJ4TqumnZPTTrJW8meVoHKfRrXLOHrBYoBuY8wEfx6Tbef222BmXb/f6XthDbau6IXOV
+         cYIvanL8Y/EKhyPzeszgJO7/MzLnHDWdEu4owSSAYpJp0RRBTesdKRr3LcjDqAJNjd+P
+         gjIeLDVmDLfDnYfHQTyKQX/R80sNTMhxClA6J5jB4rtmuJQsMm5wVdf2t3WYGe6BKEZH
+         NF4d9Vf7I5735QUD3PTQeTc29pc2NzvQHZEXbyukgKXEp9BjxBJA4BOn2i/9br51e7Rw
+         LsMg==
+X-Gm-Message-State: AGi0PuZmEavKhoXXeyax9BoCZIpRU+O4NMrKOtZXoKCvv8M2KbiKti+3
+        PT2iFW/9+TxgQ2vdUrwtyg==
+X-Google-Smtp-Source: APiQypJagr7RIdFhZKpzJ8Ju0BzkogCIDHrhONm+qQc9PewMhTDPXeiNeEO6zoqyX3sT8Lxvm+a4EQ==
+X-Received: by 2002:aca:c3c1:: with SMTP id t184mr15433968oif.171.1586887856570;
+        Tue, 14 Apr 2020 11:10:56 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s13sm6288868oov.28.2020.04.14.11.10.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 11:14:29 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Christian Lamparter <chunkeey@gmail.com>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH v2 3/3] dts: ipq4019: add MDIO node
-Date:   Tue, 14 Apr 2020 20:10:16 +0200
-Message-Id: <20200414181012.114905-3-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200414181012.114905-1-robert.marko@sartura.hr>
-References: <20200414181012.114905-1-robert.marko@sartura.hr>
+        Tue, 14 Apr 2020 11:10:55 -0700 (PDT)
+Received: (nullmailer pid 6753 invoked by uid 1000);
+        Tue, 14 Apr 2020 18:10:54 -0000
+Date:   Tue, 14 Apr 2020 13:10:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: timer: Add bindings for NVIDIA
+ Tegra186 timers
+Message-ID: <20200414181054.GA6655@bogus>
+References: <20200403202209.299823-1-thierry.reding@gmail.com>
+ <20200403202209.299823-2-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200403202209.299823-2-thierry.reding@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the necessary MDIO interface node
-to the Qualcomm IPQ4019 DTSI.
+On Fri,  3 Apr 2020 22:22:03 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> The NVIDIA Tegra186 SoC contains an IP block that provides a register
+> interface for ten timers with a 29-bit counter that can generate one-
+> shot, periodic or watchdog interrupts.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v2:
+> - add required properties section
+> - add additionalProperties: false
+> - do not show status in example
+> 
+>  .../bindings/timer/nvidia,tegra186-timer.yaml | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
+> 
 
-Built-in QCA8337N switch is managed using it,
-and since we have a driver for it lets add it.
-
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
----
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index b4803a428340..80d0a69e9fed 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -578,6 +578,34 @@ wifi1: wifi@a800000 {
- 			status = "disabled";
- 		};
- 
-+		mdio: mdio@90000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "qcom,ipq40xx-mdio";
-+			reg = <0x90000 0x64>;
-+			status = "disabled";
-+
-+			ethphy0: ethernet-phy@0 {
-+				reg = <0>;
-+			};
-+
-+			ethphy1: ethernet-phy@1 {
-+				reg = <1>;
-+			};
-+
-+			ethphy2: ethernet-phy@2 {
-+				reg = <2>;
-+			};
-+
-+			ethphy3: ethernet-phy@3 {
-+				reg = <3>;
-+			};
-+
-+			ethphy4: ethernet-phy@4 {
-+				reg = <4>;
-+			};
-+		};
-+
- 		usb3_ss_phy: ssphy@9a000 {
- 			compatible = "qcom,usb-ss-ipq4019-phy";
- 			#phy-cells = <0>;
--- 
-2.26.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
