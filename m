@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D24CE1A89A7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9781A89AA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:35:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503988AbgDNSeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 14:34:25 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:41320 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2503532AbgDNSeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:34:24 -0400
-Received: by mail-ot1-f67.google.com with SMTP id f52so680873otf.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 11:34:23 -0700 (PDT)
+        id S2503532AbgDNSez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:34:55 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34124 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730984AbgDNSex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:34:53 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m2so742792otr.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 11:34:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aNpXt9qm6dstm/l/OTZTWrrbGypmP32+1gU0CVpcu1M=;
-        b=jf5wEuubcjDtOrZu96SgUW1yhb8tDe0jbbdND0aCKrWUepUjSrtO8xpel2kDpGnQM9
-         GbRmbYXLGpcjlSGkJn2j2yL0jKBLPnNhMicXX2nu3healPJ5FD7PLDH/zv7aN759DbnX
-         IDfLZUZsqdd47cjSYQ3XDUEZio/fSpZnD+H2mM5XjiUcVvzS+v6AdFHaHZZmj6GbPDUq
-         5qgQFF/6Q6gEWtW0UCpS5sYA+phHa5z2Nn0iGlOovqExZTvyqiYC3cjJgwnqZilUem0p
-         LqZv3Sd4ZbgkheLBa5hXVLgF0GtMlX/9+ORccmoIC5QM9R5aRAj02gfrFCnaeMQu53uB
-         2/Vw==
-X-Gm-Message-State: AGi0PuYI1OitadsNAR+h7CNWijIo/uPwAMAsX1SCTLWtgiDfwB2CdXzG
-        /scD151XL6osv3sGUXRVpQ==
-X-Google-Smtp-Source: APiQypI5VZ2X3L0W4mQUSHIi4zZIKsimyyqqm60TzLPNKiCX1GwMUgV7yB8M4Zm21eK5G/p2jmzSGg==
-X-Received: by 2002:a4a:b60b:: with SMTP id z11mr5991200oon.86.1586889262976;
-        Tue, 14 Apr 2020 11:34:22 -0700 (PDT)
+        bh=YaA1doZo6XeG3a/kjw3o15hxftnD9UG0Sj5L9mPEsis=;
+        b=Yi9CmqSw38u0mXX8RofG4nrnBcKRV1vQCkooJrPWQv8ZHl10i+cf1Z4lxLLvbpoIQP
+         Ubr6Th2SsDYYKVCLPKp2JdmA79G5B35ZLLQPVwE4f/zVXZrBztTODEu0TSO3TA+J6wst
+         2YGy8ILpmJMSW1UDpEx4EN+s8nfz1FaOFFN2B1lz239lDwDYadz2XKrVP1tRAySLzJUM
+         tre1AYkyO8vGWCvvEkZziDV3PaRqXJ39ruY/HXSz1zSXkgUvE3qo99D8PWezr+dDa+K6
+         hOoNo6KQl5fvb03hU7+1nT3P6d4tlbGP6O4tFXfWHRqCV2d4rF0KQoj2foReoCnbqC9D
+         uF8w==
+X-Gm-Message-State: AGi0PuYSgovdfe1LYg+Xor71euxZ9yXvnq9Tz0irhNnYiH5CVemz8k3s
+        RAkuK0eI/tJLeco10fYp5A==
+X-Google-Smtp-Source: APiQypL6Fe1HDUNpz669SwTSzUB6G9QhuQv7sSJxBX3BK1gqEAGSUwypmrn/VxXVGSXj6DK5rQU7Hw==
+X-Received: by 2002:a4a:a126:: with SMTP id i38mr19808895ool.11.1586889292391;
+        Tue, 14 Apr 2020 11:34:52 -0700 (PDT)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g12sm1075727otk.71.2020.04.14.11.34.21
+        by smtp.gmail.com with ESMTPSA id c15sm6341423oot.23.2020.04.14.11.34.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 11:34:22 -0700 (PDT)
-Received: (nullmailer pid 8690 invoked by uid 1000);
-        Tue, 14 Apr 2020 18:34:21 -0000
-Date:   Tue, 14 Apr 2020 13:34:21 -0500
+        Tue, 14 Apr 2020 11:34:51 -0700 (PDT)
+Received: (nullmailer pid 10111 invoked by uid 1000);
+        Tue, 14 Apr 2020 18:34:51 -0000
+Date:   Tue, 14 Apr 2020 13:34:51 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Sam Ravnborg <sam@ravnborg.org>
 Cc:     dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Alexandre Courbot <acourbot@chromium.org>
-Subject: Re: [PATCH v2 15/36] dt-bindings: display: convert simple lg panels
- to DT Schema
-Message-ID: <20200414183421.GA8641@bogus>
+        Heiko Schocher <hs@denx.de>, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v2 16/36] dt-bindings: display: convert lg,lg4573 to DT
+ Schema
+Message-ID: <20200414183450.GA10047@bogus>
 References: <20200408195109.32692-1-sam@ravnborg.org>
- <20200408195109.32692-16-sam@ravnborg.org>
+ <20200408195109.32692-17-sam@ravnborg.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200408195109.32692-16-sam@ravnborg.org>
+In-Reply-To: <20200408195109.32692-17-sam@ravnborg.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  8 Apr 2020 21:50:48 +0200, Sam Ravnborg wrote:
-> Add the lg panels that matches the panel-simple binding to
-> panel-simple.yaml
+On Wed,  8 Apr 2020 21:50:49 +0200, Sam Ravnborg wrote:
+> v2:
+>   - Dropped spi-slave (Maxime)
+>   - Added unevaluatedProperties (Maxime)
+>   - Deleted needless compatible from example (Rob)
 > 
 > Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Reviewed-by: Brian Masney <masneyb@onstation.org>
-> Cc: Brian Masney <masneyb@onstation.org>
-> Cc: Alexandre Courbot <acourbot@chromium.org>
+> Reviewed-by: Heiko Schocher <hs@denx.de>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Heiko Schocher <hs@denx.de>
 > Cc: Thierry Reding <thierry.reding@gmail.com>
 > Cc: Sam Ravnborg <sam@ravnborg.org>
 > ---
->  .../devicetree/bindings/display/panel/lg,acx467akm-7.txt   | 7 -------
->  .../devicetree/bindings/display/panel/lg,ld070wx3-sl01.txt | 7 -------
->  .../devicetree/bindings/display/panel/lg,lh500wx1-sd03.txt | 7 -------
->  .../devicetree/bindings/display/panel/panel-simple.yaml    | 6 ++++++
->  4 files changed, 6 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/lg,acx467akm-7.txt
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/lg,ld070wx3-sl01.txt
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/lg,lh500wx1-sd03.txt
+>  .../bindings/display/panel/lg,lg4573.txt      | 19 --------
+>  .../bindings/display/panel/lg,lg4573.yaml     | 45 +++++++++++++++++++
+>  2 files changed, 45 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/panel/lg,lg4573.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/lg,lg4573.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
