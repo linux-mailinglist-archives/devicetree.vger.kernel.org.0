@@ -2,200 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CDCD1A73A9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 08:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C62031A7413
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 09:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406017AbgDNG1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 02:27:43 -0400
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:34246 "EHLO
-        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S2405991AbgDNG1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 02:27:42 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 86D2C200D9F0;
-        Tue, 14 Apr 2020 14:27:37 +0800 (HKT)
-X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
-Received: from mail.gtsys.com.hk ([127.0.0.1])
-        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id mexkF8vGfUOA; Tue, 14 Apr 2020 14:27:37 +0800 (HKT)
-Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 6C3D1200D9EE;
-        Tue, 14 Apr 2020 14:27:37 +0800 (HKT)
-Received: from armhf2.gtsys.com.hk (unknown [10.128.4.15])
-        by s01.gtsys.com.hk (Postfix) with ESMTP id 6754CC01A1D;
-        Tue, 14 Apr 2020 14:27:37 +0800 (HKT)
-Received: by armhf2.gtsys.com.hk (Postfix, from userid 1000)
-        id 61B43201602; Tue, 14 Apr 2020 14:27:37 +0800 (HKT)
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-To:     chris.ruehl@gtsys.com.hk
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: iio/dac: convert ltc2632.txt to lltc,ltc2632.yaml
-Date:   Tue, 14 Apr 2020 14:27:21 +0800
-Message-Id: <20200414062735.19182-1-chris.ruehl@gtsys.com.hk>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2406311AbgDNHEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 03:04:30 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:57212 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406276AbgDNHE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Apr 2020 03:04:29 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 377AC1A0317;
+        Tue, 14 Apr 2020 09:04:26 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9161F1A0300;
+        Tue, 14 Apr 2020 09:04:20 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 834104028B;
+        Tue, 14 Apr 2020 15:04:13 +0800 (SGT)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
+        festevam@gmail.com, broonie@kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/7] ASoC: Add new module driver for new ASRC
+Date:   Tue, 14 Apr 2020 14:56:00 +0800
+Message-Id: <cover.1586845137.git.shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Conversion of the ltc2632 to yaml format and name the file 'lltc,ltc2632.yaml'.
+Add new module driver for new ASRC in i.MX8MN, several commits
+are added for new property fsl,asrc-format
 
-Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
----
- .../bindings/iio/dac/lltc,ltc2632.yaml        | 78 +++++++++++++++++++
- .../devicetree/bindings/iio/dac/ltc2632.txt   | 49 ------------
- 2 files changed, 78 insertions(+), 49 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
- delete mode 100644 Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+Shengjiu Wang (7):
+  ASoC: fsl_asrc: rename asrc_priv to asrc
+  ASoC: dt-bindings: fsl_asrc: Add new property fsl,asrc-format
+  ASoC: fsl-asoc-card: Support new property fsl,asrc-format
+  ASoC: fsl_asrc: Support new property fsl,asrc-format
+  ASoC: fsl_asrc: Move common definition to fsl_asrc_common
+  ASoC: dt-bindings: fsl_easrc: Add document for EASRC
+  ASoC: fsl_easrc: Add EASRC ASoC CPU DAI drivers
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
-new file mode 100644
-index 000000000000..af94481748b6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+# Copyright 2020 Christopher Ruehl <chris.ruehl@gtsys.com.hk>
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Linear Technology LTC263x 12-/10-/8-Bit Rail-to-Rail DAC
-+
-+maintainers:
-+  - Jonathan Cameron <jic23@kernel.org>
-+
-+description: |
-+  Bindings for the Linear Technology LTC2632/2634/2636 DAC
-+  Datasheet can be found here: https://www.analog.com/media/en/technical-documentation/data-sheets/LTC263[246].pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lltc,ltc2632-l12
-+      - lltc,ltc2632-l10
-+      - lltc,ltc2632-l8
-+      - lltc,ltc2632-h12
-+      - lltc,ltc2632-h10
-+      - lltc,ltc2632-h8
-+      - lltc,ltc2634-l12
-+      - lltc,ltc2634-l10
-+      - lltc,ltc2634-l8
-+      - lltc,ltc2634-h12
-+      - lltc,ltc2634-h10
-+      - lltc,ltc2634-h8
-+      - lltc,ltc2636-l12
-+      - lltc,ltc2636-l10
-+      - lltc,ltc2636-l8
-+      - lltc,ltc2636-h12
-+      - lltc,ltc2636-h10
-+      - lltc,ltc2636-h8
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 2000000
-+
-+  vref-supply:
-+    description:
-+	  Phandle to the external reference voltage supply. This should
-+      only be set if there is an external reference voltage connected to the VREF
-+      pin. If the property is not set the internal reference is used.
-+
-+required:
-+  - compatible
-+  - reg
-+  - vref-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    vref: regulator-vref {
-+        compatible = "regulator-fixed";
-+        regulator-name = "vref-ltc2632";
-+        regulator-min-microvolt = <1250000>;
-+        regulator-max-microvolt = <1250000>;
-+        regulator-always-on;
-+    };
-+
-+    spi_master {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      dac: ltc2632@0 {
-+        compatible = "lltc,ltc2632";
-+        reg = <0>;    /* CS0 */
-+        spi-max-frequency = <1000000>;
-+        vref-supply = <&vref>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
-deleted file mode 100644
-index 1ab9570cf219..000000000000
---- a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
-+++ /dev/null
-@@ -1,49 +0,0 @@
--Linear Technology LTC2632/2634/2636 DAC
--
--Required properties:
-- - compatible: Has to contain one of the following:
--	lltc,ltc2632-l12
--	lltc,ltc2632-l10
--	lltc,ltc2632-l8
--	lltc,ltc2632-h12
--	lltc,ltc2632-h10
--	lltc,ltc2632-h8
--	lltc,ltc2634-l12
--	lltc,ltc2634-l10
--	lltc,ltc2634-l8
--	lltc,ltc2634-h12
--	lltc,ltc2634-h10
--	lltc,ltc2634-h8
--	lltc,ltc2636-l12
--	lltc,ltc2636-l10
--	lltc,ltc2636-l8
--	lltc,ltc2636-h12
--	lltc,ltc2636-h10
--	lltc,ltc2636-h8
--
--Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
--apply. In particular, "reg" and "spi-max-frequency" properties must be given.
--
--Optional properties:
--	- vref-supply: Phandle to the external reference voltage supply. This should
--	  only be set if there is an external reference voltage connected to the VREF
--	  pin. If the property is not set the internal reference is used.
--
--Example:
--
--	vref: regulator-vref {
--		compatible = "regulator-fixed";
--		regulator-name = "vref-ltc2632";
--		regulator-min-microvolt = <1250000>;
--		regulator-max-microvolt = <1250000>;
--		regulator-always-on;
--	};
--
--	spi_master {
--		dac: ltc2632@0 {
--			compatible = "lltc,ltc2632-l12";
--			reg = <0>; /* CS0 */
--			spi-max-frequency = <1000000>;
--			vref-supply = <&vref>; /* optional */
--		};
--	};
+changes in v8
+- change get_pair_priv_size to pair_priv_size variable
+
+changes in v7
+- updated according to Nicoin's comments.
+- add get_pair_priv_size to replace PAIR_PRIVATE_SIZE
+
+changes in v6
+- updated according to Nicoin's and Rob's comments.
+
+changes in v5
+- Add new property fsl,asrc-format, rather than change fsl,asrc-width
+  to fsl,asrc-formt.
+- code change for above change.
+
+changes in v4
+- Add several commit for changing DT binding asrc-width to asrc-format
+- rename asrc_priv to asrc
+
+changes in v3
+- add new commit "ASoC: fsl_asrc: Change asrc_width to asrc_format"
+- modify binding doc to yaml format
+- remove fsl_easrc_dma.c, make fsl_asrc_dma.c useable for easrc.
+
+changes in v2
+- change i.MX815 to i.MX8MN
+- Add changes in Kconfig and Makefile
+
+ .../devicetree/bindings/sound/fsl,asrc.txt    |    4 +
+ .../devicetree/bindings/sound/fsl,easrc.yaml  |  101 +
+ sound/soc/fsl/Kconfig                         |   11 +
+ sound/soc/fsl/Makefile                        |    2 +
+ sound/soc/fsl/fsl-asoc-card.c                 |   24 +-
+ sound/soc/fsl/fsl_asrc.c                      |  305 +--
+ sound/soc/fsl/fsl_asrc.h                      |   74 +-
+ sound/soc/fsl/fsl_asrc_common.h               |  106 +
+ sound/soc/fsl/fsl_asrc_dma.c                  |   54 +-
+ sound/soc/fsl/fsl_easrc.c                     | 2114 +++++++++++++++++
+ sound/soc/fsl/fsl_easrc.h                     |  651 +++++
+ 11 files changed, 3212 insertions(+), 234 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,easrc.yaml
+ create mode 100644 sound/soc/fsl/fsl_asrc_common.h
+ create mode 100644 sound/soc/fsl/fsl_easrc.c
+ create mode 100644 sound/soc/fsl/fsl_easrc.h
+
 -- 
-2.20.1
+2.21.0
 
