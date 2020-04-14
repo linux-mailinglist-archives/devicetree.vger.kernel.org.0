@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7CEA1A88D0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E301A88ED
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 20:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503591AbgDNSNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 14:13:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38792 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2503582AbgDNSNE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 14:13:04 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2B67D2076B;
-        Tue, 14 Apr 2020 18:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586887983;
-        bh=MxhcnlW81VsV17mkWy15j+5bMW2ccK4uq1z9d7Gyt30=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rkSGqsd+MOUZtr5bJdl0CYKZlO1iMXVNnBSkKtqwQjN4byXGPLyVjzL0sd4VHex8s
-         v9028qp/IP9VM8GjEbKhLFnMM7Jri2eD4EKHBu06HwT3ROuE8WhWgZKjuau2UFHWML
-         RUUHut1mYQXH8pS+pnHzx8YHrLGMOK1LuIh7h1Ik=
-Date:   Tue, 14 Apr 2020 19:12:59 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, narcisaanamaria12@gmail.com,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] iio: chemical: Add support for external Reset
- and Wakeup in CCS811
-Message-ID: <20200414191259.5fbfdc2a@archlinux>
-In-Reply-To: <CAHp75Vfk3aw30j8U+BJiobU6s2KsOis_VyUv4+6csbYLFnV9eg@mail.gmail.com>
-References: <20200414153415.957-1-mani@kernel.org>
-        <20200414153415.957-3-mani@kernel.org>
-        <CAHp75Vf1wzBD+r5L7XFPW=ydxFLBfBNr6Jc4b6sMWR4Rci-Acw@mail.gmail.com>
-        <20200414170547.GB3334@Mani-XPS-13-9360>
-        <CAHp75Vfk3aw30j8U+BJiobU6s2KsOis_VyUv4+6csbYLFnV9eg@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2503655AbgDNSOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 14:14:48 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33735 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2503671AbgDNSOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Apr 2020 14:14:47 -0400
+Received: by mail-ot1-f68.google.com with SMTP id j26so414481ots.0;
+        Tue, 14 Apr 2020 11:14:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vo+OgfcLNvRkk7b5MXN+3p/k/pIzdHE7xLuHzqtnamk=;
+        b=aetBvNee6921I484h0Ks6mj4ZkbFiZS/lHjtqYW9UfHY0WVWBHwez3goyP1DBHBJqO
+         XKiu6/aiv42PDl8pBXE69kCZwVnkCTrpfNV6QFSe2vqbsSjFMsFYTn1NeAzvz/FQ7LV2
+         eTSoaQmeqRBrqRHVDQctih53Z0iJEXaDeXoOvRbznQUhlq+HsQiinfXIvdkJ+HrA3pzv
+         wrFXZC2V5bFI7VlYuvILIZs77kuJeDLLISRRmutIr0TZDnwDv1wD6zV9RV07cjDjG2Lt
+         dkIUJCwcXF6q0qQciN3UGOPJzvSGimtFQnhGuHJ/QVlQPkFGm3mTjpReQA9C/DbiHN09
+         FJPw==
+X-Gm-Message-State: AGi0PubUps7WhEajzHfxPUpsj2+p4zDRO+lsDtcdcCmKmnGxHbkaBzOt
+        rxmWy5L24bw4FZ8fnEUIiZRsALs=
+X-Google-Smtp-Source: APiQypKVLpJlG8c1B5PJ1L+aaHIRDG6Xc7WJ9Gk7A+JotcjqcV7ZsbWp8UQdCQSVEqQaQL3Ly19FYg==
+X-Received: by 2002:a9d:5187:: with SMTP id y7mr18979852otg.159.1586888085983;
+        Tue, 14 Apr 2020 11:14:45 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o73sm5658056ota.77.2020.04.14.11.14.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Apr 2020 11:14:45 -0700 (PDT)
+Received: (nullmailer pid 17428 invoked by uid 1000);
+        Tue, 14 Apr 2020 18:14:44 -0000
+Date:   Tue, 14 Apr 2020 13:14:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     skomatineni@nvidia.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, frankc@nvidia.com, hverkuil@xs4all.nl,
+        sakari.ailus@iki.fi, helen.koike@collabora.com, digetx@gmail.com,
+        sboyd@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v6 5/9] dt-binding: tegra: Add VI and CSI bindings
+Message-ID: <20200414181444.GA17346@bogus>
+References: <1585963507-12610-1-git-send-email-skomatineni@nvidia.com>
+ <1585963507-12610-6-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1585963507-12610-6-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Apr 2020 20:54:49 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-
-> On Tue, Apr 14, 2020 at 8:06 PM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> > On Tue, Apr 14, 2020 at 07:42:24PM +0300, Andy Shevchenko wrote:  
-> > > On Tue, Apr 14, 2020 at 6:34 PM <mani@kernel.org> wrote:  
+On Fri, 3 Apr 2020 18:25:03 -0700, Sowjanya Komatineni wrote:
+> Tegra contains VI controller which can support up to 6 MIPI CSI
+> camera sensors.
 > 
-> ...
+> Each Tegra CSI port from CSI unit can be one-to-one mapper to
+> VI channel and can capture from an external camera sensor or
+> from built-in test pattern generator.
 > 
-> > > > +       reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-> > > > +                                            GPIOD_OUT_LOW);
-> > > > +       if (IS_ERR(reset_gpio)) {  
-> > >  
-> > > > +               dev_err(&client->dev, "Failed to acquire reset gpio\n");  
-> > >
-> > > If it's a deferred probe, it would spam the log.
-> > >  
-> >
-> > Hmm. But error is an error isn't it? Would you recommend doing a debug print
-> > or completely removing the logging?  
+> This patch adds dt-bindings for Tegra VI and CSI.
 > 
-> I would remove completely, but better to wait for Jonathan to comment.
-> Maybe he prefers something like
->   if (err != EPROBE_DEFER)
->     dev_err()
-
-Not fussed.  Either drop it or do the check for defer - one I leave up to the
-author.
-
-> 
-> > > > +               return PTR_ERR(reset_gpio);
-> > > > +       }  
-> > >
-> > > ...
-> > >  
-> > > > +               static const u8 reset_seq[] = {
-> > > > +                       0xFF, 0x11, 0xE5, 0x72, 0x8A,
-> > > > +               };  
-> > >
-> > > I would suggest to comment above from where you got this and the
-> > > meaning of the numbers.
-> > >  
-> >
-> > The datasheet doesn't specify the meaning of these values. But will add a
-> > comment.  
-> 
-> Thanks!
-> 
-> > Btw, just noticed that 0xFF is not needed and only 4 values are
-> > sufficient for SW reset.  
-> 
-> Better to do exactly what datasheet suggests (in case it's not clear
-> or deductible what is going on).
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  .../display/tegra/nvidia,tegra20-host1x.txt        | 73 ++++++++++++++++++----
+>  1 file changed, 60 insertions(+), 13 deletions(-)
 > 
 
+Reviewed-by: Rob Herring <robh@kernel.org>
