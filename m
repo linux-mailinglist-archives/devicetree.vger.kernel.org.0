@@ -2,74 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C021A8B1C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 21:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A4601A8A9E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2020 21:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505023AbgDNTj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Apr 2020 15:39:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        id S1730006AbgDNTZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Apr 2020 15:25:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2505028AbgDNTjq (ORCPT
+        by vger.kernel.org with ESMTP id S2504657AbgDNTY6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Apr 2020 15:39:46 -0400
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59671C061A0C
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 12:03:35 -0700 (PDT)
-Received: by mail-oi1-x242.google.com with SMTP id k133so10676623oih.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 12:03:35 -0700 (PDT)
+        Tue, 14 Apr 2020 15:24:58 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB1DC03C1A8
+        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 12:06:59 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id y15so703512vsm.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 12:06:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f7KrnRzyyOUemPRVsSUSW7supihjD0aQaPjITXcbeLk=;
+        b=kepiQP1oWmWQkilPnEBSKatdjUR3EE60+QwIJjoai4XqsbJg4+7PZQWRyq2meKTDqq
+         U1NTYx+3Wr89EDUCIm9olKYp1EoY+W4BHV9q7VO8idCaiTP6Lm4E5VmXUoJ2AGRFhriY
+         Da+cFwBBH7Nv7E5bfANSfnNH0J8nmp6cQAwVw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=neZixX1FgRDvn70WcsvMU0lLKZGE4eRWJlNGOjVP1O8=;
-        b=UYfk+XaexRCJh+jbvOXBtvzsO2vLuDuAKScYB6+yktAusuViI5VmNM5dIxYygQHIvZ
-         mvZYzvwy0a4d9Po6JDK4EMwW1RyisC9bAShLkPiZqGB76qCyVcQuPbgWhjLxalXnqPCH
-         x1XBgk9JJZYqSL5eRvh5pJKu3K1hG2j2GyfT20oXUDob/Otd7pL4zB1/lvth0eAlmYhE
-         TKY9WhruPruEWCnKSakyCQXFQCKyZJropFMdD6z3ONKSE36CJ+A3ObxWBUGBfNExLD1T
-         eg7riT+Zm0e2AUuKmyZ1W+ieHgsSJYd4u7D4NRggnUJdB1po4xeRuWi++30yog0klqQ6
-         wpog==
-X-Gm-Message-State: AGi0PuYzr5JBP2kCpy+LA2dFVFr+5x1JRhyohjOE/O9jwNdEkHUZaGDD
-        1SsMfDoYueniZpz4GI0Ycg==
-X-Google-Smtp-Source: APiQypKoje5VL7Nleh38k5MtuQV+rjMMY1W8ziSp8EW17y/skbV1g7KgZ3blwmjGx9sfECEGd+8Q6Q==
-X-Received: by 2002:aca:4408:: with SMTP id r8mr14596592oia.14.1586891014583;
-        Tue, 14 Apr 2020 12:03:34 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l7sm3592378oii.26.2020.04.14.12.03.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Apr 2020 12:03:34 -0700 (PDT)
-Received: (nullmailer pid 25576 invoked by uid 1000);
-        Tue, 14 Apr 2020 19:03:33 -0000
-Date:   Tue, 14 Apr 2020 14:03:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 03/36] dt-bindings: display: add te-gpios to
- panel-common
-Message-ID: <20200414190333.GA25534@bogus>
-References: <20200408195109.32692-1-sam@ravnborg.org>
- <20200408195109.32692-4-sam@ravnborg.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f7KrnRzyyOUemPRVsSUSW7supihjD0aQaPjITXcbeLk=;
+        b=pafkRxoWF3NwEHu791ilyXHSapHR8da9/ZvdiOjwPMiPDD8wo5NQbkyPWJdeA0+PPt
+         XZAPRc6Swngsr8CKcin/LXuO9L3zgzJDUrPagxbjyBfLzNBAjO9HffpD9pfXQekufHjA
+         eWsXwLPUqmsGBNphbHOhCQ8VmoduGdNpkgTmLi67UCq1pXMNh6HfAB1glL8thtNfAxNL
+         pnTUFnjF23js5diOspkR5aa/SkIUbA8IJbUzSt7uSBwgx77GMuzWGR+hOrFSnP7uM+Xp
+         ZUCpCHgAxYuMW2gZp3RznQbA5D/x+MZ9EWpUHLgOZXBC1/WzoxVG34T7LMK1vSClOlhD
+         lqIA==
+X-Gm-Message-State: AGi0PuYNsPvPDZ/dVtKKQPYKg+mmk2UWxr1C+lCaaSmQb19+IvxpWp4A
+        Vv6+YKKIx/qhyRlFT4wYhfYLWtsg4Ys=
+X-Google-Smtp-Source: APiQypI2orSNDMdEHHB2L1IDU+61fDPihkq7UEMB+kwTXuTq/6DCUE6A5B3EvsuTU1OvlpFpHzBX4Q==
+X-Received: by 2002:a67:7c02:: with SMTP id x2mr1680736vsc.45.1586891218361;
+        Tue, 14 Apr 2020 12:06:58 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id s18sm3099612vkm.48.2020.04.14.12.06.57
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Apr 2020 12:06:58 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id r7so711371vso.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2020 12:06:57 -0700 (PDT)
+X-Received: by 2002:a67:8dc8:: with SMTP id p191mr1616800vsd.198.1586891216585;
+ Tue, 14 Apr 2020 12:06:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200408195109.32692-4-sam@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200414185744.84581-1-john.stultz@linaro.org>
+In-Reply-To: <20200414185744.84581-1-john.stultz@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 14 Apr 2020 12:06:45 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XT_icz04g4M+iZHZRzjM1jnuHgkPBsaVmzc1wyoUe=7A@mail.gmail.com>
+Message-ID: <CAD=FV=XT_icz04g4M+iZHZRzjM1jnuHgkPBsaVmzc1wyoUe=7A@mail.gmail.com>
+Subject: Re: [RESEND][PATCH v2] phy: qcom-qusb2: Re add "qcom,sdm845-qusb2-phy"
+ compat string
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  8 Apr 2020 21:50:36 +0200, Sam Ravnborg wrote:
-> Several bindings specifies a "te-gpios" for tearing effect signal.
-> Add this to panel-common so we have a shared definition.
-> 
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> ---
->  .../devicetree/bindings/display/panel/panel-common.yaml    | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Tue, Apr 14, 2020 at 11:57 AM John Stultz <john.stultz@linaro.org> wrote:
+>
+> This patch fixes a regression in 5.7-rc1.
+>
+> In commit 8fe75cd4cddf ("phy: qcom-qusb2: Add generic QUSB2 V2
+> PHY support"), the change was made to add "qcom,qusb2-v2-phy"
+> as a generic compat string. However the change also removed
+> the "qcom,sdm845-qusb2-phy" compat string, which is documented
+> in the binding and already in use.
+>
+> This patch re-adds the "qcom,sdm845-qusb2-phy" compat string
+> which allows the driver to continue to work with existing dts
+> entries such as found on the db845c.
+>
+> Cc: Andy Gross <agross@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Doug Anderson <dianders@chromium.org>
+> Cc: Manu Gautam <mgautam@codeaurora.org>
+> Cc: Sandeep Maheswaram <sanm@codeaurora.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Fixes: 8fe75cd4cddf ("phy: qcom-qusb2: Add generic QUSB2 V2 PHY support")
+> Reported-by: YongQin Liu <yongqin.liu@linaro.org>
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
+
+Re-adding reviews from:
+https://lore.kernel.org/r/158631458374.216820.17829557619378130779@swboyd.mtv.corp.google.com
+https://lore.kernel.org/r/CAD=FV=Wh9_4a-cDGPdpMrXUi_HmJvS-a2Ubeyo5WG3sgwVWKKQ@mail.gmail.com
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+...as of an hour ago Bjorn also picked up:
+
+https://lore.kernel.org/r/1583747589-17267-8-git-send-email-sanm@codeaurora.org
+
+...and it's now in the Qualcomm for-next and ci-next.  It's still a
+bit of a pain that -rc1 will have the regression since many other
+maintainers will base their next branches on that, but not much to be
+done about it now.
+
+-Doug
