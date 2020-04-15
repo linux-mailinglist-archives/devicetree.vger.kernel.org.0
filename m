@@ -2,104 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B291A9742
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 10:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9A31A9775
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 10:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2894959AbgDOIqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 04:46:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2894947AbgDOIqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 04:46:09 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCC9C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 01:46:09 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id i10so18088910wrv.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 01:46:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lb3moszYSo2LYaFHhhjcM4cay/uCeXv+Lh9QwOM6xww=;
-        b=F3qihdN+hdMsdaequFznceWvdWp2yRYp6M0u/gv/QPRYwCuF2F2BEBTam/Ubmu2DiB
-         kQ2LjUBrvbB+hZ2Jj1eu4mFZ8lgMGCOHya0X7hcjtf2QIDKHwMw0QARNb0d9qPXd+H4I
-         KzgFFFraGgC73Dd8b8TRiZAIG+0uejxT3AGlQH/8z+9cTcMJoqQAB/+D9Fwl/9kgWGgM
-         pbIPOW14C/NSHaQOOIT46SiQp5B1gjfncnD/JwBI5gQngJ/wO4Hun+WdyU+9z+ggwde4
-         ix0LeV+ClcRiv6mtmh4ZHgkbvoB3cWAPQNo0I+1y8hu2CnRhT0BLqu3NhQUbKAcDcgEP
-         zRpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lb3moszYSo2LYaFHhhjcM4cay/uCeXv+Lh9QwOM6xww=;
-        b=GwDnxnaF+lM5dtguSVMQF2+ph7mOkPCnOydlfvBFVUptVUYdv/AqqcrtO8o+ZWhlSu
-         7ccAY6vsxL/mUiizluRm5KOXVvCqHdKu0LyMK8LF0rmIjAHhqNA0WhStB3ACG7XZXxYj
-         rRobtf+x0b4exMOVdzi0jbnrLJMTXZdoF/hUGVWr1CdUrAltukSO4YRmv8LCvHGkkDY9
-         OA8863nu7ekwoVfERRmm8SrzYUmNLFBkrrV4T4M8GiiEHZsafYXjWIZiOBqQlTvqXTya
-         fo445Xbbxm8b2R4GuRsZSmq5Xv07djVs1B9CpWL53Y5H0j59/ZL8M9DIOAerNECtt51+
-         x/qA==
-X-Gm-Message-State: AGi0PubcOc9SqGa6rtQii8tX8f3uSotymGSPWnUaPgFNrnNaZxfF0hRh
-        UL3u+M8+U02fpa432nUI+ewlxA==
-X-Google-Smtp-Source: APiQypJX2Hn8rvIm/Bda14cICmCTQkvC79OqyYyl28y3z6WA9exR5415whsbX7Vr7wHEoZBySMlD3g==
-X-Received: by 2002:adf:ce0a:: with SMTP id p10mr12446654wrn.89.1586940368320;
-        Wed, 15 Apr 2020 01:46:08 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id n124sm22480815wma.11.2020.04.15.01.46.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 Apr 2020 01:46:07 -0700 (PDT)
-Subject: Re: [PATCH v2] nvmem: core: don't consider subnodes not matching
- binding
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, Christian Eggers <CEggers@arri.de>,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de
-References: <20200323152850.32657-1-a.fatoum@pengutronix.de>
- <d59007d1-f4e3-f550-cecd-64b788a534bc@linaro.org>
- <bb0dcf33-f67d-7078-9341-08282d8da217@pengutronix.de>
- <4e861088-c17d-0eca-6efa-c50b55fdecd1@pengutronix.de>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <d0dc571f-4faf-f75c-1388-d1fab10f4aa8@linaro.org>
-Date:   Wed, 15 Apr 2020 09:46:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2895074AbgDOIuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 04:50:07 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:56190 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2895072AbgDOIuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 04:50:04 -0400
+X-UUID: e78e873eeda4492e89e02e3ffed20e99-20200415
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=2WBZ7hM0YoXBpJcKelYpQ39XyX/1btRpalqAnJewDts=;
+        b=qm4DBBPq3UOibVVZjRUbkjuc5E5WyrgY52SLx1r2KN0Ld2PNz1/xASFtpYQ6Mc8hnyFhvXcl9D2TvD7ppzE0qV1wqbbKic1Me59ZVyMYKc5PlsAVbZFOyddyRlBG4SIJicQwGwH+qlSZifREBlIRGIrvKaKasvHd4PPOHrCM4Fg=;
+X-UUID: e78e873eeda4492e89e02e3ffed20e99-20200415
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1288575515; Wed, 15 Apr 2020 16:49:59 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 15 Apr 2020 16:49:56 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 15 Apr 2020 16:49:55 +0800
+Message-ID: <1586940598.5007.0.camel@mtksdaap41>
+Subject: Re: [PATCH v12 1/2] dt-binding: i2c: add bus-supply property
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Tomasz Figa <tfiga@chromium.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        "Nicolas Boichat" <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>
+Date:   Wed, 15 Apr 2020 16:49:58 +0800
+In-Reply-To: <20200324103448.GE1134@ninjato>
+References: <20200306034946.11223-1-bibby.hsieh@mediatek.com>
+         <20200306034946.11223-2-bibby.hsieh@mediatek.com>
+         <20200322130710.GA1091@ninjato>
+         <CAAFQd5ANJcReHD_n0LorS+bjE8Cn_W-kY5LNgGG+L+jMmywYfA@mail.gmail.com>
+         <20200324103448.GE1134@ninjato>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <4e861088-c17d-0eca-6efa-c50b55fdecd1@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+T24gVHVlLCAyMDIwLTAzLTI0IGF0IDExOjM0ICswMTAwLCBXb2xmcmFtIFNhbmcgd3JvdGU6DQo+
+ID4gPiA+ICstIGJ1cy1zdXBwbHkNCj4gPiA+ID4gKyAgICAgcGhhbmRsZSB0byB0aGUgcmVndWxh
+dG9yIHRoYXQgcHJvdmlkZXMgcG93ZXIgdG8gaTJjLg0KPiA+ID4NCj4gPiA+IEkgdGhpbmsgdGhp
+cyBpcyBub3QgY2xlYXIgZW5vdWdoLiBJIGFzc3VtZSBpdCBtZWFucyB0aGUgcmVndWxhdG9yIGZv
+cg0KPiA+ID4gZHJpdmluZyBTQ0wvU0RBPyBJbiB0aGUgY292ZXJsZXR0ZXIgeW91IG1lbnRpb24g
+YWxzbyBhbiBFRVBST00uIEluIHlvdXINCj4gPiA+IGNhc2UsIHRoaXMgaXMgZHJpdmVuIGJ5IHRo
+ZSBzYW1lIHJlZ3VsYXRvcj8gSSBhbSBza2VwdGljYWwgd2UgY2FuDQo+ID4gPiBhYnN0cmFjdCBp
+dCBsaWtlIHRoaXMgYmVjYXVzZSBJMkMgZGV2aWNlcyBjb3VsZCBiZSBkcml2ZW4gYnkgdmFyaW91
+cw0KPiA+ID4gcmVndWxhdG9ycyBpbiB0aGUgc3lzdGVtLCBzbyB0aGVyZSBjb3VsZG4ndCBiZSBv
+bmUgImJ1cyByZWd1bGF0b3IiLiBUaGUNCj4gPiA+IHJlZ3VsYXRvciBmb3IgdGhlIEVFUFJPTSBz
+aG91bGQgYmUgZGVzY3JpYmVkIGluIHRoZSBFRVBST00gbm9kZS4gU28sDQo+ID4gPiB0aGlzICJi
+dXMgc3VwcGx5IiBpcyBvbmx5IGZvciBkcml2aW5nIFNDTC9TREE/DQo+ID4gDQo+ID4gSW4gb3Vy
+IGNhc2UgdGhlIGJ1cy1zdXBwbHkgcmVndWxhdG9yIGRyaXZlcyB0aGUgdm9sdGFnZSByYWlsIHRv
+IHdoaWNoDQo+ID4gU0NML1NEQSBhcmUgcHVsbGVkIHVwIGFuZCB0aGVyZSBpcyBhbiBFRVBST00g
+b24gdGhlIGJ1cywgcG93ZXJlZCBieQ0KPiA+IHlldCBhbm90aGVyIHJhaWwuIFRoZXJlIGlzIGFs
+c28gYW5vdGhlciBzbGF2ZSBvbiB0aGUgYnVzIHdoaWNoIHVzZXMNCj4gPiB0aGUgc2FtZSByZWd1
+bGF0b3IgYXMgdGhlIGJ1cy1zdXBwbHkgZm9yIGl0cyBvd24gcG93ZXIuDQo+ID4gDQo+ID4gSW4g
+b3RoZXIgd29yZHMsIGJ1cy1zdXBwbHkgb25seSBlbnN1cmVzIHRoYXQgU0NMIGFuZCBTREEgYXJl
+IGluIGENCj4gPiB1c2FibGUgc3RhdGUuIE90aGVyIGNvbnN1bWVycyBuZWVkIHRvIHJlZmVyIHRv
+IHRoZSByZWd1bGF0b3IgaW4gdGhlaXINCj4gPiBvd24gc3VwcGxpZXMgaWYgdGhleSBuZWVkIGl0
+IGZvciB0aGVpciBvd24gcG93ZXIuDQo+ID4gDQo+ID4gRG9lcyB0aGlzIGFuc3dlciB5b3VyIHF1
+ZXN0aW9ucz8NCj4gDQo+IFllcywgdGhpcyB3YXMgZXhhY3RseSB3aGF0IEkgd2FzIGFzc3VtaW5n
+Lg0KPiANCj4gU28sIEkgdGhpbmsgdGhlIGFib3ZlIGRvY3VtZW50YXRpb24gc2hvdWxkIGJlIGNo
+YW5nZWQ6IHN8aTJjfFNDTC9TREF8DQo+IA0KPiBEJ2FjY29yZD8NCj4gDQpZZXMsIEkgdGhpbmsg
+U0NML1NEQSBpcyBiZXR0ZXIgdGhhbiBpMmMNCg0KVG9tYXN6LCBIb3cgYWJvdXQgaXQ/DQoNClRo
+YW5rcw0KDQpCaWJieQ0KDQo=
 
-
-On 15/04/2020 09:05, Ahmad Fatoum wrote:
->> - If the cell has a compatible node, it must be "nvmem-cell".
->>    Otherwise, a cell with a compatible node is skipped.
->>
-This one sounds more sensible!
-If we go this way, it needs to be properly documented in the bindings too.
-
-
->> - Adding a nvmem cell container with a compatible and making support for
->>    the old binding configurable
-
-Older bindings should be still supported but we should encourage to use 
-compatible string for new additions.
-
->>
->> - Skipping cells that are malformed and lack a reg = < > property_without_
->>    error
-Currently we only support Offset and Size with address cell and size 
-cells of 1. Adding an extra check here to see if its malformed makes 
-sense too!
-
-
-Thanks,
-srini
-
-> gentle ping. I can prepare another patch if you indicate which approach
-> you'd prefer.
-> 
