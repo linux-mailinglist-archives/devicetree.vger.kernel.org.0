@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 203D71A994B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B6D1A99C4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2895849AbgDOJtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 05:49:05 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:37533 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2895841AbgDOJs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 05:48:59 -0400
-X-Originating-IP: 86.202.105.35
-Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 1B46C20008;
-        Wed, 15 Apr 2020 09:48:57 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        kamel.bouhara@bootlin.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v2 9/9] clocksource/drivers/timer-atmel-tcb: add sama5d2 support
-Date:   Wed, 15 Apr 2020 11:48:26 +0200
-Message-Id: <20200415094826.132562-10-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.25.2
-In-Reply-To: <20200415094826.132562-1-alexandre.belloni@bootlin.com>
-References: <20200415094826.132562-1-alexandre.belloni@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2408514AbgDOJ7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 05:59:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2408508AbgDOJ7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 05:59:35 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B638DC061A0C;
+        Wed, 15 Apr 2020 02:59:34 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id l11so2156283lfc.5;
+        Wed, 15 Apr 2020 02:59:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=63vRFQmPky+5Sun2Opkz9FUwUHHMbnn+8rcnJyfbXrg=;
+        b=O+a6HRSYtexYUcRf2vogJPvF/gD1KELnuZj6kV7IzsLHhvD1ryxo8ZXyhMxj9oja2I
+         T3mKdn9yFI5+RKfmhbvG/nbjMxrVSpPhpXgZJAboj11pvYuLsGQSReYdnaLgOCHE6G70
+         bM789lHrYlz91lpKf5MMGdPttYhx6aCoBWj482d6qI2D++FdHz0GPAOhRJOhGqw84OjZ
+         GL+AOHaLE9BipLjl54B36Jn9AdGtgJE0TeS6xZnq3WKfUPqz+/Me09yAa5zw2gjZIE5s
+         2Dw/JWCO54aVJPPX7f6DTt9e3njJ9IJIkxbexcOSKvXRgIdiO6mFVGSiO6BvJNNAfsKe
+         1IXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=63vRFQmPky+5Sun2Opkz9FUwUHHMbnn+8rcnJyfbXrg=;
+        b=TAghxwsHOqiKeKKSd8AT+pNpqZJRCMRaX4m9DQfsjuFRAUxi5lE5Q+cOGaD9GIOz7B
+         jWSNwLq1d1S0tV6INvlP2SMPemdC84fxKRgkxtZ9cExPLGEP3XN/+a0Xs0+mUzBpMs6I
+         FP3DgK5dC4ESxZ3oUt3Uxz9+XYu/itUCIAnELag/MI9J5yeWpoyH4A4ey8aRMd6Avvd1
+         +PcdyLf9eOcr0qp9xYfAQihCIIvNbMoSm/3SON6H3eObLRt5IumdjdKSIDfiEySgkUKQ
+         kvG1SCi9DebQ41cyTZNokScN2Eshkgxlcfei/lD0v38esWhM+Sh6Q+n3ULBHB/xuIE4g
+         ZKnA==
+X-Gm-Message-State: AGi0Puai0MLHseKk7BcaCrpT3wJST2RSbi8+kwAHAnUfs26mFK46NNXn
+        Rx/AHBolCloCYhF2P2R+cVU=
+X-Google-Smtp-Source: APiQypKvCI1atszqVmdui44gkRzNjRuvl0XeDay9w1RcX0HQfX4ZxaC9Ip6qE2cjuqz9J8NIMZa19g==
+X-Received: by 2002:a05:6512:304e:: with SMTP id b14mr2479583lfb.119.1586944773169;
+        Wed, 15 Apr 2020 02:59:33 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id m13sm12290424lfk.12.2020.04.15.02.59.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Apr 2020 02:59:32 -0700 (PDT)
+From:   chewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson-g12b-khadas-vim3: fix missing frddr_a node
+Date:   Wed, 15 Apr 2020 09:59:27 +0000
+Message-Id: <20200415095927.3780-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The first divisor for the sama5d2 is actually the gclk selector. Because
-the currently remaining divisors are fitting the use case, currently ensure
-it is skipped.
+From: Christian Hewitt <christianshewitt@gmail.com>
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+The frddr_a node was accidently deleted when creating a common dtsi for the
+Khadas VIM3/VIM3L boards, preventing audio from working on the VIM3.
+
+Fixes: 4f26cc1c96c9 ("arm64: dts: khadas-vim3: move common nodes into meson-khadas-vim3.dtsi")
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- drivers/clocksource/timer-atmel-tcb.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/clocksource/timer-atmel-tcb.c b/drivers/clocksource/timer-atmel-tcb.c
-index ccb77b9cb489..e373b02d509a 100644
---- a/drivers/clocksource/timer-atmel-tcb.c
-+++ b/drivers/clocksource/timer-atmel-tcb.c
-@@ -359,9 +359,15 @@ static struct atmel_tcb_config tcb_sam9x5_config = {
- 	.counter_width = 32,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+index c33e85fbdaba..c6c8caed8327 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+@@ -154,6 +154,10 @@
+ 	clock-latency = <50000>;
  };
  
-+static struct atmel_tcb_config tcb_sama5d2_config = {
-+	.counter_width = 32,
-+	.has_gclk = 1,
++&frddr_a {
++	status = "okay";
 +};
 +
- static const struct of_device_id atmel_tcb_of_match[] = {
- 	{ .compatible = "atmel,at91rm9200-tcb", .data = &tcb_rm9200_config, },
- 	{ .compatible = "atmel,at91sam9x5-tcb", .data = &tcb_sam9x5_config, },
-+	{ .compatible = "atmel,sama5d2-tcb", .data = &tcb_sama5d2_config, },
- 	{ /* sentinel */ }
+ &frddr_b {
+ 	status = "okay";
  };
- 
-@@ -426,7 +432,10 @@ static int __init tcb_clksrc_init(struct device_node *node)
- 
- 	/* How fast will we be counting?  Pick something over 5 MHz.  */
- 	rate = (u32) clk_get_rate(t0_clk);
--	for (i = 0; i < ARRAY_SIZE(atmel_tcb_divisors); i++) {
-+	i = 0;
-+	if (tc.tcb_config->has_gclk)
-+		i = 1;
-+	for (; i < ARRAY_SIZE(atmel_tcb_divisors); i++) {
- 		unsigned divisor = atmel_tcb_divisors[i];
- 		unsigned tmp;
- 
 -- 
-2.25.2
+2.17.1
 
