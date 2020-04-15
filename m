@@ -2,125 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D291A9A39
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D77F61A9B31
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896358AbgDOKNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 06:13:02 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:54001 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2896351AbgDOKM4 (ORCPT
+        id S2896441AbgDOKUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 06:20:17 -0400
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:38047 "EHLO
+        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2896456AbgDOKTx (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 06:12:56 -0400
+        Wed, 15 Apr 2020 06:19:53 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 4DB285800D5;
-        Wed, 15 Apr 2020 06:12:55 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 15 Apr 2020 06:12:55 -0400
+        by mailnew.west.internal (Postfix) with ESMTP id D4FD480E;
+        Wed, 15 Apr 2020 06:18:30 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 15 Apr 2020 06:18:31 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=s0d/RgblpxRTpjT4bbVue6KEZrZ
-        fSGVOQKbJKOBuu9A=; b=BaShE054Cu8Fnh/acc0XEM6aGr2IdsHSkCR9zQQPoWq
-        /aTmayYFa1i876Z7z82YolyKSCv+sSCevnTUFtxinPBkn8GKyebYvCT6pPJ9zRFr
-        +NJTV6cEhOa7ffWGY8hX8Qs8DSR/P/9odcyi/uCy/D6n9FbxLtigv5q+MvXjCQh/
-        ts+GP1GwXvzH9hoKVZUpDYB3VmicdPXaGhKrXUPsyACGXlU3xfHbxGb3MytL2eOB
-        ekvCku+QNFJQgDMw//fevXI8+zwzbY6vlSIIxg8yg4HK+X3u5VoHUa9bReq0Q0TP
-        YDFUvMiQW9A4UiSCoCOmSKv6rJ88u56CqdSmWl+Zaow==
+        :content-type:in-reply-to; s=fm2; bh=pC7yvVnFLmc0WK4x+uGmYIrKhsS
+        Qyhagqa5MEVVJuoE=; b=ULLZm674TrlR00qFVGl4UlTEmZkUgylnKVthGaTwAt0
+        DjCOV7pktVOwSCzccxqAKhsjAMNEyhl3ZUQY9wkJRR5fFE2wH6rpi3vVxN0yax8r
+        J34iuBfFBm5RCqGrCGH/59Ephj0/pLXLV9oMFclYOkyiJo4dEiw0IXS98WXIQ+j6
+        8/xfq5kJiMuYB/aLM+9K5oYe+v0bbOL5ye7EPrBT6oP1AZTc6zKcVBck/6m6QAvA
+        Ez069ZLmwWtxJmMOsDQ4fGtGw3MAAl+QhgHuPK9R/rRdAgQF0VhRhsXFdUSVoWjl
+        R053DN1zTZiVVFZ7y9WvjG6jRpR5NiZfYuGfOm5AwzQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=s0d/Rg
-        blpxRTpjT4bbVue6KEZrZfSGVOQKbJKOBuu9A=; b=oLHqxo4uH7p4gID2Qfnx+n
-        xTsOExk6MG4B0jJvQekYdqA0zg+qiJN/dSMI8PXd059NTmcBvXzqFaAQWsCvnnVE
-        r+QzsD4lKzgSnGO5DyJvru3RA0X5Iz4aHbpMe57n1iiY3z/99OPYCWFys2qZ+Uig
-        cTMw/2nF0nW/xekuYY04A3l9YlNpaNsJpDJGuHpuRtLscLwQbmUYzvrxutiIbsr6
-        oKVP1afJWmj/IwNwClKoABb1nQVSOPgQZC8fuhifL8oNF25OWpnxiWybTwUm9gnw
-        ojVbNiUrtarBNMy3BBcCCXPsfUd7SrGyLttkc8OvuckbN18ZCU4Yl4/+mTTH7apw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=pC7yvV
+        nFLmc0WK4x+uGmYIrKhsSQyhagqa5MEVVJuoE=; b=2jLE8cSCrndRhcMyJRIXYp
+        9Oqd15rB9A0XWXRXxdEUp36YNtwFQXYHhvl4Nit0Xk78Snox4o/fQF+3XKbburhn
+        BbkQh9y749aEtBdxBqdTfXl33zcnUiybiT/rTxpdJFLskuJAk1pUEnVkVqnUgn03
+        5OmLhqa2VsruiBMa3wUxSLkzi4UY2RbvsG4FcEy73xU3lLQeC9obXvRVLRdouFs1
+        mWeQvdr7PEym6V4fTfveDGtFdMwHSDl+9iLydtprk6lpg667oMzq6HfOXQWLiMyO
+        8+cuAY3UgashB0XuFL3iJp6uT7lTu0V68b7xIQ33RD/Mxpkhkx1qsqizEkx1lM2g
         ==
-X-ME-Sender: <xms:JN6WXkp19ZHWXzjjhwwmwbdOPcn0MVPAoGysA4CHDf6qu7mq_HtyOQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrfeefgddugecutefuodetggdotefrodftvf
+X-ME-Sender: <xms:dN-WXr5B5g0dJB_qAIyr1diBMMPEgyFJ_6wSII99rhOVgSkdA3pArw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrfeefgdduhecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
-    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:JN6WXod6O9K8OpB2X5BQN7PGUGIJznWSSS6cdbBC5H0J7w-kqNbZYA>
-    <xmx:JN6WXjqrHaeqthMijteG5ve3Eny-UFarS3pVNI9vFRFqYd7YHy2Dqw>
-    <xmx:JN6WXpFRhkOqF7jbtSROO4HBcn7D2xf4JnjK_iBuz8tNwSN2k6bYZA>
-    <xmx:J96WXrRWOVF0KWZkQ3adnheXFK8UNYgZRjktsI970Lrnzt5ahKFV-A>
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
+    epkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
+    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
+    hordhtvggthh
+X-ME-Proxy: <xmx:dN-WXkC0Zvx98MDbKBdxtP2zHAMkk-q9FYjODdbx8wCX20I-xrmZaQ>
+    <xmx:dN-WXv7Q7Iwc7NK9EuaSlDOcHTP2JjeTeU_n7aJZVKYwlGnELXVdjw>
+    <xmx:dN-WXguv48EFFIy6BmZGzToHbI_Hm9DapW3UIcc5xIVQql0HH677qw>
+    <xmx:dt-WXsqvYP13Ihx95XMcjVpZCS6uesVoG67QodBrI8siSl_pevgH4cx-Ogs>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3FE073060060;
-        Wed, 15 Apr 2020 06:12:52 -0400 (EDT)
-Date:   Wed, 15 Apr 2020 12:12:51 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id A651E3280067;
+        Wed, 15 Apr 2020 06:18:28 -0400 (EDT)
+Date:   Wed, 15 Apr 2020 12:18:27 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        James Hogan <jhogan@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Philipp Rossak <embed3d@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        openpvrsgx-devgroup@letux.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com, linux-mips@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v6 01/12] dt-bindings: add img,pvrsgx.yaml for
- Imagination GPUs
-Message-ID: <20200415101251.o3wi5t6xvf56xmhq@gilmour.lan>
-References: <cover.1586939718.git.hns@goldelico.com>
- <06fb6569259bb9183d0a0d0fe70ec4f3033b8aab.1586939718.git.hns@goldelico.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Tomasz Figa <tfiga@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v6 1/3] media: dt-bindings: ov8856: Document YAML bindings
+Message-ID: <20200415101827.owf5babnigev2vit@gilmour.lan>
+References: <20200407123232.ktvaifhqntgzvkap@gilmour.lan>
+ <CAG3jFysSrZJRE2TvL0bWoRFNnscgDGj8yGr-iwWBm4=1wMbJ9A@mail.gmail.com>
+ <20200407163916.GL6127@valkosipuli.retiisi.org.uk>
+ <CAAFQd5BGFB5znb9QyyPVL47kc809Ktu33bssvqg5eA-WwvMgOw@mail.gmail.com>
+ <20200407172035.GM6127@valkosipuli.retiisi.org.uk>
+ <20200408122127.i27hrmjh3pbjeulk@gilmour.lan>
+ <CAAFQd5DNyQra-XksVaSfT_FCkOHTzm9mbn+tMd1vACV=pb9_8g@mail.gmail.com>
+ <20200408134315.a7cemmto6bi26arg@gilmour.lan>
+ <20200408152857.GO6127@valkosipuli.retiisi.org.uk>
+ <20200408153051.GP6127@valkosipuli.retiisi.org.uk>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jbdyoswmyxbgpiz2"
+        protocol="application/pgp-signature"; boundary="nyrshlxfcxcrev3h"
 Content-Disposition: inline
-In-Reply-To: <06fb6569259bb9183d0a0d0fe70ec4f3033b8aab.1586939718.git.hns@goldelico.com>
+In-Reply-To: <20200408153051.GP6127@valkosipuli.retiisi.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jbdyoswmyxbgpiz2
+--nyrshlxfcxcrev3h
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hi,
-
-On Wed, Apr 15, 2020 at 10:35:08AM +0200, H. Nikolaus Schaller wrote:
-> The Imagination PVR/SGX GPU is part of several SoC from
-> multiple vendors, e.g. TI OMAP, Ingenic JZ4780, Intel Poulsbo,
-> Allwinner A83 and others.
+On Wed, Apr 08, 2020 at 06:30:51PM +0300, Sakari Ailus wrote:
+> Cc'ing Laurent as well.
 >
-> With this binding, we describe how the SGX processor is
-> interfaced to the SoC (registers, interrupt etc.).
->
-> In most cases, Clock, Reset and power management is handled
-> by a parent node or elsewhere (e.g. code in the driver).
+> On Wed, Apr 08, 2020 at 06:28:57PM +0300, Sakari Ailus wrote:
+> > Hi Maxime,
+> >
+> > On Wed, Apr 08, 2020 at 03:43:15PM +0200, Maxime Ripard wrote:
+> > > On Wed, Apr 08, 2020 at 02:35:28PM +0200, Tomasz Figa wrote:
+> > > > On Wed, Apr 8, 2020 at 2:21 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> > > > > On Tue, Apr 07, 2020 at 08:20:35PM +0300, Sakari Ailus wrote:
+> > > > > > On Tue, Apr 07, 2020 at 06:46:06PM +0200, Tomasz Figa wrote:
+> > > > > > > On Tue, Apr 7, 2020 at 6:40 PM Sakari Ailus <sakari.ailus@iki.fi> wrote:
+> > > > > > > >
+> > > > > > > > On Tue, Apr 07, 2020 at 05:47:41PM +0200, Robert Foss wrote:
+> > > > > > > > > On Tue, 7 Apr 2020 at 14:32, Maxime Ripard <maxime@cerno.tech> wrote:
+> > > > > > > > > >
+> > > > > > > > > > Hi Robert,
+> > > > > > > > > >
+> > > > > > > > > > On Tue, Apr 07, 2020 at 01:29:05PM +0200, Robert Foss wrote:
+> > > > > > > > > > > On Tue, 7 Apr 2020 at 10:36, Maxime Ripard <maxime@cerno.tech> wrote:
+> > > > > > > > > > > > On Mon, Apr 06, 2020 at 11:35:07AM +0300, Sakari Ailus wrote:
+> > > > > > > > > > > > > > But that 19.2MHz is not a limitation of the device itself, it's a
+> > > > > > > > > > > > > > limitation of our implementation, so we can instead implement
+> > > > > > > > > > > > > > something equivalent in Linux using a clk_set_rate to 19.2MHz (to make
+> > > > > > > > > > > > > > sure that our parent clock is configured at the right rate) and the
+> > > > > > > > > > > > > > clk_get_rate and compare that to 19.2MHz (to make sure that it's not
+> > > > > > > > > > > > > > been rounded too far apart from the frequency we expect).
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > This is doing exactly the same thing, except that we don't encode our
+> > > > > > > > > > > > > > implementation limitations in the DT, but in the driver instead.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > What I really wanted to say that a driver that doesn't get the clock
+> > > > > > > > > > > > > frequency from DT but still sets that frequency is broken.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > This frequency is highly system specific, and in many cases only a certain
+> > > > > > > > > > > > > frequency is usable, for a few reasons: On many SoCs, not all common
+> > > > > > > > > > > > > frequencies can be used (e.g. 9,6 MHz, 19,2 MHz and 24 MHz; while others
+> > > > > > > > > > > > > are being used as well), and then that frequency affects the usable CSI-2
+> > > > > > > > > > > > > bus frequencies directly --- and of those, only safe, known-good ones
+> > > > > > > > > > > > > should be used. IOW, getting the external clock frequency wrong typically
+> > > > > > > > > > > > > has an effect that that none of the known-good CSI-2 bus clock frequencies
+> > > > > > > > > > > > > are available.
+> > > > > > > > > > > >
+> > > > > > > > > > > > So clock-frequency is not about the "Frequency of the xvclk clock in
+> > > > > > > > > > > > Hertz", but the frequency at which that clock must run on this
+> > > > > > > > > > > > particular SoC / board to be functional?
+> > > > > > > > > > > >
+> > > > > > > > > > > > If so, then yeah, we should definitely keep it, but the documentation
+> > > > > > > > > > > > of the binding should be made clearer as well.
+> > > > > > > > > > >
+> > > > > > > > > > > Alright so, let me summarise the desired approach then.
+> > > > > > > > > >
+> > > > > > > > > > There's a separate discussion on the same topic here:
+> > > > > > > > > > https://lore.kernel.org/linux-media/20200407122106.GD4751@pendragon.ideasonboard.com/
+> > > > > > > > >
+> > > > > > > > > Thanks for the link.
+> > > > > > > > >
+> > > > > > > > > >
+> > > > > > > > > > > ACPI:
+> > > > > > > > > > >   - Fetch the "clock-frequency" property
+> > > > > > > > > > >   - Verify it to be 19.2Mhz
+> > > > > > > > > > >
+> > > > > > > > > > > DT:
+> > > > > > > > > > >   - Fetch the "clock-frequency" property
+> > > > > > > > > > >   - Verify it to be 19.2Mhz
+> > > > > > > > > > >   - Get xvclk clock
+> > > > > > > > > > >   - Get xvclk clock rate
+> > > > > > > > > > >   - Verify xvclk clock rate to be 19.2Mhz
+> > > > > > > > > >
+> > > > > > > > > > The current status is that you should
+> > > > > > > > > > 's/clock-frequency/link-frequencies/', and in order to replace
+> > > > > > > > > > assigned-clock-rates, you'll want to have a clk_set_rate to 19.2MHz
+> > > > > > > > > > between steps 3 and 4
+> > > > > > > > >
+> > > > > > > > > Would we want to 's/clock-frequency/link-frequencies/' for ACPI too?
+> > > > > > > > > I imagine that would cause some breakage.
+> > > > > > > >
+> > > > > > > > It would, yes, and it would be no more correct on DT either.
+> > > > > > > >
+> > > > > > > > There are basically two possibilities here; either use the clock-frequency
+> > > > > > > > property and set the frequency, or rely on assigned-clock-rates, and get
+> > > > > > > > the frequency instead.
+> > > > > > > >
+> > > > > > > > The latter, while I understand it is generally preferred, comes with having
+> > > > > > > > to figure out the register list set that closest matches the frequency
+> > > > > > > > obtained. The former generally gets around this silently by the clock
+> > > > > > > > driver setting the closest frequency it can support.
+> > > > > > >
+> > > > > > > Wouldn't the former actually cause problems, because the closest
+> > > > > > > frequency the clock driver can support could be pretty far from the
+> > > > > > > one requested? (E.g. 19.2 MHz vs 24 MHz) The driver needs to check the
+> > > > > > > resulting frequency anyway.
+> > > > > >
+> > > > > > That's possible, yes; in this case there wouldn't be a guarantee the
+> > > > > > frequency wouldn't be far off.
+> > > > >
+> > > > > assigned-clock-rates is really fragile... There's zero guarantee on
+> > > > > how far the actual rate is going to be from the asked one, but more
+> > > > > importantly you have zero guarantee on the time frame that rate is
+> > > > > going to be enforced for.
+> > > >
+> > > > Is there such a guarantee if clk_set_rate() is called?
+> > >
+> > > with clk_set_rate itself, no, but...
+> > >
+> > > > > It's simply going to change the rate as a one-off thing, and if
+> > > > > there's the next millisecond someone else is going to change its rate
+> > > > > one way or another, it's going to do so and you won't have any
+> > > > > notification.
+> > >
+> > > You can get notified, and you can use clk_set_rate_exclusive if you
+> > > *really* want to enforce it.
+> >
+> > Is the conclusion then we should go back to relying on the clock-frequency
+> > property?
 
-Wouldn't the "code in the driver" still require the clock / reset /
-power domain to be set in the DT?
+clock-frequency or link-frequencies. link-frequencies seems to be a
+better fit here, but we don't really have the choice for older
+bindings.
+
+> > This has been discussed multiple times over the years, and I don't really
+> > disagree with the above. The frequency is typically indeed hand-picked for
+> > the hardware, and no other frequency should be used in any circumstances.
+> >
+> > No sensor driver I've seen has used clk_set_rate_exclusive() but I guess
+> > they should. The absence of practical problems has been probably because of
+> > two factors; firstly, these are typically clocks dedicated to the sensors
+> > and secondly, good luck.
+
+My point was that at least with handling the clock rate within the
+driver (as opposed to assigned-clock-rates) you have multiple options
+in dealing with changing colck rates / parents (Modelling the sensor
+clock as a clock itself, using clk_set_rate_exclusive, using a
+notifier, etc).. Some are more intrusive to the rest of the system
+than others (especially clk_set_rate_exclusive), so I'm not really
+advocating for any here, but we should make sure we have them in the
+first place.
 
 Maxime
 
---jbdyoswmyxbgpiz2
+--nyrshlxfcxcrev3h
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXpbeIwAKCRDj7w1vZxhR
-xU7VAP0ctDLTdRYVZSwO4CYzL5No4vlTBQEUBes1IQ1qFIdPwwD/XfAzl1dg/Sh8
-EZ+Ln+utszFGNQD3stVRlNmI74tEyAs=
-=V+IJ
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXpbfcwAKCRDj7w1vZxhR
+xZr+AQDkW0ChusXkCuuZ1ekMimOwuNYowZ2jcYuxc4OvYyQLEQEAm7ZbuCemshiW
+pfvKQV+PU9QKzQ9cuhAar07m8yiUfwI=
+=+VzY
 -----END PGP SIGNATURE-----
 
---jbdyoswmyxbgpiz2--
+--nyrshlxfcxcrev3h--
