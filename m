@@ -2,69 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3481A93AF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 08:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE2561A93E0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 09:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731479AbgDOGxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 02:53:34 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:60749 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728698AbgDOGxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 02:53:33 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id S2404622AbgDOHLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 03:11:06 -0400
+Received: from gproxy1-pub.mail.unifiedlayer.com ([69.89.25.95]:56105 "EHLO
+        gproxy1-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2404013AbgDOHLE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 03:11:04 -0400
+X-Greylist: delayed 889 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Apr 2020 03:11:04 EDT
+Received: from CMGW (unknown [10.9.0.13])
+        by gproxy1.mail.unifiedlayer.com (Postfix) with ESMTP id 3D6A14DA36B17
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 00:56:11 -0600 (MDT)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id Obxwj6lK6toKZObxyjkeJR; Wed, 15 Apr 2020 00:56:11 -0600
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.2 cv=AaTBJzfG c=1 sm=1 tr=0
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=cl8xLZFz6L8A:10
+ a=oz0wMknONp8A:10 a=iGRvdBzYb-_JTU_o6kgA:9 a=QEXdDO2ut3YA:10
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=ALV3zzlDkukeDYnEo1NPcnPQetl1UF6t3xq2o+loRlk=; b=QURp4N+8jazK9kQG9PESkXsDQA
+        b2enx04j9CT+C1fHKkwwUt4o9HLxj2BflmXiY83vnfk0vgcS0uAaKcLN1a26MNrfHR4NETXARaqi2
+        ih84tBHgLD2lwD4W6EaQOz10dv8CfN/t3qfsJmpmUXQ37xk01FyuaAn1jsc4QjpCFnDz0c9Yfwdtu
+        vMxFGZbpTYYCFBTJk6WAi9nfManbgxeLpUlq9sMxrvH5yx9Yt8ja5O5TyMy+tVAKwLRKchxjNK9BX
+        MNhdSdHjJUVK9qnhhxieVrtI0rsiTxyFbvjv5NZeLnqzrIDhnY0B01gvrie+VOavCxHHBow8M/WEE
+        EZykbnvA==;
+Received: from p5b3f6ccc.dip0.t-ipconnect.de ([91.63.108.204]:49262 helo=localhost.localdomain)
+        by md-in-79.webhostbox.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
         (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1jObv3-0005ZB-GO; Wed, 15 Apr 2020 08:53:09 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1jObuz-00075V-Lb; Wed, 15 Apr 2020 08:53:05 +0200
-Date:   Wed, 15 Apr 2020 08:53:05 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Cc:     devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Richard Fontana <rfontana@redhat.com>,
-        Allison Randal <allison@lohutok.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] iio: documentation ltc2632_chip_info add
- num_channels
-Message-ID: <20200415065305.tltdx4w6pz3lexgx@pengutronix.de>
-References: <20200414235609.20125-1-chris.ruehl@gtsys.com.hk>
- <20200414235609.20125-2-chris.ruehl@gtsys.com.hk>
+        (envelope-from <saravanan@linumiz.com>)
+        id 1jObxv-0000eI-91; Wed, 15 Apr 2020 06:56:07 +0000
+From:   Saravanan Sekar <saravanan@linumiz.com>
+To:     robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, broonie@kernel.org,
+        lgirdwood@gmail.com, saravanan@linumiz.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: [PATCH 0/4] Add driver for wsen-itds accelerometer sensor
+Date:   Wed, 15 Apr 2020 08:55:31 +0200
+Message-Id: <20200415065535.7753-1-saravanan@linumiz.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200414235609.20125-2-chris.ruehl@gtsys.com.hk>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 91.63.108.204
+X-Source-L: No
+X-Exim-ID: 1jObxv-0000eI-91
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: p5b3f6ccc.dip0.t-ipconnect.de (localhost.localdomain) [91.63.108.204]:49262
+X-Source-Auth: saravanan@linumiz.com
+X-Email-Count: 3
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 15, 2020 at 07:56:02AM +0800, Chris Ruehl wrote:
-> The documentation for ltc_2632_chip_info missed the desciption for the
-> num_channels. This privial patch add it.
+The patch series add support for wurth elektronic wsen-itds 3-axis
+accelerometer. Driver supports the acceleration, temperature data reading and
+supports configuring of output data rate, operating mode and scale.
 
-I don't know the work privial. Did you mean trivial? s/add/adds/
+Thanks,
+Saravanan
 
-Other than that:
+Saravanan Sekar (4):
+  dt-bindings: Add an entry for WÃ¼rth Elektronik, we
+  dt-bindings: iio: add document bindings for wsen-itds accel sensor
+  iio: accel: Add driver for wsen-itds accelerometer sensor
+  MAINTAINERS: Add entry for wsen-itds accelerometer sensor
 
-Fixes: 9f15a4a0adc9 ("iio: dac: ltc2632: add support for LTC2636 family")
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-
-Thanks
-Uwe
+ .../bindings/iio/accel/we,wsen-itds.yaml      |  53 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/accel/Kconfig                     |  14 +
+ drivers/iio/accel/Makefile                    |   1 +
+ drivers/iio/accel/wsen-itds.c                 | 978 ++++++++++++++++++
+ 6 files changed, 1054 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
+ create mode 100644 drivers/iio/accel/wsen-itds.c
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+2.17.1
+
