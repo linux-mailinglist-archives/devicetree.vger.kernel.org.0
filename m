@@ -2,192 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33BDA1A9B20
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DAB21A9A71
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896506AbgDOKm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 06:42:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2896490AbgDOKXv (ORCPT
+        id S2408616AbgDOK2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 06:28:46 -0400
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:38675 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2408615AbgDOK2d (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 06:23:51 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3633EC03C1AE;
-        Wed, 15 Apr 2020 03:23:27 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id l11so2209755lfc.5;
-        Wed, 15 Apr 2020 03:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=jKeaCgFpnmK28M7xOrZHtgGEs75wSDfctsMr7/8EUQ4=;
-        b=u0aNUsA/ajvK6mw+4oTArTjesmheWK9IOjPXwcTInScU0ziIdquqPvAoRZ7JWHtU3e
-         azgL3J3mFyNQ45f8l01s2gr+SSy3qihJSborjmg4ASd2rSEMBbhq0/ELiC+24ngeR37Z
-         QOOOJn6nml0YT4MCSCwiFivQdSppsMUYq4y3blVHh9Vdtd4vgzVEAdm+DZnZ4EqT8mZC
-         qEwXBMqVmVuBQeOkxPUkeg+I3OXA7KgWg1mHwKplqBn1diR32MgW/e2JzccROABQ6H5h
-         5kcu1b0A0piOrKPAnsFZD9qUeMfzuMRVoUEJiC6TlLbm6ENviT5U66hzt5bR4JngrtJL
-         91Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=jKeaCgFpnmK28M7xOrZHtgGEs75wSDfctsMr7/8EUQ4=;
-        b=CIGjjRbY5C3nwUsFzGp1c/+WTP6puPVI8PlkfEj17GJwI1RkntVg1PA/YZkudxcEja
-         zQEjUP/VQVOnfqbqICwWC6FE7LzeYouMowml4bsMZlzqYEpddEW1DsCE6bib/2r19/hI
-         Nx+Zs0Wt3LY+ysZIJzU2RIuqXwj850cBLzDDCgvDTayzvU37hAZFRyGxMYRFGMovW1JW
-         gr9N6SddCAaqFgea//oQwmmZSRStXgcMoOiJRHvSkET6omVOxFKxO8eCT/JXPyRabf4Z
-         fLLp9B5RpVdDqR6g28U6GyoKQI+ZriPz+8FsDVyIBnKIO73ZYglu7mZ0WuOJgLVsFo6l
-         Popg==
-X-Gm-Message-State: AGi0PuYWli4sHWBxjPl6C3N+efKb+MTcnBtCps7PcEIZvzFvTb7hWDFL
-        ODoTFJakNFlEPsJCPFdEqTPYwHGi
-X-Google-Smtp-Source: APiQypINp9dsLX1m+G4LnnN392ZDggMCz6RWVuPhP53iuSY5f9+1hGDl1lDNmn3boXKr/63qJ5pMqg==
-X-Received: by 2002:a19:c8cf:: with SMTP id y198mr2545251lff.197.1586946205638;
-        Wed, 15 Apr 2020 03:23:25 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id x23sm12442810lfe.51.2020.04.15.03.23.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2020 03:23:24 -0700 (PDT)
-From:   chewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: sm1-khadas-vim3l: add audio playback to vim3l
-Date:   Wed, 15 Apr 2020 10:23:20 +0000
-Message-Id: <20200415102320.4606-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Wed, 15 Apr 2020 06:28:33 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 01926896;
+        Wed, 15 Apr 2020 06:28:23 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 15 Apr 2020 06:28:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=RoUMH5uplHJzYnyqDXTZLy21XNl
+        /ku4HaCRXVlORw0M=; b=HysOTXkWgZt8klXzuHbITMV6pPNvsM3fbLVH+dZNxuo
+        P02L58NPlrhVbP/aodTlSufTMf4U12br9zammRkmrFT0KIJXRA4VKesfQl5qKg0y
+        me7hvY/yRTHge4za2aWQSU4VT3R1bZBL7wLwATk/K+kGCATENISVZmQ1b6BI8EiR
+        656hT075HCC6WP/SNOIPjwbbPQbnKqKPo+ka4xZNyT9RA3ucTwjsforP9e0aV9qF
+        6OgKgMq/U0elSDcrvUThoyYovfyPggbL03z5Z0zMFNN/v9G59H96bm22kMMc/N/a
+        /0tA8+fFGcLacD7Xlo91KaGpF8euv0BqcVOD7Q76UAg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=RoUMH5
+        uplHJzYnyqDXTZLy21XNl/ku4HaCRXVlORw0M=; b=wGcySNYHWD23Ogd4P+7Wqw
+        ZL2FM8pu5ihO9+vIcaW4vKpIyJOjDnWY06NI0TKgMOexeXT0/XBjCq30YIiFZCb0
+        5WOk99ppUtI4Gs6nM38GwckmtFBcUXIHrvSt7MO0wLWOJ0TogKql+TlXWt0eeTNF
+        JU3km9EmE2zcNM9Dk90jUv1mtcBnIUxofckup125Szf8ijLTI1mNzeCfWDiweyP5
+        QGsz+irvZpDcRlu0QG+F+Us/WpLZul5ilJxj7e/B7pcCQlCGOv8RGZ2jS2DbjY5z
+        HYCGFoTOj2PLvZUAbXpOh49RCBV7mZdJTnTgZ+fSkdUg4j8tCFMk8xY1nWPM+hfw
+        ==
+X-ME-Sender: <xms:x-GWXqwZmpuUFCMkuvUlpab-GVJ1uYjfCiFZputQ7CPELfeHRbDwZA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrfeefgddujecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
+    epghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
+    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
+    hordhtvggthh
+X-ME-Proxy: <xmx:x-GWXh-v4_ktdhiqILsyNkYz8Cseb7nwQR9b5LnAqkIgToZSBcp0hQ>
+    <xmx:x-GWXoxrUHggCrh4H-FChfczyTyR-IrpebLyWBG79c_VIl_g1IT12g>
+    <xmx:x-GWXppqC2TA_QOoZTo-mT68PoXBxCWngX58qZBXk0O2Gy1WutcDjw>
+    <xmx:x-GWXsBL4SCr4q_SQ0X3-HmNBoramB9RqFwhcsatm_ceUg-2LZeskA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id D9AA8328005A;
+        Wed, 15 Apr 2020 06:28:22 -0400 (EDT)
+Date:   Wed, 15 Apr 2020 12:28:21 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v2 0/7] Add support for Allwinner H6 DVFS
+Message-ID: <20200415102821.t4vm5y7zggxc3ezm@gilmour.lan>
+References: <20200405173601.24331-1-peron.clem@gmail.com>
+ <20200406081007.k6wlaampgbe46yts@gilmour.lan>
+ <CAJiuCccPxnW-YMjENr5-_XMMu_gs5pRnCtYvpXQtHTAVj1QQqw@mail.gmail.com>
+ <CAJiuCcdqv=mGmUvZ8=35P7fC=sePCpXFWw0_K7rEH+qPQT7W+g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cfxk5euq6ylkqauh"
+Content-Disposition: inline
+In-Reply-To: <CAJiuCcdqv=mGmUvZ8=35P7fC=sePCpXFWw0_K7rEH+qPQT7W+g@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
 
-Add the sound and related audio nodes to the VIM3L board.
+--cfxk5euq6ylkqauh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 88 +++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Hi Clement,
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index dbbf29a0dbf6..b900a433ef7a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -8,6 +8,7 @@
- 
- #include "meson-sm1.dtsi"
- #include "meson-khadas-vim3.dtsi"
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
- 
- / {
- 	compatible = "khadas,vim3l", "amlogic,sm1";
-@@ -31,6 +32,69 @@
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "SM1-KHADAS-VIM3L";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
- };
- 
- &cpu0 {
-@@ -61,6 +125,18 @@
- 	clock-latency = <50000>;
- };
- 
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
- &pwm_AO_cd {
- 	pinctrl-0 = <&pwm_ao_d_e_pins>;
- 	pinctrl-names = "default";
-@@ -93,3 +169,15 @@
- 	phy-names = "usb2-phy0", "usb2-phy1";
- };
-  */
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
--- 
-2.17.1
+On Mon, Apr 13, 2020 at 03:37:19PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> On Mon, 6 Apr 2020 at 11:07, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.co=
+m> wrote:
+> > On Mon, 6 Apr 2020 at 10:10, Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Sun, Apr 05, 2020 at 07:35:54PM +0200, Cl=C3=A9ment P=C3=A9ron wro=
+te:
+> > > > Now that required drivers are merged we can contibute on DVFS
+> > > > support for Allwinner H6.
+> > > >
+> > > > This serie is based on Yangtao Li serie[0] and Ond=C5=99ej Jirman w=
+ork[1].
+> > > >
+> > > > Most of the OPP tables are taken from original vendor kernel[2].
+> > > > Plus there is a new CPU frequencies at 1.6GHz, 1.7GHz and 1.8GHz.
+> > > >
+> > > > I wrote a simple script to randomly set a frequency during
+> > > > a random time[3].
+> > >
+> > > If you ever need to do that ever again, cpufreq-ljt-stress-test (found
+> > > here https://github.com/ssvb/cpuburn-arm) has proven to be very
+> > > reliable to detect cpufreq related issues. stress-ng might not be
+> > > enough since the (at least older) Allwinner SoCs tend to create cache
+> > > corruption when undervolted, and that might not be unnoticed by
+> > > stress-ng but will be catched by cpufreq-ljt-stress-test.
+>
+> The test seems good (see result below) :
+>
+> # cpufreq-ljt-stress-test
+> Creating './whitenoise-1920x1080.jpg' ... done
+> CPU stress test, which is doing JPEG decoding by libjpeg-turbo
+> at different cpufreq operating points.
+>
+> Testing CPU 0
+>  1800 MHz ............................................................ OK
+>  1704 MHz ............................................................ OK
+>  1608 MHz ............................................................ OK
+>  1488 MHz ............................................................ OK
+>  1320 MHz ............................................................ OK
+>  1080 MHz ............................................................ OK
+>   888 MHz ............................................................ OK
+>   816 MHz ............................................................ OK
+>   720 MHz ............................................................ OK
+>   480 MHz ............................................................ OK
+>
+> Testing CPU 1
+>  1800 MHz ............................................................ OK
+>  1704 MHz ............................................................ OK
+>  1608 MHz ............................................................ OK
+>  1488 MHz ............................................................ OK
+>  1320 MHz ............................................................ OK
+>  1080 MHz ............................................................ OK
+>   888 MHz ............................................................ OK
+>   816 MHz ............................................................ OK
+>   720 MHz ............................................................ OK
+>   480 MHz ............................................................ OK
+>
+> Testing CPU 2
+>  1800 MHz ............................................................ OK
+>  1704 MHz ............................................................ OK
+>  1608 MHz ............................................................ OK
+>  1488 MHz ............................................................ OK
+>  1320 MHz ............................................................ OK
+>  1080 MHz ............................................................ OK
+>   888 MHz ............................................................ OK
+>   816 MHz ............................................................ OK
+>   720 MHz ............................................................ OK
+>   480 MHz ............................................................ OK
+>
+> Testing CPU 3
+>  1800 MHz ............................................................ OK
+>  1704 MHz ............................................................ OK
+>  1608 MHz ............................................................ OK
+>  1488 MHz ............................................................ OK
+>  1320 MHz ............................................................ OK
+>  1080 MHz ............................................................ OK
+>   888 MHz ............................................................ OK
+>   816 MHz ............................................................ OK
+>   720 MHz ............................................................ OK
+>   480 MHz ............................................................ OK
+>
+> Overall result : PASSED
 
+Awesome, thanks for taking the time to do it :)
+
+Maxime
+
+--cfxk5euq6ylkqauh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXpbhxQAKCRDj7w1vZxhR
+xeJFAQCRpXa5/WGOWfd5YXXrqOCzk7cnB4h+JQSnMqmMLY0Z2QD9GOOUOwmBTZj2
+n3nqsY0/ztwdWeKtudJpz9pTOa6zxAE=
+=VDi4
+-----END PGP SIGNATURE-----
+
+--cfxk5euq6ylkqauh--
