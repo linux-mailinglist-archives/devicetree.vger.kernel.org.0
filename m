@@ -2,121 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DADC1A982D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294341A98C4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2635969AbgDOJPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 05:15:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46468 "EHLO
+        id S2895466AbgDOJZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 05:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2635933AbgDOJPa (ORCPT
+        by vger.kernel.org with ESMTP id S2895392AbgDOJZj (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 05:15:30 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87350C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 02:15:29 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id h25so2836886lja.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 02:15:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=69T9ZGqlIy7aImGgwrs75/hfGvsilwincFfwWiQFobg=;
-        b=QmYfPFaxi91fzgnYBmzUnbNLZxOG0Qvv9XHtQXYm/D+sTky/Yc25iONfxBlY/7wqsB
-         fRtQYUCgyxgK4p3vjoCdR1E4K1nsTfSz3bWGNyVBA7FGlzJ7W7xAZUor5i5MsgsA0hU6
-         1sVmcbUlUP1cDxtb+3jC+HIaRfadnrNzRFcNUoV22EicSEE5dlVf6RJieO6E9yC3PemP
-         qMb4hRiVMAXxE1MiwCuSopLulXmT+VCKUbpRSEH+BCrvLMZ4tKOYKabhdtdCWnXgNuRk
-         9lpcy+vti6/lVgJJk2gVDZg/BOarCjaD0Ak6NlGy7RcdUdyYk3SImWtP+7AMtEZqo2NA
-         +piQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=69T9ZGqlIy7aImGgwrs75/hfGvsilwincFfwWiQFobg=;
-        b=IWnFOjUqLqsHMWMOILzSsZl4DdSU9BR7zVkD+MaKfGzKniUW6o1p+dXcH6hoM7UBaR
-         p6fdTLF1JWJ1c2p0u3DW+vV2cHhnUdEaa+uIQ6u+DHgxg6DrE+BwJYZO0aGCfwA8q2+w
-         q/BcRpNmDmRdlP4qE0MzwKM8HRU3cUevfFweNjtYl+TYOGIfuYOWyag7wrb3eBRB3/Se
-         mhAUcS4ZadhghZEYFaY8tvZUJPC5jcj7BI2u5PctSxj+E6DTd7XjgjcM++9NEJa+ByCf
-         05ybplT6B8zMlTsNyA9AtfZF4fczdFo9Ly+jPvdqqV/VAOJrhgiRoJzU7ZnEGJl2i+dA
-         NGjA==
-X-Gm-Message-State: AGi0PubrX3Bdyzf0dJuBE/dizgXoOeb0sJPkOBpXB7uGpoNknOn0xBdW
-        CIulKczKqzi8LdJoXHNAQp8mkQ==
-X-Google-Smtp-Source: APiQypJt4bgg1yrZutHX1jnCNUTiEGk5PA6dcO1xYRoqGEwzcnoywOgKJNgJRfEssnCyTOQijG6tmA==
-X-Received: by 2002:a2e:6c0a:: with SMTP id h10mr2542581ljc.195.1586942127891;
-        Wed, 15 Apr 2020 02:15:27 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:81b:6e8d:a1dd:9870:4166:dead? ([2a00:1fa0:81b:6e8d:a1dd:9870:4166:dead])
-        by smtp.gmail.com with ESMTPSA id m13sm12192031lfk.12.2020.04.15.02.15.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Apr 2020 02:15:27 -0700 (PDT)
-Subject: Re: [PATCH v6 08/12] arm: dts: s5pv210: Add G3D node
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        James Hogan <jhogan@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Philipp Rossak <embed3d@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        openpvrsgx-devgroup@letux.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com, linux-mips@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Jonathan Bakker <xc-racer2@live.ca>
-References: <cover.1586939718.git.hns@goldelico.com>
- <b6733f80546bf3e6b3799f716b9c8e0f407de03d.1586939718.git.hns@goldelico.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <b6ffa74a-acef-f329-0d9e-981483499e16@cogentembedded.com>
-Date:   Wed, 15 Apr 2020 12:15:17 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Wed, 15 Apr 2020 05:25:39 -0400
+X-Greylist: delayed 545 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Apr 2020 02:25:39 PDT
+Received: from ns.pmeerw.net (ns.pmeerw.net [IPv6:2001:1b60:2:23:1033:103:0:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51540C061A0C
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 02:25:39 -0700 (PDT)
+Received: by ns.pmeerw.net (Postfix, from userid 1000)
+        id BF03DE01FA; Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pmeerw.net; s=mail;
+        t=1586942181; bh=ncylDpaKZtZ3lQN73jxuqouhPNIAVzjx8bLjlP9nz5k=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=mhtg0s+g0ilGFTzcsBfizbiURCnXTRRY1jX0Qb/JFJFYM5LSyE8sWSn8+3NVJlVCO
+         5AS6xpO0shx+tUAqCmjgRX32ZBqzEpbLUHcmnrZXCGo7VrGoKGCsitOxujArgSoBuR
+         HMc+e0mDtENmCVSP23nb8IED4MeTFgThhkbL/h5c=
+Received: from localhost (localhost [127.0.0.1])
+        by ns.pmeerw.net (Postfix) with ESMTP id B46E9E019D;
+        Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
+Date:   Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
+From:   Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+To:     Saravanan Sekar <saravanan@linumiz.com>
+cc:     robh+dt@kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: iio: add document bindings for wsen-itds
+ accel sensor
+In-Reply-To: <20200415065535.7753-3-saravanan@linumiz.com>
+Message-ID: <alpine.DEB.2.21.2004151114590.22614@vps.pmeerw.net>
+References: <20200415065535.7753-1-saravanan@linumiz.com> <20200415065535.7753-3-saravanan@linumiz.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-In-Reply-To: <b6733f80546bf3e6b3799f716b9c8e0f407de03d.1586939718.git.hns@goldelico.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="324302256-1364362776-1586942181=:22614"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On 15.04.2020 11:35, H. Nikolaus Schaller wrote:
+--324302256-1364362776-1586942181=:22614
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-> From: Jonathan Bakker <xc-racer2@live.ca>
+On Wed, 15 Apr 2020, Saravanan Sekar wrote:
+
+comments below, some typos
+
+> Add device tree binding information for wsen-itds accel sensor driver.
 > 
-> to add support for SGX540 GPU.
-> 
-> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
 > ---
->   arch/arm/boot/dts/s5pv210.dtsi | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
+>  .../bindings/iio/accel/we,wsen-itds.yaml      | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
 > 
-> diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
-> index 2ad642f51fd9..e7fc709c0cca 100644
-> --- a/arch/arm/boot/dts/s5pv210.dtsi
-> +++ b/arch/arm/boot/dts/s5pv210.dtsi
-> @@ -512,6 +512,21 @@ vic3: interrupt-controller@f2300000 {
->   			#interrupt-cells = <1>;
->   		};
->   
-> +		g3d: g3d@f3000000 {
+> diff --git a/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml b/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
+> new file mode 100644
+> index 000000000000..165cdf71966d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/we,wsen-itds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Würth Elektronik WSEN-ITDS triaxial acceleration sensor
+> +
+> +maintainers:
+> +  - Saravanan Sekar <saravanan@linumiz.com>
+> +
+> +description: |
+> +  Acceleration and temperature iio sensors with an i2c interface.
 
-    Should be named generically, "gpu@f3000000", according to the DT spec 0.2, 
-section 2.2.2. It's either "gpu" or "display" TTBOMK...
+sensor
 
-[...]
+> +  The sensor provies additional application specific features like
 
-MBR, Sergei
+provides
+
+> +  tap detection, 6D Orinetation, Free-fall, Motion and Activity.
+
+orientation
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - we,wsen-itds
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: phandle to the regulator that provides power to the accelerometer
+> +
+> +  vddio-supply:
+> +    description: phandle to the regulator that provides power to the sensor's IO
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      accelerometer@18 {
+> +        compatible = "we,wsen-itds";
+> +        reg = <0x18>;
+> +        vdd-supply = <&vdd>;
+> +        vddio-supply = <&vddio>;
+> +        interrupt-parent = <&gpio0>;
+> +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +      };
+> +    };
+> 
+
+-- 
+
+Peter Meerwald-Stadler
+Mobile: +43 664 24 44 418
+--324302256-1364362776-1586942181=:22614--
