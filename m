@@ -2,113 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8097A1AA201
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AEDC1A9CF5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 13:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S370316AbgDOMtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 08:49:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34128 "EHLO mail.kernel.org"
+        id S2897399AbgDOLlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 07:41:32 -0400
+Received: from mx2.suse.de ([195.135.220.15]:53278 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408945AbgDOLnB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 07:43:01 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7193C206A2;
-        Wed, 15 Apr 2020 11:43:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586950981;
-        bh=yZRJLnU4ErUB6W+jl5bb662sTl3GJZbnFAsMghgK1O4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oPMxqEFSN6W8/xv/LoymzbM2FBBS7DI767JB0/3NdORgkdGbM32CSFi1gkYi4N187
-         EAA1h01VfElfDRbd0Ptw7P/xhSnuoJoO6HhMCrk4QZAeGAs9lHO9D2Tsh9A8EjksMw
-         E8+7uzdY7sQyVHqQHAyrNdqHhkp0fm0egTh3K5RM=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 029/106] ARM: dts: rockchip: fix lvds-encoder ports subnode for rk3188-bqedison2qc
-Date:   Wed, 15 Apr 2020 07:41:09 -0400
-Message-Id: <20200415114226.13103-29-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200415114226.13103-1-sashal@kernel.org>
-References: <20200415114226.13103-1-sashal@kernel.org>
+        id S2897395AbgDOLlT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 07:41:19 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id E7CA0AEE7;
+        Wed, 15 Apr 2020 11:41:15 +0000 (UTC)
+Subject: Re: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek
+ PymParticle EVB
+To:     James Tai <james.tai@realtek.com>
+Cc:     linux-realtek-soc@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20200204145207.28622-1-james.tai@realtek.com>
+ <20200204145207.28622-3-james.tai@realtek.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <842e8a9d-cdd6-cb85-ce85-17f20ff7b626@suse.de>
+Date:   Wed, 15 Apr 2020 13:41:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+In-Reply-To: <20200204145207.28622-3-james.tai@realtek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
+Hi James,
 
-[ Upstream commit 1a7e99599dffd836fcb720cdc0eaf3cd43d7af4a ]
+A couple more nits to consider for v4:
 
-A test with the command below gives this error:
+Am 04.02.20 um 15:52 schrieb James Tai:
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
+> new file mode 100644
+> index 000000000000..2a36d220fef6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Copyright (c) 2019 Realtek Semiconductor Corp.
 
-arch/arm/boot/dts/rk3188-bqedison2qc.dt.yaml: lvds-encoder:
-'ports' is a required property
+2019-2020? (also elsewhere)
 
-Fix error by adding a ports wrapper for port@0 and port@1
-inside the 'lvds-encoder' node for rk3188-bqedison2qc.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "rtd1319.dtsi"
+> +
+> +/ {
+> +	compatible = "realtek,pymparticle", "realtek,rtd1319";
+> +	model = "Realtek PymParticle EVB";
+> +
+> +	memory@2e000 {
+> +		device_type = "memory";
+> +		reg = <0x2e000 0x3ffd2000>; /* boot ROM to 1 GiB or 2 GiB */
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:460800n8";
+> +	};
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +	};
+> +};
+> +
+> +/* debug console (J1) */
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +/* M.2 slot (CON8) */
 
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/
-bridge/lvds-codec.yaml
+Also J14 and CON2 (unless the board is mislabeled?).
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/20200316174647.5598-1-jbx6244@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/rk3188-bqedison2qc.dts | 27 ++++++++++++++----------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+/* J14 and M.2 slots (CON2, CON8) */ ?
 
-diff --git a/arch/arm/boot/dts/rk3188-bqedison2qc.dts b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-index 8afb2fd5d9f1b..66a0ff196eb1f 100644
---- a/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-+++ b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-@@ -58,20 +58,25 @@
- 
- 	lvds-encoder {
- 		compatible = "ti,sn75lvds83", "lvds-encoder";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 
--		port@0 {
--			reg = <0>;
--			lvds_in_vop0: endpoint {
--				remote-endpoint = <&vop0_out_lvds>;
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lvds_in_vop0: endpoint {
-+					remote-endpoint = <&vop0_out_lvds>;
-+				};
- 			};
--		};
- 
--		port@1 {
--			reg = <1>;
--			lvds_out_panel: endpoint {
--				remote-endpoint = <&panel_in_lvds>;
-+			port@1 {
-+				reg = <1>;
-+
-+				lvds_out_panel: endpoint {
-+					remote-endpoint = <&panel_in_lvds>;
-+				};
- 			};
- 		};
- 	};
+> +&uart1 {
+> +	status = "disabled";
+> +};
+> +
+> +/* GPIO connector (T1) */
+> +&uart2 {
+> +	status = "disabled";
+> +};
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1319.dtsi b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
+> new file mode 100644
+> index 000000000000..1dcee00009cd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
+> @@ -0,0 +1,12 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD1319 SoC
+> + *
+> + * Copyright (c) 2019 Realtek Semiconductor Corp.
+> + */
+> +
+> +#include "rtd13xx.dtsi"
+> +
+> +/ {
+> +	compatible = "realtek,rtd1319";
+> +};
+> diff --git a/arch/arm64/boot/dts/realtek/rtd13xx.dtsi b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> new file mode 100644
+> index 000000000000..f6d73f18345d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> @@ -0,0 +1,213 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD13xx SoC family
+> + *
+> + * Copyright (c) 2019 Realtek Semiconductor Corp.
+> + */
+> +
+> +/memreserve/	0x0000000000000000 0x000000000002e000; /* Boot ROM */
+
+Can you check whether your U-Boot and LK respectively need this 
+memreserve entry, here and for previous SoCs? Because for RTD16xx we 
+don't seem to have any memreserve entries at all. We do have it in 
+rtd139x.dtsi, rtd129x.dtsi and rtd1195.dtsi.
+
+Unrelated: Since we're carving out the 2e000 or so from /memory node and 
+mapping ranges for /soc, I've been wondering whether we should represent 
+the Boot ROM as node somehow. But since it's a ROM with (I assume) 
+binary code only, I didn't see any need to have it accessible as mtd-rom 
+device, so it's way down my to-do list to research how other mainline 
+platforms might model their boot ROMs... (maybe your team has time, or 
+someone reading happens to know?)
+
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mtd/mtd-physmap.txt
+
+> +/memreserve/	0x000000000002e000 0x0000000000100000; /* Boot loader */
+
+Is this a) correctly sized (not 0xd2000?) and b) still needed? I thought 
+the documented sub-0x100000 memory corruption were fixed in newer BSPs?
+
+> +/memreserve/	0x000000000f400000 0x0000000000500000; /* Video FW */
+> +/memreserve/	0x000000000f900000 0x0000000000500000; /* Audio FW */
+> +/memreserve/	0x0000000010000000 0x0000000000014000; /* Audio FW RAM */
+[snip]
+
+Are these needed for the bootloader not to overwrite preloaded firmware, 
+or could these become /mem-reserve sub-nodes instead?
+
+Long-term I'm assuming we would move the responsibility for loading 
+these to the new kernel drivers (so that the bootloader doesn't need to 
+take care anymore) and ship the needed blobs in linux-firmware.git?
+
+Or is the video FW needed by the bootloader itself for HDMI/DP output?
+
+Thanks,
+Andreas
+
 -- 
-2.20.1
-
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
