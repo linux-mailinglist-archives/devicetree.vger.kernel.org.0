@@ -2,95 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 997E31AA388
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 15:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3AD41AA405
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 15:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506081AbgDONLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 09:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2506078AbgDONLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 09:11:07 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3513FC061A0C;
-        Wed, 15 Apr 2020 06:11:06 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id z6so19016931wml.2;
-        Wed, 15 Apr 2020 06:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=1YK31f6d9R7ZKz1959zNs117rXGUB2qZVpteQ8Nm8rE=;
-        b=opvfaQb0ZITpiBld1k4u5Ru6l4CFHpZ7v8Dsm3tWBEB7BZxs190+jPFTPIwCl50rrx
-         NPPMdBa7gnGMXIrhYoOpvsYB8NX67Xjf92Y6es4h/dRkErBjLDBbjqxCGRmV/GjT9ahb
-         4il8jDWH3Wn9uiNiMzxAq8Po0YDsM5JA8B9WcZtp/qDYTMGaTLOYqN0SgUkn/Z7PVcSw
-         hsdfygbK/xTy52wU0y6n7Cqi0wAyu61S/3Nq5uFCyTH1DprmeApdnBrS4oXhcfva95OX
-         RpmoHTicjgAFZXs141O7f9i2gCRF2ctZwxqoP5d51mzkRirXjLJR34W41a7FfOC68577
-         PSXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=1YK31f6d9R7ZKz1959zNs117rXGUB2qZVpteQ8Nm8rE=;
-        b=pNWyBTJDoC/NpRuaCrVicAp+NdfEXevTySiPoSmHtvOUym1V8u0XF05+d0ujMjxZ0Q
-         W5y8DgAF7kOpp4LxpdzaqcphCyMwaGE+2tjIfyzN94blgZyz9CEiedgI4A8k0l6qKxht
-         32WBlGRzZwBk60tGM00CUDx6IwDY4YEkZOWuBMtr/AnpAVhB12V/h5XZaWQ0I7dsKBrK
-         y9r2nfW5dibk38ToJqgWk3C1Tpbf1whuBKIN41mNJNIIhUgKYK0/nqb5ez9J1LMXv8VS
-         6eGJzoUkeZhqMKof2ntMJsZt8oP13bgiLmiXYcQiVN715STTxp51bYrIXUt1JZXHA296
-         mwnw==
-X-Gm-Message-State: AGi0PubSVHhSXySvUScZ5VoVD/KqyIaUm3+M+Y7QU57W5IXxjugYopW8
-        5lrWGeHMrGQtB311d34djgU=
-X-Google-Smtp-Source: APiQypKb/YVsijkXt1W8jtMK4h3qXbl3iX+wO+27T2T3+keWoO4EtLb2fRtUtD+xSMEElkqoUaNBbQ==
-X-Received: by 2002:a1c:b70a:: with SMTP id h10mr5272755wmf.172.1586956264930;
-        Wed, 15 Apr 2020 06:11:04 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id c20sm24022450wmd.36.2020.04.15.06.11.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 Apr 2020 06:11:04 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: remove bus-width from mmc nodes in rk3308-roc-cc.dts
-Date:   Wed, 15 Apr 2020 15:10:57 +0200
-Message-Id: <20200415131057.2366-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S370698AbgDONQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 09:16:24 -0400
+Received: from foss.arm.com ([217.140.110.172]:45576 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2505190AbgDONQT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 09:16:19 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 016531063;
+        Wed, 15 Apr 2020 06:16:18 -0700 (PDT)
+Received: from bogus (unknown [10.37.12.71])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D75C3F6C4;
+        Wed, 15 Apr 2020 06:16:15 -0700 (PDT)
+Date:   Wed, 15 Apr 2020 14:16:12 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Etienne Carriere <etienne.carriere@linaro.org>
+Cc:     peng.fan@nxp.com, devicetree@vger.kernel.org, f.fainelli@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        viresh.kumar@linaro.org, Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH V5 2/2] firmware: arm_scmi: add smc/hvc transport
+Message-ID: <20200415131612.GC31928@bogus>
+References: <1583673879-20714-3-git-send-email-peng.fan@nxp.com>
+ <5e96e916.1c69fb81.14365.050b@mx.google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5e96e916.1c69fb81.14365.050b@mx.google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'bus-width' property for mmc nodes is defined both in
-'rk3308.dtsi' and 'rk3308-roc-cc.dts'.
-'bus-width' and pinctrl containing the bus-pins
-should be in the same file, so remove all entries
-from mmc nodes in 'rk3308-roc-cc.dts'.
+On Wed, Apr 15, 2020 at 12:58:58PM +0200, Etienne Carriere wrote:
+> Hello Peng,
+>
+> I  have 2 comments on this change. The main is about using
+> arm_smccc_1_1_invoke(). Below some details and I added comments
+> inside you patch. The second of on SMC return value, see my
+> comment in your patch below.
+>
+> About arm_smccc_1_1_invoke(), this functon currently relies on PSCI
+> driver to define a conduit method but SCMI agent driver does not
+> mandate CONFIG_PSCI to be enable.
+>
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts | 2 --
- 1 file changed, 2 deletions(-)
+Yes this was discussed and it is done so deliberately. I have added the
+build dependency when I merged the patch. There's no dependency on
+CONFIG_PSCI.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-index aa256350b..8011e9b12 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-@@ -123,7 +123,6 @@
- };
- 
- &emmc {
--	bus-width = <8>;
- 	cap-mmc-highspeed;
- 	disable-wp;
- 	mmc-hs200-1_8v;
-@@ -171,7 +170,6 @@
- };
- 
- &sdmmc {
--	bus-width = <4>;
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
- 	card-detect-delay = <300>;
--- 
-2.11.0
+> Could you add an optional "method" property for "arm,scmi-smc" for platforms
+> willing to not rely on PSCI Linux driver? If no property "method" is
+> defined in the FDT, invocation relies on arm_smccc_1_1_invoke().
+>
 
+Nope, we don't want mixture here. Why is the system not using PSCI/SMCCC ?
+
+> "method" naming mimics what is done in the OP-TEE driver (drivers/tee/optee/).
+> Here is a proposal for the documenting property "method" in
+> Documentation/arm,scmi.txt:
+>
+> - method : "smc" or "hvc"
+>             Optional property defining the conduit method for to be used
+> 	    for invoking the SCMI server in secure world.
+> 	    "smc" states instruction SMC #0 is used whereas "hvc" states
+> 	    instruction HVC #0 is used.
+>
+>
+
+It was rejected, you can try your luck with OPTEE :)
+We will just use the system conduit here with SCMI for SMC/HVC transport.
+Details in previous version of the patch.
+
+[...]
+
+> > +struct scmi_smc {
+> > +	struct scmi_chan_info *cinfo;
+> > +	struct scmi_shared_mem __iomem *shmem;
+> > +	u32 func_id;
+> > +};
+>
+> Add here a field for the secure world invocation function handler:
+>
+> 	scmi_arm_smccc_invoke_fn *invoke_fn;
+>
+
+As stated not needed if we use  arm_smccc_1_1_invoke()
+
+[...]
+
+>
+> The SCMI server is likely not to return a errno compliant value.
+>
+> SMCCC specification states that unsupported function IDs should return signed
+> extended -1. I suggest to change the return above with:
+>
+> 	return res.a0 == ~0 ? -EINVAL : 0;
+>
+
+I need to check that.
+
+--
+Regards,
+Sudeep
