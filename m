@@ -2,55 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2561A93E0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 09:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56A81A942A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 09:23:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404622AbgDOHLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 03:11:06 -0400
-Received: from gproxy1-pub.mail.unifiedlayer.com ([69.89.25.95]:56105 "EHLO
-        gproxy1-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2404013AbgDOHLE (ORCPT
+        id S2393667AbgDOHXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 03:23:11 -0400
+Received: from gproxy6-pub.mail.unifiedlayer.com ([67.222.39.168]:48770 "EHLO
+        gproxy6-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2393665AbgDOHXK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 03:11:04 -0400
-X-Greylist: delayed 889 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Apr 2020 03:11:04 EDT
-Received: from CMGW (unknown [10.9.0.13])
-        by gproxy1.mail.unifiedlayer.com (Postfix) with ESMTP id 3D6A14DA36B17
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 00:56:11 -0600 (MDT)
+        Wed, 15 Apr 2020 03:23:10 -0400
+X-Greylist: delayed 1610 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Apr 2020 03:23:09 EDT
+Received: from cmgw11.unifiedlayer.com (unknown [10.9.0.11])
+        by gproxy6.mail.unifiedlayer.com (Postfix) with ESMTP id 97B471E0F8A
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 00:56:15 -0600 (MDT)
 Received: from md-in-79.webhostbox.net ([43.225.55.182])
         by cmsmtp with ESMTP
-        id Obxwj6lK6toKZObxyjkeJR; Wed, 15 Apr 2020 00:56:11 -0600
+        id Oby1jRlHfVKjoOby2jvzdr; Wed, 15 Apr 2020 00:56:15 -0600
 X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.2 cv=AaTBJzfG c=1 sm=1 tr=0
+X-Authority-Analysis: v=2.3 cv=ONYJIxSB c=1 sm=1 tr=0
  a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=cl8xLZFz6L8A:10
- a=oz0wMknONp8A:10 a=iGRvdBzYb-_JTU_o6kgA:9 a=QEXdDO2ut3YA:10
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19
+ a=IkcTkHD0fZMA:10:nop_charset_1 a=cl8xLZFz6L8A:10:nop_rcvd_month_year
+ a=oz0wMknONp8A:10:endurance_base64_authed_username_1
+ a=5KLPUuaC_9wA:10:nop_rfc2047_subject_charset a=vU9dKmh3AAAA:8
+ a=rDOURMCgXqsJhrHYUaYA:9 a=QEXdDO2ut3YA:10:nop_charset_2
+ a=rsP06fVo5MYu2ilr0aT5:22 a=pHzHmUro8NiASowvMSCR:22 a=n87TN5wuljxrRezIQYnT:22
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-        ; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id
-        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
-        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:References
+        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
         List-Post:List-Owner:List-Archive;
-        bh=ALV3zzlDkukeDYnEo1NPcnPQetl1UF6t3xq2o+loRlk=; b=QURp4N+8jazK9kQG9PESkXsDQA
-        b2enx04j9CT+C1fHKkwwUt4o9HLxj2BflmXiY83vnfk0vgcS0uAaKcLN1a26MNrfHR4NETXARaqi2
-        ih84tBHgLD2lwD4W6EaQOz10dv8CfN/t3qfsJmpmUXQ37xk01FyuaAn1jsc4QjpCFnDz0c9Yfwdtu
-        vMxFGZbpTYYCFBTJk6WAi9nfManbgxeLpUlq9sMxrvH5yx9Yt8ja5O5TyMy+tVAKwLRKchxjNK9BX
-        MNhdSdHjJUVK9qnhhxieVrtI0rsiTxyFbvjv5NZeLnqzrIDhnY0B01gvrie+VOavCxHHBow8M/WEE
-        EZykbnvA==;
+        bh=Rqx7SWX0ElvMw3PKSm/3X+3YoK5opsIfnN8zy7zmyOY=; b=lSpsOpNyctFrxvrgLN+a6fIG/c
+        kIj9gL7IfRewPIcNKNB2IPO6Oayq3zcU/h4/KuibLFkm1FbYfKvWF0ncgqFhhQI0aO/nt7CVmCfdU
+        tiJOTIMEvLzd+bsdFRIzMg0H5+dr/dxp7QaYJhbpB5JDw+PCT2/Og9PaxeVp84ADfOfqICkZI8pfT
+        E/g8+5HA8e/CSPvG6qiZVNFWHgn7bXn6QiCCUxpW9KUpt6oTR9DXB4VYmKP9/27IO23bS1CsawVE2
+        9v+X6TnktE51K+Mfs4E5+PpRj8Tsv47ZWFSP8S/wpudPRk4j3o78mLHtQfLlF56+g7e9HAiNBihId
+        HS0KCwqQ==;
 Received: from p5b3f6ccc.dip0.t-ipconnect.de ([91.63.108.204]:49262 helo=localhost.localdomain)
         by md-in-79.webhostbox.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
         (Exim 4.92)
         (envelope-from <saravanan@linumiz.com>)
-        id 1jObxv-0000eI-91; Wed, 15 Apr 2020 06:56:07 +0000
+        id 1jObxz-0000eI-TR; Wed, 15 Apr 2020 06:56:12 +0000
 From:   Saravanan Sekar <saravanan@linumiz.com>
 To:     robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
         lars@metafoo.de, pmeerw@pmeerw.net, broonie@kernel.org,
         lgirdwood@gmail.com, saravanan@linumiz.com
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-iio@vger.kernel.org
-Subject: [PATCH 0/4] Add driver for wsen-itds accelerometer sensor
-Date:   Wed, 15 Apr 2020 08:55:31 +0200
-Message-Id: <20200415065535.7753-1-saravanan@linumiz.com>
+Subject: [PATCH 1/4] =?UTF-8?q?dt-bindings:=20Add=20an=20entry=20for=20W?= =?UTF-8?q?=C3=BCrth=20Elektronik,=20we?=
+Date:   Wed, 15 Apr 2020 08:55:32 +0200
+Message-Id: <20200415065535.7753-2-saravanan@linumiz.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200415065535.7753-1-saravanan@linumiz.com>
+References: <20200415065535.7753-1-saravanan@linumiz.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -62,13 +68,13 @@ X-AntiAbuse: Sender Address Domain - linumiz.com
 X-BWhitelist: no
 X-Source-IP: 91.63.108.204
 X-Source-L: No
-X-Exim-ID: 1jObxv-0000eI-91
+X-Exim-ID: 1jObxz-0000eI-TR
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
 X-Source-Sender: p5b3f6ccc.dip0.t-ipconnect.de (localhost.localdomain) [91.63.108.204]:49262
 X-Source-Auth: saravanan@linumiz.com
-X-Email-Count: 3
+X-Email-Count: 13
 X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
 X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
@@ -76,29 +82,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch series add support for wurth elektronic wsen-itds 3-axis
-accelerometer. Driver supports the acceleration, temperature data reading and
-supports configuring of output data rate, operating mode and scale.
+Add an entry for Würth Elektronik GmbH, we
 
-Thanks,
-Saravanan
+Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Saravanan Sekar (4):
-  dt-bindings: Add an entry for Würth Elektronik, we
-  dt-bindings: iio: add document bindings for wsen-itds accel sensor
-  iio: accel: Add driver for wsen-itds accelerometer sensor
-  MAINTAINERS: Add entry for wsen-itds accelerometer sensor
-
- .../bindings/iio/accel/we,wsen-itds.yaml      |  53 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- MAINTAINERS                                   |   6 +
- drivers/iio/accel/Kconfig                     |  14 +
- drivers/iio/accel/Makefile                    |   1 +
- drivers/iio/accel/wsen-itds.c                 | 978 ++++++++++++++++++
- 6 files changed, 1054 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
- create mode 100644 drivers/iio/accel/wsen-itds.c
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 23ca95bee298..a9ca88ac9ad8 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1078,6 +1078,8 @@ patternProperties:
+     description: Waveshare Electronics
+   "^wd,.*":
+     description: Western Digital Corp.
++  "^we,.*":
++    description: Würth Elektronik GmbH.
+   "^wetek,.*":
+     description: WeTek Electronics, limited.
+   "^wexler,.*":
 -- 
 2.17.1
 
