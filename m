@@ -2,171 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6ECB1A9E5A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 13:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADBF1AA05C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897870AbgDOLy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 07:54:28 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:23884 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2897860AbgDOLyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 07:54:19 -0400
-Received: from [10.28.39.241] (10.28.39.241) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 15 Apr 2020
- 19:54:57 +0800
-Subject: Re: [PATCH v2 0/2] Add a watchdog driver that uses ARM Secure Monitor
- Calls.
-From:   Xingyu Chen <xingyu.chen@amlogic.com>
-To:     Evan Benn <evanbenn@google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-CC:     Julius Werner <jwerner@chromium.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Yonghui Yu <yonghui.yu@amlogic.com>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-References: <20200403052900.258855-1-evanbenn@chromium.org>
- <CAKz_xw0gV+w_gMkLfB4qUBdULLfFoiv1TBWp9_PHy33wP_XWyA@mail.gmail.com>
- <890948ef-7276-fdae-d270-eb30eff3eab2@amlogic.com>
-Message-ID: <243e107c-35c1-2d14-5285-c9e13744963c@amlogic.com>
-Date:   Wed, 15 Apr 2020 19:54:57 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S369240AbgDOM0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 08:26:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S369235AbgDOM0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 08:26:03 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A71C061A0C;
+        Wed, 15 Apr 2020 05:26:02 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id g12so10924149wmh.3;
+        Wed, 15 Apr 2020 05:26:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:references:in-reply-to:subject:date:message-id
+         :mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=skeYTYKzmzw0IuNoRhgN9uuu5AMw+zDWRV9qTkZ9/wo=;
+        b=hDPG2ZP6hRayOhxEl9bl96wKYSY4jI3Pl4DzEBF/myeQDcEbcS9vgku/khXjehcANC
+         7rTxMn9Jf8keGqwZ3Ou/eVkjpFx6lskO/XH1+ypIrr+hFPRpEQdPE5CKnnMWCmKNYmtj
+         WX9g+PPxXeqn9ci5LhVNWQx8SfNXT0AV5I9eAVw/VGrbekPpaiHbHJgO+XiWsqtHVxZv
+         yCGIJ/4jAId0wNWXvYVHMr44yXGQB/E7W9jzwzQGa5w4zovl7M3oSsk2L/i2sAlHLPX/
+         HsSb+MdwIW6WPr6Wh4GOx2qwOkXrwBafKhOqxNNGr32WTjkakff0USOZ7nOZTqiSeGTN
+         ziDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+         :message-id:mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=skeYTYKzmzw0IuNoRhgN9uuu5AMw+zDWRV9qTkZ9/wo=;
+        b=Kabw1x+ouHCuIw/2eAk7qsSjo4OLiSjYPMAK+n1sNdo81M4QwkYEcafPxqMN6o+oDf
+         RC83FRONjeynxw5KL2lYZ/vfZVzAgErxBkWPHPE1GAuNLo7Cc1djEnmKb8LgsrMDAMxv
+         zMu8KGsaOAX1/Ymr3fPYNFFvH7hzCmrdmgHSuSEt3jhzmYlfOFBjs28eJigBOVrKABt7
+         F/L7LcO1vbfgyo/7gBvCkAuSQfQq13EdWBJnR5SxNmJoGIfspCxs3pn8do/gizX2NKfP
+         +RVQ+mt2kSaADJsGslqF2fYPX34tY5/Zj+Dx3iB23+xbI3/0fbE6OruVpUpW2sFJFnAe
+         VhSw==
+X-Gm-Message-State: AGi0PubitDKhCN6gKn+mdieUsULTFPY+Zk8Fsqj0q9BQM6YyrsbY+1E7
+        zttyMiiCgpBAlOCyCmwt2cc=
+X-Google-Smtp-Source: APiQypJMJYcnfbVBUme6jDVi8ODCrKszURt7owpXGAMirtadx3ULLtgfHaIuqV50q7p41kabgFStgA==
+X-Received: by 2002:a7b:c759:: with SMTP id w25mr5489166wmk.68.1586953561420;
+        Wed, 15 Apr 2020 05:26:01 -0700 (PDT)
+Received: from AnsuelXPS (host93-255-dynamic.47-79-r.retail.telecomitalia.it. [79.47.255.93])
+        by smtp.gmail.com with ESMTPSA id j68sm23853010wrj.32.2020.04.15.05.25.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Apr 2020 05:26:00 -0700 (PDT)
+From:   <ansuelsmth@gmail.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     "'Andy Gross'" <agross@kernel.org>,
+        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
+        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
+        "'Mark Rutland'" <mark.rutland@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20200403002608.946-1-ansuelsmth@gmail.com> <20200403002608.946-2-ansuelsmth@gmail.com> <20200414173838.GA29176@bogus>
+In-Reply-To: <20200414173838.GA29176@bogus>
+Subject: R: [PATCH 2/2] devicetree: bindings: phy: Document dwc3 qcom phy
+Date:   Wed, 15 Apr 2020 14:25:58 +0200
+Message-ID: <00bb01d61321$05bf9b20$113ed160$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <890948ef-7276-fdae-d270-eb30eff3eab2@amlogic.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.28.39.241]
+Content-Type: text/plain;
+        charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: it
+Thread-Index: AQHTPQd2IBqR3z6CHNBmVjX+r+AcmAGqTdeSAYw2ek+oZhM/sA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,Evan
-
-On 2020/4/11 23:06, Xingyu Chen wrote:
-> Hi, Evan
+> On Fri, Apr 03, 2020 at 02:26:05AM +0200, Ansuel Smith wrote:
+> > Document dwc3 qcom phy hs and ss phy bindings needed to correctly
+> > inizialize and use usb on ipq806x SoC
+> >
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  .../bindings/phy/qcom,dwc3-hs-usb-phy.yaml    | 65
+> +++++++++++++++++++
+> >  .../bindings/phy/qcom,dwc3-ss-usb-phy.yaml    | 65
+> +++++++++++++++++++
+> >  2 files changed, 130 insertions(+)
+> >  create mode 100644
+> Documentation/devicetree/bindings/phy/qcom,dwc3-hs-usb-phy.yaml
+> >  create mode 100644
+> Documentation/devicetree/bindings/phy/qcom,dwc3-ss-usb-phy.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,dwc3-hs-usb-
+> phy.yaml b/Documentation/devicetree/bindings/phy/qcom,dwc3-hs-usb-
+> phy.yaml
+> > new file mode 100644
+> > index 000000000000..0bb59e3c2ab8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,dwc3-hs-usb-
+> phy.yaml
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/qcom,dwc3-hs-usb-phy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm DWC3 HS PHY CONTROLLER
+> > +
+> > +maintainers:
+> > +  - Ansuel Smith <ansuelsmth@gmail.com>
+> > +
+> > +description:
+> > +  DWC3 PHY nodes are defined to describe on-chip Synopsis Physical
+> layer
+> > +  controllers. Each DWC3 PHY controller should have its own node.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,dwc3-hs-usb-phy
+> > +
+> > +  "#phy-cells":
+> > +    const: 0
+> > +
+> > +  regmap:
+> > +    maxItems: 1
+> > +    description: phandle to usb3 dts definition
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: |
+> > +      - "ref" Is required
+> > +      - "xo"	Optional external reference clock
+> > +    items:
+> > +      - const: ref
+> > +      - const: xo
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#phy-cells"
+> > +  - regmap
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
+> > +
+> > +    hs_phy_0: hs_phy_0 {
+> > +      compatible = "qcom,dwc3-hs-usb-phy";
+> > +      regmap = <&usb3_0>;
 > 
-> On 2020/4/3 14:04, Evan Benn wrote:
->> Apologies I forgot to add this note to my cover letter.
->>
->> Xingyu do you mind seeing if you can modify your ATF firmware to match 
->> this driver?
->> We can add a compatible or make other changes to suit you.
-> Thanks for your patch [0],  I will test this patch on the meson-A1 
-> platform, but It looks more
-> convenient to be compatible with other platforms if using the compatible 
-> strings to correlate
-> platform differences include function ID and wdt_ops.
+> If the registers for the phy are part of 'qcom,dwc3' then make this node
+> a child of it.
 > 
-> [0]: https://patchwork.kernel.org/patch/11471829/
 
-I have tested your patch on the meson-A1, but I use the compatible 
-strings to correlate the following platform differences，it works normally.
+Making this node a child of qcom,dwc3 cause malfunction of the driver.
 
-static const struct smcwd_data smcwd_mtk_data = {
-	.func_id = 0x82003d06,
-	.ops     = &smcwd_ops,
-}
+> > +      clocks = <&gcc USB30_0_UTMI_CLK>;
+> > +      clock-names = "ref";
+> > +      #phy-cells = <0>;
+> > +    };
+> > +
+> > +    usb3_0: usb3@110f8800 {
+> > +      compatible = "qcom,dwc3", "syscon";
+> > +      reg = <0x110f8800 0x8000>;
+> > +
+> > +      /* ... */
+> 
+> Incomplete examples should or will fail validation.
+> 
+> > +    };
 
-static const struct smcwd_data smcwd_meson_data = {
-	.func_id = 0x82000086,
-	.ops     = &smcwd_timeleft_ops,
-}
-
-In addition, It looks more reasonable to use the "msec" as the unit of 
-timeout parameter for the ATF fw interface with SMCWD_SET_TIMEOUT:
-
-- The fw interface will compatible with the uboot generic watchdog 
-interface at [0], and there is no need to convert timeout from msec
-to sec.
-
-- Some vendor's watchdog may be not support the "wdt_trigger_reset" 
-reset operation, but they can use the method below to reset the system
-by the watchdog right now.
-
-watchdog_set_time(1);  //1ms
-watchdog_enable();
-
-[0]: 
-https://gitlab.denx.de/u-boot/u-boot/-/blob/master/drivers/watchdog/wdt-uclass.c
-
-Best Regards
->> Thanks
->>
->> On Fri, Apr 3, 2020 at 4:29 PM Evan Benn <evanbenn@chromium.org 
->> <mailto:evanbenn@chromium.org>> wrote:
->>
->>     This is currently supported in firmware deployed on oak, hana and
->>     elm mt8173
->>     chromebook devices. The kernel driver is written to be a generic SMC
->>     watchdog driver.
->>
->>     Arm Trusted Firmware upstreaming review:
->>     https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405
->>
->>     Patch to add oak, hana, elm device tree:
->>     https://lore.kernel.org/linux-arm-kernel/20200110073730.213789-1-hsinyi@chromium.org/
->>     I would like to add the device tree support after the above patch is
->>     accepted.
->>
->>     Changes in v3:
->>     - Change name back to arm
->>     - Add optional get_timeleft op
->>     - change name to arm_smc_wdt
->>
->>     Changes in v2:
->>     - Change name arm > mt8173
->>     - use watchdog_stop_on_reboot
->>     - use watchdog_stop_on_unregister
->>     - use devm_watchdog_register_device
->>     - remove smcwd_shutdown, smcwd_remove
->>     - change error codes
->>
->>     Evan Benn (1):
->>       dt-bindings: watchdog: Add ARM smc wdt for mt8173 watchdog
->>
->>     Julius Werner (1):
->>       watchdog: Add new arm_smd_wdt watchdog driver
->>
->>      .../bindings/watchdog/arm-smc-wdt.yaml        |  30 +++
->>      MAINTAINERS                                   |   7 +
->>      arch/arm64/configs/defconfig                  |   1 +
->>      drivers/watchdog/Kconfig                      |  13 ++
->>      drivers/watchdog/Makefile                     |   1 +
->>      drivers/watchdog/arm_smc_wdt.c                | 181
->>     ++++++++++++++++++
->>      6 files changed, 233 insertions(+)
->>      create mode 100644
->>     Documentation/devicetree/bindings/watchdog/arm-smc-wdt.yaml
->>      create mode 100644 drivers/watchdog/arm_smc_wdt.c
->>
->>     -- 
->>     2.26.0.292.g33ef6b2f38-goog
->>
