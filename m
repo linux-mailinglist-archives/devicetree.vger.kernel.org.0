@@ -2,86 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B231AAC98
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 17:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 318521AACB3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 18:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1415070AbgDOP7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 11:59:49 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:17848 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1415060AbgDOP7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 11:59:44 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03FFX9IH020652;
-        Wed, 15 Apr 2020 17:59:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=HlleByQ0ZQm+05TayeH9E0d5N1iu4zV7eIq5O83VKV0=;
- b=XUf6koA5SbJNHWNZvY2R6ve0Y5y3/e5Qo6lCEyEAQHtuQasYkeLCMIOi3m9x2AWTVpvM
- pV7U2UP2eK74qktlTu85+m5OMu5DEEeM5iynz0iC5nRFvdl68NSb0euJIwiK11f0XiOi
- Wd5mAfW7GhwrAkLDnC4arr3PLbjtDBctj5ZzqDCdkhRbpxeQOxucWZr3Zv0heZKyukwZ
- vbEATjR28zaf5N1qk9y5L49gKqhuTHXejfWQ/7nK81Q9TBXaznw1Fx779MxXxrpaQdg0
- ClgLHab2qvDIxcxbEt6C93UPV7T2f0ESGdyTlWZN4GyBAB/a2hbucZDK0UX1iIqakpPy Kg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30dn6svyp9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Apr 2020 17:59:27 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6353B100034;
-        Wed, 15 Apr 2020 17:59:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 54A582B213E;
-        Wed, 15 Apr 2020 17:59:27 +0200 (CEST)
-Received: from localhost (10.75.127.51) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 15 Apr 2020 17:59:26
- +0200
-From:   Christophe Kerello <christophe.kerello@st.com>
-To:     <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <tony@atomide.com>
-CC:     <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <marex@denx.de>,
-        Christophe Kerello <christophe.kerello@st.com>
-Subject: [PATCH v2 12/12] mtd: rawnand: stm32_fmc2: add new MP1 compatible string
-Date:   Wed, 15 Apr 2020 17:57:36 +0200
-Message-ID: <1586966256-29548-13-git-send-email-christophe.kerello@st.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1586966256-29548-1-git-send-email-christophe.kerello@st.com>
-References: <1586966256-29548-1-git-send-email-christophe.kerello@st.com>
+        id S1415066AbgDOQAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 12:00:22 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:46832 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1415033AbgDOP7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 11:59:23 -0400
+Received: by mail-ot1-f66.google.com with SMTP id w12so340272otm.13;
+        Wed, 15 Apr 2020 08:59:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SAF4YLo18AVSTjr/wfbj6WC+7BWE0mGsD5hCj1/7WQw=;
+        b=gT/O38TpATvRrKmqbuHWjlMwwfdjD8KCx3MWLTn7dViF+1Krs8FqK4qTzQhCLtBNRn
+         EaXiLU8fv0w+TyKtdbiOy1aT3OnWp2csUrv5/lVSfGumMCT40tE6wwW+qoFOPHdQko8I
+         0y1HOOUqx7k3loQ8ayDZ7swbbrd2xK262iuprfZUdxJfaQ/4+4g5oaY2LAjmkWEOfqeL
+         kW1RVW17YrE34BEpRvSbTLwO6Hp36V6pkhHV6rX2Ma28OosKfxEqp52qnKZFjnurwOrO
+         1t7PvG83eG1TMPimV+XkZmNFF6/We9ub1RS1z9NuwdlNfbOWTt2ApYwtiJAp13wmGNiy
+         thVQ==
+X-Gm-Message-State: AGi0PuZjTR0Kb5543n4M8zb2WjvfEBlVwZmPNxUa7p2+7js1Y3VTSUQj
+        TGyHr2GWLnxNAbhcIc98+vIbTee1NA==
+X-Google-Smtp-Source: APiQypKbPqwG5FUIUFJ/dfqhD7t+dJzqhbjje+7XefQT59bwn8uIk9f1Vt+2WZhGWq5VdAvdMs4LYw==
+X-Received: by 2002:a4a:b489:: with SMTP id b9mr5715887ooo.71.1586966362475;
+        Wed, 15 Apr 2020 08:59:22 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f1sm880414otq.41.2020.04.15.08.59.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Apr 2020 08:59:21 -0700 (PDT)
+Received: (nullmailer pid 30581 invoked by uid 1000);
+        Wed, 15 Apr 2020 15:59:20 -0000
+Date:   Wed, 15 Apr 2020 10:59:20 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH] spi: dt-bindings: rspi: Convert to json-schema
+Message-ID: <20200415155920.GA30523@bogus>
+References: <20200408091129.25429-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-04-15_05:2020-04-14,2020-04-15 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200408091129.25429-1-geert+renesas@glider.be>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds "st,stm32mp1-fmc2-nand" compatible string.
+On Wed,  8 Apr 2020 11:11:29 +0200, Geert Uytterhoeven wrote:
+> Convert the Renesas (Quad) Serial Peripheral Interface (RSPI/QSPI)
+> Device Tree binding documentation to json-schema.
+> 
+> Document missing properties.
+> Update the second example to match reality.
+> Drop the first example, as it doesn't add much value.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../devicetree/bindings/spi/renesas,rspi.yaml | 144 ++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-rspi.txt      |  73 ---------
+>  2 files changed, 144 insertions(+), 73 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/renesas,rspi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-rspi.txt
+> 
 
-Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
----
- drivers/mtd/nand/raw/stm32_fmc2_nand.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/mtd/nand/raw/stm32_fmc2_nand.c b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-index 4f931e2..f82c7dd 100644
---- a/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-+++ b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-@@ -1938,6 +1938,7 @@ static SIMPLE_DEV_PM_OPS(stm32_fmc2_nfc_pm_ops, stm32_fmc2_nfc_suspend,
- 
- static const struct of_device_id stm32_fmc2_nfc_match[] = {
- 	{.compatible = "st,stm32mp15-fmc2"},
-+	{.compatible = "st,stm32mp1-fmc2-nand"},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, stm32_fmc2_nfc_match);
--- 
-1.9.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
