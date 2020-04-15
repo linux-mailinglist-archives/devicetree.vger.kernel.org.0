@@ -2,179 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AEDC1A9CF5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 13:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 063DC1AA111
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897399AbgDOLlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 07:41:32 -0400
-Received: from mx2.suse.de ([195.135.220.15]:53278 "EHLO mx2.suse.de"
+        id S2408985AbgDOLnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 07:43:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35036 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2897395AbgDOLlT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 07:41:19 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id E7CA0AEE7;
-        Wed, 15 Apr 2020 11:41:15 +0000 (UTC)
-Subject: Re: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek
- PymParticle EVB
-To:     James Tai <james.tai@realtek.com>
-Cc:     linux-realtek-soc@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20200204145207.28622-1-james.tai@realtek.com>
- <20200204145207.28622-3-james.tai@realtek.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <842e8a9d-cdd6-cb85-ce85-17f20ff7b626@suse.de>
-Date:   Wed, 15 Apr 2020 13:41:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S2408978AbgDOLnO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 07:43:14 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3EBDD21582;
+        Wed, 15 Apr 2020 11:43:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586950994;
+        bh=Mc1pIuQsFh+DB+kAcRNt4P2NwE+ll1nbXbIDWqB5Y6M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=pm9dSKrB7jcGwpIPcOmyY2mHLprxEHp7SgENhdiGFuKRNgbQLAvFE4+t3QXuzf3t9
+         sy8M4m1o3tRu58uqhJmuzO6LqgCxmLkPnF4Dzo4VaEX2fZjoeKaj2YXI4Jkk1lkNgL
+         UDw9n7zzAjSWMK2wJCob6vmRfm4wOyEuyjBanzIA=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Alex Smith <alex.smith@imgtec.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 040/106] MIPS: DTS: CI20: add DT node for IR sensor
+Date:   Wed, 15 Apr 2020 07:41:20 -0400
+Message-Id: <20200415114226.13103-40-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200415114226.13103-1-sashal@kernel.org>
+References: <20200415114226.13103-1-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200204145207.28622-3-james.tai@realtek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi James,
+From: Alex Smith <alex.smith@imgtec.com>
 
-A couple more nits to consider for v4:
+[ Upstream commit f5e8fcf85a25bac26c32a0000dbab5857ead9113 ]
 
-Am 04.02.20 um 15:52 schrieb James Tai:
-> diff --git a/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
-> new file mode 100644
-> index 000000000000..2a36d220fef6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-> +/*
-> + * Copyright (c) 2019 Realtek Semiconductor Corp.
+The infrared sensor on the CI20 board is connected to a GPIO and can
+be operated by using the gpio-ir-recv driver. Add a DT node for the
+sensor to allow that driver to be used.
 
-2019-2020? (also elsewhere)
+Signed-off-by: Alex Smith <alex.smith@imgtec.com>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/mips/boot/dts/ingenic/ci20.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "rtd1319.dtsi"
-> +
-> +/ {
-> +	compatible = "realtek,pymparticle", "realtek,rtd1319";
-> +	model = "Realtek PymParticle EVB";
-> +
-> +	memory@2e000 {
-> +		device_type = "memory";
-> +		reg = <0x2e000 0x3ffd2000>; /* boot ROM to 1 GiB or 2 GiB */
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:460800n8";
-> +	};
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +	};
-> +};
-> +
-> +/* debug console (J1) */
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +/* M.2 slot (CON8) */
-
-Also J14 and CON2 (unless the board is mislabeled?).
-
-/* J14 and M.2 slots (CON2, CON8) */ ?
-
-> +&uart1 {
-> +	status = "disabled";
-> +};
-> +
-> +/* GPIO connector (T1) */
-> +&uart2 {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/realtek/rtd1319.dtsi b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-> new file mode 100644
-> index 000000000000..1dcee00009cd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-> @@ -0,0 +1,12 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-> +/*
-> + * Realtek RTD1319 SoC
-> + *
-> + * Copyright (c) 2019 Realtek Semiconductor Corp.
-> + */
-> +
-> +#include "rtd13xx.dtsi"
-> +
-> +/ {
-> +	compatible = "realtek,rtd1319";
-> +};
-> diff --git a/arch/arm64/boot/dts/realtek/rtd13xx.dtsi b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-> new file mode 100644
-> index 000000000000..f6d73f18345d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-> @@ -0,0 +1,213 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-> +/*
-> + * Realtek RTD13xx SoC family
-> + *
-> + * Copyright (c) 2019 Realtek Semiconductor Corp.
-> + */
-> +
-> +/memreserve/	0x0000000000000000 0x000000000002e000; /* Boot ROM */
-
-Can you check whether your U-Boot and LK respectively need this 
-memreserve entry, here and for previous SoCs? Because for RTD16xx we 
-don't seem to have any memreserve entries at all. We do have it in 
-rtd139x.dtsi, rtd129x.dtsi and rtd1195.dtsi.
-
-Unrelated: Since we're carving out the 2e000 or so from /memory node and 
-mapping ranges for /soc, I've been wondering whether we should represent 
-the Boot ROM as node somehow. But since it's a ROM with (I assume) 
-binary code only, I didn't see any need to have it accessible as mtd-rom 
-device, so it's way down my to-do list to research how other mainline 
-platforms might model their boot ROMs... (maybe your team has time, or 
-someone reading happens to know?)
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mtd/mtd-physmap.txt
-
-> +/memreserve/	0x000000000002e000 0x0000000000100000; /* Boot loader */
-
-Is this a) correctly sized (not 0xd2000?) and b) still needed? I thought 
-the documented sub-0x100000 memory corruption were fixed in newer BSPs?
-
-> +/memreserve/	0x000000000f400000 0x0000000000500000; /* Video FW */
-> +/memreserve/	0x000000000f900000 0x0000000000500000; /* Audio FW */
-> +/memreserve/	0x0000000010000000 0x0000000000014000; /* Audio FW RAM */
-[snip]
-
-Are these needed for the bootloader not to overwrite preloaded firmware, 
-or could these become /mem-reserve sub-nodes instead?
-
-Long-term I'm assuming we would move the responsibility for loading 
-these to the new kernel drivers (so that the bootloader doesn't need to 
-take care anymore) and ship the needed blobs in linux-firmware.git?
-
-Or is the video FW needed by the bootloader itself for HDMI/DP output?
-
-Thanks,
-Andreas
-
+diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
+index c340f947baa03..fc4e64200c3d5 100644
+--- a/arch/mips/boot/dts/ingenic/ci20.dts
++++ b/arch/mips/boot/dts/ingenic/ci20.dts
+@@ -62,6 +62,11 @@
+ 		enable-active-high;
+ 	};
+ 
++	ir: ir {
++		compatible = "gpio-ir-receiver";
++		gpios = <&gpe 3 GPIO_ACTIVE_LOW>;
++	};
++
+ 	wlan0_power: fixedregulator@1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "wlan0_power";
 -- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+2.20.1
+
