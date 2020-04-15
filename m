@@ -2,140 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 294341A98C4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E54A51A9849
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2895466AbgDOJZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 05:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2895392AbgDOJZj (ORCPT
+        id S2895262AbgDOJSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 05:18:49 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:58124 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2895194AbgDOJSs (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 05:25:39 -0400
-X-Greylist: delayed 545 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Apr 2020 02:25:39 PDT
-Received: from ns.pmeerw.net (ns.pmeerw.net [IPv6:2001:1b60:2:23:1033:103:0:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51540C061A0C
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 02:25:39 -0700 (PDT)
-Received: by ns.pmeerw.net (Postfix, from userid 1000)
-        id BF03DE01FA; Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pmeerw.net; s=mail;
-        t=1586942181; bh=ncylDpaKZtZ3lQN73jxuqouhPNIAVzjx8bLjlP9nz5k=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=mhtg0s+g0ilGFTzcsBfizbiURCnXTRRY1jX0Qb/JFJFYM5LSyE8sWSn8+3NVJlVCO
-         5AS6xpO0shx+tUAqCmjgRX32ZBqzEpbLUHcmnrZXCGo7VrGoKGCsitOxujArgSoBuR
-         HMc+e0mDtENmCVSP23nb8IED4MeTFgThhkbL/h5c=
-Received: from localhost (localhost [127.0.0.1])
-        by ns.pmeerw.net (Postfix) with ESMTP id B46E9E019D;
-        Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
-Date:   Wed, 15 Apr 2020 11:16:21 +0200 (CEST)
-From:   Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-To:     Saravanan Sekar <saravanan@linumiz.com>
-cc:     robh+dt@kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: iio: add document bindings for wsen-itds
- accel sensor
-In-Reply-To: <20200415065535.7753-3-saravanan@linumiz.com>
-Message-ID: <alpine.DEB.2.21.2004151114590.22614@vps.pmeerw.net>
-References: <20200415065535.7753-1-saravanan@linumiz.com> <20200415065535.7753-3-saravanan@linumiz.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="324302256-1364362776-1586942181=:22614"
+        Wed, 15 Apr 2020 05:18:48 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1586942327; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=pWIsL9+BX5RenGIZyGa2avU6QthIkCiMCu6wFKZKjCw=; b=gG4jrSdW7UuRqIxnNwN1opI37Zx/BPlJ/tLunjJzZs0O0J+RxHE8JHvfTw707xXPEFoiokhX
+ cAb6PSachbGPIuwAJyvNvwD4Bo/UbahW41KPMsYK3V6rE3B5qQnD62pGW26bTW7W/Pq7d4DS
+ 2WRkeSdg3q71CbT/mEcieExCXU0=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e96d16e.7f3975753688-smtp-out-n01;
+ Wed, 15 Apr 2020 09:18:38 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0F348C44788; Wed, 15 Apr 2020 09:18:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jprakash-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jprakash)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A9194C433CB;
+        Wed, 15 Apr 2020 09:18:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A9194C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jprakash@codeaurora.org
+From:   Jishnu Prakash <jprakash@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, linus.walleij@linaro.org,
+        Jonathan.Cameron@huawei.com, smohanad@codeaurora.org,
+        kgunda@codeaurora.org, aghayal@codeaurora.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        Jishnu Prakash <jprakash@codeaurora.org>
+Subject: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC7 ADC
+Date:   Wed, 15 Apr 2020 14:47:43 +0530
+Message-Id: <1586942266-21480-1-git-send-email-jprakash@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+The following changes are made in V2 for the three patches:
 
---324302256-1364362776-1586942181=:22614
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Added checks for the values of some ADC DT properties in the first patch,
+wherever applicable. Also updated channel node regex and provided example.
 
-On Wed, 15 Apr 2020, Saravanan Sekar wrote:
+Added the DT header files in the second patch, previously
+added in third patch.
 
-comments below, some typos
+Removed the DT header files and made several recommended minor changes
+in the third patch.
 
-> Add device tree binding information for wsen-itds accel sensor driver.
-> 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-> ---
->  .../bindings/iio/accel/we,wsen-itds.yaml      | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml b/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
-> new file mode 100644
-> index 000000000000..165cdf71966d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/we,wsen-itds.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/we,wsen-itds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Würth Elektronik WSEN-ITDS triaxial acceleration sensor
-> +
-> +maintainers:
-> +  - Saravanan Sekar <saravanan@linumiz.com>
-> +
-> +description: |
-> +  Acceleration and temperature iio sensors with an i2c interface.
+Jishnu Prakash (3):
+  iio: adc: Convert the QCOM SPMI ADC bindings to .yaml format
+  iio: adc: Add PMIC7 ADC bindings
+  iio: adc: Add support for PMIC7 ADC
 
-sensor
-
-> +  The sensor provies additional application specific features like
-
-provides
-
-> +  tap detection, 6D Orinetation, Free-fall, Motion and Activity.
-
-orientation
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - we,wsen-itds
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: phandle to the regulator that provides power to the accelerometer
-> +
-> +  vddio-supply:
-> +    description: phandle to the regulator that provides power to the sensor's IO
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      accelerometer@18 {
-> +        compatible = "we,wsen-itds";
-> +        reg = <0x18>;
-> +        vdd-supply = <&vdd>;
-> +        vddio-supply = <&vddio>;
-> +        interrupt-parent = <&gpio0>;
-> +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +      };
-> +    };
-> 
+ .../devicetree/bindings/iio/adc/qcom,spmi-vadc.txt | 173 --------------
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml           | 214 +++++++++++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c                   | 257 ++++++++++++++++++--
+ drivers/iio/adc/qcom-vadc-common.c                 | 258 +++++++++++++++++++++
+ drivers/iio/adc/qcom-vadc-common.h                 |  15 ++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h    |  67 ++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h   |  88 +++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h   |  46 ++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-vadc.h           |  78 ++++++-
+ 11 files changed, 1065 insertions(+), 187 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h
 
 -- 
-
-Peter Meerwald-Stadler
-Mobile: +43 664 24 44 418
---324302256-1364362776-1586942181=:22614--
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
