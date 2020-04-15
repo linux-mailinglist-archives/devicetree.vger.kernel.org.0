@@ -2,109 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765591AAAA8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 16:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B37CE1AAAD7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 16:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2636799AbgDOOpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 10:45:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40254 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2636795AbgDOOpd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 10:45:33 -0400
-Received: from mail.kernel.org (ip5f5ad4d8.dynamic.kabel-deutschland.de [95.90.212.216])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 46D72218AC;
-        Wed, 15 Apr 2020 14:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586961929;
-        bh=Tgx8bhgHklE3FDZN9i6EsAGZk7UfLJB3Oy+zSTpJTjQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Qy38bo6tXyunOd7fssISCteEmQC1jwS+lxtVXlNgBuwUsCE1XBnGqltK8LvvfU38O
-         N2qgx9t7zxpsbTrfhqCb2N3TorkMRnTTDQBaX02kYlJNP+Rn28JogIJyaA5xT8Wmdw
-         hjai+vMqj0Mhhi6NEwCsGQmds4IRE5GmSuy6ng84=
-Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
-        (envelope-from <mchehab@kernel.org>)
-        id 1jOjI7-006ka3-I8; Wed, 15 Apr 2020 16:45:27 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 12/12] docs: dt: convert writing-bindings.txt to ReST
-Date:   Wed, 15 Apr 2020 16:45:26 +0200
-Message-Id: <f2fb27f86a12c16d4b20d9051dec405d4f29a2bb.1586961793.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.25.2
-In-Reply-To: <cover.1586961793.git.mchehab+huawei@kernel.org>
-References: <cover.1586961793.git.mchehab+huawei@kernel.org>
+        id S2392410AbgDOOuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 10:50:25 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34088 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392458AbgDOOuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 10:50:23 -0400
+Received: by mail-ot1-f66.google.com with SMTP id m2so172244otr.1;
+        Wed, 15 Apr 2020 07:50:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BCfQgZxvV4MoTZSYDxb0wNI9nAJHYoGxVLajTWTSLyY=;
+        b=hl+ewQckLqhwBCz+umnf/61TE4+tdl5IzY2XZbw0EKxdGLwHUVFJOBYMVQfIODeIxD
+         4rBgTjpluem8ZTvlobWiU7/tjMo/wrNrUgQT4HRhjP8+ZuiafSZXQ6bXVVALFBJ08uTx
+         Cl41/icceRtRyCUs33OVukVWoEk4aeLKS+44cIX+kMOwXTYn3FmUS6+m/9gURX9Mh1ce
+         A4pw0AWDUv90Jh9dVNdUcxkT7qQ6yhtVOuRVpK756V/y7GMOetdutSCZoKbDs0DOkpar
+         JZ5GEHeo82l/kNxsZYZHFncxDM4Scw+4n3jv7QEl6842FsLG4Di7Cp8xHJre6FTJQw67
+         p7MQ==
+X-Gm-Message-State: AGi0Pub7TBeFQcPCtQtK9a4wS2sMitDVb+O1vFQ4n35WeeJ+lVYetG5T
+        +R37nbvtbglmNDlyC0y2Rg==
+X-Google-Smtp-Source: APiQypKcpijmKSyWUjzt28VMefad1XpVXfp9yRjVfdZ1IEIYQs06OXNoEWQPyd3SSWHWptV5JNctTA==
+X-Received: by 2002:a05:6830:1606:: with SMTP id g6mr24123812otr.315.1586962222629;
+        Wed, 15 Apr 2020 07:50:22 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a19sm4454831otp.25.2020.04.15.07.50.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Apr 2020 07:50:21 -0700 (PDT)
+Received: (nullmailer pid 25733 invoked by uid 1000);
+        Wed, 15 Apr 2020 14:50:21 -0000
+Date:   Wed, 15 Apr 2020 09:50:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v8 1/2] iio: proximity: provide device tree binding
+ document
+Message-ID: <20200415145021.GA16420@bogus>
+References: <20200406172002.18028-1-i.mikhaylov@yadro.com>
+ <20200406172002.18028-2-i.mikhaylov@yadro.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200406172002.18028-2-i.mikhaylov@yadro.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- Add a SPDX header;
-- Adjust document and section titles;
-- Mark literal blocks as such;
-- Add it to bindings/index.rst.
+On Mon, Apr 06, 2020 at 08:20:01PM +0300, Ivan Mikhaylov wrote:
+> Mostly standard i2c driver with some additional led-current option
+> for vcnl3020.
+> 
+> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
+> ---
+>  .../bindings/iio/proximity/vcnl3020.yaml      | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/vcnl3020.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/vcnl3020.yaml b/Documentation/devicetree/bindings/iio/proximity/vcnl3020.yaml
+> new file mode 100644
+> index 000000000000..29ab2dee1694
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/vcnl3020.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- Documentation/devicetree/bindings/index.rst                | 1 +
- .../{writing-bindings.txt => writing-bindings.rst}         | 7 +++++++
- 2 files changed, 8 insertions(+)
- rename Documentation/devicetree/bindings/{writing-bindings.txt => writing-bindings.rst} (92%)
+Dual license as Jonathan said.
 
-diff --git a/Documentation/devicetree/bindings/index.rst b/Documentation/devicetree/bindings/index.rst
-index 6b87875a049c..3837b17c234f 100644
---- a/Documentation/devicetree/bindings/index.rst
-+++ b/Documentation/devicetree/bindings/index.rst
-@@ -9,3 +9,4 @@ Device Tree
- 
-    ABI
-    submitting-patches
-+   writing-bindings
-diff --git a/Documentation/devicetree/bindings/writing-bindings.txt b/Documentation/devicetree/bindings/writing-bindings.rst
-similarity index 92%
-rename from Documentation/devicetree/bindings/writing-bindings.txt
-rename to Documentation/devicetree/bindings/writing-bindings.rst
-index ca024b9c7433..45ff426d0019 100644
---- a/Documentation/devicetree/bindings/writing-bindings.txt
-+++ b/Documentation/devicetree/bindings/writing-bindings.rst
-@@ -1,4 +1,8 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+============================================================
- DOs and DON'Ts for designing and writing Devicetree bindings
-+============================================================
- 
- This is a list of common review feedback items focused on binding design. With
- every rule, there are exceptions and bindings have many gray areas.
-@@ -8,6 +12,7 @@ Documentation/devicetree/bindings/submitting-patches.rst
- 
- 
- Overall design
-+==============
- 
- - DO attempt to make bindings complete even if a driver doesn't support some
-   features. For example, if a device has an interrupt, then include the
-@@ -32,6 +37,7 @@ Overall design
- 
- 
- Properties
-+==========
- 
- - DO make 'compatible' properties specific. DON'T use wildcards in compatible
-   strings. DO use fallback compatibles when devices are the same as or a subset
-@@ -53,6 +59,7 @@ Properties
- 
- 
- Board/SoC .dts Files
-+====================
- 
- - DO put all MMIO devices under a bus node and not at the top-level.
- 
--- 
-2.25.2
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/proximity/vcnl3020.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Integrated Proximity Sensor With Infrared Emitter
+> +
+> +maintainers:
+> +  - Ivan Mikhaylov <i.mikhaylov@yadro.com>
+> +
+> +description: |
+> +  The VCNL3020 is a fully integrated proximity sensor. Fully integrated means
+> +  that the infrared emitter is included in the package. It has 16-bit
+> +  resolution. It includes a signal processing IC and features standard I2C
+> +  communication interface. It features an interrupt function.
+> +
+> +  Specifications about the devices can be found at:
+> +  https://www.vishay.com/docs/84150/vcnl3020.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - vishay,vcnl3020
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: IRQ line for the proximity sensor
 
+Can drop this.
+
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor
+> +
+> +  vddio-supply:
+> +    description: Regulator that provides power to the bus
+> +
+> +  vishay,led-current-milliamp:
+> +    description:
+> +        IR LED current value with valid Range = 0 to 20d. e.g. 0 = 0 mA,
+
+Should be indented 2 fewer spaces.
+
+> +        1 = 10 mA, 20 = 200 mA (2 = 20 mA = DEFAULT). LED Current is
+> +        limited to 200 mA for values higher than decimal 20.
+
+Use the 'default' property to define the default.
+
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+
+Can drop this as standard units have a type already. However, the 
+standard unit is '-microamp', so use that. Also, looks like this is 
+in units of register values, not milliamps. Use microamps (e.g. 200000).
+
+> +      - enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+> +              18, 19, 20]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        proximity@13 {
+> +              compatible = "vishay,vcnl3020";
+> +              reg = <0x13>;
+> +              vishay,led-current-milliamp = <0x14>;
+> +        };
+> +    };
+> -- 
+> 2.21.1
+> 
