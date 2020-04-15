@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 318521AACB3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 18:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF5FB1AACBA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 18:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1415066AbgDOQAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 12:00:22 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:46832 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1415033AbgDOP7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 11:59:23 -0400
-Received: by mail-ot1-f66.google.com with SMTP id w12so340272otm.13;
-        Wed, 15 Apr 2020 08:59:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SAF4YLo18AVSTjr/wfbj6WC+7BWE0mGsD5hCj1/7WQw=;
-        b=gT/O38TpATvRrKmqbuHWjlMwwfdjD8KCx3MWLTn7dViF+1Krs8FqK4qTzQhCLtBNRn
-         EaXiLU8fv0w+TyKtdbiOy1aT3OnWp2csUrv5/lVSfGumMCT40tE6wwW+qoFOPHdQko8I
-         0y1HOOUqx7k3loQ8ayDZ7swbbrd2xK262iuprfZUdxJfaQ/4+4g5oaY2LAjmkWEOfqeL
-         kW1RVW17YrE34BEpRvSbTLwO6Hp36V6pkhHV6rX2Ma28OosKfxEqp52qnKZFjnurwOrO
-         1t7PvG83eG1TMPimV+XkZmNFF6/We9ub1RS1z9NuwdlNfbOWTt2ApYwtiJAp13wmGNiy
-         thVQ==
-X-Gm-Message-State: AGi0PuZjTR0Kb5543n4M8zb2WjvfEBlVwZmPNxUa7p2+7js1Y3VTSUQj
-        TGyHr2GWLnxNAbhcIc98+vIbTee1NA==
-X-Google-Smtp-Source: APiQypKbPqwG5FUIUFJ/dfqhD7t+dJzqhbjje+7XefQT59bwn8uIk9f1Vt+2WZhGWq5VdAvdMs4LYw==
-X-Received: by 2002:a4a:b489:: with SMTP id b9mr5715887ooo.71.1586966362475;
-        Wed, 15 Apr 2020 08:59:22 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f1sm880414otq.41.2020.04.15.08.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2020 08:59:21 -0700 (PDT)
-Received: (nullmailer pid 30581 invoked by uid 1000);
-        Wed, 15 Apr 2020 15:59:20 -0000
-Date:   Wed, 15 Apr 2020 10:59:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] spi: dt-bindings: rspi: Convert to json-schema
-Message-ID: <20200415155920.GA30523@bogus>
-References: <20200408091129.25429-1-geert+renesas@glider.be>
+        id S1415134AbgDOQBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 12:01:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1415132AbgDOQBT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 12:01:19 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F0C7A206F9;
+        Wed, 15 Apr 2020 16:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1586966478;
+        bh=HtmYGm9rwoS1yuOpLorCoobfvar2sayOeSxcIlUCURM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=X3mn1rSyk1+FHEiTjmAk5CWv5wKT+oPgBNud+agJZ4Pamj6To3NuosaiNu3U6Dto7
+         NL8V5hO1Zhfc+GHdHTdmKh/Qib3L0Ra7DzVOcQU7sP+r4ylAZkFdALh+8n6ggNIoaf
+         d+PIzzbqO0u1W/lsURHLBB0bSZH8X+qIJaKNAr0w=
+Received: by pali.im (Postfix)
+        id C080C58E; Wed, 15 Apr 2020 18:01:15 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Remi Pommarel <repk@triplefau.lt>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Xogium <contact@xogium.me>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: [PATCH 0/8] PCI: aardvark: Fix support for Turris MOX and Compex wifi cards
+Date:   Wed, 15 Apr 2020 18:00:46 +0200
+Message-Id: <20200415160054.951-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200408091129.25429-1-geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  8 Apr 2020 11:11:29 +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas (Quad) Serial Peripheral Interface (RSPI/QSPI)
-> Device Tree binding documentation to json-schema.
-> 
-> Document missing properties.
-> Update the second example to match reality.
-> Drop the first example, as it doesn't add much value.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../devicetree/bindings/spi/renesas,rspi.yaml | 144 ++++++++++++++++++
->  .../devicetree/bindings/spi/spi-rspi.txt      |  73 ---------
->  2 files changed, 144 insertions(+), 73 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/renesas,rspi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-rspi.txt
-> 
+This patch series fixes PCI aardvark controller to work on Turris MOX
+with Compex WLE900VX (and also other ath10k) wifi cards.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Patches are available also in my git repository in branch pci-aardvark:
+https://git.kernel.org/pub/scm/linux/kernel/git/pali/linux.git/log/?h=pci-aardvark
+
+Pali Rohár (8):
+  PCI: aardvark: Set controller speed from Device Tree max-link-speed
+  dts: espressobin: Define max-link-speed for pcie0
+  PCI: aardvark: Start link training immediately after enabling link
+    training
+  PCI: aardvark: Do not overwrite Link Status register and ASPM Control
+    bits in Link Control register
+  PCI: aardvark: Set final controller speed based on negotiated link
+    speed
+  PCI: aardvark: Add support for issuing PERST via GPIO
+  dts: aardvark: Route pcie reset pin to gpio function and define
+    reset-gpios for pcie
+  PCI: aardvark: Add FIXME for code which access
+    PCIE_CORE_CMD_STATUS_REG
+
+ .../dts/marvell/armada-3720-espressobin.dtsi  |   2 +
+ .../dts/marvell/armada-3720-turris-mox.dts    |   4 -
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   2 +-
+ drivers/pci/controller/pci-aardvark.c         | 118 +++++++++++++++---
+ 4 files changed, 106 insertions(+), 20 deletions(-)
+
+-- 
+2.20.1
+
