@@ -2,107 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4711AA374
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 15:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 997E31AA388
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 15:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506000AbgDONKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 09:10:21 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40984 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2504628AbgDONKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Apr 2020 09:10:03 -0400
-Received: by mail-ot1-f65.google.com with SMTP id f52so3283019otf.8;
-        Wed, 15 Apr 2020 06:10:02 -0700 (PDT)
+        id S2506081AbgDONLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 09:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54840 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2506078AbgDONLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 09:11:07 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3513FC061A0C;
+        Wed, 15 Apr 2020 06:11:06 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id z6so19016931wml.2;
+        Wed, 15 Apr 2020 06:11:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=1YK31f6d9R7ZKz1959zNs117rXGUB2qZVpteQ8Nm8rE=;
+        b=opvfaQb0ZITpiBld1k4u5Ru6l4CFHpZ7v8Dsm3tWBEB7BZxs190+jPFTPIwCl50rrx
+         NPPMdBa7gnGMXIrhYoOpvsYB8NX67Xjf92Y6es4h/dRkErBjLDBbjqxCGRmV/GjT9ahb
+         4il8jDWH3Wn9uiNiMzxAq8Po0YDsM5JA8B9WcZtp/qDYTMGaTLOYqN0SgUkn/Z7PVcSw
+         hsdfygbK/xTy52wU0y6n7Cqi0wAyu61S/3Nq5uFCyTH1DprmeApdnBrS4oXhcfva95OX
+         RpmoHTicjgAFZXs141O7f9i2gCRF2ctZwxqoP5d51mzkRirXjLJR34W41a7FfOC68577
+         PSXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V9qFaonjPRW9YmEnwpksQX2HJ6Eu2laaNELJr4ZepKs=;
-        b=UsRMem+4nQ//2nHIUdfqW5L2C/Wo3qHzMPnrfFDOf9VpxNpGGGFiGoP2Hvbwb5BFBS
-         1ptvSCRn/kAi00NBjpAjmcpbGVz5BQFAIaqsGvrBxpiGgK4MuCR/UJrzqIuaq2pmuAnS
-         XNJk2xi71wSNQhm4W5OjDMwk1xvsuskidrhToY5+IMVvl2ta2m63Oqhe0HkHDUtL7BFB
-         a/sU/OayLZHK+rj42xjGUl+0V6g1p3oMY+6p63RxnOlvkUzxTEG8SpeYU4bndpFbVhIU
-         LdmIPT8dNVCoww0kgPbEIJ70WbZ/05TJpNkRwQxH3UwRn//gWBjZl2b7mDmkX5NAm+Ib
-         gRTg==
-X-Gm-Message-State: AGi0PuYiGLo7txRGJrJrpozJJfSNCf1p06mOj3AuAA9ICZ93U8dQldFs
-        rDD8Gfu3H8wPWB/X7R6XMedaY3lZoukEDUYngiQ=
-X-Google-Smtp-Source: APiQypLShKZQeszRkfUd4JX09QyAsJLhw1FNdbkBHMtLuShW145jHc+V4wPdNtNpXwRXxnGu4ITkOPujBryR9ze8Mnc=
-X-Received: by 2002:a4a:e1af:: with SMTP id 15mr1097315ooy.40.1586956201952;
- Wed, 15 Apr 2020 06:10:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <1586512923-21739-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1586512923-21739-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1586512923-21739-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 15 Apr 2020 15:09:49 +0200
-Message-ID: <CAMuHMdULExMNnKJWsjAonR1sVeTyQCH0shwO--Wo6dLzrWV_tQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: dma: renesas,rcar-dmac: convert bindings
- to json-schema
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Vinod <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=1YK31f6d9R7ZKz1959zNs117rXGUB2qZVpteQ8Nm8rE=;
+        b=pNWyBTJDoC/NpRuaCrVicAp+NdfEXevTySiPoSmHtvOUym1V8u0XF05+d0ujMjxZ0Q
+         W5y8DgAF7kOpp4LxpdzaqcphCyMwaGE+2tjIfyzN94blgZyz9CEiedgI4A8k0l6qKxht
+         32WBlGRzZwBk60tGM00CUDx6IwDY4YEkZOWuBMtr/AnpAVhB12V/h5XZaWQ0I7dsKBrK
+         y9r2nfW5dibk38ToJqgWk3C1Tpbf1whuBKIN41mNJNIIhUgKYK0/nqb5ez9J1LMXv8VS
+         6eGJzoUkeZhqMKof2ntMJsZt8oP13bgiLmiXYcQiVN715STTxp51bYrIXUt1JZXHA296
+         mwnw==
+X-Gm-Message-State: AGi0PubSVHhSXySvUScZ5VoVD/KqyIaUm3+M+Y7QU57W5IXxjugYopW8
+        5lrWGeHMrGQtB311d34djgU=
+X-Google-Smtp-Source: APiQypKb/YVsijkXt1W8jtMK4h3qXbl3iX+wO+27T2T3+keWoO4EtLb2fRtUtD+xSMEElkqoUaNBbQ==
+X-Received: by 2002:a1c:b70a:: with SMTP id h10mr5272755wmf.172.1586956264930;
+        Wed, 15 Apr 2020 06:11:04 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id c20sm24022450wmd.36.2020.04.15.06.11.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Apr 2020 06:11:04 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: remove bus-width from mmc nodes in rk3308-roc-cc.dts
+Date:   Wed, 15 Apr 2020 15:10:57 +0200
+Message-Id: <20200415131057.2366-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+The 'bus-width' property for mmc nodes is defined both in
+'rk3308.dtsi' and 'rk3308-roc-cc.dts'.
+'bus-width' and pinctrl containing the bus-pins
+should be in the same file, so remove all entries
+from mmc nodes in 'rk3308-roc-cc.dts'.
 
-On Fri, Apr 10, 2020 at 12:02 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Convert Renesas R-Car and RZ/G DMA Controller bindings
-> documentation to json-schema.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-One question below...
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-
-> +  interrupt-names:
-> +    minItems: 9
-> +    maxItems: 17
-> +    items:
-> +      - const: error
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-
-Would it make sense to just put the actual names here?
-
-    - const: error
-    - const: ch0
-    - const: ch1
-      [...]
-    - const: ch 15
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
+index aa256350b..8011e9b12 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
+@@ -123,7 +123,6 @@
+ };
+ 
+ &emmc {
+-	bus-width = <8>;
+ 	cap-mmc-highspeed;
+ 	disable-wp;
+ 	mmc-hs200-1_8v;
+@@ -171,7 +170,6 @@
+ };
+ 
+ &sdmmc {
+-	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
+ 	card-detect-delay = <300>;
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.11.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
