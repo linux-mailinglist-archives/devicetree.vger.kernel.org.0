@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 063DC1AA111
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5291AA11A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408985AbgDOLnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 07:43:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35036 "EHLO mail.kernel.org"
+        id S2409008AbgDOLne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 07:43:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35480 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408978AbgDOLnO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 07:43:14 -0400
+        id S2897520AbgDOLnb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 07:43:31 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3EBDD21582;
-        Wed, 15 Apr 2020 11:43:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5E7D5214D8;
+        Wed, 15 Apr 2020 11:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586950994;
-        bh=Mc1pIuQsFh+DB+kAcRNt4P2NwE+ll1nbXbIDWqB5Y6M=;
+        s=default; t=1586951011;
+        bh=009fT8XnlNWgSGFjkqzi9WHS52wJSOjnMq5vvLMSftE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pm9dSKrB7jcGwpIPcOmyY2mHLprxEHp7SgENhdiGFuKRNgbQLAvFE4+t3QXuzf3t9
-         sy8M4m1o3tRu58uqhJmuzO6LqgCxmLkPnF4Dzo4VaEX2fZjoeKaj2YXI4Jkk1lkNgL
-         UDw9n7zzAjSWMK2wJCob6vmRfm4wOyEuyjBanzIA=
+        b=HC8yKBERmY2yh4mSP9ed6QAnCugan1/mEN2q8aSM96pLbELGwP2RMZyVZE2u6/Q3X
+         8eldzg2/C0MnFD8ySXdSm5e6tfORzBXCzR4SFbYySo5llCBjBrur/TzmiuErhV3ZA/
+         ZqSEzmOFANVDsYwX4ojTna53rfmr0leVCJjsu/ws=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alex Smith <alex.smith@imgtec.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 040/106] MIPS: DTS: CI20: add DT node for IR sensor
-Date:   Wed, 15 Apr 2020 07:41:20 -0400
-Message-Id: <20200415114226.13103-40-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.5 054/106] dt-bindings: thermal: tsens: Fix nvmem-cell-names schema
+Date:   Wed, 15 Apr 2020 07:41:34 -0400
+Message-Id: <20200415114226.13103-54-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200415114226.13103-1-sashal@kernel.org>
 References: <20200415114226.13103-1-sashal@kernel.org>
@@ -46,39 +47,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alex Smith <alex.smith@imgtec.com>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit f5e8fcf85a25bac26c32a0000dbab5857ead9113 ]
+[ Upstream commit b9589def9f9af93d9d4c5969c9a6c166f070e36e ]
 
-The infrared sensor on the CI20 board is connected to a GPIO and can
-be operated by using the gpio-ir-recv driver. Add a DT node for the
-sensor to allow that driver to be used.
+There's a typo 'nvmem-cells-names' in the schema which means the correct
+'nvmem-cell-names' in the examples are not checked. The possible values
+are wrong too both in that the 2nd entry is not specified correctly and the
+values are just wrong based on the dts files in the kernel.
 
-Signed-off-by: Alex Smith <alex.smith@imgtec.com>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Fixes: a877e768f655 ("dt-bindings: thermal: tsens: Convert over to a yaml schema")
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Amit Kucheria <amit.kucheria@linaro.org>
+Cc: Zhang Rui <rui.zhang@intel.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/mips/boot/dts/ingenic/ci20.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/thermal/qcom-tsens.yaml          | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index c340f947baa03..fc4e64200c3d5 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -62,6 +62,11 @@
- 		enable-active-high;
- 	};
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index eef13b9446a87..a4df53228122a 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -53,13 +53,12 @@ properties:
+     description:
+       Reference to an nvmem node for the calibration data
  
-+	ir: ir {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpe 3 GPIO_ACTIVE_LOW>;
-+	};
-+
- 	wlan0_power: fixedregulator@1 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wlan0_power";
+-  nvmem-cells-names:
++  nvmem-cell-names:
+     minItems: 1
+     maxItems: 2
+     items:
+-      - enum:
+-        - caldata
+-        - calsel
++      - const: calib
++      - const: calib_sel
+ 
+   "#qcom,sensors":
+     allOf:
+@@ -125,7 +124,7 @@ examples:
+                  <0x4a8000 0x1000>; /* SROT */
+ 
+            nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
+-           nvmem-cell-names = "caldata", "calsel";
++           nvmem-cell-names = "calib", "calib_sel";
+ 
+            interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
+            interrupt-names = "uplow";
 -- 
 2.20.1
 
