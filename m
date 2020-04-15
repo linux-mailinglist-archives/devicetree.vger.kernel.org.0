@@ -2,114 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A92E1AB132
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 21:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E9C1AB0FC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 21:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411754AbgDOTHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 15:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52770 "EHLO
+        id S2411762AbgDOTH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 15:07:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1416894AbgDOS74 (ORCPT
+        by vger.kernel.org with ESMTP id S2411734AbgDOTH1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 14:59:56 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DE5C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 11:59:56 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id z90so14236320qtd.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 11:59:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RyFFovUkxx1rRXT+frGOD7qB7e/9xE+euu5Cd6lJq4c=;
-        b=kdnLIyt9To6zO7rsfPXTcuWddDq/l+SqTQGPb6OJO7UzXiHLCejvNEG29BX7U1kCHC
-         9BcCz4W/NyEsWUK5RAmbyD0HlwRBF2KHqqUGz/LR2D66x7Z8CKaZXNHkGxk7KJHrrmtY
-         rhgFC6uJL6nCFTg620RyEmK48mczHX+JeM3m8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RyFFovUkxx1rRXT+frGOD7qB7e/9xE+euu5Cd6lJq4c=;
-        b=XF3tEccja2vWvVjbTgGJRUp1I6mCCiz0P3s6DPA1BbZSJiRp6GAd3+mHLoFu/6woVY
-         +j3aeNDlR8vlzGx7L8dX6cN25qYiyXFLTZPQnbnuXY6Ip9TWaqZSYpze4/hlxX4ELphv
-         ZaM2oc9I5mK2Amf/hTM4CyGWQTu/oj/Qn0mX6dVEWDFIZPhkxX4qPSUR4WEnVFxPQgET
-         vmLOzEew+zn3BcgHZM4RdYM48OsqhoBhTqB/+NcaSo0k3G3CLWmEYD2YlPFRSEY5Ql3d
-         neDvcQy2MwC9FMuK3s6wYcUmjELo6djxQjn+gk0wNR6EDKmv+u2zl5Jo8O4T8OCMU46t
-         Vy3A==
-X-Gm-Message-State: AGi0PubAcnDhYg+OSvyNEQmFtrECJlAaS/cEZWiSlXEWPVOBhOSLhC9p
-        Tu9LDzHrU5pSsdmbY/Vdbi+agA==
-X-Google-Smtp-Source: APiQypIaMkbmxh/Zsj/TW3PrwAt99zbsgCP4222dba10JjDcBv89JvF63UyYrU5GKpKM/SdIfPV8cA==
-X-Received: by 2002:ac8:4ccc:: with SMTP id l12mr22717549qtv.129.1586977195010;
-        Wed, 15 Apr 2020 11:59:55 -0700 (PDT)
-Received: from bacon.ohporter.com ([2605:a000:1234:47c6:a553:c33f:1562:b0b1])
-        by smtp.gmail.com with ESMTPSA id z187sm313355qka.69.2020.04.15.11.59.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2020 11:59:54 -0700 (PDT)
-From:   Matt Porter <mporter@konsulko.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: imx8mm: specify #sound-dai-cells for SAI nodes
-Date:   Wed, 15 Apr 2020 14:59:41 -0400
-Message-Id: <20200415185941.13956-1-mporter@konsulko.com>
-X-Mailer: git-send-email 2.20.1
+        Wed, 15 Apr 2020 15:07:27 -0400
+Received: from ns.pmeerw.net (ns.pmeerw.net [IPv6:2001:1b60:2:23:1033:103:0:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7532C061A10;
+        Wed, 15 Apr 2020 12:07:26 -0700 (PDT)
+Received: by ns.pmeerw.net (Postfix, from userid 1000)
+        id 0D51AE0851; Wed, 15 Apr 2020 21:07:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pmeerw.net; s=mail;
+        t=1586977644; bh=6kKOP9MD30yOGMfU+pNu0Hgt58IVDIYTyfhvXAfdje0=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=mvLltGiKZ+SX2dhw5gFV0PSGDlLVI3B7O6o+hVS9+bm6kTo0egsMam0IEMDoqmmkM
+         JiMZ7smuPvSLFzgBjG07AW72uF4kJ51b5hV3V105DT2NFfWRCIrQGamAuoCipS1i1k
+         79CO93pFUwKpy5vbDTz3WBplGLZgTODVoB5wY8LU=
+Received: from localhost (localhost [127.0.0.1])
+        by ns.pmeerw.net (Postfix) with ESMTP id 028A8E0451;
+        Wed, 15 Apr 2020 21:07:24 +0200 (CEST)
+Date:   Wed, 15 Apr 2020 21:07:23 +0200 (CEST)
+From:   Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+cc:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v9 1/6] dt-bindings: mfd: add document bindings for
+ mp2629
+In-Reply-To: <20200415162030.16414-2-sravanhome@gmail.com>
+Message-ID: <alpine.DEB.2.21.2004152106160.18914@vps.pmeerw.net>
+References: <20200415162030.16414-1-sravanhome@gmail.com> <20200415162030.16414-2-sravanhome@gmail.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add #sound-dai-cells properties to SAI nodes.
+On Wed, 15 Apr 2020, Saravanan Sekar wrote:
 
-Signed-off-by: Matt Porter <mporter@konsulko.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+comment below
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index cc7152ecedd9..8453a657cb5e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -270,6 +270,7 @@
- 			ranges = <0x30000000 0x30000000 0x400000>;
- 
- 			sai1: sai@30010000 {
-+				#sound-dai-cells = <0>;
- 				compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 				reg = <0x30010000 0x10000>;
- 				interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-@@ -283,6 +284,7 @@
- 			};
- 
- 			sai2: sai@30020000 {
-+				#sound-dai-cells = <0>;
- 				compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 				reg = <0x30020000 0x10000>;
- 				interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-@@ -310,6 +312,7 @@
- 			};
- 
- 			sai5: sai@30050000 {
-+				#sound-dai-cells = <0>;
- 				compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 				reg = <0x30050000 0x10000>;
- 				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-@@ -323,6 +326,7 @@
- 			};
- 
- 			sai6: sai@30060000 {
-+				#sound-dai-cells = <0>;
- 				compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 				reg = <0x30060000 0x10000>;
- 				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> Add device tree binding information for mp2629 mfd driver.
+> 
+> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/mps,mp2629.yaml   | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml b/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+> new file mode 100644
+> index 000000000000..e71c554802a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/mps,mp2629.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MP2629 Battery Charger PMIC from Monolithic Power System.
+> +
+> +maintainers:
+> +  - Saravanan Sekar <sravanhome@gmail.com>
+> +
+> +description: |
+> +  MP2629 is a PMIC providing battery charging and power supply for smartphones,
+> +  wireless camera and portable devices. Chip is contrlled over I2C.
+
+controlled
+
+> +
+> +  The battery charge management device handles battery charger controller and
+> +  ADC IIO device for battery, system voltage
+> +
+> +properties:
+> +  compatible:
+> +    const: mps,mp2629
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the IRQ number, the second cell is the trigger type.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/linux-event-codes.h>
+> +    i2c@7e205000 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@4b {
+> +            compatible = "mps,mp2629";
+> +            reg = <0x4b>;
+> +
+> +            interrupt-controller;
+> +            interrupt-parent = <&gpio2>;
+> +            #interrupt-cells = <2>;
+> +            interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> 
+
 -- 
-2.20.1
 
+Peter Meerwald-Stadler
+Mobile: +43 664 24 44 418
