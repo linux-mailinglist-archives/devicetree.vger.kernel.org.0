@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 399E01A9CDB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 13:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D95811AA23B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 14:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897296AbgDOLjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 07:39:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59078 "EHLO mail.kernel.org"
+        id S370520AbgDOMwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 08:52:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34092 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2897287AbgDOLjD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 07:39:03 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2897492AbgDOLmk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 07:42:40 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DC96A20768;
-        Wed, 15 Apr 2020 11:39:01 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A3C9020936;
+        Wed, 15 Apr 2020 11:42:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1586950742;
-        bh=DhilV2LGjOn6gl5KU5PoNhKIEfaaPV1J4VIyQKZ1zVU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QSW4csO/lzL0+++NeIP5apIz9UXvOMrwUJzFbUcMJkQV3Dzwax5rfFSrigbQVSYmP
-         D52NhrGUiQ2j2lkSVX4laTA0+Py/5VoNzjnkF60vvGUAaMKHnz7WZo8qZY9meWyzRX
-         NJc2v6ypYK30LwkinlCgfU+/A4wT1OZkz8phDdvQ=
-Date:   Wed, 15 Apr 2020 12:39:00 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Akash Asthana <akashast@codeaurora.org>
-Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, wsa@the-dreams.de,
-        mark.rutland@arm.com, robh+dt@kernel.org, georgi.djakov@linaro.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-serial@vger.kernel.org, mka@chromium.org,
-        dianders@chromium.org, evgreen@chromium.org
-Subject: Re: [PATCH V4 6/9] spi: spi-geni-qcom: Add interconnect support
-Message-ID: <20200415113900.GD5265@sirena.org.uk>
-References: <1586946198-13912-1-git-send-email-akashast@codeaurora.org>
- <1586946198-13912-7-git-send-email-akashast@codeaurora.org>
+        s=default; t=1586950960;
+        bh=HA/6hgyu6HpfGD6DRIjXKBLT95W1xF9Q0/ETbreVlm8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=qdSkvFOhu2KKBkv0QjeDPCROZ10eBuKJFu/TruasHkrh5GT8CMdBWEYQHnczJpaHL
+         bf48YdSII4sNeNNceVBZzGLoIHOnVPEgBG08wPJnnOTVKIVkLmzT5glb/Ngh8G00pP
+         3vJ7BbILFTAVg55XIfXY+4J6oC0bvmwLz2EjSHBY=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.5 011/106] arm64: dts: librem5-devkit: add a vbus supply to usb0
+Date:   Wed, 15 Apr 2020 07:40:51 -0400
+Message-Id: <20200415114226.13103-11-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200415114226.13103-1-sashal@kernel.org>
+References: <20200415114226.13103-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NtwzykIc2mflq5ck"
-Content-Disposition: inline
-In-Reply-To: <1586946198-13912-7-git-send-email-akashast@codeaurora.org>
-X-Cookie: Hire the morally handicapped.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: "Angus Ainslie (Purism)" <angus@akkea.ca>
 
---NtwzykIc2mflq5ck
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[ Upstream commit dde061b865598ad91f50140760e1d224e5045db9 ]
 
-On Wed, Apr 15, 2020 at 03:53:15PM +0530, Akash Asthana wrote:
-> Get the interconnect paths for SPI based Serial Engine device
-> and vote according to the current bus speed of the driver.
+Without a VBUS supply the dwc3 driver won't go into otg mode.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Fixes: eb4ea0857c83 ("arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit")
+Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
---NtwzykIc2mflq5ck
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+index 596bc65f475c2..b2cf6f1925257 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+@@ -743,6 +743,7 @@
+ };
+ 
+ &usb3_phy0 {
++	vbus-supply = <&reg_5v_p>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.20.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl6W8lMACgkQJNaLcl1U
-h9ALhAf+LSYOHFhnvd51g9KqXmq4MWJ/4WJ3CyCeJfrLwmHC077oaiBT8uI+nwAw
-ryqlhyzHhYhQycNDTAbEVON72KCQuHrc2cjO9FPiKnvZ6fxcfDE/fq0G17v2y3UO
-4OXDoYkpYbnBK/cA1D9O1kIh3YxD3H926UfjBowT43Vc5mrTTdb4TheyZsGYXNuW
-bcGVnXNFVfdNcqKT8mJ2is6EhfIU0417YR9YaFnmRsCivRxR79y4K5wg8DWSALfy
-oCfm8pWX3ivmbQ7utQShrc4gnACwK2zlO5v10LupYTKQJBAbFUXntqyJ3U6PcAmh
-QyjDriQmcqykA2os0xc1CftFuoMgVw==
-=NU9L
------END PGP SIGNATURE-----
-
---NtwzykIc2mflq5ck--
