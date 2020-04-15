@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1DA11A9871
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7F51A98D5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 11:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408411AbgDOJU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 05:20:59 -0400
-Received: from mx2.suse.de ([195.135.220.15]:39360 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2895288AbgDOJTk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 05:19:40 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 19217ADCC;
-        Wed, 15 Apr 2020 09:19:38 +0000 (UTC)
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: realtek: Document RTD1319 and
- Realtek PymParticle EVB
-To:     =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
-Cc:     "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        id S2895508AbgDOJ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 05:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2895494AbgDOJ04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Apr 2020 05:26:56 -0400
+Received: from mo6-p04-ob.smtp.rzone.de (mo6-p04-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5304::12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B167EC061A0C;
+        Wed, 15 Apr 2020 02:26:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1586942812;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=QSUY1yUiWe9X6ZGNIO1eH3insGRwBB0CwHRK6fHg7uQ=;
+        b=qlAD48FijIaBoAx9ezb9opMkPMPwJpEBYm7kVCbfB14p09Yq5qj0+PrIOI7a5QHsgS
+        A6f7DumiHE8MZ4Bo5cP5+BCuQgzTgomwBDVFdtGkDE5Cas7onZSDZ85F05pGoTMlAxyr
+        o1LOgQmVrSwLM4o0aG4m39+j+V2AbyNlWeebGdnWol/VOo2Xw3gDGvmqBE03mzYFR4Yz
+        9+vSGEkqV1JQuahiBJ/M3qTRyW4OT9CgiNG5DWNJKMWUWl/KL4Ab3LCzpg3nngAb6skv
+        eBcjdzHVUAChMfWwzgBgWVFfWTgedno9mf8idJn84ToAR47waXQBwCu0Zd+LNHYRY+O7
+        XlGQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/PtwDConyM="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 46.4.0 DYNA|AUTH)
+        with ESMTPSA id 6028a2w3F9Qa0oW
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Wed, 15 Apr 2020 11:26:36 +0200 (CEST)
+Subject: Re: [PATCH v6 08/12] arm: dts: s5pv210: Add G3D node
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Content-Type: text/plain; charset=us-ascii
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <b6ffa74a-acef-f329-0d9e-981483499e16@cogentembedded.com>
+Date:   Wed, 15 Apr 2020 11:26:35 +0200
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200204145207.28622-1-james.tai@realtek.com>
- <20200204145207.28622-2-james.tai@realtek.com>
- <bf55ccbe-cbdf-7ba7-d701-aa84c20204e3@suse.de>
- <a9685d4560a6445d81c4919b2a323f68@realtek.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <cb724434-bebf-2a23-fd90-8cd82078459d@suse.de>
-Date:   Wed, 15 Apr 2020 11:19:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <a9685d4560a6445d81c4919b2a323f68@realtek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        Mark Rutland <mark.rutland@arm.com>,
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        James Hogan <jhogan@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Philipp Rossak <embed3d@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        openpvrsgx-devgroup@letux.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com, linux-mips@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Jonathan Bakker <xc-racer2@live.ca>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B1E898A7-73BB-4C20-98D2-2D32F0DC170F@goldelico.com>
+References: <cover.1586939718.git.hns@goldelico.com> <b6733f80546bf3e6b3799f716b9c8e0f407de03d.1586939718.git.hns@goldelico.com> <b6ffa74a-acef-f329-0d9e-981483499e16@cogentembedded.com>
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Jonathan Bakker <xc-racer2@live.ca>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi James,
+Hi Sergei and Jonathan,
 
-Am 15.04.20 um 10:58 schrieb James Tai [戴志峰]:
->>> diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml
->>> b/Documentation/devicetree/bindings/arm/realtek.yaml
->>> index 845f9c76d6f7..3b48ae71fdd8 100644
->>> --- a/Documentation/devicetree/bindings/arm/realtek.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/realtek.yaml
->>> @@ -42,6 +42,12 @@ properties:
->>>                  - synology,ds418 # Synology DiskStation DS418
->>>              - const: realtek,rtd1296
->>>
->>> +      # RTD1319 SoC based boards
->>> +      - items:
->>> +          - enum:
->>> +              - realtek,pymparticle # Realtek PymParticle EVB
->>
->> The board seems labelled "PYM_PARTICLES".
->>
->> While Wikipedia has nothing on that, I found this explanation:
->> https://marvel.fandom.com/wiki/Pym_Particles
->>
->> So, are you sure it's PymParticle and not "Pym Particle" with space or "Pym
->> Particles" with space and plural S? The S would affect also the .dts filename.
->>
-> I should change the string to "Pym Particles".
+> Am 15.04.2020 um 11:15 schrieb Sergei Shtylyov =
+<sergei.shtylyov@cogentembedded.com>:
+>=20
+> Hello!
+>=20
+> On 15.04.2020 11:35, H. Nikolaus Schaller wrote:
+>=20
+>> From: Jonathan Bakker <xc-racer2@live.ca>
+>> to add support for SGX540 GPU.
+>> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>>  arch/arm/boot/dts/s5pv210.dtsi | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>> diff --git a/arch/arm/boot/dts/s5pv210.dtsi =
+b/arch/arm/boot/dts/s5pv210.dtsi
+>> index 2ad642f51fd9..e7fc709c0cca 100644
+>> --- a/arch/arm/boot/dts/s5pv210.dtsi
+>> +++ b/arch/arm/boot/dts/s5pv210.dtsi
+>> @@ -512,6 +512,21 @@ vic3: interrupt-controller@f2300000 {
+>>  			#interrupt-cells =3D <1>;
+>>  		};
+>>  +		g3d: g3d@f3000000 {
+>=20
+>   Should be named generically, "gpu@f3000000", according to the DT =
+spec 0.2, section 2.2.2. It's either "gpu" or "display" TTBOMK...
 
-Okay, in that case I suggest rtd1319-pymparticles.dts for consistency. 
-Unless you want to change rtd1395-lionskin.dts to rtd1395-lion-skin.dts.
+Yes, you are right and we have named it such for all other
+devices in this series. I just missed that.
 
->> For the compatible string the question is pymparticle or pym-particle.
->>
-> The compatible string is "pym-particles".
+Jonathan, if you are ok, I'll fix that.
 
-Works for me. (always assuming we both imply the "realtek," prefix)
+>=20
+> [...]
+>=20
+> MBR, Sergei
 
-If you send a v4, please double-check the comments in patch 2/2.
+BR and thanks,
+Nikolaus
 
->> By comparison, LION-SKIN was named lion-skin in the compatible and spelled
->> Lion Skin in textual form. If you believe that should be fixed, now would be the
->> time to revisit those patches that didn't make v5.7.
->>
-> I'll check those relevant patches.
-
-Thanks,
-Andreas
-
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
