@@ -2,110 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C7F1A9B36
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3271E1A9B12
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2020 12:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896540AbgDOKoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Apr 2020 06:44:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2896461AbgDOKW4 (ORCPT
+        id S2390786AbgDOKmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Apr 2020 06:42:08 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:30736 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2896485AbgDOKXw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Apr 2020 06:22:56 -0400
-Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com [IPv6:2607:f8b0:4864:20::944])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B671BC061A0F
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 03:22:19 -0700 (PDT)
-Received: by mail-ua1-x944.google.com with SMTP id u12so268853uau.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 03:22:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F+P0Ra3iC/JXSowntxHaRgfUwGs3p9lTv27KqV4QmgY=;
-        b=yinSAq1kT6zD1vFtfLDkhnd/jpN7wrG7ODN60H5IZPf26eivm1z8qbVdevmvj+nESI
-         nZkUgiclMtRXxn8wlxgMLJhloymD845hPfK9pL/KcGtTJb0d7fX7pwCexJD3h/XqUIDL
-         sC/Ecllg7bxMZ/zKYj0/8EIP26LBpFsV6haHjrJ3Q3Wp+5i/wRyQy3VDQCRyWiOgGpqs
-         sRYyedAtNXFE1+Eible6YMxvgiuvsJKYaaAL+7utOJgKAFToCINEIuZ/ipArRi5R5Fct
-         mAEz5wpBzbacQFz5hqldM4DaVLpl7apIeSSYMb8dIUylxnJOl2KZru1sz0LMGiN1gTvH
-         3Vrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F+P0Ra3iC/JXSowntxHaRgfUwGs3p9lTv27KqV4QmgY=;
-        b=ZePjzF17atOO7QuZFSRVxg348dE3241lpsreGrEPm6aXnStITK8ThwE0h4vG6qlShh
-         cdTgSno4iypXtcBkjuVgp9R0q2f0SxQW07vHoErqa7NSGZngNqWABhy4xYH+ORqBdY2h
-         AhdCiRRZUgn2N9u5Ncw4lRob0qJob4c/QQ7drs2eciQ9c9d21E1d4BivqKOONcMfDXo0
-         G3BVOqS7VR41pJWyzzok5kYqjjFdi6ijfkw1Fz4NteVH6JrslW7L6x5d0t6dPHOYGKV7
-         suks5s03I7iBGJYLIF0bXOSSeLTjXuNcHis2DX6y9TTPaO/hSWsUjjYkSNNjZv5iiEJ7
-         9DHQ==
-X-Gm-Message-State: AGi0PuaqsNFHkqJEckao6jN/AGDhET3GijAeBLWJbOoPdRosXcTUoNhA
-        oGjiqJPoFsuUmS+nZ2aych1JXf0XyZYwtHSxWm5ErA==
-X-Google-Smtp-Source: APiQypKTK11CweNuCLZHuiNsUqScKK2+NgaXl+En6sRY3fEfxKIbqcGPVRHGTngyxhLH42mRakinkb9pbXES1T/eR+k=
-X-Received: by 2002:ab0:6204:: with SMTP id m4mr3886872uao.15.1586946138827;
- Wed, 15 Apr 2020 03:22:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <1586195015-128992-1-git-send-email-manish.narani@xilinx.com>
-In-Reply-To: <1586195015-128992-1-git-send-email-manish.narani@xilinx.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 15 Apr 2020 12:21:42 +0200
-Message-ID: <CAPDyKFqXYTh_+J=tnTTsK0Q1tj6f77hmnnh60Skw=WYwCCY9iQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Add support for Xilinx Versal SDHCI in Arasan driver
-To:     Manish Narani <manish.narani@xilinx.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        git@xilinx.com
-Content-Type: text/plain; charset="UTF-8"
+        Wed, 15 Apr 2020 06:23:52 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1586946226; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=GGjz8tY0e6WxXggFY13xcuAUvyD7bnrpD+rtVLsk8QA=; b=ac5d/qFikhx2KZKURgVo8oDPH34aQN/2RdHfmipVu4mjuGTaXWZZ6yngquZVfAdNziQSnKZh
+ HmZ63yrSOHoLn3ve6CRvCLvVHMiU+EV0cSwOFBwjv4BgGrIrBMmf32aFp0ytKXz5MlsSMs4z
+ 4TgOT0pGFvwLEk2/n70qsdBEIBg=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e96e0ad.7ff68bc01dc0-smtp-out-n02;
+ Wed, 15 Apr 2020 10:23:41 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DF2A6C44792; Wed, 15 Apr 2020 10:23:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from akashast-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AFA8EC433F2;
+        Wed, 15 Apr 2020 10:23:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AFA8EC433F2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
+From:   Akash Asthana <akashast@codeaurora.org>
+To:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, georgi.djakov@linaro.org
+Cc:     linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org, evgreen@chromium.org,
+        Akash Asthana <akashast@codeaurora.org>
+Subject: [PATCH V4 0/9] Add interconnect support to QSPI and QUP drivers
+Date:   Wed, 15 Apr 2020 15:53:09 +0530
+Message-Id: <1586946198-13912-1-git-send-email-akashast@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Apr 2020 at 19:43, Manish Narani <manish.narani@xilinx.com> wrote:
->
-> This patch series includes:
->  -> Document the Xilinx Versal SD controller
->  -> Add support for Versal SD Tap Delays
->  -> Reorganizing the clock operations handling
->  -> Resolve kernel-doc warnings
->
-> Changes in v2:
->         - Addressed review comments given in v1
->         - Changed clock operation handling for better modularity.
->         - Changed comments to fix kernel-doc warnings
->
-> Changes in v3:
->         - Addressed review comments from v2
->         - Move platform related structure before doing clock related changes
->         - Rename sdhci_arasan_data to avoid confusion with another struct name
->
-> Manish Narani (6):
->   dt-bindings: mmc: arasan: Document 'xlnx,versal-8.9a' controller
->   sdhci: arasan: Add support for Versal Tap Delays
->   mmc: sdhci-of-arasan: Rename sdhci_arasan_data to avoid confusion
->   mmc: sdhci-of-arasan: Rearrange the platform data structs for
->     modularity
->   mmc: sdhci-of-arasan: Modify clock operations handling
->   mmc: sdhci-of-arasan: Fix kernel-doc warnings
->
->  .../devicetree/bindings/mmc/arasan,sdhci.txt       |  15 +
->  drivers/mmc/host/sdhci-of-arasan.c                 | 473 +++++++++++++++------
->  2 files changed, 361 insertions(+), 127 deletions(-)
->
-> --
-> 2.1.1
->
+dt-binding patch for QUP drivers.
+ - https://patchwork.kernel.org/patch/11436621/ [Convert QUP bindings
+        to YAML and add ICC, pin swap doc]
 
-Applied for next, by managing some conflicts for patch4, thanks!
+High level design:
+ - QUP wrapper/common driver.
+   Vote for QUP core on behalf of earlycon from probe.
+   Remove BW vote during earlycon exit call
 
-Note that, unless there is a "fix" part of the series, there is no
-need to ping during the merge window.
+ - SERIAL driver.
+   Vote only for CPU/CORE path because driver is in FIFO mode only
+   Vote/unvote from qcom_geni_serial_pm func.
+   Bump up the CPU vote from set_termios call based on real time need
 
-Kind regards
-Uffe
+ - I2C driver.
+   Vote for CORE/CPU/DDR path
+   Vote/unvote from runtime resume/suspend callback
+   As bus speed for I2C is fixed from probe itself no need for bump up.
+
+ - SPI QUP driver.
+   Vote only for CPU/CORE path because driver is in FIFO mode only
+   Vote/unvote from runtime resume/suspend callback
+   Bump up CPU vote based on real time need per transfer.
+
+ - QSPI driver.
+   Vote only for CPU path
+   Vote/unvote from runtime resume/suspend callback
+   Bump up CPU vote based on real time need per transfer.
+
+Changes in V2:
+ - Add devm_of_icc_get() API interconnect core.
+ - Add ICC support to common driver to fix earlyconsole crash.
+
+Changes in V3:
+ - Define common ICC APIs in geni-se driver and use it across geni based
+   I2C,SPI and UART driver.
+
+Changes in V4:
+ - Add a patch to ICC core to scale peak requirement
+   as twice of average if it is not mentioned explicilty.
+
+Akash Asthana (9):
+  interconnect: Add devm_of_icc_get() as exported API for users
+  interconnect: Set peak requirement as twice of average
+  soc: qcom: geni: Support for ICC voting
+  soc: qcom-geni-se: Add interconnect support to fix earlycon crash
+  i2c: i2c-qcom-geni: Add interconnect support
+  spi: spi-geni-qcom: Add interconnect support
+  tty: serial: qcom_geni_serial: Add interconnect support
+  spi: spi-qcom-qspi: Add interconnect support
+  arm64: dts: sc7180: Add interconnect for QUP and QSPI
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi  | 127 ++++++++++++++++++++++++++++++++++
+ drivers/i2c/busses/i2c-qcom-geni.c    |  26 ++++++-
+ drivers/interconnect/core.c           |  35 ++++++++++
+ drivers/soc/qcom/qcom-geni-se.c       | 111 +++++++++++++++++++++++++++++
+ drivers/spi/spi-geni-qcom.c           |  25 ++++++-
+ drivers/spi/spi-qcom-qspi.c           |  43 +++++++++++-
+ drivers/tty/serial/qcom_geni_serial.c |  32 ++++++++-
+ include/linux/interconnect.h          |   7 ++
+ include/linux/qcom-geni-se.h          |  33 +++++++++
+ 9 files changed, 433 insertions(+), 6 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
