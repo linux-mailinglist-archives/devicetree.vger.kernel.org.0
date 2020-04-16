@@ -2,157 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA011ABB65
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 10:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68F971ABB6F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 10:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441422AbgDPIgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 04:36:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
+        id S2502540AbgDPIiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 04:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502254AbgDPIgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 04:36:20 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B68EC061A0C;
-        Thu, 16 Apr 2020 01:22:36 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id j14so4903993lfg.9;
-        Thu, 16 Apr 2020 01:22:35 -0700 (PDT)
+        with ESMTP id S2502455AbgDPIfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 04:35:22 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 320D3C03C1A7
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 01:24:26 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id y185so97581vsy.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 01:24:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=5XivUy7FYVNBF2ALrQWWddiXZG0r/RtMEsTQOMXoZEw=;
-        b=hrxyamFeaN5opbMcHQIxgyojWXXgF0/AxSdT61mtPK/9nuopn2X3w+Eo7DmP8MgRrW
-         cyaf9xt2UXlInW++gbOBn+B5WwIovU/cUwpTbDaABwoFf6xwgWIz3NH8KkrePTDplsKB
-         ooSPWlZBuCE8bUqqRkYUK9MfI6BmkvmvP2sRVcs6zVmHnu7c6cQoGlTWZmFc5xx6D6JD
-         XqNOkrRYtWq0NW4zllmDjBajqjgPIDlFtp/AzA1F5KJdrO17qnCbXArLOZjEMUkasGJo
-         uPE801WBQchV6XXE8oaDAXSz06AUauSnJ4VLBZAz0TwXeyJpI6InwVpG5Hpu4/WA3ee0
-         EBmg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/TaBcNBr0LmHmhCu1jIrvYkIUcv+feENwdQ/ZDbQJes=;
+        b=YUjM35XZNkCke18ASEVQzu3oQOeQ67Z70V6beRoVND6LL9BBZ+3//1papRDqvwu0ET
+         tQ4NufGIlbdwNCmPwdQqkrrAGiSSOTwPtFR2mLdFrRsMdTb/QsflO8TZ31VhqZvny3hN
+         2PY6Cv1TAFkYPf9Nq55TNDQPdM4CZR5yFLfriuIVACuwdRMuBTL30ZcSh7fdpzH/kx9O
+         RhlOJjOCIABO8hrrWqJxxEjlfDg6y8EUdm2J6ym3mBDh+tfwsoQsvgh9yO0sq1KeYq+5
+         uyrbZ/Ek1LmsVDH01d/yEhBpQbbbwwR/FtG9PpLOjjaRQWuShfKBQmS3yqjb/oBDsOgf
+         Vjkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
-         :date:message-id:mime-version;
-        bh=5XivUy7FYVNBF2ALrQWWddiXZG0r/RtMEsTQOMXoZEw=;
-        b=G0UeX2h2pcFjrUThs+ZJXfdYbuKShaBL0C2vFtAZkinTWCsrEKmjDupnu9ectITvRR
-         Dxj//Q8F3UqtRK8D8JdQNJvCKyCt+ZZW0R/l2TQX3Jb9M/7nagJszvxz7dWE2zAPbCt2
-         snqB8a+4GNk0IEOVw8xiSiu/elujRbwWnegFn3iOIRRYnslV+MM+WLaM4emE5opqore8
-         rLabsEQ1bZdMXC6YtXAdE6HKr0qTFUDpmvuBDN2ssvNDmwM5qFGGE3Niu0qKM0qbgxpk
-         XyVfpr8irGqf4zKxfnEXHM1IzKoVhCVlqtxy21n/3bKA0CoXdcTDdq5f/4J4LJH4Aoic
-         iJ2w==
-X-Gm-Message-State: AGi0PuaTUiucwBO6LYrQ4clbsH/NPr6PsLcceNS4IehlQSlkzVHTZU5l
-        VTR9ZKQT90qJHWreH+tyxMKmt1GVrZY=
-X-Google-Smtp-Source: APiQypL8+Q52Lb0ewPp/pJoLw9OSGQ5XBl1Ni/2AkpVcoNu5RaFpOoY8wN7upjMPPDqseJD2jwRj5Q==
-X-Received: by 2002:ac2:4426:: with SMTP id w6mr5381093lfl.8.1587025354320;
-        Thu, 16 Apr 2020 01:22:34 -0700 (PDT)
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi. [91.155.214.58])
-        by smtp.gmail.com with ESMTPSA id y25sm14443965lfy.59.2020.04.16.01.22.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 16 Apr 2020 01:22:33 -0700 (PDT)
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Tejas Joglekar <Tejas.Joglekar@synopsys.com>,
-        Rob Herring <robh@kernel.org>,
-        Tejas Joglekar <Tejas.Joglekar@synopsys.com>
-Cc:     "linux-usb\@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree\@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        John Youn <John.Youn@synopsys.com>
-Subject: Re: [RESENDING RFC PATCH 1/4] dt-bindings: usb: Add snps,consolidate-sgl & consolidate-sgl
-In-Reply-To: <fe59318a-b3dd-c6af-702e-1ca4aed04a8b@synopsys.com>
-References: <cover.1585297723.git.joglekar@synopsys.com> <8a9ca8e08d7c4957789a209c77589f1aa4bd2f06.1585297723.git.joglekar@synopsys.com> <20200405014548.GA25539@bogus> <fe59318a-b3dd-c6af-702e-1ca4aed04a8b@synopsys.com>
-Date:   Thu, 16 Apr 2020 11:22:29 +0300
-Message-ID: <874ktjsuuy.fsf@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/TaBcNBr0LmHmhCu1jIrvYkIUcv+feENwdQ/ZDbQJes=;
+        b=AQpguDzofY83lJQe5zrZK/teW/ik6lhLHuiRBTIzprVBix0Rl3TePqC/zhLkBcLsD/
+         avZi2OmO3l8caskG7AbE+6O1S8lisL1dHYoMJIs2BWBZsMCgRhJQi5lhCBVh8l+d65Cx
+         gucQKle2PqsNeYyeZmQMhw2qlVcNcnMNZq5Z58HANIlVtRO/hStZZZWh7mG/JrDaBXQp
+         feIYAbByQUXtPZm5mLDrqHJ2x33bdcuj9KSu1/IeiG6jWBAMJq7KfLG9Jw+HBNNOC3EH
+         q4TznD8M7J4hu318/JHf+HiIS+Kj2tZlcuo9uBkSNQ26U2O4sSiGXNucoiZE5xyaFZzN
+         A2dg==
+X-Gm-Message-State: AGi0Pua0TQN06OX7X8/xRb/2iEoEUwX4k+aUQvG4U+GutM8ifYGNEHQu
+        bVPEnEenafCU3qpVGNP83pnB35JVc6Hn0EkmCHZ4Eg==
+X-Google-Smtp-Source: APiQypLB3ByHxPcUtZOdM+rFhnnuQHeltCT3o4Wld28Z33lBkBrgQXNCizCw/78zmL5SElkXmD9y+IsRZr/CeHWIJLY=
+X-Received: by 2002:a67:11c4:: with SMTP id 187mr8059654vsr.34.1587025465228;
+ Thu, 16 Apr 2020 01:24:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+References: <1586353607-32222-1-git-send-email-rnayak@codeaurora.org>
+ <1586353607-32222-14-git-send-email-rnayak@codeaurora.org>
+ <CAPDyKFrOFOLCWHu8nE4i5t=d+Ei-kcJ15_42Ft3ROSUDe5jkpw@mail.gmail.com> <3e5f8e78-7cd1-30fb-e005-78c1e7111794@codeaurora.org>
+In-Reply-To: <3e5f8e78-7cd1-30fb-e005-78c1e7111794@codeaurora.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 16 Apr 2020 10:23:49 +0200
+Message-ID: <CAPDyKFrD7sh4gnbX8B2j22h18T=7ZRGCc_RYXd0ePm2fZwDcVA@mail.gmail.com>
+Subject: Re: [PATCH 13/21] mmc: sdhci-msm: Use OPP API to set clk/perf state
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Pradeep P V K <ppvk@codeaurora.org>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Subhash Jadavani <subhashj@codeaurora.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Tejas Joglekar <Tejas.Joglekar@synopsys.com> writes:
-> Hi,
-> On 4/5/2020 7:15 AM, Rob Herring wrote:
->> On Fri, Mar 27, 2020 at 03:11:56PM +0530, Tejas Joglekar wrote:
->>> This commit adds the documentation for consolidate-sgl, and
->>> snps,consolidate-sgl property. These when set enables the quirk for
->>> XHCI driver for consolidation of sg list into a temporary buffer when s=
-mall
->>> buffer sizes are scattered over the sg list not making up to MPS or tot=
-al
->>> transfer size within TRB cache size with Synopsys xHC.
->>>
->>> Signed-off-by: Tejas Joglekar <joglekar@synopsys.com>
->>> ---
->>>  Documentation/devicetree/bindings/usb/dwc3.txt     | 3 +++
->>>  Documentation/devicetree/bindings/usb/usb-xhci.txt | 3 +++
->>>  2 files changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documenta=
-tion/devicetree/bindings/usb/dwc3.txt
->>> index 9946ff9ba735..292d1f7969e4 100644
->>> --- a/Documentation/devicetree/bindings/usb/dwc3.txt
->>> +++ b/Documentation/devicetree/bindings/usb/dwc3.txt
->>> @@ -104,6 +104,9 @@ Optional properties:
->>>  			this and tx-thr-num-pkt-prd to a valid, non-zero value
->>>  			1-16 (DWC_usb31 programming guide section 1.2.3) to
->>>  			enable periodic ESS TX threshold.
->>> + - snps,consolidate-sgl: enable sg list consolidation - host mode only=
-. Set to use
->>> +			SG buffers of at least MPS size by consolidating smaller SG
->>> +			buffers list into a single buffer.
->>=20
->> The preference is not to keep adding properties for every single quirk=20
->> or feature. These should be implied by specific compatibles. As Synopsys=
-=20
->> knows what quirks/errata/features are in each version of IP, the=20
->> compatible strings should reflect those versions. (And yes, I'm sure=20
->> there's customer ECO fixes that aren't reflected in the version, but=20
->> that's why we have SoC specific compatibles too.) This is the only way=20
->> we can fix quirks in the OS without doing DT updates. For comparison, do=
-=20
->> you want to have to update your PC BIOS so an OS can work-around issues?
->>
-> Yes, I understand what you want to say here. But I think this compatible =
-string
-> does not work with the platform drivers with PCI based systems. So based =
-on the vendor=20
-> id and device id then I need to set the quirk required.=20
+On Wed, 15 Apr 2020 at 18:43, Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >
-> @Felipe: What do you suggest for setting up quirk without the DT update f=
-or dwc3?
+>
+>
+> On 4/15/2020 7:22 PM, Ulf Hansson wrote:
+> > On Wed, 8 Apr 2020 at 15:48, Rajendra Nayak <rnayak@codeaurora.org> wrote:
+> >>
+> >> On some qualcomm SoCs we need to vote on a performance state of a power
+> >> domain depending on the clock rates. Hence move to using OPP api to set
+> >> the clock rate and performance state specified in the OPP table.
+> >> On platforms without an OPP table, dev_pm_opp_set_rate() is eqvivalent to
+> >> clk_set_rate()
+> >>
+> >> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> >> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> >> Cc: Pradeep P V K <ppvk@codeaurora.org>
+> >> Cc: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+> >> Cc: Subhash Jadavani <subhashj@codeaurora.org>
+> >> Cc: linux-mmc@vger.kernel.org
+> >
+> > This looks good to me!
+> >
+> > However, are there any of the other patches in the series that
+> > $subject patch depends on - or can I apply this as a standalone mmc
+> > patch?
+>
+> Hey Ulf, thanks for the review. I'll just need to respin these to make
+> sure I do not do a dev_pm_opp_of_remove_table() if dev_pm_opp_of_add_table()
+> isn;t successful as discussed with Viresh on another thread [1]
+>
+> As for the dependencies, its only PATCH 01/21 in this series and that's
+> already been queued by Viresh [2]
 
-We have been using Synopsys controller's revision register, but that's
-not visible to xhci driver and we don't have a separate compatible for
-each synopsys version on the xhci driver side. One option would be to
-add "snps,xhci-foo-bar" to xhci-plat and use that.
+I see, thanks!
 
-=2D-=20
-balbi
+Looks like Viresh is sending it to be included for v5.7-rc2, so I can
+pick your new version of $subject patch next week.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+[...]
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl6YFcUACgkQzL64meEa
-mQastxAAyArwov8WGnSblC6znvn16hE4x9d7GVKj4PyYpMBcnccppp2VGviRXfRs
-BzH8B0drFGFQ5fhRGZDpm2uAssAJgdrUkw4npkVvVKFztohaAha8Q9yu02jtChXD
-1AVmbd1nUH5IiIhlLPa6AuxeszA3hP1p3os1wSCIuH3NcBEx6K+I27X5zgs7uG5v
-OT5oednhw3mgQBxHkh9luPlLiToFbrb1eE21w7FzCKPzbMeAnJzFVodlcVe5OTF/
-cvzdLk+YhP0JG+K4trjp1bu7/nlvy5qWXQ3FBaUv6/7DzAwDKKD77wN8z1i1nebl
-hhk60Kt6x1d566VvpJZNyjpYrdd5ub5HQbdp4933JBjMyNYwx2FBwjQxylV31M4s
-hB1BSDtVUy+h+cD9qwNWpE9I3iuRqjqNIl0IfJRxhEzaUHU89EYKpk3XbJr83rtp
-Ae/SopbpHr2GelmPhgUK0PBDeaeIIa+WWJQMqtfsVQO6z+43oBJHzYmsY8QZLj9H
-Yt8IuWRMc7kbpcNQl+Dx+JCQRLhggkeLIGaIPmexAzWSRY4Cod0Q4QD6xXmOlJiE
-S64Egfd9Q8d8LBY3iyFRRTMAQcCFVfaK+8Uf9kwitgHww/Hc/886/4WhBaVHTAoJ
-8Pwku4qw1VePFeKWoUKqwCEWdwuFxq0eqKTWgdu5HurClw+OJEg=
-=faNe
------END PGP SIGNATURE-----
---=-=-=--
+Kind regards
+Uffe
