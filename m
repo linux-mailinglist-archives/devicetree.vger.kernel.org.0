@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6801ABEB8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F36B1ABF60
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:34:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506019AbgDPLDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 07:03:54 -0400
-Received: from mx2.suse.de ([195.135.220.15]:42564 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2506004AbgDPLDV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 07:03:21 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 83812AC52;
-        Thu, 16 Apr 2020 11:03:00 +0000 (UTC)
-Message-ID: <69b79028764dcdfc9f550a5f95752afb491005f0.camel@suse.de>
-Subject: Re: [PATCH 0/4] of: property: fw_devlink misc fixes
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Date:   Thu, 16 Apr 2020 13:02:59 +0200
-In-Reply-To: <CAGETcx-=E-6sg=B2Rr+V51eCxiBjNWPnOvvq6K=o9Sr-qLDvOg@mail.gmail.com>
-References: <20200415150550.28156-1-nsaenzjulienne@suse.de>
-         <CAGETcx-=E-6sg=B2Rr+V51eCxiBjNWPnOvvq6K=o9Sr-qLDvOg@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-U0A1alyAP1S30q95YmNu"
-User-Agent: Evolution 3.34.2 
+        id S2633351AbgDPLec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 07:34:32 -0400
+Received: from mout.kundenserver.de ([212.227.126.133]:40817 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2505994AbgDPLG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 07:06:27 -0400
+Received: from mail-qv1-f41.google.com ([209.85.219.41]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.129]) with ESMTPSA (Nemesis)
+ id 1MKuGD-1jfrsG1L01-00LHUK; Thu, 16 Apr 2020 13:06:21 +0200
+Received: by mail-qv1-f41.google.com with SMTP id fb4so1757613qvb.7;
+        Thu, 16 Apr 2020 04:06:20 -0700 (PDT)
+X-Gm-Message-State: AGi0PuaSvvMp9m1tMfteBe4olxFcPVlNYZujxRfIpxWBlTH6vmgHoldJ
+        kLHJKJr/iRBTpYsi1xsZ1UMJ84o9XdDDn232gxk=
+X-Google-Smtp-Source: APiQypJzY6wdNpssRHLhvMyuGwgKaiwvITbQDAj2pM7kuaKPd0vFoDCisOpCP9I71XZKDqhKEbCeSABwbe+DZEKENjM=
+X-Received: by 2002:a0c:a602:: with SMTP id s2mr9731166qva.222.1587035179954;
+ Thu, 16 Apr 2020 04:06:19 -0700 (PDT)
 MIME-Version: 1.0
+References: <1583226206-19758-1-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <1583226206-19758-1-git-send-email-abel.vesa@nxp.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 16 Apr 2020 13:06:03 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3FLRotVmMnBAyBKFMbXeEx760S-Cvqr19VPMi81PKJgw@mail.gmail.com>
+Message-ID: <CAK8P3a3FLRotVmMnBAyBKFMbXeEx760S-Cvqr19VPMi81PKJgw@mail.gmail.com>
+Subject: Re: [RFC 00/11] Add generic MFD i.MX mix and audiomix support
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Anson Huang <anson.huang@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:17TGPvNG4k9uXehcE4DgfleCdpohxRcC9Bv50dxRREvMID4VOFk
+ W10UrfBa4o9XD2UjLI0OoLvqXi9XvfDUf9ylEKkN4a4nOikfC2UdxWmBk+TlBmvl1BWlMVr
+ izIkHPvlGHg2gUzf/Tn3USImvLr4ln5qniXLxzIh6q2xC17IzZpnG6e5AdZVYZ+sRgKMVTd
+ jOHqByw1u3bE5NMomnOGw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:F+ZgWz7O4f8=:+Y+jf8jYbd+WpdgieuC5RR
+ fM5PfyAclvuvByjZ+VkyoG3ORzjArAbnN4YGduzJZ3sWTf+VShgzDzXbPB2eiWemuDIVDdyBx
+ kp+UKJfnSyHgacSZ+b3nI0zkIPWBSAvCpBixqNr6TLgmQNEBFt7g2rZFIvBYkGVSL/fulNLcX
+ wrJk92pS3ZYqZGyNuXgFCcbMjRfkpQd2zKf9/C3MHOz4cxU2HQ8EFs4fwaHe502omgnAQRV76
+ HUgXx6RSibsxRFtSr+A8a+NtingdnR6Teo4RRxOjIHrPDhjDIPx8JAYtbudy6TnR55PhDDsdk
+ MaQ7tOQbTi+aDWM4UL7ASf5HIsmPBR3pc4CbHokd2t6CG2C83xSg2P7d0iQRU6JuKnyMHG57y
+ fJom1YdvA0mh+PFvNUsl1wcNfPFxt/Ow6y+IrL+L0njjRa7rOKf3nW/grBbUsEfYJh1jbe7lr
+ znlY7o/oceBjJNf3gi73S0MrCsQ78zzbuoHf6eqaPKy5f63qK+zZ6eVeeeHp8Pu3cGB0h2XWq
+ HpQMwkXfAeyp8HTgA/HX+8FmybN2zfTDWQtuf5XKJ+Gp4eejqiBo7bWUuspDL0XyLyM0W7NZP
+ qaJ9H2leaaZisUEYlBfQTik0LUjy/BDITUt2TKqZ+zMuZC4ksn4Alo69hroiC3KCpOesR8BFA
+ dsTxmktKJJAXLjTKldEO2H6QXOElhu/Jz7JEY1e3CZD1P0eXp1H1OZ4O61XnCBVm+eDVz9Ilh
+ shiShYDCOUvTyNVduB61pZHxthNqicRi0zZf1+WvxrEu69E9XPN9cYTEXlu28TwSySH6MzDHW
+ SeBvSO+Nq4dw36cSIEar/yBAIElqtpGFMMsd8Gkf0vgyUuvCMs=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 3, 2020 at 10:04 AM Abel Vesa <abel.vesa@nxp.com> wrote:
+>
+> The i.MX8MP has some new IPs called mixes. They are formed usually by some
+> GPRs that can be split into different functionalities. The first example
+> here is the audiomix which has dedicated registers that can be registered
+> as a clock controller and some other registers that can be registered as
+> a reset controller, plus some dedicated ones that will be registered as
+> syscon and used by each dedicated audio IP.
+>
+> More mixes to be following the same structure are to come, like hdmimix,
+> dispmix and mediamix. They will all be populated and registered by the MFD
+> imx-mix generic driver.
 
---=-U0A1alyAP1S30q95YmNu
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Can you enumerate what functionality is in each one?
 
-On Wed, 2020-04-15 at 11:17 -0700, Saravana Kannan wrote:
-> On Wed, Apr 15, 2020 at 8:06 AM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > As I'm interested in using this feature to fine-tune Raspberry Pi 4's
->=20
-> You've made my day! Finally another user outside of Android. :) If
-> this does improve the boot time, I'd be super interested to see the
-> numbers.
+I'm not convinced that using an MFD driver is the best solution here,
+compared to e.g. a clk driver with a few extra bits in it, if most of the
+code for the child drivers ends up being for the clk subsystem.
 
-Actually making the boot time faster isn't my main objective just a nice
-possible side-effect. I'll give you some numbers nonetheless :).
+Lee suggested maybe having a generic (platform independent) driver
+for it, which may help here, as it would let others share the trivial
+mfd portion.
 
-I have two things in mind:
- - Exploring if fw_devlink=3Don can help us solve a rather convoluted devic=
-e
-   initialization depency we're seeing in RPi4. It could potentially preven=
-t us
-   from adding nasty platform specific driver code.
- - See if we can use all this information to fine-tune initrd generation on
-   smaller arm devices with limited i/o speeds.
+Another option that we are using on several platforms today is to
+have a single syscon node and have other drivers that reference
+that one using a phandle to get at the regmap.
 
-Do you have any plans in moving the default behavior to fw_devlink=3Don? If=
- so
-what is blocking us?
-
-Also do you think it'd be reasonable to add a DT binding to set the desired
-fw_devlink level? Something like a 'linux,fw_devlink' property under the
-/chosen node.
-
-> > device probe dependencies, I tried to get the board to boot with
-> > fw_devlink=3Don. As of today's linux-next the board won't boot with tha=
-t
-> > option. I tried to address the underlying issues.
->=20
-> I'll review the patches. Apologies in advance if my explanations
-> aren't thorough. A bit swamped right now.
-
-They were pretty clear!
-
-Thanks,
-Nicolas
-
-
---=-U0A1alyAP1S30q95YmNu
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl6YO2MACgkQlfZmHno8
-x/666wf/VylFMUp6RLlJhIXSGCFQ/cPOJJTYI73tBsxzqgAsq9hWHbuH6fYDBxCU
-5AnrhT8W1qkUUEMk4bBN4jUSK0mQJYI1T9pRpHUe6o83pxSeWPEK/kkQMRfLr0UI
-LxDzhO290djKF7rw9ndeTfV6iEXjNfMuqBzHJkE+22VIkEWQuNiMduE7p5Drfv5a
-a5CXIkMmUoNJsVRS104xH+lxdg+IFFDrHN9tEhLAua6OMwfClptUKWryeiGqFi6S
-TV8BvdStbPRPjfQpLnESs/SYp/l5LQVSl/L60q9Rsq7mxXLvmR6UDMRmzbabH4mV
-ZtR6LwbQkqD8dzPnvpY4i/pmr8xgHg==
-=SdVL
------END PGP SIGNATURE-----
-
---=-U0A1alyAP1S30q95YmNu--
-
+      Arnd
