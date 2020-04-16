@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 142171AB8D8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 08:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0E21AB92E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 09:02:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437756AbgDPG51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 02:57:27 -0400
-Received: from mga14.intel.com ([192.55.52.115]:6493 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437733AbgDPG5V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 02:57:21 -0400
-IronPort-SDR: +Wv6HHtlVkWnxRXH8fIrJlhvYdens/L3RkKikIN4oApRMStU7G+ONyjiy6idPL8ATVQgYTEYmC
- crZYvxWxd4Cg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2020 23:57:20 -0700
-IronPort-SDR: cl4aemAJ34kAwBAz6G19L8mgX7CcTBJHKqHNEBgRKlva0yxQ0IzbXFTQeUTdjMLI6xlBV9Kn8k
- 7ltNEdAcyz0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,390,1580803200"; 
-   d="scan'208";a="245901134"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga008.fm.intel.com with ESMTP; 15 Apr 2020 23:57:20 -0700
-Received: from [10.213.149.31] (ekotax-mobl.gar.corp.intel.com [10.213.149.31])
-        by linux.intel.com (Postfix) with ESMTP id D725F5802C9;
-        Wed, 15 Apr 2020 23:57:17 -0700 (PDT)
-Subject: Re: [PATCH v5 1/4] mfd: syscon: Add fwnode_to_regmap
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kishon@ti.com, robh@kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com, yixin.zhu@intel.com
-References: <cover.1585103753.git.eswara.kota@linux.intel.com>
- <9953bb25281397553cb87b09d641c968d8432dd9.1585103753.git.eswara.kota@linux.intel.com>
- <20200415093116.GH2167633@dell>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <0adafade-7228-58d3-3db0-b06325712468@linux.intel.com>
-Date:   Thu, 16 Apr 2020 14:57:16 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S2437828AbgDPHCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 03:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2437790AbgDPHCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 03:02:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA654C061A0C
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 00:02:36 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jOyXY-0005qT-Tq; Thu, 16 Apr 2020 09:02:24 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jOyXX-0003M3-SP; Thu, 16 Apr 2020 09:02:23 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v5 0/4] mainline Protonic boards
+Date:   Thu, 16 Apr 2020 09:02:18 +0200
+Message-Id: <20200416070222.12181-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.26.0.rc2
 MIME-Version: 1.0
-In-Reply-To: <20200415093116.GH2167633@dell>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes v5:
+- PRTI6Q: remove status from the pwm-backlight node
+- drop the vendor-prefixes patch, it is already taken by Rob
+- add Reviewed-by: Rob Herring <robh@kernel.org>
 
-On 4/15/2020 5:31 PM, Lee Jones wrote:
-> On Wed, 25 Mar 2020, Dilip Kota wrote:
->
->> Traverse regmap handle entry from firmware node handle.
->>
->> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->> ---
->> Changes on v5:
->>    No changes
->>
->> Changes on v4:
->>    No changes
->>
->>   drivers/mfd/syscon.c       | 8 ++++++++
->>   include/linux/mfd/syscon.h | 6 ++++++
->>   2 files changed, 14 insertions(+)
-> I think you'll find it very difficult to have a patch merged if you do
-> not send it to any Maintainers of the associated subsystem(s).
-Sorry, i completely missed adding the system configuration Maintainers. 
-I was completely thinking about the PHY driver( in doing changes and 
-upgrades) while sending the patches.
-I have noticed it, and already sent v6 patch series by adding you and 
-arnd@arndb.de
+changes v4:
+- VT7: fix typo
 
-"[RESEND PATCH v6 0/4] Add Intel ComboPhy driver"
-Snippet from the mail.
+changes v3:
+- move compatible to the start of node
+- move status to the end
+- use generic names in compatible
+- refactor dts/dtsi
+- use alphabet order for pinctrl and phandels
+- remove unused or currently not supported nodes
 
-"Re-sending the patches v6 by adding the system configuration Maintainers,
-which i missed to add them."
+changes v2:
+- squash PRTI6Q patches
 
-Regards,
-Dilip
+Oleksij Rempel (4):
+  ARM: dts: add Protonic PRTI6Q board
+  ARM: dts: add Protonic WD2 board
+  ARM: dts: add Protonic VT7 board
+  ARM: dts: add Protonic RVT board
 
->
-> Did you use `scripts/get_maintainer.pl` at all?
->
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ arch/arm/boot/dts/Makefile                    |   4 +
+ arch/arm/boot/dts/imx6dl-prtrvt.dts           | 203 +++++++
+ arch/arm/boot/dts/imx6dl-prtvt7.dts           | 473 +++++++++++++++
+ arch/arm/boot/dts/imx6q-prti6q.dts            | 550 ++++++++++++++++++
+ arch/arm/boot/dts/imx6q-prtwd2.dts            | 188 ++++++
+ arch/arm/boot/dts/imx6qdl-prti6q.dtsi         | 185 ++++++
+ 7 files changed, 1607 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-prtrvt.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-prtvt7.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-prti6q.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-prtwd2.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+
+-- 
+2.26.0.rc2
+
