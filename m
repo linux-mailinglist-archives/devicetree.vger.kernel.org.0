@@ -2,76 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285FD1AC11F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F761AC14D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2635559AbgDPMW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 08:22:58 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39508 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2635285AbgDPMW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 08:22:56 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 7E5B226040B
-Message-ID: <d33aef355623a5abd6eec176d33a167c456ed915.camel@collabora.com>
-Subject: Re: [PATCH 0/4] media: rockchip: rga: PX30 support and YUV2YUV fix
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Jacob Chen <jacob-chen@iotwrt.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hansverk@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Date:   Thu, 16 Apr 2020 09:22:41 -0300
-In-Reply-To: <20200416115047.233720-1-paul.kocialkowski@bootlin.com>
-References: <20200416115047.233720-1-paul.kocialkowski@bootlin.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.0-1 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S2635675AbgDPMeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 08:34:00 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:52802 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2635543AbgDPMd5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 08:33:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A8BE51A0D60;
+        Thu, 16 Apr 2020 14:33:54 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0DD9E1A0D44;
+        Thu, 16 Apr 2020 14:33:49 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 003BB402C4;
+        Thu, 16 Apr 2020 20:33:41 +0800 (SGT)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
+        festevam@gmail.com, broonie@kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/7] ASoC: Add new module driver for new ASRC
+Date:   Thu, 16 Apr 2020 20:25:30 +0800
+Message-Id: <cover.1587038908.git.shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Add new module driver for new ASRC in i.MX8MN, several commits
+are added for new property fsl,asrc-format
 
-Thanks for the patch.
+Shengjiu Wang (7):
+  ASoC: fsl_asrc: rename asrc_priv to asrc
+  ASoC: dt-bindings: fsl_asrc: Add new property fsl,asrc-format
+  ASoC: fsl-asoc-card: Support new property fsl,asrc-format
+  ASoC: fsl_asrc: Support new property fsl,asrc-format
+  ASoC: fsl_asrc: Move common definition to fsl_asrc_common
+  ASoC: dt-bindings: fsl_easrc: Add document for EASRC
+  ASoC: fsl_easrc: Add EASRC ASoC CPU DAI drivers
 
-On Thu, 2020-04-16 at 13:50 +0200, Paul Kocialkowski wrote:
-> Hi,
-> 
-> This series adds support for the Rockchip PX30 SoC in the V4L2 M2M RGA driver.
-> It also contains a fix for the YUV2YUV case that was not properly handled.
-> 
+changes in v9
+- use lowercase for dt example.
 
-How have you been testing this?
+changes in v8
+- change get_pair_priv_size to pair_priv_size variable
 
-Thanks,
-Ezequiel
+changes in v7
+- updated according to Nicoin's comments.
+- add get_pair_priv_size to replace PAIR_PRIVATE_SIZE
 
-> Cheers,
-> 
-> Paul
-> 
-> Paul Kocialkowski (4):
->   dt-bindings: rockchip-rga: Add PX30 compatible
->   arm64: dts: rockchip: Add RGA support to the PX30
->   media: rockchip: rga: Add support for the PX30 compatible
->   media: rockchip: rga: Only set output CSC mode for RGB input
-> 
->  .../devicetree/bindings/media/rockchip-rga.txt |  1 +
->  arch/arm64/boot/dts/rockchip/px30.dtsi         | 11 +++++++++++
->  drivers/media/platform/rockchip/rga/rga-hw.c   | 18 +++++++++++-------
->  drivers/media/platform/rockchip/rga/rga.c      |  4 +++-
->  4 files changed, 26 insertions(+), 8 deletions(-)
-> 
+changes in v6
+- updated according to Nicoin's and Rob's comments.
 
+changes in v5
+- Add new property fsl,asrc-format, rather than change fsl,asrc-width
+  to fsl,asrc-formt.
+- code change for above change.
+
+changes in v4
+- Add several commit for changing DT binding asrc-width to asrc-format
+- rename asrc_priv to asrc
+
+changes in v3
+- add new commit "ASoC: fsl_asrc: Change asrc_width to asrc_format"
+- modify binding doc to yaml format
+- remove fsl_easrc_dma.c, make fsl_asrc_dma.c useable for easrc.
+
+changes in v2
+- change i.MX815 to i.MX8MN
+- Add changes in Kconfig and Makefile
+
+ .../devicetree/bindings/sound/fsl,asrc.txt    |    4 +
+ .../devicetree/bindings/sound/fsl,easrc.yaml  |  101 +
+ sound/soc/fsl/Kconfig                         |   11 +
+ sound/soc/fsl/Makefile                        |    2 +
+ sound/soc/fsl/fsl-asoc-card.c                 |   24 +-
+ sound/soc/fsl/fsl_asrc.c                      |  305 +--
+ sound/soc/fsl/fsl_asrc.h                      |   74 +-
+ sound/soc/fsl/fsl_asrc_common.h               |  106 +
+ sound/soc/fsl/fsl_asrc_dma.c                  |   54 +-
+ sound/soc/fsl/fsl_easrc.c                     | 2114 +++++++++++++++++
+ sound/soc/fsl/fsl_easrc.h                     |  651 +++++
+ 11 files changed, 3212 insertions(+), 234 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,easrc.yaml
+ create mode 100644 sound/soc/fsl/fsl_asrc_common.h
+ create mode 100644 sound/soc/fsl/fsl_easrc.c
+ create mode 100644 sound/soc/fsl/fsl_easrc.h
+
+-- 
+2.21.0
 
