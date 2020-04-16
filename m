@@ -2,106 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C204D1ABFED
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B5D1ABE53
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 12:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506378AbgDPLoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 07:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57100 "EHLO
+        id S2505389AbgDPKom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 06:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2505207AbgDPKgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 06:36:18 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA21C03C1AB
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 03:36:14 -0700 (PDT)
-Received: from ramsan ([IPv6:2a02:1810:ac12:ed60:fd83:81bb:c1d7:433d])
-        by baptiste.telenet-ops.be with bizsmtp
-        id TNWz2200j4dKHqf01NWzN6; Thu, 16 Apr 2020 12:31:11 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jP1nP-0001cz-Q0; Thu, 16 Apr 2020 12:30:59 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jP1nP-0003zO-OP; Thu, 16 Apr 2020 12:30:59 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jiri Kosina <trivial@kernel.org>
-Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-iio@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH trivial 6/6] ASoC: Fix misspellings of "Analog Devices"
-Date:   Thu, 16 Apr 2020 12:30:58 +0200
-Message-Id: <20200416103058.15269-7-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200416103058.15269-1-geert+renesas@glider.be>
-References: <20200416103058.15269-1-geert+renesas@glider.be>
+        with ESMTP id S2505326AbgDPKiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 06:38:23 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF50C061A0F
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 03:38:11 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jP1uG-00044F-53; Thu, 16 Apr 2020 12:38:04 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jP1uF-0002qS-5f; Thu, 16 Apr 2020 12:38:03 +0200
+Date:   Thu, 16 Apr 2020 12:38:03 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Anson Huang <anson.huang@nxp.com>
+Cc:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH V2 1/5] dt-bindings: clock: Convert i.MX6Q clock to
+ json-schema
+Message-ID: <20200416103803.eifgth77wi44pejc@pengutronix.de>
+References: <1587019158-12143-1-git-send-email-Anson.Huang@nxp.com>
+ <20200416093932.2mkcyv4rs6v6a24a@pengutronix.de>
+ <DB3PR0402MB391613C2B53CEE067E1C7EC7F5D80@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB3PR0402MB391613C2B53CEE067E1C7EC7F5D80@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:35:43 up 153 days,  1:54, 168 users,  load average: 0.25, 0.26,
+ 0.19
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to https://www.analog.com/, the company name is spelled
-"Analog Devices".
+On 20-04-16 09:48, Anson Huang wrote:
+> Hi, Marco
+> 
+> > Subject: Re: [PATCH V2 1/5] dt-bindings: clock: Convert i.MX6Q clock to
+> > json-schema
+> > 
+> > Hi Anson,
+> > 
+> > On 20-04-16 14:39, Anson Huang wrote:
+> > 
+> > ...
+> > 
+> > > diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+> > b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+> > > new file mode 100644
+> > > index 0000000..1c6e600
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+> > > @@ -0,0 +1,66 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetr
+> > ee.org%2Fschemas%2Fclock%2Fimx6q-clock.yaml%23&amp;data=02%7C01%
+> > 7Canson.huang%40nxp.com%7Ca840fd5be8c94d4d950608d7e1ea16a2%7C6
+> > 86ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C637226267845578228&
+> > amp;sdata=Iw1CkVBMqw3m6sox6C3khcMy0BHNCQ9v2k72q3CM6Xs%3D&a
+> > mp;reserved=0
+> > > +$schema:
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetr
+> > ee.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=02%7C01%7Canson.hu
+> > ang%40nxp.com%7Ca840fd5be8c94d4d950608d7e1ea16a2%7C686ea1d3bc2
+> > b4c6fa92cd99c5c301635%7C0%7C1%7C637226267845578228&amp;sdata=P
+> > Be2CEoDdMo9I1m3DHbITCyYxB4GF%2FigP%2FNd7YCopCQ%3D&amp;reserve
+> > d=0
+> > > +
+> > > +title: Clock bindings for Freescale i.MX6 Quad
+> > > +
+> > > +maintainers:
+> > > +  - Anson Huang <Anson.Huang@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: fsl,imx6q-ccm
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 2
+> > 
+> > IMHO I would force them to have exactly two so we need
+> > minItems: 2 too here.
+> 
+> Actually, those 2 interrupts are NOT necessary for some platforms, such as i.MX platforms
+> do NOT enable them at all, so is it OK to force them to be '2' here?
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- sound/soc/codecs/ad1980.c  | 2 +-
- sound/soc/codecs/ad73311.c | 2 +-
- sound/soc/codecs/wm8782.c  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Why do we list them as required if they are not required? Currently all
+5 platforms adding both irqs so this won't break anything here.
 
-diff --git a/sound/soc/codecs/ad1980.c b/sound/soc/codecs/ad1980.c
-index c4414c725c1f945a..43b1337bac37f70f 100644
---- a/sound/soc/codecs/ad1980.c
-+++ b/sound/soc/codecs/ad1980.c
-@@ -2,7 +2,7 @@
- /*
-  * ad1980.c  --  ALSA Soc AD1980 codec support
-  *
-- * Copyright:	Analog Device Inc.
-+ * Copyright:	Analog Devices Inc.
-  * Author:	Roy Huang <roy.huang@analog.com>
-  * 		Cliff Cai <cliff.cai@analog.com>
-  */
-diff --git a/sound/soc/codecs/ad73311.c b/sound/soc/codecs/ad73311.c
-index 10daf61f02940b46..b98bf19f594e097f 100644
---- a/sound/soc/codecs/ad73311.c
-+++ b/sound/soc/codecs/ad73311.c
-@@ -2,7 +2,7 @@
- /*
-  * ad73311.c  --  ALSA Soc AD73311 codec support
-  *
-- * Copyright:	Analog Device Inc.
-+ * Copyright:	Analog Devices Inc.
-  * Author:	Cliff Cai <cliff.cai@analog.com>
-  */
- 
-diff --git a/sound/soc/codecs/wm8782.c b/sound/soc/codecs/wm8782.c
-index aa5577e364d01360..f89855c616ebe6e6 100644
---- a/sound/soc/codecs/wm8782.c
-+++ b/sound/soc/codecs/wm8782.c
-@@ -7,7 +7,7 @@
-  * Author: Johannes Stezenbach <js@sig21.net>
-  *
-  * based on ad73311.c
-- * Copyright:	Analog Device Inc.
-+ * Copyright:	Analog Devices Inc.
-  * Author:	Cliff Cai <cliff.cai@analog.com>
-  */
- 
--- 
-2.17.1
+Regards,
+  Marco
 
+> Thanks,
+> Anson
