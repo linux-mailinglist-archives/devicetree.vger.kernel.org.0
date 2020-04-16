@@ -2,69 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC8C1AC7E8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 17:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2B21AC88C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 17:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2501924AbgDPPAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 11:00:55 -0400
-Received: from rtits2.realtek.com ([211.75.126.72]:50392 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439182AbgDPPAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 11:00:48 -0400
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.69 with qID 03GF0KAp8000998, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexmb06.realtek.com.tw[172.21.6.99])
-        by rtits2.realtek.com.tw (8.15.2/2.66/5.86) with ESMTPS id 03GF0KAp8000998
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 16 Apr 2020 23:00:20 +0800
-Received: from RTEXMB01.realtek.com.tw (172.21.6.94) by
- RTEXMB06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Thu, 16 Apr 2020 23:00:20 +0800
-Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
- RTEXMB01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Thu, 16 Apr 2020 23:00:20 +0800
-Received: from RTEXMB03.realtek.com.tw ([fe80::71dc:5fb1:bef0:757d]) by
- RTEXMB03.realtek.com.tw ([fe80::71dc:5fb1:bef0:757d%8]) with mapi id
- 15.01.1779.005; Thu, 16 Apr 2020 23:00:20 +0800
-From:   =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
-To:     Robin Murphy <robin.murphy@arm.com>,
-        "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek PymParticle EVB
-Thread-Topic: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek
- PymParticle EVB
-Thread-Index: AQHV22rI+NjHXMOCKE2GotJYQnIOL6h7anOAgADaMIA=
-Date:   Thu, 16 Apr 2020 15:00:19 +0000
-Message-ID: <635ba17aaf444d0c8f8f44af3e905c8e@realtek.com>
-References: <20200204145207.28622-1-james.tai@realtek.com>
- <20200204145207.28622-3-james.tai@realtek.com>
- <05b02ba8-2959-48d8-be3f-c4a1a0bc88a4@arm.com>
-In-Reply-To: <05b02ba8-2959-48d8-be3f-c4a1a0bc88a4@arm.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [114.37.175.2]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S2395023AbgDPPKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 11:10:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55502 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2394992AbgDPPJ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 11:09:58 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EB00D2222D;
+        Thu, 16 Apr 2020 15:09:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587049797;
+        bh=rW0Bvw3mt3oRNulNWXsyEx1/+k3RkTc+dWy1wdwu6Qo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hthOJdnrcdqI6mMre4jfYWe1srm1RKsINoBdel8L88TL63UL7K3qE/bZotnPScbWn
+         HnOsPRTdKvhFS3sZg8Sa8cW+uDQcJnHjZ4cu3wQmtZy+UaGdKzJLq4jI/KslkaVkje
+         ij4rmuwpBU4Da7u/hi//x2ybpLVxv4RFng/klKNI=
+Received: by mail-qk1-f173.google.com with SMTP id x66so21581571qkd.9;
+        Thu, 16 Apr 2020 08:09:56 -0700 (PDT)
+X-Gm-Message-State: AGi0Pubq0O+1yFrA+WFAG7vEprpuqX1QRtwDhoXYHmI0NYZZuR1tIptP
+        ccrWjrvJr34JPC2FJhoEnNiMG4WUx3s4TYKr6w==
+X-Google-Smtp-Source: APiQypJ+bjQ0KgyMuk0uvkjJanAnJ0Z7kTZhk7t7vqPo6scnZ7torJnyQYrZi5/0Y+NTz2ZfLoR+oJzvFDzDKWw5KXQ=
+X-Received: by 2002:a37:7dc6:: with SMTP id y189mr33611422qkc.223.1587049796040;
+ Thu, 16 Apr 2020 08:09:56 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200416125207.425271-1-adrian.ratiu@collabora.com>
+In-Reply-To: <20200416125207.425271-1-adrian.ratiu@collabora.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 16 Apr 2020 10:09:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLyEjXjeADvxztT0kg6Sc-VASUeBPr0jJAwS39PckQjpw@mail.gmail.com>
+Message-ID: <CAL_JsqLyEjXjeADvxztT0kg6Sc-VASUeBPr0jJAwS39PckQjpw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: dw_mipi_dsi.txt: convert to yaml
+To:     Adrian Ratiu <adrian.ratiu@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iaW4sDQoNCj4gT24gMjAyMC0wMi0wNCAyOjUyIHBtLCBKYW1lcyBUYWkgd3JvdGU6DQo+
-IFsuLi5dDQo+ID4gKwlhcm1fcG11OiBwbXUgew0KPiA+ICsJCWNvbXBhdGlibGUgPSAiYXJtLGFy
-bXY4LXBtdXYzIjsNCj4gDQo+IFRoZSBiaW5kaW5nIHVwZGF0ZXMgaGF2ZSBsYW5kZWQgbm93LCBz
-byB5b3UgY2FuIHVzZSAiYXJtLGNvcnRleC1hNTUtcG11Ig0KPiBoZXJlLg0KPiANCk9rYXkuIEkn
-bGwgbW9kaWZ5IGl0IGluIHY0Lg0KDQpUaGFuayB5b3UuDQoNClJlZ2FyZHMsDQpKYW1lcw0KDQoN
-Cg==
+On Thu, Apr 16, 2020 at 7:51 AM Adrian Ratiu <adrian.ratiu@collabora.com> wrote:
+>
+> This converts the Synopsis MIPI DSI binding documentation to yaml and
+> should be quite straightforward. I've added a missing ref clk and also
+> added Mark and Rob as maintainers based on 'get_maintainer.pl' results.
+>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: devicetree@vger.kernel.org
+> Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+> ---
+>  .../bindings/display/bridge/dw_mipi_dsi.txt   | 32 ---------
+>  .../display/bridge/snps,dw-mipi-dsi.yaml      | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt b/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
+> deleted file mode 100644
+> index b13adf30b8d3..000000000000
+> --- a/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -Synopsys DesignWare MIPI DSI host controller
+> -============================================
+> -
+> -This document defines device tree properties for the Synopsys DesignWare MIPI
+> -DSI host controller. It doesn't constitue a device tree binding specification
+> -by itself but is meant to be referenced by platform-specific device tree
+> -bindings.
+> -
+> -When referenced from platform device tree bindings the properties defined in
+> -this document are defined as follows. The platform device tree bindings are
+> -responsible for defining whether each optional property is used or not.
+> -
+> -- reg: Memory mapped base address and length of the DesignWare MIPI DSI
+> -  host controller registers. (mandatory)
+> -
+> -- clocks: References to all the clocks specified in the clock-names property
+> -  as specified in [1]. (mandatory)
+> -
+> -- clock-names:
+> -  - "pclk" is the peripheral clock for either AHB and APB. (mandatory)
+> -  - "px_clk" is the pixel clock for the DPI/RGB input. (optional)
+> -
+> -- resets: References to all the resets specified in the reset-names property
+> -  as specified in [2]. (optional)
+> -
+> -- reset-names: string reset name, must be "apb" if used. (optional)
+> -
+> -- panel or bridge node: see [3]. (mandatory)
+> -
+> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -[2] Documentation/devicetree/bindings/reset/reset.txt
+> -[3] Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
+> diff --git a/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
+> new file mode 100644
+> index 000000000000..0ab4125eee30
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/snps,dw-mipi-dsi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare MIPI DSI host controller
+> +
+> +maintainers:
+> +  - Rob Herring <robh+dt@kernel.org>
+
+No thanks, I don't know anything about this hardware. It should be the
+owner for this binding, not who applies patches.
+
+> +  - Mark Rutland <mark.rutland@arm.com>
+
+Check current maintainers. Mark is not one anymore.
+
+> +
+> +description: |
+> +  This document defines device tree properties for the Synopsys DesignWare MIPI
+> +  DSI host controller. It doesn't constitue a device tree binding specification
+> +  by itself but is meant to be referenced by platform-specific device tree
+> +  bindings.
+> +
+> +  When referenced from platform device tree bindings the properties defined in
+> +  this document are defined as follows. The platform device tree bindings are
+> +  responsible for defining whether each property is required or optional.
+> +
+
+Need to reference ($ref) dsi-controller.yaml here.
+
+> +properties:
+> +  reg:
+> +    description: |
+> +      Memory mapped base address and length of the DesignWare MIPI DSI host
+> +      controller registers.
+
+Drop the description. That's every 'reg'. You need to say how many
+regions (maxItems: 1?).
+
+> +
+> +  clocks:
+> +    description: |
+> +      References to all the clocks specified in the clock-names property as
+> +      specified in Documentation/devicetree/bindings/clock/clock-bindings.txt
+
+Drop
+
+> +    items:
+> +      - description: Module clock
+> +      - description: DSI bus colck for either AHB and APB
+
+typo
+
+> +      - description: Pixel clock for the DPI/RGB input
+> +    minItems: 2
+> +    maxItems: 3
+
+You can drop 'maxItems'. It's implied by the length of 'items'.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref
+> +      - const: pclk
+> +      - const: px_clk
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  resets:
+> +    description: |
+> +      References to all the resets specified in the reset-names property as
+> +      specified in Documentation/devicetree/bindings/reset/reset.txt
+
+Drop.
+
+You need maxItems to define how many reset entries.
+
+> +
+> +  reset-names:
+> +    const: apb
+> +
+> +patternProperties:
+> +  "^panel@[0-3]$":
+> +    type: object
+> +    description: |
+> +      A node containing the panel or bridge description as documented in
+
+bridge? But the node name says panel only.
+
+> +      Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
+
+Drop description.
+
+> +
+> +required:
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> --
+> 2.26.0
+>
