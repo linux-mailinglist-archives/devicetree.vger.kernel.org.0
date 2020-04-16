@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 830461AD0A5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 21:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE751AD0C9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 22:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728722AbgDPTzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 15:55:38 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:53944 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728199AbgDPTzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 15:55:38 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id F228E80307C5;
-        Thu, 16 Apr 2020 19:55:33 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id q6t9JrujRUgw; Thu, 16 Apr 2020 22:55:33 +0300 (MSK)
-Date:   Thu, 16 Apr 2020 22:56:20 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Sebastian Reichel <sre@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: power: reset: Add regmap support to the
- SYSCON reboot-mode bindings
-Message-ID: <20200416195620.4q6scqk5rqbonz4s@ubsrv2.baikal.int>
-References: <20200306130341.9585-1-Sergey.Semin@baikalelectronics.ru>
- <20200306130402.1F4F0803079F@mail.baikalelectronics.ru>
- <20200312211438.GA21883@bogus>
- <20200313130231.wrvvcttm7ofaxbfo@ubsrv2.baikal.int>
- <CAL_Jsq+W84r687zNV=2S-hj9=xbTQxkx9MpVNDTn6TOrBgiGUw@mail.gmail.com>
- <20200331195053.dcexmhbsbnbfuabe@ubsrv2.baikal.int>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200331195053.dcexmhbsbnbfuabe@ubsrv2.baikal.int>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+        id S1728792AbgDPUFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 16:05:30 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:40412 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730759AbgDPUD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 16:03:59 -0400
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03GK3pOB038859;
+        Thu, 16 Apr 2020 16:03:52 -0400
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 30ewfqrx49-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Apr 2020 16:03:51 -0400
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 03GK3JUI026246;
+        Thu, 16 Apr 2020 20:03:43 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com [9.57.198.26])
+        by ppma02dal.us.ibm.com with ESMTP id 30b5h7g0wy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Apr 2020 20:03:43 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 03GK3gFk41812346
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 16 Apr 2020 20:03:42 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 6F1ABAC05B;
+        Thu, 16 Apr 2020 20:03:42 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C9BD2AC059;
+        Thu, 16 Apr 2020 20:03:40 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.163.81.122])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTP;
+        Thu, 16 Apr 2020 20:03:40 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com
+Subject: [PATCH v9 0/5] soc: aspeed: Add XDMA engine driver
+Date:   Thu, 16 Apr 2020 15:03:34 -0500
+Message-Id: <1587067419-5107-1-git-send-email-eajames@linux.ibm.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-16_08:2020-04-14,2020-04-16 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 mlxscore=0 suspectscore=3 phishscore=0 clxscore=1015
+ adultscore=0 mlxlogscore=925 priorityscore=1501 spamscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004160137
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
-Any comment on my suggestion below?
+This series adds a driver to control the Aspeed XDMA engine embedded in the
+AST2500 and AST2600. The XDMA engine performs automatic DMA operations
+over PCI-E between the Aspeed SOC (acting as a BMC) and a host processor.
 
-Regards,
--Sergey
+Changes since v8:
+ - Use DMA API to allocate memory from reserved region.
+ - Fix the driver for the AST2500 by keeping the command queue in kernel
+   memory and copying the whole buffer to the reserved memory area before
+   starting the operation.
+ - Add krefs to the client structure to prevent use-after-free.
+ - Switch reset-names binding to "device", "root-complex"
 
-On Tue, Mar 31, 2020 at 10:50:53PM +0300, Sergey Semin wrote:
-> On Wed, Mar 18, 2020 at 05:14:25PM -0600, Rob Herring wrote:
-> > On Fri, Mar 13, 2020 at 7:03 AM Sergey Semin
-> > <Sergey.Semin@baikalelectronics.ru> wrote:
-> > >
-> > > On Thu, Mar 12, 2020 at 04:14:38PM -0500, Rob Herring wrote:
-> > > > On Fri, Mar 06, 2020 at 04:03:40PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > > > > From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > > >
-> > > > > Optional regmap property will be used to refer to a syscon-controller
-> > > > > having a reboot tolerant register mapped.
-> > > >
-> > > > NAK. It should simply be a child node of the 'syscon-controller'.
-> > >
-> > > Hm, It's dilemma. The driver maintainer said ack, while you disagree.)
-> > > So the code change will be merged while the doc-part won't? Lets discuss then
-> > > to settle the issue.
-> > >
-> > > Why 'syscon-reboot' can be out of syscon-controller node, while
-> > > 'syscon-reboot-mode' can't?
-> > 
-> > Look at the history and you will see one was reviewed by DT
-> > maintainers and one wasn't.
-> > 
-> > > They both belong to the same usecase: save
-> > > cause id and reboot. So having similar properties-set and declaring their
-> > > nodes someplace nearby is natural.
-> > 
-> > Which is what I'm asking for. Where else in the tree does it make
-> > sense to locate the 'syscon-reboot-mode' node? Locate nodes where they
-> > logically belong.
-> > 
-> > > According to the driver 'syscon-reboot'
-> > > can't lack the regmap property because it's mandatory, while here you refuse
-> > > to have even optional support. Additionally in most of the cases the
-> > > 'syscon-reboot' nodes aren't declared as a child of a system controller
-> > > node. Why 'syscon-reboot-mode' can't work in a similar way?
-> > 
-> > There's plenty of bad or "don't follow current best practice" examples
-> > in the tree for all sorts of things. That is not a reason for doing
-> > something in a new binding or adding to an existing one.
-> > 
-> > Rob
-> 
-> Alright. I see your point. What about I'd provide a sort of opposite
-> implementation? I could make the "regmap"-phandle reference being optional
-> in the !"syscon-reboot"! driver instead of adding the regmap-property
-> support to the "syscon-reboot-mode" driver. So if regmap property isn't
-> defined in the "syscon-reboot"-compatible node, the driver will try to
-> get a syscon regmap from the parental node as it's done in the
-> "syscon-reboot-mode" driver.
-> 
-> Seeing you think that regmap-property-based design is a bad practice in
-> this case, I also could mark the property as deprecated in the "syscon-reboot"
-> dt schema and print a warning from the "syscon-reboot" driver if one is defined.
-> 
-> What do you think?
-> 
-> Regards,
-> -Sergey
+Eddie James (5):
+  dt-bindings: soc: Add Aspeed XDMA Engine
+  soc: aspeed: Add XDMA Engine Driver
+  soc: aspeed: xdma: Add user interface
+  soc: aspeed: xdma: Add reset ioctl
+  ARM: dts: Aspeed: AST2600: Add XDMA PCI-E root control reset
+
+ .../devicetree/bindings/soc/aspeed/xdma.txt        |   45 +
+ MAINTAINERS                                        |    8 +
+ arch/arm/boot/dts/aspeed-g6.dtsi                   |    3 +-
+ drivers/soc/aspeed/Kconfig                         |    8 +
+ drivers/soc/aspeed/Makefile                        |    1 +
+ drivers/soc/aspeed/aspeed-xdma.c                   | 1099 ++++++++++++++++++++
+ include/uapi/linux/aspeed-xdma.h                   |   42 +
+ 7 files changed, 1205 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+ create mode 100644 drivers/soc/aspeed/aspeed-xdma.c
+ create mode 100644 include/uapi/linux/aspeed-xdma.h
+
+-- 
+1.8.3.1
+
