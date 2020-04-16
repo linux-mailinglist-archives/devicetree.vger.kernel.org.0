@@ -2,103 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E382C1AB813
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 08:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEDAC1AB861
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 08:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407977AbgDPGee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 02:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2407709AbgDPGec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 02:34:32 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B592EC061A0C
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 23:34:31 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id d27so3480725wra.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 23:34:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0zaVLvpq9xyTb6tnL5lflzeTc3OD1xVdDRy9b/kylC4=;
-        b=mFdfZi8VBTlwLtP0JTgvvick+7svv6vG9/rG7kqJVdsx7j4WTAwfHqs6HIWFQomHeJ
-         QRxfjpa18BSA4VXbHmcIUmuDtse9X/hdmh/XQiyJ7jEfV081PEJ9tosvNZ+odwiT5hxG
-         fAuY4M7K7YRoqM3JJSExPdZ/FXUazHY4EY9pPLCpFSHR47L1O64WI4C5aFBHEZ1Bbbzk
-         VyRiPRQ9GjOSEu5CKBTWAW/RasKWbr1bdS4jRAqXs0BovImMBsKywoXudzx+lrdfJqOr
-         c4YxSwYJ7+crMFX9rHyCdduz7Zz4FRn76B6VprKnWQ/mwxNDcnFGS+A3ZiWZ4x0P/8LK
-         xXQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0zaVLvpq9xyTb6tnL5lflzeTc3OD1xVdDRy9b/kylC4=;
-        b=mbCqveSkGxM/qDf0x2EcZJb5fOHXV6Bd0K5CTLD3DaJs3V8lV0vbj3Plj6IhRjUDBn
-         DgP+bQtd0tcF6CeddqkekmJZGYzkUCbiive3GPw5GBgaXiEkbShVGv72faRL9aJLAV/F
-         NbvUz3TS9YX8QOCTEusZ3goicOF1/WhZKS52JblbWEw7YTgL4Dre36Rg/9mn4x26eYs3
-         xByk+GRG2ycHLJtlSLxmsNeyd1wZr6XsndSTiCOvnuYva7RxMmbnPl+ZxX4R49jNi7Xm
-         ZwOFJKakpdjUYI2dFbpdPOSWlt6eYUwNZqZbVrrzyPLVpWcIzHn3MHFIx9usn7DG5KX5
-         9q1A==
-X-Gm-Message-State: AGi0PuZkXmWNaONCGr04yDkuAzkKPdqpQ3j/Nx9cydqyf/rt1ymv76y3
-        5ii+xEJt9Vfc9CSxHvumMYSwGA==
-X-Google-Smtp-Source: APiQypJEpTtqeTr9o0OHWVCd4YNULVp1q0q9U2Soz/KtkpNaaDcqmR9MRis2lZmNki6Q0+MIaix0pA==
-X-Received: by 2002:a5d:5392:: with SMTP id d18mr12081099wrv.278.1587018870349;
-        Wed, 15 Apr 2020 23:34:30 -0700 (PDT)
-Received: from dell ([95.149.164.124])
-        by smtp.gmail.com with ESMTPSA id 5sm2419784wmg.34.2020.04.15.23.34.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2020 23:34:29 -0700 (PDT)
-Date:   Thu, 16 Apr 2020 07:35:19 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Benjamin Gaignard <benjamin.gaignard@st.com>
-Cc:     fabrice.gasnier@st.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/6] dt-bindings: mfd: Document STM32 low power timer
- bindings
-Message-ID: <20200416063519.GN2167633@dell>
-References: <20200401083909.18886-1-benjamin.gaignard@st.com>
- <20200401083909.18886-2-benjamin.gaignard@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200401083909.18886-2-benjamin.gaignard@st.com>
+        id S2408146AbgDPGrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 02:47:41 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:54454 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2408188AbgDPGri (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 02:47:38 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D8B181A0C1F;
+        Thu, 16 Apr 2020 08:47:30 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B6B081A0C1D;
+        Thu, 16 Apr 2020 08:47:25 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 81D84402A8;
+        Thu, 16 Apr 2020 14:47:19 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/5] dt-bindings: clock: Convert i.MX6Q clock to json-schema
+Date:   Thu, 16 Apr 2020 14:39:14 +0800
+Message-Id: <1587019158-12143-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Apr 2020, Benjamin Gaignard wrote:
+Convert the i.MX6Q clock binding to DT schema format using json-schema.
 
-> Add a subnode to STM low power timer bindings to support timer driver
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> version 6:
-> - only use one interrupt
-> 
-> version 5:
-> - the previous has been acked-by Rob but since I have docummented
->   interrupts and interrupt-names properties I haven't applied it here.
-> 
-> version 4:
-> - change compatible and subnode names
-> - document wakeup-source property
-> 
->  .../devicetree/bindings/mfd/st,stm32-lptimer.yaml   | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V1:
+	- remove minItem of interrupts;
+	- remove '...' at the end of file
+---
+ .../devicetree/bindings/clock/imx6q-clock.txt      | 41 --------------
+ .../devicetree/bindings/clock/imx6q-clock.yaml     | 66 ++++++++++++++++++++++
+ 2 files changed, 66 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/imx6q-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/imx6q-clock.yaml
 
-For my own reference:
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-
+diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.txt b/Documentation/devicetree/bindings/clock/imx6q-clock.txt
+deleted file mode 100644
+index 13d36d4..0000000
+--- a/Documentation/devicetree/bindings/clock/imx6q-clock.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* Clock bindings for Freescale i.MX6 Quad
+-
+-Required properties:
+-- compatible: Should be "fsl,imx6q-ccm"
+-- reg: Address and length of the register set
+-- interrupts: Should contain CCM interrupt
+-- #clock-cells: Should be <1>
+-
+-Optional properties:
+-- fsl,pmic-stby-poweroff: Configure CCM to assert PMIC_STBY_REQ signal
+-  on power off.
+-  Use this property if the SoC should be powered off by external power
+-  management IC (PMIC) triggered via PMIC_STBY_REQ signal.
+-  Boards that are designed to initiate poweroff on PMIC_ON_REQ signal should
+-  be using "syscon-poweroff" driver instead.
+-- clocks: list of clock specifiers, must contain an entry for each entry
+-          in clock-names
+-- clock-names: valid names are "osc", "ckil", "ckih1", "anaclk1" and "anaclk2"
+-
+-The clock consumer should specify the desired clock by having the clock
+-ID in its "clocks" phandle cell.  See include/dt-bindings/clock/imx6qdl-clock.h
+-for the full list of i.MX6 Quad and DualLite clock IDs.
+-
+-Examples:
+-
+-#include <dt-bindings/clock/imx6qdl-clock.h>
+-
+-clks: ccm@20c4000 {
+-	compatible = "fsl,imx6q-ccm";
+-	reg = <0x020c4000 0x4000>;
+-	interrupts = <0 87 0x04 0 88 0x04>;
+-	#clock-cells = <1>;
+-};
+-
+-uart1: serial@2020000 {
+-	compatible = "fsl,imx6q-uart", "fsl,imx21-uart";
+-	reg = <0x02020000 0x4000>;
+-	interrupts = <0 26 0x04>;
+-	clocks = <&clks IMX6QDL_CLK_UART_IPG>, <&clks IMX6QDL_CLK_UART_SERIAL>;
+-	clock-names = "ipg", "per";
+-};
+diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+new file mode 100644
+index 0000000..1c6e600
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/imx6q-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Clock bindings for Freescale i.MX6 Quad
++
++maintainers:
++  - Anson Huang <Anson.Huang@nxp.com>
++
++properties:
++  compatible:
++    const: fsl,imx6q-ccm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 2
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: 24m osc
++      - description: 32k osc
++      - description: ckih1 clock input
++      - description: anaclk1 clock input
++      - description: anaclk2 clock input
++
++  clock-names:
++    items:
++      - const: osc
++      - const: ckil
++      - const: ckih1
++      - const: anaclk1
++      - const: anaclk2
++
++  fsl,pmic-stby-poweroff:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Use this property if the SoC should be powered off by external power
++      management IC (PMIC) triggered via PMIC_STBY_REQ signal.
++      Boards that are designed to initiate poweroff on PMIC_ON_REQ signal should
++      be using "syscon-poweroff" driver instead.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#clock-cells'
++
++examples:
++  # Clock Control Module node:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    clks: clock-controller@20c4000 {
++        compatible = "fsl,imx6q-ccm";
++        reg = <0x020c4000 0x4000>;
++        interrupts = <0 87 IRQ_TYPE_LEVEL_HIGH>,
++                     <0 88 IRQ_TYPE_LEVEL_HIGH>;
++        #clock-cells = <1>;
++    };
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.7.4
+
