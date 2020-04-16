@@ -2,101 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 231A31ABDD4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 12:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E521ABE60
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 12:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503293AbgDPK0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 06:26:41 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:38016 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2504681AbgDPK00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 06:26:26 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7C98B2A1375;
-        Thu, 16 Apr 2020 11:26:23 +0100 (BST)
-Date:   Thu, 16 Apr 2020 12:26:19 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        anders.roxell@linaro.org, andriy.shevchenko@intel.com,
-        arnd@arndb.de, brendanhiggins@google.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, masonccyang@mxic.com.tw,
-        miquel.raynal@bootlin.com, piotrs@cadence.com,
-        qi-ming.wu@intel.com, richard@nod.at, robh+dt@kernel.org,
-        tglx@linutronix.de, vigneshr@ti.com
-Subject: Re: [PATCH v1 2/2] mtd: rawnand: Add NAND controller support on
- Intel LGM SoC
-Message-ID: <20200416122619.2c481792@collabora.com>
-In-Reply-To: <18568cf6-2955-472e-7b68-eb35e654a906@linux.intel.com>
-References: <20200414022433.36622-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-        <20200415220533.733834-1-martin.blumenstingl@googlemail.com>
-        <c33c8653-16a2-5bcd-97a9-511d958b755a@linux.intel.com>
-        <20200416113822.2ef326cb@collabora.com>
-        <18568cf6-2955-472e-7b68-eb35e654a906@linux.intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S2505173AbgDPKg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 06:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2505190AbgDPKgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 06:36:13 -0400
+X-Greylist: delayed 301 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Apr 2020 03:36:13 PDT
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BFC8C061A41
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 03:36:13 -0700 (PDT)
+Received: from ramsan ([IPv6:2a02:1810:ac12:ed60:fd83:81bb:c1d7:433d])
+        by xavier.telenet-ops.be with bizsmtp
+        id TNWz2200i4dKHqf01NWzxE; Thu, 16 Apr 2020 12:31:11 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jP1nP-0001cj-Ll; Thu, 16 Apr 2020 12:30:59 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jP1nP-0003z7-JX; Thu, 16 Apr 2020 12:30:59 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jiri Kosina <trivial@kernel.org>
+Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-iio@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH trivial 0/6] Fix misspellings of "Analog Devices"
+Date:   Thu, 16 Apr 2020 12:30:52 +0200
+Message-Id: <20200416103058.15269-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Apr 2020 17:45:49 +0800
-"Ramuthevar, Vadivel MuruganX"
-<vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+	Hi all,
 
-> >>>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> >>>>
-> >>>> This patch adds the new IP of Nand Flash Controller(NFC) support
-> >>>> on Intel's Lightning Mountain(LGM) SoC.
-> >>>>
-> >>>> DMA is used for burst data transfer operation, also DMA HW supports
-> >>>> aligned 32bit memory address and aligned data access by default.
-> >>>> DMA burst of 8 supported. Data register used to support the read/write
-> >>>> operation from/to device.  
-> >>> I am wondering how this new hardware is different from the Lantiq NAND
-> >>> controller IP - for which there is already a driver in mainline (it's
-> >>> in drivers/mtd/nand/raw/xway_nand.c).
-> >>> The CON and WAIT registers look suspiciously similar.
-> >>>
-> >>> As far as I understand the "old" SoCs (VRX200 and earlier) don't have
-> >>> a built-in ECC engine. This seems to have changed with ARX300 though
-> >>> (again, AFAIK).
-> >>>
-> >>> A bit of lineage on these SoCs (initially these were developed by
-> >>> Infineon. Lantiq then started as an Infineon spin-off in 2009 and
-> >>> was then acquired by Intel in 2015):
-> >>> - Danube
-> >>> - ARX100 from 2008/2009
-> >>> - VRX200 from 2009/2010
-> >>> - ARX300 from 2014
-> >>> - GRX350 from 2015/2016
-> >>> - GRX550 from 2017
-> >>> - and now finally: LGM from 2020 (est.)
-> >>>
-> >>> The existing xway_nand driver supports the Danube, ARX100 and VRX200
-> >>> SoCs.  
-> >> Lantiq upstreamed a driver for an older version of this IP core 8 years
-> >> ago, see here:
-> >> https://elixir.bootlin.com/linux/v5.5.6/source/drivers/mtd/nand/raw/xway_nand.c
-> >> It does not support DMA and ECC.  
-> > Then let's just extend this driver to support the new features. Plus,  
-> We do not have the platform to test also it's very old legacy driver .
+In several files the company also known as ADI is spelled as "Analog
+Device".  However, according to https://www.analog.com/, the company
+name is spelled "Analog Devices".
 
-Well, if it's similar enough, we want to have one driver.
+Hence this patch series, one per subsystem, fixes these misspellings.
 
-> > we'll be happy to have one more of the existing driver converted to  
-> > ->exec_op() ;-).  
-> 
-> I have completely adapted to ->exec_op() hook up to replace the legacy 
-> call-back.
+Thanks for your comments!
 
-I suspect porting what you've done to the xway driver shouldn't be too
-complicated.
+Geert Uytterhoeven (6):
+  dt-bindings: Fix misspellings of "Analog Devices"
+  dma: Fix misspelling of "Analog Devices"
+  drm: Fix misspellings of "Analog Devices"
+  iio: Fix misspellings of "Analog Devices"
+  ALSA: Fix misspellings of "Analog Devices"
+  ASoC: Fix misspellings of "Analog Devices"
+
+ .../devicetree/bindings/display/bridge/adi,adv7123.txt        | 4 ++--
+ .../devicetree/bindings/display/bridge/adi,adv7511.txt        | 4 ++--
+ Documentation/devicetree/bindings/dma/adi,axi-dmac.txt        | 2 +-
+ Documentation/devicetree/bindings/iio/dac/ad5755.txt          | 2 +-
+ drivers/dma/Kconfig                                           | 2 +-
+ drivers/gpu/drm/bridge/adv7511/Kconfig                        | 2 +-
+ drivers/gpu/drm/drm_fb_cma_helper.c                           | 2 +-
+ drivers/gpu/drm/tegra/fb.c                                    | 2 +-
+ drivers/iio/adc/ad7791.c                                      | 2 +-
+ drivers/iio/trigger/iio-trig-hrtimer.c                        | 2 +-
+ drivers/staging/iio/Documentation/overview.txt                | 2 +-
+ sound/isa/ad1816a/ad1816a.c                                   | 2 +-
+ sound/pci/ac97/ac97_patch.c                                   | 2 +-
+ sound/pci/hda/Kconfig                                         | 4 ++--
+ sound/soc/codecs/ad1980.c                                     | 2 +-
+ sound/soc/codecs/ad73311.c                                    | 2 +-
+ sound/soc/codecs/wm8782.c                                     | 2 +-
+ 17 files changed, 20 insertions(+), 20 deletions(-)
+
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
