@@ -2,162 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDE21ABC7C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 11:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A63F31ABCB1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 11:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503702AbgDPJNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 05:13:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
+        id S2502921AbgDPJVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 05:21:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2503694AbgDPJNl (ORCPT
+        by vger.kernel.org with ESMTP id S2392074AbgDPJUw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 05:13:41 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189CFC061A41
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:13:40 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id b11so3927921wrs.6
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:13:39 -0700 (PDT)
+        Thu, 16 Apr 2020 05:20:52 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8B9C0610D5
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:20:51 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id w145so5046043lff.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AyKKf2vu9ets5qQ05mKeEx+H3HJdeMhyf7LDU6EPmvg=;
-        b=h79u+RID/Tw8EjEr7PzOeW67I5riBs6/JV027laFW3VtXjta4zpbT4owqSzSYadzXI
-         UooqVXoXGL1A8oAByZdeXkLIJKTO01hEePh4C5fzehOrUdnbfQ1pEs9kiyqYoA/KX+JH
-         1qMRtfcJSHijAK2OGm7YZmCKbHczogdEeoL22Pw+vKfPbVBWs4ymX9eJohxZQNiYHrt4
-         ev6JtRiaXOHosoQtEI6ZEvp9wcTaGhtxQIVftu4d8viJsibPKXtJvkzZsh+8sFdMla2G
-         mZm9iRn+HrGu+Q6eydYFxopmA1r46j4zcJCjdDXVsTQRSFhEB8VLG7f5460IgaYT+mVk
-         jnYA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iuZQPq25LlhzAjymFw6DX/CB5GWOdpk6lIwmaoZu2BE=;
+        b=hkTtnz2DkVpj5FadPidho1Yi0E3E7wBAIYmB61/Kj4lK/X8UrCLL81x5xmrcWGWc+H
+         azS6fkmcowWvwOnDXcI9l4y6Ucno0mzyziNpLxV9Mthz8Y0YUdXq82D8FzhAITXPdDF8
+         3tFd/DXFS5Ty+STvGvcwXllNt8lFNMCiTuvCiXYSz2PukY3ig/gTtCqCjuJHHyXpd1A3
+         QDfx/KUMUCLzLxrTqLoSlNd+gU4YBuAYH/DvcY6yoeUzHZc1o3NaKorVY+VcrIzkfObd
+         u7uovSiNsexRzNZk8c0flO0ZydCK1WaSDd1IcMQT71DefMnE/zm8iho+FD/0QJcA2MJG
+         wMcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AyKKf2vu9ets5qQ05mKeEx+H3HJdeMhyf7LDU6EPmvg=;
-        b=Qd5Ydnbs0cOJRW0G5xSqQ0VgpTqYakm/2daB36Y1dO2nvIrTeq7qYDIbIhvqwjeY7c
-         3xjKb5K+djNgD1rjRujcK1uSXIE2TAZ0epLdS0oRsOVDn2Q9+/qV6NpkcO8G/DgLdYdr
-         A6raosV1/pAywV0oM9DI+SyhLHkwh8nb8SE3Zt4aHUWSbP0H1sC4A64f/phf2rXLbiTj
-         w88wWQ1J9vwBdN9zvwwEpix2EbAcegK+NgcN023RkTy8MJD9BKajqbp7i8qWMZfLvld8
-         P3XJjtf5DM2kI6WLdD1Ro/aqAkuBcvecYaddtGVI2ROeIK8yl3J6Emmv/V9TTNIBETaq
-         L7yg==
-X-Gm-Message-State: AGi0PuYScEALqO7uo0KbgE5nod87wVeHKLkv7qMYMzc9nLL2/h5Hr9zY
-        Y4YDylZlrspjixykvEreRxJpEg==
-X-Google-Smtp-Source: APiQypL6P5SXhhJYLq4NR+TEKXmQzYaSqAHnJaTlLyokBRKxP3wo+p/iZ1+/LSCv7ZJBVaCmcdxoSg==
-X-Received: by 2002:a5d:68cf:: with SMTP id p15mr4801408wrw.139.1587028418328;
-        Thu, 16 Apr 2020 02:13:38 -0700 (PDT)
-Received: from dell ([95.149.164.124])
-        by smtp.gmail.com with ESMTPSA id b4sm21818100wrv.42.2020.04.16.02.13.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Apr 2020 02:13:37 -0700 (PDT)
-Date:   Thu, 16 Apr 2020 10:14:38 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Josef Friedl <josef.friedl@speed.at>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ran Bi <ran.bi@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Subject: Re: [PATCH v12 5/6] rtc: mt6397: Add support for the MediaTek MT6358
- RTC
-Message-ID: <20200416091438.GA2167633@dell>
-References: <1586333531-21641-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1586333531-21641-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iuZQPq25LlhzAjymFw6DX/CB5GWOdpk6lIwmaoZu2BE=;
+        b=gyhASFhjDDMEuO1Y7Xvw6oTc3dX1gJc1BZK7x/JkmDGni/uCN+0TT/C2vop211co5h
+         mBXLAggiNApdtDbODUaq3hOjyQ0X+AEAUyAj/wnFHPR4jH7Br//w6Yn7MkCTIJ8GE8IF
+         b/J7TYxQ74798j/ur4oKS5dF0yWtlkEINjMiqndcTXLhILYHBa/TziDt6cKSl/9+AsGD
+         nc0qudkbRsiyV6uDmv2eOclX1sA4JGnN0ybHjlQgzRFrRL2H5Dxg9SSiAhrtC22hm/iC
+         WB2vpkOPyFFEXIYHSSaLDv1OvrbtNYD1yig5gojzgYIQ31xKWtv2LPUi3h4fJ759JytG
+         jMYA==
+X-Gm-Message-State: AGi0PuZJpE0VH/R/xuPnjeP62xYUfIjbqmxrPE2tr0PL4rmbBNNSoqB5
+        657HafOrtN/G4OBnjf2HQ7XqWV5KUINhNfhtgtJ7Bw==
+X-Google-Smtp-Source: APiQypJvAs9P0NYlc+VDp3QIFWPUjuxP+cKRiyTPcwcbTngB4Tr+zwZ10UYlTO8u+2AsTbbibFkxTpAAASs25r3y/l8=
+X-Received: by 2002:a05:6512:52c:: with SMTP id o12mr5352302lfc.217.1587028850060;
+ Thu, 16 Apr 2020 02:20:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1586333531-21641-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <20200402203656.27047-1-michael@walle.cc> <20200402203656.27047-11-michael@walle.cc>
+ <CAMpxmJVE3PgVCxkQ-ryc5=KSrKcpdmk1cnJUxJBz9QFCx-e_+A@mail.gmail.com>
+ <80bd8661ec8a1f5eda3f09a267846eaa@walle.cc> <CAMpxmJVC7e9JnHzBo-h8M1+KmcA32=Rvxo7+znH=-kAbcCr_LQ@mail.gmail.com>
+ <e0388a2137e23d76b2415a7549c01dd1@walle.cc> <CAMpxmJW1x4Orh1BZ4TUoCsYeaAAZ4NBUNvoMG9JgP0iLvXTOtg@mail.gmail.com>
+ <62d157198a75a59ada15c496deeab49b@walle.cc> <eab972adf53bbac20b5a9e613fcfb5b0@walle.cc>
+In-Reply-To: <eab972adf53bbac20b5a9e613fcfb5b0@walle.cc>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Apr 2020 11:20:38 +0200
+Message-ID: <CACRpkdZPZ4nFQ6B3tGG9wvceoTWqAkfY0r1UKs2pf_c=ZNBG=w@mail.gmail.com>
+Subject: Re: [PATCH v2 10/16] gpio: add a reusable generic gpio_chip using regmap
+To:     Michael Walle <michael@walle.cc>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Apr 2020, Hsin-Hsiung Wang wrote:
+On Tue, Apr 14, 2020 at 9:57 PM Michael Walle <michael@walle.cc> wrote:
 
-> From: Ran Bi <ran.bi@mediatek.com>
-> 
-> This add support for the MediaTek MT6358 RTC. Driver using
-> compatible data to store different RTC_WRTGR address offset.
-> This replace RTC_WRTGR to RTC_WRTGR_MT6323 in mt6323-poweroff
-> driver which only needed by armv7 CPU without ATF.
-> 
-> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
-> Reviewed-by: Yingjoe Chen <yingjoe.chen@mediatek.com>
-> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Acked-by: Sebastian Reichel <sre@kernel.org>
-> Signed-off-by: Ran Bi <ran.bi@mediatek.com>
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> So what about the following:
+>
+> #define GPIO_REGMAP_ADDR_ZERO (unsigned int)(-1)
 
-Please place these in chronological order.  They should provide some
-history, rather than a unordered slab list of random sign-offs.
+Yeah with regmap explicitly using int I guess we can't use
+S32_MAX, so that is fair.
 
-> ---
->  drivers/power/reset/mt6323-poweroff.c |  2 +-
->  drivers/rtc/rtc-mt6397.c              | 18 +++++++++++++++---
->  include/linux/mfd/mt6397/rtc.h        |  9 ++++++++-
->  3 files changed, 24 insertions(+), 5 deletions(-)
+> So this way the user might assign the base addresses the normal way
+> except when he wants to use zero, in that case he has to use
+>
+>    ->base_adr = GPIO_REGMAP_ADDR_ZERO;
+>
+> gpio-regmap.c could use then:
+>
+> if (base_addr)
+>    something_useful(gpio_regmap_addr(base_addr));
+>
+> unsigned int gpio_regmap_addr(unsigned int addr)
+> {
+>    return (addr == GPIO_REGMAP_ADDR_ZERO) ? 0 : addr;
+> }
 
-[...]
+That's reasonably clean.
 
-> diff --git a/include/linux/mfd/mt6397/rtc.h b/include/linux/mfd/mt6397/rtc.h
-> index 7dfb63b..6200f3b 100644
-> --- a/include/linux/mfd/mt6397/rtc.h
-> +++ b/include/linux/mfd/mt6397/rtc.h
-> @@ -18,7 +18,9 @@
->  #define RTC_BBPU_CBUSY         BIT(6)
->  #define RTC_BBPU_KEY            (0x43 << 8)
->  
-> -#define RTC_WRTGR              0x003c
-> +#define RTC_WRTGR_MT6358       0x3a
-> +#define RTC_WRTGR_MT6397       0x3c
-
-Why remove the leading 00's?
-
-These are now different to the other regs defined in this header.
-
-> +#define RTC_WRTGR_MT6323       RTC_WRTGR_MT6397
->  
->  #define RTC_IRQ_STA            0x0002
-
-Like here for instance  --^
-
->  #define RTC_IRQ_STA_AL         BIT(0)
-> @@ -65,6 +67,10 @@
->  #define MTK_RTC_POLL_DELAY_US  10
->  #define MTK_RTC_POLL_TIMEOUT   (jiffies_to_usecs(HZ))
->  
-> +struct mtk_rtc_data {
-> +	u32                     wrtgr;
-> +};
-> +
->  struct mt6397_rtc {
->  	struct device           *dev;
->  	struct rtc_device       *rtc_dev;
-> @@ -74,6 +80,7 @@ struct mt6397_rtc {
->  	struct regmap           *regmap;
->  	int                     irq;
->  	u32                     addr_base;
-> +	const struct mtk_rtc_data *data;
->  };
->  
->  #endif /* _LINUX_MFD_MT6397_RTC_H_ */
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Yours,
+Linus Walleij
