@@ -2,91 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 964AB1AB8A8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 08:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0421AB8D5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 08:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436970AbgDPGwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 02:52:18 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:41448 "EHLO fornost.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436898AbgDPGwN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 02:52:13 -0400
-Received: from gwarestrin.me.apana.org.au ([192.168.0.7] helo=gwarestrin.arnor.me.apana.org.au)
-        by fornost.hmeau.com with smtp (Exim 4.89 #2 (Debian))
-        id 1jOyMh-0005IU-H1; Thu, 16 Apr 2020 16:51:12 +1000
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Thu, 16 Apr 2020 16:51:11 +1000
-Date:   Thu, 16 Apr 2020 16:51:11 +1000
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Hadar Gat <hadar.gat@arm.com>
-Cc:     Matt Mackall <mpm@selenic.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        id S2437731AbgDPG5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 02:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2436660AbgDPG5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 02:57:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8A7C061A0C
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2020 23:57:10 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jOySH-00050M-F3; Thu, 16 Apr 2020 08:56:57 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jOySF-0002To-Ra; Thu, 16 Apr 2020 08:56:55 +0200
+Date:   Thu, 16 Apr 2020 08:56:55 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zaibo Xu <xuzaibo@huawei.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gilad Ben-Yossef <gilad@benyossef.com>,
-        Ofir Drang <ofir.drang@arm.com>
-Subject: Re: [PATCH v7 0/3] hw_random: introduce Arm CryptoCell TRNG driver
-Message-ID: <20200416065111.GC7901@gondor.apana.org.au>
-References: <1585289423-18440-1-git-send-email-hadar.gat@arm.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Steve Winslow <swinslow@gmail.com>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] iio: DAC extension for ltc2634-12/10/8
+Message-ID: <20200416065655.cxy67hlj267dpjrw@pengutronix.de>
+References: <20200416012016.21422-1-chris.ruehl@gtsys.com.hk>
+ <20200416012016.21422-3-chris.ruehl@gtsys.com.hk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1585289423-18440-1-git-send-email-hadar.gat@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200416012016.21422-3-chris.ruehl@gtsys.com.hk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 27, 2020 at 09:10:20AM +0300, Hadar Gat wrote:
-> The Arm CryptoCell is a hardware security engine.
-> This patch introduces driver for its TRNG (True Random Number Generator)
-> engine.
-> 
-> v7 change: in arm-cctrng.yaml, removed unneeded 'minitems'
-> 
-> v6 change: add missing initialization of hwrng quality.
-> 
-> v5 changes:
-> 	1. in arm-cctrng.yaml, fixed error in 'make dt_binding_check'
-> 	2. in cctrng.c, clean up cctrng clock handling
-> 
-> v4 changes: update arm-cctrng.yaml to conform with json-schema standard.
-> 
-> v3 change: removed few unneeded "#ifdef CONFIG_PM" from the code.
-> 
-> v2 changes: fixed 'make dt_bnding_check' errors.
-> 
-> Hadar Gat (3):
->   dt-bindings: add device tree binding for Arm CryptoCell trng engine
->   hw_random: cctrng: introduce Arm CryptoCell driver
->   MAINTAINERS: add HG as cctrng maintainer
-> 
->  .../devicetree/bindings/rng/arm-cctrng.yaml        |  54 ++
->  MAINTAINERS                                        |   9 +
->  drivers/char/hw_random/Kconfig                     |  12 +
->  drivers/char/hw_random/Makefile                    |   1 +
->  drivers/char/hw_random/cctrng.c                    | 736 +++++++++++++++++++++
->  drivers/char/hw_random/cctrng.h                    |  72 ++
->  6 files changed, 884 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/arm-cctrng.yaml
->  create mode 100644 drivers/char/hw_random/cctrng.c
->  create mode 100644 drivers/char/hw_random/cctrng.h
+Hello,
 
-All applied.  Thanks.
+dropped stefan.popa@analog.com from recipents as the address bounces for
+me.
+
+On Thu, Apr 16, 2020 at 09:20:10AM +0800, Chris Ruehl wrote:
+> This patch add support for Analog Devices (Linear Technology)
+> LTC2634 Quad 12-/10-/8-Bit Rail-to-Rail DAC.
+> The SPI functionality based on them from LTC2632 therefor
+> add the definitions only and update the Kconfig.
+> 
+> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+> ---
+> v4:
+> -hide version from commit text
+> v3:
+> -Consistens decimal separator in help text
+> v2:
+> -Send the documentation fix in a extra patch
+> -Kconfig simplify the driver description, details to the help text
+> -ltc2632.txt add to this patch-set (prepare to convert to yaml)
+> 
+>  .../devicetree/bindings/iio/dac/ltc2632.txt   |  8 ++-
+>  drivers/iio/dac/Kconfig                       |  6 +-
+>  drivers/iio/dac/ltc2632.c                     | 60 +++++++++++++++++++
+>  3 files changed, 70 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+> index 338c3220f01a..1ab9570cf219 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+> +++ b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+> @@ -1,4 +1,4 @@
+> -Linear Technology LTC2632/2636 DAC
+> +Linear Technology LTC2632/2634/2636 DAC
+>  
+>  Required properties:
+>   - compatible: Has to contain one of the following:
+> @@ -8,6 +8,12 @@ Required properties:
+>  	lltc,ltc2632-h12
+>  	lltc,ltc2632-h10
+>  	lltc,ltc2632-h8
+> +	lltc,ltc2634-l12
+> +	lltc,ltc2634-l10
+> +	lltc,ltc2634-l8
+> +	lltc,ltc2634-h12
+> +	lltc,ltc2634-h10
+> +	lltc,ltc2634-h8
+>  	lltc,ltc2636-l12
+>  	lltc,ltc2636-l10
+>  	lltc,ltc2636-l8
+> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> index 93744011b63f..aee13ced6ddf 100644
+> --- a/drivers/iio/dac/Kconfig
+> +++ b/drivers/iio/dac/Kconfig
+> @@ -279,12 +279,12 @@ config LTC1660
+>  	  module will be called ltc1660.
+>  
+>  config LTC2632
+> -	tristate "Linear Technology LTC2632-12/10/8 and LTC2636-12/10/8 DAC spi driver"
+> +	tristate "Linear Technology LTC2632-12/10/8 and similar DAC spi driver"
+>  	depends on SPI
+>  	help
+>  	  Say yes here to build support for Linear Technology
+> -	  LTC2632-12, LTC2632-10, LTC2632-8, LTC2636-12, LTC2636-10 and
+> -	  LTC2636-8 converters (DAC).
+> +	  LTC2632, LTC2634 and LTC2636 DAC resolution 12/10/8 bit
+> +	  low 0-2.5V and high 0-4.096V range converters.
+>  
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ltc2632.
+> diff --git a/drivers/iio/dac/ltc2632.c b/drivers/iio/dac/ltc2632.c
+> index 2a84ea654645..e939d7f81014 100644
+> --- a/drivers/iio/dac/ltc2632.c
+> +++ b/drivers/iio/dac/ltc2632.c
+> @@ -54,6 +54,12 @@ enum ltc2632_supported_device_ids {
+>  	ID_LTC2632H12,
+>  	ID_LTC2632H10,
+>  	ID_LTC2632H8,
+> +	ID_LTC2634L12,
+> +	ID_LTC2634L10,
+> +	ID_LTC2634L8,
+> +	ID_LTC2634H12,
+> +	ID_LTC2634H10,
+> +	ID_LTC2634H8,
+>  	ID_LTC2636L12,
+>  	ID_LTC2636L10,
+>  	ID_LTC2636L8,
+> @@ -236,6 +242,36 @@ static const struct ltc2632_chip_info ltc2632_chip_info_tbl[] = {
+>  		.num_channels	= 2,
+>  		.vref_mv	= 4096,
+>  	},
+> +	[ID_LTC2634L12] = {
+> +		.channels	= ltc2632x12_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 2500,
+> +	},
+> +	[ID_LTC2634L10] = {
+> +		.channels	= ltc2632x10_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 2500,
+> +	},
+> +	[ID_LTC2634L8] =  {
+> +		.channels	= ltc2632x8_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 2500,
+> +	},
+> +	[ID_LTC2634H12] = {
+> +		.channels	= ltc2632x12_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 4096,
+> +	},
+> +	[ID_LTC2634H10] = {
+> +		.channels	= ltc2632x10_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 4096,
+> +	},
+> +	[ID_LTC2634H8] =  {
+> +		.channels	= ltc2632x8_channels,
+> +		.num_channels	= 4,
+> +		.vref_mv	= 4096,
+> +	},
+>  	[ID_LTC2636L12] = {
+>  		.channels	= ltc2632x12_channels,
+>  		.num_channels	= 8,
+> @@ -357,6 +393,12 @@ static const struct spi_device_id ltc2632_id[] = {
+>  	{ "ltc2632-h12", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2632H12] },
+>  	{ "ltc2632-h10", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2632H10] },
+>  	{ "ltc2632-h8", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2632H8] },
+> +	{ "ltc2634-l12", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634L12] },
+> +	{ "ltc2634-l10", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634L10] },
+> +	{ "ltc2634-l8", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634L8] },
+> +	{ "ltc2634-h12", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634H12] },
+> +	{ "ltc2634-h10", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634H10] },
+> +	{ "ltc2634-h8", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2634H8] },
+>  	{ "ltc2636-l12", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2636L12] },
+>  	{ "ltc2636-l10", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2636L10] },
+>  	{ "ltc2636-l8", (kernel_ulong_t)&ltc2632_chip_info_tbl[ID_LTC2636L8] },
+> @@ -386,6 +428,24 @@ static const struct of_device_id ltc2632_of_match[] = {
+>  	}, {
+>  		.compatible = "lltc,ltc2632-h8",
+>  		.data = &ltc2632_chip_info_tbl[ID_LTC2632H8]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-l12",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634L12]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-l10",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634L10]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-l8",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634L8]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-h12",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634H12]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-h10",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634H10]
+> +	}, {
+> +		.compatible = "lltc,ltc2634-h8",
+> +		.data = &ltc2632_chip_info_tbl[ID_LTC2634H8]
+>  	}, {
+>  		.compatible = "lltc,ltc2636-l12",
+>  		.data = &ltc2632_chip_info_tbl[ID_LTC2636L12]
+
+Looks good to me:
+
+Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+
+Thanks
+Uwe
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
