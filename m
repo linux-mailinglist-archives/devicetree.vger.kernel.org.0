@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D1141ABD0C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 11:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FEB91ABD11
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 11:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503590AbgDPJjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 05:39:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48246 "EHLO
+        id S2503645AbgDPJl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 05:41:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2503833AbgDPJjl (ORCPT
+        by vger.kernel.org with ESMTP id S2503614AbgDPJlG (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 05:39:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA627C061A10
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:39:40 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1jP0zd-0002ad-L6; Thu, 16 Apr 2020 11:39:33 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1jP0zc-0008A1-NM; Thu, 16 Apr 2020 11:39:32 +0200
-Date:   Thu, 16 Apr 2020 11:39:32 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH V2 1/5] dt-bindings: clock: Convert i.MX6Q clock to
- json-schema
-Message-ID: <20200416093932.2mkcyv4rs6v6a24a@pengutronix.de>
-References: <1587019158-12143-1-git-send-email-Anson.Huang@nxp.com>
+        Thu, 16 Apr 2020 05:41:06 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 263AAC061A0C
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:41:06 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id y4so7074015ljn.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 02:41:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8dAk70I1p4hnhRGOefpbJT7ms2GQjkjqrJGg81hx6OQ=;
+        b=ObziAsNZFmML/a7d7NyFT7NUp0TNcEQoe/JcKNJRXlvCU3WayEVxd+oN3RnNbY2YK9
+         fdwRkA2KoGhzenGHSQwzhrnXNIAvYHWxmiS/2E0x/Ti3lsohU1KAS/vGFGhbV/JKJGru
+         IZakD4MQ73Hb+ddeolKSS/3O/BATf1tH82knHsUXb4ZnWDnSnn/Uo1r2Z8bgJaBg/oSQ
+         jvDe9T3HDh61oUWZvHkDZrlF7Fpj4VNr3ji1FKygGOrcPWMqXpluT5PKq6TaE2BdX5WZ
+         A2bUMW2Ip9GH5STT7BwaS4KvoAbcvYu2Eq5P+JT8ilaLA2T+PcZqATJAP1T/UlQMOTMC
+         sRcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8dAk70I1p4hnhRGOefpbJT7ms2GQjkjqrJGg81hx6OQ=;
+        b=EFTob3S5PDXk9jGNmAjcHqs/1D5YC9wtI6eKthOK2PGmzVGOqfsHG7+psV0A1CyftG
+         ebZjWxin9cE6wE23WUqSQ8z3uDprrEVm8P/X45G9qz+TapH3WTDNDk629qIiQgEi4hV0
+         KJvqmXm7y5u9K035RRe2OHRY6+U4/eSB2zCao0IhAk0xZYS4ZUmwRJDP+4yGwbcG5Ec4
+         w6Dahr+TkJGxNOPpvgnutUrfjwfUKPu65acnqzxE9KEVAOzh3AZkD2+5uVM3op6jFLEa
+         LcGvCjw4NhXZhlESgfJ7UxhNjiURSozYblpFsGS0I0lPMZbPu0/9pqbJWnEu+QfNrN3s
+         K6Iw==
+X-Gm-Message-State: AGi0PuZ66eRuxKIkeYV0w8VixDT6Z7aT1iv0SanhY0AyNdspZVMwwg5A
+        cWa55i5BlhH1XFTRx4RYJvT1FPKa3/WxHv7G9+ynpQ==
+X-Google-Smtp-Source: APiQypK8qx4sDjdMlKaIAgsSnv1jrL4D1nl6jj30y6f4zJEOB93Qgx1Jwe4YMT5gUNKLU95XB+kIvZo1wtO6/Q3eFao=
+X-Received: by 2002:a2e:8805:: with SMTP id x5mr2401076ljh.223.1587030064671;
+ Thu, 16 Apr 2020 02:41:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1587019158-12143-1-git-send-email-Anson.Huang@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:37:20 up 153 days, 55 min, 168 users,  load average: 0.00, 0.06,
- 0.07
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1585306559-13973-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1585306559-13973-1-git-send-email-Anson.Huang@nxp.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Apr 2020 11:40:53 +0200
+Message-ID: <CACRpkda7U5M0OU+dQ9CKNqqmZ0XU=LsWqZAOy6faDqknaDCaQw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl-scu: Add imx8dxl pinctrl support
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Peng Fan <peng.fan@nxp.com>, Andy Duan <fugang.duan@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Leo Li <leoyang.li@nxp.com>, Olof Johansson <olof@lixom.net>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anson,
+On Fri, Mar 27, 2020 at 12:03 PM Anson Huang <Anson.Huang@nxp.com> wrote:
 
-On 20-04-16 14:39, Anson Huang wrote:
+> Update binding doc to support i.MX8DXL pinctrl.
+>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-...
+Patch applied.
 
-> diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> new file mode 100644
-> index 0000000..1c6e600
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/imx6q-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Clock bindings for Freescale i.MX6 Quad
-> +
-> +maintainers:
-> +  - Anson Huang <Anson.Huang@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx6q-ccm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 2
-
-IMHO I would force them to have exactly two so we need
-minItems: 2 too here.
-
-Regards,
-  Marco
+Yours,
+Linus Walleij
