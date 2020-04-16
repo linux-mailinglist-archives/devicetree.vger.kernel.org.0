@@ -2,125 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8DB1AC09A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C211AC0C4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:09:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2634807AbgDPMAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 08:00:37 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:53135 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2634711AbgDPMAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 08:00:34 -0400
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 254D41C001F;
-        Thu, 16 Apr 2020 12:00:26 +0000 (UTC)
-Date:   Thu, 16 Apr 2020 14:00:25 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jacob Chen <jacob-chen@iotwrt.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hansverk@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/4] media: rockchip: rga: Add support for the PX30
- compatible
-Message-ID: <20200416120025.GF125838@aptenodytes>
-References: <20200416115047.233720-1-paul.kocialkowski@bootlin.com>
- <20200416115047.233720-4-paul.kocialkowski@bootlin.com>
- <cd224bf8-5b0a-46e5-1657-4b40c6d3915e@xs4all.nl>
+        id S2635057AbgDPMIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 08:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2635053AbgDPMIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 08:08:50 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A00CC061A10
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 05:08:50 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id w145so5399859lff.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 05:08:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CLvpaW+uUne5it3kIWzMOUIojoXmf6oiO8ThkN3cpkY=;
+        b=Ys8YKsXM6fXzEeMjXeuG+QrbM/PhTPcxJ/fam+5PAoc1qC2WvmrsY0zCOurzWs1M5I
+         3sVoZJJLm1ofXVvre/Sc6/ghosEAS1wVxrAOvEzOCdRTBb/WK+AgqD8Nmy+CnyFizLUZ
+         L/EvT45dNlnZ6otQAvt2GzByEZbLdahUAYxuljFzlLSWJcku7egzOHNJrCWuYclSWmEv
+         WYf4EuwTF3S84+A9OCLMOsvtxAmXAPegR3uJp/VlbGXa3otOO/iaw4fwur65G2SuCAGG
+         zdyjLkTZYkbaQb+RCwu0LL/FfPrD3chTjG9bSUI1CHcHY2lqFBF5mRbAd+PmDEB8x7DV
+         PaWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CLvpaW+uUne5it3kIWzMOUIojoXmf6oiO8ThkN3cpkY=;
+        b=gSAn1qlv/5Rmke6anoQ42AgT0hOEHnz9L+a59mkRtTE/QkQMhzjytcI/RXYCZslsJR
+         pAnjz1gByeH6CGo6WGEU2tmJN8KZZoKIbYuZhqNJ/esfl4agAotIhU5CK8zA4tdaHNd3
+         Au14fNc5aHfOKLwqxHJmRnsecOpDSMBgwKPFFVL6xwWrkDZAIRW8OR9UF/msvkGXUT4t
+         8BljWpprp+W3naQM0Rxc5rj/l3YZ+1Sq6iRxWpeqPF/qDG7WqIygw7tzBfjuCyiiWvE9
+         otShHdfGnBVlV+bBAfN9J9Ni/iaci3VB3HW4s+czJCUkSh62PmAdaDTPYh99ZpcAb30i
+         mVzw==
+X-Gm-Message-State: AGi0PuaH6SkhaTaaSnQGguykb8en7cKB0lfjCeFlg0U0DhcmNF/AGW/x
+        1hKD3Z/zj9tMb+HvrTJDle7Qp+48TJxJ/8SYW5M9cA==
+X-Google-Smtp-Source: APiQypJzhCYUXv7QXcnsa/vkCVwefo5n3281I83Ws1Af1XZup/G2mwOYqWP5CDfj73shqpvSNrbcQ8jDk5V1Fzze4mQ=
+X-Received: by 2002:a19:700b:: with SMTP id h11mr6005687lfc.89.1587038928602;
+ Thu, 16 Apr 2020 05:08:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yRA+Bmk8aPhU85Qt"
-Content-Disposition: inline
-In-Reply-To: <cd224bf8-5b0a-46e5-1657-4b40c6d3915e@xs4all.nl>
+References: <20200329104549.GX25745@shell.armlinux.org.uk> <CACRpkdaL4-Z36aKOVW4o2MtCG9fbqm4gxZN3QjejVRPBZrzxxA@mail.gmail.com>
+ <20200416081412.GG25745@shell.armlinux.org.uk>
+In-Reply-To: <20200416081412.GG25745@shell.armlinux.org.uk>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Apr 2020 14:08:36 +0200
+Message-ID: <CACRpkdYFBGvQX3i4P1+cF5ExXOSKieT6cJNPTNuKFxEhtJVEjQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/6] PWM fan support on Clearfog gt8k
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+        Jason Cooper <jason@lakedaemon.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        linux-pwm@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Uwe Kleine-Konig <u.kleine-koenig@pengutronix.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 16, 2020 at 10:14 AM Russell King - ARM Linux admin
+<linux@armlinux.org.uk> wrote:
+> On Thu, Apr 16, 2020 at 09:51:37AM +0200, Linus Walleij wrote:
 
---yRA+Bmk8aPhU85Qt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > The gpio changes all look fine to me +/- fixes for review comments.
+>
+> I think Uwe is incorrect for his GPIO comments; the clock is only
+> optional on A8040.  We know this because A8040 has worked fine
+> without PWM support without the clock, whereas for Armada 370,
+> the driver has hard-failed if the clock is not present.
 
-Hi,
+It's fine. You are running the hardware and it should work for you.
+I usually go by the IETF motto "rough consensus and running code".
 
-On Thu 16 Apr 20, 13:58, Hans Verkuil wrote:
-> On 16/04/2020 13:50, Paul Kocialkowski wrote:
-> > The PX30 SoC has a RGA block, so add the associated compatible to
-> > support it.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  drivers/media/platform/rockchip/rga/rga.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/=
-platform/rockchip/rga/rga.c
-> > index e9ff12b6b5bb..0ebeb9b4c14a 100644
-> > --- a/drivers/media/platform/rockchip/rga/rga.c
-> > +++ b/drivers/media/platform/rockchip/rga/rga.c
-> > @@ -880,7 +880,6 @@ static int rga_probe(struct platform_device *pdev)
-> >  	rga->cmdbuf_virt =3D dma_alloc_attrs(rga->dev, RGA_CMDBUF_SIZE,
-> >  					   &rga->cmdbuf_phy, GFP_KERNEL,
-> >  					   DMA_ATTR_WRITE_COMBINE);
-> > -
->=20
-> Spurious change?
+> About the only change I would make is to move the check introduced
+> in patch 2 into patch 3 instead, inside the MVEBU_PWM_SOC_VARIANT_A8K
+> case, so that deferring for the clock works (which is necessary for
+> the PWM driver to be useful.)
 
-Ah sorry about that. Will fix in v2.
+OK let's go with this.
 
-Cheers,
-
-Paul
-
-> Regards,
->=20
-> 	Hans
->=20
-> >  	rga->src_mmu_pages =3D
-> >  		(unsigned int *)__get_free_pages(GFP_KERNEL | __GFP_ZERO, 3);
-> >  	rga->dst_mmu_pages =3D
-> > @@ -955,6 +954,9 @@ static const struct dev_pm_ops rga_pm =3D {
-> >  };
-> > =20
-> >  static const struct of_device_id rockchip_rga_match[] =3D {
-> > +	{
-> > +		.compatible =3D "rockchip,px30-rga",
-> > +	},
-> >  	{
-> >  		.compatible =3D "rockchip,rk3288-rga",
-> >  	},
-> >=20
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---yRA+Bmk8aPhU85Qt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl6YSNkACgkQ3cLmz3+f
-v9HcIwf/SaOTWWzEOe0dZG4yxmCG1gZdhPpc/T2J0x3X4fh6wY1AQ5SojDHUl0Qg
-eUMyWPA+vb5dxmGDgY8W9uIE0/yEI/mvPhhvYDw3kcn7O7KyeqrL0Jet3K15/iJ4
-AzZUCb8tBJ+CYVeevmlklRwlYsjjxEwqhfxFDud4aI0hP3spuP8rQebtgyTTAEYI
-6r36v0557kcmjUyFy2oKsF1iJ2ifCOVIFhBvTYMhgYBZILoHb8NBIJUq9Ys2XwvL
-BVCMZHMWYKysP7pjoL3ulQp3AoM3K951fL/YYu4gNZaXNIJC02DYboIm1xpIF1iy
-0fFdRNBEynGwtsc2yLefFg2d1YeXow==
-=JROB
------END PGP SIGNATURE-----
-
---yRA+Bmk8aPhU85Qt--
+Yours,
+Linus Walleij
