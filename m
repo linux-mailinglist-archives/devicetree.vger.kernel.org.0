@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4738A1ABF23
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBFA1ABF4A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2633236AbgDPL1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 07:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2633217AbgDPL1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 07:27:39 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CDDC061A0C
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 04:27:39 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id u15so7434282ljd.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 04:27:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7w8uSc7h8KgS1tb3yibkFzYY8qlF5pm6oSHV83Uw1Yo=;
-        b=fK5JsDocnEIQpMxmcyB3SNBb4AiE3ckwZUinj2ftQ0O4JRKTIbO7AkXbjTfZHrcW4F
-         Ph4c5dNJHtoDZPzBgS5P46KsV0i5vqL12l8Fs/R5cK17ebKdvWg/2V+X+dGThmiG0Mkv
-         CY8x/8PHE4auLNJwrIDut8yIQXTG48mnpFO4s9Bkdg7Jqu0V2DhS3i+8y7+iU/jAYrz5
-         gcPWZXxCD0D3Se2pwjLcJlq6OFklUaSAbw8qzQo2/9Eg8O6oPpRRVUNjnI8s5CRe/79x
-         RLkZULM9yPYZh8o1WkzqHdKmixESJch8RSdCExmIi23JUhWnw8TPN8DTSxP75/5Ij5fh
-         /jRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7w8uSc7h8KgS1tb3yibkFzYY8qlF5pm6oSHV83Uw1Yo=;
-        b=N/WPpAWWXk0OxlgkEIrqv5ymreQb4pb/zExsBo5whFJYPqZS0CCGw97M6Ba9fF+7a9
-         Aiq9m/E4lYhRX0w4OfdG7hCjwSwovEwFeASdYq1tMuq0HdkaARRFZY0kzyyG3M0EieVh
-         1qf1VHWcXsUhmyDh+8L36tepWRruHbpJK7gL/FSwMvG6rlF24KUsT3cShN03G1eWbNKs
-         zuWHukd4BFw9BV6HAIUUrIzTb5VCCIIzNFqpZlMprIfc2cI1TOkaAvsEm5CpjNv1n5hE
-         g3BdWQjpNDr0YCnCyzIATxt0mtgCa2jJ+xu1NuOAZR/nRbGUjOPyLqOH44ShGFy/afsJ
-         MJsw==
-X-Gm-Message-State: AGi0PuYIuDZD5dWVDGhggt5GLgteMt+bGNA+c5qTDgE3QxuQjCbzd0fu
-        2etSfHyMnQbgoQtffZqxlKs0HVd9tiXDj+eR5Yfb8g==
-X-Google-Smtp-Source: APiQypK+/66JCAU5dR9ygtoleJlBgRb0eW5swJDYGED+qjknJO+le0b3+Jc2JWnpyeRFTwKn69HDCp2PQXUZ6a9msV8=
-X-Received: by 2002:a05:651c:32e:: with SMTP id b14mr1282479ljp.277.1587036457745;
- Thu, 16 Apr 2020 04:27:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200408195109.32692-1-sam@ravnborg.org> <20200408195109.32692-6-sam@ravnborg.org>
-In-Reply-To: <20200408195109.32692-6-sam@ravnborg.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 Apr 2020 13:27:26 +0200
-Message-ID: <CACRpkdaG+WcckCK27HPx=tCKMHaz+TLbTkj3gi+4cyK+EbbO3g@mail.gmail.com>
-Subject: Re: [PATCH v2 05/36] dt-bindings: display: convert
- arm,versatile-tft-panel to DT Schema
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh@kernel.org>,
+        id S2633459AbgDPLcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 07:32:55 -0400
+Received: from mx2.suse.de ([195.135.220.15]:56020 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2506097AbgDPLco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 07:32:44 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 068B9AC64;
+        Thu, 16 Apr 2020 11:32:41 +0000 (UTC)
+Message-ID: <096375407b15960b93f8511f0ba79618af7804e2.camel@suse.de>
+Subject: Re: [PATCH 1/4] of: property: Fix create device links for all
+ child-supplier dependencies
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Date:   Thu, 16 Apr 2020 13:32:40 +0200
+In-Reply-To: <CAGETcx_+i9=+a4OEY-rySY4vNDg1jt4160zAMPR7U-UG38Ysww@mail.gmail.com>
+References: <20200415150550.28156-1-nsaenzjulienne@suse.de>
+         <20200415150550.28156-2-nsaenzjulienne@suse.de>
+         <CAGETcx_+i9=+a4OEY-rySY4vNDg1jt4160zAMPR7U-UG38Ysww@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-o8zR7/3qQoOvLtsIlcam"
+User-Agent: Evolution 3.34.2 
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 8, 2020 at 9:51 PM Sam Ravnborg <sam@ravnborg.org> wrote:
 
-> v2:
->   - Fix entry in MAINTAINERS
->
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
+--=-o8zR7/3qQoOvLtsIlcam
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On Wed, 2020-04-15 at 11:22 -0700, Saravana Kannan wrote:
+> Actually a few more nits about the commit text.
+>=20
+> On Wed, Apr 15, 2020 at 8:06 AM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > Upon adding a new platform device we scan its properties and its
+>=20
+> This code runs for all devices created from a DT node. Not just
+> platform devices. So fix this paragraph appropriately?
+>=20
+> Upon adding a new device from a DT node, we scan... ?
 
-Yours,
-Linus Walleij
+Noted.
+
+Regards,
+Nicolas
+
+
+--=-o8zR7/3qQoOvLtsIlcam
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl6YQlgACgkQlfZmHno8
+x/522wf8Cl2aGiFtYYqXEYWScQzi9HK5/l8eZnRUjn1jAH4bhP8AdKJY6LTC7g0t
+TnY8ux5Hbj6psHREIZWz6w8E/IRHXtyiOl4fWXE9Ai+azgJCuxhZyvhkjclQl6Vv
+D3xeimHvWtXC5QtboMLXomVBpSpGx2F+aBj1ESj2Iq/CWjJT/FLSO85m4Aj9NQmq
+hVaWxOGDp4USMrUeDIzs2JLy9r3KCpgRSsv3cMmIQ1pEUfGdUjBy/qdyhem1/uBr
+gR4A0AFwoO5tRKsREMjkmf06DV/yvMXpUgfCKYIfAUvdiYyVqBymDFYtdCRKx4If
+7wOtx1ftvFBq2sttpA/5ioadNzuD1A==
+=MowF
+-----END PGP SIGNATURE-----
+
+--=-o8zR7/3qQoOvLtsIlcam--
+
