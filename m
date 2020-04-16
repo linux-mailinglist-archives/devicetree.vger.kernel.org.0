@@ -2,130 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C16F1ABF94
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76DD1AC028
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506033AbgDPLhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 07:37:52 -0400
-Received: from mx2.suse.de ([195.135.220.15]:57660 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2506483AbgDPLhv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 07:37:51 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id CF685AC64;
-        Thu, 16 Apr 2020 11:37:48 +0000 (UTC)
-Message-ID: <55611d3e028b6ea418cba1ef9d94fe7bf1e1b1fd.camel@suse.de>
-Subject: Re: [PATCH 2/4] of: property: Do not link to disabled devices
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S2505178AbgDPLup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 07:50:45 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:36032 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2504790AbgDPLul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 07:50:41 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 68EBC20022;
+        Thu, 16 Apr 2020 13:50:35 +0200 (CEST)
+Date:   Thu, 16 Apr 2020 13:50:33 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Date:   Thu, 16 Apr 2020 13:37:48 +0200
-In-Reply-To: <CAGETcx_7cTp0zx2hfGX0X=NpudkAjER8YeLMmRxTEtoqxc0pFw@mail.gmail.com>
-References: <20200415150550.28156-1-nsaenzjulienne@suse.de>
-         <20200415150550.28156-3-nsaenzjulienne@suse.de>
-         <CAGETcx_7cTp0zx2hfGX0X=NpudkAjER8YeLMmRxTEtoqxc0pFw@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-YH2OaEqwZ+TPp+cvOI2i"
-User-Agent: Evolution 3.34.2 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 02/36] dt-bindings: display: look for dsi* nodes in
+ dsi-controller
+Message-ID: <20200416115033.GA5785@ravnborg.org>
+References: <20200408195109.32692-1-sam@ravnborg.org>
+ <20200408195109.32692-3-sam@ravnborg.org>
+ <CACRpkdYVY7eqrWctUm2GzzZ=1y9Cznya8HUYTDco2bA8Z9Hq1Q@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYVY7eqrWctUm2GzzZ=1y9Cznya8HUYTDco2bA8Z9Hq1Q@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+        a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=6jNYHG2WMrghLeowZv4A:9
+        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=AjGcO6oz07-iQ99wixmX:22
+        a=cvBusfyB2V15izCimMoJ:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Linus.
 
---=-YH2OaEqwZ+TPp+cvOI2i
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Apr 16, 2020 at 01:26:32PM +0200, Linus Walleij wrote:
+> On Wed, Apr 8, 2020 at 9:51 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> 
+> > Rob wrote:
+> >
+> >     Uhhh, it's looking for dsi-controller(@.*)? which is not the common
+> >     case found in dts files. We should fix that to dsi(@.*)?.
+> >
+> > See: https://lore.kernel.org/dri-devel/20200319032222.GK29911@bogus/
+> >
+> > Fix it.
+> >
+> > Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> 
+> I think I was instructed to use dsi-controller@ at some point but I
+> suppose it was a misunderstanding.
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-On Wed, 2020-04-15 at 11:30 -0700, Saravana Kannan wrote:
-> On Wed, Apr 15, 2020 at 8:06 AM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > When creating a consumer/supplier relationship between two devices, mak=
-e
-> > sure the supplier node is actually active. Otherwise this will create a
-> > device link that will never be fulfilled. This, in the worst case
-> > scenario, will hang the system during boot.
-> >=20
-> > Note that, in practice, the fact that a device-tree represented
-> > consumer/supplier relationship isn't fulfilled will not prevent devices
-> > from successfully probing.
-> >=20
-> > Fixes: a3e1d1a7f5fc ("of: property: Add functional dependency link from=
- DT
-> > bindings")
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > ---
-> >  drivers/of/property.c | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index a8c2b13521b27..487685ff8bb19 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1052,6 +1052,13 @@ static int of_link_to_phandle(struct device *dev=
-,
-> > struct device_node *sup_np,
-> >                 return -ENODEV;
-> >         }
-> >=20
-> > +       /* Don't allow linking a device node as consumer of a disabled =
-node
-> > */
-> > +       if (!of_device_is_available(sup_np)) {
-> > +               dev_dbg(dev, "Not linking to %pOFP - Not available\n",
-> > sup_np);
-> > +               of_node_put(sup_np);
-> > +               return -ENODEV;
-> > +       }
-> > +
->=20
-> Again, surprised I haven't hit this situation with the number of
-> disabled devices I have.
+I have already applied this and most other patches.
+I tried to post a follow-up on the first mail to tell so,
+but it was flagged as spam.
 
-I'll point out to the example that triggered this issue on my reply to patc=
-h
-#4.
+So this and your other feddback from today did not hit mainline - sorry.
+But thanks anyway!
 
-> The idea is right, but the implementation can be better. I think this
-> check needs to be the first check after the of_node_get(sup_np) --
-> before we do any of the "walk up to find the device" part.
->=20
-> Otherwise, you could have a supplier device (the one with compatible
-> prop) that's available with a child node that's disabled. And the
-> phandle could be pointing to that disabled child node. If you don't do
-> this as the first check, you might still try to form a pointless
-> device link. It won't affect probing (because the actual struct device
-> will probe) but it's still a pointless device link and a pointless
-> delay in probing, etc.
-
-Agree, I'll update the patch.
-
-Regards,
-Nicolas
-
-
---=-YH2OaEqwZ+TPp+cvOI2i
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl6YQ4wACgkQlfZmHno8
-x/7CQwgAlEnq8CbPih0tHYb/hiZxVOfc5OBXZ8B1bBe5PoGNyCKfxSehoWqog+fw
-/LDFWdYASXiHvs3jSnKeSoXJTHa+rtBt+EeE/UEXU/c6geGUFq6FKnhRQBmzceBP
-yAJOgDwKtvS86k5bpNuFRbh+nkwN+AFNYglSWBOWlFsuIg2JXaXOCNsF52q7rSS5
-mhNFPkGCqHtvgGlFPYA5hLQMjR+pdwn8/G5rk4Tzr/KSCqJNqNMtsAqpGTvTrI5E
-MtY2COIf/pkkqi7hNbxhD8jaS62zPJ5jBdRq3nkWroZAWwd01CfdYsqfNZhoPdyX
-1PyuuJgabgqfbPrjcIHqWMV5M0DJlg==
-=hiud
------END PGP SIGNATURE-----
-
---=-YH2OaEqwZ+TPp+cvOI2i--
-
+	Sam
