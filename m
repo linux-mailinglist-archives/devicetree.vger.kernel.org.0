@@ -2,104 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23DE01ABB68
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 10:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476161ABB9C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 10:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502186AbgDPIhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 04:37:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502494AbgDPIfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 04:35:33 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DBBC03C1AF
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 01:34:36 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id h25so6848365lja.10
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 01:34:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MyKtvenZZySMWZjgRLJbDJOPHGIrfVrSPfr0WfI/VtA=;
-        b=fYkiVyjy7eOsJYWlAiTayzWjGkE+e1mUldI0Bx/CxoO/uRzO5h5zkKeWvLWyT4wIVq
-         y4Um/zqK1i/EUxtP/cB7m2yiCfOAVbucsbSvm9uAIBdUy5w/NyEgZas2SerPH26kjihk
-         NJ5qrlR6KCeUheLOqsfKpP2vrUVQYBdC/lh6Iy4lvDXzlo9F10OICHSA8GRZxV9vIwgG
-         g+fgaQUuLBOTvaOt4crwBP5OOZe7ophOecfwpbiaskT4jEC1w1TFXKcnvnYX+N2JBeWE
-         dUyc5WtmVr5a+KeD8IdGTWSudzyYEY/vdzcMmFi1Gbr8mYPVC1ncjFXy4g01wQx0gT9E
-         vWBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MyKtvenZZySMWZjgRLJbDJOPHGIrfVrSPfr0WfI/VtA=;
-        b=SuhBSszmbn8oCa7BlAQItAXsiKsu7Ia+Dd7gzz6Lq8+5/1y2XsqeXeE/xYo01EjPcu
-         f1Gf66gwFTyFvTfo0TZz0xH5Ux+X8kei+0pFTgf09Kw+OGCKGs2tm899UT78IQwDb2tT
-         eoHP0zZRZj2e1cKBeyTk1lDsBk6W9B3ABsPYfdE5haWeI9HWAkf0sWL+VWSKLAOqkpef
-         Y1yECM+kIOu0Qw45bSmAxzwKygWHmHfUI7pn1xqxkVghfXSnpo3AmzE2llO5TEL3JBfT
-         4SPlUhsyPn0yAM0VC3YFA26Xbh2v7ib7I2OGhLcz/x9LGMME4F5bzVbshd+eFfThCKkj
-         Nsqg==
-X-Gm-Message-State: AGi0PuYrZjr5MC8NxFUPkivC+rFDNIyNEQ6tk8nOoBZYhAQYxTWRmDbv
-        Hzf8jNNaAujBhud2umO/VIYYQ4tOujP0Kho3XbXQMw==
-X-Google-Smtp-Source: APiQypKpg4Qo0k4IoZG1lD0aQ14OtbNSt7M01nnNL2FnfHvo9Iw7EPQxYDZAVptV9fOJpu5zJ470WV5Vz4uxzy+rmRs=
-X-Received: by 2002:a2e:8805:: with SMTP id x5mr2229929ljh.223.1587026074289;
- Thu, 16 Apr 2020 01:34:34 -0700 (PDT)
+        id S2502821AbgDPIrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 04:47:11 -0400
+Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:42003 "EHLO
+        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2502833AbgDPIqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 04:46:49 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id P05fjxrLMlKa1P05ijR4UE; Thu, 16 Apr 2020 10:41:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1587026514; bh=nDiiDq5VxoANMFzKvaHDm5u5hBfjVUKYxuJ4Vl53I9E=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=DVK1/Z0UttgiZCFRsZ3bMTL/5GO0v6WyWPweVBM3xhNdgn7WUS+HvaQJIyfNoxg9U
+         nNMA8ToP6CIp+RnJG6vuaXWnYGzu+4NZuC049wgxmMcFTJ6H61SiS+GOG8hNSfOkx6
+         xmSi8LHOxShK0bj4hZPSQ1po5fP+AQxsladHKTrI4EkQEQdwY8BKsCTvQaspqDQn91
+         CoRtJJ1qmc9pgfQ+ptbFkflqY+rTeiV+nwm0DXh/aOR4p+0N2vR6d8QOuaM9Sh0Trb
+         g/4WO/y+nAfVLi5pNRzWWnVqQJAVIgbAOqLLJqQHnsqz4mSQqpmaw2aV22auz3T9GZ
+         JFfiyYkQ2rJmw==
+Subject: Re: [PATCH 1/2] arm64: dts: mt8173: fix mdp aliases property name
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20200414030815.192104-1-hsinyi@chromium.org>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <4e335bc7-a45d-4688-a578-1e9793a61229@xs4all.nl>
+Date:   Thu, 16 Apr 2020 10:41:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-References: <20200402203656.27047-1-michael@walle.cc> <20200402203656.27047-12-michael@walle.cc>
-In-Reply-To: <20200402203656.27047-12-michael@walle.cc>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 Apr 2020 10:34:23 +0200
-Message-ID: <CACRpkdbANL_W3gcTwue5VUCWT95boMXjFSqTeFDZvJ6iSeNpJg@mail.gmail.com>
-Subject: Re: [PATCH v2 11/16] gpio: add support for the sl28cpld GPIO controller
-To:     Michael Walle <michael@walle.cc>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-pwm@vger.kernel.org,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200414030815.192104-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfMRXhIiwag2O6pLuQ2S1/m/UzBg8JrrSZagIUAA4xYEUDBHly1PbuCwb4LDhizYpEfFs3dPdy9Dod0YG8uUWitCPx80aF9uzvLyby9dTr2yyBl9eApiU
+ knu5VuVPUdx0VdZXYeZxUbWth/4x8GzHPCpbEJzaPjFfu5skGd+DYtgTCFmZ4f81p3BoDxc8zZyVUA0liIVCkfyRRoOutPpY2JRTvGu9ZSDr5KFwI+Ipp+qK
+ nn+itAIR5S/QaxpBjCv/Lh7OS7WDBzxQXCVv+lt/cfWaSXCk2W1VOEVdAIpUKW5cWCNH/QtxgFDsJvJEovCcrr0pnVR5gXahpCWXmXXMJXhD0N7BbIarJB/v
+ JcZ8XNAaMvoddbwLF601Bh41gLzgoKdUBBPdu/25m4Ytk/Y0wRakVq4TAfLixO/jJP3g1d5xP9QU7xFs4FE3W0sbvReAP0RLIILVohO6j0oTJSeqLsN3t0IY
+ HpBdwLonp7Vg7QIIxigMTh7YxYrvcWTU+KcgXWwRlh/EPv3dfBclZ/rX3x366N5BG2PUEP5mog2ms28P2nkpY2uueEIzsAFCNhA+tdcLbpmt/vqVNusF/xkk
+ wu/db57jEKXRh48AoAgObV4V
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On 14/04/2020 05:08, Hsin-Yi Wang wrote:
+> Fix warning:
+> Warning (alias_paths): /aliases: aliases property name must include only lowercase and '-'
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
 
-this is looking good provided we can get the generic GPIO regmap
-helper reviewed and merged. Thanks!
+I'll merge patch 2/2 for 5.8. I assume that this dtsi patch is merged through
+a mediatek subsystem?
 
-On Thu, Apr 2, 2020 at 10:37 PM Michael Walle <michael@walle.cc> wrote:
+Regards,
 
-> This adds support for the GPIO controller of the sl28 board management
-> controller. This driver is part of a multi-function device.
->
-> Signed-off-by: Michael Walle <michael@walle.cc>
+	Hans
 
-> +       depends on MFD_SL28CPLD
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> index a212bf124e81..d1e9c41004b4 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> @@ -42,14 +42,14 @@ aliases {
+>  		dpi0 = &dpi0;
+>  		dsi0 = &dsi0;
+>  		dsi1 = &dsi1;
+> -		mdp_rdma0 = &mdp_rdma0;
+> -		mdp_rdma1 = &mdp_rdma1;
+> -		mdp_rsz0 = &mdp_rsz0;
+> -		mdp_rsz1 = &mdp_rsz1;
+> -		mdp_rsz2 = &mdp_rsz2;
+> -		mdp_wdma0 = &mdp_wdma0;
+> -		mdp_wrot0 = &mdp_wrot0;
+> -		mdp_wrot1 = &mdp_wrot1;
+> +		mdp-rdma0 = &mdp_rdma0;
+> +		mdp-rdma1 = &mdp_rdma1;
+> +		mdp-rsz0 = &mdp_rsz0;
+> +		mdp-rsz1 = &mdp_rsz1;
+> +		mdp-rsz2 = &mdp_rsz2;
+> +		mdp-wdma0 = &mdp_wdma0;
+> +		mdp-wrot0 = &mdp_wrot0;
+> +		mdp-wrot1 = &mdp_wrot1;
+>  		serial0 = &uart0;
+>  		serial1 = &uart1;
+>  		serial2 = &uart2;
+> 
 
-Apart from this depends it seems the patch is compile-time
-independent of the other patches so I'd suggest we just merge
-the generic regmap driver and this driver to the GPIO tree once
-we feel finished with them, optimistically assuming that the MFD
-driver will land and that we will not need any fundamental
-changes in the GPIO driver.
-
-Worst case we have to revert the driver and that is no disaster.
-
-Yours,
-Linus Walleij
