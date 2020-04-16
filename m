@@ -2,72 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0CC91ABEFB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4EB1ABF1F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 13:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2632911AbgDPLTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 07:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35686 "EHLO
+        id S2633179AbgDPL1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 07:27:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2632868AbgDPLT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 07:19:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF7BC061A0C
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 04:19:27 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 263642A205D;
-        Thu, 16 Apr 2020 12:17:28 +0100 (BST)
-Date:   Thu, 16 Apr 2020 13:17:25 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        anders.roxell@linaro.org, andriy.shevchenko@intel.com,
-        arnd@arndb.de, brendanhiggins@google.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, masonccyang@mxic.com.tw,
-        miquel.raynal@bootlin.com, piotrs@cadence.com,
-        qi-ming.wu@intel.com, richard@nod.at, robh+dt@kernel.org,
-        tglx@linutronix.de, vigneshr@ti.com
-Subject: Re: [PATCH v1 2/2] mtd: rawnand: Add NAND controller support on
- Intel LGM SoC
-Message-ID: <20200416131725.51259573@collabora.com>
-In-Reply-To: <d3e137fa-54a0-b4ec-eb24-3984eab2a247@linux.intel.com>
-References: <20200414022433.36622-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-        <20200415220533.733834-1-martin.blumenstingl@googlemail.com>
-        <c33c8653-16a2-5bcd-97a9-511d958b755a@linux.intel.com>
-        <20200416113822.2ef326cb@collabora.com>
-        <18568cf6-2955-472e-7b68-eb35e654a906@linux.intel.com>
-        <20200416122619.2c481792@collabora.com>
-        <d3e137fa-54a0-b4ec-eb24-3984eab2a247@linux.intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        with ESMTP id S2632907AbgDPL0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 07:26:46 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D08C061A0C
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 04:26:45 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id m8so7446254lji.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 04:26:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ItMKLhoTTV7+wK6jse2c5OaBjQvnx9Iemy9x9CFhkc4=;
+        b=JvISHrsRWazHdYXKKlYLrRFdELBOOow4Jw0w8jLB8I+kKrAW3K+XyJ4C0ZUCKrfDLB
+         SXdvCSJ2taPL878hyP8+B9KlVKF7WXiA4YrRismX2hcWsERKIhSgw0H/wd5gy+h4hceg
+         JedVIO+b2FRg3fiTm2xDGBYL8X/sPUpyDsRG3nNRLFAcVHgKwOkFXBJ+JVCrTgw0oYaz
+         sP6F407pdOwux8LsVxgkg/oMNOZPkvA//c5J5ML5Dznp1eajfl0j1XxWAU3tLU2ais5U
+         tt/Pe7BXE8G94vhYVpEgbMyPYwfIJaFiGxwu7T1UsxkUNuyvJ+yyO6XTb/ComqT0d7bQ
+         nreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ItMKLhoTTV7+wK6jse2c5OaBjQvnx9Iemy9x9CFhkc4=;
+        b=VVlzkAvC4P8f6fwLu8fUJqbr6L8aoA79pQHldzDUKpOVLVyQujHUwIARwjesg7du6w
+         /ofofzhW9liBBaKp9LUgpnc0JJcRMW4n9ouvtLB6cQvT+55PGbVYNvcOhoM3DPn0vYpA
+         KWs0FI0yXdpKvukR1nZo4/mPpzZa88T7FkQB5cYC58QLwoEHp7kcdtKJo3HRE0hngbpi
+         9j2ohSyoImBMZBiEttWC65t8wqiysDqC7IecP3WL25ncrSNXXBf/2aD0sfW1bFUmOBka
+         qwguf7OxSWllaenXZAq6xYZvzkU6K8q6q7gWG/CP1m2XHJmG8tmnKFHVPA/xYnujXMvb
+         gANw==
+X-Gm-Message-State: AGi0PuYcfxL4gdWzD3TGSOj2Y4c31LmOEEYcT/I+3cHwdvGUDBzhGVAW
+        Oni4QFJGGCO/2XBgrjhir1K3LamgAt+58msBpGAjNg==
+X-Google-Smtp-Source: APiQypLNKo+8PBIa8cWaqGfJbETe1Y+lXjOhLcXgDjTUKhJLS2kG20SytVqpK+1mdy1IOLnR0YF0xwYrUVk0CaPMNSU=
+X-Received: by 2002:a2e:b6cf:: with SMTP id m15mr5984508ljo.168.1587036404026;
+ Thu, 16 Apr 2020 04:26:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20200408195109.32692-1-sam@ravnborg.org> <20200408195109.32692-3-sam@ravnborg.org>
+In-Reply-To: <20200408195109.32692-3-sam@ravnborg.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Apr 2020 13:26:32 +0200
+Message-ID: <CACRpkdYVY7eqrWctUm2GzzZ=1y9Cznya8HUYTDco2bA8Z9Hq1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 02/36] dt-bindings: display: look for dsi* nodes in dsi-controller
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Apr 2020 18:40:53 +0800
-"Ramuthevar, Vadivel MuruganX"
-<vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+On Wed, Apr 8, 2020 at 9:51 PM Sam Ravnborg <sam@ravnborg.org> wrote:
 
-> >>> we'll be happy to have one more of the existing driver converted to  
-> >>> ->exec_op() ;-).  
-> >> I have completely adapted to ->exec_op() hook up to replace the legacy
-> >> call-back.  
-> > I suspect porting what you've done to the xway driver shouldn't be too
-> > complicated.  
-> Not ported from xway_nand.c driver , we have developed from the scratch 
-> to make it work on
-> Intel LGM SoC , it's new x86 ATOM based SoC, IP itself completely 
-> different and most of the registers won't match.
-> if we port then it would be ugly and also what are the problem may occur 
-> we do not know.
+> Rob wrote:
+>
+>     Uhhh, it's looking for dsi-controller(@.*)? which is not the common
+>     case found in dts files. We should fix that to dsi(@.*)?.
+>
+> See: https://lore.kernel.org/dri-devel/20200319032222.GK29911@bogus/
+>
+> Fix it.
+>
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
 
-Sorry but IMO they look similar enough to try to merge them.
+I think I was instructed to use dsi-controller@ at some point but I
+suppose it was a misunderstanding.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
