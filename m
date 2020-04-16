@@ -2,100 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8A71AC784
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 16:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38EC61AC7EF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 17:01:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732194AbgDPO4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 10:56:04 -0400
-Received: from mail.manjaro.org ([176.9.38.148]:33370 "EHLO mail.manjaro.org"
+        id S2439110AbgDPPBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 11:01:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45808 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394833AbgDPO4C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 10:56:02 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id 735653702995;
-        Thu, 16 Apr 2020 16:55:59 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at manjaro.org
-Received: from mail.manjaro.org ([127.0.0.1])
-        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Erx_frVr7CfS; Thu, 16 Apr 2020 16:55:57 +0200 (CEST)
-From:   Tobias Schramm <t.schramm@manjaro.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Tobias Schramm <t.schramm@manjaro.org>
-Subject: [PATCH] arm64: dts: rockchip: add micro SD card regulator to rockpro64
-Date:   Thu, 16 Apr 2020 16:55:34 +0200
-Message-Id: <20200416145534.1263575-1-t.schramm@manjaro.org>
+        id S2438050AbgDPPAb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 11:00:31 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C7B342223D
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 15:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587049230;
+        bh=DVcIcut7V8paBS+JSMimRiqrzi7YftlnrdpavTLLfdc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=B3lsgCysM/dIubEpev5bDtfi1KOeQB7ra5WoagO+4etlEZcxaW7YqQ0B1w10SzeKl
+         29Y0gXRKBuPBItb7sITNhSBvzHX9LtNYT9uuna5l3v6/iWYXMeetQ1sIRAVBdfUaoo
+         4Y/iq7TR78fn1nGdJ0Ag3bL99RCJWgaeNt+SQf0Q=
+Received: by mail-qk1-f177.google.com with SMTP id g74so21512157qke.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 08:00:30 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYOa07/T4B2bQ8Xej/JlO3S47H1c6ThlbHHHTBnCd2DvawuBPQ5
+        zVHV/D9sVJjnu1nbjn6BUwCxi7HrOidkqJFyvg==
+X-Google-Smtp-Source: APiQypKPhjbIeooeQYaUl6m3o9DMQW69zKClSMYNoqd74zUzs7XT0VwRkFAbT8bmKqcEzIOmejAor15Wc827RuYfn58=
+X-Received: by 2002:a37:7dc6:: with SMTP id y189mr33559835qkc.223.1587049229890;
+ Thu, 16 Apr 2020 08:00:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200408195109.32692-1-sam@ravnborg.org> <20200408195109.32692-3-sam@ravnborg.org>
+ <CACRpkdYVY7eqrWctUm2GzzZ=1y9Cznya8HUYTDco2bA8Z9Hq1Q@mail.gmail.com>
+In-Reply-To: <CACRpkdYVY7eqrWctUm2GzzZ=1y9Cznya8HUYTDco2bA8Z9Hq1Q@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 16 Apr 2020 10:00:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL5A5rXSM+RmA3Rw9Jg+TBzhzJLF74L_Pzr9u36-+CjEw@mail.gmail.com>
+Message-ID: <CAL_JsqL5A5rXSM+RmA3Rw9Jg+TBzhzJLF74L_Pzr9u36-+CjEw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/36] dt-bindings: display: look for dsi* nodes in dsi-controller
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the RockPro64's micro SD card regulator to the
-RockPro64 dtsi. The regulator is present on all revisions of the
-device.
-Previously the regular was missing, resulting in unreliable boot
-behaviour when booting from SD card.
+On Thu, Apr 16, 2020 at 6:26 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Wed, Apr 8, 2020 at 9:51 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> > Rob wrote:
+> >
+> >     Uhhh, it's looking for dsi-controller(@.*)? which is not the common
+> >     case found in dts files. We should fix that to dsi(@.*)?.
+> >
+> > See: https://lore.kernel.org/dri-devel/20200319032222.GK29911@bogus/
+> >
+> > Fix it.
+> >
+> > Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: Rob Herring <robh@kernel.org>
+>
+> I think I was instructed to use dsi-controller@ at some point but I
+> suppose it was a misunderstanding.
 
-Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
----
- .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Probably my fault. We've been nice and inconsistent on naming
+patterns. I always have to double check whether it is
+'gpio-controller@' or 'gpio@'... The answer is always whatever has the
+most hits in dts files.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 9bca25801260..6788ab28f89a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -96,6 +96,24 @@ vcc1v8_s3: vcca1v8_s3: vcc1v8-s3 {
- 		vin-supply = <&vcc_1v8>;
- 	};
- 
-+	/* micro SD card power */
-+	vcc3v0_sd: vcc3v0-sd {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc0_pwr_h>;
-+		regulator-name = "vcc3v0_sd";
-+		regulator-always-on;
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+		vin-supply = <&vcc3v3_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
- 	vcc3v3_pcie: vcc3v3-pcie-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -603,6 +621,13 @@ vsel2_gpio: vsel2-gpio {
- 		};
- 	};
- 
-+	sdcard {
-+		sdmmc0_pwr_h: sdmmc0-pwr-h {
-+			rockchip,pins = <0 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+	};
-+
- 	sdio-pwrseq {
- 		wifi_enable_h: wifi-enable-h {
- 			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-@@ -661,6 +686,8 @@ &sdmmc {
- 	max-frequency = <150000000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
-+	vmmc-supply = <&vcc3v0_sd>;
-+	vqmmc-supply = <&vcc_sdio>;
- 	status = "okay";
- };
- 
--- 
-2.26.0
-
+Rob
