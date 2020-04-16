@@ -2,78 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC8D1AC0D4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F88D1AC10C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2020 14:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2635094AbgDPMNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 08:13:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
+        id S2635433AbgDPMUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 08:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2635002AbgDPMNi (ORCPT
+        by vger.kernel.org with ESMTP id S2635273AbgDPMTa (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Apr 2020 08:13:38 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAB8C061A0C;
-        Thu, 16 Apr 2020 05:13:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=hp6+eCj2O2nxWa/wGv8G7WCsIo0VMT1PsA9CYyFBw9A=; b=uPEh7nQY1JKkhF8C0Y4y2Gmad+
-        0Lh9YxbB3n3bpZKSCTfe6apdDsHEJQ8+1fnAfMJYOQ7Ql+RYgwCiCPEay95+4hAhiUPJevlzeX1fJ
-        juawpIUiGFu5mfa45bPWKqLkW/n9s5rroA3MynnjLIq7Qat6n1jaBQx75J3NNZelUA4YrqkUuGVcz
-        H4Y2Zaeu42mCsHRkgGXpP+lVm6OKcx1KkTmiiHaNW3oV6yz92qPAmnFt+DrohrYDUCVX35t3XPvgO
-        I1F0/d5RJPxCiBLE4f1cc1WmYObAzPqAFWgla4SAq3SvBWHFY87AaCOmi+Lt3b0XoTejUhCJEzA40
-        t2381FKw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1jP3Oe-0002ua-05; Thu, 16 Apr 2020 12:13:32 +0000
-Date:   Thu, 16 Apr 2020 05:13:31 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     Christoph Hellwig <hch@infradead.org>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-mm@kvack.org, joro@8bytes.org, catalin.marinas@arm.com,
-        will@kernel.org, robin.murphy@arm.com, kevin.tian@intel.com,
-        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
-        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
-        zhangfei.gao@linaro.org, jgg@ziepe.ca, xuzaibo@huawei.com
-Subject: Re: [PATCH v5 02/25] iommu/sva: Manage process address spaces
-Message-ID: <20200416121331.GA18661@infradead.org>
-References: <20200414170252.714402-1-jean-philippe@linaro.org>
- <20200414170252.714402-3-jean-philippe@linaro.org>
- <20200416072852.GA32000@infradead.org>
- <20200416085402.GB1286150@myrica>
+        Thu, 16 Apr 2020 08:19:30 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C219BC061A0F
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 05:19:27 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id a25so4615295wrd.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 05:19:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5xKsDuTS/b8pkudrA3+ZTmFYrQeIvG+CZAqBEzqZ3Dc=;
+        b=C/QuP+23ba+HpXCW7TkCLHiADtwgSsIdOR+oPFOZVaE0PbyjEC6LrUNjYKBAdOkoX0
+         osqaqVpT6Q1dNd1mxwgcNZpfCZeN/DI8hxpCt8iFlSS9UVWYh4ULKdOPKfxGIulRpIS6
+         lyrLkbOTX6dZqJb+FGIEPJrhtZu1Ao1F9WyVqkos65EytdXOpDGsXLZ5opzfLUaA7jXF
+         iSj1bmTI4mBhMTTHEpqSSVnegz3DAeS+Z/mwDHPAvZf3xUooAjMGKFbcOaF+XvmYit4X
+         +lb8e0nVCLjezjWX372sIlwu8mkYooDgi9zmxHRtr7TFWKbPRA1o77sqraWbzrm1aqxX
+         qpBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5xKsDuTS/b8pkudrA3+ZTmFYrQeIvG+CZAqBEzqZ3Dc=;
+        b=dlXyLcV3fZ9XL7mhBYHprz9+8ZkloJdWBSReH0bnVBZ4olA0fU7IkK0t9OUXSDMQSv
+         BQGVuJ0CF5jTfYgrrB+qsyEAzw9FdVJ7hnmr8jxm39a6VQO8SIUCzlKAhAcveifTUJOq
+         rw2H+N9IXenKIrjVqqWN8oNCoNNQhwZ2irUR1SVX48wa/8NXDWlzaAirJ5hS/1xjvh7q
+         e7Cp7GIM9SMATzzd24quQGILbXufmmBB+OzNTs8b6F1KD0DWUAGtvUJymk/H0X16U3T3
+         G75x+f8heAq5bXU+XZWEyhxqei2VlAHCA3uCzDUNkLnnG6lqm1zOnEqtrZsVQ/mUBhf6
+         acvg==
+X-Gm-Message-State: AGi0PubVaaAKoDP5KJTgqi84z9Ar/UZYTfZ/HL8p7KSpbwtnLc+GN4y5
+        5NmTQdiVDAbllvPsvaFBwxTjhA==
+X-Google-Smtp-Source: APiQypIwF3U+8d9Ho+lglkTrjPR+KRKR42tOySGCFmPymXBHdmMt4a7vmvgcXC21weI5cT/rmadK9Q==
+X-Received: by 2002:adf:f604:: with SMTP id t4mr26175984wrp.399.1587039566409;
+        Thu, 16 Apr 2020 05:19:26 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
+        by smtp.gmail.com with ESMTPSA id i13sm22035602wro.50.2020.04.16.05.19.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Apr 2020 05:19:25 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 7/8] doc: dt: bindings: usb: dwc3: remove amlogic compatible entries
+Date:   Thu, 16 Apr 2020 14:19:09 +0200
+Message-Id: <20200416121910.12723-8-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200416121910.12723-1-narmstrong@baylibre.com>
+References: <20200416121910.12723-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200416085402.GB1286150@myrica>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 16, 2020 at 10:54:02AM +0200, Jean-Philippe Brucker wrote:
-> On Thu, Apr 16, 2020 at 12:28:52AM -0700, Christoph Hellwig wrote:
-> > > +	rcu_read_lock();
-> > > +	hlist_for_each_entry_rcu(bond, &io_mm->devices, mm_node)
-> > > +		io_mm->ops->invalidate(bond->sva.dev, io_mm->pasid, io_mm->ctx,
-> > > +				       start, end - start);
-> > > +	rcu_read_unlock();
-> > > +}
-> > 
-> > What is the reason that the devices don't register their own notifiers?
-> > This kinds of multiplexing is always rather messy, and you do it for
-> > all the methods.
-> 
-> This sends TLB and ATC invalidations through the IOMMU, it doesn't go
-> through device drivers
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/usb/dwc3.txt | 2 --
+ 1 file changed, 2 deletions(-)
 
-I don't think we mean the same thing, probably because of my rather
-imprecise use of the word device.
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 9946ff9ba735..d03edf9d3935 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -15,8 +15,6 @@ Required properties:
+ Exception for clocks:
+   clocks are optional if the parent node (i.e. glue-layer) is compatible to
+   one of the following:
+-    "amlogic,meson-axg-dwc3"
+-    "amlogic,meson-gxl-dwc3"
+     "cavium,octeon-7130-usb-uctl"
+     "qcom,dwc3"
+     "samsung,exynos5250-dwusb3"
+-- 
+2.22.0
 
-What I mean is that the mmu_notifier should not be embedded into the
-io_mm structure (whch btw, seems to have a way to generic name, just
-like all other io_* prefixed names), but instead into the
-iommu_bond structure.  That avoid the whole multiplexing layer.
