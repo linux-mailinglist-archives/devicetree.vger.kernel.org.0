@@ -2,114 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0B01AE838
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2020 00:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB34F1AE863
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2020 00:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbgDQW3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 18:29:16 -0400
-Received: from plaes.org ([188.166.43.21]:57506 "EHLO plaes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728496AbgDQW3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 18:29:16 -0400
-Received: from localhost (unknown [IPv6:2001:1530:1000:9d4d:940e:6b9e:3deb:4])
-        by plaes.org (Postfix) with ESMTPSA id C54B6412C2;
-        Fri, 17 Apr 2020 22:17:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
-        t=1587161878; bh=CuWTSWogL5JToClyKPKUHBYOUHXu6/mkEKPAV4YLbVw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lZETRBcXeQXm8yzTNezI5LpsawhmT8InxOuYc/djy0Tr2ewY2eL3Q+CgV/M37HiTY
-         Ok5hFWQ1wLhPv9cQyKOStSWzVJECt3nCDoVnfLaJymnL7tNDHDfYUgofkRBISORYZX
-         YTGqG+6yh+QsHUxyvv2R9w5PGq758CdpEN2AxZ4WGZHJMSI4OZB8M4CEsCq7GoCUQZ
-         AO1JX/rsW7h7DA5GdvIV9JNnZHAVv3TMtr3uHtDi+M2WTvv99yvTs/NpqwaN3gMoHQ
-         wBSjctLImhQRE6JQ6TsAsjOKKEDxr9+Bm+T6QjHN8iIl30QWBRj6bovCWEtQLLTbqI
-         4gY/XgaRPPfmA==
-From:   Priit Laes <plaes@plaes.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com
-Cc:     Priit Laes <plaes@plaes.org>
-Subject: [PATCH 4/4] ARM: dts: sun7i: Use syscon-based implementation for gmac
-Date:   Sat, 18 Apr 2020 01:17:30 +0300
-Message-Id: <20200417221730.555954-5-plaes@plaes.org>
-X-Mailer: git-send-email 2.25.2
-In-Reply-To: <20200417221730.555954-1-plaes@plaes.org>
-References: <20200417221730.555954-1-plaes@plaes.org>
+        id S1728482AbgDQWsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 18:48:23 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:45918 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbgDQWsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 18:48:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1587163700; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=lnplkmtOlg6aQqRCemm0gncKeNcs1kJkULgCp1NFj8E=;
+        b=KYbtDyHW2xDF6OLyMVpHR10Oag/ONw+OglyvIRFt/kuSblQQMcP2nlwdF6bkil3V0JDzLX
+        ESBoxn9n5e/VmVDypGgtv244VnvAgS5G3LCDC/Lh1yOL76sviZpFuRfBB1MnlYvocjwVYC
+        /cErR2JFf+OjWI9xIBlN+ZVlnOQ5DS4=
+Date:   Sat, 18 Apr 2020 00:48:07 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [RESEND PATCH v5 5/5] input: joystick: Add ADC attached joystick
+ driver.
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Artur Rojek <contact@artur-rojek.eu>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-input <linux-input@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Message-Id: <7CFY8Q.68YMS0V08F992@crapouillou.net>
+In-Reply-To: <CAHp75VfEAtqucMPdkygfBhojTJoHO5vFk_o0suiyf7i2JCMw9Q@mail.gmail.com>
+References: <20200417202859.35427-1-contact@artur-rojek.eu>
+        <20200417202859.35427-5-contact@artur-rojek.eu>
+        <CAHp75VfRbnnuUhfyXpu+5dp4TutHSrHus=sX_vG_5F0dX4k0fQ@mail.gmail.com>
+        <UFBY8Q.ES4D59V22INC1@crapouillou.net>
+        <CAHp75VfEAtqucMPdkygfBhojTJoHO5vFk_o0suiyf7i2JCMw9Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use syscon-based approach to access gmac clock configuration
-register, instead of relying on a custom clock driver.
 
-As a bonus, we can now drop the custom clock implementation
-and dummy clocks making sun7i fully CCU-compatible.
 
-Signed-off-by: Priit Laes <plaes@plaes.org>
----
- arch/arm/boot/dts/sun7i-a20.dtsi | 36 +++-----------------------------
- 1 file changed, 3 insertions(+), 33 deletions(-)
+Le sam. 18 avril 2020 =E0 0:49, Andy Shevchenko=20
+<andy.shevchenko@gmail.com> a =E9crit :
+> On Sat, Apr 18, 2020 at 12:24 AM Paul Cercueil <paul@crapouillou.net>=20
+> wrote:
+>>  Le sam. 18 avril 2020 =E0 0:10, Andy Shevchenko
+>>  <andy.shevchenko@gmail.com> a =E9crit :
+>>  > On Fri, Apr 17, 2020 at 11:21 PM Artur Rojek=20
+>> <contact@artur-rojek.eu>
+>>  > wrote:
+>=20
+> ...
+>=20
+>>  >>  +#include <linux/of.h>
+>>  >
+>>  > Do you really need this? (See below as well)
+>=20
+>>  >>  +static const struct of_device_id adc_joystick_of_match[] =3D {
+>>  >>  +       { .compatible =3D "adc-joystick", },
+>>  >>  +       { },
+>>  >>  +};
+>>  >>  +MODULE_DEVICE_TABLE(of, adc_joystick_of_match);
+>>  >>  +
+>>  >>  +static struct platform_driver adc_joystick_driver =3D {
+>>  >>  +       .driver =3D {
+>>  >>  +               .name =3D "adc-joystick",
+>>  >
+>>  >>  +               .of_match_table =3D
+>>  >> of_match_ptr(adc_joystick_of_match),
+>>  >
+>>  > Drop this a bit harmful of_match_ptr() macro. It should go with=20
+>> ugly
+>>  > #ifdeffery. Here you simple introduced a compiler warning.
+>>=20
+>>  I assume you mean #ifdef around the of_device_id + module table=20
+>> macro?
+>=20
+> Yes.
+>=20
+>>  > On top of that, you are using device property API, OF use in this=20
+>> case
+>>  > is contradictory (at lest to some extend).
+>>=20
+>>  I don't see why. The fact that the driver can work when probed from
+>>  platform code
+>=20
+> Ha-ha, tell me how. I would like to be very surprised.
 
-diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
-index ffe1d10a1a84..750962a94fad 100644
---- a/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ b/arch/arm/boot/dts/sun7i-a20.dtsi
-@@ -219,37 +219,6 @@ osc32k: clk-32k {
- 			clock-frequency = <32768>;
- 			clock-output-names = "osc32k";
- 		};
--
--		/*
--		 * The following two are dummy clocks, placeholders
--		 * used in the gmac_tx clock. The gmac driver will
--		 * choose one parent depending on the PHY interface
--		 * mode, using clk_set_rate auto-reparenting.
--		 *
--		 * The actual TX clock rate is not controlled by the
--		 * gmac_tx clock.
--		 */
--		mii_phy_tx_clk: clk-mii-phy-tx {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <25000000>;
--			clock-output-names = "mii_phy_tx";
--		};
--
--		gmac_int_tx_clk: clk-gmac-int-tx {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <125000000>;
--			clock-output-names = "gmac_int_tx";
--		};
--
--		gmac_tx_clk: clk@1c20164 {
--			#clock-cells = <0>;
--			compatible = "allwinner,sun7i-a20-gmac-clk";
--			reg = <0x01c20164 0x4>;
--			clocks = <&mii_phy_tx_clk>, <&gmac_int_tx_clk>;
--			clock-output-names = "gmac_tx";
--		};
- 	};
- 
- 
-@@ -1511,11 +1480,12 @@ mali: gpu@1c40000 {
- 
- 		gmac: ethernet@1c50000 {
- 			compatible = "allwinner,sun7i-a20-gmac";
-+			syscon = <&ccu>;
- 			reg = <0x01c50000 0x10000>;
- 			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
--			clocks = <&ccu CLK_AHB_GMAC>, <&gmac_tx_clk>;
--			clock-names = "stmmaceth", "allwinner_gmac_tx";
-+			clocks = <&ccu CLK_AHB_GMAC>;
-+			clock-names = "stmmaceth";
- 			snps,pbl = <2>;
- 			snps,fixed-burst;
- 			snps,force_sf_dma_mode;
--- 
-2.25.2
+iio_map_array_register(),
+pinctrl_register_mappings(),
+platform_add_devices(),
+
+you're welcome.
+
+>>  doesn't mean that it shouldn't have a table to probe
+>>  from devicetree.
+>=20
+> I didn't get what you are talking about here. The idea of _unified_
+> device property API is to get rid of OF-centric code in favour of more
+> generic approach. Mixing those two can be done only in specific cases
+> (here is not the one).
+
+And how are we mixing those two here? The only OF-centric thing here is=20
+the device table, which is required if we want the driver to probe from=20
+devicetree.
+
+-Paul
+
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
+
 
