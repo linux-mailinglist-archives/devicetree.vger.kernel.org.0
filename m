@@ -2,128 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A385C1AD7AA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 697F61AD7E9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728071AbgDQHpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 03:45:20 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:55716 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726405AbgDQHpU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:45:20 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id D1E94803087C;
-        Fri, 17 Apr 2020 07:45:11 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id c1k99CUap3ve; Fri, 17 Apr 2020 10:45:11 +0300 (MSK)
-Date:   Fri, 17 Apr 2020 10:45:59 +0300
-From:   Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Sebastian Reichel <sre@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: power: reset: Add regmap support to the
- SYSCON reboot-mode bindings
-Message-ID: <20200417074559.wxh3hv6xwh5ndaz4@ubsrv2.baikal.int>
-References: <20200306130341.9585-1-Sergey.Semin@baikalelectronics.ru>
- <20200306130402.1F4F0803079F@mail.baikalelectronics.ru>
- <20200312211438.GA21883@bogus>
- <20200313130231.wrvvcttm7ofaxbfo@ubsrv2.baikal.int>
- <CAL_Jsq+W84r687zNV=2S-hj9=xbTQxkx9MpVNDTn6TOrBgiGUw@mail.gmail.com>
- <20200331195053.dcexmhbsbnbfuabe@ubsrv2.baikal.int>
- <20200416195620.4q6scqk5rqbonz4s@ubsrv2.baikal.int>
- <20200416212842.GA18756@bogus>
+        id S1729486AbgDQHrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 03:47:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725768AbgDQHrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:47:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF43C061A0C
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:47:52 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jPLix-0005Px-FU; Fri, 17 Apr 2020 09:47:43 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jPLiw-0003a0-F9; Fri, 17 Apr 2020 09:47:42 +0200
+Date:   Fri, 17 Apr 2020 09:47:42 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
+Subject: Re: [PATCH V3 1/5] dt-bindings: clock: Convert i.MX6Q clock to
+ json-schema
+Message-ID: <20200417074742.geo3hvvencztb3xv@pengutronix.de>
+References: <1587084091-5941-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200416212842.GA18756@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <1587084091-5941-1-git-send-email-Anson.Huang@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:40:05 up 153 days, 22:58, 158 users,  load average: 0.10, 0.18,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 16, 2020 at 04:28:42PM -0500, Rob Herring wrote:
-> On Thu, Apr 16, 2020 at 10:56:20PM +0300, Sergey Semin wrote:
-> > Rob,
-> > Any comment on my suggestion below?
-> > 
-> > Regards,
-> > -Sergey
-> > 
-> > On Tue, Mar 31, 2020 at 10:50:53PM +0300, Sergey Semin wrote:
-> > > On Wed, Mar 18, 2020 at 05:14:25PM -0600, Rob Herring wrote:
-> > > > On Fri, Mar 13, 2020 at 7:03 AM Sergey Semin
-> > > > <Sergey.Semin@baikalelectronics.ru> wrote:
-> > > > >
-> > > > > On Thu, Mar 12, 2020 at 04:14:38PM -0500, Rob Herring wrote:
-> > > > > > On Fri, Mar 06, 2020 at 04:03:40PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > > > > > > From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > > > > >
-> > > > > > > Optional regmap property will be used to refer to a syscon-controller
-> > > > > > > having a reboot tolerant register mapped.
-> > > > > >
-> > > > > > NAK. It should simply be a child node of the 'syscon-controller'.
-> > > > >
-> > > > > Hm, It's dilemma. The driver maintainer said ack, while you disagree.)
-> > > > > So the code change will be merged while the doc-part won't? Lets discuss then
-> > > > > to settle the issue.
-> > > > >
-> > > > > Why 'syscon-reboot' can be out of syscon-controller node, while
-> > > > > 'syscon-reboot-mode' can't?
-> > > > 
-> > > > Look at the history and you will see one was reviewed by DT
-> > > > maintainers and one wasn't.
-> > > > 
-> > > > > They both belong to the same usecase: save
-> > > > > cause id and reboot. So having similar properties-set and declaring their
-> > > > > nodes someplace nearby is natural.
-> > > > 
-> > > > Which is what I'm asking for. Where else in the tree does it make
-> > > > sense to locate the 'syscon-reboot-mode' node? Locate nodes where they
-> > > > logically belong.
-> > > > 
-> > > > > According to the driver 'syscon-reboot'
-> > > > > can't lack the regmap property because it's mandatory, while here you refuse
-> > > > > to have even optional support. Additionally in most of the cases the
-> > > > > 'syscon-reboot' nodes aren't declared as a child of a system controller
-> > > > > node. Why 'syscon-reboot-mode' can't work in a similar way?
-> > > > 
-> > > > There's plenty of bad or "don't follow current best practice" examples
-> > > > in the tree for all sorts of things. That is not a reason for doing
-> > > > something in a new binding or adding to an existing one.
-> > > > 
-> > > > Rob
-> > > 
-> > > Alright. I see your point. What about I'd provide a sort of opposite
-> > > implementation? I could make the "regmap"-phandle reference being optional
-> > > in the !"syscon-reboot"! driver instead of adding the regmap-property
-> > > support to the "syscon-reboot-mode" driver. So if regmap property isn't
-> > > defined in the "syscon-reboot"-compatible node, the driver will try to
-> > > get a syscon regmap from the parental node as it's done in the
-> > > "syscon-reboot-mode" driver.
-> 
-> That seems fine.
-> 
-> > > Seeing you think that regmap-property-based design is a bad practice in
-> > > this case, I also could mark the property as deprecated in the "syscon-reboot"
-> > > dt schema and print a warning from the "syscon-reboot" driver if one is defined.
-> 
-> Depends on how many platforms will start getting warnings. I think just 
-> marking deprecated is enough.
+Hi Anson,
 
-Ok. Thanks. I'll do this in v2.
+thanks for the patches :) one last nitpick.
+
+On 20-04-17 08:41, Anson Huang wrote:
+
+...
+
+> +examples:
+> +  # Clock Control Module node:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    clks: clock-controller@20c4000 {
+> +        compatible = "fsl,imx6q-ccm";
+> +        reg = <0x020c4000 0x4000>;
+> +        interrupts = <0 87 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <0 88 IRQ_TYPE_LEVEL_HIGH>;
+
+The imx6ull and others start using the GIC_SPI define within the
+example. We should take the chance to uniform that. Apart of this feel
+free to add my:
+
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
 Regards,
--Sergey
+  Marco
 
-> 
-> Rob
+> +        #clock-cells = <1>;
+> +    };
