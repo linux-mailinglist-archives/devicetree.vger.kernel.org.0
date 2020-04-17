@@ -2,97 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F368D1AE280
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 18:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 648781AE295
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 18:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726324AbgDQQuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 12:50:18 -0400
-Received: from mx2.suse.de ([195.135.220.15]:41074 "EHLO mx2.suse.de"
+        id S1727790AbgDQQy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 12:54:56 -0400
+Received: from mx2.suse.de ([195.135.220.15]:42388 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726644AbgDQQuS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 12:50:18 -0400
+        id S1726758AbgDQQy4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 12:54:56 -0400
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id C267DAB5C;
-        Fri, 17 Apr 2020 16:50:15 +0000 (UTC)
-Message-ID: <6c9db8d92b6702bc5d7b238788e3cb3cf7ab2486.camel@suse.de>
-Subject: Re: [PATCH v1] of: property: Don't retry device_link_add() upon
- failure
+        by mx2.suse.de (Postfix) with ESMTP id B4C89AB5C;
+        Fri, 17 Apr 2020 16:54:54 +0000 (UTC)
 From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Fri, 17 Apr 2020 18:50:07 +0200
-In-Reply-To: <20200416205838.161894-1-saravanak@google.com>
-References: <20200416205838.161894-1-saravanak@google.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-S4qEB5rg9v9YAAE0ijXu"
-User-Agent: Evolution 3.34.4 
+To:     saravanak@google.com, linux-kernel@vger.kernel.org
+Cc:     frowand.list@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v2 0/2] of: property: fw_devlink misc fixes
+Date:   Fri, 17 Apr 2020 18:54:40 +0200
+Message-Id: <20200417165442.1856-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As I'm interested in using this feature to fine-tune Raspberry Pi 4's
+device probe dependencies, I tried to get the board to boot with
+fw_devlink=on. As of today's linux-next the board won't boot with that
+option. I tried to address the underlying issues.
 
---=-S4qEB5rg9v9YAAE0ijXu
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+---
 
-On Thu, 2020-04-16 at 13:58 -0700, Saravana Kannan wrote:
-> When of_link_to_phandle() was implemented initially, there was no way to
-> tell if device_link_add() was failing because the supplier device hasn't
-> been parsed yet, hasn't been added yet, the links were creating a cycle,
-> etc. Some of these were transient errors that'd go away at a later
-> point.
->=20
-> However, with the current set of improved checks, if device_link_add()
-> fails, it'll only be for permanent errors like cycles or out-of-memory
-> errors.
->=20
-> Also, with the addition of DL_FLAG_SYNC_STATE_ONLY flag [1] to device
-> links, all the valid dependency cycles due to "proxy" device links
-> (needed for correctness of sync_state() device callback) will never fail
-> device_link_add() due to cycles.
->=20
-> So, continuing to retry failing device links (by returning -EAGAIN) is
-> no longer useful. At worst, it prevents platforms from setting
-> fw_devlink=3Don (or better) because it prevents proper boot up. So, let's
-> not do that anymore.
->=20
-> [1] -=20
-> https://lore.kernel.org/lkml/20191028220027.251605-1-saravanak@google.com=
-/
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
+Changes since v1:
+ - Address Saravana's comments
+ - Drop patch #3 & #4
 
-Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Nicolas Saenz Julienne (2):
+  of: property: Fix create device links for all child-supplier
+    dependencies
+  of: property: Do not link to disabled devices
 
-Thanks!
-Nicolas
+ drivers/of/property.c | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
-
---=-S4qEB5rg9v9YAAE0ijXu
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl6Z3j8ACgkQlfZmHno8
-x/56ywf/TnZ5z9lUBQeAu4oZSHk+zFvjHHD622iRbKSt3mLE28iB56jZKk8T9kFh
-SF24OokLgQyz7i2uQAaSZN+VMPruhb0Bga+9Q1uvefP6r7PuCeL/SzexyPEpwQ7/
-Muf8KHm/wbvmzP86IsNCzqwHXivgGVBDaOItYuxoHML5T8tayXtALitYxOHfdY26
-aDYjubdI6tPjSiXnJbP3JbWKKiZejOsvLgmCCfBJQADEPIY7Y0DqafgcB3+pQMBp
-PUs+v4nAFD0q82W5TiEVG7lJp33CVw01PMdEBa9V/3XLGb7ANNsmqgHI10vrhKa+
-pgOhyX+asj0kBaFGhikG8d8ArM91lg==
-=Q//f
------END PGP SIGNATURE-----
-
---=-S4qEB5rg9v9YAAE0ijXu--
+-- 
+2.26.0
 
