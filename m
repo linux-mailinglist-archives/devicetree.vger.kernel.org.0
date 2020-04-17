@@ -2,32 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A60821AD740
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776001AD774
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728849AbgDQHSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 03:18:16 -0400
-Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:57975 "EHLO
-        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728808AbgDQHSP (ORCPT
+        id S1728801AbgDQHdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 03:33:00 -0400
+Received: from smtprelay0233.hostedemail.com ([216.40.44.233]:57740 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728419AbgDQHdA (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 03:18:15 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id PLGLjhe6v7xncPLGOj9cXk; Fri, 17 Apr 2020 09:18:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
-        t=1587107893; bh=HSLs2JiZcy4OA1k/VMJ4MaHDQtFq2ylnKTJGakTcPR8=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=D0shEtuyA6wOYrboGofBaD6Hcvyue0LHWkhqvWKl4cAbtlR+789ibtP1go8+npAdS
-         D0GJUT2xnk5cC3X13WO8g/7Fa6+BWe0BnzvxtPX5sgfGvl1PBgDfCCXMTipyw0iy21
-         miXGRXji8uREA4AP3zoHfQGgMK23lJVpbmtJHMud3KbXoTDg7k/iJ1Vzi4FYKaGhOB
-         9RvGs9lDNxWItdMUUytQXVk1iZ8gYrv1+i8XHXUZcyHdh7+wVoayGIwBUZtwzcTgaN
-         M8JHq2lwj72RCeNFDeBABlrTxp8HjSoTKN6BrYVUtB8IXEcr3ZbO/UtFhRxYrhCZZX
-         RvVEV+D9R0kPA==
+        Fri, 17 Apr 2020 03:33:00 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay05.hostedemail.com (Postfix) with ESMTP id 2884B180284E9;
+        Fri, 17 Apr 2020 07:32:59 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2194:2198:2199:2200:2393:2559:2562:2731:2828:2895:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:4250:4321:5007:6742:10004:10400:10848:11232:11658:11914:12043:12048:12297:12555:12740:12760:12895:13069:13311:13357:13439:14181:14659:14721:21080:21451:21627:30054:30070:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: food81_710b3da05d519
+X-Filterd-Recvd-Size: 2062
+Received: from XPS-9350.home (unknown [47.151.136.130])
+        (Authenticated sender: joe@perches.com)
+        by omf19.hostedemail.com (Postfix) with ESMTPA;
+        Fri, 17 Apr 2020 07:32:56 +0000 (UTC)
+Message-ID: <df23fe6083baad4781a2b79bcbd7d3db055eecd3.camel@perches.com>
 Subject: Re: [PATCH v2 7/9] media: MAINTAINERS: rkisp1: add path to
  dt-bindings
-To:     Helen Koike <helen.koike@collabora.com>,
+From:   Joe Perches <joe@perches.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Helen Koike <helen.koike@collabora.com>,
         devicetree@vger.kernel.org, linux-media@vger.kernel.org,
         linux-rockchip@lists.infradead.org
 Cc:     linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
@@ -35,62 +36,40 @@ Cc:     linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
         dafna.hirschfeld@collabora.com, ezequiel@collabora.com,
         mark.rutland@arm.com, karthik.poduval@gmail.com, jbx6244@gmail.com,
         kishon@ti.com
+Date:   Fri, 17 Apr 2020 00:30:44 -0700
+In-Reply-To: <9a95d227-9592-2c5c-fe6d-dff9b84f4292@xs4all.nl>
 References: <20200403161538.1375908-1-helen.koike@collabora.com>
- <20200403161538.1375908-8-helen.koike@collabora.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <9a95d227-9592-2c5c-fe6d-dff9b84f4292@xs4all.nl>
-Date:   Fri, 17 Apr 2020 09:18:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+         <20200403161538.1375908-8-helen.koike@collabora.com>
+         <9a95d227-9592-2c5c-fe6d-dff9b84f4292@xs4all.nl>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-In-Reply-To: <20200403161538.1375908-8-helen.koike@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfN/6IaxCKZYDRmsDs68Ac7Ohz+Yi31l+n/3qIvjgojpcfRUtSJSc05kGL2CfXDapr3Rq4gYZgR4YeLxd10TX4h+NBJFBcEU+jLCtDcwIuTse6A59qRpJ
- WiwqnAonGsAFeOerDoqNy1YmLjtUYSNLSY5LUmmSmKy0rm6DvctTMLL3W9KqFzXOfreLQuav06dYKKGgABldV/sXbi1MEA0/2ohTpssCluapKmoWm6umTG9e
- HExIcM3ACV3iIWTi/FPC5szOfNda35Gg/qXqYmby1qh1kIs/HV8CftXHnN5/2d3NpCApcrT7MMY3/uVm+19nTEM/4gEtPEqIY9tyPN5whm6zo7Xe0SjvlqW3
- IJCQMlQnO9vto6abRNvXyk95hQWSImEWy6sW2HSs/de9ytBnO5oQzOgIivkyTXpZwi/Fee2YnCZMiYP02i8q6QHktUWTEguBtgWDT5+tp9IJhrbyHhdZeUCv
- 0f6v/H02P6xJWXY334V3m0VQ6GSTi8p3rJKXE/tJ4EuFT8fucFUXQTyG9nlsMApBPgbXguFq1nGWiDYo8XxIfY/JZOPhaeD78ELP20IXX39a21oQUFlNYEW8
- Sv4OmjRKJehtX+CPvRbDgzx2v1cMFI1OQs1KvqsqqQdffVXGX/uoVqqqp+n2fnvsBb4D0CIuZgI89l2iB/T3/PoWTioEn1NwCWNUNnBSHspRLA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2020 18:15, Helen Koike wrote:
-> The Rockchip ISP bindings was moved out of staging.
-> Update MAINTAINERS file with the new path.
-
-Shouldn't there be a reference to Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml
-as well in MAINTAINERS?
-
-Regards,
-
-	Hans
-
+On Fri, 2020-04-17 at 09:18 +0200, Hans Verkuil wrote:
+> On 03/04/2020 18:15, Helen Koike wrote:
+> > The Rockchip ISP bindings was moved out of staging.
+> > Update MAINTAINERS file with the new path.
 > 
-> Suggested-by: Johan Jonker <jbx6244@gmail.com>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> ---
-> 
-> V2:
-> - This is a new patch in the series
-> ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d66ac41ef5872..726044b84cf23 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14303,6 +14303,7 @@ M:	Helen Koike <helen.koike@collabora.com>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  F:	drivers/staging/media/rkisp1/
-> +F:	Documentation/devicetree/bindings/media/rockchip-isp1.yaml
->  
->  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
->  M:	Jacob Chen <jacob-chen@iotwrt.com>
-> 
+> Shouldn't there be a reference to Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml
+> as well in MAINTAINERS?
+
+And please keep the file references F: fields in
+alphabetic order.
+
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+[]
+> > @@ -14303,6 +14303,7 @@ M:	Helen Koike <helen.koike@collabora.com>
+> >  L:	linux-media@vger.kernel.org
+> >  S:	Maintained
+> >  F:	drivers/staging/media/rkisp1/
+> > +F:	Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> >  
+> >  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
+> >  M:	Jacob Chen <jacob-chen@iotwrt.com>
+> > 
 
