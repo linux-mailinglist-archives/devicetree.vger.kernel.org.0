@@ -2,97 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D87F51AD910
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 10:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F47F1AD9C1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 11:24:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730035AbgDQIu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 04:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729949AbgDQIu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 04:50:27 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96465C061A0C;
-        Fri, 17 Apr 2020 01:50:27 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id j2so2092153wrs.9;
-        Fri, 17 Apr 2020 01:50:27 -0700 (PDT)
+        id S1730242AbgDQJXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 05:23:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730240AbgDQJXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 05:23:33 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8162C061A10
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 02:23:32 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id u127so1119530wmg.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 02:23:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=U1xmMluktHzlM1NHImtN6fu8B+63KJSJdW/amOIZcZQ=;
-        b=sJ4OMOgLzl0LD2rp3+h0uF22ob9fCFsZeGskB9gVeeCCvxJEyRplsDwqoRevOGWqve
-         po32fK/b2jDw10opRqMsrgK68kUsCcepe0aMhIweZ0h8zXXN/uJFxX9zRhDlTyqTJsHN
-         wqn9eoxfmmmOgNSn48O3TDdy18xhKK8CBtaueibg7mqcW7ptJhXZA7XIyVtF5JF15cPA
-         wZILJMCo1D595AXJT+2cQnK084+T690u1FiNCN5z3ter9tlSqwTvuvrxTUKfYcH8DJZk
-         c5A6xky0x2JglGBbPreiXrJft6kCF6k1U8en7VltMH4GvARrbuUn142d+4ROEiO9X2Bc
-         6Dkw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B2EV7Dr9G55HYkfQfAu+FWAIDztvRbZhmJstqdWtxkc=;
+        b=mHGfQckcXTY3OTTrOiHgCXY+DEtOXW6whILiTwQMViLFk2xxhL0ohEkLxinS5qIwJv
+         Sp2wM2kODOih4Jvw3l0spWfdAQH9aw4LjmCzHNuDa2iBdu1f5y3sXgF49f9AyTu53Lzi
+         T0XTBiKAQwg3X6Cog6494wwQtTZObT0yKsRgsQ2wwZbEnxEMFPj+O4UT1GmIDtvwB2u0
+         hQFUJtnTcXpnXs/DSt+EvisGhWQPfFKUjaKJ86JWV289ERfIIDtJ1xG0gobInZKBYkwx
+         aWScF4SLYqYyJvDvk742vmlYD4JwPxnYeCGH8LDIT/H/nXTjxnTicWb1LMbiBVaNN2lH
+         ELew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=U1xmMluktHzlM1NHImtN6fu8B+63KJSJdW/amOIZcZQ=;
-        b=Iy618uItsScWh+s8A5Vx+tHelw7tfQ3pAy71frFFsOZ3pDbzBgYE5IKvsj9+3FTOOq
-         wwD/uHZ9AltW1xHtf+CuO097mGU4DgwpBkK2qXzqwF627ixpk4+A0HxXlrw4+mm7J5+b
-         MUZ9ejiA9wIqcjSP/sA7x6AWa534+EWo254YCzGinE8xq29glCzANOg2FYjyP4goVO3b
-         rS8AUaRc99KwfDCmIieDZSgnFRSCeD0mavOnAVv3jurnInngPI8fIAmHjqjREcoJxvoY
-         +7jsu2i0fr14n1Fk/JKtVhVK44khoCucp7+gr4GDGwr7PHRcvIaCu3K0A/20H6DTJKtN
-         4s4Q==
-X-Gm-Message-State: AGi0PuaPYskI8GOZEglGQGjbVN+0tZbP2dO1BeRT8yQigwc+Sv83rLiS
-        Zu8gaNIq43GJ9VQ8BS1rOJI=
-X-Google-Smtp-Source: APiQypJuv+sq0bF2eNkKo6NH7aK7IZZYZcqmgUTqDrAqE8NWB2MGlU5GlWDJBdXMNZmFD+sT//GZzw==
-X-Received: by 2002:adf:dfc2:: with SMTP id q2mr2963313wrn.390.1587113426255;
-        Fri, 17 Apr 2020 01:50:26 -0700 (PDT)
-Received: from localhost.localdomain (p5B3F7443.dip0.t-ipconnect.de. [91.63.116.67])
-        by smtp.gmail.com with ESMTPSA id l5sm6807527wmi.22.2020.04.17.01.50.25
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B2EV7Dr9G55HYkfQfAu+FWAIDztvRbZhmJstqdWtxkc=;
+        b=L606gN/uLgihX1yWZAMFljyVrL/Q6XBiYNr7KMy2uRxsGdCg3iw88NWTKF2C2xE7Gf
+         u63Wiii9gZ3bLTZBn/B/RRFU+isX3YrJRrW3INr+EZC3FuxZG8ZpQ4MZzk8mzCYBGA6a
+         lW5RCumfJrnsJfHlI2MhfGX1JQ76Svzppw/R/7RE2pZ2w5TkEHkQfUbJeac3YmMz+Wxz
+         h5i0r4jYj4awHzSX8vKLGUuWr+KYrD+4Gb9iJiEPhwX0WxCWaP5wvs95DWfyDlhAvY83
+         m/4fm7UNu2sY/BSsVBzqHduosiXPVd+0+rFmYD/7y/eM+H217bzA+CPGX2801CF9XN8R
+         ZHig==
+X-Gm-Message-State: AGi0PuZdTdKTkNfEfslftBdCojxvbS+uynNQB3nJahjY8AOClSyNKHem
+        kLbSqMCuLgMB67sU5eLhCXHwZw==
+X-Google-Smtp-Source: APiQypIppZr/407qIeQiSZ9EWdSv165kLtjK+B5fx1fXkPd+6y30GQXlWG/yqKnV7BMkICzk//tfoA==
+X-Received: by 2002:a7b:c7d2:: with SMTP id z18mr2335863wmk.109.1587115411536;
+        Fri, 17 Apr 2020 02:23:31 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id o18sm4713830wrp.23.2020.04.17.02.23.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2020 01:50:25 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
-        robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v10 6/6] MAINTAINERS: Add entry for mp2629 Battery Charger driver
-Date:   Fri, 17 Apr 2020 10:50:03 +0200
-Message-Id: <20200417085003.6124-7-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200417085003.6124-1-sravanhome@gmail.com>
-References: <20200417085003.6124-1-sravanhome@gmail.com>
+        Fri, 17 Apr 2020 02:23:30 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: db820c: fix audio configuration
+Date:   Fri, 17 Apr 2020 10:23:27 +0100
+Message-Id: <20200417092327.7341-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp2629 Charger driver.
+After patch f864edff110d ("ASoC: qdsp6: q6routing: remove default routing")
+and 9b60441692d9 ("ASoC: qdsp6: q6asm-dai: only enable dais from device tree")
+asm dais and routing needs to be properly specified at device tree level.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+This patch fixes this.
+
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 22 +++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi        |  2 ++
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32a95d162f06..0f82d5a7a614 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11358,10 +11358,15 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
- F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
-+F:	drivers/iio/adc/mp2629_adc.c
-+F:	drivers/mfd/mp2629.c
-+F:	drivers/power/supply/mp2629_charger.c
- F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
-+F:	include/linux/mfd/mp2629.h
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+index 4692b7ad16b7..cf217b6b2b39 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -908,10 +908,30 @@
+ 	status = "okay";
+ };
  
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
++&q6asmdai {
++	dai@0 {
++		reg = <0>;
++		direction = <2>;
++	};
++
++	dai@1 {
++		reg = <1>;
++		direction = <2>;
++	};
++
++	dai@2 {
++		reg = <2>;
++		direction = <1>;
++	};
++};
++
+ &sound {
+ 	compatible = "qcom,apq8096-sndcard";
+ 	model = "DB820c";
+-	audio-routing =	"RX_BIAS", "MCLK";
++	audio-routing =	"RX_BIAS", "MCLK",
++		"MM_DL1",  "MultiMedia1 Playback",
++		"MM_DL2",  "MultiMedia2 Playback",
++		"MultiMedia3 Capture", "MM_UL3";
+ 
+ 	mm1-dai-link {
+ 		link-name = "MultiMedia1";
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 14827adebd94..98634d5c4440 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -2066,6 +2066,8 @@
+ 						reg = <APR_SVC_ASM>;
+ 						q6asmdai: dais {
+ 							compatible = "qcom,q6asm-dais";
++							#address-cells = <1>;
++							#size-cells = <0>;
+ 							#sound-dai-cells = <1>;
+ 							iommus = <&lpass_q6_smmu 1>;
+ 						};
 -- 
-2.17.1
+2.21.0
 
