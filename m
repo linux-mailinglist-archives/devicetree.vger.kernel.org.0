@@ -2,127 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3A11AD6CD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85831AD6D6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728605AbgDQHD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 03:03:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
+        id S1728563AbgDQHFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 03:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726625AbgDQHD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:03:28 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0BFC061A0C
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:03:27 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id r20so633425pfh.9
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=r1lo/KjYdlHW1B6KauS14pcMDOjbPoKhISw8ay5HipA=;
-        b=AolHcYqWLKNq46i9aUR3OEvbQ/gxmiSHz8gYBNmNyxLY6vjoC72Mu8KnUESH7Mz1CW
-         uirBVy7GdDtLxLUySl2pC0ZUieSsPGPRWmZsXY6UiY03lUY50pPytVNwcxo+LwjxDTty
-         k2wYC/JS+xuzwfrycSM6E2eU+yASVtf2gJ2RVcdvI6z6W/Xu1aNxFuWo8ZRDIZ5ErL5k
-         gB4h9pnHysvL/gKZheQKjbuQ125wm7lkh0HVIuANMTrB/u6A/RoXXJC6nr49R7acX6UZ
-         8SqBGbQgPxKOiG6SO1t+GlG1N4tkKiUJwbB6iGT9MjFPgkRRZ9YSfN+EIRRMyGMSI+32
-         j10Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=r1lo/KjYdlHW1B6KauS14pcMDOjbPoKhISw8ay5HipA=;
-        b=RVRv8wbKNGee6YXgcsRBii3cVrKppVczn4cyuVNSu1RIGlF67gwib9tljtuesPEg7T
-         QfOorxumh/dJK5IjZUxKiUJL4chGgO2NsoggjYiTwP23M5XNPv4fjg5UV48tM9w/IyaE
-         QWBd+T9i2N6FwhukuvRsUXjyEsKAydz4jp69d0hO/AhHhD3vjtMBCuZsvbbvi0Na/S/+
-         AKMs7sHVCdf3uTS3PeMH8FGXDEtDJXM5znSyLvr1bBd774UHciLxnjQlzhTWTpurU4jt
-         Q0qJM6zegH52XdBFD+E1cLfCx4dckb/wgURxWdG1ZMbynm5og+HJs1OwWsN68UCOwOu1
-         QRjg==
-X-Gm-Message-State: AGi0Pub6EehFU/Q2Qo22x+3fRS5EJoekh4C610HGZ4eJFGRE2zO6Z+6U
-        EoXYXzKAio7Fd9+TYIcN3Mdz1dKScZY=
-X-Google-Smtp-Source: APiQypJG70+MFZ+kuIBOZ6lEaW7FlG5lH/m55Qa4Jzz/SSvZaWYde7OKUco7A1CqzdSYpxiS20aRcw==
-X-Received: by 2002:a63:e60a:: with SMTP id g10mr1600021pgh.51.1587107007102;
-        Fri, 17 Apr 2020 00:03:27 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id o99sm4683714pjo.8.2020.04.17.00.03.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2020 00:03:26 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: db820c: Add pmi8994 RPM regulators
-Date:   Fri, 17 Apr 2020 00:03:03 -0700
-Message-Id: <20200417070303.1376290-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.24.0
+        with ESMTP id S1728604AbgDQHFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:05:34 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543F4C0610D6
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:05:34 -0700 (PDT)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1jPL45-0008Nn-3o; Fri, 17 Apr 2020 09:05:29 +0200
+Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1jPL44-000327-Dh; Fri, 17 Apr 2020 09:05:28 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH v3 0/6] soc: xilinx: vcu: provide interfaces for other drivers
+Date:   Fri, 17 Apr 2020 09:05:20 +0200
+Message-Id: <20200417070526.7178-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PMI8994 provides 3 SPMS regulators and one boost/bypass regulator.
-Define s1 and the boot/bypass and update pm8994 to appropriately
-describe the supply from PMI8994.
+Hello,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 26 ++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+This is v3 of the series to add interfaces that can be used by other drivers
+to the xlnx_vcu driver. See [0] for the full motivation for this patch series.
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-index fc23b381c5e4..1baf41fbdf6e 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-@@ -718,13 +718,18 @@ pm8994-regulators {
- 		vdd_s10-supply = <&vph_pwr>;
- 		vdd_s11-supply = <&vph_pwr>;
- 		vdd_s12-supply = <&vph_pwr>;
-+		vdd_l1-supply = <&vreg_s1b_1p025>;
- 		vdd_l2_l26_l28-supply = <&vreg_s3a_1p3>;
- 		vdd_l3_l11-supply = <&vreg_s8a_l3a_input>;
- 		vdd_l4_l27_l31-supply = <&vreg_s3a_1p3>;
- 		vdd_l5_l7-supply = <&vreg_s5a_2p15>;
- 		vdd_l6_l12_l32-supply = <&vreg_s5a_2p15>;
- 		vdd_l8_l16_l30-supply = <&vph_pwr>;
-+		vdd_l9_l10_l18_l22-supply = <&vph_pwr_bbyp>;
-+		vdd_l13_l19_l23_l24-supply = <&vph_pwr_bbyp>;
- 		vdd_l14_l15-supply = <&vreg_s5a_2p15>;
-+		vdd_l17_l29-supply = <&vph_pwr_bbyp>;
-+		vdd_l20_l21-supply = <&vph_pwr_bbyp>;
- 		vdd_l25-supply = <&vreg_s3a_1p3>;
- 		vdd_lvs1_2-supply = <&vreg_s4a_1p8>;
- 
-@@ -909,6 +914,27 @@ vreg_lvs2a_1p8: lvs2 {
- 			regulator-name = "vreg_lvs2a_1p8";
- 		};
- 	};
-+
-+	pmi8994-regulators {
-+		compatible = "qcom,rpm-pmi8994-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_bst_byp-supply = <&vph_pwr>;
-+
-+		vph_pwr_bbyp: boost-bypass {
-+			regulator-name = "vph_pwr_bbyp";
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		vreg_s1b_1p025: s1 {
-+			regulator-name = "vreg_s1b_1p025";
-+			regulator-min-microvolt = <1025000>;
-+			regulator-max-microvolt = <1025000>;
-+		};
-+	};
- };
- 
- &sdhc2 {
+v2 accidentally contained the unused xvcu_reset() function. I removed the
+function again.
+
+Michael
+
+[0] https://lore.kernel.org/linux-arm-kernel/20200317094115.15896-1-m.tretter@pengutronix.de/
+
+Changelog:
+
+v2 -> v3:
+- drop unused xvcu_reset() function
+
+v1 -> v2:
+- drop custom select for syscon
+- unregister registered clocks on driver remove
+
+
+Michael Tretter (6):
+  soc: xilinx: vcu: drop useless success message
+  ARM: dts: define indexes for output clocks
+  soc: xilinx: vcu: implement clock provider for output clocks
+  dt-bindings: soc: xlnx: extract xlnx,vcu-settings to separate binding
+  soc: xilinx: vcu: use vcu-settings syscon registers
+  soc: xilinx: vcu: add missing register NUM_CORE
+
+ .../soc/xilinx/xlnx,vcu-settings.yaml         |  34 ++++
+ .../bindings/soc/xilinx/xlnx,vcu.txt          |   9 +-
+ drivers/soc/xilinx/Kconfig                    |   3 +-
+ drivers/soc/xilinx/xlnx_vcu.c                 | 158 ++++++++++++------
+ include/dt-bindings/clock/xlnx-vcu.h          |  15 ++
+ include/linux/mfd/syscon/xlnx-vcu.h           |  39 +++++
+ 6 files changed, 200 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+ create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
+ create mode 100644 include/linux/mfd/syscon/xlnx-vcu.h
+
 -- 
-2.24.0
+2.20.1
 
