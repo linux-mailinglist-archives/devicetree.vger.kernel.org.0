@@ -2,137 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 672B81AE7E7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 23:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2631AE7FE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2020 00:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728635AbgDQV4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 17:56:17 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:34438 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728202AbgDQV4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 17:56:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1587160574; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=aaxgJAnoG5ukjwAgRDDBUrEuKKAGyFMzh6K7D0/zApY=;
-        b=ce83J6ceG6K8yfeaAwYEXJ4m//pzNDoVIIZQCvxo11x56yav1WOqJpSwJBkl8QcOiQOT4S
-        QH0R/ICF8xfe9S8plTB2eQ6sDYa3p+mXZoCh1iHthVPjQoCVIpSUdmcT95iTczSSjzWASr
-        6jKFag5fRYobIXS3beGzhyX7F+Znhqk=
-Date:   Fri, 17 Apr 2020 23:56:01 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [RESEND PATCH v5 3/5] IIO: Ingenic JZ47xx: Add touchscreen mode.
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Artur Rojek <contact@artur-rojek.eu>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Message-Id: <DXCY8Q.DV6MO2JLAAHN3@crapouillou.net>
-In-Reply-To: <CAHp75VdBr-o61QESQcbF97F5+JAU=XjVsvZ01M=nN-pe50-H9w@mail.gmail.com>
-References: <20200417202859.35427-1-contact@artur-rojek.eu>
-        <20200417202859.35427-3-contact@artur-rojek.eu>
-        <CAHp75Vcwnu8tw92nMYc_5-x_iX+FY8_OhtaJkSYNehmNUDkHGQ@mail.gmail.com>
-        <3KAY8Q.NNI6X4F9QRIX1@crapouillou.net>
-        <CAHp75VfxQFFnVMhGvv0GCb3gv5jTPLDqLyhihRVc2earY=aYcg@mail.gmail.com>
-        <86BY8Q.C5XO8D57M7BI1@crapouillou.net>
-        <CAHp75VfULLBpFx-W04z+jRFv-hGZkTt1k7T9+eMurW55Mdc=+g@mail.gmail.com>
-        <EFCY8Q.V3Q81CTO8TBP2@crapouillou.net>
-        <CAHp75VdBr-o61QESQcbF97F5+JAU=XjVsvZ01M=nN-pe50-H9w@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+        id S1728544AbgDQWNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 18:13:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726284AbgDQWNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 18:13:46 -0400
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E37C061A0C;
+        Fri, 17 Apr 2020 15:13:46 -0700 (PDT)
+Received: by mail-qk1-x744.google.com with SMTP id t3so4214580qkg.1;
+        Fri, 17 Apr 2020 15:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=iZwNKOyj4NwNMXhZfqTeRorCY/0+cxmYDzA7LdOH228=;
+        b=CzHuzbBrOPSwENlS63xf247SLJsqy+HezhesqQH2aCg8/sGnDMinR5qoBT8TPTqEY7
+         tlvgZPKQobRdwVWfgdgL+sTX0oiwb+4ISuYs6BrraipRJ0CsXL9RgFstY5ojbXd451w9
+         ywLkV4aJE1Y+5O5J1218vcROKvmij/ZmCdRi6HaTubypeNhWrZDPLPfWsj0hAJo6GNBc
+         BRDn4J7n736qVzg6dVZCQyC2ohRayKXEsj/FJq/juafyC62wgZnnQT47aggkWu/y7X2t
+         crZVIjiGAlKClP3Ce2+IwKGSPLIUHYKrgWadyt7llL2HaFLR56hgKrtIzeX/AYptvEj4
+         S4dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=iZwNKOyj4NwNMXhZfqTeRorCY/0+cxmYDzA7LdOH228=;
+        b=IqzJ4adHHfaAiFxXEnFggBxGYdf5kowMVnc4EHZ+m/fv1cFEOtcCcT8dVRIQTkIkJN
+         GxxVypCiOxw0gdEvrd15vJA+4oOMwM6mXvuWOQrJ/pvbp1CbHHiYQ4pWqsECC1X4DczZ
+         qY9XuHDZVBF2ULkk+YlwSjk7svGuNkRgrd0/d6dhZJ7MaCksSnfM8rY06HpeuD1IyI9q
+         FBoSdhCtuv2InOEnp37jiKI2JpDSxyh5Wx7u6Oprcnib3tdxICIDcbW//00qEgTd6w5R
+         VbJG0s4V/JkVvSl36++WC7ibKjPoNfaiiZuKrNZqatDDODW4viTvmT5TMznvMCr86Kgx
+         Nnqg==
+X-Gm-Message-State: AGi0PuYKGJwP+EX4Iw4fCdo/2JWNBqzEvgdbV60kU9yMDZ6Lsn1iBsPE
+        oa8ifyfMV2o9XinnQtCXd+w=
+X-Google-Smtp-Source: APiQypKUWeVW/aqVwxqOtgWr0FHKUWN77nS8urp+P97zU8zc5k1GGUly5gXQ9YyRvDYFQjGofKgr9A==
+X-Received: by 2002:a05:620a:6b0:: with SMTP id i16mr5206640qkh.385.1587161625578;
+        Fri, 17 Apr 2020 15:13:45 -0700 (PDT)
+Received: from localhost.localdomain ([72.53.229.195])
+        by smtp.gmail.com with ESMTPSA id u65sm17780126qkh.100.2020.04.17.15.13.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Apr 2020 15:13:45 -0700 (PDT)
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+X-Google-Original-From: Sven Van Asbroeck <TheSven73@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: sound: add Microsemi ZL38060 binding
+Date:   Fri, 17 Apr 2020 18:13:40 -0400
+Message-Id: <20200417221341.31428-1-TheSven73@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add devicetree binding for the Microsemi ZL38060 Connected
+Home Audio Processor.
 
+Signed-off-by: Sven Van Asbroeck <TheSven73@gmail.com>
+---
 
-Le sam. 18 avril 2020 =E0 0:52, Andy Shevchenko=20
-<andy.shevchenko@gmail.com> a =E9crit :
-> On Sat, Apr 18, 2020 at 12:45 AM Paul Cercueil <paul@crapouillou.net>=20
-> wrote:
->>  Le sam. 18 avril 2020 =E0 0:42, Andy Shevchenko
->>  <andy.shevchenko@gmail.com> a =E9crit :
->>  > On Sat, Apr 18, 2020 at 12:18 AM Paul Cercueil=20
->> <paul@crapouillou.net>
->>  > wrote:
->>  >>  Le sam. 18 avril 2020 =E0 0:13, Andy Shevchenko
->>  >>  <andy.shevchenko@gmail.com> a =E9crit :
->>  >>  > On Sat, Apr 18, 2020 at 12:05 AM Paul Cercueil
->>  >> <paul@crapouillou.net>
->>  >>  > wrote:
->>  >>  >>  Le ven. 17 avril 2020 =E0 23:59, Andy Shevchenko
->>  >>  >>  <andy.shevchenko@gmail.com> a =E9crit :
->>  >>  >>  > On Fri, Apr 17, 2020 at 11:21 PM Artur Rojek
->>  >>  >> <contact@artur-rojek.eu>
->>  >>  >>  > wrote:
->>  >>  >
->>  >>  > ...
->>  >>  >
->>  >>  >>  >>  +       irq =3D platform_get_irq(pdev, 0);
->>  >>  >>  >
->>  >>  >>  > Before it worked w/o IRQ, here is a regression you=20
->> introduced.
->>  >>  >>
->>  >>  >>  Before it simply did not need the IRQ, which is provided by=20
->> the
->>  >>  >>  devicetree anyway. No regression here.
->>  >>  >
->>  >>  > Does it work without IRQ? Or it was a dead code till now?
->>  >>  > For me it's clear regression. Otherwise something is really=20
->> wrong
->>  >> in a
->>  >>  > process of development of this driver.
->>  >>
->>  >>  Nothing wrong here. The IRQ was not used by the driver for the
->>  >>  functionality it provided before. It is required now to support=20
->> the
->>  >>  touchscreen channels.
->>  >
->>  > This is exactly what's wrong.
->>  > Previous DTS for my (hypothetical) case has no IRQ defined.=20
->> Everything
->>  > works, right?
->>  > Now, due to this change it breaks my setup. Don't you see the=20
->> problem?
->>=20
->>  The IRQ has been provided by every concerned DTS file since the
->>  introduction of this driver and the related bindings, even though it
->>  was not used by the driver.
->=20
-> Can you speak for all possible DTSs/DTBs in the wild?
-> Okay, in any case it will be problem of maintainers and yours if
-> somebody complains.
+Tree: v5.7-rc1
 
-I can, since I wrote all of them.
+v1->v2:
 
--Paul
+- removed all properties related to amp-en-gpios
+- removed 'mscc,load-firmware' property
 
-> I'm not going to push this anyway -- your choice.
->=20
-> But I see a (potential) regression.
->=20
->>  >>  >>  >>  +       if (irq < 0) {
->>  >>  >>  >
->>  >>  >>  >>  +               dev_err(dev, "Failed to get irq: %d\n",
->>  >> irq);
->>  >>  >>  >
->>  >>  >>  > Redundant message.
->>  >>  >>  >
->>  >>  >>  >>  +               return irq;
->>  >>  >>  >>  +       }
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
+For further details, see v1->v2 notes in 2nd patch.
 
+ .../devicetree/bindings/sound/zl38060.yaml    | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/zl38060.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/zl38060.yaml b/Documentation/devicetree/bindings/sound/zl38060.yaml
+new file mode 100644
+index 000000000000..338e2a13c775
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/zl38060.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/zl38060.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ZL38060 Connected Home Audio Processor from Microsemi.
++
++description: |
++  The ZL38060 is a "Connected Home Audio Processor" from Microsemi,
++  which consists of a Digital Signal Processor (DSP), several Digital
++  Audio Interfaces (DAIs), analog outputs, and a block of 14 GPIOs.
++
++maintainers:
++  - Jaroslav Kysela <perex@perex.cz>
++  - Takashi Iwai <tiwai@suse.com>
++
++properties:
++  compatible:
++    const: mscc,zl38060
++
++  reg:
++    description:
++      SPI device address.
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 24000000
++
++  reset-gpios:
++    description:
++      A GPIO line handling reset of the chip. As the line is active low,
++      it should be marked GPIO_ACTIVE_LOW (see ../gpio/gpio.txt)
++    maxItems: 1
++
++  '#gpio-cells':
++    const: 2
++
++  gpio-controller: true
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - '#gpio-cells'
++  - gpio-controller
++  - '#sound-dai-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec: zl38060@0 {
++            gpio-controller;
++            #gpio-cells = <2>;
++            #sound-dai-cells = <0>;
++            compatible = "mscc,zl38060";
++            reg = <0>;
++            spi-max-frequency = <12000000>;
++            reset-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
++        };
++    };
+-- 
+2.17.1
 
