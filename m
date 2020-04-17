@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D28C1AD6D4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D59A1AD6D9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728613AbgDQHFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 03:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50892 "EHLO
+        id S1728606AbgDQHFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 03:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728322AbgDQHFe (ORCPT
+        with ESMTP id S1728578AbgDQHFe (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:05:34 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3093EC061A0C
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46363C061A41
         for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:05:34 -0700 (PDT)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jPL45-0008No-3p; Fri, 17 Apr 2020 09:05:29 +0200
+        id 1jPL45-0008Np-3p; Fri, 17 Apr 2020 09:05:29 +0200
 Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1jPL44-00032Q-E6; Fri, 17 Apr 2020 09:05:28 +0200
+        id 1jPL44-000335-ES; Fri, 17 Apr 2020 09:05:28 +0200
 From:   Michael Tretter <m.tretter@pengutronix.de>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
@@ -29,9 +29,9 @@ Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
         Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
         Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v3 1/6] soc: xilinx: vcu: drop useless success message
-Date:   Fri, 17 Apr 2020 09:05:21 +0200
-Message-Id: <20200417070526.7178-2-m.tretter@pengutronix.de>
+Subject: [PATCH v3 2/6] ARM: dts: define indexes for output clocks
+Date:   Fri, 17 Apr 2020 09:05:22 +0200
+Message-Id: <20200417070526.7178-3-m.tretter@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200417070526.7178-1-m.tretter@pengutronix.de>
 References: <20200417070526.7178-1-m.tretter@pengutronix.de>
@@ -46,8 +46,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The message that the driver was successfully probed only adds useless
-noise. Drop the message.
+The VCU System-Level Control provides 4 clocks. Defined indexes for
+these clocks.
 
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
@@ -59,22 +59,31 @@ v2 -> v3:
 v1 -> v2:
 - none
 ---
- drivers/soc/xilinx/xlnx_vcu.c | 2 --
- 1 file changed, 2 deletions(-)
+ include/dt-bindings/clock/xlnx-vcu.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
 
-diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
-index a3aa40996f13..dcd8e7824b06 100644
---- a/drivers/soc/xilinx/xlnx_vcu.c
-+++ b/drivers/soc/xilinx/xlnx_vcu.c
-@@ -571,8 +571,6 @@ static int xvcu_probe(struct platform_device *pdev)
- 
- 	dev_set_drvdata(&pdev->dev, xvcu);
- 
--	dev_info(&pdev->dev, "%s: Probed successfully\n", __func__);
--
- 	return 0;
- 
- error_pll_ref:
+diff --git a/include/dt-bindings/clock/xlnx-vcu.h b/include/dt-bindings/clock/xlnx-vcu.h
+new file mode 100644
+index 000000000000..f2a5ea9c4155
+--- /dev/null
++++ b/include/dt-bindings/clock/xlnx-vcu.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (C) 2020 Pengutronix, Michael Tretter <kernel@pengutronix.de>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_XLNX_VCU_H
++#define _DT_BINDINGS_CLOCK_XLNX_VCU_H
++
++#define CLK_XVCU_ENC_CORE		0
++#define CLK_XVCU_ENC_MCU		1
++#define CLK_XVCU_DEC_CORE		2
++#define CLK_XVCU_DEC_MCU		3
++#define CLK_XVCU_MAX			4
++
++#endif /* _DT_BINDINGS_CLOCK_XLNX_VCU_H */
 -- 
 2.20.1
 
