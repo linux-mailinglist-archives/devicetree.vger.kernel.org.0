@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8998D1AE0EE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 17:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3791F1AE11D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 17:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728411AbgDQPVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 11:21:45 -0400
-Received: from smtprelay0187.hostedemail.com ([216.40.44.187]:41826 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728114AbgDQPVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 11:21:45 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 03417100E7B42;
-        Fri, 17 Apr 2020 15:21:44 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2559:2562:2731:2828:3138:3139:3140:3141:3142:3352:3622:3870:3876:4250:4321:5007:6119:7809:10004:10400:10848:11232:11657:11658:11914:12043:12048:12297:12555:12740:12760:12895:13019:13069:13255:13311:13357:13439:14181:14659:14721:21080:21451:21627:30054:30064:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:3,LUA_SUMMARY:none
-X-HE-Tag: rat66_8345024049b55
-X-Filterd-Recvd-Size: 2028
-Received: from XPS-9350.home (unknown [47.151.136.130])
-        (Authenticated sender: joe@perches.com)
-        by omf02.hostedemail.com (Postfix) with ESMTPA;
-        Fri, 17 Apr 2020 15:21:41 +0000 (UTC)
-Message-ID: <ee72cdce1c487f7d0fd089f59fb92422ef2d9396.camel@perches.com>
-Subject: Re: [PATCH v3 14/14] MAINTAINERS: Add Kishon Vijay Abraham I for TI
- J721E SoC PCIe
-From:   Joe Perches <joe@perches.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S1728754AbgDQP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 11:29:07 -0400
+Received: from muru.com ([72.249.23.125]:49942 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728542AbgDQP3H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 11:29:07 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id CAEEC8047;
+        Fri, 17 Apr 2020 15:29:53 +0000 (UTC)
+Date:   Fri, 17 Apr 2020 08:29:03 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Naresh Kamboju <naresh.kamboju@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-omap@vger.kernel.org, lkft-triage@lists.linaro.org,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Fri, 17 Apr 2020 08:19:29 -0700
-In-Reply-To: <20200417125753.13021-15-kishon@ti.com>
-References: <20200417125753.13021-1-kishon@ti.com>
-         <20200417125753.13021-15-kishon@ti.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.34.1-2 
+        Benoit Cousson <bcousson@baylibre.com>,
+        Carlos Hernandez <ceh@ti.com>,
+        Thomas Gleixner <tglx@linutronix.de>, t-kristo@ti.com,
+        Olof Johansson <olof@lixom.net>, tomi.valkeinen@ti.com,
+        Anders Roxell <anders.roxell@linaro.org>
+Subject: Re: OF: ERROR: Bad of_node_put() on
+ /ocp/interconnect@4a000000/segment@0/target-module@8000/cm_core@0/l4per-cm@1700/l4per-clkctrl@28
+Message-ID: <20200417152903.GO37466@atomide.com>
+References: <CA+G9fYv5NxK+F5DX_q1c_wvnhjT_WTZBFJQXLWFeqMXsEcASZg@mail.gmail.com>
+ <CA+G9fYu-qYP2wJw4p1p_C6_ttwK0fvw+qUnsN9mDuKOv3zGEBw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+G9fYu-qYP2wJw4p1p_C6_ttwK0fvw+qUnsN9mDuKOv3zGEBw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2020-04-17 at 18:27 +0530, Kishon Vijay Abraham I wrote:
-> Add Kishon Vijay Abraham I as MAINTAINER for TI J721E SoC PCIe.
-[]
-> diff --git a/MAINTAINERS b/MAINTAINERS
-[]
-> @@ -12968,13 +12968,15 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/pci/designware-pcie.txt
->  F:	drivers/pci/controller/dwc/*designware*
->  
-> -PCI DRIVER FOR TI DRA7XX
-> +PCI DRIVER FOR TI DRA7XX/J721E
->  M:	Kishon Vijay Abraham I <kishon@ti.com>
->  L:	linux-omap@vger.kernel.org
->  L:	linux-pci@vger.kernel.org
-> +L:	linux-arm-kernel@lists.infradead.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/pci/ti-pci.txt
->  F:	drivers/pci/controller/dwc/pci-dra7xx.c
-> +F:	drivers/pci/controller/cadence/pci-j721e.c
+* Naresh Kamboju <naresh.kamboju@linaro.org> [200327 16:44]:
+> The reported problem still happening on arm beagle board x15 device
+> running Linux next kernel 20200327.
+...
 
-Please keep file patterns in alphabetic order by
-moving this new cadence line up one line above dwc.
+> [    0.000000] OF: ERROR: Bad of_node_put() on
+> /ocp/interconnect@4a000000/segment@0/target-module@8000/cm_core@0/l4per-cm@1700/l4per-clkctrl@28
+> [    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+>   5.6.0-rc7-next-20200327 #1
+> [    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+> [    0.000000] [<c0311810>] (unwind_backtrace) from [<c030ba14>]
+> (show_stack+0x10/0x14)
+> [    0.000000] [<c030ba14>] (show_stack) from [<c0fb6604>]
+> (dump_stack+0xbc/0xd0)
+> [    0.000000] [<c0fb6604>] (dump_stack) from [<c0fbb07c>]
+> (kobject_put+0xc0/0x104)
+> [    0.000000] [<c0fbb07c>] (kobject_put) from [<c1639e4c>]
+> (of_clk_init+0x18c/0x228)
+> [    0.000000] [<c1639e4c>] (of_clk_init) from [<c1611544>]
+> (omap_clk_init+0x3c/0x58)
+> [    0.000000] [<c1611544>] (omap_clk_init) from [<c1611ea8>]
+> (omap4_sync32k_timer_init+0x8/0x2c)
+> [    0.000000] [<c1611ea8>] (omap4_sync32k_timer_init) from
+> [<c161213c>] (omap5_realtime_timer_init+0x8/0x234)
+> [    0.000000] [<c161213c>] (omap5_realtime_timer_init) from
+> [<c1600c88>] (start_kernel+0x330/0x4b8)
 
+Just FYI, Tero is looking at the clock issues that seem to be
+causing these warnings.
 
+Regards,
 
+Tony
