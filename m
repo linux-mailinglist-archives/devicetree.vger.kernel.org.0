@@ -2,189 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC101AE474
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 20:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22FC31AE42F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 20:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730718AbgDQSKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 14:10:45 -0400
-Received: from mailout1.samsung.com ([203.254.224.24]:62555 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730632AbgDQSKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 14:10:31 -0400
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20200417181028epoutp01f1d3dae61d19ce3c5562be5a50da1923~GrdBUoFzN0600506005epoutp01J
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 18:10:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20200417181028epoutp01f1d3dae61d19ce3c5562be5a50da1923~GrdBUoFzN0600506005epoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1587147029;
-        bh=N5xT+Tor3D+R1tVY/D303rOGE0vB3ZA1jQfCCEqyDjo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Ug8rAMP1zXC+WOj8YJzXE3+Or4EPCD3+0vHEKKh9++yLBZ3c51Iqo3TE0HYGM3Q7D
-         cJjk6nfHwyzJVE2RHjdkO9Ye6RDu0gJIYKtSnV1zxWTYoiNdhwHWI/Dugq6YkH0spT
-         +LEmeQxdhlaZK+Ox8alhy3GCLpZ8z3hf5AeEb/bY=
-Received: from epsmges5p3new.samsung.com (unknown [182.195.42.75]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20200417181027epcas5p2d1e9be455e717c1162b4a7c387052a4a~GrdAJVBml0105401054epcas5p2D;
-        Fri, 17 Apr 2020 18:10:27 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        BC.0B.04736.311F99E5; Sat, 18 Apr 2020 03:10:27 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20200417181026epcas5p434bcc980e1fe334969ef6f1641525ee0~Grc-dKQPw1060310603epcas5p4z;
-        Fri, 17 Apr 2020 18:10:26 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200417181026epsmtrp1ff38fd0a6760bf978df02b1a7a79b233~Grc-cTVIc0669906699epsmtrp1Q;
-        Fri, 17 Apr 2020 18:10:26 +0000 (GMT)
-X-AuditID: b6c32a4b-acbff70000001280-69-5e99f1134ec5
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        62.E0.04024.211F99E5; Sat, 18 Apr 2020 03:10:26 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200417181024epsmtip148fc720f88d9c0ccd1c0edbd14c5340b~Grc9ip4wB2094920949epsmtip1J;
-        Fri, 17 Apr 2020 18:10:24 +0000 (GMT)
-From:   Alim Akhtar <alim.akhtar@samsung.com>
-To:     robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
-        krzk@kernel.org, avri.altman@wdc.com, martin.petersen@oracle.com,
-        kwmad.kim@samsung.com, stanley.chu@mediatek.com,
-        cang@codeaurora.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH v6 10/10] arm64: dts: Add node for ufs exynos7
-Date:   Fri, 17 Apr 2020 23:29:44 +0530
-Message-Id: <20200417175944.47189-11-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200417175944.47189-1-alim.akhtar@samsung.com>
+        id S1730316AbgDQSAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 14:00:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730308AbgDQSAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 14:00:46 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE08C061A10
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 11:00:45 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id c138so1430792pfc.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 11:00:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=UOMj1CMTwdnMbS+z4qVkFuhDs1cGdfp1YT34y+yBusk=;
+        b=OvckqUd4ZmienArBUa8jPpxgm7tQccflIrBwirJ78gUp7uqVrx3mfTAwv0UxSmRrya
+         Lz37ElSMIolopvUjumNLuYbbvVA4PsZnQqyMCyd+rnrVNMnGSZf6nmpiwan6L7M+FLkl
+         4wJt5ZteoqCNiPJ+z8t2Nl9Y0ShW0V/x9H4ZI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=UOMj1CMTwdnMbS+z4qVkFuhDs1cGdfp1YT34y+yBusk=;
+        b=EUo3w9Obxtu3E/tYN1GE8waP4cqF3Tw+km25Kk3v8tfEFd5jzgfgR17+ZB7qAxXUu0
+         5rGx+aiZ1++tCN8mPv/0iNVMTP8Q3wqH3olJqmviX1NlzzKEKJoaxlDj2gd6Xy8eczZw
+         dzxawkE/hUhqih3rtJ1eRy2MYD0Qx5jNFkVk55YzYvf7CD2l68dx4WQ6QzHvgtONKzCX
+         agQMkFqszPZgD5Q6nvBaUKauHloSNufsMqokm7FbLmMzUDdNtEN24FT/oYbvl0GwkdgS
+         9cEyPG7BgMZIxjo0O3OYnbwXpYwNPT0gtrtradvBs8KkxeNVYGDOgakZV5BRfg64KSk1
+         iluQ==
+X-Gm-Message-State: AGi0PuaWUYlFj3dRm11vyTh2crXPhJU+6Nh2xsc9o9pholuCiC7N2IAm
+        Yy8wIG65IwaiYrMCZSRWyOobTQ==
+X-Google-Smtp-Source: APiQypK9eg7Gq7tr1Oc+DzJ0VwRSWi/rb9t3MDel9BaZ7Cw8P2/BSa0rmeULMt3F00M6mVyVdqN1Dw==
+X-Received: by 2002:a62:1a54:: with SMTP id a81mr4490224pfa.122.1587146443888;
+        Fri, 17 Apr 2020 11:00:43 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id w13sm5101109pfn.192.2020.04.17.11.00.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Apr 2020 11:00:42 -0700 (PDT)
+Date:   Fri, 17 Apr 2020 11:00:41 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     viresh.kumar@linaro.org, sboyd@kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2 01/17] tty: serial: qcom_geni_serial: Use OPP API to
+ set clk/perf state
+Message-ID: <20200417180041.GD199755@google.com>
+References: <1587132279-27659-1-git-send-email-rnayak@codeaurora.org>
+ <1587132279-27659-2-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+87OOTuai9Mm+KaVMTLTSAszzx/lBSQOJtEfCRJlzTyo6XRt
-        3gsSvLu8dbOZuEDXxQhlbiKWOe+YpuDSVLCMtKGh5iVBKs3tKPXf732+5/me94OPEohbCWcq
-        NiGJUybI4qWkPd7Y4eF+VLKoiThm2vBgJqsaSWZmbZhkluqeEoy2c4BgBgfrhcyYoQtn9F9H
-        CMbcXEkyjwbfYoz6YxPJPOtZx5iNN01CRmccQ4Ei1lxchLH62gKSbai5zWb3tuLs4vQ4zhYb
-        ahG7rN/P5pnU2Hnqov2pKC4+NoVTevtftY95kDNAKlohrWZEizLRJ0khsqOAPgHm+nWsENlT
-        Yvo1gg1LiZAflhCsVS8gflhF8OfVkHA7Upv3eyvSguB++TTJD9kYjHf9QFYXSR+BiXIDZmVH
-        WgKdq7k2XUCPYjD5ItjKEtofzG3zAivjtBtodVobi+jTUDRrwfg2V3hZb7Lpdpt6brYO4z27
-        oVczhfN3ukKW8bGA96uFUDkUxHMwTMy1IZ4lMNtj2HqBM8yU5G4ytclxcKfZh5dvga6qG+c5
-        AEwfKnGrRUB7QF2zN9+0C4p+TWF8UgT5uWLe7QZZ88NbSRcoU6sJnlno/r5mW0BMlyIYN4aX
-        IteK//av+G//in9lT5CgFu3hFCp5NKfyVfgkcKleKplclZwQ7XUtUa5Htm/lebYJ6QdC2xFN
-        IamDKL9YEyEmZCmqdHk7AkogdRS1ndmURFGy9AxOmXhFmRzPqdqRC4VLnUR3ieFLYjpalsTF
-        cZyCU26fYpSdcyYKxdsGjTHlziFaTtz9sB9ldaaluo998/Jb/tLl1TEUuKTrd9Gnc5/vtZh8
-        Mne2RG40HfbJ8ZhcMIYceB9XWFZ98PKow80LK25Efp8mKohmIhsSA/b6TdzoPKRY0Rh21IWl
-        iXyfW5qdMq7DPv2cPDqceBc2H7gaf9JcMGXp+3lOiqtiZMc9BUqV7C/dDytQUgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSnK7Qx5lxBn8nGVk8mLeNzeLlz6ts
-        Fp/WL2O1mH/kHKvF+fMb2C1ubjnKYrHp8TVWi8u75rBZzDi/j8mi+/oONovlx/8xWfzfs4Pd
-        YunWm4wOvB6X+3qZPDat6mTz2Lyk3qPl5H4Wj49Pb7F49G1ZxejxeZOcR/uBbqYAjigum5TU
-        nMyy1CJ9uwSujKmt59gK9ktULLk2n7GB8Z5wFyMnh4SAicSq9j9MXYxcHEICuxklFq65wA6R
-        kJa4vnEClC0ssfLfc3aIoiYmiYONx9hAEmwC2hJ3p29hArFFgIqOfGtjBLGZBZ4xSZx6WApi
-        CwvYSVw++I4ZxGYRUJWYv3Q+mM0rYCvR++o5E8QCeYnVGw6AxTmB4m0tS4HiHEDLbCQ2PImB
-        KBeUODnzCQtImFlAXWL9PCGITfISzVtnM09gFJyFpGoWQtUsJFULGJlXMUqmFhTnpucWGxYY
-        5qWW6xUn5haX5qXrJefnbmIER5aW5g7Gy0viDzEKcDAq8fAa9MyME2JNLCuuzD3EKMHBrCTC
-        e9ANKMSbklhZlVqUH19UmpNafIhRmoNFSZz3ad6xSCGB9MSS1OzU1ILUIpgsEwenVAPj5Ab9
-        uXl6CfvEXlYXKGfWXdxz5OrjuZfmxl1sM5/gx7Uy6aCnbNHJ7AiPJYuKFkitajl9eYLmipbN
-        NZU7fD1r1aY7nj3XOMv4af1Z4wsG927Gii5oWX3b8prz4oW3F+lHbM/YrSh5fUvz++12CtLW
-        JWkptur14lLntysv1Twd35+xQONXAVeuEktxRqKhFnNRcSIA9UAqM6gCAAA=
-X-CMS-MailID: 20200417181026epcas5p434bcc980e1fe334969ef6f1641525ee0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-X-CMS-RootMailID: 20200417181026epcas5p434bcc980e1fe334969ef6f1641525ee0
-References: <20200417175944.47189-1-alim.akhtar@samsung.com>
-        <CGME20200417181026epcas5p434bcc980e1fe334969ef6f1641525ee0@epcas5p4.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1587132279-27659-2-git-send-email-rnayak@codeaurora.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding dt node foe UFS and UFS-PHY for exynos7 SoC.
+Hi Rajendra,
 
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-Tested-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
----
- .../boot/dts/exynos/exynos7-espresso.dts      |  4 ++
- arch/arm64/boot/dts/exynos/exynos7.dtsi       | 44 ++++++++++++++++++-
- 2 files changed, 46 insertions(+), 2 deletions(-)
+On Fri, Apr 17, 2020 at 07:34:23PM +0530, Rajendra Nayak wrote:
+> geni serial needs to express a perforamnce state requirement on CX
+> powerdomain depending on the frequency of the clock rates.
+> Use OPP table from DT to register with OPP framework and use
+> dev_pm_opp_set_rate() to set the clk/perf state.
+> 
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Akash Asthana <akashast@codeaurora.org>
+> Cc: linux-serial@vger.kernel.org
+> ---
+>  drivers/tty/serial/qcom_geni_serial.c | 30 +++++++++++++++++++++++++-----
+>  include/linux/qcom-geni-se.h          |  2 ++
+>  2 files changed, 27 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+> index 6119090..151012c 100644
+> --- a/drivers/tty/serial/qcom_geni_serial.c
+> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/pm_opp.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/pm_wakeirq.h>
+> @@ -128,6 +129,7 @@ struct qcom_geni_serial_port {
+>  	int wakeup_irq;
+>  	bool rx_tx_swap;
+>  	bool cts_rts_swap;
+> +	bool opp_table;
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-index 7af288fa9475..790f12ca8981 100644
---- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-@@ -406,6 +406,10 @@
- 	};
- };
- 
-+&ufs {
-+	status = "okay";
-+};
-+
- &usbdrd_phy {
- 	vbus-supply = <&usb30_vbus_reg>;
- 	vbus-boost-supply = <&usb3drd_boost_5v>;
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 5558045637ac..0c1ebd3ea294 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -220,9 +220,14 @@
- 			#clock-cells = <1>;
- 			clocks = <&fin_pll>, <&clock_top1 DOUT_ACLK_FSYS1_200>,
- 				 <&clock_top1 DOUT_SCLK_MMC0>,
--				 <&clock_top1 DOUT_SCLK_MMC1>;
-+				 <&clock_top1 DOUT_SCLK_MMC1>,
-+				 <&clock_top1 DOUT_SCLK_UFSUNIPRO20>,
-+				 <&clock_top1 DOUT_SCLK_PHY_FSYS1>,
-+				 <&clock_top1 DOUT_SCLK_PHY_FSYS1_26M>;
- 			clock-names = "fin_pll", "dout_aclk_fsys1_200",
--				      "dout_sclk_mmc0", "dout_sclk_mmc1";
-+				      "dout_sclk_mmc0", "dout_sclk_mmc1",
-+				      "dout_sclk_ufsunipro20", "dout_sclk_phy_fsys1",
-+				      "dout_sclk_phy_fsys1_26m";
- 		};
- 
- 		serial_0: serial@13630000 {
-@@ -601,6 +606,41 @@
- 			};
- 		};
- 
-+		ufs: ufs@15570000 {
-+			compatible = "samsung,exynos7-ufs";
-+			reg = <0x15570000 0x100>,  /* 0: HCI standard */
-+				<0x15570100 0x100>,  /* 1: Vendor specificed */
-+				<0x15571000 0x200>,  /* 2: UNIPRO */
-+				<0x15572000 0x300>;  /* 3: UFS protector */
-+			reg-names = "hci", "vs_hci", "unipro", "ufsp";
-+			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clock_fsys1 ACLK_UFS20_LINK>,
-+				<&clock_fsys1 SCLK_UFSUNIPRO20_USER>;
-+			clock-names = "core_clk", "sclk_unipro_main";
-+			freq-table-hz = <0 0>, <0 0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
-+			pclk-freq-avail-range = <70000000 133000000>;
-+			phys = <&ufs_phy>;
-+			phy-names = "ufs-phy";
-+			status = "disabled";
-+		};
-+
-+		ufs_phy: ufs-phy@0x15571800 {
-+			compatible = "samsung,exynos7-ufs-phy";
-+			reg = <0x15571800 0x240>;
-+			reg-names = "phy-pma";
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			#phy-cells = <0>;
-+			clocks = <&clock_fsys1 SCLK_COMBO_PHY_EMBEDDED_26M>,
-+				 <&clock_fsys1 PHYCLK_UFS20_RX1_SYMBOL_USER>,
-+				 <&clock_fsys1 PHYCLK_UFS20_RX0_SYMBOL_USER>,
-+				 <&clock_fsys1 PHYCLK_UFS20_TX0_SYMBOL_USER>;
-+			clock-names = "ref_clk", "rx1_symbol_clk",
-+				      "rx0_symbol_clk",
-+				      "tx0_symbol_clk";
-+		};
-+
- 		usbdrd_phy: phy@15500000 {
- 			compatible = "samsung,exynos7-usbdrd-phy";
- 			reg = <0x15500000 0x100>;
--- 
-2.17.1
+The name of the variable suggests that it holds a OPP table, something
+like 'has_opp_table' would be clearer.
 
+>  };
+>  
+>  static const struct uart_ops qcom_geni_console_pops;
+> @@ -961,7 +963,7 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
+>  		goto out_restart_rx;
+>  
+>  	uport->uartclk = clk_rate;
+> -	clk_set_rate(port->se.clk, clk_rate);
+> +	dev_pm_opp_set_rate(uport->dev, clk_rate);
+>  	ser_clk_cfg = SER_CLK_EN;
+>  	ser_clk_cfg |= clk_div << CLK_DIV_SHFT;
+>  
+> @@ -1198,8 +1200,11 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
+>  	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
+>  		geni_se_resources_on(&port->se);
+>  	else if (new_state == UART_PM_STATE_OFF &&
+> -			old_state == UART_PM_STATE_ON)
+> +			old_state == UART_PM_STATE_ON) {
+> +		/* Drop the performance state vote */
+> +		dev_pm_opp_set_rate(uport->dev, 0);
+>  		geni_se_resources_off(&port->se);
+> +	}
+>  }
+>  
+>  static const struct uart_ops qcom_geni_console_pops = {
+> @@ -1318,13 +1323,20 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>  	if (of_property_read_bool(pdev->dev.of_node, "cts-rts-swap"))
+>  		port->cts_rts_swap = true;
+>  
+> +	port->se.opp = dev_pm_opp_set_clkname(&pdev->dev, "se");
+> +	if (IS_ERR(port->se.opp))
+> +		return PTR_ERR(port->se.opp);
+> +	/* OPP table is optional */
+> +	if (!dev_pm_opp_of_add_table(&pdev->dev))
+
+Even if the OPP table is optional you probably want to fail if the error
+is anything other than -ENODEV ("'operating-points' property is not found
+or is invalid data in device node.").
+
+> diff --git a/include/linux/qcom-geni-se.h b/include/linux/qcom-geni-se.h
+> index dd46494..737e713 100644
+> --- a/include/linux/qcom-geni-se.h
+> +++ b/include/linux/qcom-geni-se.h
+> @@ -24,6 +24,7 @@ enum geni_se_protocol_type {
+>  
+>  struct geni_wrapper;
+>  struct clk;
+> +struct opp_table;
+>  
+>  /**
+>   * struct geni_se - GENI Serial Engine
+> @@ -39,6 +40,7 @@ struct geni_se {
+>  	struct device *dev;
+>  	struct geni_wrapper *wrapper;
+>  	struct clk *clk;
+> +	struct opp_table *opp;
+
+This name suggests that the variable holds a single OPP ('struct
+dev_pm_opp'). Most other code uses the name 'opp_table', which
+also seems a good candidate here.
