@@ -2,104 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D48111AD83A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 10:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 473371AD863
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 10:16:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729646AbgDQIGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 04:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729495AbgDQIGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 04:06:50 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8446C061A0F
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 01:06:48 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id u127so861011wmg.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 01:06:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=zdfOAuP7fyaW1ZeVyULlmT33DOYYP23f5Q8B9QajRJM=;
-        b=hp61XEm/FGok8REvT3T074Wd8aZs0iWy57mOLbwQwMZJ4fXWTGHB/uBLrS8uABZB3z
-         Ge7AjEe0ea/LPcRsyDaoj/3SfsO+9XJcvLBt2V2lO7eTmMbrwX4gbP8tTy4OGWFKZkI2
-         el7svo/333VhxnyuleH4Bapz6a8oBvZ/lg3gRvR2n6JYFcwRzqo3/emiEUzSEVoO+QiB
-         qrM9tDaFGqLxLgCp8DOxZU14nAeEJEXQTsWlxOfhVbYbvjpZu5h6KD9pVAviyer7rwGK
-         K/uKTz/NJFf5MyvXRJ0d40YR+HD+RuwPDysK0i9kmNDFGi0SVvEW3NF/wRwSEm099Cxj
-         YIig==
+        id S1727871AbgDQIQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 04:16:06 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:37674 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729607AbgDQIQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 04:16:05 -0400
+Received: by mail-oi1-f194.google.com with SMTP id r25so1424909oij.4;
+        Fri, 17 Apr 2020 01:16:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=zdfOAuP7fyaW1ZeVyULlmT33DOYYP23f5Q8B9QajRJM=;
-        b=PGQRe70MRfEBNLoXyQUv3BfWT/U/7ECYQQ06eYmEXAQjon6JFoBJqeR9w5OFJkBKJ0
-         fTe+rZtoIi69XHI0zto8teSZ8h8P/hBsJZ8/qaTIbK920Kw2YjRNBH1bc96cctmr6Gba
-         5sstohQk1lbj/8l9ZLNwfPfYA5YwBdG3VfpDqqq24OUMqJn6SivSbqFv5BAyrQqfWeaf
-         jeDB1xk0TacNMCfMEduwcmSuhjhk6lZaH5ZWuKEIcQFoEJmyLCJbzfQhu/8dwYRMZW7F
-         hEivUkwcADHBrw8SnYM7NGVFXg2SG7pQlUsL/8TU81dijMWxQ9uVI0zJnFPR1FJYiAcz
-         /LWg==
-X-Gm-Message-State: AGi0PuZdvy98Rjlz7cjBLzucDM3+tDPr/7RZhnOmAKaJ3Mn6Wle/qTZa
-        /DxnC8nxwb4h2RKG6r0pDnKr1Q==
-X-Google-Smtp-Source: APiQypIr5rhPvU7gLyvcYwjnpws074PfDg+NI0F7JmZjX82UBiLQKJtlQDYychc2ykdFgdc5xHfxmQ==
-X-Received: by 2002:a7b:ca54:: with SMTP id m20mr701534wml.45.1587110807651;
-        Fri, 17 Apr 2020 01:06:47 -0700 (PDT)
-Received: from dell ([95.149.164.124])
-        by smtp.gmail.com with ESMTPSA id u7sm7245869wmg.41.2020.04.17.01.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2020 01:06:46 -0700 (PDT)
-Date:   Fri, 17 Apr 2020 09:07:47 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 01/13] mfd: Add i.MX generic mix support
-Message-ID: <20200417080747.GE2167633@dell>
-References: <1586937773-5836-1-git-send-email-abel.vesa@nxp.com>
- <1586937773-5836-2-git-send-email-abel.vesa@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OEUqvO4o4PLcUzctH8y/pHIipYkwHBkxh0sUSwqBhjI=;
+        b=KVj96e/tfUheE6ARFM2bfYhbgfdhQLyr25P7ursPxPh6duAI2Vj1fbe6WWoSlqesRr
+         +VFQKFsTo9YKte6u2iDsBv1fJyRmO1M0nsgPLXNng9kCRS9cfbBvnldfLDzDn6xbFNEu
+         LJOun/DkA/wpUZltpaorii2r48YVFOUO6ddcjrd7aV/5ZeoeHmGRvdF7y/mxrnpkAsgT
+         N8iFiUp+5AgM98Y9kOFEehKV1ZsIl1csRuwqpxR5WA/QBRKYeUcir5YMb4arC98R8vmW
+         H8CJYjv52HzqiAy8j+xT01w4PHPoktT+nMYew8Uyay0XKb0MSoQ8uDnbFcARe2y5GJ0p
+         D4DA==
+X-Gm-Message-State: AGi0PuZNLzDMWluiW1G7FuPyIHg2aIRvYKEgNL8jHWkjUnA3SFEJGDRd
+        e8d6twUqesuEeYouwY3jIqvlcbpHmvZax++9b5bgNQ==
+X-Google-Smtp-Source: APiQypLgb84lCmEkROwoYQwqq0y4HCBdGz8GOcxZq+P0iQq/kE0BDjlAwm2ypBVTzGYMRyxhyaIzk+3QcIX+GqraTH0=
+X-Received: by 2002:aca:cdd1:: with SMTP id d200mr1278264oig.153.1587111363675;
+ Fri, 17 Apr 2020 01:16:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1586937773-5836-2-git-send-email-abel.vesa@nxp.com>
+References: <1587110829-26609-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1587110829-26609-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1587110829-26609-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 17 Apr 2020 10:15:52 +0200
+Message-ID: <CAMuHMdX3sPAfKooRQcNBph6OWg=7OQ0g33PCTBpLRkqu5YcP-A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: dma: renesas,usb-dmac: convert
+ bindings to json-schema
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Vinod <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Apr 2020, Abel Vesa wrote:
+On Fri, Apr 17, 2020 at 10:08 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Convert Renesas R-Car USB-DMA Controller bindings documentation
+> to json-schema.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-> Some of the i.MX SoCs have a IP for interfacing the dedicated IPs with
-> clocks, resets and interrupts, plus some other specific control registers.
-> To allow the functionality to be split between drivers, this MFD driver is
-> added that has only two purposes: register the devices and map the entire
-> register addresses. Everything else is left to the dedicated drivers that
-> will bind to the registered devices.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  drivers/mfd/Kconfig   | 11 +++++++++++
->  drivers/mfd/Makefile  |  1 +
->  drivers/mfd/imx-mix.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 60 insertions(+)
->  create mode 100644 drivers/mfd/imx-mix.c
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-For completeness - Arnd's reply to this patch:
+Gr{oetje,eeting}s,
 
-  https://www.spinics.net/lists/linux-clk/msg47703.html
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
