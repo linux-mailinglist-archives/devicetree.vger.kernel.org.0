@@ -2,82 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4D541AD6DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 438421AD6F3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 09:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728578AbgDQHFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 03:05:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
+        id S1728223AbgDQHHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 03:07:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728590AbgDQHFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:05:34 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D47CC0610D5
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:05:34 -0700 (PDT)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1jPL45-0008Nt-3t; Fri, 17 Apr 2020 09:05:29 +0200
-Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1jPL44-00034Q-GJ; Fri, 17 Apr 2020 09:05:28 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rohit Visavalia <rohit.visavalia@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dhaval Shah <dshah@xilinx.com>, kernel@pengutronix.de,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v3 6/6] soc: xilinx: vcu: add missing register NUM_CORE
-Date:   Fri, 17 Apr 2020 09:05:26 +0200
-Message-Id: <20200417070526.7178-7-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200417070526.7178-1-m.tretter@pengutronix.de>
-References: <20200417070526.7178-1-m.tretter@pengutronix.de>
+        with ESMTP id S1728155AbgDQHHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 03:07:37 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098E3C061A0C
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:07:37 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id y25so647868pfn.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 00:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qhJfbUeC4EGPGMNCAc6hIWc34vSeMK8YZ5XesZD7QMw=;
+        b=IBpsataWih4UMa/MPpIuCFZ3NwCO/Q2WO3CEezpUx97vUFHwJ054IMLqL2b9OZ/LIq
+         EdsvVy7PwTglM+wESZZrycP2i1pSajs9i1p+F+bkHHj2CntpuATfQ/nZHlI7naLVO2UZ
+         DjYFUfk2OMH6xC41SzORrJzmp2BHjh+jWrLEP9IKhkpDLOQ5zWIKiE4FdAuhipwv5ewC
+         cdevZNUGT6teQjxXdPeU6wdBRODD+2mgm+LIllVQY9us2iymVXrnqyxyanOtbnz66QYU
+         qynFqOAmhQ3Z2SPXckHLP6e/z3eocGRzcXS255R8HUQ9MB/6fwDRpWJ9IHLS5YWWbRF7
+         hBVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qhJfbUeC4EGPGMNCAc6hIWc34vSeMK8YZ5XesZD7QMw=;
+        b=SMqFXTjeesH89EGC8jrRzm0GCk4XjBBJmcaVdO8BQbdDDc9uv3CNiZ8ptwdmHEsg5f
+         GiouMlxV3VfeRix0BPzvMt1MZcSw90LLmQAYbnh2P8S+AzTplw2eI+4YsSmGRp52SiZu
+         LhlB3QHybm28tEPvSRY1ElXU4DXV/u35tHLKeHw3pSpx9DXoBeguY1W+YT+lvaCBChQI
+         cOIMgouBlG/wVQoG/WqfZk8sscnujab9AgsId6fCit8qzQ25QVd5mv2nEkCGsAwKf7cp
+         LRSWU3cnjzkmP3LvWg0hrR+SVaU+Hs5iMeqyNfZnN6rG+pulDqkWZwH68mAIHvblY4jd
+         /R1g==
+X-Gm-Message-State: AGi0PuZOoOyYP95YHjgGbF+AXBUc3L9oBFNc5KgcScv74kcKS9o49HER
+        OXsVDssXGxvS7dbwqbXKsOMkhw==
+X-Google-Smtp-Source: APiQypIwSAgtT5e9WT2GkKvkvSvFvRObHW2xLgNFhJuVFfaeaEpAdmKJY5FzP4LkWWJp01oSfRLm9g==
+X-Received: by 2002:a62:7a82:: with SMTP id v124mr1737521pfc.10.1587107256540;
+        Fri, 17 Apr 2020 00:07:36 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id f15sm18614987pfd.215.2020.04.17.00.07.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Apr 2020 00:07:35 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: db820c: Fix invalid pm8994 supplies
+Date:   Fri, 17 Apr 2020 00:07:12 -0700
+Message-Id: <20200417070712.1376355-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The H.264/H.265 Video Codec Unit v1.2 documentation describes this
-register as follows:
+It's uncertain where the "vreg_s8a_l3a_input" comes from, but the supply
+for VDD_L3_L11 on PM8994 should be VREG_S3A_1P3, so correct this - and
+drop the vreg_s8a_l3a_input.
 
-	Number of encoders core used for the provided configuration
-
-This is required for configuring the VCU encoder buffer.
-
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+Fixes: 83d9ed4342a3 ("arm64: dts: qcom: db820c: Use regulator names from schematics")
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
-Changelog:
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 14 ++------------
+ 1 file changed, 2 insertions(+), 12 deletions(-)
 
-v2 -> v3:
-- none
-
-v1 -> v2:
-- none
----
- include/linux/mfd/syscon/xlnx-vcu.h | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/include/linux/mfd/syscon/xlnx-vcu.h b/include/linux/mfd/syscon/xlnx-vcu.h
-index d3edec4b7b1d..ff7bc3656f6e 100644
---- a/include/linux/mfd/syscon/xlnx-vcu.h
-+++ b/include/linux/mfd/syscon/xlnx-vcu.h
-@@ -32,6 +32,7 @@
- #define VCU_BUFFER_B_FRAME		0x5c
- #define VCU_WPP_EN			0x60
- #define VCU_PLL_CLK_DEC			0x64
-+#define VCU_NUM_CORE			0x6c
- #define VCU_GASKET_INIT			0x74
- #define VCU_GASKET_VALUE		0x03
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+index 1baf41fbdf6e..46595fb95cce 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -117,16 +117,6 @@ vph_pwr: vph-pwr-regulator {
+ 		regulator-max-microvolt = <3700000>;
+ 	};
  
+-	vreg_s8a_l3a_input: vreg-s8a-l3a-input {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vreg_s8a_l3a_input";
+-		regulator-always-on;
+-		regulator-boot-on;
+-
+-		regulator-min-microvolt = <0>;
+-		regulator-max-microvolt = <0>;
+-	};
+-
+ 	wlan_en: wlan-en-1-8v {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wlan_en_gpios>;
+@@ -720,7 +710,7 @@ pm8994-regulators {
+ 		vdd_s12-supply = <&vph_pwr>;
+ 		vdd_l1-supply = <&vreg_s1b_1p025>;
+ 		vdd_l2_l26_l28-supply = <&vreg_s3a_1p3>;
+-		vdd_l3_l11-supply = <&vreg_s8a_l3a_input>;
++		vdd_l3_l11-supply = <&vreg_s3a_1p3>;
+ 		vdd_l4_l27_l31-supply = <&vreg_s3a_1p3>;
+ 		vdd_l5_l7-supply = <&vreg_s5a_2p15>;
+ 		vdd_l6_l12_l32-supply = <&vreg_s5a_2p15>;
+@@ -731,7 +721,7 @@ pm8994-regulators {
+ 		vdd_l17_l29-supply = <&vph_pwr_bbyp>;
+ 		vdd_l20_l21-supply = <&vph_pwr_bbyp>;
+ 		vdd_l25-supply = <&vreg_s3a_1p3>;
+-		vdd_lvs1_2-supply = <&vreg_s4a_1p8>;
++		vdd_lvs1_lvs2-supply = <&vreg_s4a_1p8>;
+ 
+ 		vreg_s3a_1p3: s3 {
+ 			regulator-name = "vreg_s3a_1p3";
 -- 
-2.20.1
+2.24.0
 
