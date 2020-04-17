@@ -2,219 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEFE1AD844
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 10:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B791AD834
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 10:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729653AbgDQIHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 04:07:17 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:14228 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729647AbgDQIHR (ORCPT
+        id S1729623AbgDQIGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 04:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60340 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729495AbgDQIGc (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 04:07:17 -0400
-X-IronPort-AV: E=Sophos;i="5.72,394,1580742000"; 
-   d="scan'208";a="44991440"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 17 Apr 2020 17:07:14 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 50C0A41F211C;
-        Fri, 17 Apr 2020 17:07:14 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     vkoul@kernel.org, robh+dt@kernel.org
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v3 2/2] dt-bindings: dma: renesas,usb-dmac: convert bindings to json-schema
-Date:   Fri, 17 Apr 2020 17:07:09 +0900
-Message-Id: <1587110829-26609-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1587110829-26609-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-References: <1587110829-26609-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+        Fri, 17 Apr 2020 04:06:32 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA18EC061A0C;
+        Fri, 17 Apr 2020 01:06:31 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: aratiu)
+        with ESMTPSA id 8AD6E2A2164
+From:   Adrian Ratiu <adrian.ratiu@collabora.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Adrian Ratiu <adrian.ratiu@collabora.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Adrian Pop <pop.adrian61@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v6 1/8] drm: bridge: dw_mipi_dsi: add initial regmap
+ infrastructure
+In-Reply-To: <CAFqH_513KB+En_xbpXSBG6Q38kYxWCgw0KO3NVxCb6fqHDaKBA@mail.gmail.com>
+References: <20200414151955.311949-1-adrian.ratiu@collabora.com>
+ <20200414151955.311949-2-adrian.ratiu@collabora.com>
+ <CAFqH_52eKB4jtmn5e4HQubv8ijOPqDqncp1dRGahhU3NOorJMQ@mail.gmail.com>
+ <87lfmvjmt5.fsf@collabora.com>
+ <CAFqH_513KB+En_xbpXSBG6Q38kYxWCgw0KO3NVxCb6fqHDaKBA@mail.gmail.com>
+Date:   Fri, 17 Apr 2020 11:07:37 +0300
+Message-ID: <87imhyk01i.fsf@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; format=flowed
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas R-Car USB-DMA Controller bindings documentation
-to json-schema.
+On Thu, 16 Apr 2020, Enric Balletbo Serra <eballetbo@gmail.com> 
+wrote:
+> Hi Adrian, 
+> 
+> [snip] 
+> 
+>> >> 
+>> >> +static void dw_mipi_dsi_get_hw_version(struct dw_mipi_dsi 
+>> >> *dsi) +{ +       regmap_read(dsi->regs, DSI_VERSION, 
+>> >> &dsi->hw_version); +       dsi->hw_version &= VERSION; + if 
+>> >> (!dsi->hw_version) +               dev_err(dsi->dev, "Failed 
+>> >> to read DSI hw version register\n"); 
+>> > 
+>> > Is this an error that should be ignored? If you can't get the 
+>> > HW version, probably, there is something wrong with your 
+>> > hardware so, don't you need to return an error? 
+>> > 
+>> 
+>> After thinking a bit more about it, that error should be a 
+>> warning. 
+>> 
+>> I added it because in some cases (for eg. if the peripheral 
+>> clock is disabled) the reads can return 0 which is obviously an 
+>> invalid version and the bridge will error in the next step when 
+>> not finding a layout. 
+>> 
+> 
+> If you'll error anyway, why wait? IIUC at this point the clock 
+> *must* be enabled, and if not, something is wrong with the 
+> driver, I don't see any advantage on delay the error. do you 
+> have a use case where this is called and peripheral clock 
+> disabled? 
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- .../devicetree/bindings/dma/renesas,usb-dmac.txt   |  55 -----------
- .../devicetree/bindings/dma/renesas,usb-dmac.yaml  | 102 +++++++++++++++++++++
- 2 files changed, 102 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/dma/renesas,usb-dmac.txt
- create mode 100644 Documentation/devicetree/bindings/dma/renesas,usb-dmac.yaml
+There should be no real use-case (maybe malfunctioning HW), and we 
+could error out here to catch driver bugs ASAP, so I'll go this 
+route then :)
 
-diff --git a/Documentation/devicetree/bindings/dma/renesas,usb-dmac.txt b/Documentation/devicetree/bindings/dma/renesas,usb-dmac.txt
-deleted file mode 100644
-index e8f6c42..00000000
---- a/Documentation/devicetree/bindings/dma/renesas,usb-dmac.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--* Renesas USB DMA Controller Device Tree bindings
--
--Required Properties:
---compatible: "renesas,<soctype>-usb-dmac", "renesas,usb-dmac" as fallback.
--	Examples with soctypes are:
--	  - "renesas,r8a7743-usb-dmac" (RZ/G1M)
--	  - "renesas,r8a7744-usb-dmac" (RZ/G1N)
--	  - "renesas,r8a7745-usb-dmac" (RZ/G1E)
--	  - "renesas,r8a77470-usb-dmac" (RZ/G1C)
--	  - "renesas,r8a774a1-usb-dmac" (RZ/G2M)
--	  - "renesas,r8a774b1-usb-dmac" (RZ/G2N)
--	  - "renesas,r8a774c0-usb-dmac" (RZ/G2E)
--	  - "renesas,r8a7790-usb-dmac" (R-Car H2)
--	  - "renesas,r8a7791-usb-dmac" (R-Car M2-W)
--	  - "renesas,r8a7793-usb-dmac" (R-Car M2-N)
--	  - "renesas,r8a7794-usb-dmac" (R-Car E2)
--	  - "renesas,r8a7795-usb-dmac" (R-Car H3)
--	  - "renesas,r8a7796-usb-dmac" (R-Car M3-W)
--	  - "renesas,r8a77961-usb-dmac" (R-Car M3-W+)
--	  - "renesas,r8a77965-usb-dmac" (R-Car M3-N)
--	  - "renesas,r8a77990-usb-dmac" (R-Car E3)
--	  - "renesas,r8a77995-usb-dmac" (R-Car D3)
--- reg: base address and length of the registers block for the DMAC
--- interrupts: interrupt specifiers for the DMAC, one for each entry in
--  interrupt-names.
--- interrupt-names: one entry per channel, named "ch%u", where %u is the
--  channel number ranging from zero to the number of channels minus one.
--- clocks: a list of phandle + clock-specifier pairs.
--- #dma-cells: must be <1>, the cell specifies the channel number of the DMAC
--  port connected to the DMA client.
--- dma-channels: number of DMA channels
--
--Example: R8A7790 (R-Car H2) USB-DMACs
--
--	usb_dmac0: dma-controller@e65a0000 {
--		compatible = "renesas,r8a7790-usb-dmac", "renesas,usb-dmac";
--		reg = <0 0xe65a0000 0 0x100>;
--		interrupts = <0 109 IRQ_TYPE_LEVEL_HIGH
--			      0 109 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "ch0", "ch1";
--		clocks = <&mstp3_clks R8A7790_CLK_USBDMAC0>;
--		#dma-cells = <1>;
--		dma-channels = <2>;
--	};
--
--	usb_dmac1: dma-controller@e65b0000 {
--		compatible = "renesas,usb-dmac";
--		reg = <0 0xe65b0000 0 0x100>;
--		interrupts = <0 110 IRQ_TYPE_LEVEL_HIGH
--			      0 110 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "ch0", "ch1";
--		clocks = <&mstp3_clks R8A7790_CLK_USBDMAC1>;
--		#dma-cells = <1>;
--		dma-channels = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/dma/renesas,usb-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,usb-dmac.yaml
-new file mode 100644
-index 00000000..9ca6d8d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/renesas,usb-dmac.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/renesas,usb-dmac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas USB DMA Controller
-+
-+maintainers:
-+  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r8a7743-usb-dmac  # RZ/G1M
-+          - renesas,r8a7744-usb-dmac  # RZ/G1N
-+          - renesas,r8a7745-usb-dmac  # RZ/G1E
-+          - renesas,r8a77470-usb-dmac # RZ/G1C
-+          - renesas,r8a774a1-usb-dmac # RZ/G2M
-+          - renesas,r8a774b1-usb-dmac # RZ/G2N
-+          - renesas,r8a774c0-usb-dmac # RZ/G2E
-+          - renesas,r8a7790-usb-dmac  # R-Car H2
-+          - renesas,r8a7791-usb-dmac  # R-Car M2-W
-+          - renesas,r8a7793-usb-dmac  # R-Car M2-N
-+          - renesas,r8a7794-usb-dmac  # R-Car E2
-+          - renesas,r8a7795-usb-dmac  # R-Car H3
-+          - renesas,r8a7796-usb-dmac  # R-Car M3-W
-+          - renesas,r8a77961-usb-dmac # R-Car M3-W+
-+          - renesas,r8a77965-usb-dmac # R-Car M3-N
-+          - renesas,r8a77990-usb-dmac # R-Car E3
-+          - renesas,r8a77995-usb-dmac # R-Car D3
-+      - const: renesas,usb-dmac
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 2
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - pattern: ch0
-+      - pattern: ch1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+    description:
-+      The cell specifies the channel number of the DMAC port connected to
-+      the DMA client.
-+
-+  dma-channels:
-+    const: 2
-+
-+  iommus:
-+    minItems: 2
-+    maxItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - '#dma-cells'
-+  - dma-channels
-+  - power-domains
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a7790-sysc.h>
-+
-+    usb_dmac0: dma-controller@e65a0000 {
-+        compatible = "renesas,r8a7790-usb-dmac", "renesas,usb-dmac";
-+        reg = <0xe65a0000 0x100>;
-+        interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ch0", "ch1";
-+        clocks = <&cpg CPG_MOD 330>;
-+        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-+        resets = <&cpg 330>;
-+        #dma-cells = <1>;
-+        dma-channels = <2>;
-+    };
--- 
-2.7.4
+Thank you, much appreciated!
 
+>
+>> So I'll make this a warning in v7 and explicitely mention that
+>> reads version == 0 can be caused by a disabled pclk.
+>>
+>
+> -- Enric
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
