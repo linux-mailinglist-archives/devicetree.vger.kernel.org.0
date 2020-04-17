@@ -2,99 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 956BC1AD295
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 00:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24751AD3C9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 02:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728720AbgDPWLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Apr 2020 18:11:13 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:43508 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727907AbgDPWLN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Apr 2020 18:11:13 -0400
-Received: by mail-oi1-f195.google.com with SMTP id j16so340350oih.10;
-        Thu, 16 Apr 2020 15:11:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=e7l3KZP3LSpY+eDsEpEr417woObUBuV9o5LcUWNMomo=;
-        b=ggNKrPQFrabekMJ3KU71iR8gj4m/Rd8JUMfdzOo6spjtrupBjlS1M5hbuwwcNcJZUL
-         Sq8W8ikbn9kvFWOKrs/HjzYse9+UnH6FqoHLR4ZvZiVdTmA9NxHzGur58IDv4oUNNejL
-         6iiukixkl3LIxiSiCZaH2pHRCStZMXUADxvNCI23CGbeFXihAsUGsKgfe24heH2ZnAUR
-         ggD/PV8lXvAx9cXIJQKyiFM8ogt/sSQ8A2bYPbQkc5SPiCJ4ZiEBaE8M7bMpw6Oifnvk
-         0kZrNzIfEaY3BUtcpoXmSu3lV68kCf5X0GosSRKVu6j3VHQgkiqEHNcsOaJguwMC6KCI
-         M9nQ==
-X-Gm-Message-State: AGi0PubdP22XPLziekBwaiiHmKzLxZ+Y+iIyS0ql/qp/Rt/d58h2pj/H
-        +NzGV/ipqFEfSRLBapqKAaNP4Pk=
-X-Google-Smtp-Source: APiQypJpZGsw1kWGbnlXYKpIH1hOOk/mtu6A9zy2j59ycYZEj2CEWD7Wm3bSYNsH2UKKehkIoLsxRQ==
-X-Received: by 2002:aca:3983:: with SMTP id g125mr205858oia.13.1587075072415;
-        Thu, 16 Apr 2020 15:11:12 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o128sm7465766oih.41.2020.04.16.15.11.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Apr 2020 15:11:11 -0700 (PDT)
-Received: (nullmailer pid 8972 invoked by uid 1000);
-        Thu, 16 Apr 2020 22:11:10 -0000
-Date:   Thu, 16 Apr 2020 17:11:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     pantelis.antoniou@konsulko.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        "Erhard F." <erhard_f@mailbox.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alan Tull <atull@kernel.org>
-Subject: Re: [PATCH 5/5] of: unittest: kmemleak in duplicate property update
-Message-ID: <20200416221110.GA8899@bogus>
-References: <1587073370-25963-1-git-send-email-frowand.list@gmail.com>
- <1587073370-25963-6-git-send-email-frowand.list@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1587073370-25963-6-git-send-email-frowand.list@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728333AbgDQAtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Apr 2020 20:49:50 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:54498 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725862AbgDQAtt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Apr 2020 20:49:49 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DB8B6200F18;
+        Fri, 17 Apr 2020 02:49:46 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BA1302002C9;
+        Fri, 17 Apr 2020 02:49:41 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 86727402D8;
+        Fri, 17 Apr 2020 08:49:35 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V3 1/5] dt-bindings: clock: Convert i.MX6Q clock to json-schema
+Date:   Fri, 17 Apr 2020 08:41:27 +0800
+Message-Id: <1587084091-5941-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Apr 2020 16:42:50 -0500, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
-> 
-> kmemleak reports several memory leaks from devicetree unittest.
-> This is the fix for problem 5 of 5.
-> 
-> When overlay 'overlay_bad_add_dup_prop' is applied, the apply code
-> properly detects that a memory leak will occur if the overlay is removed
-> since the duplicate property is located in a base devicetree node and
-> reports via printk():
-> 
->   OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/substation@100/motor-1/rpm_avail
->   OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/substation@100/motor-1/rpm_avail
-> 
-> The overlay is removed when the apply code detects multiple changesets
-> modifying the same property.  This is reported via printk():
-> 
->   OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/rpm_avail
-> 
-> As a result of this error, the overlay is removed resulting in the
-> expected memory leak.
-> 
-> Add another device node level to the overlay so that the duplicate
-> property is located in a node added by the overlay, thus no memory
-> leak will occur when the overlay is removed.
-> 
-> Thus users of kmemleak will not have to debug this leak in the future.
-> 
-> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
-> Reported-by: Erhard F. <erhard_f@mailbox.org>
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> ---
->  .../of/unittest-data/overlay_bad_add_dup_prop.dts  | 23 ++++++++++++++++++----
->  drivers/of/unittest.c                              | 12 +++++------
->  2 files changed, 25 insertions(+), 10 deletions(-)
-> 
+Convert the i.MX6Q clock binding to DT schema format using json-schema.
 
-Applied, thanks.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V2:
+	- Force 'interrupts' minItem/maxItem to 2.
+---
+ .../devicetree/bindings/clock/imx6q-clock.txt      | 41 -------------
+ .../devicetree/bindings/clock/imx6q-clock.yaml     | 67 ++++++++++++++++++++++
+ 2 files changed, 67 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/imx6q-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/imx6q-clock.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.txt b/Documentation/devicetree/bindings/clock/imx6q-clock.txt
+deleted file mode 100644
+index 13d36d4..0000000
+--- a/Documentation/devicetree/bindings/clock/imx6q-clock.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* Clock bindings for Freescale i.MX6 Quad
+-
+-Required properties:
+-- compatible: Should be "fsl,imx6q-ccm"
+-- reg: Address and length of the register set
+-- interrupts: Should contain CCM interrupt
+-- #clock-cells: Should be <1>
+-
+-Optional properties:
+-- fsl,pmic-stby-poweroff: Configure CCM to assert PMIC_STBY_REQ signal
+-  on power off.
+-  Use this property if the SoC should be powered off by external power
+-  management IC (PMIC) triggered via PMIC_STBY_REQ signal.
+-  Boards that are designed to initiate poweroff on PMIC_ON_REQ signal should
+-  be using "syscon-poweroff" driver instead.
+-- clocks: list of clock specifiers, must contain an entry for each entry
+-          in clock-names
+-- clock-names: valid names are "osc", "ckil", "ckih1", "anaclk1" and "anaclk2"
+-
+-The clock consumer should specify the desired clock by having the clock
+-ID in its "clocks" phandle cell.  See include/dt-bindings/clock/imx6qdl-clock.h
+-for the full list of i.MX6 Quad and DualLite clock IDs.
+-
+-Examples:
+-
+-#include <dt-bindings/clock/imx6qdl-clock.h>
+-
+-clks: ccm@20c4000 {
+-	compatible = "fsl,imx6q-ccm";
+-	reg = <0x020c4000 0x4000>;
+-	interrupts = <0 87 0x04 0 88 0x04>;
+-	#clock-cells = <1>;
+-};
+-
+-uart1: serial@2020000 {
+-	compatible = "fsl,imx6q-uart", "fsl,imx21-uart";
+-	reg = <0x02020000 0x4000>;
+-	interrupts = <0 26 0x04>;
+-	clocks = <&clks IMX6QDL_CLK_UART_IPG>, <&clks IMX6QDL_CLK_UART_SERIAL>;
+-	clock-names = "ipg", "per";
+-};
+diff --git a/Documentation/devicetree/bindings/clock/imx6q-clock.yaml b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+new file mode 100644
+index 0000000..0daf789
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/imx6q-clock.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/imx6q-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Clock bindings for Freescale i.MX6 Quad
++
++maintainers:
++  - Anson Huang <Anson.Huang@nxp.com>
++
++properties:
++  compatible:
++    const: fsl,imx6q-ccm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 2
++    maxItems: 2
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: 24m osc
++      - description: 32k osc
++      - description: ckih1 clock input
++      - description: anaclk1 clock input
++      - description: anaclk2 clock input
++
++  clock-names:
++    items:
++      - const: osc
++      - const: ckil
++      - const: ckih1
++      - const: anaclk1
++      - const: anaclk2
++
++  fsl,pmic-stby-poweroff:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Use this property if the SoC should be powered off by external power
++      management IC (PMIC) triggered via PMIC_STBY_REQ signal.
++      Boards that are designed to initiate poweroff on PMIC_ON_REQ signal should
++      be using "syscon-poweroff" driver instead.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#clock-cells'
++
++examples:
++  # Clock Control Module node:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    clks: clock-controller@20c4000 {
++        compatible = "fsl,imx6q-ccm";
++        reg = <0x020c4000 0x4000>;
++        interrupts = <0 87 IRQ_TYPE_LEVEL_HIGH>,
++                     <0 88 IRQ_TYPE_LEVEL_HIGH>;
++        #clock-cells = <1>;
++    };
+-- 
+2.7.4
+
