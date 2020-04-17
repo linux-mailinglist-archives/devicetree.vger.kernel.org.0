@@ -2,145 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B011ADA13
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 11:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 090351ADA31
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 11:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730317AbgDQJey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 05:34:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730359AbgDQJex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 05:34:53 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B0FC061A0C
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 02:34:52 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id t63so1233242wmt.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2020 02:34:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=OvjXVU28jbMJ/SyvS8SgkBEpU6urA9NsgGmyTGzgYIg=;
-        b=XZlBkOcmPfU++GHBPKBCzjgE8At1p5iEXdXZO8uQxHzg5cP0lgLNuxmYeeLAqd9g+Y
-         N112wp2gO2TAFGp8E9tzdwPdNoxAnwpd6e+ncVqFfZtitZ4CK3O8qOrTyq1MlM6y5a5d
-         iT7iHu/SXKpwbb0+b2rtDc2MyoMJC50DoCRl93lSiPGIXFOTAv0SiHdQKxWgebwhpmiX
-         nXXc+O5oGUtBpVDoRjcovUQrqJb9k5IhhszbHAp9we+FeogvdmgZH6be6JVD5Lznj7wF
-         6xFpPaRQ0mFllWrMDhfe9CUyEqodwLbj+GeAZFuYqoS8M+qzmSD/HXTH04/xrBlKmfiR
-         Z+2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=OvjXVU28jbMJ/SyvS8SgkBEpU6urA9NsgGmyTGzgYIg=;
-        b=LUCjKGqXlG0wjrrr/8t5l1eOasSmmDX5sKjgxlfXRHsaTTIiWK5YY2ftdtGisAgvau
-         tvZ/HSTo9gUjun5CrGjLU22tf8RJjEigL5cnEeEymuhUDk+u8OnHMDEbq7fVFK92D4qS
-         s0OfYrMaAnxs3FkQsiK4GavraGAUf4qHHEHniW8y6QFQre8lbYI9LKWB2wptEZQreLzf
-         K2trEuIh4B70G2HixlzKDHB1oIDVKEAX6E5NhHJ8mnBF2lb5CmgQRm87RUFBRDqM0Aby
-         4MwgiA12AN/LABr4bH3beQtEjfPUdnL+SMBGr8yRc51+SrVGN0V4mwxYjjvr8ZCVJf3d
-         RtTQ==
-X-Gm-Message-State: AGi0PuZMCaHQduAa/AA0vGtb2Ge1t7E1Z/8QN18O4BtGI0zR3gx4or/s
-        D6RkyF8Jb7CACaSh1tfyOKLUng==
-X-Google-Smtp-Source: APiQypL3gn0kmqRxE640EjZxZt4w3qfgjHKCmqJqWewlFwuKoauiPY0DOfBYfLnnkXXMbHOssnHqLw==
-X-Received: by 2002:a05:600c:210c:: with SMTP id u12mr2543730wml.135.1587116091155;
-        Fri, 17 Apr 2020 02:34:51 -0700 (PDT)
-Received: from dell ([95.149.164.124])
-        by smtp.gmail.com with ESMTPSA id j10sm7338895wmi.18.2020.04.17.02.34.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2020 02:34:50 -0700 (PDT)
-Date:   Fri, 17 Apr 2020 10:35:51 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, kishon@ti.com,
-        devicetree@vger.kernel.org, arnd@arndb.de, robh@kernel.org,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com,
-        yixin.zhu@intel.com
-Subject: Re: [RESEND PATCH v6 1/4] mfd: syscon: Add fwnode_to_regmap
-Message-ID: <20200417093551.GH2167633@dell>
-References: <cover.1585889042.git.eswara.kota@linux.intel.com>
- <9c58aeb1561f28f302921d54aee75942545c4971.1585889042.git.eswara.kota@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9c58aeb1561f28f302921d54aee75942545c4971.1585889042.git.eswara.kota@linux.intel.com>
+        id S1730395AbgDQJjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 05:39:04 -0400
+Received: from mx2.suse.de ([195.135.220.15]:34602 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730324AbgDQJjE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 05:39:04 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 4FB76B02B;
+        Fri, 17 Apr 2020 09:39:00 +0000 (UTC)
+Date:   Fri, 17 Apr 2020 11:39:00 +0200
+Message-ID: <s5hd086bgej.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jiri Kosina <trivial@kernel.org>, <devicetree@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH trivial 5/6] ALSA: Fix misspellings of "Analog Devices"
+In-Reply-To: <20200416103058.15269-6-geert+renesas@glider.be>
+References: <20200416103058.15269-1-geert+renesas@glider.be>
+        <20200416103058.15269-6-geert+renesas@glider.be>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Apr 2020, Dilip Kota wrote:
-
-> Traverse regmap handle entry from firmware node handle.
+On Thu, 16 Apr 2020 12:30:57 +0200,
+Geert Uytterhoeven wrote:
 > 
-> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+> According to https://www.analog.com/, the company name is spelled
+> "Analog Devices".
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Applied this patch to sound git tree for-next branch.
+
+
+thanks,
+
+Takashi
+
+
 > ---
-> Changes on v5:
->   No changes
->   
-> Changes on v5:
->   No changes
+>  sound/isa/ad1816a/ad1816a.c | 2 +-
+>  sound/pci/ac97/ac97_patch.c | 2 +-
+>  sound/pci/hda/Kconfig       | 4 ++--
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> Changes on v4:
->   No changes
-> 
->  drivers/mfd/syscon.c       | 8 ++++++++
->  include/linux/mfd/syscon.h | 6 ++++++
->  2 files changed, 14 insertions(+)
-> 
-> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
-> index 3a97816d0cba..e085c50816b9 100644
-> --- a/drivers/mfd/syscon.c
-> +++ b/drivers/mfd/syscon.c
-> @@ -178,6 +178,14 @@ struct regmap *device_node_to_regmap(struct device_node *np)
->  }
->  EXPORT_SYMBOL_GPL(device_node_to_regmap);
->  
-> +struct regmap *fwnode_to_regmap(struct fwnode_handle *fwnode)
-> +{
-> +	struct device_node *np = to_of_node(fwnode);
-
-You are assuming that the fwnode was Device Tree pointer.
-
-The point of a fwnode is that it could be one of multiple types.
-
-What if it was a pointer to an ACPI property?
-
-> +	return device_node_get_regmap(np, false);
-> +}
-> +EXPORT_SYMBOL_GPL(fwnode_to_regmap);
-> +
->  struct regmap *syscon_node_to_regmap(struct device_node *np)
->  {
->  	if (!of_device_is_compatible(np, "syscon"))
-> diff --git a/include/linux/mfd/syscon.h b/include/linux/mfd/syscon.h
-> index 7f20e9b502a5..dacab0b4a091 100644
-> --- a/include/linux/mfd/syscon.h
-> +++ b/include/linux/mfd/syscon.h
-> @@ -18,6 +18,7 @@ struct device_node;
->  
->  #ifdef CONFIG_MFD_SYSCON
->  extern struct regmap *device_node_to_regmap(struct device_node *np);
-> +extern struct regmap *fwnode_to_regmap(struct fwnode_handle *fwnode);
->  extern struct regmap *syscon_node_to_regmap(struct device_node *np);
->  extern struct regmap *syscon_regmap_lookup_by_compatible(const char *s);
->  extern struct regmap *syscon_regmap_lookup_by_phandle(
-> @@ -34,6 +35,11 @@ static inline struct regmap *device_node_to_regmap(struct device_node *np)
->  	return ERR_PTR(-ENOTSUPP);
+> diff --git a/sound/isa/ad1816a/ad1816a.c b/sound/isa/ad1816a/ad1816a.c
+> index ce4c8ba2fa9873e7..ca18fe3ff8a59a9f 100644
+> --- a/sound/isa/ad1816a/ad1816a.c
+> +++ b/sound/isa/ad1816a/ad1816a.c
+> @@ -54,7 +54,7 @@ MODULE_PARM_DESC(clockfreq, "Clock frequency for ad1816a driver (default = 0).")
+>  static const struct pnp_card_device_id snd_ad1816a_pnpids[] = {
+>  	/* Analog Devices AD1815 */
+>  	{ .id = "ADS7150", .devs = { { .id = "ADS7150" }, { .id = "ADS7151" } } },
+> -	/* Analog Device AD1816? */
+> +	/* Analog Devices AD1816? */
+>  	{ .id = "ADS7180", .devs = { { .id = "ADS7180" }, { .id = "ADS7181" } } },
+>  	/* Analog Devices AD1816A - added by Kenneth Platz <kxp@atl.hp.com> */
+>  	{ .id = "ADS7181", .devs = { { .id = "ADS7180" }, { .id = "ADS7181" } } },
+> diff --git a/sound/pci/ac97/ac97_patch.c b/sound/pci/ac97/ac97_patch.c
+> index ebf926728c5f84af..45ef0f52ec55b803 100644
+> --- a/sound/pci/ac97/ac97_patch.c
+> +++ b/sound/pci/ac97/ac97_patch.c
+> @@ -1356,7 +1356,7 @@ static int patch_cx20551(struct snd_ac97 *ac97)
 >  }
 >  
-> +static inline struct regmap *fwnode_to_regmap(struct fwnode_handle *fwnode)
-> +{
-> +	return ERR_PTR(-ENOTSUPP);
-> +}
-> +
->  static inline struct regmap *syscon_node_to_regmap(struct device_node *np)
->  {
->  	return ERR_PTR(-ENOTSUPP);
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>  /*
+> - * Analog Device AD18xx, AD19xx codecs
+> + * Analog Devices AD18xx, AD19xx codecs
+>   */
+>  #ifdef CONFIG_PM
+>  static void ad18xx_resume(struct snd_ac97 *ac97)
+> diff --git a/sound/pci/hda/Kconfig b/sound/pci/hda/Kconfig
+> index e1d3082a4fe93153..7ba542e45a3d7f88 100644
+> --- a/sound/pci/hda/Kconfig
+> +++ b/sound/pci/hda/Kconfig
+> @@ -99,10 +99,10 @@ comment "Set to Y if you want auto-loading the codec driver"
+>  	depends on SND_HDA=y && SND_HDA_CODEC_REALTEK=m
+>  
+>  config SND_HDA_CODEC_ANALOG
+> -	tristate "Build Analog Device HD-audio codec support"
+> +	tristate "Build Analog Devices HD-audio codec support"
+>  	select SND_HDA_GENERIC
+>  	help
+> -	  Say Y or M here to include Analog Device HD-audio codec support in
+> +	  Say Y or M here to include Analog Devices HD-audio codec support in
+>  	  snd-hda-intel driver, such as AD1986A.
+>  
+>  comment "Set to Y if you want auto-loading the codec driver"
+> -- 
+> 2.17.1
+> 
