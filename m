@@ -2,49 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 529471ADC2F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 13:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8BD11ADC5F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 13:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730266AbgDQLap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 07:30:45 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38010 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730236AbgDQLap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 07:30:45 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03HBUecs123691;
-        Fri, 17 Apr 2020 06:30:40 -0500
+        id S1730439AbgDQLng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 07:43:36 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42614 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730267AbgDQLnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 07:43:35 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03HBhRCh041068;
+        Fri, 17 Apr 2020 06:43:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1587123040;
-        bh=wiRay/WueHQYiNnlT8xNUSvOJc16AOt8Hp1NKq0uCY0=;
+        s=ti-com-17Q1; t=1587123807;
+        bh=yuBQyvA0GMGkB3omubxAVTkYVNdrDfOrC0NJg9r6+gE=;
         h=From:To:CC:Subject:Date;
-        b=H50wcT4FycYlSx+fVzLSPCU85XQmFBo9Tbb0dtRefiEAaeqqXCxxCShuWMUIiiiNQ
-         zKhXKd4pEIcFQIL+mSAEHJiv6V4Nj+hauGcxetS68C3fSVr3pLoKDSNpypRz6hN1WC
-         cHRGexOov75QQqMSDq+ZXDIp5rh6m1AFl+xlsQzQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03HBUeWZ116672
+        b=hXbSYv78QBjkpHXzQCHToySVSUNydXQKqqXBFvaIyp09f8vaB+L4qcJQky8vuqNMw
+         51AlOLzlO1PYPluH7cxbZzZaA+zP80fWNLeGLeinLpNDSBMSLGP8z+62LQIxP8dCQv
+         Osl+QUZs69bUJBfXLHXMXDk/dtQ9OetZK1WNC5c0=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03HBhQLl083113
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 17 Apr 2020 06:30:40 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 17 Apr 2020 06:43:27 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 17
- Apr 2020 06:30:39 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2020 06:43:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 17 Apr 2020 06:30:39 -0500
-Received: from deskari.lan (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03HBUb1k007821;
-        Fri, 17 Apr 2020 06:30:38 -0500
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH] ARM: dts: am57xx-idk-common: add tc358778 bridge
-Date:   Fri, 17 Apr 2020 14:30:20 +0300
-Message-ID: <20200417113020.23786-1-tomi.valkeinen@ti.com>
+ Frontend Transport; Fri, 17 Apr 2020 06:43:26 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03HBhN9n088610;
+        Fri, 17 Apr 2020 06:43:24 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/4] PCI: cadence: Deprecate inbound/outbound specific bindings
+Date:   Fri, 17 Apr 2020 17:13:18 +0530
+Message-ID: <20200417114322.31111-1-kishon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,107 +56,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM5 IDK boards have TC358778 DPI-to-DSI bridge. Two different DSI panel
-models are used with the AM5 IDKs, and these panels are added with DT
-overlays. The AM5 IDKs can also be used without any panel.
+This series is a result of comments given by Rob Herring @ [1].
+Patch series changes the DT bindings and makes the corresponding driver
+changes.
 
-Add TC358778 data to the am57xx-idk-common.dtsi, but set the status to
-disabled.
+[1] -> http://lore.kernel.org/r/20200219202700.GA21908@bogus
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
----
- arch/arm/boot/dts/am57xx-idk-common.dtsi | 58 ++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+Changes from v1:
+1) Added Reviewed-by: Rob Herring <robh@kernel.org> for dt-binding patch
+2) Fixed nitpick comments from Bjorn Helgaas
+3) Added a patch to read 32-bit Vendor ID/Device ID property from DT
 
-diff --git a/arch/arm/boot/dts/am57xx-idk-common.dtsi b/arch/arm/boot/dts/am57xx-idk-common.dtsi
-index aa5e55f98179..8ec71342f289 100644
---- a/arch/arm/boot/dts/am57xx-idk-common.dtsi
-+++ b/arch/arm/boot/dts/am57xx-idk-common.dtsi
-@@ -35,6 +35,16 @@
- 		regulator-boot-on;
- 	};
- 
-+	v1_2d: fixedregulator-v1_2d {
-+		compatible = "regulator-fixed";
-+		regulator-name = "V1_2D";
-+		vin-supply = <&vmain>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	vtt_fixed: fixedregulator-vtt {
- 		/* TPS51200 */
- 		compatible = "regulator-fixed";
-@@ -139,6 +149,12 @@
- 			};
- 		};
- 	};
-+
-+	src_clk_x1: src_clk_x1 {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <20000000>;
-+	};
- };
- 
- &dra7_pmx_core {
-@@ -378,6 +394,32 @@
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 	};
-+
-+	dsi_bridge: tc358778@e {
-+		compatible = "toshiba,tc358778", "toshiba,tc358768";
-+		reg = <0xe>;
-+		status = "disabled";
-+
-+		clocks = <&src_clk_x1>;
-+		clock-names = "refclk";
-+
-+		vddc-supply = <&v1_2d>;
-+		vddmipi-supply = <&v1_2d>;
-+		vddio-supply = <&v3_3d>;
-+
-+		dsi_bridge_ports: ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				rgb_in: endpoint {
-+					remote-endpoint = <&dpi_out>;
-+					data-lines = <24>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &mcspi3 {
-@@ -543,4 +585,20 @@
- 
- &dss {
- 	status = "okay";
-+
-+	vdda_video-supply = <&ldoln_reg>;
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			dpi_out: endpoint {
-+				remote-endpoint = <&rgb_in>;
-+				data-lines = <24>;
-+			};
-+		};
-+	};
- };
+Kishon Vijay Abraham I (4):
+  dt-bindings: PCI: cadence: Deprecate inbound/outbound specific
+    bindings
+  PCI: cadence: Use "dma-ranges" instead of "cdns,no-bar-match-nbits"
+    property
+  PCI: cadence: Remove "cdns,max-outbound-regions" DT property
+  PCI: cadence: Fix to read 32-bit Vendor ID/Device ID property from DT
+
+ .../bindings/pci/cdns,cdns-pcie-ep.yaml       |  2 +-
+ .../bindings/pci/cdns,cdns-pcie-host.yaml     |  3 +--
+ .../devicetree/bindings/pci/cdns-pcie-ep.yaml | 25 +++++++++++++++++++
+ .../bindings/pci/cdns-pcie-host.yaml          | 10 ++++++++
+ .../devicetree/bindings/pci/cdns-pcie.yaml    |  8 ------
+ .../controller/cadence/pcie-cadence-host.c    | 21 +++++++++-------
+ drivers/pci/controller/cadence/pcie-cadence.h |  6 ++---
+ 7 files changed, 51 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml
+
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.17.1
 
