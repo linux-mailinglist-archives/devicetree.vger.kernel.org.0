@@ -2,220 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B61B1AD613
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 08:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A2E71AD5FA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 08:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727903AbgDQGaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 02:30:46 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:56340 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727121AbgDQGaq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 02:30:46 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A29C91A10E4;
-        Fri, 17 Apr 2020 08:30:43 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 946541A10EF;
-        Fri, 17 Apr 2020 08:30:39 +0200 (CEST)
-Received: from titan.ap.freescale.net (titan.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BDDE0402EB;
-        Fri, 17 Apr 2020 14:30:33 +0800 (SGT)
-From:   Yuantian Tang <andy.tang@nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        catalin.marinas@arm.com, will.deacon@arm.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH] arm64: dts: lx2160a: add more thermal zone support
-Date:   Fri, 17 Apr 2020 14:16:18 +0800
-Message-Id: <20200417061618.48032-1-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727831AbgDQGTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 02:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727825AbgDQGTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 02:19:33 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F134C061A0C
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 23:19:32 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id y22so603338pll.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2020 23:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KaLJhIb2coWa2IjtKOIs6upgn6eKZTcPbPyZ0hH1G/w=;
+        b=pum1V9QRu7JWtqiISczgYG5AuFxwS+Fql8hsyYmqBZqKf0czD7DCeAOZgyQP/eGBo1
+         Nd8FQtWs/ARrjiv89qVpS8TDcHVAaaIPP0U4KfaO/mW80TcgIA+v8Ned1APmhO/3eSkh
+         dazy+e9Ms36g3uO9BbsWYNQE/zp2K/QSfswKso1lgfwFWqERt7L1N8NXlNl4UPduyzo+
+         P7x7qLXLy692BCHNM9Bg8ub2EzmZMMQqSwx2PpuLMNg+u3s5yqoLAttKNtOR9oph/DCd
+         QQN07AOJWozGtrNL6ovZ9VfrFD5mMyFoNydRcyvr8Vb23rTQjgB7vkltketGXnkRkdF5
+         L4mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KaLJhIb2coWa2IjtKOIs6upgn6eKZTcPbPyZ0hH1G/w=;
+        b=oyajlcW/tbZdVzyey8JDkrsbdRaS6vGuyHiTmHnCiTbCgOESs10KtgNMyMdsoMup1d
+         T9EgYJajM1Z6+R+7G9yGfvYalWgy4hQaScMi+k9UIu2iIzbKBpCpaROy5tm92jnvSux9
+         BGLvAfi0I1P4VWSLYlweNZUNmHo7hVKH/EsZZIx6FwGoLEnvSaUNXT5RWkWcuHt4AwmM
+         C4IWnYvgNkCu/oN+mDz9oQs0iwZKyZW95aepgW2KjzF0Vn/mf2Ar0QumoV2VP/aJ9tlh
+         OhV7y+l3N9vDbLKpL2uhG4BRgEIIId/9F89rUgKFv88BNEZuT2sw9UURJ25G2ocXnv3f
+         lPeg==
+X-Gm-Message-State: AGi0PuYmmgc5fdNUjwhExKU4f07g2LL/Xp2FO0PZk544D+B6I0yPdnA8
+        3R1DJINW+AMMlSWL279OSUkYSw==
+X-Google-Smtp-Source: APiQypKDP9jWF1DA4n5s/9cYwHwRSSE0WT9LP9meqBOnZghzN/Sf/XINr47C4piJRj5/RJNRne8xag==
+X-Received: by 2002:a17:90b:3443:: with SMTP id lj3mr2508468pjb.38.1587104371547;
+        Thu, 16 Apr 2020 23:19:31 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id nu13sm4696201pjb.22.2020.04.16.23.19.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Apr 2020 23:19:30 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Qualcomm SM8250 TLMM binding and driver
+Date:   Thu, 16 Apr 2020 23:19:05 -0700
+Message-Id: <20200417061907.1226490-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 7 thermal zones in lx2160a soc. Add the
-rest thermal zone node to enable them.
-Also correct one of the values for tmu-calibration property.
+Binding and driver for the Qualcomm SM8250 TLMM pinctrl block
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 130 +++++++++++++++++-
- 1 file changed, 125 insertions(+), 5 deletions(-)
+Bjorn Andersson (1):
+  dt-bindings: pinctrl: qcom: Add sm8250 pinctrl bindings
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index ae1b113ab162..abaeb587de48 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -436,19 +436,19 @@
- 	};
- 
- 	thermal-zones {
--		core_thermal1: core-thermal1 {
-+		cluster6-7 {
- 			polling-delay-passive = <1000>;
- 			polling-delay = <5000>;
- 			thermal-sensors = <&tmu 0>;
- 
- 			trips {
--				core_cluster_alert: core-cluster-alert {
-+				cluster6_7_alert: cluster6-7-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
- 					type = "passive";
- 				};
- 
--				core_cluster_crit: core-cluster-crit {
-+				cluster6_7_crit: cluster6-7-crit {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "critical";
-@@ -457,7 +457,7 @@
- 
- 			cooling-maps {
- 				map0 {
--					trip = <&core_cluster_alert>;
-+					trip = <&cluster6_7_alert>;
- 					cooling-device =
- 						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
- 						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-@@ -478,6 +478,126 @@
- 				};
- 			};
- 		};
-+
-+		ddr-cluster5 {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 1>;
-+
-+			trips {
-+				ddr-cluster5-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				ddr-cluster5-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		wriop {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 2>;
-+
-+			trips {
-+				wriop-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				wriop-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		dce-qbman-hsio2 {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 3>;
-+
-+			trips {
-+				dce-qbman-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				dce-qbman-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ccn-dpaa-tbu {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 4>;
-+
-+			trips {
-+				ccn-dpaa-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				ccn-dpaa-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cluster4-hsio3 {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 5>;
-+
-+			trips {
-+				clust4-hsio3-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				clust4-hsio3-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cluster2-3 {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 6>;
-+
-+			trips {
-+				cluster2-3-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cluster2-3-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
- 	};
- 
- 	soc {
-@@ -549,7 +669,7 @@
- 				/* Calibration data group 1 */
- 				<0x00000000 0x00000035
- 				/* Calibration data group 2 */
--				0x00010001 0x00000154>;
-+				0x00000001 0x00000154>;
- 			little-endian;
- 			#thermal-sensor-cells = <1>;
- 		};
+Venkata Narendra Kumar Gutta (1):
+  pinctrl: qcom: Add sm8250 pinctrl driver.
+
+ .../bindings/pinctrl/qcom,sm8250-pinctrl.yaml |  147 ++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sm8250.c         | 1361 +++++++++++++++++
+ 4 files changed, 1518 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250.c
+
 -- 
-2.17.1
+2.24.0
 
