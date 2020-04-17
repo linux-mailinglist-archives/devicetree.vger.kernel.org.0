@@ -2,65 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 086BC1ADD9E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 14:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366B71ADDC8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 15:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729640AbgDQMxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 08:53:55 -0400
-Received: from mga04.intel.com ([192.55.52.120]:51413 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729034AbgDQMxx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 08:53:53 -0400
-IronPort-SDR: Y/UTyZzJekMNpK4B9aEkLXm8r6MrNc+tolooeNYnMMbMY+n7Hvcol9ZZ/iMIOjx/rIO+246SEe
- 7oZaIw0HIqCQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2020 05:53:50 -0700
-IronPort-SDR: IF9FvVYYRsALomR7JBJYD4OrD7z1TD+jkZkjtMbWkbL2Y+K9fLy7iBbf/C7fbLqZdQ4wR8Ku3+
- Jv1Nnuhi9vNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; 
-   d="scan'208";a="257569830"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga006.jf.intel.com with ESMTP; 17 Apr 2020 05:53:47 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jPQVC-001VLK-J5; Fri, 17 Apr 2020 15:53:50 +0300
-Date:   Fri, 17 Apr 2020 15:53:50 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     rishi gupta <gupt21@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>, jslaby@suse.com,
-        robh+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] tty: documentation: document how to use ttyvs
- driver
-Message-ID: <20200417125350.GW185537@smile.fi.intel.com>
-References: <1587012974-21219-1-git-send-email-gupt21@gmail.com>
- <1587012974-21219-4-git-send-email-gupt21@gmail.com>
- <20200416092441.4216ffe3@coco.lan>
- <CALUj-gtwKiV_CQYLkncX0v2fNNAyfTfzut+BgXmgzKLW7tMLOw@mail.gmail.com>
+        id S1729828AbgDQM62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 08:58:28 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50138 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729034AbgDQM6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 08:58:21 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03HCvw4X058463;
+        Fri, 17 Apr 2020 07:57:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1587128278;
+        bh=vSglFYoMYoDwIkI2/DWoUeZIMoCPNiYU+LonD52nRn4=;
+        h=From:To:CC:Subject:Date;
+        b=VCG/p76MaVbJwDLYrbZ7Rg48mrwr5odXs8S4wkyRgrTxoM86hy7HbHmTzPjlkm7K4
+         kl/1RasCc2an6967wo04O/EFrXEptMNPT4T9fFzW2KpIFkFHBJ4ZzaEfCidO32IeyP
+         77KmB5GGpyLuVlDXJbpHVeCt4l489CuuZbEliiAQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03HCvwKo051012;
+        Fri, 17 Apr 2020 07:57:58 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 17
+ Apr 2020 07:57:58 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 17 Apr 2020 07:57:58 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03HCvsD5031089;
+        Fri, 17 Apr 2020 07:57:54 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/14] Add PCIe support to TI's J721E SoC
+Date:   Fri, 17 Apr 2020 18:27:39 +0530
+Message-ID: <20200417125753.13021-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALUj-gtwKiV_CQYLkncX0v2fNNAyfTfzut+BgXmgzKLW7tMLOw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 17, 2020 at 10:46:40AM +0530, rishi gupta wrote:
-> Thanks Mauro and Randy, I will spin v4 with above suggestions soon.
+TI's J721E SoC uses Cadence PCIe core to implement both RC mode
+and EP mode.
 
-Give some more time to review actual code. It's 1000 LOCs!
-I suggest wait at least few days.
+The high level features are:
+  *) Supports Legacy, MSI and MSI-X interrupt
+  *) Supports upto GEN4 speed mode
+  *) Supports SR-IOV
+  *) Supports multiple physical function
+  *) Ability to route all transactions via SMMU
 
+This patch series
+  *) Add support in Cadence PCIe core to be used for TI's J721E SoC
+  *) Add a driver for J721E PCIe wrapper
+
+v1 of the series can be found @ [1]
+v2 of the series can be found @ [2]
+
+Changes from v2:
+1) Converting Cadence binding to YAML schema was done as a 
+   separate series [3] & [4]. [3] is merged and [4] is
+   pending.
+2) Included MSI-X support in this series
+3) Added link down interrupt handling (only error message)
+4) Rebased to latest 5.7-rc1
+5) Adapted TI J721E binding to [3] & [4] 
+
+Changes from v1:
+1) Added DT schemas cdns-pcie-host.yaml, cdns-pcie-ep.yaml and
+   cdns-pcie.yaml for Cadence PCIe core and included it in
+   TI's PCIe DT schema.
+2) Added cpu_addr_fixup() for Cadence Platform driver.
+3) Fixed subject/description/renamed functions as commented by
+   Andrew Murray.
+
+[1] -> http://lore.kernel.org/r/20191209092147.22901-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20200106102058.19183-1-kishon@ti.com
+[3] -> http://lore.kernel.org/r/20200305103017.16706-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20200417114322.31111-1-kishon@ti.com
+
+Alan Douglas (1):
+  PCI: cadence: Add MSI-X support to Endpoint driver
+
+Kishon Vijay Abraham I (13):
+  PCI: cadence: Fix cdns_pcie_{host|ep}_setup() error path
+  linux/kernel.h: Add PTR_ALIGN_DOWN macro
+  PCI: cadence: Add support to use custom read and write accessors
+  PCI: cadence: Add support to start link and verify link status
+  PCI: cadence: Add read/write accessors to perform only 32-bit accesses
+  PCI: cadence: Allow pci_host_bridge to have custom pci_ops
+  PCI: cadence: Add new *ops* for CPU addr fixup
+  PCI: cadence: Fix updating Vendor ID and Subsystem Vendor ID register
+  dt-bindings: PCI: Add host mode dt-bindings for TI's J721E SoC
+  dt-bindings: PCI: Add EP mode dt-bindings for TI's J721E SoC
+  PCI: j721e: Add TI J721E PCIe driver
+  misc: pci_endpoint_test: Add J721E in pci_device_id table
+  MAINTAINERS: Add Kishon Vijay Abraham I for TI J721E SoC PCIe
+
+ .../bindings/pci/ti,j721e-pci-ep.yaml         |  89 ++++
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 113 ++++
+ MAINTAINERS                                   |   4 +-
+ drivers/misc/pci_endpoint_test.c              |   9 +
+ drivers/pci/controller/cadence/Kconfig        |  23 +
+ drivers/pci/controller/cadence/Makefile       |   1 +
+ drivers/pci/controller/cadence/pci-j721e.c    | 500 ++++++++++++++++++
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 129 ++++-
+ .../controller/cadence/pcie-cadence-host.c    |  59 ++-
+ .../controller/cadence/pcie-cadence-plat.c    |  13 +
+ drivers/pci/controller/cadence/pcie-cadence.c |  48 +-
+ drivers/pci/controller/cadence/pcie-cadence.h | 158 +++++-
+ include/linux/kernel.h                        |   1 +
+ 13 files changed, 1105 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+ create mode 100644 drivers/pci/controller/cadence/pci-j721e.c
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
