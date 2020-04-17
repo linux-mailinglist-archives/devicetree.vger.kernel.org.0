@@ -2,39 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A581AE2CD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 18:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B9ED1AE300
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2020 19:02:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728418AbgDQQ4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 12:56:12 -0400
-Received: from muru.com ([72.249.23.125]:50298 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728379AbgDQQ4K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Apr 2020 12:56:10 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id DA5BF8192;
-        Fri, 17 Apr 2020 16:56:57 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <aford173@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 14/14] bus: ti-sysc: Timers no longer need legacy quirk handling
-Date:   Fri, 17 Apr 2020 09:55:19 -0700
-Message-Id: <20200417165519.4979-15-tony@atomide.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200417165519.4979-1-tony@atomide.com>
-References: <20200417165519.4979-1-tony@atomide.com>
+        id S1728039AbgDQRAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 13:00:48 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:52336 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728020AbgDQRAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 13:00:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1587142844; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=+XWufbHqaEuHElib8WJXZRAu9ivj8NXY3GeJi59oju4=;
+        b=mFEFRl2qydI1LhD1MuSaJOZXM50VX8V4NqaJxCSQGiYYZwd0M4unVdAA3ooclsouZEAJyN
+        s8DBMHiJ/5QjIn1y7r7tKEhuIs8zDJrNmd9C9tKZ46u/peVx88h7MstMA7x5Iq/nXkiOP8
+        y4R4SR5/SWVSFwWFAohQf/Iq2sEh3OI=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>
+Cc:     od@zcrc.me, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/5] dt-bindings: Document JZ47xx VPU auxiliary processor
+Date:   Fri, 17 Apr 2020 19:00:36 +0200
+Message-Id: <20200417170040.174319-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -42,51 +37,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As timers no longer need legacy quirk handling, let's move them to
-the CONFIG_DEBUG section to make it easier to see which drivers still
-need more work.
+Inside the Video Processing Unit (VPU) of the recent JZ47xx SoCs from
+Ingenic is a second Xburst MIPS CPU very similar to the main core.
+This document describes the devicetree bindings for this auxiliary
+processor.
 
-Let's also add detection for few more older timer revisions while at
-it as that makes CONFIG_DEBUG output easier to read with proper names.
-
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Lokesh Vutla <lokeshvutla@ti.com>
-Cc: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/bus/ti-sysc.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
---- a/drivers/bus/ti-sysc.c
-+++ b/drivers/bus/ti-sysc.c
-@@ -1275,13 +1275,6 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 		   SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("smartreflex", 0, -ENODEV, 0x38, -ENODEV, 0x00000000, 0xffffffff,
- 		   SYSC_QUIRK_LEGACY_IDLE),
--	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff,
--		   0),
--	/* Some timers on omap4 and later */
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff,
--		   0),
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff,
--		   0),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000046, 0xffffffff,
- 		   SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000052, 0xffffffff,
-@@ -1404,6 +1397,13 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 	SYSC_QUIRK("slimbus", 0, 0, 0x10, -ENODEV, 0x40002903, 0xffffffff, 0),
- 	SYSC_QUIRK("spinlock", 0, 0, 0x10, -ENODEV, 0x50020000, 0xffffffff, 0),
- 	SYSC_QUIRK("rng", 0, 0x1fe0, 0x1fe4, -ENODEV, 0x00000020, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000013, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff, 0),
-+	/* Some timers on omap4 and later */
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000040, 0xffffffff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000011, 0xffffffff, 0),
- 	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000060, 0xffffffff, 0),
- 	SYSC_QUIRK("tpcc", 0, 0, -ENODEV, -ENODEV, 0x40014c00, 0xffffffff, 0),
- 	SYSC_QUIRK("usbhstll", 0, 0, 0x10, 0x14, 0x00000004, 0xffffffff, 0),
+Notes:
+    v2: Update TCSM0 address in example
+    v3: Change node name to 'video-decoder'
+    v4: Convert to YAML. I didn't add Rob's Ack on v3 because of that (sorry Rob)
+    v5: - Fix 'reg' not in <addr, len> pairs
+    	- Add missing include to devicetree example
+    v6: No change
+
+ .../bindings/remoteproc/ingenic,vpu.yaml      | 77 +++++++++++++++++++
+ 1 file changed, 77 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+new file mode 100644
+index 000000000000..c019f9fbe916
+--- /dev/null
++++ b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Ingenic Video Processing Unit bindings
++
++description:
++  Inside the Video Processing Unit (VPU) of the recent JZ47xx SoCs from
++  Ingenic is a second Xburst MIPS CPU very similar to the main core.
++  This document describes the devicetree bindings for this auxiliary
++  processor.
++
++maintainers:
++  - Paul Cercueil <paul@crapouillou.net>
++
++properties:
++  compatible:
++    const: ingenic,jz4770-vpu-rproc
++
++  reg:
++    items:
++      - description: aux registers
++      - description: tcsm0 registers
++      - description: tcsm1 registers
++      - description: sram registers
++
++  reg-names:
++    items:
++      - const: aux
++      - const: tcsm0
++      - const: tcsm1
++      - const: sram
++
++  clocks:
++    items:
++      - description: aux clock
++      - description: vpu clock
++
++  clock-names:
++    items:
++      - const: aux
++      - const: vpu
++
++  interrupts:
++    description: VPU hardware interrupt
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/jz4770-cgu.h>
++
++    vpu: video-decoder@132a0000 {
++      compatible = "ingenic,jz4770-vpu-rproc";
++
++      reg = <0x132a0000 0x20>, /* AUX */
++            <0x132b0000 0x4000>, /* TCSM0 */
++            <0x132c0000 0xc000>, /* TCSM1 */
++            <0x132f0000 0x7000>; /* SRAM */
++      reg-names = "aux", "tcsm0", "tcsm1", "sram";
++
++      clocks = <&cgu JZ4770_CLK_AUX>, <&cgu JZ4770_CLK_VPU>;
++      clock-names = "aux", "vpu";
++
++      interrupt-parent = <&cpuintc>;
++      interrupts = <3>;
++    };
 -- 
-2.26.1
+2.25.1
+
