@@ -2,127 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB34F1AE863
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2020 00:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0381AE902
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2020 02:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728482AbgDQWsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Apr 2020 18:48:23 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:45918 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726086AbgDQWsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Apr 2020 18:48:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1587163700; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lnplkmtOlg6aQqRCemm0gncKeNcs1kJkULgCp1NFj8E=;
-        b=KYbtDyHW2xDF6OLyMVpHR10Oag/ONw+OglyvIRFt/kuSblQQMcP2nlwdF6bkil3V0JDzLX
-        ESBoxn9n5e/VmVDypGgtv244VnvAgS5G3LCDC/Lh1yOL76sviZpFuRfBB1MnlYvocjwVYC
-        /cErR2JFf+OjWI9xIBlN+ZVlnOQ5DS4=
-Date:   Sat, 18 Apr 2020 00:48:07 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [RESEND PATCH v5 5/5] input: joystick: Add ADC attached joystick
- driver.
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Artur Rojek <contact@artur-rojek.eu>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1725991AbgDRAvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Apr 2020 20:51:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725856AbgDRAvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Apr 2020 20:51:31 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05298C061A0C;
+        Fri, 17 Apr 2020 17:51:30 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id w65so1848400pfc.12;
+        Fri, 17 Apr 2020 17:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RG4zLqgfOd5eFwxQ5MLT79PGcVvleEGHuNZIiiWI3A8=;
+        b=UHRsxs3dACIIwT+uMU1k+HYIiaao56103YAWtZ9T82lMH2/6k+1bzrxddlKocwAjuh
+         uUYH05uZKQ/aA7TG+yPLJz/F9RRFyz34bHILVNLhPocsTu5vQe27bOkgo0lGXU+f5Hld
+         nYZVkck9WAKiSUmfozmvA3+ZDMGtDnBU3FHIsFFiNALSwlpJ9oaf2hs46yzarnOE51Mz
+         MmaNR2ZcuWpUnxCR4+Jqgka9loe6D29S1Kp+ROZ5vCvht+C9hlBqx9Q7+liIxjqnqe6b
+         LQiA2/u+bXiGy5nyrNjaZim8ba1qfsvrXjYz84IhmEPVbiNdhWcOrjqs9hXKvjygObHM
+         fcbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RG4zLqgfOd5eFwxQ5MLT79PGcVvleEGHuNZIiiWI3A8=;
+        b=syxAx19uOK5HQlAmsdra+0svwPVe6iMYhuhEhzHJtX/6FRe4pceEb2jHjH5zrejEWz
+         WWZ/QXJ19FRJuMM4BmosNrXKLa2k3jP8GYtMfJ2gx/l9vijK8iWS/dYHhWnw+IgIDMnG
+         yGGfajfc6aEz+8NHFmPqEog3RqjHHPMwigeNu3qYHtiGRwT5R9L+On79u9GtXDGNPrgB
+         /fWODvQvlh59RN/ueRWa7L9v7eQ/oAiRN+LUuNFZCwwaUQ6vC7WGkfZAzuie9bLfLiLL
+         ig9GlZrzf72lz2K0v15OpGQC2iRPun/pRF6tzlWOos7TJtyc5qlXkz31tmyVTTjoFvt8
+         tWsQ==
+X-Gm-Message-State: AGi0PuaBLXj84MLeI7vE8WvjrmoBMqH8GrU7ERAehCIZJznQNhL7BVKS
+        NWLJwCFWg3pTpPk31tABK5xdWKq7
+X-Google-Smtp-Source: APiQypL2znwCrCCrcxp1psP1Dxfxox0z8Es+9X/HyrMLS38/612Hq3MCaqcTnox76tSZZnkAxv3jqg==
+X-Received: by 2002:a62:404:: with SMTP id 4mr6267992pfe.110.1587171089817;
+        Fri, 17 Apr 2020 17:51:29 -0700 (PDT)
+Received: from localhost.localdomain (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id a18sm6714082pjh.25.2020.04.17.17.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Apr 2020 17:51:29 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Message-Id: <7CFY8Q.68YMS0V08F992@crapouillou.net>
-In-Reply-To: <CAHp75VfEAtqucMPdkygfBhojTJoHO5vFk_o0suiyf7i2JCMw9Q@mail.gmail.com>
-References: <20200417202859.35427-1-contact@artur-rojek.eu>
-        <20200417202859.35427-5-contact@artur-rojek.eu>
-        <CAHp75VfRbnnuUhfyXpu+5dp4TutHSrHus=sX_vG_5F0dX4k0fQ@mail.gmail.com>
-        <UFBY8Q.ES4D59V22INC1@crapouillou.net>
-        <CAHp75VfEAtqucMPdkygfBhojTJoHO5vFk_o0suiyf7i2JCMw9Q@mail.gmail.com>
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH net-next] dt-bindings: net: mdio: Document common properties
+Date:   Fri, 17 Apr 2020 17:51:26 -0700
+Message-Id: <20200418005126.15305-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some of the properties pertaining to the broken turn around or resets
+were only documented in ethernet-phy.yaml while they are applicable
+across all MDIO devices and not Ethernet PHYs specifically which are a
+superset.
 
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+ .../devicetree/bindings/net/mdio.yaml         | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Le sam. 18 avril 2020 =E0 0:49, Andy Shevchenko=20
-<andy.shevchenko@gmail.com> a =E9crit :
-> On Sat, Apr 18, 2020 at 12:24 AM Paul Cercueil <paul@crapouillou.net>=20
-> wrote:
->>  Le sam. 18 avril 2020 =E0 0:10, Andy Shevchenko
->>  <andy.shevchenko@gmail.com> a =E9crit :
->>  > On Fri, Apr 17, 2020 at 11:21 PM Artur Rojek=20
->> <contact@artur-rojek.eu>
->>  > wrote:
->=20
-> ...
->=20
->>  >>  +#include <linux/of.h>
->>  >
->>  > Do you really need this? (See below as well)
->=20
->>  >>  +static const struct of_device_id adc_joystick_of_match[] =3D {
->>  >>  +       { .compatible =3D "adc-joystick", },
->>  >>  +       { },
->>  >>  +};
->>  >>  +MODULE_DEVICE_TABLE(of, adc_joystick_of_match);
->>  >>  +
->>  >>  +static struct platform_driver adc_joystick_driver =3D {
->>  >>  +       .driver =3D {
->>  >>  +               .name =3D "adc-joystick",
->>  >
->>  >>  +               .of_match_table =3D
->>  >> of_match_ptr(adc_joystick_of_match),
->>  >
->>  > Drop this a bit harmful of_match_ptr() macro. It should go with=20
->> ugly
->>  > #ifdeffery. Here you simple introduced a compiler warning.
->>=20
->>  I assume you mean #ifdef around the of_device_id + module table=20
->> macro?
->=20
-> Yes.
->=20
->>  > On top of that, you are using device property API, OF use in this=20
->> case
->>  > is contradictory (at lest to some extend).
->>=20
->>  I don't see why. The fact that the driver can work when probed from
->>  platform code
->=20
-> Ha-ha, tell me how. I would like to be very surprised.
-
-iio_map_array_register(),
-pinctrl_register_mappings(),
-platform_add_devices(),
-
-you're welcome.
-
->>  doesn't mean that it shouldn't have a table to probe
->>  from devicetree.
->=20
-> I didn't get what you are talking about here. The idea of _unified_
-> device property API is to get rid of OF-centric code in favour of more
-> generic approach. Mixing those two can be done only in specific cases
-> (here is not the one).
-
-And how are we mixing those two here? The only OF-centric thing here is=20
-the device table, which is required if we want the driver to probe from=20
-devicetree.
-
--Paul
-
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
-
+diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentation/devicetree/bindings/net/mdio.yaml
+index 50c3397a82bc..58d486db5651 100644
+--- a/Documentation/devicetree/bindings/net/mdio.yaml
++++ b/Documentation/devicetree/bindings/net/mdio.yaml
+@@ -50,6 +50,33 @@ patternProperties:
+         description:
+           The ID number for the PHY.
+ 
++      broken-turn-around:
++        $ref: /schemas/types.yaml#definitions/flag
++        description:
++          If set, indicates the PHY device does not correctly release
++          the turn around line low at the end of a MDIO transaction.
++
++      resets:
++        maxItems: 1
++
++      reset-names:
++        const: phy
++
++      reset-gpios:
++        maxItems: 1
++        description:
++          The GPIO phandle and specifier for the PHY reset signal.
++
++      reset-assert-us:
++        description:
++          Delay after the reset was asserted in microseconds. If this
++          property is missing the delay will be skipped.
++
++      reset-deassert-us:
++        description:
++          Delay after the reset was deasserted in microseconds. If
++          this property is missing the delay will be skipped.
++
+     required:
+       - reg
+ 
+-- 
+2.19.1
 
