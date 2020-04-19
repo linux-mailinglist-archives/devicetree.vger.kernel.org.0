@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7D31AF765
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 07:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2F31AF77E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 08:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725914AbgDSF7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Apr 2020 01:59:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
+        id S1725939AbgDSGGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Apr 2020 02:06:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbgDSF7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Apr 2020 01:59:16 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3880C061A0F
-        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 22:59:15 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id x23so5234723lfq.1
-        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 22:59:15 -0700 (PDT)
+        with ESMTP id S1725446AbgDSGGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Apr 2020 02:06:01 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0BBC061A0F
+        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 23:06:01 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x23so5240535lfq.1
+        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 23:06:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=konsulko.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
         bh=VX6tMFQF79i/ftypgBXXLpWGwJKO5n2LFJJUQCNDLbI=;
-        b=RJ33wKWejDpS2Ipxi/6KpgRd2TsK6UK7IEQBXh0leVCfXwTswxyXOU07l9cQ7T0UbJ
-         GnG+rDxnOCsXEsLyHrFMI2VMoz48ZgNgla4KpOnum+kX0JgvvrAqhxihvvq5YT5PrIQn
-         3ppS4VQloeSgUz8y5N7Wr2FfDpurUoTtKkPhI=
+        b=VYZRXgtt76KAzkGTlkhcYV7C3oZ54V2PNDiye5y4PpD7RY/ZDHqj3Sl6JjfiwKt3K0
+         aIfHvPz9odBQXH4HcxGad6bp0w4xeCrvoc4CqtBN3G+gcLRAj+Fjvda6OfkjVcs40IQ8
+         4quT6a+ZnD73s8JhwZAnBlQHZwpQqt/mvnqxg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
         bh=VX6tMFQF79i/ftypgBXXLpWGwJKO5n2LFJJUQCNDLbI=;
-        b=C/N6m3D00FNYq/JHOqC68LysajK9fvtwmmDm3K3OSf9vBfWpPuRByETxawWtvE+0O+
-         RTVl5AybK0uHRCHkBbEQSoK2S3CclHGzleNiVNReSgupQsua+keYw4lqGg/cTn0RSIvM
-         HqRL4i3jrFbjLFt0LGnnMj18i7OyNQTemqm75Exm5RtyfPCm6DZx1ryr5Z7fyQVyB6i9
-         gAK9cS2UgMf95EIxPmfzEWd8X3doWDKswY4bCK2jSgjJH99Oxl1w3t+U00CzKg7tqSgZ
-         itn+pIBA8Wf8Ta3CcpNh0rY6Y6p8LI+NrXRo2x1TRpCB9ab3auc/+yF1NAvQZO1pv9sv
-         a0rw==
-X-Gm-Message-State: AGi0Pubrusf8OaxwDS8E5OK4bSCn3rtcNoFWuYjVb0dQISdMU5ZDf/qT
-        jvTws3rKVOdZX7MvHZ14+Q5h/w==
-X-Google-Smtp-Source: APiQypI4DCS3C4Gs2/uM8b7aDdMghRBbhCvJDYDOE420VG79WlV8vg37lT8Mmch2hkGzHpzN2Ug2Gw==
-X-Received: by 2002:ac2:489b:: with SMTP id x27mr6833828lfc.60.1587275954334;
-        Sat, 18 Apr 2020 22:59:14 -0700 (PDT)
+        b=A7rLsseKxIJ/1JN4Z1t1J43GMQTzyNXwoFCJlett1erXeZCBsTOaekv20FBl9W0ya1
+         A0lr99lbbArU+hLz2y3sF6WnfvQBnTC23SEMIDNBlnQqrtJbdJZwozkTCvCK8j3j7vLS
+         5dfcpVutmCNcuFpuNkjF/vxrOyCCeHTU7M4GDhzmMSYx7ngwbTRv35CqKsuJE1ZCTI18
+         Wb78uFjgqHAHhfbDY6nGLlHwBdRHjojpATT1fG4cuIrW2ItCx5okxd3fBxUxvHBpVPEc
+         ZSAmgxLCpLf7OUiVVs1CJQXvwwHcNb/ba/LLXYsm7p3WE7WSAvBvs/flwHwjBVBquDEt
+         /+RQ==
+X-Gm-Message-State: AGi0PuaHH7wIYuE+Y7NhX70i44VmVd1UqPKECQv2EQpCTiGfkqY9rEBf
+        7Q/Tn3IswBzysU34yAoMIvWcLg==
+X-Google-Smtp-Source: APiQypKamEmLuz1pWmrPKe03nYQbtpKARp5yKm25A3SvjGluCLrG+6Atb/fzGnCrfQBg0xpMFgTChw==
+X-Received: by 2002:a19:6448:: with SMTP id b8mr3378653lfj.18.1587276359665;
+        Sat, 18 Apr 2020 23:05:59 -0700 (PDT)
 Received: from taos.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
-        by smtp.gmail.com with ESMTPSA id 4sm12407715ljf.79.2020.04.18.22.59.13
+        by smtp.gmail.com with ESMTPSA id o22sm3695002ljj.100.2020.04.18.23.05.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Apr 2020 22:59:13 -0700 (PDT)
+        Sat, 18 Apr 2020 23:05:59 -0700 (PDT)
 From:   Matt Ranostay <matt.ranostay@konsulko.com>
 To:     jic23@kernel.org
 Cc:     linux-iio@vger.kernel.org,
         Matt Ranostay <matt.ranostay@konsulko.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: iio: chemical: add Atlas Scientific RTD-SM sensor docs
-Date:   Sun, 19 Apr 2020 08:59:06 +0300
-Message-Id: <20200419055907.23411-2-matt.ranostay@konsulko.com>
+Subject: [PATCH v2 1/2] dt-bindings: iio: chemical: add Atlas Scientific RTD-SM sensor docs
+Date:   Sun, 19 Apr 2020 09:05:54 +0300
+Message-Id: <20200419060555.14433-2-matt.ranostay@konsulko.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200419055907.23411-1-matt.ranostay@konsulko.com>
-References: <20200419055907.23411-1-matt.ranostay@konsulko.com>
+In-Reply-To: <20200419060555.14433-1-matt.ranostay@konsulko.com>
+References: <20200419060555.14433-1-matt.ranostay@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
