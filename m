@@ -2,55 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B866E1AFA1D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 14:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B941AFA3F
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 14:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725910AbgDSMqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Apr 2020 08:46:15 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:56568 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725905AbgDSMqP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 Apr 2020 08:46:15 -0400
-Received: from p508fcedd.dip0.t-ipconnect.de ([80.143.206.221] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id S1725969AbgDSM4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Apr 2020 08:56:01 -0400
+Received: from outgoing15.flk.host-h.net ([197.242.87.49]:51627 "EHLO
+        outgoing15.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725793AbgDSM4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Apr 2020 08:56:00 -0400
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam4-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
         (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1jQ9Kp-0006oo-C4; Sun, 19 Apr 2020 14:46:07 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, hjc@rock-chips.com,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        airlied@linux.ie
-Subject: Re: [PATCH v2] dt-bindings: display: convert rockchip rk3066 hdmi bindings to yaml
-Date:   Sun, 19 Apr 2020 14:45:59 +0200
-Message-Id: <158729979661.70728.17123531896433795718.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200403133630.7377-1-jbx6244@gmail.com>
-References: <20200403133630.7377-1-jbx6244@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1jQ9UJ-0004EY-F2; Sun, 19 Apr 2020 14:55:57 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1jQ9UH-0008SM-Gf; Sun, 19 Apr 2020 14:55:53 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/1] Add rga to rk322x device tree 
+Date:   Sun, 19 Apr 2020 12:51:32 +0000
+Message-Id: <20200419125134.29923-1-justin.swartz@risingedge.co.za>
+In-Reply-To: <558b35c3-7f75-8d0d-048b-c55c06fa8a53@gmail.com>
+References: <558b35c3-7f75-8d0d-048b-c55c06fa8a53@gmail.com>
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.09)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0c6d8zDasFm/nDPEg7mmhmypSDasLI4SayDByyq9LIhVNp0zUMatRwgR
+ z8NGlB62v0TNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0jxJtcVJProrT987X1VDPOqN+OoDzRTdku7DidYUZdNf38Sp7Of4wP429AA
+ f49baR+f3He7jw4SoVhmTJ/3eP9ORQWVx8ds1M4qmk3/bYr2p8zbg4Paoa3pNVQ0zl7t/+UfQLYB
+ qEPnp1U88kqVD8AM2G81dFO0E3gi+MOI1foZYzDggRXhpvoPtF3cVkniFXU3qJSqpdJudO6+rkiw
+ E5i8Wl78Q18OeOfsy4h7jF1Uv9lnibl3vcBqVmvQB4A18aev8yKdBC2waPTktEZ3EEGlAVXirbLu
+ Jjy3NtnGWLbnBGfrUBEXB2fYGLNieGQuoHtJvp0r29Rf3ZjFwL+MhHEWw/0qBlNDp8uABz3dkWV+
+ tnlsqEID1rwhWix/EYFNtp1TycYLFeAN4+MGwnsp7SkU6CLbyF0Zq4b1/7rjUzETJrWks4pbbQJq
+ 6gWopI3ep45X19ZysgQ+31LcAX8eoFXAhohfegXGH2GIVQVglJFbK771YV8YbC29CtmpcTqTfSIf
+ CWq9oj7OiT8GwpAriB+3/81I3rvR8KJ2fK9jiDYgijyqqY0rATpzHKGfmtNsYTr4SmDZ/bGW8xZC
+ RRs6ZD24UhFcZZEpLhnBCwImTQNvxaLyCc35VA7RvW/HGiGqxL09Cymermt8NAa/gGopT3kKfO4C
+ gvcKmV0o9jYzsFpuc43pp/LzIs3ornuRuAAdgrkq+6l7ZLNYJcf7Z6PCydDzoYZgInuDxgFOs7AZ
+ TwbwMdGiAezOfJNnrbxp9qi+/W6jZoRqxRLg4gP9h8BJWcIS38NrFoXSENXH6UXfnav35JPA4YfM
+ 6tBkXsqvKY6zoLLTPpuFqUUQz+mM8JAD4ECWNo09vb0YLIRnK477e9Xake5PIWKjIXX7qe2zOXoS
+ foxF5OBeEfTUrvq9Ipj0IAa6qZ5JdMFUcFLM1AfZpKHSiWbjO41FyBEqIaDudcVplPE6wCr6GXU1
+ lCw88ijyus1sGnWknJqS8gGhNQxpB5P3qu7c1xMljx2PG/R+pKBSKy8hXOgvE1zSS7XUhkYEQYeb
+ 3jR5NeVaJQBh0uawl0Cg8j+knAzOA9mmoJvkuhKHiekUuskYaI6ERCKp8gXWqnT9kLHhStr5fiGK
+ 7KncpWELuTEvuGslKTrRIXcXpFg5ivY=
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Apr 2020 15:36:30 +0200, Johan Jonker wrote:
-> Current dts files with 'hdmi' nodes for rk3066 are manually verified.
-> In order to automate this process rockchip,rk3066-hdmi.txt
-> has to be converted to yaml.
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> [...]
+This patchset aims to enable use of Rockchip's RGA, a 2D raster
+graphic acceleration unit, on rk322x based devices.
 
-Applied, thanks!
+Changes in v5:
+  - Remove the patch to rockchip-rga device tree binding documentation
+    as Johan Jonker has already included mention of "rockchip,rk3228-rga"
+    since the conversion to YAML.
 
-[1/1] dt-bindings: display: convert rockchip rk3066 hdmi bindings to yaml
-      commit: 8eea6e26fc2eda6922e5008ccb7f55bc1775d5b3
+  - Remove the assignment of "disabled" to the rga "status" attribute
+    in rk322x.dtsi, as Heiko Stuebner has said:
+      "no status for soc internal components without any board-specifics"
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+  - Remove the now unnecessary patch to enable rga for the rk3229-xms6
+    board.
+
+Changes in v4:
+  - Add a compatible value entry for the rk3228 to the rockchip-rga
+    device tree binding documentation.
+
+Changes in v3:
+  - Relocate rga node to the correct position in rk322x.dtsi, as
+    indicated by Johan Jonker.
+
+Changes in v2:
+  - Remove unnecessary "rockchip,rk3228-rga" device tree compatibility
+    string patch, as advised by Ezequiel Garcia.
+
+  - Use both "rockchip,rk3228-rga" and "rockchip,rk3288-rga" in the
+    rga node's compatibility property, as suggested by Heiko Stuebner.
+
+Justin Swartz (1):
+  ARM: dts: rockchip: add rga node for rk322x
+
+ arch/arm/boot/dts/rk322x.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
