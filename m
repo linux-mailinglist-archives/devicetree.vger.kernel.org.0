@@ -2,150 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7821AF759
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 07:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E7D31AF765
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2020 07:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726099AbgDSFxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Apr 2020 01:53:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59646 "EHLO
+        id S1725914AbgDSF7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Apr 2020 01:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbgDSFxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Apr 2020 01:53:38 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69352C061A0C;
-        Sat, 18 Apr 2020 22:53:38 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id j3so6347250ljg.8;
-        Sat, 18 Apr 2020 22:53:38 -0700 (PDT)
+        with ESMTP id S1725446AbgDSF7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Apr 2020 01:59:16 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3880C061A0F
+        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 22:59:15 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id x23so5234723lfq.1
+        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2020 22:59:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xN3miRWZzdsMsxxSHU7bXZvm24cCusdBgj9dMFbMgFE=;
-        b=LLnuM0lokDj6WShWfzAm7IQ3C2Ry/rP7akF1AWqIr1yEymcuF4s/lrT+i9l7w5Og4N
-         +dCqigzJ3ypQAXiJOYS+hpg63f926bI2Y9dxSo/zZmYSdDD9wmywtQw+Q7tsvag63jXb
-         V+VhY3w0Qsb4/2MqNWJvYbcfe+Gkao2oPUtIZG5jrxuWGUzA/xZVh0a49eaQ+qAeA5EC
-         0RxNFbVHQMAblEuTv+OLK8R3Ulr6MnGBj35OCOv8eB6ixelH8Li717QcTVYKY9q6nVl/
-         qYT/x2jZA2eZ9rm4j1y1tK+nObSOinZt9mDUvL2GGoBO5NgGJRPM8kVcqM+DJTOoy4xG
-         Ceqg==
+        d=konsulko.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=VX6tMFQF79i/ftypgBXXLpWGwJKO5n2LFJJUQCNDLbI=;
+        b=RJ33wKWejDpS2Ipxi/6KpgRd2TsK6UK7IEQBXh0leVCfXwTswxyXOU07l9cQ7T0UbJ
+         GnG+rDxnOCsXEsLyHrFMI2VMoz48ZgNgla4KpOnum+kX0JgvvrAqhxihvvq5YT5PrIQn
+         3ppS4VQloeSgUz8y5N7Wr2FfDpurUoTtKkPhI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xN3miRWZzdsMsxxSHU7bXZvm24cCusdBgj9dMFbMgFE=;
-        b=pkIK1wPExiCApO1okH3nddWdGaWrX+etTz6W1JEJGAo3r5Qj0IPh0uzwLPdN6v5OEE
-         sdX7/24cmnGn96OcQG1vLkYLPYHnEydZ3wWoqcmutiSVeuYwj6znYcQ4WhEC42JbYeTx
-         97KFgpnADPnfm3NGFqxOSPWVR3+GkpE6v6f8xVartqDe/HJ/NgGtfETP2nBT6tuCfADw
-         24J0UT5i9+aoEPBQFrARmAr1AHkcgxFdqIoCmD9XrWsC3V0yFryqxDgJr16nVdvcGKC5
-         zSZnUDzgoL+yY+63F+JEBy4IZyeoNQN2/q5pezZlB0AveT/XBYdvUkyVYAz9dtjzOSif
-         8aaA==
-X-Gm-Message-State: AGi0PuaxLmuTaftlHCaYa0vHcMMuyKi4oWd+ABN45sILiKE2bFqUZydq
-        V3f/drov2zlAD6mgmFlzMpk=
-X-Google-Smtp-Source: APiQypL9B78BpDHqzcdSxXcsbHU3s5I24MyU0cJ5Fjh+KgzcIB6iYgtHo9Bc5eUX8MkqBzw/Qqa6yA==
-X-Received: by 2002:a2e:9456:: with SMTP id o22mr6510374ljh.94.1587275616923;
-        Sat, 18 Apr 2020 22:53:36 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id h7sm3366247ljg.37.2020.04.18.22.53.34
+         :references:mime-version:content-transfer-encoding;
+        bh=VX6tMFQF79i/ftypgBXXLpWGwJKO5n2LFJJUQCNDLbI=;
+        b=C/N6m3D00FNYq/JHOqC68LysajK9fvtwmmDm3K3OSf9vBfWpPuRByETxawWtvE+0O+
+         RTVl5AybK0uHRCHkBbEQSoK2S3CclHGzleNiVNReSgupQsua+keYw4lqGg/cTn0RSIvM
+         HqRL4i3jrFbjLFt0LGnnMj18i7OyNQTemqm75Exm5RtyfPCm6DZx1ryr5Z7fyQVyB6i9
+         gAK9cS2UgMf95EIxPmfzEWd8X3doWDKswY4bCK2jSgjJH99Oxl1w3t+U00CzKg7tqSgZ
+         itn+pIBA8Wf8Ta3CcpNh0rY6Y6p8LI+NrXRo2x1TRpCB9ab3auc/+yF1NAvQZO1pv9sv
+         a0rw==
+X-Gm-Message-State: AGi0Pubrusf8OaxwDS8E5OK4bSCn3rtcNoFWuYjVb0dQISdMU5ZDf/qT
+        jvTws3rKVOdZX7MvHZ14+Q5h/w==
+X-Google-Smtp-Source: APiQypI4DCS3C4Gs2/uM8b7aDdMghRBbhCvJDYDOE420VG79WlV8vg37lT8Mmch2hkGzHpzN2Ug2Gw==
+X-Received: by 2002:ac2:489b:: with SMTP id x27mr6833828lfc.60.1587275954334;
+        Sat, 18 Apr 2020 22:59:14 -0700 (PDT)
+Received: from taos.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
+        by smtp.gmail.com with ESMTPSA id 4sm12407715ljf.79.2020.04.18.22.59.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Apr 2020 22:53:36 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 4/4] arm64: dts: meson-g12b-gtking-pro: add initial device-tree
-Date:   Sun, 19 Apr 2020 05:53:22 +0000
-Message-Id: <20200419055322.16138-5-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200419055322.16138-1-christianshewitt@gmail.com>
-References: <20200419055322.16138-1-christianshewitt@gmail.com>
+        Sat, 18 Apr 2020 22:59:13 -0700 (PDT)
+From:   Matt Ranostay <matt.ranostay@konsulko.com>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: chemical: add Atlas Scientific RTD-SM sensor docs
+Date:   Sun, 19 Apr 2020 08:59:06 +0300
+Message-Id: <20200419055907.23411-2-matt.ranostay@konsulko.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200419055907.23411-1-matt.ranostay@konsulko.com>
+References: <20200419055907.23411-1-matt.ranostay@konsulko.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference
-board with an S922X chip.
-
-- 4GB LPDDR4 RAM
-- 64GB eMMC storage
-- 10/100/1000 Base-T Ethernet
-- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-- HDMI 2.1 video
-- Analogue audio output
-- 1x RS232 port
-- 2x USB 2.0 port
-- 2x USB 3.0 ports
-- IR receiver
-- 1x full-size (not micro) SD card slot
-- 1x Power on/off button
-
-The rear RS232 port is not currently supported in the device-tree.
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-g12b-gtking-pro.dts     | 39 +++++++++++++++++++
- 2 files changed, 40 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+ .../devicetree/bindings/iio/chemical/atlas,sensor.yaml          | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 1fd28e84e808..0f377031cccb 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-new file mode 100644
-index 000000000000..c2bc1ca5a136
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-w400.dtsi"
-+#include "meson-g12-audio-hdmi.dtsi"
-+
-+/ {
-+	compatible = "azw,gtking", "amlogic,g12b";
-+	model = "Beelink GT-King Pro";
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		power-button {
-+			label = "suspend";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		white {
-+			label = "power:white";
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
+index edcd2904d50e..0e510a52920d 100644
+--- a/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
++++ b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
+@@ -17,6 +17,7 @@ description: |
+     http://www.atlas-scientific.com/_files/_datasheets/_oem/EC_oem_datasheet.pdf
+     http://www.atlas-scientific.com/_files/_datasheets/_oem/ORP_oem_datasheet.pdf
+     http://www.atlas-scientific.com/_files/_datasheets/_oem/pH_oem_datasheet.pdf
++    http://www.atlas-scientific.com/_files/_datasheets/_oem/RTD_oem_datasheet.pdf
+ 
+ properties:
+   compatible:
+@@ -25,6 +26,7 @@ properties:
+       - atlas,ec-sm
+       - atlas,orp-sm
+       - atlas,ph-sm
++      - atlas,rtd-sm
+ 
+   reg:
+      maxItems: 1
 -- 
-2.17.1
+2.20.1
 
