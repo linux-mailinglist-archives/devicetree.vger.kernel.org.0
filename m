@@ -2,166 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 254C51B0A63
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 14:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 052611B0A9C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 14:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729133AbgDTMro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 08:47:44 -0400
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:54523 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729125AbgDTMrn (ORCPT
+        id S1729412AbgDTMt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 08:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729409AbgDTMtZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 08:47:43 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id A9497469;
-        Mon, 20 Apr 2020 08:47:41 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 20 Apr 2020 08:47:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=4O8pI+mDeEP3GbZSfNlfRq+qy/A
-        6N194naVgCStRxOk=; b=uBoGN2FwOjBwpNvmwTjyWtqbYsuLde7J2Y8XTEpI9Ta
-        4McxRqkGLHrkzq8OprRf/Ulp18Ysy8p+wbaDpILB+/L/FPIrpTFOEYLSx36fBLht
-        T/46gjMH1CX05uyMlUpvbIq2KLMMQqF0y3F7ffga7UlXSMoKE78ysA3xM4K0lkAV
-        +Ap2O1keGtNJr0XLG1bn5v0rPZARd/+uBVW+TdeVpuNnuo+MOP87TeBHdYIFrnXa
-        B3C34BkulDE8c4emdsQtfAG8IGSD78z8Ggq0IAmYCbVpl2uM61cP7s5sKpTjDa+H
-        RUG9n6/jw0UBkVk9Mx6hGsgxG8fjEsv0aSBI52d7Odg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=4O8pI+
-        mDeEP3GbZSfNlfRq+qy/A6N194naVgCStRxOk=; b=gNaP1jkpxSv/Gv3pLb66gR
-        8F0WzDNSraxCbyqsocm4jE3yav+GbMeiF8CbUXMsDlpdJR9HtBhGhGjWcCnXCIuH
-        v+xPVfQbRX6FJtCE8s+50gdxUevGCEsjaKjwJ/dvxPZoz4eDjQXSIAfsp0XPOREk
-        tA6O8LFRFLSa94HIC1C6wyhviTwmXlygsKBxM0IKJ6T8dlUdgmgivY1kdg1WIKGD
-        vcFlCYDZlbiyfnMUrPK0RzrIOwtuhQ4H8hSIs6aWAyzMo06j1lNxL3D3KRH37ive
-        foLAfumFIYfI+/ARqrbRiJToo9nr3nEgtrtxDhNu1NxolNdEp622NUAzZQrYZ91g
-        ==
-X-ME-Sender: <xms:7JmdXtOLCUrfWTgU8jhJ9SOwQW393IJQO-cqAEbAuvpVAYr1MF2s4g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrgeefgdehiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
-    epghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
-    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
-    hordhtvggthh
-X-ME-Proxy: <xmx:7JmdXrGDpz7U_FD6dP_tJaSkUTeKJ6Joptp74Hdn_77MUWVAya58Ow>
-    <xmx:7JmdXiq_faWCS2Zu5oaZHuSGVz8VI2V8sAq7Aq8m94MkbY_dMQBavQ>
-    <xmx:7JmdXkoRlVm-3Y73ZLaYhepwpHC5-rL_5dKFkYlnTNQyRqTg4zbeyw>
-    <xmx:7ZmdXi3N5BiZobBekln9v08DtnUuwxohc1Dqo3v709IxZc8AP95UVg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 552C63280060;
-        Mon, 20 Apr 2020 08:47:40 -0400 (EDT)
-Date:   Mon, 20 Apr 2020 14:47:39 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        Mon, 20 Apr 2020 08:49:25 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13EBBC061A0C;
+        Mon, 20 Apr 2020 05:49:25 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id f19so10760336iog.5;
+        Mon, 20 Apr 2020 05:49:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=iDvRfbVf9THDBf1Pms1SmVEOSBofYzkdzChDMla8Sj4=;
+        b=qoPTTH/C2gxv+dLqooKi0oP3etwgI2MpwMv7iq5bECuizrvtm90YtPVA/uQC0xtVsp
+         RBdXZuvVgfFQOjVxyzj+l9GGJ1oADnVXGV+VpFtsPf7iGoWE8BgdqaQPp5oEr/sneSbI
+         SXrIatCRCy7xtcqpy+b72+TLU22Vk8sD3R8hc41cXo2R1C6uCx4BAzOlh4lAcorO9hLL
+         jW0R8stz9JxFsvWD5Bh1sYLoiL2u7OaVLwHVyFWmjr7Yfyzg8WkM+JBjruB5kzuEGX6H
+         NKCuOyq+L2NH/9GtrF28S11HqxeIpVjPnC/CJT8ZUBNA6v0d6bxolTYo2J8PQWXHif81
+         rUxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=iDvRfbVf9THDBf1Pms1SmVEOSBofYzkdzChDMla8Sj4=;
+        b=OgTq5v8chblMjU42WM9RCHk9CNCKgwHDLSehUeSzTYI7ahJJk03xdDOIeZ/tBgu7SB
+         oE8vozPwleNpt5r3cG1yUVRcyuzxEJRQsYXHwSDMwEfQKTgP6DAFBQKs4MU8F8eJkVM1
+         2A4uelszI8X4Rt6FuRt/K/SYUjOEDAdX9OP5ttVjTUrI2Yn9FmZ6pqDs5r3y6mADJEtI
+         8PxAkqQwDapc30wR/m8CgJqb+6bKCH+ltlyYv56W2RpnPFqCBr9MWr7WiUMTJJWqcPjZ
+         vLMBjStcEaZBd6DPVXGJvlLzgr//D11wAoddwaVPPSIzk+lm7Q/BMpXcX+dNdsftuPHk
+         A1Pw==
+X-Gm-Message-State: AGi0PuZbRFOWUjdSjgxeWPRX1P19J4iOzRRejeVSKjromMAssB67FPT+
+        uQ89qKQpah1c5N0EuYYYkqIbSI6d5bR1g+Q3w20=
+X-Google-Smtp-Source: APiQypKaZSsBFHDRc6ZNUTLfTPUf2bTUloz2jpZ0tEKTf3jF6cmVOHfHfGCVReoOY4Y95r/EhQK2KpRAhO9PiADwFPw=
+X-Received: by 2002:a6b:dd16:: with SMTP id f22mr15266052ioc.178.1587386964385;
+ Mon, 20 Apr 2020 05:49:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200419135011.18010-1-peron.clem@gmail.com> <20200420084547.q5xqlbnmug7l45p2@gilmour.lan>
+ <20200420103927.uvzotrolz2inz6q2@core.my.home> <CAJiuCcdDge21pRmN8LzKv_tMqBoD9KHg96MUxDS9gp0+xbroJg@mail.gmail.com>
+ <20200420124739.pxmtvktlyt7ppfjb@gilmour.lan>
+In-Reply-To: <20200420124739.pxmtvktlyt7ppfjb@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 20 Apr 2020 14:49:13 +0200
+Message-ID: <CAJiuCcdy-yKU61z30CxY7=aMedaRp928_FYffB9X=ergj9a2kw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/7] Add support for Allwinner H6 DVFS
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
         Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v3 0/7] Add support for Allwinner H6 DVFS
-Message-ID: <20200420124739.pxmtvktlyt7ppfjb@gilmour.lan>
-References: <20200419135011.18010-1-peron.clem@gmail.com>
- <20200420084547.q5xqlbnmug7l45p2@gilmour.lan>
- <20200420103927.uvzotrolz2inz6q2@core.my.home>
- <CAJiuCcdDge21pRmN8LzKv_tMqBoD9KHg96MUxDS9gp0+xbroJg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kp6c2uiwchhfgvss"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCcdDge21pRmN8LzKv_tMqBoD9KHg96MUxDS9gp0+xbroJg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime
 
---kp6c2uiwchhfgvss
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 20, 2020 at 02:36:32PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> Hi Ondrej, Maxime,
->=20
-> On Mon, 20 Apr 2020 at 12:39, Ond=C5=99ej Jirman <megous@megous.com> wrot=
-e:
+On Mon, 20 Apr 2020 at 14:47, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> On Mon, Apr 20, 2020 at 02:36:32PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi Ondrej, Maxime,
 > >
-> > Hi Maxime,
-> >
-> > On Mon, Apr 20, 2020 at 10:45:47AM +0200, Maxime Ripard wrote:
-> > > Hi,
+> > On Mon, 20 Apr 2020 at 12:39, Ond=C5=99ej Jirman <megous@megous.com> wr=
+ote:
 > > >
-> > > On Sun, Apr 19, 2020 at 03:50:04PM +0200, Cl=C3=A9ment P=C3=A9ron wro=
-te:
-> > > > Now that required drivers are merged we can contibute on DVFS
-> > > > support for Allwinner H6.
-> > > >
-> > > > This serie is based on Yangtao Li serie[0] and Ond=C5=99ej Jirman w=
-ork[1].
-> > > >
-> > > > Most of the OPP tables are taken from original vendor kernel[2].
-> > > > Plus there are new CPU frequencies at 1.6GHz, 1.7GHz and 1.8GHz.
-> > > >
-> > > > I wrote a simple script to randomly set a frequency during
-> > > > a random time[3]. This script is quite stressfull and set some high
-> > > > frequency without checking temperature. This can result on behavior
-> > > > that whould not occurs with the real cpufreq framework.
-> > > > As Maxime point out I also tested with cpufreq-ljt-stress-test
-> > > > (found here https://github.com/ssvb/cpuburn-arm).
-> > > > This script doesn't trigger any issue.
-> > > > I also test that that offlining CPU0 and doing DVFS on other CPUs
-> > > > works. As CPU regulator is only set for CPU0.
-> > > >
-> > > > The GPU devfreq was drop as the regulator is still not properly
-> > > > drive by panfrost driver[4].
-> > > > I will re-introduce it later.
-> > > >
-> > > > Ond=C5=99ej Jirman has an Orange Pi 3, Jernej has a PineH64 and a T=
-anix
-> > > > TX6 boards and I have a Beelink GS1 board so I have enable these
-> > > > boards. But CPU Devfreq is really touchy has it depends on:
-> > > > board design, SoC speed_grade and environement which can affect
-> > > > thermal cooling and have different behavior for different user.
-> > > >
-> > > > If people can test this serie and give feedback, I will try to
-> > > > introduce this in LibreElec tree, so LE community can test it.
+> > > Hi Maxime,
 > > >
-> > > Applied all of them, thanks!
+> > > On Mon, Apr 20, 2020 at 10:45:47AM +0200, Maxime Ripard wrote:
+> > > > Hi,
+> > > >
+> > > > On Sun, Apr 19, 2020 at 03:50:04PM +0200, Cl=C3=A9ment P=C3=A9ron w=
+rote:
+> > > > > Now that required drivers are merged we can contibute on DVFS
+> > > > > support for Allwinner H6.
+> > > > >
+> > > > > This serie is based on Yangtao Li serie[0] and Ond=C5=99ej Jirman=
+ work[1].
+> > > > >
+> > > > > Most of the OPP tables are taken from original vendor kernel[2].
+> > > > > Plus there are new CPU frequencies at 1.6GHz, 1.7GHz and 1.8GHz.
+> > > > >
+> > > > > I wrote a simple script to randomly set a frequency during
+> > > > > a random time[3]. This script is quite stressfull and set some hi=
+gh
+> > > > > frequency without checking temperature. This can result on behavi=
+or
+> > > > > that whould not occurs with the real cpufreq framework.
+> > > > > As Maxime point out I also tested with cpufreq-ljt-stress-test
+> > > > > (found here https://github.com/ssvb/cpuburn-arm).
+> > > > > This script doesn't trigger any issue.
+> > > > > I also test that that offlining CPU0 and doing DVFS on other CPUs
+> > > > > works. As CPU regulator is only set for CPU0.
+> > > > >
+> > > > > The GPU devfreq was drop as the regulator is still not properly
+> > > > > drive by panfrost driver[4].
+> > > > > I will re-introduce it later.
+> > > > >
+> > > > > Ond=C5=99ej Jirman has an Orange Pi 3, Jernej has a PineH64 and a=
+ Tanix
+> > > > > TX6 boards and I have a Beelink GS1 board so I have enable these
+> > > > > boards. But CPU Devfreq is really touchy has it depends on:
+> > > > > board design, SoC speed_grade and environement which can affect
+> > > > > thermal cooling and have different behavior for different user.
+> > > > >
+> > > > > If people can test this serie and give feedback, I will try to
+> > > > > introduce this in LibreElec tree, so LE community can test it.
+> > > >
+> > > > Applied all of them, thanks!
+> > >
+> > > Please also apply "[PATCH v2 1/7] arm64: dts: allwinner: h6: Add
+> > > clock to CPU cores" from the v2 series, otherwise cpufreq will
+> > > not work.
+> > >
+> > > I can also send a missing patch adding the trip points, and cpu
+> > > as a cooling device, that I linked in my other reply to this patch
+> > > series afterwards, if Cl=C3=A9ment wants.
 > >
-> > Please also apply "[PATCH v2 1/7] arm64: dts: allwinner: h6: Add
-> > clock to CPU cores" from the v2 series, otherwise cpufreq will
-> > not work.
+> > Indeed I have sent using the following cmd : "git send-email --to=3DXXX=
+X HEAD~7"
+> > from the previous version.
 > >
-> > I can also send a missing patch adding the trip points, and cpu
-> > as a cooling device, that I linked in my other reply to this patch
-> > series afterwards, if Cl=C3=A9ment wants.
->=20
-> Indeed I have sent using the following cmd : "git send-email --to=3DXXXX =
-HEAD~7"
-> from the previous version.
->=20
-> I should had do Instead: "git send-email --to=3DXXXX next/master "
->=20
-> Sorry for that :(
+> > I should had do Instead: "git send-email --to=3DXXXX next/master "
+> >
+> > Sorry for that :(
+>
+> I haven't pushed anything yet, can you resend the proper branch?
 
-I haven't pushed anything yet, can you resend the proper branch?
+Yes, I will,
 
 Thanks!
-Maxime
-
---kp6c2uiwchhfgvss
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXp2Z6wAKCRDj7w1vZxhR
-xXoXAP0Wa0t3EnXDf6veNECaAM7Mc/wslH1BMhCQ0Z0+C2JW4AD/VIJlxoE3NFRZ
-R97rKIRBipUXmveGudSVP2ZFhDihHwY=
-=+hUu
------END PGP SIGNATURE-----
-
---kp6c2uiwchhfgvss--
+>
+> Thanks!
+> Maxime
