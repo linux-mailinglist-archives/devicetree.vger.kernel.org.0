@@ -2,341 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40BF81B02D0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC001B027F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbgDTHXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 03:23:05 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:58972 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726039AbgDTHXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 03:23:04 -0400
-Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 7FD6A20CDC;
-        Mon, 20 Apr 2020 07:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1587366797; bh=XVtJE3axiwJF42CUhbXtApGSEySTohRvJkGky4xCzys=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Kzi21q9ZTGKOGrYz23D0JWpEXFTNk0J2dRUDBkoZAizsDsQpNSTJsR9LpOQsCV68n
-         2PhUg0K72eXs2VVFRnZNTTDa4fMaEjSZYjVETwxg1mVPUgUxLT3z//VSEWPYVDSGw9
-         QHF8Ul7HG/ETIG8bZ4PdmZnilH02/5Mz1mtM8QZUpVB88VjuZi1Xvi/PoZmqB/1l14
-         1JnbETnC0inMV+U3bcv83QAIIvrizyY0rjWk1pTMgN9lgfLLPUeEUeKD7j1AeHeSZx
-         evO/jGhwlDHWQ51++73so0DB+7U642P9LJkJLnRBPSo12tWP2A84BrZQA8SqZyc8xz
-         J3VYVc0rJ9Fyg==
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Huacai Chen <chenhc@lemote.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Paul Burton <paulburton@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 5/5] MIPS: Loongson64: Switch to generic PCI driver
-Date:   Mon, 20 Apr 2020 15:12:11 +0800
-Message-Id: <20200420071220.155357-5-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.26.0.rc2
-In-Reply-To: <20200420071220.155357-1-jiaxun.yang@flygoat.com>
-References: <20200330114239.1112759-1-jiaxun.yang@flygoat.com>
- <20200420071220.155357-1-jiaxun.yang@flygoat.com>
+        id S1726343AbgDTHOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 03:14:34 -0400
+Received: from esa3.hgst.iphmx.com ([216.71.153.141]:63860 "EHLO
+        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbgDTHOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 03:14:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1587366872; x=1618902872;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=KwU7xueAau9D+GU6TFQHWns+Dngy6h6T5a39ygBn5WE=;
+  b=gtoPqYCtd2Tsy2jHywZAvWH6Lz1Wq7kf3Ejl9IG69hUGxYOTbVDZzCwx
+   N6KOOuA5nE1bA2Nq/mYwF4wAKv1d5ijEPC7VHFxWvv5Rjg1r4GHiPM7gm
+   Son2a60o9TWaxiEys0GaKZUajsPh9CJLeJtrPD5X1FgwrUBnvXPdspDZ1
+   bBV2mFh9zoVL1KCG2N75YN+IMykPAU2bwMox2sZ1hbQArn7wtGV9J3lpo
+   909016hprSNkemfY+VEAEo9SDsnrV91eIKyIqbzxd7FnXFMusY51x/z5K
+   1iyEYMKcmeEeesceT2/w+Yn1AdHPrK+2hzd1KeIW9tvuVIQdcWLIQ7FYR
+   g==;
+IronPort-SDR: iHu8Qrvlhi6TppXa4/5HgckMMUuErJFlteZnfI2dsSdWkixVgEnPctKBgX2qqx3pbE6TVHSuk9
+ pTz1RMglhQvI+F1/kJZK5ChVCOD8LEZDhcEBke1v0ZbN2vrYGUNPueLVPJM+2KWOSZph/eene4
+ hgRGgUh/lfTK1E63uiUDY5TaRcFWesjwEjMXFN8jNAUQ2T6lKQT/vcdjk0Zs+NGVl60Pvm0Soj
+ 9dNctr1p2znfar6SKSvnEJ/dbLqMqeK8y8oyktG93ukXPDn+XwUYVqrzJVTP2hj6bKIRxoYzOD
+ tP8=
+X-IronPort-AV: E=Sophos;i="5.72,406,1580745600"; 
+   d="scan'208";a="140044046"
+Received: from mail-dm6nam10lp2106.outbound.protection.outlook.com (HELO NAM10-DM6-obe.outbound.protection.outlook.com) ([104.47.58.106])
+  by ob1.hgst.iphmx.com with ESMTP; 20 Apr 2020 15:14:31 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E/T/+zOGmkIIRzDGakv+uBc/TDirFP7HYEBa9RdO65N94vymWWyXJPF9CH8XV2bc4ABrdj25Hr9C8LlMqN4btjOuYX797/o8ANERR4qfweknAX014vDGQZBOS5kTmkmrhxAKyz+cJ1FdO22MVAaSj8Bl7ij353k7AhNJzkEdjHs+Zab3xQ8xXADJY7LZrtzJ2ntMhsxi1pSIvRavcZwAXDNf+CV0P2Tpc1jP5clU1Y0k66WFiHWaXFZYFfTWyD9+ZYrw7WbITPLZkxBpiJclqFqSVKduJQ6HVYkBf/V+KKG5v0nCTs19YEuJwaWH0+X3h90lWWF2oWR5nNZQyqNRLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KwU7xueAau9D+GU6TFQHWns+Dngy6h6T5a39ygBn5WE=;
+ b=jdZFQuxwtSkHUo6Cql5AGLJONR0g4mNT1QMk8jlGRwh/A8oylob86IuXS3YLX+mZhmdzUuKKvhM+WVQ6nLeahKmUV7jIJDL6mK6xt4S5ylkqAfHHcTheQLRv9B1mBh3Q1/GONLDUMviAh6Q7xCB3jLUx3Gn90pfbho0dVjc2w6lBg0E0LYeTT1igD8pmlqhilD9EX+E2RZYt/ek4yMsuocU6JXDdfjJOfEzMc2kbhM/n+KIbjxfkg/l1N+tiBbNp4XtEtpvI5xtDJ98UXvTXHpjcbIySaF1CngMKZUM6iUGnWnbjwo/9z4O0tRjJDcUEj8t9ynSTw9H4BItIiFFEjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KwU7xueAau9D+GU6TFQHWns+Dngy6h6T5a39ygBn5WE=;
+ b=IDokG2/5j8EL4dKdnQOZWiq4HkHzdjOWqXtyntKy+q66m2bebmx75sJev4zd4z42XXVbLmOFVyzY5k60dqcZSoGplKABuu6X8pqaYKJGK3W4EWcwRg/z2hF+s/xKQRy6qXFyyKb0WeBtl4ehW5tQ1l8InIql2iH/c+x8O617lS0=
+Received: from SN6PR04MB4640.namprd04.prod.outlook.com (2603:10b6:805:a4::19)
+ by SN6PR04MB5216.namprd04.prod.outlook.com (2603:10b6:805:f7::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Mon, 20 Apr
+ 2020 07:14:29 +0000
+Received: from SN6PR04MB4640.namprd04.prod.outlook.com
+ ([fe80::3877:5e49:6cdd:c8b]) by SN6PR04MB4640.namprd04.prod.outlook.com
+ ([fe80::3877:5e49:6cdd:c8b%5]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
+ 07:14:29 +0000
+From:   Avri Altman <Avri.Altman@wdc.com>
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        "robh@kernel.org" <robh@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "kwmad.kim@samsung.com" <kwmad.kim@samsung.com>,
+        "stanley.chu@mediatek.com" <stanley.chu@mediatek.com>,
+        "cang@codeaurora.org" <cang@codeaurora.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 03/10] scsi: ufs: add quirk to enable host controller
+ without hce
+Thread-Topic: [PATCH v6 03/10] scsi: ufs: add quirk to enable host controller
+ without hce
+Thread-Index: AQHWFON2F3tEHGSKoUec1wnTuJZOw6iBnIZw
+Date:   Mon, 20 Apr 2020 07:14:29 +0000
+Message-ID: <SN6PR04MB46403B55EB956336690B0C66FCD40@SN6PR04MB4640.namprd04.prod.outlook.com>
+References: <20200417175944.47189-1-alim.akhtar@samsung.com>
+        <CGME20200417181012epcas5p2004ac8f0d793abd4d58c096ff490da68@epcas5p2.samsung.com>
+ <20200417175944.47189-4-alim.akhtar@samsung.com>
+In-Reply-To: <20200417175944.47189-4-alim.akhtar@samsung.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Avri.Altman@wdc.com; 
+x-originating-ip: [212.25.79.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 3463cdf6-b593-4b35-e11f-08d7e4fa7799
+x-ms-traffictypediagnostic: SN6PR04MB5216:
+x-microsoft-antispam-prvs: <SN6PR04MB5216D064E09B63E65677511BFCD40@SN6PR04MB5216.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:400;
+x-forefront-prvs: 03793408BA
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR04MB4640.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(39860400002)(396003)(136003)(346002)(366004)(376002)(54906003)(2906002)(71200400001)(4326008)(110136005)(7416002)(316002)(55016002)(5660300002)(186003)(8676002)(81156014)(66946007)(76116006)(66476007)(66556008)(64756008)(66446008)(86362001)(9686003)(7696005)(558084003)(52536014)(26005)(6506007)(478600001)(33656002)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: imFiLJQLrq6/+8Ob3ol70vuoq2+bwySpC/nMzYbARCfJrfc/lpjAuJzwPqwQYi48juk2vTzW4bj57VLhJs2EkRqjSmoJuaobx9g97st1jWRY8QG6Gc+kpIVF24Km6wyeoXao+n3IWlmov4po2FZI1HRpC5XFkWwteBLbNHLDblJsx+D6DhTyf1mJxsL5ppXNX+cafTveUrZcS63t04YpTAcO63dBySpx+sf1BsCK1FaHWGbut4I8T0eQRsFNM+cGWDlPD9/3kia70vkDIkVfllEHbiOMPgQo1R3I6q5E3W6d23Szal/ADSmDhzrP13ulS/1gGs7bfbJh7AEIQiU/GJEIkTX5YK2kWPHhiEwNt1ybYV9TdNkyDaHlE6SaJAwxFxI6DALw4VhY2QiyQnZQMnd4XNPD41pzJiC5fJQW74GWgpxotwNZWNtarXRuAXZL
+x-ms-exchange-antispam-messagedata: XdXdP1NyAWF5duhh4xXjAN9VLtPzzhfzgVZDV0J7RbkRIY7zPd0sKiUR52hfattfnulev8J99COSPwdm6a+ECEyvk77PfLW3k++SMB/YIV2UZVhILlWWaqVEjqDFQcz8iNvfb65c69VIqaLPEuXxuw==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3463cdf6-b593-4b35-e11f-08d7e4fa7799
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2020 07:14:29.4635
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /QQT87oP9Bs6Jl1I5kIp1pFJaovHZxJXliFuLBQLpaj4W/5l9ywHiYZ7gFOq6Lh7tcByGtxn1GFdnk0l9TF70w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB5216
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now enable generic PCI driver in Kconfig, and remove legacy
-PCI driver code.
-
-Radeon vbios quirk is moved to the platform folder to fit the
-new structure.
-
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- arch/mips/Kconfig                  |   1 +
- arch/mips/loongson64/Makefile      |   2 +-
- arch/mips/loongson64/vbios_quirk.c |  29 ++++++++
- arch/mips/pci/Makefile             |   1 -
- arch/mips/pci/fixup-loongson3.c    |  71 ------------------
- arch/mips/pci/ops-loongson3.c      | 116 -----------------------------
- 6 files changed, 31 insertions(+), 189 deletions(-)
- create mode 100644 arch/mips/loongson64/vbios_quirk.c
- delete mode 100644 arch/mips/pci/fixup-loongson3.c
- delete mode 100644 arch/mips/pci/ops-loongson3.c
-
-diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-index 9f15539a6342..16f7ffef54e1 100644
---- a/arch/mips/Kconfig
-+++ b/arch/mips/Kconfig
-@@ -481,6 +481,7 @@ config MACH_LOONGSON64
- 	select IRQ_MIPS_CPU
- 	select NR_CPUS_DEFAULT_64
- 	select USE_GENERIC_EARLY_PRINTK_8250
-+	select PCI_DRIVERS_GENERIC
- 	select SYS_HAS_CPU_LOONGSON64
- 	select SYS_HAS_EARLY_PRINTK
- 	select SYS_SUPPORTS_SMP
-diff --git a/arch/mips/loongson64/Makefile b/arch/mips/loongson64/Makefile
-index b7f40b179c71..f04461839540 100644
---- a/arch/mips/loongson64/Makefile
-+++ b/arch/mips/loongson64/Makefile
-@@ -8,6 +8,6 @@ obj-$(CONFIG_MACH_LOONGSON64) += cop2-ex.o platform.o acpi_init.o dma.o \
- obj-$(CONFIG_SMP)	+= smp.o
- obj-$(CONFIG_NUMA)	+= numa.o
- obj-$(CONFIG_RS780_HPET) += hpet.o
--obj-$(CONFIG_PCI) += pci.o
- obj-$(CONFIG_LOONGSON_MC146818) += rtc.o
- obj-$(CONFIG_SUSPEND) += pm.o
-+obj-$(CONFIG_PCI_QUIRKS) += vbios_quirk.o
-diff --git a/arch/mips/loongson64/vbios_quirk.c b/arch/mips/loongson64/vbios_quirk.c
-new file mode 100644
-index 000000000000..1f0a462aeddd
---- /dev/null
-+++ b/arch/mips/loongson64/vbios_quirk.c
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/pci.h>
-+#include <loongson.h>
-+
-+static void pci_fixup_radeon(struct pci_dev *pdev)
-+{
-+	struct resource *res = &pdev->resource[PCI_ROM_RESOURCE];
-+
-+	if (res->start)
-+		return;
-+
-+	if (!loongson_sysconf.vgabios_addr)
-+		return;
-+
-+	pci_disable_rom(pdev);
-+	if (res->parent)
-+		release_resource(res);
-+
-+	res->start = virt_to_phys((void *) loongson_sysconf.vgabios_addr);
-+	res->end   = res->start + 256*1024 - 1;
-+	res->flags = IORESOURCE_MEM | IORESOURCE_ROM_SHADOW |
-+		     IORESOURCE_PCI_FIXED;
-+
-+	dev_info(&pdev->dev, "BAR %d: assigned %pR for Radeon ROM\n",
-+		 PCI_ROM_RESOURCE, res);
-+}
-+DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_ATI, 0x9615,
-+				PCI_CLASS_DISPLAY_VGA, 8, pci_fixup_radeon);
-diff --git a/arch/mips/pci/Makefile b/arch/mips/pci/Makefile
-index 342ce10ef593..438f10955d89 100644
---- a/arch/mips/pci/Makefile
-+++ b/arch/mips/pci/Makefile
-@@ -35,7 +35,6 @@ obj-$(CONFIG_LASAT)		+= pci-lasat.o
- obj-$(CONFIG_MIPS_COBALT)	+= fixup-cobalt.o
- obj-$(CONFIG_LEMOTE_FULOONG2E)	+= fixup-fuloong2e.o ops-loongson2.o
- obj-$(CONFIG_LEMOTE_MACH2F)	+= fixup-lemote2f.o ops-loongson2.o
--obj-$(CONFIG_MACH_LOONGSON64)	+= fixup-loongson3.o ops-loongson3.o
- obj-$(CONFIG_MIPS_MALTA)	+= fixup-malta.o pci-malta.o
- obj-$(CONFIG_PMC_MSP7120_GW)	+= fixup-pmcmsp.o ops-pmcmsp.o
- obj-$(CONFIG_PMC_MSP7120_EVAL)	+= fixup-pmcmsp.o ops-pmcmsp.o
-diff --git a/arch/mips/pci/fixup-loongson3.c b/arch/mips/pci/fixup-loongson3.c
-deleted file mode 100644
-index 8a741c2c6685..000000000000
---- a/arch/mips/pci/fixup-loongson3.c
-+++ /dev/null
-@@ -1,71 +0,0 @@
--/*
-- * fixup-loongson3.c
-- *
-- * Copyright (C) 2012 Lemote, Inc.
-- * Author: Xiang Yu, xiangy@lemote.com
-- *         Chen Huacai, chenhc@lemote.com
-- *
-- * This program is free software; you can redistribute  it and/or modify it
-- * under  the terms of  the GNU General  Public License as published by the
-- * Free Software Foundation;  either version 2 of the  License, or (at your
-- * option) any later version.
-- *
-- * THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
-- * WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
-- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
-- * NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
-- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-- * NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
-- * USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-- * ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
-- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-- *
-- */
--
--#include <linux/pci.h>
--#include <boot_param.h>
--
--static void print_fixup_info(const struct pci_dev *pdev)
--{
--	dev_info(&pdev->dev, "Device %x:%x, irq %d\n",
--			pdev->vendor, pdev->device, pdev->irq);
--}
--
--int pcibios_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
--{
--	print_fixup_info(dev);
--	return dev->irq;
--}
--
--static void pci_fixup_radeon(struct pci_dev *pdev)
--{
--	struct resource *res = &pdev->resource[PCI_ROM_RESOURCE];
--
--	if (res->start)
--		return;
--
--	if (!loongson_sysconf.vgabios_addr)
--		return;
--
--	pci_disable_rom(pdev);
--	if (res->parent)
--		release_resource(res);
--
--	res->start = virt_to_phys((void *) loongson_sysconf.vgabios_addr);
--	res->end   = res->start + 256*1024 - 1;
--	res->flags = IORESOURCE_MEM | IORESOURCE_ROM_SHADOW |
--		     IORESOURCE_PCI_FIXED;
--
--	dev_info(&pdev->dev, "BAR %d: assigned %pR for Radeon ROM\n",
--		 PCI_ROM_RESOURCE, res);
--}
--
--DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_ATI, PCI_ANY_ID,
--				PCI_CLASS_DISPLAY_VGA, 8, pci_fixup_radeon);
--
--/* Do platform specific device initialization at pci_enable_device() time */
--int pcibios_plat_dev_init(struct pci_dev *dev)
--{
--	return 0;
--}
-diff --git a/arch/mips/pci/ops-loongson3.c b/arch/mips/pci/ops-loongson3.c
-deleted file mode 100644
-index 2f6ad36bdea6..000000000000
---- a/arch/mips/pci/ops-loongson3.c
-+++ /dev/null
-@@ -1,116 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0
--#include <linux/types.h>
--#include <linux/pci.h>
--#include <linux/kernel.h>
--
--#include <asm/mips-boards/bonito64.h>
--
--#include <loongson.h>
--
--#define PCI_ACCESS_READ  0
--#define PCI_ACCESS_WRITE 1
--
--#define HT1LO_PCICFG_BASE      0x1a000000
--#define HT1LO_PCICFG_BASE_TP1  0x1b000000
--
--static int loongson3_pci_config_access(unsigned char access_type,
--		struct pci_bus *bus, unsigned int devfn,
--		int where, u32 *data)
--{
--	unsigned char busnum = bus->number;
--	int function = PCI_FUNC(devfn);
--	int device = PCI_SLOT(devfn);
--	int reg = where & ~3;
--	void *addrp;
--	u64 addr;
--
--	if (where < PCI_CFG_SPACE_SIZE) { /* standard config */
--		addr = (busnum << 16) | (device << 11) | (function << 8) | reg;
--		if (busnum == 0) {
--			if (device > 31)
--				return PCIBIOS_DEVICE_NOT_FOUND;
--			addrp = (void *)TO_UNCAC(HT1LO_PCICFG_BASE | addr);
--		} else {
--			addrp = (void *)TO_UNCAC(HT1LO_PCICFG_BASE_TP1 | addr);
--		}
--	} else if (where < PCI_CFG_SPACE_EXP_SIZE) {  /* extended config */
--		struct pci_dev *rootdev;
--
--		rootdev = pci_get_domain_bus_and_slot(0, 0, 0);
--		if (!rootdev)
--			return PCIBIOS_DEVICE_NOT_FOUND;
--
--		addr = pci_resource_start(rootdev, 3);
--		if (!addr)
--			return PCIBIOS_DEVICE_NOT_FOUND;
--
--		addr |= busnum << 20 | device << 15 | function << 12 | reg;
--		addrp = (void *)TO_UNCAC(addr);
--	} else {
--		return PCIBIOS_DEVICE_NOT_FOUND;
--	}
--
--	if (access_type == PCI_ACCESS_WRITE)
--		writel(*data, addrp);
--	else {
--		*data = readl(addrp);
--		if (*data == 0xffffffff) {
--			*data = -1;
--			return PCIBIOS_DEVICE_NOT_FOUND;
--		}
--	}
--	return PCIBIOS_SUCCESSFUL;
--}
--
--static int loongson3_pci_pcibios_read(struct pci_bus *bus, unsigned int devfn,
--				 int where, int size, u32 *val)
--{
--	u32 data = 0;
--	int ret = loongson3_pci_config_access(PCI_ACCESS_READ,
--			bus, devfn, where, &data);
--
--	if (ret != PCIBIOS_SUCCESSFUL)
--		return ret;
--
--	if (size == 1)
--		*val = (data >> ((where & 3) << 3)) & 0xff;
--	else if (size == 2)
--		*val = (data >> ((where & 3) << 3)) & 0xffff;
--	else
--		*val = data;
--
--	return PCIBIOS_SUCCESSFUL;
--}
--
--static int loongson3_pci_pcibios_write(struct pci_bus *bus, unsigned int devfn,
--				  int where, int size, u32 val)
--{
--	u32 data = 0;
--	int ret;
--
--	if (size == 4)
--		data = val;
--	else {
--		ret = loongson3_pci_config_access(PCI_ACCESS_READ,
--				bus, devfn, where, &data);
--		if (ret != PCIBIOS_SUCCESSFUL)
--			return ret;
--
--		if (size == 1)
--			data = (data & ~(0xff << ((where & 3) << 3))) |
--			    (val << ((where & 3) << 3));
--		else if (size == 2)
--			data = (data & ~(0xffff << ((where & 3) << 3))) |
--			    (val << ((where & 3) << 3));
--	}
--
--	ret = loongson3_pci_config_access(PCI_ACCESS_WRITE,
--			bus, devfn, where, &data);
--
--	return ret;
--}
--
--struct pci_ops loongson_pci_ops = {
--	.read = loongson3_pci_pcibios_read,
--	.write = loongson3_pci_pcibios_write
--};
--- 
-2.26.0.rc2
-
+PiANCj4gU29tZSBob3N0IGNvbnRyb2xsZXJzIGRvbid0IHN1cHBvcnQgaG9zdCBjb250cm9sbGVy
+IGVuYWJsZSB2aWEgSENFLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU2V1bmd3b24gSmVvbiA8ZXNz
+dXVqQGdtYWlsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogQWxpbSBBa2h0YXIgPGFsaW0uYWtodGFy
+QHNhbXN1bmcuY29tPg0KUmV2aWV3ZWQtYnk6IEF2cmkgQWx0bWFuIDxhdnJpLmFsdG1hbkB3ZGMu
+Y29tPg0KDQo=
