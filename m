@@ -2,501 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AED841B1082
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 17:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC421B10AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 17:50:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729025AbgDTPo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 11:44:58 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:46970 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728555AbgDTPow (ORCPT
+        id S1728549AbgDTPuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 11:50:02 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:39520 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725971AbgDTPuB (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 11:44:52 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03KFc4KX020208;
-        Mon, 20 Apr 2020 10:44:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=PODMain02222019;
- bh=lTeej+5k8Ht4ISNxOOdL8NVY+oUng88XYZqwwEhbFCs=;
- b=gLyzr8do7jXUIX2F185VnJz3O8gcxm9uVl2RUktq5qGGJknSYU34Qyz7FIIROmleF5e4
- aw+Vh0bxeBkq3d427RixgSYSMgu7iEZE70gJa76Tq/G/83ltLqbIxieJVSE92w/gWsMM
- YsMNO5w40CwYay2MlIY3ikddAsRQkYuWbQOJKxKvqNzXQA8c9pCoDr2iQmdQ3l+mJXeN
- ONlI5uoBHasYNwGv3XuFnPvAgHhbnPZsGFTjw+X4E1q2a9OE+EoC8EF8VBNzlXYjLD6X
- w3L8HyTYEKhawU9ivylX4Bw1UwHS1WVxhXp5zcRWYeM1IDvYu8nbsxK5AEBkdJ78r45e fQ== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 30fxy4b9hp-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 20 Apr 2020 10:44:47 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 20 Apr
- 2020 16:44:44 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Mon, 20 Apr 2020 16:44:44 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D2EF42AB;
-        Mon, 20 Apr 2020 15:44:44 +0000 (UTC)
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <cw00.choi@samsung.com>, <robh+dt@kernel.org>,
-        <lee.jones@linaro.org>, <broonie@kernel.org>
-CC:     <myungjoo.ham@samsung.com>, <lgirdwood@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: [PATCH 4/4] mfd: arizona: Move binding over to dtschema
-Date:   Mon, 20 Apr 2020 16:44:44 +0100
-Message-ID: <20200420154444.12332-5-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200420154444.12332-1-ckeepax@opensource.cirrus.com>
-References: <20200420154444.12332-1-ckeepax@opensource.cirrus.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- ip4:5.172.152.52 -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
- clxscore=1015 adultscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2003020000 definitions=main-2004200131
+        Mon, 20 Apr 2020 11:50:01 -0400
+X-IronPort-AV: E=Sophos;i="5.72,406,1580742000"; 
+   d="scan'208";a="45217578"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 21 Apr 2020 00:49:59 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id D1FA4400D4A4;
+        Tue, 21 Apr 2020 00:49:57 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3] arm64: dts: renesas: r8a774c0-cat874: Add support for AISTARVISION MIPI Adapter V2.1
+Date:   Mon, 20 Apr 2020 16:49:54 +0100
+Message-Id: <1587397794-11237-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
- Documentation/devicetree/bindings/mfd/arizona.txt  | 101 --------
- .../devicetree/bindings/mfd/wlf,arizona.yaml       | 288 +++++++++++++++++++++
- MAINTAINERS                                        |   8 +-
- 3 files changed, 292 insertions(+), 105 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/arizona.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/wlf,arizona.yaml
+This patch adds support for AISTARVISION MIPI Adapter V2.1 board connected
+to G2E board. Common file aistarvision-mipi-adapter-2.1.dtsi is created
+which have the camera endpoint nodes for imx219 and ov5645 so that this can
+be re-used with other G2x platforms.
 
-diff --git a/Documentation/devicetree/bindings/mfd/arizona.txt b/Documentation/devicetree/bindings/mfd/arizona.txt
-deleted file mode 100644
-index 148ef621a5e5d..0000000000000
---- a/Documentation/devicetree/bindings/mfd/arizona.txt
-+++ /dev/null
-@@ -1,101 +0,0 @@
--Cirrus Logic/Wolfson Microelectronics Arizona class audio SoCs
--
--These devices are audio SoCs with extensive digital capabilities and a range
--of analogue I/O.
--
--Required properties:
--
--  - compatible : One of the following chip-specific strings:
--        "cirrus,cs47l24"
--        "wlf,wm5102"
--        "wlf,wm5110"
--        "wlf,wm8280"
--        "wlf,wm8997"
--        "wlf,wm8998"
--        "wlf,wm1814"
--        "wlf,wm1831"
--
--  - reg : I2C slave address when connected using I2C, chip select number when
--    using SPI.
--
--  - interrupts : The interrupt line the /IRQ signal for the device is
--    connected to.
--  - interrupt-controller : Arizona class devices contain interrupt controllers
--    and may provide interrupt services to other devices.
--  - #interrupt-cells: the number of cells to describe an IRQ, this should be 2.
--    The first cell is the IRQ number.
--    The second cell is the flags, encoded as the trigger masks from
--    Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
--
--  - gpio-controller : Indicates this device is a GPIO controller.
--  - #gpio-cells : Must be 2. The first cell is the pin number and the
--    second cell is used to specify optional parameters, see ../gpio/gpio.txt
--    for details.
--
--  - AVDD-supply, DBVDD1-supply, CPVDD-supply : Power supplies for the device,
--    as covered in Documentation/devicetree/bindings/regulator/regulator.txt
--
--  - DBVDD2-supply, DBVDD3-supply : Additional databus power supplies (wm5102,
--    wm5110, wm8280, wm8998, wm1814)
--
--  - SPKVDDL-supply, SPKVDDR-supply : Speaker driver power supplies (wm5102,
--    wm5110, wm8280, wm8998, wm1814)
--
--  - SPKVDD-supply : Speaker driver power supply (wm8997)
--
--  - DCVDD-supply : Main power supply (cs47l24, wm1831)
--
--  - MICVDD-supply : Microphone power supply (cs47l24, wm1831)
--
--Optional properties:
--
--  - reset-gpios : GPIO specifier for the GPIO controlling /RESET
--
--  - clocks: Should reference the clocks supplied on MCLK1 and MCLK2
--  - clock-names: Should contains two strings:
--      "mclk1" for the clock supplied on MCLK1, recommended to be a high
--      quality audio reference clock
--      "mclk2" for the clock supplied on MCLK2, recommended to be an always on
--      32k clock
--
--  - wlf,gpio-defaults : A list of GPIO configuration register values. Defines
--    for the appropriate values can found in <dt-bindings/mfd/arizona.txt>. If
--    absent, no configuration of these registers is performed. If any entry has
--    a value that is out of range for a 16 bit register then the chip default
--    will be used. If present exactly five values must be specified.
--
--  - DCVDD-supply, MICVDD-supply : Power supplies, only need to be specified if
--    they are being externally supplied. As covered in
--    Documentation/devicetree/bindings/regulator/regulator.txt
--    (wm5102, wm5110, wm8280, wm8997, wm8998, wm1814)
--
--Deprecated properties:
--
--  - wlf,reset : GPIO specifier for the GPIO controlling /RESET
--
--Also see child specific device properties:
--  Regulator - ../regulator/arizona-regulator.txt
--  Extcon    - ../extcon/extcon-arizona.txt
--  Sound     - ../sound/wlf,arizona.txt
--
--Example:
--
--codec: wm5102@1a {
--	compatible = "wlf,wm5102";
--	reg = <0x1a>;
--	interrupts = <347>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--        interrupt-parent = <&gic>;
--
--	gpio-controller;
--	#gpio-cells = <2>;
--
--	wlf,gpio-defaults = <
--		ARIZONA_GP_FN_TXLRCLK
--		ARIZONA_GP_DEFAULT
--		ARIZONA_GP_DEFAULT
--		ARIZONA_GP_DEFAULT
--		ARIZONA_GP_DEFAULT
--	>;
--};
-diff --git a/Documentation/devicetree/bindings/mfd/wlf,arizona.yaml b/Documentation/devicetree/bindings/mfd/wlf,arizona.yaml
+r8a774c0-ek874-mipi-2.1.dts file enables the required VIN/CSI nodes and by
+default ties ov5645 camera endpoint to CSI2.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+Changes for v3:
+ * Renamed the fixed clock to osc25250_clk and reused the same for both
+   the sensors as pin 3-4 and 5-6 of J14 are short.
+ * Rebased the patch on top of renesas-drivers/master
+
+Changes for v2:
+ * Dropped #{address,size}-cells
+ * Dropped unit address and reg for port
+
+ arch/arm64/boot/dts/renesas/Makefile               |  3 +-
+ .../dts/renesas/aistarvision-mipi-adapter-2.1.dtsi | 94 ++++++++++++++++++++++
+ .../boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts   | 72 +++++++++++++++++
+ 3 files changed, 168 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
+
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index a7ec7a7..d17351c 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -5,7 +5,8 @@ dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex-idk-1110wr.dtb
+ dtb-$(CONFIG_ARCH_R8A774B1) += r8a774b1-hihope-rzg2n.dtb
+ dtb-$(CONFIG_ARCH_R8A774B1) += r8a774b1-hihope-rzg2n-ex.dtb
+ dtb-$(CONFIG_ARCH_R8A774C0) += r8a774c0-cat874.dtb r8a774c0-ek874.dtb \
+-			       r8a774c0-ek874-idk-2121wr.dtb
++			       r8a774c0-ek874-idk-2121wr.dtb \
++			       r8a774c0-ek874-mipi-2.1.dtb
+ dtb-$(CONFIG_ARCH_R8A77950) += r8a77950-salvator-x.dtb
+ dtb-$(CONFIG_ARCH_R8A77950) += r8a77950-ulcb.dtb r8a77950-ulcb-kf.dtb
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a77951-salvator-x.dtb r8a77951-salvator-xs.dtb
+diff --git a/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi b/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
 new file mode 100644
-index 0000000000000..d6032c19db616
+index 0000000..dac6ff4
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/wlf,arizona.yaml
-@@ -0,0 +1,288 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/wlf,arizona.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
+@@ -0,0 +1,94 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the AISTARVISION MIPI Adapter V2.1
++ *
++ * Copyright (C) 2020 Renesas Electronics Corp.
++ */
 +
-+title: Cirrus Logic/Wolfson Microelectronics Arizona class audio SoCs
++/ {
++	ov5645_vdddo_1v8: 1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vdddo";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
 +
-+maintainers:
-+  - patches@opensource.cirrus.com
++	ov5645_vdda_2v8: 2p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vdda";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		regulator-always-on;
++	};
 +
-+description: |
-+  These devices are audio SoCs with extensive digital capabilities and a
-+  range of analogue I/O.
++	ov5645_vddd_1v5: 1p5v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vddd";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
++		regulator-always-on;
++	};
 +
-+allOf:
-+  - $ref: /schemas/sound/wlf,arizona.yaml#
-+  - $ref: /schemas/regulator/wlf,arizona.yaml#
-+  - $ref: /schemas/extcon/wlf,arizona.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - cirrus,cs47l24
-+              - wlf,wm1831
-+    then:
-+      required:
-+        - DCVDD-supply
-+        - MICVDD-supply
-+    else:
-+      properties:
-+        LDOVDD-supply:
-+          description:
-+            Digital power supply, used internally to generate DCVDD when
-+            internally supplied.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - wlf,wm1814
-+              - wlf,wm5102
-+              - wlf,wm5110
-+              - wlf,wm8280
-+              - wlf,wm8997
-+              - wlf,wm8998
-+    then:
-+      properties:
-+        DBVDD2-supply:
-+          description:
-+            Databus power supply.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+      required:
-+        - DBVDD2-supply
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - wlf,wm1814
-+              - wlf,wm5102
-+              - wlf,wm5110
-+              - wlf,wm8280
-+              - wlf,wm8998
-+    then:
-+      properties:
-+        DBVDD3-supply:
-+          description:
-+            Databus power supply.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+      required:
-+        - DBVDD3-supply
-+  - if:
-+     properties:
-+       compatible:
-+         contains:
-+           enum:
-+             - cirrus,cs47l24
-+             - wlf,wm1831
-+             - wlf,wm8997
-+    then:
-+      properties:
-+        SPKVDD-supply:
-+          description:
-+            Mono speaker driver power supply.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+      required:
-+        - SPKVDD-supply
-+    else:
-+      properties:
-+        SPKVDDL-supply:
-+          description:
-+            Left speaker driver power supply.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+        SPKVDDR-supply:
-+          description:
-+            Right speaker driver power supply.
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+      required:
-+        - SPKVDDL-supply
-+        - SPKVDDR-supply
++	imx219_vana_2v8: 2p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vana";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		regulator-always-on;
++	};
 +
-+properties:
-+  compatible:
-+    enum:
-+      - cirrus,cs47l24
-+      - wlf,wm1814
-+      - wlf,wm1831
-+      - wlf,wm5102
-+      - wlf,wm5110
-+      - wlf,wm8280
-+      - wlf,wm8997
-+      - wlf,wm8998
++	imx219_vdig_1v8: 1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vdig";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
++		regulator-always-on;
++	};
 +
-+  reg:
-+    description:
-+      I2C slave address when connected using I2C, chip select number when
-+      using SPI.
-+    maxItems: 1
++	imx219_vddl_1v2: 1p2v {
++		compatible = "regulator-fixed";
++		regulator-name = "camera_vddl";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++	};
 +
-+  AVDD-supply:
-+    description:
-+      Analogue power supply.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+  CPVDD-supply:
-+    description:
-+      Charge pump power supply.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+  DBVDD1-supply:
-+    description:
-+      Databus power supply.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+  DCVDD-supply:
-+    description:
-+      Digital power supply, normally supplied internally except on cs47l24,
-+      wm1831 where it is mandatory.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+  MICVDD-supply:
-+    description:
-+      Microphone power supply, normally supplied internally except on
-+      cs47l24, wm1831 where it is mandatory.
-+    $ref: /schemas/types.yaml#/definitions/phandle
++	osc25250_clk: osc25250_clk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++	};
++};
 +
-+  gpio-controller:
-+    description:
-+      Indicates this device is a GPIO controller.
-+  '#gpio-cells':
-+    description:
-+      Must be 2. The first cell is the pin number and the second cell
-+      is used to specify optional parameters.
-+    const: 2
-+  wlf,gpio-defaults:
-+    description:
-+      A list of GPIO configuration register values. Defines for the
-+      appropriate values can found in dt-bindings/mfd/arizona.h. If
-+      absent, no configuration of these registers is performed. If any
-+      entry has a value that is out of range for a 16 bit register then the
-+      chip default will be used. If present exactly five values must be
-+      specified.
-+    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+    minItems: 1
-+    maxItems: 5
++&MIPI_PARENT_I2C {
++	ov5645: ov5645@3c {
++		compatible = "ovti,ov5645";
++		reg = <0x3c>;
++		clock-names = "xclk";
++		clocks = <&osc25250_clk>;
++		clock-frequency = <24000000>;
++		vdddo-supply = <&ov5645_vdddo_1v8>;
++		vdda-supply = <&ov5645_vdda_2v8>;
++		vddd-supply = <&ov5645_vddd_1v5>;
 +
-+  interrupt-controller:
-+    description:
-+      Arizona class devices contain interrupt controllers and may provide
-+      interrupt services to other devices.
-+  '#interrupt-cells':
-+    description:
-+      The number of cells to describe an IRQ, this should
-+      be 2.  The first cell is the IRQ number.  The second
-+      cell is the flags, encoded as trigger masks.
-+    const: 2
-+  interrupts:
-+    description:
-+      The interrupt line the /IRQ signal for the device is connected to.
++		port {
++			ov5645_ep: endpoint {
++			};
++		};
++	};
 +
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+    description:
-+      Should reference the clocks supplied on MCLK1 and MCLK2.
-+  clock-names:
-+    oneOf:
-+      - items:
-+        - const: mclk1
-+      - items:
-+        - const: mclk2
-+      - items:
-+        - const: mclk1
-+        - const: mclk2
-+    description:
-+      Should contains two strings mclk1 for the clock supplied on MCLK1,
-+      recommended to be a high quality audio reference clock mclk2 for the
-+      clock supplied on MCLK2, recommended to be an always on 32k clock.
++	imx219: imx219@10 {
++		compatible = "sony,imx219";
++		reg = <0x10>;
++		clocks = <&osc25250_clk>;
++		VANA-supply = <&imx219_vana_2v8>;
++		VDIG-supply = <&imx219_vdig_1v8>;
++		VDDL-supply = <&imx219_vddl_1v2>;
 +
-+  reset-gpios:
-+    description:
-+      GPIO specifier for the GPIO controlling RESET
-+    maxItems: 1
++		port {
++			imx219_ep: endpoint {
++			};
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
+new file mode 100644
+index 0000000..f0829e9
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
+@@ -0,0 +1,72 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the Silicon Linux RZ/G2E 96board platform (CAT874)
++ * connected with aistarvision-mipi-v2-adapter board
++ *
++ * Copyright (C) 2020 Renesas Electronics Corp.
++ */
 +
-+  wlf,reset:
-+    description:
-+      GPIO specifier for the GPIO controlling RESET
-+    deprecated: true
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    maxItems: 1
++/dts-v1/;
++#include "r8a774c0-ek874.dts"
++#define MIPI_PARENT_I2C i2c3
++#include "aistarvision-mipi-adapter-2.1.dtsi"
 +
-+required:
-+  - compatible
-+  - AVDD-supply
-+  - CPVDD-supply
-+  - DBVDD1-supply
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - interrupts
++/ {
++	model = "Silicon Linux RZ/G2E evaluation kit EK874 (CAT874 + CAT875) with aistarvision-mipi-v2-adapter board";
++	compatible = "si-linux,cat875", "si-linux,cat874", "renesas,r8a774c0";
++};
 +
-+unevaluatedProperties: false
++&i2c3 {
++	status = "okay";
++};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/mfd/arizona.h>
-+    i2c@e0004000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0xe0004000 0x1000>;
++&vin4 {
++	status = "okay";
++};
 +
-+        wm5102: codec@1a {
-+            compatible = "wlf,wm5102";
-+            reg = <0x1a>;
++&vin5 {
++	status = "okay";
++};
 +
-+            reset-gpios = <&gpio 0>;
-+            wlf,ldoena = <&gpio 1>;
++&csi40 {
++	status = "okay";
 +
-+            AVDD-supply = <&vdd1v8>;
-+            DBVDD1-supply = <&vdd1v8>;
-+            DBVDD2-supply = <&vdd1v8>;
-+            DBVDD3-supply = <&vdd1v8>;
-+            CPVDD-supply = <&vdd1v8>;
-+            LDOVDD-supply = <&vdd1v8>;
-+            SPKVDDL-supply = <&vdd5v>;
-+            SPKVDDR-supply = <&vdd5v>;
++	ports {
++		port {
++			csi40_in: endpoint {
++				clock-lanes = <0>;
++				data-lanes = <1 2>;
++				remote-endpoint = <&ov5645_ep>;
++			};
++		};
++	};
++};
 +
-+            interrupts = <347>;
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+            interrupt-parent = <&gic>;
++&ov5645 {
++	enable-gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
++	reset-gpios = <&gpio5 3 GPIO_ACTIVE_LOW>;
 +
-+            gpio-controller;
-+            #gpio-cells = <2>;
++	port {
++		ov5645_ep: endpoint {
++			clock-lanes = <0>;
++			data-lanes = <1 2>;
++			remote-endpoint = <&csi40_in>;
++		};
++	};
++};
 +
-+            #sound-dai-cells = <1>;
-+
-+            wlf,gpio-defaults = <
-+                ARIZONA_GP_FN_TXLRCLK
-+                ARIZONA_GP_DEFAULT
-+                ARIZONA_GP_DEFAULT
-+                ARIZONA_GP_DEFAULT
-+                ARIZONA_GP_DEFAULT
-+            >;
-+
-+            clocks = <&clks 0>, <&clks 1>;
-+            clock-names = "mclk1", "mclk2";
-+
-+            wlf,inmode = <ARIZONA_INMODE_DIFF ARIZONA_INMODE_DMIC>;
-+            wlf,dmic-ref = <ARIZONA_DMIC_MICBIAS1 ARIZONA_DMIC_MICBIAS3>;
-+
-+            wlf,use-jd2;
-+            wlf,use-jd2-nopull;
-+            wlf,jd-invert;
-+
-+            wlf,micd-software-compare;
-+            wlf,micd-detect-debounce = <0>;
-+            wlf,micd-pol-gpio = <&codec 2 0>;
-+            wlf,micd-rate = <ARIZONA_MICD_TIME_8MS>;
-+            wlf,micd-dbtime = <4>;
-+            wlf,micd-timeout-ms = <100>;
-+            wlf,micd-force-micbias;
-+            wlf,micd-configs = <0 ARIZONA_DMIC_MICBIAS1 0>,
-+                               <0x2000 ARIZONA_DMIC_MICBIAS2 1>;
-+
-+            wlf,gpsw = <ARIZONA_GPSW_OPEN>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e64e5db314976..007faa486c985 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18258,11 +18258,11 @@ L:	patches@opensource.cirrus.com
- S:	Supported
- W:	https://github.com/CirrusLogic/linux-drivers/wiki
- T:	git https://github.com/CirrusLogic/linux-drivers.git
--F:	Documentation/devicetree/bindings/extcon/extcon-arizona.txt
--F:	Documentation/devicetree/bindings/mfd/arizona.txt
-+F:	Documentation/devicetree/bindings/extcon/wlf,arizona.yaml
-+F:	Documentation/devicetree/bindings/mfd/wlf,arizona.yaml
- F:	Documentation/devicetree/bindings/mfd/wm831x.txt
--F:	Documentation/devicetree/bindings/regulator/arizona-regulator.txt
--F:	Documentation/devicetree/bindings/sound/wlf,arizona.txt
-+F:	Documentation/devicetree/bindings/regulator/wlf,arizona.yaml
-+F:	Documentation/devicetree/bindings/sound/wlf,arizona.yaml
- F:	Documentation/hwmon/wm83??.rst
- F:	arch/arm/mach-s3c64xx/mach-crag6410*
- F:	drivers/clk/clk-wm83*.c
++&imx219 {
++	port {
++		imx219_ep: endpoint {
++			clock-lanes = <0>;
++			data-lanes = <1 2>;
++			link-frequencies = /bits/ 64 <456000000>;
++			/* uncomment remote-endpoint property to tie imx219 to
++			 * CSI2 also make sure remote-endpoint for ov5645 camera
++			 * is commented and remote endpoint phandle in csi40_in
++			 * is imx219_ep
++			 */
++			/* remote-endpoint = <&csi40_in>; */
++		};
++	};
++};
 -- 
-2.11.0
+2.7.4
 
