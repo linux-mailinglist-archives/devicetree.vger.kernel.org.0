@@ -2,165 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD66E1B0BE6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 14:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0CDF1B0C28
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 15:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728862AbgDTM7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 08:59:24 -0400
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:54075 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728078AbgDTM7X (ORCPT
+        id S1729655AbgDTNA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 09:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727887AbgDTNA0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 08:59:23 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 0B0C52F2;
-        Mon, 20 Apr 2020 08:59:21 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 20 Apr 2020 08:59:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=Z4Tx++3ZiTnOn+3/RNXgeV13mzY
-        czYnd6hnaCAv6DxU=; b=t/XOmMYQJv7YFcnsTVIYHEhbPvHuvMrvIfpfUglv4yC
-        pWRgDVBdxfzJQvjsLV3/ksnCZuLGab+iKs3XRDR5Wf1hrdrZ88Dfqh0SkXBFyZ7b
-        WNVVbJyvnA7CQQSjuif+8TL1QyCy1B0RSEFakcGubek2nG4RhqfNd3BbBURm2ghI
-        3P7jcJZhpc9zMe3fLpD4Up6dqujQuCXg1Kru3v+GonZ+rrj4PIMTVLXJ7DLUqAEh
-        85boYT4Jx2Ohe/zEr6luqckz5gDU9cy2ZrAnExq5bl3Wd4j6tES3mvR17EHPCM6T
-        svYYepcg4yI2CEbyhv92+LhlwtPUke+gJT52TRzEo/Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Z4Tx++
-        3ZiTnOn+3/RNXgeV13mzYczYnd6hnaCAv6DxU=; b=OdaLG8aCJmXh7rG4CSRUqF
-        4FiigsUn6otSH2vWMkFc3CpVemP3dEXEWL0I1QywaZdTOpNnFnYqDeBqN11fJG1o
-        smoQJpBGP0A8GzHLwhRNJ7XNNdycXXHoyTPwNOh3FuHK+u9UlhKcI8fi9T7SM7zV
-        Se39pa61EkaACX5uO1ggA0+WIwOybGH9kH9BWZtpBh9XSrUaWZvNbp7ViE9nCRNo
-        wsneUcvbVXTq2Nzb5QByxvmUbI6tRLKVy5IpluocEtPbVOPPUWdImDhhzPoxPYk5
-        H5rNF/zJ3x6uw3+L4hNBeG35HXYmQWi+RkgY0sknv+G2Khr1KwdpK2hyDrJnxwlw
-        ==
-X-ME-Sender: <xms:qZydXkWOP9VFnj_bMXgrmtEhJk5Yxl6WycU11XNhdDyXkH1vEgdnNA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrgeefgdehkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
-    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:qZydXs2GooQrliKtdJGCuEaQlJe6YIXOVxqh8NP2GgxkxH-C9wPiKw>
-    <xmx:qZydXjaA9koIQRTh0YItL0TdRxY7pbBKFhtm_hxVx_qmi89LcDfw7w>
-    <xmx:qZydXnok7HbV5kG-bom49qpFyTDPsN0jpV5A-t-B-YJGBsNgq_Lvxw>
-    <xmx:qZydXhnAID3tdIYtMuaKHVCA1Y7TScwjZCevTJjvL_5OEtOnmGkwaQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CB79C3065C16;
-        Mon, 20 Apr 2020 08:59:20 -0400 (EDT)
-Date:   Mon, 20 Apr 2020 14:59:19 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Priit Laes <plaes@plaes.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 4/4] ARM: dts: sun7i: Use syscon-based implementation for
- gmac
-Message-ID: <20200420125919.3bqosps7nzwvmasn@gilmour.lan>
-References: <20200417221730.555954-1-plaes@plaes.org>
- <20200417221730.555954-5-plaes@plaes.org>
+        Mon, 20 Apr 2020 09:00:26 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C66BC061A0C;
+        Mon, 20 Apr 2020 06:00:25 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id r26so11296928wmh.0;
+        Mon, 20 Apr 2020 06:00:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hLRkNUC0u8y4cndEyQmhJ4/AMRxri6A7MsmPh0pI6+0=;
+        b=Guafrsrt31ugkSwaonhtK4a4Hphyi0I7eEyxYe+CjssxoStxFkwfW8u33foia70FUe
+         J+B8nta1g7jcV9SFm4uMFkyqlZGttssBNRy5qO47cLYTFjw65OD8q6fwwL5PjZGYi+5D
+         CdfWUKOUW1rS8BSq8HeG3xnlkv0HdEFef4r1Mxs6bH1reC9qsWYeRkPRhnMnc1d05n2l
+         3s/VJNSRzN9dijfHwutPDyiVImaeCF1/ZPj+mw8PjvEaoJClOXFEWlOW9tO8mb+etML0
+         Djf4x0OtY+R7l2OA6o2KcVbQQ666KPGquDZlOUlcnK/hK5d7GWnIc8nB/B7A+KgPP/Qk
+         KfNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hLRkNUC0u8y4cndEyQmhJ4/AMRxri6A7MsmPh0pI6+0=;
+        b=bbl/QvFgx1tf4Sn2mMEsnxGgAEIY3slWC4QandwfZftQMTSALw17YrshusSFO+38Ft
+         AKX3WtymcchEZE9VEfdlWgdCjbiLeMfUryjwkFF81CfDlYiZLZQHl0Et9EIuYvdiDAzL
+         /LMBcgng9y9Qk4+Et00uaw0feZO/PevcxEd7+6P1HMeHzDdMovusTXXIIMdreKVQKevf
+         IagOqJeHNsnxYoWE31JtKUg0zUCLed41qdeDJXsRiBefusoXXzUpxQKBL9X4Jn4rO0Wj
+         SS3hzo0eIaPMtDjqxVz93pVD4n/e8RjuhxvDBqBr+vYCsRyyOu5WCzNK54t15puIHWS9
+         clBg==
+X-Gm-Message-State: AGi0Pua7JjkL2V/0fyQ3CEHWssFhODQJEa+VN3CQFfRTjwqasM7WDC5v
+        iweFqs0bpXB/zJR7qpvsEmY=
+X-Google-Smtp-Source: APiQypLQWZp2tO6tV7r3+Yt3ozomCC/p/Kk9A59i6gZud1dPxFUxRQnxr7sVEOETuwb9WfTMxhZomQ==
+X-Received: by 2002:a1c:bb08:: with SMTP id l8mr19245449wmf.168.1587387624237;
+        Mon, 20 Apr 2020 06:00:24 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0:4e7:1fdd:b7c2:b3ab])
+        by smtp.gmail.com with ESMTPSA id e11sm1081680wrn.87.2020.04.20.06.00.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Apr 2020 06:00:23 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v5 0/9] Add support for Allwinner H6 DVFS
+Date:   Mon, 20 Apr 2020 15:00:12 +0200
+Message-Id: <20200420130021.3841-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lxwfdky4v247xqnt"
-Content-Disposition: inline
-In-Reply-To: <20200417221730.555954-5-plaes@plaes.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---lxwfdky4v247xqnt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is the same as v4 and v3 on top.
+I have also fix the commit title for Pine H64 as we now only enable CPU DVFS.
 
-On Sat, Apr 18, 2020 at 01:17:30AM +0300, Priit Laes wrote:
-> Use syscon-based approach to access gmac clock configuration
-> register, instead of relying on a custom clock driver.
->=20
-> As a bonus, we can now drop the custom clock implementation
-> and dummy clocks making sun7i fully CCU-compatible.
->=20
-> Signed-off-by: Priit Laes <plaes@plaes.org>
-> ---
->  arch/arm/boot/dts/sun7i-a20.dtsi | 36 +++-----------------------------
->  1 file changed, 3 insertions(+), 33 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a=
-20.dtsi
-> index ffe1d10a1a84..750962a94fad 100644
-> --- a/arch/arm/boot/dts/sun7i-a20.dtsi
-> +++ b/arch/arm/boot/dts/sun7i-a20.dtsi
-> @@ -219,37 +219,6 @@ osc32k: clk-32k {
->  			clock-frequency =3D <32768>;
->  			clock-output-names =3D "osc32k";
->  		};
-> -
-> -		/*
-> -		 * The following two are dummy clocks, placeholders
-> -		 * used in the gmac_tx clock. The gmac driver will
-> -		 * choose one parent depending on the PHY interface
-> -		 * mode, using clk_set_rate auto-reparenting.
-> -		 *
-> -		 * The actual TX clock rate is not controlled by the
-> -		 * gmac_tx clock.
-> -		 */
-> -		mii_phy_tx_clk: clk-mii-phy-tx {
-> -			#clock-cells =3D <0>;
-> -			compatible =3D "fixed-clock";
-> -			clock-frequency =3D <25000000>;
-> -			clock-output-names =3D "mii_phy_tx";
-> -		};
-> -
-> -		gmac_int_tx_clk: clk-gmac-int-tx {
-> -			#clock-cells =3D <0>;
-> -			compatible =3D "fixed-clock";
-> -			clock-frequency =3D <125000000>;
-> -			clock-output-names =3D "gmac_int_tx";
-> -		};
-> -
-> -		gmac_tx_clk: clk@1c20164 {
-> -			#clock-cells =3D <0>;
-> -			compatible =3D "allwinner,sun7i-a20-gmac-clk";
-> -			reg =3D <0x01c20164 0x4>;
-> -			clocks =3D <&mii_phy_tx_clk>, <&gmac_int_tx_clk>;
-> -			clock-output-names =3D "gmac_tx";
-> -		};
->  	};
-> =20
-> =20
-> @@ -1511,11 +1480,12 @@ mali: gpu@1c40000 {
-> =20
->  		gmac: ethernet@1c50000 {
->  			compatible =3D "allwinner,sun7i-a20-gmac";
-> +			syscon =3D <&ccu>;
->  			reg =3D <0x01c50000 0x10000>;
->  			interrupts =3D <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names =3D "macirq";
-> -			clocks =3D <&ccu CLK_AHB_GMAC>, <&gmac_tx_clk>;
-> -			clock-names =3D "stmmaceth", "allwinner_gmac_tx";
-> +			clocks =3D <&ccu CLK_AHB_GMAC>;
-> +			clock-names =3D "stmmaceth";
+Sorry for the noise,
+Clément
 
-I guess you also need to update the binding so that it considers it valid?
+Clément Péron (6):
+  arm64: configs: Enable sun50i cpufreq nvmem
+  arm64: dts: allwinner: h6: Enable CPU opp tables for Beelink GS1
+  arm64: dts: allwinner: h6: Enable CPU opp tables for Orange Pi 3
+  arm64: dts: allwinner: h6: Enable CPU opp tables for Tanix TX6
+  arm64: dts: allwinner: Sort Pine H64 device-tree nodes
+  arm64: dts: allwinner: h6: Enable CPU opp tables for Pine H64
 
-Maxime
+Ondrej Jirman (2):
+  arm64: dts: allwinner: h6: Add thermal trip points/cooling map
+  arm64: dts: allwinner: h6: Add CPU Operating Performance Points table
 
---lxwfdky4v247xqnt
-Content-Type: application/pgp-signature; name="signature.asc"
+Yangtao Li (1):
+  arm64: dts: allwinner: h6: Add clock to CPU cores
 
------BEGIN PGP SIGNATURE-----
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |   9 +-
+ .../boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi | 121 ++++++++++++++++++
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |   3 +
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  43 ++++---
+ .../dts/allwinner/sun50i-h6-tanix-tx6.dts     |  13 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  36 ++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 7 files changed, 207 insertions(+), 19 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXp2cpwAKCRDj7w1vZxhR
-xV8eAPwMjpw8ngiA7+PMTh3y1+0bYmvhl8gwYCzmS3VzAT3r4QEAhXCLgzR7Iy1z
-EImQYxxDHoP0F/irj6QPAyoSRxOrswc=
-=URSt
------END PGP SIGNATURE-----
+-- 
+2.20.1
 
---lxwfdky4v247xqnt--
