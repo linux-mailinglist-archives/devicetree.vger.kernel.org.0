@@ -2,69 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0221B13DE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 20:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5696C1B13F1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 20:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727040AbgDTSEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 14:04:54 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39333 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727821AbgDTSEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 14:04:52 -0400
-Received: by mail-ot1-f65.google.com with SMTP id m13so8927004otf.6;
-        Mon, 20 Apr 2020 11:04:50 -0700 (PDT)
+        id S1726398AbgDTSHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 14:07:07 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33983 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726067AbgDTSHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 14:07:07 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 72so2498345otu.1;
+        Mon, 20 Apr 2020 11:07:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=R9R3P8AxTY42i8eZbd/K2FLLSk3SQ9So4jiLRS8yUHA=;
-        b=FnfkDdXX9NngpC62znj4OIyIzLRMKeTg4kW6IqzgYQ2ucuGMsVo6xDwPbSj67v8WDo
-         g4BdQ7QZBWc7JnhhEVkWtYztP19w5kdxIab8DTeETe/m0mBeh2bIoE0YHHOqBiXAiZCm
-         dRkZMM5KfFHJQtDthpkRfPS9qhzoNs8npfkzTvR44ussCzM3qkfnbVNiZx4o18ljITYc
-         QQ39WWe+6Fey+OdbbgzH3noLGA79+4e/LFxiQ9xjonr+z4QHuz2lwWKjCOtCpYWIQn7+
-         dOoJTZULD2DGeejp/GEZGjvuFaVjqFVm49XCqkbDU3Zg9Q6+D2HKA0xNiWgsZnNNRb+e
-         SpfA==
-X-Gm-Message-State: AGi0Pub3N5s4Rh4M83yGq/PVnfM8LWmcK9K0ro8yvjIJgRV0S0+4Bo4+
-        zCg9tdqIKDNJB23P2a3V6w==
-X-Google-Smtp-Source: APiQypIcphhGbEDkzBJSApE45bLtbLIzGEcM5dFbdISmqJoJZVgTVbNbQyDPIrlbVc68ecDTsveOkA==
-X-Received: by 2002:a9d:6a98:: with SMTP id l24mr10210869otq.133.1587405890294;
-        Mon, 20 Apr 2020 11:04:50 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r205sm17563oih.47.2020.04.20.11.04.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 11:04:49 -0700 (PDT)
-Received: (nullmailer pid 22581 invoked by uid 1000);
-        Mon, 20 Apr 2020 18:04:48 -0000
-Date:   Mon, 20 Apr 2020 13:04:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Benjamin Gaignard <benjamin.gaignard@st.com>
-Cc:     fabrice.gasnier@st.com, lee.jones@linaro.org, mark.rutland@arm.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/6] dt-bindings: mfd: Document STM32 low power timer
- bindings
-Message-ID: <20200420180448.GA20546@bogus>
-References: <20200420121620.2099-1-benjamin.gaignard@st.com>
- <20200420121620.2099-2-benjamin.gaignard@st.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/F9lXiZp6WfOHeGu0sKn56dA0/QUwLyw11qUHlCornI=;
+        b=MdGNbnTN/Q211xPaobcA39ym+sBkqMb5Z2fr8jiHyRGTKUTIcB2+sSSlGYMywUKgVv
+         5OqLXxMhfw04PC2fkhpCPR+imvbQMXkkLQfgIKOZHXM8efMn77KSPGZznZkqC1XqTrCy
+         o+YpN63XrrPq44XuqnuzFS601H5JVSxRKmYss4TdIwk8UMM1CJvm/c3bEfbSU2rZ0J5a
+         jda+w8C9fGr1hLXJ0CtfmcMyHpbcA0iho9CTPbog9VmtVeq8zXw5txyr83KK5VFQIi14
+         aUHlb+DNW4sDt1mvHaq0o6CetLbjgn6Y/xFIrOv0NKf+1uHck7KThZfC9Ci6c0qNebC9
+         AVAw==
+X-Gm-Message-State: AGi0PuaTlD34hobMlu94BfjmtbBYQP+hEsuZaVv/8G8ETzJ9hzC8Zvup
+        L548KRVnJ2nDelldvFjquilQq8zfTWjTtLluja4=
+X-Google-Smtp-Source: APiQypLplOG5Gnpz2Pq1DckcaMS6JXWQLeWdaCrJKaP4PXPjY/XqttAryur3vuOOYDJNPT9KP9N5rPqIrTIaU2eioV4=
+X-Received: by 2002:a9d:7d85:: with SMTP id j5mr7689674otn.107.1587406026239;
+ Mon, 20 Apr 2020 11:07:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200420121620.2099-2-benjamin.gaignard@st.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200318001603.9650-1-olteanv@gmail.com> <20200318001603.9650-13-olteanv@gmail.com>
+In-Reply-To: <20200318001603.9650-13-olteanv@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 20 Apr 2020 20:06:54 +0200
+Message-ID: <CAMuHMdUDYWNOOrAXrq1Lf5_GD84Z1rr4Co5buZS-GnJvGyN5yA@mail.gmail.com>
+Subject: Re: [PATCH v5 12/12] arm64: dts: ls1028a-rdb: Add a spidev node for
+ the mikroBUS
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, eha@deif.com,
+        Angelo Dureghello <angelo@sysam.it>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "Gustavo A. R. Silva" <gustavo@embeddedor.com>, weic@nvidia.com,
+        mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 20, 2020 at 02:16:15PM +0200, Benjamin Gaignard wrote:
-> Add a subnode to STM low power timer bindings to support timer driver
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
->  Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+Hi Vladimir,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Wed, Mar 18, 2020 at 1:17 AM Vladimir Oltean <olteanv@gmail.com> wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+>
+> For debugging, it is useful to have access to the DSPI controller
+> signals. On the reference design board, these are exported to either the
+> mikroBUS1 or mikroBUS2 connector (according to the CPLD register
+> BRDCFG3[SPI3]).
+>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> @@ -83,6 +83,20 @@
+>         };
+>  };
+>
+> +&dspi2 {
+> +       bus-num = <2>;
+> +       status = "okay";
+> +
+> +       /* mikroBUS1 */
+> +       spidev@0 {
+
+Please use generic node names, e.g. "dac@0".
+
+> +               compatible = "rohm,dh2228fv";
+> +               spi-max-frequency = <20000000>;
+> +               fsl,spi-cs-sck-delay = <100>;
+> +               fsl,spi-sck-cs-delay = <100>;
+> +               reg = <0>;
+> +       };
+> +};
+> +
+>  &esdhc {
+>         sd-uhs-sdr104;
+>         sd-uhs-sdr50;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
