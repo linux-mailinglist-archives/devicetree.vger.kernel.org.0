@@ -2,97 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D25F1B074C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B88481B0729
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725865AbgDTLWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 07:22:47 -0400
-Received: from lnfm1.sai.msu.ru ([93.180.26.255]:50684 "EHLO lnfm1.sai.msu.ru"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725775AbgDTLWq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 07:22:46 -0400
-X-Greylist: delayed 868 seconds by postgrey-1.27 at vger.kernel.org; Mon, 20 Apr 2020 07:22:44 EDT
-Received: from dragon.sai.msu.ru (dragon.sai.msu.ru [93.180.26.172])
-        by lnfm1.sai.msu.ru (8.14.1/8.12.8) with ESMTP id 03KB7Z7j031036;
-        Mon, 20 Apr 2020 14:07:40 +0300
-Received: from oak.local (unknown [188.123.231.136])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by dragon.sai.msu.ru (Postfix) with ESMTPSA id 8DFB349CC;
-        Mon, 20 Apr 2020 14:07:36 +0300 (MSK)
-From:   "Matwey V. Kornilov" <matwey@sai.msu.ru>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ZYNQ
-        ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Cc:     matwey.kornilov@gmail.com,
-        "Matwey V. Kornilov" <matwey@sai.msu.ru>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ZYNQ
-        ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: zynq: Fix ethernet PHY for v5 schematics
-Date:   Mon, 20 Apr 2020 14:07:15 +0300
-Message-Id: <20200420110715.12032-1-matwey@sai.msu.ru>
-X-Mailer: git-send-email 2.25.0
+        id S1725994AbgDTLQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 07:16:06 -0400
+Received: from conssluserg-03.nifty.com ([210.131.2.82]:36905 "EHLO
+        conssluserg-03.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726136AbgDTLQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 07:16:05 -0400
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54]) (authenticated)
+        by conssluserg-03.nifty.com with ESMTP id 03KBFo1e004883
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 20:15:51 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 03KBFo1e004883
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1587381351;
+        bh=N6l3+df54Z7OPs8bFrk6kGISVsr2ALvPYKeiEaN5x4A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=zRewF2Qwx1qSYCq/7weEGGSFxV4KVmU5LmtMeMJghp0P16k3Eg0xPU/wqFFDc1V5t
+         tKlk4dtnSYfkS/BrtKYtGtz0U/M/dtrtCHLxVkDJs06inEYHOf1JOSVUUsoe2TL2HT
+         ybaZobTWShXpEQ1ISYZXqEuVO1cxKrE5RAqfxrWmvMbYYGaRS9+dxCiN9It7J5/o7o
+         nGzJTxzWyIKzp+4ZcHQJ+MF78q+QjjSXofy8yA0tPY5lCopEfsAIlGoWZsjS96YVW0
+         /xEI7JSfv42NLaQ9HQSeaUrAsG/5M1ZgzCas+EPiXl+NFEBU8mGF1vG2BTszo+qkkc
+         7Gs+0qqsJTOLg==
+X-Nifty-SrcIP: [209.85.217.54]
+Received: by mail-vs1-f54.google.com with SMTP id r7so5700755vso.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 04:15:50 -0700 (PDT)
+X-Gm-Message-State: AGi0PuaODQ3cOCLWlRWFIA+OZ2jdJ19eHqIZac3NtIgYOKNB/fgVhtDq
+        bks2VUbbhSJKBC6cJVRIx4V/MdvwNsHUpwg12qI=
+X-Google-Smtp-Source: APiQypKwhM2QJcFYRL36WyEAeGCTWkeUMtYH2nxWOLM3hMfSzawHXXii5nhIbdVM7VgOf7AVVjKrSNAWx9Kt0hMDXxI=
+X-Received: by 2002:a67:6542:: with SMTP id z63mr11103919vsb.179.1587381349800;
+ Mon, 20 Apr 2020 04:15:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <158737719165.27947.6617937231903079086.stgit@localhost> <20200420190749.b508c7e6d60a8203360178ec@linaro.org>
+In-Reply-To: <20200420190749.b508c7e6d60a8203360178ec@linaro.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Mon, 20 Apr 2020 20:15:13 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQtTPLdKN8cz842gvoS36GVQvk2ztahGp8XWoW3C8BzQg@mail.gmail.com>
+Message-ID: <CAK7LNAQtTPLdKN8cz842gvoS36GVQvk2ztahGp8XWoW3C8BzQg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: uniphier: Add support for Akebi96
+To:     Masami Hiramatsu <masami.hiramatsu@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are at least two different versions existing for MYIR Zturn:
+On Mon, Apr 20, 2020 at 7:08 PM Masami Hiramatsu
+<masami.hiramatsu@linaro.org> wrote:
+>
+> Add the device tree for Akebi96. Akebi96 is a 96boards certified
+> development board based on UniPhir LD20.
+> ( https://www.96boards.org/product/akebi96/ )
+>
+> This board has;
+> - MAX3421 USB-SPI chip on SPI port3 (for USB gadget port)
+> - Simple frame buffer with 1080p fixed resolution.
+> - I2S port which is connected to aout1b instead of aout1.
+> - 3 serial ports, only serial3 has CTS/RTS.
+> - No NAND, only eMMC on the board.
+> - OP-TEE support.
 
- * v4 schematics has Atheros AR8035 PHY at 0b000
-     http://www.myirtech.com/download/Zynq7000/Z-TURNBOARD_schematic.pdf
- * v5 schematics has Micrel KSZ9031 PHY at 0b011
-     v5 schematics available at DVD disk supplied with the board
 
-Specify both PHYs to make ethernet interface working for any board
-revision. This commit relies on of_mdiobus_register() behaviour.
+I did not know "OP-TEE support" was board spec.
 
-Before the patch:
+Anyway, I decided to not worry about that.
 
-[   28.295002] macb e000b000.ethernet eth0: Could not attach PHY (-19)
 
-After the patch:
+You are adding lots of redundant code.
 
-[   28.257365] macb e000b000.ethernet eth0: PHY [e000b000.ethernet-ffffffff:00] driver [Micrel KSZ9031 Gigabit PHY] (irq=POLL)
-[   28.257384] macb e000b000.ethernet eth0: configuring for phy/rgmii-id link mode
+Delete as follows.
 
-Signed-off-by: Matwey V. Kornilov <matwey@sai.msu.ru>
----
- arch/arm/boot/dts/zynq-zturn.dts | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/zynq-zturn.dts b/arch/arm/boot/dts/zynq-zturn.dts
-index 5ec616ebca08..07da9cf60d02 100644
---- a/arch/arm/boot/dts/zynq-zturn.dts
-+++ b/arch/arm/boot/dts/zynq-zturn.dts
-@@ -67,10 +67,17 @@
- &gem0 {
- 	status = "okay";
- 	phy-mode = "rgmii-id";
--	phy-handle = <&ethernet_phy>;
- 
--	ethernet_phy: ethernet-phy@0 {
--		reg = <0x0>;
-+	ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+		max-speed = <1000>;
-+	};
-+
-+	ethernet-phy@3 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <3>;
-+		max-speed = <1000>;
- 	};
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dts
+b/arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dts
+index 84ff98d96751..aaf86162da84 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dts
++++ b/arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dts
+@@ -113,7 +113,6 @@ &serial2 {
+ &serial3 {
+        /* LS connector UART0 */
+        status = "okay";
+-       pinctrl-0 = <&pinctrl_uart3_ctsrts>;
  };
- 
--- 
-2.16.4
 
+ &spdif_hiecout1 {
+@@ -155,11 +154,6 @@ &i2c1 {
+        status = "okay";
+ };
+
+-&audio {
+-       pinctrl-0 = <&pinctrl_aout1b>,
+-                   <&pinctrl_aoutiec1>;
+-};
+-
+ &spi3 {
+        status = "okay";
+        #address-cells = <1>;
+@@ -187,14 +181,10 @@ xirq10 {
+        };
+ };
+
+-&pinctrl {
+-       pinctrl_aout1b: aout1b {
+-               groups = "aout1", "aout1b";
+-               function = "aout1";
+-       };
++&pinctrl_aout1 {
++       groups = "aout1", "aout1b";
++};
+
+-       pinctrl_uart3_ctsrts: uart3-ctsrts {
+-               groups = "uart3", "uart3_ctsrts";
+-               function = "uart3";
+-       };
++&pinctrl_uart3 {
++       groups = "uart3", "uart3_ctsrts";
+ };
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+index f93519793bfb..afa90b762ea9 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
++++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+@@ -337,7 +337,7 @@ gpio: gpio@55000000 {
+                                                     <21 217 3>;
+                };
+
+-               audio: audio@56000000 {
++               audio@56000000 {
+                        compatible = "socionext,uniphier-ld20-aio";
+                        reg = <0x56000000 0x80000>;
+                        interrupts = <0 144 4>;
+
+
+
+
+
+Lastly, is the pin-setting "aout1", "aout1b" correct ?
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
