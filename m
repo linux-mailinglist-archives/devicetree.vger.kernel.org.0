@@ -2,147 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AD271B02E4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04DAC1B030D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726124AbgDTH1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 03:27:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        id S1726099AbgDTHed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 03:34:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726067AbgDTH1c (ORCPT
+        by vger.kernel.org with ESMTP id S1725994AbgDTHec (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 03:27:32 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D2CC061A0F
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 00:27:31 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id s10so1629919wrr.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 00:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=fLd3utKBUqircZ8XSU/jqQ1o3HOdiOgb+Til4epkr7E=;
-        b=Zjs6lkCZP51RU1eaQIhcoO3FB2Z6jXmILC0s2D752dm7NvsQ+tleMbs3JgJ0uCOger
-         E/tjxVQyBlWGd8C8KH6qKSy877jK0dOi4ouglmI3EUeSGLveLxJsg2RtwSK7UMdZjCHW
-         wFmMR6P5iaO2QXH4ksbOgvB+J3KLMVx+AA8FAPieKGTfyyESTZnp60vvRq2mOL1n6k89
-         exxFo80LcTgKlrntlkSIIORBACYyTzHdDPArnuLiOwJFPLXem/gn0Igo6JBXWNAODiUe
-         tLRv8q8+adw+2X8p6HhK3S5Eako2xzmyRKxo0WGwjta/t8GubKM8ali0sa3m5En/fezW
-         12VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=fLd3utKBUqircZ8XSU/jqQ1o3HOdiOgb+Til4epkr7E=;
-        b=py5HJJZJcS0iGz81I70ItKO9RCsX/PjQ26gGM0hWziVfccdoCgxMhl2V4c1ir1XK3i
-         ICn6Ks7DZMijgBo4IwSiwL906mdjSb8i5oNUagC3kPFnJ96E6ebXaaIz58OiY4aJNPHF
-         61Fh8k+5dj6IVTUclqAKWsrUnM54zYU+ZCnEk7g6TV2B3eFB3y1FV9EJEnDh8jYl4CAg
-         cmLzlD1NHzSD8ZcNmr3U7Mv50cRGyryLiduj56ceMh9jPQMmenEr23gbosFPpRshaJKH
-         fqGZ7ITxcwg3fZyfKOoFpP5MWtGSSlGxqZVfzMcFiMHjO0/2WaVsOqRbwpGnEFV4D9u4
-         gZ2Q==
-X-Gm-Message-State: AGi0Puant51OmsnZ12kR8fy57Xqwc7wgMN1xJ5+cdaCWakT96B0imIVJ
-        f9kdoPFKaIxB0B1b8a7NRPQMsg==
-X-Google-Smtp-Source: APiQypLZ95duN0TVR/SeVUQItXdNoeinc7W1AvPfKzE2PNLYi2bchw8ulFVhIRvX/oUlL+29V+w4Lg==
-X-Received: by 2002:a5d:5224:: with SMTP id i4mr17175368wra.1.1587367650264;
-        Mon, 20 Apr 2020 00:27:30 -0700 (PDT)
-Received: from dell ([95.149.164.107])
-        by smtp.gmail.com with ESMTPSA id v16sm188543wml.30.2020.04.20.00.27.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 00:27:29 -0700 (PDT)
-Date:   Mon, 20 Apr 2020 08:27:27 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     kgunda@codeaurora.org
-Cc:     Rob Herring <robh@kernel.org>, bjorn.andersson@linaro.org,
-        jingoohan1@gmail.com, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        linux-arm-msm@vger.kernel.org,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Subject: Re: [PATCH V5 1/4] backlight: qcom-wled: convert the wled bindings
- to .yaml format
-Message-ID: <20200420072727.GI3737@dell>
-References: <1586274430-28402-1-git-send-email-kgunda@codeaurora.org>
- <1586274430-28402-2-git-send-email-kgunda@codeaurora.org>
- <20200415150904.GA11174@bogus>
- <557e8bd874256271174402b5faba9c90@codeaurora.org>
+        Mon, 20 Apr 2020 03:34:32 -0400
+X-Greylist: delayed 1318 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 20 Apr 2020 00:34:32 PDT
+Received: from vultr.net.flygoat.com (vultr.net.flygoat.com [IPv6:2001:19f0:6001:3633:5400:2ff:fe8c:553])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A83EC061A0C;
+        Mon, 20 Apr 2020 00:34:32 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
+        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 69C8920CEA;
+        Mon, 20 Apr 2020 07:34:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
+        t=1587368071; bh=gcui++ieWd7uwUAXv2hAzwbMmKtI8T9QNmQZh73J2Qk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XHmXv7huslucaxXmqOOJUJ/Win32d7xMmz0ZjpHmbC0Jbfd6DEG2cb+lNrY8P+XGL
+         pxHRSUBpO2XZ+N7V5RXmie5d9KZuI1fS7dkHYPSUXJjGBjLhSrLmTgQWpdlBSZ+5+a
+         xeqNgPtWPiTVfGg4eJMnMWAUXp1Qo+tpVJ2ZUrQv5sKJdfdDZ4GtVgEEDs5cYP9NKe
+         dhTnof8mboy9kUY32glwsQJJWResjPdnOeeTIOYVsKHaIthmuGiOlMXX8XTR9b3oAZ
+         iOypWNY/ki9OZyDBFYXzhY9cfu9j40Vkz02XfB+NLtuNdFU4BubiUCFRN2VMcdJjDt
+         obnScb8DT0sEw==
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Huacai Chen <chenhc@lemote.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND 0/5] Loongson64: RS780E clean-ups
+Date:   Mon, 20 Apr 2020 15:33:35 +0800
+Message-Id: <20200420073347.157230-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.26.0.rc2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <557e8bd874256271174402b5faba9c90@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Apr 2020, kgunda@codeaurora.org wrote:
+Basically ensure all RS780E stuff is enabled by DeviceTree.
+So I can post LS7A support later on.
 
-> On 2020-04-15 20:39, Rob Herring wrote:
-> > On Tue, Apr 07, 2020 at 09:17:07PM +0530, Kiran Gunda wrote:
-> > > Convert the qcom-wled bindings from .txt to .yaml format.
-> > > Also replace PM8941 to WLED3 and PMI8998 to WLED4.
-> > > 
-> > > Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
-> > > Signed-off-by: Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-> > > Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> > > ---
-> > >  .../bindings/leds/backlight/qcom-wled.txt          | 154
-> > > ----------------
-> > >  .../bindings/leds/backlight/qcom-wled.yaml         | 201
-> > > +++++++++++++++++++++
-> > >  2 files changed, 201 insertions(+), 154 deletions(-)
-> > >  delete mode 100644
-> > > Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-[...]
+Hi Thomas, could you please pick them into MIPS tree?
 
-> > > +        interrupt-names:
-> > > +          items:
-> > > +            - const: ovp
-> > > +            - const: short
-> > 
-> > Move these 2 props to the main section adding a 'minItems: 1'. Then just
-> > define 'minItems: 2' here and 'maxItems: 1' in the 'then' clause.
-> > 
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - label
-> > 
-> > Add:
-> > 
-> > additionalProperties: false
-> > 
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    backlight@d800 {
-> > > +        compatible = "qcom,pm8941-wled";
-> > > +        reg = <0xd800 0x100>;
-> > > +        label = "backlight";
-> > > +
-> > > +        qcom,cs-out;
-> > > +        qcom,current-limit = <20>;
-> > > +        qcom,current-boost-limit = <805>;
-> > > +        qcom,switching-freq = <1600>;
-> > > +        qcom,ovp = <29>;
-> > > +        qcom,num-strings = <2>;
-> > > +        qcom,enabled-strings = <0 1>;
-> > > +     };
-> Thanks for reviewing. I will submit the next revision with all the fixes.
+Thanks.
 
-Please trim your replies.
+Jiaxun Yang (5):
+  MIPS: Loongson64: Remove dead RTC code
+  MIPS: Loongson64: Make RS780E ACPI as a platform driver
+  dt-bindings: Document Loongson RS780E PCH ACPI Controller
+  MIPS: DTS: Loongson64: Add ACPI Controller Node
+  MIPS: Loongson64: Mark RS780 HPET as broken
 
-Also, if you agree with all of the review comments, there really is no
-need to reply and/or thank the reviewer.  Simply submit a subsequent
-set with a bumped version indicator.
+ .../bindings/mips/loongson/rs780e-acpi.yaml   | 40 +++++++++++++
+ arch/mips/boot/dts/loongson/rs780e-pch.dtsi   |  5 ++
+ .../include/asm/mach-loongson64/mc146818rtc.h | 36 ------------
+ arch/mips/loongson64/Kconfig                  | 12 +---
+ arch/mips/loongson64/Makefile                 |  3 +-
+ arch/mips/loongson64/rtc.c                    | 39 -------------
+ arch/mips/loongson64/time.c                   |  8 +--
+ drivers/platform/mips/Kconfig                 |  6 ++
+ drivers/platform/mips/Makefile                |  1 +
+ .../platform/mips/rs780e-acpi.c               | 58 ++++++++++++-------
+ 10 files changed, 95 insertions(+), 113 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mips/loongson/rs780e-acpi.yaml
+ delete mode 100644 arch/mips/include/asm/mach-loongson64/mc146818rtc.h
+ delete mode 100644 arch/mips/loongson64/rtc.c
+ rename arch/mips/loongson64/acpi_init.c => drivers/platform/mips/rs780e-acpi.c (70%)
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.26.0.rc2
+
