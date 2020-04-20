@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3711B0EF1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 16:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27BC81B0F10
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 16:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726614AbgDTOzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 10:55:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48930 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726102AbgDTOzG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 10:55:06 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D72C3206F6;
-        Mon, 20 Apr 2020 14:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587394506;
-        bh=mVEx3XY90SEpTFNM9MsmAdX5zzmMS+Pek1Ko35DoHGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RjI9Q0xUzkfvTN4Kl2yjClEdUmVRl9wkGgCHQIjBTGpti48OHUrnXIwAtcnY+TGJ1
-         9c1mfV8JXFmKyr7PbNilidjiX2RPiCQYR+Bz1afYm2EobOfyfB/z0BFBkF7j1v9wtV
-         RX3F1IqZghJwU5oA/IbEwz88bIti8eYUQXgrdW5I=
-Date:   Mon, 20 Apr 2020 22:54:59 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Martin Kepplinger <martink@posteo.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq-librem5-devkit: Use 0.9V for VDD_GPU
-Message-ID: <20200420145459.GE32419@dragon>
-References: <d9bfb11e3d66376792089d54d7d52fe3778efa33.1584636213.git.agx@sigxcpu.org>
+        id S1728241AbgDTO6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 10:58:21 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:13354 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725944AbgDTO6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 10:58:21 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03KEvxFe029857;
+        Mon, 20 Apr 2020 16:58:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=vnvueWF2EAYv1eJy/Hwk/dSPJsB/WwgqTpNzfqj2Osg=;
+ b=iFVVMe31yG1knkRz19oSGJ3tW5TSm8SPWpnIbNqd4drZytF9ZjbbYxaqdSeLNGyIuep6
+ /k2MUWA5P4jn0eh8Ha1wcKWN0IzEaMvbgDJ/Bfn/tur5ws4vjrg9OXLWdb8TmIdi1ZaQ
+ ZBK36iYhFF+RYmeYsvqCBmcWMKZeAifthqhN64efcfgi+Yw15ajjMRNtOP6Gnl57bglj
+ wmcEJIhDiGRhoADi51lBoTM57N9z8xc9yfDa67MndJwgE71dqyF3QOd/HXKZsqEII/Ws
+ XBtD35C+QjSKpfOx3DTKvcVMOgCQxzAyxLlEKTzQP4PddyK0EIGfqe5L8Y8Ov1JVznwM 1A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 30fpp8k27y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Apr 2020 16:58:07 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F0E2D10002A;
+        Mon, 20 Apr 2020 16:58:06 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BEC932C1F6E;
+        Mon, 20 Apr 2020 16:58:06 +0200 (CEST)
+Received: from localhost (10.75.127.50) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 20 Apr 2020 16:58:06
+ +0200
+From:   Alain Volmat <alain.volmat@st.com>
+To:     <wsa@the-dreams.de>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>,
+        <alain.volmat@st.com>
+Subject: [PATCH v3 0/2] i2c: i2c-stm32f7: allow range of I2C bus frequency
+Date:   Mon, 20 Apr 2020 16:57:55 +0200
+Message-ID: <1587394677-6872-1-git-send-email-alain.volmat@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d9bfb11e3d66376792089d54d7d52fe3778efa33.1584636213.git.agx@sigxcpu.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-20_05:2020-04-20,2020-04-20 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 19, 2020 at 05:46:02PM +0100, Guido Günther wrote:
-> According to the imx8mq data sheet running VDD_GPU at 0.9V is enough
-> when not overclocking to 1GHz (which we currently don't do).
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+This serie introduces the possibility to set bus frequency other
+than 100KHz, 400KHz and 1MHz.
 
-It doesn't apply to my branch.
+Changelog:
+v3: fix i2c: i2c-stm32f7: allows for any bus frequency patch
+v2: fix i2c: i2c-stm32f7: allows for any bus frequency patch
 
-Shawn
+Alain Volmat (2):
+  dt-bindings: i2c: i2c-stm32f7: allow clock-frequency range
+  i2c: i2c-stm32f7: allows for any bus frequency
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> index c47a26cf8e43..736b250bc9c2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -318,7 +318,7 @@
->  				regulator-min-microvolt = <700000>;
->  				regulator-max-microvolt = <1300000>;
->  				regulator-always-on;
-> -				rohm,dvs-run-voltage = <1000000>;
-> +				rohm,dvs-run-voltage = <900000>;
->  			};
->  
->  			buck4_reg: BUCK4 {
-> -- 
-> 2.23.0
-> 
+ .../devicetree/bindings/i2c/st,stm32-i2c.yaml      |   8 +-
+ drivers/i2c/busses/i2c-stm32f7.c                   | 125 +++++++++++----------
+ 2 files changed, 68 insertions(+), 65 deletions(-)
+
