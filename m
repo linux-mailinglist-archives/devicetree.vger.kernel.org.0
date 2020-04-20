@@ -2,158 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A391B16FF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 22:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF811B172B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 22:33:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728254AbgDTU0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 16:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726878AbgDTU02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 16:26:28 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98038C061A0C;
-        Mon, 20 Apr 2020 13:26:28 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id v8so886081wma.0;
-        Mon, 20 Apr 2020 13:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6W8grtyB7pbKtLO6nZYSpUXrUqbnBG7Y9G7Qj2TNYYc=;
-        b=p6knrLkBXwqGxq6+Y8qDIGzAfcrs/wLEqwashKOOkURN4yTA94z5zf6FYUXgFl5l+A
-         sUZmWPty1XgIIpLJ3hTZO4gKR/faEocL0UrIS0nof9RS8Twbj238UkMEtj94Kz5OlpUd
-         8hQELeyceiME/J/rZZVVMoRms2EpF/5fJzag0sVaY5uAMl/5yXip4SfSyG3lZMWSEjeM
-         k14iXl5I9MZDAQS/v/frX36Orkn+PTNpt0fHnjzmF1buhsAhSk+K0WNkYkNAsy4sfAEL
-         awitjW9GwcEYdzsGz3nqeD8ILj01JO0ixWHC5/iW+BObvDHrDvKpuPvCv4X+F1l5TCIY
-         yh+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6W8grtyB7pbKtLO6nZYSpUXrUqbnBG7Y9G7Qj2TNYYc=;
-        b=CME10pCQEBoI1RMvw5ps/2HHknQywcxYM6VWmPsLyYjH50O2tFRMfWcwcoJVjgDlCn
-         t2qu3pLPYAOnWARhjB855ms6u34kFggkgFPDTenmBC5tQMuuIyFnWRpN95R6Hnbc80Z3
-         5wbeCNXJ6kgj5vvH6P9/Hxzfpf7sjJ1WI+y9aesShfb1+/ykOaGCjybCl+VyRYCC/0oB
-         MnYEVD8ewDBnRdQco5b21nEucMcvk5uk2sENhzOKiaPP/9UUZlzBXc+SY4bKNvTfT1MZ
-         WUb1tI0kh9Ose1t42X62LOA7TJ3OCZ4NI7vCM0ogwn3F5GefkDOdn8aL5HnCAvapBpUs
-         xWOQ==
-X-Gm-Message-State: AGi0PuYC6FooMiZjCjTCyUglHxtupi0j9rLPah4RN2gCghMQq0gy4Ga5
-        kTXR+2aq+7jUvLH4jjHiNh0=
-X-Google-Smtp-Source: APiQypLqmxKs/1t8ZCj39OTBsU0FhGL3s33M63qCSyOMn2SmgJ0ImXAQAFlCOH5BiI32aIJv+k0WsA==
-X-Received: by 2002:a1c:148:: with SMTP id 69mr1161252wmb.181.1587414387225;
-        Mon, 20 Apr 2020 13:26:27 -0700 (PDT)
-Received: from localhost.localdomain (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de. [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id l19sm657846wmj.14.2020.04.20.13.26.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 13:26:26 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 4/4] soc: amlogic: meson-ee-pwrc: add support for the Meson GX SoCs
-Date:   Mon, 20 Apr 2020 22:26:12 +0200
-Message-Id: <20200420202612.369370-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
-References: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
+        id S1725958AbgDTUdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 16:33:01 -0400
+Received: from plaes.org ([188.166.43.21]:36274 "EHLO plaes.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725774AbgDTUdB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 16:33:01 -0400
+Received: from plaes.org (localhost [127.0.0.1])
+        by plaes.org (Postfix) with ESMTPSA id 9908240086;
+        Mon, 20 Apr 2020 20:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
+        t=1587414749; bh=d7Hj4YSM+ItexsFnRjVlbilf+LuV59x0yxXoLaqX6Yw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JFgTz9qeJUl4IMms8a8wL9ia7zEMfStVPbGo86s1wI8zOPvSdr8d3OOQkfKBSAKa2
+         2cyrCGrrRn18La96SdTgeMAZqOrq4Cm8h7v0CZcLoni8T45VywhEg8K29lcGkgFJRz
+         VDVzf5hlkhZyrDEf9NvIz1s7v9EFg+f1U66S+v8m27pLm1AT3OzZ3m0foBRqjtatQ0
+         lsYGWr4yFX81V18wzG9BBopi6FfRWZmaUapt/PuABevjh/BaD0UzLsgWMWYTl/ypcW
+         fthldSfIuKzT93ot591XlVkUUDKrFD65Z7YSDIWOytaMLrQ16pj8ddeugFDuVU5UsX
+         FZU4gbRdhOXTg==
+Date:   Mon, 20 Apr 2020 20:32:28 +0000
+From:   Priit Laes <plaes@plaes.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 1/4] clk: sunxi-ng: a10/a20: rewrite init code to a
+ platform driver
+Message-ID: <20200420203228.GA4734@plaes.org>
+References: <20200417221730.555954-1-plaes@plaes.org>
+ <20200417221730.555954-2-plaes@plaes.org>
+ <20200420124935.asfbgv7envb2af55@gilmour.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200420124935.asfbgv7envb2af55@gilmour.lan>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Meson GX SoCs to the meson-ee-pwrc driver.
+On Mon, Apr 20, 2020 at 02:49:35PM +0200, Maxime Ripard wrote:
+> On Sat, Apr 18, 2020 at 01:17:27AM +0300, Priit Laes wrote:
+> > In order to register regmap for sun7i CCU, there needs to be
+> > a device structure already bound to the CCU device node.
+> > 
+> > Convert the sun4i/sun7i CCU setup to platform driver to use
+> > it later as platform device.
+> > 
+> > Signed-off-by: Priit Laes <plaes@plaes.org>
+> 
+> You can't relly do that though. We have timers that need those clocks before the
+> device model is initialized.
 
-The power domains on the GX SoCs are very similar to G12A. The only
-known differences so far are:
-- The GX SoCs do not have the HHI_VPU_MEM_PD_REG2 register (for the
-  VPU power-domain)
-- The GX SoCs have an additional reset line called "dvin"
+Ok, I'm somewhat lost now... are these the affected timers on sun7i following:
+- allwinner,sun4i-a10-timer (timer@1c20c00)
+- allwinner,sun7i-a20-hstimer (hstimer@1c60000)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/soc/amlogic/meson-ee-pwrc.c | 26 ++++++++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+Any ideas on what approach I could actually use?
 
-diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-index b30868da456a..a90572cb9c82 100644
---- a/drivers/soc/amlogic/meson-ee-pwrc.c
-+++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-@@ -16,6 +16,7 @@
- #include <linux/clk.h>
- #include <dt-bindings/power/meson8-power.h>
- #include <dt-bindings/power/meson-g12a-power.h>
-+#include <dt-bindings/power/meson-gxbb-power.h>
- #include <dt-bindings/power/meson-sm1-power.h>
- 
- /* AO Offsets */
-@@ -73,7 +74,7 @@ struct meson_ee_pwrc_domain_data {
- 
- /* TOP Power Domains */
- 
--static struct meson_ee_pwrc_top_domain g12a_pwrc_vpu = {
-+static struct meson_ee_pwrc_top_domain gxbb_pwrc_vpu = {
- 	.sleep_reg = AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(8),
- 	.iso_reg = AO_RTI_GEN_PWR_SLEEP0,
-@@ -138,6 +139,12 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
-+static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
-+	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-+};
-+
- static struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_eth[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(3, 2) },
- };
-@@ -223,11 +230,17 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain);
- 
- static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
--	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
-+	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &gxbb_pwrc_vpu, g12a_pwrc_mem_vpu,
- 				     pwrc_ee_get_power, 11, 2),
- 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
- };
- 
-+static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
-+	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gxbb_pwrc_vpu, gxbb_pwrc_mem_vpu,
-+				     pwrc_ee_get_power, 12, 2),
-+	[PWRC_GXBB_ETHERNET_MEM_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
-+};
-+
- static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
- 				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
-@@ -514,6 +527,11 @@ static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
- 	.domains = g12a_pwrc_domains,
- };
- 
-+static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
-+	.count = ARRAY_SIZE(gxbb_pwrc_domains),
-+	.domains = gxbb_pwrc_domains,
-+};
-+
- static struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
- 	.count = ARRAY_SIZE(meson8_pwrc_domains),
- 	.domains = meson8_pwrc_domains,
-@@ -542,6 +560,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
- 		.compatible = "amlogic,meson8m2-pwrc",
- 		.data = &meson_ee_m8b_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-pwrc",
-+		.data = &meson_ee_gxbb_pwrc_data,
-+	},
- 	{
- 		.compatible = "amlogic,meson-g12a-pwrc",
- 		.data = &meson_ee_g12a_pwrc_data,
--- 
-2.26.1
+Also, similar timer dependency would affect then sun6i-a31 and sun9i-a80
+platforms too...
 
+> 
+> Maxime
