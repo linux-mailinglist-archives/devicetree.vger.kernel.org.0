@@ -2,130 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC2C41B02C4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AD271B02E4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 09:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725773AbgDTHWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 03:22:03 -0400
-Received: from mail-eopbgr60062.outbound.protection.outlook.com ([40.107.6.62]:44801
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725815AbgDTHWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 03:22:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QwvUktWqKd81HhDD+vhUx6/IUW75RxvzpFZ3zFP4sSdRLK/Z0cEUN8NVyXQI2QFadHsJ3e4MMrW5Ye81pVzIdJiH766fCMvC9J52+1yL62nFqYFDI3OxRfEAOVVWcNCpXcvigCRP+9YnZ3KjRtCRpBxvxsNOtX3RpEWAAo4tqCmFNrLUpPJfy/1WZb2qmIeffQ3K35MCg07lhgEx5BazhSPoKf7tzU+ytUezje4MyKqHTkBcO6SHlMXfYGHbpQRgdPnYo3bni01zIo4SXgIYlqnpOHgTkPRE+nzCApRaxA+IP98Q9+xZYY7XcVPfM5Rk8zI0VjO3HZW07AXBErMngA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ODlyhL240c9hnu5xz+DAZLU24pNg9lJSwQz4v8fhUGw=;
- b=fUkVVM/WxeeUx0DvdK16/SGdXtD/KJa9gkrw+v3/wKWpYztnSDAMt3ERNfeL9IyptQ46AvIirmWPy4Cx9h4sAOKC6pFIjVVs3Sq18Ei9jzOEARyN5Q5mzNBgJF1auV0TejKGbCQsDtMFXeWLDxUYYBSKKqCnBQHKRyPTcVABhO8AD4k943IITIbiZ1NvQOO27A19neW6QcxbcEfFk6wHO7IY8KDODbMj9WYTXajyWqBqte/y4/AsarmKD5zeovsXwxKRJ93sB7ZMuVPmoT+DaOUDChuvpB8hrB1tTZFzgsP3XMpC0eY7aPg0qT1gBHAsWa1XJXibauzvBCe4NYzNIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ODlyhL240c9hnu5xz+DAZLU24pNg9lJSwQz4v8fhUGw=;
- b=NFVt7p3r2HuT0VwUTE/Hri2Cb3Ftz+SbDbr8uZMPIzenIQMpNKjEpnLtAUnVJAVLGTBob/OK4rIr4x4W7FphLQJ+k7KiDcyGfzPfRu4TsS1nNwHV0OYpNbjSWeKEqiRZYzQTv/4xrOcZ7EsQvm7i7ZdQ7zWm7xWV/f57T1Govj4=
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VE1PR04MB6701.eurprd04.prod.outlook.com (2603:10a6:803:124::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.26; Mon, 20 Apr
- 2020 07:21:59 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::d5f0:c948:6ab0:c2aa]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::d5f0:c948:6ab0:c2aa%4]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
- 07:21:59 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Matt Porter <mporter@konsulko.com>,
-        Daniel Baluta <daniel.baluta@gmail.com>
-CC:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] arm64: dts: imx8mm: fix dma peripheral type for SAI nodes
-Thread-Topic: [PATCH] arm64: dts: imx8mm: fix dma peripheral type for SAI
- nodes
-Thread-Index: AQHWE1BeKLvAnwSi/kudm5PLyQ0/Nqh6hYcAgAcaXPA=
-Date:   Mon, 20 Apr 2020 07:21:59 +0000
-Message-ID: <VE1PR04MB6638755B389159519ADC51A289D40@VE1PR04MB6638.eurprd04.prod.outlook.com>
-References: <20200331203551.20914-1-mporter@konsulko.com>
- <CAEnQRZCqeJkRPEUYL3k8seuNusLZ6QpT-X-A7E20AMHSYcmaUA@mail.gmail.com>
- <20200415184548.GA29919@bacon.ohporter.com>
-In-Reply-To: <20200415184548.GA29919@bacon.ohporter.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yibin.gong@nxp.com; 
-x-originating-ip: [183.192.239.221]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 13b5ec9e-d5c0-4dca-60d0-08d7e4fb83e7
-x-ms-traffictypediagnostic: VE1PR04MB6701:|VE1PR04MB6701:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB6701A9C06B1D11DD31201C3789D40@VE1PR04MB6701.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 03793408BA
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10009020)(4636009)(366004)(346002)(39860400002)(136003)(396003)(376002)(71200400001)(5660300002)(64756008)(4326008)(66476007)(2906002)(66446008)(66556008)(76116006)(66946007)(7696005)(86362001)(33656002)(8936002)(9686003)(186003)(26005)(316002)(8676002)(6506007)(53546011)(52536014)(55016002)(478600001)(110136005)(54906003)(81156014)(32563001);DIR:OUT;SFP:1101;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: U2w/hYvFK2pZG7NPb9MAp/yEOwbstgQvToa9EtQzstzoWBpUaw95nKp58hLnHFKLUrw+mQj3i6bSwLPJ5TO4hV/WomrAks9LvYcKogJ0e4+l0nv/AN0ceh4OxoSaBZ6bHGb8k1NBdrnb/p38jXwcUu87Ry+T46ajRSwm950Kfsk7H4tglzVHF6QcyscxUEn8uoY/aWHlyy3iOh5fLL73xMGi3q8wpfQP31bGkvXZMjIJ2ZJ3taANkNEDwucCeKXUNzz5R15DcZW3w4R2+IpCLkjzsEm/jBt1xZ8Isq2TgpdoSbedObVnb5cwctpRiuN75apJbhsJcTQOcthPCsxO1w78Nil4YifCycs7rPJhChrqtsgR59xgY4NCSsQNPUf99SE4sN83eKz6V8OEHEzMmvkkQbXEQVll+AoibRnImaxuLzOeGJpTBau3Nq3g4bkq3fnytjZCzRiDZXwmUfNqRZVUI93QfUXZTQtxFIYrht0=
-x-ms-exchange-antispam-messagedata: s1CTl+jytKsEkMhJRjm0HJidBdPukMAXjS0UiR4Fjdp/vSKcz7cJ8TvyihOjrPNKhweV8rsdgT2aWOPePsRgzmBz3MbmCvC0ilFDOdf/6R/K3D4Q2wf69EcOC7s20kLkRVk7i7pfquqawaWTs6FYtw==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726124AbgDTH1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 03:27:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726067AbgDTH1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 03:27:32 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D2CC061A0F
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 00:27:31 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id s10so1629919wrr.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 00:27:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fLd3utKBUqircZ8XSU/jqQ1o3HOdiOgb+Til4epkr7E=;
+        b=Zjs6lkCZP51RU1eaQIhcoO3FB2Z6jXmILC0s2D752dm7NvsQ+tleMbs3JgJ0uCOger
+         E/tjxVQyBlWGd8C8KH6qKSy877jK0dOi4ouglmI3EUeSGLveLxJsg2RtwSK7UMdZjCHW
+         wFmMR6P5iaO2QXH4ksbOgvB+J3KLMVx+AA8FAPieKGTfyyESTZnp60vvRq2mOL1n6k89
+         exxFo80LcTgKlrntlkSIIORBACYyTzHdDPArnuLiOwJFPLXem/gn0Igo6JBXWNAODiUe
+         tLRv8q8+adw+2X8p6HhK3S5Eako2xzmyRKxo0WGwjta/t8GubKM8ali0sa3m5En/fezW
+         12VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fLd3utKBUqircZ8XSU/jqQ1o3HOdiOgb+Til4epkr7E=;
+        b=py5HJJZJcS0iGz81I70ItKO9RCsX/PjQ26gGM0hWziVfccdoCgxMhl2V4c1ir1XK3i
+         ICn6Ks7DZMijgBo4IwSiwL906mdjSb8i5oNUagC3kPFnJ96E6ebXaaIz58OiY4aJNPHF
+         61Fh8k+5dj6IVTUclqAKWsrUnM54zYU+ZCnEk7g6TV2B3eFB3y1FV9EJEnDh8jYl4CAg
+         cmLzlD1NHzSD8ZcNmr3U7Mv50cRGyryLiduj56ceMh9jPQMmenEr23gbosFPpRshaJKH
+         fqGZ7ITxcwg3fZyfKOoFpP5MWtGSSlGxqZVfzMcFiMHjO0/2WaVsOqRbwpGnEFV4D9u4
+         gZ2Q==
+X-Gm-Message-State: AGi0Puant51OmsnZ12kR8fy57Xqwc7wgMN1xJ5+cdaCWakT96B0imIVJ
+        f9kdoPFKaIxB0B1b8a7NRPQMsg==
+X-Google-Smtp-Source: APiQypLZ95duN0TVR/SeVUQItXdNoeinc7W1AvPfKzE2PNLYi2bchw8ulFVhIRvX/oUlL+29V+w4Lg==
+X-Received: by 2002:a5d:5224:: with SMTP id i4mr17175368wra.1.1587367650264;
+        Mon, 20 Apr 2020 00:27:30 -0700 (PDT)
+Received: from dell ([95.149.164.107])
+        by smtp.gmail.com with ESMTPSA id v16sm188543wml.30.2020.04.20.00.27.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Apr 2020 00:27:29 -0700 (PDT)
+Date:   Mon, 20 Apr 2020 08:27:27 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     kgunda@codeaurora.org
+Cc:     Rob Herring <robh@kernel.org>, bjorn.andersson@linaro.org,
+        jingoohan1@gmail.com, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        linux-arm-msm@vger.kernel.org,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Subject: Re: [PATCH V5 1/4] backlight: qcom-wled: convert the wled bindings
+ to .yaml format
+Message-ID: <20200420072727.GI3737@dell>
+References: <1586274430-28402-1-git-send-email-kgunda@codeaurora.org>
+ <1586274430-28402-2-git-send-email-kgunda@codeaurora.org>
+ <20200415150904.GA11174@bogus>
+ <557e8bd874256271174402b5faba9c90@codeaurora.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13b5ec9e-d5c0-4dca-60d0-08d7e4fb83e7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2020 07:21:59.5548
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QwcKwr2VFEDPPtYcW9Tc+dfG5tcoa30zfR02EVnofr0wXqnEuUSl2HCYi5b3vOG0ESOpDpgPKpzZxMNzbDDmgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6701
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <557e8bd874256271174402b5faba9c90@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/04/16 Matt Porter <mporter@konsulko.com> wrote:d
-> On Wed, Apr 15, 2020 at 09:04:43PM +0300, Daniel Baluta wrote:
-> > On Tue, Mar 31, 2020 at 11:36 PM Matt Porter <mporter@konsulko.com>
-> wrote:
-> > >
-> > > The peripheral type specified in the dma phandle for each SAI node
-> > > is incorrect. Change it to specify the SAI peripheral.
-> > >
-> > > Signed-off-by: Matt Porter <mporter@konsulko.com>
-> >
-> > Hi Matt,
-> >
-> > Why do you think this is incorrect?  AFAIK script number 2 works fine
-> > for SAI. Can you add more details on what bug are you encountering?
-> >
-> > Adding Robin the owner of SDMA.
->=20
-> Hi Daniel,
->=20
-> Thanks for the response. I was experiencing timeouts that were traced bac=
-k to
-> dma incompletions. Changing the script at the time fixed that issue. Now,=
- given
-> your response I went back and checked this again and verified that script=
- 2
-> does work for me now. I did change firmware to the latest v4.4 from somet=
-hing
-> quite old so now I'm suspecting I had bad firmware loaded up. Does that s=
-ound
-> plausible? In any case, I can confirm this is not needed.
-No, that's not related with firmware version since both scripts are all ROM=
- scripts instead of RAM scripts which's in sdma firmware.
+On Fri, 17 Apr 2020, kgunda@codeaurora.org wrote:
+
+> On 2020-04-15 20:39, Rob Herring wrote:
+> > On Tue, Apr 07, 2020 at 09:17:07PM +0530, Kiran Gunda wrote:
+> > > Convert the qcom-wled bindings from .txt to .yaml format.
+> > > Also replace PM8941 to WLED3 and PMI8998 to WLED4.
+> > > 
+> > > Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> > > Signed-off-by: Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+> > > Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+> > > ---
+> > >  .../bindings/leds/backlight/qcom-wled.txt          | 154
+> > > ----------------
+> > >  .../bindings/leds/backlight/qcom-wled.yaml         | 201
+> > > +++++++++++++++++++++
+> > >  2 files changed, 201 insertions(+), 154 deletions(-)
+> > >  delete mode 100644
+> > > Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+[...]
+
+> > > +        interrupt-names:
+> > > +          items:
+> > > +            - const: ovp
+> > > +            - const: short
+> > 
+> > Move these 2 props to the main section adding a 'minItems: 1'. Then just
+> > define 'minItems: 2' here and 'maxItems: 1' in the 'then' clause.
+> > 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - label
+> > 
+> > Add:
+> > 
+> > additionalProperties: false
+> > 
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    backlight@d800 {
+> > > +        compatible = "qcom,pm8941-wled";
+> > > +        reg = <0xd800 0x100>;
+> > > +        label = "backlight";
+> > > +
+> > > +        qcom,cs-out;
+> > > +        qcom,current-limit = <20>;
+> > > +        qcom,current-boost-limit = <805>;
+> > > +        qcom,switching-freq = <1600>;
+> > > +        qcom,ovp = <29>;
+> > > +        qcom,num-strings = <2>;
+> > > +        qcom,enabled-strings = <0 1>;
+> > > +     };
+> Thanks for reviewing. I will submit the next revision with all the fixes.
+
+Please trim your replies.
+
+Also, if you agree with all of the review comments, there really is no
+need to reply and/or thank the reviewer.  Simply submit a subsequent
+set with a bumped version indicator.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
