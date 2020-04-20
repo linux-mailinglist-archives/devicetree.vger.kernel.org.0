@@ -2,69 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0A81B0738
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB8F1B0745
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726049AbgDTLST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 07:18:19 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:48278 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725896AbgDTLST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 07:18:19 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id 177A92A0C7C
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Rule for bridge yaml dt binding maintainers?
-Date:   Mon, 20 Apr 2020 14:19:24 +0300
-Message-ID: <87d082jtfn.fsf@collabora.com>
+        id S1725886AbgDTLWV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Apr 2020 07:22:21 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:42897 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725865AbgDTLWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 07:22:21 -0400
+Received: by mail-il1-f193.google.com with SMTP id t10so9321531ilg.9;
+        Mon, 20 Apr 2020 04:22:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pccoCR8bT7vHRl0vUz7N7kMnUn1VVOEIOeGXPVDk95E=;
+        b=k+P74HIj1AA0JQdyTtPkrKTRc3NsUwUphlWyf9eSuvOs2ZPJCMCi+v+2TFaD23BetV
+         PHqLCKOpODqoK1Eunwk+4/+HIq7yekZOpSwE4m9YcCszl0geFdQKF9WOg/c8tvwQlQpC
+         d0XVVGr+kflxTZ56OKiRubAdYWnpM8KPH9jj1O7Br2lxM2GKbqj8rYMffAmUvg0n8mBH
+         m7QjREZZqTbCQU4/xME3jlpWpRpHJxdG0zDiEBs5Xz/w6uqDtTl5FcsFTHjSI6JMwfxW
+         6wiYrn/IEKfsO0pwrxTiiJlMug0MKw7J9RxTF1QDbGicyF85nt0dFfa1W18Tae+liah7
+         F8+Q==
+X-Gm-Message-State: AGi0PuZI0U0R3zjBMHvfvfDcF3taAqSExMkVSDsCtW3Qhfs8bomH5Jx0
+        T9SLvxY/qCG4S5NtGfxGVXQFcOmT2FyQskNYN9c=
+X-Google-Smtp-Source: APiQypJih+IGWE6cV7mZ3c/9zRUrKM5YERvG07E+axOwrqifX1twhy4o7Zuo5eRqjkk28lKbGEBAK3L9NVPhHoqv4C0=
+X-Received: by 2002:a92:50f:: with SMTP id q15mr9239890ile.4.1587381740415;
+ Mon, 20 Apr 2020 04:22:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed
+References: <20200420110715.12032-1-matwey@sai.msu.ru> <752db40d-5aed-4a97-a050-bc1376547f87@xilinx.com>
+In-Reply-To: <752db40d-5aed-4a97-a050-bc1376547f87@xilinx.com>
+From:   "Matwey V. Kornilov" <matwey@sai.msu.ru>
+Date:   Mon, 20 Apr 2020 14:22:09 +0300
+Message-ID: <CAJs94EYAppZSWR1ahKhpm5BiF6W6AGPu1OXJLRvFAx93sHRzwA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: zynq: Fix ethernet PHY for v5 schematics
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ZYNQ ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Anton Gerasimov <tossel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+пн, 20 апр. 2020 г. в 14:19, Michal Simek <michal.simek@xilinx.com>:
+>
+> On 20. 04. 20 13:07, Matwey V. Kornilov wrote:
+> > There are at least two different versions existing for MYIR Zturn:
+> >
+> >  * v4 schematics has Atheros AR8035 PHY at 0b000
+> >      http://www.myirtech.com/download/Zynq7000/Z-TURNBOARD_schematic.pdf
+> >  * v5 schematics has Micrel KSZ9031 PHY at 0b011
+> >      v5 schematics available at DVD disk supplied with the board
+> >
+> > Specify both PHYs to make ethernet interface working for any board
+> > revision. This commit relies on of_mdiobus_register() behaviour.
+>
+> typo - behavior.
+>
+> I think it will be very useful to describe that current behavior.
+> Also would be good to test it on v4.
 
-I got confused while doing the txt -> yaml conversion at [1] and 
-it's still not clear to me who should be added in the 
-"maintainers" field.  Clearly not the maintainers as returned by 
-get_maintainer.pl. :)
+I don't have v4 board, so I will highly appreciate if somebody test
+the patch with v4 board.
 
-Rob mentioned that "owners" should be manintainers but I also have 
-trouble picking the persons who should be owners / yaml 
-maintainers.
+>
+> Thanks,
+> Michal
 
-Looking at the completed bridge conversions in the latest 
-linux-next, I couldn't find a rule and the majority of bindings 
-are still txt: 
 
-$ find ./devicetree/bindings/display/bridge/ -name *txt | wc -l
-23
-$ find ./devicetree/bindings/display/bridge/ -name *yaml | wc -l
-5
 
-So my questions are:
-1. Is there a general rule for assigning yaml file 
-owners/maintainers?
-
-2. Is this vagueness specific to the bridge dt bindings only?
-
-3. Who should step up and maintain these bindings? Original/new 
-authors, SoC, bridge, DRM maintainers etc.?
-
-It would be useful to have a rule to make it easier to do these 
-conversions. We (Collabora) are considering doing the conversion 
-work.
-
-Thank you,
-Adrian
-
-[1] https://patchwork.kernel.org/patch/11493009/
+-- 
+With best regards,
+Matwey V. Kornilov.
+Sternberg Astronomical Institute, Lomonosov Moscow State University, Russia
+119234, Moscow, Universitetsky pr-k 13, +7 (495) 9392382
