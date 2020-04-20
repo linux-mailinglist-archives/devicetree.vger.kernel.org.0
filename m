@@ -2,87 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 592E31B13A1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 19:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5E91B13B9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 19:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726207AbgDTRzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 13:55:18 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:32850 "EHLO
+        id S1726798AbgDTR6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 13:58:39 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:46039 "EHLO
         mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726021AbgDTRzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 13:55:18 -0400
-Received: by mail-oi1-f194.google.com with SMTP id m14so9623109oic.0;
-        Mon, 20 Apr 2020 10:55:17 -0700 (PDT)
+        with ESMTP id S1726013AbgDTR6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 13:58:38 -0400
+Received: by mail-oi1-f194.google.com with SMTP id k133so9584632oih.12;
+        Mon, 20 Apr 2020 10:58:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Pnrv9lM8OUTY4sC+Y+b2B4Yg/ImImSGXZBXHhlUhbQo=;
-        b=m1V/fVQ22yA3PwSvWQYiaYI1e3eDYRH4QoyVjjdcpupqHGiboCXYNDNB0Mh0CKg97j
-         bQKibL8wfuWwqnGEUJZ7xz/nrqlrgCJ+Dj9GBoMPwZoH9fZzworZ3KEgwWgdnURUCI/K
-         tyYDZm/SWlXCfMgPo5U4RevNKKLj/NvkD8+/7ImzFzLnH0dte2Xe4nYMuOJ2wx4hUAPv
-         UV75pcI2ij/Tx37kpwTukZWqBQCcRLALl3aNVFKcnymGZOUSsdIRIS21tyKBpG4w4dYq
-         KQZq6E7tygzw1RmHKEb4RNboxDoDPpDmaMUVtyf1Qn6CjnWQZPVVZ3wTRVbgMV9c1Sdf
-         9fSw==
-X-Gm-Message-State: AGi0PuYu/DoYuDP0YSMnLd4hGV1CsqM+23h8r8hH6lRjfqT5yP/cIcFY
-        ejKqWx0csDYcQcaPJYeOZw==
-X-Google-Smtp-Source: APiQypKHszk2EWEj6YDqOxTUfHxKYjV5QQAmfU8m5CMhLH5+8GXPeri83oufl4B0ZfG2WOLRfc1+Kw==
-X-Received: by 2002:aca:4b10:: with SMTP id y16mr435420oia.23.1587405317335;
-        Mon, 20 Apr 2020 10:55:17 -0700 (PDT)
+        bh=dcPKK/Z82IrbhlxfoxaOZNMOk/JJzTs22cge4JBQeik=;
+        b=ZS1pakvBTVkRaxiJZyg7RBi/PXBI4xji388wT3sKWRPXkw8ggove59mOwkZ6IT8M8N
+         26pTFvrDTK0PcCMkvF1f6FmyO6AZpSksl0KQsXNkPktHWUAQRKuCURyn9SejrusYtLaI
+         xxexnt+1DqdyIIATbHlZ9puO2BlCrAk3I/eSH++ujeAtNTxbEhCoeD3Z3vxYp3N2q88d
+         RWqA1GMW2q38JToUMnpe+GcYvfHqScPDoLep/lCG6vNjea2RRFZwoX6NepC12CmR8pFr
+         LalaxhedtHit2dG0+nFXO9iiiHRgtsnT2qZZdyGj0aeSJZOgKqAL2p4RRIHiKq9HfQF0
+         vIwA==
+X-Gm-Message-State: AGi0PuaKjd3025/cIDOdgbY042/4CROqSN9LUmkR9afBSOIbw2lPiJ+z
+        1UBOH48vl5KQcmZ0D2vXYw==
+X-Google-Smtp-Source: APiQypIdSxDnkzoGvplyq+0cQXFUxFEnIyyNYoMQQC/YC9t0Q6lHXcV7sKdKYNUalBncIkTOaz5H9Q==
+X-Received: by 2002:aca:d485:: with SMTP id l127mr398302oig.119.1587405517760;
+        Mon, 20 Apr 2020 10:58:37 -0700 (PDT)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k19sm25202oof.33.2020.04.20.10.55.16
+        by smtp.gmail.com with ESMTPSA id m36sm77626otm.62.2020.04.20.10.58.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 10:55:16 -0700 (PDT)
-Received: (nullmailer pid 29244 invoked by uid 1000);
-        Mon, 20 Apr 2020 17:55:15 -0000
-Date:   Mon, 20 Apr 2020 12:55:15 -0500
+        Mon, 20 Apr 2020 10:58:36 -0700 (PDT)
+Received: (nullmailer pid 4787 invoked by uid 1000);
+        Mon, 20 Apr 2020 17:58:35 -0000
+Date:   Mon, 20 Apr 2020 12:58:35 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: power: meson-ee-pwrc: add support
- for Meson8/8b/8m2
-Message-ID: <20200420175515.GA28534@bogus>
-References: <20200417190825.1363345-1-martin.blumenstingl@googlemail.com>
- <20200417190825.1363345-2-martin.blumenstingl@googlemail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Henrik Rydberg <rydberg@bitmath.org>
+Subject: Re: [PATCH 1/2 v4] dt-bindings: touchscreen: Add CY8CTMA140 bindings
+Message-ID: <20200420175835.GA3511@bogus>
+References: <20200417204312.13453-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200417190825.1363345-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200417204312.13453-1-linus.walleij@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Apr 2020 21:08:22 +0200, Martin Blumenstingl wrote:
-> The power domains on the 32-bit Meson8/Meson8b/Meson8m2 SoCs are very
-> similar to what G12A still uses. The (known) differences are:
-> - Meson8 doesn't use any reset lines at all
-> - Meson8b and Meson8m2 use the same reset lines, which are different
->   from what the 64-bit SoCs use
-> - there is no "vapb" clock on the older SoCs
-> - amlogic,ao-sysctrl cannot point to the whole AO sysctrl region but
->   only the power management related registers
+On Fri, 17 Apr 2020 22:43:11 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the Cypress CY8CTMA140
+> touchscreen.
 > 
-> Add a new compatible string and adjust clock and reset line expectations
-> for each SoC.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Henrik Rydberg <rydberg@bitmath.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/power/amlogic,meson-ee-pwrc.yaml | 75 ++++++++++++++-----
->  include/dt-bindings/power/meson8-power.h      | 13 ++++
->  2 files changed, 71 insertions(+), 17 deletions(-)
->  create mode 100644 include/dt-bindings/power/meson8-power.h
+> ChangeLog v1->v4:
+> - Drop the description of 'reg', it's surplus.
+> - Set the I2C frequency to the span 100k to 400k instead
+>   of hardcoding 400k.
+> - Collect Rob's review tag.
+> ---
+>  .../input/touchscreen/cypress,cy8ctma140.yaml | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.example.dt.yaml: power-controller: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.example.dts:18.22-32.11: Warning (unit_address_vs_reg): /example-0/i2c@00000000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma140.example.dts:18.22-32.11: Warning (unit_address_format): /example-0/i2c@00000000: unit name should not have leading 0s
 
-See https://patchwork.ozlabs.org/patch/1272441
+See https://patchwork.ozlabs.org/patch/1272475
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
