@@ -2,201 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8721B0724
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 133C31B073F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725775AbgDTLP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 07:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726117AbgDTLP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 07:15:26 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BEDFC061A0F
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 04:15:26 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id b11so11613119wrs.6
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 04:15:26 -0700 (PDT)
+        id S1726089AbgDTLTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 07:19:39 -0400
+Received: from mail-dm6nam10on2070.outbound.protection.outlook.com ([40.107.93.70]:6239
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725773AbgDTLTj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 07:19:39 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CpTqzReGsrWq0ueTRRTVDznP2htgLrJ7d0SymgY2GCKk+OIzFPCe29U+D+zVsXhLOJ+wqFWiNC3EMvNPNyoxWpGTS4ZoJKUN/fIeiXAwsnlTVmorHVaAgJEdGrKZ1OkPVIUGSMVHCiybVTV8rXW7NT7RjPU7qzdpNsy3uSbHubhZs+mRHeHOqFN6CKinkZTxBE4HGpquR2alfQ4hfWycAHHEyawP84G7Y6d8m5Y+a/rBccsuvtnhQ7mOXW9qkNFrpMjhAHdseaOZQIkKRfeSV037tAwB/VegIYhpFPafGJd5JTgN4yOjYWjIjoqFX2jTTzwkSKtXSrMkKHj0660qrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bYWk0cpHz7smOILVxDaYOxgIFHwwnNEwpcogfh7ncWY=;
+ b=CIcm7pry9VTqzSZzrwmJAaEzPKVIzD1GMj1WGV6J5zjG7XHuGLsy/uokEpHW3BBFR3cc/k5ZyTUhGr4UHwB248IiT0T88ltA9SQ6E3ldOMx9d0cKFP2eF88hm7eb6zb8sNQGFNuqKP6jg9JkjLDiVgq7C0CU3gHnDOPkXnJkA4pmGFjGTdOLeTgUHVO1uJXpTCtQlXbyLN0/cXaKiYaZQvYItz365LJcFQ/gyVnbp43fh33prC8R/nkKjTC3GqshBpGCTxWGdz1jSfwS9KYzT2AvGFqA/z/RZpU+K8Gg9x6bxFTlIEJKVbhE439ts0od2/nB7bVQJyfSXIhVrMEUqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=sai.msu.ru smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=4uCgchzEKUbGCjVb5ErPQQvp7VtDEqWO3rkjRlf6Z0c=;
-        b=Z69BlBZc3+yIjY+OiSNwt8bsyBI0gsYDwMfdiucsDa5C+MKP/wOJquAOhh0jY8LvP8
-         DrypNHoQ8098wugctLVFMem6rV1KysE9rL4PQbw9dgV9IX4vzDo8vaR3IolrnwdZnlue
-         oiYWMkYalyjVcjm2bEgoiKKZoPYWWSYOSW2mlfPKPx+R10IJHuVAXZKI+CMv1NXjZwBe
-         4ApmE0F3A3wQai4D9aDrDuXakAc3roQsOINa7eE95IHRnzDQ2WMpJIYitHW849I7SOu2
-         /WgTnsClHrd3yTWNDwW+tMRpyK1PDxfZIy/Qi+no+uSblRgwH6XmDdXWWcVSG1+c8QGu
-         WI1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4uCgchzEKUbGCjVb5ErPQQvp7VtDEqWO3rkjRlf6Z0c=;
-        b=oYuQ+G3VWH9mscfcQ5Ry17BBAzidjrfdeZ8DrIQ9I/bHXTmQkvYYAWQTwaPoznZ7xl
-         LtbFIeCmloe5qXE99UGeJ1rVZPyQAivRiYh579VmpMFK5ZFD5h/6q5dGkBjhOj6zqGDu
-         ck0zi5OChpi8Y1Zp6/5MRQmDR3uf2GodZhNTH/vNL2VIXeySlrQu9Lrgad2WqzUppwre
-         9L5wLqKSDoDEAMGKDi96cscV8swQcZgYw5FWajCrdEJTfK7xWQ5eGVeEipJzrLSG9tyY
-         s0Srdnk40CDaQ17vzxrB68CHCE849sskhki/Xqg/qs+5LPwBV/M4IzJhAWDXSvJAkDYx
-         REag==
-X-Gm-Message-State: AGi0PuZXJFAhQBJMIvXDdVr8G7YPSffq9RoF62oNveOHy5jHvbqWSvJF
-        3Jjmc3vg48OIAOh3GBCekkI+iQ==
-X-Google-Smtp-Source: APiQypJhmbeviPbiHBjSOOZlAdECJVyeKqJZLm8MMiKHA1YJPMBCV2InSlX2aY5iSqxkecD8aYWnaQ==
-X-Received: by 2002:a5d:5147:: with SMTP id u7mr17746146wrt.290.1587381324902;
-        Mon, 20 Apr 2020 04:15:24 -0700 (PDT)
-Received: from dell ([95.149.164.107])
-        by smtp.gmail.com with ESMTPSA id q143sm969035wme.31.2020.04.20.04.15.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 04:15:24 -0700 (PDT)
-Date:   Mon, 20 Apr 2020 12:15:22 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org,
-        Richard Fontana <rfontana@redhat.com>,
-        linux-rtc@vger.kernel.org, Nicolas Boichat <drinkcat@chromium.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ran Bi <ran.bi@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bYWk0cpHz7smOILVxDaYOxgIFHwwnNEwpcogfh7ncWY=;
+ b=TyxsOAJRd7WxYuMHi9aCZvEzU62Aw7PzeqaJUAmgNRNF/hsZJ44IyLgjZeGBw5nI/F0SAirWoaplaneZVX9QT3u5pM9tbgvXimE9XjAIerMqQaObVZXCTqyhZa5T3CxauTk/ARk7+botutw6aHqWFLU+mN91ay/BD0+Pj77no88=
+Received: from BL0PR01CA0027.prod.exchangelabs.com (2603:10b6:208:71::40) by
+ BN6PR02MB2851.namprd02.prod.outlook.com (2603:10b6:404:fd::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2921.29; Mon, 20 Apr 2020 11:19:34 +0000
+Received: from BL2NAM02FT030.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:71:cafe::30) by BL0PR01CA0027.outlook.office365.com
+ (2603:10b6:208:71::40) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25 via Frontend
+ Transport; Mon, 20 Apr 2020 11:19:34 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; sai.msu.ru; dkim=none (message not signed)
+ header.d=none;sai.msu.ru; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT030.mail.protection.outlook.com (10.152.77.172) with Microsoft SMTP
+ Server id 15.20.2921.25 via Frontend Transport; Mon, 20 Apr 2020 11:19:33
+ +0000
+Received: from [149.199.38.66] (port=41210 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1jQURe-0006mn-TC; Mon, 20 Apr 2020 04:18:34 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1jQUSa-00013Z-Lu; Mon, 20 Apr 2020 04:19:32 -0700
+Received: from xsj-pvapsmtp01 (maildrop.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 03KBJLCw028821;
+        Mon, 20 Apr 2020 04:19:21 -0700
+Received: from [172.30.17.109]
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <michals@xilinx.com>)
+        id 1jQUSP-00011f-37; Mon, 20 Apr 2020 04:19:21 -0700
+Subject: Re: [PATCH] ARM: dts: zynq: Fix ethernet PHY for v5 schematics
+To:     "Matwey V. Kornilov" <matwey@sai.msu.ru>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Josef Friedl <josef.friedl@speed.at>,
-        srv_heupstream@mediatek.com, Sebastian Reichel <sre@kernel.org>
-Subject: Re: [PATCH v12 1/6] mfd: mt6397: Modify suspend/resume behavior
-Message-ID: <20200420111522.GB3612@dell>
-References: <1586333531-21641-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1586333531-21641-2-git-send-email-hsin-hsiung.wang@mediatek.com>
- <20200416084910.GX2167633@dell>
- <1587379959.6297.2.camel@mtksdaap41>
+        Michal Simek <michal.simek@xilinx.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ZYNQ ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Cc:     matwey.kornilov@gmail.com, Anton Gerasimov <tossel@gmail.com>
+References: <20200420110715.12032-1-matwey@sai.msu.ru>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <752db40d-5aed-4a97-a050-bc1376547f87@xilinx.com>
+Date:   Mon, 20 Apr 2020 13:19:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <20200420110715.12032-1-matwey@sai.msu.ru>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1587379959.6297.2.camel@mtksdaap41>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFTY:;SFS:(10009020)(4636009)(346002)(396003)(136003)(39860400002)(376002)(46966005)(478600001)(26005)(966005)(82740400003)(31696002)(47076004)(70586007)(36756003)(81166007)(70206006)(2616005)(5660300002)(44832011)(4744005)(426003)(6666004)(31686004)(110136005)(316002)(4326008)(336012)(186003)(8936002)(8676002)(2906002)(356005)(81156014)(9786002);DIR:OUT;SFP:1101;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c7c69064-6935-4039-634b-08d7e51cb392
+X-MS-TrafficTypeDiagnostic: BN6PR02MB2851:
+X-Microsoft-Antispam-PRVS: <BN6PR02MB2851873131BCF2C600E8BDB9C6D40@BN6PR02MB2851.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Forefront-PRVS: 03793408BA
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tzZBPXvTjxKVz5sz8IJXhBct73nysfK3pthfWNlpDWpvdm4Ibrux0TLTzf8hobVrpWsa0uHI4wfONI7SOhBxNaSaaWGmPxWve+quOdtUZi5rC3tZ938684JaG728eiA4BGGKHkz7RPNeal2OKP7agOpEyGb361Jb6Zd90aYRWyrmwIq4ycwEOMQ9CC5vDB68fkOZfUkFlU/0y2p0LhADV9Z7X7xHHstiZOgXOTdTqHPkrl9osalAqlDMfiHIV1giUivGbxSC/fNP42usdyj+c5frLnGCqsbY6CnwrUdNXWNTXVU8adYDWrzTWC5Q8y8ShLyMYoNVJ92aZ+W0h9i0jp0kt559ZEWTKc6Wj9Izyzoi+vdTAn84S8SnyqsfpG7Dcp8nvzImafyI6R/5NZtZVWIlmqQlO0Qh41VybVOMqsM6KHsUm8iUE9kFbY65+bskwy679OFC+VOMb2zfGJYdY+ehGDUgidqUmM9ui53ltjw/YeQnO6EDokOD2n6alC2rEuT1ugjiEyHtl4zYyhxueZPfj+Yh9TVFuQX1yh3qkwnUbY9luJiDOo2qKZrl/86YWg6pRyZ817GlUUnMzC6bnw==
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2020 11:19:33.0664
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7c69064-6935-4039-634b-08d7e51cb392
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2851
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Apr 2020, Hsin-hsiung Wang wrote:
-
-> Hi,
+On 20. 04. 20 13:07, Matwey V. Kornilov wrote:
+> There are at least two different versions existing for MYIR Zturn:
 > 
-> On Thu, 2020-04-16 at 09:49 +0100, Lee Jones wrote:
-> > On Wed, 08 Apr 2020, Hsin-Hsiung Wang wrote:
-> > 
-> > > Some pmics don't need backup interrupt settings, so we change to use
-> > > pm notifier for the pmics which are necessary to store settings.
-> > > 
-> > > Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> > > ---
-> > >  drivers/mfd/mt6397-core.c       | 30 ------------------------------
-> > >  drivers/mfd/mt6397-irq.c        | 35 ++++++++++++++++++++++++++++++++++-
-> > >  include/linux/mfd/mt6397/core.h |  2 ++
-> > >  3 files changed, 36 insertions(+), 31 deletions(-)
-> > > 
-> > > diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> > > index 0437c85..d2e70d8 100644
-> > > --- a/drivers/mfd/mt6397-core.c
-> > > +++ b/drivers/mfd/mt6397-core.c
-> > > @@ -100,35 +100,6 @@ static const struct mfd_cell mt6397_devs[] = {
-> > >  	}
-> > >  };
-> > >  
-> > > -#ifdef CONFIG_PM_SLEEP
-> > > -static int mt6397_irq_suspend(struct device *dev)
-> > > -{
-> > > -	struct mt6397_chip *chip = dev_get_drvdata(dev);
-> > > -
-> > > -	regmap_write(chip->regmap, chip->int_con[0], chip->wake_mask[0]);
-> > > -	regmap_write(chip->regmap, chip->int_con[1], chip->wake_mask[1]);
-> > > -
-> > > -	enable_irq_wake(chip->irq);
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -
-> > > -static int mt6397_irq_resume(struct device *dev)
-> > > -{
-> > > -	struct mt6397_chip *chip = dev_get_drvdata(dev);
-> > > -
-> > > -	regmap_write(chip->regmap, chip->int_con[0], chip->irq_masks_cur[0]);
-> > > -	regmap_write(chip->regmap, chip->int_con[1], chip->irq_masks_cur[1]);
-> > > -
-> > > -	disable_irq_wake(chip->irq);
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -#endif
-> > > -
-> > > -static SIMPLE_DEV_PM_OPS(mt6397_pm_ops, mt6397_irq_suspend,
-> > > -			mt6397_irq_resume);
-> > > -
-> > >  struct chip_data {
-> > >  	u32 cid_addr;
-> > >  	u32 cid_shift;
-> > > @@ -238,7 +209,6 @@ static struct platform_driver mt6397_driver = {
-> > >  	.driver = {
-> > >  		.name = "mt6397",
-> > >  		.of_match_table = of_match_ptr(mt6397_of_match),
-> > > -		.pm = &mt6397_pm_ops,
-> > >  	},
-> > >  	.id_table = mt6397_id,
-> > >  };
-> > > diff --git a/drivers/mfd/mt6397-irq.c b/drivers/mfd/mt6397-irq.c
-> > > index b2d3ce1..2924919 100644
-> > > --- a/drivers/mfd/mt6397-irq.c
-> > > +++ b/drivers/mfd/mt6397-irq.c
-> > > @@ -9,6 +9,7 @@
-> > >  #include <linux/of_irq.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/regmap.h>
-> > > +#include <linux/suspend.h>
-> > >  #include <linux/mfd/mt6323/core.h>
-> > >  #include <linux/mfd/mt6323/registers.h>
-> > >  #include <linux/mfd/mt6397/core.h>
-> > > @@ -81,7 +82,7 @@ static struct irq_chip mt6397_irq_chip = {
-> > >  static void mt6397_irq_handle_reg(struct mt6397_chip *mt6397, int reg,
-> > >  				  int irqbase)
-> > >  {
-> > > -	unsigned int status;
-> > > +	unsigned int status = 0;
-> > 
-> > This looks like an unrelated change, no?
-> > 
+>  * v4 schematics has Atheros AR8035 PHY at 0b000
+>      http://www.myirtech.com/download/Zynq7000/Z-TURNBOARD_schematic.pdf
+>  * v5 schematics has Micrel KSZ9031 PHY at 0b011
+>      v5 schematics available at DVD disk supplied with the board
 > 
-> It is to fix the coverity defect.
+> Specify both PHYs to make ethernet interface working for any board
+> revision. This commit relies on of_mdiobus_register() behaviour.
 
-Which isn't mentioned in the commit log and doesn't have anything to
-do with this patch.  Thus it should be in a separate patch, but I'm
-not going to lose any sleep over it.
+typo - behavior.
 
-> > >  	int i, irq, ret;
-> > >  
-> > >  	ret = regmap_read(mt6397->regmap, reg, &status);
-> > > @@ -128,6 +129,36 @@ static const struct irq_domain_ops mt6397_irq_domain_ops = {
-> > >  	.map = mt6397_irq_domain_map,
-> > >  };
-> > 
-> > Other than that.
-> > 
-> > For my own reference:
-> >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> > 
-> Thanks for your review. I will add it in the next version.
-> 
+I think it will be very useful to describe that current behavior.
+Also would be good to test it on v4.
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks,
+Michal
