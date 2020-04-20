@@ -2,107 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3711B0D12
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 15:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 691CD1B0D3F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 15:48:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726081AbgDTNqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 09:46:06 -0400
-Received: from vps.xff.cz ([195.181.215.36]:57450 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725944AbgDTNqG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Apr 2020 09:46:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1587390364; bh=lXFLLXv67CfUewvpws4scaGtSsPitz7siYHsuT7MR54=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=VcwCEC+Pfk0c/2AlQG1Fl8KKx5I7xrpdLVyQih6u2kxXdRe0i6NvuWdkX5cmjkT2y
-         6jWeLwUS+6eoVpXnlt2omWpLTfAOLJ+P7WQoOP6D+mAKELXW6IUjImlyGYGo+kJMoy
-         5YPHVmuBQuWv+0p4MoSqIjXB6sUFTf5RjvWI/akc=
-Date:   Mon, 20 Apr 2020 15:46:04 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v5 2/9] arm64: dts: allwinner: h6: Add thermal trip
- points/cooling map
-Message-ID: <20200420134604.bkjp66fjiggses7a@core.my.home>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-References: <20200420130021.3841-1-peron.clem@gmail.com>
- <20200420130021.3841-3-peron.clem@gmail.com>
+        id S1726500AbgDTNsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 09:48:20 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:20512 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726105AbgDTNsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 09:48:20 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03KDgstO005039;
+        Mon, 20 Apr 2020 15:48:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=newRPJ2KK45rNiffU6kVcqsdXEu/KH0QagJjvhUP/K0=;
+ b=XPqRoJjKjDGfeUkdNw+k0fkpiD1WAoNG+4Go2mWVfQak6iXXhpphKOBdEZnrBDOghMd1
+ teAVobmzETK6a5fKzeWijLz0j+VlaNH+jjGGzIgVsJj+6lmjCVModMSqWzHteuf/a1LA
+ CK46XWPeHPEZo/EDDHEuyCjvVNkkNJDoCHL0ob2Z45L0CXMBxF8+mYitNoNYnJQGyduo
+ dy1a5pDDvr4RWGOsYjA5+5ciFni9uTtkVbezpBTvbc0HZZFCA7xRcAc6z24alNWlu++f
+ Q6Ol5I5aH0CSsjqZh8aVQhxGKUkcaPiqZkIQr9hVXO9uoyuxtzMFQGjJN3H2U5jgiPon /g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 30fqaw2hyw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Apr 2020 15:48:04 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C1DC710002A;
+        Mon, 20 Apr 2020 15:48:03 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B08342B3E2D;
+        Mon, 20 Apr 2020 15:48:03 +0200 (CEST)
+Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 20 Apr 2020 15:48:02
+ +0200
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <gregkh@linuxfoundation.org>,
+        <loic.pallardy@st.com>, <linus.walleij@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH 0/5] STM32 ETZPC bus controller
+Date:   Mon, 20 Apr 2020 15:47:55 +0200
+Message-ID: <20200420134800.31604-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200420130021.3841-3-peron.clem@gmail.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG7NODE3.st.com (10.75.127.21) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-20_04:2020-04-20,2020-04-20 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+STM32 Extended TrustZone Protection controller act like a firewall on the
+platform bus. Depending of its configuration devices could be accessible
+by the TrustZone, the co-processor or the non-secure world. ETZPC
+configuration could evolve at runtime for example to switch a device from
+non-secure world to co-processor.
 
-On Mon, Apr 20, 2020 at 03:00:14PM +0200, Clément Péron wrote:
-> From: Ondrej Jirman <megous@megous.com>
-> 
-> This enables passive cooling by down-regulating CPU voltage
-> and frequency.
+The series introduce 'firewall' helpers to handle the new devices-tree
+properties. These properties are not dedicated to ETZPC and will be reused
+for STM32 next generation of bus controller.
 
-Does this not produce a lot of warnings for you during compilation?
+Benjamin Gaignard (5):
+  dt-bindings: bus: Add firewall bindings
+  bus: stm32: Introduce firewall controller helpers
+  dt-bindings: bus: Add STM32 ETZPC firewall controller
+  bus: stm32: Add stm32 ETZPC firewall bus controller
+  ARM: dts: stm32: Use ETZPC firewall bus
 
-regards,
-	o.
+ .../bindings/bus/stm32/firewall-consumer.yaml      |  25 ++
+ .../bindings/bus/stm32/firewall-provider.yaml      |  18 ++
+ .../bindings/bus/stm32/st,stm32-etzpc.yaml         |  46 ++++
+ arch/arm/boot/dts/stm32mp151.dtsi                  |   7 +-
+ drivers/bus/Kconfig                                |   2 +
+ drivers/bus/Makefile                               |   2 +
+ drivers/bus/stm32/Kconfig                          |  11 +
+ drivers/bus/stm32/Makefile                         |   2 +
+ drivers/bus/stm32/firewall.c                       | 266 +++++++++++++++++++++
+ drivers/bus/stm32/firewall.h                       |  75 ++++++
+ drivers/bus/stm32/stm32-etzpc.c                    | 160 +++++++++++++
+ include/dt-bindings/bus/stm32/stm32-etzpc.h        |  90 +++++++
+ 12 files changed, 702 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/stm32/firewall-consumer.yaml
+ create mode 100644 Documentation/devicetree/bindings/bus/stm32/firewall-provider.yaml
+ create mode 100644 Documentation/devicetree/bindings/bus/stm32/st,stm32-etzpc.yaml
+ create mode 100644 drivers/bus/stm32/Kconfig
+ create mode 100644 drivers/bus/stm32/Makefile
+ create mode 100644 drivers/bus/stm32/firewall.c
+ create mode 100644 drivers/bus/stm32/firewall.h
+ create mode 100644 drivers/bus/stm32/stm32-etzpc.c
+ create mode 100644 include/dt-bindings/bus/stm32/stm32-etzpc.h
 
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 24 ++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index 370e77b86fe1..60da1627772b 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -964,6 +964,30 @@
->  			polling-delay-passive = <0>;
->  			polling-delay = <0>;
->  			thermal-sensors = <&ths 0>;
-> +
-> +			trips {
-> +				cpu_alert: cpu-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&cpu_alert>;
-> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
->  		};
->  
->  		gpu-thermal {
-> -- 
-> 2.20.1
-> 
+-- 
+2.15.0
+
