@@ -2,84 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACB8F1B0745
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E221B076A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2020 13:29:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725886AbgDTLWV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Apr 2020 07:22:21 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:42897 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbgDTLWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 07:22:21 -0400
-Received: by mail-il1-f193.google.com with SMTP id t10so9321531ilg.9;
-        Mon, 20 Apr 2020 04:22:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=pccoCR8bT7vHRl0vUz7N7kMnUn1VVOEIOeGXPVDk95E=;
-        b=k+P74HIj1AA0JQdyTtPkrKTRc3NsUwUphlWyf9eSuvOs2ZPJCMCi+v+2TFaD23BetV
-         PHqLCKOpODqoK1Eunwk+4/+HIq7yekZOpSwE4m9YcCszl0geFdQKF9WOg/c8tvwQlQpC
-         d0XVVGr+kflxTZ56OKiRubAdYWnpM8KPH9jj1O7Br2lxM2GKbqj8rYMffAmUvg0n8mBH
-         m7QjREZZqTbCQU4/xME3jlpWpRpHJxdG0zDiEBs5Xz/w6uqDtTl5FcsFTHjSI6JMwfxW
-         6wiYrn/IEKfsO0pwrxTiiJlMug0MKw7J9RxTF1QDbGicyF85nt0dFfa1W18Tae+liah7
-         F8+Q==
-X-Gm-Message-State: AGi0PuZI0U0R3zjBMHvfvfDcF3taAqSExMkVSDsCtW3Qhfs8bomH5Jx0
-        T9SLvxY/qCG4S5NtGfxGVXQFcOmT2FyQskNYN9c=
-X-Google-Smtp-Source: APiQypJih+IGWE6cV7mZ3c/9zRUrKM5YERvG07E+axOwrqifX1twhy4o7Zuo5eRqjkk28lKbGEBAK3L9NVPhHoqv4C0=
-X-Received: by 2002:a92:50f:: with SMTP id q15mr9239890ile.4.1587381740415;
- Mon, 20 Apr 2020 04:22:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200420110715.12032-1-matwey@sai.msu.ru> <752db40d-5aed-4a97-a050-bc1376547f87@xilinx.com>
-In-Reply-To: <752db40d-5aed-4a97-a050-bc1376547f87@xilinx.com>
-From:   "Matwey V. Kornilov" <matwey@sai.msu.ru>
-Date:   Mon, 20 Apr 2020 14:22:09 +0300
-Message-ID: <CAJs94EYAppZSWR1ahKhpm5BiF6W6AGPu1OXJLRvFAx93sHRzwA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: zynq: Fix ethernet PHY for v5 schematics
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1725886AbgDTL3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 07:29:11 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50212 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725550AbgDTL3L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Apr 2020 07:29:11 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 232B4AD10;
+        Mon, 20 Apr 2020 11:29:07 +0000 (UTC)
+Message-ID: <1363207183f599732f8bb9c97624886df42ced13.camel@suse.de>
+Subject: Re: [PATCH v2 0/2] of: property: fw_devlink misc fixes
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ZYNQ ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Anton Gerasimov <tossel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Date:   Mon, 20 Apr 2020 13:29:07 +0200
+In-Reply-To: <CAGETcx8EJiLSV8jzrusim6EvyVvX4H8ANvZaJwO72G1=iS-N2Q@mail.gmail.com>
+References: <20200417165442.1856-1-nsaenzjulienne@suse.de>
+         <500e8c46a9b411aed03965b6f9130ccde457193d.camel@suse.de>
+         <CAGETcx8EJiLSV8jzrusim6EvyVvX4H8ANvZaJwO72G1=iS-N2Q@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-oWRQfEBEikL1V8VWHXq/"
+User-Agent: Evolution 3.34.4 
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-пн, 20 апр. 2020 г. в 14:19, Michal Simek <michal.simek@xilinx.com>:
->
-> On 20. 04. 20 13:07, Matwey V. Kornilov wrote:
-> > There are at least two different versions existing for MYIR Zturn:
-> >
-> >  * v4 schematics has Atheros AR8035 PHY at 0b000
-> >      http://www.myirtech.com/download/Zynq7000/Z-TURNBOARD_schematic.pdf
-> >  * v5 schematics has Micrel KSZ9031 PHY at 0b011
-> >      v5 schematics available at DVD disk supplied with the board
-> >
-> > Specify both PHYs to make ethernet interface working for any board
-> > revision. This commit relies on of_mdiobus_register() behaviour.
->
-> typo - behavior.
->
-> I think it will be very useful to describe that current behavior.
-> Also would be good to test it on v4.
 
-I don't have v4 board, so I will highly appreciate if somebody test
-the patch with v4 board.
+--=-oWRQfEBEikL1V8VWHXq/
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->
-> Thanks,
-> Michal
+Hi Saravana,
+
+On Fri, 2020-04-17 at 13:55 -0700, Saravana Kannan wrote:
+> On Fri, Apr 17, 2020 at 11:06 AM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > Hi Saravana,
+> >=20
+> > On Fri, 2020-04-17 at 18:54 +0200, Nicolas Saenz Julienne wrote:
+> > > As I'm interested in using this feature to fine-tune Raspberry Pi 4's
+> > > device probe dependencies, I tried to get the board to boot with
+> > > fw_devlink=3Don. As of today's linux-next the board won't boot with t=
+hat
+> > > option. I tried to address the underlying issues.
+> > >=20
+> >=20
+> > On a semi-related topic, have you looked at vendor specific properties?=
+ most
+> > of
+> > them create a consumer/supplier relationship, it'd be nice to be able t=
+o
+> > take
+> > those ones into account as well.
+>=20
+> I'm on the wall about that. If we take every vendor specific property,
+> this file will explode. Not sure I want to do that.
+>=20
+> Also, we haven't even finished all the generic bindings. I'm just
+> adding bindings as I get familiar with each of them and I test them on
+> hardware I have lying around before sending it out. So, there's where
+> my focus is right now wrt fw_devlink and DT.
+>=20
+> I wonder how many of the vendor specific properties do very similar
+> things and got in over time. Maybe they can be made generic? What one
+> did you have in mind?
+
+Well, long story short, we need to create a relationship between RPi4's PCI=
+ bus
+(which hangs from an interconnect in DT) and RPi4's co-processor, which has=
+ a
+highly unconventional firmware driver (raspberrypi.c in drivers/firmware). =
+The
+PCI bus just needs the co-processor interface to be up before probing, that=
+'s
+all (I'll spare you the details of why). Ideally we want to avoid adding
+platform specific code into an otherwise generic bus driver as it'll be use=
+d by
+a number of unrelated SoCs, and it's generally frowned upon.
+
+There is no generic property to handle this case, and it's very unlikely th=
+ere
+will ever be one, since these firmware drivers have very little in common. =
+I
+guess this could make an argument for a generic _last resort only_
+'supplied-by' property, but I bet this solution won't be very popular.
+
+Another idea that comes to mind for vendor specific properties would be
+exporting a macro in the lines of "DEFINE_SIMPLE_PROP()" for supplier drive=
+rs
+to define custom properties. The parse_prop() callbacks could then be added
+into a special section for of/property.c to pickup and parse. The good thin=
+g is
+that the list length would be limited by the kernel configuration and the
+maintenance burden moved to the driver authors, at least to some extent.
+
+Anyway, if something comes to mind to solve RPi4's situation feel free to
+propose anything :).
+
+Regards,
+Nicolas
 
 
+--=-oWRQfEBEikL1V8VWHXq/
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
--- 
-With best regards,
-Matwey V. Kornilov.
-Sternberg Astronomical Institute, Lomonosov Moscow State University, Russia
-119234, Moscow, Universitetsky pr-k 13, +7 (495) 9392382
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl6dh4MACgkQlfZmHno8
+x/6bsQf+O9/wGDiM9jWmJgS5CcfOYfH+LH2Pu1Crp928ANt4oh7OZwBu3hsW3o/1
+cWJ/89Juu3aftIrOPq3bsjJFDxefCwntesJgEhWhrN56uUubPxd0BPKgDqnSDMFo
+Di4NAxqU8xRY2CYcd0vTxh0BUzRxKvNLNfs6RT3sha6GJ5HslboaGpE5Xk+g76HM
++RidyiUiHbjgOnwyM0FwTh83v/vd3V+gTtWN7OASShlAug5GR01WEWYlbWBbo6G6
+Y+cXuBIPm1ksbMHQa3v6LJeO8VDbVv51FfyTb43NmOMDRMdLwtXBiaGEiEIY/joi
+R9iEQAs27JwLsFUFyIHsJnNbbn3e9w==
+=spL2
+-----END PGP SIGNATURE-----
+
+--=-oWRQfEBEikL1V8VWHXq/--
+
