@@ -2,109 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 837CB1B19C0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 00:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A4DE1B1A30
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 01:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726081AbgDTWt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 18:49:57 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44226 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbgDTWt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 18:49:56 -0400
-Received: by mail-ot1-f68.google.com with SMTP id j4so9641344otr.11;
-        Mon, 20 Apr 2020 15:49:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WxapfpzO9hO69SC6FH5ie/6DnovyNGoMMyMXhqKbPBU=;
-        b=Mmdm+26eykaJdqR19q0NrZ2zAbxTEs/oMzm/89/ug7ywuGluks9FxC2dQcSAjnqDue
-         ic3FlvS51A+vcwboApnSWSPKN2NEdGSd2veMLJIKdEgm5x4Bc4yEV2nEpiYNuaCsd0iD
-         Rx62B4FXexRVSltTGwgUerDumKmqo9Qy0AEvrhISCMNqKYltYbgi76HLMvTnBCNVFAZ6
-         HU/C4SpN/vCzpET3RQO8vaB37WzZ/qL9GWhq0r2wAw9TJ0H0G8ORqv7n9drZVOH+nLXO
-         r9hxnEfgKhdsTGeSuNuz8TY3/xU2vZcb0Px4WjthXmEPirgUbCEQpgxmS3Nyqv7GD2aN
-         IlHQ==
-X-Gm-Message-State: AGi0PuZG1oDR6ZGYfP/DU0ic7TAMbJSz8ltMsKBJZViI8mmnXcqDRNjZ
-        uSSbP0OCPVDuKt864Od9WPApPv0=
-X-Google-Smtp-Source: APiQypLKcFOePhjlMDYofUDl5mlCPGBJze9fJqLOZ21TvgSwb9QwiaDLoKcHDilILHnRgmsVo9fqcg==
-X-Received: by 2002:a05:6830:155a:: with SMTP id l26mr10829424otp.246.1587422994251;
-        Mon, 20 Apr 2020 15:49:54 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id n38sm218272ooi.21.2020.04.20.15.49.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2020 15:49:53 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH v3] dt-bindings: Add a minimum version check for dtschema
-Date:   Mon, 20 Apr 2020 17:49:53 -0500
-Message-Id: <20200420224953.31327-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726055AbgDTXgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 19:36:17 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:14144 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725988AbgDTXgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 19:36:16 -0400
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20200420233612epoutp0414445f7838b3c6673b1be416c39157f2~Hq1Rr2IGY2525025250epoutp04X
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2020 23:36:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20200420233612epoutp0414445f7838b3c6673b1be416c39157f2~Hq1Rr2IGY2525025250epoutp04X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1587425772;
+        bh=0zV61XXniqLf2n8cMb5JLDQF3gb5g9WkC9SZj/+F8OA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=RDEQDu8bd9gVUZfU+vch0hYptlEwOCbt4yjq0eNOfX2k4TSDoQHp2FH3WaUdcoZ3t
+         mv6YTkb56hhY3Y31G6HOfGmlWsEG4I45wiVMBuhnCdmw1PZIK/qL8XQkNfqhGeVfjc
+         QtGAnNeD/qYc4yUPN9HB6i0daKAsVCGgYuRsfP1k=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20200420233612epcas2p3e95ac138558dc3ec0157374f8ec75506~Hq1RG7yi42716027160epcas2p3m;
+        Mon, 20 Apr 2020 23:36:12 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.40.188]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 495jkd2M5xzMqYlm; Mon, 20 Apr
+        2020 23:36:09 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        42.9B.04647.7E13E9E5; Tue, 21 Apr 2020 08:36:08 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20200420233607epcas2p305dbd652ab73592a32c17773c1fce329~Hq1M79Nwu2716027160epcas2p3a;
+        Mon, 20 Apr 2020 23:36:07 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200420233607epsmtrp2ab089dbb4b8ed5914ef86b905ae5aacd~Hq1M7La5X1923519235epsmtrp2G;
+        Mon, 20 Apr 2020 23:36:07 +0000 (GMT)
+X-AuditID: b6c32a48-8a5ff70000001227-a6-5e9e31e79788
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1F.7A.04158.7E13E9E5; Tue, 21 Apr 2020 08:36:07 +0900 (KST)
+Received: from ishtar.dsn.sec.samsung.com (unknown [12.36.155.159]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200420233607epsmtip18c43d887d0ed83dbf56dd6aa462a4bd3~Hq1M0vIrW2181121811epsmtip1j;
+        Mon, 20 Apr 2020 23:36:07 +0000 (GMT)
+From:   Hyunki Koo <hyunki00.koo@samsung.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     hyunki00.koo@samsung.com
+Subject: [PATCH v8 0/3] 32-bit access for TX/RX hold registers for
+ samsung_tty driver
+Date:   Tue, 21 Apr 2020 08:35:58 +0900
+Message-Id: <20200420233558.11879-1-hyunki00.koo@samsung.com>
+X-Mailer: git-send-email 2.15.0.rc1
+In-Reply-To: <20200420013300.17249-1-hyunki00.koo@samsung.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUgTcRjm5+1upzW75ke/REIuktTMnXrrFCdRFoP8Y2AgZDUPd0xp263d
+        ZllQkh81MckgLLMValZmakNStGXpKCqTyEgLMrOUKSKh+dGH0eYp9d/zPu/zvM/L7/fiiPwT
+        GobnmaycxcQaSCxA8qA3ion1UI7DCnclylx396NMUV0LxjTeHEKYgc4ajOmrOy9lSlxu6U5M
+        7Wy0Y+rua01SdUVbI1DPOjdpJAcMKbkcq+MsEZwph9flmfQqcl+GdreWViqoWCqJ2UFGmFgj
+        pyLT0jWxe/MM3nAyIp812LyUhhUEMi41xcLbrFxELi9YVSRn1hnMFGXeLrBGwWbSb8/hjcmU
+        QhFPe5XZhtw/PbUS87v1x5vsVVghaA4sA/44JBLhyMslpAwE4HKiA8ChJ3ZULGYAHKgdXCnm
+        Afwy+QZZtYx+/YiJDReA917e9hOLRQCvvmjBfCqMiIFTC1eWBwcTFQAWOvqX7QgRDhfbh70O
+        HA8iMmH9eKaPlhBb4P0+J+rDMkIFi5of+olpm+Hr6XrUJ/cnUuHCLaVvJCQuYLC5uxeImjTo
+        mZuQijgITj5rW8FhcHbahYn4NHxUWikVzeUA/vg2hoqNBFg9fhb4AhAiCrZ0xvmgL9f9QSJu
+        HAjP9S5JRVoGz5XKRWMkbJ73rGwZDpvGOldS1XCqu2vZKicqAXwwv+0C2FT9b/4NABpBKGcW
+        jHpOiDcn/v9hTrB8XNHqDvC4P70HEDgg18paQx2H5SibLxQYewDEETJYxkR7KZmOLTjBWXit
+        xWbghB5Ae9+xEgkLyeG9p2qyaik6XqlUJNEMrYxnyA0y55r3B+WEnrVyRzjOzFlWfX64f1gh
+        gBeXNK7BODt9hmfrSt7S5ZJUBU28CvxZnmK7u1NaP9HvMrFl7kvDlrnvWG3WumOlIdTlLptn
+        cOshR/iMSjFaqEN/T/MF9oTR4oWYPb8yNqbNVzWcUqd/npgI9JRpO/V1rY6qhqNZ2SOt7XyC
+        NHlkV871O/uji09W1GCRz5+SEiGXpaIRi8D+BURg7HtyAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFLMWRmVeSWpSXmKPExsWy7bCSnO5zw3lxBjteq1jMP3KO1aJ58Xo2
+        i1VLbzBbXN41h83izOJedovWvUfYHdg8Nq3qZPPYP3cNu0ffllWMHp83yQWwRHHZpKTmZJal
+        FunbJXBl/Du0iKXgmmDFms7pbA2M6/i6GDk5JARMJB49ucvWxcjFISSwm1Fi+uavTBAJGYkJ
+        L5YwQ9jCEvdbjrBCFH1jlNjwv5kFJMEmoC3x5vtMZpCEiMAkRomTy+aygSSYgbp/bL8HNklY
+        IFRiw6c9YDaLgKrExjObWEFsXgFbieZ1e6C2KUtceLcEKM7BwSlgJ/F9uRlIWAio5OrpVcwT
+        GPkWMDKsYpRMLSjOTc8tNiwwykst1ytOzC0uzUvXS87P3cQIDjEtrR2MJ07EH2IU4GBU4uHd
+        IDYvTog1say4MvcQowQHs5IIr4UWUIg3JbGyKrUoP76oNCe1+BCjNAeLkjivfP6xSCGB9MSS
+        1OzU1ILUIpgsEwenVAOj9Ob46Q8LSz97Mjz7kncs90aO+pXuBa/Xmc5b/zt72+oVvffCZy55
+        cjkhaZ2hwYHzDcWzD11aapHC92XK/KlV+hNtpm38+Dsh9/Ie1totRcc65u+46qb8bveqdVmz
+        c19rVcq3zVQQKo1YfmnR9U9PLvMJPXL5yccudWfzqd7M9tnm2SaOwanHepRYijMSDbWYi4oT
+        AT0/d7stAgAA
+X-CMS-MailID: 20200420233607epcas2p305dbd652ab73592a32c17773c1fce329
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20200420233607epcas2p305dbd652ab73592a32c17773c1fce329
+References: <20200420013300.17249-1-hyunki00.koo@samsung.com>
+        <CGME20200420233607epcas2p305dbd652ab73592a32c17773c1fce329@epcas2p3.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dtschema package must be somewhat up to date as the tools and
-meta-schema checks are still evolving. Implement a version check,
-so this can be enforced. This will help ensure new schema submissions
-get checked against the latest meta-schemas.
+Change in v8:
+- spit into 3 patch
+  [1/3] create the new functions with no functional change to the code as-is.
+  Replace rd_regb/wr_regb with rd_reg/wr_reg for general usage.
+  [2/3] add the new binding reg-io-width in device tree
+  [3/3] add the new funtinality of rd_reg / wr_reg and wr_reg_barrier 
+        to support 32-bit access for the TX/RX hold registers UTXH and URXH.
 
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v3:
- - Drop leading '0' in version month
- - Rework with Masahiro's shell commands
+Change in v7:
+- [1/2] correct build error on running 'make dt_binding_check' 
+Documentation/devicetree/bindings/serial/samsung_uart.yaml:  mapping values are not allowed in this context
+  in "<unicode string>", line 36, column 13
+  Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/serial/samsung_uart.example.dts' failed
+  make[1]: *** [Documentation/devicetree/bindings/serial/samsung_uart.example.dts] Error 1
+  make[1]: *** Waiting for unfinished jobs....
+  Makefile:1262: recipe for target 'dt_binding_check' failed
+  make: *** [dt_binding_check] Error 2
+- [2/2] add commit message of reviewed by and tested by in commit message
+  Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+  Tested on Odroid HC1 (Exynos5422):
+  Tested-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-v2:
- - Use a build rule for the version check instead
----
- Documentation/devicetree/bindings/Makefile | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+Change in v6:
+- [2/2] clean description of reg-io-width
+  allOf is not needed. Just enum [1, 2] is enough.
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 1df680d07461..67b0969281da 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -3,11 +3,19 @@ DT_DOC_CHECKER ?= dt-doc-validate
- DT_EXTRACT_EX ?= dt-extract-example
- DT_MK_SCHEMA ?= dt-mk-schema
- 
-+DT_SCHEMA_MIN_VERSION = 2020.4
-+
-+PHONY += check_dtschema_version
-+check_dtschema_version:
-+	@{ echo $(DT_SCHEMA_MIN_VERSION); \
-+	$(DT_DOC_CHECKER) --version 2>/dev/null || echo 0; } | sort -VC || \
-+	{ echo "ERROR: dtschema minimum version is v$(DT_SCHEMA_MIN_VERSION)" >&2; false; }
-+
- quiet_cmd_chk_binding = CHKDT   $(patsubst $(srctree)/%,%,$<)
-       cmd_chk_binding = $(DT_DOC_CHECKER) -u $(srctree)/$(src) $< ; \
-                         $(DT_EXTRACT_EX) $< > $@
- 
--$(obj)/%.example.dts: $(src)/%.yaml FORCE
-+$(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
- 	$(call if_changed,chk_binding)
- 
- # Use full schemas when checking %.example.dts
-@@ -34,11 +42,11 @@ override DTC_FLAGS := \
- 	-Wno-avoid_unnecessary_addr_size \
- 	-Wno-graph_child_address
- 
--$(obj)/processed-schema-examples.yaml: $(DT_DOCS) FORCE
-+$(obj)/processed-schema-examples.yaml: $(DT_DOCS) check_dtschema_version FORCE
- 	$(call if_changed,mk_schema)
- 
- $(obj)/processed-schema.yaml: DT_MK_SCHEMA_FLAGS := -u
--$(obj)/processed-schema.yaml: $(DT_SCHEMA_FILES) FORCE
-+$(obj)/processed-schema.yaml: $(DT_SCHEMA_FILES) check_dtschema_version FORCE
- 	$(call if_changed,mk_schema)
- 
- extra-y += processed-schema.yaml
+Changes in v5:
+- spit into 2 patch, newly added patch for dt-binding
+  [1/2] newly added dt-binding and go as first patch in this series.
+  [2/2] go as second patch in this series.
+
+Changes in v4:
+- correct variable types and change misleading function name
+
+Changes in v3:
+- line 2031: remove redundant init value  for ourport->port.iotype
+
+Changes in v2:
+- line 954 : change rd_regl to rd_reg in for backward compatibility.
+- line 2031: Add init value for ourport->port.iotype  to UPIO_MEM
+
+
+Hyunki Koo (3):
+  serial: samsung: Replace rd_regb/wr_regb with rd_reg/wr_reg
+  dt-bindings: serial: Add reg-io-width compatible
+  tty: samsung_tty: 32-bit access for TX/RX hold registers
+
+ .../devicetree/bindings/serial/samsung_uart.yaml   |  8 +++
+ drivers/tty/serial/samsung_tty.c                   | 76 ++++++++++++++++++----
+ 2 files changed, 72 insertions(+), 12 deletions(-)
+
 -- 
-2.20.1
+2.15.0.rc1
 
