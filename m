@@ -2,34 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32DDC1B291B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 16:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96CEE1B293E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 16:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728337AbgDUOMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 10:12:15 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:37844 "EHLO inva020.nxp.com"
+        id S1728963AbgDUOSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 10:18:09 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:43078 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726018AbgDUOMO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 10:12:14 -0400
+        id S1726628AbgDUOSJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Apr 2020 10:18:09 -0400
 Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6386B1A0D78;
-        Tue, 21 Apr 2020 16:12:11 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A56891A0D8D;
+        Tue, 21 Apr 2020 16:18:07 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 409661A0D7F;
-        Tue, 21 Apr 2020 16:12:06 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3FD771A0D96;
+        Tue, 21 Apr 2020 16:18:03 +0200 (CEST)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0DAAF402D9;
-        Tue, 21 Apr 2020 22:11:59 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DAF40402D9;
+        Tue, 21 Apr 2020 22:17:57 +0800 (SGT)
 From:   Anson Huang <Anson.Huang@nxp.com>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2] dt-bindings: gpio: Convert i.MX to json-schema
-Date:   Tue, 21 Apr 2020 22:03:43 +0800
-Message-Id: <1587477823-21036-1-git-send-email-Anson.Huang@nxp.com>
+Subject: [PATCH V2 1/3] dt-bindings: nvmem: Convert i.MX OCOTP to json-schema
+Date:   Tue, 21 Apr 2020 22:09:39 +0800
+Message-Id: <1587478181-21226-1-git-send-email-Anson.Huang@nxp.com>
 X-Mailer: git-send-email 2.7.4
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
@@ -37,7 +36,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX GPIO binding to DT schema format using json-schema.
+Convert the i.MX OCOTP binding to DT schema format using json-schema.
 
 Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
@@ -45,124 +44,166 @@ Changes since V1:
 	- improve compatible;
 	- drop clocks description.
 ---
- .../devicetree/bindings/gpio/fsl-imx-gpio.txt      | 35 -----------
- .../devicetree/bindings/gpio/fsl-imx-gpio.yaml     | 68 ++++++++++++++++++++++
- 2 files changed, 68 insertions(+), 35 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/fsl-imx-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+ .../devicetree/bindings/nvmem/imx-ocotp.txt        | 50 ------------
+ .../devicetree/bindings/nvmem/imx-ocotp.yaml       | 95 ++++++++++++++++++++++
+ 2 files changed, 95 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
+ create mode 100644 Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
 
-diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.txt b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.txt
+diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt b/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
 deleted file mode 100644
-index b4cd9f90..0000000
---- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.txt
+index 6e346d5..0000000
+--- a/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
 +++ /dev/null
-@@ -1,35 +0,0 @@
--* Freescale i.MX/MXC GPIO controller
+@@ -1,50 +0,0 @@
+-Freescale i.MX6 On-Chip OTP Controller (OCOTP) device tree bindings
+-
+-This binding represents the on-chip eFuse OTP controller found on
+-i.MX6Q/D, i.MX6DL/S, i.MX6SL, i.MX6SX, i.MX6UL, i.MX6ULL/ULZ, i.MX6SLL,
+-i.MX7D/S, i.MX7ULP, i.MX8MQ, i.MX8MM, i.MX8MN and i.MX8MP SoCs.
 -
 -Required properties:
--- compatible : Should be "fsl,<soc>-gpio"
--- reg : Address and length of the register set for the device
--- interrupts : Should be the port interrupt shared by all 32 pins, if
--  one number.  If two numbers, the first one is the interrupt shared
--  by low 16 pins and the second one is for high 16 pins.
--- gpio-controller : Marks the device node as a gpio controller.
--- #gpio-cells : Should be two.  The first cell is the pin number and
--  the second cell is used to specify the gpio polarity:
--      0 = active high
--      1 = active low
--- interrupt-controller: Marks the device node as an interrupt controller.
--- #interrupt-cells : Should be 2.  The first cell is the GPIO number.
--  The second cell bits[3:0] is used to specify trigger type and level flags:
--      1 = low-to-high edge triggered.
--      2 = high-to-low edge triggered.
--      4 = active high level-sensitive.
--      8 = active low level-sensitive.
+-- compatible: should be one of
+-	"fsl,imx6q-ocotp" (i.MX6Q/D/DL/S),
+-	"fsl,imx6sl-ocotp" (i.MX6SL), or
+-	"fsl,imx6sx-ocotp" (i.MX6SX),
+-	"fsl,imx6ul-ocotp" (i.MX6UL),
+-	"fsl,imx6ull-ocotp" (i.MX6ULL/ULZ),
+-	"fsl,imx7d-ocotp" (i.MX7D/S),
+-	"fsl,imx6sll-ocotp" (i.MX6SLL),
+-	"fsl,imx7ulp-ocotp" (i.MX7ULP),
+-	"fsl,imx8mq-ocotp" (i.MX8MQ),
+-	"fsl,imx8mm-ocotp" (i.MX8MM),
+-	"fsl,imx8mn-ocotp" (i.MX8MN),
+-	"fsl,imx8mp-ocotp" (i.MX8MP),
+-	followed by "syscon".
+-- #address-cells : Should be 1
+-- #size-cells : Should be 1
+-- reg: Should contain the register base and length.
+-- clocks: Should contain a phandle pointing to the gated peripheral clock.
 -
 -Optional properties:
--- clocks: the clock for clocking the GPIO silicon
+-- read-only: disable write access
+-
+-Optional Child nodes:
+-
+-- Data cells of ocotp:
+-  Detailed bindings are described in bindings/nvmem/nvmem.txt
 -
 -Example:
+-	ocotp: ocotp@21bc000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "fsl,imx6sx-ocotp", "syscon";
+-		reg = <0x021bc000 0x4000>;
+-		clocks = <&clks IMX6SX_CLK_OCOTP>;
 -
--gpio0: gpio@73f84000 {
--	compatible = "fsl,imx51-gpio", "fsl,imx35-gpio";
--	reg = <0x73f84000 0x4000>;
--	interrupts = <50 51>;
--	gpio-controller;
--	#gpio-cells = <2>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+-		tempmon_calib: calib@38 {
+-			reg = <0x38 4>;
+-		};
+-
+-		tempmon_temp_grade: temp-grade@20 {
+-			reg = <0x20 4>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
 new file mode 100644
-index 0000000..0b223ab
+index 0000000..fe9c7df
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: GPL-2.0
++++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/gpio/fsl-imx-gpio.yaml#
++$id: http://devicetree.org/schemas/nvmem/imx-ocotp.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Freescale i.MX/MXC GPIO controller
++title: Freescale i.MX6 On-Chip OTP Controller (OCOTP) device tree bindings
 +
 +maintainers:
 +  - Anson Huang <Anson.Huang@nxp.com>
 +
++description: |
++  This binding represents the on-chip eFuse OTP controller found on
++  i.MX6Q/D, i.MX6DL/S, i.MX6SL, i.MX6SX, i.MX6UL, i.MX6ULL/ULZ, i.MX6SLL,
++  i.MX7D/S, i.MX7ULP, i.MX8MQ, i.MX8MM, i.MX8MN and i.MX8MP SoCs.
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
 +properties:
 +  compatible:
-+    enum:
-+      - fsl,imx1-gpio
-+      - fsl,imx21-gpio
-+      - fsl,imx31-gpio
-+      - fsl,imx35-gpio
-+      - fsl,imx7d-gpio
++    items:
++      - enum:
++        - fsl,imx6q-ocotp
++        - fsl,imx6sl-ocotp
++        - fsl,imx6sx-ocotp
++        - fsl,imx6ul-ocotp
++        - fsl,imx6ull-ocotp
++        - fsl,imx7d-ocotp
++        - fsl,imx6sll-ocotp
++        - fsl,imx7ulp-ocotp
++        - fsl,imx8mq-ocotp
++        - fsl,imx8mm-ocotp
++        - fsl,imx8mn-ocotp
++        - fsl,imx8mp-ocotp
++      - const: syscon
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    description: |
-+      Should be the port interrupt shared by all 32 pins, if one number.
-+      If two numbers, the first one is the interrupt shared by low 16 pins
-+      and the second one is for high 16 pins.
-+    minItems: 1
-+    maxItems: 2
++  "#address-cells":
++    const: 1
 +
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
++  "#size-cells":
++    const: 1
 +
 +  clocks:
 +    maxItems: 1
 +
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
 +required:
++  - "#address-cells"
++  - "#size-cells"
 +  - compatible
 +  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+  - "#gpio-cells"
-+  - gpio-controller
 +
-+additionalProperties: false
++patternProperties:
++  "^.*@[0-9a-f]+$":
++    type: object
++
++    properties:
++      reg:
++        maxItems: 1
++        description:
++          Offset and size in bytes within the storage device.
++
++    required:
++      - reg
++
++    additionalProperties: false
 +
 +examples:
 +  - |
-+    gpio0: gpio@73f84000 {
-+        compatible = "fsl,imx35-gpio";
-+        reg = <0x73f84000 0x4000>;
-+        interrupts = <50 51>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
++    #include <dt-bindings/clock/imx6sx-clock.h>
++
++    ocotp: efuse@21bc000 {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        compatible = "fsl,imx6sx-ocotp", "syscon";
++        reg = <0x021bc000 0x4000>;
++        clocks = <&clks IMX6SX_CLK_OCOTP>;
++
++        cpu_speed_grade: speed-grade@10 {
++            reg = <0x10 4>;
++        };
++
++        tempmon_calib: calib@38 {
++            reg = <0x38 4>;
++        };
++
++        tempmon_temp_grade: temp-grade@20 {
++            reg = <0x20 4>;
++        };
 +    };
 +
 +...
