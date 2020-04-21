@@ -2,141 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA181B2941
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 16:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465BC1B2918
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 16:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729022AbgDUOSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 10:18:11 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:43134 "EHLO inva020.nxp.com"
+        id S1728852AbgDUOJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 10:09:59 -0400
+Received: from muru.com ([72.249.23.125]:50540 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728803AbgDUOSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 10:18:11 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 321F01A0D8A;
-        Tue, 21 Apr 2020 16:18:09 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 021231A0DA4;
-        Tue, 21 Apr 2020 16:18:05 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9E149402ED;
-        Tue, 21 Apr 2020 22:17:59 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 3/3] dt-bindings: nvmem: Convert MXS OCOTP to json-schema
-Date:   Tue, 21 Apr 2020 22:09:41 +0800
-Message-Id: <1587478181-21226-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1587478181-21226-1-git-send-email-Anson.Huang@nxp.com>
-References: <1587478181-21226-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728825AbgDUOJ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Apr 2020 10:09:59 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 6DF158081;
+        Tue, 21 Apr 2020 14:10:45 +0000 (UTC)
+Date:   Tue, 21 Apr 2020 07:09:54 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Pavel Machek <pavel@denx.de>, Rob Herring <robh@kernel.org>,
+        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+        Johan Hovold <johan@kernel.org>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCHv5 0/4] n_gsm serdev support and protocol driver for
+ droid4 modem
+Message-ID: <20200421140954.GT37466@atomide.com>
+References: <20200319173755.65082-1-tony@atomide.com>
+ <20200421115920.GA16890@amd>
+ <20200421124820.GB784065@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200421124820.GB784065@kroah.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MXS OCOTP binding to DT schema format using json-schema.
+* Greg Kroah-Hartman <gregkh@linuxfoundation.org> [200421 12:49]:
+> On Tue, Apr 21, 2020 at 01:59:20PM +0200, Pavel Machek wrote:
+> > Hi!
+> > 
+> > > Here's v4 set of n_gsm serdev support patches, and the related protocol
+> > > driver for the modem found on Motorola Mapphone phones and tablets
+> > > like droid4.
+> > > 
+> > > This series only adds basic character device support for the serdev
+> > > driver. Other serdev consumer drivers for specific devices will be
+> > > posted separately.
+> > > 
+> > > The patches are against v5.6-rc series.
+> > 
+> > And it would be good to get them into v5.7... pretty please :-).
+> 
+> No, 5.7 is not ok for this, and i think it already needs a respin as
+> this is not in my patch queue anymore.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-Changes since V1:
-	- drop clocks description.
----
- .../devicetree/bindings/nvmem/mxs-ocotp.txt        | 24 -----------
- .../devicetree/bindings/nvmem/mxs-ocotp.yaml       | 50 ++++++++++++++++++++++
- 2 files changed, 50 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/nvmem/mxs-ocotp.txt
- create mode 100644 Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+I'll send out an updated series.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.txt b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.txt
-deleted file mode 100644
-index 372c72f..0000000
---- a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--On-Chip OTP Memory for Freescale i.MX23/i.MX28
--
--Required properties :
--- compatible :
--  - "fsl,imx23-ocotp" for i.MX23
--  - "fsl,imx28-ocotp" for i.MX28
--- #address-cells : Should be 1
--- #size-cells : Should be 1
--- reg : Address and length of OTP controller registers
--- clocks : Should contain a reference to the hbus clock
--
--= Data cells =
--Are child nodes of mxs-ocotp, bindings of which as described in
--bindings/nvmem/nvmem.txt
--
--Example for i.MX28:
--
--	ocotp: ocotp@8002c000 {
--		compatible = "fsl,imx28-ocotp", "fsl,ocotp";
--		#address-cells = <1>;
--		#size-cells = <1>;
--		reg = <0x8002c000 0x2000>;
--		clocks = <&clks 25>;
--	};
-diff --git a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
-new file mode 100644
-index 0000000..ff317fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/mxs-ocotp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: On-Chip OTP Memory for Freescale i.MX23/i.MX28
-+
-+maintainers:
-+  - Anson Huang <Anson.Huang@nxp.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx23-ocotp
-+      - fsl,imx28-ocotp
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ocotp: efuse@8002c000 {
-+        compatible = "fsl,imx28-ocotp";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0x8002c000 0x2000>;
-+        clocks = <&clks 25>;
-+    };
-+
-+...
--- 
-2.7.4
+Thanks,
 
+Tony
