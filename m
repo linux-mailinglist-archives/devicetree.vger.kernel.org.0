@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9536C1B2672
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 14:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6687F1B26A9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 14:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728956AbgDUMlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 08:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728938AbgDUMlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 08:41:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33DCC061A41
-        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2020 05:41:12 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jQsCy-0002fn-SU; Tue, 21 Apr 2020 14:41:00 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jQsCx-00056G-8f; Tue, 21 Apr 2020 14:40:59 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v6 5/5] dt-bindings: arm: fsl: add different Protonic boards
-Date:   Tue, 21 Apr 2020 14:40:57 +0200
-Message-Id: <20200421124057.19238-6-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200421124057.19238-1-o.rempel@pengutronix.de>
-References: <20200421124057.19238-1-o.rempel@pengutronix.de>
+        id S1728717AbgDUMsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 08:48:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46862 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726691AbgDUMsX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Apr 2020 08:48:23 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5179D2076E;
+        Tue, 21 Apr 2020 12:48:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587473302;
+        bh=MX//OISkXMkefkAGS97bnGPUwUOdUgkMZrE4oSc7af0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=I61zNOARA45e29Y+vMJPmWFEfryzRhUTwFgUmghn5kTdgaT9VFPaYn7sYVK/88ZxU
+         skzz9Eb3OKBdZvBv4RCa0D1IvH80O7Nyir94yeG5lQk5ilxKf7TKqQCeRh5UEmWyMz
+         RAYA+9XeaKcFuXAhSdQel0SJ9Jsli7axPfagcNVQ=
+Date:   Tue, 21 Apr 2020 14:48:20 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Pavel Machek <pavel@denx.de>
+Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
+        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+        Johan Hovold <johan@kernel.org>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCHv5 0/4] n_gsm serdev support and protocol driver for
+ droid4 modem
+Message-ID: <20200421124820.GB784065@kroah.com>
+References: <20200319173755.65082-1-tony@atomide.com>
+ <20200421115920.GA16890@amd>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200421115920.GA16890@amd>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Protonic PRTI6Q, WD2, RVT, VT7 boards.
+On Tue, Apr 21, 2020 at 01:59:20PM +0200, Pavel Machek wrote:
+> Hi!
+> 
+> > Here's v4 set of n_gsm serdev support patches, and the related protocol
+> > driver for the modem found on Motorola Mapphone phones and tablets
+> > like droid4.
+> > 
+> > This series only adds basic character device support for the serdev
+> > driver. Other serdev consumer drivers for specific devices will be
+> > posted separately.
+> > 
+> > The patches are against v5.6-rc series.
+> 
+> And it would be good to get them into v5.7... pretty please :-).
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+No, 5.7 is not ok for this, and i think it already needs a respin as
+this is not in my patch queue anymore.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index cd3fbe7e39487..a1657505b3357 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -119,6 +119,8 @@ properties:
-               - fsl,imx6q-sabreauto
-               - fsl,imx6q-sabrelite
-               - fsl,imx6q-sabresd
-+              - prt,prti6q                # Protonic PRTI6Q board
-+              - prt,prtwd2                # Protonic WD2 board
-               - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-               - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-               - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-@@ -170,6 +172,8 @@ properties:
-               - emtrion,emcon-mx6-avari   # emCON-MX6S or emCON-MX6DL SoM on Avari Base
-               - fsl,imx6dl-sabreauto      # i.MX6 DualLite/Solo SABRE Automotive Board
-               - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
-+              - prt,prtrvt                # Protonic RVT board
-+              - prt,prtvt7                # Protonic VT7 board
-               - technexion,imx6dl-pico-dwarf   # TechNexion i.MX6DL Pico-Dwarf
-               - technexion,imx6dl-pico-hobbit  # TechNexion i.MX6DL Pico-Hobbit
-               - technexion,imx6dl-pico-nymph   # TechNexion i.MX6DL Pico-Nymph
--- 
-2.26.1
+thanks,
 
+greg k-h
