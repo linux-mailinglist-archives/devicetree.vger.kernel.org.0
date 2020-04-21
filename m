@@ -2,111 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D851B2122
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 10:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1418D1B215B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 10:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727829AbgDUIKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 04:10:41 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:55982 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726403AbgDUIKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 04:10:40 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1587456640; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=qhaNkfzyboUvEtiuhO92CVabH2/SAoOegZ9nrvZgMWo=; b=g0Zds66bZF9m2bvRs0CSKkH3AltVy9ihS3nKigA63Ug3ZHqvtGRMtqNWFhWzeYDnDRLR0X16
- dNx78O27m245tyyVa4NJ0Tfomxm3kIEu1FxTeetxNiSe2n7vPAk+K4AFkllgPZ+wKQ2MgncQ
- U2CsSWP25gdvdPqG7w2X0THcSbc=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e9eaa71.7f8335735fb8-smtp-out-n01;
- Tue, 21 Apr 2020 08:10:25 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6D5D4C433F2; Tue, 21 Apr 2020 08:10:24 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.43.137] (unknown [106.213.184.221])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DC36CC433CB;
-        Tue, 21 Apr 2020 08:10:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DC36CC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Fix PDC compatible and reg
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Venkata Narendra Kumar Gutta <vnkgutta@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200415054703.739507-1-bjorn.andersson@linaro.org>
- <20200421070227.GD72691@vkoul-mobl>
-From:   Maulik Shah <mkshah@codeaurora.org>
-Message-ID: <d67adcc2-7f5c-3ed7-5c7c-c3b6b46cbd0b@codeaurora.org>
-Date:   Tue, 21 Apr 2020 13:40:17 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <20200421070227.GD72691@vkoul-mobl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+        id S1726628AbgDUIRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 04:17:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726095AbgDUIRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Apr 2020 04:17:05 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9FBC061A0F;
+        Tue, 21 Apr 2020 01:17:03 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id w145so10388715lff.3;
+        Tue, 21 Apr 2020 01:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=qT6ZuW6H/bnC0x2akJVYOmPBEwGD1w226p2Ed4JIQpY=;
+        b=AF2Bq+4RAAP4WwoRGv/PR1dn+BAuzSTFEF6LzSDAGRUrCi3ltVZYsG1uiu7zd/hJXC
+         GsgA7LO5qwLX3p3K+o1oVh+icpp17xlDZjTpJNn3u/YOKFEAFXpMg5IjgV0BnXNvgyuE
+         wtj1Mp+yUHY9D1XoEz71AYzt0sBK359lNMjKuMovVGgH+w1BloTUppaPZh0hxXAzfpHQ
+         vDIogZb9urCK2/wI6kiF2nmG3l/IcVa440rYNFUfmkXaMjc7nH8ZAEQIev3mbiwFuaiZ
+         RJ7dvVMNG4+7IIxBxjEM3M93bIbSyRngBwD9oGj8uLX0Ps8wliLXhwbcUAjJhO41rtmn
+         Yy1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=qT6ZuW6H/bnC0x2akJVYOmPBEwGD1w226p2Ed4JIQpY=;
+        b=PO07ZlIlCxzGNyFeazt4CRPQWl3bxY52EyCSvBFMDJFBiNNz2nfn3y1zv6yfmc6XNr
+         YSfz1bQA4YlWOeLT24ePpkqoXd9AXIKS5tP9KtmRpISoglvbIjuSbLkupte4VcLIchJS
+         tBDDk94hLfJR+KhkiJaiCgpotYk4qV3BIBb592IFh6KXl7/IaAhuL8ykcWWUos+KtyqK
+         EauNnawouKtg+Jq8PJlMsx9yH3i93qbenAXHQwLf3CN5BVN6005itYcqL2GkaVgSIh0D
+         nFKFTnqT20p2as2s9TDxbSqP5n2NJPfoNr4UDdqS/D8qHXUpyT8mIqP49UE42LSyrmoO
+         xJcA==
+X-Gm-Message-State: AGi0Pubh6vjM9vUYMd538vZ4Zi8KB16uFCKqX90I24TCQQa/63q/gYkA
+        Jk2Dwoj8VZWMuq+BgG1zGUA=
+X-Google-Smtp-Source: APiQypKq4AOwfvIZ5pwMIp42g2Uj+koYCzjJQvLizQWfRXcE/GewHXtfQVut7+0QWFlf1wUK+jKTcw==
+X-Received: by 2002:ac2:41d9:: with SMTP id d25mr13158140lfi.204.1587457022307;
+        Tue, 21 Apr 2020 01:17:02 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id j13sm1472756lfb.19.2020.04.21.01.16.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Apr 2020 01:17:01 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
+        chewitt <christianshewitt@gmail.com>
+Subject: [PATCH 0/3] Bluetooth: hci_qca: add support for QCA9377
+Date:   Tue, 21 Apr 2020 08:16:53 +0000
+Message-Id: <20200421081656.9067-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: chewitt <christianshewitt@gmail.com>
 
-We can drop the second reg,
-, <0 0x17c000f0 0 0x60>
+This series adds a new compatible for the QCA9377 BT device that is found
+in many Android TV box devices, makes minor changes to allow max-speed
+values for the device to be read from device-tree, and updates bindings
+to reflect those changes.
 
-The change [1] to read second reg and configure it, is not yet gone in 
-pdc irqchip driver.
-Otherthan this, the patch looks good to me.
+Christian Hewitt (3):
+  dt-bindings: net: bluetooth: Add device tree bindings for QCA9377
+  Bluetooth: hci_qca: add compatible for QCA9377
+  Bluetooth: hci_qca: allow max-speed to be set for QCA9377 devices
 
-Thanks,
-Maulik
-
-On 4/21/2020 12:32 PM, Vinod Koul wrote:
-> On 14-04-20, 22:47, Bjorn Andersson wrote:
->> The pdc node suffers from both too narrow compatible and insufficient
->> cells in the reg, fix these.
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Tested-by: Vinod Koul <vkoul@kernel.org>
->
->> Fixes: 60378f1a171e ("arm64: dts: qcom: sm8250: Add sm8250 dts file")
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
->> index 891d83b2afea..2a7eaefd221d 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
->> @@ -314,8 +314,8 @@ intc: interrupt-controller@17a00000 {
->>   		};
->>   
->>   		pdc: interrupt-controller@b220000 {
->> -			compatible = "qcom,sm8250-pdc";
->> -			reg = <0x0b220000 0x30000>, <0x17c000f0 0x60>;
->> +			compatible = "qcom,sm8250-pdc", "qcom,pdc";
->> +			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
->>   			qcom,pdc-ranges = <0 480 94>, <94 609 31>,
->>   					  <125 63 1>, <126 716 12>;
->>   			#interrupt-cells = <2>;
->> -- 
->> 2.24.0
-[1] https://patchwork.kernel.org/patch/11145353/
+ .../bindings/net/qualcomm-bluetooth.txt         |  5 +++++
+ drivers/bluetooth/hci_qca.c                     | 17 ++++++++++-------
+ 2 files changed, 15 insertions(+), 7 deletions(-)
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
+
