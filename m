@@ -2,229 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA7001B26EE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 14:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D7C1B2733
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 15:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728479AbgDUM6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 08:58:51 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:39826 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728337AbgDUM6v (ORCPT
+        id S1728974AbgDUNJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 09:09:49 -0400
+Received: from enterprise01.smtp.diehl.com ([193.201.238.219]:14101 "EHLO
+        enterprise01.smtp.diehl.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728878AbgDUNJr (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 08:58:51 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03LCwL95026707;
-        Tue, 21 Apr 2020 14:58:36 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=r+b9cQQQrzKV/Yu/DP7Ku0tDYpN9ESE+SznlYMlhwgw=;
- b=Fu+lvdF4U3XYsVidOxO3j2M8xLSzItNtcVvf9Al/9WJ326PFov+lXG33XJ285ATCBha0
- 2EHUZ3E/hVtWXm8JyXq6q+Q9oS09FgYNXXB8Va9Pxa/XTpoOWF67wU086+GFGRGYM4C/
- IB3mQ40lYY6p8NNKpY0H8yt9rnV5ybsVqkCrM+WfFhC3sH5dw4unGYADPFeCf4vQEJl3
- BpaaaZNdlpHgKBx8Ol1iisn1JuMd6lABDeDdCjLTuy3K8XP0RsjNoE2lvzUu20gWh1cv
- 8JK6RTN5Ohb4AAAPUjNiRDZSnWNL6N2U1QVM/sxniQoelqSMdZgCmswYDAabioQIonPL EQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30fregg2wx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Apr 2020 14:58:36 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 31A3410002A;
-        Tue, 21 Apr 2020 14:58:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1BAFA2B188F;
-        Tue, 21 Apr 2020 14:58:36 +0200 (CEST)
-Received: from [10.211.6.179] (10.75.127.44) by SFHDAG5NODE3.st.com
- (10.75.127.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 Apr
- 2020 14:58:34 +0200
-Subject: Re: [PATCH v3 2/2] tty: serial: Add modem control gpio support for
- STM32 UART
-To:     <mani@kernel.org>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <andy.shevchenko@gmail.com>, <linux-serial@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200420170204.24541-1-mani@kernel.org>
- <20200420170204.24541-3-mani@kernel.org>
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-Message-ID: <035edfe7-1799-51c1-58aa-2498e5991aee@st.com>
-Date:   Tue, 21 Apr 2020 14:58:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20200420170204.24541-3-mani@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        Tue, 21 Apr 2020 09:09:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=diehl.com; i=@diehl.com; q=dns/txt; s=default;
+  t=1587474585; x=1619010585;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=AHfHaIhBE3pINRzw08uLgGJsllJoDvSSX2nJpBKqOCg=;
+  b=VpXGl8ZjjT3+1JnBfUbT4125DuFJnsng2bWBwFllU35DNyS89OGNjZVx
+   pdE7go8e8juOHa41WyP2kDfirMKg61Egk1kFMoCVqH5/1pXlf0dbmPq50
+   IdMrxCYRlXiwa/QHvCG6A7JvdRO40lE6kGZYI2FxAQwvsYsB8dpWGFvDq
+   2drwl748vLu6m3CQ5kzDewNRNZvTuDTFRoEbbc9X8T9e6rW4h7fSyIzOx
+   GbnxtM+GNPILeKhYvnExJ8xngTmEUHRJMvGnN5uLmYhxCncCnsvRPwnCI
+   AacrZQRC7dp/fw0R0Kt4lcd5DMREQqormmv/6HFU455p++nFs+rH+r1AD
+   w==;
+IronPort-SDR: m/D2+G8uvw09Crqdaipyxtnyk3cd6wYxLNTbR7Tp5IraqfRuQ8jUtH77MX0otl6HG8x6lCM7ss
+ npdiExKoX2rg==
+From:   Denis Osterland-Heim <denis.osterland@diehl.com>
+To:     "dmurphy@ti.com" <dmurphy@ti.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
+        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Denis Osterland-Heim" <denis.osterland@diehl.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH v5 2/3] leds: pwm: add support for default-state device
+ property
+Thread-Topic: [PATCH v5 2/3] leds: pwm: add support for default-state device
+ property
+Thread-Index: AQHWF94OqlLslpUgKkSqRQxJq3wL1Q==
+Date:   Tue, 21 Apr 2020 13:09:14 +0000
+Message-ID: <20200421130644.16059-3-Denis.Osterland@diehl.com>
+References: <20200421130644.16059-1-Denis.Osterland@diehl.com>
+In-Reply-To: <20200421130644.16059-1-Denis.Osterland@diehl.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-04-21_05:2020-04-20,2020-04-21 signatures=0
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+x-ms-exchange-messagesentrepresentingtype: 1
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-TrailerSkip: 1
+X-GBS-PROC: byQFdw3ukCM+zy1/poiPc5jn58Xuz5PjrByvaI+9Wpm8OchGK4Zr2IYZ9xDMTQFo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/20/20 7:02 PM, mani@kernel.org wrote:
-> From: Manivannan Sadhasivam <mani@kernel.org>
-> 
-> STM32 UART controllers have the built in modem control support using
-> dedicated gpios which can be enabled using 'st,hw-flow-ctrl' flag in DT.
-> But there might be cases where the board design need to use different
-> gpios for modem control.
-> 
-> For supporting such cases, this commit adds modem control gpio support
-> to STM32 UART controller using mctrl_gpio driver.
-> 
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Signed-off-by: Manivannan Sadhasivam <mani@kernel.org>
-> ---
->  drivers/tty/serial/Kconfig       |  1 +
->  drivers/tty/serial/stm32-usart.c | 53 ++++++++++++++++++++++++++++++--
->  drivers/tty/serial/stm32-usart.h |  1 +
->  3 files changed, 53 insertions(+), 2 deletions(-)
+This patch adds support for =22default-state=22 devicetree property, whic=
+h
+allows to defer pwm init to first use of led.
 
-Hi Mani,
+This allows to configure the PWM early in bootloader to let the LED
+blink until an application in Linux userspace sets something different.
 
-You can add my:
-Acked-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+Signed-off-by: Denis Osterland-Heim <Denis.Osterland@diehl.com>
+---
+ drivers/leds/leds-pwm.c | 54 ++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 48 insertions(+), 6 deletions(-)
 
-Thanks,
-Fabrice
+diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
+index ef7b91bd2064..7b199c151768 100644
+--- a/drivers/leds/leds-pwm.c
++++ b/drivers/leds/leds-pwm.c
+@@ -18,10 +18,15 @@
+ #include <linux/pwm.h>
+ #include <linux/slab.h>
+=20
++#define LEDS_PWM_DEFSTATE_OFF	0
++#define LEDS_PWM_DEFSTATE_ON	1
++#define LEDS_PWM_DEFSTATE_KEEP	2
++
+ struct led_pwm {
+ 	const char	*name;
+ 	const char	*default_trigger;
+ 	u8		active_low;
++	u8		default_state;
+ 	unsigned int	max_brightness;
+ };
+=20
+@@ -88,7 +93,30 @@ static int led_pwm_add(struct device *dev, struct led_=
+pwm_priv *priv,
+=20
+ 	led_data->cdev.brightness_set_blocking =3D led_pwm_set;
+=20
+-	pwm_init_state(led_data->pwm, &led_data->pwmstate);
++	/* init PWM state */
++	if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_KEEP) {
++		pwm_get_state(led_data->pwm, &led_data->pwmstate);
++		if (!led_data->pwmstate.period) {
++			led->default_state =3D LEDS_PWM_DEFSTATE_OFF;
++			dev_warn(dev,
++				=22failed to read period for %s, default to off=22,
++				led->name);
++		}
++	}
++	if (led->default_state !=3D LEDS_PWM_DEFSTATE_KEEP)
++		pwm_init_state(led_data->pwm, &led_data->pwmstate);
++
++	/* set brightness */
++	if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_ON)
++		led_data->cdev.brightness =3D led->max_brightness;
++	else if (led->default_state =3D=3D LEDS_PWM_DEFSTATE_KEEP) {
++		uint64_t brightness;
++
++		brightness =3D led->max_brightness;
++		brightness *=3D led_data->pwmstate.duty_cycle;
++		do_div(brightness, led_data->pwmstate.period);
++		led_data->cdev.brightness =3D brightness;
++	}
+=20
+ 	ret =3D devm_led_classdev_register(dev, &led_data->cdev);
+ 	if (ret) {
+@@ -97,11 +125,13 @@ static int led_pwm_add(struct device *dev, struct le=
+d_pwm_priv *priv,
+ 		return ret;
+ 	}
+=20
+-	ret =3D led_pwm_set(&led_data->cdev, led_data->cdev.brightness);
+-	if (ret) {
+-		dev_err(dev, =22failed to set led PWM value for %s: %d=22,
+-			led->name, ret);
+-		return ret;
++	if (led->default_state !=3D LEDS_PWM_DEFSTATE_KEEP) {
++		ret =3D led_pwm_set(&led_data->cdev, led_data->cdev.brightness);
++		if (ret) {
++			dev_err(dev, =22failed to set led PWM value for %s: %d=22,
++				led->name, ret);
++			return ret;
++		}
+ 	}
+=20
+ 	priv->num_leds++;
+@@ -117,6 +147,8 @@ static int led_pwm_create_fwnode(struct device *dev, =
+struct led_pwm_priv *priv)
+ 	memset(&led, 0, sizeof(led));
+=20
+ 	device_for_each_child_node(dev, fwnode) {
++		const char *state =3D NULL;
++
+ 		ret =3D fwnode_property_read_string(fwnode, =22label=22, &led.name);
+ 		if (ret && is_of_node(fwnode))
+ 			led.name =3D to_of_node(fwnode)->name;
+@@ -134,6 +166,16 @@ static int led_pwm_create_fwnode(struct device *dev,=
+ struct led_pwm_priv *priv)
+ 		fwnode_property_read_u32(fwnode, =22max-brightness=22,
+ 					 &led.max_brightness);
+=20
++		if (!fwnode_property_read_string(fwnode, =22default-state=22,
++						 &state)) {
++			if (!strcmp(state, =22keep=22))
++				led.default_state =3D LEDS_PWM_DEFSTATE_KEEP;
++			else if (!strcmp(state, =22on=22))
++				led.default_state =3D LEDS_PWM_DEFSTATE_ON;
++			else
++				led.default_state =3D LEDS_PWM_DEFSTATE_OFF;
++		}
++
+ 		ret =3D led_pwm_add(dev, priv, &led, fwnode);
+ 		if (ret) {
+ 			fwnode_handle_put(fwnode);
+--=20
+2.26.2
 
-> 
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index 0aea76cd67ff..e7a6f2130684 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -1462,6 +1462,7 @@ config SERIAL_STM32
->  	tristate "STMicroelectronics STM32 serial port support"
->  	select SERIAL_CORE
->  	depends on ARCH_STM32 || COMPILE_TEST
-> +	select SERIAL_MCTRL_GPIO if GPIOLIB
->  	help
->  	  This driver is for the on-chip Serial Controller on
->  	  STMicroelectronics STM32 MCUs.
-> diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-> index 5e93e8d40f59..17c2f3276888 100644
-> --- a/drivers/tty/serial/stm32-usart.c
-> +++ b/drivers/tty/serial/stm32-usart.c
-> @@ -31,6 +31,7 @@
->  #include <linux/tty_flip.h>
->  #include <linux/tty.h>
->  
-> +#include "serial_mctrl_gpio.h"
->  #include "stm32-usart.h"
->  
->  static void stm32_stop_tx(struct uart_port *port);
-> @@ -510,12 +511,29 @@ static void stm32_set_mctrl(struct uart_port *port, unsigned int mctrl)
->  		stm32_set_bits(port, ofs->cr3, USART_CR3_RTSE);
->  	else
->  		stm32_clr_bits(port, ofs->cr3, USART_CR3_RTSE);
-> +
-> +	mctrl_gpio_set(stm32_port->gpios, mctrl);
->  }
->  
->  static unsigned int stm32_get_mctrl(struct uart_port *port)
->  {
-> +	struct stm32_port *stm32_port = to_stm32_port(port);
-> +	unsigned int ret;
-> +
->  	/* This routine is used to get signals of: DCD, DSR, RI, and CTS */
-> -	return TIOCM_CAR | TIOCM_DSR | TIOCM_CTS;
-> +	ret = TIOCM_CAR | TIOCM_DSR | TIOCM_CTS;
-> +
-> +	return mctrl_gpio_get(stm32_port->gpios, &ret);
-> +}
-> +
-> +static void stm32_enable_ms(struct uart_port *port)
-> +{
-> +	mctrl_gpio_enable_ms(to_stm32_port(port)->gpios);
-> +}
-> +
-> +static void stm32_disable_ms(struct uart_port *port)
-> +{
-> +	mctrl_gpio_disable_ms(to_stm32_port(port)->gpios);
->  }
->  
->  /* Transmit stop */
-> @@ -626,6 +644,9 @@ static void stm32_shutdown(struct uart_port *port)
->  	u32 val, isr;
->  	int ret;
->  
-> +	/* Disable modem control interrupts */
-> +	stm32_disable_ms(port);
-> +
->  	val = USART_CR1_TXEIE | USART_CR1_TE;
->  	val |= stm32_port->cr1_irq | USART_CR1_RE;
->  	val |= BIT(cfg->uart_enable_bit);
-> @@ -764,6 +785,12 @@ static void stm32_set_termios(struct uart_port *port, struct ktermios *termios,
->  		cr3 |= USART_CR3_CTSE | USART_CR3_RTSE;
->  	}
->  
-> +	/* Handle modem control interrupts */
-> +	if (UART_ENABLE_MS(port, termios->c_cflag))
-> +		stm32_enable_ms(port);
-> +	else
-> +		stm32_disable_ms(port);
-> +
->  	usartdiv = DIV_ROUND_CLOSEST(port->uartclk, baud);
->  
->  	/*
-> @@ -898,6 +925,7 @@ static const struct uart_ops stm32_uart_ops = {
->  	.throttle	= stm32_throttle,
->  	.unthrottle	= stm32_unthrottle,
->  	.stop_rx	= stm32_stop_rx,
-> +	.enable_ms	= stm32_enable_ms,
->  	.break_ctl	= stm32_break_ctl,
->  	.startup	= stm32_startup,
->  	.shutdown	= stm32_shutdown,
-> @@ -960,10 +988,31 @@ static int stm32_init_port(struct stm32_port *stm32port,
->  
->  	stm32port->port.uartclk = clk_get_rate(stm32port->clk);
->  	if (!stm32port->port.uartclk) {
-> -		clk_disable_unprepare(stm32port->clk);
->  		ret = -EINVAL;
-> +		goto err_clk;
-> +	}
-> +
-> +	stm32port->gpios = mctrl_gpio_init(&stm32port->port, 0);
-> +	if (IS_ERR(stm32port->gpios)) {
-> +		ret = PTR_ERR(stm32port->gpios);
-> +		goto err_clk;
->  	}
->  
-> +	/* Both CTS/RTS gpios and "st,hw-flow-ctrl" should not be specified */
-> +	if (stm32port->hw_flow_control) {
-> +		if (mctrl_gpio_to_gpiod(stm32port->gpios, UART_GPIO_CTS) ||
-> +		    mctrl_gpio_to_gpiod(stm32port->gpios, UART_GPIO_RTS)) {
-> +			dev_err(&pdev->dev, "Conflicting RTS/CTS config\n");
-> +			ret = -EINVAL;
-> +			goto err_clk;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +
-> +err_clk:
-> +	clk_disable_unprepare(stm32port->clk);
-> +
->  	return ret;
->  }
->  
-> diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
-> index db8bf0d4982d..d4c916e78d40 100644
-> --- a/drivers/tty/serial/stm32-usart.h
-> +++ b/drivers/tty/serial/stm32-usart.h
-> @@ -274,6 +274,7 @@ struct stm32_port {
->  	bool fifoen;
->  	int wakeirq;
->  	int rdr_mask;		/* receive data register mask */
-> +	struct mctrl_gpios *gpios; /* modem control gpios */
->  };
->  
->  static struct stm32_port stm32_ports[STM32_MAX_PORTS];
-> 
+
+
+Diehl Connectivity Solutions GmbH
+Gesch=E4ftsf=FChrung: Horst Leonberger
+Sitz der Gesellschaft: N=FCrnberg - Registergericht: Amtsgericht
+N=FCrnberg: HRB 32315
+_________________________________________________________________________=
+__________________________
+
+Der Inhalt der vorstehenden E-Mail ist nicht rechtlich bindend. Diese E-M=
+ail enthaelt vertrauliche und/oder rechtlich geschuetzte Informationen.
+Informieren Sie uns bitte, wenn Sie diese E-Mail faelschlicherweise erhal=
+ten haben. Bitte loeschen Sie in diesem Fall die Nachricht.
+Jede unerlaubte Form der Reproduktion, Bekanntgabe, Aenderung, Verteilung=
+ und/oder Publikation dieser E-Mail ist strengstens untersagt.
+- Informationen zum Datenschutz, insbesondere zu Ihren Rechten, erhalten =
+Sie unter https://www.diehl.com/group/de/transparenz-und-informationspfli=
+chten/
+
+The contents of the above mentioned e-mail is not legally binding. This e=
+-mail contains confidential and/or legally protected information. Please =
+inform us if you have received this e-mail by
+mistake and delete it in such a case. Each unauthorized reproduction, dis=
+closure, alteration, distribution and/or publication of this e-mail is st=
+rictly prohibited.=20
+- For general information on data protection and your respective rights p=
+lease visit https://www.diehl.com/group/en/transparency-and-information-o=
+bligations/
