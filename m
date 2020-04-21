@@ -2,64 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5B21B1ED4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 08:32:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E0F1B1F6A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 09:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725904AbgDUGce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 02:32:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48472 "EHLO mail.kernel.org"
+        id S1727062AbgDUHCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 03:02:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58498 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725831AbgDUGce (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 02:32:34 -0400
+        id S1725926AbgDUHCc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Apr 2020 03:02:32 -0400
 Received: from localhost (unknown [106.51.105.242])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E84520CC7;
-        Tue, 21 Apr 2020 06:32:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B1CA92087E;
+        Tue, 21 Apr 2020 07:02:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587450753;
-        bh=jGAXJeWr5/6Veu9ibsJ8kj+D/t6QSaGx2nZQeS1ZQ4Y=;
+        s=default; t=1587452551;
+        bh=SefUlbt3qGHfn6YQKmn5agcjbImsOYkE3084h7LU2Gw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vwOqag6wb29NRdxLivPUWe3pHAyoPJlJUaGgrXf4ftS/CCq5ZbvlEwIvvBzMaa469
-         PQ6CGbgjrGZJHS9yRcYjuQeJEZIZn/BawwhaChxy8Ro6gmEGEe6cAY5CRp7IQC8OHA
-         R5JVwM9Qs+BNjgspjy0NA3thORgLpKpd226a8dN0=
-Date:   Tue, 21 Apr 2020 12:02:29 +0530
+        b=wnzOppAjScernL62L6WM7PpcossVcK1U8Jq2hn03K+m47fAeBghXcIi/3VdhC1TAR
+         RVphA9wtZEzojdxBic9znqJ9gbAcTskD/sCAqwhnO4SR5B7DzDpBhEmbI643eiOr2J
+         ThEol07eyCQmyjl6qyEJB9RZ4ECpQ1fdQPLofByk=
+Date:   Tue, 21 Apr 2020 12:32:27 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] phy: qcom: qmp: Add SM8250 UFS PHY
-Message-ID: <20200421063229.GC72691@vkoul-mobl>
-References: <20200415060745.740193-1-bjorn.andersson@linaro.org>
- <20200420214958.GA23753@bogus>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Venkata Narendra Kumar Gutta <vnkgutta@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Fix PDC compatible and reg
+Message-ID: <20200421070227.GD72691@vkoul-mobl>
+References: <20200415054703.739507-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200420214958.GA23753@bogus>
+In-Reply-To: <20200415054703.739507-1-bjorn.andersson@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-04-20, 16:49, Rob Herring wrote:
-> On Tue, 14 Apr 2020 23:07:45 -0700, Bjorn Andersson wrote:
-> > The SM8250 UFS PHY can run off the same initialization sequence as
-> > SM8150, but add the compatible to allow future changes.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt | 5 +++++
-> >  drivers/phy/qualcomm/phy-qcom-qmp.c                    | 3 +++
-> >  2 files changed, 8 insertions(+)
-> > 
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+On 14-04-20, 22:47, Bjorn Andersson wrote:
+> The pdc node suffers from both too narrow compatible and insufficient
+> cells in the reg, fix these.
 
 Reviewed-by: Vinod Koul <vkoul@kernel.org>
 Tested-by: Vinod Koul <vkoul@kernel.org>
+
+> Fixes: 60378f1a171e ("arm64: dts: qcom: sm8250: Add sm8250 dts file")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 891d83b2afea..2a7eaefd221d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -314,8 +314,8 @@ intc: interrupt-controller@17a00000 {
+>  		};
+>  
+>  		pdc: interrupt-controller@b220000 {
+> -			compatible = "qcom,sm8250-pdc";
+> -			reg = <0x0b220000 0x30000>, <0x17c000f0 0x60>;
+> +			compatible = "qcom,sm8250-pdc", "qcom,pdc";
+> +			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
+>  			qcom,pdc-ranges = <0 480 94>, <94 609 31>,
+>  					  <125 63 1>, <126 716 12>;
+>  			#interrupt-cells = <2>;
+> -- 
+> 2.24.0
 
 -- 
 ~Vinod
