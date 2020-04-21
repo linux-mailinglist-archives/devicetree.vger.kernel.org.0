@@ -2,247 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C191B26BA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 14:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C0191B26D6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 14:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728884AbgDUMwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 08:52:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33610 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728878AbgDUMwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 08:52:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EAD2C061A10
-        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2020 05:52:32 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jQsNz-0004N6-SH; Tue, 21 Apr 2020 14:52:23 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jQsNx-0002JF-Gk; Tue, 21 Apr 2020 14:52:21 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, David Jander <david@protonic.nl>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next v4 4/4] net: phy: tja11xx: add delayed registration of TJA1102 PHY1
-Date:   Tue, 21 Apr 2020 14:52:19 +0200
-Message-Id: <20200421125219.8402-5-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200421125219.8402-1-o.rempel@pengutronix.de>
-References: <20200421125219.8402-1-o.rempel@pengutronix.de>
+        id S1728337AbgDUM5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 08:57:31 -0400
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:47858 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726628AbgDUM5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Apr 2020 08:57:30 -0400
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id 03LCvFBW029007
+        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2020 21:57:16 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 03LCvFBW029007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1587473836;
+        bh=9UQpcRvUemaHFo7L5Odh9LS7PYBKVGflzlH8vlG+LVg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZnrvpskK19jcp87FYObOSmn8s0vCYicKFdaOsd0iFTeNVWqXM1HFiH6DBZsgQllZF
+         6+jW+5aMUWd1dfMIGECANxko1j7ArpXZ37a5Ofi10gkzk7tlzt7BQI4GKMof4Z3F40
+         XuQ3O0/Oq6e0H4Nx67hDdfNbN5HvZby3JM+A+fSHJjExf3iVjLscDyiY+JCv4+rs89
+         ZP3pB5cxN5bA5zJgHqG9c/W5qooFq0nG7829HeZPgQK9y/u8WFpe+sM1JPbKjzu/xY
+         +jqRQoMHDGhkzxhDFNOjC6WYYOxf92Y2T6rgSfWSUricatwzsevuhx5ZzOsIJvUrBS
+         q5zLJd8XxwtQg==
+X-Nifty-SrcIP: [209.85.221.177]
+Received: by mail-vk1-f177.google.com with SMTP id q200so3350106vka.13
+        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2020 05:57:15 -0700 (PDT)
+X-Gm-Message-State: AGi0PubQWxw1qtnfET4GzO5W85HV335YXY1qQjSmtMlN/Oalq3Qi6Vr0
+        Hl0Yoy0gqnppnPeDkb5xd7XaI/5zU5j7l0ZIUEU=
+X-Google-Smtp-Source: APiQypIFObNeifQg7K56qQ6Q0t2K2BsBNuMJSZC/7uLKgOT/hbDbDAq/b+UNL2D89DT7u5415ggoOFVevCaGcrIYn8Y=
+X-Received: by 2002:a1f:1e11:: with SMTP id e17mr14979491vke.73.1587473834593;
+ Tue, 21 Apr 2020 05:57:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <158737719165.27947.6617937231903079086.stgit@localhost>
+ <20200420190749.b508c7e6d60a8203360178ec@linaro.org> <CAK7LNAQtTPLdKN8cz842gvoS36GVQvk2ztahGp8XWoW3C8BzQg@mail.gmail.com>
+ <CAA93ih0TNEfU_fiS_43+H6+UWrP2b8zh+PxMiiKBg3pZW8Jo8g@mail.gmail.com>
+In-Reply-To: <CAA93ih0TNEfU_fiS_43+H6+UWrP2b8zh+PxMiiKBg3pZW8Jo8g@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 21 Apr 2020 21:56:37 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASjoM1vr6=nSfs76yauC+QChKC6VX_pZkq1rhXDnJE5+A@mail.gmail.com>
+Message-ID: <CAK7LNASjoM1vr6=nSfs76yauC+QChKC6VX_pZkq1rhXDnJE5+A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: uniphier: Add support for Akebi96
+To:     Masami Hiramatsu <masami.hiramatsu@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TJA1102 is a dual PHY package with PHY0 having proper PHYID and PHY1
-having no ID. On one hand it is possible to for PHY detection by
-compatible, on other hand we should be able to reset complete chip
-before PHY1 configured it, and we need to define dependencies for proper
-power management.
+On Mon, Apr 20, 2020 at 10:21 PM Masami Hiramatsu
+<masami.hiramatsu@linaro.org> wrote:
+> > index f93519793bfb..afa90b762ea9 100644
+> > --- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+> > +++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+> > @@ -337,7 +337,7 @@ gpio: gpio@55000000 {
+> >                                                      <21 217 3>;
+> >                 };
+> >
+> > -               audio: audio@56000000 {
+> > +               audio@56000000 {
+> >                         compatible = "socionext,uniphier-ld20-aio";
+> >                         reg = <0x56000000 0x80000>;
+> >                         interrupts = <0 144 4>;
+> >
+> >
+> > Lastly, is the pin-setting "aout1", "aout1b" correct ?
+>
+> Yes, according to the schematics of Akebi96(*), it is connected to
+> aout1b(XIRQ*) instead of aout1(AO1*).
+>
+> (*) https://www.96boards.org/documentation/enterprise/akebi96/hardware-docs/akebi96-schematics.pdf
 
-We can solve it by defining PHY1 as child of PHY0:
-	tja1102_phy0: ethernet-phy@4 {
-		reg = <0x4>;
 
-		interrupts-extended = <&gpio5 8 IRQ_TYPE_LEVEL_LOW>;
 
-		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-		reset-assert-us = <20>;
-		reset-deassert-us = <2000>;
+So, I was asking about "aout1", not "aout1b".
 
-		tja1102_phy1: ethernet-phy@5 {
-			reg = <0x5>;
+According to the schematic, nothing is connected to AO1*.
+See sheet 6.
 
-			interrupts-extended = <&gpio5 8 IRQ_TYPE_LEVEL_LOW>;
-		};
-	};
+Why do you need to assign the apparently unused pins?
 
-The PHY1 should be a subnode of PHY0 and registered only after PHY0 was
-completely reset and initialized.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- drivers/net/phy/nxp-tja11xx.c | 112 +++++++++++++++++++++++++++++++---
- 1 file changed, 105 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/phy/nxp-tja11xx.c b/drivers/net/phy/nxp-tja11xx.c
-index a064e4ab3616..2bde9386baf1 100644
---- a/drivers/net/phy/nxp-tja11xx.c
-+++ b/drivers/net/phy/nxp-tja11xx.c
-@@ -6,11 +6,14 @@
- #include <linux/delay.h>
- #include <linux/ethtool.h>
- #include <linux/kernel.h>
-+#include <linux/mdio.h>
- #include <linux/mii.h>
- #include <linux/module.h>
- #include <linux/phy.h>
- #include <linux/hwmon.h>
- #include <linux/bitfield.h>
-+#include <linux/of_mdio.h>
-+#include <linux/of_irq.h>
- 
- #define PHY_ID_MASK			0xfffffff0
- #define PHY_ID_TJA1100			0x0180dc40
-@@ -57,6 +60,8 @@
- struct tja11xx_priv {
- 	char		*hwmon_name;
- 	struct device	*hwmon_dev;
-+	struct phy_device *phydev;
-+	struct work_struct phy_register_work;
- };
- 
- struct tja11xx_phy_stats {
-@@ -333,16 +338,12 @@ static const struct hwmon_chip_info tja11xx_hwmon_chip_info = {
- 	.info		= tja11xx_hwmon_info,
- };
- 
--static int tja11xx_probe(struct phy_device *phydev)
-+static int tja11xx_hwmon_register(struct phy_device *phydev,
-+				  struct tja11xx_priv *priv)
- {
- 	struct device *dev = &phydev->mdio.dev;
--	struct tja11xx_priv *priv;
- 	int i;
- 
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
--
- 	priv->hwmon_name = devm_kstrdup(dev, dev_name(dev), GFP_KERNEL);
- 	if (!priv->hwmon_name)
- 		return -ENOMEM;
-@@ -360,6 +361,103 @@ static int tja11xx_probe(struct phy_device *phydev)
- 	return PTR_ERR_OR_ZERO(priv->hwmon_dev);
- }
- 
-+static int tja11xx_probe(struct phy_device *phydev)
-+{
-+	struct device *dev = &phydev->mdio.dev;
-+	struct tja11xx_priv *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->phydev = phydev;
-+
-+	return tja11xx_hwmon_register(phydev, priv);
-+}
-+
-+static void tja1102_p1_register(struct work_struct *work)
-+{
-+	struct tja11xx_priv *priv = container_of(work, struct tja11xx_priv,
-+						 phy_register_work);
-+	struct phy_device *phydev_phy0 = priv->phydev;
-+	struct mii_bus *bus = phydev_phy0->mdio.bus;
-+	struct device *dev = &phydev_phy0->mdio.dev;
-+	struct device_node *np = dev->of_node;
-+	struct device_node *child;
-+	int ret;
-+
-+	for_each_available_child_of_node(np, child) {
-+		struct phy_device *phy;
-+		int addr;
-+
-+		addr = of_mdio_parse_addr(dev, child);
-+		if (addr < 0) {
-+			dev_err(dev, "Can't parse addr\n");
-+			continue;
-+		} else if (addr != phydev_phy0->mdio.addr + 1) {
-+			/* Currently we care only about double PHY chip TJA1102.
-+			 * If some day NXP will decide to bring chips with more
-+			 * PHYs, this logic should be reworked.
-+			 */
-+			dev_err(dev, "Unexpected address. Should be: %i\n",
-+				phydev_phy0->mdio.addr + 1);
-+			continue;
-+		}
-+
-+		if (mdiobus_is_registered_device(bus, addr)) {
-+			dev_err(dev, "device is already registered\n");
-+			continue;
-+		}
-+
-+		/* Real PHY ID of Port 1 is 0 */
-+		phy = phy_device_create(bus, addr, PHY_ID_TJA1102, false, NULL);
-+		if (IS_ERR(phy)) {
-+			dev_err(dev, "Can't create PHY device for Port 1: %i\n",
-+				addr);
-+			continue;
-+		}
-+
-+		/* Overwrite parent device. phy_device_create() set parent to
-+		 * the mii_bus->dev, which is not correct in case.
-+		 */
-+		phy->mdio.dev.parent = dev;
-+
-+		ret = __of_mdiobus_register_phy(bus, phy, child, addr);
-+		if (ret) {
-+			/* All resources needed for Port 1 should be already
-+			 * available for Port 0. Both ports use the same
-+			 * interrupt line, so -EPROBE_DEFER would make no sense
-+			 * here.
-+			 */
-+			dev_err(dev, "Can't register Port 1. Unexpected error: %i\n",
-+				ret);
-+			phy_device_free(phy);
-+		}
-+	}
-+}
-+
-+static int tja1102_p0_probe(struct phy_device *phydev)
-+{
-+	struct device *dev = &phydev->mdio.dev;
-+	struct tja11xx_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->phydev = phydev;
-+	INIT_WORK(&priv->phy_register_work, tja1102_p1_register);
-+
-+	ret = tja11xx_hwmon_register(phydev, priv);
-+	if (ret)
-+		return ret;
-+
-+	schedule_work(&priv->phy_register_work);
-+
-+	return 0;
-+}
-+
- static int tja1102_match_phy_device(struct phy_device *phydev, bool port0)
- {
- 	int ret;
-@@ -443,7 +541,7 @@ static struct phy_driver tja11xx_driver[] = {
- 	}, {
- 		.name		= "NXP TJA1102 Port 0",
- 		.features       = PHY_BASIC_T1_FEATURES,
--		.probe		= tja11xx_probe,
-+		.probe		= tja1102_p0_probe,
- 		.soft_reset	= tja11xx_soft_reset,
- 		.config_init	= tja11xx_config_init,
- 		.read_status	= tja11xx_read_status,
 -- 
-2.25.1
-
+Best Regards
+Masahiro Yamada
