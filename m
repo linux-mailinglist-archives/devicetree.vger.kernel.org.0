@@ -2,165 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 108711B1A77
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 02:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0A41B1AEC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2020 02:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727043AbgDUAL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Apr 2020 20:11:29 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:11245 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726659AbgDUAL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 20:11:28 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e9e39bd0001>; Mon, 20 Apr 2020 17:09:33 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 20 Apr 2020 17:11:28 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 20 Apr 2020 17:11:28 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 Apr
- 2020 00:11:28 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 21 Apr 2020 00:11:27 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.165.49]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5e9e3a2e0000>; Mon, 20 Apr 2020 17:11:27 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <helen.koike@collabora.com>
-CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v8 9/9] arm64: tegra: Add Tegra VI CSI support in device tree
-Date:   Mon, 20 Apr 2020 17:11:14 -0700
-Message-ID: <1587427874-3291-10-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1587427874-3291-1-git-send-email-skomatineni@nvidia.com>
-References: <1587427874-3291-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1726201AbgDUAuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Apr 2020 20:50:25 -0400
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:43851 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726161AbgDUAuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Apr 2020 20:50:24 -0400
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id 03L0nw6l031854;
+        Tue, 21 Apr 2020 09:49:59 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 03L0nw6l031854
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1587430199;
+        bh=tZmsfERnblOFkkdqRvhGaxfqugPBY/Xsw0eno3u9EFc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JWZTVonSieQlIcoeJzatS7yOHo1Tb53edJiZFwUnww7hVbHchUGYiv+VODOELpUPh
+         AEB00wni+iTryIGJ1miu4huLZtVHrE5SJicRbrkrrbLUKW6TXlVUeA7k3IxCOtDsob
+         5smvaBsxmkTuMtFPLrYTPFuHBhsmzZQJAUQN6lMNLZFrrkcWW9QDUc5EgyFmsgbf4C
+         uwLD0c+TxyWCSu2dvOvf5Mew3UxQeEwcxKwwlU6BcRRkQaiAMUdw+usm71pF+BoPCk
+         Zor9lGrM0iXMCYhoYiYxno2a7Nml+sDxQcHfIpzPO7n9Y5CFyMoIWhEvHWK57oGbEf
+         EWcMoDPaLd+Rw==
+X-Nifty-SrcIP: [209.85.217.44]
+Received: by mail-vs1-f44.google.com with SMTP id 184so7389882vsu.3;
+        Mon, 20 Apr 2020 17:49:59 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYYtGy9lWfD/34OsATExcOF1QZCJ55YXiwXPgGhUYeNudkTzJt+
+        rADLeXypWjVkuTv2nT2WFp/O+C5YUeO+F6rad/0=
+X-Google-Smtp-Source: APiQypKqlXEh4Ce4HZmAxQ2hrLYP/wa0UYXU4Q2E85c+CUeQ355bY8h5VqB1Dsq0NV0EEIadu8pZxEw8iSkJ/bpnyxQ=
+X-Received: by 2002:a67:e94d:: with SMTP id p13mr10906451vso.215.1587430198386;
+ Mon, 20 Apr 2020 17:49:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1587427773; bh=yB3b29VbNFtTvMcPZCMVxLppaVECoZp9WEY70dWiuUY=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=Z861qR1kCPrPTC77B0TQq0mcYt0ZOKeI5+4i+af+jrC0GXt10fnlIEZ17w2MtWG4v
-         RfWhkNsOgg4Y6h0ayBwHt+BWJ7s7yY+ggiIXfexzYHC4B2M1wte0f7GCL3ZJyYLoos
-         kNh9KxE8SHfRdRIzO1FYk1WyezRfmdxPqS92JHgT6oHBr1ATPCxdJqU2MwbXsIzNR6
-         FEB4bJsDGB1rCs03v6DHe94Lk2uZRG8paJOA6n4OPY6SeAodRTdzws3/q1gubyrSYt
-         IU7PuYnvBAqdRlWGslgaAKOVQU/nbl049S4g8iDJQn1p1xA/AOxRf4A/UbFXb1fQSU
-         EMtcuHemi2R3Q==
+References: <20200420224953.31327-1-robh@kernel.org>
+In-Reply-To: <20200420224953.31327-1-robh@kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 21 Apr 2020 09:49:22 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATmR09xs0A2VzRmrKepjZsx97BkqswZ1ObuVYbnmaCr_A@mail.gmail.com>
+Message-ID: <CAK7LNATmR09xs0A2VzRmrKepjZsx97BkqswZ1ObuVYbnmaCr_A@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: Add a minimum version check for dtschema
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra210 contains VI controller for video input capture from MIPI
-CSI camera sensors and also supports built-in test pattern generator.
+On Tue, Apr 21, 2020 at 7:49 AM Rob Herring <robh@kernel.org> wrote:
+>
+> The dtschema package must be somewhat up to date as the tools and
+> meta-schema checks are still evolving. Implement a version check,
+> so this can be enforced. This will help ensure new schema submissions
+> get checked against the latest meta-schemas.
+>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-CSI ports can be one-to-one mapped to VI channels for capturing from
-an external sensor or from built-in test pattern generator.
+Please replace Cc with:
 
-This patch adds support for VI and CSI and enables them in Tegra210
-device tree.
+Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 10 ++++++
- arch/arm64/boot/dts/nvidia/tegra210.dtsi       | 46 +++++++++++++++++++++++++-
- 2 files changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-index 313a4c2..b57d837 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-@@ -14,6 +14,16 @@
- 			status = "okay";
- 		};
- 
-+		vi@54080000 {
-+			status = "okay";
-+
-+			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-+
-+			csi@838 {
-+				status = "okay";
-+			};
-+		};
-+
- 		sor@54580000 {
- 			status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 5b1dfd8..cad42a7 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -137,9 +137,44 @@
- 
- 		vi@54080000 {
- 			compatible = "nvidia,tegra210-vi";
--			reg = <0x0 0x54080000 0x0 0x00040000>;
-+			reg = <0x0 0x54080000 0x0 0x700>;
- 			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-+			assigned-clocks = <&tegra_car TEGRA210_CLK_VI>;
-+			assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_C4_OUT0>;
-+
-+			clocks = <&tegra_car TEGRA210_CLK_VI>;
-+			power-domains = <&pd_venc>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			ranges = <0x0 0x0 0x54080000 0x2000>;
-+
-+			csi@838 {
-+				compatible = "nvidia,tegra210-csi";
-+				reg = <0x838 0x1300>;
-+				status = "disabled";
-+				assigned-clocks = <&tegra_car TEGRA210_CLK_CILAB>,
-+						  <&tegra_car TEGRA210_CLK_CILCD>,
-+						  <&tegra_car TEGRA210_CLK_CILE>,
-+						  <&tegra_car TEGRA210_CLK_CSI_TPG>;
-+				assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_P>,
-+							 <&tegra_car TEGRA210_CLK_PLL_P>,
-+							 <&tegra_car TEGRA210_CLK_PLL_P>;
-+				assigned-clock-rates = <102000000>,
-+						       <102000000>,
-+						       <102000000>,
-+						       <972000000>;
-+
-+				clocks = <&tegra_car TEGRA210_CLK_CSI>,
-+					 <&tegra_car TEGRA210_CLK_CILAB>,
-+					 <&tegra_car TEGRA210_CLK_CILCD>,
-+					 <&tegra_car TEGRA210_CLK_CILE>,
-+					 <&tegra_car TEGRA210_CLK_CSI_TPG>;
-+				clock-names = "csi", "cilab", "cilcd", "cile", "csi_tpg";
-+				power-domains = <&pd_sor>;
-+			};
- 		};
- 
- 		tsec@54100000 {
-@@ -839,6 +874,15 @@
- 				reset-names = "vic";
- 				#power-domain-cells = <0>;
- 			};
-+
-+			pd_venc: venc {
-+				clocks = <&tegra_car TEGRA210_CLK_VI>,
-+					 <&tegra_car TEGRA210_CLK_CSI>;
-+				resets = <&mc TEGRA210_MC_RESET_VI>,
-+					 <&tegra_car TEGRA210_RST_VI>,
-+					 <&tegra_car TEGRA210_CLK_CSI>;
-+				#power-domain-cells = <0>;
-+			};
- 		};
- 
- 		sdmmc1_3v3: sdmmc1-3v3 {
+> ---
+> v3:
+>  - Drop leading '0' in version month
+>  - Rework with Masahiro's shell commands
+>
+> v2:
+>  - Use a build rule for the version check instead
+> ---
+>  Documentation/devicetree/bindings/Makefile | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> index 1df680d07461..67b0969281da 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -3,11 +3,19 @@ DT_DOC_CHECKER ?= dt-doc-validate
+>  DT_EXTRACT_EX ?= dt-extract-example
+>  DT_MK_SCHEMA ?= dt-mk-schema
+>
+> +DT_SCHEMA_MIN_VERSION = 2020.4
+> +
+> +PHONY += check_dtschema_version
+> +check_dtschema_version:
+> +       @{ echo $(DT_SCHEMA_MIN_VERSION); \
+> +       $(DT_DOC_CHECKER) --version 2>/dev/null || echo 0; } | sort -VC || \
+> +       { echo "ERROR: dtschema minimum version is v$(DT_SCHEMA_MIN_VERSION)" >&2; false; }
+> +
+>  quiet_cmd_chk_binding = CHKDT   $(patsubst $(srctree)/%,%,$<)
+>        cmd_chk_binding = $(DT_DOC_CHECKER) -u $(srctree)/$(src) $< ; \
+>                          $(DT_EXTRACT_EX) $< > $@
+>
+> -$(obj)/%.example.dts: $(src)/%.yaml FORCE
+> +$(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
+>         $(call if_changed,chk_binding)
+>
+>  # Use full schemas when checking %.example.dts
+> @@ -34,11 +42,11 @@ override DTC_FLAGS := \
+>         -Wno-avoid_unnecessary_addr_size \
+>         -Wno-graph_child_address
+>
+> -$(obj)/processed-schema-examples.yaml: $(DT_DOCS) FORCE
+> +$(obj)/processed-schema-examples.yaml: $(DT_DOCS) check_dtschema_version FORCE
+>         $(call if_changed,mk_schema)
+>
+>  $(obj)/processed-schema.yaml: DT_MK_SCHEMA_FLAGS := -u
+> -$(obj)/processed-schema.yaml: $(DT_SCHEMA_FILES) FORCE
+> +$(obj)/processed-schema.yaml: $(DT_SCHEMA_FILES) check_dtschema_version FORCE
+>         $(call if_changed,mk_schema)
+>
+>  extra-y += processed-schema.yaml
+> --
+> 2.20.1
+>
+
+
 -- 
-2.7.4
-
+Best Regards
+Masahiro Yamada
