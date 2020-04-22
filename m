@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4701B4706
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC65E1B4733
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725839AbgDVOT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 10:19:28 -0400
-Received: from conuserg-08.nifty.com ([210.131.2.75]:64450 "EHLO
-        conuserg-08.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726720AbgDVOT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 10:19:28 -0400
-Received: from oscar.flets-west.jp (softbank126090202047.bbtec.net [126.90.202.47]) (authenticated)
-        by conuserg-08.nifty.com with ESMTP id 03MEIq6s003059;
-        Wed, 22 Apr 2020 23:18:53 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-08.nifty.com 03MEIq6s003059
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1587565133;
-        bh=05L0Y4K5hdMLe5DqDt78XEkJuAdMbS03xklsS80D7Zk=;
+        id S1726951AbgDVO0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 10:26:15 -0400
+Received: from vultr.net.flygoat.com ([149.28.68.211]:59258 "EHLO
+        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726414AbgDVO0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 10:26:15 -0400
+Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
+        by vultr.net.flygoat.com (Postfix) with ESMTPSA id A7F4B20CD7;
+        Wed, 22 Apr 2020 14:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
+        t=1587565563; bh=yzj3obMtgh8EsESdciGUOI+o2hcpe8mFlM3owBlPDbc=;
         h=From:To:Cc:Subject:Date:From;
-        b=DyxCrGC9vbJk3WAzDPNWRUm5TW/6TBn/XNszLdLUySG+DlkgrEeyd2p25GpG475X5
-         Ns8AYwSr9Xo5JC94ZC/m/GNu5zne4CZl2onlRtCFyr2RiFN6hr3/hOvDgOztOxDhtt
-         03UobRstNyV6gNpiLIPx9wr7lV+aZh7JPApv/Xc9AQ/tfKV/7v7a1s50P/Gdrb9r6M
-         UrrfceNsdtesIk6C+5GBx2v6z7fJNM7gqa+k/04+yur6u7y9loB0DiGVw/48Zx6n5H
-         WNAxrcJiCrDKXSRC4cJflY3CsJ6DGDRvl4rJHHmUoSUnC05jryRdbh+v2CCHG+i1XW
-         q3voLqhQl5BHw==
-X-Nifty-SrcIP: [126.90.202.47]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-i2c@vger.kernel.org
-Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: at24: add microchip,24lc[0-9]+ to the compatible pattern
-Date:   Wed, 22 Apr 2020 23:18:36 +0900
-Message-Id: <20200422141836.1964676-1-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.25.1
+        b=aBFA8jqB6F1yCUeQ5WILR6IdVp461Blt/Ilbt/Kw7E5zm1thEzKvXwMHs5Rrdmjpf
+         EKUTj2xxa2kFtfIZ7eVMktvv92vMXv2aXCJzC1FM7GjSMxp0QoDgmKsn3MxEoXD6O1
+         HlABW/gCmm4sqRom52dfvjNoKIa/BOgF9EqNkYo34YZygRFf1YIuZ6z3lpguDNWiDf
+         918pgBEweCrvnboY4Fk3O1t6ddslj+WE7Cvn05kCXK4TNmC0Hga9JIq3aprbRA+tRe
+         EEphAs8trrnx5brWYrikldA6sMVC0NjKBaAlx2w+bo2HHWeS8VkWUoDs0NRkIXQJr6
+         18AdUt4f2T85w==
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org, maz@kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/6] Loongson PCH IRQ Support
+Date:   Wed, 22 Apr 2020 22:24:20 +0800
+Message-Id: <20200422142428.1249684-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.26.0.rc2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -43,36 +42,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-arch/arm/boot/dts/uniphier-ref-daughter.dtsi has
+This series mainly added IRQ support for Loongson-7A1000 PCH.
+DeviceTree will be added later as PCI support is also pending
+for reviewing.
 
-  compatible = "microchip,24lc128", "atmel,24c128";
+Jiaxun Yang (6):
+  irqchip: Add Loongson HyperTransport Vector support
+  dt-bindings: interrupt-controller: Add Loongson HTVEC
+  irqchip: Add Loongson PCH PIC controller
+  dt-bindings: interrupt-controller: Add Loongson PCH PIC
+  irqchip: Add Loongson PCH MSI controller
+  dt-bindings: interrupt-controller: Add Loongson PCH MSI
 
-and 'make ARCH=arm dtbs_check' warns this:
+ .../interrupt-controller/loongson,htvec.yaml  |  59 ++++
+ .../loongson,pch-msi.yaml                     |  56 ++++
+ .../loongson,pch-pic.yaml                     |  55 ++++
+ drivers/irqchip/Kconfig                       |  26 ++
+ drivers/irqchip/Makefile                      |   3 +
+ drivers/irqchip/irq-loongson-htvec.c          | 217 ++++++++++++++
+ drivers/irqchip/irq-loongson-pch-msi.c        | 265 ++++++++++++++++++
+ drivers/irqchip/irq-loongson-pch-pic.c        | 256 +++++++++++++++++
+ 8 files changed, 937 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,htvec.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-msi.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-pic.yaml
+ create mode 100644 drivers/irqchip/irq-loongson-htvec.c
+ create mode 100644 drivers/irqchip/irq-loongson-pch-msi.c
+ create mode 100644 drivers/irqchip/irq-loongson-pch-pic.c
 
-  eeprom@50: compatible: ['microchip,24lc128', 'atmel,24c128'] is not valid under any of the given schemas (Possible causes of the failure)
-
-Microchip 24LC128 is the device used on this board, and I see it in
-https://www.microchip.com/wwwproducts/en/24LC128
-
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
-
- Documentation/devicetree/bindings/eeprom/at24.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
-index a15787e504f0..2cd7a04cab7c 100644
---- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-+++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-@@ -34,7 +34,7 @@ properties:
-           - minItems: 1
-             maxItems: 2
-             items:
--              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
-+              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
-               - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-           - oneOf:
-               - items:
 -- 
-2.25.1
+2.26.0.rc2
 
