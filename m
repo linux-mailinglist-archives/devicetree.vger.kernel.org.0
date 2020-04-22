@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D13441B4C54
+	by mail.lfdr.de (Postfix) with ESMTP id 654B91B4C53
 	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 19:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726335AbgDVR7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726361AbgDVR7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 22 Apr 2020 13:59:30 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:48500 "EHLO
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:48512 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726154AbgDVR7a (ORCPT
+        with ESMTP id S1726335AbgDVR7a (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 13:59:30 -0400
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: aratiu)
-        with ESMTPSA id 40BC7260F31
+        with ESMTPSA id A265B2A1F12
 From:   Adrian Ratiu <adrian.ratiu@collabora.com>
 To:     devicetree@vger.kernel.org
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>, kernel@collabora.com,
@@ -21,9 +21,11 @@ Cc:     dri-devel <dri-devel@lists.freedesktop.org>, kernel@collabora.com,
         Philippe CORNU <philippe.cornu@st.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Subject: [PATCH v3] dt-bindings: display: dw_mipi_dsi.txt: convert to yaml
-Date:   Wed, 22 Apr 2020 21:00:27 +0300
-Message-Id: <20200422180028.1702996-1-adrian.ratiu@collabora.com>
+Date:   Wed, 22 Apr 2020 21:00:28 +0300
+Message-Id: <20200422180028.1702996-2-adrian.ratiu@collabora.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200422180028.1702996-1-adrian.ratiu@collabora.com>
+References: <20200422180028.1702996-1-adrian.ratiu@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
