@@ -2,134 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA491B470C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A521B46E4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727829AbgDVOUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 10:20:12 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:37741 "EHLO
-        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727819AbgDVOUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Apr 2020 10:20:10 -0400
-Received: from pro2.mail.ovh.net (unknown [10.108.1.71])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 613665A6DE74;
-        Wed, 22 Apr 2020 16:13:08 +0200 (CEST)
-Received: from arch.lan (89.70.31.203) by DAG2EX1.emp2.local (172.16.2.11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Wed, 22 Apr
- 2020 16:13:07 +0200
-From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
-To:     <linux-iio@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <jic23@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Subject: [PATCH 5/6] dt-bindings: iio: scd30: add device binding file
-Date:   Wed, 22 Apr 2020 16:11:34 +0200
-Message-ID: <20200422141135.86419-6-tomasz.duszynski@octakon.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200422141135.86419-1-tomasz.duszynski@octakon.com>
-References: <20200422141135.86419-1-tomasz.duszynski@octakon.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [89.70.31.203]
-X-ClientProxiedBy: DAG3EX2.emp2.local (172.16.2.22) To DAG2EX1.emp2.local
- (172.16.2.11)
-X-Ovh-Tracer-Id: 5833287420189891607
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrgeejgdeikecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpefvohhmrghsiicuffhushiihihnshhkihcuoehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomheqnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkpheptddrtddrtddrtddpkeelrdejtddrfedurddvtdefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepthhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmpdhrtghpthhtohepjhhitgdvfeeskhgvrhhnvghlrdhorhhg
+        id S1726831AbgDVOMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 10:12:40 -0400
+Received: from mga06.intel.com ([134.134.136.31]:55662 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725810AbgDVOMk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 10:12:40 -0400
+IronPort-SDR: TmK8d7A6G//8FycmGt9yEeYSKowQaejR2YeQxSQg/zGTXhpwwAl23txF3JBs7vk6PY4alus7wY
+ c/HzoxfJvcLw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2020 07:12:39 -0700
+IronPort-SDR: a87ikjocUkAw37EpT821rljrZjEfnFB+B0YI6diU0qr4wwkzdnEO4xp9qRjakoBvYP8Qn8+Erk
+ nMlD2Rbp6EqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,414,1580803200"; 
+   d="scan'208";a="402560679"
+Received: from wwanmoha-ilbpg2.png.intel.com ([10.88.227.42])
+  by orsmga004.jf.intel.com with ESMTP; 22 Apr 2020 07:12:37 -0700
+From:   Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     broonie@kernel.org, robh+dt@kernel.org
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com
+Subject: [PATCH v2 0/7] spi: dw: Add support for Intel Keem Bay SPI
+Date:   Wed, 22 Apr 2020 22:11:35 +0800
+Message-Id: <20200422141142.25591-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SCD30 sensor binding file.
+This patchset adds support for DesignWare DWC_ssi. This soft IP
+is an AMBA version 2.0-compliant AHB slave device. Existing driver
+already supports the older APB version.
 
-Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
----
- .../iio/chemical/sensirion,scd30.yaml         | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+Intel Keem Bay SPI controller is using this IP. This patchset is
+tested on Keem Bay evaluation module board.
 
-diff --git a/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml b/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
-new file mode 100644
-index 000000000000..b092b2530c76
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/chemical/sensirion,scd30.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sensirion SCD30 carbon dioxide sensor
-+
-+maintainers:
-+  - Tomasz Duszynski <tomasz.duszynski@octakon.com>
-+
-+description: |
-+  Air quality sensor capable of measuring co2 concentration, temperature
-+  and relative humidity.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sensirion,scd30
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  sensirion,sel-gpios:
-+    description: GPIO connected to the SEL line
-+    maxItems: 1
-+
-+  sensirion,pwm-gpios:
-+    description: GPIO connected to the PWM line
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    # include <dt-bindings/gpio/gpio.h>
-+    # include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      scd30@61 {
-+        compatible = "sensirion,scd30";
-+        reg = <0x61>;
-+        vdd-supply = <&vdd>;
-+        interrupt-parrent = <&gpio0>;
-+        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-+  - |
-+    # include <dt-bindings/gpio/gpio.h>
-+    # include <dt-bindings/interrupt-controller/irq.h>
-+    serial {
-+      scd30 {
-+        compatible = "sensirion,scd30";
-+        vdd-supply = <&vdd>;
-+        interrupt-parrent = <&gpio0>;
-+        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-+
-+...
+Changes since v1:
+- Rework the third patch based on Rob's feedback.
+
+
+Wan Ahmad Zainie (7):
+  spi: dw: Fix typo in few registers name
+  spi: dw: Add update_cr0() callback to update CTRLR0
+  dt-bindings: spi: dw-apb-ssi: Convert bindings to json-schema
+  dt-bindings: spi: dw-apb-ssi: Add compatible string for DesignWare
+    DWC_ssi
+  spi: dw: Add support for DesignWare DWC_ssi
+  dt-bindings: spi: dw-apb-ssi: Add Intel Keem Bay support
+  spi: dw: Add support for Intel Keem Bay SPI
+
+ .../bindings/spi/snps,dw-apb-ssi.txt          |  41 ------
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |  72 ++++++++++
+ drivers/spi/spi-dw-mid.c                      |   4 +
+ drivers/spi/spi-dw-mmio.c                     |  57 +++++++-
+ drivers/spi/spi-dw.c                          | 125 +++++++++++++-----
+ drivers/spi/spi-dw.h                          |  25 +++-
+ 6 files changed, 243 insertions(+), 81 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+
 -- 
-2.26.1
+2.17.1
 
