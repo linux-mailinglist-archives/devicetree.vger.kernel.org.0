@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 836751B3EE9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 12:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1EA31B42A3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 13:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730478AbgDVKY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 06:24:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33420 "EHLO mail.kernel.org"
+        id S1726141AbgDVKAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 06:00:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47054 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730476AbgDVKY5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Apr 2020 06:24:57 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        id S1726590AbgDVKAD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 06:00:03 -0400
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E904F20776;
-        Wed, 22 Apr 2020 10:24:55 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1CF0320776;
+        Wed, 22 Apr 2020 10:00:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587551096;
-        bh=009fT8XnlNWgSGFjkqzi9WHS52wJSOjnMq5vvLMSftE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BW/XRh63tRkDUUveaNk+ktq/cNenSZwyy5DsrHiqtYUnlCtJi65AckmFpfj8RZgWP
-         1rHRtOURAIz7HSjI0k7QVNXRZH81etA2pThcNCPcd5Lu8S/VvPfx8r3sOVBFgd0OKt
-         3hjn49duyA287M3WBAofMvrr1HGLeWXy0EyBSMEI=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.6 098/166] dt-bindings: thermal: tsens: Fix nvmem-cell-names schema
-Date:   Wed, 22 Apr 2020 11:57:05 +0200
-Message-Id: <20200422095059.485243431@linuxfoundation.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200422095047.669225321@linuxfoundation.org>
-References: <20200422095047.669225321@linuxfoundation.org>
-User-Agent: quilt/0.66
+        s=default; t=1587549602;
+        bh=fTbTECVBN+Kz09FDYc7YbldgvRd8WnH3neoB4D6wj34=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=CyXnhtVQc/tjmkDRIYakYjCI5CAGw3rGlNL21QcC8sdhycajuvegJUEGK6GEUDnEz
+         te+rOS0eVTHZKW4ZCrTH3neUWbLJqt2rMAOOmJGQvCrt1ID0sBcQxwAZPtGxFb6+1t
+         LEZr/4pkNDHM8aSZQ3K75+O1a+/FaU4LRlcqPAy8=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200414193616.1368209-2-aford173@gmail.com>
+References: <20200414193616.1368209-1-aford173@gmail.com> <20200414193616.1368209-2-aford173@gmail.com>
+Subject: Re: [PATCH 2/3] clk: vc5: Enable addition output configurations of the Versaclock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     aford@beaconembedded.com, charles.stevens@logicpd.com,
+        Adam Ford <aford173@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Adam Ford <aford173@gmail.com>, linux-clk@vger.kernel.org
+Date:   Wed, 22 Apr 2020 03:00:01 -0700
+Message-ID: <158754960123.132238.9912757167863379129@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+Quoting Adam Ford (2020-04-14 12:36:15)
+> @@ -865,6 +904,77 @@ static int vc5_probe(struct i2c_client *client,
+>                                 init.name);
+>                         goto err_clk;
+>                 }
+> +
+> +               /* Fetch Clock Output configuration from DT (if specified=
+) */
+> +               child_name =3D kasprintf(GFP_KERNEL, "OUT%d", n);
+> +               np_output =3D of_get_child_by_name(client->dev.of_node, c=
+hild_name);
+> +               kfree(child_name);
+> +               if (!np_output)
+> +                       continue;
+> +               if (!(ret || of_property_read_u32(np_output,
+> +                       "idt,mode", &value))) {
+> +                       vc5->clk_out[n].clk_output_cfg0_mask |=3D VC5_CLK=
+_OUTPUT_CFG0_CFG_MASK;
+> +                       switch (value) {
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_LVPECL:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_CMOS:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_HCSL33:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_LVDS:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_CMOS2:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_CMOSD:
+> +                       case VC5_CLK_OUTPUT_CFG0_CFG_HCSL25:
+> +                               vc5->clk_out[n].clk_output_cfg0 |=3D valu=
+e << VC5_CLK_OUTPUT_CFG0_CFG_SHIFT;
+> +                               break;
+> +                       default:
+> +                               ret =3D -EINVAL;
+> +                               break;
+> +                       }
+> +               }
 
-[ Upstream commit b9589def9f9af93d9d4c5969c9a6c166f070e36e ]
+Can these three things be functions that are called and passed a
+vc5->clk_out[n] pointer? Then the code would be something like=20
 
-There's a typo 'nvmem-cells-names' in the schema which means the correct
-'nvmem-cell-names' in the examples are not checked. The possible values
-are wrong too both in that the 2nd entry is not specified correctly and the
-values are just wrong based on the dts files in the kernel.
-
-Fixes: a877e768f655 ("dt-bindings: thermal: tsens: Convert over to a yaml schema")
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Amit Kucheria <amit.kucheria@linaro.org>
-Cc: Zhang Rui <rui.zhang@intel.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: linux-pm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../devicetree/bindings/thermal/qcom-tsens.yaml          | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index eef13b9446a87..a4df53228122a 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -53,13 +53,12 @@ properties:
-     description:
-       Reference to an nvmem node for the calibration data
- 
--  nvmem-cells-names:
-+  nvmem-cell-names:
-     minItems: 1
-     maxItems: 2
-     items:
--      - enum:
--        - caldata
--        - calsel
-+      - const: calib
-+      - const: calib_sel
- 
-   "#qcom,sensors":
-     allOf:
-@@ -125,7 +124,7 @@ examples:
-                  <0x4a8000 0x1000>; /* SROT */
- 
-            nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
--           nvmem-cell-names = "caldata", "calsel";
-+           nvmem-cell-names = "calib", "calib_sel";
- 
-            interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-            interrupt-names = "uplow";
--- 
-2.20.1
+ ret =3D prop1_parse_and_update(vc5->clk_out[n]);
+ if (ret)
+ 	goto err_clk;
+ ret =3D prop2_parse_and_update(...)
+ if (ret)
+ 	goto err_clk;
 
 
+> +               if (!(ret || of_property_read_u32(np_output,
+> +                       "idt,voltage-microvolts", &value))) {
+> +                       vc5->clk_out[n].clk_output_cfg0_mask |=3D VC5_CLK=
+_OUTPUT_CFG0_PWR_MASK;
+> diff --git a/include/dt-bindings/clk/versaclock.h b/include/dt-bindings/c=
+lk/versaclock.h
+> new file mode 100644
+> index 000000000000..30add3488713
+> --- /dev/null
+> +++ b/include/dt-bindings/clk/versaclock.h
+> @@ -0,0 +1,13 @@
+> +/* HEADER */
 
+Any SPDX license for this in place of HEADER?
+
+> +
+> +/* This file defines field values used by the versaclock 6 family
+> + * for defining output type
+> + */
+> +
+> +#define VC5_LVPECL     0
+> +#define VC5_CMOS       1
+> +#define VC5_HCSL33     2
+> +#define VC5_LVDS       3
+> +#define VC5_CMOS2      4
+> +#define VC5_CMOSD      5
+> +#define VC5_HCSL25     6
