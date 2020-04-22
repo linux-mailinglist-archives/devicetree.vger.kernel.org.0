@@ -2,97 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A1291B46DC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D681B471F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 16:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727052AbgDVOIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 10:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42486 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727026AbgDVOIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 10:08:38 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0759AC03C1AA;
-        Wed, 22 Apr 2020 07:08:38 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id t63so2487135wmt.3;
-        Wed, 22 Apr 2020 07:08:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Wn/XLaNsEUc+JrRQ7mg4yGN/42PXRkrYATqvOjyi41s=;
-        b=snwH3gA2y8hxo2yX0BZogJrmkiRtOPUxjXX+dPm4cR0dVk9LX0VxJ7oPquVLBJbHqz
-         AWnwU3Mhtf0HovRIhUHzwtrkmb9A4hbMEuyPbYmr869gTWKpZ9nPKxwopbxNddiNT0iO
-         k95XZEP72PHNiVNwG/Wmr+htitVZPOUMLegX7fQFxuH6K/643K5oMFXCotPVRHG5OblZ
-         xcAnlzlRxlAYONV4tjcdkDdRPdzcr33n9n0qSv65oa+5hlCLxfiY1UdBC7PSos/Sc3Id
-         DNTZU26mI5J9GuQBD88ysDyCov7KTkmiRHTeQDVWryCdAkWal+U18AwAOPnPOd1vAUGi
-         to9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Wn/XLaNsEUc+JrRQ7mg4yGN/42PXRkrYATqvOjyi41s=;
-        b=c3wFRSH7RIAg41n76ETY1Dss0GA1v/2B0t+TAIquTICvHQlajeqUJD5E9dgc337lea
-         y+78nVBVDEvimV8TYL0p5izb2oK+923TfYzRCMAiC7fnXk6XvcmAhzPNVWhLAEbpDt5a
-         Y6gMdibTu9gyuNw0RTrO2XjWeqLLcLZ6psYHlI4FFoEXNC8aIKWqbXTkFKYPFhrYlVSa
-         P91lao3qUy4ytsStIEeSZit1C62V+aKxQF48edLHBKT6ZtfMnI6GEKpzp4+9EcrRTEGF
-         5jZYntaHVkTY5rVBcbgeOnuxR4GFnEXekMrmrl+K0WDN9ENSLO5yG29hsBlIz6HGGUdX
-         3HrA==
-X-Gm-Message-State: AGi0PuZE/C13bIEiBCorxJYuUoxiLICMpgkMpHbMQgty7xnFLkjnJYXU
-        JRVKsc5tjzJ+MHBG1VhQ2/8=
-X-Google-Smtp-Source: APiQypLcBdgKcojkVDWJDUlHMTtYzEZSNEqVPBloleybYbcysXDKZ/PSC6WiURn0kRHtcRsdukQqQA==
-X-Received: by 2002:a7b:c850:: with SMTP id c16mr10268138wml.108.1587564516651;
-        Wed, 22 Apr 2020 07:08:36 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host36-18-dynamic.45-213-r.retail.telecomitalia.it. [213.45.18.36])
-        by smtp.googlemail.com with ESMTPSA id a9sm7526790wmm.38.2020.04.22.07.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Apr 2020 07:08:35 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Ilia Lin <ilia.lin@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Sricharan R <sricharan@codeaurora.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: opp: Fix wrong binding in qcom-nvmem-cpufreq
-Date:   Wed, 22 Apr 2020 16:08:27 +0200
-Message-Id: <20200422140827.1726-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200422140827.1726-1-ansuelsmth@gmail.com>
-References: <20200422140827.1726-1-ansuelsmth@gmail.com>
+        id S1727884AbgDVOWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 10:22:13 -0400
+Received: from smtpout1.mo803.mail-out.ovh.net ([79.137.123.219]:34267 "EHLO
+        smtpout1.mo803.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726479AbgDVOWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 10:22:13 -0400
+Received: from pro2.mail.ovh.net (unknown [10.108.4.231])
+        by mo803.mail-out.ovh.net (Postfix) with ESMTPS id 984EE4F477ED;
+        Wed, 22 Apr 2020 16:13:05 +0200 (CEST)
+Received: from arch.lan (89.70.31.203) by DAG2EX1.emp2.local (172.16.2.11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Wed, 22 Apr
+ 2020 16:13:04 +0200
+From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
+To:     <linux-iio@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <jic23@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>
+Subject: [PATCH 0/6] Add support for SCD30 sensor
+Date:   Wed, 22 Apr 2020 16:11:29 +0200
+Message-ID: <20200422141135.86419-1-tomasz.duszynski@octakon.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [89.70.31.203]
+X-ClientProxiedBy: DAG3EX2.emp2.local (172.16.2.22) To DAG2EX1.emp2.local
+ (172.16.2.11)
+X-Ovh-Tracer-Id: 5832442993075313687
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrgeejgdeikecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvufffkffoggfgtghisehtkeertdertddtnecuhfhrohhmpefvohhmrghsiicuffhushiihihnshhkihcuoehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomheqnecukfhppedtrddtrddtrddtpdekledrjedtrdefuddrvddtfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomhdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrgh
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update binding to new generic name "operating-points-v2-qcom-cpu"
+Following series adds support for Sensirion SCD30 sensor module capable of
+measuring carbon dioxide, temperature and relative humidity. CO2 measurements
+base on NDIR principle while temperature and relative humidity are measured by
+the on board SHT31. As for sensor communication, both I2C and serial interfaces
+are supported.
 
-Fixes: a8811ec764f9 cpufreq: qcom: Add support for krait based socs
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Tomasz Duszynski (6):
+  iio: chemical: scd30: add core driver
+  iio: chemical: scd30: add I2C interface driver
+  iio: chemical: scd30: add serial interface driver
+  Documentation: ABI: testing: scd30: document iio attributes
+  dt-bindings: iio: scd30: add device binding file
+  MAINTAINERS: add myself as a SCD30 driver maintainer
 
-diff --git a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-index 64f07417ecfb..537e1774f589 100644
---- a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-+++ b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-@@ -19,7 +19,7 @@ In 'cpu' nodes:
- 
- In 'operating-points-v2' table:
- - compatible: Should be
--	- 'operating-points-v2-kryo-cpu' for apq8096, msm8996, msm8974,
-+	- 'operating-points-v2-qcom-cpu' for apq8096, msm8996, msm8974,
- 					     apq8064, ipq8064, msm8960 and ipq8074.
- 
- Optional properties:
--- 
-2.25.1
+ Documentation/ABI/testing/sysfs-bus-iio-scd30 |  97 +++
+ .../iio/chemical/sensirion,scd30.yaml         |  71 ++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/chemical/Kconfig                  |  33 +
+ drivers/iio/chemical/Makefile                 |   3 +
+ drivers/iio/chemical/scd30.h                  |  72 ++
+ drivers/iio/chemical/scd30_core.c             | 796 ++++++++++++++++++
+ drivers/iio/chemical/scd30_i2c.c              | 141 ++++
+ drivers/iio/chemical/scd30_serial.c           | 262 ++++++
+ 9 files changed, 1484 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+ create mode 100644 drivers/iio/chemical/scd30.h
+ create mode 100644 drivers/iio/chemical/scd30_core.c
+ create mode 100644 drivers/iio/chemical/scd30_i2c.c
+ create mode 100644 drivers/iio/chemical/scd30_serial.c
+
+--
+2.26.1
 
