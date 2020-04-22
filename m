@@ -2,234 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B52A1B3EB9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 12:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBDD31B3F73
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 12:39:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730840AbgDVKa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 06:30:56 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:56208 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730716AbgDVK32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Apr 2020 06:29:28 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03MASQZh005973;
-        Wed, 22 Apr 2020 12:29:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=pPakesbqMo9f4f4O8z3p59FXSEQ2p5KiMoyTUXhVLRw=;
- b=AzOCimmihZLvoNlrJ1X13eePRNNu/IQNwX3v1f/NMAPJT+fHwCDPC3LtSxw3O+sbd4pW
- 7nkDmJPIEclKreURFJfD00PFMnWj7FSuOB8uUOK3q2lkYnUSjlwCwvEh7JWjt2fRqTWN
- irYKPiVjPcuwu3jxfX6kIMvqewaIHNmVwkP7DpOguaRkk4OOnupQPDsFOgEHLP2as6Xz
- JD1/GqixWbmkK5d0d1oh8105RBZmxGhIR+CEKsxBZ+lm2XH2LT0yms/KsEGqBkuD/5xS
- jDOtcj1XXz7X7AkodG7lKDSuQltjXaUxgxt20ycZFTJ5DxWiXowSMtnkMh70PGXOal4Y 9w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30fregnraa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 22 Apr 2020 12:29:16 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E1E3910002A;
-        Wed, 22 Apr 2020 12:29:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D33842A9560;
-        Wed, 22 Apr 2020 12:29:15 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 22 Apr 2020 12:29:15
- +0200
-From:   Amelie Delaunay <amelie.delaunay@st.com>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Pierre-Yves Mordret <pierre-yves.mordret@st.com>
-Subject: [PATCH 2/2] dmaengine: stm32-dma: direct mode support through device tree
-Date:   Wed, 22 Apr 2020 12:29:04 +0200
-Message-ID: <20200422102904.1448-3-amelie.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200422102904.1448-1-amelie.delaunay@st.com>
-References: <20200422102904.1448-1-amelie.delaunay@st.com>
+        id S1731409AbgDVKhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 06:37:41 -0400
+Received: from mail-db8eur05on2048.outbound.protection.outlook.com ([40.107.20.48]:6046
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731407AbgDVKhj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 06:37:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9GhTnVoSdfWnzJOWfX2LANJpfpVFruZgqZMi2/7DKYg=;
+ b=FH/gP0kDHpA7+jFsn3YPn9pAgdASHqj33+O9G02wuGrUsivmIGcZUXldFHURYIm919H37jE9V3VqeC9PJ+j6vJXKJwGUvYK9jJGpMaVAQR6R9JCJycEFDuI3Um1Y0cNw+sgdJ8fUUuZkYNfVUia9N1sLB3Gl7ttmAVewtbXKECE=
+Received: from AM6P194CA0015.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:90::28)
+ by AM6PR08MB3863.eurprd08.prod.outlook.com (2603:10a6:20b:8b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.27; Wed, 22 Apr
+ 2020 10:37:34 +0000
+Received: from AM5EUR03FT059.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:209:90:cafe::f7) by AM6P194CA0015.outlook.office365.com
+ (2603:10a6:209:90::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend
+ Transport; Wed, 22 Apr 2020 10:37:34 +0000
+Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; vger.kernel.org; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;vger.kernel.org; dmarc=bestguesspass
+ action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM5EUR03FT059.mail.protection.outlook.com (10.152.17.193) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2900.15 via Frontend Transport; Wed, 22 Apr 2020 10:37:33 +0000
+Received: ("Tessian outbound 76e9a4cf1540:v53"); Wed, 22 Apr 2020 10:37:32 +0000
+X-CR-MTA-TID: 64aa7808
+Received: from 4d0aa9211465.2
+        by 64aa7808-outbound-1.mta.getcheckrecipient.com id FE232943-C2D7-41FD-8A3B-E7FDDC1FAC0A.1;
+        Wed, 22 Apr 2020 10:37:27 +0000
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 4d0aa9211465.2
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Wed, 22 Apr 2020 10:37:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oVUvlQCKaHJ75Z0UhcTB7gOPvfw3vw+a7s7oJOKJ+ydpE8ROjRTZskejeCrqnWSjVRHdbbqbjIUURt+Ps3b4Z3tjA8rhC0ghITPxuOHbYDbyckVtcZNub0GSLFhA2F3CZFi/5NkGisJiopNP0vcUASjG0SKnpAGnuXPutzbNii4tPFQb+fPUuzI6fbSDJ1aWyqXgrkeWNUMSM4etyDDaOzEXf/lF/vQe12/Z22kXw+B7xikoDfxyHwsqfwNKD7YiIBi72Xw3zq9YbhMnzq7dfsAsxudrvT2x/4K1jOvTb/3JIwRPNkaiqc0GsuN7pdsLoVZEYXULCBf5hPDDAJz+pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9GhTnVoSdfWnzJOWfX2LANJpfpVFruZgqZMi2/7DKYg=;
+ b=RQL5GMXOpGF4r7l3K5BrBASyjmYWCr4GfXDYx55Y8P+z6VmumVpVAKaXiRyyThp80ohc1Ho1qeByE9wttslfFfOM5syzwbNSxJ5OmRdrCX9kdc0bJkp/APyiwOp8ztxZCkb0rZTymoN3kyBMNpplnuQCojz0M5Icn11S/jvy9kYe69NQgrow/X0HhTFyVJ2eSpwiK6o1i1zsJnVz10/aMktiHlzw730u68lQhZtdxANHaBczvgmc+nn42qrioLR/y0ts0x/+y1g1us/BRQndsDgbFUW2rEOgOngdzzfXIwcbV6GdU8mXbzIEyiLFt2dT4MSr8PIh7FMp1Df+k9Yj2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9GhTnVoSdfWnzJOWfX2LANJpfpVFruZgqZMi2/7DKYg=;
+ b=FH/gP0kDHpA7+jFsn3YPn9pAgdASHqj33+O9G02wuGrUsivmIGcZUXldFHURYIm919H37jE9V3VqeC9PJ+j6vJXKJwGUvYK9jJGpMaVAQR6R9JCJycEFDuI3Um1Y0cNw+sgdJ8fUUuZkYNfVUia9N1sLB3Gl7ttmAVewtbXKECE=
+Received: from DB6PR0802MB2533.eurprd08.prod.outlook.com (2603:10a6:4:a0::12)
+ by DB6PR0802MB2168.eurprd08.prod.outlook.com (2603:10a6:4:84::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Wed, 22 Apr
+ 2020 10:37:23 +0000
+Received: from DB6PR0802MB2533.eurprd08.prod.outlook.com
+ ([fe80::b959:1879:c050:3117]) by DB6PR0802MB2533.eurprd08.prod.outlook.com
+ ([fe80::b959:1879:c050:3117%8]) with mapi id 15.20.2921.030; Wed, 22 Apr 2020
+ 10:37:23 +0000
+From:   Hadar Gat <Hadar.Gat@arm.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zaibo Xu <xuzaibo@huawei.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gilad Ben-Yossef <gilad@benyossef.com>,
+        Ofir Drang <Ofir.Drang@arm.com>, nd <nd@arm.com>
+Subject: RE: [PATCH v7 2/3] hw_random: cctrng: introduce Arm CryptoCell driver
+Thread-Topic: [PATCH v7 2/3] hw_random: cctrng: introduce Arm CryptoCell
+ driver
+Thread-Index: AQHWA/5/37ByIllroUeQ0w3cVWDDJKiCK72AgABugaCAASDNgIAAFS7QgAAbIgCAAS6MQA==
+Date:   Wed, 22 Apr 2020 10:37:22 +0000
+Message-ID: <DB6PR0802MB253305028DB2B89F9BE09E5CE9D20@DB6PR0802MB2533.eurprd08.prod.outlook.com>
+References: <1585289423-18440-1-git-send-email-hadar.gat@arm.com>
+ <1585289423-18440-3-git-send-email-hadar.gat@arm.com>
+ <CAMuHMdV6Uce79MPs7jfJfX3WOqAMH22vf2V_=Ui0zLHYqsJ+Xg@mail.gmail.com>
+ <DB6PR0802MB25338BD19DD2F7E662BB1065E9D50@DB6PR0802MB2533.eurprd08.prod.outlook.com>
+ <CAMuHMdWujabV8dr=EojXFBVD0TcUuZ2kCGjjo93u=PE-AmzVHA@mail.gmail.com>
+ <DB6PR0802MB2533347A35A466B99ADD4D23E9D50@DB6PR0802MB2533.eurprd08.prod.outlook.com>
+ <CAMuHMdVGwLQxDj9dtF02L3P5MxBCZAiJ1_4OyK3Yomn9y-nPzQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVGwLQxDj9dtF02L3P5MxBCZAiJ1_4OyK3Yomn9y-nPzQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ts-tracking-id: 6c7a9fd2-af90-4d13-9723-347aa36bc933.1
+x-checkrecipientchecked: true
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=Hadar.Gat@arm.com; 
+x-originating-ip: [84.109.179.203]
+x-ms-publictraffictype: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ae8e0780-b021-49fe-59f7-08d7e6a92af4
+x-ms-traffictypediagnostic: DB6PR0802MB2168:|DB6PR0802MB2168:|AM6PR08MB3863:
+x-ms-exchange-transport-forked: True
+X-Microsoft-Antispam-PRVS: <AM6PR08MB3863A069B0623315996E6C84E9D20@AM6PR08MB3863.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+nodisclaimer: true
+x-ms-oob-tlc-oobclassifiers: OLM:8273;OLM:8273;
+x-forefront-prvs: 03818C953D
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0802MB2533.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10009020)(4636009)(346002)(376002)(396003)(39860400002)(366004)(136003)(7416002)(33656002)(71200400001)(478600001)(5660300002)(26005)(316002)(2906002)(54906003)(55016002)(6916009)(9686003)(86362001)(66946007)(4326008)(6506007)(7696005)(66446008)(76116006)(64756008)(66556008)(8936002)(52536014)(81156014)(66476007)(8676002)(186003);DIR:OUT;SFP:1101;
+received-spf: None (protection.outlook.com: arm.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: gv0BEIouMUpq5EHyNNcCvj+c6WRsETHUaQd4zATEv/HUczPoe3blr6yvV27l9dQpEEg/U9ukuMRWFSHW3OQQ3zILxGnlWqmz21NNgOWAF+3v2P1NaHDJ+5fKGttfgFqfH35IEnJHCAwJlYCngseO6X+d/gaeRUGU/S/RNdSBmTILuZW6BLwpp/dNfrh5teLoT7evvA9knvjerX4Rqw6Ox2VT++ILDyJjEnv5jLtMGrTOgo/h323Pxad+crOn5Gp/w2BoGuvPikfJ569UEFmNL6dRztWZxdOPEcvXTLV1QJKj8tfzPRwlfRtmTdWMrtDQP+JIMd7r1Y6Ay1aJ7qSYPSFe4SIQaP8murdBzOs4LyHTPzykSD6K/LxRhKxtZzHUpyCrADPcUZCW/aWYV18hxkt7p56uHx0SgSYNvpU6wlfiwlJlViT+09QqSqWNPmvI
+x-ms-exchange-antispam-messagedata: aJodZEcJC1+TGw8E1TRAMlSOa5bVrftJEM7eMr05EAXlICqwv6tcexczRh4qfrIgg+Y1bU2FEeKmS/6NAXQlRwnIgCemam89OFhIfUNA5g07w7czWgR8L4uWlM4XYyR/y0/3b+5Xs71lPomdbDXi+A==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG6NODE2.st.com (10.75.127.17) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-04-22_03:2020-04-22,2020-04-22 signatures=0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0802MB2168
+Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Hadar.Gat@arm.com; 
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT059.eop-EUR03.prod.protection.outlook.com
+X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFTY:;SFS:(10009020)(4636009)(346002)(376002)(396003)(39860400002)(136003)(46966005)(4326008)(47076004)(82740400003)(9686003)(316002)(8676002)(86362001)(52536014)(8936002)(356005)(2906002)(6506007)(70206006)(81156014)(81166007)(70586007)(55016002)(7696005)(26005)(5660300002)(478600001)(450100002)(6862004)(33656002)(54906003)(36906005)(186003)(336012)(82310400002);DIR:OUT;SFP:1101;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 5a9c88fa-b9fa-4933-0373-08d7e6a92476
+X-Forefront-PRVS: 03818C953D
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PPO0TJRcAxjMhdMsl/4vEXYPUxIU1PzjwVxCHrBRYt5aorYhizIJ1Pk7o39xigXaHuXTVkqnSKt6MvucJBLuUZwa/y5wUJcBM4OptTQpwY4JQpER+GGIW0r9WsWUFmTUW5bgr5bvmS3bdV/sYmYEMT/imGzHJKGMsos+18+TGbziG8LXuJEoRMSZ6Leo4EHUSDuImdkkORGelGEAuiGFAS7FmFteoppg/3R8z2WA6g0elHITQCWgB2m+zwldaq0NP+au9Dc5B+7QBud0MkNKA4Nnu+xuVxWFjpFVOotjc483/1tnQmUcOdCOG9+sLRsv6XBJjYrQ+8U+ugUTxniD4qEjfwR9R0H2n4Axn5vSu8K5zPBNdUHhYutphM/QmdDdP+CMcL09GKHmuinvZ5ccjD+cnBj8r7mBGjGtFL3VEtmceTlEl+G9MGjV5qa6uPZRVq9rZES2IPLbkp2Hgzwqy3PXbOhts/awSPyCpq7J4t0efrXrSxdi6xydjg580V4+RmFDe2dsZ4eaG1pYfIoeIw==
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2020 10:37:33.9652
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae8e0780-b021-49fe-59f7-08d7e6a92af4
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR08MB3863
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Direct mode or FIFO mode is computed by stm32-dma driver. Add a way for
-the user to force direct mode, by setting bit 2 in the bitfield value
-specifying DMA features in the device tree.
-
-Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
----
- drivers/dma/stm32-dma.c | 41 +++++++++++++++++++++++++++++++----------
- 1 file changed, 31 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/dma/stm32-dma.c b/drivers/dma/stm32-dma.c
-index 0ddbaa4b4f0b..96ad1b3d24c6 100644
---- a/drivers/dma/stm32-dma.c
-+++ b/drivers/dma/stm32-dma.c
-@@ -117,6 +117,7 @@
- #define STM32_DMA_FIFO_THRESHOLD_HALFFULL		0x01
- #define STM32_DMA_FIFO_THRESHOLD_3QUARTERSFULL		0x02
- #define STM32_DMA_FIFO_THRESHOLD_FULL			0x03
-+#define STM32_DMA_FIFO_THRESHOLD_NONE			0x04
- 
- #define STM32_DMA_MAX_DATA_ITEMS	0xffff
- /*
-@@ -136,6 +137,9 @@
- /* DMA Features */
- #define STM32_DMA_THRESHOLD_FTR_MASK	GENMASK(1, 0)
- #define STM32_DMA_THRESHOLD_FTR_GET(n)	((n) & STM32_DMA_THRESHOLD_FTR_MASK)
-+#define STM32_DMA_DIRECT_MODE_MASK	BIT(2)
-+#define STM32_DMA_DIRECT_MODE_GET(n)	(((n) & STM32_DMA_DIRECT_MODE_MASK) \
-+					 >> 2)
- 
- enum stm32_dma_width {
- 	STM32_DMA_BYTE,
-@@ -281,6 +285,9 @@ static bool stm32_dma_fifo_threshold_is_allowed(u32 burst, u32 threshold,
- {
- 	u32 remaining;
- 
-+	if (threshold == STM32_DMA_FIFO_THRESHOLD_NONE)
-+		return false;
-+
- 	if (width != DMA_SLAVE_BUSWIDTH_UNDEFINED) {
- 		if (burst != 0) {
- 			/*
-@@ -302,6 +309,10 @@ static bool stm32_dma_fifo_threshold_is_allowed(u32 burst, u32 threshold,
- 
- static bool stm32_dma_is_burst_possible(u32 buf_len, u32 threshold)
- {
-+	/* If FIFO direct mode, burst is not possible */
-+	if (threshold == STM32_DMA_FIFO_THRESHOLD_NONE)
-+		return false;
-+
- 	/*
- 	 * Buffer or period length has to be aligned on FIFO depth.
- 	 * Otherwise bytes may be stuck within FIFO at buffer or period
-@@ -657,6 +668,12 @@ static irqreturn_t stm32_dma_chan_irq(int irq, void *devid)
- 				dev_dbg(chan2dev(chan), "FIFO over/underrun\n");
- 		}
- 	}
-+	if (status & STM32_DMA_DMEI) {
-+		stm32_dma_irq_clear(chan, STM32_DMA_DMEI);
-+		status &= ~STM32_DMA_DMEI;
-+		if (sfcr & STM32_DMA_SCR_DMEIE)
-+			dev_dbg(chan2dev(chan), "Direct mode overrun\n");
-+	}
- 	if (status) {
- 		stm32_dma_irq_clear(chan, status);
- 		dev_err(chan2dev(chan), "DMA error: status=0x%08x\n", status);
-@@ -692,13 +709,13 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 	int src_bus_width, dst_bus_width;
- 	int src_burst_size, dst_burst_size;
- 	u32 src_maxburst, dst_maxburst, src_best_burst, dst_best_burst;
--	u32 dma_scr, threshold;
-+	u32 dma_scr, fifoth;
- 
- 	src_addr_width = chan->dma_sconfig.src_addr_width;
- 	dst_addr_width = chan->dma_sconfig.dst_addr_width;
- 	src_maxburst = chan->dma_sconfig.src_maxburst;
- 	dst_maxburst = chan->dma_sconfig.dst_maxburst;
--	threshold = chan->threshold;
-+	fifoth = chan->threshold;
- 
- 	switch (direction) {
- 	case DMA_MEM_TO_DEV:
-@@ -710,7 +727,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 		/* Set device burst size */
- 		dst_best_burst = stm32_dma_get_best_burst(buf_len,
- 							  dst_maxburst,
--							  threshold,
-+							  fifoth,
- 							  dst_addr_width);
- 
- 		dst_burst_size = stm32_dma_get_burst(chan, dst_best_burst);
-@@ -718,7 +735,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 			return dst_burst_size;
- 
- 		/* Set memory data size */
--		src_addr_width = stm32_dma_get_max_width(buf_len, threshold);
-+		src_addr_width = stm32_dma_get_max_width(buf_len, fifoth);
- 		chan->mem_width = src_addr_width;
- 		src_bus_width = stm32_dma_get_width(chan, src_addr_width);
- 		if (src_bus_width < 0)
-@@ -728,7 +745,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 		src_maxburst = STM32_DMA_MAX_BURST;
- 		src_best_burst = stm32_dma_get_best_burst(buf_len,
- 							  src_maxburst,
--							  threshold,
-+							  fifoth,
- 							  src_addr_width);
- 		src_burst_size = stm32_dma_get_burst(chan, src_best_burst);
- 		if (src_burst_size < 0)
-@@ -742,7 +759,8 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 
- 		/* Set FIFO threshold */
- 		chan->chan_reg.dma_sfcr &= ~STM32_DMA_SFCR_FTH_MASK;
--		chan->chan_reg.dma_sfcr |= STM32_DMA_SFCR_FTH(threshold);
-+		if (fifoth != STM32_DMA_FIFO_THRESHOLD_NONE)
-+			chan->chan_reg.dma_sfcr |= STM32_DMA_SFCR_FTH(fifoth);
- 
- 		/* Set peripheral address */
- 		chan->chan_reg.dma_spar = chan->dma_sconfig.dst_addr;
-@@ -758,7 +776,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 		/* Set device burst size */
- 		src_best_burst = stm32_dma_get_best_burst(buf_len,
- 							  src_maxburst,
--							  threshold,
-+							  fifoth,
- 							  src_addr_width);
- 		chan->mem_burst = src_best_burst;
- 		src_burst_size = stm32_dma_get_burst(chan, src_best_burst);
-@@ -766,7 +784,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 			return src_burst_size;
- 
- 		/* Set memory data size */
--		dst_addr_width = stm32_dma_get_max_width(buf_len, threshold);
-+		dst_addr_width = stm32_dma_get_max_width(buf_len, fifoth);
- 		chan->mem_width = dst_addr_width;
- 		dst_bus_width = stm32_dma_get_width(chan, dst_addr_width);
- 		if (dst_bus_width < 0)
-@@ -776,7 +794,7 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 		dst_maxburst = STM32_DMA_MAX_BURST;
- 		dst_best_burst = stm32_dma_get_best_burst(buf_len,
- 							  dst_maxburst,
--							  threshold,
-+							  fifoth,
- 							  dst_addr_width);
- 		chan->mem_burst = dst_best_burst;
- 		dst_burst_size = stm32_dma_get_burst(chan, dst_best_burst);
-@@ -791,7 +809,8 @@ static int stm32_dma_set_xfer_param(struct stm32_dma_chan *chan,
- 
- 		/* Set FIFO threshold */
- 		chan->chan_reg.dma_sfcr &= ~STM32_DMA_SFCR_FTH_MASK;
--		chan->chan_reg.dma_sfcr |= STM32_DMA_SFCR_FTH(threshold);
-+		if (fifoth != STM32_DMA_FIFO_THRESHOLD_NONE)
-+			chan->chan_reg.dma_sfcr |= STM32_DMA_SFCR_FTH(fifoth);
- 
- 		/* Set peripheral address */
- 		chan->chan_reg.dma_spar = chan->dma_sconfig.src_addr;
-@@ -1216,6 +1235,8 @@ static void stm32_dma_set_config(struct stm32_dma_chan *chan,
- 	chan->chan_reg.dma_scr |= STM32_DMA_SCR_TEIE | STM32_DMA_SCR_TCIE;
- 
- 	chan->threshold = STM32_DMA_THRESHOLD_FTR_GET(cfg->features);
-+	if (STM32_DMA_DIRECT_MODE_GET(cfg->features))
-+		chan->threshold = STM32_DMA_FIFO_THRESHOLD_NONE;
- }
- 
- static struct dma_chan *stm32_dma_of_xlate(struct of_phandle_args *dma_spec,
--- 
-2.17.1
-
+PiA+ID4gPiA+ID4gK3N0YXRpYyBpbnQgY2N0cm5nX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
+Y2UgKnBkZXYpIHsNCj4gDQo+ID4gPiA+ID4gPiArICAgICAgIC8qIHJlZ2lzdGVyIHRoZSBkcml2
+ZXIgaXNyIGZ1bmN0aW9uICovDQo+ID4gPiA+ID4gPiArICAgICAgIHJjID0gZGV2bV9yZXF1ZXN0
+X2lycShkZXYsIGlycSwgY2NfaXNyLCBJUlFGX1NIQVJFRCwNCj4gPiA+ID4gPiA+ICsgImNjdHJu
+ZyIsIGRydmRhdGEpOw0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gU2hvdWRuJ3QgdGhpcyBiZSBkb25l
+IGFmdGVyIGNsZWFyaW5nIHRoZSBwZW5kaW5nIGludGVycnVwdHMgYmVsb3c/DQo+ID4gPiA+DQo+
+ID4gPiA+IEknbSBub3Qgc3VyZSB3aGF0IGRvIHlvdSBtZWFuIGluIHlvdXIgcXVlc3Rpb24uLi4N
+Cj4gPiA+ID4gSSBhc3N1bWUgeW91J3JlIHN1Z2dlc3RpbmcgdGhhdCB0aGUgcmVnaXN0cmF0aW9u
+IG9mIHRoZSBkcml2ZXIgSVNSDQo+ID4gPiA+IGZ1bmN0aW9uDQo+ID4gPiBzaG91bGQgYmUgZG9u
+ZSBvbmx5IGFmdGVyIGNsZWFyaW5nIHRoZSBwZW5kaW5nIGludGVycnVwdHM/IQ0KPiA+ID4NCj4g
+PiA+IEluZGVlZC4NCj4gPiA+DQo+ID4gPiA+IEFueXdheSwgYW55IHBlbmRpbmcgaW50ZXJydXB0
+IHRoYXQgbWlnaHQgZXhpc3QgaXMgaXJyZWxldmFudCB0bw0KPiA+ID4gPiB0aGUgY3VycmVudCBj
+Y3RybmcgZHJpdmVyIHdoaWNoIGp1c3Qgc3RhcnRlZCAod2UncmUgaW4gdGhlIHByb2JlDQo+ID4g
+PiA+IGZ1bmN0aW9uKQ0KPiA+ID4NCj4gPiA+IElmIHRoZXJlIGlzIGEgcGVuZGluZyBpbnRlcnJ1
+cHQsIHlvdXIgaW50ZXJydXB0IGhhbmRsZXIgKHdoaWNoDQo+ID4gPiByZXR1cm5zIElSUV9OT05F
+IGluIHRoaXMgY2FzZSkgd2lsbCBiZSBjYWxsZWQgcmVwZWF0ZWRseSwgdW50aWwgdGhlDQo+ID4g
+PiBkcml2ZXIgZ2V0cyB0byBjbGVhcmluZyB0aGUgcGVuZGluZyBpbnRlcnJ1cHRzIGJlbG93LCBv
+ciB1bnRpbCB0aGUNCj4gPiA+IGludGVycnVwdCBjb3JlIGRlY2lkZXMgdG8gZ2l2ZSB1cCwgYW5k
+IGRpc2FibGUgaXQgZm9yIGdvb2QuDQo+ID4NCj4gPiBPaywgSSBnZXQgeW91ciBwb2ludCBub3cu
+DQo+ID4gQnV0IG5vdGUgdGhhdCB3aGVuIHRoZSBjY3RybmcgSFcgYm9vdHMsIHRoZSBkZWZhdWx0
+IGlzIHRoYXQgYWxsIGludGVycnVwdHMNCj4gYXJlIG1hc2tlZCwgaGVuY2UgdGhlIGludGVycnVw
+dCBoYW5kbGVyIHdpbGwgbm90IGJlIGNhbGxlZC4NCj4gDQo+IElzIHRoYXQgYWxzbyB0aGUgY2Fz
+ZSB3aGVuIGJvb3RpbmcgaW50byBhIG5ldyBrZXJuZWwgdXNpbmcga2V4ZWM/DQoNCldlbGwuLiBu
+by4g4pi5DQpBIGZpeCBpcyBuZWVkZWQgaGVyZSB0byBjb25zaWRlciBhbHNvIHRoZSBjYXNlIG9m
+IGtleGVjLg0KSSdsbCBmaXggdGhhdCBpbiBhbm90aGVyIHBhdGNoLg0KVGhhbmtzIQ0K
