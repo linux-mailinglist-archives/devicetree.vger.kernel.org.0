@@ -2,139 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3ED1B35C7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 05:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA4C11B3605
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 06:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726497AbgDVDxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 23:53:45 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:40837 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726422AbgDVDxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 23:53:44 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 4C4E25803F4;
-        Tue, 21 Apr 2020 23:53:43 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 21 Apr 2020 23:53:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=ILg74KFQ4/u/i
-        LEbpVIGKPDUn0lqkuyVDFTjVVQFF4M=; b=Wv97607xPWtRVGaOEQH8OktWOwXs+
-        V7yXLHTFOj6OqTwSz1IzFUzbG65S6h0sTrevJ/K2FFkZTA6Xd/T9XihviBgTmJCL
-        CBmgWTiuzJtUNW9GZFYHfhYxvCo9Z6hYbmmxh5uTpPS02yDV61PkgPSiM9PUXj+l
-        ofsciwklmnohoDNyaDjjNt7MmleGtYA3NWCCV5Qtcpm11sMNIY+kLyRsis97Vp48
-        GBzhdcS6FS16RgyOmqtRyfC0/gTIPwlAf9jZ+dgNM60hduOOYbSDxd60b6IX1VT2
-        BiI1fDzWYOkcdD4ZGNLXd6HoKCBgvESWv9oGjzouKXIjDd7BPa2s+YWgA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=ILg74KFQ4/u/iLEbpVIGKPDUn0lqkuyVDFTjVVQFF4M=; b=SPdn04y7
-        5O+FwlwSZUaBva56KCa1KdMuTWgrJm3rcHYFu/JB2041cQDHwzNLJlvFVGHcNm/W
-        RL9mziBXzOh3u6jmffwMQ609Axegcua8e5a7RhcBfBXoc9mM4Pss+jt2G+vcYPAH
-        MAWDgRESzjQeUDhf+Kr71gknujjBwWoJK5DLIfkKvhSF34/USfi7CO5K/caHrF8k
-        TkHx4BBHCfGs5TigGnfkulpkh3xTirRmvr4BF89qdxeNDQ2SygemahWN8I+sgtZZ
-        4sPKYtqRmpL6KqpfWo+djDR5CIjb2nlSt95GgkkeCSdkM8egNSSnzHsh7O8oFeZD
-        Ddc60Fu86RfIdw==
-X-ME-Sender: <xms:x7-fXkSt4UKXIs5uFgWnvjkfbVK8Tg71eoRgD3E4W9gAHMF9kNnZOQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrgeeigdejhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecukfhppeejfedrleefrdekgedrvddtkeenuc
-    evlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishht
-    rghirhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:x7-fXnDncP3mNbJS1YMLwjAoi4JfRM1SyxLBCkB60khr9oxH98G0bw>
-    <xmx:x7-fXjjK1Kzi1L6oHfe17353xipTLo7ca0YaKqYmmFKLSTHl3xK2uA>
-    <xmx:x7-fXgNgMfQ4r1Gs6Y2ugYwrdHjFif162-1j6GV8F-u7GCyie11Ktg>
-    <xmx:x7-fXrIPz1i6BgJrX98EgeIL5aN7oiFIpfjnaDdW0wJevP7yCXn2Rg>
-Received: from alistair-xps-14z.alistair23.me (c-73-93-84-208.hsd1.ca.comcast.net [73.93.84.208])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D31483280063;
-        Tue, 21 Apr 2020 23:53:41 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marcel@holtmann.org, johan.hedberg@gmail.com,
-        linux-bluetooth@vger.kernel.org, mripard@kernel.org, wens@csie.org
-Cc:     anarsoul@gmail.com, devicetree@vger.kernel.org,
-        alistair23@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [DO-NOT-MERGE][PATCH v4 3/3] arm64: allwinner: Enable Bluetooth and WiFi on sopine baseboard
-Date:   Tue, 21 Apr 2020 20:53:33 -0700
-Message-Id: <20200422035333.1118351-3-alistair@alistair23.me>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200422035333.1118351-1-alistair@alistair23.me>
-References: <20200422035333.1118351-1-alistair@alistair23.me>
+        id S1726082AbgDVEMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 00:12:50 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:2939 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725968AbgDVEMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 00:12:50 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e9fc4350001>; Tue, 21 Apr 2020 21:12:37 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 21 Apr 2020 21:12:50 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 21 Apr 2020 21:12:50 -0700
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 22 Apr
+ 2020 04:12:49 +0000
+Received: from [10.2.165.49] (10.124.1.5) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 22 Apr
+ 2020 04:12:48 +0000
+Subject: Re: Re: [RFC PATCH v8 0/9] Add Tegra driver for video capture
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <jonathanh@nvidia.com>, <frankc@nvidia.com>, <sakari.ailus@iki.fi>,
+        <helen.koike@collabora.com>, <digetx@gmail.com>,
+        <sboyd@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1587427874-3291-1-git-send-email-skomatineni@nvidia.com>
+ <5c44beca-4016-6e4f-01bb-e38480bfc34b@xs4all.nl>
+ <20200421205032.GD3233341@ulmo>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <cfbd9954-6a89-3973-55f5-920b7a807774@nvidia.com>
+Date:   Tue, 21 Apr 2020 21:12:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200421205032.GD3233341@ulmo>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1587528757; bh=e1UDRc9LEWdDQqaH6RNlYU5o4VaoyIvF1ybwOVa69Y0=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=J4tOajztaOIXIOdr2cQJxAyPjXsnlchY3FCd7y0FRaKBWMCKFzfzbEFSh4uf6AbID
+         3zIouYXEl2IZ4TXHwg2+hlnhxjsfQe9J2Uu6do5hnn+FoofcNvcR2tB5FFyYcPrKO9
+         aycILuMg9uvUPxG647Kb082qLwc94hTDyznYVHQab4Fd6ti+s5RDenr52//WmL+g5K
+         kVy+cC29xWw5zT15mnze/LZnq72S6Hazek0o+k2FJuzSrBz0jAReohMGN87jqUo0gq
+         KtKQQr5zsAfMEb5eSr+Z7Z2YxNeOwEBUcCesIeDlNizzSdrtfLQjvxTxOGyNcI/U7z
+         dE7AH2VqS0NTg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sopine board has an optional RTL8723BS WiFi + BT module that can be
-connected to UART1. Add this to the device tree so that it will work
-for users if connected.
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- .../allwinner/sun50i-a64-sopine-baseboard.dts | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+On 4/21/20 1:50 PM, Thierry Reding wrote:
+> On Tue, Apr 21, 2020 at 01:09:50PM +0200, Hans Verkuil wrote:
+>> Hi Sowjanya,
+>>
+>> On 21/04/2020 02:11, Sowjanya Komatineni wrote:
+>>> This series adds Tegra210 VI and CSI driver for built-in test pattern
+>>> generator (TPG) capture.
+>>>
+>>> Tegra210 supports max 6 channels on VI and 6 ports on CSI where each
+>>> CSI port is one-to-one mapped to VI channel for video capture.
+>>>
+>>> This series has TPG support only where it creates hard media links
+>>> between CSI subdevice and VI video device without device graphs.
+>>>
+>>> v4l2-compliance results are available below the patch diff.
+>> I'm ready to merge this v8. Looking at the series I should only merge
+>> patches 6 and 7, all other patches go through different subsystems, right?
+> You could also pick up patch 5 because it adds the bindings that are
+> implemented by the driver in patch 6. But I can also pick that up into
+> the Tegra tree. In fact, I do have a set of patches to convert some
+> Tegra bindings to the new json-schema format and the host1x file is
+> among them. If I do get around to finish those up for v5.8 it might be
+> better for me to pick up patch 5 so that I can base my conversion patch
+> on top of that.
+>
+> Either way is fine with me, so I've acked the three patches. Take which
+> ones you want and I'll pick up the rest.
+>
+> Thanks again for your guidance on this patch set!
+>
+> Thierry
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-index 2f6ea9f3f6a2..34357ba143cb 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-@@ -42,6 +42,11 @@ reg_vcc1v8: vcc1v8 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <1800000>;
- 	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
-+	};
- };
- 
- &ac_power_supply {
-@@ -103,6 +108,17 @@ ext_rgmii_phy: ethernet-phy@1 {
- 	};
- };
- 
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	vmmc-supply = <&reg_dldo4>;
-+	vqmmc-supply = <&reg_eldo1>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
- &mmc2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc2_pins>;
-@@ -174,6 +190,19 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts = <1>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
-+		host-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+	};
-+};
-+
- /* On Pi-2 connector */
- &uart2 {
- 	pinctrl-names = "default";
--- 
-2.26.0
+Hi Hans,
+
+Would like to add a small fix to the driver for explicit check for vi 
+and csi availability before TPG setup and cleanup in case if video 
+driver is enabled without device tree support where vi and csi drivers 
+does not register.
+
+Although we are not enabling driver by default now, would be good to 
+have this in this series itself.
+
+Will send out the updated version, please pick v9.
+
+Thanks
+
+Sowjanya
+
 
