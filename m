@@ -2,172 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F15771B3540
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 04:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C431B35CA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 05:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726440AbgDVC4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Apr 2020 22:56:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35576 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726173AbgDVC4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Apr 2020 22:56:20 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 60608206D5;
-        Wed, 22 Apr 2020 02:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587524179;
-        bh=uXktadkm7XuXT9daSgTz03SBn8FHZ34ecH0ouje4lq8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=hAyf5PrQe6/18AAwtdCBy7/vTmkGHFGFWYcT0VucAZGK2avIiPxB3tdbXuKdsc1JX
-         fuuHheVQ6av9Fm1wTvsGGd5MVl+Nfvo/B8pgLXXwAlMz+qTt0aiF5K39+1gyc5D7ll
-         j7wFUiAvPfeCpk0eHH6W0COpcM9jSiPWX81GHpDg=
-Content-Type: text/plain; charset="utf-8"
+        id S1726446AbgDVDxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Apr 2020 23:53:42 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:46385 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726422AbgDVDxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Apr 2020 23:53:42 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 0053E5801C2;
+        Tue, 21 Apr 2020 23:53:40 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 21 Apr 2020 23:53:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=+EfqkUSWnK5oB5LHgnO1Rxb0VK
+        C+TbEqPBLo0jnqFfY=; b=Vv5txikFjhlLvXI1tIKdx81CnUOtqX04ItqrZd++y+
+        ylJ31YHwF9JMljYOhGIr0CzgOzvU/p2AtiHnJCBQO2aNv4D0S7Uo11jpZT9bzM3b
+        k9Zvk2D00RhMXhgO0bdcOTcL0p+VteTb9+w+O6Sp/bh5YUTvtDUw94xN+Kbl9sFL
+        kvMjh8pPqD7n9bVAdcJxSzMkKIbg3R4s/L249Gi4aYRjqieTpehR7x8+CvR+sok2
+        hEbvykXcCj1lGXw8kV2i4sfjkJw6GFykcqpRq45d/fwJVKQIDOp582m9frc+CYjD
+        rUBPqYpRaNU9Gl8V8XsQDtYHtXMP/LSu/peBI2yQRCQg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=+EfqkUSWnK5oB5LHg
+        nO1Rxb0VKC+TbEqPBLo0jnqFfY=; b=nZ+ub6QOBaRpvVC0ToDUQ/DS9jU1jSut6
+        8xhF9m2WCT9D1g7LqyhyMWu+DMzvzYkRSfJVjb5hikK/Pg4rLuzPt+Rrp+DMnY/w
+        qqE2v6M3Shup8k2wJxpf5T38BgSprvn72s9eTAeZBgiBi70/05lEkh42UNOQTEUz
+        U3ZzTHD/xNt61V7THd04ZuTvHZgyWoV/kYz441BNOke/5wNGbtVtR0GL33p4ksRX
+        ljtf6iLNfKk1dSpy4V3hqBUg2X5vfYSQ4vq/8PYsJgJocah0GLKl1UEmnNoMWOeY
+        m6pe7yc3Ohrikuf93td82cEEmMDhnr3rL1+yGNIPymRV6neLJJ0xQ==
+X-ME-Sender: <xms:xL-fXtryYa-E56bp_MQzrv-ZweNWTYg05pQAnuoEmzx1HfOe41hu5Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrgeeigdejhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdroh
+    hrghenucfkphepjeefrdelfedrkeegrddvtdeknecuvehluhhsthgvrhfuihiivgeptden
+    ucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrghirhdvfe
+    drmhgv
+X-ME-Proxy: <xmx:xL-fXr8vh1tErFKMmMRrFOTVByOqqyMkfXEtEH26SDrz7EFWnS9uqA>
+    <xmx:xL-fXs_3hyJxHZuB3nFymkNYyhhsZBAf5w077Be9d4wkzft2tzpbUQ>
+    <xmx:xL-fXqsc8KlVQcN7vc5oQgLnA133RjHzuQpd1eKLFoSrVfeFhSkT9g>
+    <xmx:xL-fXhodnDceTjkOrAp2U-6b0io9GgFzDco_ANuCj-16ht-gxFtHhg>
+Received: from alistair-xps-14z.alistair23.me (c-73-93-84-208.hsd1.ca.comcast.net [73.93.84.208])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 15DD33280063;
+        Tue, 21 Apr 2020 23:53:39 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marcel@holtmann.org, johan.hedberg@gmail.com,
+        linux-bluetooth@vger.kernel.org, mripard@kernel.org, wens@csie.org
+Cc:     anarsoul@gmail.com, devicetree@vger.kernel.org,
+        alistair23@gmail.com, linux-arm-kernel@lists.infradead.org,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v4 1/3] dt-bindings: net: bluetooth: Add rtl8723bs-bluetooth
+Date:   Tue, 21 Apr 2020 20:53:31 -0700
+Message-Id: <20200422035333.1118351-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200419121808.440780-4-bryan.odonoghue@linaro.org>
-References: <20200419121808.440780-1-bryan.odonoghue@linaro.org> <20200419121808.440780-4-bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH 3/3] clk: qcom: gcc-msm8939: Make silicon specific updates for msm8939
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        shawn.guo@linaro.org, p.zabel@pengutronix.de,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org
-Date:   Tue, 21 Apr 2020 19:56:18 -0700
-Message-ID: <158752417863.132238.13958544237045504884@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bryan O'Donoghue (2020-04-19 05:18:08)
-> The msm8939 is based on the msm8916. It is compatible in several ways but,
-> has additional functional blocks added which require additional PLL
-> sources. In some cases functional blocks from the msm8916 have different
-> clock sources or different supported frequencies.
->=20
-> This patch encapsulates the conversion from msm8916 to msm8939.
->=20
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  drivers/clk/qcom/gcc-msm8939.c | 832 ++++++++++++++++++++++++++++-----
->  1 file changed, 709 insertions(+), 123 deletions(-)
->=20
+From: Vasily Khoruzhick <anarsoul@gmail.com>
 
-Please use the new way of specifying clk parents with the clk_hw and DT
-based way. Some qcom clk drivers have already migrated. If this is a
-copy of the other driver then perhaps also modify that one in the series
-so that git can find the copy still. Sigh I still haven't written the
-documentation about it!
+Add binding document for bluetooth part of RTL8723BS/RTL8723CS
 
-Look for .parent_data in drivers/clk/qcom/gcc-sc7180.c for the best
-guidance.
+Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
+---
+ .../bindings/net/realtek-bluetooth.yaml       | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
 
-> @@ -1695,6 +1997,7 @@ static struct clk_branch gcc_blsp1_qup4_spi_apps_cl=
-k =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_blsp1_qup5_i2c_apps_clk =3D {
->         .halt_reg =3D 0x06020,
->         .clkr =3D {
-> @@ -1712,6 +2015,7 @@ static struct clk_branch gcc_blsp1_qup5_i2c_apps_cl=
-k =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_blsp1_qup5_spi_apps_clk =3D {
->         .halt_reg =3D 0x0601c,
->         .clkr =3D {
-> @@ -1729,6 +2033,7 @@ static struct clk_branch gcc_blsp1_qup5_spi_apps_cl=
-k =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_blsp1_qup6_i2c_apps_clk =3D {
->         .halt_reg =3D 0x07020,
->         .clkr =3D {
-> @@ -1746,6 +2051,7 @@ static struct clk_branch gcc_blsp1_qup6_i2c_apps_cl=
-k =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_blsp1_qup6_spi_apps_clk =3D {
->         .halt_reg =3D 0x0701c,
->         .clkr =3D {
-> @@ -1797,6 +2103,7 @@ static struct clk_branch gcc_blsp1_uart2_apps_clk =
-=3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_boot_rom_ahb_clk =3D {
->         .halt_reg =3D 0x1300c,
->         .halt_check =3D BRANCH_HALT_VOTED,
-> @@ -2341,6 +2648,7 @@ static struct clk_branch gcc_camss_vfe_axi_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_crypto_ahb_clk =3D {
->         .halt_reg =3D 0x16024,
->         .halt_check =3D BRANCH_HALT_VOTED,
-> @@ -2359,6 +2667,7 @@ static struct clk_branch gcc_crypto_ahb_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_crypto_axi_clk =3D {
->         .halt_reg =3D 0x16020,
->         .halt_check =3D BRANCH_HALT_VOTED,
-> @@ -2377,6 +2686,7 @@ static struct clk_branch gcc_crypto_axi_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_crypto_clk =3D {
->         .halt_reg =3D 0x1601c,
->         .halt_check =3D BRANCH_HALT_VOTED,
-> @@ -2650,6 +3011,7 @@ static struct clk_branch gcc_oxili_gfx3d_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_pdm2_clk =3D {
->         .halt_reg =3D 0x4400c,
->         .clkr =3D {
-> @@ -2667,6 +3029,7 @@ static struct clk_branch gcc_pdm2_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
->  static struct clk_branch gcc_pdm_ahb_clk =3D {
->         .halt_reg =3D 0x44004,
->         .clkr =3D {
-> @@ -2684,6 +3047,7 @@ static struct clk_branch gcc_pdm_ahb_clk =3D {
->         },
->  };
-> =20
-> +/* CBCR/halt_reg value derived from code only */
+diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+new file mode 100644
+index 000000000000..4eb141b00fcb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/realtek,rtl8723bs-bt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RTL8723BS/RTL8723CS/RTL8822CS Bluetooth Device Tree Bindings
++
++maintainers:
++  - Vasily Khoruzhick <anarsoul@gmail.com>
++  - Alistair Francis <alistair@alistair23.me>
++
++description:
++  RTL8723CS/RTL8723CS/RTL8822CS is WiFi + BT chip. WiFi part is connected over
++  SDIO, while BT is connected over serial. It speaks H5 protocol with few
++  extra commands to upload firmware and change module speed.
++
++properties:
++  compatible:
++    oneOf:
++      - const: "realtek,rtl8723bs-bt"
++      - const: "realtek,rtl8723cs-bt"
++      - const: "realtek,rtl8822cs-bt"
++
++  device-wake-gpios:
++    maxItems: 1
++    description: GPIO specifier, used to wakeup the BT module
++
++  enable-gpios:
++    maxItems: 1
++    description: GPIO specifier, used to enable the BT module
++
++  host-wake-gpios:
++    maxItems: 1
++    description: GPIO specifier, used to wakeup the host processor
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    uart1 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++        uart-has-rtscts = <1>;
++
++        bluetooth {
++            compatible = "realtek,rtl8723bs-bt";
++            device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
++            host-wakeup-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
++        };
++    };
+-- 
+2.26.0
 
-Drop these useless comments.
