@@ -2,96 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5E301B35F2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 06:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBC671B36B9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 07:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725810AbgDVELT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 00:11:19 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:58539 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725808AbgDVELT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Apr 2020 00:11:19 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 4CB7D5C011D;
-        Wed, 22 Apr 2020 00:11:18 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Wed, 22 Apr 2020 00:11:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=F1dj2Jw3YDEgFV7WpVHDIIKM8X
-        ojVODpM5ZQVusEuJM=; b=MXYvLLEwShFV7Dm5T/etH8ddYFj7Rzkh6OZFhNMgCq
-        LVC7aVazTJhWfaIWGrgE4yyMA+cZEH9GO5xiBQmVYcBGbJNONh37rwp7edlihMnV
-        AGnZaycj22wMsimVKiNBN2GJQp/cVOy0FR/p2XFg9IIzMytq3wPvTW9HMu/6yLVd
-        0yI7b6DDnSjyoe/NyegEOpLaCE4PvFAHfqyD2yGtY4odM6dYmcl2bX2xXwc7v7IC
-        9p03Ypw+dKZ3Wiwg274J+je4nZ16f5Mh69iJE0aDjT3wSJ0YCBlk2KZO/XVT8ND3
-        /NySffPG2VvjNa925/VSnokPHri0gkofc3pdAWb/IhzQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=F1dj2Jw3YDEgFV7Wp
-        VHDIIKM8XojVODpM5ZQVusEuJM=; b=I6/lLaf6mN8ViDw9W6zmLNRPTP2Q7dBzW
-        O6vE0TjGDKeXifaidQVvkcn/gNr7l72X7Cp2Q2UDGScoLbfeqAMdaJz0ys+5VIMM
-        NA2jL0SKpSJZM4UDH9IMdsshomiOt3+MzsdNDOZnBxjmvaENaMZrE8+Sl7enDaJi
-        Js+gYZ3N7x0A7jtfRL45077iLACz+ZKOpE4s8oH6SXwcIKntcR8xpNB0KSVbwgBy
-        pdVW228l5Hn7hxjy8hW3yBqBYu84bYws9Rpjm6/+1IY7LJeo3+NcXQIK8lmcLtiQ
-        yiP8sw8qdmprHy8I4mCM5T7vcNR0MTdSdWl5i/s4ZSOgBYtCDxgqw==
-X-ME-Sender: <xms:5cOfXjAJUL0XNAkUOsRMfHSSZYhZmCVEDnDBIMCoZJtvm6MzklxdDA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrgeeigdejlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
-    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecukfhppeejtd
-    drudefhedrudegkedrudehudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:5cOfXl32P132cVkl3p8G-YSPyd-dNlCGnZEITP4g0bN8QSoRbpxCFg>
-    <xmx:5cOfXhV9Tv7UVJ6_TU_WEwAEdP5It6mnWG5rTjxSu_cAKR6gjVenmg>
-    <xmx:5cOfXnm_uym1zKcNPPvObexA2m2AMC2QiS3txZa94y2myED_qTCbgA>
-    <xmx:5sOfXiYwIMKOhNpq-bw3eff8wf1T5dUZUrDfKhLjgow9PquBK5NoJw>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4FE5A3065CBF;
-        Wed, 22 Apr 2020 00:11:17 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        id S1726002AbgDVFNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 01:13:10 -0400
+Received: from mx.socionext.com ([202.248.49.38]:9242 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725934AbgDVFNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 01:13:10 -0400
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 22 Apr 2020 14:13:09 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 14A4760057;
+        Wed, 22 Apr 2020 14:13:09 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 22 Apr 2020 14:13:09 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by kinkan.css.socionext.com (Postfix) with ESMTP id 923B11A12D0;
+        Wed, 22 Apr 2020 14:13:08 +0900 (JST)
+Received: from [10.213.29.177] (unknown [10.213.29.177])
+        by yuzu.css.socionext.com (Postfix) with ESMTP id 5C7BF120131;
+        Wed, 22 Apr 2020 14:13:07 +0900 (JST)
+Subject: Re: [PATCH v3 0/2] PCI: Add new UniPhier PCIe endpoint driver
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH] arm64: dts: allwinner: a64: Disable SPDIF by default
-Date:   Tue, 21 Apr 2020 23:15:02 -0500
-Message-Id: <20200422041502.7497-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.24.1
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+References: <1584956454-8829-1-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <18cf881e-1d80-76bc-8c91-2fa9fa633558@socionext.com>
+Date:   Wed, 22 Apr 2020 14:13:06 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1584956454-8829-1-git-send-email-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As of v5.7-rc2, Linux now prints the following message at boot:
+On 2020/03/23 18:40, Kunihiko Hayashi wrote:
+> This series adds PCIe endpoint controller driver for Socionext UniPhier
+> SoCs. This controller is based on the DesignWare PCIe core.
+> 
+> This driver supports Pro5 SoC only, so Pro5 needs multiple clocks and
+> resets in devicetree node.
+> 
+> Changes since v2:
+> - dt-bindings: Add clock-names, reset-names, and fix example for Pro5
+> - Remove 'is_legacy' indicating that the compatible is for legacy SoC
+> - Use pci_epc_features instead of defining uniphier_soc_data
+> - Remove redundant register read access
+> - Clean up return code on uniphier_add_pcie_ep()
+> - typo: intx -> INTx
+> 
+> Changes since v1:
+> - dt-bindings: Add Reviewed-by line
+> - Fix register value to set EP mode
+> - Add error message when failed to get phy
+> - Replace INTx assertion time with macro
+> 
+> Kunihiko Hayashi (2):
+>    dt-bindings: PCI: Add UniPhier PCIe endpoint controller description
+>    PCI: uniphier: Add Socionext UniPhier Pro5 PCIe endpoint controller
+>      driver
+> 
+>   .../devicetree/bindings/pci/uniphier-pcie-ep.txt   |  53 +++
+>   MAINTAINERS                                        |   4 +-
+>   drivers/pci/controller/dwc/Kconfig                 |  13 +-
+>   drivers/pci/controller/dwc/Makefile                |   1 +
+>   drivers/pci/controller/dwc/pcie-uniphier-ep.c      | 380 +++++++++++++++++++++
+>   5 files changed, 447 insertions(+), 4 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/pci/uniphier-pcie-ep.txt
+>   create mode 100644 drivers/pci/controller/dwc/pcie-uniphier-ep.c
+> 
 
-  [   33.848525] platform sound_spdif: deferred probe pending
+Gentle ping.
+Are there any comments about changes since v2?
+v2: https://www.spinics.net/lists/linux-pci/msg92429.html
 
-This is because &sound_spdif is waiting on its DAI link component
-&spdif to probe, but &spdif is disabled in the DTS. Disable the
-audio card as well to match.
+Thank you,
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 6f8c30d89b9b..6c233ff031c6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -169,6 +169,7 @@ link0_codec: codec {
- 	sound_spdif {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "On-board SPDIF";
-+		status = "disabled";
- 
- 		simple-audio-card,cpu {
- 			sound-dai = <&spdif>;
--- 
-2.24.1
-
+Best Regards
+Kunihiko Hayashi
