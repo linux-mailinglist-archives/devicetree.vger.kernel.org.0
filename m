@@ -2,66 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAAA01B3B22
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 11:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F66D1B3B33
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 11:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726077AbgDVJXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 05:23:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34792 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725810AbgDVJXg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Apr 2020 05:23:36 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 38B5020656;
-        Wed, 22 Apr 2020 09:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587547416;
-        bh=KIXbtLYXdqvFRpDylTVVouE4ecbmQXC4DLEhxDnLiqQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=yRAendzY6ymm0fek+hxJrl3UcbcYiwJc1PuXqmJ2aHooL0fEGEait1WW5A3cWEWDc
-         3ammBbeCxOIOzfGvy+QIl5xHKoKq/8VJtBUvjKhswRhO3cuTnTFqzFRW2pqP6wEkng
-         N4gh2kXS7PF2PCr4tsLpI1VoRpWZ8h7HTBEHXuKU=
-Content-Type: text/plain; charset="utf-8"
+        id S1726419AbgDVJZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 05:25:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54694 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726415AbgDVJZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 05:25:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C10C03C1A8
+        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2020 02:25:09 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jRBcr-0007Rg-36; Wed, 22 Apr 2020 11:25:01 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jRBco-0006Kj-HT; Wed, 22 Apr 2020 11:24:58 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, David Jander <david@protonic.nl>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v5 0/4] add TJA1102 support
+Date:   Wed, 22 Apr 2020 11:24:52 +0200
+Message-Id: <20200422092456.24281-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200411010143.GF20625@builder.lan>
-References: <1586566362-21450-1-git-send-email-wcheng@codeaurora.org> <1586566362-21450-2-git-send-email-wcheng@codeaurora.org> <20200411010143.GF20625@builder.lan>
-Subject: Re: [PATCH v4 1/2] clk: qcom: gcc: Add USB3 PIPE clock and GDSC for SM8150
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     agross@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, vinod.koul@linaro.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Wesley Cheng <wcheng@codeaurora.org>
-Date:   Wed, 22 Apr 2020 02:23:35 -0700
-Message-ID: <158754741540.132238.1839211437225696725@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2020-04-10 18:01:43)
-> On Fri 10 Apr 17:52 PDT 2020, Wesley Cheng wrote:
->=20
-> > This adds the USB3 PIPE clock and GDSC structures, so
-> > that the USB driver can vote for these resources to be
-> > enabled/disabled when required.  Both are needed for SS
-> > and HS USB paths to operate properly.  The GDSC will
-> > allow the USB system to be brought out of reset, while
-> > the PIPE clock is needed for data transactions between
-> > the PHY and controller.
-> >=20
-> > Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
->=20
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->=20
->=20
-> Stephen, let me know when you take this patch and I'll take the dts one.
->=20
+changes v5:
+- rename __of_mdiobus_register_phy() to of_mdiobus_phy_device_register()
 
-Looks like I already applied it and it's merged in Linus' tree.
+changes v4:
+- remove unused phy_id variable
+
+changes v3:
+- export part of of_mdiobus_register_phy() and reuse it in tja11xx
+  driver
+- coding style fixes
+
+changes v2:
+- use .match_phy_device
+- add irq support
+- add add delayed registration for PHY1
+
+Oleksij Rempel (4):
+  dt-bindings: net: phy: Add support for NXP TJA11xx
+  net: phy: tja11xx: add initial TJA1102 support
+  net: mdio: of: export part of of_mdiobus_register_phy()
+  net: phy: tja11xx: add delayed registration of TJA1102 PHY1
+
+ .../devicetree/bindings/net/nxp,tja11xx.yaml  |  61 ++++++
+ drivers/net/phy/nxp-tja11xx.c                 | 201 +++++++++++++++++-
+ drivers/of/of_mdio.c                          |  73 ++++---
+ include/linux/of_mdio.h                       |  11 +-
+ 4 files changed, 308 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
+
+-- 
+2.26.1
+
