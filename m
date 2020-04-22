@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 596961B3E94
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 12:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E8C1B3EAC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2020 12:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730806AbgDVK1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Apr 2020 06:27:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730799AbgDVK06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Apr 2020 06:26:58 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367A5C03C1AB
-        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2020 03:26:58 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id n24so745688plp.13
-        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2020 03:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=6gdINTWw5qbNqv+goCkAx9WxOclB6kfMGhupWamyF/Q=;
-        b=XNRaT88T1nqiUZ51J9UejP6i7hnQv7eU7Uue7ieUv0Az3LPOAyUC97V8zUzOY7UV3P
-         7vS9knLlETaJKXjxoJO5Nd29sCjQR0b5lVKY+ZUpsO/rQYe7B0eMZZ9OhMsOoHv7AAnO
-         lj7bnr88UGowfAV2pYpeiEXswsaPg8GYpgJOo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=6gdINTWw5qbNqv+goCkAx9WxOclB6kfMGhupWamyF/Q=;
-        b=KhMTYI+6tgr+5gI0pKiPETV6YPUGdTw8lr9HdgHODIe7psLYsgqFjs+MMlcJahyKhq
-         C0e5TglICM12QYvUC3FqX7N+IUTHWWIz65H5s6ztRT1Ze7xG/hJlE+79LYULL6pQiCHv
-         tAJ53g0ZGx5FaKKF+vu9ZtU3oZvkociJborOxDZCYr25v1AhUv7F8WpcU0mDEB2yu6E1
-         8e3vm0mp9bdyae+lpuMZlK1tF3ZzcZh+3F2K5DNcZpKJEAlBKW+LkIij3S+2/Ltn28JP
-         2eBQMV0ZCGNnkV6GyiEUVXBvEMnhzKxisYpghqm4RpAVE20Fx0kYbwFtFTr0bKX4I9d4
-         oaWg==
-X-Gm-Message-State: AGi0PuaQxs2+UW6oDS0TVyUINVScAtTajz7jSIkDl3/ia+uQ+LwVlaGW
-        V3wRrfdkUOBb7tjcWq3lPx5UaA==
-X-Google-Smtp-Source: APiQypIskeEJItuLaEBjMhbnRTsFEb0DYilPaPMtUzz55q/ztGTMyUgTbonADiaJsrnVUd76J6a9Uw==
-X-Received: by 2002:a17:90a:cb09:: with SMTP id z9mr11612172pjt.120.1587551217755;
-        Wed, 22 Apr 2020 03:26:57 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id p2sm3994378pgh.25.2020.04.22.03.26.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Apr 2020 03:26:57 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1730883AbgDVKa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Apr 2020 06:30:27 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:56194 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730705AbgDVK31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Apr 2020 06:29:27 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03MASQ2q005974;
+        Wed, 22 Apr 2020 12:29:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=vQkeoE76rBPKloDNcJgTTXfaQgVxBlx3RLBb7ovXc8k=;
+ b=Y8XWGA98J3xPyW/eIsQk9ygDZWdawKRSfYio+swui0AiC6SpFpp8cpPWZUnTBlBtnNZh
+ 6hKcjgxVlW5dHtgK/UB21EPoAwyxJT0cultqFUipXBYDQm3QTYgFdvpvwX1IA1M2h9q8
+ hSycRVFBRw4vnqhXnrpe38Z1On8XSSBh184g5pW5lVkPVcq16o65XGYhNRiYVHuqw9fW
+ 3FwERQeJBvShyTWyUL8gcE57gPm4qGV1hQORtHTg3yrsn0bzl7sgc3AfbcXW5tEcHmj0
+ p6THGMF+WbaCg/VgkEJghUHMXgZqGM915WED2aYHOWFVLPM2VOxdlovL+jWcu49AzR8R Fg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 30fregnra1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Apr 2020 12:29:13 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E7A3710002A;
+        Wed, 22 Apr 2020 12:29:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D2CB92A9560;
+        Wed, 22 Apr 2020 12:29:12 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 22 Apr 2020 12:29:12
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Pierre-Yves Mordret <pierre-yves.mordret@st.com>
+Subject: [PATCH 0/2] STM32 DMA Direct mode
+Date:   Wed, 22 Apr 2020 12:29:02 +0200
+Message-ID: <20200422102904.1448-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200420220458.v2.6.I89df9b6094549b8149aa8b8347f7401c678055b0@changeid>
-References: <20200421050622.8113-1-dianders@chromium.org> <20200420220458.v2.6.I89df9b6094549b8149aa8b8347f7401c678055b0@changeid>
-Subject: Re: [PATCH v2 6/6] arm64: dts: sdm845: Add "no-hpd" to sn65dsi86 on cheza
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     jonas@kwiboo.se, jeffrey.l.hugo@gmail.com,
-        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        jernej.skrabec@siol.net, bjorn.andersson@linaro.org,
-        robdclark@chromium.org, Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-To:     Douglas Anderson <dianders@chromium.org>,
-        Laurent.pinchart@ideasonboard.com, a.hajda@samsung.com,
-        airlied@linux.ie, bgolaszewski@baylibre.com, daniel@ffwll.ch,
-        linus.walleij@linaro.org, narmstrong@baylibre.com,
-        robh+dt@kernel.org, spanda@codeaurora.org
-Date:   Wed, 22 Apr 2020 03:26:56 -0700
-Message-ID: <158755121629.159702.14849607096816306080@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-22_03:2020-04-22,2020-04-22 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2020-04-20 22:06:22)
-> We don't have the HPD line hooked up to the bridge chip.  Add it as
-> suggested in the patch ("dt-bindings: drm/bridge: ti-sn65dsi86:
-> Document no-hpd").
->=20
-> NOTE: this patch isn't expected to have any effect but just keeps us
-> cleaner for the future.  Currently the driver in Linux just assumes
-> that nobody has HPD hooked up.  This change allows us to later
-> implement HPD support in the driver without messing up sdm845-cheza.
->=20
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+By default, the driver compute if the FIFO must operate in direct mode or with
+FIFO threshold. Direct mode is allowed only if computed source burst and
+destination burst are disabled. But with memory source or destination, burst
+is always > 0.
+Direct mode is useful when the peripheral requires an immediate and single
+transfer to or from the memory after each DMA request.
+This patchset adds a way to force Direct mode through device tree.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Amelie Delaunay (2):
+  dt-bindings: dma: add direct mode support through device tree in
+    stm32-dma
+  dmaengine: stm32-dma: direct mode support through device tree
+
+ .../devicetree/bindings/dma/st,stm32-dma.yaml |  5 +++
+ drivers/dma/stm32-dma.c                       | 41 ++++++++++++++-----
+ 2 files changed, 36 insertions(+), 10 deletions(-)
+
+-- 
+2.17.1
+
