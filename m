@@ -2,32 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 392861B58B6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 12:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0E51B5921
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 12:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726145AbgDWKAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Apr 2020 06:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
+        id S1725863AbgDWKZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Apr 2020 06:25:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725884AbgDWKAR (ORCPT
+        by vger.kernel.org with ESMTP id S1726420AbgDWKZY (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Apr 2020 06:00:17 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6305C03C1AF
-        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2020 03:00:17 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id 2DC052A231B
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     devicetree@vger.kernel.org
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>, kernel@collabora.com,
-        Philippe CORNU <philippe.cornu@st.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] dt-bindings: display: dw_mipi_dsi.txt: convert to yaml
-Date:   Thu, 23 Apr 2020 13:00:58 +0300
-Message-Id: <20200423100058.1734009-1-adrian.ratiu@collabora.com>
-X-Mailer: git-send-email 2.26.0
+        Thu, 23 Apr 2020 06:25:24 -0400
+Received: from mo6-p00-ob.smtp.rzone.de (mo6-p00-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5300::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB614C035494;
+        Thu, 23 Apr 2020 03:25:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1587637520;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=p51RExXDzM8r8Gjav8uWWUQY9kiVhGtyvXKrvQxO//Q=;
+        b=fNjqh2xtp3AN3tcm7ZpP4uBBf4gq1+Mk0A7Rqblq79jkRsPwK/PlRfhe7tR8RSYaPG
+        E/zzM4HfBLvK9wOlVKn212IO78eHgGVCc/BhvX4+D2X8rFmd8615uxroBKKb8MynwbK0
+        6pzc76w4fbiNBOa4SgEE6ctriEaBPqPfHSW4Ri0AaOdQrIawZspE2Z+NIwfphkqV98Aa
+        ozUjTCW/e7Pvg62jYH/Zixv1We4U4kNXl+evEcfTpbkvuYsLXcMPmBhqIIsxSSr02OTY
+        48wd5pf3HKWPSMAz+fNVCafxtr6ud6I+7SVFUMmU24cxpzz5fUHT+19fOWadB3AeHQnx
+        KXmg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6Nf3AC"
+X-RZG-CLASS-ID: mo00
+Received: from localhost.localdomain
+        by smtp.strato.de (RZmta 46.6.2 DYNA|AUTH)
+        with ESMTPSA id 60b02dw3NAPE8nU
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Thu, 23 Apr 2020 12:25:14 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Andi Shyti <andi@etezian.org>, linux-input@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 1/2] Input: mms114 - add extra compatible for mms345l
+Date:   Thu, 23 Apr 2020 12:24:30 +0200
+Message-Id: <20200423102431.2715-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -35,147 +51,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Synopsis MIPI DSI binding documentation to yaml and
-should be quite straightforward. I've added a missing ref clk and also
-added Philippe as maintainer b/c he's the original txt author following
-the algorithm provided in Message-ID 20200420175909.GA5810@ravnborg.org.
+MMS345L is another first generation touch screen from Melfas,
+which uses mostly the same registers as MMS152.
 
-Cc: Philippe CORNU <philippe.cornu@st.com>
-Cc: devicetree@vger.kernel.org
-Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+However, there is some garbage printed during initialization.
+Apparently MMS345L does not have the MMS152_COMPAT_GROUP register
+that is read+printed during initialization.
+
+  TSP FW Rev: bootloader 0x6 / core 0x26 / config 0x26, Compat group: \x06
+
+On earlier kernel versions the compat group was actually printed as
+an ASCII control character, seems like it gets escaped now.
+
+But we probably shouldn't print something from a random register.
+
+Add a separate "melfas,mms345l" compatible that avoids reading
+from the MMS152_COMPAT_GROUP register. This might also help in case
+there is some other device-specific quirk in the future.
+
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
-Changes in v4:
-  - Dropped panel patternProperties (Rob)
+Adding an extra compatible just for a log message that looks weird
+might be a bit exaggerated, I'm not sure. But so far I got the impression
+that it's better to add separate compatibles if devices behave slightly
+different (in case more differences are discovered later).
 
-Changes in v3:
-  - Added ports property and its children which are required (Laurent)
-  - Sorted required list alphabetically
+Alternatively we could also:
 
-Changes in v2:
-  - Removed unnecessary descriptions and maxItems (Rob)
-  - Changed maintainers entry / dropped Mark (Rob)
-  - Added dsi-controller.yaml ref (Rob)
+  - Remove the "Compat group:" from the log message
+    (I'm not sure how useful it is since it's just printed but nothing
+     is done with it...)
+
+  - Just accept that we might be reading from some invalid register
+    on MMS345L (It doesn't seem to affect functionality at the moment...)
+
+I just thought we should discuss this before I upstream the patch
+that adds the touchscreen to the device tree of my board.
 ---
- .../bindings/display/bridge/dw_mipi_dsi.txt   | 32 ---------
- .../display/bridge/snps,dw-mipi-dsi.yaml      | 68 +++++++++++++++++++
- 2 files changed, 68 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
- create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
+ drivers/input/touchscreen/mms114.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt b/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
-deleted file mode 100644
-index b13adf30b8d3b..0000000000000
---- a/Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--Synopsys DesignWare MIPI DSI host controller
--============================================
--
--This document defines device tree properties for the Synopsys DesignWare MIPI
--DSI host controller. It doesn't constitue a device tree binding specification
--by itself but is meant to be referenced by platform-specific device tree
--bindings.
--
--When referenced from platform device tree bindings the properties defined in
--this document are defined as follows. The platform device tree bindings are
--responsible for defining whether each optional property is used or not.
--
--- reg: Memory mapped base address and length of the DesignWare MIPI DSI
--  host controller registers. (mandatory)
--
--- clocks: References to all the clocks specified in the clock-names property
--  as specified in [1]. (mandatory)
--
--- clock-names:
--  - "pclk" is the peripheral clock for either AHB and APB. (mandatory)
--  - "px_clk" is the pixel clock for the DPI/RGB input. (optional)
--
--- resets: References to all the resets specified in the reset-names property
--  as specified in [2]. (optional)
--
--- reset-names: string reset name, must be "apb" if used. (optional)
--
--- panel or bridge node: see [3]. (mandatory)
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--[2] Documentation/devicetree/bindings/reset/reset.txt
--[3] Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
-diff --git a/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
-new file mode 100644
-index 0000000000000..012aa8e7cb8cd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/snps,dw-mipi-dsi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/input/touchscreen/mms114.c b/drivers/input/touchscreen/mms114.c
+index 2ef1adaed9af..5bdf4ac1a303 100644
+--- a/drivers/input/touchscreen/mms114.c
++++ b/drivers/input/touchscreen/mms114.c
+@@ -54,6 +54,7 @@
+ enum mms_type {
+ 	TYPE_MMS114	= 114,
+ 	TYPE_MMS152	= 152,
++	TYPE_MMS345L	= 345,
+ };
+ 
+ struct mms114_data {
+@@ -250,6 +251,15 @@ static int mms114_get_version(struct mms114_data *data)
+ 	int error;
+ 
+ 	switch (data->type) {
++	case TYPE_MMS345L:
++		error = __mms114_read_reg(data, MMS152_FW_REV, 3, buf);
++		if (error)
++			return error;
 +
-+title: Synopsys DesignWare MIPI DSI host controller
++		dev_info(dev, "TSP FW Rev: bootloader 0x%x / core 0x%x / config 0x%x\n",
++			 buf[0], buf[1], buf[2]);
++		break;
 +
-+maintainers:
-+  - Philippe CORNU <philippe.cornu@st.com>
-+
-+description: |
-+  This document defines device tree properties for the Synopsys DesignWare MIPI
-+  DSI host controller. It doesn't constitue a device tree binding specification
-+  by itself but is meant to be referenced by platform-specific device tree
-+  bindings.
-+
-+  When referenced from platform device tree bindings the properties defined in
-+  this document are defined as follows. The platform device tree bindings are
-+  responsible for defining whether each property is required or optional.
-+
-+allOf:
-+  - $ref: ../dsi-controller.yaml#
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Module clock
-+      - description: DSI bus clock for either AHB and APB
-+      - description: Pixel clock for the DPI/RGB input
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: ref
-+      - const: pclk
-+      - const: px_clk
-+    minItems: 2
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: apb
-+
-+  ports:
-+    type: object
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description: Input node to receive pixel data.
-+      port@1:
-+        type: object
-+        description: DSI output node to panel.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - clock-names
-+  - clocks
-+  - ports
-+  - reg
+ 	case TYPE_MMS152:
+ 		error = __mms114_read_reg(data, MMS152_FW_REV, 3, buf);
+ 		if (error)
+@@ -287,8 +297,8 @@ static int mms114_setup_regs(struct mms114_data *data)
+ 	if (error < 0)
+ 		return error;
+ 
+-	/* MMS152 has no configuration or power on registers */
+-	if (data->type == TYPE_MMS152)
++	/* Only MMS114 has configuration and power on registers */
++	if (data->type != TYPE_MMS114)
+ 		return 0;
+ 
+ 	error = mms114_set_active(data, true);
+@@ -597,6 +607,9 @@ static const struct of_device_id mms114_dt_match[] = {
+ 	}, {
+ 		.compatible = "melfas,mms152",
+ 		.data = (void *)TYPE_MMS152,
++	}, {
++		.compatible = "melfas,mms345l",
++		.data = (void *)TYPE_MMS345L,
+ 	},
+ 	{ }
+ };
 -- 
-2.26.0
+2.26.2
 
