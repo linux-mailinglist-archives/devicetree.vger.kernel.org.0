@@ -2,76 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E34C1B6376
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 20:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E051B6494
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 21:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730364AbgDWS1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Apr 2020 14:27:11 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:2720 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730354AbgDWS1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Apr 2020 14:27:10 -0400
-X-IronPort-AV: E=Sophos;i="5.73,307,1583161200"; 
-   d="scan'208";a="45332077"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 24 Apr 2020 03:27:10 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6C8D440C92A7;
-        Fri, 24 Apr 2020 03:27:05 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lad Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v9 8/8] MAINTAINERS: Add file patterns for rcar PCI device tree bindings
-Date:   Thu, 23 Apr 2020 19:22:39 +0100
-Message-Id: <1587666159-6035-9-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1727798AbgDWTj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Apr 2020 15:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726413AbgDWTj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Apr 2020 15:39:27 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA6EEC09B043
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2020 12:39:26 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id x26so3381072pgc.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2020 12:39:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=7VPU62AS0hE3DKQRkOunlFCKQKhdwD9eupm/jSgSc0o=;
+        b=fqm9ZIjYeSPBDfE/QRu99KVQdVsUeerRL5pAVUVajv+e2SuYpHLE1FyB095+rRNLhg
+         /J3qFsRFP7AfK6wYscG9PXM49C3MZEyA5tvD/Zv8lnY8QYwqZoSxa+Y04fsNkGs3+dpZ
+         9g6GfHdmQjY9gvJea954/kRhpTEdxkybP1Axg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=7VPU62AS0hE3DKQRkOunlFCKQKhdwD9eupm/jSgSc0o=;
+        b=mOu9noGfmWoy+6HW86ZGZ+MWx0gftD2bCvWomI9cv8dOb5jbMIG5je3NKmVKQOdNYA
+         UNfEzKNAGSKOym45sYsTtpdGpW/7QFaFdXuE/j1wAjzKE3xgF0KooLrESD3BOCSeMN9H
+         NMYHNDMfon5oC+F+0DCW7z2utZdnH7UJfrmGUsi50KWklKf8r+zwAWiyVigDCJYmRxxv
+         nev12rNmFop8RZ3MlS3kiuL3ToZnl0vlwiWjkhfIbK8reAhMEmNe5zCjc9rLjTy6ZcGH
+         pqKdoNtqBc1AR32QUDbWV6Eto6+ICuLCfRPBPw6M7qxkvLjGRV42h1QVZHyHG/PLnLEK
+         Vj/Q==
+X-Gm-Message-State: AGi0PuYmvXFSwflxJcM98CrQ8nlYqZmZ3lGZmIIzBkjlgAN8r+9tJY2k
+        fRs5uk1fJItLbfdGitydBLoVSQ==
+X-Google-Smtp-Source: APiQypJd4T0HLRLEhYMctigRHwArQ5Lyj7Ah48K5q+Fq0x5nv4fDYp6iTUKOzhPoARFHEfZwN9MqWQ==
+X-Received: by 2002:a62:8202:: with SMTP id w2mr5342725pfd.117.1587670766035;
+        Thu, 23 Apr 2020 12:39:26 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id l185sm3281987pfl.104.2020.04.23.12.39.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Apr 2020 12:39:24 -0700 (PDT)
+Date:   Thu, 23 Apr 2020 12:39:23 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "Sandeep Maheswaram (Temp)" <sanm@codeaurora.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: qcom,dwc3: Convert USB DWC3
+ bindings
+Message-ID: <20200423193923.GK199755@google.com>
+References: <1585206368-685-1-git-send-email-sanm@codeaurora.org>
+ <1585206368-685-2-git-send-email-sanm@codeaurora.org>
+ <20200404171700.GA10096@bogus>
+ <5e2eb0a4-ed70-4212-fc70-6ee850507a7e@codeaurora.org>
+ <5793ea62-7a73-789e-33d6-6b2fb37b376c@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5793ea62-7a73-789e-33d6-6b2fb37b376c@codeaurora.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add file pattern entry for rcar PCI devicetree binding, so that when
-people run ./scripts/get_maintainer.pl the rcar PCI maintainers could also
-be listed.
+On Wed, Apr 15, 2020 at 02:23:29PM +0530, Sandeep Maheswaram (Temp) wrote:
+> Hi Rob,
+> 
+> Any suggestions to solve this error in assigned-clock-rates
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+> On 4/6/2020 10:09 PM, Sandeep Maheswaram (Temp) wrote:
+> > Hi Rob,
+> > 
+> > On 4/4/2020 10:47 PM, Rob Herring wrote:
+> > > On Thu, Mar 26, 2020 at 12:36:07PM +0530, Sandeep Maheswaram wrote:
+> > > > Convert USB DWC3 bindings to DT schema format using json-schema.
+> > > > 
+> > > > Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> > > > ---
+> > > >   .../devicetree/bindings/usb/qcom,dwc3.txt          | 104
+> > > > --------------
+> > > >   .../devicetree/bindings/usb/qcom,dwc3.yaml         | 158
+> > > > +++++++++++++++++++++
+> > > >   2 files changed, 158 insertions(+), 104 deletions(-)
+> > > >   delete mode 100644
+> > > > Documentation/devicetree/bindings/usb/qcom,dwc3.txt
+> > > >   create mode 100644
+> > > > Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > > b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > > new file mode 100644
+> > > > index 0000000..0f69475
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8c85337a6b85..3e71a3173132 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12958,6 +12958,7 @@ M:	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-renesas-soc@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/*rcar*
- F:	drivers/pci/controller/*rcar*
- 
- PCI DRIVER FOR SAMSUNG EXYNOS
--- 
-2.17.1
+...
 
+> > > > +    items:
+> > > > +      - description: Must be 19.2MHz (19200000).
+> > > Sounds like a constraint:
+> > > 
+> > > - const: 19200000
+> > > 
+> > > > +      - description: Must be >= 60 MHz in HS mode, >= 125 MHz
+> > > > in SS mode.
+> > > - minimum: 60000000
+> > >    maximum: ?
+> > 
+> > Tried  as below but facing errors
+> > 
+> > assigned-clock-rates:
+> >     items:
+> >       - const: 19200000
+> >       - minimum: 60000000
+> >         maximum: 150000000
+> > 
+> > Errors
+> > 
+> > linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml:
+> > usb@a6f8800: assigned-clock-rates: Additional items are not allowed
+> > ([150000000] was unexpected)
+> > linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml:
+> > usb@a6f8800: assigned-clock-rates:0: [19200000] is too short
+> > linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml:
+> > usb@a6f8800: assigned-clock-rates: [[19200000], [150000000]] is too long
+
+judging from the error messages my uneducated guess is that the above rules for
+assigned-clock-rates expect a single tuple of two elements, not two tuples with
+a single element, i.e.
+
+assigned-clock-rates = <19200000, 150000000>;
+
+  instead of
+
+assigned-clock-rates = <19200000>, <150000000>;
+
+I experimented a bit but couldn't find the magic incantation to appease the
+schema deities.
+
+Rob, could you please help to distentangle this?
+
+Thanks
+
+Matthias
