@@ -2,70 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A491B666B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 23:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1D11B6688
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 23:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbgDWVlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Apr 2020 17:41:49 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:7839 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727976AbgDWVls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Apr 2020 17:41:48 -0400
-X-IronPort-AV: E=Sophos;i="5.73,309,1583161200"; 
-   d="scan'208";a="45339816"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 24 Apr 2020 06:41:47 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D21654004BB2;
-        Fri, 24 Apr 2020 06:41:43 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        Lad Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 10/10] cpufreq: dt: Add support for r8a7742
-Date:   Thu, 23 Apr 2020 22:40:50 +0100
-Message-Id: <1587678050-23468-11-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1587678050-23468-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <1587678050-23468-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1725777AbgDWVys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Apr 2020 17:54:48 -0400
+Received: from v6.sk ([167.172.42.174]:57156 "EHLO v6.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726071AbgDWVyr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Apr 2020 17:54:47 -0400
+Received: from localhost (v6.sk [IPv6:::1])
+        by v6.sk (Postfix) with ESMTP id 89D5E610A5;
+        Thu, 23 Apr 2020 21:54:46 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] phy: Add USB HSIC PHY driver for Marvell MMP3 SoC
+Date:   Thu, 23 Apr 2020 23:54:35 +0200
+Message-Id: <20200423215438.24321-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.26.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the compatible strings for supporting the generic cpufreq driver on
-the Renesas RZ/G1H (R8A7742) SoC.
+Hi,
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
----
- drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
- 1 file changed, 1 insertion(+)
+please consider applying this patch set. It adds the HSIC PHY driver for
+Marvell MMP3 along with related DT binding changes (added since v1).
 
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-index cb9db16..148aa66 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -53,6 +53,7 @@ static const struct of_device_id whitelist[] __initconst = {
- 	{ .compatible = "renesas,r7s72100", },
- 	{ .compatible = "renesas,r8a73a4", },
- 	{ .compatible = "renesas,r8a7740", },
-+	{ .compatible = "renesas,r8a7742", },
- 	{ .compatible = "renesas,r8a7743", },
- 	{ .compatible = "renesas,r8a7744", },
- 	{ .compatible = "renesas,r8a7745", },
--- 
-2.7.4
+Thank you,
+Lubo
+
 
