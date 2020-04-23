@@ -2,120 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0505B1B624D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 19:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37901B62E4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 20:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730107AbgDWRq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Apr 2020 13:46:56 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:55937 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730060AbgDWRqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Apr 2020 13:46:43 -0400
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 68A3123E29;
-        Thu, 23 Apr 2020 19:46:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1587664001;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=5ltDxDEQqoNxt8d4SzlK52JEqovfZ9pOb0c+YAdkDG4=;
-        b=ndrLsL6rTTVpPoRWs2aC5feQCyYUOV3TA68T9rDcGDAiW0u9/1yxyGTNoiZZsnbuvlxHMa
-        zY5HhLxAOEeGohWZ6V3dbrA3U0GZOMsp7NwNLNAoB3xfXNBgV+DtpF3FFsU+Ln6GYlxME0
-        EBIwdSgMqZ3V49SjVC2JaTU0EjFhMTI=
-From:   Michael Walle <michael@walle.cc>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1730026AbgDWSF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Apr 2020 14:05:57 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58162 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729901AbgDWSF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Apr 2020 14:05:57 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03NI5l5p005744;
+        Thu, 23 Apr 2020 13:05:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1587665147;
+        bh=mMaO8t1Eqao/J6mtLde2dOBedpV17ybTny2HZzC7JxY=;
+        h=From:To:CC:Subject:Date;
+        b=FGotfNibqGvKapww+9XkCnFPum7qyEFRO+3Lr2RtKQajWJJC1AtH5csD2x4ktFPsk
+         Hvl/AOb2mpj1tsqbeTkKPW24463op5xqnIlj0Vc4OtrZMQIJoqXokdiMYIlHqCe5Ak
+         w32Cwr65Z2BBRwx8nJ8iRFZjuFZJlRSCkbvUQIt0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03NI5lZt097577
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Apr 2020 13:05:47 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 23
+ Apr 2020 13:05:46 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 23 Apr 2020 13:05:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03NI5jw4008985;
+        Thu, 23 Apr 2020 13:05:46 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v3 16/16] arm64: dts: freescale: sl28: enable fan support
-Date:   Thu, 23 Apr 2020 19:45:43 +0200
-Message-Id: <20200423174543.17161-17-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200423174543.17161-1-michael@walle.cc>
-References: <20200423174543.17161-1-michael@walle.cc>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH 0/5] soc: ti: add k3 platforms chipid module driver
+Date:   Thu, 23 Apr 2020 21:05:40 +0300
+Message-ID: <20200423180545.13707-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: 68A3123E29
-X-Spamd-Result: default: False [6.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         NEURAL_SPAM(0.00)[0.993];
-         DKIM_SIGNED(0.00)[];
-         RCPT_COUNT_TWELVE(0.00)[25];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:31334, ipnet:2a02:810c:8000::/33, country:DE];
-         FREEMAIL_CC(0.00)[linaro.org,baylibre.com,kernel.org,suse.com,roeck-us.net,gmail.com,pengutronix.de,linux-watchdog.org,nxp.com,linutronix.de,lakedaemon.net,linuxfoundation.org,walle.cc];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pwm-fan mapped to the PWM channel 0 which is connected to the
-fan connector of the carrier.
+Hi All,
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+This series introduces TI K3 Multicore SoC platforms chipid module driver
+which provides identification support of the TI K3 SoCs (family, revision)
+and register this information with the SoC bus. It is available under
+/sys/devices/soc0/ for user space, and can be checked, where needed,
+in Kernel using soc_device_match().
+It is also required for introducing support for new revisions of
+K3 AM65x/J721E SoCs.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-index 0973a6a45217..c45d7b40e374 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-@@ -15,6 +15,15 @@
- 	compatible = "kontron,sl28-var3-ads2", "kontron,sl28-var3",
- 		     "kontron,sl28", "fsl,ls1028a";
- 
-+	pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-min-state = <0>;
-+		cooling-max-state = <3>;
-+		#cooling-cells = <2>;
-+		pwms = <&sl28cpld_pwm0 0 4000000>;
-+		cooling-levels = <1 128 192 255>;
-+	};
-+
- 	sound {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+Example J721E:
+  # cat /sys/devices/soc0/{machine,family,revision}
+  Texas Instruments K3 J721E SoC
+  J721E
+  SR1.0
+
+Example AM65x:
+  # cat /sys/devices/soc0/{machine,family,revision}
+  Texas Instruments AM654 Base Board
+  AM65X
+  SR1.0
+
+Grygorii Strashko (5):
+  dt-bindings: soc: ti: add binding for k3 platforms chipid module
+  soc: ti: add k3 platforms chipid module driver
+  arm64: arch_k3: enable chipid driver
+  arm64: dts: ti: k3-am65-wakeup: add k3 platforms chipid module node
+  arm64: dts: ti: k3-j721e-mcu-wakeup: add k3 platforms chipid module
+    node
+
+ .../bindings/soc/ti/k3-socinfo.yaml           |  40 ++++++
+ arch/arm64/Kconfig.platforms                  |   1 +
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |   5 +
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   5 +
+ drivers/soc/ti/Kconfig                        |  10 ++
+ drivers/soc/ti/Makefile                       |   1 +
+ drivers/soc/ti/k3-socinfo.c                   | 135 ++++++++++++++++++
+ 7 files changed, 197 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/k3-socinfo.yaml
+ create mode 100644 drivers/soc/ti/k3-socinfo.c
+
 -- 
-2.20.1
+2.17.1
 
