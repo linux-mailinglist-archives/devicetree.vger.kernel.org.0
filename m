@@ -2,119 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 391081B5EAC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 17:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B66821B5FC2
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2020 17:44:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728965AbgDWPJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Apr 2020 11:09:12 -0400
-Received: from conssluserg-04.nifty.com ([210.131.2.83]:31201 "EHLO
-        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728921AbgDWPJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Apr 2020 11:09:12 -0400
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48]) (authenticated)
-        by conssluserg-04.nifty.com with ESMTP id 03NF8iBQ018040;
-        Fri, 24 Apr 2020 00:08:44 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 03NF8iBQ018040
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1587654525;
-        bh=+DlzjDpib8laCDy2JUu2OfEgSqg9h54FYVo2uotXvMI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NPgDDsojOl7j2yH2Q1/NnhLkkhuYhMPihzu/fKk48UqeMXvvSzvv2Q0i7VuOt7FAr
-         xIpzIl0mx460wO8PERYk4EBNabwPoHROCPFQ4e4IpPvXaI3NReLEjmmtUSlwJIHeFY
-         k5vZPCnofo9sH+bQtg17V708AMbqGzmYgHxd6sjfOVjpm3K/2YeOc1+r/1HUa7wwKV
-         zyFOf6KU6zUm8swBeBqlzNfcWN+XveMSR3wEPywLINM4i4Phu5f2r8GjA3D+O9lTqh
-         iQw2cvdwJwiBr1tgBUdgInJmXFeKVlrj3AmknvTDYpf2wWTccLfgpY17nMc482n06w
-         UfltsRIs98vVg==
-X-Nifty-SrcIP: [209.85.222.48]
-Received: by mail-ua1-f48.google.com with SMTP id i5so6009872uaq.1;
-        Thu, 23 Apr 2020 08:08:44 -0700 (PDT)
-X-Gm-Message-State: AGi0PuaSp0NSRz0FcuMmo20IJQvaGMU3UBbYkXd7Tshsbuep4HpJt9C0
-        ob/UImLKoV8uJrYHkQ22ZzFHs6QRgul7uWBO+HI=
-X-Google-Smtp-Source: APiQypIRMJX5auFftzRo3peuQH5roT/wqAq0thBDMbVxeUrJ/YnIr+N1ra1Ide1tPXEE5bafv8C+vQy2G+0+9j/C5lA=
-X-Received: by 2002:a9f:28c5:: with SMTP id d63mr3463972uad.25.1587654523415;
- Thu, 23 Apr 2020 08:08:43 -0700 (PDT)
+        id S1729257AbgDWPo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Apr 2020 11:44:26 -0400
+Received: from gateway30.websitewelcome.com ([192.185.179.30]:48761 "EHLO
+        gateway30.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729204AbgDWPo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Apr 2020 11:44:26 -0400
+X-Greylist: delayed 1420 seconds by postgrey-1.27 at vger.kernel.org; Thu, 23 Apr 2020 11:44:25 EDT
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+        by gateway30.websitewelcome.com (Postfix) with ESMTP id 383BC1034
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2020 10:20:44 -0500 (CDT)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id RdeejQ7B0AGTXRdeejjhDv; Thu, 23 Apr 2020 10:20:44 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=lVr7d+CAP5nOq9QPmRmWkdHKDvdbA359gdwduj7bBvE=; b=eNDACs8MYJ6ttfA8OGNvduU9Ou
+        0Cc3NDeYo3BG1LAi5SJ4V0GvVE4Fdw3xAzkGWMumjpwSSf53SjVL4pV+hKQXaStcLe/5LOXlUHgu0
+        I7Mc1wSKfy3GJbmlo98jro3UKy+BD3wca9xLh3I+38LiQHiYmRZ3ZphMP46heRkxt+nmeSHvIuxTj
+        bT4H0zxs9L6FO9rzIesmA5WaWhhs2g+yhdEUPt5IHi0W3mf+9acIa8Ky+XjrUBcVHyhjl1Wyxo+VN
+        NpCCbw7KtqaFvf7P/eaT1wku2PFqzhG9RVfv7Hecz4iVgJDmW4NxHSVSITYi9PhEaugyXwU1vGYRE
+        L3Y6C2EQ==;
+Received: from [191.31.203.120] (port=55674 helo=[192.168.15.3])
+        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1jRded-000yw3-SL; Thu, 23 Apr 2020 12:20:44 -0300
+Subject: Re: [PATCH v3 3/3] ARM: dts: Add Caninos Loucos Labrador
+To:     afaerber@suse.de
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
+References: <20200229104358.GB19610@mani>
+ <20200320035104.26139-1-matheus@castello.eng.br>
+ <20200320035104.26139-4-matheus@castello.eng.br>
+ <20200405065137.GC8912@Mani-XPS-13-9360>
+From:   Matheus Castello <matheus@castello.eng.br>
+Message-ID: <df32c750-a097-9210-6e13-db7db49836b5@castello.eng.br>
+Date:   Thu, 23 Apr 2020 12:20:39 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-References: <20200422185708.6363-1-robh@kernel.org>
-In-Reply-To: <20200422185708.6363-1-robh@kernel.org>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Fri, 24 Apr 2020 00:08:07 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAS_HtT6sZtKEVDGZjbG=hyZKf4Oy1sZ3JNfmewdDgCgYA@mail.gmail.com>
-Message-ID: <CAK7LNAS_HtT6sZtKEVDGZjbG=hyZKf4Oy1sZ3JNfmewdDgCgYA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: Fix command line length limit calling dt-mk-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200405065137.GC8912@Mani-XPS-13-9360>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: pt-BR
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 191.31.203.120
+X-Source-L: No
+X-Exim-ID: 1jRded-000yw3-SL
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.15.3]) [191.31.203.120]:55674
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 8
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 23, 2020 at 3:57 AM Rob Herring <robh@kernel.org> wrote:
->
-> As the number of schemas has increased, we're starting to hit the error
-> "execvp: /bin/sh: Argument list too long". This is due to passing all the
-> schema files on the command line to dt-mk-schema. It currently is only
-> with out of tree builds and is intermittent depending on the file path
-> lengths.
->
-> Commit 2ba06cd8565b ("kbuild: Always validate DT binding examples") made
-> hitting this proplem more likely since the example validation now always
-> gets the full list of schemas.
->
-> Fix this by passing the schema file list in a pipe and using xargs. We end
-> up doing the find twice, but the time is insignificant compared to the
-> dt-mk-schema time.
->
-> Reported-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hi Andreas,
 
+Em 4/5/20 3:51 AM, Manivannan Sadhasivam escreveu:
+> On Fri, Mar 20, 2020 at 12:51:04AM -0300, Matheus Castello wrote:
+>> Add Device Trees for Caninos Loucos Labrador CoM and base board.
+>> Based on the work of Andreas Färber on Lemaker Guitar device tree.
+>>
+>> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> Will queue the series for v5.8 once Andreas is happy with it.
+> 
 
-Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
+do you have any more concerns about these patches? Let me know.
 
+BR,
+Matheus Castello
 
-> ---
->  Documentation/devicetree/bindings/Makefile | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index 87c76bdabfe6..7782d9985082 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -14,16 +14,18 @@ $(obj)/%.example.dts: $(src)/%.yaml FORCE
->  # Use full schemas when checking %.example.dts
->  DT_TMP_SCHEMA := $(obj)/processed-schema-examples.yaml
->
-> +find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
-> +               -name 'processed-schema*' ! \
-> +               -name '*.example.dt.yaml' \)
-> +
->  quiet_cmd_mk_schema = SCHEMA  $@
-> -      cmd_mk_schema = $(DT_MK_SCHEMA) $(DT_MK_SCHEMA_FLAGS) -o $@ $(real-prereqs)
-> +      cmd_mk_schema = rm -f $@ ; \
-> +                      $(if $(DT_MK_SCHEMA_FLAGS), \
-> +                           echo $(real-prereqs), \
-> +                           $(find_cmd)) | \
-> +                      xargs $(DT_MK_SCHEMA) $(DT_MK_SCHEMA_FLAGS) >> $@
->
-> -DT_DOCS = $(addprefix $(src)/, \
-> -       $(shell \
-> -       cd $(srctree)/$(src) && \
-> -       find * \( -name '*.yaml' ! \
-> -               -name 'processed-schema*' ! \
-> -               -name '*.example.dt.yaml' \) \
-> -       ))
-> +DT_DOCS = $(shell $(find_cmd) | sed -e 's|^$(srctree)/||')
->
->  DT_SCHEMA_FILES ?= $(DT_DOCS)
->
-> --
-> 2.20.1
->
-
-
--- 
-Best Regards
-Masahiro Yamada
+> Nit: Please keep linux-actions@lists.infradead.org in CC for all future
+> patches/replies.
+> 
+> Thanks,
+> Mani
+> 
+>> ---
+>>   arch/arm/boot/dts/Makefile                  |  1 +
+>>   arch/arm/boot/dts/owl-s500-labrador-bb.dts  | 34 +++++++++++++++++++++
+>>   arch/arm/boot/dts/owl-s500-labrador-v2.dtsi | 21 +++++++++++++
+>>   3 files changed, 56 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/owl-s500-labrador-bb.dts
+>>   create mode 100644 arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
+>>
+>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>> index d6546d2676b9..99f633460833 100644
+>> --- a/arch/arm/boot/dts/Makefile
+>> +++ b/arch/arm/boot/dts/Makefile
+>> @@ -842,6 +842,7 @@ dtb-$(CONFIG_ARCH_ORION5X) += \
+>>   dtb-$(CONFIG_ARCH_ACTIONS) += \
+>>   	owl-s500-cubieboard6.dtb \
+>>   	owl-s500-guitar-bb-rev-b.dtb \
+>> +	owl-s500-labrador-bb.dtb \
+>>   	owl-s500-sparky.dtb
+>>   dtb-$(CONFIG_ARCH_PRIMA2) += \
+>>   	prima2-evb.dtb
+>> diff --git a/arch/arm/boot/dts/owl-s500-labrador-bb.dts b/arch/arm/boot/dts/owl-s500-labrador-bb.dts
+>> new file mode 100644
+>> index 000000000000..91012b4a4c30
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/owl-s500-labrador-bb.dts
+>> @@ -0,0 +1,34 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Caninos Labrador Base Board
+>> + *
+>> + * Copyright (c) 2019-2020 Matheus Castello
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "owl-s500-labrador-v2.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "caninos,labrador-bb", "caninos,labrador", "actions,s500";
+>> +	model = "Caninos Labrador Base Board M v1.0";
+>> +
+>> +	aliases {
+>> +		serial3 = &uart3;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial3:115200n8";
+>> +	};
+>> +
+>> +	uart3_clk: uart3-clk {
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <921600>;
+>> +		#clock-cells = <0>;
+>> +	};
+>> +};
+>> +
+>> +&uart3 {
+>> +	status = "okay";
+>> +	clocks = <&uart3_clk>;
+>> +};
+>> diff --git a/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi b/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
+>> new file mode 100644
+>> index 000000000000..0b54f1ef3ec0
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
+>> @@ -0,0 +1,21 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Caninos Labrador CoM V2
+>> + *
+>> + * Copyright (c) 2019-2020 Matheus Castello
+>> + */
+>> +
+>> +#include "owl-s500.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "caninos,labrador", "actions,s500";
+>> +
+>> +	memory@0 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x80000000>;
+>> +	};
+>> +};
+>> +
+>> +&timer {
+>> +	clocks = <&hosc>;
+>> +};
+>> --
+>> 2.25.0
+>>
