@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EED1B7A2E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 17:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B221B79E4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 17:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728620AbgDXPkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Apr 2020 11:40:18 -0400
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:53017 "EHLO
+        id S1728664AbgDXPgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Apr 2020 11:36:48 -0400
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:51735 "EHLO
         wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728437AbgDXPgH (ORCPT
+        by vger.kernel.org with ESMTP id S1728658AbgDXPgq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Apr 2020 11:36:07 -0400
+        Fri, 24 Apr 2020 11:36:46 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 6AA8F10AA;
-        Fri, 24 Apr 2020 11:36:06 -0400 (EDT)
+        by mailnew.west.internal (Postfix) with ESMTP id 61F48334;
+        Fri, 24 Apr 2020 11:36:45 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 24 Apr 2020 11:36:07 -0400
+  by compute4.internal (MEProxy); Fri, 24 Apr 2020 11:36:46 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=2I5zMakGdefyc
-        AHM9J30Y7T2xEqngHoH53dlRgc3XbQ=; b=BD1B4CN8zWU+fPz7IlbsH+rnyrL/K
-        GmWvt/35ykWfkbGxhUf3nvgpM/HFzhC6z5mbrPEessL1hEz9R1N36E3rQfYI+jOX
-        4NeMvWRfrYLX3CWXu8lALSxcJFtXgnijMRi1t93HqXYAt+/6Su/sJERGgtJYUKLy
-        ss86uXwDxtAHwKXgtomXo8lToxz1CUKTyZkf+cKUBkRBtaz/7Gqe0XZlXOGN5Mxu
-        LhfAac9FMdLJwAjB6XLz5MpFWNUFjdOqIZAqHwXM99H5iHt1MW5PTN96gc6aRwwc
-        PdvRZrDN2H+GwHWfBheSDg2WnL2WJtgs0irTb+HE1jMwJlSAiKzOJ8Exw==
+        :mime-version:content-transfer-encoding; s=fm2; bh=mIo2yTnIciTwR
+        AfqGqPRdeUMoEIyJ/WFBxN68ut8oG8=; b=XAY7KFmQ9PTHYwXMyTnUapTYKD24g
+        Mn8jD2A7zM2FUgstdDbWgxTUbdsc0MaTfjLL28skUbmn+ghoY9CUmOCfqIdgQOMZ
+        cWcuu7sdV16n6KAK3qEP2dsnkV/3La8xkZiUS4kkqXAB9joVKqtv+siHkCJrOIDe
+        e2USEfaz0X0x/OYcNdI3PFhO60umohg4/nIRvQytUdoB2svwIXx1YwCe2YAPSwg7
+        MbVoWIWpWC8RsjFafN9sHKp/Kjads4lImncWQ/tOehrQiQmrU09QMlRYSwl5TLAD
+        rIr8IusTRtEg/ppTulPcHDVCtD2jf1SqMDWHTImU7/5FtExW+xat4NDLw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=2I5zMakGdefycAHM9J30Y7T2xEqngHoH53dlRgc3XbQ=; b=Pis+VpXI
-        t0wmLmPGRLm+wsq/DgSmOoRh+9csdgurzenCAT4Ra6SxAyJYtkWgBcp6Mx9j0tRE
-        on987iRDzEBBXlS/JnMLPgvTGYLdpSJOBU8mdAjUjy4nS1+nMBJiyxLfNeKgmCot
-        UeeN0/zqrttVLPbV92LYnWIWbG0vFw5Wz0kIRejyZs5MnqKWJ+JL9VaUbbNt50/H
-        mZnyWAimGdR+ar+ed45xnMdcohtr02DWUnD6oixn+LJwadBsYthTXGp9kNRmKwzT
-        kYfVDSDgUHxYjR709uuYs2B4hUdW/JIt4fqM43JK1O7JHh93MAXZt1pFdzmjnRei
-        fVCEHGAaADQTiw==
-X-ME-Sender: <xms:ZQejXkufTVDwLok66FHM6BLrBJuB_BSbVYKOOazzTbfziom17RDw6w>
+        fm2; bh=mIo2yTnIciTwRAfqGqPRdeUMoEIyJ/WFBxN68ut8oG8=; b=ZVsO7R0B
+        BZvoD2w8F8WMZ1HSehOtOrclHujG/eMySrgwFi75FD/rrRE0+DVvt3nPGa/gzyST
+        ZciLYHA3TuTaKOHirgTL4GDuVa/Ljt//zPqv0uQl4UripPfTm3b1LJAaX81PV8No
+        1EVD+UmkYXIugR48wNuwmBwQp268S2ETvuboamscQZrVbip10DIXe0aBk5ito7w/
+        i7in/zrC/FZsRg9gOJTBDtcsjR42ut2ew6NdIcoYYhnrC5LWrrxthDgLVVDHOPj/
+        uzQDeESNeVl76yAfKoNecbhciQz5uDODLalYS6nDF1LMzUpVSEOsDaYG70y5yBkq
+        PW+yE+63KXrOOw==
+X-ME-Sender: <xms:jAejXrPXjRki40XukrQGpqYkBxwCbfRMZWtOdTF6OGEOwB7nsL21wA>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrhedugdekiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
-    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedvheenucfrrghrrghmpehmrghi
+    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpeehudenucfrrghrrghmpehmrghi
     lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ZQejXo31Oh_FJDumAK97HP0x9cGyjm3g5i4OalhfqmvRBbCD4PkpUw>
-    <xmx:ZQejXqFiow9NgvsiJn5lD0t8g-U3c-sZGhwV2nQv7IbJAA9lhLELnA>
-    <xmx:ZQejXtPhBRvfTvRQfys8YUwSYQ3cfoYMHaeD8ma69SixaggyksKPvA>
-    <xmx:ZgejXppFBIk2U4L8O8z2BDU1N5BMLE3_ww19HQbuONEucwCJCxwu5ZU3b7Y>
+X-ME-Proxy: <xmx:jAejXqOeWAWXjKtcJ2WkYnNupPOLAY4qkuHbAlb0fetjOhhsWlp7Tg>
+    <xmx:jAejXlTqMD-dvnKAFtjv5Bs3fT9Zp85QfufkPxe4y3sRVM38Hueq1w>
+    <xmx:jAejXkBHysai9lOmJH8G_LW-AhHhH2rsA93tJMrkDLMjiP-1jYnduA>
+    <xmx:jQejXoIDgJUvT34hWhwsWHKmIEK8IAAn4vmTCVAQd5Lor41MGUpKJtOFYHo>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A6A0E3065D9A;
-        Fri, 24 Apr 2020 11:36:05 -0400 (EDT)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8AADE3065CDA;
+        Fri, 24 Apr 2020 11:36:44 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Eric Anholt <eric@anholt.net>
@@ -64,9 +64,9 @@ Cc:     dri-devel@lists.freedesktop.org,
         Phil Elwell <phil@raspberrypi.com>,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 31/91] dt-bindings: display: vc4: Document BCM2711 VC5
-Date:   Fri, 24 Apr 2020 17:34:12 +0200
-Message-Id: <1fc211841ff633f59d64c3b074724a23f3606d72.1587742492.git-series.maxime@cerno.tech>
+Subject: [PATCH v2 59/91] dt-bindings: display: vc4: pv: Add BCM2711 pixel valves
+Date:   Fri, 24 Apr 2020 17:34:40 +0200
+Message-Id: <d32c991fa0441b631ca5de8a39107a0db5e13880.1587742492.git-series.maxime@cerno.tech>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <cover.d1e741d37e43e1ba2d2ecd93fc81d42a6df99d14.1587742492.git-series.maxime@cerno.tech>
 References: <cover.d1e741d37e43e1ba2d2ecd93fc81d42a6df99d14.1587742492.git-series.maxime@cerno.tech>
@@ -77,26 +77,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BCM2711 comes with a new VideoCore. Add a compatible for it.
+The BCM2711 comes with other pixelvalves that have different requirements
+and capabilities. Let's document their compatible.
 
 Cc: devicetree@vger.kernel.org
 Reviewed-by: Rob Herring <robh+dt@kernel.org>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml
-index 0dcf0c397375..49a5e041aa49 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml
-@@ -17,6 +17,7 @@ description: >
- properties:
-   compatible:
-     enum:
-+      - brcm,bcm2711-vc5
-       - brcm,bcm2835-vc4
-       - brcm,cygnus-vc4
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
+index e60791db1fa1..4e1ba03f6477 100644
+--- a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
+@@ -15,6 +15,11 @@ properties:
+       - brcm,bcm2835-pixelvalve0
+       - brcm,bcm2835-pixelvalve1
+       - brcm,bcm2835-pixelvalve2
++      - brcm,bcm2711-pixelvalve0
++      - brcm,bcm2711-pixelvalve1
++      - brcm,bcm2711-pixelvalve2
++      - brcm,bcm2711-pixelvalve3
++      - brcm,bcm2711-pixelvalve4
  
+   reg:
+     maxItems: 1
 -- 
 git-series 0.9.1
