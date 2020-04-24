@@ -2,139 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A5261B7ACA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 17:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D771B7AD6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 17:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727091AbgDXPyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Apr 2020 11:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
+        id S1727972AbgDXP4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Apr 2020 11:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728561AbgDXPyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Apr 2020 11:54:18 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377F8C09B048
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 08:54:18 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id s10so11492813wrr.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 08:54:18 -0700 (PDT)
+        with ESMTP id S1727063AbgDXP4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Apr 2020 11:56:09 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31316C09B046;
+        Fri, 24 Apr 2020 08:56:09 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id k12so2492531wmj.3;
+        Fri, 24 Apr 2020 08:56:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ANWXN+2Z3DDrWrVHhsInrxi4EvXPY/8IIalTrvooHG8=;
-        b=ierhYQVQtu+peHFc42kGYjWb//BJX4HxUct5NT4NbIFrjxEH8CyvRdBn6tFBhqOmmb
-         UZ9Z4We6ymLhwC+k6u7kLuDxlPVFOOQGvlAk+jPhjmdbCbjYVkCTzKw5zVCT4WE1l3l+
-         swhcNCjbycHGW70kjoSWISiktdL9x1hDHAk6tBNdNnJsxMGQ4uEldlTRgEQh5IyTb5+U
-         SM8pwVGCpglmLCRaWndJSlE80A10xg6vjnApxIpGL5/9aPpXdgx8QawNiSoyVf1jfWjp
-         lXs+QzmVRTk35lbTdx27DwApHTGihQQBam8yyp/jRZk32rizTuYPTdWUu6rc46nUFTTk
-         o51Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=2dfe96YGRwdkJIStyF40QT5+e8yw/JJFrPUrA9ri3jw=;
+        b=rpnKX0diuZmEefFJBlH4p0uiZ6nT/Uzyd6C8V+ar2sPq3giyBG+MSqmgtQqykf61K3
+         J8s8b6qq9CHsb7VZ+hAgBPpNw0N29/Dx0xZX8yrxDlEymZtAMd0jgz7kR9P09TORmBhC
+         TTLx7LLxBi0/qCjROKIvm7dtrRFClB6x/emlo+op9lkWO+yvfjxN1P3ho2PJ25atistF
+         3OfY3NIrXmYYuxtFfPxwJV6jy/6mJcjHqBZCamamz/gUOG9Jcuu1cEy5zcTMYCgtpQY3
+         eUhzOQdnUt3slZLmWzgh6lJO+UFYWZL2T1F7x+/XI6xSt4/tJvebLm+Z9yAdJn0077jd
+         58EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ANWXN+2Z3DDrWrVHhsInrxi4EvXPY/8IIalTrvooHG8=;
-        b=O+Cyd20z5A81sNuh9eMZUox+kJ/nvomqLd6dcu/QCMktZzrwNapPRjcJsgyTMRLcN+
-         R317Cis+VvvXQ/7bkQ1BpZLmbvWgZwmsPjG2pQhseH6rF9f88na5CjqPOaPunH2WA4E0
-         fFukfJtdbPNjQPpiqW97yaqZmdNgKLyiv61DH0hFZ7r8iB6Vo6hgSJ8ElxnSAgYhj0hO
-         YsC672t2UZYgjt/hkGfTBpiLzl+sYJrypND/sDxo0f0wevp7ChuzFN0S8jbRu8zsbtcg
-         aoKST3k/FyG+/GC1iMl6SPkz4T3yiMF1AQ/mwuUCffOrHaYgtbDGr19kZWak1e4hFioX
-         TH2w==
-X-Gm-Message-State: AGi0PuZsngbaYp5PE7GSeAmJ8eVimv4C56FpJFQnyv3f1K8+kCEq2Opp
-        CFPj1Dus1/PsMShM5jhv6W/M/A==
-X-Google-Smtp-Source: APiQypKrt1I/vfpXrZmkPsz9dzLuK18NN6O8r2S9WWku5sLnMIaDkgNIXVxKYk9wDEbtIfT8TGH1QA==
-X-Received: by 2002:adf:c109:: with SMTP id r9mr11837240wre.265.1587743656909;
-        Fri, 24 Apr 2020 08:54:16 -0700 (PDT)
-Received: from localhost.localdomain ([87.120.218.65])
-        by smtp.googlemail.com with ESMTPSA id z76sm3923583wmc.9.2020.04.24.08.54.15
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=2dfe96YGRwdkJIStyF40QT5+e8yw/JJFrPUrA9ri3jw=;
+        b=LSAsAazEf6X/VbNPknm2QSwQOkHWtARmR1Ykd2lxvocw9zLD4xrBhetdOVNTt9ADqr
+         DfbjVKZhHn/n3FuImTW+jPCG+k4JWnl9SQ8HmHBxzwQaMj50Ma2Aqc7KayWz7Ct08xf2
+         05RiGA5ilKYIurpHrBz+wa+tyOMfX1DtyLRCpGn+jWGtq2T8jtGT3QsCqOE8XDjx5oy+
+         XdB3pkS5JUfOCXJTNT52oULRQLO3xyXmvg4kY67B/VnF0ZF2qm0xmKbrc1f8vJxOFf64
+         OLhwK5TYVdcrwAW9iOkWSDv1ra8HTYeYVm0JvtZTvpLsWAcuk5bajH+62188nl3vRxe8
+         bwLg==
+X-Gm-Message-State: AGi0PuZGoZAHu+91gFb20l1+uaGIcvmjqFoFOWfZ0ClYPXDMUCKtAP/s
+        sUauNRPCpuN/uBLufMkt/jc=
+X-Google-Smtp-Source: APiQypI/huoG9jnHh4iIH+SQGJJR1gdn4nDg2DnrOfJ4docI19S96D0R3OPHztWOl24tnzb8TeUURw==
+X-Received: by 2002:a1c:ac44:: with SMTP id v65mr11008806wme.33.1587743768021;
+        Fri, 24 Apr 2020 08:56:08 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g69sm3554317wmg.17.2020.04.24.08.56.07
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 Apr 2020 08:54:16 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        robh+dt@kernel.org, rjw@rjwysocki.net, saravanak@google.com,
-        sibis@codeaurora.org
-Cc:     rnayak@codeaurora.org, bjorn.andersson@linaro.org,
-        vincent.guittot@linaro.org, jcrouse@codeaurora.org,
-        evgreen@chromium.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        georgi.djakov@linaro.org
-Subject: [PATCH v7 7/7] cpufreq: dt: Add support for interconnect bandwidth scaling
-Date:   Fri, 24 Apr 2020 18:54:04 +0300
-Message-Id: <20200424155404.10746-8-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200424155404.10746-1-georgi.djakov@linaro.org>
-References: <20200424155404.10746-1-georgi.djakov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Fri, 24 Apr 2020 08:56:07 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: rockchip: remove #sound-dai-cells from &i2s1 node of rk3399-pinebook-pro.dts
+Date:   Fri, 24 Apr 2020 17:55:59 +0200
+Message-Id: <20200424155600.24254-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In addition to clocks and regulators, some devices can scale the bandwidth
-of their on-chip interconnect - for example between CPU and DDR memory. Add
-support for that, so that platforms which support it can make use of it.
+The '#sound-dai-cells' property is already defined in rk3399.dtsi
+at the 'i2s1' node, so remove it from the '&i2s1' node in
+'rk3399-pinebook-pro.dts'.
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
-v7:
-* Drop using dev_pm_opp_set_paths(), as it has been removed.
-* Add Kconfig dependency on INTERCONNECT, as it can be module.
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 5ea281b55..b20062890 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -743,7 +743,6 @@
+ };
+ 
+ &i2s1 {
+-	#sound-dai-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2s_8ch_mclk_gpio>, <&i2s1_2ch_bus>;
+ 	rockchip,capture-channels = <8>;
+-- 
+2.11.0
 
-v2: https://lore.kernel.org/r/20190423132823.7915-6-georgi.djakov@linaro.org
-
- drivers/cpufreq/Kconfig      |  1 +
- drivers/cpufreq/cpufreq-dt.c | 15 +++++++++++++++
- 2 files changed, 16 insertions(+)
-
-diff --git a/drivers/cpufreq/Kconfig b/drivers/cpufreq/Kconfig
-index c3e6bd59e920..db2ad54ee67f 100644
---- a/drivers/cpufreq/Kconfig
-+++ b/drivers/cpufreq/Kconfig
-@@ -217,6 +217,7 @@ config CPUFREQ_DT
- 
- config CPUFREQ_DT_PLATDEV
- 	bool
-+	depends on INTERCONNECT || !INTERCONNECT
- 	help
- 	  This adds a generic DT based cpufreq platdev driver for frequency
- 	  management.  This creates a 'cpufreq-dt' platform device, on the
-diff --git a/drivers/cpufreq/cpufreq-dt.c b/drivers/cpufreq/cpufreq-dt.c
-index 26fe8dfb9ce6..4ecef3257532 100644
---- a/drivers/cpufreq/cpufreq-dt.c
-+++ b/drivers/cpufreq/cpufreq-dt.c
-@@ -13,6 +13,7 @@
- #include <linux/cpufreq.h>
- #include <linux/cpumask.h>
- #include <linux/err.h>
-+#include <linux/interconnect.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/pm_opp.h>
-@@ -95,6 +96,7 @@ static int resources_available(void)
- 	struct device *cpu_dev;
- 	struct regulator *cpu_reg;
- 	struct clk *cpu_clk;
-+	struct icc_path *cpu_path;
- 	int ret = 0;
- 	const char *name;
- 
-@@ -121,6 +123,19 @@ static int resources_available(void)
- 
- 	clk_put(cpu_clk);
- 
-+	cpu_path = of_icc_get(cpu_dev, NULL);
-+	ret = PTR_ERR_OR_ZERO(cpu_path);
-+	if (ret) {
-+		if (ret == -EPROBE_DEFER)
-+			dev_dbg(cpu_dev, "defer icc path: %d\n", ret);
-+		else
-+			dev_err(cpu_dev, "failed to get icc path: %d\n", ret);
-+
-+		return ret;
-+	}
-+
-+	icc_put(cpu_path);
-+
- 	name = find_supply_name(cpu_dev);
- 	/* Platform doesn't require regulator */
- 	if (!name)
