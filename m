@@ -2,115 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB93F1B7F12
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 21:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFE51B7F22
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2020 21:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727059AbgDXTgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Apr 2020 15:36:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S1729225AbgDXTlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Apr 2020 15:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727022AbgDXTgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Apr 2020 15:36:45 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36FC8C09B04A
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 12:36:45 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id 7so4927467pjo.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 12:36:45 -0700 (PDT)
+        with ESMTP id S1729175AbgDXTls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Apr 2020 15:41:48 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0530DC09B04A
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 12:41:48 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id a21so11191639ljb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2020 12:41:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fCaJ0E8Gy0Ol3hZwXIBBUzkNzHWsMd/CDDe4oOvOuTQ=;
-        b=PQHAtxwFS2mt1dXsLhSX43jK+gKlDCgwH7u0Py3KQvQlYXy2gaDsNjW2cwZw6jVkC3
-         eqxmxs4oQHNNDo6AmIC8SPTTP1CfwTdpoNH1Sdj6KY1WrZ/Iryoj3I1djtUCdxXfdcHu
-         MvQSogpRnoYWLCopy2551VaW4dpQV5iKXjNCg=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xEmEzSJAW12x5niGKKzPXSqsRmQBFq2lP6H8xvuac/8=;
+        b=T0keOgZ72bgaeEiqotFnnG+NMkzgKYHGXH4TyFbkmZQOJe1Y5iKcFbRjOuVS3LytBL
+         W6AnOWDW2QWZo3w+XoSlX7QKg7WFduDC+turDLabtmC3eHu2R+LW2LppYuJYXdj40rg7
+         CdC1QLOEEL0R1Cimqms8CMRslN8tW7OXjqcp181VPdrvY8W8QYwXkvlGnezntNU/aIQI
+         i6YsVJ+qBo1IpmfuneESoyprPvhhXr26CeMvNdDtUxyovd7PslG1FH6YR8sVB7ohtRad
+         QOWlk/axNwWA9QPd0lqbh3Eau8RDrkadohiHGyCxCHAzXRPCkwjqYlFo45dJvWYiXb2y
+         7ahA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fCaJ0E8Gy0Ol3hZwXIBBUzkNzHWsMd/CDDe4oOvOuTQ=;
-        b=CcAFr8ZRpGX/Qk+XiOZjstKNL25Bhsp1CmkQ32yTalUqhRZUPN0Z8vCw9+8bKPsQi8
-         VSRKyIjI2MaCXsu0mrwewW1KvUAZC1YcLvJ+pMMQcTHpyg3FqfxJ5YhHe/iTThhpoSH0
-         UguRjuB0hBeFciZ6KBl9FsGvt4RLUfAUf8EGJCSoaSwUCCe6cM6otsxT7ho07VI6XWy8
-         wezjLRYcT1bL5azX6+ebtrYEWpGxFd0YtUvuQjIH6fOUg41AYQbke69MQGBdxn9IaAKo
-         jSQYDVJIT9s+GJ7sQbYhaB4+t04domN+I5CVyzShtltVMI5J8Gfe2tMNDvoyBN2xAnnp
-         lhuQ==
-X-Gm-Message-State: AGi0PuYMPixAYp+ieP1enD/1vY8CHoxE/A4uB1/bOBr7XK8PXQ4x86Zv
-        HQHfTS//T7V9nwMD7TO9XPMkQg==
-X-Google-Smtp-Source: APiQypKkAz8KIQ265AUq1vhvPDVa/neLERznR3WhDNuRCZGz09aJvd0sJvTaUaF15TcJWwgt3ZAv9Q==
-X-Received: by 2002:a17:90a:9318:: with SMTP id p24mr7963439pjo.163.1587757004623;
-        Fri, 24 Apr 2020 12:36:44 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id d17sm5698390pgk.5.2020.04.24.12.36.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2020 12:36:43 -0700 (PDT)
-Date:   Fri, 24 Apr 2020 12:36:42 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        robh+dt@kernel.org, rjw@rjwysocki.net, saravanak@google.com,
-        sibis@codeaurora.org, rnayak@codeaurora.org,
-        bjorn.andersson@linaro.org, vincent.guittot@linaro.org,
-        jcrouse@codeaurora.org, evgreen@chromium.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 6/7] OPP: Update the bandwidth on OPP frequency changes
-Message-ID: <20200424193642.GC4525@google.com>
-References: <20200424155404.10746-1-georgi.djakov@linaro.org>
- <20200424155404.10746-7-georgi.djakov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xEmEzSJAW12x5niGKKzPXSqsRmQBFq2lP6H8xvuac/8=;
+        b=CK0X8C0NUjuPiwKK/uGuK9bY9+jCASX1UhjC1rYmGN2dPxDDIlUMXR05dNvkbFWeel
+         HCe1bKd3Q0p3AOpC7/wozAPRI4+oE86liYbtdxhTP9L8e2ukebFEXSUQOuYCViENfKrH
+         CPdIlpUh2K1u+3Jmlh/LkhJQ86yCYpdxl0BzA08w09oymxF6y/OSq22cn910vFKmT8Qs
+         Teb/hTO34VWn7MHYgFCDWAecE/Q57lIma+81X18V31Q4DIulcDQ/bUyQDxZvr0zpzp/X
+         7YeprUE1OS3T8dcTvcH2FyiSYKfoKFJvq9cyUZ9RBYEREjnAQk68gnvcI7yJPO+ugUJL
+         5qlg==
+X-Gm-Message-State: AGi0Pua+Ldvqe2Oh8wZ+uiugCby6HxrwafK2MquhCTruuQC6aFSevMws
+        Jsj2tC+MQvg4MFEJhH2CNI3qnsEiduut+fu5PHtuDQ==
+X-Google-Smtp-Source: APiQypI4Xi6+DbAAYIeOQPzrEcE/mxStfNg2RlTAQ/87ko7Y+RTOVwvrDrzFbofvytmtXUu0lTzmeVzRLH+KYXFDMfY=
+X-Received: by 2002:a2e:9791:: with SMTP id y17mr7027497lji.174.1587757306172;
+ Fri, 24 Apr 2020 12:41:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200424155404.10746-7-georgi.djakov@linaro.org>
+References: <20200328185916.98423-1-rajatja@google.com> <20200328185916.98423-3-rajatja@google.com>
+ <20200410164140.GA25924@bogus>
+In-Reply-To: <20200410164140.GA25924@bogus>
+From:   Rajat Jain <rajatja@google.com>
+Date:   Fri, 24 Apr 2020 12:41:09 -0700
+Message-ID: <CACK8Z6G=oy9Gesazk1jJVhk22Dgm8_TGZCcpNndkv+WLqAe8hg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: input/atkbd.txt: Add binding for "function-row-physmap"
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Furquan Shaikh <furquan@google.com>,
+        Duncan Laurie <dlaurie@google.com>,
+        Benson Leung <bleung@google.com>,
+        Zentaro Kavanagh <zentaro@google.com>,
+        Dominik Behr <dbehr@google.com>,
+        Rajat Jain <rajatxjain@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 24, 2020 at 06:54:03PM +0300, Georgi Djakov wrote:
-> If the OPP bandwidth values are populated, we want to switch also the
-> interconnect bandwidth in addition to frequency and voltage.
-> 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> ---
-> v7:
-> * Addressed review comments from Viresh.
-> 
-> v2: https://lore.kernel.org/r/20190423132823.7915-5-georgi.djakov@linaro.org
-> 
->  drivers/opp/core.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 8e86811eb7b2..66a8ea10f3de 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -808,7 +808,7 @@ int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
->  	unsigned long freq, old_freq, temp_freq;
->  	struct dev_pm_opp *old_opp, *opp;
->  	struct clk *clk;
-> -	int ret;
-> +	int ret, i;
->  
->  	opp_table = _find_opp_table(dev);
->  	if (IS_ERR(opp_table)) {
-> @@ -895,6 +895,17 @@ int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
->  			dev_err(dev, "Failed to set required opps: %d\n", ret);
->  	}
->  
-> +	if (!ret && opp_table->paths) {
-> +		for (i = 0; i < opp_table->path_count; i++) {
-> +			ret = icc_set_bw(opp_table->paths[i],
-> +					 opp->bandwidth[i].avg,
-> +					 opp->bandwidth[i].peak);
-> +			if (ret)
-> +				dev_err(dev, "Failed to set bandwidth[%d]: %d\n",
-> +					i, ret);
-> +		}
-> +	}
-> +
->  put_opp:
->  	dev_pm_opp_put(opp);
->  put_old_opp:
+Hi,
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+On Fri, Apr 10, 2020 at 10:38 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, Mar 28, 2020 at 11:59:14AM -0700, Rajat Jain wrote:
+> > Create the documentation for the new introduced property, that
+> > describes the function-row keys physical positions.
+> >
+> > Signed-off-by: Rajat Jain <rajatja@google.com>
+> > ---
+> > v4: Same as v3
+> > v3: same as v2
+> > v2: Remove the Change-Id from the commit log
+> >
+> >  .../devicetree/bindings/input/atkbd.txt       | 34 +++++++++++++++++++
+> >  1 file changed, 34 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/atkbd.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/atkbd.txt b/Documentation/devicetree/bindings/input/atkbd.txt
+> > new file mode 100644
+> > index 0000000000000..816653eb8e98d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/atkbd.txt
+> > @@ -0,0 +1,34 @@
+> > +Device tree bindings for AT / PS2 keyboard device
+> > +
+> > +Optional properties:
+> > +
+> > +     function-row-physmap:
+> > +                     An ordered array of the physical codes for the function
+> > +                     row keys. Arranged in order from left to right.
+>
+> A single optional property doesn't constitute a DT binding.
+>
+> > +
+> > +Example:
+> > +
+> > +     This is a sample ACPI _DSD node describing the property:
+>
+> Neither does this ACPI stuff.
+
+I assume this means a nack to the documentation patches.
+
+Dmitry, can you apply the other patches in the series?
+
+Thanks,
+
+Rajat
+
+>
+> Rob
