@@ -2,132 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D2B01B90AD
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 15:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B246F1B90C7
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 16:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726149AbgDZNk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 09:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
+        id S1726154AbgDZOId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 10:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726140AbgDZNk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Apr 2020 09:40:27 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF35C061A0F
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2020 06:40:27 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id x17so16539806wrt.5
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2020 06:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+sfLnAVkgwewq2yi0A2h0qB6umF29EB4ptAx48KX6IA=;
-        b=IbGMQCl4dehckFgGfBMPACJvT4fPKNpMmAnPSOo4IIXBvP4gL7G6i1saj4ix9wTuBY
-         YlzmWwZadF+cGzBclaWrHk1OVWRsbw1KDMs1elqQZDZgoTFihLK34/XQCe0ek7kczLtk
-         duswcMcQZyW6D07Uo5UPikSdUvfbNQ0OkFyFnuPGUI73vGsGkAUneb9b0I877vic/3Jo
-         XMjX3CShkv2fVtHO/o5bZ1nDvisKvH5OPhKXpBUzRrQLkrJVmOmituz+inVwdNsBPqgW
-         g/0djWUXSPXw5dZ2dQQAejvTqlUOA+Yp7gDHC6mlpuRU7pRxJ6N4yi0PJcSjDGoT6njW
-         lOow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+sfLnAVkgwewq2yi0A2h0qB6umF29EB4ptAx48KX6IA=;
-        b=lXd5UIcYDk33N0eWUQVjLD3m+uxvXSGmeO4fCtDB398a+NYpuEGaUkTN1e9Y4BuchO
-         iUvfyDeUYppNTRFbCcPvUIsmLVAJs+MaXbnCMUnWWG/HdmwdPqHvrEzk6iFKfKh/Dmct
-         swyPSf00wGZVtClq2ST8tsRkH/hH+4uoNxfB1Pmu05424BXolJlbJh4Hjmblb4u4d5Rd
-         bSIPav+6RpBy7140tAI6X5XRKzo4FzFqp2+brQuwdUori5wF5FV9bbsnQovZJtAuqmlp
-         lzHMefRY4V70Z747rwVije6SeLfxrWecwDueoLCXufsdjwropgGx1BlE9bH3eXD756Ks
-         N/Rw==
-X-Gm-Message-State: AGi0PuY4OQZDt9VD8wlRsDNH+XRNz7uVWLuO7TYSbHHY0oE5Osre2UwB
-        Z7Nkjke1oEFpiALVLelhzOM=
-X-Google-Smtp-Source: APiQypIDYRhG+TLJ9OvTSTngiaU1AY0a5tECxjZhh5mXZdCjrL1m9rRadFtsRcosEArIIPzOPZ6/lw==
-X-Received: by 2002:adf:f10c:: with SMTP id r12mr22691915wro.409.1587908425710;
-        Sun, 26 Apr 2020 06:40:25 -0700 (PDT)
-Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id d7sm16376047wrn.78.2020.04.26.06.40.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Apr 2020 06:40:25 -0700 (PDT)
-Subject: Re: [PATCH v5 3/7] MAINTAINERS: add maintainers to rockchip nfc
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org
-References: <20200426100250.14678-1-yifeng.zhao@rock-chips.com>
- <20200426100250.14678-4-yifeng.zhao@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <9e9e4831-3035-86dd-a478-c2f0eb3b47fd@gmail.com>
-Date:   Sun, 26 Apr 2020 15:40:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S1725974AbgDZOIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Apr 2020 10:08:32 -0400
+Received: from mo6-p00-ob.smtp.rzone.de (mo6-p00-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5300::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D824C09B050;
+        Sun, 26 Apr 2020 07:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1587910109;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=fEN/W8JQvcwVXPrg6byzh4PGroQnpjWICFAQKgeEoOc=;
+        b=k84v9zizjhKQgUVTvuAVKbcrtVlRUWmE8lJHK+hP/lS/HVt0flVDPQvqLjcY0uFBdc
+        JFfkHfft/YrhycsMvXBqgABTZrRHHLR0Xugsv/6lM2Y7yoIDhMMVvDXoPFmwMyFG4soT
+        D/LT3N7dg5yjORk9L82xfEWN+TSyixcGb6RqzqWPJB3yg+Y+L8b+I+wwSM+179XnVuyc
+        FhI8eAOczS7SlTLs2A37pcwqNfBe9seGfLM7GuWpt4hcpyQD2az9bZzlSmlkvPg372qZ
+        YDGBv9flaSznaKiJ8YQ4Eh/ki4q0Qx6ofZVXMnMBxjrIZMUlepL2nh3+qvJivuMwo/XB
+        j+Qg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6Nf3AC"
+X-RZG-CLASS-ID: mo00
+Received: from localhost.localdomain
+        by smtp.strato.de (RZmta 46.6.2 DYNA|AUTH)
+        with ESMTPSA id 60b02dw3QE8PNFJ
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Sun, 26 Apr 2020 16:08:25 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/4] Add touchscreen for msm8916-samsung-a5u
+Date:   Sun, 26 Apr 2020 16:06:38 +0200
+Message-Id: <20200426140642.204395-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200426100250.14678-4-yifeng.zhao@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
+This patch series enables the touchscreen
+on the Samsung Galaxy A5 (2015) ("samsung-a5u").
 
-Thank you for version 5.
-A test with the command below gives this warning:
+Stephan Gerhold (4):
+  arm64: dts: qcom: msm8916: Add blsp_i2c1
+  arm64: dts: qcom: msm8916: Add blsp_i2c5
+  arm64: dts: qcom: msm8916-samsung-a2015: Add touchscreen regulator
+  arm64: dts: qcom: msm8916-samsung-a5u: Add touchscreen
 
-WARNING: Missing commit description - Add an appropriate one
+ arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    | 48 +++++++++++++++++++
+ .../qcom/msm8916-samsung-a2015-common.dtsi    | 25 ++++++++++
+ .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts | 35 ++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         | 30 ++++++++++++
+ 4 files changed, 138 insertions(+)
 
-WARNING: Misordered MAINTAINERS entry - list file patterns in alphabetic
-order
-#21: FILE: MAINTAINERS:2314:
- F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-+F:	Documentation/devicetree/bindings/*/*rockchip*.yaml
-
-./scripts/checkpatch.pl --strict
-0003-MAINTAINERS-add-maintainers-to-rockchip-nfc.patch
-
-The enties of MAINTAINERS have been sort with this command:
-
-./scripts/parse-maintainers.pl --input=MAINTAINERS --output=MAINTAINERS
---order
-
-On 4/26/20 12:02 PM, Yifeng Zhao wrote:
-
-Add a commit description.
-
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> ---
-> 
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> 
->  MAINTAINERS | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 58725773cec4..187415b1481a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2308,11 +2308,11 @@ L:	linux-rockchip@lists.infradead.org
->  S:	Maintained
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git
-
->  F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> -F:	Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> -F:	Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-> +F:	Documentation/devicetree/bindings/*/*rockchip*.yaml
-
-The script likes to see a different order here.
-
->  F:	arch/arm/boot/dts/rk3*
->  F:	arch/arm/boot/dts/rv1108*
->  F:	arch/arm/mach-rockchip/
-> +F:	drivers/*/*/*/*rockchip*
->  F:	drivers/*/*/*rockchip*
->  F:	drivers/*/*rockchip*
->  F:	drivers/clk/rockchip/
-> 
+-- 
+2.26.2
 
