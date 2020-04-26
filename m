@@ -2,54 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F311B92B5
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 20:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD91E1B92D6
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 20:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726213AbgDZSPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 14:15:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50756 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726223AbgDZSPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Apr 2020 14:15:16 -0400
-Subject: Re: [GIT PULL] Devicetree fixes for v5.7, take 2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1587924916;
-        bh=Fcq6bfIkMCJ3DlIZmp/+Yox3Oru8kye048U154+0d/8=;
-        h=From:In-Reply-To:References:Date:To:Cc:From;
-        b=ez6PiCuACCAYLvqJhHmXF5sK1y41GiBZRINfJF/pR09JSxJ6X+uQoX0GxemSUHJ+n
-         Lk1OQJyfssbwYEX32xaVLTH5HgcXIQodRMVkG05+efM3yB85IOQiHYH9L1ACWxjh94
-         iVvbU3u3Mrp5JbS+Pk/0e59v3BUJICWmgVywvr8M=
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20200425234253.GA32365@bogus>
-References: <20200425234253.GA32365@bogus>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20200425234253.GA32365@bogus>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
- tags/devicetree-fixes-for-5.7-2
-X-PR-Tracked-Commit-Id: 4bc77b2d211e107fa54b1f39cd0d7dac5537b8cb
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 587928829ac2b5f5e0f1e2d3ed5d65a14869df75
-Message-Id: <158792491654.6795.10489802406329422714.pr-tracker-bot@kernel.org>
-Date:   Sun, 26 Apr 2020 18:15:16 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S1726165AbgDZSg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 14:36:26 -0400
+Received: from mail-co1nam11olkn2090.outbound.protection.outlook.com ([40.92.18.90]:50529
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726152AbgDZSgY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Apr 2020 14:36:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fXfpgTx6eoYSig8AdwWtrRglv+VW88LnPco7F42ZixUK5KhzWhckObBHmOP2l/5zGNyjWQAqzYITg4PZD0lQ2u+Y58zm5/LtVAM9OB2Xj6asyZxt96GZOLYzmXukC3mAqS29mbV7v7nTP7Gp4s3qvn/fLmN2MKPXJEmS0U1vvTve0FSG3h9lk6L0hHK6OAjNh2HP9wzD5Cs5SxJbV4lC8gx2LOSv2Ov9BO0AwRKOVr3mq3vSJmu9KIE/lNgitHfty6NvSOAuo10Nj9JZWSkhotnEuxv3ZbwD98JQgpeyaD+ikjsXjmB+Yyteut90927nlbfSocyJ2AoqZu3HfelPjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HcywinMjnpK4WOAZSBfupWLquL2Wu01bkRh8en6RQlY=;
+ b=mVHr3SpDnBGadjvyILQysWRM6q1ScCL733GTxiK5koeoqV1TlVppX3ZXCCubaD7orndjT4UPIYE46iczixqfZTPLuRsUDfLTOMJtpJs0eEN4C6VJHkpPCdztifzoIrYVnKC0RQTS/qlSaW7NgJAcvVW3ThSQ4fH0kB35SN4aio8KLu257Q3dfUFfnGv5SxDMdAwmEgZFTBpBaOEONXgoiYWlGSPj9f2ocUmTJiAgIDnbf+UHmtX0vW9drluVuUbdT/ijJBcRKekaMovg0CuUYReUGn+SiUgYfcVMgLZ6gGfZyXbcI424gvdmvo/jpThgKphdJgIIMUPUledZH3R6yA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=live.ca; dmarc=pass action=none header.from=live.ca; dkim=pass
+ header.d=live.ca; arc=none
+Received: from CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
+ (2a01:111:e400:3861::52) by
+ CO1NAM11HT181.eop-nam11.prod.protection.outlook.com (2a01:111:e400:3861::187)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15; Sun, 26 Apr
+ 2020 18:36:22 +0000
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ (2a01:111:e400:3861::41) by CO1NAM11FT036.mail.protection.outlook.com
+ (2a01:111:e400:3861::124) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15 via Frontend
+ Transport; Sun, 26 Apr 2020 18:36:22 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:BC40BD68623AE0CAE03B66BE37DE60BD39DDAB0164AE5E88A9B9D58EBA0C884F;UpperCasedChecksum:AC097712BB4445F4C74B189E03600CEB382BAAAECEC94F527DA420040C148F25;SizeAsReceived:8857;Count:48
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::ad10:4127:4bc8:76fc]) by BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::ad10:4127:4bc8:76fc%6]) with mapi id 15.20.2937.020; Sun, 26 Apr 2020
+ 18:36:22 +0000
+From:   Jonathan Bakker <xc-racer2@live.ca>
+To:     kgene@kernel.org, krzk@kernel.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jonathan Bakker <xc-racer2@live.ca>
+Subject: [PATCH 00/13] S5PV210 and Aries DTS improvements
+Date:   Sun, 26 Apr 2020 11:35:51 -0700
+Message-ID: <BN6PR04MB06601A5656CF70A4DCA7998BA3AE0@BN6PR04MB0660.namprd04.prod.outlook.com>
+X-Mailer: git-send-email 2.20.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CO2PR05CA0096.namprd05.prod.outlook.com
+ (2603:10b6:104:1::22) To BN6PR04MB0660.namprd04.prod.outlook.com
+ (2603:10b6:404:d9::21)
+X-Microsoft-Original-Message-ID: <20200426183604.28494-1-xc-racer2@live.ca>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from jon-hp-6570b.telus (2001:569:fb67:7300:9f89:4b96:de0b:cd14) by CO2PR05CA0096.namprd05.prod.outlook.com (2603:10b6:104:1::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.7 via Frontend Transport; Sun, 26 Apr 2020 18:36:21 +0000
+X-Mailer: git-send-email 2.20.1
+X-Microsoft-Original-Message-ID: <20200426183604.28494-1-xc-racer2@live.ca>
+X-TMN:  [to+dQak2XqC2/BclHWaTlL3bVr/gudmUyPMTla7ew7w760pgdr6TSrLXDCmm4UpO]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 48
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 0d886b55-8270-455d-55b7-08d7ea10b7da
+X-MS-TrafficTypeDiagnostic: CO1NAM11HT181:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HkmFbZUAr1PPdd4EVEilzJQPyUkaVCpE5u+/6eduu/TCyvHSKK4dpl45XkPM+QLHfNtKmiXyJTUvl9LdiJDswKGPiiWJQaajOWYpi4ibHDQe1t8R0LI4ZwgW0LwLoS9IQO/MOTB66Fkr5BphwbVB7wNV544ev14lNbwSnM4GCpuh1B0HF5JPO6SL7nMXXBQO+CkcALVO8G7sMS5VvbvjHA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:0;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR04MB0660.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:;DIR:OUT;SFP:1901;
+X-MS-Exchange-AntiSpam-MessageData: DZmapemEEuu6DxSF5zpn6ec6IzjqIgYWFlZpjFL+ZQB4vqBI6e5L28hj3WCVyPe1WIm/aw4nOU4g9IRdKNXfryjp0loYE3pFCK6pbTVpSNs42XTVkGW9F2TJ6yIt5oqFjsCOwRt274wWpUIjICGGZYrhw5cl+tsANYR0Iz2NJyycg3Q6y097a5yW5Lbkf8lo8HfAkDzu8r+gg/FM2XSPXA==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d886b55-8270-455d-55b7-08d7ea10b7da
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2020 18:36:22.5188
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM11HT181
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Sat, 25 Apr 2020 18:42:53 -0500:
+This patchset makes several improvements to Aries devices which are
+based on S5PV210.  Several pulls on GPIOs were incorrect/not specified,
+sleep GPIO configurations have been added, and more devices have been
+added.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.7-2
+Touching the common S5PV210 DTSI are the addition of the ADC node
+as well as fixes to the FIMC definitions and a sleep GPIO helper
+added.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/587928829ac2b5f5e0f1e2d3ed5d65a14869df75
+The patches have been tested on both a GT-i9000 as well as an
+SGH-T959P and both can now suspend/resume properly.
 
-Thank you!
+Jonathan Bakker (12):
+  arm: dts: s5pv210: Add helper define for sleep gpio config
+  arm: dts: s5pv210: fascinate4g: Add sleep GPIO configuration
+  arm: dts: s5pv210: galaxys: Add sleep GPIO configuration
+  arm: dts: s5pv210: aries: Set keep-power-in-suspend for SDHCI1
+  arm: dts: s5pv210: aries: Disable pulls on GPIO i2c adapters
+  arm: dts: s5pv210: aries: Add support for more devices
+  arm: dts: s5pv210: aries: Disable pull for vibrator ena GPIO
+  arm: dts: s5pv210: Add an ADC node
+  arm: dts: s5pv210: aries: Enable ADC node
+  arm: dts: s5pv210: Assign clocks to MMC devices
+  arm: dts: s5pv210: Correct FIMC definitions
+  arm: dts: s5pv210: aries: Set MAX8998 GPIO pulls
+
+Paweł Chmiel (1):
+  arm: dts: s5pv210: galaxys: Add si470x fmradio
+
+ arch/arm/boot/dts/s5pv210-aries.dtsi      | 349 ++++++++++++++++++++--
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts | 248 +++++++++++++++
+ arch/arm/boot/dts/s5pv210-galaxys.dts     | 291 ++++++++++++++++++
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi    |   7 +
+ arch/arm/boot/dts/s5pv210.dtsi            |  25 +-
+ 5 files changed, 891 insertions(+), 29 deletions(-)
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.wiki.kernel.org/userdoc/prtracker
+2.20.1
+
