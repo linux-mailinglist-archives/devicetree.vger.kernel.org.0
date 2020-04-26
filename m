@@ -2,98 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 485501B91A0
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 18:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9C5A1B91DE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 18:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726154AbgDZQTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 12:19:47 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:45163 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726146AbgDZQTr (ORCPT
+        id S1726154AbgDZQur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 12:50:47 -0400
+Received: from gateway30.websitewelcome.com ([192.185.194.16]:25969 "EHLO
+        gateway30.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726144AbgDZQuq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Apr 2020 12:19:47 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id D631D5C0108;
-        Sun, 26 Apr 2020 12:19:45 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Sun, 26 Apr 2020 12:19:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=08cZaxzjUx3KWTJnjYaSKDI0WL
-        CA0zQwamq6nPQn4BA=; b=G5828/aF5IPOjVpUeSAGbVkj4QRJ+CtHAvLIfPzpjg
-        lAcySDrltHxO0N5lb8l5+KfRbuR6yNSgkzk08vEWO837mfX3VTdAz9VNvQq6B1Aw
-        93ny0TcXtt6uCF5qNiOcHtWjlgtbKg8o7sTAWTGVUoAzChIMbnEBBuIagd/d2xXa
-        VCtRgMl+VYtFpLTj827TQMKA3N87R4wkZMTIXeBgdcwN4wxC4quPDyyb+J6BglSG
-        zLG/vUBBK1vI+yXKcsI2SoDi6Heo+TJDSVhstvlqkRhwI5QUGl9QYYx7U/0k1kFR
-        aDNoQyDibvY2/uedftS8MD7sRMM+B3jzWkQpjGPdsdJg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=08cZaxzjUx3KWTJnj
-        YaSKDI0WLCA0zQwamq6nPQn4BA=; b=tNRnK53VNLGw1CRlP9uKY7OXsv4PXryXp
-        YieyKzdUsb6lNWglKdmtV/ZDOAeFq5TfQEJ6oyNFj9ulW/kXLxUKeMS6fcFrgxX1
-        LhRc3GV/Waam5R6CF2H5DFSzvezsKeqgxOMhmxgn4NN6sW6/+hmt0UWCKg3xSZfw
-        S0w1GAkNfFNlMNRT7nRQfvqg0dwRTs6j0NyMqnEEWDo/70rAiXxbwHk3Me4sduvB
-        iB+V94FaPfRK12ruN1twyFH80PjKTSslwON0HoiihB5pIGQEwzblRLx8MV9duWeD
-        /grhp2vcyQEBrn0KyHKOmzteCaDG46DyTpGyQZB45zVDVfUdX8ecg==
-X-ME-Sender: <xms:obSlXvjnBYbqsqY9ls8Hy7CgGy4hUMo9R1flmMw4C6PY6OzNkn7NSQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrheejgddutdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
-    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucfkphepje
-    dtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
-    pehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:obSlXtSw5sIBQEpiw6MCyCVcEwm9RUMU6ThAQuPdT9AaBGIToDPp2w>
-    <xmx:obSlXnjGT50zvjz0lQLb5mWwYAIYZu_Y7qhkRF4UN_VXdDblDe7Kcg>
-    <xmx:obSlXidiWACOzH8ALbl9iQj3LWrOm5VIXja5xhqtM2GcJZttF9zCkg>
-    <xmx:obSlXmu3bo8bFGj6rfG5qVHSTMis9A5myyopj7ljTKrREGOfwkemYg>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 0EF183280060;
-        Sun, 26 Apr 2020 12:19:45 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH] arm64: dts: allwinner: a64: pinetab: Fix cpvdd supply name
-Date:   Sun, 26 Apr 2020 11:23:53 -0500
-Message-Id: <20200426162353.52465-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.24.1
+        Sun, 26 Apr 2020 12:50:46 -0400
+X-Greylist: delayed 1393 seconds by postgrey-1.27 at vger.kernel.org; Sun, 26 Apr 2020 12:50:46 EDT
+Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
+        by gateway30.websitewelcome.com (Postfix) with ESMTP id 1FEAC36C9
+        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2020 11:27:32 -0500 (CDT)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id Sk7wjZWzl1s2xSk7wjB1mG; Sun, 26 Apr 2020 11:27:32 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=nOj2osYNQXr8K1shlwowWOqo3kkVH+1V33i1mSrzbOo=; b=hCd69Z0a5Rcuo1M10ME1Q2NPgW
+        UF4Wfuj7T5NVxEK02KOESbe0ypBal3zFywClY6U8ETSSPA4oQ5BIC2ekU08ym/i06bW0ElDx206O4
+        j6zpUiE13vw7p0IhEjrBXKkHdkTkQGDM2azno7fzsiC0qxEkn6tbkZ4vo9wDkCneWBdJSLN4nDu7L
+        3LO+xkH3PZvRDuVQqyaA9R2t1aHlFr17/1lBa0UGjj4cOgr52e+GMJazf9FvgK2rp9jd9L4zWJK5J
+        EjD7qvS1GerElJCgRF9I7v9ZcVgLjY5kI4Rb3mPMkW7PDSw2vpXLB33nwHxtE9t89exZffR0wLzyR
+        ACzZpapQ==;
+Received: from [191.31.197.205] (port=46284 helo=[192.168.15.9])
+        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1jSk7v-001MdU-Ou; Sun, 26 Apr 2020 13:27:31 -0300
+Subject: Re: [PATCH v3 3/3] ARM: dts: Add Caninos Loucos Labrador
+To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
+References: <20200229104358.GB19610@mani>
+ <20200320035104.26139-1-matheus@castello.eng.br>
+ <20200320035104.26139-4-matheus@castello.eng.br>
+ <20200405065137.GC8912@Mani-XPS-13-9360>
+ <df32c750-a097-9210-6e13-db7db49836b5@castello.eng.br>
+ <2dca5a4e-933c-0a43-e86f-21b55d75a586@suse.de>
+From:   Matheus Castello <matheus@castello.eng.br>
+Message-ID: <f9e48fba-0da8-7ba9-d44a-7909067a1df1@castello.eng.br>
+Date:   Sun, 26 Apr 2020 13:27:27 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <2dca5a4e-933c-0a43-e86f-21b55d75a586@suse.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 191.31.197.205
+X-Source-L: No
+X-Exim-ID: 1jSk7v-001MdU-Ou
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.15.9]) [191.31.197.205]:46284
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 9
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-An older version of the analog codec binding referenced the headphone
-amplifier binding as "hpvcc". However, by the time it was merged in
-commit 21dd30200e3d ("ASoC: dt-bindings: sun50i-codec-analog: Add
-headphone amp regulator supply"), the regulator reference was renamed to
-"cpvdd". This board's device tree still uses the old name, which fails
-to work at runtime, and which causes a warning from `make dtbs_check`.
-Resolve both by fixing the name.
+Hi Andreas,
 
-Fixes: 674ef1d0a7b2 ("arm64: dts: allwinner: a64: add support for PineTab")
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+thanks for the review.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-index 316e8a443913..dc4ab6b434f9 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-@@ -98,7 +98,7 @@ &codec {
- };
- 
- &codec_analog {
--	hpvcc-supply = <&reg_eldo1>;
-+	cpvdd-supply = <&reg_eldo1>;
- 	status = "okay";
- };
- 
--- 
-2.24.1
+Em 4/26/20 8:58 AM, Andreas Färber escreveu:
+> Hi Matheus,
+> 
+> Am 23.04.20 um 17:20 schrieb Matheus Castello:
+>> Em 4/5/20 3:51 AM, Manivannan Sadhasivam escreveu:
+>>> On Fri, Mar 20, 2020 at 12:51:04AM -0300, Matheus Castello wrote:
+>>>> Add Device Trees for Caninos Loucos Labrador CoM and base board.
+>>>> Based on the work of Andreas Färber on Lemaker Guitar device tree.
+>>>>
+>>>> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
+>>>
+>>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>>
+>>> Will queue the series for v5.8 once Andreas is happy with it.
+>>
+>> do you have any more concerns about these patches? Let me know.
+> 
+> I've reviewed the preceding two patches. This one here looks okay,
+> 
+> Reviewed-by: Andreas Färber <afaerber@suse.de>
+> 
+> but see 2/3 - model here does contain M and your .dtsi is named -v2 - 
+> what's the difference to v1? If it's big enough to warrant a separate 
+> .dtsi, you should consider whether a versioned compatible string may be 
+> needed, too (likely in addition to, not instead of a generic one). No v1 
+> info on the website.
+> 
 
+The difference between v1 and v2 is the model and vendor of the DRAM and 
+storage eMMC. But that had no impact on the software.
+
+Checking examples on "/Documentation/devicetree/bindings/arm/" I saw 
+that some add enum descriptions for both the base board and system on 
+module, keeping in const only the vendor prefix of the SoC. And in the 
+device tree both have the model property description. I liked this 
+example, I think I will follow it in v4.
+
+About "-bb-" in the file name and description: on PCB is written 
+"Labrador Base-M v1.0a", so with that I think it is better to leave only 
+base on the name.
+
+I will send the v4, thank you very much for the review.
+
+BR,
+Matheus Castello
+
+> Thanks,
+> Andreas
+> 
