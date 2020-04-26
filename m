@@ -2,125 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BFCF1B9188
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 18:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB37C1B919C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 18:19:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726165AbgDZQMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 12:12:02 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:46465 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726144AbgDZQMC (ORCPT
+        id S1726154AbgDZQTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 12:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726146AbgDZQTG (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Apr 2020 12:12:02 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id E5B8C5C00D3;
-        Sun, 26 Apr 2020 12:12:00 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Sun, 26 Apr 2020 12:12:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=DstDy5l5rdsJcISzdP+t1d2X6d
-        9z/JjBvqVJ7i0o2xw=; b=LWezrIImXKV5NwJ6YSYinDnl9kcK1aYg0DBdgxB3mN
-        PP9CMayJ6NF1TOgIdc0MW0n75595w3H91aK1sQygeodISKszD8lTD//r5UoyiozP
-        aVz84eTEMR+9aEMFPNoiJZdHaWatsJXS6GzEc9AJ6ASi/0bCiGM244fcV2RpqpSQ
-        0xSQWY264Oywd1iR1vQ/BoWUu/2L9ZM4ML67Wfrs+JpNnQV0UCUohczExLPQieoj
-        PPxYMKD+JRb8VkOZbxIhtbF9pU0MDK/adjBq9VA34dIhJFQzrUxcADWMnCi5i0Y/
-        K1P9f2k4Ve2YumQtWw7quQA4OrkPz8Zg4NX+zWqk1n5w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=DstDy5l5rdsJcISzd
-        P+t1d2X6d9z/JjBvqVJ7i0o2xw=; b=KZ6D79+YC8NS6f5MTQmDTWis+kzyY42Q9
-        /271i3tc3M+/XcvYGzVxSZ75kTKiDnRshnLRr3Tr4uNmreq8B4DMZgZJjNSXh4q9
-        tRHvm5/xNK7ipiFPKMxBxe8lr5d8Zi5v5Kl3ZZd5RSCJ9nSQIEswBao8ZlOQwQ4L
-        o9z1uCrxu89WmhwpxSWXij8fXMeGo7/GKhv6XoNKP3umXylybv85kDOj0TBrUrXb
-        0kWmKn0bGQPzKYzAQXiezJz3htZ1X0JE3G7lNqO79/TRBEcE0DIriC5Sv7kOXdYB
-        vBuIpcyH5Ry+NBxtYOY+Uqrhf3v9MhSqr7o+6IAMoSZDPIdzVfJCw==
-X-ME-Sender: <xms:zLKlXvGduu1BG4f0Y_p6zO24-N9Xaugjvwkmb0DkiUVMBXXGZIj-mw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrheejgdellecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
-    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecukfhppeejtd
-    drudefhedrudegkedrudehudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:zLKlXjnPZpJwS3sGVc6St_4U7QIo6lkTTlzyi5gRTyljjlaEaSDvuw>
-    <xmx:zLKlXl3whgDWeGBB9fIQWcpipHr8cuTPU47aDjOb6Uq89A_UJ9ZBqA>
-    <xmx:zLKlXpzFf1pQe2ouGRLgLarcesc0MLdNdL3bkRuEZYw0-usa-Ja56Q>
-    <xmx:0LKlXp362ElMk5nDw4AFv8e_1VLp3xq5rR1obrK3b-MedR9XLT7XyA>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 780AD3280060;
-        Sun, 26 Apr 2020 12:11:56 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2] arm64: dts: allwinner: a64: Remove unused SPDIF sound card
-Date:   Sun, 26 Apr 2020 11:16:05 -0500
-Message-Id: <20200426161605.52121-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.24.1
+        Sun, 26 Apr 2020 12:19:06 -0400
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43222C061A0F;
+        Sun, 26 Apr 2020 09:19:06 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id e20so21834446otk.12;
+        Sun, 26 Apr 2020 09:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Pj77SUe5CaP0v/pGWWFayVD62/A8i5UvOJukuyc5CVo=;
+        b=SIwT+DkVtRJGCGDj8udPoICtBFP7hrscvBQWiU0tS87Hi5Ub3I1cYpvxxILSYGE4mX
+         MlfGSgGmoKDKR+oBhDomOElD2/kvt1RWQwS8rofoR3mG9BLTlgM1Zyb+Ud4o+KY6zy3Y
+         LrWRcaznHY/gjdDzpHdFmNK2YPN/SnoAzv7eUtCZJbgVgYlIcjonkoh4AXWFMoKRaW+f
+         edblil7K6KgdjdQXccDkJuWlnZr6A0Nbl2HRRU43++iafGWFdzM3iv2CUX3Nx/HF7p8W
+         Tyi1v4Lw5TcsD8B2kMJeeuBpQePpEdWfHYh0muGgmhrqB7dtKAk8LOn0bnH9+eHzOPWD
+         /qVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Pj77SUe5CaP0v/pGWWFayVD62/A8i5UvOJukuyc5CVo=;
+        b=c6CFeRWvP6i2LDnfXMrDrj+3Pen3nukJ/H69e4Ma1oey1389HQ83RUBPLHiMWSSNzO
+         XkAw4XEnhsLuSminfDqsEa6LhX6vsOeTfB47RJYsAgvXGBXBMFhourB4H2GvSdr5MhLN
+         vrbL5A4+4fELeputX76fpIXJiVyBGtxqkGupbxBShcUG5Ro+XuwWePiK6B25WXwhKfKo
+         ISoIaPbSQhPsHqyQEBtQH2lAksMnXvCRHuHwITDV2zutEv8TyXUhig+kA1tL8cGuOcOb
+         IlQb+qqYERGi6Udym3X/+yYPHi67jsuEY8U/UJcnyLkiJ2XSl9a0TXTGfITsAGqGvA7I
+         aUhg==
+X-Gm-Message-State: AGi0PuYUECRbuoBU8/IbBirbX3zHkvuSi82DZDx6QY3bzTCdthgMsg9b
+        HWxexmrxa/KgfS4gazzngqMzGe1zgg8NpJeMc99SqILD
+X-Google-Smtp-Source: APiQypJ5+V3+lSZEofKJqMAVpQSdTAk1rec+Esu8ZijtDxFh7g90i2TLV7E4NrCm5MZu1Oonan3gRu8weMxFg1oIXTo=
+X-Received: by 2002:a9d:21ca:: with SMTP id s68mr15145763otb.15.1587917945530;
+ Sun, 26 Apr 2020 09:19:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200422233928.GA2816@imac> <8255d8b1-f652-9ece-67d2-68c30a5cfbac@baylibre.com>
+In-Reply-To: <8255d8b1-f652-9ece-67d2-68c30a5cfbac@baylibre.com>
+From:   Tim Lewis <elatllat@gmail.com>
+Date:   Sun, 26 Apr 2020 12:18:54 -0400
+Message-ID: <CA+3zgmsVK9Uuv947-pniByP7QJVGcVK_EgiRkFipV5CUx70sHQ@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: meson: S922X: extend cpu opp-points
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     khilman@baylibre.com,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        joy.cho@hardkernel.com, tobetter <tobetter@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As of v5.7-rc2, Linux now prints the following message at boot:
+Oops, will fix in v4.
 
-  [   33.848525] platform sound_spdif: deferred probe pending
 
-This is because sound_spdif is waiting on its CPU DAI &spdif to probe,
-but &spdif is disabled in the device tree.
-
-Exposure of the SPDIF pin is board-specific functionality, so the sound
-card and codec DAI belong in the individual board DTS, not the SoC DTSI.
-In fact, no in-tree A64 board DTS enables &spdif, so let's remove the
-card and DAI entirely.
-
-This reverts commit 78e071370a86473f25923e03b51cbbadacf8be0f.
-
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
-
-Changes since v1:
- - Remove the node instead of disabling it
- - Also remove the codec DAI
-
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 18 ------------------
- 1 file changed, 18 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 31143fe64d91..c26cc1fcaffd 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -154,24 +154,6 @@ link_codec: simple-audio-card,codec {
- 		};
- 	};
- 
--	sound_spdif {
--		compatible = "simple-audio-card";
--		simple-audio-card,name = "On-board SPDIF";
--
--		simple-audio-card,cpu {
--			sound-dai = <&spdif>;
--		};
--
--		simple-audio-card,codec {
--			sound-dai = <&spdif_out>;
--		};
--	};
--
--	spdif_out: spdif-out {
--		#sound-dai-cells = <0>;
--		compatible = "linux,spdif-dit";
--	};
--
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		allwinner,erratum-unknown1;
--- 
-2.24.1
-
+On Thu, Apr 23, 2020 at 3:40 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 23/04/2020 01:39, Tim Lewis wrote:
+> > HardKernel supports overclock through the addition to extra opp points
+> > in their official kernel sources for odroid-n2 [1]. Christian tested
+> > on other S922X devices with "no obvious issues". Neil thinks dvfs and
+> > thermal managementis can keep other S922X devices safe.
+> --------------/\
+>           management
+>
+> >
+> > [1] https://github.com/hardkernel/linux/commit/f86cd9487c7483b2a05f448b9ebacf6bd5a2ad2f
+> > Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> > Signed-off-by: Tim Lewis <elatllat@gmail.com>
+> >
+> > ---
+> >  arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi | 15 +++++++++++++++
+> >  1 files changed, 15 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> > index 046cc332d..1e5d0ee5d 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> > @@ -65,6 +65,11 @@
+> >                       opp-hz = /bits/ 64 <1896000000>;
+> >                       opp-microvolt = <981000>;
+> >               };
+> > +
+> > +             opp-1992000000 {
+> > +                     opp-hz = /bits/ 64 <1992000000>;
+> > +                     opp-microvolt = <1001000>;
+> > +             };
+> >       };
+> >
+> >       cpub_opp_table_1: opp-table-1 {
+> > @@ -120,5 +125,15 @@
+> >                       opp-hz = /bits/ 64 <1704000000>;
+> >                       opp-microvolt = <891000>;
+> >               };
+> > +
+> > +             opp-1800000000 {
+> > +                     opp-hz = /bits/ 64 <1800000000>;
+> > +                     opp-microvolt = <981000>;
+> > +             };
+> > +
+> > +             opp-1908000000 {
+> > +                     opp-hz = /bits/ 64 <1908000000>;
+> > +                     opp-microvolt = <1022000>;
+> > +             };
+> >       };
+> >  };
+> >
+>
+> The patch is well formed but I can only test on Odroid-N2.
+>
+> Anyway, Christian did a test other S922X boxes and it doesn't crash.
+>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> Neil
