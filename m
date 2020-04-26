@@ -2,134 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD7DE1B92E5
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 20:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F89A1B9348
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 20:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726462AbgDZSgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 14:36:51 -0400
-Received: from mail-co1nam11olkn2065.outbound.protection.outlook.com ([40.92.18.65]:26569
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726451AbgDZSgu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Apr 2020 14:36:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ezxdUwS3p3CknL/pHTj5WiDxztZ3U4VFHeMGh7K7qVGIJM9zthTPJKBy72WqXyHWBOuRY2AOZpJk8JkNBQGEcrvvB2WckbS7CaDI2EE+bUpdaj/7+dKIJjvM2AD5k5/ZXKpTuZ2zE3pGMUyXV7r2tNW9/eqwmk9DOMsg39Y0DTXT1P6MQ5rnUGu4ngzupjRBEtM25VcdzDAesbT7n2YQwvyCD3fVvCavZoBK7yTsBnT9W9EO9wgpv8TLeYeKKGbbsBtrKJQJp5rdKEA9EeCBCvJrFMeOlSc2v/DNNgMEtDfHfPqNNRue4KfhQ2kjQAM98N/g5eUKBdTLNlkkZwOZzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zOSeV4eT86/g0Brn0wyPQFC8hKAx7Ey9Mne0kgl0nFs=;
- b=Z//uwF4O8nGkBFmeyH4kpBwhRVOMjY8Em/a8udUubh0SD1JRahnCyQPR9L2I7kfgk9YIgKVg20bj22l3ymMXjLucgXS2jBKr5DVI8XnuuFARd22pPOrH63P8KJEoquG+UKDRRtjAiuLYj08TiliagVp1d6ZzSYFHM5Sm6POBziW2z9EnE1Dfu0cpUoti9deLWKSK17zcGL3RD/2OGx5F080PZ6GUAc1k3PfOezjfGbUZYrT01Gp56Vg2XSd+PuIuDzANAPSiDR0+aEevcwWBZWkES7w9lxsvY2K3q9ScoVUdJclIMnG+rnfX1RHslZ+76sJPMTyH8gOP3pni7zRXwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=live.ca; dmarc=pass action=none header.from=live.ca; dkim=pass
- header.d=live.ca; arc=none
-Received: from CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2a01:111:e400:3861::53) by
- CO1NAM11HT190.eop-nam11.prod.protection.outlook.com (2a01:111:e400:3861::184)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15; Sun, 26 Apr
- 2020 18:36:48 +0000
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- (2a01:111:e400:3861::41) by CO1NAM11FT036.mail.protection.outlook.com
- (2a01:111:e400:3861::124) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15 via Frontend
- Transport; Sun, 26 Apr 2020 18:36:48 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:0BFDB984871B69F4CDF82D49C2AC4A9C2E9268B8CEFDF7733D362178511C9931;UpperCasedChecksum:CDCBC175BA55E477A2F1205A4514F52F58F2568F9F7E2BFD62093E07E9208B65;SizeAsReceived:7807;Count:50
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::ad10:4127:4bc8:76fc]) by BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::ad10:4127:4bc8:76fc%6]) with mapi id 15.20.2937.020; Sun, 26 Apr 2020
- 18:36:48 +0000
-From:   Jonathan Bakker <xc-racer2@live.ca>
-To:     kgene@kernel.org, krzk@kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jonathan Bakker <xc-racer2@live.ca>
-Subject: [PATCH 13/13] arm: dts: s5pv210: aries: Set MAX8998 GPIO pulls
-Date:   Sun, 26 Apr 2020 11:36:04 -0700
-Message-ID: <BN6PR04MB06605CBCAA817375BE008EB7A3AE0@BN6PR04MB0660.namprd04.prod.outlook.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200426183604.28494-1-xc-racer2@live.ca>
-References: <20200426183604.28494-1-xc-racer2@live.ca>
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: CO2PR05CA0096.namprd05.prod.outlook.com
- (2603:10b6:104:1::22) To BN6PR04MB0660.namprd04.prod.outlook.com
- (2603:10b6:404:d9::21)
-X-Microsoft-Original-Message-ID: <20200426183604.28494-14-xc-racer2@live.ca>
+        id S1726285AbgDZS7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 14:59:08 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:58818 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726191AbgDZS7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Apr 2020 14:59:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1587927544; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=MPcskCveO2zpxatA04dSJRF87yAOrKmZ9Wd1I3xcHTU=;
+        b=Z6/fqZftGdOUEtMtcu02nGndmzyxIBgeOF9dPZBgE5ifLiRAyektZNhiEL0ueCc3Iuk9Fo
+        hXLnc6XscOR9Fbncc4E7XDFz9GllPXw7KS0Xn/IGPrD2HbdBeplzxpdR6vHzuRIWSpa3ff
+        Y+t9/96FUmUzzA+qCK1I+9CPwK4JJhY=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     od@zcrc.me,
+        =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0?= <zhouyanjie@wanyeetech.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-i2c@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-mips@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 1/8] dt-bindings: clock: Convert ingenic,cgu.txt to YAML
+Date:   Sun, 26 Apr 2020 20:58:49 +0200
+Message-Id: <20200426185856.38826-1-paul@crapouillou.net>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from jon-hp-6570b.telus (2001:569:fb67:7300:9f89:4b96:de0b:cd14) by CO2PR05CA0096.namprd05.prod.outlook.com (2603:10b6:104:1::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.7 via Frontend Transport; Sun, 26 Apr 2020 18:36:47 +0000
-X-Mailer: git-send-email 2.20.1
-X-Microsoft-Original-Message-ID: <20200426183604.28494-14-xc-racer2@live.ca>
-X-TMN:  [uKUguzY0MMM+H2cjqLqU88q9ORfdnLMUmXkPEF7Abtk4e/C94NGkf/O3ufpo6leo]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 50
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 62b06bdd-f1a1-4f1c-03ca-08d7ea10c75a
-X-MS-TrafficTypeDiagnostic: CO1NAM11HT190:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vh13DoDW7bqfIIJgOK07C8B1uEm4nxSrNEWfLyy3uBfmufbgJ18hQUCYWYd/j/FWjIPhksL5LiAZjm6mxh17jiwtCReq1VLByBuyTgtqN8U+xBW18ZJnSwMIyRDF+0ZSsrm9y+ZPU5ZfEahcb75O9dC0AnEA3eKEhwcXtSTzKHs+dKGrMpVbVXPLp3S95R0ndi0TeYrNLoou39uo4KevAA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:0;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR04MB0660.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:;DIR:OUT;SFP:1901;
-X-MS-Exchange-AntiSpam-MessageData: Do2ZAQQZeArxM6o08J6Mmz10+tpqMuYMMfnItVzF5HCNxPF5R2NoW641SP5ZVpFntF6vwfK9BV0ve52Lkne5Mm8oxjf+igQXVoFLLNSOQ8mOWjANFzXdvrDf+wjMRywPDEOoa3sJiBJp2f0ZwDttzUfIbPNhcBOIsMu+T7l5g3U6Dll9vMJliZq1wTrKf9xDsOAYciib7qfxGaOkFwlrMg==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62b06bdd-f1a1-4f1c-03ca-08d7ea10c75a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2020 18:36:48.4534
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM11HT190
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make sure that the GPIOs are configured correctly
-for the interrupt (otherwise it won't fire) and disable the
-pulls on the DVS GPIOs which are outputs.
+Convert the ingenic,cgu.txt doc file to ingenic,cgu.yaml.
 
-Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+The binding documentation has been updated as well. The node can have a
+child node that corresponds to the USB PHY, which happens to be present
+in the middle of the CGU registers.
+
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 ---
- arch/arm/boot/dts/s5pv210-aries.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ .../devicetree/bindings/clock/ingenic,cgu.txt |  57 --------
+ .../bindings/clock/ingenic,cgu.yaml           | 122 ++++++++++++++++++
+ 2 files changed, 122 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ingenic,cgu.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
 
-diff --git a/arch/arm/boot/dts/s5pv210-aries.dtsi b/arch/arm/boot/dts/s5pv210-aries.dtsi
-index 7e113d750b97..000f582e9a0b 100644
---- a/arch/arm/boot/dts/s5pv210-aries.dtsi
-+++ b/arch/arm/boot/dts/s5pv210-aries.dtsi
-@@ -167,6 +167,9 @@
- 			max8998,pmic-buck2-dvs-gpio = <&gph0 5 GPIO_ACTIVE_HIGH>;
- 			max8998,pmic-buck2-dvs-voltage = <1100000>, <1000000>;
- 
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pmic_dvs_pins &pmic_irq>;
+diff --git a/Documentation/devicetree/bindings/clock/ingenic,cgu.txt b/Documentation/devicetree/bindings/clock/ingenic,cgu.txt
+deleted file mode 100644
+index 75598e655067..000000000000
+--- a/Documentation/devicetree/bindings/clock/ingenic,cgu.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Ingenic SoC CGU binding
+-
+-The CGU in an Ingenic SoC provides all the clocks generated on-chip. It
+-typically includes a variety of PLLs, multiplexers, dividers & gates in order
+-to provide many different clock signals derived from only 2 external source
+-clocks.
+-
+-Required properties:
+-- compatible : Should be one of:
+-  * ingenic,jz4740-cgu
+-  * ingenic,jz4725b-cgu
+-  * ingenic,jz4770-cgu
+-  * ingenic,jz4780-cgu
+-  * ingenic,x1000-cgu
+-- reg : The address & length of the CGU registers.
+-- clocks : List of phandle & clock specifiers for clocks external to the CGU.
+-  Two such external clocks should be specified - first the external crystal
+-  "ext" and second the RTC clock source "rtc".
+-- clock-names : List of name strings for the external clocks.
+-- #clock-cells: Should be 1.
+-  Clock consumers specify this argument to identify a clock. The valid values
+-  may be found in <dt-bindings/clock/<soctype>-cgu.h>.
+-
+-Example SoC include file:
+-
+-/ {
+-	cgu: jz4740-cgu {
+-		compatible = "ingenic,jz4740-cgu";
+-		reg = <0x10000000 0x100>;
+-		#clock-cells = <1>;
+-	};
+-
+-	uart0: serial@10030000 {
+-		clocks = <&cgu JZ4740_CLK_UART0>;
+-	};
+-};
+-
+-Example board file:
+-
+-/ {
+-	ext: clock@0 {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <12000000>;
+-	};
+-
+-	rtc: clock@1 {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <32768>;
+-	};
+-
+-	&cgu {
+-		clocks = <&ext> <&rtc>;
+-		clock-names: "ext", "rtc";
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml b/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
+new file mode 100644
+index 000000000000..0281cd1d7e1b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ingenic,cgu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 			regulators {
- 				ldo2_reg: LDO2 {
- 					regulator-name = "VALIVE_1.2V";
-@@ -605,6 +608,21 @@
- 		samsung,pin-pud = <S3C64XX_PIN_PULL_NONE>;
- 	};
- 
-+	pmic_dvs_pins: pmic-dvs-pins {
-+		samsung,pins = "gph0-3", "gph0-4", "gph0-5";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-+		samsung,pin-pud = <S3C64XX_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
-+		samsung,pin-val = <0>;
-+	};
++title: Ingenic SoCs CGU devicetree bindings
 +
-+	pmic_irq: pmic-irq {
-+		samsung,pins = "gph0-7";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
-+		samsung,pin-pud = <S3C64XX_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
-+	};
++description: |
++  The CGU in an Ingenic SoC provides all the clocks generated on-chip. It
++  typically includes a variety of PLLs, multiplexers, dividers & gates in order
++  to provide many different clock signals derived from only 2 external source
++  clocks.
 +
- 	wifi_host_wake: wifi-host-wake {
- 		samsung,pins = "gph2-4";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
++maintainers:
++  - Paul Cercueil <paul@crapouillou.net>
++
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - ingenic,jz4740-cgu
++          - ingenic,jz4725b-cgu
++          - ingenic,jz4770-cgu
++          - ingenic,jz4780-cgu
++          - ingenic,x1000-cgu
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^clock-controller@[0-9a-f]+$"
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  "#clock-cells":
++    const: 1
++
++  ranges: true
++
++  compatible:
++    items:
++      - enum:
++        - ingenic,jz4740-cgu
++        - ingenic,jz4725b-cgu
++        - ingenic,jz4770-cgu
++        - ingenic,jz4780-cgu
++        - ingenic,x1000-cgu
++      - const: simple-mfd
++    minItems: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: External oscillator clock
++      - description: Internal 32 kHz RTC clock
++
++  clock-names:
++    items:
++      - const: ext
++      - enum:
++        - rtc
++        - osc32k # Different name, same clock
++
++  assigned-clocks:
++    minItems: 1
++    maxItems: 64
++
++  assigned-clock-parents:
++    minItems: 1
++    maxItems: 64
++
++  assigned-clock-rates:
++    minItems: 1
++    maxItems: 64
++
++required:
++  - "#clock-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++patternProperties:
++  "^usb-phy@[a-f0-9]+$":
++    allOf: [ $ref: "../usb/ingenic,jz4770-phy.yaml#" ]
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/jz4770-cgu.h>
++    cgu: clock-controller@10000000 {
++      compatible = "ingenic,jz4770-cgu", "simple-mfd";
++      reg = <0x10000000 0x100>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges = <0x0 0x10000000 0x100>;
++
++      clocks = <&ext>, <&osc32k>;
++      clock-names = "ext", "osc32k";
++
++      #clock-cells = <1>;
++
++      otg_phy: usb-phy@3c {
++        compatible = "ingenic,jz4770-phy";
++        reg = <0x3c 0x10>;
++
++        clocks = <&cgu JZ4770_CLK_OTG_PHY>;
++
++        vcc-supply = <&ldo5>;
++
++        #phy-cells = <0>;
++      };
++    };
 -- 
-2.20.1
+2.26.2
 
