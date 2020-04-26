@@ -2,192 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3BCA1B9248
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 19:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13F311B92B5
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2020 20:15:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726454AbgDZRmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 13:42:40 -0400
-Received: from mailout1.samsung.com ([203.254.224.24]:28219 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726474AbgDZRm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Apr 2020 13:42:28 -0400
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20200426174226epoutp0162ba0decd3e6050bf96cf2dd80d43465~Jb4GasGcQ0140101401epoutp01g
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2020 17:42:26 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20200426174226epoutp0162ba0decd3e6050bf96cf2dd80d43465~Jb4GasGcQ0140101401epoutp01g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1587922946;
-        bh=N5xT+Tor3D+R1tVY/D303rOGE0vB3ZA1jQfCCEqyDjo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EVNJHZ6dWViafdHYMZ1IpxaGiHhzM0stNuPmDeFLZpJnQspxJOvWvXIEoqM++GJWl
-         ygpYvjkscVkPFMHVvjr8syfIb7dbDNpStbS0QuM8J8NVEkbEmCeMsXq5mq8+IZTP0r
-         YZhiY6EfTvEIaIGlUnVsgF8zqPfmBywS2inKgkCs=
-Received: from epsmges5p2new.samsung.com (unknown [182.195.42.74]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20200426174225epcas5p46e8ed90dac5869ac76c9554cb41cf820~Jb4F3I3Cg1741817418epcas5p46;
-        Sun, 26 Apr 2020 17:42:25 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A6.23.10083.108C5AE5; Mon, 27 Apr 2020 02:42:25 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20200426174224epcas5p43a1223a63bb414a5060fa9044681f933~Jb4ExKSu52671526715epcas5p4g;
-        Sun, 26 Apr 2020 17:42:24 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200426174224epsmtrp2fce8c0694fa0809aba8db6b9a53e0c46~Jb4Ewaj651150211502epsmtrp2h;
-        Sun, 26 Apr 2020 17:42:24 +0000 (GMT)
-X-AuditID: b6c32a4a-875ff70000002763-90-5ea5c80128cc
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        68.DC.25866.008C5AE5; Mon, 27 Apr 2020 02:42:24 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200426174222epsmtip10ef095e69617c0abf8d2f7f5c5415534~Jb4C3Asuq2817828178epsmtip1W;
-        Sun, 26 Apr 2020 17:42:22 +0000 (GMT)
-From:   Alim Akhtar <alim.akhtar@samsung.com>
-To:     robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
-        krzk@kernel.org, avri.altman@wdc.com, martin.petersen@oracle.com,
-        kwmad.kim@samsung.com, stanley.chu@mediatek.com,
-        cang@codeaurora.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH v7 10/10] arm64: dts: Add node for ufs exynos7
-Date:   Sun, 26 Apr 2020 23:00:24 +0530
-Message-Id: <20200426173024.63069-11-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200426173024.63069-1-alim.akhtar@samsung.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHec9tx+HqNIUeJyQshFTUMosDeSuEjhES9SXDtJEHFZ2OHa8R
-        aGhaTkUl8Yp28VJGKqZm03Ity0swI1Mz8lJNSCmrKWZZmdtR8tvveZ7//7m8vDQu7yUVdGxC
-        Eq9NUMUrKSnR+dTN3RMN1EfsNcw5sTM1nRQ793OUYi0tDSRb22ci2eHhVgk70f6MYNs+jpHs
-        iL6aYsuHH2OsbryLYhv7/2LsWk+XhK3vmEBBMm6ksADj2pquUtz9ugwue7CX4L7PviW4wvYm
-        xC227eJyDTrsBH1G6hfFx8em8FrvgHPSmNLLJkrTC2l1Y7UoE0055CE7GhhfqL7Rg1lZznQj
-        aC7zzkPSdbYg+D1ZgYnBIoLbeUa06SidMiOxoEewsvSVFINsDEwWE2lVUYwHTJa12/o6Mg7Q
-        t5xjc+PMGwxm7gTnIZp2YALgQx1jTROMK6xZFiRWljH+0GxuxMVhLnC31WBju/X8ULkeEzU7
-        YLDCTIgtXSCrowq37gBMDw2zxVOUaA6G+UsjhMgOMN/fLhFZAYsLjyjrDsDEQb5+v5i+CPU1
-        zzfkgWB4XU1YJTjjBi16b3HUNihYNWOiUwZXcuSi2hWyFkY3nM5QrNORInPwaWlZIr5OEYL5
-        X1WoCLlUbrmgcssFlf+nXUd4E3LiNYI6mhcOaHwS+FQvQaUWkhOivc4nqtuQ7Vu5H+tCDabj
-        RsTQSGkvox/UR8hJVYqQrjYioHGloyw86WaEXBalSr/AaxMjtcnxvGBEzjSh3CkrIUfD5Uy0
-        KomP43kNr92sYrSdIhOFdM/6OnVP5ufa89/G0gKaj8TNoIyHnzVH2SzfmHuKIIE7/GTPSuC4
-        cWYVc/cN8trt6Rw5fVZaF4f/+CI99CfVzz8sp6Qg9VZI4PZTYwNhMSenPdw0oSvvpP5D3UOn
-        kSMy6N4PBHOzoa+Izsiwln5jvA9Z0lRsabz2Ivngy+VyJSHEqPa541pB9Q93C1Q2UgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnkeLIzCtJLcpLzFFi42LZdlhJTpfhxNI4g0tNPBYP5m1js3j58yqb
-        xaf1y1gt5h85x2px/vwGdoubW46yWGx6fI3V4vKuOWwWM87vY7Lovr6DzWL58X9MFv/37GC3
-        WLr1JqMDr8flvl4mj02rOtk8Ni+p92g5uZ/F4+PTWywefVtWMXp83iTn0X6gmymAI4rLJiU1
-        J7MstUjfLoErY2rrObaC/RIVS67NZ2xgvCfcxcjJISFgIjH13hPGLkYuDiGBHYwSV2ceZIVI
-        SEtc3ziBHcIWllj57zk7RFETk0TDy6VgRWwC2hJ3p29hArFFgIqOfGtjBLGZBZ4xSZx6WNrF
-        yMEhLGAn8WiJAEiYRUBV4v+nd2AzeQVsJdY9Wc4MMV9eYvWGA2A2J1D81IxdTCCtQgI2EtPX
-        +0OUC0qcnPmEBSTMLKAusX6eEMQieYnmrbOZJzAKzkJSNQuhahaSqgWMzKsYJVMLinPTc4sN
-        C4zyUsv1ihNzi0vz0vWS83M3MYLjSktrB+OeVR/0DjEycTAeYpTgYFYS4Y0pWRQnxJuSWFmV
-        WpQfX1Sak1p8iFGag0VJnPfrrIVxQgLpiSWp2ampBalFMFkmDk6pBqbjpRez9pXZXl/StjSF
-        w/iZ1+8bmQu+Wc66peX04vc8wbXK9bYvXiZscl4yn20Zt58dT9Tp6PR+Udd1Dks/szFtZ/ac
-        dFft44mJPKKf58ZNTeKYNMeG5drBVa/X9+idSv59Rl84Y8mU/V0HT886sOV6QKxQVcTcCbZa
-        hx/Z8PwxvdmnEnfDSHCCk+NE4Ulcl4MfOtwqtPreKV7wad7bLe1r70u42XCVvpx16OzE0mgt
-        xoPCndruc91ZlUMeBzLI3yjyOBOwpU5FOk6Ye8UBnYlS3vd2ba07Gv/p0nQnYe/H0gkvRMtF
-        Z60vzI2z5W54qKjw2etRok1aeXuDz6n2crG4mx4+Xn+qJ+x3/2t4S0WJpTgj0VCLuag4EQBW
-        zYpKGgMAAA==
-X-CMS-MailID: 20200426174224epcas5p43a1223a63bb414a5060fa9044681f933
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-X-CMS-RootMailID: 20200426174224epcas5p43a1223a63bb414a5060fa9044681f933
-References: <20200426173024.63069-1-alim.akhtar@samsung.com>
-        <CGME20200426174224epcas5p43a1223a63bb414a5060fa9044681f933@epcas5p4.samsung.com>
+        id S1726213AbgDZSPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 14:15:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50756 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726223AbgDZSPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Apr 2020 14:15:16 -0400
+Subject: Re: [GIT PULL] Devicetree fixes for v5.7, take 2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587924916;
+        bh=Fcq6bfIkMCJ3DlIZmp/+Yox3Oru8kye048U154+0d/8=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=ez6PiCuACCAYLvqJhHmXF5sK1y41GiBZRINfJF/pR09JSxJ6X+uQoX0GxemSUHJ+n
+         Lk1OQJyfssbwYEX32xaVLTH5HgcXIQodRMVkG05+efM3yB85IOQiHYH9L1ACWxjh94
+         iVvbU3u3Mrp5JbS+Pk/0e59v3BUJICWmgVywvr8M=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20200425234253.GA32365@bogus>
+References: <20200425234253.GA32365@bogus>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20200425234253.GA32365@bogus>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+ tags/devicetree-fixes-for-5.7-2
+X-PR-Tracked-Commit-Id: 4bc77b2d211e107fa54b1f39cd0d7dac5537b8cb
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 587928829ac2b5f5e0f1e2d3ed5d65a14869df75
+Message-Id: <158792491654.6795.10489802406329422714.pr-tracker-bot@kernel.org>
+Date:   Sun, 26 Apr 2020 18:15:16 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding dt node foe UFS and UFS-PHY for exynos7 SoC.
+The pull request you sent on Sat, 25 Apr 2020 18:42:53 -0500:
 
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-Tested-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
----
- .../boot/dts/exynos/exynos7-espresso.dts      |  4 ++
- arch/arm64/boot/dts/exynos/exynos7.dtsi       | 44 ++++++++++++++++++-
- 2 files changed, 46 insertions(+), 2 deletions(-)
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.7-2
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-index 7af288fa9475..790f12ca8981 100644
---- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-@@ -406,6 +406,10 @@
- 	};
- };
- 
-+&ufs {
-+	status = "okay";
-+};
-+
- &usbdrd_phy {
- 	vbus-supply = <&usb30_vbus_reg>;
- 	vbus-boost-supply = <&usb3drd_boost_5v>;
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 5558045637ac..0c1ebd3ea294 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -220,9 +220,14 @@
- 			#clock-cells = <1>;
- 			clocks = <&fin_pll>, <&clock_top1 DOUT_ACLK_FSYS1_200>,
- 				 <&clock_top1 DOUT_SCLK_MMC0>,
--				 <&clock_top1 DOUT_SCLK_MMC1>;
-+				 <&clock_top1 DOUT_SCLK_MMC1>,
-+				 <&clock_top1 DOUT_SCLK_UFSUNIPRO20>,
-+				 <&clock_top1 DOUT_SCLK_PHY_FSYS1>,
-+				 <&clock_top1 DOUT_SCLK_PHY_FSYS1_26M>;
- 			clock-names = "fin_pll", "dout_aclk_fsys1_200",
--				      "dout_sclk_mmc0", "dout_sclk_mmc1";
-+				      "dout_sclk_mmc0", "dout_sclk_mmc1",
-+				      "dout_sclk_ufsunipro20", "dout_sclk_phy_fsys1",
-+				      "dout_sclk_phy_fsys1_26m";
- 		};
- 
- 		serial_0: serial@13630000 {
-@@ -601,6 +606,41 @@
- 			};
- 		};
- 
-+		ufs: ufs@15570000 {
-+			compatible = "samsung,exynos7-ufs";
-+			reg = <0x15570000 0x100>,  /* 0: HCI standard */
-+				<0x15570100 0x100>,  /* 1: Vendor specificed */
-+				<0x15571000 0x200>,  /* 2: UNIPRO */
-+				<0x15572000 0x300>;  /* 3: UFS protector */
-+			reg-names = "hci", "vs_hci", "unipro", "ufsp";
-+			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clock_fsys1 ACLK_UFS20_LINK>,
-+				<&clock_fsys1 SCLK_UFSUNIPRO20_USER>;
-+			clock-names = "core_clk", "sclk_unipro_main";
-+			freq-table-hz = <0 0>, <0 0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
-+			pclk-freq-avail-range = <70000000 133000000>;
-+			phys = <&ufs_phy>;
-+			phy-names = "ufs-phy";
-+			status = "disabled";
-+		};
-+
-+		ufs_phy: ufs-phy@0x15571800 {
-+			compatible = "samsung,exynos7-ufs-phy";
-+			reg = <0x15571800 0x240>;
-+			reg-names = "phy-pma";
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			#phy-cells = <0>;
-+			clocks = <&clock_fsys1 SCLK_COMBO_PHY_EMBEDDED_26M>,
-+				 <&clock_fsys1 PHYCLK_UFS20_RX1_SYMBOL_USER>,
-+				 <&clock_fsys1 PHYCLK_UFS20_RX0_SYMBOL_USER>,
-+				 <&clock_fsys1 PHYCLK_UFS20_TX0_SYMBOL_USER>;
-+			clock-names = "ref_clk", "rx1_symbol_clk",
-+				      "rx0_symbol_clk",
-+				      "tx0_symbol_clk";
-+		};
-+
- 		usbdrd_phy: phy@15500000 {
- 			compatible = "samsung,exynos7-usbdrd-phy";
- 			reg = <0x15500000 0x100>;
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/587928829ac2b5f5e0f1e2d3ed5d65a14869df75
+
+Thank you!
+
 -- 
-2.17.1
-
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker
