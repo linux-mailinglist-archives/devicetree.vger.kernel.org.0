@@ -2,168 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D391BA04E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 11:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA16E1B9F9C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 11:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726769AbgD0JsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 05:48:22 -0400
-Received: from 60-251-196-230.HINET-IP.hinet.net ([60.251.196.230]:10827 "EHLO
-        ironport.ite.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726621AbgD0JsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 05:48:21 -0400
-IronPort-SDR: Nb5hj9NuK3oXq9/IH8bi5DrL+aq3AKGZjRkksAkSBaKz+EcT0sqQO+OdCruSL+IKoFZpMrd5U6
- kZ4LODGVFRMQ==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 27 Apr 2020 17:33:10 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (csbmail1.internal.ite.com.tw [192.168.65.58])
-        by mse.ite.com.tw with ESMTP id 03R9X6ei046727;
-        Mon, 27 Apr 2020 17:33:06 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
- CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.1713.5; Mon, 27 Apr 2020 17:33:05 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH v9 2/3] dt-bindings: Add binding for IT6505.
-Date:   Mon, 27 Apr 2020 17:16:53 +0800
-Message-ID: <1587979103-5630-3-git-send-email-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1587979103-5630-1-git-send-email-allen.chen@ite.com.tw>
-References: <1587979103-5630-1-git-send-email-allen.chen@ite.com.tw>
+        id S1726892AbgD0JRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 05:17:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55482 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726815AbgD0JRc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Apr 2020 05:17:32 -0400
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D0E8D2075B;
+        Mon, 27 Apr 2020 09:17:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587979051;
+        bh=0JQfGwBPW8HjbVmB+3oeIbQiiUMVtZ8rLy7VFh6Z++Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wFnNaMz3e85JoZrGYy0P3ue0v6+HWvyEG+x7gf1XtsPRx/14qvkvLyidqZmrJYh6y
+         3DybE5nYwAfsVLsbXy3YYIMf+hXIL9+GrYq/BJ3WR7bPiIbl/l0eUDDEG2tbIp/xPN
+         iWK73XUxIvpIbvyfbZJ6KyHK00ORj++O9r87ap1g=
+Received: by mail-lf1-f47.google.com with SMTP id m2so13175365lfo.6;
+        Mon, 27 Apr 2020 02:17:30 -0700 (PDT)
+X-Gm-Message-State: AGi0PuY0NPHUTg0GmRmwD8bmGA4C7/JaP4JdS+mECHgEWecX9IC8VJpp
+        o1XDpxQwZ5AtLUgnoRFZW4hkRf8CYpy0cHJ3KkA=
+X-Google-Smtp-Source: APiQypJtNE14qxYJUDlD1WTj8JHtL5qxZwtuov5fG7rWvNuBd12rJqXBM0FEM99dbe7wu5CMLVlzgmD7014xwvl4734=
+X-Received: by 2002:ac2:4a9d:: with SMTP id l29mr14131057lfp.4.1587979048894;
+ Mon, 27 Apr 2020 02:17:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.70.14]
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- CSBMAIL1.internal.ite.com.tw (192.168.65.58)
-X-TM-SNTS-SMTP: 557488118687ECA03E3E140BD109D111E633E24110D61BF46727D3D572AB26702000:8
-X-MAIL: mse.ite.com.tw 03R9X6ei046727
-To:     unlisted-recipients:; (no To-header on input)
+References: <20200427073132.29997-3-wens@kernel.org> <684132b8-4a84-8295-474b-38ccb992bba7@gmail.com>
+In-Reply-To: <684132b8-4a84-8295-474b-38ccb992bba7@gmail.com>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Mon, 27 Apr 2020 17:17:17 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66Piu5_2bdqvWV3eEn2Se_y1MNKWvvYBv_J7DA-8jBhbQ@mail.gmail.com>
+Message-ID: <CAGb2v66Piu5_2bdqvWV3eEn2Se_y1MNKWvvYBv_J7DA-8jBhbQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: rk3399-roc-pc: Fix MMC
+ numbering for LED triggers
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>, dmurphy@ti.com,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        jacek.anaszewski@gmail.com,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a DT binding documentation for IT6505.
+On Mon, Apr 27, 2020 at 4:57 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>
+> Hi Chen-Yu,
+>
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > With SDIO now enabled, the numbering of the existing MMC host controllers
+> > gets incremented by 1, as the SDIO host is the first one.
+> >
+> > Increment the numbering of the MMC LED triggers to match.
+> >
+> > Fixes: cf3c5397835f ("arm64: dts: rockchip: Enable sdio0 and uart0 on rk3399-roc-pc-mezzanine")
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts | 8 ++++++++
+> >  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi          | 4 ++--
+> >  2 files changed, 10 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts
+> > index 2acb3d500fb9..f0686fc276be 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts
+> > @@ -38,6 +38,10 @@ vcc3v3_pcie: vcc3v3-pcie {
+> >       };
+> >  };
+> >
+> > +&diy_led {
+> > +     linux,default-trigger = "mmc2";
+> > +};
+> > +
+> >  &pcie_phy {
+> >       status = "okay";
+> >  };
+> > @@ -91,3 +95,7 @@ &uart0 {
+> >       pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
+> >       status = "okay";
+> >  };
+> > +
+> > +&yellow_led {
+> > +     linux,default-trigger = "mmc1";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > index 9f225e9c3d54..bc060ac7972d 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > @@ -70,14 +70,14 @@ work-led {
+> >                       linux,default-trigger = "heartbeat";
+> >               };
+> >
+>
+> > -             diy-led {
+> > +             diy_led: diy-led {
+>
+> This changes an existing nodename into something that is still not the
+> preferred way. In the current Rockchip dts there are nodenames like
+> 'work', 'yellow' that causing warnings with the command:
 
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
----
-cros-ec does not have an associated driver that uses the standard Linux USB-C driver class.
-extcon is used to model the Type-C connector.(crbug.com/982932)
----
- .../bindings/display/bridge/ite,it6505.yaml        | 91 ++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+This doesn't change the node name at all. It only adds a label.
+If it doesn't pass the check now, it didn't pass the check before.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-new file mode 100644
-index 00000000..13feeef
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-@@ -0,0 +1,91 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ite,it6505.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ITE it6505 Device Tree Bindings
-+
-+maintainers:
-+  - Allen Chen <allen.chen@ite.com.tw>
-+
-+description: |
-+  The IT6505 is a high-performance DisplayPort 1.1a transmitter,
-+  fully compliant with DisplayPort 1.1a, HDCP 1.3 specifications.
-+  The IT6505 supports color depth of up to 36 bits (12 bits/color)
-+  and ensures robust transmission of high-quality uncompressed video
-+  content, along with uncompressed and compressed digital audio content.
-+
-+  Aside from the various video output formats supported, the IT6505
-+  also encodes and transmits up to 8 channels of I2S digital audio,
-+  with sampling rate up to 192kHz and sample size up to 24 bits.
-+  In addition, an S/PDIF input port takes in compressed audio of up to
-+  192kHz frame rate.
-+
-+  Each IT6505 chip comes preprogrammed with an unique HDCP key,
-+  in compliance with the HDCP 1.3 standard so as to provide secure
-+  transmission of high-definition content. Users of the IT6505 need not
-+  purchase any HDCP keys or ROMs.
-+
-+properties:
-+  compatible:
-+    const: ite,it6505
-+
-+  ovdd-supply:
-+    maxItems: 1
-+    description: I/O voltage
-+
-+  pwr18-supply:
-+    maxItems: 1
-+    description: core voltage
-+
-+  interrupts:
-+    maxItems: 1
-+    description: interrupt specifier of INT pin
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: gpio specifier of RESET pin
-+
-+  extcon:
-+    maxItems: 1
-+    description: extcon specifier for the Power Delivery
-+
-+  port:
-+    type: object
-+    description: A port node pointing to DPI host port node
-+
-+required:
-+  - compatible
-+  - ovdd-supply
-+  - pwr18-supply
-+  - interrupts
-+  - reset-gpios
-+  - extcon
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c3 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        dp-bridge@5c {
-+            compatible = "ite,it6505";
-+            interrupts = <152 IRQ_TYPE_EDGE_FALLING 152 0>;
-+            reg = <0x5c>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&it6505_pins>;
-+            ovdd-supply = <&mt6358_vsim1_reg>;
-+            pwr18-supply = <&it6505_pp18_reg>;
-+            reset-gpios = <&pio 179 1>;
-+            extcon = <&usbc_extcon>;
-+
-+            port {
-+                it6505_in: endpoint {
-+                    remote-endpoint = <&dpi_out>;
-+                };
-+            };
-+        };
-+    };
--- 
-1.9.1
+I just realized that the footnote I added before is gone because I
+regenerated the patches. The original footnote was something along
+the lines of:
 
+I opted to not change the node names nor the labels as the discussion
+had not concluded. The other reason being that people may have scripts
+or device tree overlays depending on the existing node names.
+
+Previously I asked the following but got no response:
+
+    Is changing this after it has been in some kernel releases OK? Wouldn't
+    it be considered a break of sysfs ABI?
+
+    Also, is there some guideline on how to name the labels? For sunxi we've
+    been doing "${vendor}:${color}:${function}" since forever.
+
+    As far as I can tell, the hardware vendor [1] has no specific uses for
+    these two (red and yellow) LEDs designed in. And their GPIO lines are
+    simply labeled "DIY" (for the red one) and "YELLOW". So I'm not sure
+    if putting "our" interpretations and the default-trigger into the
+    label is wise.
+
+    For reference, the green one has its GPIO line labeled "WORK", and their
+    intention from [1] is to have it as some sort of power / activity indicator.
+    Hence it is named / labeled "work".
+
+    As for the node names, I think we can keep it as is for now. It's not
+    the preferred form, but there's really no need to change it either.
+    And some overlay or script might actually expect that name.
+
+> make -k ARCH=arm dtbs_check
+>
+> Could you give a generic guide line/example, so all these changes are
+> treated the same way? As if the naming follows the preferred 'led-0' line.
+
+I'm not sure what you are asking for.
+
+ChenYu
+
+> >                       label = "red:diy";
+> >                       gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
+> >                       default-state = "off";
+> >                       linux,default-trigger = "mmc1";
+> >               };
+> >
+> > -             yellow-led {
+> > +             yellow_led: yellow-led {
+> >                       label = "yellow:yellow-led";
+> >                       gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
+> >                       default-state = "off";
+> > --
+> > 2.26.0
+>
