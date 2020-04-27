@@ -2,136 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B4D41BAE4F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 21:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0870A1BAE99
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 22:00:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbgD0Tow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 15:44:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55778 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726205AbgD0Tow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 15:44:52 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9EFC0610D5;
-        Mon, 27 Apr 2020 12:44:51 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id s10so14454413edy.9;
-        Mon, 27 Apr 2020 12:44:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VQcsbuP3pB8CDC+cItJJV21Dnh5PuIRR4nPKttHGjzE=;
-        b=otJ/1XsxOtfHp14bHd8Kf93q9ptKtRm3hglsJawWMzxNHKYCD7z6ECVnscbS/vBVha
-         Zs0kLO2wdbw68nXZrww0yrjzXzy++SVTTkfKjR+ovO1otx1+cGbTyeruo2DDg0bJrb2K
-         /1lk1vT5EhWAFPpVmqCweZ7vf5ZgmEuzHwCe7focxGC0MWEXvhLb+q5NBFzpRnWcTNWh
-         XEvqoHCsoVjLAMeFAwBsLrDGX41nzUvanE6tM370s5f4+IZl5CFfYCvEdjIv44JBjrK1
-         q0YpwfJ50+lUfdzfPcXiUwiryMAQY8+BXLGb54Y/dLv/7ruwUlDi36CBtdHTZYZrvUf7
-         u0Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VQcsbuP3pB8CDC+cItJJV21Dnh5PuIRR4nPKttHGjzE=;
-        b=GxksCuHzilDeMek4I5O0xxjEhBNgPQi1KiavkGqfh30BwqyQ7EetqwcABqvYC2jXkj
-         A63r7AI3HYtYgjnAXXNWTdyBQEGscgc1XackiFdATymcliMpP2M8bkXW5I7NszcqeGZd
-         ocs/Qhyr146aguf8zB+6caofWmD0VPDGin6Y+FaLqm01PpdwlR+NHbcGJje4krl+oDmr
-         CJCBJCK/Q1JPtxHEGUUSxNo6unwAh0HCGubQZ/R2NDgZ5rttOgaA9zGjNjjy/P2AvDaN
-         tOC6EFTozP//XezFaohkQD8zkFXk1yZDsMC4sJKIjGuDm34O35MjROEPQ59JKaHPsoLe
-         p4DQ==
-X-Gm-Message-State: AGi0PubIsjWHjadwQ9FhSKxA4lbkx9DxJIKE5PkJKLHordmCc6+2lWPb
-        ATr/4D0WGCt7dYSuz9vnNu1AAMjCNHbHmVTz66w=
-X-Google-Smtp-Source: APiQypKdvwLdxCF/E1pxaH6di+8W+pTb7+5wMbfJFWXAgXSq3W+jSu6jwARdIVsNAY136N7lf7NMNpJEjCTrQ7cHC7k=
-X-Received: by 2002:a50:f61c:: with SMTP id c28mr18663659edn.365.1588016690108;
- Mon, 27 Apr 2020 12:44:50 -0700 (PDT)
+        id S1726233AbgD0UAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 16:00:54 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:48608 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726666AbgD0UAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 16:00:54 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 499wcw00Whz1s0RZ;
+        Mon, 27 Apr 2020 22:00:47 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 499wcv5FBWz1r5QD;
+        Mon, 27 Apr 2020 22:00:47 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id UwhZWkhUHdp5; Mon, 27 Apr 2020 22:00:45 +0200 (CEST)
+X-Auth-Info: JMpryoad1q4gMYykW9V1aNyztGd9wWfmqkL03f1OojI=
+Received: from [IPv6:::1] (unknown [195.140.253.167])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon, 27 Apr 2020 22:00:45 +0200 (CEST)
+Subject: Re: [PATCH v2 04/12] mtd: rawnand: stm32_fmc2: manage all errors
+ cases at probe time
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Christophe Kerello <christophe.kerello@st.com>, richard@nod.at,
+        vigneshr@ti.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, tony@atomide.com,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org
+References: <1586966256-29548-1-git-send-email-christophe.kerello@st.com>
+ <1586966256-29548-5-git-send-email-christophe.kerello@st.com>
+ <20200427194747.224a2402@xps13>
+ <40a9bac7-9ed4-b781-f2c2-2d90b4e82749@denx.de>
+ <20200427200848.722f4c56@xps13>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <3527f3b8-225d-6e5a-dd8a-0421d475f70b@denx.de>
+Date:   Mon, 27 Apr 2020 21:46:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-References: <20200328003249.1248978-1-martin.blumenstingl@googlemail.com>
- <20200328003249.1248978-4-martin.blumenstingl@googlemail.com> <CAPDyKFqsG4kyABmxn__gAbe4fBmuZ=4mdFpRaCL0ih7QZEhwzQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFqsG4kyABmxn__gAbe4fBmuZ=4mdFpRaCL0ih7QZEhwzQ@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 27 Apr 2020 21:44:39 +0200
-Message-ID: <CAFBinCCr2yk5WOG_Y7E14ekpkOsyurkCfYBO0DOWg1MSjvxaTw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] mmc: host: meson-mx-sdhc: new driver for the
- Amlogic Meson SDHC host
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        lnykww@gmail.com, yinxin_1989@aliyun.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200427200848.722f4c56@xps13>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ulf,
-
-thank you for looking into this!
-
-On Mon, Apr 27, 2020 at 9:20 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+On 4/27/20 8:08 PM, Miquel Raynal wrote:
 [...]
-> > +static void meson_mx_sdhc_wait_cmd_ready(struct mmc_host *mmc)
-> > +{
-> > +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
-> > +       u32 stat, esta;
-> > +       int ret;
-> > +
-> > +       ret = regmap_read_poll_timeout(host->regmap, MESON_SDHC_STAT, stat,
-> > +                                      !(stat & MESON_SDHC_STAT_CMD_BUSY), 1,
-> > +                                      100000);
->
-> Please use defines for timeout values.
-I'll take care of this here and all other places which you have found
+>>>>  	/* FMC2 init routine */
+>>>>  	stm32_fmc2_init(fmc2);
+>>>> @@ -1997,7 +2001,7 @@ static int stm32_fmc2_probe(struct platform_device *pdev)
+>>>>  	/* Scan to find existence of the device */
+>>>>  	ret = nand_scan(chip, nand->ncs);
+>>>>  	if (ret)
+>>>> -		goto err_scan;
+>>>> +		goto err_dma_setup;
+>>>>  
+>>>>  	ret = mtd_device_register(mtd, NULL, 0);
+>>>>  	if (ret)
+>>>> @@ -2010,7 +2014,7 @@ static int stm32_fmc2_probe(struct platform_device *pdev)
+>>>>  err_device_register:
+>>>>  	nand_cleanup(chip);
+>>>>  
+>>>> -err_scan:
+>>>> +err_dma_setup:
+>>>>  	if (fmc2->dma_ecc_ch)
+>>>>  		dma_release_channel(fmc2->dma_ecc_ch);
+>>>>  	if (fmc2->dma_tx_ch)
+>>>> @@ -2021,6 +2025,7 @@ static int stm32_fmc2_probe(struct platform_device *pdev)
+>>>>  	sg_free_table(&fmc2->dma_data_sg);
+>>>>  	sg_free_table(&fmc2->dma_ecc_sg);
+>>>>  
+>>>> +err_clk_disable:
+>>>>  	clk_disable_unprepare(fmc2->clk);
+>>>>  
+>>>>  	return ret;  
+>>>
+>>> I didn't spot it during my earlier reviews but I really prefer using
+>>> labels explaining what you do than having the same name of the function
+>>> which failed. This way you don't have to rework the error path when
+>>> you handle an additional error.
+>>>
+>>> So, would you mind doing this in two steps:
+>>>
+>>> 1/
+>>> Replace
+>>>
+>>>     err_scan:
+>>>
+>>> with, eg.
+>>>
+>>>     release_dma_objs:  
+>>
+>> The ^err_ prefix in failpath labels is useful, since it's easily
+>> possible to match on it with regexes ; not so much on arbitrary label name.
+> 
+> I guess so, but is it actually useful to catch labels in a regex? (real
+> question)
 
-[...]
-> > +       if (cmd->data)
-> > +               host->platform->set_pdma(mmc);
-> > +
-> > +       if (host->platform->wait_before_send)
-> > +               host->platform->wait_before_send(mmc);
-> > +
-> > +       regmap_write(host->regmap, MESON_SDHC_SEND, send);
->
-> Isn't there a configurable timeout to set for the command?
->
-> I mean the driver sets mmc->max_busy_timeout to 30s in ->probe(), but
-> can the timeout be configured to a lower value?
-there's MESON_SDHC_CTRL_RX_TIMEOUT and MESON_SDHC_CTRL_RX_PERIOD
-here's what the datasheet has to say about them:
-- rx_timeout(cmd or wcrc Receiving Timeout, default 64)
-- rc_period(Period between response/cmd and default next cmd,default
-8) - I'm not even sure if this is related somehow
+I find it useful to have a unified way to find those labels, e.g.
+err_because_foo:
+err_because_bar:
+err_last_one:
+is much nicer than:
+foo_failed:
+bar_also_failed:
+its_total_randomness:
 
-if you have a specific test-case for me to provoke these timeouts I
-can try playing around with these values
-otherwise we have to ask Jianxin and see whether he can get some
-information about this from the internal team at Amlogic
+> Any way I suppose catching ":\n" is already a good approximation to
+> find labels?
 
-[...]
-> > +       mmc->caps |= MMC_CAP_ERASE | MMC_CAP_HW_RESET;
->
-> Should you also set MMC_CAP_WAIT_WHILE_BUSY? It sounded like the
-> driver supported this.
-I can try setting it.
-From our previous discussion (on the meson-mx-sdio driver) I have
-learned that eMMC will be a good test-case for it ;-)
+Not very practical with git grep (^err.*: works nicely though)
 
-[...]
-> FYI: I left out all comments related to the clock provider
-> initialization. I think it makes better sense to review that code,
-> after you have converted to use the devm_clk_hw_register() and avoid
-> registering a separate driver for it.
-yes, that makes sense
-I expect the code to be easier since it'll be one big driver with the
-next version (so no more platform device allocation, etc.)
+>> btw would it make sense to split the first three patches of this series
+>> into a separate series ? This rawnand part seems more like an unrelated
+>> cleanup.
+> 
+> As it seems that the MFD discussion can take longer, then I would say
+> yes, at least for the cleanup/misc changes part.
+Right
 
-> Other than the minor comments, this looks good to me.
-great - it would be great if this could finally make it into v5.8
-
-
-Martin
+-- 
+Best regards,
+Marek Vasut
