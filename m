@@ -2,121 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 357681BA06C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 11:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 876AA1BA0B2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 12:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbgD0JvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 05:51:05 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:60140 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726485AbgD0JvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 05:51:05 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 046F01C0244; Mon, 27 Apr 2020 11:51:03 +0200 (CEST)
-Date:   Mon, 27 Apr 2020 11:51:02 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-leds@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 2/2] leds: add sgm3140 driver
-Message-ID: <20200427095102.GA21572@duo.ucw.cz>
-References: <20200421191354.1443017-1-luca@z3ntu.xyz>
- <20200421191354.1443017-3-luca@z3ntu.xyz>
+        id S1726879AbgD0KBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 06:01:07 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:57970 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726243AbgD0KBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Apr 2020 06:01:07 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03R9w61t018343;
+        Mon, 27 Apr 2020 12:00:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=vRrhq9Wy/QYvVJWvXZIasd5JyX/yiLS74yAccMkmaf0=;
+ b=UQg6by3AJhirVkC+Z222kbrTa95g0DgcJkkMATJNElRc+Hmh+cRaqq8AMKrpnOxkBC++
+ sS1eEmku4dxKXc3AnSXR6iViTqOX23WNtTKfWmJ4NM1BA7n4FIrFE1RD/tmtWdgTeNgz
+ m7izw5ADzdpvxyX0R+F2xuS7XWACBF8F6gXhKOkVs+uzhh+jYb87DGG83IkY3CTkjIFX
+ DdZQwr0yV31Z9UcQyjafufqRWpK2g6IX0oh8D11KWAyich5XoDJKTNSE5cTV0M7nSfFx
+ E538B1GN5v98+BmBMo4wrZo9Q0o6ZYMunxh28hm+Fzcnm3L+EsIWGp6CMZTWdVdTiiA4 9Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 30mhjwh4u5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Apr 2020 12:00:46 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 55CC9100038;
+        Mon, 27 Apr 2020 12:00:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 354902B8A30;
+        Mon, 27 Apr 2020 12:00:44 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG5NODE3.st.com (10.75.127.15)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 27 Apr 2020 12:00:43
+ +0200
+From:   Christophe Roullier <christophe.roullier@st.com>
+To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <christophe.roullier@st.com>, <andrew@lunn.ch>
+Subject: [PATCH v3 0/1] net: ethernet: stmmac: simplify phy modes management for stm32
+Date:   Mon, 27 Apr 2020 12:00:37 +0200
+Message-ID: <20200427100038.19252-1-christophe.roullier@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="pWyiEgJYm5f9v55/"
-Content-Disposition: inline
-In-Reply-To: <20200421191354.1443017-3-luca@z3ntu.xyz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-27_05:2020-04-24,2020-04-27 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+No new feature, just to simplify stm32 part to be easier to use.
+Add by default all Ethernet clocks in DT, and activate or not in function
+of phy mode, clock frequency, if property "st,ext-phyclk" is set or not.
+Keep backward compatibility
 
---pWyiEgJYm5f9v55/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+version 3:
+Add acked from Alexandre Torgue
+Rebased on top of v5.7-rc2
 
-Hi!
+Christophe Roullier (1):
+  net: ethernet: stmmac: simplify phy modes management for stm32
 
-> Add a driver for the SGMICRO SGM3140 Buck/Boost Charge Pump LED driver.
->=20
-> This device is controlled by two GPIO pins, one for enabling and the
-> second one for switching between torch and flash mode.
->=20
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 74 +++++++++++--------
+ 1 file changed, 44 insertions(+), 30 deletions(-)
 
-Thanks, applied, but... I may remove it again.
+-- 
+2.17.1
 
-> +++ b/drivers/leds/leds-sgm3140.c
-> @@ -0,0 +1,320 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-Would you consider GPL-2+?
-
-> +#if IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS)
-> +static void sgm3140_init_v4l2_flash_config(struct sgm3140 *priv,
-
-Ok.
-
-> +static int sgm3140_probe(struct platform_device *pdev)
-> +{
-=2E..
-> +	led_cdev->brightness_set_blocking =3D sgm3140_brightness_set;
-> +	led_cdev->max_brightness =3D LED_ON;
-
-Don't do this, unless you really have 255 levels of brightness.
-
-> +	/* Create V4L2 Flash subdev */
-> +	priv->v4l2_flash =3D v4l2_flash_init(&pdev->dev,
-> +					   child_node,
-> +					   fled_cdev, NULL,
-> +					   &v4l2_sd_cfg);
-> +	if (IS_ERR(priv->v4l2_flash)) {
-
-Does this need some #ifdef guards?
-
-> +		ret =3D PTR_ERR(priv->v4l2_flash);
-> +		goto err;
-> +	}
-> +
-> +	return ret;
-
-Should this return 0?
-
-> +err:
-> +	fwnode_handle_put(child_node);
-> +	return ret;
-> +}
-
-Does non-error path needs handle_put, too?
-
-Best regards,
-									Pavel
-
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---pWyiEgJYm5f9v55/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXqarBgAKCRAw5/Bqldv6
-8tcQAKCWUTuRy7TvgT2+F1Aj1oFotUcn9wCgvlDQBHg5Trhv/KEKFw2CkG70ke8=
-=EEZa
------END PGP SIGNATURE-----
-
---pWyiEgJYm5f9v55/--
