@@ -2,102 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C53F81B94A2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 01:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86CE21B9767
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 08:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726304AbgDZXZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Apr 2020 19:25:26 -0400
-Received: from muru.com ([72.249.23.125]:51484 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726202AbgDZXZ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Apr 2020 19:25:26 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id CD61C8107;
-        Sun, 26 Apr 2020 23:26:11 +0000 (UTC)
-Date:   Sun, 26 Apr 2020 16:25:20 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Pavel Machek <pavel@denx.de>, Johan Hovold <johan@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
-        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Peter Hurley <peter@hurleysoftware.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCHv6 0/4] n_gsm serdev support and protocol driver for
- droid4 modem
-Message-ID: <20200426232520.GP37466@atomide.com>
-References: <20200421232752.3070-1-tony@atomide.com>
- <20200423114326.GQ18608@localhost>
- <20200424215040.GA14087@amd>
- <20200424221515.GM37466@atomide.com>
- <20200426200718.GA22980@amd>
+        id S1726537AbgD0G0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 02:26:37 -0400
+Received: from mail1.bemta25.messagelabs.com ([46.226.52.112]:62495 "EHLO
+        mail1.bemta25.messagelabs.com" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726407AbgD0G0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Apr 2020 02:26:36 -0400
+Received: from [100.112.198.136] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-1.bemta.az-b.eu-west-1.aws.symcld.net id 95/2A-39246-71B76AE5; Mon, 27 Apr 2020 06:26:31 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAIsWRWlGSWpSXmKPExsVy8MN7XV3x6mV
+  xBvf+CVnMP3KO1eLwoheMFjc/fWO1uLxrDpvF0usXmSxa9x5hd2DzWDNvDaPHzll32T02repk
+  8/i8SS6AJYo1My8pvyKBNePthXa2ggOaFW87NBsYdyl1MXJxCAmsZZTYsGgLaxcjJ5BTKTH15
+  TtmEJtXIEJiytXjYDangJnEinWvmSBqTCW239rADmKzCehIPJq5HizOIqAq0bVtFZgtLBAqsf
+  PQezYQW0SgXOLAx5msIMuYBaYxSuz5eBhqgaDEyZlPWEBsZgEJiYMvXjBDLNCSOLdmFeMERt5
+  ZSMpmISlbwMi0itEiqSgzPaMkNzEzR9fQwEDX0NBI19DSXNfQzEQvsUo3SS+1VLc8tbhE11Av
+  sbxYr7gyNzknRS8vtWQTIzBYUwqOLtnBuG35e71DjJIcTEqivHqxy+KE+JLyUyozEosz4otKc
+  1KLDzHKcHAoSfC+rgTKCRalpqdWpGXmACMHJi3BwaMkwlsKkuYtLkjMLc5Mh0idYjTm+L1hyS
+  JmjgdX761iFmLJy89LlRLnVa4CKhUAKc0ozYMbBIvoS4yyUsK8jAwMDEI8BalFuZklqPKvGMU
+  5GJWEeSeBLOTJzCuB2/cK6BQmoFOq5BeDnFKSiJCSamAK+/xD2yXgCcvLWQZWh1enKfPW+Jb0
+  sTU5/fpav/uv3jO235Vs070smfaJGkecu7TD66/oe4H/Yh1zZW/yN+zfcf0r07U7MzVnxOTnR
+  7/W2JiY/mvDZ++AyqfThH0rt9T52zGYxGjLl6y2svn8lvnXXUndY3Prv7irsJZZmAjqhyq+Xf
+  oy+1JWQ9dH1p8PM74GbEz9Hs0hv7/q4vz+HZm7Zhds5b2zUZyB6z+Tm9JPo0f7Jh3+xFSbZxt
+  /a/rUO8zHa2znTFjgtzxR+FfAUovUiPLUYN8t5xmWl99X3Mm43859AvOBhRkz7pYcqZ5fnN7T
+  wed1/0PilbgdB/84rX19/Ipf5eppZoo/eXk7GC8rsRRnJBpqMRcVJwIA8JlLz2MDAAA=
+X-Env-Sender: roy.im.opensource@diasemi.com
+X-Msg-Ref: server-19.tower-292.messagelabs.com!1587968789!3549008!4
+X-Originating-IP: [193.240.239.45]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.50.1; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 23462 invoked from network); 27 Apr 2020 06:26:31 -0000
+Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
+  by server-19.tower-292.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 27 Apr 2020 06:26:31 -0000
+Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
+ NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
+ 14.3.468.0; Mon, 27 Apr 2020 08:26:29 +0200
+Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
+ DE82F13F673; Mon, 27 Apr 2020 15:26:27 +0900 (KST)
+Message-ID: <05548b281e4aca82fb10bc03dd202f2b50e27d89.1587949032.git.Roy.Im@diasemi.com>
+In-Reply-To: <cover.1587949032.git.Roy.Im@diasemi.com>
+References: <cover.1587949032.git.Roy.Im@diasemi.com>
+From:   Roy Im <roy.im.opensource@diasemi.com>
+Date:   Mon, 27 Apr 2020 09:57:11 +0900
+Subject: [RESEND PATCH V11 2/3] dt-bindings: input: Add document bindings for
+ DA7280
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Support Opensource <support.opensource@diasemi.com>,
+        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200426200718.GA22980@amd>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Pavel Machek <pavel@ucw.cz> [200426 20:08]:
-> Hi!
-> 
-> > > > > Here's v4 set of n_gsm serdev support patches, and the related protocol
-> > > > > driver for the modem found on Motorola Mapphone phones and tablets
-> > > > > like droid4.
-> > > > > 
-> > > > > This series only adds basic character device support for the serdev
-> > > > > driver. Other serdev consumer drivers for specific devices will be
-> > > > > posted separately.
-> > > > 
-> > > > I'm still missing an architectural (design) overview here -- reviewer
-> > > > time is a scarce resource.
-> > > > 
-> > > > I also suggested earlier that you include, at least as an RFC, one or
-> > > > more of your child-device drivers so that we can see how this ends up
-> > > > being used in the end (including an example devicetree).
-> > > 
-> > > Note that this is useful on its own: we have ofonod running on the top
-> > > of this doing calls and SMSes.
-> > 
-> > Yup.
-> > 
-> > > Tony: I know you have drivers depending on this somewhere (audio
-> > > routing and GPS), but I can't find them. It is not droid4-pending-v5.6
-> > > AFAICT. Do you have a pointer / could you publish them somewhere?
-> > 
-> > Hmm they should be there in droid4-pending-v5.6 branch [0]:
-> > 
-> > $ git log --abbrev=12 --pretty=format:"%h (\"%s\")" \
-> > 	v5.6..droid4-pending-v5.6 | grep -i -e gsm -e mot -e mdm
-> > e09590a260a4 ("mfd: motmdm: Fix oops on unload of motorola-mdm")
-> > f9252f9ff6bd ("mfd: motmdm: Revert bad list change")
-> > d733dcaf4416 ("mfd: motmdm: Fix issue with receiving data before ddata is set")
-> > 452d2b5d4c95 ("n_gsm: Build fixes for make randconfig build")
-> > 6882b27ea92a ("phy: mapphone-mdm6600: Fix write timeouts with shorter GPIO toggle interval")
-> > 58ff58c4b520 ("mfd: motmdm: Add basic DTMF support")
-> > e92b6f30e5ae ("ASoC: audio-graph-card: Add audio mixer for motorold mdm6600")
-> > c2caea5767d5 ("gnss: mot-mdm6600: Add support for Motorola Mapphone MDM6600 modem")
-> > a5f73b7b06f6 ("mfd: motmdm: Add Motorola TS 27.010 serdev driver for devices like droid4")
-> > 6c311d5aeb0a ("dt-bindings: mfd: motmdm: Add binding for motorola-mdm")
-> > cd02274b920e ("tty: n_gsm: Add support for serdev drivers")
-> > a73a48321c98 ("phy: mapphone-mdm6600: Fix timeouts by adding wake-up handling")
-> 
-> Here's better try at getting gnss to work on top of linux-next... but
-> still no luck.
+Add device tree binding information for DA7280 haptic driver.
+Example bindings for DA7280 are added.
 
-Hmm that's about all it should take. Presumably you already tried
-diffing the related files against droid4-pending-v5.6 branch.
+Reviewed-by: Rob Herring <robh@kernel.org>.
 
-I'm moving around things to work with a generic serdev-ngsm.c driver
-so I'm inbetween patches right now and don't have it working either
-probably for a few more days.
+Signed-off-by: Roy Im <roy.im.opensource@diasemi.com>
 
-Regards,
+---
+v11: No changes.
+v10: No changes.
+v9: No changes.
+v8: Updated descriptions for new properties.
+v7: No changes.
+v6: No changes.
+v5: Updated descriptions and fixed errors.
+v4: Fixed commit message, properties.
+v3: Fixed subject format.
+v2: No changes
 
-Tony
+
+ .../devicetree/bindings/input/dlg,da7280.txt       | 109 +++++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
+
+diff --git a/Documentation/devicetree/bindings/input/dlg,da7280.txt b/Documentation/devicetree/bindings/input/dlg,da7280.txt
+new file mode 100644
+index 0000000..e6b719d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/dlg,da7280.txt
+@@ -0,0 +1,109 @@
++Dialog Semiconductor DA7280 Haptics bindings
++
++Required properties:
++- compatible: Should be "dlg,da7280".
++- reg: Specifies the I2C slave address.
++
++- interrupt-parent : Specifies the phandle of the interrupt controller to
++  which the IRQs from DA7280 are delivered to.
++
++- dlg,actuator-type: Set Actuator type. it should be one of:
++  "LRA" - Linear Resonance Actuator type.
++  "ERM-bar" - Bar type Eccentric Rotating Mass.
++  "ERM-coin" - Coin type Eccentric Rotating Mass.
++
++- dlg,const-op-mode: Haptic operation mode for FF_CONSTANT.
++  Possible values:
++	1 - Direct register override(DRO) mode triggered by i2c(default),
++	2 - PWM data source mode controlled by PWM duty,
++- dlg,periodic-op-mode: Haptic operation mode for FF_PERIODIC.
++  Possible values:
++	1 - Register triggered waveform memory(RTWM) mode, the pattern
++	    assigned to the PS_SEQ_ID played as much times as PS_SEQ_LOOP,
++	2 - Edge triggered waveform memory(ETWM) mode, external GPI(N)
++	    control are required to enable/disable and it needs to keep
++	    device enabled by sending magnitude (X > 0),
++	    the pattern is assigned to the GPI(N)_SEQUENCE_ID below.
++	The default value is 1 for both of the operation modes.
++	For more details, please see the datasheet.
++
++- dlg,nom-microvolt: Nominal actuator voltage rating.
++  Valid values: 0 - 6000000.
++- dlg,abs-max-microvolt: Absolute actuator maximum voltage rating.
++  Valid values: 0 - 6000000.
++- dlg,imax-microamp: Actuator max current rating.
++  Valid values: 0 - 252000.
++  Default: 130000.
++- dlg,impd-micro-ohms: the impedance of the actuator in micro ohms.
++  Valid values: 0 - 1500000000.
++
++Optional properties:
++- pwms : phandle to the physical PWM(Pulse Width Modulation) device.
++  PWM properties should be named "pwms". And number of cell is different
++  for each pwm device.
++  (See Documentation/devicetree/bindings/pwm/pwm.txt
++   for further information relating to pwm properties)
++
++- dlg,ps-seq-id: the PS_SEQ_ID(pattern ID in waveform memory inside chip)
++  to play back when RTWM-MODE is enabled.
++  Valid range: 0 - 15.
++- dlg,ps-seq-loop: the PS_SEQ_LOOP, Number of times the pre-stored sequence
++  pointed to by PS_SEQ_ID or GPI(N)_SEQUENCE_ID is repeated.
++  Valid range: 0 - 15.
++- dlg,gpiN-seq-id: the GPI(N)_SEQUENCE_ID, pattern to play
++  when gpi0 is triggered, 'N' must be 0 - 2.
++  Valid range: 0 - 15.
++- dlg,gpiN-mode: the pattern mode which can select either
++  "Single-pattern" or "Multi-pattern", 'N' must be 0 - 2.
++- dlg,gpiN-polarity: gpiN polarity which can be chosen among
++  "Rising-edge", "Falling-edge" and "Both-edge",
++  'N' must be 0 - 2
++  Haptic will work by this edge option in case of ETWM mode.
++
++- dlg,resonant-freq-hz: use in case of LRA.
++  the frequency range: 50 - 300.
++  Default: 205.
++
++- dlg,bemf-sens-enable: Enable for internal loop computations.
++- dlg,freq-track-enable: Enable for resonant frequency tracking.
++- dlg,acc-enable: Enable for active acceleration.
++- dlg,rapid-stop-enable: Enable for rapid stop.
++- dlg,amp-pid-enable: Enable for the amplitude PID.
++- dlg,mem-array: Customized waveform memory(patterns) data downloaded to
++  the device during initialization. This is an array of 100 values(u8).
++
++For further information, see device datasheet.
++
++======
++
++Example:
++
++	haptics: da7280-haptics@4a {
++		compatible = "dlg,da7280";
++		reg = <0x4a>;
++		interrupt-parent = <&gpio6>;
++		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
++		dlg,actuator-type = "LRA";
++		dlg,dlg,const-op-mode = <1>;
++		dlg,dlg,periodic-op-mode = <1>;
++		dlg,nom-microvolt = <2000000>;
++		dlg,abs-max-microvolt = <2000000>;
++		dlg,imax-microamp = <170000>;
++		dlg,resonant-freq-hz = <180>;
++		dlg,impd-micro-ohms = <10500000>;
++		dlg,freq-track-enable;
++		dlg,rapid-stop-enable;
++		dlg,mem-array = <
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++ 		  0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
++		>;
++
++	};
+-- 
+end-of-patch for RESEND PATCH V11
+
