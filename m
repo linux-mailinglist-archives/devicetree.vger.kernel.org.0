@@ -2,250 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A63411BB207
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 01:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5DE31BB244
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 01:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726204AbgD0Xag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 19:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726251AbgD0Xag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 19:30:36 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC3C0610D5
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 16:30:35 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id m67so19967561qke.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 16:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=quaCJQUXh16GBVFik8QA4Fip2ZkMv94tq1SIciD+mKk=;
-        b=o8O64NcOpReFrdICIw0R22TmhsUrXmbrt0Oquifi1kyyFHcemcPC6lPBakxI7oUNZq
-         I7jBqcLaHoph4I/bGwjn3uwtM6vuggTusUl58GAxe5waPDXDah/g/IYbbsYFVMyOYapE
-         xm/qUjg5KrYezq1T1+bryli0DAr3cgEWoapxeB3pDr5RsZOvuLE5fHI7yilkKPePGznk
-         c1k+PHdKAx/VWQbhHbfX2gJA2NXyOYciXI8KGCyw4cxm1hM15Rhyxy7q72pkFCYdXDWk
-         N8xX6/gYf2fFs7oNVE9x7OUWuiFd7NEMdvQ4EaNulCgqDIpIPsdEK2I1Io33CTLg9DYi
-         cp4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=quaCJQUXh16GBVFik8QA4Fip2ZkMv94tq1SIciD+mKk=;
-        b=q5Ar0cXePE5MTUPmDlz+Lj69ivvzrnHY9aCY0+qMkR08W6t4trwpeFUUpOGfgOOa+O
-         wrJfef+YYJ+0wSyWXnQZW14GcEkP5MmnLDFR0Pu+cb8qh6/fDl5NCqd/9KiggVhinO8e
-         kqQLONT8i4VMTzwt165UOYCd3Innv7ecCfclN6gHW4JjVAy/t61ZQrd0xbNqD0hNZqdh
-         Z+WAA3xzQ19Cfp3sm8zSkywKujvRgrhn2rF/9TZ8/FsqzcPO1H9zuNXuES5MXsHqPI2Q
-         eiIzk1f3YHbhKKf+Y1ndiTXScm63tzk7ifN4T0O2ui9QFR8WXLUf/VnOwtq2I3uOtJGM
-         XfCQ==
-X-Gm-Message-State: AGi0PubykoZIu76tlFumYbaEqlFFkdeXp8Kso8VCfHhsmN2FkRZAo7I5
-        rWHxBuQOP2ZQHv0oCqCitWroYw==
-X-Google-Smtp-Source: APiQypKQhsXJYAUPGeCAiGNzkd/+nPRyT2PYJttcnGCPjzLZOweUizR2QmY1YuuQpy+d1hOiuVGD1A==
-X-Received: by 2002:a37:4f45:: with SMTP id d66mr24593051qkb.318.1588030235080;
-        Mon, 27 Apr 2020 16:30:35 -0700 (PDT)
-Received: from x1 (ip-48-2-52-196.nyc.us.northamericancoax.com. [196.52.2.48])
-        by smtp.gmail.com with ESMTPSA id h6sm11956233qtd.79.2020.04.27.16.30.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2020 16:30:34 -0700 (PDT)
-Date:   Tue, 28 Apr 2020 01:31:16 +0200
-From:   Drew Fustini <drew@beagleboard.org>
-To:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@beagleboard.org>
-Subject: [PATCH] arm: dts: am33xx-l4: add gpio-line-names to gpio controllers
-Message-ID: <20200427233116.GA18917@x1>
+        id S1726474AbgD0X5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 19:57:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:3807 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726355AbgD0X5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 19:57:18 -0400
+X-UUID: d81cef179746473c9e5ea4be07c45f40-20200428
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=aI88OR5SoOs9oP8eEG6yM2tCCWEGm3PDTnuHvBFnmpg=;
+        b=KE7SstV4bwvN+YCOdoKCXfKRyg7mhOAKILQa7nJERn3w3DCd+1JUkMPcoofMTKi98F5oqmBOoIif1PsMkCfmb3IxGowaBYbB/PD0C9ZDFF4kf1q019cZI2Oexh+T7qOhvA0+dZS+40Wz95rhs9jltandraGtcAaUkoxZiQVWR2k=;
+X-UUID: d81cef179746473c9e5ea4be07c45f40-20200428
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <chun-hung.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1311210949; Tue, 28 Apr 2020 07:57:14 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 28 Apr 2020 07:57:08 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 28 Apr 2020 07:56:09 +0800
+From:   Chun-Hung Wu <chun-hung.wu@mediatek.com>
+To:     <mirq-linux@rere.qmqm.pl>, Jonathan Hunter <jonathanh@nvidia.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Pan Bian <bianpan2016@163.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        Mathieu Malaterre <malat@debian.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Kuohong Wang <kuohong.wang@mediatek.com>,
+        Yong Mao <yong.mao@mediatek.com>
+CC:     <kernel-team@android.com>, <linux-kernel@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Subject: [PATCH v5 0/5] mmc: mediatek: add mmc cqhci support
+Date:   Tue, 28 Apr 2020 07:56:03 +0800
+Message-ID: <1588031768-23677-1-git-send-email-chun-hung.wu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-line-names properties to the gpio controller nodes.  The names
-correspond to the AM335x pin names which are also the muxmode 0 signal
-names.  Refer to "Table 4-2. Pin Attributes" in the TI AM335x Sitara 
-Processors datasheet:
-
-http://www.ti.com/lit/ds/symlink/am3358.pdf
-
-
-Signed-off-by: Drew Fustini <drew@beagleboard.org>
----
- arch/arm/boot/dts/am33xx-l4.dtsi | 134 +++++++++++++++++++++++++++++++
- 1 file changed, 134 insertions(+)
-
-diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-index 5ed7f3c58c0f..1ac574ebfe74 100644
---- a/arch/arm/boot/dts/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-@@ -157,6 +157,39 @@
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <96>;
-+				gpio-line-names =
-+					"MDIO_DATA",
-+					"MDIO_CLK",
-+					"SPI0_SCLK",
-+					"SPI0_D0",
-+					"SPI0_D1",
-+					"SPI0_CS0",
-+					"SPI0_CS1",
-+					"ECAP0_IN_PWM0_OUT",
-+					"LCD_DATA12",
-+					"LCD_DATA13",
-+					"LCD_DATA14",
-+					"LCD_DATA15",
-+					"UART1_CTSN",
-+					"UART1_RTSN",
-+					"UART1_RXD",
-+					"UART1_TXD",
-+					"GMII1_TXD3",
-+					"GMII1_TXD2",
-+					"USB0_DRVVBUS",
-+					"XDMA_EVENT_INTR0",
-+					"XDMA_EVENT_INTR1",
-+					"GMII1_TXD1",
-+					"GPMC_AD8",
-+					"GPMC_AD9",
-+					"NC",
-+					"NC",
-+					"GPMC_AD10",
-+					"GPMC_AD11",
-+					"GMII1_TXD0",
-+					"RMII1_REFCLK",
-+					"GPMC_WAIT0",
-+					"GPMC_WPN";
- 			};
- 		};
- 
-@@ -1304,6 +1337,39 @@
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <98>;
-+				gpio-line-names =
-+					"GPMC_AD0",
-+					"GPMC_AD1",
-+					"GPMC_AD2",
-+					"GPMC_AD3",
-+					"GPMC_AD4",
-+					"GPMC_AD5",
-+					"GPMC_AD6",
-+					"GPMC_AD7",
-+					"UART0_CTSN",
-+					"UART0_RTSN",
-+					"UART0_RXD",
-+					"UART0_TXD",
-+					"GPMC_AD12",
-+					"GPMC_AD13",
-+					"GPMC_AD14",
-+					"GPMC_AD15",
-+					"GPMC_A0",
-+					"GPMC_A1",
-+					"GPMC_A2",
-+					"GPMC_A3",
-+					"GPMC_A4",
-+					"GPMC_A5",
-+					"GPMC_A6",
-+					"GPMC_A7",
-+					"GPMC_A8",
-+					"GPMC_A9",
-+					"GPMC_A10",
-+					"GPMC_A11",
-+					"GPMC_BE1N",
-+					"GPMC_CSN0",
-+					"GPMC_CSN1",
-+					"GPMC_CSN2";
- 			};
- 		};
- 
-@@ -1706,6 +1772,40 @@
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <32>;
-+				gpio-line-names =
-+					"GPMC_CSN3",
-+					"GPMC_CLK",
-+					"GPMC_ADVN_ALE",
-+					"GPMC_OEN_REN",
-+					"GPMC_WEN",
-+					"GPMC_BE0N_CLE",
-+					"LCD_DATA0",
-+					"LCD_DATA1",
-+					"LCD_DATA2",
-+					"LCD_DATA3",
-+					"LCD_DATA4",
-+					"LCD_DATA5",
-+					"LCD_DATA6",
-+					"LCD_DATA7",
-+					"LCD_DATA8",
-+					"LCD_DATA9",
-+					"LCD_DATA10",
-+					"LCD_DATA11",
-+					"GMII1_RXD3",
-+					"GMII1_RXD2",
-+					"GMII1_RXD1",
-+					"GMII1_RXD0",
-+					"LCD_VSYNC",
-+					"LCD_HSYNC",
-+					"LCD_PCLK",
-+					"LCD_AC_BIAS_EN",
-+					"MMC0_DAT3",
-+					"MMC0_DAT2",
-+					"MMC0_DAT1",
-+					"MMC0_DAT0",
-+					"MMC0_CLK",
-+					"MMC0_CMD";
-+
- 			};
- 		};
- 
-@@ -1739,6 +1839,40 @@
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <62>;
-+				gpio-line-names =
-+					"GMII1_COL",
-+					"GMII1_CRS",
-+					"GMII1_RXER",
-+					"GMII1_TXEN",
-+					"GMII1_RXDV",
-+					"I2C0_SDA",
-+					"I2C0_SCL",
-+					"EMU0",
-+					"EMU1",
-+					"GMII1_TXCLK",
-+					"GMII1_RXCLK",
-+					"NC",
-+					"NC",
-+					"USB1_DRVVBUS",
-+					"MCASP0_ACLKX",
-+					"MCASP0_FSX",
-+					"MCASP0_AXR0",
-+					"MCASP0_AHCLKR",
-+					"MCASP0_ACLKR",
-+					"MCASP0_FSR",
-+					"MCASP0_AXR1",
-+					"MCASP0_AHCLKX",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC",
-+					"NC";
-+
- 			};
- 		};
- 
--- 
-2.20.1
+VGhpcyBzZXJpZXMgcHJvdmlkZXMgTWVkaWFUZWsgY3FoY2kgaW1wbGVtZW50YXRpb25zIGFzIGJl
+bG93Og0KICAtIEV4dGVuZCBtbWNfb2ZfcGFyc2UoKSB0byBwYXJzZSBDUUUgYmluZGluZ3MNCiAg
+LSBSZW1vdmUgcmVkdW5kYW50IGhvc3QgQ1FFIGJpbmRpbmdzDQogIC0gUmVmaW5lIG1zZGMgdGlt
+ZW91dCBhcGkgdG8gcmVkdWNlIHJlZHVuZGFudCBjb2RlDQogIC0gTWVkaWFUZWsgY29tbWFuZCBx
+dWV1ZSBzdXBwb3J0DQogIC0gZHQtYmluZGluZ3MgZm9yIG10Njc3OQ0KDQp2MSAtPiB2MjoNCiAg
+LSBBZGQgbW9yZSBwYXRjaCBkZXRhaWxzIGluIGNvbW1pdCBtZXNzYWdlDQogIC0gU2VwYXJhdGUg
+bXNkYyB0aW1lb3V0IGFwaSByZWZpbmUgdG8gaW5kaXZpZHVhbCBwYXRjaA0KDQp2MiAtPiB2MzoN
+CiAgLSBSZW1vdmUgQ1ItSWQsIENoYW5nZS1JZCBhbmQgRmVhdHVyZSBpbiBwYXRjaGVzDQogIC0g
+QWRkIFNpZ25lZC1vZmYtYnkgaW4gcGF0Y2hlcw0KDQp2MyAtPiB2NDoNCiAgLSBSZWZpbmUgQ1FF
+IGJpbmRpbmdzIGluIG1tY19vZl9wYXJzZSAoVWxmIEhhbnNzb24pDQogIC0gUmVtb3ZlIHJlZHVu
+ZGFudCBob3N0IENRRSBiaW5kaW5ncyAoTGludXggV2FsbGVpaikNCg0KdjQgLT4gdjU6DQogIC0g
+QWRkIEFja2VkLWJ5IGFuZCBtb3JlIG1haW50YWluZXJzDQoNCkNodW4tSHVuZyBXdSAoNSk6DQog
+IFsxLzVdIG1tYzogY29yZTogRXh0ZW5kIG1tY19vZl9wYXJzZSgpIHRvIHBhcnNlIENRRSBiaW5k
+aW5ncw0KICBbMi81XSBtbWM6IGhvc3Q6IFJlbW92ZSByZWR1bmRhbnQgQ1FFIGJpbmRpbmdzDQog
+IFszLzVdIG1tYzogbWVkaWF0ZWs6IHJlZmluZSBtc2RjIHRpbWVvdXQgYXBpDQogIFs0LzVdIG1t
+YzogbWVkaWF0ZWs6IGNvbW1hbmQgcXVldWUgc3VwcG9ydA0KICBbNS81XSBkdC1iaW5kaW5nczog
+bW1jOiBtZWRpYXRlazogQWRkIGRvY3VtZW50IGZvciBtdDY3NzkNCg0KIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvbXRrLXNkLnR4dCB8ICAgMSArDQogZHJpdmVycy9tbWMv
+Y29yZS9ob3N0LmMgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA1ICsNCiBkcml2ZXJzL21t
+Yy9ob3N0L210ay1zZC5jICAgICAgICAgICAgICAgICAgICAgICAgfCAxNTEgKysrKysrKysrKysr
+KysrKysrKysrLS0NCiBkcml2ZXJzL21tYy9ob3N0L3NkaGNpLWJyY21zdGIuYyAgICAgICAgICAg
+ICAgICAgfCAgMTEgKy0NCiBkcml2ZXJzL21tYy9ob3N0L3NkaGNpLW1zbS5jICAgICAgICAgICAg
+ICAgICAgICAgfCAgIDMgKy0NCiBkcml2ZXJzL21tYy9ob3N0L3NkaGNpLW9mLWFyYXNhbi5jICAg
+ICAgICAgICAgICAgfCAgIDMgLQ0KIGRyaXZlcnMvbW1jL2hvc3Qvc2RoY2ktdGVncmEuYyAgICAg
+ICAgICAgICAgICAgICB8ICAgMiArLQ0KIDcgZmlsZXMgY2hhbmdlZCwgMTU1IGluc2VydGlvbnMo
+KyksIDIxIGRlbGV0aW9ucygtKQ0KDQotLSANCjIuNi40DQo=
 
