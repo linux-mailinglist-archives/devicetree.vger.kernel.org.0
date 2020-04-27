@@ -2,72 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AD701BAF83
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 22:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDD31BAFEA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 23:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbgD0UcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 16:32:14 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:56598 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726205AbgD0UcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 16:32:14 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 263748046C;
-        Mon, 27 Apr 2020 22:32:10 +0200 (CEST)
-Date:   Mon, 27 Apr 2020 22:32:08 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Andrew Morton <akpm@linux-foundation.org>
-Cc:     Joe Perches <joe@perches.com>, devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Adrian Ratiu <adrian.ratiu@collabora.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
+        id S1726609AbgD0VDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 17:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726420AbgD0VDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Apr 2020 17:03:04 -0400
+Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0505C03C1A7
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 14:03:03 -0700 (PDT)
+Received: by mail-qv1-xf4a.google.com with SMTP id p12so20111109qvm.21
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 14:03:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=23GGnMwKYvt3Cgj/lhkkh8PS8CBiboCjGVStVTQoV58=;
+        b=uJ3Wv2mn3Q1SH5G5z7pkpeKo+Y1QXqCq3ao34idnjbgsWSe8tTMKo/LZDfBDgSwvJ+
+         qKgsWq/UV2BvdfWYtfyu24Cylm6N4eRDHTln1it9IJvuHP1ObRvrToKe/rSJ2+l+alvv
+         9XkvWTgmrq0I6aQPz3sDLhld1zpVDIuSof8GyK70zVpvWSrELmm26BzrCygrOJbhaRDM
+         Fe8NAjYYDc9VLols4zdTrk+lQtU8GmMBjIifckAuIXoWc9YbRChsliWre51Z6BJ02IG9
+         HbzlR3xAR3wg1ypOCeT+s0AGDNR2lOTapxoHwLqXz782WROtbY/WwoXiRhQBmT6Peh4O
+         pUDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=23GGnMwKYvt3Cgj/lhkkh8PS8CBiboCjGVStVTQoV58=;
+        b=DD3lT+hNAM7JZrOAdfjG6AwBbO3x1n2aFOJQB0LkNuFp4USp1xwIzr1QCsj6Mm/S6M
+         +7YlQnPEN0MZf/pIOPO5zUGh+MXDoYBoVYBb4pOjzqJfzQblNDec+RGwUzG342yrQDF6
+         SKxAWGJ7smdVF/io88RUmFAdrpOPHrsCQFNlrZgn2Dpvn43WdOrj164jC6Oa29/qfXsl
+         sz3rgzxyqNk/QxT9rKnEuoR9W/qUSAg6SR3Qg3OIRxWUSAiAovA0EiPgEZxR04czVbk0
+         6RvuzGiivOvylQLVV05xsWlrW8DBGg+ccC4VXm2Zqtl6Fz6p/p/keVm+loJxwCCkqb0x
+         DrFg==
+X-Gm-Message-State: AGi0PuYKcr6FkxeqNp2nMqaEnzIvJWeKA5htQhP+VI2Or0zBeN0qEpnc
+        hBRiDr56W/YKt/drDxtPD65OVNw4G+fT
+X-Google-Smtp-Source: APiQypKahN7ghxLa5ZMhrrRFTqL+QsRn5U1vupwEhsBNUqZHCzWOu1dqTKRMxgn9lK8zEQi9Upg4I8/GRiNS
+X-Received: by 2002:a0c:f8cf:: with SMTP id h15mr23168133qvo.22.1588021382826;
+ Mon, 27 Apr 2020 14:03:02 -0700 (PDT)
+Date:   Mon, 27 Apr 2020 14:02:57 -0700
+Message-Id: <20200427210259.91330-1-rajatja@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.26.2.303.gf8c07b1a785-goog
+Subject: [PATCH v5 1/3] input/serio/i8042: Attach fwnode to serio i8042 kbd device
+From:   Rajat Jain <rajatja@google.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>, dtor@google.com,
         Rob Herring <robh+dt@kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [PATCH] get_maintainer: Add email addresses from .yaml files
-Message-ID: <20200427203208.GA3312@ravnborg.org>
-References: <87d082jtfn.fsf@collabora.com>
- <20200420175909.GA5810@ravnborg.org>
- <CAL_JsqJXa8QxQmLfkCO8_SSsgYm2nTFW1J6wx4bGbZgAy8Sxog@mail.gmail.com>
- <9a32f150f85f851d04afd148b2a9a5cf203f7ce1.camel@perches.com>
- <7beaedfd63017973b910dd21cac13ecb42dbe503.camel@perches.com>
- <20200427055755.GA21898@ravnborg.org>
- <79ade7bc8ce57ef11f94011bad1842372c61fdd7.camel@perches.com>
- <20200427130448.74b75c3a6c91e5ede31542e4@linux-foundation.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200427130448.74b75c3a6c91e5ede31542e4@linux-foundation.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=8nJEP1OIZ-IA:10 a=L2k0239gBzhLS6eM0JoA:9 a=wPNLvfGTeEIA:10
+        Mark Rutland <mark.rutland@arm.com>,
+        Rajat Jain <rajatja@google.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, furquan@google.com,
+        dlaurie@google.com, bleung@google.com, zentaro@google.com,
+        dbehr@google.com
+Cc:     rajatxjain@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew.
+Attach the firmware node to the serio i8042 kbd device so that device
+properties can be passed from the firmware.
 
-> The patch assumes that we have
-> 
-> -	    if ($file_emails) {
-> -		my @poss_addr = $text =~ m$[A-Za-z_-_\"\' \,\.\+-]*\s*[\,]*\s*[\(\<\{]{0,1}[A-Za-z0-9_\.\+-]+\@[A-Za-z0-9\.-]+\.[A-Za-z0-9]+[\)\>\}]{0,1}$g;
-> -		push(@file_emails, clean_file_emails(@poss_addr));
-> -	    }
+Signed-off-by: Rajat Jain <rajatja@google.com>
+---
+v5: Same as v4
+v4: Same as v3
+v3: same as v2
+v2: Remove the Change-Id from the commit log
 
-If you look in the original mail it has:
-> -             my @poss_addr = $text =~ m$[A-Za-zÀ-ÿ
+ drivers/input/serio/i8042-x86ia64io.h | 1 +
+ drivers/input/serio/i8042.c           | 3 +++
+ 2 files changed, 4 insertions(+)
 
-So somehow "À-ÿ" is silently converted to _-_ when the patch is saved or
-processed by further tools.
+diff --git a/drivers/input/serio/i8042-x86ia64io.h b/drivers/input/serio/i8042-x86ia64io.h
+index 08e919dbeb5d1..d0c39426ca2c8 100644
+--- a/drivers/input/serio/i8042-x86ia64io.h
++++ b/drivers/input/serio/i8042-x86ia64io.h
+@@ -938,6 +938,7 @@ static int i8042_pnp_kbd_probe(struct pnp_dev *dev, const struct pnp_device_id *
+ 	}
+ 	i8042_pnp_id_to_string(dev->id, i8042_kbd_firmware_id,
+ 			       sizeof(i8042_kbd_firmware_id));
++	i8042_kbd_fwnode = dev_fwnode(&dev->dev);
+ 
+ 	/* Keyboard ports are always supposed to be wakeup-enabled */
+ 	device_set_wakeup_enable(&dev->dev, true);
+diff --git a/drivers/input/serio/i8042.c b/drivers/input/serio/i8042.c
+index 20ff2bed3917a..0dddf273afd94 100644
+--- a/drivers/input/serio/i8042.c
++++ b/drivers/input/serio/i8042.c
+@@ -21,6 +21,7 @@
+ #include <linux/i8042.h>
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
++#include <linux/property.h>
+ 
+ #include <asm/io.h>
+ 
+@@ -124,6 +125,7 @@ MODULE_PARM_DESC(unmask_kbd_data, "Unconditional enable (may reveal sensitive da
+ static bool i8042_bypass_aux_irq_test;
+ static char i8042_kbd_firmware_id[128];
+ static char i8042_aux_firmware_id[128];
++static struct fwnode_handle *i8042_kbd_fwnode;
+ 
+ #include "i8042.h"
+ 
+@@ -1335,6 +1337,7 @@ static int __init i8042_create_kbd_port(void)
+ 	strlcpy(serio->phys, I8042_KBD_PHYS_DESC, sizeof(serio->phys));
+ 	strlcpy(serio->firmware_id, i8042_kbd_firmware_id,
+ 		sizeof(serio->firmware_id));
++	set_primary_fwnode(&serio->dev, i8042_kbd_fwnode);
+ 
+ 	port->serio = serio;
+ 	port->irq = I8042_KBD_IRQ;
+-- 
+2.26.2.303.gf8c07b1a785-goog
 
-Strange, maybe an encoding thing of the mail?
-
-	Sam
