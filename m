@@ -2,119 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5724B1BA105
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 12:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3050F1BA121
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 12:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726931AbgD0KWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 06:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726589AbgD0KWo (ORCPT
+        id S1727025AbgD0K2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 06:28:45 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:20764 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727015AbgD0K2p (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 06:22:44 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E85CC03C1A7
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 03:22:44 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id 18so7587294pfv.8
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 03:22:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=1CyxLaZcj63tQcR7tpc4uGoE1KDGBKikBpluCv751iQ=;
-        b=Hgm0O5D0lCarAkzn4DV0qMdx7tM3kC1QJVrjbaAa/X38bcsMUwXZDOePZRakepLaEi
-         ya2IRGM2AuFx6/UTyzBLHVx9q79FtdJq/l/m3VSUHXUvl5AGOsXg02/t+JpagqTKBY+l
-         obX+tcG3SyQnpGzNDAdirBSQEglqgR6wCxsUrwAQQzjt2Bu+XzZsIEHvDpjMra1GLSlQ
-         MSEf4ffKitmCDwnSIVAkqJSZNUB/aQfo6Ui2zLT0F5Ryz8LEqvNYgvQGnyKwe77+XYoS
-         Vxb+SytqcBGuoccm99VXH3I6Ke6RBkkw2FA3eFkxWF4W/BvMnNrec62dGeUBH+npxyEk
-         XcPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1CyxLaZcj63tQcR7tpc4uGoE1KDGBKikBpluCv751iQ=;
-        b=s7uGJd29WMNungCSCHQUwYKJePi3u0PdIOq5V4dAIqyVo99TO8hC9S4Pf+GQ1yTokO
-         aO7l5NciLhtl3eoM4wXZ/st6P2STFkr/c22Qgnp+R2Gb/U9GVOiFnZP49mMM5an2hQto
-         qMxpFYRgiC3lN2sKXZ1BYFXpOMSY9IjOSGmxqiBYIOs52aKtksW2Dsl0CrbAqpYvG2lM
-         OIrOYqL4slrzWvc/AT8FSKAjvL1qreyzFzli52i1LddvxEs+XsA7MVaTPNbJOHuc3+Q7
-         mQBeaLVLaZkVv45XJ8zXoCXFkxKKrohgLb8QQEVx2Mn13lZus/lhYfUnZfq/uAjtOTw6
-         26NQ==
-X-Gm-Message-State: AGi0PuaFUnedpNc5CDY7/yyFQJjEKCpensnVGjPbBzFbHbTj8O5OBGwi
-        +IYpunVj5V/m29s4So3topYmFQ==
-X-Google-Smtp-Source: APiQypK3z4yQqpVlHsZhnbToQmUFhKubYEh51/9LQwynKZdCC2YUpDM70yeaRzHItaf4MzlKveltLA==
-X-Received: by 2002:a62:fc82:: with SMTP id e124mr23801311pfh.126.1587982963367;
-        Mon, 27 Apr 2020 03:22:43 -0700 (PDT)
-Received: from localhost ([122.171.118.46])
-        by smtp.gmail.com with ESMTPSA id h31sm11276301pjb.33.2020.04.27.03.22.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 Apr 2020 03:22:42 -0700 (PDT)
-Date:   Mon, 27 Apr 2020 15:52:40 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 10/10] cpufreq: dt: Add support for r8a7742
-Message-ID: <20200427102240.jsskbskczvctvcwv@vireshk-i7>
-References: <1587678050-23468-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1587678050-23468-11-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV6J-_gBkzhUXtA8OrxhJVzyrAqjA8oeGJGBp86X-C3Nw@mail.gmail.com>
- <20200427092408.g2vpc6j2c6it4x2i@vireshk-i7>
- <CA+V-a8vwF=u53dZ_U4vX3oAUHrBh5uVUBeOTiDqTZJfV8UUeCA@mail.gmail.com>
+        Mon, 27 Apr 2020 06:28:45 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03RAQxFl029197;
+        Mon, 27 Apr 2020 05:28:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=9QwdPHrjB8s6Odgewvc3jqvQAhfcLlard78LWLHs09s=;
+ b=RS2jj00zCwgpqCjhUTG1H+pwUfP4TQZm/WyiYYONXlyMk7voQALICRMaHlRrwc87WOXb
+ UQsnLH/LQaFHJ9SgxqwhZs46eKdbqF/gQJ9rMWXYFyu56cVIXzn3vqH0KZEP88TGUgpv
+ +w15QwXdsex726c7ijHutNXExsvXCQgAkDGZYJ4YlMOh5AHvnraqXq4PrI94UhSq5VI7
+ OEQtso+17aidDq2Hju/AA4JxdOIHfB8sHh62E/x2ImEjxuig/fdDY6uaWeXy+CdG0c2G
+ uuJC06SAUd77m87thV75n7Zr3r6WH5OUWC87WgvIg7uKke1RnCjsKAHITdo7Fb2FCYkW dw== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 30mhmqu0ng-2
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 27 Apr 2020 05:28:14 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 27 Apr
+ 2020 11:28:12 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Mon, 27 Apr 2020 11:28:12 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3383B2C6;
+        Mon, 27 Apr 2020 10:28:12 +0000 (UTC)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <broonie@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <jdelvare@suse.com>,
+        <linux@roeck-us.net>, <linus.walleij@linaro.org>
+CC:     <lgirdwood@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: [PATCH 1/6] hwmon: lochnagar: Move binding over to dtschema
+Date:   Mon, 27 Apr 2020 11:28:07 +0100
+Message-ID: <20200427102812.23251-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8vwF=u53dZ_U4vX3oAUHrBh5uVUBeOTiDqTZJfV8UUeCA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ ip4:5.172.152.52 -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 clxscore=1015 bulkscore=0
+ spamscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0 phishscore=0
+ suspectscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2004270094
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-04-20, 11:20, Lad, Prabhakar wrote:
-> Hi Viresh,
-> 
-> On Mon, Apr 27, 2020 at 10:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> >
-> > On 27-04-20, 11:22, Geert Uytterhoeven wrote:
-> > > Hi Prabhakar,
-> > >
-> > > This patch should be merged through Viresh's cpufreq tree (CCed).
-> > >
-> > > On Thu, Apr 23, 2020 at 11:41 PM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > Add the compatible strings for supporting the generic cpufreq driver on
-> > > > the Renesas RZ/G1H (R8A7742) SoC.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> > >
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > Prabhakar,
-> >
-> > Please resend the patch with all dependencies to me so I can apply it.
-> >
-> This is the only patch which is needed for R8A7742 SoC which needs to
-> be applied for drivers/cpufreq. Shall I still repost it or you are
-> happy to pick this one up ?
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
+ .../devicetree/bindings/hwmon/cirrus,lochnagar.txt | 26 --------------
+ .../bindings/hwmon/cirrus,lochnagar.yaml           | 40 ++++++++++++++++++++++
+ 2 files changed, 40 insertions(+), 26 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml
 
-would be easier for me if you repost it. I don't have it in my
-mailbox.
-
+diff --git a/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.txt b/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.txt
+deleted file mode 100644
+index ffb79ccf51ee3..0000000000000
+--- a/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Cirrus Logic Lochnagar Audio Development Board
+-
+-Lochnagar is an evaluation and development board for Cirrus Logic
+-Smart CODEC and Amp devices. It allows the connection of most Cirrus
+-Logic devices on mini-cards, as well as allowing connection of
+-various application processor systems to provide a full evaluation
+-platform.  Audio system topology, clocking and power can all be
+-controlled through the Lochnagar, allowing the device under test
+-to be used in a variety of possible use cases.
+-
+-This binding document describes the binding for the hardware monitor
+-portion of the driver.
+-
+-This binding must be part of the Lochnagar MFD binding:
+-  [4] ../mfd/cirrus,lochnagar.txt
+-
+-Required properties:
+-
+-  - compatible : One of the following strings:
+-                 "cirrus,lochnagar2-hwmon"
+-
+-Example:
+-
+-lochnagar-hwmon {
+-	compatible = "cirrus,lochnagar2-hwmon";
+-};
+diff --git a/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml b/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml
+new file mode 100644
+index 0000000000000..db3e20319714c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/cirrus,lochnagar.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic Lochnagar Audio Development Board
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++description: |
++  Lochnagar is an evaluation and development board for Cirrus Logic
++  Smart CODEC and Amp devices. It allows the connection of most Cirrus
++  Logic devices on mini-cards, as well as allowing connection of various
++  application processor systems to provide a full evaluation platform.
++  Audio system topology, clocking and power can all be controlled through
++  the Lochnagar, allowing the device under test to be used in a variety of
++  possible use cases.
++
++  This binding document describes the binding for the hardware monitor
++  portion of the driver.
++
++  This binding must be part of the Lochnagar MFD binding:
++    [1] ../mfd/cirrus,lochnagar.yaml
++
++properties:
++  lochnagar-hwmon:
++    type: object
++
++    properties:
++      compatible:
++        contains:
++          enum:
++            - cirrus,lochnagar2-hwmon
++
++    required:
++      - compatible
++
++    additionalProperties: false
 -- 
-viresh
+2.11.0
+
