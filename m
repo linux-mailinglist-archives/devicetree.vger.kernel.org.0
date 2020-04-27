@@ -2,101 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAC81B976C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 08:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCAB1B94D8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 03:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726671AbgD0G0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 02:26:37 -0400
-Received: from mail1.bemta25.messagelabs.com ([46.226.52.115]:51656 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726651AbgD0G0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 02:26:36 -0400
-Received: from [100.112.197.243] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-4.bemta.az-b.eu-west-1.aws.symcld.net id D7/35-51957-61B76AE5; Mon, 27 Apr 2020 06:26:30 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRWlGSWpSXmKPExsVy8MN7XV2x6mV
-  xBte+S1vMOd/CYjH/yDlWi8OLXjBaNC9ez2Zx/+tRRoubn76xWlzeNYfNon3jbFaLpdcvMlm8
-  /9TJZNG69wi7xf89O9gtfu6ax2Jxe+JkRgc+jzXz1jB6bFl5k8lj56y77B6bVnWyedy5tofNY
-  //cNewe/X8NPD5vkgvgiGLNzEvKr0hgzZj7ejpjwX/2iv4b/9gaGH+ydjFycQgJrGWU2LBoC5
-  DDCeRUSnRd/sQGYvMKmEpcvbqbCcRmE9CReDRzPZjNIqAq8e3iLnYQW1jAUWLZhM9gg0QETjJ
-  LdN77ygLiMAtMY5TY8/EwM8QkQYmTM5+wgNjMAhISB1+8YIbYpiVxbs0qxgmM3LOQlM1CUraA
-  kWkVo0VSUWZ6RkluYmaOrqGBga6hoZGuoaW5rqGZiV5ilW6SXmqpbnlqcYmuoV5iebFecWVuc
-  k6KXl5qySZGYNinFBxdsoNx2/L3eocYJTmYlER59WKXxQnxJeWnVGYkFmfEF5XmpBYfYpTh4F
-  CS4H1dCZQTLEpNT61Iy8wBxiBMWoKDR0mEtxQkzVtckJhbnJkOkTrFqMtx/f3epcxCLHn5eal
-  S4rzKVUBFAiBFGaV5cCNg6eASo6yUMC8jAwODEE9BalFuZgmq/CtGcQ5GJWHeSSCreDLzSuA2
-  vQI6ggnoiCr5xSBHlCQipKQamIxUatq3Tzr7Y18F9wnBZ7uSem/MX3trYTHjjAer/Z/I5wV/6
-  3K6UXX4o+3VT0ybrRq+FplHirfNMQ2y2tq6nWXT3Jrdtjw3n0zatWFHxQ6RLqtly8JNpqQd1S
-  2aHshiIHj9nnB7X2Bk3P/v1Y0/J3dOKuv6H1eieffQ/M9ODzQn+Jq+vMvuv9F5vtS0OR05Ko1
-  zTi7+O0HoaX6wSMyhwvxzYefvZN9d1eYwJfqnjkD4lLwwNWc5yRnVDxsN/F2UlY+sm/6qWOn8
-  hwvsE6rveKXoizwMWzP7w7MNrnw+i05p89/5tHhZ47uenSkZ8v83Smjmnyt2KlN7tFOpo/Z27
-  qnLQq/v3ZP5llDOPSvoapQSS3FGoqEWc1FxIgChYdtdggMAAA==
-X-Env-Sender: roy.im.opensource@diasemi.com
-X-Msg-Ref: server-19.tower-292.messagelabs.com!1587968789!3549008!2
-X-Originating-IP: [193.240.239.45]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 23390 invoked from network); 27 Apr 2020 06:26:30 -0000
-Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
-  by server-19.tower-292.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 27 Apr 2020 06:26:30 -0000
-Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Mon, 27 Apr 2020 08:26:29 +0200
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- DB61C13F671; Mon, 27 Apr 2020 15:26:27 +0900 (KST)
-Message-ID: <cover.1587949032.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Mon, 27 Apr 2020 09:57:12 +0900
-Subject: [RESEND PATCH V11 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
+        id S1726186AbgD0BQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Apr 2020 21:16:22 -0400
+Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:42850 "EHLO
+        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
+        with ESMTP id S1726159AbgD0BQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Apr 2020 21:16:22 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id D139320138DE;
+        Mon, 27 Apr 2020 09:09:40 +0800 (HKT)
+X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
+Received: from mail.gtsys.com.hk ([127.0.0.1])
+        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id MvDMbBypFzTg; Mon, 27 Apr 2020 09:09:40 +0800 (HKT)
+Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id A98B220139B7;
+        Mon, 27 Apr 2020 09:09:40 +0800 (HKT)
+Received: from [10.128.2.32] (unknown [124.217.189.18])
+        by s01.gtsys.com.hk (Postfix) with ESMTPSA id 89849C019FB;
+        Mon, 27 Apr 2020 09:09:39 +0800 (HKT)
+Subject: Re: [PATCH v5 3/3] iio/dac: convert ltc2632.txt to lltc,ltc2632.yaml
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        Steve Winslow <swinslow@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200420042612.27752-1-chris.ruehl@gtsys.com.hk>
+ <20200420042612.27752-4-chris.ruehl@gtsys.com.hk>
+ <20200425203556.4c051fad@archlinux>
+From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Message-ID: <49b05b32-ba6a-50fe-a4a2-96248e672576@gtsys.com.hk>
+Date:   Mon, 27 Apr 2020 09:09:38 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20200425203556.4c051fad@archlinux>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
 
-In this patch set the following is provided:
 
-[PATCH V11 1/3] MAINTAINERS file update for DA7280
-[PATCH V11 2/3] DA7280 DT Binding
-[PATCH V11 3/3] DA7280 Driver
+On 26/4/2020 3:35 am, Jonathan Cameron wrote:
+> On Mon, 20 Apr 2020 12:26:08 +0800
+> Chris Ruehl <chris.ruehl@gtsys.com.hk> wrote:
+>
+>> Conversion of the ltc2632 to yaml format and name the file 'lltc,ltc2632.yaml'.
+>>
+>> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+> There is something odd going on with indentation but otherwise looks fine to me.
+> However we need to leave time for a final DT review.
+>
+> Thanks,
+>
+> Jonathan
+I will wait for the review, and fix the indent together with / or without any 
+changes
+lining up. I think a good Idea to get a yaml extension for my 'vim'.
 
-This patch applies against linux-next and v5.7-rc2
+Cheers,
 
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
+Chris
 
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
-
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   13 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1898 ++++++++++++++++++++
- 5 files changed, 2023 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
+>> ---
+>> v5:
+>> correct require section
+>> set maintainer of analog.com
+>> v4..v2: no change
+>>
+>>   .../bindings/iio/dac/lltc,ltc2632.yaml        | 76 +++++++++++++++++++
+>>   .../devicetree/bindings/iio/dac/ltc2632.txt   | 49 ------------
+>>   2 files changed, 76 insertions(+), 49 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+>> new file mode 100644
+>> index 000000000000..b0043144fbc4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+>> @@ -0,0 +1,76 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Linear Technology LTC263x 12-/10-/8-Bit Rail-to-Rail DAC
+>> +
+>> +maintainers:
+>> +  - Michael Hennerich <michael.hennerich@analog.com>
+>> +
+>> +description: |
+>> +  Bindings for the Linear Technology LTC2632/2634/2636 DAC
+>> +  Datasheet can be found here: https://www.analog.com/media/en/technical-documentation/data-sheets/LTC263[246].pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - lltc,ltc2632-l12
+>> +      - lltc,ltc2632-l10
+>> +      - lltc,ltc2632-l8
+>> +      - lltc,ltc2632-h12
+>> +      - lltc,ltc2632-h10
+>> +      - lltc,ltc2632-h8
+>> +      - lltc,ltc2634-l12
+>> +      - lltc,ltc2634-l10
+>> +      - lltc,ltc2634-l8
+>> +      - lltc,ltc2634-h12
+>> +      - lltc,ltc2634-h10
+>> +      - lltc,ltc2634-h8
+>> +      - lltc,ltc2636-l12
+>> +      - lltc,ltc2636-l10
+>> +      - lltc,ltc2636-l8
+>> +      - lltc,ltc2636-h12
+>> +      - lltc,ltc2636-h10
+>> +      - lltc,ltc2636-h8
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  spi-max-frequency:
+>> +    maximum: 2000000
+>> +
+>> +  vref-supply:
+>> +    description:
+>> +	  Phandle to the external reference voltage supply. This should
+>> +      only be set if there is an external reference voltage connected to the VREF
+>> +      pin. If the property is not set the internal reference is used.
+> Odd intent going on there.
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    vref: regulator-vref {
+>> +        compatible = "regulator-fixed";
+>> +        regulator-name = "vref-ltc2632";
+>> +        regulator-min-microvolt = <1250000>;
+>> +        regulator-max-microvolt = <1250000>;
+>> +        regulator-always-on;
+>> +    };
+>> +
+>> +    spi_master {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      dac: ltc2632@0 {
+>> +        compatible = "lltc,ltc2632";
+>> +        reg = <0>;    /* CS0 */
+>> +        spi-max-frequency = <1000000>;
+>> +        vref-supply = <&vref>;
+>> +      };
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt b/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+>> deleted file mode 100644
+>> index 1ab9570cf219..000000000000
+>> --- a/Documentation/devicetree/bindings/iio/dac/ltc2632.txt
+>> +++ /dev/null
+>> @@ -1,49 +0,0 @@
+>> -Linear Technology LTC2632/2634/2636 DAC
+>> -
+>> -Required properties:
+>> - - compatible: Has to contain one of the following:
+>> -	lltc,ltc2632-l12
+>> -	lltc,ltc2632-l10
+>> -	lltc,ltc2632-l8
+>> -	lltc,ltc2632-h12
+>> -	lltc,ltc2632-h10
+>> -	lltc,ltc2632-h8
+>> -	lltc,ltc2634-l12
+>> -	lltc,ltc2634-l10
+>> -	lltc,ltc2634-l8
+>> -	lltc,ltc2634-h12
+>> -	lltc,ltc2634-h10
+>> -	lltc,ltc2634-h8
+>> -	lltc,ltc2636-l12
+>> -	lltc,ltc2636-l10
+>> -	lltc,ltc2636-l8
+>> -	lltc,ltc2636-h12
+>> -	lltc,ltc2636-h10
+>> -	lltc,ltc2636-h8
+>> -
+>> -Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
+>> -apply. In particular, "reg" and "spi-max-frequency" properties must be given.
+>> -
+>> -Optional properties:
+>> -	- vref-supply: Phandle to the external reference voltage supply. This should
+>> -	  only be set if there is an external reference voltage connected to the VREF
+>> -	  pin. If the property is not set the internal reference is used.
+>> -
+>> -Example:
+>> -
+>> -	vref: regulator-vref {
+>> -		compatible = "regulator-fixed";
+>> -		regulator-name = "vref-ltc2632";
+>> -		regulator-min-microvolt = <1250000>;
+>> -		regulator-max-microvolt = <1250000>;
+>> -		regulator-always-on;
+>> -	};
+>> -
+>> -	spi_master {
+>> -		dac: ltc2632@0 {
+>> -			compatible = "lltc,ltc2632-l12";
+>> -			reg = <0>; /* CS0 */
+>> -			spi-max-frequency = <1000000>;
+>> -			vref-supply = <&vref>; /* optional */
+>> -		};
+>> -	};
 
 -- 
-end-of-patch for RESEND PATCH V11
+GTSYS Limited RFID Technology
+9/F, Unit E, R07, Kwai Shing Industrial Building Phase 2,
+42-46 Tai Lin Pai Road, Kwai Chung, N.T., Hong Kong
+Tel (852) 9079 9521
+
+Disclaimer: https://www.gtsys.com.hk/email/classified.html
 
