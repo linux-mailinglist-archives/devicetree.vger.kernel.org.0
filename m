@@ -2,64 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B4021BAD57
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 20:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC63D1BAD66
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 21:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726705AbgD0S6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 14:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
+        id S1726517AbgD0TAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 15:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726703AbgD0S6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 14:58:31 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CBFC0610D5
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 11:58:31 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id w6so17817018ilg.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 11:58:30 -0700 (PDT)
+        with ESMTP id S1726260AbgD0TAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 15:00:03 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C93ADC0610D5;
+        Mon, 27 Apr 2020 12:00:02 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id a2so15095484ejx.5;
+        Mon, 27 Apr 2020 12:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=VQgRiL13w2lnC5yZKNcbg2HiB3UGZa2RAJWpzb90ZSA=;
-        b=aBgCCLfYeCmbD8suPUKxxZpyYv/BxEKZpXJPrJDoGGueWng2VA0ZGf3GX5ASQX2Fkv
-         BtbKoIxO1j7+cG5acsi/q5MKZoH6947xj28VBGnp+R/ne/+iMMTo8rYwI+LCIJCxRwjA
-         YlwgHydIl5fUONLWTz3XZGfNSOm1dJe+8EeTqHGVCEKNkHRK6M41EutRUW/ar0jVrlpb
-         mW8Ar9TS7pg+z3Q8ed25sDS4I1r7bwQchP1vdx7js8BIcTIVzoVkCihkzKSvaNA/GJzh
-         Ww7Z2qq5Hy/5iMhYf13+GAI2o1t08Px8RptoTWgh22JeyMErjtiRfjCCJJuR8kZmHQlV
-         GnjQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Ysq+lYr7LTBndMy6YgqJpqGJhtw6V84HyMC0bkjoYNk=;
+        b=t+DXpkd4RSv2lcX+2xwpvAnzDAiRlhqjZQYmF2cfE8A/8eWSFGvigPuZ8cW/Rd1rpA
+         hI2hK+5vHAg8yqcj6C6udFCG5OKUwWg4aJFn1odGj3wI1F9g0mbSQ8NAw3kCSTi0g4Ek
+         BsjCO95npV6LGlnRS9iiw2JRp/8AT/FHZaAYzyinQiNoIyxVWzfTq+7ASuSA/dg5cP3o
+         +smxhGDxdi2UZA7rC8fMQpUSDMcf0QKZqXb9klHFpX+3i9KAu58xnDgOYWBb6gi0G+U3
+         rGNFmxp8iH8iENPAtKatAwhfWW+lxd7vIzHDYVhjBmRhN89Ir/lelT9SueqJB7UzeXS2
+         HjCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=VQgRiL13w2lnC5yZKNcbg2HiB3UGZa2RAJWpzb90ZSA=;
-        b=g/qONStfamWa+UTHFKUyjvVlilE1Xbt8hM53kpfWywYhpNjhzsBGzQRdKDWJutLpKh
-         3YD/SqLlxPepCp00xxvid7pKwo2bRTGAOVvxzQL8esP14ntjMVkPQ625fiqSkabQf32E
-         xnBL83Iqc6ma8PfSxgpA7qFDFDwd/5Sw9KE4udcVe+BSAwQ6ZRExm+3vcsrz+lpBBpGo
-         4vd2ODTv+108iXGwVvVhCuuDHhJvmpyOSqN80v0TQ/BVAxMrq+wdgXSLWzzZxGWULTTX
-         cdQvqnEe+zuakreuX6QBnz03c3p6yT8clABwOPUU9vXF0s06OZyenKtc17rsvSlhYxO7
-         hlmQ==
-X-Gm-Message-State: AGi0PubblzUKMgjL49yRULSyRKdv0Y0qtG6cehbB1Ct5xhmn2swOYc6Y
-        pRc/AMhTKrhpsqj/K9JV31TGqvYRDdITXUXZl8w=
-X-Google-Smtp-Source: APiQypLC/+gegi9YXBz7/M3AlsOOiSNfLA4yfANGAtEoSDlP9s0Uar3ZRtNBAry7UIYDdXyEHCcirL8d4440l9cQP64=
-X-Received: by 2002:a92:aac7:: with SMTP id p68mr20677673ill.62.1588013910406;
- Mon, 27 Apr 2020 11:58:30 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Ysq+lYr7LTBndMy6YgqJpqGJhtw6V84HyMC0bkjoYNk=;
+        b=Tn5e+IBen0BNYD2uonbmvIKz1LIjxj/KIY4xfUO7Vr/Nj5xZ/HxdWUh8dKAPI6xM58
+         9zDb0uu9JZUTBuBeWdEHBaxAwEov29LrUMV1j11WH9Y5rdGLwB5s9EjrD8so0XWmPwt4
+         CHFF3Z+CijNPNteWq3X/AgnjhUktfAv4hYfBvgr/l8F1UfppfQXVi40Bs/mKxlYgI23b
+         OcAL1LOVo239EfZw72zB8OStmrNYD+YH3dKPnBYxTOJPMKm4xQ2nKzL2kCLlD8t88f8y
+         gzxE/p7dbrpp+rzD9Xug6UQtl7OnBeN0tHP4uTo01Trv1h2MBpCXjsnZyKCowXuS5TYV
+         4pkA==
+X-Gm-Message-State: AGi0PubVCWq0F/u4mDtK2b1Rwej5IhjaPbODYsAX7mVznd6xPJhrFQE7
+        61rCVb3xiou05e2QDlUfEGNKPGm2r+SMGkFPE3M=
+X-Google-Smtp-Source: APiQypJtTYT311/FuxT+06XbdTrc9BUfR8HcpzgeYLkQomTdgTN76FEPKij2GG62CJynV2Ahs6lkbNWnm3G3ArAAIcs=
+X-Received: by 2002:a17:906:7fd7:: with SMTP id r23mr20630680ejs.32.1588014001407;
+ Mon, 27 Apr 2020 12:00:01 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a5e:aa0a:0:0:0:0:0 with HTTP; Mon, 27 Apr 2020 11:58:30
- -0700 (PDT)
-Reply-To: LishaHaman225@gmail.com
-From:   "Mrs. Lisha Haman" <rhamatouwashidha@gmail.com>
-Date:   Mon, 27 Apr 2020 11:58:30 -0700
-Message-ID: <CAAFd3ofG-kUAfepaA=sUSxVWKy8BF68sFqQvdkp1dkCAP35LZQ@mail.gmail.com>
-Subject: Hello Dearest,
-To:     undisclosed-recipients:;
+References: <20200424181642.32084-1-pop.adrian61@gmail.com> <20200427064910.GC3559@dell>
+In-Reply-To: <20200427064910.GC3559@dell>
+From:   Adrian Pop <pop.adrian61@gmail.com>
+Date:   Mon, 27 Apr 2020 21:59:59 +0300
+Message-ID: <CAP-HsdQOyWrz+Y7gR9jrNjX09NCYB1EWK7swMQDZ-v-VJLGRMw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm: dt-bindings: mfd: stm32f-rcc: Add missing DSI clock
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dear
-my name is Lisha Haman, How are you today hope all is well with you,
-Please I will need your urgent attention regarding this important discussion
-Kindly write me back here: LishaHaman225@gmail.com  for more details.
-Thanks,
-Lisha Haman
+On Mon, Apr 27, 2020 at 9:49 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Fri, 24 Apr 2020, Adrian Pop wrote:
+>
+> > Add missing clock.
+> >
+> > Signed-off-by: Adrian Pop <pop.adrian61@gmail.com>
+> > ---
+> >  include/dt-bindings/mfd/stm32f7-rcc.h | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+> I assume patch 2 depends on this?
+
+Yes, second patch depends on this.
+
+>
+> If so, where is it?  Why isn't it in my inbox?
+>
+
+Here it is:
+
+STM32f769-disco features a 4" MIPI DSI display: add support for it.
+
+Signed-off-by: Adrian Pop <pop.adrian61@gmail.com>
+---
+ arch/arm/boot/dts/stm32f746.dtsi      | 34 ++++++++++++++++++
+ arch/arm/boot/dts/stm32f769-disco.dts | 50 +++++++++++++++++++++++++++
+ 2 files changed, 84 insertions(+)
+
+diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746=
+.dtsi
+index 93c063796780..202bb6edc9f1 100644
+--- a/arch/arm/boot/dts/stm32f746.dtsi
++++ b/arch/arm/boot/dts/stm32f746.dtsi
+@@ -48,6 +48,19 @@ / {
+        #address-cells =3D <1>;
+        #size-cells =3D <1>;
+
++       reserved-memory {
++               #address-cells =3D <1>;
++               #size-cells =3D <1>;
++               ranges;
++
++               linux,dma {
++                       compatible =3D "shared-dma-pool";
++                       linux,dma-default;
++                       no-map;
++                       size =3D <0x10F000>;
++               };
++       };
++
+        clocks {
+                clk_hse: clk-hse {
+                        #clock-cells =3D <0>;
+@@ -75,6 +88,27 @@ clk_i2s_ckin: clk-i2s-ckin {
+        };
+
+        soc {
++               ltdc: display-controller@40016800 {
++                       compatible =3D "st,stm32-ltdc";
++                       reg =3D <0x40016800 0x200>;
++                       interrupts =3D <88>, <89>;
++                       resets =3D <&rcc STM32F7_APB2_RESET(LTDC)>;
++                       clocks =3D <&rcc 1 CLK_LCD>;
++                       clock-names =3D "lcd";
++                       status =3D "disabled";
++               };
++
++               dsi: dsi@40016c00 {
++                       compatible =3D "st,stm32-dsi";
++                       reg =3D <0x40016c00 0x800>;
++                       interrupts =3D <98>;
++                       clocks =3D <&rcc 1 CLK_F769_DSI>, <&clk_hse>;
++                       clock-names =3D "pclk", "ref";
++                       resets =3D <&rcc STM32F7_APB2_RESET(DSI)>;
++                       reset-names =3D "apb";
++                       status =3D "disabled";
++               };
++
+                timer2: timer@40000000 {
+                        compatible =3D "st,stm32-timer";
+                        reg =3D <0x40000000 0x400>;
+diff --git a/arch/arm/boot/dts/stm32f769-disco.dts
+b/arch/arm/boot/dts/stm32f769-disco.dts
+index 1626e00bb2cb..30ebbc193e82 100644
+--- a/arch/arm/boot/dts/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/stm32f769-disco.dts
+@@ -153,3 +153,53 @@ &usbotg_hs {
+        pinctrl-names =3D "default";
+        status =3D "okay";
+ };
++
++&dsi {
++       #address-cells =3D <1>;
++       #size-cells =3D <0>;
++       status =3D "okay";
++
++       ports {
++               #address-cells =3D <1>;
++               #size-cells =3D <0>;
++
++               port@0 {
++                       reg =3D <0>;
++                       dsi_in: endpoint {
++                               remote-endpoint =3D <&ltdc_out_dsi>;
++                       };
++               };
++
++               port@1 {
++                       reg =3D <1>;
++                       dsi_out: endpoint {
++                               remote-endpoint =3D <&dsi_in_panel>;
++                       };
++               };
++
++       };
++
++       panel: panel {
++               compatible =3D "orisetech,otm8009a";
++               reg =3D <0>; /* dsi virtual channel (0..3) */
++               reset-gpios =3D <&gpioj 15 GPIO_ACTIVE_LOW>;
++               status =3D "okay";
++
++               port {
++                       dsi_in_panel: endpoint {
++                               remote-endpoint =3D <&dsi_out>;
++                       };
++               };
++       };
++};
++
++&ltdc {
++       dma-ranges;
++       status =3D "okay";
++
++       port {
++               ltdc_out_dsi: endpoint {
++                       remote-endpoint =3D <&dsi_in>;
++               };
++       };
++};
+--
+
+> > diff --git a/include/dt-bindings/mfd/stm32f7-rcc.h b/include/dt-binding=
+s/mfd/stm32f7-rcc.h
+> > index a90f3613c584..ba5cb7456ee4 100644
+> > --- a/include/dt-bindings/mfd/stm32f7-rcc.h
+> > +++ b/include/dt-bindings/mfd/stm32f7-rcc.h
+> > @@ -107,6 +107,7 @@
+> >  #define STM32F7_RCC_APB2_SAI1                22
+> >  #define STM32F7_RCC_APB2_SAI2                23
+> >  #define STM32F7_RCC_APB2_LTDC                26
+> > +#define STM32F7_RCC_APB2_DSI         27
+> >
+> >  #define STM32F7_APB2_RESET(bit)      (STM32F7_RCC_APB2_##bit + (0x24 *=
+ 8))
+> >  #define STM32F7_APB2_CLOCK(bit)      (STM32F7_RCC_APB2_##bit + 0xA0)
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Linaro Services Technical Lead
+> Linaro.org =E2=94=82 Open source software for ARM SoCs
+> Follow Linaro: Facebook | Twitter | Blog
+
+On Mon, Apr 27, 2020 at 9:49 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Fri, 24 Apr 2020, Adrian Pop wrote:
+>
+> > Add missing clock.
+> >
+> > Signed-off-by: Adrian Pop <pop.adrian61@gmail.com>
+> > ---
+> >  include/dt-bindings/mfd/stm32f7-rcc.h | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+> I assume patch 2 depends on this?
+>
+> If so, where is it?  Why isn't it in my inbox?
+>
+> > diff --git a/include/dt-bindings/mfd/stm32f7-rcc.h b/include/dt-binding=
+s/mfd/stm32f7-rcc.h
+> > index a90f3613c584..ba5cb7456ee4 100644
+> > --- a/include/dt-bindings/mfd/stm32f7-rcc.h
+> > +++ b/include/dt-bindings/mfd/stm32f7-rcc.h
+> > @@ -107,6 +107,7 @@
+> >  #define STM32F7_RCC_APB2_SAI1                22
+> >  #define STM32F7_RCC_APB2_SAI2                23
+> >  #define STM32F7_RCC_APB2_LTDC                26
+> > +#define STM32F7_RCC_APB2_DSI         27
+> >
+> >  #define STM32F7_APB2_RESET(bit)      (STM32F7_RCC_APB2_##bit + (0x24 *=
+ 8))
+> >  #define STM32F7_APB2_CLOCK(bit)      (STM32F7_RCC_APB2_##bit + 0xA0)
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Linaro Services Technical Lead
+> Linaro.org =E2=94=82 Open source software for ARM SoCs
+> Follow Linaro: Facebook | Twitter | Blog
