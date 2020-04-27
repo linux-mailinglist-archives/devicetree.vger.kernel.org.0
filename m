@@ -2,143 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B1B1BA3F7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 14:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEE2B1BA40B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 14:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727857AbgD0MwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 08:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47192 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727846AbgD0MwR (ORCPT
+        id S1727827AbgD0MyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 08:54:01 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:10514 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726963AbgD0Mx6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 08:52:17 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:3201:214:fdff:fe10:1be6])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F48C0610D5;
-        Mon, 27 Apr 2020 05:52:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=npgNBfjXCgdOT6VhrlGrF6mCkBD86EOkn8/hf4N7+Xg=; b=a/7b4z2qzgc5vUXpvfjDqlWFR
-        eHuKJUX5x6kbAaOEUDrXclNWnO1VUMxWUQ0MOpByul2vIZQNYS7W7tyjND0FgJOzJsl2/O0ulNNdd
-        T7ZFUbY9ceu/h7MptFsfE2YzJsYOrIYlqHMMeUMlGK47UOr4inl6q4T2b7pZnsVlBnNHbNouIdv8i
-        TTBkayO3wdgVVnu44j7yAfCTyA9eKf4z4BXlxkCaX1j2vRwV9LVgaDWUQl1BpmdvetjBe6pglYnpO
-        y3pTxvBUFLkfeVQBrfmRye0MfGBTM2tInVpUZSl3fQUfJROARf9+9lSsmBRotIfklRiFatSm5yDLG
-        ZkznR4qJw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56264)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1jT3Ev-0002uk-JK; Mon, 27 Apr 2020 13:52:01 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1jT3Er-0006fX-0I; Mon, 27 Apr 2020 13:51:57 +0100
-Date:   Mon, 27 Apr 2020 13:51:56 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Florinel Iordache <florinel.iordache@nxp.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: Re: [PATCH net-next v2 6/9] net: phy: add backplane kr driver
- support
-Message-ID: <20200427125156.GD25745@shell.armlinux.org.uk>
-References: <AM0PR04MB54432C98E0CD7FF5B155F446FBAF0@AM0PR04MB5443.eurprd04.prod.outlook.com>
+        Mon, 27 Apr 2020 08:53:58 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1587992038; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=oHj/1Cte/kqSnw6BUUytxEkRvBSBwIKK808zQI9LFHE=; b=NAWdFR1zAdmtfjHhXP7i/rlxXE8yKdZjcFLChAgzsak9Z/c5g2SVIfNypSOWWQcfsJ7KRd07
+ ex8H1LkB/O6iJBWdqy+8lTS7A0pWsK5Sa2FrArPckfVk6I8XcPanEquwSc9m3jngNOnY3SB4
+ LYsJw3kWCTKGkoGYyT5cShr5yds=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5ea6d5d3.7fb15c300340-smtp-out-n04;
+ Mon, 27 Apr 2020 12:53:39 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 30ECAC44793; Mon, 27 Apr 2020 12:53:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.100] (unknown [157.44.245.37])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jprakash)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7B24C433CB;
+        Mon, 27 Apr 2020 12:53:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D7B24C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jprakash@codeaurora.org
+Subject: Re: [PATCH V2 1/3] iio: adc: Convert the QCOM SPMI ADC bindings to
+ .yaml format
+To:     Rob Herring <robh@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, linus.walleij@linaro.org,
+        Jonathan.Cameron@huawei.com, smohanad@codeaurora.org,
+        kgunda@codeaurora.org, aghayal@codeaurora.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-iio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+References: <1586942266-21480-1-git-send-email-jprakash@codeaurora.org>
+ <1586942266-21480-2-git-send-email-jprakash@codeaurora.org>
+ <20200416204241.GA14143@bogus>
+From:   Jishnu Prakash <jprakash@codeaurora.org>
+Message-ID: <b41fc1ea-1047-6305-bf58-fd8d4d72282d@codeaurora.org>
+Date:   Mon, 27 Apr 2020 18:23:27 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM0PR04MB54432C98E0CD7FF5B155F446FBAF0@AM0PR04MB5443.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200416204241.GA14143@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 27, 2020 at 12:40:37PM +0000, Florinel Iordache wrote:
-> > > +/* Backplane mutex between all KR PHY threads */ static struct mutex
-> > > +backplane_lock;
-> > 
-> > 
-> > > +/* Read AN Link Status */
-> > > +static int is_an_link_up(struct phy_device *phydev) {
-> > > +     struct backplane_device *bpdev = phydev->priv;
-> > > +     int ret, val = 0;
-> > > +
-> > > +     mutex_lock(&bpdev->bpphy_lock);
-> > 
-> > Last time i asked the question about how this mutex and the phy mutex interact.
-> > I don't remember seeing an answer.
-> > 
-> >           Andrew
-> 
-> Hi Andrew,
-> Yes, your question was:
-> <<How does this mutex interact with phydev->lock? It appears both are trying to do the same thing, serialise access to the PHY hardware.>>
-> The answer is: yes, you are right, they both are protecting the critical section related to accessing the PHY hardware for a particular PHY.
-> As you can see the backplane device (bpdev) has associated one phy_device (phydev) so  bpdev->bpphy_lock and phydev->lock are equivalent.
-> Normally your assumption is correct: backplane driver should use the same phydev->lock but there is the following problem:
-> Backplane driver needs to protect all accesses to a PHY hardware including the ones coming from backplane scheduled workqueues for all lanes within a PHY.
-> But phydev->lock is already acquired for a phy_device (from phy.c) before each phy_driver callback is called (e.g.: config_aneg, suspend, ...)
-> So if I would use phydev->lock instead of bpdev->bpphy_lock then this would result in a deadlock when it is called from phy_driver callbacks.
-> However a possible solution would be to remove all these locks using bpphy_lock and use instead only one phydev->lock in backplane kr state machine: (bp_kr_state_machine).
-> But this solution will result in poorer performance, the training total duration will increase because only one single lane can enter the training procedure at a time therefore it would be possible for multi-lane phy training to ultimately fail because training is not finished in under 500ms. So I wanted to avoid this loss of training performance.
-> Yet another possible solution would be to keep the locks where they are, at the lowest level exactly at phy_read/write_mmd calls, in order to allow lanes training running in parallel, but use instead the phydev->lock as would be normal to be and according to your suggestion.
-> But in this case I must avoid the deadlock I mentioned above by differentiating between the calls coming from phy_driver callbacks where the phydev->lock is already acquired for this phy_device by the phy framework so the mutex should be skipped in this case and the calls coming from anywhere else (for example from backplane kr state machine) when the phydev->lock was not already acquired for this phy_device and the mutex must be used.
-> If you agree with this latest solution then I can implement it in next version by using a flag in backplane_device called: 'phy_mutex_already_acquired' or 'skip_phy_mutex' which must be set in all backplane phy_driver callbacks and will be used to skip the locks on phydev->lock used at phy_read/write_mmd calls in these cases.
+Hi Rob
 
-I think you have a rather big misunderstanding of the locking in phylib
-from what you said above.
+I can see the first error:  "....chosen node must be at root node" from 
+'make dt_binding_check' even without my patch applied, so it does not 
+seem related. I will fix the second error in the next post.
 
-The register accessors do not use phydev->lock.
-
-Follow the code.
-
-	phy_read_mmd() uses phy_lock_mdio_bus().
-
-	phy_lock_mdio_bus() locks the phydev->mdio.bus->mdio_lock mutex.
-
-This is the _bus_ level lock, and is entirely different from
-phydev->lock.
-
-It is entirely safe to call phy_read_mmd() from any region of code
-which is holding phydev->lock - indeed, we have many PHY drivers that
-already do this.
-
-So, I think you need to rewrite your entire locking strategy, because
-it seems that you've misunderstood the locking here.
-
-However, it's actually way worse, because of the abuse in your driver
-of a single phy_device struct, which you use to access multiple PHYs,
-randomly changing phydev->mdio.addr according to which PHY needs to be
-accessed - you need to _carefully_ consider how your locking is done
-for that.  I regard this as a big abuse, and I'm very tempted to NAK
-your patches on this abuse alone.
-
-I think you need to take onboard my comments about the (ab)use of
-phy_device here.
-
-An alternative solution to this is to push the phy_* accessors up a
-level to the mdiobus level (we already have some, and I've already
-been converting others) so you don't have to mess with
-phydev->mdio.addr at all.
-
-However, I would still consider your use of struct phy_device to be
-an abuse.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 10.2Mbps down 587kbps up
+On 4/17/2020 2:12 AM, Rob Herring wrote:
+> On Wed, 15 Apr 2020 14:47:44 +0530, Jishnu Prakash wrote:
+>> Convert the adc bindings from .txt to .yaml format.
+>>
+>> Signed-off-by: Jishnu Prakash <jprakash@codeaurora.org>
+>> ---
+>>   .../devicetree/bindings/iio/adc/qcom,spmi-vadc.txt | 173 -------------
+>>   .../bindings/iio/adc/qcom,spmi-vadc.yaml           | 288 +++++++++++++++++++++
+>>   2 files changed, 288 insertions(+), 173 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.txt
+>>   create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dt.yaml: adc@3100: 'adc-chan@0x39', 'adc-chan@0x9', 'adc-chan@0xa', 'adc-chan@0xe', 'adc-chan@0xf' do not match any of the regexes: '.*-names$', '.*-supply$', '^#.*-cells$', '^#[a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+(,[0-9a-fA-F]+)*$', '^__.*__$', 'pinctrl-[0-9]+'
+>
+> See https://patchwork.ozlabs.org/patch/1271025
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+>
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+>
+> Please check and re-submit.
