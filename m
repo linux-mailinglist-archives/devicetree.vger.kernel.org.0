@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA991BA9D4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 18:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9817C1BA9FC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2020 18:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728283AbgD0QKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 12:10:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40298 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726000AbgD0QKm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 12:10:42 -0400
-Received: from localhost (unknown [171.76.79.70])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D2FC8205C9;
-        Mon, 27 Apr 2020 16:10:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588003842;
-        bh=6y+UP73Vxjpn15HNvNYlaPBEXH1uzwIZb3nl5q1GqOQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aR1yAoAqwS+RgrXbE1AAsuiTXEZV7W92AcrPzeyict0PPlEUiEHKWRkvmzMO4oKO1
-         8t1vZ23bc52pz9LNTyHP2+DXUHAnnbaSQ9r7UrlG/lPkXnZN2nk3zjzIC/SsQo75Oa
-         DMs/H54jSMbM7I0mxVYOer0nm3Bobcrh/qb1G+S0=
-Date:   Mon, 27 Apr 2020 21:40:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Amelie Delaunay <amelie.delaunay@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pierre-Yves Mordret <pierre-yves.mordret@st.com>
-Subject: Re: [PATCH 0/2] STM32 DMA Direct mode
-Message-ID: <20200427161038.GJ56386@vkoul-mobl.Dlink>
-References: <20200422102904.1448-1-amelie.delaunay@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200422102904.1448-1-amelie.delaunay@st.com>
+        id S1728225AbgD0QUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 12:20:03 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:9451 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726254AbgD0QUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Apr 2020 12:20:03 -0400
+X-IronPort-AV: E=Sophos;i="5.73,324,1583161200"; 
+   d="scan'208";a="45628506"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 28 Apr 2020 01:20:01 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 275664008560;
+        Tue, 28 Apr 2020 01:19:59 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] ARM: dts: r8a7743: Add missing compatible strings for iic3 node
+Date:   Mon, 27 Apr 2020 17:19:51 +0100
+Message-Id: <1588004391-8461-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-04-20, 12:29, Amelie Delaunay wrote:
-> By default, the driver compute if the FIFO must operate in direct mode or with
-> FIFO threshold. Direct mode is allowed only if computed source burst and
-> destination burst are disabled. But with memory source or destination, burst
-> is always > 0.
-> Direct mode is useful when the peripheral requires an immediate and single
-> transfer to or from the memory after each DMA request.
-> This patchset adds a way to force Direct mode through device tree.
+Add missing compatible strings "renesas,rcar-gen2-iic" and
+"renesas,rmobile-iic" to iic3 node of r8a7743 SoC.
 
-Applied, thanks
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm/boot/dts/r8a7743.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
+diff --git a/arch/arm/boot/dts/r8a7743.dtsi b/arch/arm/boot/dts/r8a7743.dtsi
+index e8b340b..d54cbfc 100644
+--- a/arch/arm/boot/dts/r8a7743.dtsi
++++ b/arch/arm/boot/dts/r8a7743.dtsi
+@@ -551,7 +551,9 @@
+ 			/* doesn't need pinmux */
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			compatible = "renesas,iic-r8a7743";
++			compatible = "renesas,iic-r8a7743",
++				     "renesas,rcar-gen2-iic",
++				     "renesas,rmobile-iic";
+ 			reg = <0 0xe60b0000 0 0x425>;
+ 			interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 926>;
 -- 
-~Vinod
+2.7.4
+
