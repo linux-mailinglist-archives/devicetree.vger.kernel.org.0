@@ -2,107 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C0E31BC764
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 20:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C89E1BC780
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 20:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728536AbgD1SCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Apr 2020 14:02:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39360 "EHLO
+        id S1728598AbgD1SHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Apr 2020 14:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727827AbgD1SCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Apr 2020 14:02:42 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2259AC03C1AB
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 11:02:42 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id 18so11059930pfx.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 11:02:42 -0700 (PDT)
+        with ESMTP id S1727827AbgD1SHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Apr 2020 14:07:24 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBF8C03C1AB
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 11:07:23 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id f13so25732790wrm.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 11:07:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mENmQ6Pb7H8tmR1MjtMLs0ubXE4BKzkIreYYg9JTmwQ=;
-        b=fYgGHly79Oyel+aDS8shmE3wA06fO5kZLL/u3s85DS992pSDgr08Jx2wajFH7j1jHC
-         Dm1K5xERcf6FhGPMuwNcv14JeebOPQZorvUlcLz9r0RxfDLF+gRc1j1BvIQq3RNpOm6Q
-         9EMp+/yW1t/Q54ZgaBMcfsk1FEOfsZMCpkjScN0nwNDQzMFzUhf4HwlvdsjFpCVrgXEi
-         EYB+aGQalOJeufMo73XeoDc9GtUPILpD4ag+vQctucSuvpTuQySVWKSYNmE/AT+LcaHE
-         kI7bunItPbbWP55YlZJPCWyIY1A8G2+MqmrVUznPsc3Sd/HNKegH3CuGA+CTuEFt/kBt
-         Fmrg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VPA3w2FdcezMr0VjYZPl3nlwaovVy4TaRn2qmUqyAi4=;
+        b=TLmz9BS/d2TYOsdIdUAD5o/Fp3XUwakv6RIGZZUA/4tYljrFh9j7d0DW/ISgTFgG/Z
+         1Ask2XFRkfmE2kunQsPwOEeyY2Yyy4y9HQch6RvVhQW2EWSrluFucZfkbRPFmxV84dJw
+         beIaRHbmse3RIiV7+JQl41EdEC/SzOgXPM5rWr4AdNijexqE//CX2nM+fP3OA1OP4RU0
+         4t8bpOFRD8TDtI4sIZHdchuA7+yYtWGk2cbJZt9Opc6nQNGsTiPLB6dHNcECM/fIVirv
+         jKA5yOjYxhCghMVIe7bxTHBaCT/dYBWz66+w7DAtyv2Qwvki5ydKbS0lrLOWL8rhk/9X
+         8Kbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mENmQ6Pb7H8tmR1MjtMLs0ubXE4BKzkIreYYg9JTmwQ=;
-        b=LzNFKuWkS3EfWbW0xtgfU0C8HU8Hst4jciL9gEWgYnRaKdMkCTiecZpD5b8SVvn8bN
-         w2XP35nPR8j4bhgw5CgNM60b2I+Yzq5JkeKY97DuMfgmwBgBwSeG3HzweS+MfJVbLCpp
-         5K4npDwZtMvWS7mTPfGy2O9rcMHrcxk6vspqZIBCgyVeplb61+OmOEZUh0UV8OBDAG1w
-         iY8ABJ0joLdASZdhf4x7hs+SSaePVTvlPNBJdR9MMKCApXIcVbSR4XihqLwkYTsTTqZK
-         rsvXd58vJd3+/PV/YGlWpOJ7sXEhThy9CKmrFSbbR+XfXbqeejii1J45daKhOMbDigZJ
-         Eriw==
-X-Gm-Message-State: AGi0PuYAyeoLj8V/YB16fKyW8kh0ozeGFqstULx4OEf98wj5qJ5eYE/c
-        b8dYubRKSOAVn51nhwMyAYNsTg1GyAc=
-X-Google-Smtp-Source: APiQypJTI6DwHabWRQCA/LwS+jwG4QtUCwBuv+PQUF/I35yfyK+EKVAsd6jfQyV+7Qv9CI1ziwgX/w==
-X-Received: by 2002:aa7:8593:: with SMTP id w19mr30860532pfn.97.1588096961545;
-        Tue, 28 Apr 2020 11:02:41 -0700 (PDT)
-Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h197sm16248994pfe.208.2020.04.28.11.02.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VPA3w2FdcezMr0VjYZPl3nlwaovVy4TaRn2qmUqyAi4=;
+        b=jm0y+ixSJZ4AKMmcCBlGhV2JbLfNwLwe41YPR4V7+oDuYgAcMPCO5+uRUNvloa2udp
+         ATvkBUmopxe+FHhGf6NIkIeNtLigoNVOPM8kCBgAatsLSf/AtxlKyWlZnsqykohwwAen
+         PN2H6Zobm0/8ZJTCi7SGk6LnfBRJs03sQZY8nLh2Cj1QIFtWA26NxVT6HRjiX1/hbHj2
+         YTrXirGTRH9gFRdiexpolTYx4qqPNvlt7536SE6TjkdOVnRHWbVWZ5kiTdQ60yga1dao
+         hMcE0qAEOhtAsMNJt1+SWYdVh+a8OFFfb9WbkibpxIuNNp1GZ8Ghw4W1sW041bn5K03u
+         DZqw==
+X-Gm-Message-State: AGi0PuZmJu2jbh1CmM5b8SjWqi27lpUVKJRkCxmsFnE9/801HMM9nK+d
+        oJlMqPh9ZToWD3wlEv7yzwAoBQ==
+X-Google-Smtp-Source: APiQypINfxdob9FO2QvTVw7sPiDBDVf4K2zUjDUnciTcfESlBOyJPryvyeFbi74J9/PMNz7LW2fubQ==
+X-Received: by 2002:a5d:6689:: with SMTP id l9mr33641451wru.261.1588097241896;
+        Tue, 28 Apr 2020 11:07:21 -0700 (PDT)
+Received: from xps7590.local ([37.120.81.28])
+        by smtp.gmail.com with ESMTPSA id m14sm26202789wrs.76.2020.04.28.11.07.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Apr 2020 11:02:40 -0700 (PDT)
-Date:   Tue, 28 Apr 2020 11:02:38 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add IVO M133NWF4 R0
-Message-ID: <20200428180238.GK987656@yoga>
-References: <20200420215728.1927434-1-bjorn.andersson@linaro.org>
- <20200425175842.GA3773@ravnborg.org>
- <CAL_JsqL6bMwrXZqvGz_H_aJi+EeoikBwKznLP2VomJ=Wn822Rg@mail.gmail.com>
- <20200428170559.GC27234@ravnborg.org>
+        Tue, 28 Apr 2020 11:07:21 -0700 (PDT)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>
+Subject: [PATCH v8 v5 1/3] media: dt-bindings: ov8856: Document YAML bindings
+Date:   Tue, 28 Apr 2020 20:07:16 +0200
+Message-Id: <20200428180718.1609826-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200428170559.GC27234@ravnborg.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 28 Apr 10:05 PDT 2020, Sam Ravnborg wrote:
+From: Dongchun Zhu <dongchun.zhu@mediatek.com>
 
-> Hi Rob.
-> 
-> On Tue, Apr 28, 2020 at 09:27:51AM -0500, Rob Herring wrote:
-> > On Sat, Apr 25, 2020 at 12:58 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > >
-> > > Hi Björn.
-> > >
-> > > On Mon, Apr 20, 2020 at 02:57:27PM -0700, Bjorn Andersson wrote:
-> > > > Define the vendor prefix for InfoVision Optoelectronics and add their
-> > > > M133NWF4 R0 13.3" FHD (1920x1080) TFT LCD panel to the compatible list
-> > > > of panel-simple.
-> > > >
-> > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > >
-> > > I got OK for the vendor prefix on irc so patch is now added to
-> > > drm-misc-next.
-> > > Another time please use a dedicated patch for vendor-prefix
-> > > so it is not hidden with other stuff. This way the chance
-> > > to get the attention of the right people is better.
-> > 
-> > I should have mentioned there's basically one thing to check:
-> > alphabetical order.
-> I thought I checked that, but obviously not - hrmpf..
+This patch adds documentation of device tree in YAML schema for the
+OV8856 CMOS image sensor.
 
-Sorry about that, I thought I did double check that before posting it...
+Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+---
 
-> I will post a follow-up patch for drm-misc-next to fix it.
-> 
+- Changes since v7:
+  * Marco: Make 'port' property optional
+  * Maxime & Sakari: Add 'link-frequencies' property to dt binding
+  * robher: Improve description for 'port' property
 
-Thank you,
-Bjorn
+- Changes since v6:
+  * Marco: remove qcom specifics from DT example
+   
+- Changes since v5:
+  * Add assigned-clocks and assigned-clock-rates
+  * robher: dt-schema errors
+
+- Changes since v4:
+  * Fabio: Change reset-gpio to GPIO_ACTIVE_LOW, explain in description
+  * Add clock-lanes property to example
+  * robher: Fix syntax error in devicetree example
+
+- Changes since v3:
+  * robher: Fix syntax error
+  * robher: Removed maxItems
+  * Fixes yaml 'make dt-binding-check' errors
+
+- Changes since v2:
+  Fixes comments from from Andy, Tomasz, Sakari, Rob.
+  * Convert text documentation to YAML schema.
+
+- Changes since v1:
+  Fixes comments from Sakari, Tomasz
+  * Add clock-frequency and link-frequencies in DT
+
+ .../devicetree/bindings/media/i2c/ov8856.yaml | 140 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+new file mode 100644
+index 000000000000..f78d3eae81cb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+@@ -0,0 +1,140 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (c) 2019 MediaTek Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ov8856.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV8856 CMOS Sensor Device Tree Bindings
++
++maintainers:
++  - Ben Kao <ben.kao@intel.com>
++  - Dongchun Zhu <dongchun.zhu@mediatek.com>
++
++description: |-
++  The Omnivision OV8856 is a high performance, 1/4-inch, 8 megapixel, CMOS
++  image sensor that delivers 3264x2448 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface. This chip is programmable
++  through I2C and two-wire SCCB. The sensor output is available via CSI-2
++  serial data output (up to 4-lane).
++
++properties:
++  compatible:
++    const: ovti,ov8856
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    description:
++      Input clock for the sensor.
++    items:
++      - const: xvclk
++
++  clock-frequency:
++    description:
++      Frequency of the xvclk clock in Hertz.
++
++  dovdd-supply:
++    description:
++      Definition of the regulator used as interface power supply.
++
++  avdd-supply:
++    description:
++      Definition of the regulator used as analog power supply.
++
++  dvdd-supply:
++    description:
++      Definition of the regulator used as digital power supply.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDOWN which is physically
++      active low.
++
++  port:
++    type: object
++    additionalProperties: false
++    description:
++      A node containing an output port node with an endpoint definition
++      as documented in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++
++    properties:
++      endpoint:
++        type: object
++
++        properties:
++          clock-lanes:
++            maxItems: 1
++
++          data-lanes:
++            maxItems: 1
++
++          link-frequencies:
++            maxItems: 1
++
++          remote-endpoint: true
++
++        required:
++          - clock-lanes
++          - data-lanes
++          - remote-endpoint
++          - link-frequencies
++
++    required:
++      - endpoint
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - clock-frequency
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov8856: camera@10 {
++            compatible = "ovti,ov8856";
++            reg = <0x10>;
++
++            reset-gpios = <&pio 111 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&clk_24m_cam>;
++
++            clocks = <&cam_osc>;
++            clock-names = "xvclk";
++            clock-frequency = <19200000>;
++
++            avdd-supply = <&mt6358_vcama2_reg>;
++            dvdd-supply = <&mt6358_vcamd_reg>;
++            dovdd-supply = <&mt6358_vcamio_reg>;
++
++            port {
++                wcam_out: endpoint {
++                    remote-endpoint = <&mipi_in_wcam>;
++                    clock-lanes = <0>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <360000000 180000000>;
++                };
++            };
++        };
++    };
++...
+\ No newline at end of file
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 26f281d9f32a..84b262afd13d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12489,6 +12489,7 @@ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/i2c/ov8856.c
++F:	Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+ 
+ OMNIVISION OV9640 SENSOR DRIVER
+ M:	Petr Cvek <petrcvekcz@gmail.com>
+-- 
+2.25.1
+
