@@ -2,360 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B75B81BCC47
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 21:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D295A1BCCD4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 21:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728532AbgD1TVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Apr 2020 15:21:25 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:33788 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728392AbgD1TVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Apr 2020 15:21:24 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id B949680441;
-        Tue, 28 Apr 2020 21:21:18 +0200 (CEST)
-Date:   Tue, 28 Apr 2020 21:21:17 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        jason@lakedaemon.net, dri-devel@lists.freedesktop.org,
-        tomi.valkeinen@ti.com, kernel@collabora.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH] dt-bindings: display: ti,tfp410.txt: convert to yaml
-Message-ID: <20200428192117.GA13894@ravnborg.org>
-References: <20200428092048.14939-1-ricardo.canuelo@collabora.com>
+        id S1728672AbgD1T67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Apr 2020 15:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57532 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728474AbgD1T66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Apr 2020 15:58:58 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40D3C03C1AB
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 12:58:58 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id s20so653906plp.6
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 12:58:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=fEZQSwqgdVgK8Dc4Lm4abA9DcTezznGRFVnE2xG2IhU=;
+        b=sT8+oE5b8EB90ljmegCi/3tIIqW0jgecb5RExDQPsz102kqx09Bs6j+ye6jzW66MGf
+         ZrPnKe/P0Gnk3bK1WDlTx+WMEjbuRQiZt2IYr7zexD74xlMRzqiZKq7RsC0v7C4meSE8
+         zX2eyGoWuSijH0XPRkT77jr3jXzE5LUi1SzaoeSkDgbwS3rHYjvUlhhP4HfFlKHJea3l
+         F7stqe/gmTTYfZAoZ8gLWVy/bhNZM5/D6I8f7L7RQC5dwr3wBIiq4fCP3UtU5xcVVp1X
+         SziCu1BuDc0YGieJcgzyzSlobUfVpyNB6e5hDh9tTnyMsHai3RSRFcU0Ns1FLMtqs+d/
+         oeyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fEZQSwqgdVgK8Dc4Lm4abA9DcTezznGRFVnE2xG2IhU=;
+        b=TgWsqEkGtTYKl9Pm8q+tuDISQJ/8nusAavrY0FzVrn5XGZAS3muSmP6bXRi7BV0+fY
+         Grxvbe27FbC5HNA4uuV1B85N/7DKartAL97WOvIBvfr1og3pHstS8Wt3GCUjWa2SiOcj
+         0mSayK9NL+Pb17KbUArsJis4ftCwFxWUdzzFI7O5blYM/cXsDcxnVRXMOHSOJaJytVcT
+         y+oLqGfJrkJ10pKojHjVQH4Iq7qb3zDhSnWu80G3xM+NSbGeCjj6J2XSIccywxJAAQDg
+         4TaCK/1ItLJe1H3rSds2RYtJOoq5FHngG0q1up41ATjCAOF6tOMcvVHvv2bWfkKDOQd4
+         u5Fg==
+X-Gm-Message-State: AGi0PuZgMDv9l/LeANM6SHK4ujPi97b03YYKbjLYV7mePpL065dqlI71
+        3FvyhWeSvM7AS6vDjvoP09YdJQ==
+X-Google-Smtp-Source: APiQypIK57JLnFpeho7mksYIVHhBF3Gc0olKcF4/PHj0nDqZdhZ94PjsIr3TYZMoZ/Z4b3mdOz7plw==
+X-Received: by 2002:a17:902:8ec1:: with SMTP id x1mr30230396plo.180.1588103937943;
+        Tue, 28 Apr 2020 12:58:57 -0700 (PDT)
+Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
+        by smtp.gmail.com with ESMTPSA id t23sm2924285pji.32.2020.04.28.12.58.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Apr 2020 12:58:57 -0700 (PDT)
+Date:   Tue, 28 Apr 2020 13:58:55 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] remoteproc/k3-dsp: Add support for L2RAM loading on
+ C66x DSPs
+Message-ID: <20200428195855.GC10552@xps15>
+References: <20200325201839.15896-1-s-anna@ti.com>
+ <20200325201839.15896-4-s-anna@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200428092048.14939-1-ricardo.canuelo@collabora.com>
+In-Reply-To: <20200325201839.15896-4-s-anna@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=8nJEP1OIZ-IA:10 a=QX4gbG5DAAAA:8 a=gEfo2CItAAAA:8 a=sozttTNsAAAA:8
-        a=e5mUnYsNAAAA:8 a=5Q1QhKhd6o2KWyfzDbIA:9 a=FI4-JCA4KLYWKuIK:21
-        a=vwSoZJe330k_mNyO:21 a=wPNLvfGTeEIA:10 a=AbAUZ8qAyYyZVLSsDulk:22
-        a=sptkURWiP4Gy88Gu7hUp:22 a=aeg5Gbbo78KNqacMgKqU:22
-        a=Vxmtnl_E_bksehYqCbjh:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo.
-
-Thanks for looking into this bridge binding.
-Some comments in the following.
-
-	Sam
-
-On Tue, Apr 28, 2020 at 11:20:48AM +0200, Ricardo Cañuelo wrote:
-> Convert the DT binding documentation for the TI TFP410 DPI-to-DVI
-> encoder to json-schema.
+On Wed, Mar 25, 2020 at 03:18:39PM -0500, Suman Anna wrote:
+> The resets for the DSP processors on K3 SoCs are managed through the
+> Power and Sleep Controller (PSC) module. Each DSP typically has two
+> resets - a global module reset for powering on the device, and a local
+> reset that affects only the CPU while allowing access to the other
+> sub-modules within the DSP processor sub-systems.
 > 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+> The C66x DSPs have two levels of internal RAMs that can be used to
+> boot from, and the firmware loading into these RAMs require the
+> local reset to be asserted with the device powered on/enabled using
+> the module reset. Enhance the K3 DSP remoteproc driver to add support
+> for loading into the internal RAMs. The local reset is deasserted on
+> SoC power-on-reset, so logic has to be added in probe in remoteproc
+> mode to balance the remoteproc state-machine.
+> 
+> Note that the local resets are a no-op on C71x cores, and the hardware
+> does not supporting loading into its internal RAMs.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
 > ---
-> Hi all,
+>  drivers/remoteproc/ti_k3_dsp_remoteproc.c | 82 +++++++++++++++++++++++
+>  1 file changed, 82 insertions(+)
 > 
-> I found some issues while converting this binding and I'd like to know
-> your opinions on how to tackle them.
-> 
-> 1) dtbs_check fails for arch/arm/boot/dts/dove-sbc-a510.dts
-> 
->   This board uses the TFP410 encoder but it doesn't define any ports for
->   it. I can't find any suitable remote endpoints in its description
->   either. Maybe this board description should be reworked? The current
->   driver won't handle the device if it doesn't define any ports or
->   endpoints anyway.
-> 
-
-It is expected that there are a few DT files that will need an update
-when they are checked more fomally.
-So post a sepearate patch to fix it - preferably before the
-conversion.
-
->   It also uses the 'powerdown-gpio' property instead of
->   'powerdown-gpios'. AFAICT this shouldn't be a problem from the driver
->   point of view, but the general standard in DT bindings is to use the
->   plural. This is trivial to fix.
-Use the plural form as everyone else.
-
-> 2) The definition of ti,deskew in the original binding seems to be
-> tailored to the current driver and the way it's defined may not be very
-> DT-friendly.
-> 
->   This parameter maps to a 3-bit field in a hardware register that takes
->   a value from 0 to 7, so the [-4, 3] range described for this would map
->   to [000, 111]: -4 -> 000, -3 -> 001, -2 -> 010, ... 3 -> 111.
-> 
->   Then, the driver parses the parameter (unsigned) and casts it to a
->   signed integer to get a number in the [-4, 3] range.
-> 
->   A vendor-specific property must have a type definition in json-schema,
->   so if I translate the original bindings semantics directly, I should
->   define ti,deskew as an int32, but this makes dt_binding_check fail if
->   the property has a negative value in the example because of the
->   internal representation of cells as unsigned integers:
-> 
->      ti,deskew:0:0: 4294967293 is greater than the maximum of 2147483647
-
-Can you define it as an enum like this:
-
-	enum: [-4, -3, -2, -1, 0, 1, 2, 3]
-
-And then maybe in the descrition describe how they map to 0..7.
-The problem is that the binding is an API so we cannot just change
-the interpretation of the value 0 etc.
-
-
-> 
->   So I can think of two solutions to this:
-> 
->   a) Keep the ti,deskew property as an uint32 and document the valid
->   range ([-4, 3]) in the property description (this is what this patch
->   does currently).
-> 
->   b) Redefine this property to be closer to the datasheet description
->   (ie. unsigned integers from 0 to 7) and adapt the driver accordingly.
->   This would also let us define its range properly using minimum and
->   maximum properties for it.
-> 
->   I think (b) is the right thing to do but I want to know your
->   opinion. Besides, I don't have this hardware at hand and if I updated
->   the driver I wouldn't be able to test it.
-> 
-> Thanks.
-> 
-> Patch tested with:
-> 
-> make dt_binding_check ARCH=arm DT_SCHEMA_FILES=<.../ti,tfp410.yaml>
-> make dtbs_check ARCH=arm DT_SCHEMA_FILES=<.../ti,tfp410.yaml>
-> 
->  .../bindings/display/bridge/ti,tfp410.txt     |  66 ----------
->  .../bindings/display/bridge/ti,tfp410.yaml    | 121 ++++++++++++++++++
->  2 files changed, 121 insertions(+), 66 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tfp410.txt
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.txt b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.txt
-> deleted file mode 100644
-> index 5ff4f64ef8e8..000000000000
-> --- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.txt
-> +++ /dev/null
-> @@ -1,66 +0,0 @@
-> -TFP410 DPI to DVI encoder
-> -=========================
-> -
-> -Required properties:
-> -- compatible: "ti,tfp410"
-> -
-> -Optional properties:
-> -- powerdown-gpios: power-down gpio
-> -- reg: I2C address. If and only if present the device node should be placed
-> -  into the I2C controller node where the TFP410 I2C is connected to.
-> -- ti,deskew: data de-skew in 350ps increments, from -4 to +3, as configured
-> -  through th DK[3:1] pins. This property shall be present only if the TFP410
-> -  is not connected through I2C.
-> -
-> -Required nodes:
-> -
-> -This device has two video ports. Their connections are modeled using the OF
-> -graph bindings specified in [1]. Each port node shall have a single endpoint.
-> -
-> -- Port 0 is the DPI input port. Its endpoint subnode shall contain a
-> -  pclk-sample and bus-width property and a remote-endpoint property as specified
-> -  in [1].
-
-> -  - If pclk-sample is not defined, pclk-sample = 0 should be assumed for
-> -    backward compatibility.
-> -  - If bus-width is not defined then bus-width = 24 should be assumed for
-> -    backward compatibility.
-> -    bus-width = 24: 24 data lines are connected and single-edge mode
-> -    bus-width = 12: 12 data lines are connected and dual-edge mode
-These comments are missing in the new binding.
-
-
-> -
-> -- Port 1 is the DVI output port. Its endpoint subnode shall contain a
-> -  remote-endpoint property is specified in [1].
-> -
-> -[1] Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -
-> -Example
-> --------
-> -
-> -tfp410: encoder@0 {
-> -	compatible = "ti,tfp410";
-> -	powerdown-gpios = <&twl_gpio 2 GPIO_ACTIVE_LOW>;
-> -	ti,deskew = <4>;
-> -
-> -	ports {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		port@0 {
-> -			reg = <0>;
-> -
-> -			tfp410_in: endpoint@0 {
-> -				pclk-sample = <1>;
-> -				bus-width = <24>;
-> -				remote-endpoint = <&dpi_out>;
-> -			};
-> -		};
-> -
-> -		port@1 {
-> -			reg = <1>;
-> -
-> -			tfp410_out: endpoint@0 {
-> -				remote-endpoint = <&dvi_connector_in>;
-> -			};
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> new file mode 100644
-> index 000000000000..79666ee540f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> @@ -0,0 +1,121 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-You need to obtain approval to change the license to include BSD.
-The current binfing is GPL-2-0-only as it is default in the tree.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/ti,tfp410.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/remoteproc/ti_k3_dsp_remoteproc.c b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> index fd0d84f46f90..7b712ef74611 100644
+> --- a/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> +++ b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> @@ -175,6 +175,9 @@ static int k3_dsp_rproc_reset(struct k3_dsp_rproc *kproc)
+>  		return ret;
+>  	}
+>  
+> +	if (kproc->data->uses_lreset)
+> +		return ret;
 > +
-> +title: TFP410 DPI to DVI encoder
+>  	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
+>  						    kproc->ti_sci_id);
+>  	if (ret) {
+> @@ -192,6 +195,9 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
+>  	struct device *dev = kproc->dev;
+>  	int ret;
+>  
+> +	if (kproc->data->uses_lreset)
+> +		goto lreset;
 > +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-> +  - Jyri Sarha <jsarha@ti.com>
+>  	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
+>  						   kproc->ti_sci_id);
+>  	if (ret) {
+> @@ -199,6 +205,7 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
+>  		return ret;
+>  	}
+>  
+> +lreset:
+>  	ret = reset_control_deassert(kproc->reset);
+>  	if (ret) {
+>  		dev_err(dev, "local-reset deassert failed, ret = %d\n", ret);
+> @@ -210,6 +217,63 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
+>  	return ret;
+>  }
+>  
+> +/*
+> + * The C66x DSP cores have a local reset that affects only the CPU, and a
+> + * generic module reset that powers on the device and allows the DSP internal
+> + * memories to be accessed while the local reset is asserted. This function is
+> + * used to release the global reset on C66x DSPs to allow loading into the DSP
+> + * internal RAMs. The .prepare() ops is invoked by remoteproc core before any
+> + * firmware loading, and is followed by the .start() ops after loading to
+> + * actually let the C66x DSP cores run. The local reset on C71x cores is a
+> + * no-op and the global reset cannot be released on C71x cores until after
+> + * the firmware images are loaded, so this function does nothing for C71x cores.
+> + */
+> +static int k3_dsp_rproc_prepare(struct rproc *rproc)
+> +{
+> +	struct k3_dsp_rproc *kproc = rproc->priv;
+> +	struct device *dev = kproc->dev;
+> +	int ret;
 > +
-> +properties:
-> +  compatible:
-> +    const: "ti,tfp410"
-No "" around the compatible name
+> +	/* local reset is no-op on C71x processors */
+> +	if (!kproc->data->uses_lreset)
+> +		return 0;
+
+In k3_dsp_rproc_release() the condition is "if (kproc->data->uses_lreset)" and
+here it is the opposite, which did a good job at getting me confused.
+
+Taking a step back, I assume c71 DSPs will have their own k3_dsp_dev_data where
+the users_lreset flag will be false.  In that case I think it would make the
+code easier to understand if the k3_dsp_rproc_ops was declared without the
+.prepare and .unprepare.  In probe(), if data->uses_lreset is true then
+k3_dsp_rproc_prepare() and k3_dsp_rproc_unprepare() are set.
+
+I am done reviewing this set.
+
+Thanks,
+Mathieu
 
 > +
-> +  reg:
-> +    description: I2C address of the device.
-> +    maxItems: 1
+> +	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
+> +						    kproc->ti_sci_id);
+> +	if (ret)
+> +		dev_err(dev, "module-reset deassert failed, cannot enable internal RAM loading, ret = %d\n",
+> +			ret);
 > +
-> +  powerdown-gpios:
-> +    maxItems: 1
+> +	return ret;
+> +}
 > +
-> +  ti,deskew:
-> +    description:
-> +      Data de-skew in 350ps increments, from -4 to +3, as configured
-> +      through the DK[3:1] pins. This property shall be present only if
-> +      the TFP410 is not connected through I2C.
-> +    maxItems: 1
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-No need for the allOf: - $ref.
-Just use a plain $ref
-
-
+> +/*
+> + * This function implements the .unprepare() ops and performs the complimentary
+> + * operations to that of the .prepare() ops. The function is used to assert the
+> + * global reset on applicable C66x cores. This completes the second portion of
+> + * powering down the C66x DSP cores. The cores themselves are only halted in the
+> + * .stop() callback through the local reset, and the .unprepare() ops is invoked
+> + * by the remoteproc core after the remoteproc is stopped to balance the global
+> + * reset.
+> + */
+> +static int k3_dsp_rproc_unprepare(struct rproc *rproc)
+> +{
+> +	struct k3_dsp_rproc *kproc = rproc->priv;
+> +	struct device *dev = kproc->dev;
+> +	int ret;
 > +
-> +  ports:
-> +    description:
-> +      A node containing input and output port nodes with endpoint
-> +      definitions as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +    type: object
+> +	/* local reset is no-op on C71x processors */
+> +	if (!kproc->data->uses_lreset)
+> +		return 0;
 > +
-> +    properties:
-> +      port@0:
-> +        description: DPI input port.
-> +        type: object
+> +	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
+> +						    kproc->ti_sci_id);
+> +	if (ret)
+> +		dev_err(dev, "module-reset assert failed, ret = %d\n", ret);
 > +
-> +        properties:
-> +          reg:
-> +            const: 0
+> +	return ret;
+> +}
 > +
-> +          endpoint:
-> +            type: object
+>  /*
+>   * Power up the DSP remote processor.
+>   *
+> @@ -353,6 +417,8 @@ static void *k3_dsp_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
+>  }
+>  
+>  static const struct rproc_ops k3_dsp_rproc_ops = {
+> +	.prepare	= k3_dsp_rproc_prepare,
+> +	.unprepare	= k3_dsp_rproc_unprepare,
+>  	.start		= k3_dsp_rproc_start,
+>  	.stop		= k3_dsp_rproc_stop,
+>  	.kick		= k3_dsp_rproc_kick,
+> @@ -644,6 +710,22 @@ static int k3_dsp_rproc_probe(struct platform_device *pdev)
+>  		goto disable_clk;
+>  	}
+>  
+> +	/*
+> +	 * ensure the DSP local reset is asserted to ensure the DSP doesn't
+> +	 * execute bogus code in .prepare() when the module reset is released.
+> +	 */
+> +	if (data->uses_lreset) {
+> +		ret = reset_control_status(kproc->reset);
+> +		if (ret < 0) {
+> +			dev_err(dev, "failed to get reset status, status = %d\n",
+> +				ret);
+> +			goto release_mem;
+> +		} else if (ret == 0) {
+> +			dev_warn(dev, "local reset is deasserted for device\n");
+> +			k3_dsp_rproc_reset(kproc);
+> +		}
+> +	}
 > +
-> +            properties:
-> +              pclk-sample:
-> +                description: Endpoint sampling edge.
-> +                enum:
-> +                  - 0  # Falling edge
-> +                  - 1  # Rising edge
-> +
-> +              bus-width:
-> +                description: Endpoint bus width.
-> +                enum: [ 12, 24 ]
-> +
-> +        required:
-> +          - endpoint
-> +
-> +      port@1:
-> +        description: DVI output port.
-> +        type: object
-> +
-> +        properties:
-> +          reg:
-> +            const: 1
-> +
-> +          endpoint:
-> +            type: object
-> +
-> +        required:
-> +          - endpoint
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    tfp410: encoder {
-> +        compatible = "ti,tfp410";
-> +        powerdown-gpios = <&twl_gpio 2 GPIO_ACTIVE_LOW>;
-> +        ti,deskew = <3>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                tfp410_in: endpoint {
-> +                    pclk-sample = <1>;
-> +                    bus-width = <24>;
-> +                    remote-endpoint = <&dpi_out>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                tfp410_out: endpoint {
-> +                    remote-endpoint = <&dvi_connector_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+>  	ret = rproc_add(rproc);
+>  	if (ret) {
+>  		dev_err(dev, "failed to add register device with remoteproc core, status = %d\n",
 > -- 
-> 2.18.0
+> 2.23.0
 > 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
