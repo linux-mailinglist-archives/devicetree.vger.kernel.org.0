@@ -2,176 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 952681BB274
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 02:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 678581BB412
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 04:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbgD1ABt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 20:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726361AbgD1ABs (ORCPT
+        id S1726275AbgD1CmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 22:42:19 -0400
+Received: from comunidaddenegocios.com ([167.86.78.137]:59752 "EHLO
+        vmi244585.contaboserver.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726264AbgD1CmT (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 20:01:48 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1D7C03C1A9
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 17:01:46 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id h12so426126pjz.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 17:01:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1s/dsw3iQ5+KLo+HnIszPH3KY3xtYoHt7IVuj3QhLHU=;
-        b=XNvI8baeWbFOlqlhE8xT1QWuu1S8IwUV53ybwKKHilfeMad9u86/Uf3LdqVk3ZOryZ
-         c6KHmlE+ZFcis9At+kwW5gX7bge93AvjplIQf7HxNFsh9x4qPnGPTl50398M9joshJ+P
-         mOYz9wHPLNh3cQzkWnvbtFhAqhD5327iTLGlPglQg9kcRzscpFewWWLCTGeo/Jp5h/O2
-         IhCzlCJeyPWcD3ovB/UldAl7i5yDmzvjSAPwmwCQT+lY2iExK1IFlCk1ZEJY0GOtXO+I
-         mIOShl7d4YKDbHlxR/3xnnr93oOcQlxIghqMJoTqohMQDdA80dCEOuzqTEhlfLhhTv5e
-         WEPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1s/dsw3iQ5+KLo+HnIszPH3KY3xtYoHt7IVuj3QhLHU=;
-        b=SuL4WRz/I0XltY/IygqF4dDvkk6FaS553L1kASsFu9C2lGmNNB5Q2g81/UzrtsXQVm
-         OCO/9iCUC/gjjc7aqmaIXXPhG+916vDi+oQer5L/y/ACEA5RIv+d1IJonth6np9sDFFD
-         2oc2t3NaM1ukHZOHNYJN0QSY+/rtKgEdPsFyG7BR+5Idkx9ejr8c6rIDfS1w+CFBoLUV
-         b1ygwu7ve7PG8YZQ429FbOkGJH7apcUXTQV5BNZsPzZ0DvTcD+SRwoNtpPAKYGu9Eag7
-         8iBZobeV0rOQI8deYW9oMbxl23oPrqmMY3ppEf6HLeT4PZZNgl49VuspisdgBF7srxSw
-         7jsg==
-X-Gm-Message-State: AGi0PuaUvXoZzncmggBDpBGGsg1hSe8PXGYzbVOeEE+Q9CxwFCM1woOU
-        AHlgEwrvU316p1m1Q7PaPbOlhg==
-X-Google-Smtp-Source: APiQypLTLSeLx4582wk1BaOWz0qb2oLn0Mzn+JdglqHV4PiHoKagI4kSJkJbxuaIo/LC7hsyhR/UJg==
-X-Received: by 2002:a17:902:8608:: with SMTP id f8mr25757854plo.110.1588032106375;
-        Mon, 27 Apr 2020 17:01:46 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id cp22sm363850pjb.28.2020.04.27.17.01.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2020 17:01:45 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH 2/2] remoteproc: qcom: pas: Add SM8250 PAS remoteprocs
-Date:   Mon, 27 Apr 2020 17:01:10 -0700
-Message-Id: <20200428000110.2958704-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200428000110.2958704-1-bjorn.andersson@linaro.org>
-References: <20200428000110.2958704-1-bjorn.andersson@linaro.org>
+        Mon, 27 Apr 2020 22:42:19 -0400
+X-Greylist: delayed 1529 seconds by postgrey-1.27 at vger.kernel.org; Mon, 27 Apr 2020 22:42:19 EDT
+Received: from comunidaddenegoc by vmi244585.contaboserver.net with local (Exim 4.93)
+        (envelope-from <support@planc.comunidaddenegocios.com>)
+        id 1jTENZ-0005I1-Sn
+        for devicetree@vger.kernel.org; Tue, 28 Apr 2020 02:45:41 +0200
+To:     devicetree@vger.kernel.org
+Subject: Curiosity
+X-PHP-Script: planc.comunidaddenegocios.com/wp-content/plugins/ocbhfaobnrrke.php for 109.236.16.121
+X-PHP-Originating-Script: 1000:ocbhfaobnrrke.php
+Date:   Tue, 28 Apr 2020 00:45:41 +0000
+From:   support@planc.comunidaddenegocios.com
+Reply-To: lindhanse@aol.com
+Message-ID: <33d79de6b844c7d9c19f19b119140ada@planc.comunidaddenegocios.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vmi244585.contaboserver.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [1000 993] / [47 12]
+X-AntiAbuse: Sender Address Domain - planc.comunidaddenegocios.com
+X-Get-Message-Sender-Via: vmi244585.contaboserver.net: authenticated_id: comunidaddenegoc/from_h
+X-Authenticated-Sender: vmi244585.contaboserver.net: support@planc.comunidaddenegocios.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audio, compute and sensor DSP compatibles to the Qualcomm PAS
-binding and driver.
+Hello,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 62 ++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+I am writing to certify if you receive my email  yesterday?
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index 8ecc157f1ed1..5f2266c74448 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -508,6 +508,26 @@ static const struct adsp_data sm8150_adsp_resource = {
- 		.ssctl_id = 0x14,
- };
- 
-+static const struct adsp_data sm8250_adsp_resource = {
-+	.crash_reason_smem = 423,
-+	.firmware_name = "adsp.mdt",
-+	.pas_id = 1,
-+	.has_aggre2_clk = false,
-+	.auto_boot = true,
-+	.active_pd_names = (char*[]){
-+		"load_state",
-+		NULL
-+	},
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mx",
-+		NULL
-+	},
-+	.ssr_name = "lpass",
-+	.sysmon_name = "adsp",
-+	.ssctl_id = 0x14,
-+};
-+
- static const struct adsp_data msm8998_adsp_resource = {
- 		.crash_reason_smem = 423,
- 		.firmware_name = "adsp.mdt",
-@@ -553,6 +573,25 @@ static const struct adsp_data sm8150_cdsp_resource = {
- 	.ssctl_id = 0x17,
- };
- 
-+static const struct adsp_data sm8250_cdsp_resource = {
-+	.crash_reason_smem = 601,
-+	.firmware_name = "cdsp.mdt",
-+	.pas_id = 18,
-+	.has_aggre2_clk = false,
-+	.auto_boot = true,
-+	.active_pd_names = (char*[]){
-+		"load_state",
-+		NULL
-+	},
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		NULL
-+	},
-+	.ssr_name = "cdsp",
-+	.sysmon_name = "cdsp",
-+	.ssctl_id = 0x17,
-+};
-+
- static const struct adsp_data mpss_resource_init = {
- 	.crash_reason_smem = 421,
- 	.firmware_name = "modem.mdt",
-@@ -604,6 +643,26 @@ static const struct adsp_data sm8150_slpi_resource = {
- 		.ssctl_id = 0x16,
- };
- 
-+static const struct adsp_data sm8250_slpi_resource = {
-+	.crash_reason_smem = 424,
-+	.firmware_name = "slpi.mdt",
-+	.pas_id = 12,
-+	.has_aggre2_clk = false,
-+	.auto_boot = true,
-+	.active_pd_names = (char*[]){
-+		"load_state",
-+		NULL
-+	},
-+	.proxy_pd_names = (char*[]){
-+		"lcx",
-+		"lmx",
-+		NULL
-+	},
-+	.ssr_name = "dsps",
-+	.sysmon_name = "slpi",
-+	.ssctl_id = 0x16,
-+};
-+
- static const struct adsp_data msm8998_slpi_resource = {
- 		.crash_reason_smem = 424,
- 		.firmware_name = "slpi.mdt",
-@@ -644,6 +703,9 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sm8150-cdsp-pas", .data = &sm8150_cdsp_resource},
- 	{ .compatible = "qcom,sm8150-mpss-pas", .data = &mpss_resource_init},
- 	{ .compatible = "qcom,sm8150-slpi-pas", .data = &sm8150_slpi_resource},
-+	{ .compatible = "qcom,sm8250-adsp-pas", .data = &sm8250_adsp_resource},
-+	{ .compatible = "qcom,sm8250-cdsp-pas", .data = &sm8250_cdsp_resource},
-+	{ .compatible = "qcom,sm8250-slpi-pas", .data = &sm8250_slpi_resource},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, adsp_of_match);
--- 
-2.24.0
+Regards,
+
+Linda
 
