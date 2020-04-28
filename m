@@ -2,222 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 983F21BB400
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 04:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D93F91BB45F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 05:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726271AbgD1CbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Apr 2020 22:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34364 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726366AbgD1CbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Apr 2020 22:31:08 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B6C03C1AC
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 19:31:07 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id 198so15609095lfo.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2020 19:31:07 -0700 (PDT)
+        id S1726270AbgD1DGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Apr 2020 23:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbgD1DGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Apr 2020 23:06:30 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F0CC03C1A9;
+        Mon, 27 Apr 2020 20:06:29 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id a21so16958560ljj.11;
+        Mon, 27 Apr 2020 20:06:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=UnerS2Kl72hAiRVV2JqGYkvblu54baNutnPShcz46io=;
-        b=OkkN9xIiD9FngwwvJ3pMdyLdtg67Z2MwQTMlMe6MrvEB2ZVVWlYv4L+ca0Hmi7XN7y
-         jbwJyLyHnFXhV0d6E3dpbxnZ3v9JR0TLHFPKmj32jKc4uXsBEgXoW6uF1ZB/+4gTRy7z
-         C2Ycvdhf7h8TwhdblEdv56naB8mZRzXxFKVkLAUvivV1bCKdLkHYouFPJO7OoMj1yA4y
-         XmYDouhnciLHkfCLGz6NZjMECvbK6d4QUtqAEWB1rGHlFavbRH8mUQXXDRi8Z/te+OMF
-         /f+BZbyIT7HxHM4WSkA6gjeX+lpVV6rbMqfdIMH3/+Xfg1t6C6xDc797soeK5bDzRNnh
-         ISvA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MRSh6bM9XP0azbhFTCMzRWuFhD8+MW6Kxy/FSqtXLPk=;
+        b=n1P3PyC90pe6PHwGpU3m7XTda+91bMKaQ0Duk39nY72xGoewIBIuuXB0sw51HgMuKT
+         cVqA9VamlTQ3X/NUwDdX+9hiXRUxdYnRdFZTxonbUY0ZF5A8oD/kQBNW0488o1UaVgVa
+         ACGMnFK2cV9KOvcNP6sTVFjq36UaMWPM7TXgK5IKPW0KJxET8ZU9j8Hd8tPoC70SouDf
+         72NY/9IhT++TXKVC32BWCwqTyGJXTUaakDPaVzW7rTUy14n4fQgH2Y3JIm7ktahE0Wrr
+         sUq9e4Tfn9ntpfJP2A4KAz55StcyNBg3r89H7j0GLNsLbqmYiIgps3vLiU8UMDznel6p
+         2+nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=UnerS2Kl72hAiRVV2JqGYkvblu54baNutnPShcz46io=;
-        b=jLZnY6lbVdnRbt+QZZzzIpnPZ/5h0y0ozcnVmvMUHrTDRsXRCcBTCF4LkDr6YCa4JS
-         EK0oXxK0lWDrKbRqX+oq3o5LUtxm6HU61PVHLHA89a5uu4PEK0kaKGLebmYToDgaNX7L
-         TkqRxkDJwwPyDH23yxLSIXajROs9MTjttgCKb1AmyV45v0/IFGz/SAJVZCNduGgSDMfn
-         pKHBUuw+kWkDf9E67IbnJCNh/x+/R9YHTy+oFxPqI/s4rP2KQbQDMZiHjIrnZ+PHg9Rt
-         9d3kJOEbKiKEAJpgqIwVCqCakpeZlHLzA+ZQLr6kJmKNBM0E7OSSw11fVdRDybkqKIjo
-         IRjw==
-X-Gm-Message-State: AGi0PubGhl6AqwoZJ8oLaPx2LbVRZCTQ8VOQq3zWjJmPyMH7EGlhaKL9
-        rpCS/O3iNllaz4t2JEwHfJ8ELQ==
-X-Google-Smtp-Source: APiQypIj0PB/FA6x9NNYsA6QIcOzjetw0kg/v5q+6OcjxSFRTOLA0AMLTRjmkTIXCvBWJdctSvaREw==
-X-Received: by 2002:a19:4b90:: with SMTP id y138mr17072981lfa.39.1588041065784;
-        Mon, 27 Apr 2020 19:31:05 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id v17sm12758148lfe.34.2020.04.27.19.31.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2020 19:31:05 -0700 (PDT)
-Date:   Tue, 28 Apr 2020 04:31:04 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: renesas: ostm: Convert to json-schema
-Message-ID: <20200428023104.GD1208690@oden.dyn.berto.se>
-References: <20200427193224.29548-1-geert+renesas@glider.be>
- <20200428022904.GC1208690@oden.dyn.berto.se>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MRSh6bM9XP0azbhFTCMzRWuFhD8+MW6Kxy/FSqtXLPk=;
+        b=mI5xVgNEFsNTO1Le3V7YMT3PbG3Ceav6wdKoFRM3tv68eUmghVkGDAsAi2nQ3XeW3e
+         8KM/Er5bg+8snw1BxzJCiofAX/kCAbI3JHHKIyYOmlzUA+gy+oLoI0VahLOU81syqxnu
+         mhVwo8brY8ea1iaHDW/wslHW9SqpHFX3RXBpoCcK8970hkuAjSqV4QyaU7bGeYPFcpva
+         3lOyXvAxEq9JUHxXvIfTzU5ILlhXNMKarbFX1cQK2XZyGXg2qhcvpnkKDZV/A16vNb4H
+         g9VhEnJ0iBofudSTVZwXl3dXiPbtQpKwWdhfnq8tScsWH7QTX5HA/F++gxX/3IhtCtpq
+         fGxQ==
+X-Gm-Message-State: AGi0PuYaGsqXzspYk1bvhswB3LMwQEf1RSPp/5x7rOpmTaSsMibuciwM
+        nk1Y4/2bJvQc5VpfyDObXMZhKCU0FNQIwVaVeDmwXn+wcMc=
+X-Google-Smtp-Source: APiQypL2kd2Gi0EBH+kdmVbmL2dRpZPQ0G3ZQJhyORxU/boq6BgLN+RFAu55XUj+xaRUyc1MlY+QJl5k9f/sT1ozG1c=
+X-Received: by 2002:a05:651c:2011:: with SMTP id s17mr15121456ljo.242.1588043187420;
+ Mon, 27 Apr 2020 20:06:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200428022904.GC1208690@oden.dyn.berto.se>
+References: <8d29eba045ef18c5489e122b3668afc20431f15d.1587894279.git.baolin.wang7@gmail.com>
+ <6f8ac1af5a43d6fd487dc21c052624277325e6f1.1587894279.git.baolin.wang7@gmail.com>
+ <CABb+yY31zAr9xfS3bWC5k=94L921CyhzA7fot3eJP1WYSvNCpw@mail.gmail.com>
+In-Reply-To: <CABb+yY31zAr9xfS3bWC5k=94L921CyhzA7fot3eJP1WYSvNCpw@mail.gmail.com>
+From:   Baolin Wang <baolin.wang7@gmail.com>
+Date:   Tue, 28 Apr 2020 11:06:16 +0800
+Message-ID: <CADBw62pk7AtahXXMqrHo4Fh64TQC_2k4VWZ2U47LGxZv41o4Fg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 2/2] mailbox: sprd: Add Spreadtrum mailbox driver
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi (again) Geert,
+Hi Jassi,
 
-On 2020-04-28 04:29:05 +0200, Niklas Söderlund wrote:
-> Hi Geert,
-> 
-> Thanks for your patch.
-> 
-> On 2020-04-27 21:32:24 +0200, Geert Uytterhoeven wrote:
-> > Convert the Renesas OS Timer (OSTM) Device Tree binding documentation to
-> > json-schema.
-> > 
-> > Document missing properties.
-> > 
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> Reviewed-by: Niklas Söderlund <niklas.soderlund@ragnatech.se>
-
-Sometimes I type quicker then I think (which is not such a difficult 
-taks), that should have been.
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> 
+On Tue, Apr 28, 2020 at 4:19 AM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>
+> On Mon, Apr 27, 2020 at 2:20 AM Baolin Wang <baolin.wang7@gmail.com> wrote:
+> >
+> > From: Baolin Wang <baolin.wang@unisoc.com>
+> >
+> > The Spreadtrum mailbox controller supports 8 channels to communicate
+> > with MCUs, and it contains 2 different parts: inbox and outbox, which
+> > are used to send and receive messages by IRQ mode.
+> >
+> > Signed-off-by: Baolin Wang <baolin.wang@unisoc.com>
+> > Signed-off-by: Baolin Wang <baolin.wang7@gmail.com>
 > > ---
-> > For a clean dtbs_check, this depends on "[PATCH] ARM: dts: r7s9210: Remove
-> > bogus clock-names from OSTM nodes"
-> > (https://lore.kernel.org/r/20200427192932.28967-1-geert+renesas@glider.be)
-> > which I intend to queue as a fix for v5.7.
-> > 
-> >  .../bindings/timer/renesas,ostm.txt           | 31 ----------
-> >  .../bindings/timer/renesas,ostm.yaml          | 59 +++++++++++++++++++
-> >  2 files changed, 59 insertions(+), 31 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/timer/renesas,ostm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.txt b/Documentation/devicetree/bindings/timer/renesas,ostm.txt
-> > deleted file mode 100644
-> > index 81a78f8bcf170a82..0000000000000000
-> > --- a/Documentation/devicetree/bindings/timer/renesas,ostm.txt
-> > +++ /dev/null
-> > @@ -1,31 +0,0 @@
-> > -* Renesas OS Timer (OSTM)
-> > -
-> > -The OSTM is a multi-channel 32-bit timer/counter with fixed clock
-> > -source that can operate in either interval count down timer or free-running
-> > -compare match mode.
-> > -
-> > -Channels are independent from each other.
-> > -
-> > -Required Properties:
-> > -
-> > -  - compatible: must be one or more of the following:
-> > -    - "renesas,r7s72100-ostm" for the R7S72100 (RZ/A1) OSTM
-> > -    - "renesas,r7s9210-ostm" for the R7S9210 (RZ/A2) OSTM
-> > -    - "renesas,ostm" for any OSTM
-> > -		This is a fallback for the above renesas,*-ostm entries
-> > -
-> > -  - reg: base address and length of the register block for a timer channel.
-> > -
-> > -  - interrupts: interrupt specifier for the timer channel.
-> > -
-> > -  - clocks: clock specifier for the timer channel.
-> > -
-> > -Example: R7S72100 (RZ/A1H) OSTM node
-> > -
-> > -	ostm0: timer@fcfec000 {
-> > -		compatible = "renesas,r7s72100-ostm", "renesas,ostm";
-> > -		reg = <0xfcfec000 0x30>;
-> > -		interrupts = <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>;
-> > -		clocks = <&mstp5_clks R7S72100_CLK_OSTM0>;
-> > -		power-domains = <&cpg_clocks>;
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+> > Changes from v2:
+> >  - None.
+> >
+> > Changes from v1:
+> >  - None
+> > ---
+> >  drivers/mailbox/Kconfig        |   8 +
+> >  drivers/mailbox/Makefile       |   2 +
+> >  drivers/mailbox/sprd-mailbox.c | 350 +++++++++++++++++++++++++++++++++
+> >  3 files changed, 360 insertions(+)
+> >  create mode 100644 drivers/mailbox/sprd-mailbox.c
+> >
+> > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> > index 5a577a6734cf..e03f3fb5caed 100644
+> > --- a/drivers/mailbox/Kconfig
+> > +++ b/drivers/mailbox/Kconfig
+> > @@ -236,4 +236,12 @@ config SUN6I_MSGBOX
+> >           various Allwinner SoCs. This mailbox is used for communication
+> >           between the application CPUs and the power management coprocessor.
+> >
+> > +config SPRD_MBOX
+> > +       tristate "Spreadtrum Mailbox"
+> > +       depends on ARCH_SPRD || COMPILE_TEST
+> > +       help
+> > +         Mailbox driver implementation for the Spreadtrum platform. It is used
+> > +         to send message between application processors and MCU. Say Y here if
+> > +         you want to build the Spreatrum mailbox controller driver.
+> > +
+> >  endif
+> > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> > index 2e4364ef5c47..9caf4ede6ce0 100644
+> > --- a/drivers/mailbox/Makefile
+> > +++ b/drivers/mailbox/Makefile
+> > @@ -50,3 +50,5 @@ obj-$(CONFIG_MTK_CMDQ_MBOX)   += mtk-cmdq-mailbox.o
+> >  obj-$(CONFIG_ZYNQMP_IPI_MBOX)  += zynqmp-ipi-mailbox.o
+> >
+> >  obj-$(CONFIG_SUN6I_MSGBOX)     += sun6i-msgbox.o
+> > +
+> > +obj-$(CONFIG_SPRD_MBOX)                += sprd-mailbox.o
+> > diff --git a/drivers/mailbox/sprd-mailbox.c b/drivers/mailbox/sprd-mailbox.c
 > > new file mode 100644
-> > index 0000000000000000..600d47ab7d58570f
+> > index 000000000000..58e5388f190b
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> > @@ -0,0 +1,59 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/timer/renesas,ostm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +++ b/drivers/mailbox/sprd-mailbox.c
+> > @@ -0,0 +1,350 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Spreadtrum mailbox driver
+> > + *
+> > + * Copyright (c) 2020 Spreadtrum Communications Inc.
+> > + */
 > > +
-> > +title: Renesas OS Timer (OSTM)
+> > +#include <linux/err.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/mailbox_controller.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/clk.h>
 > > +
-> > +maintainers:
-> > +  - Chris Brandt <chris.brandt@renesas.com>
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> > +#define SPRD_MBOX_ID           0x0
+> > +#define SPRD_MBOX_MSG_LOW      0x4
+> > +#define SPRD_MBOX_MSG_HIGH     0x8
+> > +#define SPRD_MBOX_TRIGGER      0xc
+> > +#define SPRD_MBOX_FIFO_RST     0x10
+> > +#define SPRD_MBOX_FIFO_STS     0x14
+> > +#define SPRD_MBOX_IRQ_STS      0x18
+> > +#define SPRD_MBOX_IRQ_MSK      0x1c
+> > +#define SPRD_MBOX_LOCK         0x20
+> > +#define SPRD_MBOX_FIFO_DEPTH   0x24
 > > +
-> > +description:
-> > +  The OSTM is a multi-channel 32-bit timer/counter with fixed clock source that
-> > +  can operate in either interval count down timer or free-running compare match
-> > +  mode.
+> > +/* Bit and mask definiation for inbox's SPRD_MBOX_FIFO_STS register */
+> > +#define SPRD_INBOX_FIFO_DELIVER_MASK           GENMASK(23, 16)
+> > +#define SPRD_INBOX_FIFO_OVERLOW_MASK           GENMASK(15, 8)
+> > +#define SPRD_INBOX_FIFO_DELIVER_SHIFT          16
+> > +#define SPRD_INBOX_FIFO_BUSY_MASK              GENMASK(7, 0)
 > > +
-> > +  Channels are independent from each other.
+> > +/* Bit and mask definiation for SPRD_MBOX_IRQ_STS register */
+> > +#define SPRD_MBOX_IRQ_CLR                      BIT(0)
 > > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,r7s72100-ostm # RZ/A1H
-> > +          - renesas,r7s9210-ostm  # RZ/A2M
-> > +      - const: renesas,ostm       # Generic
+> > +/* Bit and mask definiation for outbox's SPRD_MBOX_FIFO_STS register */
+> > +#define SPRD_OUTBOX_FIFO_FULL                  BIT(0)
+> > +#define SPRD_OUTBOX_FIFO_WR_SHIFT              16
+> > +#define SPRD_OUTBOX_FIFO_RD_SHIFT              24
+> > +#define SPRD_OUTBOX_FIFO_POS_MASK              GENMASK(7, 0)
 > > +
-> > +  reg:
-> > +    maxItems: 1
+> > +/* Bit and mask definiation for inbox's SPRD_MBOX_IRQ_MSK register */
+> > +#define SPRD_INBOX_FIFO_BLOCK_IRQ              BIT(0)
+> > +#define SPRD_INBOX_FIFO_OVERFLOW_IRQ           BIT(1)
+> > +#define SPRD_INBOX_FIFO_DELIVER_IRQ            BIT(2)
+> > +#define SPRD_INBOX_FIFO_IRQ_MASK               GENMASK(2, 0)
 > > +
-> > +  interrupts:
-> > +    maxItems: 1
+> > +/* Bit and mask definiation for outbox's SPRD_MBOX_IRQ_MSK register */
+> > +#define SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ         BIT(0)
+> > +#define SPRD_OUTBOX_FIFO_IRQ_MASK              GENMASK(4, 0)
 > > +
-> > +  clocks:
-> > +    maxItems: 1
+> > +#define SPRD_MBOX_CHAN_MAX                     8
 > > +
-> > +  power-domains:
-> > +    maxItems: 1
+> > +struct sprd_mbox_chan {
+> > +       u8                      id;
+> > +       struct mbox_chan        *chan;
+> > +};
+> If 'id' is all you need, please assign that to mbox_chan.con_priv and
+> discard the sprd_mbox_chan. That will be much simpler.
+
+Yes, will do in next version.
+
 > > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - power-domains
+> > +struct sprd_mbox_priv {
+> > +       struct mbox_controller  mbox;
+> > +       struct device           *dev;
+> > +       void __iomem            *inbox_base;
+> > +       void __iomem            *outbox_base;
+> > +       struct clk              *clk;
+> > +       u32                     outbox_fifo_depth;
 > > +
-> > +additionalProperties: false
+> > +       struct sprd_mbox_chan   mchan[SPRD_MBOX_CHAN_MAX];
+> > +       struct mbox_chan        chan[SPRD_MBOX_CHAN_MAX];
+> > +};
 > > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/r7s72100-clock.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    ostm0: timer@fcfec000 {
-> > +            compatible = "renesas,r7s72100-ostm", "renesas,ostm";
-> > +            reg = <0xfcfec000 0x30>;
-> > +            interrupts = <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>;
-> > +            clocks = <&mstp5_clks R7S72100_CLK_OSTM0>;
-> > +            power-domains = <&cpg_clocks>;
-> > +    };
-> > -- 
-> > 2.17.1
-> > 
-> 
-> -- 
-> Regards,
-> Niklas Söderlund
+> .........
+>
+> > +
+> > +static irqreturn_t sprd_mbox_inbox_isr(int irq, void *data)
+> > +{
+> > +       struct sprd_mbox_priv *priv = data;
+> > +       struct sprd_mbox_chan *mchan;
+> > +       u32 fifo_sts, send_sts, id;
+> > +
+> > +       fifo_sts = readl(priv->inbox_base + SPRD_MBOX_FIFO_STS);
+> > +
+> > +       /* Get the inbox data delivery status */
+> > +       send_sts = (fifo_sts & SPRD_INBOX_FIFO_DELIVER_MASK) >>
+> > +               SPRD_INBOX_FIFO_DELIVER_SHIFT;
+> > +       if (!send_sts) {
+> > +               dev_warn_ratelimited(priv->dev, "spurious inbox interrupt\n");
+> > +               return IRQ_NONE;
+> > +       }
+> > +
+> > +       while (send_sts) {
+> > +               id = __ffs(send_sts);
+> > +               send_sts &= (send_sts - 1);
+> > +
+> > +               mchan = &priv->mchan[id];
+> > +               mbox_chan_txdone(mchan->chan, 0);
+> > +       }
+> > +
+> > +       /* Clear FIFO delivery and overflow status */
+> > +       writel(fifo_sts &
+> > +              (SPRD_INBOX_FIFO_DELIVER_MASK | SPRD_INBOX_FIFO_OVERLOW_MASK),
+> > +              priv->inbox_base + SPRD_MBOX_FIFO_RST);
+> > +
+> > +       /* Clear irq status */
+> > +       writel(SPRD_MBOX_IRQ_CLR, priv->inbox_base + SPRD_MBOX_IRQ_STS);
+> > +
+> > +       return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int sprd_mbox_send_data(struct mbox_chan *chan, void *msg)
+> > +{
+> > +       struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
+> > +       struct sprd_mbox_chan *mchan = chan->con_priv;
+> > +       u32 *data = msg, busy;
+> > +
+> > +       /*
+> > +        * Check if current channel is busy or not, and we can not send data
+> > +        * if current channel is busy.
+> > +        */
+> > +       busy = readl(priv->inbox_base + SPRD_MBOX_FIFO_STS) &
+> > +               SPRD_INBOX_FIFO_BUSY_MASK;
+> > +       if (busy & BIT(mchan->id)) {
+> > +               dev_err(priv->dev, "Channel %d is busy\n", mchan->id);
+> > +               return -EBUSY;
+> > +       }
+> Maybe check this before  mbox_chan_txdone(mchan->chan, 0) and avoid
+> failing in send_data.
+
+This is used to check if the target core have fetched the message from
+the FIFO or not, if not, we can not send any more message, otherwise
+the message will be overflowed.
+
+Thanks for your comments.
 
 -- 
-Regards,
-Niklas Söderlund
+Baolin Wang
