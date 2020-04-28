@@ -2,98 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BB561BC1CC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 16:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EA21BC1E5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 16:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728141AbgD1OuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Apr 2020 10:50:04 -0400
-Received: from mga18.intel.com ([134.134.136.126]:62133 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728094AbgD1OuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Apr 2020 10:50:03 -0400
-IronPort-SDR: PR1dPZPySpVR2UiMRdyxMDS84NGYYsCxM1YD0cWj/jJG5dbDURJvGlN9g49tzp9R9uYMhYT1v5
- pv2Wcq0c2iDQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2020 07:50:02 -0700
-IronPort-SDR: TIm9BnP5eTWiaT9SoCeMc1+yPT6amVcHlv8tmFBZ2L8njNT66dS/UjZGIRiR3nyY1Lyov1WfuY
- QLWN1Mr2JzFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,328,1583222400"; 
-   d="scan'208";a="292873815"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga002.fm.intel.com with ESMTP; 28 Apr 2020 07:49:56 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jTRYc-003Zjk-TU; Tue, 28 Apr 2020 17:49:58 +0300
-Date:   Tue, 28 Apr 2020 17:49:58 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v3 05/16] mfd: Add support for Kontron sl28cpld
- management controller
-Message-ID: <20200428144958.GZ185537@smile.fi.intel.com>
-References: <20200423174543.17161-1-michael@walle.cc>
- <20200423174543.17161-6-michael@walle.cc>
- <20200428125049.GU185537@smile.fi.intel.com>
- <5e2d486077f9e2ce8bd9b171cf806fd9@walle.cc>
+        id S1728222AbgD1OvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Apr 2020 10:51:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727878AbgD1OvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Apr 2020 10:51:06 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316FFC03C1AB;
+        Tue, 28 Apr 2020 07:51:06 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id b12so23092687ion.8;
+        Tue, 28 Apr 2020 07:51:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=GgeqmdEmb09cwWnZURvh19BHVHs9QFAo9j/uyja5xe8=;
+        b=ftbhbo46DIoclP20MgqTJq6QQRg5IIitlwWEB+J2uWIkW1NTCjW5+JN0e+g2WLF9vX
+         EKTRwC5obL6iWDl+wsizqv27kDrSnFwS5opGl2Zcq/MAtIokvA2YFVb/2/tWigKsAib0
+         uOLaSE6BjfNoo30LntGvtNE2THRjybP1x/+YqnPP2BlCbHmTKKEBQzl/FzpdYc0xsuyD
+         IFf76F2YqZH5MyVkpyeq5vO1yglnBvM0Qo75HG5bdTFhecuJIxKxzuiPOzs5nIBDXZs4
+         fNpAWwOZwDSEjEVCu5IZKwpebijosF2ybxlz7kyBJ12/OlwYf9qgogeqZMxcghVtFbM+
+         rlFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=GgeqmdEmb09cwWnZURvh19BHVHs9QFAo9j/uyja5xe8=;
+        b=bTqFpyoiPtffcMw88C4BXE+eBW+ylqIcYwwNcvXoc60Xn6XYBmUjKxXcxC2cpR8tMw
+         b80XLKReEX7EDfrRr2mX/DZFzSBmmjYmZ1LYld+SyuDGPYaI9VN7UTCaDsSO1OT91AQM
+         BTLUQ/5lB+TzU6zcJ5N52d4ny1kBNvi8zKwGdjwRRFVViDJJw7JrXduiwqnkZgJ8MpnV
+         DL05KkHW38p/iCpr7s9DRvGF2CamYv3LRvd3NKWc2EwULbm9y536SWFD6WS9E7HRHaZE
+         A1eXjGrefgP1N2tY8G9fG4uRUxEH8wvcq+biWBzPEUZg0ALFIIIv6mT/vTuJyztnxL6N
+         mlXw==
+X-Gm-Message-State: AGi0PuYsMxrskcv+3hUDTufFGgl3mqN/vrytRO9VNTHAakCo1kYllZU8
+        nDdIIhHOzpBVXkfsq77Fcdd44CD4Ab/V2hDmsFM=
+X-Google-Smtp-Source: APiQypKTD+S1WqOLrfRlXdxvtseawzRWMNX6kR8updafIakHcwBAhBmXxHQROLhLlZ95M3jOMARBiMD5WpWSOUrqEXQ=
+X-Received: by 2002:a5d:9494:: with SMTP id v20mr26401979ioj.101.1588085465427;
+ Tue, 28 Apr 2020 07:51:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e2d486077f9e2ce8bd9b171cf806fd9@walle.cc>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200426161605.52121-1-samuel@sholland.org>
+In-Reply-To: <20200426161605.52121-1-samuel@sholland.org>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Tue, 28 Apr 2020 16:50:54 +0200
+Message-ID: <CAJiuCcdgDd=xrGU6iDjo=Og+OW=4cbrLG_NWZpzRZXdjJbnRXQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2] arm64: dts: allwinner: a64: Remove
+ unused SPDIF sound card
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Marcus Cooper <codekipper@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 28, 2020 at 04:43:24PM +0200, Michael Walle wrote:
-> Am 2020-04-28 14:50, schrieb Andy Shevchenko:
-> > On Thu, Apr 23, 2020 at 07:45:32PM +0200, Michael Walle wrote:
-> > > This patch adds core support for the board management controller found
-> > > on the SMARC-sAL28 board. It consists of the following functions:
-> > >  - watchdog
-> > >  - GPIO controller
-> > >  - PWM controller
-> > >  - fan sensor
-> > >  - interrupt controller
-> > 
-> > ...
-> > 
-> > >  obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
-> > > 
-> > >  obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
-> > > +
-> > > +obj-$(CONFIG_MFD_SL28CPLD)	+= sl28cpld.o
-> > 
-> > Perhaps keep an order?
-> 
-> I don't see any order in that makefile. Looked to me like every new
-> file was added at the end.
+Hi,
 
-Okay, just didn't note from above context.
+On Sun, 26 Apr 2020 at 18:12, Samuel Holland <samuel@sholland.org> wrote:
+>
+> As of v5.7-rc2, Linux now prints the following message at boot:
+>
+>   [   33.848525] platform sound_spdif: deferred probe pending
+>
+> This is because sound_spdif is waiting on its CPU DAI &spdif to probe,
+> but &spdif is disabled in the device tree.
+>
+> Exposure of the SPDIF pin is board-specific functionality, so the sound
+> card and codec DAI belong in the individual board DTS, not the SoC DTSI.
+> In fact, no in-tree A64 board DTS enables &spdif, so let's remove the
+> card and DAI entirely.
 
--- 
-With Best Regards,
-Andy Shevchenko
+CC: Marcus Cooper <codekipper@gmail.com>
 
+Without any value :
+Acked-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
 
+Regards,
+Clement
+
+>
+> This reverts commit 78e071370a86473f25923e03b51cbbadacf8be0f.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>
+> Changes since v1:
+>  - Remove the node instead of disabling it
+>  - Also remove the codec DAI
+>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 18 ------------------
+>  1 file changed, 18 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/b=
+oot/dts/allwinner/sun50i-a64.dtsi
+> index 31143fe64d91..c26cc1fcaffd 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> @@ -154,24 +154,6 @@ link_codec: simple-audio-card,codec {
+>                 };
+>         };
+>
+> -       sound_spdif {
+> -               compatible =3D "simple-audio-card";
+> -               simple-audio-card,name =3D "On-board SPDIF";
+> -
+> -               simple-audio-card,cpu {
+> -                       sound-dai =3D <&spdif>;
+> -               };
+> -
+> -               simple-audio-card,codec {
+> -                       sound-dai =3D <&spdif_out>;
+> -               };
+> -       };
+> -
+> -       spdif_out: spdif-out {
+> -               #sound-dai-cells =3D <0>;
+> -               compatible =3D "linux,spdif-dit";
+> -       };
+> -
+>         timer {
+>                 compatible =3D "arm,armv8-timer";
+>                 allwinner,erratum-unknown1;
+> --
+> 2.24.1
+>
+> --
+> You received this message because you are subscribed to the Google Groups=
+ "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an=
+ email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msg=
+id/linux-sunxi/20200426161605.52121-1-samuel%40sholland.org.
