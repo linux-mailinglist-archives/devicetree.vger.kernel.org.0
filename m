@@ -2,119 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D942E1BB6C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 08:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6C9F1BB6D0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2020 08:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726309AbgD1Gd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Apr 2020 02:33:56 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:60618 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726303AbgD1Gdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Apr 2020 02:33:52 -0400
-Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id D379420CDC;
-        Tue, 28 Apr 2020 06:33:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1588055632; bh=UBb6voEXnZVtEz2ml1YRi2CB/X7gUz26bvIQSCyUKX0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AURRjPp1sdyjFwJi8SdcR45DMiMXQvQQdGq/9fl0fLPF/aYyQC9YTUYU30wKbCk/w
-         6KyV6OMM7dSHLQFx1BBX+lIYMR1JC8QoONJurC5i9Ov/3tF2yH4Dl+Z/gYLC+Fc1m7
-         Q7Px2Bi2xkHCQr495nTo8ZXAADitIdo6cF18SDGvSBLbUghlHm5WoopYvgtsl4UPhc
-         n0Zqon5jg7tSnfaS82GD19OBYOwCCjXCtV2YwK77OJt77c16PAL/VqI5nbqQJgk0Li
-         rw4rF5D/m2DxvdxbOrKJs+AqFSeuxrLJS7S2R371of6LradCB2O+Zy4P0aR7gcKhyg
-         nL5JqhskOzmVA==
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     maz@kernel.org
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
+        id S1726423AbgD1GfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Apr 2020 02:35:04 -0400
+Received: from mx.socionext.com ([202.248.49.38]:22326 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726386AbgD1GfD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Apr 2020 02:35:03 -0400
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 28 Apr 2020 15:35:01 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id C2875180105;
+        Tue, 28 Apr 2020 15:35:01 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 28 Apr 2020 15:35:01 +0900
+Received: from plum.e01.socionext.com (unknown [10.213.132.32])
+        by kinkan.css.socionext.com (Postfix) with ESMTP id 808AA1A01BB;
+        Tue, 28 Apr 2020 15:35:01 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v2 6/6] dt-bindings: interrupt-controller: Add Loongson PCH MSI
-Date:   Tue, 28 Apr 2020 14:32:45 +0800
-Message-Id: <20200428063247.2223499-6-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.26.0.rc2
-In-Reply-To: <20200428063247.2223499-1-jiaxun.yang@flygoat.com>
-References: <20200422142428.1249684-1-jiaxun.yang@flygoat.com>
- <20200428063247.2223499-1-jiaxun.yang@flygoat.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH 1/3] dt-bindings: phy: Convert UniPhier PCIe-PHY controller to json-schema
+Date:   Tue, 28 Apr 2020 15:34:48 +0900
+Message-Id: <1588055690-13200-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for Loongson PCH MSI controller.
+Convert the UniPhier PCIe-PHY controller to DT schema format.
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- .../loongson,pch-msi.yaml                     | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-msi.yaml
+ .../bindings/phy/socionext,uniphier-pcie-phy.yaml  | 77 ++++++++++++++++++++++
+ .../devicetree/bindings/phy/uniphier-pcie-phy.txt  | 36 ----------
+ 2 files changed, 77 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/uniphier-pcie-phy.txt
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-msi.yaml
+diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
 new file mode 100644
-index 000000000000..513ed1933035
+index 0000000..86f4909
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-msi.yaml
-@@ -0,0 +1,56 @@
++++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
+@@ -0,0 +1,77 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/interrupt-controller/loongson,pch-msi.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/phy/socionext,uniphier-pcie-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Loongson PCH MSI Controller
-+
-+maintainers:
-+  - Jiaxun Yang <jiaxun.yang@flygoat.com>
++title: Socionext UniPhier PCIe PHY
 +
 +description: |
-+  This interrupt controller is found in the Loongson LS7A family of PCH for
-+  transforming interrupts from PCIe MSI into HyperTransport vectorized
-+  interrupts.
++  This describes the devicetree bindings for PHY interface built into
++  PCIe controller implemented on Socionext UniPhier SoCs.
++
++maintainers:
++  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 +
 +properties:
 +  compatible:
-+    const: loongson,pch-msi-1.0
++    enum:
++      - socionext,uniphier-pro5-pcie-phy
++      - socionext,uniphier-ld20-pcie-phy
++      - socionext,uniphier-pxs3-pcie-phy
 +
 +  reg:
-+    maxItems: 1
++    description: PHY register region (offset and length)
 +
-+  loongson,msi-base-vec:
-+    $ref: '/schemas/types.yaml#/definitions/uint32'
-+    description: |
-+      u32 value of the base of parent HyperTransport vector allocated
-+      to PCH MSI.
++  "#phy-cells":
++    const: 0
 +
-+  loongson,msi-num-vecs:
-+    $ref: '/schemas/types.yaml#/definitions/uint32'
-+    description: |
-+      u32 value of the number of parent HyperTransport vectors allocated
-+      to PCH MSI.
++  clocks:
++    minItems: 1
++    maxItems: 2
 +
-+  msi-controller: true
++  clock-names:
++    oneOf:
++      - items:            # for Pro5
++        - const: gio
++        - const: link
++      - const: link       # for others
++
++  resets:
++    minItems: 1
++    maxItems: 2
++
++  reset-names:
++    oneOf:
++      - items:            # for Pro5
++        - const: gio
++        - const: link
++      - const: link       # for others
++
++  socionext,syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A phandle to system control to set configurations for phy
 +
 +required:
 +  - compatible
 +  - reg
-+  - msi-controller
-+  - loongson,msi-base-vec
-+  - loongson,msi-num-vecs
++  - "#phy-cells"
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    msi: msi-controller@2ff00000 {
-+      compatible = "loongson,pch-msi-1.0";
-+      reg = <0x2ff00000 0x4>;
-+      msi-controller;
-+      loongson,msi-base-vec = <64>;
-+      loongson,msi-num-vecs = <64>;
-+      interrupt-parent = <&htvec>;
++    pcie_phy: phy@66038000 {
++        compatible = "socionext,uniphier-ld20-pcie-phy";
++        reg = <0x66038000 0x4000>;
++        #phy-cells = <0>;
++        clock-names = "link";
++        clocks = <&sys_clk 24>;
++        reset-names = "link";
++        resets = <&sys_rst 24>;
++        socionext,syscon = <&soc_glue>;
 +    };
-+...
+diff --git a/Documentation/devicetree/bindings/phy/uniphier-pcie-phy.txt b/Documentation/devicetree/bindings/phy/uniphier-pcie-phy.txt
+deleted file mode 100644
+index 3cee372..0000000
+--- a/Documentation/devicetree/bindings/phy/uniphier-pcie-phy.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Socionext UniPhier PCIe PHY bindings
+-
+-This describes the devicetree bindings for PHY interface built into
+-PCIe controller implemented on Socionext UniPhier SoCs.
+-
+-Required properties:
+-- compatible: Should contain one of the following:
+-    "socionext,uniphier-pro5-pcie-phy" - for Pro5 PHY
+-    "socionext,uniphier-ld20-pcie-phy" - for LD20 PHY
+-    "socionext,uniphier-pxs3-pcie-phy" - for PXs3 PHY
+-- reg: Specifies offset and length of the register set for the device.
+-- #phy-cells: Must be zero.
+-- clocks: A list of phandles to the clock gate for PCIe glue layer
+-	including this phy.
+-- clock-names: For Pro5 only, should contain the following:
+-    "gio", "link" - for Pro5 SoC
+-- resets: A list of phandles to the reset line for PCIe glue layer
+-	including this phy.
+-- reset-names: For Pro5 only, should contain the following:
+-    "gio", "link" - for Pro5 SoC
+-
+-Optional properties:
+-- socionext,syscon: A phandle to system control to set configurations
+-	for phy.
+-
+-Refer to phy/phy-bindings.txt for the generic PHY binding properties.
+-
+-Example:
+-	pcie_phy: phy@66038000 {
+-		compatible = "socionext,uniphier-ld20-pcie-phy";
+-		reg = <0x66038000 0x4000>;
+-		#phy-cells = <0>;
+-		clocks = <&sys_clk 24>;
+-		resets = <&sys_rst 24>;
+-		socionext,syscon = <&soc_glue>;
+-	};
 -- 
-2.26.0.rc2
+2.7.4
 
