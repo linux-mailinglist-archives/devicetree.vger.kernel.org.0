@@ -2,150 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A811BD8D9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 11:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500791BD915
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 12:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbgD2JzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 05:55:25 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:59103 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726345AbgD2JzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 05:55:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1588154123; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=3iXUY6EYpmcQbL2bjsrp6J9NTxmranLuwsV6XKvgXqY=; b=KDzoDVd+e77z84IEkU6YgpXbq9Bh54WHwsp0kdi1Qzez5INl7HtOjhcadksNLyhj2g2S+cqr
- 7lWv5E+IcAIc4bB17synA683LM+9jJ3Um/HPti8poomBGxSHkME6iGOT8WDH+nC3wmBnvzAI
- 3JgxuvziUR5GpI7FiW822MIwTvw=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5ea94f0b.7fd361bc4ae8-smtp-out-n02;
- Wed, 29 Apr 2020 09:55:23 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 32DACC433BA; Wed, 29 Apr 2020 09:55:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.1.227] (unknown [49.204.176.126])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: smasetty)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 07F91C433D2;
-        Wed, 29 Apr 2020 09:55:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 07F91C433D2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
-Subject: Re: [PATCH] dt-bindings: arm-smmu: Add a new compatible string and a
- clock
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dri-devel@freedesktop.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>, tdas@codeaurora.org
-References: <1588073914-15712-1-git-send-email-smasetty@codeaurora.org>
- <CAD=FV=WPG4x+TTu5-169EPObhvtPEpodzjnk2WSBCQgR434xdA@mail.gmail.com>
-From:   Sharat Masetty <smasetty@codeaurora.org>
-Message-ID: <9aece4ec-6a14-ea73-fe9c-5f097a018354@codeaurora.org>
-Date:   Wed, 29 Apr 2020 15:25:13 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1726501AbgD2KJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 06:09:16 -0400
+Received: from mail-am6eur05on2064.outbound.protection.outlook.com ([40.107.22.64]:47200
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726484AbgD2KJP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Apr 2020 06:09:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BWn2z936aNg80UCW3Lra2N4NL1eIlp8AIcUPdD5hhB1PjE7wDkz3ZQxtEK88NNUSwPhgPnVU3ZV5QYQSyMwoteWeQgA4VC1w6xY7XzniupHNa0ZjOv/5BeLPJv8nnbFv/f2DXr5J8j7xCAPuq8KKP2SCLRxfU0eCng02NsxoXj12k5JfNm0I6yqzwbw5iCMNTbcqR/nnckQ5W1qyefr4BqYA5pJgMhrWnhVYIBLpRk83km4/BxtnGCSrCkTbQobI2LvJs/l9G9yQ7YSQ+h6+zDfctutp7jHZFcSpafU6iBjQz5IO1hJ+alny7q4CUa76coQ9053SbhsJDVS7TpvdJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Btrju7mTfPpAUft/YhgqT08pFUm3sGRrvHZTUmb9O4=;
+ b=KFUSY0gzrxrVUHGiWIsNjKHlijrsLICIZ9VpwwRln70fZUX6kgVkPcMtT/HGJw48dYewkrSbkLqXO5kQuAHiJLZxBIgWhJsR2FNTmbY4+U61Q2DFBK0B6y72ftMS9VrRJAYgzSHVOUFeAXBAgTBFyqcXO7YiKcQOJJ/diXuPFiCQWH/Ci2ov9Xfwvz5HviaubxzLuOuaoyZCyb9GO6zyUX/XN0HGM3HOAQbibf1wJTMlLQHOcAuqZwi8wPSgrOA9F1FZnw2B2a5c2F2O83wPowFCKa2WapQkRbURgeF/N+Kau1gUUCWT+dksi/TYXHX5GHEbnGwWML8CegLserX+AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Btrju7mTfPpAUft/YhgqT08pFUm3sGRrvHZTUmb9O4=;
+ b=V/9tfaqRoll/mRW27QS08DvOtBhUbzfIlBdaxBY/IpuZQOg/+VtFPZVUIZJEE6FPi3TLS6/xPpRGaiZwgDohSqkIQw3y/uzkQ+f0CDkATop14pwRzqnvbmlcVl0xz3WRQ6t9w+bkQvmQeMcD3tTPv8zQguH2wbj1+jVfgtnHJXE=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from HE1PR0402MB2745.eurprd04.prod.outlook.com (2603:10a6:3:d7::12)
+ by HE1PR0402MB3340.eurprd04.prod.outlook.com (2603:10a6:7:81::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Wed, 29 Apr
+ 2020 10:09:12 +0000
+Received: from HE1PR0402MB2745.eurprd04.prod.outlook.com
+ ([fe80::e802:dffa:63bb:2e3d]) by HE1PR0402MB2745.eurprd04.prod.outlook.com
+ ([fe80::e802:dffa:63bb:2e3d%10]) with mapi id 15.20.2937.028; Wed, 29 Apr
+ 2020 10:09:12 +0000
+From:   fugang.duan@nxp.com
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, Anson.Huang@nxp.com,
+        devicetree@vger.kernel.org, fugang.duan@nxp.com,
+        aisheng.dong@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: imx8mp: add "fsl,imx6sx-fec" compatible string
+Date:   Wed, 29 Apr 2020 18:04:14 +0800
+Message-Id: <1588154654-13684-1-git-send-email-fugang.duan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0185.apcprd06.prod.outlook.com (2603:1096:4:1::17)
+ To HE1PR0402MB2745.eurprd04.prod.outlook.com (2603:10a6:3:d7::12)
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=WPG4x+TTu5-169EPObhvtPEpodzjnk2WSBCQgR434xdA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from b38611.ap.freescale.net (119.31.174.66) by SG2PR06CA0185.apcprd06.prod.outlook.com (2603:1096:4:1::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2958.19 via Frontend Transport; Wed, 29 Apr 2020 10:09:08 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.66]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 5df26dc8-85eb-4510-397f-08d7ec255d16
+X-MS-TrafficTypeDiagnostic: HE1PR0402MB3340:|HE1PR0402MB3340:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0402MB334056F40CBACDFAAA4334DDFFAD0@HE1PR0402MB3340.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:949;
+X-Forefront-PRVS: 03883BD916
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB2745.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(376002)(366004)(39860400002)(136003)(346002)(396003)(478600001)(9686003)(6512007)(5660300002)(16526019)(36756003)(6506007)(186003)(956004)(8676002)(2616005)(316002)(66946007)(2906002)(6486002)(86362001)(8936002)(4744005)(26005)(4326008)(66476007)(66556008)(52116002)(6666004)(32563001)(142933001);DIR:OUT;SFP:1101;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BlhyfKOY24NmlzmPmliy9vsyCOmDpOHWVbXRyR1ZlyrWOuPhVdaDEAaWlqzpqFj3dweDAzKB5LplTnVxAD+KAOsOE7+nxpSLHxlI7uaFrWZhLoboM+4VX07D2/7jU5ZgpRGWcVQhOg2OzifsXqCeiSP3gG19gH+yTLLFHtuPpeoLSf11Jo7XnyLHzX2anl2ngTCjZ2BqZp+2YYMnCo62QaQQd+LzIPlMu9TorUqeqogJWK9cdBQIwkmKERqmLTWbb2rVBjPRO/PpkGrfMxNBsT4VvltWL0QWThMT+t7bxKVN6JGGm8+2BZNVkCoSgmN1n7ccgp4T6q8jfhW5TJ7HS4F1u+HpHinNXupTSskiviCweKLkZ6eM1kpB9roVDelNNjVqd8wMbY+NVcRB9FDMLB+m009alBQCrwTxtLNyR4+AP4BSuDjHrXWhmcf//mXp6s0dfWnUtYCczYsjDezqs2MHzyoervmJ+9BagoBeFkseBED/9n6PRjAy7bVrl2yeYU8QKaq1AaG+xdPAgaYzFQ==
+X-MS-Exchange-AntiSpam-MessageData: o6QdV5nSxwrt9tAjSvPEuVMsi+lmHKyj3hY2SmxAuBGchbynQrEtsSSETFZDGrnRMI5hKvYt34ShYuwqctpyIYyRBxl4joVNBOV6R+VBTF8O6TP0d4PwhKRQ9IeaP7yHdNRlIFbbpwLu+IvTGqrr6wA3lYROIF4wCcLpcP3zknzAGwGHPSSn39qW1D/IkbP63VPhxsYHen9zglecOU5lOFyDmizD8MKuodU91U1pQ9eJGW1jbs0s+tzODpwLutznBYx8GkOUMidkyHQepnD3+DNTPBTYqkNFSXAxxT6d+cDiwoZ43L9z4EYS0RG9n/KE3yh2I189UoUze/O24Ml5MgKVLW003u+R15EGJ2rvoN4MwuVVxK6B8hG+glioA4opssAtzGY3t0/tYOlSIcBsctqE3QW2Q5vC0QU4LBujB9B5D19UIoGT22jR5vnzkKLuLLduZt0U2v+tWUHT6uuOE+FB86vS4zIywco7qj35aehSa1G4CASKaHEPuRl+VIu9k5z+iimJlXKb3Wv3l5s5lV/Je8zATVy2CvzpSFoXqtfzZbosAe9Q2u6yUd0eFwD/mPsQetjsiSCgSgEQhD47kWSbG9akpTc7pDa4ir3cg9tcxajwc7wkQkS47IToPTeB1kCfTXuW4FyExNpR+kmlgf74GQBsFZGxwRHfcFcWsmO5M+BebASKqrOsutXHJAni6VPLNIVIzh+sPZPIbFuYmubBnKVwq8nLZMpJ4o4X5Ulfwqrc/iWcphppI9h11Wto1mGxb0R1E3eTveQtfcl2yG26bBSXT8YHMRGd9w0g+xM=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5df26dc8-85eb-4510-397f-08d7ec255d16
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2020 10:09:12.0145
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: auLYe492ZV/m6UFsRqkZwdhVawXc+KmCq5GGumkt79ZMsYmCkNZaddiWY3SYRHxaMj8eqBSwSHP03ifhPPjsig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3340
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fugang Duan <fugang.duan@nxp.com>
 
-On 4/29/2020 3:57 AM, Doug Anderson wrote:
-> Hi,
->
-> On Tue, Apr 28, 2020 at 4:39 AM Sharat Masetty <smasetty@codeaurora.org> wrote:
->> This patch adds a new compatible string for sc7180 and also an
->> additional clock listing needed to power the TBUs and the TCU.
->>
->> Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
->> ---
->>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 7 +++++++
->>   1 file changed, 7 insertions(+)
-> nit: mention sc7180 in subject, like:
->
-> dt-bindings: arm-smmu: Add sc7180 compatible string and mem_iface clock
->
->
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index 6515dbe..15946ac 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -28,6 +28,7 @@ properties:
->>             - enum:
->>                 - qcom,msm8996-smmu-v2
->>                 - qcom,msm8998-smmu-v2
->> +              - qcom,sc7180-smmu-v2
->>                 - qcom,sdm845-smmu-v2
->>             - const: qcom,smmu-v2
->>
->> @@ -113,16 +114,22 @@ properties:
->>         present in such cases.
->>
->>     clock-names:
->> +    minItems: 2
->> +    maxItems: 3
->>       items:
->>         - const: bus
->>         - const: iface
->> +      - const: mem_iface_clk
-> People usually frown on clock-names ending in "_clk".  Just name it "mem_iface".
->
->
->>     clocks:
->> +    minItems: 2
->> +    maxItems: 3
->>       items:
->>         - description: bus clock required for downstream bus access and for the
->>             smmu ptw
->>         - description: interface clock required to access smmu's registers
->>             through the TCU's programming interface.
->> +      - description: clock required for the SMMU TBUs and the TCU
-> Is this clock only needed for sc7180, or would it be useful if we
-> enabled certain features on existing devices?  Please document exactly
-> when someone would provide this clock and when they'd leave it off.
->
-> ...also: maybe it's obvious to those that understand IOMMUs in depth,
-> but to me I have no idea what your description means and why it's
-> different from the other two clocks.  Any way you could punch up your
-> description a little bit?
->
-> Looking at sdm845 I see that this clock seems to exist but wasn't
-> listed in the IOMMU device tree node.  Is that a mistake on sdm845?
-> ...or is it just fine because the GPU holds the clock?  Is there a
-> reason the sdm845 solution and the sc7180 solution shouldn't be the
-> same (AKA we should either add this clock to the sdm845 device tree
-> file or remove it from sc7180)?
+Add "fsl,imx6sx-fec" compatible string for fec node, then
+i.MX8MP EVK ethernet function can work now.
 
-I went and checked the downstream SDM845 device tree for GPU SMMU and I 
-do see this clock listed on there. I am no expert in SMMU either but my 
-understanding is that this clock is needed for core working of the SMMU 
-like the pagetable walks, TLB invalidations etc, whereas the other two 
-clocks are required to access SMMU register space from the host.My 
-proposal is to add this clock to SDM845 as well as a follow up effort so 
-that we can remove the Min/MaxItems properties which I do not like.
+Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-@Jordan, do you remember why this clock was added to SDM845?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 9b1616e59d58..b5df957c5063 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -615,7 +615,7 @@
+ 			};
+ 
+ 			fec: ethernet@30be0000 {
+-				compatible = "fsl,imx8mp-fec", "fsl,imx8mq-fec";
++				compatible = "fsl,imx8mp-fec", "fsl,imx8mq-fec", "fsl,imx6sx-fec";
+ 				reg = <0x30be0000 0x10000>;
+ 				interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
+ 					     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.17.1
 
-> Thanks!
->
-> -Doug
