@@ -2,66 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 243101BD422
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 07:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC5E1BD442
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 07:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726450AbgD2Fpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 01:45:34 -0400
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:55571 "EHLO
-        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725861AbgD2Fpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 01:45:34 -0400
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 29 Apr 2020 11:15:32 +0530
-Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 29 Apr 2020 11:15:20 +0530
-Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
-        id 7DEB929E2; Wed, 29 Apr 2020 11:15:19 +0530 (IST)
-From:   Harigovindan P <harigovi@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Harigovindan P <harigovi@codeaurora.org>, robdclark@gmail.com,
-        seanpaul@chromium.org, sean@poorly.run
-Subject: [PATCH v12 2/2] dt-bindings: documenting compatible string vendor "visionox"
-Date:   Wed, 29 Apr 2020 11:15:15 +0530
-Message-Id: <20200429054515.4976-2-harigovi@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200421045508.21137-1-harigovi@codeaurora.org>
-References: <20200421045508.21137-1-harigovi@codeaurora.org>
+        id S1726545AbgD2Fzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 01:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725798AbgD2Fza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Apr 2020 01:55:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6892C03C1AC
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2020 22:55:30 -0700 (PDT)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jTfgq-0001EU-VB; Wed, 29 Apr 2020 07:55:24 +0200
+Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jTfgm-0000Th-Q1; Wed, 29 Apr 2020 07:55:20 +0200
+Date:   Wed, 29 Apr 2020 07:55:20 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Tomasz Figa <tfiga@chromium.org>
+Subject: Re: [PATCH v8 v5 1/3] media: dt-bindings: ov8856: Document YAML
+ bindings
+Message-ID: <20200429055520.GA31414@pengutronix.de>
+References: <20200428180718.1609826-1-robert.foss@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200428180718.1609826-1-robert.foss@linaro.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:53:01 up 67 days, 17:09, 133 users,  load average: 0.07, 0.07,
+ 0.08
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Documenting compatible string vendor "visionox" in vendor-prefix yaml file.
+Hi Robert,
 
-Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
----
-Changes in v11:
-	- Added compatible string in vendor-prefix yaml file
+On 20-04-28 20:07, Robert Foss wrote:
+> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> 
+> This patch adds documentation of device tree in YAML schema for the
+> OV8856 CMOS image sensor.
+> 
+> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+> 
+> - Changes since v7:
+>   * Marco: Make 'port' property optional
 
-Changes in v12:
-	- Fixed the string to clear dt_binding_check errors.
+Sorry if my comment was not precise enough but this wasn't my intention.
+The port property must be required.
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+>   * Maxime & Sakari: Add 'link-frequencies' property to dt binding
+>   * robher: Improve description for 'port' property
+> 
+> - Changes since v6:
+>   * Marco: remove qcom specifics from DT example
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 66a7382add95..1c86ebbeae20 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1047,6 +1047,8 @@ patternProperties:
-     description: Tronsmart
-   "^truly,.*":
-     description: Truly Semiconductors Limited
-+  "^visionox,.*":
-+    description: Visionox
-   "^tsd,.*":
-     description: Theobroma Systems Design und Consulting GmbH
-   "^tyan,.*":
--- 
-2.25.1
+This was my intention :)
 
+Regards,
+  Marco
