@@ -2,131 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF131BE881
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 22:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B2D1BE8F9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 22:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726743AbgD2UYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 16:24:52 -0400
-Received: from foss.arm.com ([217.140.110.172]:44566 "EHLO foss.arm.com"
+        id S1727781AbgD2Uqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 16:46:51 -0400
+Received: from plaes.org ([188.166.43.21]:35014 "EHLO plaes.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726456AbgD2UYw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 16:24:52 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6F311063;
-        Wed, 29 Apr 2020 13:24:48 -0700 (PDT)
-Received: from [10.37.12.43] (unknown [10.37.12.43])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9EF1A3F68F;
-        Wed, 29 Apr 2020 13:24:45 -0700 (PDT)
-Subject: Re: [PATCH] thermal: power_allocate: add upper and lower limits
-To:     Michael Kao <michael.kao@mediatek.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20200424071601.2636-1-michael.kao@mediatek.com>
- <accb83e0-ffbe-b6e3-6bf9-e7cc8b9fe19c@arm.com>
- <1588156776.3573.1.camel@mtksdccf07>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <03286571-c110-7f5e-a911-24f8c3e4fd42@arm.com>
-Date:   Wed, 29 Apr 2020 21:24:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727027AbgD2Uqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Apr 2020 16:46:51 -0400
+Received: from localhost (unknown [IPv6:2001:1530:1000:d397:940e:6b9e:3deb:3])
+        by plaes.org (Postfix) with ESMTPSA id 8259C40020;
+        Wed, 29 Apr 2020 20:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
+        t=1588193178; bh=Rqs4HjYcziWdoELVeMyrIuXF1YyfE34PXc+elobZQps=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hk/9t7lgfmJHTxXPfraMm8glNpLJjruhcgVLxCg+WeYERuAqjqsEgY4SBIrC2UgJg
+         aMqL3gounEr6LZcNMNSXqtMlkkHoka0CH+yG0F8G7OjCdYB1qMHbSrHIwhE28coN6e
+         oskYJmr734Hd7fm+p3ih2cj4TuZLklnnpyRLPrIe6vXifYU0/7n1GWQtQRwLpJnFIj
+         BV5pGrKa3BL8TKh10ZjEQO8jqT1gP+oRvbPLDi306XjHb1xgGs8mqHKrkD77ASJ/TC
+         idigqFGCLqhCyJVFcsxU+kjR2xD/3H/D0DM4cVbjkQuWGlmmwOqfVO+BRUfT+7JsB8
+         aH5uFMc4SarWw==
+From:   Priit Laes <plaes@plaes.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com
+Cc:     Priit Laes <plaes@plaes.org>
+Subject: [PATCH v2 0/6] ARM: sunxi: Convert A20/A31 GMAC driver to use CCU
+Date:   Wed, 29 Apr 2020 23:46:06 +0300
+Message-Id: <20200429204612.31883-1-plaes@plaes.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <1588156776.3573.1.camel@mtksdccf07>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This serie converts Allwinner A20 and A31 GMAC driver to CCU
+while still retaining compatibility with existing devicetrees.
 
+This patchset touches 3 areas:
+- sun7i and sun6i CCUs now set up regmap to allow dwmac-sunxi driver
+to properly access the GMAC clock register.
+- dwmac-sunxi can now handle syscon-based clock register to handle
+clock itself.
+- sun7i and sun6i devicetrees are converted to use the new syscon-based
+access.
 
-On 4/29/20 11:39 AM, Michael Kao wrote:
-> On Fri, 2020-04-24 at 10:22 +0100, Lukasz Luba wrote:
->> Hi Michael,
->>
->> On 4/24/20 8:16 AM, Michael Kao wrote:
->>> The upper and lower limits of thermal throttle state in the
->>> device tree do not apply to the power_allocate governor.
->>> Add the upper and lower limits to the power_allocate governor.
->>>
->>> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
->>> ---
->>>    drivers/thermal/thermal_core.c | 2 +-
->>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
->>> index 9a321dc548c8..f6feed2265bd 100644
->>> --- a/drivers/thermal/thermal_core.c
->>> +++ b/drivers/thermal/thermal_core.c
->>> @@ -598,7 +598,7 @@ int power_actor_set_power(struct thermal_cooling_device *cdev,
->>>    	if (ret)
->>>    		return ret;
->>>    
->>> -	instance->target = state;
->>> +	instance->target = clamp_val(state, instance->lower, instance->upper);
->>>    	mutex_lock(&cdev->lock);
->>>    	cdev->updated = false;
->>>    	mutex_unlock(&cdev->lock);
->>>
->>
->> Thank you for the patch and having to look at it. I have some concerns
->> with this approach. Let's analyze it further.
->>
->> In default the cooling devices in the thermal zone which is used by IPA
->> do not have this 'lower' and 'upper' limits. They are set to
->> THERMAL_NO_LIMIT in DT to give full control to IPA over the states.
->>
->> This the function 'power_actor_set_power' actually translates granted
->> power to the state that device will run for the next period.
->> The IPA algorithm has already split the power budget.
->> Now what happen when the 'lower' value will change the state to a state
->> which consumes more power than was calculated in the IPA alg... It will
->> became unstable.
->>
->> I would rather see a change which uses these 'lower' and 'upper' limits
->> before the IPA do the calculation of the power budget. But this wasn't
->> a requirement and we assumed that IPA has full control over the cooling
->> device (which I described above with this DT THERMAL_NO_LIMIT).
->>
->> Is there a problem with your platform that it has to provide some
->> minimal performance, so you tried to introduce this clamping?
->>
->> Regards,
->> Lukasz
-> 
-> 
-> Hi Lukasz,
-> 
-> I refer to the documentation settings of the thermal device tree
-> (Documentation / devicetree / bindings / thermal / thermal.txt).
-> 
-> It shows that cooling-device is a mandatory property, so max/min cooling
-> state should be able to support in framework point of view.
-> Otherwise, the limitation should be added in binding document.
-> 
-> Different hardware mechanisms have different heat dissipation
-> capabilities.
-> Limiting the input heat source can slow down the heat accumulation and
-> temperature burst.
-> We want to reduce the accumulation of heat at high temperature by
-> limiting the minimum gear of thermal throttle.
+Changes since v1:
+* Use CLK_OF_DECLARE_DRIVER to make it possible to probe again and set up
+regmap using platform device probe.
+* Clarify the meaning of "legacy" in dwmac-sunxi driver.
+* Make sure we don't mess with the RX/TX delay settings when updating
+clock registers.
+* Update devicetree bindings
+* Add sun6i-A31 support. (not tested due to lack of hardware)
 
-I agree that these 'lower' and 'upper' limits shouldn't be just
-ignored as is currently. This patch clamps the value at late stage,
-though.
+Priit Laes (6):
+  clk: sunxi-ng: a20: Register regmap for sun7i CCU
+  clk: sunxi-ng: a31: Register regmap for sun6i CCU
+  net: stmmac: dwmac-sunxi: Implement syscon-based clock handling
+  dt-bindings: net: sun7i-gmac: Add syscon support
+  ARM: dts: sun7i: Use syscon-based implementation for gmac
+  ARM: dts: sun6i: Use syscon-based implementation for gmac
 
-Let me have a look how it could be taken into account in the early
-stage, before the power calculation and split are done. Maybe there
-is a clean way to inject this.
+ .../net/allwinner,sun7i-a20-gmac.yaml         |  15 +-
+ arch/arm/boot/dts/sun6i-a31.dtsi              |  35 +----
+ arch/arm/boot/dts/sun7i-a20.dtsi              |  36 +----
+ drivers/clk/sunxi-ng/ccu-sun4i-a10.c          |  60 +++++++-
+ drivers/clk/sunxi-ng/ccu-sun6i-a31.c          |  60 +++++++-
+ .../net/ethernet/stmicro/stmmac/dwmac-sunxi.c | 130 ++++++++++++++++--
+ 6 files changed, 258 insertions(+), 78 deletions(-)
 
-Regards,
-Lukasz
+-- 
+2.26.2
+
