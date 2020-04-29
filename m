@@ -2,128 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3C01BE856
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 22:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DF131BE881
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 22:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727848AbgD2URe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 16:17:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59682 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727827AbgD2UR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Apr 2020 16:17:27 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF7BC03C1AE;
-        Wed, 29 Apr 2020 13:17:26 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id b11so4113938wrs.6;
-        Wed, 29 Apr 2020 13:17:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0knvu8zyqVx4y2NkIr8lOmrEgshGQH0lpKJi3cjk2SI=;
-        b=QveB36T9cQfiMiI9HNOdZ7yQwlct6qNuNxJikrgRPBAt+IVOZQpzYY64/wICgNjMEE
-         hGkVzt4CRM/9icHJ7hoBYLj/RfsYzQr5i9OTVlJc328Utkbe6rku9I2AZD33/SCOwxdd
-         LvBWWSfiFVZszv6UUklwzPO0/bCoZ+IboL/FMLCIRy8ZBki4UlQWoszUwRM5B2qDj2jm
-         GD/sfTOz9Xz0ZYrdPkCpPJAsR2YJHJpdfSlWFV77DeMeuV4Si8xVTszKN9Ibf+rfxVkB
-         azePNdVax5XNLpUgEktsaqVBqJBI/lsZNEq7ARgbx9DCrbLcPxpuO+wxQpjrpSq6570r
-         EwSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0knvu8zyqVx4y2NkIr8lOmrEgshGQH0lpKJi3cjk2SI=;
-        b=blpui7O3xV0YI9xVWTDf0DD6XvcrZl7doRHUWUz5ZAc1c8FUQPU12efHs2dXNrv16V
-         HQyQ1s8862wSogyQ7aKl3qXWwKfwfyFsRLrjuo/awX1FeFrDPZ3BeUETJxDLMRmNEB5l
-         zyrgx7Woko4Xbfwil3EFqZ6blmVjk1I9y73CeTgEHGadUwcnCfKoKX+TNAcAqUcnoTOM
-         gH93G5UZ8VDxLhhEbeiituCbyP3ck7qiXHl19hiEbvOJwO9VLI3SLpgpYIB9htdVnI9H
-         DPZjFJxWK9k0P/LjUXA4lDsqqC43oop+cU5hIwSkPG+ebGqzR0pK4MIAaE2IqV2bvdCY
-         3IZA==
-X-Gm-Message-State: AGi0PuYdmlAWod4F4ElRLyyAD556V8GhdIW/r9uFYTqEvOdMgSorp0tw
-        Y+OWnNhWsw3cVDItNyE4xa4=
-X-Google-Smtp-Source: APiQypI7/tFm351D0aZQ+OFBTov0tzQC4j8sVuoaGKjl8wXkEwEwydb01p0/bZVora7GdZbF0ZPmWA==
-X-Received: by 2002:adf:fe44:: with SMTP id m4mr43579867wrs.188.1588191444705;
-        Wed, 29 Apr 2020 13:17:24 -0700 (PDT)
-Received: from localhost.localdomain (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de. [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id q143sm9923623wme.31.2020.04.29.13.17.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Apr 2020 13:17:24 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     jianxin.pan@amlogic.com, davem@davemloft.net,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1726743AbgD2UYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 16:24:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:44566 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726456AbgD2UYw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Apr 2020 16:24:52 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6F311063;
+        Wed, 29 Apr 2020 13:24:48 -0700 (PDT)
+Received: from [10.37.12.43] (unknown [10.37.12.43])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9EF1A3F68F;
+        Wed, 29 Apr 2020 13:24:45 -0700 (PDT)
+Subject: Re: [PATCH] thermal: power_allocate: add upper and lower limits
+To:     Michael Kao <michael.kao@mediatek.com>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH DO NOT MERGE v2 11/11] ARM: dts: meson: Switch existing boards with RGMII PHY to "rgmii-id"
-Date:   Wed, 29 Apr 2020 22:16:44 +0200
-Message-Id: <20200429201644.1144546-12-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200429201644.1144546-1-martin.blumenstingl@googlemail.com>
-References: <20200429201644.1144546-1-martin.blumenstingl@googlemail.com>
+        linux-mediatek@lists.infradead.org
+References: <20200424071601.2636-1-michael.kao@mediatek.com>
+ <accb83e0-ffbe-b6e3-6bf9-e7cc8b9fe19c@arm.com>
+ <1588156776.3573.1.camel@mtksdccf07>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <03286571-c110-7f5e-a911-24f8c3e4fd42@arm.com>
+Date:   Wed, 29 Apr 2020 21:24:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1588156776.3573.1.camel@mtksdccf07>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let the PHY generate the RX and TX delay on the Odroid-C1 and MXIII
-Plus.
 
-Previously we did not know that these boards used an RX delay. We
-assumed that setting the TX delay on the MAC side It turns out that
-these boards also require an RX delay of 2ns (verified on Odroid-C1,
-but the u-boot code uses the same setup on both boards). Ethernet only
-worked because u-boot added this RX delay on the MAC side.
 
-The 4ns TX delay was also wrong and the result of using an unsupported
-RGMII TX clock divider setting. This has been fixed in the driver with
-commit bd6f48546b9cb7 ("net: stmmac: dwmac-meson8b: Fix the RGMII TX
-delay on Meson8b/8m2 SoCs").
+On 4/29/20 11:39 AM, Michael Kao wrote:
+> On Fri, 2020-04-24 at 10:22 +0100, Lukasz Luba wrote:
+>> Hi Michael,
+>>
+>> On 4/24/20 8:16 AM, Michael Kao wrote:
+>>> The upper and lower limits of thermal throttle state in the
+>>> device tree do not apply to the power_allocate governor.
+>>> Add the upper and lower limits to the power_allocate governor.
+>>>
+>>> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+>>> ---
+>>>    drivers/thermal/thermal_core.c | 2 +-
+>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
+>>> index 9a321dc548c8..f6feed2265bd 100644
+>>> --- a/drivers/thermal/thermal_core.c
+>>> +++ b/drivers/thermal/thermal_core.c
+>>> @@ -598,7 +598,7 @@ int power_actor_set_power(struct thermal_cooling_device *cdev,
+>>>    	if (ret)
+>>>    		return ret;
+>>>    
+>>> -	instance->target = state;
+>>> +	instance->target = clamp_val(state, instance->lower, instance->upper);
+>>>    	mutex_lock(&cdev->lock);
+>>>    	cdev->updated = false;
+>>>    	mutex_unlock(&cdev->lock);
+>>>
+>>
+>> Thank you for the patch and having to look at it. I have some concerns
+>> with this approach. Let's analyze it further.
+>>
+>> In default the cooling devices in the thermal zone which is used by IPA
+>> do not have this 'lower' and 'upper' limits. They are set to
+>> THERMAL_NO_LIMIT in DT to give full control to IPA over the states.
+>>
+>> This the function 'power_actor_set_power' actually translates granted
+>> power to the state that device will run for the next period.
+>> The IPA algorithm has already split the power budget.
+>> Now what happen when the 'lower' value will change the state to a state
+>> which consumes more power than was calculated in the IPA alg... It will
+>> became unstable.
+>>
+>> I would rather see a change which uses these 'lower' and 'upper' limits
+>> before the IPA do the calculation of the power budget. But this wasn't
+>> a requirement and we assumed that IPA has full control over the cooling
+>> device (which I described above with this DT THERMAL_NO_LIMIT).
+>>
+>> Is there a problem with your platform that it has to provide some
+>> minimal performance, so you tried to introduce this clamping?
+>>
+>> Regards,
+>> Lukasz
+> 
+> 
+> Hi Lukasz,
+> 
+> I refer to the documentation settings of the thermal device tree
+> (Documentation / devicetree / bindings / thermal / thermal.txt).
+> 
+> It shows that cooling-device is a mandatory property, so max/min cooling
+> state should be able to support in framework point of view.
+> Otherwise, the limitation should be added in binding document.
+> 
+> Different hardware mechanisms have different heat dissipation
+> capabilities.
+> Limiting the input heat source can slow down the heat accumulation and
+> temperature burst.
+> We want to reduce the accumulation of heat at high temperature by
+> limiting the minimum gear of thermal throttle.
 
-Switch to phy-mode "rgmii-id" to let the PHY side handle all the delays,
-(as recommended by the Ethernet maintainers anyways) to correctly
-describe the need for a 2ns RX as well as 2ns TX delay on these boards.
-This fixes the Ethernet performance on Odroid-C1 where there was a huge
-amount of packet loss when transmitting data due to the incorrect TX
-delay.
+I agree that these 'lower' and 'upper' limits shouldn't be just
+ignored as is currently. This patch clamps the value at late stage,
+though.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b-odroidc1.dts    | 3 +--
- arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 4 +---
- 2 files changed, 2 insertions(+), 5 deletions(-)
+Let me have a look how it could be taken into account in the early
+stage, before the power calculation and split are done. Maybe there
+is a clean way to inject this.
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index a2a47804fc4a..cb21ac9f517c 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -202,9 +202,8 @@ &ethmac {
- 	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
- 
--	phy-mode = "rgmii";
- 	phy-handle = <&eth_phy>;
--	amlogic,tx-delay-ns = <4>;
-+	phy-mode = "rgmii-id";
- 
- 	nvmem-cells = <&ethernet_mac_address>;
- 	nvmem-cell-names = "mac-address";
-diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-index d54477b1001c..cc498191ddd1 100644
---- a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-+++ b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-@@ -69,9 +69,7 @@ &ethmac {
- 	pinctrl-names = "default";
- 
- 	phy-handle = <&eth_phy0>;
--	phy-mode = "rgmii";
--
--	amlogic,tx-delay-ns = <4>;
-+	phy-mode = "rgmii-id";
- 
- 	mdio {
- 		compatible = "snps,dwmac-mdio";
--- 
-2.26.2
-
+Regards,
+Lukasz
