@@ -2,107 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 838C51BD9D4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 12:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A135A1BD9F2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 12:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726560AbgD2Kjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 06:39:43 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:39951 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726355AbgD2Kjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Apr 2020 06:39:43 -0400
-X-UUID: 653c9dc151524c91b10580ef3b03cc5d-20200429
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=GttMsEeHxSRQEiWkFwaLHZKTBEqyMow0zfNFhprWC1Y=;
-        b=CmfCYSMo9Co6NOO7EqlVw5NZWDuDSk4MSEvRc9ZiZqMbH8En8VWFQHfzvRKxlarc4IBi2/tLy0JfjKeHBX8+Ny87PW1quQuQjKyjgm4jAvctNW3308aKiB/qiieaTEyKF/v5hDLxhNkKdSftg/N4ttO2jwVu48kGhsHXcaYe2Y4=;
-X-UUID: 653c9dc151524c91b10580ef3b03cc5d-20200429
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1213859366; Wed, 29 Apr 2020 18:39:38 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 29 Apr 2020 18:39:34 +0800
-Received: from [172.21.84.99] (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 29 Apr 2020 18:39:34 +0800
-Message-ID: <1588156776.3573.1.camel@mtksdccf07>
-Subject: Re: [PATCH] thermal: power_allocate: add upper and lower limits
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-CC:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>, <hsinyi@chromium.org>,
-        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 29 Apr 2020 18:39:36 +0800
-In-Reply-To: <accb83e0-ffbe-b6e3-6bf9-e7cc8b9fe19c@arm.com>
-References: <20200424071601.2636-1-michael.kao@mediatek.com>
-         <accb83e0-ffbe-b6e3-6bf9-e7cc8b9fe19c@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726837AbgD2KnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 06:43:12 -0400
+Received: from mga05.intel.com ([192.55.52.43]:31837 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726686AbgD2KnL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Apr 2020 06:43:11 -0400
+IronPort-SDR: iOvZuyU6q4rhjOL6OmyqqkSg85M0ABdYpfB4gGvMWNDsVfhk/vm8LTmedcBZ9Ur1ze+E7SP7Ka
+ xRC6tMD7PRvQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2020 03:43:11 -0700
+IronPort-SDR: 9Jx9NwxNY2JPoS2yf+EjHFue3aobICBG/OyEM1nzA4wtu4at6wbq7pMXDODz2bBcuydgXueJ1D
+ /atmhjTv5l+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,331,1583222400"; 
+   d="scan'208";a="257924250"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga003.jf.intel.com with ESMTP; 29 Apr 2020 03:43:06 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        arnd@arndb.de, brendanhiggins@google.com, tglx@linutronix.de,
+        boris.brezillon@collabora.com, anders.roxell@linaro.org,
+        masonccyang@mxic.com.tw, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, hauke.mehrtens@intel.com,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        cheol.yong.kim@intel.com,
+        Ramuthevar Vadivel Murugan 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v4 0/2] mtd: rawnand: Add NAND controller support on Intel LGM SoC
+Date:   Wed, 29 Apr 2020 18:42:03 +0800
+Message-Id: <20200429104205.18780-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTA0LTI0IGF0IDEwOjIyICswMTAwLCBMdWthc3ogTHViYSB3cm90ZToNCj4g
-SGkgTWljaGFlbCwNCj4gDQo+IE9uIDQvMjQvMjAgODoxNiBBTSwgTWljaGFlbCBLYW8gd3JvdGU6
-DQo+ID4gVGhlIHVwcGVyIGFuZCBsb3dlciBsaW1pdHMgb2YgdGhlcm1hbCB0aHJvdHRsZSBzdGF0
-ZSBpbiB0aGUNCj4gPiBkZXZpY2UgdHJlZSBkbyBub3QgYXBwbHkgdG8gdGhlIHBvd2VyX2FsbG9j
-YXRlIGdvdmVybm9yLg0KPiA+IEFkZCB0aGUgdXBwZXIgYW5kIGxvd2VyIGxpbWl0cyB0byB0aGUg
-cG93ZXJfYWxsb2NhdGUgZ292ZXJub3IuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTWljaGFl
-bCBLYW8gPG1pY2hhZWwua2FvQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMv
-dGhlcm1hbC90aGVybWFsX2NvcmUuYyB8IDIgKy0NCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L3RoZXJtYWwvdGhlcm1hbF9jb3JlLmMgYi9kcml2ZXJzL3RoZXJtYWwvdGhlcm1hbF9jb3JlLmMN
-Cj4gPiBpbmRleCA5YTMyMWRjNTQ4YzguLmY2ZmVlZDIyNjViZCAxMDA2NDQNCj4gPiAtLS0gYS9k
-cml2ZXJzL3RoZXJtYWwvdGhlcm1hbF9jb3JlLmMNCj4gPiArKysgYi9kcml2ZXJzL3RoZXJtYWwv
-dGhlcm1hbF9jb3JlLmMNCj4gPiBAQCAtNTk4LDcgKzU5OCw3IEBAIGludCBwb3dlcl9hY3Rvcl9z
-ZXRfcG93ZXIoc3RydWN0IHRoZXJtYWxfY29vbGluZ19kZXZpY2UgKmNkZXYsDQo+ID4gICAJaWYg
-KHJldCkNCj4gPiAgIAkJcmV0dXJuIHJldDsNCj4gPiAgIA0KPiA+IC0JaW5zdGFuY2UtPnRhcmdl
-dCA9IHN0YXRlOw0KPiA+ICsJaW5zdGFuY2UtPnRhcmdldCA9IGNsYW1wX3ZhbChzdGF0ZSwgaW5z
-dGFuY2UtPmxvd2VyLCBpbnN0YW5jZS0+dXBwZXIpOw0KPiA+ICAgCW11dGV4X2xvY2soJmNkZXYt
-PmxvY2spOw0KPiA+ICAgCWNkZXYtPnVwZGF0ZWQgPSBmYWxzZTsNCj4gPiAgIAltdXRleF91bmxv
-Y2soJmNkZXYtPmxvY2spOw0KPiA+IA0KPiANCj4gVGhhbmsgeW91IGZvciB0aGUgcGF0Y2ggYW5k
-IGhhdmluZyB0byBsb29rIGF0IGl0LiBJIGhhdmUgc29tZSBjb25jZXJucw0KPiB3aXRoIHRoaXMg
-YXBwcm9hY2guIExldCdzIGFuYWx5emUgaXQgZnVydGhlci4NCj4gDQo+IEluIGRlZmF1bHQgdGhl
-IGNvb2xpbmcgZGV2aWNlcyBpbiB0aGUgdGhlcm1hbCB6b25lIHdoaWNoIGlzIHVzZWQgYnkgSVBB
-DQo+IGRvIG5vdCBoYXZlIHRoaXMgJ2xvd2VyJyBhbmQgJ3VwcGVyJyBsaW1pdHMuIFRoZXkgYXJl
-IHNldCB0bw0KPiBUSEVSTUFMX05PX0xJTUlUIGluIERUIHRvIGdpdmUgZnVsbCBjb250cm9sIHRv
-IElQQSBvdmVyIHRoZSBzdGF0ZXMuDQo+IA0KPiBUaGlzIHRoZSBmdW5jdGlvbiAncG93ZXJfYWN0
-b3Jfc2V0X3Bvd2VyJyBhY3R1YWxseSB0cmFuc2xhdGVzIGdyYW50ZWQNCj4gcG93ZXIgdG8gdGhl
-IHN0YXRlIHRoYXQgZGV2aWNlIHdpbGwgcnVuIGZvciB0aGUgbmV4dCBwZXJpb2QuDQo+IFRoZSBJ
-UEEgYWxnb3JpdGhtIGhhcyBhbHJlYWR5IHNwbGl0IHRoZSBwb3dlciBidWRnZXQuDQo+IE5vdyB3
-aGF0IGhhcHBlbiB3aGVuIHRoZSAnbG93ZXInIHZhbHVlIHdpbGwgY2hhbmdlIHRoZSBzdGF0ZSB0
-byBhIHN0YXRlDQo+IHdoaWNoIGNvbnN1bWVzIG1vcmUgcG93ZXIgdGhhbiB3YXMgY2FsY3VsYXRl
-ZCBpbiB0aGUgSVBBIGFsZy4uLiBJdCB3aWxsDQo+IGJlY2FtZSB1bnN0YWJsZS4NCj4gDQo+IEkg
-d291bGQgcmF0aGVyIHNlZSBhIGNoYW5nZSB3aGljaCB1c2VzIHRoZXNlICdsb3dlcicgYW5kICd1
-cHBlcicgbGltaXRzDQo+IGJlZm9yZSB0aGUgSVBBIGRvIHRoZSBjYWxjdWxhdGlvbiBvZiB0aGUg
-cG93ZXIgYnVkZ2V0LiBCdXQgdGhpcyB3YXNuJ3QNCj4gYSByZXF1aXJlbWVudCBhbmQgd2UgYXNz
-dW1lZCB0aGF0IElQQSBoYXMgZnVsbCBjb250cm9sIG92ZXIgdGhlIGNvb2xpbmcNCj4gZGV2aWNl
-ICh3aGljaCBJIGRlc2NyaWJlZCBhYm92ZSB3aXRoIHRoaXMgRFQgVEhFUk1BTF9OT19MSU1JVCku
-DQo+IA0KPiBJcyB0aGVyZSBhIHByb2JsZW0gd2l0aCB5b3VyIHBsYXRmb3JtIHRoYXQgaXQgaGFz
-IHRvIHByb3ZpZGUgc29tZQ0KPiBtaW5pbWFsIHBlcmZvcm1hbmNlLCBzbyB5b3UgdHJpZWQgdG8g
-aW50cm9kdWNlIHRoaXMgY2xhbXBpbmc/DQo+IA0KPiBSZWdhcmRzLA0KPiBMdWthc3oNCg0KDQpI
-aSBMdWthc3osDQoNCkkgcmVmZXIgdG8gdGhlIGRvY3VtZW50YXRpb24gc2V0dGluZ3Mgb2YgdGhl
-IHRoZXJtYWwgZGV2aWNlIHRyZWUNCihEb2N1bWVudGF0aW9uIC8gZGV2aWNldHJlZSAvIGJpbmRp
-bmdzIC8gdGhlcm1hbCAvIHRoZXJtYWwudHh0KS4NCg0KSXQgc2hvd3MgdGhhdCBjb29saW5nLWRl
-dmljZSBpcyBhIG1hbmRhdG9yeSBwcm9wZXJ0eSwgc28gbWF4L21pbiBjb29saW5nDQpzdGF0ZSBz
-aG91bGQgYmUgYWJsZSB0byBzdXBwb3J0IGluIGZyYW1ld29yayBwb2ludCBvZiB2aWV3Lg0KT3Ro
-ZXJ3aXNlLCB0aGUgbGltaXRhdGlvbiBzaG91bGQgYmUgYWRkZWQgaW4gYmluZGluZyBkb2N1bWVu
-dC4NCg0KRGlmZmVyZW50IGhhcmR3YXJlIG1lY2hhbmlzbXMgaGF2ZSBkaWZmZXJlbnQgaGVhdCBk
-aXNzaXBhdGlvbg0KY2FwYWJpbGl0aWVzLg0KTGltaXRpbmcgdGhlIGlucHV0IGhlYXQgc291cmNl
-IGNhbiBzbG93IGRvd24gdGhlIGhlYXQgYWNjdW11bGF0aW9uIGFuZA0KdGVtcGVyYXR1cmUgYnVy
-c3QuDQpXZSB3YW50IHRvIHJlZHVjZSB0aGUgYWNjdW11bGF0aW9uIG9mIGhlYXQgYXQgaGlnaCB0
-ZW1wZXJhdHVyZSBieQ0KbGltaXRpbmcgdGhlIG1pbmltdW0gZ2VhciBvZiB0aGVybWFsIHRocm90
-dGxlLg0KDQpCZXN0IFJlZ2FyZHMsDQpNaWNoYWVsDQo=
+From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+
+This patch adds the new IP of Nand Flash Controller(NFC) support
+on Intel's Lightning Mountain(LGM) SoC.
+
+DMA is used for burst data transfer operation, also DMA HW supports
+aligned 32bit memory address and aligned data access by default.
+DMA burst of 8 supported. Data register used to support the read/write
+operation from/to device.
+
+NAND controller also supports in-built HW ECC engine.
+
+NAND controller driver implements ->exec_op() to replace legacy hooks,
+these specific call-back method to execute NAND operations.
+
+Thank you very much Boris, Miquel and Hauke for the reviews and suggestions.
+---
+v4:
+  - add ebu_nand_cs structure for multiple-CS support
+  - mask/offset encoding for 0x51 value
+  - update macro HSNAND_CTL_ENABLE_ECC
+  - drop the op argument and un-used macros.
+  - updated the datatype and macros
+  - add function disable nand module
+  - remove ebu_host->dma_rx = NULL;
+  - rename MMIO address range variables to ebu and hsnand
+  - implement ->setup_data_interface()
+  - update label err_cleanup_nand and err_cleanup_dma
+  - add return value check in the nand_remove function
+  - add/remove tabs and spaces as per coding standard    
+  - encoded CS ids by reg property
+v3:
+  - Add depends on MACRO in Kconfig
+  - file name update in Makefile
+  - file name update to intel-nand-controller
+  - modification of MACRO divided like EBU, HSNAND and NAND
+  - add NAND_ALE_OFFS, NAND_CLE_OFFS and NAND_CS_OFFS
+  - rename lgm_ to ebu_ and _va suffix is removed in the whole file
+  - rename structure and varaibles as per review comments.
+  - remove lgm_read_byte(), lgm_dev_ready() and cmd_ctrl() un-used function
+  - update in exec_op() as per review comments
+  - rename function lgm_dma_exit() by lgm_dma_cleanup()
+  - hardcoded magic value  for base and offset replaced by MACRO defined
+  - mtd_device_unregister() + nand_cleanup() instead of nand_release()
+v2:
+  - implement the ->exec_op() to replaces the legacy hook-up.
+  - update the commit message
+  - YAML compatible string update to intel, lgm-nand-controller
+  - add MIPS maintainers and xway_nand driver author in CC
+
+v1:
+ - initial version
+
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: mtd: Add YAML for Nand Flash Controller support
+  mtd: rawnand: Add NAND controller support on Intel LGM SoC
+
+ .../devicetree/bindings/mtd/intel,lgm-nand.yaml    |  61 ++
+ drivers/mtd/nand/raw/Kconfig                       |   8 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/intel-nand-controller.c       | 750 +++++++++++++++++++++
+ 4 files changed, 820 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/intel-nand-controller.c
+
+-- 
+2.11.0
 
