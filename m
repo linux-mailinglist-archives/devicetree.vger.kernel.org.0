@@ -2,175 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E79391BE54A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 19:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4833F1BE5DE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 20:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727771AbgD2Rbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 13:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
+        id S1726891AbgD2SLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 14:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727124AbgD2Rbn (ORCPT
+        by vger.kernel.org with ESMTP id S1726423AbgD2SLO (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 13:31:43 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3CB1C03C1AE;
-        Wed, 29 Apr 2020 10:31:42 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id r26so2944923wmh.0;
-        Wed, 29 Apr 2020 10:31:42 -0700 (PDT)
+        Wed, 29 Apr 2020 14:11:14 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052DCC03C1AE;
+        Wed, 29 Apr 2020 11:11:14 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id x77so1466706pfc.0;
+        Wed, 29 Apr 2020 11:11:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=lpRZMrHTzTW8z6tlIKgNxL8ccVzt5z7E+tVpzahVStY=;
-        b=g8iStKx7j3a48hQ9diCtkrfWscJCCjYi7R66T+6R1drJJReIC6vDifbT2xfmsQ2KV0
-         aVGYa6wkdwF4YvznqekDAvkGExxvQ31gzgiaQ2HLsBPuNTY0xzu2x502zVSTB/xgmtG7
-         YbqioJ510L4TNH/ZM8bK8O+gjwvDp/xCDSPt0PkbadtJKu3brwPlSD9ReyOx8AXzbitg
-         TUkbFF7ps0QaiGzGmrGTxCz+f8SE/Lzo8DqCxDDPWMVYdU61aNZfFRlkODzjtAzqG2Je
-         OJo2MdQz01EceTYw1uC5twm15UOqQWXuAkNohFwRwZLf5AIN6CioZFwr+OTAf+BNTiJa
-         h25Q==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=32iTtqxt7eYmJSkonzXigk+VsulRBCWrnlSfTREBeNo=;
+        b=Lw9eS9hZl4dK37CHk5tVRw7uUhCKuSADlk5CRXEhminLpoMONDxAQixmerLC3pBvvZ
+         FrfP3b82EU79rswwstsUDcMOADVZqNmdB9Zx8Xaer91E8fuLGQWXddNO4STLwyfNrMR0
+         iPLRyVLGHtCgyh1ZhQ0bGz3eCN7f1NOiQy4IuUZNDp9IViHBAI1W3l0LR7bYNUVY/dwD
+         CwhAbRi80WkMrUB3cimuC7TkvK1803k/9WQ9W0xsz8OqAtDkcXoA3IPEe3wKMOmRZ7NP
+         27wMUy3IG63FwYI/56sG+ptMRat5NM28DLp9Nn9808D8hfDABRW70ZQHAeCq9wRDZ6fY
+         xqvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=lpRZMrHTzTW8z6tlIKgNxL8ccVzt5z7E+tVpzahVStY=;
-        b=YvsDZ+P73StGYsae1CJG8etUXdhG9vF0zCK2kJRUa/bkRT6T3lGgvsq+4o1W9EOxJZ
-         ilxOUwW9AjQc88en7ssr0lcNwxjPPscJP4N6/QDnaIvg+IqrS2Gjc1pQ2V+Zi+lWpBRh
-         FWZDA5FC7Jk2ldem9dE2fyJJZ9KajAETlXVLZkwi/Vb/oqcrpYYFRtLygu7KQShfPGUu
-         lwJ9HfcHhk1U20IdOikCwLpG9omb5pGP+l7GC7HdmZnIHHiY8mfhHPu/DD+8+upKMXD4
-         ZL/ET+yinAnVkjAR2A+4buAk0rLnTNLmyxM1Mm0ylo6wwt1rlK2/k+MEnPykR9itJqfm
-         TEdA==
-X-Gm-Message-State: AGi0Pua2gSvWfKkykqzoaKhChCtQdV3tFL8hI7JuIsWVPRFSk8ciTPKA
-        iA76BDI+DaeficWvSaFjLhKw404K/uY=
-X-Google-Smtp-Source: APiQypLH8sXqeobIc6UxTjqBMumvmLNAP3xqvcVTHT/bEOZ1FL08GJZzVtJ+rSFwNZ/4eU4l+oaZxA==
-X-Received: by 2002:a1c:e903:: with SMTP id q3mr4300005wmc.76.1588181501178;
-        Wed, 29 Apr 2020 10:31:41 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id j11sm31177182wrr.62.2020.04.29.10.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Apr 2020 10:31:40 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Al Cooper <alcooperx@gmail.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=32iTtqxt7eYmJSkonzXigk+VsulRBCWrnlSfTREBeNo=;
+        b=IH/++rmbvatHxZ/0KCI1drfvlzLo5Dn6XC7W/ZFbOpA6UNXBGaGctqxFAlcW/NdS+E
+         odE8X2RQSQLqoFdNMOJu/dxfE2SkKaWFZtiXy8Z4Y0TrZZoSFtddqTfmBzn0SwTFeXnh
+         RyR63TDHVXeQxFGt+jCp+e2EGkYXR9fr2PJqalK1QvaHXZ8hNGDsCwRKjNLvhv9Bo2ME
+         NjrXfAg2nBB46YC779IdQDQuRFWRm7KAIlDsYGJm05yAzbwfXmpFEcsNM4Nl56riJHd1
+         Ql9QyD5kfcHdqiGeK0IXIzAJFwRI1LJhnDURNL5ZbINQwxwJUz9BUOULuKXQGzCMcfaJ
+         ua5w==
+X-Gm-Message-State: AGi0PuZHXlZJ+j7KJnJXfX7157J5muqUnO5V/q+A6459h2NVLfj0wkZ9
+        mV9rooimoq2kohgU1y8WUAUggjsFpDyDzgCsrYc=
+X-Google-Smtp-Source: APiQypL6rg6zBqJKDlDtZabgKh8dNkv3z24vfaXNyZiW3GC67TZ/jVKXSp84ouzCZxuZ9+Z8KNTqntBii41GUJgnfIs=
+X-Received: by 2002:aa7:8f26:: with SMTP id y6mr37105646pfr.36.1588183873578;
+ Wed, 29 Apr 2020 11:11:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200429173112.38366-1-alcooperx@gmail.com> <20200429173112.38366-4-alcooperx@gmail.com>
+In-Reply-To: <20200429173112.38366-4-alcooperx@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 29 Apr 2020 21:11:06 +0300
+Message-ID: <CAHp75VdwCBDTpipJZFOXxEvB4yW1qZo5XC5vs1pzHfTnVR+Nvw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] usb: ehci: Add new EHCI driver for Broadcom STB SoC's
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Alan Stern <stern@rowland.harvard.edu>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree <devicetree@vger.kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
+        USB <linux-usb@vger.kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v4 4/4] usb: host: Add ability to build new Broadcom STB USB drivers
-Date:   Wed, 29 Apr 2020 13:31:12 -0400
-Message-Id: <20200429173112.38366-5-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200429173112.38366-1-alcooperx@gmail.com>
-References: <20200429173112.38366-1-alcooperx@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the build system changes needed to get the Broadcom STB XHCI,
-EHCI and OHCI functionality working. The OHCI support does not
-require anything unique to Broadcom so the standard ohci-platform
-driver is being used. The link order for XHCI was changed in the
-Makefile because of the way STB XHCI, EHCI and OHCI controllers
-share a port which requires that the XHCI driver be initialized
-first. Also update MAINTAINERS.
+On Wed, Apr 29, 2020 at 8:34 PM Al Cooper <alcooperx@gmail.com> wrote:
+>
+> Add a new EHCI driver for Broadcom STB SoC's. A new EHCI driver
+> was created instead of adding support to the existing ehci platform
+> driver because of the code required to workaround bugs in the EHCI
+> controller.
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
----
- MAINTAINERS               |  8 ++++++++
- drivers/usb/host/Kconfig  | 16 ++++++++++++++++
- drivers/usb/host/Makefile | 16 ++++++++++------
- 3 files changed, 34 insertions(+), 6 deletions(-)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 26f281d9f32a..6147ed78d212 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3481,6 +3481,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/i2c/brcm,brcmstb-i2c.yaml
- F:	drivers/i2c/busses/i2c-brcmstb.c
- 
-+BROADCOM BRCMSTB USB EHCI DRIVER
-+M:	Al Cooper <alcooperx@gmail.com>
-+L:	linux-usb@vger.kernel.org
-+L:	bcm-kernel-feedback-list@broadcom.com
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
-+F:	drivers/usb/host/ehci-brcm.*
-+
- BROADCOM BRCMSTB USB2 and USB3 PHY DRIVER
- M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-kernel@vger.kernel.org
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index 55bdfdf11e4c..7d58fd66e412 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -97,6 +97,22 @@ config USB_XHCI_TEGRA
- 
- endif # USB_XHCI_HCD
- 
-+config USB_EHCI_BRCMSTB
-+       tristate
-+
-+config USB_BRCMSTB
-+	tristate "Broadcom STB USB support"
-+	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
-+	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
-+	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	help
-+	  Say Y to enable support for XHCI, EHCI and OHCI host controllers
-+	  found in Broadcom STB SoC's.
-+
-+	  Disabling this will keep the controllers and corresponding
-+	  PHYs powered down.
-+
- config USB_EHCI_HCD
- 	tristate "EHCI HCD (USB 2.0) support"
- 	depends on HAS_DMA && HAS_IOMEM
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index b191361257cc..85fa6ace552a 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -37,6 +37,15 @@ endif
- 
- obj-$(CONFIG_USB_PCI)	+= pci-quirks.o
- 
-+# NOTE: BRCMSTB systems require that xhci driver be linked before the
-+# ehci/ohci drivers.
-+obj-$(CONFIG_USB_XHCI_HCD)	+= xhci-hcd.o
-+obj-$(CONFIG_USB_XHCI_PCI)	+= xhci-pci.o
-+obj-$(CONFIG_USB_XHCI_PLATFORM) += xhci-plat-hcd.o
-+obj-$(CONFIG_USB_XHCI_HISTB)	+= xhci-histb.o
-+obj-$(CONFIG_USB_XHCI_MTK)	+= xhci-mtk.o
-+obj-$(CONFIG_USB_XHCI_TEGRA)	+= xhci-tegra.o
-+
- obj-$(CONFIG_USB_EHCI_HCD)	+= ehci-hcd.o
- obj-$(CONFIG_USB_EHCI_PCI)	+= ehci-pci.o
- obj-$(CONFIG_USB_EHCI_HCD_PLATFORM)	+= ehci-platform.o
-@@ -49,6 +58,7 @@ obj-$(CONFIG_USB_EHCI_HCD_STI)	+= ehci-st.o
- obj-$(CONFIG_USB_EHCI_EXYNOS)	+= ehci-exynos.o
- obj-$(CONFIG_USB_EHCI_HCD_AT91) += ehci-atmel.o
- obj-$(CONFIG_USB_EHCI_TEGRA)	+= ehci-tegra.o
-+obj-$(CONFIG_USB_EHCI_BRCMSTB)	+= ehci-brcm.o
- 
- obj-$(CONFIG_USB_OXU210HP_HCD)	+= oxu210hp-hcd.o
- obj-$(CONFIG_USB_ISP116X_HCD)	+= isp116x-hcd.o
-@@ -69,12 +79,6 @@ obj-$(CONFIG_USB_OHCI_HCD_DAVINCI)	+= ohci-da8xx.o
- 
- obj-$(CONFIG_USB_UHCI_HCD)	+= uhci-hcd.o
- obj-$(CONFIG_USB_FHCI_HCD)	+= fhci.o
--obj-$(CONFIG_USB_XHCI_HCD)	+= xhci-hcd.o
--obj-$(CONFIG_USB_XHCI_PCI)	+= xhci-pci.o
--obj-$(CONFIG_USB_XHCI_PLATFORM) += xhci-plat-hcd.o
--obj-$(CONFIG_USB_XHCI_HISTB)	+= xhci-histb.o
--obj-$(CONFIG_USB_XHCI_MTK)	+= xhci-mtk.o
--obj-$(CONFIG_USB_XHCI_TEGRA)	+= xhci-tegra.o
- obj-$(CONFIG_USB_SL811_HCD)	+= sl811-hcd.o
- obj-$(CONFIG_USB_SL811_CS)	+= sl811_cs.o
- obj-$(CONFIG_USB_U132_HCD)	+= u132-hcd.o
+> +/* Copyright (c) 2018, Broadcom */
+
+2020?
+
+...
+
+> +       res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       hcd->regs = devm_ioremap_resource(dev, res_mem);
+
+devm_platform_get_and_ioremap_resource() ?
+
+> +       if (IS_ERR(hcd->regs)) {
+> +               err = PTR_ERR(hcd->regs);
+> +               goto err_clk;
+> +       }
+> +       hcd->rsrc_start = res_mem->start;
+> +       hcd->rsrc_len = resource_size(res_mem);
+
 -- 
-2.17.1
-
+With Best Regards,
+Andy Shevchenko
