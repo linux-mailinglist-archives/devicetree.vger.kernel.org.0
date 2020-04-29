@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A58111BD297
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 04:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B22CD1BD2AE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 04:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726756AbgD2Cqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Apr 2020 22:46:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34354 "EHLO mail.kernel.org"
+        id S1726509AbgD2CzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Apr 2020 22:55:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36166 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726498AbgD2Cqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Apr 2020 22:46:51 -0400
+        id S1726422AbgD2CzX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Apr 2020 22:55:23 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DF90920737;
-        Wed, 29 Apr 2020 02:46:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C66BE20737;
+        Wed, 29 Apr 2020 02:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588128411;
-        bh=i/beAvLFST2zpd8Kzs30/5TtRc3y6I9BsrZ9LT5jD3Q=;
+        s=default; t=1588128923;
+        bh=xquNFMLDfLZib8aq7iKWDAq0gBSPuoXgBAhfsarUS3M=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oE44iFbDA8l5+pIUkhCjvjYqB3CdLOo/xE3SJ8scLw3NEE072VFMwIBKna8Zp83Lb
-         C8ShYMGnDpmHXZu1b7J0dLvuNylBH8rUoVEbochDChE5OMu4jmzu8lUaAgsQEr70pd
-         Zosytjw13rZFSlK5kcODISxdnWNTzC9zIFD9nl38=
-Date:   Wed, 29 Apr 2020 10:46:45 +0800
+        b=XkV0gZPA1BtL5ppuUHd1TwkAiKaTuXY2ImxjnhbZRNNH9A6JRvRh/twyxvGEslq1P
+         riWBPxzljgh3nvpx8GsmcgiDD2vxZyS9qqsjdTmMNn5YhuSwtugpNyOhWwG8ib+sp6
+         qWqkCDT9DHCZhqcuNs/oO580Z5b/wSVZLpjGLevQ=
+Date:   Wed, 29 Apr 2020 10:55:16 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Matt Porter <mporter@konsulko.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mm: specify #sound-dai-cells for SAI
- nodes
-Message-ID: <20200429024644.GL32592@dragon>
-References: <20200415185941.13956-1-mporter@konsulko.com>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
+Subject: Re: [PATCH 1/2] arm64: dts: imx8qxp-mek: Sort labels alphabetically
+Message-ID: <20200429025515.GM32592@dragon>
+References: <1587101946-19495-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200415185941.13956-1-mporter@konsulko.com>
+In-Reply-To: <1587101946-19495-1-git-send-email-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 15, 2020 at 02:59:41PM -0400, Matt Porter wrote:
-> Add #sound-dai-cells properties to SAI nodes.
+On Fri, Apr 17, 2020 at 01:39:05PM +0800, Anson Huang wrote:
+> Sort the labels alphabetically for consistency.
 > 
-> Signed-off-by: Matt Porter <mporter@konsulko.com>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Applied, thanks.
+Applied both, thanks.
