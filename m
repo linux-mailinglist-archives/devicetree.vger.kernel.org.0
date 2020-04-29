@@ -2,92 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB731BEA8A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 23:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 828071BEAA5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 23:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728050AbgD2Vyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 17:54:45 -0400
-Received: from muru.com ([72.249.23.125]:52108 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728038AbgD2Vyo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 17:54:44 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 6520081FE;
-        Wed, 29 Apr 2020 21:55:31 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <aford173@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Brian Hutchinson <b.hutchman@gmail.com>,
-        Graeme Smecher <gsmecher@threespeedlogic.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH 15/15] bus: ti-sysc: Timers no longer need legacy quirk handling
-Date:   Wed, 29 Apr 2020 14:54:02 -0700
-Message-Id: <20200429215402.18125-16-tony@atomide.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200429215402.18125-1-tony@atomide.com>
-References: <20200429215402.18125-1-tony@atomide.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727093AbgD2V5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 17:57:07 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:39061 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726554AbgD2V5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Apr 2020 17:57:07 -0400
+X-IronPort-AV: E=Sophos;i="5.73,333,1583161200"; 
+   d="scan'208";a="46009187"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 30 Apr 2020 06:57:05 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id D547F40ECBAC;
+        Thu, 30 Apr 2020 06:57:00 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 00/18]  Add R8A7742/RZG1H board support
+Date:   Wed, 29 Apr 2020 22:56:37 +0100
+Message-Id: <1588197415-13747-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As timers no longer need legacy quirk handling, let's move them to
-the CONFIG_DEBUG section to make it easier to see which drivers still
-need more work.
+Hi All,
 
-Let's also add detection for few more older timer revisions while at
-it as that makes CONFIG_DEBUG output easier to read with proper names.
+This patch set adds initial board support for R8A7742 SoC,
+enabling R8A7742 arch in defconfigs with initial dtsi.
 
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Lokesh Vutla <lokeshvutla@ti.com>
-Cc: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/bus/ti-sysc.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+Cheers,
+--Prabhakar
 
-diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
---- a/drivers/bus/ti-sysc.c
-+++ b/drivers/bus/ti-sysc.c
-@@ -1275,13 +1275,6 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 		   SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("smartreflex", 0, -ENODEV, 0x38, -ENODEV, 0x00000000, 0xffffffff,
- 		   SYSC_QUIRK_LEGACY_IDLE),
--	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff,
--		   0),
--	/* Some timers on omap4 and later */
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff,
--		   0),
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff,
--		   0),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000046, 0xffffffff,
- 		   SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000052, 0xffffffff,
-@@ -1404,6 +1397,13 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 	SYSC_QUIRK("slimbus", 0, 0, 0x10, -ENODEV, 0x40002903, 0xffffffff, 0),
- 	SYSC_QUIRK("spinlock", 0, 0, 0x10, -ENODEV, 0x50020000, 0xffffffff, 0),
- 	SYSC_QUIRK("rng", 0, 0x1fe0, 0x1fe4, -ENODEV, 0x00000020, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000013, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff, 0),
-+	/* Some timers on omap4 and later */
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000040, 0xffffffff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000011, 0xffffffff, 0),
- 	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000060, 0xffffffff, 0),
- 	SYSC_QUIRK("tpcc", 0, 0, -ENODEV, -ENODEV, 0x40014c00, 0xffffffff, 0),
- 	SYSC_QUIRK("usbhstll", 0, 0, 0x10, 0x14, 0x00000004, 0xffffffff, 0),
+Lad Prabhakar (18):
+  soc: renesas: Add Renesas R8A7742 config option
+  ARM: shmobile: defconfig: Enable r8a7742 SoC
+  ARM: multi_v7_defconfig: Enable r8a7742 SoC
+  ARM: debug-ll: Add support for r8a7742
+  dt-bindings: pinctrl: sh-pfc: Document r8a7742 PFC support
+  pinctrl: sh-pfc: r8a7790: Add r8a7742 PFC support
+  ARM: dts: r8a7742: Initial SoC device tree
+  dt-bindings: irqchip: renesas-irqc: Document r8a7742 bindings
+  ARM: dts: r8a7742: Add IRQC support
+  dt-bindings: rcar-dmac: Document r8a7742 support
+  ARM: dts: r8a7742: Add SYS-DMAC support
+  dt-bindings: serial: renesas,scif: Document r8a7742 bindings
+  dt-bindings: serial: renesas,scifa: Document r8a7742 bindings
+  dt-bindings: serial: renesas,scifb: Document r8a7742 bindings
+  dt-bindings: serial: renesas,hscif: Document r8a7742 bindings
+  ARM: dts: r8a7742: Add [H]SCIF{A|B} support
+  dt-bindings: gpio: rcar: Add r8a7742 (RZ/G1H) support
+  ARM: dts: r8a7742: Add GPIO support
+
+ .../devicetree/bindings/dma/renesas,rcar-dmac.txt  |   1 +
+ .../devicetree/bindings/gpio/renesas,gpio-rcar.txt |   1 +
+ .../interrupt-controller/renesas,irqc.yaml         |   1 +
+ .../bindings/pinctrl/renesas,pfc-pinctrl.txt       |   1 +
+ .../devicetree/bindings/serial/renesas,hscif.yaml  |   1 +
+ .../devicetree/bindings/serial/renesas,scif.yaml   |   1 +
+ .../devicetree/bindings/serial/renesas,scifa.yaml  |   1 +
+ .../devicetree/bindings/serial/renesas,scifb.yaml  |   1 +
+ arch/arm/Kconfig.debug                             |  10 +
+ arch/arm/boot/dts/r8a7742.dtsi                     | 939 +++++++++++++++++++++
+ arch/arm/configs/multi_v7_defconfig                |   1 +
+ arch/arm/configs/shmobile_defconfig                |   1 +
+ drivers/pinctrl/sh-pfc/Kconfig                     |   4 +
+ drivers/pinctrl/sh-pfc/Makefile                    |   1 +
+ drivers/pinctrl/sh-pfc/core.c                      |   6 +
+ drivers/pinctrl/sh-pfc/pfc-r8a7790.c               |  24 +
+ drivers/pinctrl/sh-pfc/sh_pfc.h                    |   1 +
+ drivers/soc/renesas/Kconfig                        |   7 +
+ 18 files changed, 1002 insertions(+)
+ create mode 100644 arch/arm/boot/dts/r8a7742.dtsi
+
 -- 
-2.26.2
+2.7.4
+
