@@ -2,101 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDAF1BDB92
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 14:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF441BDC16
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2020 14:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbgD2MNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Apr 2020 08:13:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47830 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727070AbgD2MNN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Apr 2020 08:13:13 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 33A292087E;
-        Wed, 29 Apr 2020 12:13:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588162392;
-        bh=u4q8FeVjq66c39pqaDcuSEyHVkmprJELW74mmEQTIaE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LkccZMaFK0HPa/lbTJpwOfhl8YJedaGt+oqHcEse9oxecOG+ePMQl8+6lXN291eQt
-         XMOEz6IrJ3WVM70u8VUu+lzZReL1NMjGZKzI6S/iVHo09sj1mB7r8KpyAoFiY7glgP
-         IM3XoNOsXV/iAUpplEFGhw3FFVTD9pPI8zvfFoQM=
-Date:   Wed, 29 Apr 2020 13:13:10 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     Daniel Schwierzeck <daniel.schwierzeck@gmail.com>, robh@kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hauke@hauke-m.de,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH 1/4] spi: lantiq: Synchronize interrupt handlers and
- transfers
-Message-ID: <20200429121310.GH4201@sirena.org.uk>
-References: <cover.1587702428.git.eswara.kota@linux.intel.com>
- <3bf88d24b9cad9f3df1da8ed65bf55c05693b0f2.1587702428.git.eswara.kota@linux.intel.com>
- <310ca761-e7ae-1192-99fd-a1960697806b@gmail.com>
- <46f31699-e781-ae33-3ee5-d51e6940ee43@linux.intel.com>
+        id S1726554AbgD2M1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Apr 2020 08:27:09 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:35684 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726524AbgD2M1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Apr 2020 08:27:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1588163225; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UB85kJRWkAnE/ldP2rd2WB1otm7LsPHBG/QdCMbeTtw=;
+        b=Y7SJJo7sZnaAuNIPATy0AiHIaWVsd2iyJrs83ZKmUFLR4e0sPDVaCrXhPJh3FdwWeKj5+B
+        ymuqI/fKXp9dnLKIal7QsfsqkUT5AoaSpooZL4M9yoymur1N6pMByU7yw/6mHtmHFpYRn4
+        m+cKuE3cU7bSMeleVwTgsV9u39AqbSE=
+Date:   Wed, 29 Apr 2020 14:26:46 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v7 08/12] arm: dts: s5pv210: Add node for SGX 540
+To:     Jonathan Bakker <xc-racer2@live.ca>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?iso-8859-1?q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        James Hogan <jhogan@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Philipp Rossak <embed3d@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        openpvrsgx-devgroup@letux.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com, linux-mips@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Message-Id: <MKUJ9Q.OQG3OJ6IYGUE3@crapouillou.net>
+In-Reply-To: <BN6PR04MB0660044B5B1D45BE4CBCD2AAA3AC0@BN6PR04MB0660.namprd04.prod.outlook.com>
+References: <cover.1587760454.git.hns@goldelico.com>
+        <3fd18c747426e15fd1f3500b9c4adce2db9ddd0c.1587760454.git.hns@goldelico.com>
+        <NYBE9Q.YH08US7A7DC3@crapouillou.net>
+        <BN6PR04MB0660A180D2069848E5C03D7EA3AE0@BN6PR04MB0660.namprd04.prod.outlook.com>
+        <20200427154617.GA1798@pi3>
+        <BN6PR04MB06605F014024061C894AFBA4A3AC0@BN6PR04MB0660.namprd04.prod.outlook.com>
+        <BN6PR04MB0660044B5B1D45BE4CBCD2AAA3AC0@BN6PR04MB0660.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zq44+AAfm4giZpo5"
-Content-Disposition: inline
-In-Reply-To: <46f31699-e781-ae33-3ee5-d51e6940ee43@linux.intel.com>
-X-Cookie: I know how to do SPECIAL EFFECTS!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jonathan,
 
---zq44+AAfm4giZpo5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Le mar. 28 avril 2020 =E0 15:58, Jonathan Bakker <xc-racer2@live.ca> a=20
+=E9crit :
+> Hi all,
+>=20
+> On 2020-04-28 2:39 p.m., Jonathan Bakker wrote:
+>>  Hi Krzysztof,
+>>=20
+>>  On 2020-04-27 8:46 a.m., Krzysztof Kozlowski wrote:
+>>>  On Sun, Apr 26, 2020 at 07:57:12AM -0700, Jonathan Bakker wrote:
+>>>>  Hi Paul,
+>>>>=20
+>>>>  On 2020-04-26 5:56 a.m., Paul Cercueil wrote:
+>>>>>=20
+>>>>>=20
+>>>>>  Le ven. 24 avril 2020 =E0 22:34, H. Nikolaus Schaller=20
+>>>>> <hns@goldelico.com> a =E9crit :
+>>>>>>  From: Jonathan Bakker <xc-racer2@live.ca>
+>>>>>>=20
+>>>>>>  All s5pv210 devices have a PowerVR SGX 540 (revision 120)=20
+>>>>>> attached.
+>>>>>>=20
+>>>>>>  There is no external regulator for it so it can be enabled by=20
+>>>>>> default.
+>>>>>>=20
+>>>>>>  Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+>>>>>>  Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>>>>>  ---
+>>>>>>   arch/arm/boot/dts/s5pv210.dtsi | 13 +++++++++++++
+>>>>>>   1 file changed, 13 insertions(+)
+>>>>>>=20
+>>>>>>  diff --git a/arch/arm/boot/dts/s5pv210.dtsi=20
+>>>>>> b/arch/arm/boot/dts/s5pv210.dtsi
+>>>>>>  index 2ad642f51fd9..abbdda205c1b 100644
+>>>>>>  --- a/arch/arm/boot/dts/s5pv210.dtsi
+>>>>>>  +++ b/arch/arm/boot/dts/s5pv210.dtsi
+>>>>>>  @@ -512,6 +512,19 @@ vic3: interrupt-controller@f2300000 {
+>>>>>>               #interrupt-cells =3D <1>;
+>>>>>>           };
+>>>>>>=20
+>>>>>>  +        gpu: gpu@f3000000 {
+>>>>>>  +            compatible =3D "samsung,s5pv210-sgx540-120";
+>>>=20
+>>>  This should not pass the bindings check because you missed last
+>>>  compatibles.
+>>>=20
+>>=20
+>>  Thanks for pointing that out, I'll add it and make sure it passes=20
+>> the bindings check.
+>>=20
+>>>>>>  +            reg =3D <0xf3000000 0x10000>;
+>>>>>>  +            interrupt-parent =3D <&vic2>;
+>>>>>>  +            interrupts =3D <10>;
+>>>>>>  +            clock-names =3D "core";
+>>>>>>  +            clocks =3D <&clocks CLK_G3D>;
+>>>>>>  +
+>>>>>>  +            assigned-clocks =3D <&clocks MOUT_G3D>, <&clocks=20
+>>>>>> DOUT_G3D>;
+>>>>>>  +            assigned-clock-rates =3D <0>, <66700000>;
+>>>>>>  +            assigned-clock-parents =3D <&clocks MOUT_MPLL>;
+>>>>>=20
+>>>>>  What are these clocks for, and why are they reparented /=20
+>>>>> reclocked?
+>>>>>=20
+>>>>>  Shouldn't they be passed to 'clocks' as well?
+>>>>>=20
+>>>>>  -Paul
+>>>>>=20
+>>>>=20
+>>>>  The G3D clock system can have multiple parents, and for stable=20
+>>>> operation
+>>>>  it's recommended to use the MPLL clock as the parent (which in=20
+>>>> turn
+>>>>  is actually a mux as well).  MOUT_G3D is simply the mux for=20
+>>>> CLK_G3D
+>>>>  (SGX core clock), DOUT_G3D is the divider.  DOUT_G3D could=20
+>>>> equally be CLK_G3D
+>>>>  (and probably should be, for readability) as CLK_G3D is simply=20
+>>>> the gate and
+>>>>  DOUT_G3D is the divider for it.
+>>>=20
+>>>  Good point, it should be CLK_G3D instead of DOUT.  Can you fix=20
+>>> this as
+>>>  well?
+>>=20
+>>  Yep, will do.  Nikolaus, I'll send you an updated patch to include.
+>>=20
+>=20
+> How are assigned-clocks handled in the yaml DT schema?  When running=20
+> make dtbs_check,
+> I end up with messages such as
+>=20
+> arch/arm/boot/dts/s5pv210-aquila.dt.yaml: gpu@f3000000:=20
+> 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks'=20
+> do not match any of the regexes: 'pinctrl-[0-9]+'
+>=20
+> Do they need to explicitly be listed as valid entries?
 
-On Wed, Apr 29, 2020 at 04:20:53PM +0800, Dilip Kota wrote:
-> On 4/28/2020 7:10 PM, Daniel Schwierzeck wrote:
+The assigned-* can also be moved inside the node of the clocks=20
+provider. I would say it makes more sense to have them there.
 
-> > actually there is no real bottom half. Reading or writing the FIFOs is
-> > fast and is therefore be done in hard IRQ context. But as the comment
+-Paul
 
-> Doing FIFO r/w in threaded irqs shouldn't cause any impact on maximum
-> transfer rate i think.
 
-Have you actually tested this?  Generally adding extra latency is going
-to lead to some opportunity for the hardware to idle and the longer the
-hardware is idle the lower the throughput.
-
-> Also the ISR should be quick enough, doing FIFO r/w in ISR adds up more
-> latency to ISR.
-> Handling the FIFOs r/w in threaded irq will be a better way.
-
-Consider what happens on a heavily loaded system - the threaded
-interrupt will have to be scheduled along with other tasks.
-
-> > for lantiq_ssc_bussy_work() state, the driver needs some busy-waiting
-> > after the last interrupt. I don't think it's worth to replace this with
-> > threaded interrupts which add more runtime overhead and likely decrease
-> > the maximum transfer speed.
-
-> Workqueue has a higher chances of causing SPI transfers timedout.
-
-because...?
-
---zq44+AAfm4giZpo5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl6pb1UACgkQJNaLcl1U
-h9B5Xwf9HYTpgwJhe8Mt24YHCYdheKLib494VcuElZXJPwV8qe4CbHLu0OaMB8Nt
-eMnwvPeuQwMCZdAVlUONXcAhodLdAqnQ/vW4Pv3EmsvTsIcpdQwS9U3ECZpg3GsQ
-2/h0SN8MUv4abWuaINGq2aSzrkEo54IdDbKL2hX/EBgb3eYEbslZLADMPrj1GbUq
-XZ/+4/hZYBJGOU0GhMhEICTVLRRn3WaX7D7zsKnhYuJSBy0MawdkHcvbTbMf/5mb
-ueROU1mpDvze2eNPtzaAT/IC63tb9DCL1j3MeVc7Vfr1zbaB/AWtMr4hxjr9+6jP
-tC0FaIJds95B1JxelaCLXRuR7GA0mw==
-=/9PQ
------END PGP SIGNATURE-----
-
---zq44+AAfm4giZpo5--
