@@ -2,144 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30CE81BFF94
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 17:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D44AD1BFFB1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 17:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726608AbgD3PFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 11:05:38 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:44103 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726377AbgD3PFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 11:05:37 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id CF8FC879;
-        Thu, 30 Apr 2020 11:05:36 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 30 Apr 2020 11:05:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=Tru7PrTS/cEk2EWUwEOeWCgUn+R
-        +ZwTSYNBWM33YLjg=; b=G7S/aEAwT1c+33nJT6fsdEVxgPaaVZxI2PD7wiBF+NE
-        sDsj9yoIQe4Bg5Zqu/32cYJ1/o9g75vS4KP+bGdYXRQFCceRiLHsjJMa4H3JXYPx
-        nMJE0/wU8/rnFD2ex84lI/Jtl6fBqL4hJbQej0O22CkiU3ABV3EsPRr4cpkQcG8E
-        txEZ1QVrFc19vK/8zrzQfhNVVWEH5Q+U4e9rDh3OyqHLtARCpuG0mF/8Tg5WY7qx
-        GduxhLWi8KsRQd7aUQtzNARLVbrCuXuytOEB+IBUSgkG4lTQ6MYJa0NcXHKTe/P2
-        AK0eR2BYJmgAuE6UFhXiNysabyDUbC7bfRNg8fo4qTQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Tru7Pr
-        TS/cEk2EWUwEOeWCgUn+R+ZwTSYNBWM33YLjg=; b=T32wf1Yx7SUErYgLK+Q0AI
-        To4RLQELHNIbU91kwfidK/p1D217384Ddxg2L+2cYf9Gc8QwhU6TmNz5OrZ8Yjqu
-        e42G5DkiwxciQCVTVmhv3Lc3eBI7NKdySbDhXrDp+nZzL3D6OL3M+tSpyO+v5eK8
-        wJtlsIxyW19v5BZNjSRUEft6hB90QfUyguiyAbZ9Drz21W28SinmWlci88C4F4X/
-        DoVZuxXaAZOSuERifUont6kLyf4DaADe74yPAnhMMkzve6ZK4IYEYem3sR+j5pxA
-        ySI1+1RynC6JkP36hkIwD34+xpgxyQfPjTm4JZzMzXvDKg1G1RXwZ23c3RyP3tUg
-        ==
-X-ME-Sender: <xms:P-mqXlJggu2Qj1_nrorI-QgX36-_oYqmih1diXjqc6YH_T7Z23bnfQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrieehgdekgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:P-mqXp38E52BRc5Hv_-Yj2EeIpsRoK6ysoe7bM_7O6YV5ryJNOIc8g>
-    <xmx:P-mqXtoxudCj3bZiBYPZvyV5_vN88d_f9yunvG9v7lLCc-yIfx8VxA>
-    <xmx:P-mqXi4O_g9WBashtNSp7S6_YfSr2V5jQhtK3-PCOR8V9BZTzrh4Pw>
-    <xmx:QOmqXqlt0MmCqTlV7I5P-q5IgoxeIENuJNQkCZY8xEdpSCJEaQINiw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A4BA43280060;
-        Thu, 30 Apr 2020 11:05:35 -0400 (EDT)
-Date:   Thu, 30 Apr 2020 17:05:34 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Priit Laes <plaes@plaes.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 1/4] clk: sunxi-ng: a10/a20: rewrite init code to a
- platform driver
-Message-ID: <20200430150534.kbzfb7utpc7kswlv@gilmour.lan>
-References: <20200417221730.555954-1-plaes@plaes.org>
- <20200417221730.555954-2-plaes@plaes.org>
- <20200420124935.asfbgv7envb2af55@gilmour.lan>
- <20200420203228.GA4734@plaes.org>
- <20200429143510.ksi27lok2udtmfas@gilmour.lan>
- <20200430062137.GA32281@plaes.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xtai2ger2274pycp"
-Content-Disposition: inline
-In-Reply-To: <20200430062137.GA32281@plaes.org>
+        id S1727921AbgD3PHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 11:07:48 -0400
+Received: from lists.gateworks.com ([108.161.130.12]:57547 "EHLO
+        lists.gateworks.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726619AbgD3PHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 11:07:47 -0400
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by lists.gateworks.com with esmtp (Exim 4.82)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1jUAox-0007qc-UJ; Thu, 30 Apr 2020 15:09:52 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Lee Jones <lee.jones@linaro.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Robert Jones <rjones@gateworks.com>
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v9 0/3] Add support for the Gateworks System Controller
+Date:   Thu, 30 Apr 2020 08:07:24 -0700
+Message-Id: <1588259247-15536-1-git-send-email-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for the Gateworks System Controller used on Gateworks
+Laguna, Ventana, and Newport product families.
 
---xtai2ger2274pycp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The GSC is an MSP430 I2C slave controller whose firmware embeds the following
+features:
+ - I/O expander (16 GPIO's emulating a PCA955x)
+ - EEPROM (enumating AT24)
+ - RTC (enumating DS1672)
+ - HWMON
+ - Interrupt controller with tamper detect, user pushbotton
+ - Watchdog controller capable of full board power-cycle
+ - Power Control capable of full board power-cycle
 
-On Thu, Apr 30, 2020 at 06:21:37AM +0000, Priit Laes wrote:
-> On Wed, Apr 29, 2020 at 04:35:10PM +0200, Maxime Ripard wrote:
-> > On Mon, Apr 20, 2020 at 08:32:28PM +0000, Priit Laes wrote:
-> > > On Mon, Apr 20, 2020 at 02:49:35PM +0200, Maxime Ripard wrote:
-> > > > On Sat, Apr 18, 2020 at 01:17:27AM +0300, Priit Laes wrote:
-> > > > > In order to register regmap for sun7i CCU, there needs to be
-> > > > > a device structure already bound to the CCU device node.
-> > > > >=20
-> > > > > Convert the sun4i/sun7i CCU setup to platform driver to use
-> > > > > it later as platform device.
-> > > > >=20
-> > > > > Signed-off-by: Priit Laes <plaes@plaes.org>
-> > > >=20
-> > > > You can't relly do that though. We have timers that need those cloc=
-ks before the
-> > > > device model is initialized.
-> > >=20
-> > > Ok, I'm somewhat lost now... are these the affected timers on sun7i f=
-ollowing:
-> > > - allwinner,sun4i-a10-timer (timer@1c20c00)
-> > > - allwinner,sun7i-a20-hstimer (hstimer@1c60000)
-> >=20
-> > Yep
-> >=20
-> > > Any ideas on what approach I could actually use?
-> >=20
-> > I guess you could keep the CLK_OF_DECLARE registration, and then have a
-> > platform_driver probe and register the regmap?
-> >=20
->=20
-> Thanks this did the trick.
->=20
-> > > Also, similar timer dependency would affect then sun6i-a31 and sun9i-=
-a80
-> > > platforms too...
->=20
-> I didn't check this before, but sun9i-a80 CCU is initialized currently via
-> platform device. Should it be converted first to clock driver (CLK_OF_DEC=
-LARE)?
+see http://trac.gateworks.com/wiki/gsc for more details
+---
+v9:
+ - rebase against 5.7-rc2
+ - dt-binding: remove allOf: see https://lkml.org/lkml/2020/4/15/1930
+ - dt-binding: encorporate Lee's review comments for item descriptions
+ - dt-binding: added Reviewed-by: Rob Herring <robh@kernel.org>
+ - mfd: cleanup gsc_powerdown() by using BIT(), put_unaligned_le32(), and
+   avoid unnecessary assignments
+ - mfd: rename GSC_CTRL_1 SLEEP related defines to simplify
+ - mfd: add better description and sub-module info to driver description
+ - mfd: whitespace changes per review
+ - mfd: remove unused irq_data pointer in ddata
+ - mfd: remove unnecesary i2c_set_clientdata
+ - mfd: use devm_i2c_new_dummy_device to avoid need of free's
+ - mfd: change regsiter definitions to enum
+ - mfd: export gsc_{read,write} instead of sharing them via ddata
+ - hwmon: use exported gsc_{read,write}
+ - hwmon: added Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-I guess we could just remove the timer node on the A80. It has never been t=
-ested
-and never worked if the clock driver is probed through a platform device.
+ 
+v8:
+ - mfd: whitespace fixes
+ - mfd: describe sub-devices in Kconfig
+ - mfd: add error print for invalid command
+ - mfd: update copyright
+ - mfd: use devm_of_platform_populate
+ - mfd: use probe_new
+ - mfd: move hwmon's regmap init to hwmon
+ - hwmon: move hwmon's regmap init to hwmon
+ - dt-bindings: add register to fan-controller node name
 
-Maxime
+v7:
+ - dt-bindings: change divider from mili-ohms to ohms
+ - dt-bindings: add constraints for voltage divider and offset
+ - dt-bindings: remove unnecessary ref for offset
+ - dt-bindings: renamed fan to fan-controller and changed base prop to reg
+ - mfd:  remove irq from private data struct
+ - hwmon: fix whitespace in Kconfig
+ - hwmon: remove unnecessary device pointer in private data
+ - hwmon: change divider from mili-ohms to ohms
+ - hwmon: move fan base property to reg
 
---xtai2ger2274pycp
-Content-Type: application/pgp-signature; name="signature.asc"
+v6:
+ - hwmon: fix size of info field
+ - hwmon: improve pwm output control documentation
+ - hwmon: include unit suffix in divider and offset
+ - hwmon: change subnode name to gsc-adc
+ - hwmon: change to fan subnode
+ - hwmon: fix voltage offset
+ - dt-bindings: fix commit message typo
+ - dt-bindings: drop invalid description from #interrupt-cells property
+ - dt-bindings: fix adc pattern property
+ - dt-bindings: add unit suffix
+ - dt-bindings: replace hwmon/adc with adc/channel
+ - dt-bindings: changed adc type to gw,mode
+ - dt-bindings: add unit suffix and drop ref for voltage-divider
+ - dt-bindings: add unit suffix for voltage-offset
+ - dt-bindings: moved fan to its own subnode with base register
 
------BEGIN PGP SIGNATURE-----
+v5:
+ - fix checkpatch issues
+ - fix dt_binding_check issues
+ - address feedback from v4
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXqrpPgAKCRDj7w1vZxhR
-xZyFAQCqSDmhn4yTFm8ud90F6phEUSQWgV3icAt09/kyc3T/TQEAmigbqqP2h2Ds
-T2DQvJTkIn+f7Aa8y8JYzfr9iLPhsAA=
-=Rpgl
------END PGP SIGNATURE-----
+v4:
+ - hwmon: move to using pwm<n>_auto_point<m>_{pwm,temp} for FAN PWM
+ - hwmon: remove unncessary resolution/scaling properties for ADCs
+ - bindings: update to yaml Documentation
+ - removed watchdog driver
 
---xtai2ger2274pycp--
+v3:
+ - removed unnecessary input driver
+ - added wdt driver
+ - bindings: encorporated feedback from mailng list
+ - hwmon:
+ - encoroprated feedback from mailng list
+ - added support for raw ADC voltage input used in newer GSC firmware
+
+v2:
+ - change license comment block style
+ - remove COMPILE_TEST
+ - fixed whitespace issues
+ - replaced a printk with dev_err
+ - remove DEBUG
+ - simplify regmap_bulk_read err check
+ - remove break after returns in switch statement
+ - fix fan setpoint buffer address
+ - remove unnecessary parens
+ - consistently use struct device *dev pointer
+ - add validation for hwmon child node props
+ - move parsing of of to own function
+ - use strlcpy to ensure null termination
+ - fix static array sizes and removed unnecessary initializers
+ - dynamically allocate channels
+ - fix fan input label
+ - support platform data
+
+Tim Harvey (3):
+  dt-bindings: mfd: Add Gateworks System Controller bindings
+  mfd: add Gateworks System Controller core driver
+  hwmon: add Gateworks System Controller support
+
+ .../devicetree/bindings/mfd/gateworks-gsc.yaml     | 196 +++++++++++
+ Documentation/hwmon/gsc-hwmon.rst                  |  53 +++
+ Documentation/hwmon/index.rst                      |   1 +
+ MAINTAINERS                                        |  11 +
+ drivers/hwmon/Kconfig                              |   9 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/gsc-hwmon.c                          | 390 +++++++++++++++++++++
+ drivers/mfd/Kconfig                                |  16 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/gateworks-gsc.c                        | 284 +++++++++++++++
+ include/linux/mfd/gsc.h                            |  76 ++++
+ include/linux/platform_data/gsc_hwmon.h            |  44 +++
+ 12 files changed, 1082 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+ create mode 100644 Documentation/hwmon/gsc-hwmon.rst
+ create mode 100644 drivers/hwmon/gsc-hwmon.c
+ create mode 100644 drivers/mfd/gateworks-gsc.c
+ create mode 100644 include/linux/mfd/gsc.h
+ create mode 100644 include/linux/platform_data/gsc_hwmon.h
+
+-- 
+2.7.4
+
