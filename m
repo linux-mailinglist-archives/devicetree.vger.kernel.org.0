@@ -2,113 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7841BF1DF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 09:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692471BF22C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 10:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726561AbgD3HyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 03:54:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726443AbgD3HyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 03:54:00 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4E8C035495
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 00:53:59 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id t16so1953211plo.7
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 00:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=kG8gxxShO/ZQhCVTu79MXllzxxRhWUROOMH4XeWOBIo=;
-        b=PKeLiGXUA4odheuCOywjcjg5uNgODSCQFNSlQQE+92Z5Pz1kC2KBwFCBfGbS3B0AMG
-         SJR5F6Ltj/XdoVo8dxh/txZW1JV5a4dPakAC2FMBeH/ZcVMujxkY78e6MpI+bguLRJHK
-         0c0ZBndbA+al3r0fnuGeOKNwt8jM1ZIq3QpgiPD8Q30y54hmob/xloHvcTdgkv8rQEHO
-         fk7IP0s7X8uHp1Y219FGypcyMqJKNdCmWnvycsxQsaJEU9Q2fIoyNINRmitgO9ICPNw9
-         jOIIvDzq3Pele6Z+9pgP6Qsa0KzopjHntNX++q1A9mNLBySYNvZsn9i6ZwMEZy7zC7mB
-         0fsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kG8gxxShO/ZQhCVTu79MXllzxxRhWUROOMH4XeWOBIo=;
-        b=C4Rm8kN+KpKJr0tpptWT1JPukpk58T3wOCS+aHj+c+2Mm8+QGsISzB5mKIU6EsSAQm
-         PCvfermpG7wd09wmjhOs932pbmVxkmKWSYnjktHe7KP/x3a+W58HTDt31aI+PkwEVTyE
-         Em2hxvhZPMWC0eDPGubCqrDF5goMgnX9gixyqXrFZEq08UKZiHA8VzMYG7/A9/CCz9Te
-         GMUNUspszcNWQBBAaS7MdekEQND0CbvxYWhSf6TjILmMYAB2NBC/i7rmAVVxT1D6kcKX
-         uj57g/VzBRNXRjD35hZ6TxUpLE4v4FZpruxT1uGCUV9Q/OtRbml4oU8x2qIHNieHAOQI
-         VAgg==
-X-Gm-Message-State: AGi0PuYjnafT7fCwmqZdVK9z9grwnhtfKqFFmZn6yeioshe1jxh2LuBD
-        SXvS3riVEAcTNVZ3TQykjj3C/g==
-X-Google-Smtp-Source: APiQypKL0XTZRutxcUdK04koig/l/oiYa+fGs3Nz3+weSHu7hACweER1oNgsKvxdySh7mi63MCLnnw==
-X-Received: by 2002:a17:90a:d808:: with SMTP id a8mr1513940pjv.6.1588233238830;
-        Thu, 30 Apr 2020 00:53:58 -0700 (PDT)
-Received: from localhost ([122.171.118.46])
-        by smtp.gmail.com with ESMTPSA id l1sm1073995pjr.17.2020.04.30.00.53.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 Apr 2020 00:53:58 -0700 (PDT)
-Date:   Thu, 30 Apr 2020 13:23:56 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1726505AbgD3IGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 04:06:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50740 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726127AbgD3IGl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 04:06:41 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C3DE22073E;
+        Thu, 30 Apr 2020 08:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588234000;
+        bh=/yZOHoDX1nONlr6EIuWq1MLzabyhsCxyiK11zIWZqK8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ajtL/aqywUl5X1FHyaEFS+da9+i3QR+qOmoX2r7A8jPKoT1iMx2YUAsSzDqQuwjvh
+         NtC8kBMeHg9SqYczMGSCw0B+IepJcGHh+OKt+TLreyNgA9t9GU2wOF+4uj/jdoJ1P6
+         43753G4QnsHbYv7RTUc2ZKm8m4r/NdjLw9I0gj7E=
+Received: by pali.im (Postfix)
+        id 8D14C7AD; Thu, 30 Apr 2020 10:06:38 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Evan Green <evgreen@chromium.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 6/7] OPP: Update the bandwidth on OPP frequency changes
-Message-ID: <20200430075356.rjtctfuenirvhxgn@vireshk-i7>
-References: <20200424155404.10746-1-georgi.djakov@linaro.org>
- <20200424155404.10746-7-georgi.djakov@linaro.org>
- <CAGETcx9iAJRW9Y9orHNF-fC53nNob_vZKYUNEpwf_AeAdWCOjw@mail.gmail.com>
- <20200430060901.j7jjw6soo5h5xoul@vireshk-i7>
- <CAGETcx_zH_KJ7_A7Ofc2M5GfHKX_J__URJB127MSMcTeaqyzjw@mail.gmail.com>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Remi Pommarel <repk@triplefau.lt>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Xogium <contact@xogium.me>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: [PATCH v4 00/12] PCI: aardvark: Fix support for Turris MOX and Compex wifi cards
+Date:   Thu, 30 Apr 2020 10:06:13 +0200
+Message-Id: <20200430080625.26070-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_zH_KJ7_A7Ofc2M5GfHKX_J__URJB127MSMcTeaqyzjw@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-04-20, 00:35, Saravana Kannan wrote:
-> On Wed, Apr 29, 2020 at 11:09 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> >
-> > On 24-04-20, 14:18, Saravana Kannan wrote:
-> > > My only comment is -- can we drop this patch please? I'd like to use
-> > > devfreq governors for voting on bandwidth and this will effectively
-> > > override whatever bandwidth decisions are made by the devfreq
-> > > governor.
-> >
-> > And why would that be better ? FWIW, that will have the same problem
-> > which cpufreq governors had since ages, i.e. they were not proactive
-> > and were always too late.
-> >
-> > The bw should get updated right with frequency, why shouldn't it ?
-> 
-> I didn't say the bw would be voted based on just CPUfreq. It can also
-> be based on CPU busy time and other stats. Having said that, this is
-> not just about CPUfreq. Having the bw be force changed every time a
-> device has it's OPP is changed is very inflexible. Please don't do it.
+Hello,
 
-So, the vote based on the requirements of cpufreq driver should come
-directly from the cpufreq side itself, but no one stops the others
-layers to aggregate the requests and then act on them. This is how it
-is done for other frameworks like clk, regulator, genpd, etc.
+this is the fourth version of the patch series for Armada 3720 PCIe
+controller (aardvark). It's main purpose is to fix some bugs regarding
+buggy ath10k cards, but we also found out some suspicious stuff about
+the driver and the SOC itself, which we try to address.
 
-You guys need to figure out who aggregates the requests from all users
-or input providers for a certain path. This was pushed into the genpd
-core in case of performance state for example.
+Patches are available also in my git branch pci-aardvark:
+https://git.kernel.org/pub/scm/linux/kernel/git/pali/linux.git/log/?h=pci-aardvark
+
+Changes since v3:
+- do not change return value of of_pci_get_max_link_speed() function
+- mark zero 'max-link-speed' as invalid
+- silently use gen3 speed when 'max-link-speed' as invalid
+
+Changes since v2:
+- move PCIe max-link-speed property to armada-37xx.dtsi
+- replace custom macros by standard linux/pci_regs.h macros
+- increase PERST delay to 10ms (needed for initialized Compex WLE900VX)
+- disable link training before PERST (needed for Compex WLE900VX)
+- change of_pci_get_max_link_speed() function to signal -ENOENT
+- handle errors from of_pci_get_max_link_speed() function
+- updated comments, commit titles and messages
+
+Changes since v1:
+- commit titles and messages were reviewed and some of them were rewritten
+- patches 1 and 5 from v1 which touch PCIe speed configuration were
+  reworked into one patch
+- patch 2 from v1 was removed, it is not needed anymore
+- patch 7 from v1 now touches the device tree of armada-3720-db
+- a patch was added that tries to enable PCIe PHY via generic-phy API
+  (if a phandle to the PHY is found in the device tree)
+- a patch describing the new PCIe node DT properties was added
+- a patch was added that moves the PHY phandle from board device trees
+  to armada-37xx.dtsi
+
+Marek and Pali
+
+Marek Behún (5):
+  PCI: aardvark: Improve link training
+  PCI: aardvark: Add PHY support
+  dt-bindings: PCI: aardvark: Describe new properties
+  arm64: dts: marvell: armada-37xx: Set pcie_reset_pin to gpio function
+  arm64: dts: marvell: armada-37xx: Move PCIe comphy handle property
+
+Pali Rohár (7):
+  PCI: aardvark: Train link immediately after enabling training
+  PCI: aardvark: Don't blindly enable ASPM L0s and don't write to
+    read-only register
+  PCI: of: Zero max-link-speed value is invalid
+  PCI: aardvark: Issue PERST via GPIO
+  PCI: aardvark: Add FIXME comment for PCIE_CORE_CMD_STATUS_REG access
+  PCI: aardvark: Replace custom macros by standard linux/pci_regs.h
+    macros
+  arm64: dts: marvell: armada-37xx: Move PCIe max-link-speed property
+
+ .../devicetree/bindings/pci/aardvark-pci.txt  |   4 +
+ .../arm64/boot/dts/marvell/armada-3720-db.dts |   3 +
+ .../dts/marvell/armada-3720-espressobin.dtsi  |   2 +-
+ .../dts/marvell/armada-3720-turris-mox.dts    |   6 -
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   4 +-
+ drivers/pci/controller/pci-aardvark.c         | 263 +++++++++++++++---
+ drivers/pci/of.c                              |   2 +-
+ 7 files changed, 231 insertions(+), 53 deletions(-)
 
 -- 
-viresh
+2.20.1
+
