@@ -2,148 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 029E41BFE55
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 16:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 728CD1BFE8A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 16:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727068AbgD3Ock (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 10:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726571AbgD3Ocj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 10:32:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A108AC035494
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 07:32:39 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1jUAEo-0008MV-Bh; Thu, 30 Apr 2020 16:32:30 +0200
-Message-ID: <5e1f804c4c27927d10b2283747c1cae6606abe7c.camel@pengutronix.de>
-Subject: Re: [RFC PATCH 1/4] drm/etnaviv: Prevent IRQ triggering at probe
- time on i.MX8MM
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Adam Ford <aford173@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Li Jun <jun.li@nxp.com>, NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Date:   Thu, 30 Apr 2020 16:32:27 +0200
-In-Reply-To: <20200430124602.14463-2-frieder.schrempf@kontron.de>
-References: <20200430124602.14463-1-frieder.schrempf@kontron.de>
-         <20200430124602.14463-2-frieder.schrempf@kontron.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.1 (3.36.1-1.fc32) 
+        id S1727773AbgD3OkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 10:40:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727787AbgD3OkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 10:40:17 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3261C035495
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 07:40:16 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id k12so2144731wmj.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 07:40:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YYiLFVngM44g0Fy16RMemZHwiB7tGW2h6urXa5JNeA4=;
+        b=ZUmjnGJdMThCLpgu6Fn1QVEDSUT+cukEkGuOgFSAHraBV5UE619qvE7lxXPXau+0K9
+         ZSHcJOrhjdN8cdq50v47XtlJcbrqef2j4U5/gGNSYSQpruy3HxooSXHs6zM0a7FPLyrf
+         N1aYxP7FmR+YZG+U5qEkc7Ou5kN0muT/Fyj74HePtg+qHnxZ/OCxIli3Yg9YjITjQFh/
+         9H6GKkTWgkWazMIGgQe+XWGtK1TcSG6alWleOABobFRAn+J2t7Zmt/cdYdpkh/pEJmMD
+         jBY9RCioflr2sxajJ38Um+7P1crKRDbyOCc3eBs00MuEh0TbHUtzAb/LNYTvyI9xBJZf
+         9UNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YYiLFVngM44g0Fy16RMemZHwiB7tGW2h6urXa5JNeA4=;
+        b=UFI3WLMtIPvpPrfJUzM0dwZp/ovrTnomUnGWdj5lb5M4n9ZzTpvAakUgCutL0db80I
+         oXQHA5Hnv0kI+jXeTmdlnyEWea0QR4QNjr7Nx/DMqdiu7LzRc9wzV7blIdEg65sry/fu
+         ZUBnlR05NxG/ynGuazHc+33DPbyICbdpvEfDpVuPyUuHECPQMZWJdKnWC7a3Apw4ocl1
+         zf6ex0jIWvCnA7d/hXIlsAXHYinE03W8/4xJ6YP9CY/8d/bsZctPjn9O03M6pd5QErUk
+         nTHotC18Uyz7qjFA1zHgGZ+EoVa+9k+i9lqKpCpWlpH3URtWO78U0/9NEGS50yOcTNMD
+         pp6g==
+X-Gm-Message-State: AGi0Pub9xe+VQGH+HmEI6mZLULanKQ8HnB0Dv/iDxHN1knYSMRGeXDIL
+        E8jsLt8Ou7yAManJUnqQ4XVcTw==
+X-Google-Smtp-Source: APiQypIMxbfi2gR+oRZoSzUml7oOF8uYXg/WO7r1FPuma7Uj6M8X8kh92jUG0IVhIXNkP7USztJjJQ==
+X-Received: by 2002:a7b:cfc9:: with SMTP id f9mr3419281wmm.61.1588257614425;
+        Thu, 30 Apr 2020 07:40:14 -0700 (PDT)
+Received: from localhost.localdomain ([2001:171b:226e:c200:c43b:ef78:d083:b355])
+        by smtp.gmail.com with ESMTPSA id n2sm4153286wrt.33.2020.04.30.07.40.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Apr 2020 07:40:12 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org
+Cc:     joro@8bytes.org, catalin.marinas@arm.com, will@kernel.org,
+        robin.murphy@arm.com, kevin.tian@intel.com,
+        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
+        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
+        felix.kuehling@amd.com, zhangfei.gao@linaro.org, jgg@ziepe.ca,
+        xuzaibo@huawei.com, fenghua.yu@intel.com, hch@infradead.org,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v6 00/25] iommu: Shared Virtual Addressing for SMMUv3
+Date:   Thu, 30 Apr 2020 16:33:59 +0200
+Message-Id: <20200430143424.2787566-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+Shared Virtual Addressing (SVA) allows to share process page tables with
+devices using the IOMMU, PASIDs and I/O page faults. Add SVA support to
+the Arm SMMUv3 driver.
 
-Am Donnerstag, den 30.04.2020, 12:46 +0000 schrieb Schrempf Frieder:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> On i.MX8MM there is an interrupt getting triggered immediately after
-> requesting the IRQ, which leads to a stall as the handler accesses
-> the GPU registers whithout the clock being enabled.
-> 
-> Enabling the clocks briefly seems to clear the IRQ state, so we do
-> this before requesting the IRQ.
+Since v5 [1]:
 
-This is most likely caused by improper power-up sequencing. Normally
-the GPC will trigger a hardware reset of the modules inside a power
-domain when the domain is powered on. This requires the clocks to be
-running at this point, as those resets are synchronous, so need clock
-pulses to propagate through the hardware.
+* Added patches 1-3. Patch 1 adds a PASID field to mm_struct as
+  discussed in [1] and [2]. This is also needed for Intel ENQCMD. Patch
+  2 adds refcounts to IOASID and patch 3 adds a couple of helpers to
+  allocate the PASID.
 
-From what I see the i.MX8MM is still missing the power domain
-controller integration, but I'm pretty confident that this problem
-should be solved in the power domain code, instead of the GPU driver.
+* Dropped most of iommu-sva.c. After getting rid of io_mm following
+  review of v5, there wasn't enough generic code left to justify the
+  indirect branch overhead of io_mm_ops in the MMU notifiers. I ended up
+  with more glue than useful code, and couldn't find an easy way to deal
+  with domains in the SMMU driver (we keep PASID tables per domain,
+  while x86 keeps them per device). The direct approach in patch 17 is
+  nicer and a little easier to read. The SMMU driver only gained 160
+  lines, while iommu-sva lost 470 lines.
 
-Regards,
-Lucas
+  As a result I dropped the MMU notifier patch.
 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  drivers/gpu/drm/etnaviv/etnaviv_gpu.c | 29 ++++++++++++++++++++-----
-> --
->  1 file changed, 22 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gpu.c
-> b/drivers/gpu/drm/etnaviv/etnaviv_gpu.c
-> index a31eeff2b297..23877c1f150a 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gpu.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gpu.c
-> @@ -1775,13 +1775,6 @@ static int etnaviv_gpu_platform_probe(struct
-> platform_device *pdev)
->  		return gpu->irq;
->  	}
->  
-> -	err = devm_request_irq(&pdev->dev, gpu->irq, irq_handler, 0,
-> -			       dev_name(gpu->dev), gpu);
-> -	if (err) {
-> -		dev_err(dev, "failed to request IRQ%u: %d\n", gpu->irq, 
-> err);
-> -		return err;
-> -	}
-> -
->  	/* Get Clocks: */
->  	gpu->clk_reg = devm_clk_get(&pdev->dev, "reg");
->  	DBG("clk_reg: %p", gpu->clk_reg);
-> @@ -1805,6 +1798,28 @@ static int etnaviv_gpu_platform_probe(struct
-> platform_device *pdev)
->  		gpu->clk_shader = NULL;
->  	gpu->base_rate_shader = clk_get_rate(gpu->clk_shader);
->  
-> +	/*
-> +	 * On i.MX8MM there is an interrupt getting triggered
-> immediately
-> +	 * after requesting the IRQ, which leads to a stall as the
-> handler
-> +	 * accesses the GPU registers whithout the clock being enabled.
-> +	 * Enabling the clocks briefly seems to clear the IRQ state, so
-> we do
-> +	 * this here before requesting the IRQ.
-> +	 */
-> +	err = etnaviv_gpu_clk_enable(gpu);
-> +	if (err)
-> +		return err;
-> +
-> +	err = etnaviv_gpu_clk_disable(gpu);
-> +	if (err)
-> +		return err;
-> +
-> +	err = devm_request_irq(&pdev->dev, gpu->irq, irq_handler, 0,
-> +			       dev_name(gpu->dev), gpu);
-> +	if (err) {
-> +		dev_err(dev, "failed to request IRQ%u: %d\n", gpu->irq, 
-> err);
-> +		return err;
-> +	}
-> +
->  	/* TODO: figure out max mapped size */
->  	dev_set_drvdata(dev, gpu);
->  
+  Jacob, one upside of this rework is that we now free ioasids in
+  blocking context, which might help with your addition of notifiers to
+  ioasid.c
+
+* Simplified io-pgfault a bit, since flush() isn't called from mm exit
+  path anymore.
+
+* Fixed a bug in patch 17 (don't clear the stall bit when stall is
+  forced).
+
+You can find the latest version on https://jpbrucker.net/git/linux
+branch sva/current, and sva/zip-devel for the Hisilicon zip accelerator.
+
+[1] https://lore.kernel.org/linux-iommu/20200414170252.714402-1-jean-philippe@linaro.org/
+[2] https://lore.kernel.org/linux-iommu/1585596788-193989-6-git-send-email-fenghua.yu@intel.com/
+
+Jean-Philippe Brucker (25):
+  mm: Add a PASID field to mm_struct
+  iommu/ioasid: Add ioasid references
+  iommu/sva: Add PASID helpers
+  iommu: Add a page fault handler
+  iommu/iopf: Handle mm faults
+  arm64: mm: Add asid_gen_match() helper
+  arm64: mm: Pin down ASIDs for sharing mm with devices
+  iommu/io-pgtable-arm: Move some definitions to a header
+  iommu/arm-smmu-v3: Manage ASIDs with xarray
+  arm64: cpufeature: Export symbol read_sanitised_ftr_reg()
+  iommu/arm-smmu-v3: Share process page tables
+  iommu/arm-smmu-v3: Seize private ASID
+  iommu/arm-smmu-v3: Add support for VHE
+  iommu/arm-smmu-v3: Enable broadcast TLB maintenance
+  iommu/arm-smmu-v3: Add SVA feature checking
+  iommu/arm-smmu-v3: Add SVA device feature
+  iommu/arm-smmu-v3: Implement iommu_sva_bind/unbind()
+  iommu/arm-smmu-v3: Hook up ATC invalidation to mm ops
+  iommu/arm-smmu-v3: Add support for Hardware Translation Table Update
+  iommu/arm-smmu-v3: Maintain a SID->device structure
+  dt-bindings: document stall property for IOMMU masters
+  iommu/arm-smmu-v3: Add stall support for platform devices
+  PCI/ATS: Add PRI stubs
+  PCI/ATS: Export PRI functions
+  iommu/arm-smmu-v3: Add support for PRI
+
+ drivers/iommu/Kconfig                         |   11 +
+ drivers/iommu/Makefile                        |    2 +
+ .../devicetree/bindings/iommu/iommu.txt       |   18 +
+ arch/arm64/include/asm/mmu.h                  |    1 +
+ arch/arm64/include/asm/mmu_context.h          |   11 +-
+ drivers/iommu/io-pgtable-arm.h                |   30 +
+ drivers/iommu/iommu-sva.h                     |   15 +
+ include/linux/ioasid.h                        |   10 +-
+ include/linux/iommu.h                         |   53 +
+ include/linux/mm_types.h                      |    4 +
+ include/linux/pci-ats.h                       |    8 +
+ arch/arm64/kernel/cpufeature.c                |    1 +
+ arch/arm64/mm/context.c                       |  103 +-
+ drivers/iommu/arm-smmu-v3.c                   | 1554 +++++++++++++++--
+ drivers/iommu/io-pgfault.c                    |  458 +++++
+ drivers/iommu/io-pgtable-arm.c                |   27 +-
+ drivers/iommu/ioasid.c                        |   30 +-
+ drivers/iommu/iommu-sva.c                     |   85 +
+ drivers/iommu/of_iommu.c                      |    5 +-
+ drivers/pci/ats.c                             |    4 +
+ MAINTAINERS                                   |    3 +-
+ 21 files changed, 2275 insertions(+), 158 deletions(-)
+ create mode 100644 drivers/iommu/io-pgtable-arm.h
+ create mode 100644 drivers/iommu/iommu-sva.h
+ create mode 100644 drivers/iommu/io-pgfault.c
+ create mode 100644 drivers/iommu/iommu-sva.c
+
+-- 
+2.26.2
 
