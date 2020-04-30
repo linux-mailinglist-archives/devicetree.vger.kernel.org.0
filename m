@@ -2,133 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A72C11BF62C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 13:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 415331BF639
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 13:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726847AbgD3LKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 07:10:41 -0400
-Received: from plaes.org ([188.166.43.21]:36818 "EHLO plaes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725280AbgD3LKk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 07:10:40 -0400
-Received: from plaes.org (localhost [127.0.0.1])
-        by plaes.org (Postfix) with ESMTPSA id E3AAB40020;
-        Thu, 30 Apr 2020 11:10:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
-        t=1588245037; bh=wGwTZHV5v8qKni061zMNTsjG2rEXMiZAla90C3apllk=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=H25phI8N7ycVJKywAOIeqjmSrnuFDp4mPDmCjwY7WXtyFgcZWLOYxR4dIt8Pbj+oh
-         Nscjifko/voYP2DVEfa314VVn53IBysTYElbzpqYYrJlXUJJrl3WEfsMr1syB87sqv
-         vdysgYyw9e2GKyZ2NgQ09dbJGN2b2B/ghF8wqbC5/6GdxRNuUx+7OGEw+oT0vYfy62
-         T/G99P6ZevIvy0nYR/gH/VLmTATGsoR/MPgGl1O476EjMyOIvjFqWwBQEsASz51vEw
-         llk3ipdBIw4yYYMHjVpZIg40Tq9VRKEC7/nI1PNGofwDkRNmLQwuQqdXFv6qqYhUeN
-         0wAQIe2+w1LbQ==
-Date:   Thu, 30 Apr 2020 11:10:36 +0000
-From:   Priit Laes <plaes@plaes.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 2/6] clk: sunxi-ng: a31: Register regmap for sun6i CCU
-Message-ID: <20200430111036.GB32281@plaes.org>
-References: <20200429204612.31883-1-plaes@plaes.org>
- <20200429204612.31883-3-plaes@plaes.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200429204612.31883-3-plaes@plaes.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726745AbgD3LNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 07:13:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726309AbgD3LNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 07:13:19 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3FCC035494;
+        Thu, 30 Apr 2020 04:13:18 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id e26so1382093wmk.5;
+        Thu, 30 Apr 2020 04:13:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=4z8sT9CuILd9aYFGoOvoTvoY8pkzB5UA6DzZlKXbDgY=;
+        b=C1J19SXWSrCIMcluHqDbetMtFEYhZVAgKsNikEJsnLCFNNoNG/IRKFoj1UNco9zFmG
+         BV6jqKiRXzm36cbS2feaw6nCV0/UlPdh9RmEeODGsVJfybvEcdeOp5DUrj6ZdxhbIp7K
+         /vGEKuObNgfRyPZ+7ifu8h3LbNskxoh3B42Lmcb9wGTC69ZtEuc95AK6OyglMRtfUJwL
+         cFR4ibIlB6ed+GkLKoHKxhEI/vB8FXUF+V1UOVl/46YqdmQppfg2GBOYksKbKJVLg9AG
+         degIn85uZaLbn/ugBq+xEGNdmks35sn5FqRC8h26uWEmFTTuiiQuqVvcz7fOVx8Nn5Vm
+         5DEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=4z8sT9CuILd9aYFGoOvoTvoY8pkzB5UA6DzZlKXbDgY=;
+        b=G5+1Eg1ON6ibb6c+2a8e7GS+s1NL+XG/e9IQHglkCQCZYBu7rJEmZidPS5sor3AvXk
+         aSNN0P3nAcBEPVLgIoMovjB7vrK1XKgss0jxxoPiPUsiKa+ntsjwY9t4Rbiq/qyDOt2U
+         NnFxhGqi/7fehhdV0dGx+qlH/boXpOSAN2GI6kuY0vh5iOz4HeytGao4+nMpwtE7orla
+         ohrG3GrFDU05Q55Cl7a0xWxFdJokDnnhqrRnMQ3qn1N4uUvLywVV6BPGKA9uku2OeD10
+         kmwaTsIf4Y83J+DtaVaXHCIkG22cEjlMfpuXbF/MJmEN3ef1U2BABrUFgzsf897ufQ+1
+         /eDw==
+X-Gm-Message-State: AGi0Pub+450hW7TBNu+EH14cwKJYw7EPwRJVO3QNGiZWgNV+wFpYQjL6
+        JIPagNqqE86hJszh1TRh0NXICKARHpE=
+X-Google-Smtp-Source: APiQypLSq5LI1RaeU9+A56fFunR4suuVXxjC8TT1B/rCsQCvcfhX07RrnjElEuLsRKAm8GQtVuILCQ==
+X-Received: by 2002:a1c:9dd1:: with SMTP id g200mr2574998wme.82.1588245197110;
+        Thu, 30 Apr 2020 04:13:17 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id 74sm3727077wrk.30.2020.04.30.04.13.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Apr 2020 04:13:16 -0700 (PDT)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v6 0/4] Add XHCI, EHCI and OHCI support for Broadcom STB SoS's
+Date:   Thu, 30 Apr 2020 07:12:54 -0400
+Message-Id: <20200430111258.6091-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 29, 2020 at 11:46:08PM +0300, Priit Laes wrote:
+v6 - Remove "contains:" from compatible section of
+     brcm,bcm7445-ehci.yaml as requested by Rob Herring.
 
-I somehow messed up this patch when preparing the patchset,
-so I'll resend the fixed patch with v3.
+v5 - Use devm_platform_get_and_ioremap_resource() in ehci-brcm.c
+     as requested by Andy Shevchenko.
+   - Add pm_runtime_set_active() to ehci_resume() in ehci-brcm.c
+     as requested by Alan Stern.
 
-> On sun6i, the gmac clock is handled by the dwmac-sunxi driver, but
-> its configuration register is located in the CCU register range,
-> requiring proper regmap setup.
-> 
-> In order to do that, we use CLK_OF_DECLARE_DRIVER to initialize
-> sun7i ccu, which clears the OF_POPULATED flag, allowing the
-> platform device to probe the same resource with device node.
-> 
-> Signed-off-by: Priit Laes <plaes@plaes.org>
-> ---
->  drivers/clk/sunxi-ng/ccu-sun6i-a31.c | 60 +++++++++++++++++++++++++++-
->  1 file changed, 58 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/sunxi-ng/ccu-sun6i-a31.c b/drivers/clk/sunxi-ng/ccu-sun6i-a31.c
-> index 9b40d53266a3..086eb93a4efd 100644
-> --- a/drivers/clk/sunxi-ng/ccu-sun6i-a31.c
-> +++ b/drivers/clk/sunxi-ng/ccu-sun6i-a31.c
-> @@ -1262,5 +1262,61 @@ static void __init sun6i_a31_ccu_setup(struct device_node *node)
->  	ccu_mux_notifier_register(pll_cpu_clk.common.hw.clk,
->  				  &sun6i_a31_cpu_nb);
->  }
-> -CLK_OF_DECLARE(sun6i_a31_ccu, "allwinner,sun6i-a31-ccu",
-> -	       sun6i_a31_ccu_setup);
-> +CLK_OF_DECLARE_DRIVER(sun6i_a31_ccu, "allwinner,sun6i-a31-ccu",
-> +		      sun6i_a31_ccu_setup);
-> +
-> +/*
-> + * Regmap for the GMAC driver (dwmac-sunxi) to allow access to
-> + * GMAC configuration register.
-> + */
-> +#define SUN6I_A31_GMAC_CFG_REG 0xD0
-> +static bool sun6i_a31_ccu_regmap_accessible_reg(struct device *dev,
-> +						unsigned int reg)
-> +{
-> +	if (reg == SUN6I_A31_GMAC_CFG_REG)
-> +		return true;
-> +	return false;
-> +}
-> +
-> +static struct regmap_config sun6i_a31_ccu_regmap_config = {
-> +	.reg_bits	= 32,
-> +	.val_bits	= 32,
-> +	.reg_stride	= 4,
-> +	.max_register	= 0x308, /* clk_out_b */
-> +
-> +	.readable_reg	= sun6i_a31_ccu_regmap_accessible_reg,
-> +	.writeable_reg	= sun6i_a31_ccu_regmap_accessible_reg,
-> +};
-> +
-> +static int sun6i_a31_ccu_probe_regmap(struct platform_device *pdev)
-> +{
-> +	void __iomem *reg;
-> +	struct resource *res;
-> +	struct regmap *regmap;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	reg = devm_ioremap(&pdev->dev, res->start, resource_size(res));
-> +	if (IS_ERR(reg))
-> +		return PTR_ERR(reg);
-> +
-> +	regmap = devm_regmap_init_mmio(&pdev->dev, reg,
-> +				       &sun6i_a31_ccu_regmap_accessible_reg);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id sun6i_a31_ccu_ids[] = {
-> +	{ .compatible = "allwinner,sun6i-a31-ccu"},
-> +	{ }
-> +};
-> +
-> +static struct platform_driver sun6i_a31_ccu_driver = {
-> +	.probe = sun6i_a31_ccu_probe_regmap,
-> +	.driver = {
-> +		.name = "sun6i-a31-ccu",
-> +		.of_match_table = sun6i_a31_ccu_ids,
-> +	},
-> +};
-> +builtin_platform_driver(sun6i_a31_ccu_driver);
-> -- 
-> 2.26.2
-> 
+v4 - A few more fixes to the brcm,bcm7445-ehci.yaml dt-bindings
+     document requested by Rob Herring.
+   - Fixed ordering issue in MAINTAINERS as requested by
+     Andy Shevchenko.
+
+v3 - Addressed all of Andy Shevchenko's review comments for
+     ehci-brcm.c.
+   - Fixed the brcm,bcm7445-ehci.yaml dt-bindings document,
+     dt_binding_check now passes.
+   - Added the XHCI functionality to xhci-plat.c instead of creating
+     new brcmstb files, as suggested by Mathias Nyman.
+
+v2 - Addressed Andy Shevchenko's review comments.
+   - Fixed dt_binding_check error pointed out by Rob Herring.
+   - Removed pr_info message in ehci_brcm_init as suggested by
+     Greg Kroah-Hartman.
+
+
+Al Cooper (4):
+  dt-bindings: Add Broadcom STB USB support
+  usb: xhci: xhci-plat: Add support for Broadcom STB SoC's
+  usb: ehci: Add new EHCI driver for Broadcom STB SoC's
+  usb: host: Add ability to build new Broadcom STB USB drivers
+
+ .../bindings/usb/brcm,bcm7445-ehci.yaml       |  59 ++++
+ .../devicetree/bindings/usb/usb-xhci.txt      |   1 +
+ MAINTAINERS                                   |   8 +
+ drivers/usb/host/Kconfig                      |  16 +
+ drivers/usb/host/Makefile                     |  16 +-
+ drivers/usb/host/ehci-brcm.c                  | 290 ++++++++++++++++++
+ drivers/usb/host/xhci-plat.c                  |  10 +
+ 7 files changed, 394 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
+ create mode 100644 drivers/usb/host/ehci-brcm.c
+
+-- 
+2.17.1
+
