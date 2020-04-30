@@ -2,107 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB4B01C06C9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 21:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A61D1C06EB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 21:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726973AbgD3Tqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 15:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54390 "EHLO
+        id S1726272AbgD3Trw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 15:47:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726685AbgD3Tqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 15:46:36 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C52C09B042
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 12:46:35 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id x77so388935pfc.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 12:46:35 -0700 (PDT)
+        with ESMTP id S1726564AbgD3Trv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 15:47:51 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCE5C035494;
+        Thu, 30 Apr 2020 12:47:51 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id y3so2262513lfy.1;
+        Thu, 30 Apr 2020 12:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CNXt2FmO52CndewwhPBTf6I3mlSfjDZ6zV6z3LcD0VE=;
-        b=EeP8tZraylGTLmSTJH6KQFW78ibPGi/n6VR3j90ey0lht5hgmByF7Ag8EXQRMbYY57
-         IlG5tDXde2JUI0MV5tWKn0bOMGytiYol6M1pGGnhyrNAPTxlRKSNOdzzdJxAJ4f2sMAH
-         03lRzJvQy2wVsDVtMwt8z0cb7Mlulvu7VFMf4=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=mIuHJU3SfHPl0RlejSUY/NsnmtLzGRCO/6m26262Qts=;
+        b=RbKzr/trk67WayG7elaPPX9h6D/tQB6VZKQORz+fZuTF7YBeGLG3C4am6mD45328hT
+         37OqtMi3I1RRZeMmeJy2kzEqFWdrhS8dTVqItMjNTV5lNCyn0gSvDHQaZ2m77IIgGNkg
+         xZf9ztBtT0ZhdnO/YO1tY74RQbxvXkMc1LGd6u4rV4j4T/YH+ouhu5YOrlQRHb1S2/vX
+         5bMBdP0NOGsn3bZZjyjKB+aMkVxPEkxZlOA8b4Tnh21QR8ewXVJ15rwVlZws9MDzdfY9
+         MKX6ZPzTNVmo5CI+lTQd+fEG4rp5gLTYS5ZpqVfdct6Q4ccA2t0+9nKIZDkjlzuGqHtV
+         i+eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CNXt2FmO52CndewwhPBTf6I3mlSfjDZ6zV6z3LcD0VE=;
-        b=b0wF35qNepS4OcM6NPM+nv7X7MrQPdE/CvqXllycu/ORqq2szXD+i4DZop3rP67a7E
-         mit84nYMtc7cCTqkYOo/q71nu8KZow8+hoysJuuVDdSqXEwFnrrj6MLPdEA07DwdLf1s
-         81l8HHif4IZYRLWgldWIDVmckk8daMcRLFPWm7CWe9xBDhOMMLXGC0qpbx61MZ6JOgL7
-         tSwb+oUQIfodsqLXQ4WmIuEV3lfBoU4lT4D13I1W8DUm9NP7piaWr7LPIWoyslaxYsZ9
-         h5EkyjzuzmYFk5bz2DkqNuoKlvw3FLbAJGgeT5X0PAvvKoUiqEJtTan1VqaJNdLGFGgJ
-         Q2hg==
-X-Gm-Message-State: AGi0PuZ9vHWIgcGfYARVzLuA//XVqcbZHZY8qLZLn1Fgb880HTnofUyH
-        92VQHwmuCUMZDGigYHdPq9xBrw==
-X-Google-Smtp-Source: APiQypJ5w6J53xRub/aTQzetgTJoWBXw5Zybbw7vRWEji/fczl1ZvQQJUx093mXZMrARd9s0cFlHQQ==
-X-Received: by 2002:a63:8ac3:: with SMTP id y186mr506112pgd.277.1588275994930;
-        Thu, 30 Apr 2020 12:46:34 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id u3sm495993pfb.105.2020.04.30.12.46.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Apr 2020 12:46:34 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        narmstrong@baylibre.com, a.hajda@samsung.com,
-        Laurent.pinchart@ideasonboard.com, spanda@codeaurora.org
-Cc:     linux-gpio@vger.kernel.org, jonas@kwiboo.se,
-        robdclark@chromium.org, bjorn.andersson@linaro.org,
-        jeffrey.l.hugo@gmail.com, jernej.skrabec@siol.net,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 6/6] arm64: dts: sdm845: Add "no-hpd" to sn65dsi86 on cheza
-Date:   Thu, 30 Apr 2020 12:46:17 -0700
-Message-Id: <20200430124442.v4.6.I89df9b6094549b8149aa8b8347f7401c678055b0@changeid>
-X-Mailer: git-send-email 2.26.2.526.g744177e7f7-goog
-In-Reply-To: <20200430194617.197510-1-dianders@chromium.org>
-References: <20200430194617.197510-1-dianders@chromium.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=mIuHJU3SfHPl0RlejSUY/NsnmtLzGRCO/6m26262Qts=;
+        b=OaUlXmsF2asSGREkue23WjF3slY+s8Jhgo7rjFH6cyGQVYyILf/EBIhGm8bj5A5cO4
+         0yB/Oq2phZRMaXL2f2EHs7ciaDL65E9K6zp3+XeGx/Hv2pwF0joGJdLdmvZ2O9PT8REU
+         ePELm4YIIlRkfzsaIuuuzS1F7sHJuwgqwvY6ivXr32LD135kDL9Apjvlk8CttqKj5+CT
+         wAgyPud+z2N6J3Xf/GePT7iI09SYmMERgv8nCYgW2Z7kWNPEfyszhNFTVAw62aZ6V5d5
+         N/B3guM2MJocHbUqag7BjYHrUcsCnDrl75PIO2aFbuStkz7gikV70e3jbpjgtO+B6Lt2
+         H74Q==
+X-Gm-Message-State: AGi0PuYqzC1WH5vf7uEB4kzmUfJSiyrY7TUXNIaiabnnkqArSyuirekW
+        z+kcm/UV4TRP38QNdNqBohNbQO4F
+X-Google-Smtp-Source: APiQypJ/PhT1DuhOzdGayhmjuvx7BfUu8iIXwu5yKcUo9HfxYkFcMc39UJZac+fPMA3r6zKqk6lcdw==
+X-Received: by 2002:ac2:5474:: with SMTP id e20mr174444lfn.200.1588276069158;
+        Thu, 30 Apr 2020 12:47:49 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-208-152.pppoe.mtu-net.ru. [91.78.208.152])
+        by smtp.googlemail.com with ESMTPSA id k6sm471090lfm.91.2020.04.30.12.47.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Apr 2020 12:47:48 -0700 (PDT)
+Subject: Re: [RFC PATCH v11 6/9] media: tegra: Add Tegra210 Video input driver
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        hverkuil@xs4all.nl, sakari.ailus@iki.fi, helen.koike@collabora.com
+Cc:     sboyd@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1588197606-32124-1-git-send-email-skomatineni@nvidia.com>
+ <1588197606-32124-7-git-send-email-skomatineni@nvidia.com>
+ <34a49a30-71f2-5b24-20a4-7d98ae37cefa@gmail.com>
+ <1b23178b-0e5c-c97e-434c-f9cc3c02805b@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ebfb532b-bcd2-f356-49e0-e4d72d0db933@gmail.com>
+Date:   Thu, 30 Apr 2020 22:47:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <1b23178b-0e5c-c97e-434c-f9cc3c02805b@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We don't have the HPD line hooked up to the bridge chip.  Add it as
-suggested in the patch ("dt-bindings: drm/bridge: ti-sn65dsi86:
-Document no-hpd").
+30.04.2020 22:32, Sowjanya Komatineni пишет:
+> 
+> On 4/30/20 6:38 AM, Dmitry Osipenko wrote:
+>> 30.04.2020 01:00, Sowjanya Komatineni пишет:
+>>> +/**
+>>> + * struct tegra_csi_ops - Tegra CSI operations
+>>> + *
+>>> + * @csi_streaming: programs csi hardware to enable or disable
+>>> streaming.
+>>> + * @csi_err_recover: csi hardware block recovery in case of any
+>>> capture errors
+>>> + *        due to missing source stream or due to improper csi input
+>>> from
+>>> + *        the external source.
+>>> + */
+>>> +struct tegra_csi_ops {
+>>> +    int (*csi_streaming)(struct tegra_csi_channel *csi_chan, u8
+>>> pg_mode,
+>>> +                 int enable);
+>> What about to split csi_streaming() into csi_start_streaming() /
+>> csi_stop_streaming()?
+>>
+>> This will make tegra_csi_ops to be consistent with the tegra_ve_ops. A
+>> separated start/stop operations are somewhat more natural to have in
+>> general.
+> 
+> vi ops is for vb2_ops which has separate start/stop so has seperate
+> start/stop for vi ops.
+> 
+> csi is subdev and csi ops is for v4l2_subdev_ops which as s_stream
+> callback only.
+> 
+> So, created single stream function for csi to match same as subdev_ops.
 
-NOTE: this patch isn't expected to have any effect but just keeps us
-cleaner for the future.  Currently the driver in Linux just assumes
-that nobody has HPD hooked up.  This change allows us to later
-implement HPD support in the driver without messing up sdm845-cheza.
+It will be nicer to have separate ops for CSI, regardless of the
+subdev_ops. It should be okay to have a single-combined ops if CSI
+start/stop was trivial, but it's not the case here.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
+For example, the pm_runtime_put() shouldn't be invoked if stream's
+stopping fails. The stopping can't fail for the current code, but this
+could change in the future.
 
-Changes in v4: None
-Changes in v3: None
-Changes in v2:
-- ("arm64: dts: sdm845: Add "no-hpd" to sn65dsi86 on cheza") new for v2.
-
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index 9070be43a309..5938f8b2aa2f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -548,6 +548,8 @@ sn65dsi86_bridge: bridge@2d {
- 		clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
- 		clock-names = "refclk";
- 
-+		no-hpd;
-+
- 		ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.26.2.526.g744177e7f7-goog
-
+You could make csi_streaming to return void, telling explicitly that
+this code can't fail. Then the combined OPS should be okay to have.
