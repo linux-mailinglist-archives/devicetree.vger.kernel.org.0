@@ -2,37 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E49EF1BF9F9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 15:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC68B1BFD91
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 16:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726790AbgD3Nuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 09:50:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58254 "EHLO mail.kernel.org"
+        id S1726830AbgD3ONQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 10:13:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58364 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726770AbgD3Nuq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 09:50:46 -0400
+        id S1727088AbgD3Nut (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 09:50:49 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 195B920774;
-        Thu, 30 Apr 2020 13:50:45 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B717B2082E;
+        Thu, 30 Apr 2020 13:50:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588254646;
-        bh=2S1FFwLlLxdFqit01Fd6EhlCpN6yg+s+wXPuB7KRNn4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=kLhbRl26lw1Z/P+DYHCiDnSDJrSETSE+1xlBtTuhMPFMUcPsUttJSyjNp4zvO3Dng
-         oY1M20VK1P5RyPWWT7970wzG6X6fMfp0Us+Op47Cc0VpDzp0ZbLPHB8bVRiVNsTA0W
-         CNqA78hjG+XazcT9ZAFg/8ilgQv9h1JDvcvYawBk=
+        s=default; t=1588254648;
+        bh=2mLw8FLDMvON6Ru0EDLJPgLcxLqD12on0r+a5CvEJY0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=U85ZRaV6Bz3WrXAeXONYpX3hRADMsBEJfcMoAskF1LSa+d4uVWs3Kmg2md7UtjuLr
+         a+JXtlT0RDM/lPFma3Tmm4K5fXgb9SRWUIcUM4zG3hrm80DDXQSdj494+v1fAigTUK
+         tVMP2JOSD4aCjtX+M7NylwmIJdbI4UzwnKjGJwtM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.6 01/79] ARM: dts: OMAP3: disable RNG on N950/N9
-Date:   Thu, 30 Apr 2020 09:49:25 -0400
-Message-Id: <20200430135043.19851-1-sashal@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.6 03/79] ARM: dts: bcm283x: Add cells encoding format to firmware bus
+Date:   Thu, 30 Apr 2020 09:49:27 -0400
+Message-Id: <20200430135043.19851-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200430135043.19851-1-sashal@kernel.org>
+References: <20200430135043.19851-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -42,37 +44,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aaro Koskinen <aaro.koskinen@iki.fi>
+From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-[ Upstream commit 07bdc492cff6f555538df95e9812fe72e16d154a ]
+[ Upstream commit be08d278eb09210fefbad4c9b27d7843f1c096b2 ]
 
-Like on N900, we cannot access RNG directly on N950/N9. Mark it disabled in
-the DTS to allow kernel to boot.
+With the introduction of 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's
+firmware bus DMA limitations") the firmware bus has to comply with
+/soc's DMA limitations. Ultimately linking both buses to a same
+dma-ranges property. The patch (and author) missed the fact that a bus'
+#address-cells and #size-cells properties are not inherited, but set to
+a fixed value which, in this case, doesn't match /soc's. This, although
+not breaking Linux's DMA mapping functionality, generates ugly dtc
+warnings.
 
-Fixes: 308607e5545f ("ARM: dts: Configure omap3 rng")
-Signed-off-by: Aaro Koskinen <aaro.koskinen@iki.fi>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Fix the issue by adding the correct address and size cells properties
+under the firmware bus.
+
+Fixes: 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA limitations")
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Link: https://lore.kernel.org/r/20200326134413.12298-1-nsaenzjulienne@suse.de
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap3-n950-n9.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/bcm2835-rpi.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/omap3-n950-n9.dtsi b/arch/arm/boot/dts/omap3-n950-n9.dtsi
-index a075b63f3087d..11d41e86f814d 100644
---- a/arch/arm/boot/dts/omap3-n950-n9.dtsi
-+++ b/arch/arm/boot/dts/omap3-n950-n9.dtsi
-@@ -341,6 +341,11 @@
- 	status = "disabled";
- };
- 
-+/* RNG not directly accessible on N950/N9. */
-+&rng_target {
-+	status = "disabled";
-+};
+diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+index fd2c766e0f710..f7ae5a4530b88 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+@@ -14,6 +14,9 @@
+ 	soc {
+ 		firmware: firmware {
+ 			compatible = "raspberrypi,bcm2835-firmware", "simple-bus";
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
- &usb_otg_hs {
- 	interface-type = <0>;
- 	usb-phy = <&usb2_phy>;
+ 			mboxes = <&mailbox>;
+ 			dma-ranges;
+ 		};
 -- 
 2.20.1
 
