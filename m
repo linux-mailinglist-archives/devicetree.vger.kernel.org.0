@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC68B1BFD91
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 16:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9B11BFD4B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 16:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgD3ONQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 10:13:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58364 "EHLO mail.kernel.org"
+        id S1728192AbgD3OLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 10:11:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59540 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727088AbgD3Nut (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 09:50:49 -0400
+        id S1728021AbgD3NvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 09:51:21 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B717B2082E;
-        Thu, 30 Apr 2020 13:50:47 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4349F217BA;
+        Thu, 30 Apr 2020 13:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588254648;
-        bh=2mLw8FLDMvON6Ru0EDLJPgLcxLqD12on0r+a5CvEJY0=;
+        s=default; t=1588254681;
+        bh=0wE71sPp4p2eGoQKKwXnvzrVFa+Cv7DXFFOLa6n2n6U=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U85ZRaV6Bz3WrXAeXONYpX3hRADMsBEJfcMoAskF1LSa+d4uVWs3Kmg2md7UtjuLr
-         a+JXtlT0RDM/lPFma3Tmm4K5fXgb9SRWUIcUM4zG3hrm80DDXQSdj494+v1fAigTUK
-         tVMP2JOSD4aCjtX+M7NylwmIJdbI4UzwnKjGJwtM=
+        b=mVn9m+T6DuysXyWYKE0psF4hYHB8ql7z5dbmtgHa5YN9gy9EsAe04B6yMeGQFqRFC
+         XjP9WV1toLyDzMNbkJN17gCrIRYAG6DJX8uWnbHAWRey3klRdXP2Jsoos799n2Iwe5
+         Sr8L4Db2BBItKZADiOwXCIsAztLZWj3Whz3OYCWs=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.6 03/79] ARM: dts: bcm283x: Add cells encoding format to firmware bus
-Date:   Thu, 30 Apr 2020 09:49:27 -0400
-Message-Id: <20200430135043.19851-3-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.6 32/79] ARM: dts: bcm283x: Disable dsi0 node
+Date:   Thu, 30 Apr 2020 09:49:56 -0400
+Message-Id: <20200430135043.19851-32-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200430135043.19851-1-sashal@kernel.org>
 References: <20200430135043.19851-1-sashal@kernel.org>
@@ -46,42 +47,32 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-[ Upstream commit be08d278eb09210fefbad4c9b27d7843f1c096b2 ]
+[ Upstream commit 90444b958461a5f8fc299ece0fe17eab15cba1e1 ]
 
-With the introduction of 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's
-firmware bus DMA limitations") the firmware bus has to comply with
-/soc's DMA limitations. Ultimately linking both buses to a same
-dma-ranges property. The patch (and author) missed the fact that a bus'
-#address-cells and #size-cells properties are not inherited, but set to
-a fixed value which, in this case, doesn't match /soc's. This, although
-not breaking Linux's DMA mapping functionality, generates ugly dtc
-warnings.
+Since its inception the module was meant to be disabled by default, but
+the original commit failed to add the relevant property.
 
-Fix the issue by adding the correct address and size cells properties
-under the firmware bus.
-
-Fixes: 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA limitations")
+Fixes: 4aba4cf82054 ("ARM: dts: bcm2835: Add the DSI module nodes and clocks")
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Link: https://lore.kernel.org/r/20200326134413.12298-1-nsaenzjulienne@suse.de
+Reviewed-by: Eric Anholt <eric@anholt.net>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm2835-rpi.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm/boot/dts/bcm283x.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-index fd2c766e0f710..f7ae5a4530b88 100644
---- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-@@ -14,6 +14,9 @@
- 	soc {
- 		firmware: firmware {
- 			compatible = "raspberrypi,bcm2835-firmware", "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
- 			mboxes = <&mailbox>;
- 			dma-ranges;
+diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
+index e1abe8c730cef..b83a864e2e8ba 100644
+--- a/arch/arm/boot/dts/bcm283x.dtsi
++++ b/arch/arm/boot/dts/bcm283x.dtsi
+@@ -372,6 +372,7 @@
+ 					     "dsi0_ddr2",
+ 					     "dsi0_ddr";
+ 
++			status = "disabled";
  		};
+ 
+ 		aux: aux@7e215000 {
 -- 
 2.20.1
 
