@@ -2,138 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E7C1C07C7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 22:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6901C0874
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 22:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726909AbgD3UWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 16:22:45 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:11591 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726745AbgD3UWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 16:22:45 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5eab33510003>; Thu, 30 Apr 2020 13:21:37 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 30 Apr 2020 13:22:44 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 30 Apr 2020 13:22:44 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 30 Apr
- 2020 20:22:44 +0000
-Received: from [10.2.165.152] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 30 Apr
- 2020 20:22:43 +0000
-Subject: Re: [RFC PATCH v11 6/9] media: tegra: Add Tegra210 Video input driver
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <helen.koike@collabora.com>
-CC:     <sboyd@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1588197606-32124-1-git-send-email-skomatineni@nvidia.com>
- <1588197606-32124-7-git-send-email-skomatineni@nvidia.com>
- <eadf3a5a-f305-4561-10e1-1b9241b9c5c2@gmail.com>
- <bfd82642-9648-96f1-737d-4b9a869d34a3@nvidia.com>
- <52b98347-4b78-f637-04f4-cc730ad336f3@nvidia.com>
- <8da0929d-4a58-75b8-381c-511ce66f8d9d@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <d9aa7cb7-cb16-9896-17c9-2d84fbaa0893@nvidia.com>
-Date:   Thu, 30 Apr 2020 13:21:15 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1726616AbgD3UpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 16:45:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726548AbgD3UpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Apr 2020 16:45:07 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675C5C035495
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 13:45:07 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id d25so2382032lfi.11
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2020 13:45:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=from:subject:to:cc:organization:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=BmSBD7h3njitpLi5QsmTDnHJWiGkucDb02pMa3UrBRI=;
+        b=BByDysgPi+X1do2xqrwAOLh0HEdR2agc0tWWki02+6dJfEOyJdv7UB5MrlBL/7Ixey
+         NfLIPqu1ByMfCl6/2xN9VH0fkOplnQDTYEpGsU7Tu+L+W+EDW1K80ELxTMUUKMOLxD99
+         GM1eUFRgDXM1iEyyoqyNVnuk2JP6x6gcm4Ow/yDgunn2DxN7Ft8DTpwRg01d3631C2oY
+         q8O4Qh8HE8XTf7DcBZiJ8la5isNoejM/gkmlSBnxwpM3LySpf8H5gUYTNPpH9WfllVHA
+         /Dpav8Z+v7kaVD2qRJ+/cL6OI02Ypflw0/gl3zqItuzkmZR79Y1vFOi6d0A2ya4V6Hij
+         kw4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:organization:message-id:date
+         :user-agent:mime-version:content-language:content-transfer-encoding;
+        bh=BmSBD7h3njitpLi5QsmTDnHJWiGkucDb02pMa3UrBRI=;
+        b=IcH93D+7CKngVvhOpfebA9R4G3UreUqJYqUcJv92hNKptm9BFsA4LUkOe4EKW1SfQZ
+         4RnTmutR8HsIoSchSbJrmH+TEfF3Oj53xU4oOSS7w7A5I0h4zxn/0ic2zbN6ltThvYxs
+         jv7G9whHnQm49utIYeYWLxNNMCIROGQHczeBN+PySkl4qXBk65fHZnNT1hlSiX64MMYw
+         kdhWWw0ocO9p2y8YB6hQT79sRM2Fc3UUU0LP6gYOEWtdV4lS7cXQVXrzZdf87b2A1NYW
+         n7DoCBnvO/oABvi/6ZA/OS2IsvydgpKr1XRx5jOfQ5WaOlOSkApHuQpD1eRcHZtJ39Uu
+         +EnA==
+X-Gm-Message-State: AGi0PuYE55ybAugL1UjiClL9ThCr6mMJd9R3BgMFwQmr6PokOzkKYFTY
+        +EW3jgSJi1wXJUasugRzLWPCvA==
+X-Google-Smtp-Source: APiQypI0RQNqWlNHDVtNIFy45lDwuwOyMBSNaVaz8UyZAB4gxqzn881PlNEa1qMPlbNBmRRjX79/bA==
+X-Received: by 2002:ac2:5988:: with SMTP id w8mr304392lfn.75.1588279504553;
+        Thu, 30 Apr 2020 13:45:04 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:880:89c5:86ed:91e3:4d28:af08])
+        by smtp.gmail.com with ESMTPSA id i20sm650562lfe.15.2020.04.30.13.45.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Apr 2020 13:45:03 -0700 (PDT)
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Subject: [PATCH v2 0/2] Add Renesas RPC-IF support
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        linux-spi@vger.kernel.org, Chris Brandt <chris.brandt@renesas.com>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>
+Organization: Cogent Embedded
+Message-ID: <812e6e58-d13f-3f44-5f55-22266b690c57@cogentembedded.com>
+Date:   Thu, 30 Apr 2020 23:45:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-In-Reply-To: <8da0929d-4a58-75b8-381c-511ce66f8d9d@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1588278097; bh=4+/UTSmWZA6aF77P2/8J93AOfTND6l5qFFYe2ctxF4Q=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=e0NoxIpSz0QgI/vCC25BgCu4y5yZLE6jyMFQpqWNDabNeROYXEINBIS38hisW58mt
-         7xFe9s8UqXtWJkj59geL66IxPUXF9AJ3dUuB8N5DMQ1bd1v/VR5ZSpgcO5pP1k1E8G
-         q5dCCNhjEu3KwWtDp9EFBj5WRUXxhBeM3JhE+nWwOtpo0jXgb0pvehrDOrzziotrqc
-         L2dZIzDKVpN4Jv7l2g+c7+CGKb9MSuZeIRWtCunz8ov6PzcRDsk8gqpjBycIrGbh0R
-         iAkv9qC/0ZK2KuR4zDdXQiA9qoDR6i7NjV2rVZqrl89YIqMIarvcraMMoUhu74r5ZS
-         773zBlkpLz82w==
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello!
 
-On 4/30/20 1:21 PM, Dmitry Osipenko wrote:
-> 30.04.2020 23:09, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> On 4/30/20 1:08 PM, Sowjanya Komatineni wrote:
->>> On 4/30/20 1:06 PM, Dmitry Osipenko wrote:
->>>> 30.04.2020 01:00, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>> +static int chan_capture_kthread_start(void *data)
->>>>> +{
->>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_vi_channel *chan =3D data;
->>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_channel_buffer *buf;
->>>>> +=C2=A0=C2=A0=C2=A0 int err =3D 0;
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 set_freezable();
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 while (1) {
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 try_to_freeze();
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Source is not str=
-eaming if error is non-zero.
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * So, do not dequeu=
-e buffers on error and let the thread
->>>>> sleep
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * till kthread stop=
- signal is received.
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wait_event_interruptible(=
-chan->start_wait,
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kthread_should_stop(=
-) ||
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (!list_empty(&chan->=
-capture) &&
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !err));
->>>> ...
->>>>> +static void tegra_channel_buffer_queue(struct vb2_buffer *vb)
->>>>> +{
->>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_vi_channel *chan =3D vb2_get_drv_pri=
-v(vb->vb2_queue);
->>>>> +=C2=A0=C2=A0=C2=A0 struct vb2_v4l2_buffer *vbuf =3D to_vb2_v4l2_buff=
-er(vb);
->>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_channel_buffer *buf =3D to_tegra_cha=
-nnel_buffer(vbuf);
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 /* put buffer into the capture queue */
->>>>> +=C2=A0=C2=A0=C2=A0 spin_lock(&chan->start_lock);
->>>>> +=C2=A0=C2=A0=C2=A0 list_add_tail(&buf->queue, &chan->capture);
->>>>> +=C2=A0=C2=A0=C2=A0 spin_unlock(&chan->start_lock);
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 /* wait up kthread for capture */
->>>>> +=C2=A0=C2=A0=C2=A0 wake_up_interruptible(&chan->start_wait);
->>>>> +}
->>>> The V4L doc says that buffers could be enqueued before streaming is
->>>> started. I guess it should be a trouble here, shouldn't it?
->>>>
->>>> https://elixir.bootlin.com/linux/v5.7-rc3/source/include/media/videobu=
-f2-core.h#L379
->>>>
->>> what trouble are you referring here?
->>>
->>> I dont think so as we set min buffers needed as 2 always there will be
->>> 2 per-queued buffers.
->> typo* pre-queued buffers before streaming start
->>> But buffers from this queue will be dequeued only when ready to
->>> processes in the capture thread
-> I see now that the threads won't be running until start_streaming() is
-> invoked, should be okay then.
-ok. yes threads run only during streaming
+Here's a set of 2 patches against Linus' repo. Renesas Reduced Pin Count
+Interface (RPC-IF) allows a SPI flash or HyperFlash connected to the SoC
+to be accessed via the external address space read mode or the manual mode.
+The memory controller driver for RPC-IF registers either SPI or HyperFLash
+subdevice, depending on the contents of the device tree subnode; it also
+provides the abstract "back end" API that can be used by the "front end"
+SPI/MTD drivers to talk to the real hardware...
+
+Based on the original patch by Mason Yang <masonccyang@mxic.com.tw>.
+
+[1/2] dt-bindings: memory: document Renesas RPC-IF bindings
+[2/2] memory: add Renesas RPC-IF driver
+
+MBR, Sergei
