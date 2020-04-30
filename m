@@ -2,129 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8772F1C00A9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 17:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E950B1C0116
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 17:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726451AbgD3Pnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 11:43:40 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:5966 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726421AbgD3Pnj (ORCPT
+        id S1726927AbgD3P6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 11:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726420AbgD3P6V (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 11:43:39 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03UFcaTe000876;
-        Thu, 30 Apr 2020 17:43:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=FM5KaA1uV/WxDroCmg60tmJ6OFRkMqWZLOVG28f30so=;
- b=rKrWYm2WR11CqtjKHjOJE10wXs1SeV7guFfl2H1E7WK/HU48cgF9WUid+OZMUTZCTQ33
- Evb4j5q+28C/fj3zcCcjkn3jSAO6EZ+HVooBZGBk6naQJ21Srk4J7LIArE0ugWNAt4dj
- pUNfzi0W1FCPszx39V33ti8VqNumC4TCM7oWwMxprA6jlHoppgEmereLvfJVu+L9VYi3
- VGteWeK29cBn3hOgYypVKbxiK9rZFRmpm1RIYOvaYxCNd/p/8d6V/YXxzzzNnNjELZDJ
- 4K5eYh/iIA/OXh5Vtt5rD+MA3YLJn7buFlOyeTRnY+2ol8jH95xkGY7Q5ozGRjZnqyAN NA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30mhq6daug-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 30 Apr 2020 17:43:22 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2340510002A;
-        Thu, 30 Apr 2020 17:43:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 077512AAF71;
-        Thu, 30 Apr 2020 17:43:22 +0200 (CEST)
-Received: from localhost (10.75.127.49) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 30 Apr 2020 17:43:21
- +0200
-From:   Alain Volmat <alain.volmat@st.com>
-To:     <wsa@the-dreams.de>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>,
-        <alain.volmat@st.com>
-Subject: [PATCH] i2c: fix missing pm_runtime_put_sync in i2c_device_probe
-Date:   Thu, 30 Apr 2020 17:43:21 +0200
-Message-ID: <1588261401-11914-1-git-send-email-alain.volmat@st.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-04-30_10:2020-04-30,2020-04-30 signatures=0
+        Thu, 30 Apr 2020 11:58:21 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B4AFC035494;
+        Thu, 30 Apr 2020 08:58:19 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id x4so2466740wmj.1;
+        Thu, 30 Apr 2020 08:58:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=OPbeDM2cJ5aY40/5CUX4MHQFjKQOx8SNoJZ2e5+rWE4=;
+        b=P5yrqIGJN0HwsHhkR4vMRNhcfK9xpijRREv97x1ZAk/hVSZeoUnHqMcaPk5Mpg7k60
+         Arw2ul2YgP0P2EZqMvuMAbiWI4riPNjH5n9HqegzKqlKAK6egB88JO1LnICEhqkdhOHx
+         C7qgl/AUVidKSO2dQ231ogIMRjnM9+QEzY3U7uGMNfCF/xniyj6Ch1SjEjHbg/CLis4C
+         rbT6z5X4mWtbbSlXWzWJSUswcazMECs6EEYudahmjYbkWXf5bMYiMPOHGYmc1Sq2MDb+
+         wvNS6jzQK79PzCqvtSnyUapdCU6CUrJqSHgPZXXrZ5o3zHIwduJqjizPf7j/Ht0mL0To
+         cF6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=OPbeDM2cJ5aY40/5CUX4MHQFjKQOx8SNoJZ2e5+rWE4=;
+        b=hZzLksOz3yS8KUChr++PjlgJhSs2uhosgMVu11DOxEPNVtNOU0hOaAU86h7kvBDj6r
+         hWFwrnmly1l6oCBDfDIRjBjoqWMfL50HIuqfbUBEz3Tc6feqv3nfHU2azTP+XP5iZceW
+         UAY05zRH4HJvWA9Ib3TA03pW+3O+xivQHbXAapt6qofAQJs7XX15Qm/RO5QdHRzFyJrw
+         ojdk5LZjbya/TDVzz8/0bTY4OhqhK7kubdeTvA/4mJe3ZNRi/CQOxqsNEWPREXf/b2rR
+         nvS6LOPPU4CmmIJDb957PyKymGHXLbsstweegzfxnU+etIr+IPfAVNrWxwEPIZAkD1J2
+         0vbw==
+X-Gm-Message-State: AGi0PuaXcQsWQU86MnhIuFDKratux3gMZ03HlJuJLd1zkl7ZfFegtwGB
+        ZeFUx60a3f1kpyvNqVhiYVo=
+X-Google-Smtp-Source: APiQypJGM/yC0m96AySjSxYslDHri5PZMrYCb0FFv3elkENgHkRGkZiiD/fFkakWizNlPa+BFZW0Yw==
+X-Received: by 2002:a7b:c4c9:: with SMTP id g9mr3674853wmk.171.1588262298154;
+        Thu, 30 Apr 2020 08:58:18 -0700 (PDT)
+Received: from localhost.localdomain (p5B3F6E9D.dip0.t-ipconnect.de. [91.63.110.157])
+        by smtp.gmail.com with ESMTPSA id w8sm265410wrs.25.2020.04.30.08.58.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Apr 2020 08:58:17 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     lee.jones@linaro.org, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, sre@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v11 0/6]  Add battery charger driver support for MP2629
+Date:   Thu, 30 Apr 2020 17:58:04 +0200
+Message-Id: <20200430155810.21383-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case of the I2C client exposes the flag I2C_CLIENT_HOST_NOTIFY,
-pm_runtime_get_sync is called in order to always keep active the
-adapter. However later on, pm_runtime_put_sync is never called
-within the function in case of an error. This commit add this
-error handling.
+changes in v11:
+ - module_remove part replaced by devm_add_action_or_reset in charger patch
+ - minor review comments solved in mfd and adc patch
 
-Fixes: 72bfcee11cf8 ("i2c: Prevent runtime suspend of adapter when Host Notify is required")
-Signed-off-by: Alain Volmat <alain.volmat@st.com>
----
- drivers/i2c/i2c-core-base.c | 22 ++++++++++++++++------
- 1 file changed, 16 insertions(+), 6 deletions(-)
+changes in v10:
+ - fixed typo, \n in dev_err
+ - dt bindings Warning (unit_address_vs_reg) reported by bot
 
-diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-index 139aea351ffb..2e4560671183 100644
---- a/drivers/i2c/i2c-core-base.c
-+++ b/drivers/i2c/i2c-core-base.c
-@@ -338,8 +338,10 @@ static int i2c_device_probe(struct device *dev)
- 		} else if (ACPI_COMPANION(dev)) {
- 			irq = i2c_acpi_get_irq(client);
- 		}
--		if (irq == -EPROBE_DEFER)
--			return irq;
-+		if (irq == -EPROBE_DEFER) {
-+			status = irq;
-+			goto put_sync_adapter;
-+		}
- 
- 		if (irq < 0)
- 			irq = 0;
-@@ -353,15 +355,19 @@ static int i2c_device_probe(struct device *dev)
- 	 */
- 	if (!driver->id_table &&
- 	    !i2c_acpi_match_device(dev->driver->acpi_match_table, client) &&
--	    !i2c_of_match_device(dev->driver->of_match_table, client))
--		return -ENODEV;
-+	    !i2c_of_match_device(dev->driver->of_match_table, client)) {
-+		status = -ENODEV;
-+		goto put_sync_adapter;
-+	}
- 
- 	if (client->flags & I2C_CLIENT_WAKE) {
- 		int wakeirq;
- 
- 		wakeirq = of_irq_get_byname(dev->of_node, "wakeup");
--		if (wakeirq == -EPROBE_DEFER)
--			return wakeirq;
-+		if (wakeirq == -EPROBE_DEFER) {
-+			status = wakeirq;
-+			goto put_sync_adapter;
-+		}
- 
- 		device_init_wakeup(&client->dev, true);
- 
-@@ -408,6 +414,10 @@ static int i2c_device_probe(struct device *dev)
- err_clear_wakeup_irq:
- 	dev_pm_clear_wake_irq(&client->dev);
- 	device_init_wakeup(&client->dev, false);
-+put_sync_adapter:
-+	if (client->flags & I2C_CLIENT_HOST_NOTIFY)
-+		pm_runtime_put_sync(&client->adapter->dev);
-+
- 	return status;
- }
- 
+changes in v9:
+ - fixed review comments in mp2629 power supply such as resource based
+   iio channel, replace workqueue by threaded irq, irq get with "_optional"
+
+changes in v8:
+ - fixed order of call in probe/remove in iio adc
+ - add ABI documentation for mp2629 power supply
+
+changes in v7:
+ - fixed probe/remove order, managed and unmanaged call mix use in adc.
+ - Documentation dual license, i2c node with controller address
+
+Overall looks good to me, FWIW,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+One question though in reply to patch 4.
+
+changes in v6:
+ - removed includes types.h in mfd, of_device.h in adc.
+ - fixed review comments parentheses, err check, kstrtouint
+
+changes in v5:
+ - removed platfrom data stored in mfd and directly accessed mfd struct in child
+ - fixed spell check and capitalization in mfd and documentation
+
+changes in v4:
+ - fixed capitalization in mfg Kconfig and documentation
+
+changes in v3:
+ - regmap for children passed using platform data and remove mfd driver info
+   access directly from children
+
+changes in v2:
+ - removed EXPORT_SYMBOL of register set/get helper
+ - regmap bit filed used, fixed other review comments
+
+This patch series add support for Battery charger control driver for Monolithic
+Power System's MP2629 chipset, includes MFD driver for ADC battery & input
+power supply measurement and battery charger control driver.
+
+Thanks,
+Saravanan
+
+Saravanan Sekar (6):
+  dt-bindings: mfd: add document bindings for mp2629
+  mfd: mp2629: Add support for mps battery charger
+  iio: adc: mp2629: Add support for mp2629 ADC driver
+  power: supply: Add support for mps mp2629 battery charger
+  power: supply: mp2629: Add impedance compensation config
+  MAINTAINERS: Add entry for mp2629 Battery Charger driver
+
+ .../ABI/testing/sysfs-class-power-mp2629      |   8 +
+ .../devicetree/bindings/mfd/mps,mp2629.yaml   |  62 ++
+ MAINTAINERS                                   |   5 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/mp2629_adc.c                  | 208 ++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mp2629.c                          |  79 +++
+ drivers/power/supply/Kconfig                  |  10 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/mp2629_charger.c         | 669 ++++++++++++++++++
+ include/linux/mfd/mp2629.h                    |  26 +
+ 13 files changed, 1090 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-mp2629
+ create mode 100644 Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
+ create mode 100644 drivers/iio/adc/mp2629_adc.c
+ create mode 100644 drivers/mfd/mp2629.c
+ create mode 100644 drivers/power/supply/mp2629_charger.c
+ create mode 100644 include/linux/mfd/mp2629.h
+
 -- 
 2.17.1
 
