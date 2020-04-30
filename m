@@ -2,94 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 553501BF031
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 08:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0E5A1BF117
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2020 09:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726405AbgD3GVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Apr 2020 02:21:41 -0400
-Received: from plaes.org ([188.166.43.21]:35836 "EHLO plaes.org"
+        id S1726770AbgD3HQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Apr 2020 03:16:47 -0400
+Received: from mga14.intel.com ([192.55.52.115]:6360 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726337AbgD3GVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Apr 2020 02:21:41 -0400
-Received: from plaes.org (localhost [127.0.0.1])
-        by plaes.org (Postfix) with ESMTPSA id C8C4640275;
-        Thu, 30 Apr 2020 06:21:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
-        t=1588227698; bh=5IaA8hDKqgMnJSHF6ro9Jo9eG0qGD7sBE3O2dZ7w10w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PU41HCwMPoxYMSyP8fhrzD6juPZxEfBmdlc/PKMFtE1ZPwP2er0AY9lHYRfd5IOs3
-         ww3lPC5lv8vjJLPdcnVfIoJu7rNEJRr0Lv1Buhc0bYyLzlWARFRNANnl0nlVCDQEH+
-         Y7F12KOpQ9BlyxXFUabLCBAlIDMhR06t3f5crcpIZKeMscVaFpJAmB0Hd1Xtk36JV5
-         Ug7TbNUf/+Ji5WbqHB4maeCLgNeA2fMie78EH0EFtcL2SQsL4EH5GY3/X/pg8QHISy
-         SYRK3bC5DsGaqSbiZ5AmCmw+VLptLlpjL2rl/5gMOfj5zxvd8mZ2G8rPYanR9TdXIg
-         NlKmvcIWocIiA==
-Date:   Thu, 30 Apr 2020 06:21:37 +0000
-From:   Priit Laes <plaes@plaes.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 1/4] clk: sunxi-ng: a10/a20: rewrite init code to a
- platform driver
-Message-ID: <20200430062137.GA32281@plaes.org>
-References: <20200417221730.555954-1-plaes@plaes.org>
- <20200417221730.555954-2-plaes@plaes.org>
- <20200420124935.asfbgv7envb2af55@gilmour.lan>
- <20200420203228.GA4734@plaes.org>
- <20200429143510.ksi27lok2udtmfas@gilmour.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200429143510.ksi27lok2udtmfas@gilmour.lan>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726760AbgD3HQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Apr 2020 03:16:46 -0400
+IronPort-SDR: qdlcVBhnUsQXeWrffxVJeBSYQBqXt/oB1X5qrZpo6m0ruXomIIiGOw8szpMe8PN6JmP7MrP2p3
+ r80DemZItmGg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2020 00:16:45 -0700
+IronPort-SDR: 6uwIve7cJmkJ+h8PBkxlALECzR+WUlpyuzuvXmvh6tCVbMoAcgudQUm6ZzwgR26vbKdIKQrgcB
+ dfbdlIIZAPLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; 
+   d="scan'208";a="247102127"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga007.jf.intel.com with ESMTP; 30 Apr 2020 00:16:39 -0700
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+To:     linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org,
+        devicetree@vger.kernel.org, lee.jones@linaro.org, arnd@arndb.de
+Cc:     robh@kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, yixin.zhu@intel.com,
+        Dilip Kota <eswara.kota@linux.intel.com>
+Subject: [PATCH v7 0/3] Add Intel ComboPhy driver
+Date:   Thu, 30 Apr 2020 15:15:26 +0800
+Message-Id: <cover.1588230494.git.eswara.kota@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 29, 2020 at 04:35:10PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> On Mon, Apr 20, 2020 at 08:32:28PM +0000, Priit Laes wrote:
-> > On Mon, Apr 20, 2020 at 02:49:35PM +0200, Maxime Ripard wrote:
-> > > On Sat, Apr 18, 2020 at 01:17:27AM +0300, Priit Laes wrote:
-> > > > In order to register regmap for sun7i CCU, there needs to be
-> > > > a device structure already bound to the CCU device node.
-> > > > 
-> > > > Convert the sun4i/sun7i CCU setup to platform driver to use
-> > > > it later as platform device.
-> > > > 
-> > > > Signed-off-by: Priit Laes <plaes@plaes.org>
-> > > 
-> > > You can't relly do that though. We have timers that need those clocks before the
-> > > device model is initialized.
-> > 
-> > Ok, I'm somewhat lost now... are these the affected timers on sun7i following:
-> > - allwinner,sun4i-a10-timer (timer@1c20c00)
-> > - allwinner,sun7i-a20-hstimer (hstimer@1c60000)
-> 
-> Yep
-> 
-> > Any ideas on what approach I could actually use?
-> 
-> I guess you could keep the CLK_OF_DECLARE registration, and then have a
-> platform_driver probe and register the regmap?
-> 
+This patch series adds Intel ComboPhy driver, respective yaml schemas
 
-Thanks this did the trick.
+Changes on v7:
+  As per System control driver maintainer's inputs remove
+    fwnode_to_regmap() definition and use device_node_get_regmap()
+    
+Changes on v6:
+  Rebase patches on the latest maintainer's branch
+  https://git.kernel.org/pub/scm/linux/kernel/git/kishon/linux-phy.git/?h=phy-for-5.7
+Dilip Kota (3):
+  dt-bindings: phy: Add PHY_TYPE_XPCS definition
+  dt-bindings: phy: Add YAML schemas for Intel ComboPhy
+  phy: intel: Add driver support for ComboPhy
 
-> > Also, similar timer dependency would affect then sun6i-a31 and sun9i-a80
-> > platforms too...
+ .../devicetree/bindings/phy/intel,combo-phy.yaml   | 101 ++++
+ drivers/phy/intel/Kconfig                          |  14 +
+ drivers/phy/intel/Makefile                         |   1 +
+ drivers/phy/intel/phy-intel-combo.c                | 627 +++++++++++++++++++++
+ include/dt-bindings/phy/phy.h                      |   1 +
+ 5 files changed, 744 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,combo-phy.yaml
+ create mode 100644 drivers/phy/intel/phy-intel-combo.c
 
-I didn't check this before, but sun9i-a80 CCU is initialized currently via
-platform device. Should it be converted first to clock driver (CLK_OF_DECLARE)?
-
-I have sent out the v2 which contains sun7i/sun6i changes.
-
-> 
-> Indeed.
-> 
-> Maxime
-
+-- 
+2.11.0
 
