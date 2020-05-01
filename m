@@ -2,96 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5381C1B4A
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 19:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C98931C1BF2
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 19:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729155AbgEARKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 May 2020 13:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728495AbgEARKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 13:10:19 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9937C061A0C;
-        Fri,  1 May 2020 10:10:18 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id t12so7745093edw.3;
-        Fri, 01 May 2020 10:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mdsa9GHdUWtpaN13DncP5RB/gp8GCrhEqRpKlncbW8M=;
-        b=VFix+ZzzMeP4eNt2Ma6wISbnBws23mS6CK24e9btsoxi/rWAL28gHCi3lnw01N2Mso
-         xg7A5BAI4W+HY83Q4a9smJTfbPRB6vX6oaiV3FXBRkn6hDHWIN0DGdL47vAFMZS93EAF
-         Xkpme5PxE0x9U6DQBOSk3KEchoiisb+4c0tORK82VbZJgmveYqqkviH8RVMWJ5kFg7Xj
-         2ccbyQziO0INOSv7Rs+puN5g+q31+TzX5QZpBq0IJFlBvvq+RRHCqRO29F3xDWvwUxN3
-         UqXlO2R0Jo/A2g7JJ6pIyPJD/KyOOoAubmsnNLXOyDELxVxqF3Zt+TX4hw9AX1+H4XOu
-         eayg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mdsa9GHdUWtpaN13DncP5RB/gp8GCrhEqRpKlncbW8M=;
-        b=KH6APUGmwO6Cgkv0Yr7wskij2sg1bsKpbIBT431RhNEcBwvYBoLxbSPlVJsfpbeZTL
-         vCcgVwDhyLs+IZgNCbXTmXe76lAGsxOKGJJRGs6oJnU/JaaESiUOP2BEOBiiVoZtMXwS
-         itE3ot4Qpu+ZMN5kV+t7hPt4hKEnEDzu2tZXC03SMnL/4jS55O4AzAeMDv2pHqtKRK6q
-         x5ng3vIjQiNM+otZEM3ES+LCfvu76cma6E40FxPrnw359XGCs9B9ArLCYN7RSpbRDYMv
-         FVGuoIT1NIdt5pLzqWHaqFHb4EOYO8AiQKJRTjgKNWuIqb2GfekUD/yua822zKWDNrHS
-         d29A==
-X-Gm-Message-State: AGi0PuZftMEqRK0YqDO+jlQbgsRnLa52uE4NxttneIjJSKH/r4KGK4rM
-        7UKqp+Sc0w5Ixot+lc7HHGkYceDwRoIU+Ye88T4=
-X-Google-Smtp-Source: APiQypIlznByGASsngfncYgj2mcw6Vrs/KqUKB8Ee7ab33jQKBgHBdr9tJ2P2JZNmmWhIHFqaa9FcURiBcyKlJ1LWcU=
-X-Received: by 2002:a50:fc06:: with SMTP id i6mr4256455edr.110.1588353017519;
- Fri, 01 May 2020 10:10:17 -0700 (PDT)
+        id S1729572AbgEARhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 May 2020 13:37:55 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:47060 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729040AbgEARhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 13:37:55 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 041Hbsiw029531;
+        Fri, 1 May 2020 12:37:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1588354674;
+        bh=kl6qxjXpK8WjVJ4rxTSpNCEet+Pn0TlP5V/ouUJcsA0=;
+        h=From:To:CC:Subject:Date;
+        b=tSnPkGiYiB4BbC7Jl6xNHDULDeETvYTe2x6bX3D5mABtgKNdko8nLjffJspd/1F6s
+         ambWdSFwAohmPmtGrGQAcGN3xzYiMVM/vWT984qu2ipFIhzI0HpsnSBaMvHdSL8aV7
+         zdvPejHxeF8DqcvH9UFOoVsEqRV7g6gEhjcsqXds=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 041HbsU7046998
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 1 May 2020 12:37:54 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 1 May
+ 2020 12:37:53 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 1 May 2020 12:37:54 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 041Hbr8J087346;
+        Fri, 1 May 2020 12:37:53 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <sre@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v2] dt-bindings: power: Convert power_supply text to yaml
+Date:   Fri, 1 May 2020 12:29:13 -0500
+Message-ID: <20200501172913.23537-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20200429201644.1144546-1-martin.blumenstingl@googlemail.com>
- <20200429201644.1144546-9-martin.blumenstingl@googlemail.com> <20200501154448.GH128733@lunn.ch>
-In-Reply-To: <20200501154448.GH128733@lunn.ch>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 1 May 2020 19:10:06 +0200
-Message-ID: <CAFBinCCbtLRomdikKWkS+HOFoek4cGhN4L91FQfQ4rbKTV-xvg@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 08/11] net: stmmac: dwmac-meson8b: add support for
- the RX delay configuration
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     robh+dt@kernel.org, f.fainelli@gmail.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        jianxin.pan@amlogic.com, davem@davemloft.net,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Convert the power_supply.txt to power-supply.yaml.
+This conversion entailed fixing up the binding to being yaml and dt
+checker compliant.
 
-On Fri, May 1, 2020 at 5:44 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > +     if (rx_dly_config & PRG_ETH0_ADJ_ENABLE) {
-> > +             /* The timing adjustment logic is driven by a separate clock */
-> > +             ret = meson8b_devm_clk_prepare_enable(dwmac,
-> > +                                                   dwmac->timing_adj_clk);
-> > +             if (ret) {
-> > +                     dev_err(dwmac->dev,
-> > +                             "Failed to enable the timing-adjustment clock\n");
-> > +                     return ret;
-> > +             }
-> > +     }
->
-> Hi Martin
->
-> It is a while since i used the clk API. I thought the get_optional()
-> call returned a NULL pointer if the clock does not exist.
-> clk_prepare_enable() passed a NULL pointer is a NOP, but it also does
-> not return an error. So if the clock does not exist, you won't get
-> this error, the code keeps going, configures the hardware, but it does
-> not work.
->
-> I think you need to check dwmac->timing_adj_clk != NULL here, and
-> error out if DT has properties which require it.
-Thank you for your excellent code review quality (as always)!
-you are right and I will fix that in the next version
+Added a note in the power_supply.txt to reference the power-supply.yaml
 
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../bindings/power/supply/power-supply.yaml   | 40 +++++++++++++++++++
+ .../bindings/power/supply/power_supply.txt    | 25 +-----------
+ 2 files changed, 42 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/power-supply.yaml
 
-Martin
+diff --git a/Documentation/devicetree/bindings/power/supply/power-supply.yaml b/Documentation/devicetree/bindings/power/supply/power-supply.yaml
+new file mode 100644
+index 000000000000..3bb02bb3a2d8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/power-supply.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/power-supply.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Power Supply Core Support
++
++maintainers:
++  - Sebastian Reichel <sre@kernel.org>
++
++properties:
++  power-supplies:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      This property is added to a supply in order to list the devices which
++      supply it power, referenced by their phandles.
++
++examples:
++  - |
++    power {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      usb_charger:charger@e {
++        compatible = "some,usb-charger";
++        reg = <0xe>;
++      };
++
++      ac_charger:charger@c {
++        compatible = "some,ac-charger";
++        reg = <0xc>;
++      };
++
++      battery:battery@b {
++        compatible = "some,battery";
++        reg = <0xb>;
++        power-supplies = <&usb_charger>, <&ac_charger>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/power/supply/power_supply.txt b/Documentation/devicetree/bindings/power/supply/power_supply.txt
+index 8391bfa0edac..d9693e054509 100644
+--- a/Documentation/devicetree/bindings/power/supply/power_supply.txt
++++ b/Documentation/devicetree/bindings/power/supply/power_supply.txt
+@@ -1,23 +1,2 @@
+-Power Supply Core Support
+-
+-Optional Properties:
+- - power-supplies : This property is added to a supply in order to list the
+-   devices which supply it power, referenced by their phandles.
+-
+-Example:
+-
+-	usb-charger: power@e {
+-		compatible = "some,usb-charger";
+-		...
+-	};
+-
+-	ac-charger: power@c {
+-		compatible = "some,ac-charger";
+-		...
+-	};
+-
+-	battery@b {
+-		compatible = "some,battery";
+-		...
+-		power-supplies = <&usb-charger>, <&ac-charger>;
+-	};
++This binding has been converted to yaml please see power-supply.yaml in this
++directory.
+-- 
+2.25.1
+
