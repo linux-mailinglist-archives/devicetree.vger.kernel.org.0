@@ -2,185 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6FD1C1908
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 17:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D141C1922
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 17:12:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728851AbgEAPJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 May 2020 11:09:17 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:35558 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729340AbgEAPJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 11:09:15 -0400
-Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 041F4616089148;
-        Fri, 1 May 2020 11:08:40 -0400
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 30r828uvnp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 May 2020 11:08:38 -0400
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 041F5FrW005535;
-        Fri, 1 May 2020 15:08:37 GMT
-Received: from b03cxnp07029.gho.boulder.ibm.com (b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
-        by ppma02wdc.us.ibm.com with ESMTP id 30mcu764j6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 May 2020 15:08:37 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 041F8aV460752210
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 1 May 2020 15:08:36 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 5F4067805C;
-        Fri,  1 May 2020 15:08:36 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D3A387805E;
-        Fri,  1 May 2020 15:08:35 +0000 (GMT)
-Received: from ghost4.ibm.com (unknown [9.211.128.179])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Fri,  1 May 2020 15:08:35 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux@roeck-us.net, jdelvare@suse.com,
-        alistair@popple.id.au, joel@jms.id.au, jk@ozlabs.org,
-        robh+dt@kernel.org, eajames@linux.ibm.com
-Subject: [PATCH 3/3] hwmon: (occ) Add new temperature sensor type
-Date:   Fri,  1 May 2020 10:08:33 -0500
-Message-Id: <20200501150833.5251-4-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200501150833.5251-1-eajames@linux.ibm.com>
-References: <20200501150833.5251-1-eajames@linux.ibm.com>
+        id S1729348AbgEAPLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 May 2020 11:11:36 -0400
+Received: from foss.arm.com ([217.140.110.172]:42356 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728896AbgEAPLf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 May 2020 11:11:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC72130E;
+        Fri,  1 May 2020 08:11:34 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 917573F68F;
+        Fri,  1 May 2020 08:11:33 -0700 (PDT)
+Date:   Fri, 1 May 2020 16:11:31 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] PCI: cadence: Fix to read 32-bit Vendor ID/Device
+ ID property from DT
+Message-ID: <20200501151131.GC7398@e121166-lin.cambridge.arm.com>
+References: <20200417114322.31111-1-kishon@ti.com>
+ <20200417114322.31111-5-kishon@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-05-01_08:2020-05-01,2020-05-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- clxscore=1015 phishscore=0 priorityscore=1501 spamscore=0 suspectscore=1
- adultscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
- definitions=main-2005010112
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200417114322.31111-5-kishon@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The latest version of the On-Chip Controller (OCC) has a different
-format for the temperature sensor data. Add a new temperature sensor
-version to handle this data.
+On Fri, Apr 17, 2020 at 05:13:22PM +0530, Kishon Vijay Abraham I wrote:
+> The PCI Bus Binding specification (IEEE Std 1275-1994 Revision 2.1 [1])
+> defines both Vendor ID and Device ID to be 32-bits. Fix
+> pcie-cadence-host.c driver to read 32-bit Vendor ID and Device ID
+> properties from device tree.
+> 
+> [1] -> https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/pci/controller/cadence/pcie-cadence-host.c | 4 ++--
+>  drivers/pci/controller/cadence/pcie-cadence.h      | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/hwmon/occ/common.c | 75 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+I don't see how you would use a 32-bit value for a 16-bit register so
+certainly the struct cdns_pcie_rc fields size is questionable anyway.
 
-diff --git a/drivers/hwmon/occ/common.c b/drivers/hwmon/occ/common.c
-index 30e18eb60da7..52af0e728232 100644
---- a/drivers/hwmon/occ/common.c
-+++ b/drivers/hwmon/occ/common.c
-@@ -41,6 +41,14 @@ struct temp_sensor_2 {
- 	u8 value;
- } __packed;
- 
-+struct temp_sensor_10 {
-+	u32 sensor_id;
-+	u8 fru_type;
-+	u8 value;
-+	u8 throttle;
-+	u8 reserved;
-+} __packed;
-+
- struct freq_sensor_1 {
- 	u16 sensor_id;
- 	u16 value;
-@@ -307,6 +315,60 @@ static ssize_t occ_show_temp_2(struct device *dev,
- 	return snprintf(buf, PAGE_SIZE - 1, "%u\n", val);
- }
- 
-+static ssize_t occ_show_temp_10(struct device *dev,
-+				struct device_attribute *attr, char *buf)
-+{
-+	int rc;
-+	u32 val = 0;
-+	struct temp_sensor_10 *temp;
-+	struct occ *occ = dev_get_drvdata(dev);
-+	struct occ_sensors *sensors = &occ->sensors;
-+	struct sensor_device_attribute_2 *sattr = to_sensor_dev_attr_2(attr);
-+
-+	rc = occ_update_response(occ);
-+	if (rc)
-+		return rc;
-+
-+	temp = ((struct temp_sensor_10 *)sensors->temp.data) + sattr->index;
-+
-+	switch (sattr->nr) {
-+	case 0:
-+		val = get_unaligned_be32(&temp->sensor_id);
-+		break;
-+	case 1:
-+		val = temp->value;
-+		if (val == OCC_TEMP_SENSOR_FAULT)
-+			return -EREMOTEIO;
-+
-+		/*
-+		 * VRM doesn't return temperature, only alarm bit. This
-+		 * attribute maps to tempX_alarm instead of tempX_input for
-+		 * VRM
-+		 */
-+		if (temp->fru_type != OCC_FRU_TYPE_VRM) {
-+			/* sensor not ready */
-+			if (val == 0)
-+				return -EAGAIN;
-+
-+			val *= 1000;
-+		}
-+		break;
-+	case 2:
-+		val = temp->fru_type;
-+		break;
-+	case 3:
-+		val = temp->value == OCC_TEMP_SENSOR_FAULT;
-+		break;
-+	case 4:
-+		val = temp->throttle * 1000;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return snprintf(buf, PAGE_SIZE - 1, "%u\n", val);
-+}
-+
- static ssize_t occ_show_freq_1(struct device *dev,
- 			       struct device_attribute *attr, char *buf)
- {
-@@ -745,6 +807,10 @@ static int occ_setup_sensor_attrs(struct occ *occ)
- 		num_attrs += (sensors->temp.num_sensors * 4);
- 		show_temp = occ_show_temp_2;
- 		break;
-+	case 0x10:
-+		num_attrs += (sensors->temp.num_sensors * 5);
-+		show_temp = occ_show_temp_10;
-+		break;
- 	default:
- 		sensors->temp.num_sensors = 0;
- 	}
-@@ -844,6 +910,15 @@ static int occ_setup_sensor_attrs(struct occ *occ)
- 			attr->sensor = OCC_INIT_ATTR(attr->name, 0444,
- 						     show_temp, NULL, 3, i);
- 			attr++;
-+
-+			if (sensors->temp.version == 0x10) {
-+				snprintf(attr->name, sizeof(attr->name),
-+					 "temp%d_max", s);
-+				attr->sensor = OCC_INIT_ATTR(attr->name, 0444,
-+							     show_temp, NULL,
-+							     4, i);
-+				attr++;
-+			}
- 		}
- 	}
- 
--- 
-2.24.0
+I *assume* you are referring to 4.1.2.1 and the property list
+encoded as "encode-int".
 
+I would like to get RobH's opinion on this - I don't know myself
+whether the PCI OF bindings you added are still relevant and how
+they should be interpreted.
+
+Thanks
+Lorenzo
+
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index 8f72967f298f..31e67c9c88cf 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -229,10 +229,10 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>  	}
+>  
+>  	rc->vendor_id = 0xffff;
+> -	of_property_read_u16(np, "vendor-id", &rc->vendor_id);
+> +	of_property_read_u32(np, "vendor-id", &rc->vendor_id);
+>  
+>  	rc->device_id = 0xffff;
+> -	of_property_read_u16(np, "device-id", &rc->device_id);
+> +	of_property_read_u32(np, "device-id", &rc->device_id);
+>  
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "reg");
+>  	pcie->reg_base = devm_ioremap_resource(dev, res);
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index 6bd89a21bb1c..df14ad002fe9 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -262,8 +262,8 @@ struct cdns_pcie_rc {
+>  	struct resource		*bus_range;
+>  	void __iomem		*cfg_base;
+>  	u32			no_bar_nbits;
+> -	u16			vendor_id;
+> -	u16			device_id;
+> +	u32			vendor_id;
+> +	u32			device_id;
+>  };
+>  
+>  /**
+> -- 
+> 2.17.1
+> 
