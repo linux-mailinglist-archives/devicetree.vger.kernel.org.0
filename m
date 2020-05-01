@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0158A1C18F9
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 17:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D041C1905
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 17:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728919AbgEAPIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 May 2020 11:08:19 -0400
-Received: from mail.nic.cz ([217.31.204.67]:45474 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728856AbgEAPIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 May 2020 11:08:18 -0400
-Received: from localhost (unknown [172.20.6.135])
-        by mail.nic.cz (Postfix) with ESMTPSA id 1B4C1141D39;
-        Fri,  1 May 2020 17:08:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1588345697; bh=AJGu5j0JJ2utVwFgN8azGwXWZDhEn++6PU5ffpqhxWY=;
-        h=Date:From:To;
-        b=J9lEStWmsEqIjzpliY570gSQ2TVCPhq7hMCGgaphMBoF4jkIoZznm1D9eOd/Sn49C
-         mLZqk2bLcq4aVCYE5MNU8yF0qrcLofyaHKpogpCoYtvevlljcOGG7cgFCL/xO2RIqf
-         ZINHLJ+m3t7P/CJ+1wR9hgAqlb2WEL9BA2nYG4EQ=
-Date:   Fri, 1 May 2020 17:08:16 +0200
-From:   Marek Behun <marek.behun@nic.cz>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Pavel Modilaynen <pavel.modilaynen@axis.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dtc: Use better check for libyaml
-Message-ID: <20200501170816.2f95a2ad@nic.cz>
-In-Reply-To: <CAK7LNARhK08CcDNij25PR0_r2A27Qx+psQp50_AgDJijexDAiA@mail.gmail.com>
-References: <20200501015147.32391-1-marek.behun@nic.cz>
-        <CAK7LNARhK08CcDNij25PR0_r2A27Qx+psQp50_AgDJijexDAiA@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1729300AbgEAPJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 May 2020 11:09:14 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:50006 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729247AbgEAPJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 11:09:13 -0400
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 041Ee3HG086746;
+        Fri, 1 May 2020 11:08:36 -0400
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 30r8223ate-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 May 2020 11:08:36 -0400
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 041F6bDT029914;
+        Fri, 1 May 2020 15:08:35 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma03dal.us.ibm.com with ESMTP id 30mcu8bm46-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 May 2020 15:08:35 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 041F8X7O12124654
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 1 May 2020 15:08:33 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 6EE6D7805C;
+        Fri,  1 May 2020 15:08:34 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D67D57805E;
+        Fri,  1 May 2020 15:08:33 +0000 (GMT)
+Received: from ghost4.ibm.com (unknown [9.211.128.179])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri,  1 May 2020 15:08:33 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux@roeck-us.net, jdelvare@suse.com,
+        alistair@popple.id.au, joel@jms.id.au, jk@ozlabs.org,
+        robh+dt@kernel.org, eajames@linux.ibm.com
+Subject: [PATCH 0/3] occ: Add support for P10
+Date:   Fri,  1 May 2020 10:08:30 -0500
+Message-Id: <20200501150833.5251-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
-        USER_IN_WHITELIST shortcircuit=ham autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.101.4 at mail
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-05-01_08:2020-04-30,2020-05-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ mlxscore=0 malwarescore=0 suspectscore=1 bulkscore=0 adultscore=0
+ priorityscore=1501 mlxlogscore=902 spamscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2005010112
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 May 2020 14:27:57 +0900
-Masahiro Yamada <masahiroy@kernel.org> wrote:
+The OCC in the P10 has a number of differences from the P9. Add some logic to
+handle the differences in accessing the OCC from the service processor, and
+support the new temperature sensor type.
 
-> Is it possible to fix the .pc file instead?
-> 
-> This is ugly, and I do not know what is the
-> point of pkg-config if it cannot detect the pkg correctly.
+Eddie James (3):
+  dt-bindings: fsi: Add P10 OCC device documentation
+  fsi: occ: Add support for P10
+  hwmon: (occ) Add new temperature sensor type
 
-I know this is ugly, though no more than some code in
-scripts/Makefile.build.
+ .../devicetree/bindings/fsi/ibm,p9-occ.txt    |  12 +-
+ drivers/fsi/fsi-occ.c                         | 126 +++++++++++++-----
+ drivers/hwmon/occ/common.c                    |  75 +++++++++++
+ 3 files changed, 173 insertions(+), 40 deletions(-)
 
-What do you mean fixing the pc file?
-When the header is not present because libyaml-dev is not installed,
-but the library is present, then pkg-config just reports that the
-package exists, when asking with --exists, right?
-
-Marek
+-- 
+2.24.0
 
