@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 521B81C16CD
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 16:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FFCF1C1759
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2020 16:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731359AbgEANxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 May 2020 09:53:17 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:60231 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729727AbgEANxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 09:53:13 -0400
-X-Originating-IP: 86.202.105.35
-Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 3553820003;
-        Fri,  1 May 2020 13:53:10 +0000 (UTC)
-Date:   Fri, 1 May 2020 15:53:09 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        id S1729859AbgEAOCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 May 2020 10:02:00 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:37228 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729529AbgEAOB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 May 2020 10:01:59 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 041DvKvJ019635;
+        Fri, 1 May 2020 08:58:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=JzGqBIQszLu//+K3RgyjRVgYmCjC0eyp591kUihnjjw=;
+ b=olcDTUG5L43shFMXwWoSRFqQCJ6rf1+sS+6IfQRtknWZEMgse4JyCVol2dlyaQO1dIv3
+ RQULtVHb2mFr206A4+M5+MSZboaPSOn9ZUfJbCzr9QwLSdwQ5iRx5kZM+rBXEiHzNgFp
+ 8+Z5hugcGI4IqKPTkTm87Q5ZSMmDLVsdDxtzofu1+7H/02MFrvjasK/iQrXOedjyeMsi
+ g8el1KSP2qOywMzH5jghwuTGMECa+5WGZTli4q+e4p/Hdg3zFpJWgmB1RfBfYaZ6CjKL
+ lnmF2xi/prlkvUACK0OOKRyi05H13n/3ynoD/vqIWskgGdGB6/m18LskVeX9xSPiZcwJ Tw== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 30r7eg91ky-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 01 May 2020 08:58:54 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 1 May 2020
+ 14:58:51 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 1 May 2020 14:58:51 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id CD583448;
+        Fri,  1 May 2020 13:58:51 +0000 (UTC)
+Date:   Fri, 1 May 2020 13:58:51 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>,
         Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: Document the RTC present on
- MAX77620
-Message-ID: <20200501135309.GC51277@piout.net>
-References: <20200417170825.2551367-1-thierry.reding@gmail.com>
- <20200430140701.GA21776@bogus>
- <20200430141520.GA101194@piout.net>
- <CAL_Jsq+HzG8QT+kHUjqC8joDxfm1WM+N_F1ZwYXg7cL5faGxVA@mail.gmail.com>
+        Jonathan Bakker <xc-racer2@live.ca>
+Subject: Re: [PATCH] dt-bindings: sound: wm8994: Correct required supplies
+ based on actual implementaion
+Message-ID: <20200501135851.GP44490@ediswmail.ad.cirrus.com>
+References: <20200501133534.6706-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+HzG8QT+kHUjqC8joDxfm1WM+N_F1ZwYXg7cL5faGxVA@mail.gmail.com>
+In-Reply-To: <20200501133534.6706-1-krzk@kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ ip4:5.172.152.52 -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0 mlxscore=0
+ lowpriorityscore=0 priorityscore=1501 clxscore=1011 suspectscore=0
+ impostorscore=0 spamscore=0 malwarescore=0 mlxlogscore=757 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2005010109
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2020 08:00:11-0500, Rob Herring wrote:
-> > I don't think this is true because in the case of a discrete RTC, its
-> > interrupt pin can be connected directly to a PMIC to power up a board
-> > instead of being connected to the SoC. In that case we don't have an
-> > interrupt property but the RTC is still a wakeup source. This is the
-> > usual use case for wakeup-source in the RTC subsystem. Else, if there is
-> > an interrupt, then we assume the RTC is a wakeup source and there is no
-> > need to have the wakeup-source property.
+On Fri, May 01, 2020 at 03:35:34PM +0200, Krzysztof Kozlowski wrote:
+> The required supplies in bindings were actually not matching
+> implementation making the bindings incorrect and misleading.  The Linux
+> kernel driver requires all supplies to be present.  Also for wlf,wm8994
+> uses just DBVDD-supply instead of DBVDDn-supply (n: <1,3>).
 > 
-> Yes, that would be an example of "unless the wakeup mechanism is
-> somehow not an interrupt". I guess I should add not an interrupt from
-> the perspective of the OS.
-> 
-> So if the wakeup is self contained within the PMIC, why do we need a
-> DT property? The capability is always there and enabling/disabling
-> wakeup from it is userspace policy.
-> 
+> Reported-by: Jonathan Bakker <xc-racer2@live.ca>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
 
-Yes, for this particular case, I'm not sure wakeup-source is actually
-necessary. If the interrupt line is used to wakeup the SoC, then the
-presence of the interrupts property is enough to enable wakeup.
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks,
+Charles
