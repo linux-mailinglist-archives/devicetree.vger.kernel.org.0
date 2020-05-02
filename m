@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7391C253A
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 14:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 350DA1C2584
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 15:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727951AbgEBMVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 May 2020 08:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727930AbgEBMVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 08:21:49 -0400
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE3CC061A0C;
-        Sat,  2 May 2020 05:21:49 -0700 (PDT)
-Received: by mail-qv1-xf42.google.com with SMTP id ck5so5985009qvb.11;
-        Sat, 02 May 2020 05:21:49 -0700 (PDT)
+        id S1727930AbgEBNAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 May 2020 09:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727867AbgEBNAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 09:00:22 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D1D7C061A0C;
+        Sat,  2 May 2020 06:00:22 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id e17so10084997qtp.7;
+        Sat, 02 May 2020 06:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Q4uuPurBluxDeIOpVG3Do+EXvRC/KEYOD2qgBrHFPb4=;
-        b=SPRso8l2MPO2G8jziGzAamP+YRuj3CffMPNu4eObvnWBb55iblTKM/Sr7umkRr/RO8
-         Yda9sgxu7SAUl2JQRKxHZPkzdJebPg4qL8j+/Dt1O5ORm9waacs88+lMosoETODF+co/
-         uA38hJ5uuHtp/6O+C15OA5PdimYEW8RINIbZYgCsnDNLXwJeVZbL+BHCCntK+s8FmWG9
-         +jhGBtU25Vl9W7LidSZqw4qGx8ZDUklgwvzolZuOdseYQxIQHEMPXOoE1DG2Uwh8obZ/
-         29eHLCVOUdWAzHBqmIYrseYwbFTERHk22RcZAHKqGvDMiKJPY+9pUf+SSRYclF15XaJC
-         LAvw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vp9pFOaNAK/bZV4TMm15vSAV9KoRuRCBgnB4GbG7eV8=;
+        b=AtRW2QBQjVZqK4pu80aXjEqAkuT5MVq+zFiE6w7FSMt0EUlfKfYXquyiZYb5tfk1rf
+         I/4ao3SQbD6713xSca+TcVym9yryLZchj7tk8of/e7FLMc1MQPG2wzPMR5tt8MznBrYt
+         Cn//hT9jPNw5R1ijqSSRIojZBVN4oCf3v++vvh2wqMDTPANaH46iNEpe5xlg6VTC7hJp
+         4VDRiOeUs1N3mdfPFC848qrejNltWvlCfWQ/IumE4pCBWCAM3FmAkJorhY3ac88e8Guc
+         EoO83lTB5FfhDtHdSeD7Dpkmtb0hNyJaXobvjFIUzfYCf9rvNL/90ShhorZPvP+zoPnK
+         uBZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Q4uuPurBluxDeIOpVG3Do+EXvRC/KEYOD2qgBrHFPb4=;
-        b=RCkIm//EhVawNUpE4s79nIkju4KQgE6EETZJQCgJjfF7Fnxp8hqKHXHWWmXHuB2Ww3
-         UwnCRDZUrUNUe2PLHHNX3Gg3ci3+2EUfW6VR4eq/O0hfjtDZQ2WoYxnV5RSWkC+QzZt7
-         yFi25ZVhvEXZnjgYzixHx86Tt+TfI8UfCnKhMjTji57lv7DPM6iN7v0+tlmHOU8xGTPi
-         dXHdg+FNIxllPX2ffh5D4qJ0O2z0wA4tG3mnDB2mX9zXVSXSb2KoR29OuUJXjjglRIIZ
-         r7jfLVXbUKkrLGSgNcktJvHiH7uE/TIgRzz5MC3eJZ2THemznxlRxaoJaeCEjUtXLw2y
-         sD/Q==
-X-Gm-Message-State: AGi0PuZUiWRFqiBvhzJFduVbNEtzDt86uHvQHWJMyCLzqspg3fxzZKDR
-        Uexm7wipm9Ki5MPHA37MZb02WsEWGNc=
-X-Google-Smtp-Source: APiQypJl6yVdpqjUke8MWjTj9v5q2K9ZW62r9/DaDz/j6EmgwyP9up00407cr/kUMaKLnjXyQCiWGg==
-X-Received: by 2002:a0c:9002:: with SMTP id o2mr5906140qvo.3.1588422107922;
-        Sat, 02 May 2020 05:21:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vp9pFOaNAK/bZV4TMm15vSAV9KoRuRCBgnB4GbG7eV8=;
+        b=VzCrGMHl1Xjnx2T0saPaRWze6KUbxe6ryT1wC3beRrTkVvMv+5mDoAOG9+Y74+0pxX
+         RXVOsG4ZYyeP3bObS+ozIEWOhdre3FGnMobdJRv1wvf/ZcURgPh2MVARGVF69KbudrTJ
+         hYBTJBfMIeZKPweRyZhFFKMrInVD1ohvByfNnbYY+ytkQb1SDtvD76/3qMMgjY1soQ/f
+         jLgQgl/si++CXa/k09tsL6ZIale+BmtZN9UDj6USYYTTE+bfY6xAWcV7l1mQeyCm8zFq
+         8WC0SOi8tfMgoYxxTXygzLYA8ds0FYRZqvxwCdT5ljxFjgpo5MjfVcFMav0nSusxbKHa
+         QBqg==
+X-Gm-Message-State: AGi0PuZAzQ5O4L3EwsHUmgse7nAxthyz1wLbTRrPds3gDdEW6ZZEXE+B
+        5mYqlFMlZHZNHi5r/9x0FyZwoqQLqus=
+X-Google-Smtp-Source: APiQypKm5d8ePdZUSklGoPtSOJFY7y2SdZZOsOKx6ignPtFrthW7vx97HLGQX5+5ikbY5bql7RBiwQ==
+X-Received: by 2002:ac8:3713:: with SMTP id o19mr8049899qtb.371.1588424421301;
+        Sat, 02 May 2020 06:00:21 -0700 (PDT)
 Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id p47sm5256413qta.44.2020.05.02.05.21.46
+        by smtp.gmail.com with ESMTPSA id l24sm5067668qtp.8.2020.05.02.06.00.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 May 2020 05:21:47 -0700 (PDT)
+        Sat, 02 May 2020 06:00:20 -0700 (PDT)
 From:   Adam Ford <aford173@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     aford@beaconembedded.com, charles.stevens@logicpd.com,
-        Adam Ford <aford173@gmail.com>, Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconemedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 3/3] dt: Add additional option bindings for IDT VersaClock
-Date:   Sat,  2 May 2020 07:21:26 -0500
-Message-Id: <20200502122126.188001-3-aford173@gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: defconfig: Enable some audio drivers on i.MX8M Mini
+Date:   Sat,  2 May 2020 07:59:47 -0500
+Message-Id: <20200502125949.194032-1-aford173@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200502122126.188001-1-aford173@gmail.com>
-References: <20200502122126.188001-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -69,67 +70,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VersaClock driver now supports some additional bindings to support
-child nodes which can configure optional settings like mode, voltage
-and slew.
+The i.MX8M Mini has SAI and micfil support but the drivers
+are not being loaded.
 
-This patch updates the binding document to describe what is available
-in the driver.
+This patch updates the defconfig to add support
+CONFIG_SND_SOC_FSL_SAI and CONFIG_SND_SOC_FSL_MICFIL to support
+these drivers.
 
 Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt b/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-index bcff681a4bd0..6165b6ddb1a9 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-@@ -31,6 +31,29 @@ Required properties:
- 		- 5p49v5933 and
- 		- 5p49v5935: (optional) property not present or "clkin".
- 
-+For all output ports, a corresponding, optional child node named OUT1,
-+OUT2, etc. can represent a each output, and the node can be used to
-+specify the following:
-+
-+- itd,mode: can be one of the following:
-+                 - VC5_LVPECL
-+                 - VC5_CMOS
-+                 - VC5_HCSL33
-+                 - VC5_LVDS
-+                 - VC5_CMOS2
-+                 - VC5_CMOSD
-+                 - VC5_HCSL25
-+
-+- idt,voltage-microvolts:  can be one of the following
-+                 - 1800000
-+                 - 2500000
-+                 - 3300000
-+-  idt,slew-percent: Percent of normal, can be one of
-+                 - 80
-+                 - 85
-+                 - 90
-+                 - 100
-+
- ==Mapping between clock specifier and physical pins==
- 
- When referencing the provided clock in the DT using phandle and
-@@ -81,6 +104,16 @@ i2c-master-node {
- 		/* Connect XIN input to 25MHz reference */
- 		clocks = <&ref25m>;
- 		clock-names = "xin";
-+
-+		OUT1 {
-+			itd,mode = <VC5_CMOS>;
-+			idt,voltage-microvolts = <1800000>;
-+			idt,slew-percent = <80>;
-+		};
-+		OUT2 {
-+			...
-+		};
-+		...
- 	};
- };
- 
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 366857dfa9de..4e60e8a98b83 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -638,6 +638,8 @@ CONFIG_SND_HDA_TEGRA=m
+ CONFIG_SND_HDA_CODEC_HDMI=m
+ CONFIG_SND_SOC=y
+ CONFIG_SND_BCM2835_SOC_I2S=m
++CONFIG_SND_SOC_FSL_SAI=y
++CONFIG_SND_SOC_FSL_MICFIL=y
+ CONFIG_SND_MESON_AXG_SOUND_CARD=m
+ CONFIG_SND_SOC_SDM845=m
+ CONFIG_SND_SOC_ROCKCHIP=m
 -- 
 2.25.1
 
