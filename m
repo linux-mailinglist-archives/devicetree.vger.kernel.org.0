@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF681C25FC
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 16:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928FA1C2613
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 16:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbgEBOFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 May 2020 10:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54712 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727862AbgEBOFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 10:05:54 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA2CC061A0E
-        for <devicetree@vger.kernel.org>; Sat,  2 May 2020 07:05:53 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id i16so6513850ybq.9
-        for <devicetree@vger.kernel.org>; Sat, 02 May 2020 07:05:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=+QICnzruZgbnZc0gt/J2eeieTtF+6x+S2b3IYrb1OcM=;
-        b=L/Mh1IOMk7Tyrzjdsyfr4YlIP3CN+3cxouHdwwc6p4X2PUyqXzsYVa5YmQJHxrGX0K
-         rTgAjtefIXVmjZLZ4F3XBsxcdPLuziUmth3wNEVIJ4KsfkjAVJOywWRB9VYZp4s+EIeN
-         kqNO3javeWkOiHIzSWBWkiWmwzRhqc7BJG8/jdGwxeHbrG+Cf38lUvCGp+hfScPkpFG7
-         AGHJgM3rs1ZqJUh4zMok5Ye/irWxYm5zRaQaFmsNKZ/JzZpV38yLUN5D7wo2bZQcyFOL
-         M6N2rORWzgTTacbgoc8M3HFzxVrDAm4YTT9B5PK4zLsqkXFmOtyBc88l0u6ZlAZNQGGV
-         +kLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=+QICnzruZgbnZc0gt/J2eeieTtF+6x+S2b3IYrb1OcM=;
-        b=s28kYPoZwT5owXuq1DqNc4I82C5hMVuReoa9oaZllG5TUOHtyr21xxSvJhy4IpR8um
-         Ujy8qO3T4lq6h8fNhTRbmJc573Zzt8kHLLlo6IPdkCpVn0HHlYZnJTwjW6XG6aa/wzzp
-         b0F59Uio8Eq9gCKPzaVGtqPYCvPS0Ftt+7Gfsvv/75JoeIsxSzBYoVPVydQDbv1r0TBi
-         29In4L3JoTcyZ5CKZzEQC264AzQBI5AqWG9LNSMn65SoGUHebQ/UdKmNNlEwsFp2ntY+
-         gfC4YCO1v1e/+BhVwXuoISlh+mWW3tBxIjQnSKmNrbFaxjJGxn3jWYs9mkNKD+ESolcl
-         UHNw==
-X-Gm-Message-State: AGi0PuZ+yMoHnVlBMUioP3KnYn0ip43EwoZC2hSzJabjWmaoykv0bh5u
-        7H0kSYiB4ZIuJpttE+9wvsNAHbEP/nhPUlNsBT4=
-X-Google-Smtp-Source: APiQypKL0UXYUY7Eehhd3UY0Sd8kH1fZ87NehNt0Ti8r1yAAtYyzp5BzsC0h/H6vjJkLDXdSYGpEj3GzfkSlLPIERWM=
-X-Received: by 2002:a25:5c03:: with SMTP id q3mr14428651ybb.104.1588428352133;
- Sat, 02 May 2020 07:05:52 -0700 (PDT)
+        id S1728145AbgEBO0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 May 2020 10:26:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57740 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728020AbgEBO0q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 2 May 2020 10:26:46 -0400
+Received: from localhost (p5486C608.dip0.t-ipconnect.de [84.134.198.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 18B4524956;
+        Sat,  2 May 2020 14:26:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588429605;
+        bh=T0uL7V2GxJ0KJIHLBXzdJDnKFjm8L8mFABZiFNKziDU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=VuZJ008ICcBXi2Tm2+47iUxfEea/DDJ+rsQD3+xPlTdIxcA4IqqyHf9dYliblLjab
+         A1Acz9u65OBVklKBX9ZoicrngiiTKuBkugOThjDOqK59Oox2OTyQWg5o3e8bA4OcEy
+         157taWykCJ0zb37pEb51W8zXAk5zfJJWmmZRG2Zc=
+From:   Wolfram Sang <wsa@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     kernel@pengutronix.de, Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH] powerpc/5200: update contact email
+Date:   Sat,  2 May 2020 16:26:42 +0200
+Message-Id: <20200502142642.18979-1-wsa@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Received: by 2002:a25:7b83:0:0:0:0:0 with HTTP; Sat, 2 May 2020 07:05:51 -0700 (PDT)
-Reply-To: mr.levy_jamshyd@outlook.fr
-From:   "Mr. Levy Jamshyd" <chimodemmma60@gmail.com>
-Date:   Sat, 2 May 2020 16:05:51 +0200
-Message-ID: <CAP6o6bqe0iXtLX=hPWUGGzPwVVr8TJS1V0pYYpWM9j+ARhv_sA@mail.gmail.com>
-Subject: VERY VERY URGENT
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My greetings to you
+My 'pengutronix' address is defunct for years. Merge the entries and use
+the proper contact address.
 
-I have a project of $12.5 Million Us Dollars which I will like you to
-support me so that the fund will be transfer to your bank account.
+Signed-off-by: Wolfram Sang <wsa@kernel.org>
+---
+ arch/powerpc/boot/dts/pcm032.dts | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Please if you are capable and willing , kindly reply back to me so
-that i will give more
-details about this project.
-then you can contact me with my email addres; mr.levy_jamshyd@outlook.fr.
+diff --git a/arch/powerpc/boot/dts/pcm032.dts b/arch/powerpc/boot/dts/pcm032.dts
+index c259c6b3ac5a..780e13d99e7b 100644
+--- a/arch/powerpc/boot/dts/pcm032.dts
++++ b/arch/powerpc/boot/dts/pcm032.dts
+@@ -3,9 +3,7 @@
+  * phyCORE-MPC5200B-IO (pcm032) board Device Tree Source
+  *
+  * Copyright (C) 2006-2009 Pengutronix
+- * Sascha Hauer <s.hauer@pengutronix.de>
+- * Juergen Beisert <j.beisert@pengutronix.de>
+- * Wolfram Sang <w.sang@pengutronix.de>
++ * Sascha Hauer, Juergen Beisert, Wolfram Sang <kernel@pengutronix.de>
+  */
+ 
+ /include/ "mpc5200b.dtsi"
+-- 
+2.20.1
 
-I am waiting to hear from you
-
-Mr. Levy Jamshyd.
-
-Thank you
