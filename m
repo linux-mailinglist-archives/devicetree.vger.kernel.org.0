@@ -2,113 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D84C1C219E
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 01:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A3B1C238D
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 08:30:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728078AbgEAXvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 May 2020 19:51:55 -0400
-Received: from mail-dm6nam12olkn2022.outbound.protection.outlook.com ([40.92.22.22]:56160
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727963AbgEAXvn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 May 2020 19:51:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ciS1YIFugGx1qIUtnhugOatGoeNjxEIJmvzcSR+oDVUbHgmKODMesngg7M+3nVZ096ihOUtcNF7RsBbF+ZfrwzeU6nylHKKS/0ptSLkAAYRlitYjr+VdqUywBXqjAe0wd6PD89t3cITIkmrR2HJqQuB1QkXgbFN7IY1JLhIrdlBMgAWNlr7P7GucUHUCH32JCFWtKZiRfOvne5Zsj6f/NemVhToSBrZLpYmbS3EoQOG1NRFwXn/hpzG/mZ5CPVChdeXEiz14AYBSbpchcvJyBiff+eBpwxKNucdqMVaxhgtxnBmkMFhOr+MEGkFYwlLo08XHNysnHtLjk/LvmSrM1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5O1LOzz2sPZQKkPD2FEZaAIqrK1URX6n2USXrOZGY4=;
- b=MY1Btq/5Ka/dhqJLd2bPu7ygE+vrT3bVzTeK5LQ8i1uvNcRK6YqMtfEtcgUOfEwMj9HOQuqhbhxx0QiaPigcJeHtdrdT0v6jElS99k62HN2y8tjlKUDeJpLCey45zI4V+KTK8Em5qQs36zcgOYnggBM2QB2WTZCaq8zsBVIffsFR6FJ9VWQY80ShGUyWXrD52xbJvZ5pSBs79p12izbaUHAqc3jGepQin6a6fmD975VnmONBy8j8FYAmisRqPaYC4HJEj/DVQHl/e8WDmrxcso1XnfXS6gHGqO3onPjBBwPDcZLqt68S+c+hJ/kZaHcErzKhEgfx2w8iJfLooOjfTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=live.ca; dmarc=pass action=none header.from=live.ca; dkim=pass
- header.d=live.ca; arc=none
-Received: from DM6NAM12FT056.eop-nam12.prod.protection.outlook.com
- (2a01:111:e400:fc64::4d) by
- DM6NAM12HT118.eop-nam12.prod.protection.outlook.com (2a01:111:e400:fc64::126)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.12; Fri, 1 May
- 2020 23:51:41 +0000
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- (2a01:111:e400:fc64::46) by DM6NAM12FT056.mail.protection.outlook.com
- (2a01:111:e400:fc64::460) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.12 via Frontend
- Transport; Fri, 1 May 2020 23:51:41 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:500BD4FFDDA152933E5711F27EDDA5554E11B0EFC217C2C5FA8EF22AFA9B37A2;UpperCasedChecksum:376F5A11BF33F2485363DB9171BA7F4E04697A33EF32E87F25E6AA8627C9E564;SizeAsReceived:7853;Count:50
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::ad10:4127:4bc8:76fc]) by BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::ad10:4127:4bc8:76fc%6]) with mapi id 15.20.2958.027; Fri, 1 May 2020
- 23:51:41 +0000
-From:   Jonathan Bakker <xc-racer2@live.ca>
-To:     kgene@kernel.org, krzk@kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jonathan Bakker <xc-racer2@live.ca>
-Subject: [PATCH v2 18/18] ARM: dts: s5pv210: Correct gpi gpio node name
-Date:   Fri,  1 May 2020 16:50:19 -0700
-Message-ID: <BN6PR04MB06608BAC9303ECB0F6118AE3A3AB0@BN6PR04MB0660.namprd04.prod.outlook.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200501235019.24022-1-xc-racer2@live.ca>
-References: <20200426183604.28494-1-xc-racer2@live.ca>
- <20200501235019.24022-1-xc-racer2@live.ca>
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MWHPR17CA0058.namprd17.prod.outlook.com
- (2603:10b6:300:93::20) To BN6PR04MB0660.namprd04.prod.outlook.com
- (2603:10b6:404:d9::21)
-X-Microsoft-Original-Message-ID: <20200501235019.24022-19-xc-racer2@live.ca>
+        id S1726896AbgEBGap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 May 2020 02:30:45 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:43516 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726273AbgEBGao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 02:30:44 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id E87D720034;
+        Sat,  2 May 2020 08:30:37 +0200 (CEST)
+Date:   Sat, 2 May 2020 08:30:36 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     dillon min <dillon.minfei@gmail.com>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>, airlied@linux.ie,
+        Daniel Vetter <daniel@ffwll.ch>, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, thierry.reding@gmail.com
+Subject: Re: [PATCH 1/4] add dts node for drm panel driver ili9341 add dts
+ i2c3 for stmpe touch add dts spi5 for gyro & ili9341
+Message-ID: <20200502063036.GA9204@ravnborg.org>
+References: <1588239802-11442-1-git-send-email-dillon.minfei@gmail.com>
+ <33f928e7-3fde-99a2-b84d-d74a2d3f1186@st.com>
+ <CAL9mu0+AqO69+rEcH=HVWRhDLbqDO52-Cjxt-PAZmg6=7QtpvQ@mail.gmail.com>
+ <40bdf88c-fbc2-564c-1aec-38318bab5e61@st.com>
+ <CAL9mu0KRPPrTUWggs2dQWPGjkyubUMpYx=3JzOpwTPQPHjsGhw@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from jon-hp-6570b.telus (2001:569:fb68:9c00:8067:f823:1e15:7520) by MWHPR17CA0058.namprd17.prod.outlook.com (2603:10b6:300:93::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.20 via Frontend Transport; Fri, 1 May 2020 23:51:39 +0000
-X-Mailer: git-send-email 2.20.1
-X-Microsoft-Original-Message-ID: <20200501235019.24022-19-xc-racer2@live.ca>
-X-TMN:  [0ZkQ7nAcwNP61UKo6jm5CT6RYSlM87jxE50gKlmG/iNiAVPEIlo/p2aAykdGkuxA]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 50
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 45c080d4-55e4-471f-7ec0-08d7ee2a983a
-X-MS-TrafficTypeDiagnostic: DM6NAM12HT118:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JepEKslIU/Pr/uwfG2+Y0K/uV9au7rZl+8ShLP7x0rdEdbVKiDnj1hYWWVOE76srjlFlIfKFzUaX5TDTD/zFAOjUS42FxqbYMclrVbz2fNwRYa154VEz9OjI999YCM1zbbqJLqjY6sXQiVE28Iy4MaXzkFzi5sdXVCTtyopAe56zc3sYoOkqLQN8OPcIXt79fT/hYoigJyjsZNR2YsQkIg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:0;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR04MB0660.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:;DIR:OUT;SFP:1901;
-X-MS-Exchange-AntiSpam-MessageData: XQuTixmKn6b9MsRaBkt/+ezCRX3fnvFFTqeUwoKzBMasII7EW0kVOBjuksND2SeTj2J5ErRigCcnxRKMgLK1X1zo60EBpDzuEZtZgMMkNrVNsP7Jron9hiCoYkkBsmzACHQ1YI5jpQoY6QszecM8pb20o6gM4V/Q9eiAjqJeKFVExoqr+pSPrEdStDsuPrjWYlalEF7mizBq3x+88ySUAQ==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45c080d4-55e4-471f-7ec0-08d7ee2a983a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2020 23:51:41.1629
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM12HT118
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL9mu0KRPPrTUWggs2dQWPGjkyubUMpYx=3JzOpwTPQPHjsGhw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=ULXz4hXy c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=kj9zAlcOel0A:10 a=bnXyCQR6rJ-qSE-LuncA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node name was gpgi, but the pinctrl driver was registering the pins
-as just gpi and the "samsung,pins" i2s0 pinctrl entries refer to gpi.
-The public s5pc110 datasheet also refers to these pins as just gpi,
-so let's make sure everything is in sync and rename the node to gpi.
+Hi dillon min
 
-Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
----
- arch/arm/boot/dts/s5pv210-pinctrl.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > okay, thanks alexandre, i will go through these docs. currently i'm on may
+> day holiday,  will be back at  next wensday.
+> after go back to work. i will separate this patch to five part with 9
+> patchs , should be more clear
+> 
+> dts releated
+>     1,  ARM: dts: stm32: Add i2c3 node for stm32f429
+>     2,  ARM: dts: stm32: Add drm panel ili9341 nodes connect to ldtc
+> support for stm32f429-disco board
+>     3,  ARM: dts: stm32: Add stmpe811 touch screen support for
+> stm32f429-disco board
+>     4,  ARM: dts: stm32: Add l3gd20 gyroscope sensor support for
+> stm32f429-disco board
+> 
+> clk releated
+>     1, clk: stm32: Fix ltdc loading hang in set clk rate, pll_hw set to
+> clks[PLL_VCO_SAI] but not clks[PLL_SAI]
+>     2, clk: stm32: Add CLK_IGNORE_UNUSED flags for ltdc, make sure ltdc clk
+> not be released after system startup
+> 
+> spi releated
+>     1, spi: stm32: Add transfer mode SPI_SIMPLE_RX, SPI_3WIRE_RX support
+> for stm32f4
+> 
+> drm releated
+>     1, drm/panel: Add panel driver ilitek-ili9341
+> 
+> doc releated
+>      1, dt-bindings: display: panel: Add binding document for Ilitek Ili9341
 
-diff --git a/arch/arm/boot/dts/s5pv210-pinctrl.dtsi b/arch/arm/boot/dts/s5pv210-pinctrl.dtsi
-index 609f323d0805..5e8b66281f01 100644
---- a/arch/arm/boot/dts/s5pv210-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/s5pv210-pinctrl.dtsi
-@@ -202,7 +202,7 @@
- 		#interrupt-cells = <2>;
- 	};
- 
--	gpgi: gpgi {
-+	gpi: gpi {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 	};
--- 
-2.20.1
+Patch separation looks good.
+Please cc: me on both the binding and the panel patches.
+The binding must be in DT Schema format (.yaml).
+See a lot of examples in drm-misc-next for inspiration.
 
+Looks forward to see/review your submission.
+
+	Sam
