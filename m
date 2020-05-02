@@ -2,113 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B25671C259F
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 15:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF681C25FC
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2020 16:05:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727884AbgEBNU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 May 2020 09:20:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
+        id S1727992AbgEBOFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 May 2020 10:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727818AbgEBNU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 09:20:27 -0400
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C02AC061A0C;
-        Sat,  2 May 2020 06:20:25 -0700 (PDT)
-Received: by mail-qk1-x741.google.com with SMTP id q7so11971282qkf.3;
-        Sat, 02 May 2020 06:20:25 -0700 (PDT)
+        with ESMTP id S1727862AbgEBOFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 May 2020 10:05:54 -0400
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA2CC061A0E
+        for <devicetree@vger.kernel.org>; Sat,  2 May 2020 07:05:53 -0700 (PDT)
+Received: by mail-yb1-xb43.google.com with SMTP id i16so6513850ybq.9
+        for <devicetree@vger.kernel.org>; Sat, 02 May 2020 07:05:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7gO/I+IvtkIZFC4jw7d1M58LLH0WJEijQ4nefSivFRc=;
-        b=JsqzSO7Dl9DvRNtQn+Xqsi0073bQnPRngcl3vh8Ds9GolrE5Mt+TLnU06QkC42yTwN
-         sEqExDuwAzZbXJCkaK6GH3vg/4wiZ+Mnsk1/e/s9G08but0mNpuZqdVDhd7aVatrJiEl
-         ZzUE+gkm/GBRRZX025AzF5kb3ddznbv6vlnlPA0ja2CFsGhnRVbUkzh0DNLwBml4pCAO
-         9fF7Jc7rjf0rqzj5dmMSOpjaKNqZ170sAJvRxSDAo9fMxARxlI0oOvXW6h1adZ02uMnw
-         fNSU+2I/cpALkmgg3iQA3GgJay57/3F0Z9DA9AYUxIK8kpZicDEVEvA0lM8OlZ0341Ll
-         qFxA==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=+QICnzruZgbnZc0gt/J2eeieTtF+6x+S2b3IYrb1OcM=;
+        b=L/Mh1IOMk7Tyrzjdsyfr4YlIP3CN+3cxouHdwwc6p4X2PUyqXzsYVa5YmQJHxrGX0K
+         rTgAjtefIXVmjZLZ4F3XBsxcdPLuziUmth3wNEVIJ4KsfkjAVJOywWRB9VYZp4s+EIeN
+         kqNO3javeWkOiHIzSWBWkiWmwzRhqc7BJG8/jdGwxeHbrG+Cf38lUvCGp+hfScPkpFG7
+         AGHJgM3rs1ZqJUh4zMok5Ye/irWxYm5zRaQaFmsNKZ/JzZpV38yLUN5D7wo2bZQcyFOL
+         M6N2rORWzgTTacbgoc8M3HFzxVrDAm4YTT9B5PK4zLsqkXFmOtyBc88l0u6ZlAZNQGGV
+         +kLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7gO/I+IvtkIZFC4jw7d1M58LLH0WJEijQ4nefSivFRc=;
-        b=kIjslJ6fceLUXx8MG9Ci/jOXK0mODUKGNcYmga3t8g+2pWdk5GVdhoAk3Fa+fDXTU+
-         Yoq2I1UlBTFNMOxZduNwZ3RlrUvELlsDFLb6xg2qFsxAGAQkcEkz5d3TBvxmvDnciErz
-         3Dzs6qPN2LnAI7kbi9/iqyR99g8nmLcAC/eXKvzNwdtJnMdOWn/mzMzGvr7CKkvz71Qq
-         KrlfFlcFcjy7erMl0rm4VPk8YNaCq3Hn+uzjsV/GhOb6xD/4tYcNwe5rs1QkfyQkSiqZ
-         8K4UgiZFF/lTpbFUjr6F1v9K+U/rRwkKqOch22dMy3+LiuPQ4G9iBt0Gb/yFgou8rujS
-         9nkA==
-X-Gm-Message-State: AGi0PuYM8q62OUV78JJfK2qCqpqI5/BY0ntdmTLDDY4O/Ksb3Q3ZQ8Ma
-        f6W7w/0uSVQo+Txf7bnqPDw=
-X-Google-Smtp-Source: APiQypIxNQBmn7ptFgUIwXN+1StR7LK8a8epow3LnVkDsEZEU4dvMKVcbgvYqHbyRSla4AZJ9YYZTQ==
-X-Received: by 2002:a05:620a:39b:: with SMTP id q27mr8260387qkm.94.1588425624565;
-        Sat, 02 May 2020 06:20:24 -0700 (PDT)
-Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id o6sm4975385qkj.126.2020.05.02.06.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 May 2020 06:20:23 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm: Add node for SPDIF
-Date:   Sat,  2 May 2020 08:20:11 -0500
-Message-Id: <20200502132011.196045-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=+QICnzruZgbnZc0gt/J2eeieTtF+6x+S2b3IYrb1OcM=;
+        b=s28kYPoZwT5owXuq1DqNc4I82C5hMVuReoa9oaZllG5TUOHtyr21xxSvJhy4IpR8um
+         Ujy8qO3T4lq6h8fNhTRbmJc573Zzt8kHLLlo6IPdkCpVn0HHlYZnJTwjW6XG6aa/wzzp
+         b0F59Uio8Eq9gCKPzaVGtqPYCvPS0Ftt+7Gfsvv/75JoeIsxSzBYoVPVydQDbv1r0TBi
+         29In4L3JoTcyZ5CKZzEQC264AzQBI5AqWG9LNSMn65SoGUHebQ/UdKmNNlEwsFp2ntY+
+         gfC4YCO1v1e/+BhVwXuoISlh+mWW3tBxIjQnSKmNrbFaxjJGxn3jWYs9mkNKD+ESolcl
+         UHNw==
+X-Gm-Message-State: AGi0PuZ+yMoHnVlBMUioP3KnYn0ip43EwoZC2hSzJabjWmaoykv0bh5u
+        7H0kSYiB4ZIuJpttE+9wvsNAHbEP/nhPUlNsBT4=
+X-Google-Smtp-Source: APiQypKL0UXYUY7Eehhd3UY0Sd8kH1fZ87NehNt0Ti8r1yAAtYyzp5BzsC0h/H6vjJkLDXdSYGpEj3GzfkSlLPIERWM=
+X-Received: by 2002:a25:5c03:: with SMTP id q3mr14428651ybb.104.1588428352133;
+ Sat, 02 May 2020 07:05:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a25:7b83:0:0:0:0:0 with HTTP; Sat, 2 May 2020 07:05:51 -0700 (PDT)
+Reply-To: mr.levy_jamshyd@outlook.fr
+From:   "Mr. Levy Jamshyd" <chimodemmma60@gmail.com>
+Date:   Sat, 2 May 2020 16:05:51 +0200
+Message-ID: <CAP6o6bqe0iXtLX=hPWUGGzPwVVr8TJS1V0pYYpWM9j+ARhv_sA@mail.gmail.com>
+Subject: VERY VERY URGENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8M Mini can support SPIDF which is very similar to the
-IP used on the i.MX35.
+My greetings to you
 
-This patch adds the SPIF node.
+I have a project of $12.5 Million Us Dollars which I will like you to
+support me so that the fund will be transfer to your bank account.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Please if you are capable and willing , kindly reply back to me so
+that i will give more
+details about this project.
+then you can contact me with my email addres; mr.levy_jamshyd@outlook.fr.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index d46e727fc362..00aad55ece65 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -358,6 +358,29 @@ micfil: micfil@30080000 {
- 				status = "disabled";
- 			};
- 
-+			spdif1: spdif@30090000 {
-+				compatible = "fsl,imx8mm-spdif", "fsl,imx35-spdif";
-+				reg = <0x30090000 0x10000>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MM_CLK_AUDIO_AHB>, /* core */
-+					 <&clk IMX8MM_CLK_24M>, /* rxtx0 */
-+					 <&clk IMX8MM_CLK_SPDIF1>, /* rxtx1 */
-+					 <&clk IMX8MM_CLK_DUMMY>, /* rxtx2 */
-+					 <&clk IMX8MM_CLK_DUMMY>, /* rxtx3 */
-+					 <&clk IMX8MM_CLK_DUMMY>, /* rxtx4 */
-+					 <&clk IMX8MM_CLK_AUDIO_AHB>, /* rxtx5 */
-+					 <&clk IMX8MM_CLK_DUMMY>, /* rxtx6 */
-+					 <&clk IMX8MM_CLK_DUMMY>, /* rxtx7 */
-+					 <&clk IMX8MM_CLK_DUMMY>; /* spba */
-+				clock-names = "core", "rxtx0",
-+					      "rxtx1", "rxtx2",
-+					      "rxtx3", "rxtx4",
-+					      "rxtx5", "rxtx6",
-+					      "rxtx7", "spba";
-+				dmas = <&sdma2 28 18 0>, <&sdma2 29 18 0>;
-+				dma-names = "rx", "tx";
-+				status = "disabled";
-+			};
- 			gpio1: gpio@30200000 {
- 				compatible = "fsl,imx8mm-gpio", "fsl,imx35-gpio";
- 				reg = <0x30200000 0x10000>;
--- 
-2.25.1
+I am waiting to hear from you
 
+Mr. Levy Jamshyd.
+
+Thank you
