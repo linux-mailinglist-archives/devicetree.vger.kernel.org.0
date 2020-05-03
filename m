@@ -2,114 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 329381C2D2C
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2020 17:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 618E01C2D45
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2020 17:21:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728704AbgECPBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 May 2020 11:01:48 -0400
-Received: from muru.com ([72.249.23.125]:52668 "EHLO muru.com"
+        id S1728686AbgECPVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 May 2020 11:21:13 -0400
+Received: from rere.qmqm.pl ([91.227.64.183]:13571 "EHLO rere.qmqm.pl"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728002AbgECPBs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 May 2020 11:01:48 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 5955480BF;
-        Sun,  3 May 2020 15:02:34 +0000 (UTC)
-Date:   Sun, 3 May 2020 08:01:43 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        James Hogan <jhogan@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Philipp Rossak <embed3d@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        openpvrsgx-devgroup@letux.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com, linux-mips@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v7 01/12] dt-bindings: add img,pvrsgx.yaml for
- Imagination GPUs
-Message-ID: <20200503150143.GG37466@atomide.com>
-References: <cover.1587760454.git.hns@goldelico.com>
- <3a451e360fed84bc40287678b4d6be13821cfbc0.1587760454.git.hns@goldelico.com>
- <NMCE9Q.LWG45P20NBVJ@crapouillou.net>
- <28138EC0-0FA5-4F97-B528-3442BF087C7A@goldelico.com>
- <TEAR9Q.6HI5DFRO5U0I3@crapouillou.net>
- <3D8B59D6-83E3-4FE6-9C99-E2E5616A8139@goldelico.com>
- <8EER9Q.C206SXNSICP7@crapouillou.net>
+        id S1727832AbgECPVM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 May 2020 11:21:12 -0400
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 49FV7T5jmtzBc;
+        Sun,  3 May 2020 17:21:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1588519270; bh=UjY8PzZ2ebkIWEK1WXKg4E1K2ulg0fn/7pKxOYcFaq8=;
+        h=Date:From:Subject:To:Cc:From;
+        b=lnIMfb03/Wy1nUudkFAxx0UXiVrRejRZY1depI/z9gcIwMCXPkFr7AX1FhTbV1qlw
+         BJE/FgcpU0fc44DlsO+eWGL/pQDZ/q802TTd9V6eMq1e59mlPRHyM8LkyeJ+eaERA4
+         HBjRZKhbuhCfOsBtyJasb9/3rc0HkA/iF4whzxAcW7U6esgPx2dRMlf0i8rQ9VA7X8
+         c0wq0k2N7g/b442BkjtzzlZzSaPspWjOQw0rbEKpzBY8jXl68Gu00Y8LT7Bb19X9zi
+         awzR0+jmkApiNJlAo3zXIcXiNQ2cf/p10+EU9YUBf0sc8VoE0VwDyLt9aU3UKiS8vE
+         lWs0ITADTQAMw==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+Date:   Sun, 03 May 2020 17:21:07 +0200
+Message-Id: <cover.1588517058.git.mirq-linux@rere.qmqm.pl>
+From:   =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Subject: [PATCH v2 00/11] power: supply: bq25890: fix and extend
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8EER9Q.C206SXNSICP7@crapouillou.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To:     Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Paul Cercueil <paul@crapouillou.net> [200503 14:19]:
-> You have a new SoC with a SGX, and you only need to enable one clock to get
-> it to work. So you create a devicetree node which receives only one clock.
-> 
-> Turns out, that the bootloader was enabling the other 3 clocks, and since
-> the last release, it doesn't anymore. You're left with having to support a
-> broken devicetree.
-> 
-> That's the kind of problem that can be easily avoided by enforcing the
-> number of clocks that have to be provided.
+This series consists of a set of fixes and enchancements to bq25890
+driver. This is tested on a board using bq25896 as battery controller.
 
-The number of clocks depends on how it's wired for the SoC.
+Patches 1-3 are cleans up the code a bit, 4-6 fix property value
+reading, 7-9 add more information to be read from the chip, 10-11 add
+IBAT compensation support.
 
-On omaps, there's are no controls for additinoal SGX clocks. Sure some
-of the clocks may be routed to multple places internally by the wrapper
-module. But we have no control over that.
+v2 removes VBUS and VSYS additions (they need more intrusive changes
+to properly fit into power supply class ABI) and adds binding
+description to IBAT compensation devicetree properties.
 
-If we wanted to specify just the "fck" clock on omaps, then we can
-do it with something like this:
+Michał Mirosław (11):
+  power: bq25890: remove redundant I2C bus check
+  power: bq25890: simplify chip name property getter
+  power: bq25890: make property table const
+  power: bq25890: protect view of the chip's state
+  power: bq25890: fix ADC mode configuration
+  power: bq25890: update state on property read
+  power: bq25890: implement CHARGE_TYPE property
+  power: bq25890: implement PRECHARGE_CURRENT property
+  power: bq25890: implement INPUT_CURRENT_LIMIT property
+  power: bq25890: support IBAT compensation
+  power: bq25890: document IBAT compensation DT properties
 
-allOf:
-  - if:
-    properites:
-      compatible:
-        enum:
-	  - "ti,omap4-sgx544-112"
-	  - "ti,omap5-sgx544-116"
-	  - "ti,dra7-sgx544-116"
-    then:
-      properties:
-        clocks:
-	  minItems: 1
-	  maxItems: 1
+ .../bindings/power/supply/bq25890.txt         |   4 +
+ drivers/power/supply/bq25890_charger.c        | 190 ++++++++++--------
+ 2 files changed, 113 insertions(+), 81 deletions(-)
 
-        clock-names:
-	  const: fck
+-- 
+2.20.1
 
-    required:
-      - clocks
-      - clock-names
-
-There's no need for the SGX driver to toggle the "fck" here, it's
-all done by PM runtime alreaedy so we would be just tweaking
-the usage count for it. But hey, showing the clock rate might
-be nice. Or maybe we want to at some point scale it, so no problem
-specifying it.
-
-For omap3, we should then specify "fck" and "ick". On omap4 and
-later, there's no separate control over the "ick".
-
-Then for the other SoCs, you can specify whatever clocks you need
-there.
-
-Regards,
-
-Tony
