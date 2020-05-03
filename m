@@ -2,68 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6FA1C2D5A
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2020 17:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5211C2D83
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2020 17:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728750AbgECPVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 May 2020 11:21:30 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:29357 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728345AbgECPV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 May 2020 11:21:29 -0400
-X-IronPort-AV: E=Sophos;i="5.73,347,1583161200"; 
-   d="scan'208";a="46006153"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 04 May 2020 00:21:27 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 15C184007F56;
-        Mon,  4 May 2020 00:21:24 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>
-Cc:     Lad Prabhakar <prabhakar.csengg@gmail.com>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] dt-bindings: net: renesas,ether: Sort compatible string in increasing number of the SoC
-Date:   Sun,  3 May 2020 16:21:19 +0100
-Message-Id: <1588519279-13364-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1728768AbgECPm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 May 2020 11:42:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57162 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728716AbgECPm2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 May 2020 11:42:28 -0400
+Received: from localhost.localdomain (unknown [157.51.190.160])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7612220757;
+        Sun,  3 May 2020 15:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588520548;
+        bh=0CnMSeTOMkqPLyIXlkMMbKd1x1o/uhBytgUHSI2Q8IM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IULHFamipQH5bSodpv0GV3Nx9+FVZaxVXUfnbSU21fv2/JywgTGME+8mLNzI126jP
+         oPCbHEba/noEgcFuYPnbljJjxzF/zy7wYT/X4EgfHUHzUMBE6IFUvzRPg1pcd2XoQk
+         Z7E5fpcjD+GlJFhjRB92VRRgkAVutW4AZGCddY9M=
+From:   mani@kernel.org
+To:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: [PATCH v2 0/6] Add Stinger96 and IoT Box board support
+Date:   Sun,  3 May 2020 21:12:09 +0530
+Message-Id: <20200503154215.23654-1-mani@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sort the items in the compatible string list in increasing number of SoC.
+From: Manivannan Sadhasivam <mani@kernel.org>
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Changes for v2:
- * Included renesas,ether in subject instead of sh_eth.
- * Included Reviewed-by tags.
+Hello,
 
- Documentation/devicetree/bindings/net/renesas,ether.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This series adds Stinger96 and IoT Box board support. These boards are
+based on STM32MP157A SoC, designed and manufactured by Shiratech solutions.
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,ether.yaml b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-index 2eaa879..005a3ae 100644
---- a/Documentation/devicetree/bindings/net/renesas,ether.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-@@ -29,8 +29,8 @@ properties:
-               - renesas,rcar-gen1-ether  # a generic R-Car Gen1 device
-       - items:
-           - enum:
--              - renesas,ether-r8a7745    # device is a part of R8A7745 SoC
-               - renesas,ether-r8a7743    # device is a part of R8A7743 SoC
-+              - renesas,ether-r8a7745    # device is a part of R8A7745 SoC
-               - renesas,ether-r8a7790    # device is a part of R8A7790 SoC
-               - renesas,ether-r8a7791    # device is a part of R8A7791 SoC
-               - renesas,ether-r8a7793    # device is a part of R8A7793 SoC
+The Stinger96 is a base board (96Boards IoT Extended edition) while IoT Box
+adds one mezzanine on top of it and sold as a gateway device.
+
+This series depends on below patchsets already submitted and gone through
+reviews:
+
+[PATCH v3 0/3] Add Reset and Wakeup support for CCS811
+[PATCH v3 0/2] Add CTS/RTS gpio support to STM32 UART
+
+More information about these boards can be found in below links:
+
+https://www.shiratech-solutions.com/products/stinger96/
+https://www.shiratech-solutions.com/products/iot-box/
+
+Thanks,
+Mani
+
+Changes in v2:
+
+* Used "stm32" prefix for all DT commits
+* Dropped custom sdmmc2 pinctrl node since existing node itself has pullup
+  enabled and works fine.
+
+Manivannan Sadhasivam (6):
+  dt-bindings: Add vendor prefix for Shiratech Solutions
+  ARM: dts: stm32: Add missing pinctrl entries for STM32MP15
+  dt-bindings: arm: stm32: Document Stinger96 compatible
+  ARM: dts: stm32: Add Stinger96 board support
+  dt-bindings: arm: stm32: Document IoT Box compatible
+  ARM: dts: stm32: Add IoT Box board support
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |  64 ++++
+ arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  68 ++++
+ arch/arm/boot/dts/stm32mp157a-stinger96.dts   |  12 +
+ arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  | 342 ++++++++++++++++++
+ 7 files changed, 492 insertions(+)
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-iot-box.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-stinger96.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+
 -- 
-2.7.4
+2.17.1
 
