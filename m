@@ -2,131 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 734751C487B
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC21F1C4887
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726751AbgEDUlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 16:41:19 -0400
-Received: from mga03.intel.com ([134.134.136.65]:60857 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726627AbgEDUlT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 May 2020 16:41:19 -0400
-IronPort-SDR: QJc+W2ybiCeenEWRxEOYIiq75tUfrrIfuhnA9iM/SONlYd1h4hjTuLKWjtm+mn4adk+7Kpfzau
- DrnqlAJJr17A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2020 13:41:18 -0700
-IronPort-SDR: b4DyWmhiDhy4qxtR8Pb8m1iBlCjvqLUinJbs4j14tT12w8H1CCchpLkLEJWAuUWDjBBLTawzxM
- Tb80S8PufxpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; 
-   d="scan'208";a="338437724"
-Received: from jacob-builder.jf.intel.com (HELO jacob-builder) ([10.7.199.155])
-  by orsmga001.jf.intel.com with ESMTP; 04 May 2020 13:41:18 -0700
-Date:   Mon, 4 May 2020 13:47:23 -0700
-From:   Jacob Pan <jacob.jun.pan@linux.intel.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-mm@kvack.org, joro@8bytes.org, catalin.marinas@arm.com,
-        will@kernel.org, robin.murphy@arm.com, kevin.tian@intel.com,
-        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
-        christian.koenig@amd.com, felix.kuehling@amd.com,
-        zhangfei.gao@linaro.org, jgg@ziepe.ca, xuzaibo@huawei.com,
-        fenghua.yu@intel.com, hch@infradead.org,
-        jacob.jun.pan@linux.intel.com
-Subject: Re: [PATCH v6 17/25] iommu/arm-smmu-v3: Implement
- iommu_sva_bind/unbind()
-Message-ID: <20200504134723.54e2ebcd@jacob-builder>
-In-Reply-To: <20200504164351.GJ170104@myrica>
-References: <20200430143424.2787566-1-jean-philippe@linaro.org>
-        <20200430143424.2787566-18-jean-philippe@linaro.org>
-        <20200430141617.6ad4be4c@jacob-builder>
-        <20200504164351.GJ170104@myrica>
-Organization: OTC
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S1726334AbgEDUrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 16:47:41 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:44251 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726404AbgEDUrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:47:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1588625260; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Iof0Sqf40QZr6rxYchOOH4uFMrtf83OoP/dCtGny2y8=;
+ b=upQLBbdNNbgMqdY9FEav1J6u+1U3WN/7RyknKLQYt/vY1FIQRLMSeXBnSj5hNPUIGp5l2VNv
+ 9CF2wFFPxO9ecT/+fx5E2crgcL5TU+1iEx0lJvOllFBCwpBnAizN6OoSctW4Uyu0boWcY+Dg
+ zs6A5avsCLJnX2gScQIDKY50IfQ=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5eb07f64.7f5e99265df8-smtp-out-n02;
+ Mon, 04 May 2020 20:47:32 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A8ECCC43637; Mon,  4 May 2020 20:47:30 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id F1F25C433CB;
+        Mon,  4 May 2020 20:47:29 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Tue, 05 May 2020 02:17:29 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        robh+dt@kernel.org, rjw@rjwysocki.net, saravanak@google.com,
+        rnayak@codeaurora.org, bjorn.andersson@linaro.org,
+        vincent.guittot@linaro.org, jcrouse@codeaurora.org,
+        evgreen@chromium.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kernel-owner@vger.kernel.org
+Subject: Re: [PATCH v7 5/7] OPP: Add sanity checks in _read_opp_key()
+In-Reply-To: <20200424155404.10746-6-georgi.djakov@linaro.org>
+References: <20200424155404.10746-1-georgi.djakov@linaro.org>
+ <20200424155404.10746-6-georgi.djakov@linaro.org>
+Message-ID: <e007032f6125e8a226d0b43f54287b40@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 May 2020 18:43:51 +0200
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
-
-> On Thu, Apr 30, 2020 at 02:16:17PM -0700, Jacob Pan wrote:
-> > > +static void arm_smmu_mm_invalidate_range(struct mmu_notifier *mn,
-> > > +					 struct mm_struct *mm,
-> > > +					 unsigned long start,
-> > > unsigned long end) +{
-> > > +	/* TODO: invalidate ATS */
-> > > +}
-> > > +
-> > > +static void arm_smmu_mm_release(struct mmu_notifier *mn, struct
-> > > mm_struct *mm) +{
-> > > +	struct arm_smmu_mmu_notifier *smmu_mn = mn_to_smmu(mn);
-> > > +	struct arm_smmu_domain *smmu_domain;
-> > > +
-> > > +	mutex_lock(&arm_smmu_sva_lock);
-> > > +	if (smmu_mn->cleared) {
-> > > +		mutex_unlock(&arm_smmu_sva_lock);
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	smmu_domain = smmu_mn->domain;
-> > > +
-> > > +	/*
-> > > +	 * DMA may still be running. Keep the cd valid but
-> > > disable
-> > > +	 * translation, so that new events will still result in
-> > > stall.
-> > > +	 */  
-> > Does "disable translation" also disable translated requests?  
-> 
-> No it doesn't disable translated requests, it only prevents the SMMU
-> from accessing the pgd.
-> 
-OK. same as VT-d.
-
-> > I guess
-> > release is called after tlb invalidate range, so assuming no more
-> > devTLB left to generate translated request?  
-> 
-> I'm counting on the invalidate below (here a TODO, implemented in next
-> patch) to drop all devTLB entries. After that invalidate, the device:
-> * issues a Translation Request, returns with R=W=0 because we disabled
->   translation (and it isn't present in the SMMU TLB).
-> * issues a Page Request, returns with InvalidRequest because
->   mmget_not_zero() fails.
-> 
-Same flow. Thanks for the explanation.
-
-> >   
-> > > +	arm_smmu_write_ctx_desc(smmu_domain, mm->pasid,
-> > > &invalid_cd); +
-> > > +	arm_smmu_tlb_inv_asid(smmu_domain->smmu,
-> > > smmu_mn->cd->asid);
-> > > +	/* TODO: invalidate ATS */
-> > > +  
-> > If mm release is called after tlb invalidate range, is it still
-> > necessary to invalidate again?  
-> 
-> No, provided all mappings from the address space are unmapped and
-> invalidated. I'll double check, but in my tests invalidate range
-> didn't seem to be called for all mappings on mm exit, so I believe we
-> do need this.
-> 
-I think it is safe to invalidate again. There was a concern that mm
-release may delete IOMMU driver from the notification list and miss tlb
-invalidate range. I had a hard time to confirm that with ftrace while
-killing a process, many lost events.
-
-
-> Thanks,
-> Jean
+On 2020-04-24 21:24, Georgi Djakov wrote:
+> When we read the OPP keys, it would be nice to do some sanity checks
+> of the values we get from DT and see if they match with the information
+> that is populated in the OPP table. Let's pass a pointer of the table,
+> so that we can do some validation.
 > 
 
-[Jacob Pan]
+Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
+
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+> v7:
+> New patch.
+> 
+...
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
