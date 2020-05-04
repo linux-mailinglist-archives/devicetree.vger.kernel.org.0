@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D971C4388
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 19:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559561C4594
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 20:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730731AbgEDR7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 13:59:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        id S1732362AbgEDSPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 14:15:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730711AbgEDR7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 13:59:09 -0400
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E32CC061A0F
-        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 10:59:09 -0700 (PDT)
-Received: by mail-qk1-x741.google.com with SMTP id t3so493790qkg.1
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 10:59:09 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1730719AbgEDR7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 13:59:12 -0400
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AF9C061BD3
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 10:59:11 -0700 (PDT)
+Received: by mail-qv1-xf41.google.com with SMTP id t7so95608qvz.6
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 10:59:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hmchGPRatpHGz7FXodcq0SJqPYC5mC9nnx68TlaFw4w=;
-        b=nKm/NU/E8zknhGFBOyhBDH4qXUn8D776cT5h6JHftF4GhhDK6x9ry2rz/3390vKj+L
-         tN2liW5eIzpYXyOpEagl2/5lPJmBZ/VQImzT4IVSWB4A1XwFTg5LAMBg+Y79lMTvnRbz
-         fqUzQGcouFhzr7nhC+k8ZJKatIpZACKQ5KsgukU8IdQ4ybdM5qw3Q2p8bw7XJfI58Ne8
-         d+GGbZTZ274frK+wfzNePMwxV38lK3jsUAI762x47ra+I05WuZNE7YyUGRj4Ej2dR8IG
-         Zvj23kfA5xhRNdBa/Sm5jyZbT83OnNaTEKCCSmD7asI0QyaFyDOXBFhqBZG9KzBxltEi
-         hTnA==
+        bh=8gxTSUogDwuGLJulsmZ9RxF75CEfaqEdykWJgqsyHRs=;
+        b=OwZdX3Txd5nO1MJ8o7w20jwhXHetRlVr8p7/VGHyslIBBaeEF7sceCz68NtQQ89+Cr
+         lhXLQ5mfhmohwoD/EmcLUx/FSsIQx92OL9Q0kR759CbaR1Qu/MNxLsoFvCf1RVDU2sIh
+         Ea41bkZzHr0bxJejmL2UG7CJbuQl1I8w6sC151Gp3UH6x/0eWdzf2KiRgq605Mhadk02
+         cuHz1I4exDdbSCnE3WaRqVfblXSi96CdvH6UQrWRvIWgpr5IO9R8RQkbdTn8tvISXF1p
+         djDHF99CDnVRCzcLY4wCMkKi53ywORMqvsouKLbEo4YZtgnvx1iI2JJgczPDS7AAVQnv
+         4YAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hmchGPRatpHGz7FXodcq0SJqPYC5mC9nnx68TlaFw4w=;
-        b=D3Mj9G/DKDh1uBFtkFdCbPlOQX1+MT4uL1zu/rq0w5dy9ML6uzUhZhTTXbX8sktrdO
-         lDr7NclHNSzIVL1DBYAC/PFOdR+aDTFWv6FgAmq8OxrBoZFp52shGdHiiSIeG3fLtawO
-         k+N25zastZ1K2li7d/3k7/AN0YgkyAqJt/smxMGkBtLZUwfTg7T6OIMsqD7Vl7FPwfMS
-         H3rNCf1jBKXOWENOZbmKsOMtI9sfUNAC9hhZDrOPQ6I240eNIwkUONdldBTVhBadFgYx
-         TGknMw1RcXZbYgvupcYrzW83xJu0BAMtELwTEg5AD8ZOGgnaQAKT45yiuemnRH/ZFhCf
-         JCEA==
-X-Gm-Message-State: AGi0Pub7/+QASte9q+0pQYpPH6Cv2jde23J+MZ78mYMqNCniSrNHmqtn
-        RzZFHaPO0Kr4ViRErPqr9su/Nw==
-X-Google-Smtp-Source: APiQypKHzejQhJPuhrRIg5ZslvlTZGo4JtzrXdUU6lsW+xZU4Q0pY9zUQ7/oIZ0C/MMhJDrMkTTBcg==
-X-Received: by 2002:a05:620a:15c1:: with SMTP id o1mr387681qkm.187.1588615148533;
-        Mon, 04 May 2020 10:59:08 -0700 (PDT)
+        bh=8gxTSUogDwuGLJulsmZ9RxF75CEfaqEdykWJgqsyHRs=;
+        b=htd7Ikh+nu5/TTdBl86AwGk5LjmawM5SQ1BUtLIX2sRNCE9eNsQ7T1UOIKGiEvi5Ee
+         TFcdrriPkRLMmltgHpwuakF52tjvVG9KY6hSmzbSaznXZgY+aUysCW9gSJLeH2hOysyd
+         qmVXtpmpQ0TjnoaLsyxT8XFNLmCDi3hQj4f3rwx6rkBgHh8IGBsFWUahzlNFY3ykDzhA
+         QFnl8easSgzTUPoEGvPA8pO7KeX/ioKKanTPACZRlR8yJYhddHGEPaCYsdrpEDJeJTKz
+         EkskfbNUvIlOIDVxfSobtEkm/j1CEYuHGQtAE7p330XUCGhULK5B944GwDHNLbLNMnqm
+         T/2A==
+X-Gm-Message-State: AGi0PubkAx4hCW70U3qd3Hap5vvAQovdpjpgPY9axJLYpPvaRFMv/v4W
+        GbcclFRzSJbz4glHG2Qw0PKvpQ==
+X-Google-Smtp-Source: APiQypJJlTfHZSWjQgiuQR2FVZJgBO7pVAzG4ZkwpIMBMU8ZxPIJg4YBiCxzNzaXyVvJ3r0OQfOy0g==
+X-Received: by 2002:ad4:5a06:: with SMTP id ei6mr329705qvb.70.1588615150228;
+        Mon, 04 May 2020 10:59:10 -0700 (PDT)
 Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id h19sm11271088qtk.78.2020.05.04.10.59.06
+        by smtp.gmail.com with ESMTPSA id h19sm11271088qtk.78.2020.05.04.10.59.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 May 2020 10:59:08 -0700 (PDT)
+        Mon, 04 May 2020 10:59:09 -0700 (PDT)
 From:   Alex Elder <elder@linaro.org>
-To:     robh+dt@kernel.org, davem@davemloft.net
+To:     davem@davemloft.net
 Cc:     evgreen@chromium.org, subashab@codeaurora.org,
         cpratapa@codeaurora.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v2 1/4] dt-bindings: net: add IPA iommus property
-Date:   Mon,  4 May 2020 12:58:56 -0500
-Message-Id: <20200504175859.22606-2-elder@linaro.org>
+Subject: [PATCH net-next v2 2/4] net: ipa: redefine struct ipa_mem_data
+Date:   Mon,  4 May 2020 12:58:57 -0500
+Message-Id: <20200504175859.22606-3-elder@linaro.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200504175859.22606-1-elder@linaro.org>
 References: <20200504175859.22606-1-elder@linaro.org>
@@ -67,57 +67,197 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IPA accesses "IMEM" and main system memory through an SMMU, so
-its DT node requires an iommus property to define range of stream IDs
-it uses.
+The ipa_mem_data structure type was never actually used.  Instead,
+the IPA memory regions were defined using the ipa_mem structure.
+
+Redefine struct ipa_mem_data so it encapsulates the array of IPA-local
+memory region descriptors along with the count of entries in that
+array.  Pass just an ipa_mem structure pointer to ipa_mem_init().
+
+Rename the ipa_mem_data[] array ipa_mem_local_data[] to emphasize
+that the memory regions it defines are IPA-local memory.
 
 Signed-off-by: Alex Elder <elder@linaro.org>
 ---
- Documentation/devicetree/bindings/net/qcom,ipa.yaml | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/net/ipa/ipa_data-sc7180.c | 10 +++++++---
+ drivers/net/ipa/ipa_data-sdm845.c | 10 +++++++---
+ drivers/net/ipa/ipa_data.h        | 13 +++++--------
+ drivers/net/ipa/ipa_main.c        |  2 +-
+ drivers/net/ipa/ipa_mem.c         |  9 +++++----
+ drivers/net/ipa/ipa_mem.h         |  3 ++-
+ 6 files changed, 27 insertions(+), 20 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index 140f15245654..7b749fc04c32 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -20,7 +20,10 @@ description:
-   The GSI is an integral part of the IPA, but it is logically isolated
-   and has a distinct interrupt and a separately-defined address space.
+diff --git a/drivers/net/ipa/ipa_data-sc7180.c b/drivers/net/ipa/ipa_data-sc7180.c
+index 042b5fc3c135..f97e7e4e61c1 100644
+--- a/drivers/net/ipa/ipa_data-sc7180.c
++++ b/drivers/net/ipa/ipa_data-sc7180.c
+@@ -193,7 +193,7 @@ static const struct ipa_resource_data ipa_resource_data = {
+ };
  
--  See also soc/qcom/qcom,smp2p.txt and interconnect/interconnect.txt.
-+  See also soc/qcom/qcom,smp2p.txt and interconnect/interconnect.txt.  See
-+  iommu/iommu.txt and iommu/arm,smmu.yaml for more information about SMMU
-+  bindings.
+ /* IPA-resident memory region configuration for the SC7180 SoC. */
+-static const struct ipa_mem ipa_mem_data[] = {
++static const struct ipa_mem ipa_mem_local_data[] = {
+ 	[IPA_MEM_UC_SHARED] = {
+ 		.offset		= 0x0000,
+ 		.size		= 0x0080,
+@@ -296,12 +296,16 @@ static const struct ipa_mem ipa_mem_data[] = {
+ 	},
+ };
+ 
++static struct ipa_mem_data ipa_mem_data = {
++	.local_count	= ARRAY_SIZE(ipa_mem_local_data),
++	.local		= ipa_mem_local_data,
++};
 +
+ /* Configuration data for the SC7180 SoC. */
+ const struct ipa_data ipa_data_sc7180 = {
+ 	.version	= IPA_VERSION_4_2,
+ 	.endpoint_count	= ARRAY_SIZE(ipa_gsi_endpoint_data),
+ 	.endpoint_data	= ipa_gsi_endpoint_data,
+ 	.resource_data	= &ipa_resource_data,
+-	.mem_count	= ARRAY_SIZE(ipa_mem_data),
+-	.mem_data	= ipa_mem_data,
++	.mem_data	= &ipa_mem_data,
+ };
+diff --git a/drivers/net/ipa/ipa_data-sdm845.c b/drivers/net/ipa/ipa_data-sdm845.c
+index 0d9c36e1e806..c55507e94559 100644
+--- a/drivers/net/ipa/ipa_data-sdm845.c
++++ b/drivers/net/ipa/ipa_data-sdm845.c
+@@ -235,7 +235,7 @@ static const struct ipa_resource_data ipa_resource_data = {
+ };
  
-   - |
-     --------             ---------
-@@ -54,6 +57,9 @@ properties:
-       - const: ipa-shared
-       - const: gsi
+ /* IPA-resident memory region configuration for the SDM845 SoC. */
+-static const struct ipa_mem ipa_mem_data[] = {
++static const struct ipa_mem ipa_mem_local_data[] = {
+ 	[IPA_MEM_UC_SHARED] = {
+ 		.offset		= 0x0000,
+ 		.size		= 0x0080,
+@@ -318,12 +318,16 @@ static const struct ipa_mem ipa_mem_data[] = {
+ 	},
+ };
  
-+  iommus:
-+    maxItems: 1
++static struct ipa_mem_data ipa_mem_data = {
++	.local_count	= ARRAY_SIZE(ipa_mem_local_data),
++	.local		= ipa_mem_local_data,
++};
 +
-   clocks:
-     maxItems: 1
+ /* Configuration data for the SDM845 SoC. */
+ const struct ipa_data ipa_data_sdm845 = {
+ 	.version	= IPA_VERSION_3_5_1,
+ 	.endpoint_count	= ARRAY_SIZE(ipa_gsi_endpoint_data),
+ 	.endpoint_data	= ipa_gsi_endpoint_data,
+ 	.resource_data	= &ipa_resource_data,
+-	.mem_count	= ARRAY_SIZE(ipa_mem_data),
+-	.mem_data	= ipa_mem_data,
++	.mem_data	= &ipa_mem_data,
+ };
+diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
+index 7110de2de817..51d8e5a6f23a 100644
+--- a/drivers/net/ipa/ipa_data.h
++++ b/drivers/net/ipa/ipa_data.h
+@@ -246,14 +246,12 @@ struct ipa_resource_data {
  
-@@ -126,6 +132,7 @@ properties:
+ /**
+  * struct ipa_mem - IPA-local memory region description
+- * @offset:		offset in IPA memory space to base of the region
+- * @size:		size in bytes base of the region
+- * @canary_count:	number of 32-bit "canary" values that precede region
++ * @local_count:	number of regions defined in the local[] array
++ * @local:		array of IPA-local memory region descriptors
+  */
+ struct ipa_mem_data {
+-	u32 offset;
+-	u16 size;
+-	u16 canary_count;
++	u32 local_count;
++	const struct ipa_mem *local;
+ };
  
- required:
-   - compatible
-+  - iommus
-   - reg
-   - clocks
-   - interrupts
-@@ -164,6 +171,7 @@ examples:
-                 modem-init;
-                 modem-remoteproc = <&mss_pil>;
+ /**
+@@ -270,8 +268,7 @@ struct ipa_data {
+ 	u32 endpoint_count;	/* # entries in endpoint_data[] */
+ 	const struct ipa_gsi_endpoint_data *endpoint_data;
+ 	const struct ipa_resource_data *resource_data;
+-	u32 mem_count;		/* # entries in mem_data[] */
+-	const struct ipa_mem *mem_data;
++	const struct ipa_mem_data *mem_data;
+ };
  
-+                iommus = <&apps_smmu 0x720 0x3>;
-                 reg = <0 0x1e40000 0 0x7000>,
-                         <0 0x1e47000 0 0x2000>,
-                         <0 0x1e04000 0 0x2c000>;
+ extern const struct ipa_data ipa_data_sdm845;
+diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
+index 28998dcce3d2..9295a9122e8e 100644
+--- a/drivers/net/ipa/ipa_main.c
++++ b/drivers/net/ipa/ipa_main.c
+@@ -778,7 +778,7 @@ static int ipa_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_kfree_ipa;
+ 
+-	ret = ipa_mem_init(ipa, data->mem_count, data->mem_data);
++	ret = ipa_mem_init(ipa, data->mem_data);
+ 	if (ret)
+ 		goto err_reg_exit;
+ 
+diff --git a/drivers/net/ipa/ipa_mem.c b/drivers/net/ipa/ipa_mem.c
+index 42d2c29d9f0c..fb4de2a12796 100644
+--- a/drivers/net/ipa/ipa_mem.c
++++ b/drivers/net/ipa/ipa_mem.c
+@@ -12,6 +12,7 @@
+ 
+ #include "ipa.h"
+ #include "ipa_reg.h"
++#include "ipa_data.h"
+ #include "ipa_cmd.h"
+ #include "ipa_mem.h"
+ #include "ipa_data.h"
+@@ -266,15 +267,15 @@ int ipa_mem_zero_modem(struct ipa *ipa)
+ }
+ 
+ /* Perform memory region-related initialization */
+-int ipa_mem_init(struct ipa *ipa, u32 count, const struct ipa_mem *mem)
++int ipa_mem_init(struct ipa *ipa, const struct ipa_mem_data *mem_data)
+ {
+ 	struct device *dev = &ipa->pdev->dev;
+ 	struct resource *res;
+ 	int ret;
+ 
+-	if (count > IPA_MEM_COUNT) {
++	if (mem_data->local_count > IPA_MEM_COUNT) {
+ 		dev_err(dev, "to many memory regions (%u > %u)\n",
+-			count, IPA_MEM_COUNT);
++			mem_data->local_count, IPA_MEM_COUNT);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -302,7 +303,7 @@ int ipa_mem_init(struct ipa *ipa, u32 count, const struct ipa_mem *mem)
+ 	ipa->mem_size = resource_size(res);
+ 
+ 	/* The ipa->mem[] array is indexed by enum ipa_mem_id values */
+-	ipa->mem = mem;
++	ipa->mem = mem_data->local;
+ 
+ 	return 0;
+ }
+diff --git a/drivers/net/ipa/ipa_mem.h b/drivers/net/ipa/ipa_mem.h
+index 065cb499ebe5..f99180f84f0d 100644
+--- a/drivers/net/ipa/ipa_mem.h
++++ b/drivers/net/ipa/ipa_mem.h
+@@ -7,6 +7,7 @@
+ #define _IPA_MEM_H_
+ 
+ struct ipa;
++struct ipa_mem_data;
+ 
+ /**
+  * DOC: IPA Local Memory
+@@ -84,7 +85,7 @@ void ipa_mem_teardown(struct ipa *ipa);
+ 
+ int ipa_mem_zero_modem(struct ipa *ipa);
+ 
+-int ipa_mem_init(struct ipa *ipa, u32 count, const struct ipa_mem *mem);
++int ipa_mem_init(struct ipa *ipa, const struct ipa_mem_data *mem_data);
+ void ipa_mem_exit(struct ipa *ipa);
+ 
+ #endif /* _IPA_MEM_H_ */
 -- 
 2.20.1
 
