@@ -2,135 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D0A1C3746
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 12:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 673781C374D
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 12:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728146AbgEDKyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 06:54:36 -0400
-Received: from foss.arm.com ([217.140.110.172]:41690 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726756AbgEDKy2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 May 2020 06:54:28 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 651541FB;
-        Mon,  4 May 2020 03:54:27 -0700 (PDT)
-Received: from [10.57.39.240] (unknown [10.57.39.240])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0209B3F71F;
-        Mon,  4 May 2020 03:54:25 -0700 (PDT)
-Subject: Re: [PATCH v2 2/4] PCI: cadence: Use "dma-ranges" instead of
- "cdns,no-bar-match-nbits" property
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200417114322.31111-1-kishon@ti.com>
- <20200417114322.31111-3-kishon@ti.com>
- <20200501144645.GB7398@e121166-lin.cambridge.arm.com>
- <dc581c5b-11de-f4b3-e928-208b9293e391@arm.com>
- <2472c182-834c-d2c1-175e-4d73898aef35@ti.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <4f333ceb-2809-c4ae-4ae3-33a83c612cd3@arm.com>
-Date:   Mon, 4 May 2020 11:54:24 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1727970AbgEDKzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 06:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727098AbgEDKzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 06:55:47 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E188C061A0E;
+        Mon,  4 May 2020 03:55:46 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id r26so8522106wmh.0;
+        Mon, 04 May 2020 03:55:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MQzZFCIobcGRmD/3+2nuvnxHv+aNaXAHRF5s3/10ij8=;
+        b=m/PZmuLtPqcrVYqQd8qj0jK+TnpKJK5MX7Eozj10EZs/2HHL50KGQbVzu8gMp02gQJ
+         6F9pbqJxSIP5cyRweFxpWJmvEjHRO8iYRZ7uJtUkgDOuGJdz6ddKmppLGZR3e5PZRy8p
+         lscDnAenUEC22uEp+XgYw32aZ+HkLVSqsvC75MSuht8EuPG6ScVjIjvMEFV9pdkEkkcf
+         OArBZA9Q1sjFRuzpgxMJe/LVC99w/wnQt0E3X/QvpCR24OL4Clof6mIPLcYdTz1iOWT0
+         IgmiGmXOguP6TDTfqbTQZvpTCTiMEWCPmXlM5UOvtimIP+GKpRwOyklM3Lsq6jw5VEvG
+         JW4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MQzZFCIobcGRmD/3+2nuvnxHv+aNaXAHRF5s3/10ij8=;
+        b=ZV9X1bqalkcw/gZPBYDcAEgC9yUxoPWp4/LtHnV8h0jt+bAGce7XO9Fi09ow8UoTZC
+         I4FCOhYHzu48cNwsPzev/cvN7ziE6H4Hs2lVmO6qKaRoCp+fq2WFFvyIeUUFzSso+bLW
+         /pGuU/DkcH5s+gv2HU2W5a7FnrPEUdom8BYyX8exfbC3cYifU+j8WNl3rjhbjXJYaGPw
+         h7GIHy9IOlE8wQyAKuliigIanGy636MQQb2ouXsoZVIR1Gkw4nHHrklD3uyZ/BEtzkyD
+         vwtLaf5kbH6Ku8GfpD76Mm0VXbTBAe3vbHha9jD0H3dXe+7T1ZDhgYLCl0kHeDZdFUR+
+         BNaQ==
+X-Gm-Message-State: AGi0Pua6+/AlmdHBEXzlMul+Iw5yIz1L7EkE88G8KdQ+M8R4WcvZz6nq
+        gWrw3Bc1Y8BZxqo0535A8GU0ma8ZEg2K/K06t3I=
+X-Google-Smtp-Source: APiQypIYRxd9Jarg4XaVun2QaTdEW4Ftk+7SlWd5NIBX1wOKIWiArNVS6La7qmbqT0diARP8mRcyXHfJL2xmf4cg4Io=
+X-Received: by 2002:a7b:c0c5:: with SMTP id s5mr13769191wmh.134.1588589744849;
+ Mon, 04 May 2020 03:55:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2472c182-834c-d2c1-175e-4d73898aef35@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+References: <20200502114752.1048500-1-martin.blumenstingl@googlemail.com> <20200502114752.1048500-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200502114752.1048500-2-martin.blumenstingl@googlemail.com>
+From:   hex dump <hexdump0815@gmail.com>
+Date:   Mon, 4 May 2020 12:55:30 +0200
+Message-ID: <CAKTihDVy6oSuQe4eP87hWO17tBu3=XZ-PM41YOqLVOtXJ8+YeQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: phy: meson8b-usb2: Convert to json-schema
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kishon@ti.com, robh+dt@kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        narmstrong@baylibre.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-05-04 9:44 am, Kishon Vijay Abraham I wrote:
-> Hi Robin,
-> 
-> On 5/1/2020 9:24 PM, Robin Murphy wrote:
->> On 2020-05-01 3:46 pm, Lorenzo Pieralisi wrote:
->>> [+Robin - to check on dma-ranges intepretation]
->>>
->>> I would need RobH and Robin to review this.
->>>
->>> Also, An ACK from Tom is required - for the whole series.
->>>
->>> On Fri, Apr 17, 2020 at 05:13:20PM +0530, Kishon Vijay Abraham I wrote:
->>>> Cadence PCIe core driver (host mode) uses "cdns,no-bar-match-nbits"
->>>> property to configure the number of bits passed through from PCIe
->>>> address to internal address in Inbound Address Translation register.
->>>>
->>>> However standard PCI dt-binding already defines "dma-ranges" to
->>>> describe the address range accessible by PCIe controller. Parse
->>>> "dma-ranges" property to configure the number of bits passed
->>>> through from PCIe address to internal address in Inbound Address
->>>> Translation register.
->>>>
->>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>>> ---
->>>>    drivers/pci/controller/cadence/pcie-cadence-host.c | 13 +++++++++++--
->>>>    1 file changed, 11 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c
->>>> b/drivers/pci/controller/cadence/pcie-cadence-host.c
->>>> index 9b1c3966414b..60f912a657b9 100644
->>>> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
->>>> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
->>>> @@ -206,8 +206,10 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
->>>>        struct device *dev = rc->pcie.dev;
->>>>        struct platform_device *pdev = to_platform_device(dev);
->>>>        struct device_node *np = dev->of_node;
->>>> +    struct of_pci_range_parser parser;
->>>>        struct pci_host_bridge *bridge;
->>>>        struct list_head resources;
->>>> +    struct of_pci_range range;
->>>>        struct cdns_pcie *pcie;
->>>>        struct resource *res;
->>>>        int ret;
->>>> @@ -222,8 +224,15 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
->>>>        rc->max_regions = 32;
->>>>        of_property_read_u32(np, "cdns,max-outbound-regions", &rc->max_regions);
->>>>    -    rc->no_bar_nbits = 32;
->>>> -    of_property_read_u32(np, "cdns,no-bar-match-nbits", &rc->no_bar_nbits);
->>>> +    if (!of_pci_dma_range_parser_init(&parser, np))
->>>> +        if (of_pci_range_parser_one(&parser, &range))
->>>> +            rc->no_bar_nbits = ilog2(range.size);
->>
->> You probably want "range.pci_addr + range.size" here just in case the bottom of
->> the window is ever non-zero. Is there definitely only ever a single inbound
->> window to consider?
-> 
-> Cadence IP has 3 inbound address translation registers, however we use only 1
-> inbound address translation register to map the entire 32 bit or 64 bit address
-> region.
+On Sat, May 2, 2020 at 1:48 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for the Amlogic Meson8, Meson8b, Meson8m2 and GXBB USB2
+> PHY over to a YAML schema.
+>
+> While here, also add the fallback compatible string
+> "amlogic,meson-gxbb-usb2-phy" which is already used in
+> arch/arm/boot/dts/meson{,8,8b}.dtsi.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-OK, if anything that further strengthens the argument for deprecating a 
-single "number of bits" property in favour of ranges that accurately 
-describe the window(s). However it also suggests that other users in 
-future might have some expectation that specifying "dma-ranges" with up 
-to 3 entries should work to allow a more restrictive inbound 
-configuration. Thus it would be desirable to make the code a little more 
-robust here - even if we don't support multiple windows straight off, it 
-would still be better to implement it in a way that can be cleanly 
-extended later, and at least say something if more ranges are specified 
-rather than just silently ignoring them.
+Tested-by: hexdump <hexdump0815@googlemail.com>
 
->> I believe that pci_parse_request_of_pci_ranges() could do the actual parsing
->> for you, but I suppose plumbing that in plus processing the resulting
->> dma_ranges resource probably ends up a bit messier than the concise open-coding
->> here.
-> 
-> right, pci_parse_request_of_pci_ranges() parses "ranges" property and is used
-> for outbound configuration, whereas here we parse "dma-ranges" property and is
-> used for inbound configuration.
-
-If you give it a valid third argument it *also* parses "dma-ranges" into 
-a list of inbound regions. This is already used by various other drivers 
-for equivalent inbound window setup, which is what I was hinting at 
-before, but given the extensibility argument above I'm now going to 
-actively suggest following that pattern for consistency.
-
-Robin.
+> ---
+>  .../phy/amlogic,meson8b-usb2-phy.yaml         | 61 +++++++++++++++++++
+>  .../bindings/phy/meson8b-usb2-phy.txt         | 28 ---------
+>  2 files changed, 61 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+>
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+> new file mode 100644
+> index 000000000000..c2fe8c08d99e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson8b-usb2-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY
+> +
+> +maintainers:
+> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +            - amlogic,meson8-usb2-phy
+> +            - amlogic,meson8b-usb2-phy
+> +          - const: amlogic,meson-mx-usb2-phy
+> +      - const: amlogic,meson-gxbb-usb2-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usb_general
+> +      - const: usb
+> +
+> +  resets:
+> +    minItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  phy-supply:
+> +     description:
+> +       Phandle to a regulator that provides power to the PHY. This
+> +       regulator will be managed during the PHY power on/off sequence.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#phy-cells"
+> +
+> +examples:
+> +  - |
+> +    usb-phy@c0000000 {
+> +      compatible = "amlogic,meson-gxbb-usb2-phy";
+> +      reg = <0xc0000000 0x20>;
+> +      resets = <&reset_usb_phy>;
+> +      clocks = <&clk_usb_general>, <&reset_usb>;
+> +      clock-names = "usb_general", "usb";
+> +      phy-supply = <&usb_vbus>;
+> +      #phy-cells = <0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+> deleted file mode 100644
+> index d81d73aea608..000000000000
+> --- a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* Amlogic Meson8, Meson8b and GXBB USB2 PHY
+> -
+> -Required properties:
+> -- compatible:  Depending on the platform this should be one of:
+> -       "amlogic,meson8-usb2-phy"
+> -       "amlogic,meson8b-usb2-phy"
+> -       "amlogic,meson-gxbb-usb2-phy"
+> -- reg:         The base address and length of the registers
+> -- #phys-cells: should be 0 (see phy-bindings.txt in this directory)
+> -- clocks:      phandle and clock identifier for the phy clocks
+> -- clock-names: "usb_general" and "usb"
+> -
+> -Optional properties:
+> -- resets:      reference to the reset controller
+> -- phy-supply:  see phy-bindings.txt in this directory
+> -
+> -
+> -Example:
+> -
+> -usb0_phy: usb-phy@c0000000 {
+> -       compatible = "amlogic,meson-gxbb-usb2-phy";
+> -       #phy-cells = <0>;
+> -       reg = <0x0 0xc0000000 0x0 0x20>;
+> -       resets = <&reset RESET_USB_OTG>;
+> -       clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+> -       clock-names = "usb_general", "usb";
+> -       phy-supply = <&usb_vbus>;
+> -};
+> --
+> 2.26.2
+>
