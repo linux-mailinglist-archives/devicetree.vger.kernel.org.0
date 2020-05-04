@@ -2,176 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC3A1C47D6
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD171C47B7
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726627AbgEDUSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 16:18:50 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:40136 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726111AbgEDUSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:18:50 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 044KIgmW083879;
-        Mon, 4 May 2020 15:18:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1588623522;
-        bh=JnWkruTmjRltQXNw/MW7et/CtD+t7y6OhtwkTr2Y12Q=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=tMLFnS6/NAIvKH7XpRbL5kfwid6AFGJECgguRiHuX7y5ZIgk7J78Htof7qvqtb0U9
-         q5IW2X9124maTLwf+b2LP5EGNw1y0D7bM5E53LYmKABG3H+KNUs90yu2X7wXLByzPN
-         UuXu27n/fA2MHOGQB6JcFj1qnBXMQ2Rmd738kmGw=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 044KIgHi086570
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 May 2020 15:18:42 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 4 May
- 2020 15:18:42 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 4 May 2020 15:18:42 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 044KIf6Z114527;
-        Mon, 4 May 2020 15:18:41 -0500
-Subject: Re: [PATCH 2/3] dt-bindings: leds: Add binding for aw2013
-To:     <nikitos.tr@gmail.com>, <pavel@ucw.cz>
-CC:     <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-References: <20200504162934.4693-1-nikitos.tr@gmail.com>
- <20200504162934.4693-2-nikitos.tr@gmail.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <7866a778-f38a-5d65-09d6-783f3a6c555d@ti.com>
-Date:   Mon, 4 May 2020 15:09:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1726338AbgEDULv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 16:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726111AbgEDULv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:11:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37919C061A0E
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 13:11:51 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jVhR6-0002Pb-1u; Mon, 04 May 2020 22:11:32 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jVhR5-0007po-DD; Mon, 04 May 2020 22:11:31 +0200
+Date:   Mon, 4 May 2020 22:11:31 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Sandipan Patra <spatra@nvidia.com>
+Cc:     treding@nvidia.com, robh+dt@kernel.org, jonathanh@nvidia.com,
+        bbasu@nvidia.com, ldewangan@nvidia.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2] pwm: tegra: dynamic clk freq configuration by PWM
+ driver
+Message-ID: <20200504201131.l5ofxem3owrl5siv@pengutronix.de>
+References: <1587398043-18767-1-git-send-email-spatra@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <20200504162934.4693-2-nikitos.tr@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1587398043-18767-1-git-send-email-spatra@nvidia.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel
+Hello,
 
-On 5/4/20 11:29 AM, nikitos.tr@gmail.com wrote:
-> From: Nikita Travkin <nikitos.tr@gmail.com>
->
-> Add YAML devicetree binding for AWINIC AW2013 3-channel led driver
->
-> Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
+On Mon, Apr 20, 2020 at 09:24:03PM +0530, Sandipan Patra wrote:
+> Added support for dynamic clock freq configuration in pwm kernel driver.
+> Earlier the pwm driver used to cache boot time clock rate by pwm clock
+> parent during probe. Hence dynamically changing pwm frequency was not
+> possible for all the possible ranges. With this change, dynamic calculation
+> is enabled and it is able to set the requested period from sysfs knob
+> provided the value is supported by clock source.
+> 
+> Changes mainly have 2 parts:
+>   - T186 and later chips [1]
+>   - T210 and prior chips [2]
+> 
+> For [1] - Changes implemented to set pwm period dynamically and
+>           also checks added to allow only if requested period(ns) is
+>           below or equals to higher range.
+> 
+> For [2] - Only checks if the requested period(ns) is below or equals
+>           to higher range defined by max clock limit. The limitation
+>           in T210 or prior chips are due to the reason of having only
+>           one pwm-controller supporting multiple channels. But later
+>           chips have multiple pwm controller instances each having
+> 	  single channel support.
+> 
+> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
 > ---
->   .../devicetree/bindings/leds/leds-aw2013.yaml | 91 +++++++++++++++++++
->   1 file changed, 91 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/leds/leds-aw2013.yaml
->
-> diff --git a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
-> new file mode 100644
-> index 000000000000..f118721df1e8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-aw2013.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AWINIC AW2013 3-channel LED Driver
-> +
-> +maintainers:
-> +  - Nikita Travkin <nikitos.tr@gmail.com>
-> +
-> +description: |
-> +  The AW2013 is a 3-channel LED driver with I2C interface. It can control
-> +  LED brightness with PWM output.
-> +
-> +properties:
-> +  compatible:
-> +    const: awinic,aw2013
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vcc-supply:
-> +    description: Regulator providing power to the "VCC" pin.
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^led@[0-2]$":
-> +    type: object
-> +    allOf:
-> +      - $ref: common.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        description: Index of the LED.
-> +        minimum: 0
-> +        maximum: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        led-controller@45 {
-> +            compatible = "awinic,aw2013";
-> +            reg = <0x45>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            vcc-supply = <&pm8916_l17>;
-> +
-> +            led@0 {
-> +                reg = <0>;
-> +                led-max-microamp = <5000>;
-> +                function = LED_FUNCTION_INDICATOR;
-> +                color = <LED_COLOR_ID_RED>;
-> +            };
-> +
-> +            led@1 {
-> +                reg = <1>;
-> +                led-max-microamp = <5000>;
-> +                function = LED_FUNCTION_INDICATOR;
-> +                color = <LED_COLOR_ID_GREEN>;
-> +            };
-> +
-> +            led@2 {
-> +                reg = <2>;
-> +                led-max-microamp = <5000>;
-> +                function = LED_FUNCTION_INDICATOR;
-> +                color = <LED_COLOR_ID_BLUE>;
-> +            };
-> +        };
-> +    };
-> +...
+> V2:
+> 1. Min period_ns calculation is moved to probe.
+> 2. Added descriptioins for PWM register bits and regarding behaviour
+>    of the controller when new configuration is applied or pwm is disabled.
+> 3. Setting period with possible value when supplied period is below limit.
+> 4. Corrected the earlier code comment:
+>    plus 1 instead of minus 1 during pwm calculation
+> 
+>  drivers/pwm/pwm-tegra.c | 110 +++++++++++++++++++++++++++++++++++++++++-------
+>  1 file changed, 94 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/pwm/pwm-tegra.c b/drivers/pwm/pwm-tegra.c
+> index d26ed8f..7a36325 100644
+> --- a/drivers/pwm/pwm-tegra.c
+> +++ b/drivers/pwm/pwm-tegra.c
+> @@ -4,8 +4,39 @@
+>   *
+>   * Tegra pulse-width-modulation controller driver
+>   *
+> - * Copyright (c) 2010, NVIDIA Corporation.
+> - * Based on arch/arm/plat-mxc/pwm.c by Sascha Hauer <s.hauer@pengutronix.de>
+> + * Copyright (c) 2010-2020, NVIDIA Corporation.
+> + *
+> + * Overview of Tegra Pulse Width Modulator Register:
+> + * 1. 13-bit: Frequency division (SCALE)
+> + * 2. 8-bit : Puls division (DUTY)
+> + * 3. 1-bit : Enable bit
+> + *
+> + * The PWM clock frequency is divided by 256 before subdividing it based
+> + * on the programmable frequency division value to generate the required
+> + * frequency for PWM output. The maximum output frequency that can be
+> + * achieved is (max rate of source clock) / 256.
+> + * i.e. if source clock rate is 408 MHz, maximum output frequency cab be:
 
-Would this be a good candidate for the multicolor framework?
+s/i.e./e.g./, s/cab/can/
 
-Dan
+> + * 408 MHz/256 = 1.6 MHz.
+> + * This 1.6 MHz frequency can further be divided using SCALE value in PWM.
+> + *
+> + * PWM pulse width: 8 bits are usable [23:16] for varying pulse width.
+> + * To achieve 100% duty cycle, program Bit [24] of this register to
+> + * 1’b1. In which case the other bits [23:16] are set to don't care.
+> + *
+> + * Limitations and known facts:
 
+Please use "Limitations:" here to make this easier greppable.
 
+> + * -	When PWM is disabled, the output is driven to 0.
+
+0 or inactive?
+
+> + * -	It does not allow the current PWM period to complete and
+> + *	stops abruptly.
+> + *
+> + * -	If the register is reconfigured while pwm is running,
+
+s/pwm/PWM/
+
+> + *	It does not let the currently running period to complete.
+
+s/It/it/; s/let/complete/; s/ to complete//
+
+> + *
+> + * -	Pulse width of the pwm can never be out of bound.
+
+I don't understand that one.
+
+> + *	It's taken care at HW and SW
+> + * -	If the user input duty is below limit, then driver sets it to
+> + *	minimum possible value.
+
+that is 0? Do you mean "input period"? If so, better refuse the request.
+
+> + * -	If anything else goes wrong for setting duty or period,
+> + *	-EINVAL is returned.
+
+I wouldn't state this, too trivial. Instead the following are
+interesting:
+
+ - The driver doesn't implement the right rounding rules
+ - The driver needs updating to the atomic API
+
+>   */
+>  
+>  #include <linux/clk.h>
+> @@ -41,6 +72,7 @@ struct tegra_pwm_chip {
+>  	struct reset_control*rst;
+>  
+>  	unsigned long clk_rate;
+> +	unsigned long min_period_ns;
+>  
+>  	void __iomem *regs;
+>  
+> @@ -67,8 +99,9 @@ static int tegra_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+>  			    int duty_ns, int period_ns)
+>  {
+>  	struct tegra_pwm_chip *pc = to_tegra_pwm_chip(chip);
+> -	unsigned long long c = duty_ns, hz;
+> -	unsigned long rate;
+> +	unsigned long long p_width = duty_ns, period_hz;
+> +	unsigned long rate, required_clk_rate;
+> +	unsigned long pfm; /* Frequency divider */
+>  	u32 val = 0;
+>  	int err;
+>  
+> @@ -77,37 +110,77 @@ static int tegra_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+>  	 * per (1 << PWM_DUTY_WIDTH) cycles and make sure to round to the
+>  	 * nearest integer during division.
+>  	 */
+> -	c *= (1 << PWM_DUTY_WIDTH);
+> -	c = DIV_ROUND_CLOSEST_ULL(c, period_ns);
+> +	p_width *= (1 << PWM_DUTY_WIDTH);
+> +	p_width = DIV_ROUND_CLOSEST_ULL(p_width, period_ns);
+>  
+> -	val = (u32)c << PWM_DUTY_SHIFT;
+> +	val = (u32)p_width << PWM_DUTY_SHIFT;
+> +
+> +	/*
+> +	 *  Period in nano second has to be <= highest allowed period
+> +	 *  based on max clock rate of the pwm controller.
+> +	 *
+> +	 *  higher limit = max clock limit >> PWM_DUTY_WIDTH
+> +	 *  lower limit = min clock limit >> PWM_DUTY_WIDTH >> PWM_SCALE_WIDTH
+> +	 */
+> +	if (period_ns < pc->min_period_ns) {
+> +		period_ns = pc->min_period_ns;
+> +		pr_warn("Period is adjusted to allowed value (%d ns)\n",
+> +				period_ns);
+
+That pr_warn is a bad idea as it spams the kernel log when the
+configuration is changed frequently. Wouldn't it be easier to calculate
+the frequency that is needed to achieve period_ns and check that against
+max_frequency?
+
+> +	}
+>  
+>  	/*
+>  	 * Compute the prescaler value for which (1 << PWM_DUTY_WIDTH)
+>  	 * cycles at the PWM clock rate will take period_ns nanoseconds.
+>  	 */
+> -	rate = pc->clk_rate >> PWM_DUTY_WIDTH;
+> +	if (pc->soc->num_channels == 1) {
+
+required_clk_rate could be defined here, which is better as it narrows
+its scope.
+
+> +		/*
+> +		 * Rate is multiplied with 2^PWM_DUTY_WIDTH so that it matches
+> +		 * with the hieghest applicable rate that the controller can
+
+s/hieghest/highest/
+
+> +		 * provide. Any further lower value can be derived by setting
+> +		 * PFM bits[0:12].
+> +		 * Higher mark is taken since BPMP has round-up mechanism
+> +		 * implemented.
+
+I don't understand the part with the round-up mechanism.
+
+> +		 */
+> +		required_clk_rate =
+> +			(NSEC_PER_SEC / period_ns) << PWM_DUTY_WIDTH;
+> +
+> +		err = clk_set_rate(pc->clk, required_clk_rate);
+> +		if (err < 0)
+> +			return -EINVAL;
+
+What happens if clk_set_rate configures a higher rate than requested?
+
+> +
+> +		rate = clk_get_rate(pc->clk) >> PWM_DUTY_WIDTH;
+> +	} else {
+> +		/*
+> +		 * This is the case for SoCs who support multiple channels:
+
+s/who/that/
+
+> +		 *
+> +		 * clk_set_rate() can not be called again in config because
+> +		 * T210 or any prior chip supports one pwm-controller and
+> +		 * multiple channels. Hence in this case cached clock rate
+> +		 * will be considered which was stored during probe.
+> +		 */
+> +		rate = pc->clk_rate >> PWM_DUTY_WIDTH;
+> +	}
+>  
+>  	/* Consider precision in PWM_SCALE_WIDTH rate calculation */
+> -	hz = DIV_ROUND_CLOSEST_ULL(100ULL * NSEC_PER_SEC, period_ns);
+> -	rate = DIV_ROUND_CLOSEST_ULL(100ULL * rate, hz);
+> +	period_hz = DIV_ROUND_CLOSEST_ULL(100ULL * NSEC_PER_SEC, period_ns);
+> +	pfm = DIV_ROUND_CLOSEST_ULL(100ULL * rate, period_hz);
+>  
+>  	/*
+>  	 * Since the actual PWM divider is the register's frequency divider
+> -	 * field minus 1, we need to decrement to get the correct value to
+> +	 * field plus 1, we need to decrement to get the correct value to
+>  	 * write to the register.
+>  	 */
+> -	if (rate > 0)
+> -		rate--;
+> +	if (pfm > 0)
+> +		pfm--;
+>  
+>  	/*
+> -	 * Make sure that the rate will fit in the register's frequency
+> +	 * Make sure that pfm will fit in the register's frequency
+>  	 * divider field.
+>  	 */
+> -	if (rate >> PWM_SCALE_WIDTH)
+> +	if (pfm >> PWM_SCALE_WIDTH)
+>  		return -EINVAL;
+>  
+> -	val |= rate << PWM_SCALE_SHIFT;
+> +	val |= pfm << PWM_SCALE_SHIFT;
+>  
+>  	/*
+>  	 * If the PWM channel is disabled, make sure to turn on the clock
+> @@ -205,6 +278,10 @@ static int tegra_pwm_probe(struct platform_device *pdev)
+>  	 */
+>  	pwm->clk_rate = clk_get_rate(pwm->clk);
+>  
+> +	/* Set minimum limit of PWM period for the IP */
+> +	pwm->min_period_ns =
+> +	    (NSEC_PER_SEC / (pwm->soc->max_frequency >> PWM_DUTY_WIDTH)) + 1;
+
+With my suggestion above, you can drop the min_period_ns field.
+
+> +
+>  	pwm->rst = devm_reset_control_get_exclusive(&pdev->dev, "pwm");
+>  	if (IS_ERR(pwm->rst)) {
+>  		ret = PTR_ERR(pwm->rst);
+> @@ -313,4 +390,5 @@ module_platform_driver(tegra_pwm_driver);
+>  
+>  MODULE_LICENSE("GPL");
+>  MODULE_AUTHOR("NVIDIA Corporation");
+> +MODULE_AUTHOR("Sandipan Patra <spatra@nvidia.com>");
+>  MODULE_ALIAS("platform:tegra-pwm");
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
