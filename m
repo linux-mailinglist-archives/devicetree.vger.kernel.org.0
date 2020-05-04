@@ -2,200 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D661C454C
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 20:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8701C451F
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 20:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731073AbgEDSAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 14:00:53 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:47478 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731069AbgEDSAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 14:00:52 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 67F4E1C0220; Mon,  4 May 2020 20:00:49 +0200 (CEST)
-Date:   Mon, 4 May 2020 20:00:49 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     nikitos.tr@gmail.com
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/3] leds: add aw2013 driver
-Message-ID: <20200504180049.GA5067@duo.ucw.cz>
-References: <20200504162934.4693-1-nikitos.tr@gmail.com>
+        id S1731582AbgEDSMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 14:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1732292AbgEDSMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 14:12:45 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BED5C061A0E
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 11:12:45 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id z1so5939663pfn.3
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 11:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2t85iJlph6Ef8JKJOUjpWg5TqaXW+ZWxyKsRV3ThBgw=;
+        b=aH742N842oe7OA3iNJcOds5bSKnEuHAMCXh+aDAwkdSSQRtoymdunTd5VQAjlYHQOM
+         OjULy3JBZp5yb7vg5p5qDxupV9iTMJr5cLcgxy/lXqRpmEnMPzqfvH6f95xCs9eY01RT
+         47Si/yLCW7fX1qR5gKrcSyaoD4LfqSwa/YQyA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2t85iJlph6Ef8JKJOUjpWg5TqaXW+ZWxyKsRV3ThBgw=;
+        b=ShG/qK0WdRogHmNE3mv608C7hzfQwu3ngQVW7BRonCVVdw90GskiPKGvg5S0Y5VxrB
+         TNzfSdS1hkAd71IFe8C9K4Q9fQ95abfRI1uzfTdEbSsf5QU+yCr8LqyZKooFwBBsNUyq
+         a9/FHDavbHcA9cV5ggOFYUysnvNe8wpGVu5M0uo4ggIzXwQRoPH/i9/xPDnmKHN3o/Fi
+         7+S39TbbUk4fVl2fjKHN2VcuKclEs1q/QmO9ogBGmjxJlx3B7IMeq9L8IylOFDU6yfqv
+         k2xe095ef+v16FyqT8v367CF6gXTcDKqrRtcKisPePiAqIBdTwMiEl6zG1cmCQalRY5d
+         f1Zw==
+X-Gm-Message-State: AGi0PuaM57fqlq7BT58pQfrjPg+r3jZYbKbX6QnPS7obibjpuU3wUiFX
+        9TYKBg9wt+u+ofVC+PKCy5HT/w==
+X-Google-Smtp-Source: APiQypJwXwd6yTrLo+nsjAM60TJxP6uE+6NhJJmcwz/VBqP3Hf1U27dr+P3P+V/0llWuVJfNyCsDzQ==
+X-Received: by 2002:a63:951b:: with SMTP id p27mr194840pgd.49.1588615963952;
+        Mon, 04 May 2020 11:12:43 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id l5sm1558594pgt.92.2020.05.04.11.12.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 May 2020 11:12:43 -0700 (PDT)
+Date:   Mon, 4 May 2020 11:12:42 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Steven Rostedt <rostedt@goodmis.org>
+Cc:     Pavel Tatashin <pasha.tatashin@soleen.com>, jmorris@namei.org,
+        sashal@kernel.org, linux-kernel@vger.kernel.org, pmladek@suse.com,
+        sergey.senozhatsky@gmail.com, anton@enomsg.org, ccross@android.com,
+        tony.luck@intel.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] printk: honor the max_reason field in kmsg_dumper
+Message-ID: <202005041111.D803E731@keescook>
+References: <20200502143555.543636-1-pasha.tatashin@soleen.com>
+ <20200502143555.543636-2-pasha.tatashin@soleen.com>
+ <20200504131500.5f6c8860@gandalf.local.home>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="/04w6evG8XlLl3ft"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200504162934.4693-1-nikitos.tr@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200504131500.5f6c8860@gandalf.local.home>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 04, 2020 at 01:15:00PM -0400, Steven Rostedt wrote:
+> On Sat,  2 May 2020 10:35:53 -0400
+> Pavel Tatashin <pasha.tatashin@soleen.com> wrote:
+> 
+> > kmsg_dump() allows to dump kmesg buffer for various system events: oops,
+> > panic, reboot, etc. It provides an interface to register a callback call
+> > for clients, and in that callback interface there is a field "max_reason"
+> > which gets ignored unless always_kmsg_dump is passed as kernel parameter.
+> > 
+> > Allow clients to decide max_reason, and keep the current behavior when
+> > max_reason is not set.
+> > 
+> > Signed-off-by: Pavel Tatashin <pasha.tatashin@soleen.com>
+> > ---
+> >  include/linux/kmsg_dump.h |  1 +
+> >  kernel/printk/printk.c    | 16 +++++++++-------
+> >  2 files changed, 10 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/include/linux/kmsg_dump.h b/include/linux/kmsg_dump.h
+> > index 2e7a1e032c71..c0d703b7ce38 100644
+> > --- a/include/linux/kmsg_dump.h
+> > +++ b/include/linux/kmsg_dump.h
+> > @@ -28,6 +28,7 @@ enum kmsg_dump_reason {
+> >  	KMSG_DUMP_RESTART,
+> >  	KMSG_DUMP_HALT,
+> >  	KMSG_DUMP_POWEROFF,
+> > +	KMSG_DUMP_MAX = KMSG_DUMP_POWEROFF
+> 
+> Hmm, I didn't realize that enums were allowed to have duplicates. That can
+> usually screw up logic. I would recommend making that a define afterward.
+> 
+> #define KMSG_DUMP_MAX KMSG_DUMP_POWEROFF
+> 
+> As is done in other locations of the kernel.
 
---/04w6evG8XlLl3ft
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I've seen it also be the last item in an enum, then comparisons can just
+do "< KMSG_DUMP_MAX" instead of "<= KMSG_DUMP_MAX".
 
-Hi!
-
-> +#define AW2013_NAME "aw2013"
-
-That's.... not really useful define. Make it NAME? Drop it?
-
-> +#define AW2013_TIME_STEP 130
-
-I'd add comment with /* units */.
-
-> +#define STATE_OFF 0
-> +#define STATE_KEEP 1
-> +#define STATE_ON 2
-
-We should add enum into core for this...
-
-> +static int aw2013_chip_init(struct aw2013 *chip)
-> +{
-> +	int i, ret;
-> +
-> +	ret =3D regmap_write(chip->regmap, AW2013_GCR, AW2013_GCR_ENABLE);
-> +	if (ret) {
-> +		dev_err(&chip->client->dev, "Failed to enable the chip: %d\n",
-> +			ret);
-> +		goto error;
-> +	}
-> +
-> +	for (i =3D 0; i < chip->num_leds; i++) {
-> +		ret =3D regmap_update_bits(chip->regmap,
-> +					 AW2013_LCFG(chip->leds[i].num),
-> +					 AW2013_LCFG_IMAX_MASK,
-> +					 chip->leds[i].imax);
-> +		if (ret) {
-> +			dev_err(&chip->client->dev,
-> +				"Failed to set maximum current for led %d: %d\n",
-> +				chip->leds[i].num, ret);
-> +			goto error;
-> +		}
-> +	}
-> +
-> +error:
-> +	return ret;
-> +}
-
-No need for goto if you are just returning.
-
-> +static bool aw2013_chip_in_use(struct aw2013 *chip)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < chip->num_leds; i++)
-> +		if (chip->leds[i].cdev.brightness)
-> +			return true;
-> +
-> +	return false;
-> +}
-
-How is this going to interact with ledstate =3D=3D KEEP?
-
-> +static int aw2013_brightness_set(struct led_classdev *cdev,
-> +				 enum led_brightness brightness)
-> +{
-> +	struct aw2013_led *led =3D container_of(cdev, struct aw2013_led, cdev);
-> +	int ret, num;
-> +
-> +	mutex_lock(&led->chip->mutex);
-> +
-> +	if (aw2013_chip_in_use(led->chip)) {
-> +		ret =3D aw2013_chip_enable(led->chip);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-You are returning with mutex held.
-
-> +	/* Never on - just set to off */
-> +	if (!*delay_on)
-> +		return aw2013_brightness_set(&led->cdev, LED_OFF);
-> +
-> +	/* Never off - just set to brightness */
-> +	if (!*delay_off)
-> +		return aw2013_brightness_set(&led->cdev, led->cdev.brightness);
-
-Is this dance neccessary? Should we do it in the core somewhere?
-
-> +		} else {
-> +			led->imax =3D 1; // 5mA
-> +			dev_info(&client->dev,
-> +				 "DT property led-max-microamp is missing!\n");
-> +		}
-
-Lets remove the exclamation mark.
-
-> +		led->num =3D source;
-> +		led->chip =3D chip;
-> +		led->fwnode =3D of_fwnode_handle(child);
-> +
-> +		if (!of_property_read_string(child, "default-state", &str)) {
-> +			if (!strcmp(str, "on"))
-> +				led->default_state =3D STATE_ON;
-> +			else if (!strcmp(str, "keep"))
-> +				led->default_state =3D STATE_KEEP;
-> +			else
-> +				led->default_state =3D STATE_OFF;
-> +		}
-
-We should really have something in core for this. Should we support
-arbitrary brightness there?
-
-> +static void aw2013_read_current_state(struct aw2013 *chip)
-> +{
-> +	int i, led_on;
-> +
-> +	regmap_read(chip->regmap, AW2013_LCTR, &led_on);
-> +
-> +	for (i =3D 0; i < chip->num_leds; i++) {
-> +		if (!(led_on & AW2013_LCTR_LE(chip->leds[i].num))) {
-> +			chip->leds[i].cdev.brightness =3D LED_OFF;
-> +			continue;
-> +		}
-> +		regmap_read(chip->regmap, AW2013_REG_PWM(chip->leds[i].num),
-> +			    &chip->leds[i].cdev.brightness);
-> +	}
-> +}
-> +
-> +static void aw2013_init_default_state(struct aw2013_led *led)
-> +{
-> +	switch (led->default_state) {
-> +	case STATE_ON:
-> +		led->cdev.brightness =3D LED_FULL;
-> +		break;
-> +	case STATE_OFF:
-> +		led->cdev.brightness =3D LED_OFF;
-> +	} /* On keep - just set brightness that was retrieved previously */
-> +
-> +	aw2013_brightness_set(&led->cdev, led->cdev.brightness);
-> +}
-
-Aha; I guess this makes "keeping" the state to work. Do you really
-need that functionality?
-
-Pretty nice driver, thanks.
-
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---/04w6evG8XlLl3ft
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXrBYUQAKCRAw5/Bqldv6
-8vgWAJ9WeR5dGSlwHlUTp6MxPEwVtyx+6wCgj7lyJGhIoXq2ucnLkhPzBdInxUU=
-=U8CV
------END PGP SIGNATURE-----
-
---/04w6evG8XlLl3ft--
+-- 
+Kees Cook
