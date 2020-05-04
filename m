@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8081C476A
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 21:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 664CB1C476F
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 21:58:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbgEDT4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 15:56:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726111AbgEDT4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 15:56:49 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8DAC061A0E;
-        Mon,  4 May 2020 12:56:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=fRTAxMt+wwPpjAy5FUGbHC1yS2mrXc5N6zswIhz2qFU=; b=U2ubukdfAiDbK2ZjfknkSdIZZj
-        AjopC+jkvMrXQ9FVjXXnq53WZIm9n3N/S2YQJnm/RKG/G+EQXXmsgzYD8d/VGzsFRGW6pbOTUSkis
-        r5/Y2LaI40jPhkDuA357fVfgK3JufLYz/3iKIUWzdpi4apH2qJXL1DazqpydEoq1ixm2HuCjWAcAx
-        /o+oh/BUZjVvqQgv0o6VmJggTTbI/eCgxIJ0OJZ592aAU5rNH3lcnY1bFd+JYoRIHEi5MpwxdtC1D
-        N3crodKkBqcxylqmYqSVgaBvnUIxJqQnh7XoF4NWM2ikctoH4dUqcptCDvUTtK/FY0aIdAXirGDRy
-        +MGsWUGQ==;
-Received: from [2601:1c0:6280:3f0::19c2]
-        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1jVhCm-0007RJ-5H; Mon, 04 May 2020 19:56:44 +0000
-Subject: Re: [v2 PATCH 1/2] drivers: drm: panel: Add ASUS TM5P5 NT35596 panel
- driver
-To:     Konrad Dybcio <konradybcio@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200504193816.126299-1-konradybcio@gmail.com>
- <20200504193816.126299-2-konradybcio@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <a9a381eb-6d85-5c6e-f377-0b9815bd36a5@infradead.org>
-Date:   Mon, 4 May 2020 12:56:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1727071AbgEDT6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 15:58:46 -0400
+Received: from rere.qmqm.pl ([91.227.64.183]:60934 "EHLO rere.qmqm.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726111AbgEDT6q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 May 2020 15:58:46 -0400
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 49GDFB1NJTzGl;
+        Mon,  4 May 2020 21:58:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1588622324; bh=qcQYscDQASAGGq1qfnXT5pHuuM+wfGhJkYYXvoJsvpU=;
+        h=Date:From:Subject:To:Cc:From;
+        b=a7j8WJNCy21YcZyhIxF0+HsMkUng70nkDXh0DalWFgLFFzLOmSPNszCOInbZBuNyt
+         dLgiDXMdmHbjsdW6wL6HDFt7l5r+YNlCd9qE/yqCj0uweGcwwzYz0ZJ1j96MVi37KB
+         qlLsxKE4cCC/Gj1QF+izr/RzXBn4TGzpTEGbjSo9oiH59X6lKXnhg2T8TVtLHG5/le
+         7PwVGHDA305CuF7ap/KFhZ6FCTCcjH1G3/2P8iyTGPhV/Ss0OYGdoyGrg2+fkUxAz3
+         AuUzNL50JoQwCJ6spZU98phxBweZVCPFo+f7G/QMZ9p1Z6mqTHOr1IpwWZ9y0RqS/p
+         dzKcXzaQ6sIoA==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+Date:   Mon, 04 May 2020 21:58:37 +0200
+Message-Id: <cover.1588622158.git.mirq-linux@rere.qmqm.pl>
+From:   =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Subject: [PATCH v5 0/3] clk: at91: support configuring more clocks via DT
 MIME-Version: 1.0
-In-Reply-To: <20200504193816.126299-2-konradybcio@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/4/20 12:38 PM, Konrad Dybcio wrote:
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index a1723c1b5fbf8..3aa57a927c4bd 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -18,6 +18,16 @@ config DRM_PANEL_ARM_VERSATILE
->  	  reference designs. The panel is detected using special registers
->  	  in the Versatile family syscon registers.
->  
-> +config DRM_PANEL_ASUS_Z00T_TM5P5_NT35596
-> +        tristate "ASUS Z00T TM5P5 NT35596 panel"
-> +        depends on GPIOLIB && OF
-> +        depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +        help
-> +          Say Y here if you want to enable support for the ASUS TMP5P5
-> +          NT35596 1080x1920 video mode panel as found in some Asus
-> +          Zenfone 2 Laser Z00T devices.
-> +
->  config DRM_PANEL_BOE_HIMAX8279D
->  	tristate "Boe Himax8279d panel"
->  	depends on OF
+This series extends AT91 clock support with references to PCKx and
+PLLA/PLLB/AUDIOPLL. This makes the DT be able to fully specify (assign)
+clock parents when needed.
 
-Hi,
+First patch simplifies clock table allocation. Next two update the table
+with missing clock pointers and IDs.
 
-Please clean up the config entry indentation.
-The keywords (tristate, depends, help) should all be indented with
-one tab (not spaces) and the help text should be indented with
-one tab + 2 spaces.
 
-thanks.
+Michał Mirosław (3):
+  clk: at91: optimize pmc data allocation
+  clk: at91: allow setting PCKx parent via DT
+  clk: at91: allow setting all PMC clock parents via DT
+
+ drivers/clk/at91/at91rm9200.c    | 12 ++++++---
+ drivers/clk/at91/at91sam9260.c   | 13 +++++++---
+ drivers/clk/at91/at91sam9g45.c   | 10 +++++---
+ drivers/clk/at91/at91sam9n12.c   | 12 ++++++---
+ drivers/clk/at91/at91sam9rl.c    | 10 +++++---
+ drivers/clk/at91/at91sam9x5.c    | 10 +++++---
+ drivers/clk/at91/pmc.c           | 44 ++++++++++++--------------------
+ drivers/clk/at91/pmc.h           |  8 ++++--
+ drivers/clk/at91/sam9x60.c       | 10 +++++---
+ drivers/clk/at91/sama5d2.c       | 12 ++++++---
+ drivers/clk/at91/sama5d3.c       | 10 +++++---
+ drivers/clk/at91/sama5d4.c       | 10 +++++---
+ include/dt-bindings/clock/at91.h |  4 +++
+ 13 files changed, 106 insertions(+), 59 deletions(-)
+
 -- 
-~Randy
+2.20.1
+
