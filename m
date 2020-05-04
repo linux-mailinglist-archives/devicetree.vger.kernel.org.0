@@ -2,132 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6331C41F0
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 19:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF9DB1C42AB
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 19:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730605AbgEDRPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 13:15:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48984 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730333AbgEDRPE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 May 2020 13:15:04 -0400
-Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 28F902068E;
-        Mon,  4 May 2020 17:15:02 +0000 (UTC)
-Date:   Mon, 4 May 2020 13:15:00 -0400
-From:   Steven Rostedt <rostedt@goodmis.org>
-To:     Pavel Tatashin <pasha.tatashin@soleen.com>
-Cc:     jmorris@namei.org, sashal@kernel.org, linux-kernel@vger.kernel.org,
-        pmladek@suse.com, sergey.senozhatsky@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] printk: honor the max_reason field in
- kmsg_dumper
-Message-ID: <20200504131500.5f6c8860@gandalf.local.home>
-In-Reply-To: <20200502143555.543636-2-pasha.tatashin@soleen.com>
-References: <20200502143555.543636-1-pasha.tatashin@soleen.com>
-        <20200502143555.543636-2-pasha.tatashin@soleen.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730153AbgEDR0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 13:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729896AbgEDR0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 13:26:38 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A05C061A0E
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 10:26:38 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id e6so173063pjt.4
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 10:26:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5bWwbHTGljCtRb2v4FMINcuy14H7s7eCSRthMfBkCAw=;
+        b=XAlwCmH4HBaImEpu9Ay6Lnos34G9TFAH5Pb70ZO5pGTtFJ8LHcEx9fUfzuX4kPgy7w
+         /br4h9rc6MpUd4g5jk6cqoBT3CJuSiSWCfXBnNC8Ac2fXDmqV97lHUetcH57v2uVvmxc
+         iLuwh+bcnU2DlXvFE+HBm+7Iv8JIwKB4SN4dk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5bWwbHTGljCtRb2v4FMINcuy14H7s7eCSRthMfBkCAw=;
+        b=bqspCzygcTX6BwqWEZas9RtgpFSS+zWVGYS1RdWJlGIO9BHuUeHeiukNhBMMG7hmBS
+         8WGRbj4Ddt1LNWaRt0FUK050mERcW2sSksSZq6picUFtBqzlbwpaBD8zkuD5/RpVrSzT
+         Wf/2Ge+sp+9+pq8SYAWD+iDJL1ZMvDLmR/IDtK5wE9lcFqjIiqH3M7aylAcaKrmGX+aV
+         4S6yE+A/B2zy2w+R6i+SLFq6GHJQrv0V9frmABtQbqKknR8enCczvn0r6n1DyFhlcqsD
+         Nn7UZ1s1ETobudrK1ZAIOzT1cBsdG92FDsyxUQEUNUm7A2q3B/x78TSH6AKPZfbwGkcs
+         tyiQ==
+X-Gm-Message-State: AGi0PuYX5ZYz1ERhu01X4BAoUFX91KsnnMEAWeSISbaf+xbnDooC0E4g
+        QgptC9Ub1qvcalMGrfGRvFocCA==
+X-Google-Smtp-Source: APiQypI2k1rITHWPougNpuY886eWLdTD5Ibc6IOiWSieEi9yviNfnF5qQG3E6I0D4ExCEB+JSvCqZA==
+X-Received: by 2002:a17:902:c213:: with SMTP id 19mr275393pll.172.1588613197315;
+        Mon, 04 May 2020 10:26:37 -0700 (PDT)
+Received: from [10.230.182.181] ([192.19.224.250])
+        by smtp.gmail.com with ESMTPSA id o68sm9235067pfb.206.2020.05.04.10.26.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 May 2020 10:26:36 -0700 (PDT)
+Subject: Re: Proper DT bindings for Broadcom's DMU node
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivek Unune <npcomplete13@gmail.com>
+Cc:     BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <7da2db8f-66d0-24ec-d3eb-84247b383a06@gmail.com>
+From:   Ray Jui <ray.jui@broadcom.com>
+Message-ID: <c19df021-c56e-9088-f595-04b9c7c22b54@broadcom.com>
+Date:   Mon, 4 May 2020 10:26:44 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <7da2db8f-66d0-24ec-d3eb-84247b383a06@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  2 May 2020 10:35:53 -0400
-Pavel Tatashin <pasha.tatashin@soleen.com> wrote:
+Hi Rafal,
 
-> kmsg_dump() allows to dump kmesg buffer for various system events: oops,
-> panic, reboot, etc. It provides an interface to register a callback call
-> for clients, and in that callback interface there is a field "max_reason"
-> which gets ignored unless always_kmsg_dump is passed as kernel parameter.
+On 5/4/2020 8:24 AM, Rafał Miłecki wrote:
+> Hi,
 > 
-> Allow clients to decide max_reason, and keep the current behavior when
-> max_reason is not set.
+> I need some help with designing proper bindings for Broadcom's DMU
+> block. We already have it partially covered but it's inconsistent, some
+> cleanups were rejected and so I want to redesign it as it should be.
 > 
-> Signed-off-by: Pavel Tatashin <pasha.tatashin@soleen.com>
-> ---
->  include/linux/kmsg_dump.h |  1 +
->  kernel/printk/printk.c    | 16 +++++++++-------
->  2 files changed, 10 insertions(+), 7 deletions(-)
+> DMU ("Device Management Unit") is a block that can be found on Broadcom
+> iProc / Northstar devices. On Northstar it's mapped at:
+> ranges = <0x1800c000 0x1000>
 > 
-> diff --git a/include/linux/kmsg_dump.h b/include/linux/kmsg_dump.h
-> index 2e7a1e032c71..c0d703b7ce38 100644
-> --- a/include/linux/kmsg_dump.h
-> +++ b/include/linux/kmsg_dump.h
-> @@ -28,6 +28,7 @@ enum kmsg_dump_reason {
->  	KMSG_DUMP_RESTART,
->  	KMSG_DUMP_HALT,
->  	KMSG_DUMP_POWEROFF,
-> +	KMSG_DUMP_MAX = KMSG_DUMP_POWEROFF
+> It contains:
+> 1. Few random registers, some of them shared by various hardware
+>    blocks (and possibly hard to abstract?)
+> 2. At least one sub-block with even more random registers
+> 
+> Some of known DMU registers are:
+> reg = <0x100 0x14>    CRU LCPLL control0
+> reg = <0x140 0x24>    CRU GENPLL
+> reg = <0x164 0x04>    CRU_USB2_CONTROL
+> reg = <0x180 0x04>    CRU_CLKSET_KEY
+> reg = <0x184 0x04>    CRU_RESET
+> reg = <0x1c0 0x24>    pinctrl
+> reg = <0x2a0 0x04>    CRU_STRAPS_CTRL
+> reg = <0x2c0 0x04>    PVTMON control0
+> (Broadcom never released a proper documentation)
+> 
+> 
+> As you can see there are a few CRU registers (depending on a source it's
+> a "Clock and Reset Unit" or "Central Resource Unit"). It's said to be
+> separated block and was described by Scott (from Broadcom) as: "unit
+> with a lot of random registers to perform various operations".
+> 
+> As I said, there are also some shared registers:
+> 
+> CRU_CLKSET_KEY is accessed by:
+> 1. USB 2.0 PHY driver for (un)locking DMU PLL settings
+> 2. GMAC for changing 2.66G line rate to 2Gbps
+> 
+> CRU_STRAPS_CTRL needs to be accessed by:
+> 1. USB 3.0 PHY driver for PHY connected to MDIO
+> 2. PCIE driver for PHY connected to MDIO
+> 
+> 
+> My initial idea was to have something like:
+> 
+> dmu@1800c000 {
+>     compatible = "simple-bus";
+>     ranges = <0 0x1800c000 0x1000>;
+>     #address-cells = <1>;
+>     #size-cells = <1>;
+> 
+>     cru@100 {
+>         compatible = "simple-bus";
+>         reg = <0x100 0x1a4>;
+> 
+>         lcpll { ... };
+>         genpll { ... };
+>         reset { ... };
+>     };
+> };
+> 
+> but Rob noticed that "simple-bus" requires everything in DMU to have
+> sub-nodes [0] [1].
+> 
+> 
+> I thought it can be solved by using compatible = "syscon", "simple-mfd"
+> and I even got one patch for that accepted [2] [3] (pinctrl). It seems
+> it slipped through and was possibly a mistake. Another similar patch was
+> rejected [4] [5] (bcm-ns-usb2-phy).
+> 
+> What I tried to achieve was something like this:
+> 
+> dmu@1800c000 {
+>     compatible = "simple-bus";
+>     ranges = <0 0x1800c000 0x1000>;
+>     #address-cells = <1>;
+>     #size-cells = <1>;
+> 
+>     cru: syscon@100 {
+>         compatible = "syscon", "simple-mfd";
+>         reg = <0x100 0x1a4>;
+>         ranges;
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         lcpll0@0 {
+>             #clock-cells = <1>;
+>             compatible = "brcm,nsp-lcpll0";
+>             reg = <0x0 0x14>;
+>         };
+> 
+>         genpll@40 {
+>             #clock-cells = <1>;
+>             compatible = "brcm,nsp-genpll";
+>             reg = <0x40 0x24>;
+>         };
+> 
+>         pin-controller@c0 {
+>             compatible = "brcm,bcm4708-pinmux";
+>             reg = <0xc0 0x24>;
+>             reg-names = "cru_gpio_control";
+>         };
+> 
+>         thermal@1c0 {
+>             compatible = "brcm,ns-thermal";
+>             reg = <0x1c0 0x10>;
+>             #thermal-sensor-cells = <0>;
+>         };
+>     };
+> };
+> 
+> cru-reset@??? {
+>     compatible = "brcm,ns-cru-reset";
+>     syscon-cru = <&cru>; /* CRU_RESET */
+>     #reset-cells = <1>;
+> };
+> 
+> usb2-phy@??? {
+>     compatible = "brcm,ns-usb2-phy";
+>     syscon-cru = <&cru>; /* CRU_CLKSET_KEY */
+>     #phy-cells = <0>;
+> };
+> 
+> (apparently it wasn't a good idea)
+> 
+> So my question is: how to properly handle this? I'm not sure what's the
+> proper "compatible" string to use. Is my idea of:
+> 1. Using sub-node for registers explicitly used by one driver
+> 2. Using syscon for shared registers
+> OK?
 
-Hmm, I didn't realize that enums were allowed to have duplicates. That can
-usually screw up logic. I would recommend making that a define afterward.
+The above two proposed scheme from you to handle CRU in NS makes sense
+to me and they also model the ASIC architecture correctly.
 
-#define KMSG_DUMP_MAX KMSG_DUMP_POWEROFF
+Thanks,
 
-As is done in other locations of the kernel.
+Ray
 
-
-The rest looks fine to me.
-
--- Steve
-
->  };
->  
->  /**
-> diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-> index 9a9b6156270b..04c1e9a9b139 100644
-> --- a/kernel/printk/printk.c
-> +++ b/kernel/printk/printk.c
-> @@ -3085,6 +3085,8 @@ EXPORT_SYMBOL(printk_timed_ratelimit);
->  
->  static DEFINE_SPINLOCK(dump_list_lock);
->  static LIST_HEAD(dump_list);
-> +static bool always_kmsg_dump;
-> +module_param_named(always_kmsg_dump, always_kmsg_dump, bool, S_IRUGO | S_IWUSR);
->  
->  /**
->   * kmsg_dump_register - register a kernel log dumper.
-> @@ -3106,6 +3108,12 @@ int kmsg_dump_register(struct kmsg_dumper *dumper)
->  	spin_lock_irqsave(&dump_list_lock, flags);
->  	/* Don't allow registering multiple times */
->  	if (!dumper->registered) {
-> +		if (!dumper->max_reason) {
-> +			if (always_kmsg_dump)
-> +				dumper->max_reason = KMSG_DUMP_MAX;
-> +			else
-> +				dumper->max_reason = KMSG_DUMP_OOPS;
-> +		}
->  		dumper->registered = 1;
->  		list_add_tail_rcu(&dumper->list, &dump_list);
->  		err = 0;
-> @@ -3141,9 +3149,6 @@ int kmsg_dump_unregister(struct kmsg_dumper *dumper)
->  }
->  EXPORT_SYMBOL_GPL(kmsg_dump_unregister);
->  
-> -static bool always_kmsg_dump;
-> -module_param_named(always_kmsg_dump, always_kmsg_dump, bool, S_IRUGO | S_IWUSR);
-> -
->  /**
->   * kmsg_dump - dump kernel log to kernel message dumpers.
->   * @reason: the reason (oops, panic etc) for dumping
-> @@ -3157,12 +3162,9 @@ void kmsg_dump(enum kmsg_dump_reason reason)
->  	struct kmsg_dumper *dumper;
->  	unsigned long flags;
->  
-> -	if ((reason > KMSG_DUMP_OOPS) && !always_kmsg_dump)
-> -		return;
-> -
->  	rcu_read_lock();
->  	list_for_each_entry_rcu(dumper, &dump_list, list) {
-> -		if (dumper->max_reason && reason > dumper->max_reason)
-> +		if (reason > dumper->max_reason)
->  			continue;
->  
->  		/* initialize iterator with data about the stored records */
-
+> 
+> 
+> [0] https://www.spinics.net/lists/arm-kernel/msg682838.html
+> [1]
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20181015093013.31651-1-zajec5@gmail.com/
+> 
+> [2] https://spinics.net/lists/linux-gpio/msg35285.html
+> [3] https://patchwork.kernel.org/patch/10735931/
+> [4] https://lkml.org/lkml/2019/1/15/913
+> [5]
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20190108123907.19816-1-zajec5@gmail.com/
+> 
