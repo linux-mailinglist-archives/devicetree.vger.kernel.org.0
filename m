@@ -2,55 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C46BA1C4782
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0C51C478D
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:01:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726950AbgEDUA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 16:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
+        id S1728084AbgEDUBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 16:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726756AbgEDUA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:00:56 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C2BC061A0F
-        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 13:00:55 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id s9so15058644eju.1
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 13:00:55 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1728045AbgEDUB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:01:29 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC77C061A0F
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 13:01:28 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id r16so14711776edw.5
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 13:01:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=soleen.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=yCWAep3g/S7kYu55ffGrHwoUe1KKlRiY8jCjhGfRTrA=;
-        b=NmBQj+/dOtZLHa1FZ/2Vzi4YdEQY+QcB0DmpdxrMU459Sw0tCwj7iWQg2lC/mfKMQo
-         dSSpVaAfTFuTN4w4Eai+oqe+5uDxQIoUNns7XrcRNTs/B50mpJU6WzoinSyQ1VYqKOrQ
-         kSPXMsX92FgyWRUrGuDmNqGzMsdXKBNgP+jFKbFboCcRBMdApPmOxSECYQPkrnXTcvBc
-         hiyMwyNKBTfD9rPPLjFTiN0YFn5g4lt2SscNid+KjRttkh4Lc/4EImyuh1ttpjC2lAce
-         w+CNLVINNgTu9ZIGKY6fFT+Dws752yxb7SSVP2ZusvW25VnFJdoeahk56vdknUYDKrwT
-         IsgA==
+        bh=a3/e8Z9+7dUAsUY2FABXXWSYilV/IhKWhqiAxe7AB0w=;
+        b=PQLxh8BxfRVNbGhoMqQ+SidqGRLgyNwgg8AMxdhr+hQzfTeHVr36B+yHinyk4RO/N4
+         Y6or3TT0f0D5Fk2htAjerP0VkNsQmuf+6kdiRqGxrmqzFx4LeKaq2tJJyV4BLREtMGXz
+         OYg6bJ8gAXk19xxFW/6JajQ6o5OgEmm+BlSXGcHzftgStQevaAhOKN4SIQzOWZsmtA2M
+         sHN7uXi6oTRnaDA0P8KsZ+qN+PRH+Bz2jlGhskWtqMnQT4Akn2iBxP70/9YiOy2/UExj
+         h7tIFeuI5HvEEkvt4yCaBpVupn252Kup6VLqULCGJqBRmjdtUTAeOXz58YCUjCCiXISr
+         3d3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=yCWAep3g/S7kYu55ffGrHwoUe1KKlRiY8jCjhGfRTrA=;
-        b=bj9RCFMBvIn1DPjZsu3jfRqusDQlwDUSPZoLN6VYErXYOM8ALdjYSj8QJyfablHUtc
-         AIT3CBJXYpd7nWMqb7sv/j45/jp+HqF4zs3QIuaGnXZOv5dszUcZGcxcCEOtZ9l0D8ar
-         dqOcgushCexM2mxQ8XFYPUtHtJwwldWCcY2JVqye8YpD5bDQHF6omQ3cYWOSzKUGnUgT
-         9UJMuzjBL0HRTBeGDfG0/kqEMcnF7baTC7208x6rwY9WjQrJfe5LpWR4rMDAeds9ZD46
-         1dtiXeZkZ6iVDotVrRNVONN1lQKxHpsAM698B3nApHpQwIHVvpMYW6H782oebZ5/Otqx
-         9h6g==
-X-Gm-Message-State: AGi0PuYWCbMTui3P/jqF0b1zunSgS0j/EKGSb2BsNoeu0IIQS6J8WvJm
-        jz/A2geRCfWveHBm2z265v95yiUQaEZse6gBEVJY/w==
-X-Google-Smtp-Source: APiQypIKdYLJL6Vtdfg8m2Hm7jVII0Q6HbqUBjDODDYpBrQYl4VmtkkDWkeWyy+1cDzz0nt2P+dHZ/Xwf1pT9FocxQc=
-X-Received: by 2002:a17:906:ce4b:: with SMTP id se11mr17199903ejb.178.1588622454437;
- Mon, 04 May 2020 13:00:54 -0700 (PDT)
+        bh=a3/e8Z9+7dUAsUY2FABXXWSYilV/IhKWhqiAxe7AB0w=;
+        b=XDGosIfJLdYBldj+LpeHNNnJZ1V+VlY48uqtZybjpw2DLzONXrFsAx/T0xuB2FCA+P
+         T23vSz4azwqdjUGBw468qVk3wbl6WPSJIN1HYNNs3JrHxoc/6aEa1Aw0sy5UeaU2vBd9
+         E7QMvcO9lTsMwzEdf3kRu9pyYJOJzcnCkBzAJ7psU7R1t6JrvnLLOJHxL/dtpEluqLIU
+         cOywpgip/6OmZFmD9/yW2Kx0GbhUmE41B8JHuU+t2BS3V1J+Qu96Jp7Iae9Bd9mShpl0
+         m19zYQHIWsX09QRnaA+iiR32Zh8eu7a6VoQKXiN5fFAL+HAmV0nEr3aaRvZFIGfAYyut
+         nZqA==
+X-Gm-Message-State: AGi0Pua1MCqd+dqGT+bo9Is5um8fayYb+sWaGADM6xCXJQo0el6ALRhw
+        lv+KXoRnPGl9OwIx4HgEjL2C0Q5ueJFpnHeQzXBg+g==
+X-Google-Smtp-Source: APiQypJuGrmkU0XtajGtCW6+tnsEvDAvqoXPAkujg8EqXPfFARkabTI9PH5qgtjx1yu+XzN1nobAPxrfByxFFM1kmdk=
+X-Received: by 2002:a05:6402:356:: with SMTP id r22mr17037164edw.3.1588622487633;
+ Mon, 04 May 2020 13:01:27 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200502143555.543636-1-pasha.tatashin@soleen.com>
- <20200502143555.543636-4-pasha.tatashin@soleen.com> <202005041229.D410FE0B1@keescook>
-In-Reply-To: <202005041229.D410FE0B1@keescook>
+ <202005041112.F3C8117F67@keescook> <CA+CK2bBDzbXdH23aDxqGzMoxPppNcVmitrYJ00tJqympMBVJOg@mail.gmail.com>
+ <202005041211.040A1C65C8@keescook> <CA+CK2bAJgKR+=Tby91gU-ZKy29Juv_oJinCTFAWRaKiiro2vkg@mail.gmail.com>
+ <202005041230.806B1581D@keescook>
+In-Reply-To: <202005041230.806B1581D@keescook>
 From:   Pavel Tatashin <pasha.tatashin@soleen.com>
-Date:   Mon, 4 May 2020 16:00:18 -0400
-Message-ID: <CA+CK2bB1=gwaDCcYLLi56oQFS6hdc8wzG-s14rz4q7PDCnLycg@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] ramoops: add dump_all optional field to ramoops DT node
+Date:   Mon, 4 May 2020 16:00:51 -0400
+Message-ID: <CA+CK2bBFQYnFWeDxegR+7rz2nepbK-upqBnRjLgO9JH7oUJoQw@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] allow ramoops to collect all kmesg_dump events
 To:     Kees Cook <keescook@chromium.org>
 Cc:     James Morris <jmorris@namei.org>, Sasha Levin <sashal@kernel.org>,
         LKML <linux-kernel@vger.kernel.org>,
@@ -65,16 +67,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 4, 2020 at 3:29 PM Kees Cook <keescook@chromium.org> wrote:
+> > pstore /mnt/console-ramoops-0 outputs only messages below the console
+> > loglevel, and our console loglevel is set to 3 due to slowness of
+> > serial console. Which means only errors and worse types of messages
+> > are recorded. AFAIK, there is no way to have different log levels for
+> > different consoles.
 >
-> On Sat, May 02, 2020 at 10:35:55AM -0400, Pavel Tatashin wrote:
-> > Currently, it is possible to dump kmesges for panic, or oops.
-> > With dump_all it is possible to dump messages for kmesg_dump events,
-> > for example reboot, halt, shutdown, kexec.
->
-> Please just collapse this into patch #2.
+> Ah-ha! Okay, thanks. Please include this rationale in the v2 changelog.
+> That makes perfect sense; I just didn't see it and maybe others will
+> need the same clarity too. Thanks!
 
-Will do it.
+I will add this explanation to v2.
 
 Thank you,
 Pasha
+
+>
+> -Kees
+>
+> --
+> Kees Cook
