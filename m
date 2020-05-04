@@ -2,226 +2,416 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3AEC1C4874
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C2A1C4883
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 22:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbgEDUkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 16:40:40 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:52705 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726476AbgEDUkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:40:39 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1588624837; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=fLYIM9kqqwdLGMsIsdcSwPKcC0oxxXbjzB2POxGFLMk=;
- b=NMhdK6K3GZsMg27eE5aZeBwe2AlaPuaHuKAZRFfFpVGBWtCxvrMVdbDbYDXsnYmX7vX621fX
- iMWLu6vLRYta8ETaePjUk97oxZ6TdkxWpn9kGav3kz3Qubvl0ER9r9tA+5KFQP2t9rAOvI3S
- reNvgz3aQ6xob5DgOCZ0rYMXzxU=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5eb07db5.7f04b837b650-smtp-out-n04;
- Mon, 04 May 2020 20:40:21 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E25CFC433F2; Mon,  4 May 2020 20:40:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 38301C433BA;
-        Mon,  4 May 2020 20:40:18 +0000 (UTC)
+        id S1726410AbgEDUpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 16:45:16 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:46301 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726334AbgEDUpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 16:45:16 -0400
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 50374200005;
+        Mon,  4 May 2020 20:44:47 +0000 (UTC)
+Date:   Mon, 4 May 2020 22:44:47 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] clk: at91: allow setting PCKx parent via DT
+Message-ID: <20200504204447.GL34497@piout.net>
+References: <cover.1588623391.git.mirq-linux@rere.qmqm.pl>
+ <fd853126e9971b9ef9bdcfe469ed3146a0cad92b.1588623391.git.mirq-linux@rere.qmqm.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 05 May 2020 02:10:18 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        robh+dt@kernel.org, rjw@rjwysocki.net, saravanak@google.com,
-        rnayak@codeaurora.org, bjorn.andersson@linaro.org,
-        vincent.guittot@linaro.org, jcrouse@codeaurora.org,
-        evgreen@chromium.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH v7 2/7] OPP: Add helpers for reading the binding
- properties
-In-Reply-To: <20200424155404.10746-3-georgi.djakov@linaro.org>
-References: <20200424155404.10746-1-georgi.djakov@linaro.org>
- <20200424155404.10746-3-georgi.djakov@linaro.org>
-Message-ID: <cbba1156b96e2cef39a2ea596fd5b911@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fd853126e9971b9ef9bdcfe469ed3146a0cad92b.1588623391.git.mirq-linux@rere.qmqm.pl>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-04-24 21:23, Georgi Djakov wrote:
-> From: Saravana Kannan <saravanak@google.com>
+On 04/05/2020 22:19:17+0200, Michał Mirosław wrote:
+> This exposes PROGx clocks for use in assigned-clocks DeviceTree property
+> for selecting PCKx parent clock.
 > 
-> The opp-hz DT property is not mandatory and we may use another property
-> as a key in the OPP table. Add helper functions to simplify the reading
-> and comparing the keys.
-> 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 > ---
-> v7:
-> * Extracted just the helpers from patch v6, as Viresh advised to split 
-> it.
+> v2: rebase and update to clk/clk-at91 branch
+> v3: rebase
+> v4: no changes
+> v5: no changes
+> v6: no changes
+> ---
+>  drivers/clk/at91/at91rm9200.c    |  6 ++++--
+>  drivers/clk/at91/at91sam9260.c   |  5 ++++-
+>  drivers/clk/at91/at91sam9g45.c   |  6 ++++--
+>  drivers/clk/at91/at91sam9n12.c   |  6 ++++--
+>  drivers/clk/at91/at91sam9rl.c    |  4 +++-
+>  drivers/clk/at91/at91sam9x5.c    |  4 +++-
+>  drivers/clk/at91/pmc.c           | 12 ++++++++++--
+>  drivers/clk/at91/pmc.h           |  5 ++++-
+>  drivers/clk/at91/sam9x60.c       |  4 +++-
+>  drivers/clk/at91/sama5d2.c       |  4 +++-
+>  drivers/clk/at91/sama5d3.c       |  6 ++++--
+>  drivers/clk/at91/sama5d4.c       |  4 +++-
+>  include/dt-bindings/clock/at91.h |  1 +
+>  13 files changed, 50 insertions(+), 17 deletions(-)
 > 
-> v6: 
-> https://lore.kernel.org/r/20191207002424.201796-3-saravanak@google.com
-> 
->  drivers/opp/core.c | 15 +++++++++++++--
->  drivers/opp/of.c   | 42 ++++++++++++++++++++++++++----------------
->  drivers/opp/opp.h  |  1 +
->  3 files changed, 40 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index ba43e6a3dc0a..c9c1bbe6ae27 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -1272,11 +1272,21 @@ static bool
-> _opp_supported_by_regulators(struct dev_pm_opp *opp,
->  	return true;
->  }
-> 
-> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
-> +{
-> +	if (opp1->rate != opp2->rate)
-> +		return opp1->rate < opp2->rate ? -1 : 1;
-> +	if (opp1->level != opp2->level)
-> +		return opp1->level < opp2->level ? -1 : 1;
-> +	return 0;
-> +}
+> diff --git a/drivers/clk/at91/at91rm9200.c b/drivers/clk/at91/at91rm9200.c
+> index c44a431b6c97..8da88e9a95d8 100644
+> --- a/drivers/clk/at91/at91rm9200.c
+> +++ b/drivers/clk/at91/at91rm9200.c
+> @@ -100,7 +100,7 @@ static void __init at91rm9200_pmc_setup(struct device_node *np)
+>  
+>  	at91rm9200_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					    nck(at91rm9200_systemck),
+> -					    nck(at91rm9200_periphck), 0);
+> +					    nck(at91rm9200_periphck), 0, 4);
+>  	if (!at91rm9200_pmc)
+>  		return;
+>  
+> @@ -159,6 +159,8 @@ static void __init at91rm9200_pmc_setup(struct device_node *np)
+>  						    &at91rm9200_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
 > +
->  static int _opp_is_duplicate(struct device *dev, struct dev_pm_opp 
-> *new_opp,
->  			     struct opp_table *opp_table,
->  			     struct list_head **head)
->  {
->  	struct dev_pm_opp *opp;
-> +	int opp_cmp;
-> 
->  	/*
->  	 * Insert new OPP in order of increasing frequency and discard if
-> @@ -1287,12 +1297,13 @@ static int _opp_is_duplicate(struct device
-> *dev, struct dev_pm_opp *new_opp,
->  	 * loop.
->  	 */
->  	list_for_each_entry(opp, &opp_table->opp_list, node) {
-> -		if (new_opp->rate > opp->rate) {
-> +		opp_cmp = _opp_compare_key(new_opp, opp);
-> +		if (opp_cmp > 0) {
->  			*head = &opp->node;
->  			continue;
->  		}
-> 
-> -		if (new_opp->rate < opp->rate)
-> +		if (opp_cmp < 0)
->  			return 0;
-> 
->  		/* Duplicate OPPs */
-> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> index 9cd8f0adacae..e33169c7e045 100644
-> --- a/drivers/opp/of.c
-> +++ b/drivers/opp/of.c
-> @@ -521,6 +521,28 @@ void dev_pm_opp_of_remove_table(struct device 
-> *dev)
->  }
->  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
-> 
-> +static int _read_opp_key(struct dev_pm_opp *new_opp, struct 
-> device_node *np,
-> +			 bool *rate_not_available)
-> +{
-> +	u64 rate;
-> +	int ret;
-> +
-> +	ret = of_property_read_u64(np, "opp-hz", &rate);
-> +	if (!ret) {
-> +		/*
-> +		 * Rate is defined as an unsigned long in clk API, and so
-> +		 * casting explicitly to its type. Must be fixed once rate is 64
-> +		 * bit guaranteed in clk API.
-> +		 */
-> +		new_opp->rate = (unsigned long)rate;
-> +	}
-> +	*rate_not_available = !!ret;
-> +
-> +	of_property_read_u32(np, "opp-level", &new_opp->level);
-> +
-> +	return ret;
-> +}
-> +
->  /**
->   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT 
-> bindings)
->   * @opp_table:	OPP table
-> @@ -558,26 +580,14 @@ static struct dev_pm_opp
-> *_opp_add_static_v2(struct opp_table *opp_table,
->  	if (!new_opp)
->  		return ERR_PTR(-ENOMEM);
-> 
-> -	ret = of_property_read_u64(np, "opp-hz", &rate);
-> +	ret = _read_opp_key(new_opp, np, &rate_not_available);
->  	if (ret < 0) {
-> -		/* "opp-hz" is optional for devices like power domains. */
-> -		if (!opp_table->is_genpd) {
-> -			dev_err(dev, "%s: opp-hz not found\n", __func__);
-> -			goto free_opp;
-> -		}
-> +		if (!opp_table->is_genpd)
-> +			dev_err(dev, "%s: opp key field not found\n", __func__);
-
-With ^^ regression fixed
-
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
-
-> 
-> -		rate_not_available = true;
-> -	} else {
-> -		/*
-> -		 * Rate is defined as an unsigned long in clk API, and so
-> -		 * casting explicitly to its type. Must be fixed once rate is 64
-> -		 * bit guaranteed in clk API.
-> -		 */
-> -		new_opp->rate = (unsigned long)rate;
-> +		goto free_opp;
+> +		at91rm9200_pmc->pchws[i] = hw;
 >  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(at91rm9200_systemck); i++) {
+> @@ -187,7 +189,7 @@ static void __init at91rm9200_pmc_setup(struct device_node *np)
+>  	return;
+>  
+>  err_free:
+> -	pmc_data_free(at91rm9200_pmc);
+> +	kfree(at91rm9200_pmc);
+
+I missed that in the previous review but shouldn't that change be part
+of the previous patch for bisectability ?
+
+>  }
+>  /*
+>   * While the TCB can be used as the clocksource, the system timer is most likely
+> diff --git a/drivers/clk/at91/at91sam9260.c b/drivers/clk/at91/at91sam9260.c
+> index 946f03a09858..7e5ff252fffc 100644
+> --- a/drivers/clk/at91/at91sam9260.c
+> +++ b/drivers/clk/at91/at91sam9260.c
+> @@ -354,7 +354,8 @@ static void __init at91sam926x_pmc_setup(struct device_node *np,
+>  
+>  	at91sam9260_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					    ndck(data->sck, data->num_sck),
+> -					    ndck(data->pck, data->num_pck), 0);
+> +					    ndck(data->pck, data->num_pck),
+> +					    0, data->num_progck);
+>  	if (!at91sam9260_pmc)
+>  		return;
+>  
+> @@ -434,6 +435,8 @@ static void __init at91sam926x_pmc_setup(struct device_node *np,
+>  						    &at91rm9200_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		at91sam9260_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < data->num_sck; i++) {
+> diff --git a/drivers/clk/at91/at91sam9g45.c b/drivers/clk/at91/at91sam9g45.c
+> index 38a7d2d2df0c..5d18eb04c218 100644
+> --- a/drivers/clk/at91/at91sam9g45.c
+> +++ b/drivers/clk/at91/at91sam9g45.c
+> @@ -117,7 +117,7 @@ static void __init at91sam9g45_pmc_setup(struct device_node *np)
+>  
+>  	at91sam9g45_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					    nck(at91sam9g45_systemck),
+> -					    nck(at91sam9g45_periphck), 0);
+> +					    nck(at91sam9g45_periphck), 0, 2);
+>  	if (!at91sam9g45_pmc)
+>  		return;
+>  
+> @@ -182,6 +182,8 @@ static void __init at91sam9g45_pmc_setup(struct device_node *np)
+>  						    &at91sam9g45_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		at91sam9g45_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(at91sam9g45_systemck); i++) {
+> @@ -210,7 +212,7 @@ static void __init at91sam9g45_pmc_setup(struct device_node *np)
+>  	return;
+>  
+>  err_free:
+> -	pmc_data_free(at91sam9g45_pmc);
+> +	kfree(at91sam9g45_pmc);
+
+Ditto
+
+>  }
+>  /*
+>   * The TCB is used as the clocksource so its clock is needed early. This means
+> diff --git a/drivers/clk/at91/at91sam9n12.c b/drivers/clk/at91/at91sam9n12.c
+> index 8bb39d2ba84b..3a2564c2f724 100644
+> --- a/drivers/clk/at91/at91sam9n12.c
+> +++ b/drivers/clk/at91/at91sam9n12.c
+> @@ -129,7 +129,7 @@ static void __init at91sam9n12_pmc_setup(struct device_node *np)
+>  		return;
+>  
+>  	at91sam9n12_pmc = pmc_data_allocate(PMC_MAIN + 1,
+> -					   nck(at91sam9n12_systemck), 31, 0);
+> +					   nck(at91sam9n12_systemck), 31, 0, 2);
+>  	if (!at91sam9n12_pmc)
+>  		return;
+>  
+> @@ -198,6 +198,8 @@ static void __init at91sam9n12_pmc_setup(struct device_node *np)
+>  						    &at91sam9x5_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		at91sam9n12_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(at91sam9n12_systemck); i++) {
+> @@ -228,7 +230,7 @@ static void __init at91sam9n12_pmc_setup(struct device_node *np)
+>  	return;
+>  
+>  err_free:
+> -	pmc_data_free(at91sam9n12_pmc);
+> +	kfree(at91sam9n12_pmc);
+
+Ditto
+
+>  }
+>  /*
+>   * The TCB is used as the clocksource so its clock is needed early. This means
+> diff --git a/drivers/clk/at91/at91sam9rl.c b/drivers/clk/at91/at91sam9rl.c
+> index cc739d214ae3..bcf07f6a0e0e 100644
+> --- a/drivers/clk/at91/at91sam9rl.c
+> +++ b/drivers/clk/at91/at91sam9rl.c
+> @@ -89,7 +89,7 @@ static void __init at91sam9rl_pmc_setup(struct device_node *np)
+>  
+>  	at91sam9rl_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					   nck(at91sam9rl_systemck),
+> -					   nck(at91sam9rl_periphck), 0);
+> +					   nck(at91sam9rl_periphck), 0, 2);
+>  	if (!at91sam9rl_pmc)
+>  		return;
+>  
+> @@ -138,6 +138,8 @@ static void __init at91sam9rl_pmc_setup(struct device_node *np)
+>  						    &at91rm9200_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		at91sam9rl_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(at91sam9rl_systemck); i++) {
+> diff --git a/drivers/clk/at91/at91sam9x5.c b/drivers/clk/at91/at91sam9x5.c
+> index aac99d699568..f13756b407e2 100644
+> --- a/drivers/clk/at91/at91sam9x5.c
+> +++ b/drivers/clk/at91/at91sam9x5.c
+> @@ -151,7 +151,7 @@ static void __init at91sam9x5_pmc_setup(struct device_node *np,
+>  		return;
+>  
+>  	at91sam9x5_pmc = pmc_data_allocate(PMC_MAIN + 1,
+> -					   nck(at91sam9x5_systemck), 31, 0);
+> +					   nck(at91sam9x5_systemck), 31, 0, 2);
+>  	if (!at91sam9x5_pmc)
+>  		return;
+>  
+> @@ -227,6 +227,8 @@ static void __init at91sam9x5_pmc_setup(struct device_node *np,
+>  						    &at91sam9x5_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		at91sam9x5_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(at91sam9x5_systemck); i++) {
+> diff --git a/drivers/clk/at91/pmc.c b/drivers/clk/at91/pmc.c
+> index ac46ea1b9fda..8a1577e2c2fd 100644
+> --- a/drivers/clk/at91/pmc.c
+> +++ b/drivers/clk/at91/pmc.c
+> @@ -67,6 +67,10 @@ struct clk_hw *of_clk_hw_pmc_get(struct of_phandle_args *clkspec, void *data)
+>  		if (idx < pmc_data->ngck)
+>  			return pmc_data->ghws[idx];
+>  		break;
+> +	case PMC_TYPE_PROGRAMMABLE:
+> +		if (idx < pmc_data->npck)
+> +			return pmc_data->pchws[idx];
+> +		break;
+>  	default:
+>  		break;
+>  	}
+> @@ -77,9 +81,10 @@ struct clk_hw *of_clk_hw_pmc_get(struct of_phandle_args *clkspec, void *data)
+>  }
+>  
+>  struct pmc_data *pmc_data_allocate(unsigned int ncore, unsigned int nsystem,
+> -				   unsigned int nperiph, unsigned int ngck)
+> +				   unsigned int nperiph, unsigned int ngck,
+> +				   unsigned int npck)
+>  {
+> -	unsigned int num_clks = ncore + nsystem + nperiph + ngck;
+> +	unsigned int num_clks = ncore + nsystem + nperiph + ngck + npck;
+>  	struct pmc_data *pmc_data;
+>  
+>  	pmc_data = kzalloc(struct_size(pmc_data, hwtable, num_clks),
+> @@ -99,6 +104,9 @@ struct pmc_data *pmc_data_allocate(unsigned int ncore, unsigned int nsystem,
+>  	pmc_data->ngck = ngck;
+>  	pmc_data->ghws = pmc_data->phws + nperiph;
+>  
+> +	pmc_data->npck = npck;
+> +	pmc_data->pchws = pmc_data->ghws + ngck;
+> +
+>  	return pmc_data;
+>  }
+>  
+> diff --git a/drivers/clk/at91/pmc.h b/drivers/clk/at91/pmc.h
+> index fc3ef772b9d9..df616f2937e7 100644
+> --- a/drivers/clk/at91/pmc.h
+> +++ b/drivers/clk/at91/pmc.h
+> @@ -24,6 +24,8 @@ struct pmc_data {
+>  	struct clk_hw **phws;
+>  	unsigned int ngck;
+>  	struct clk_hw **ghws;
+> +	unsigned int npck;
+> +	struct clk_hw **pchws;
+>  
+>  	struct clk_hw *hwtable[];
+>  };
+> @@ -96,7 +98,8 @@ struct clk_pcr_layout {
+>  #define ndck(a, s) (a[s - 1].id + 1)
+>  #define nck(a) (a[ARRAY_SIZE(a) - 1].id + 1)
+>  struct pmc_data *pmc_data_allocate(unsigned int ncore, unsigned int nsystem,
+> -				   unsigned int nperiph, unsigned int ngck);
+> +				   unsigned int nperiph, unsigned int ngck,
+> +				   unsigned int npck);
+>  
+>  int of_at91_get_clk_range(struct device_node *np, const char *propname,
+>  			  struct clk_range *range);
+> diff --git a/drivers/clk/at91/sam9x60.c b/drivers/clk/at91/sam9x60.c
+> index a7d4f648db26..db14e0427c7f 100644
+> --- a/drivers/clk/at91/sam9x60.c
+> +++ b/drivers/clk/at91/sam9x60.c
+> @@ -185,7 +185,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
+>  	sam9x60_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					nck(sam9x60_systemck),
+>  					nck(sam9x60_periphck),
+> -					nck(sam9x60_gck));
+> +					nck(sam9x60_gck), 8);
+>  	if (!sam9x60_pmc)
+>  		return;
+>  
+> @@ -255,6 +255,8 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
+>  						    &sam9x60_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		sam9x60_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(sam9x60_systemck); i++) {
+> diff --git a/drivers/clk/at91/sama5d2.c b/drivers/clk/at91/sama5d2.c
+> index b2560670e5af..ae5e83cadb3d 100644
+> --- a/drivers/clk/at91/sama5d2.c
+> +++ b/drivers/clk/at91/sama5d2.c
+> @@ -169,7 +169,7 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
+>  	sama5d2_pmc = pmc_data_allocate(PMC_I2S1_MUX + 1,
+>  					nck(sama5d2_systemck),
+>  					nck(sama5d2_periph32ck),
+> -					nck(sama5d2_gck));
+> +					nck(sama5d2_gck), 3);
+>  	if (!sama5d2_pmc)
+>  		return;
+>  
+> @@ -267,6 +267,8 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
+>  						    &sama5d2_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		sama5d2_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(sama5d2_systemck); i++) {
+> diff --git a/drivers/clk/at91/sama5d3.c b/drivers/clk/at91/sama5d3.c
+> index 88506f909c08..507eef6797f1 100644
+> --- a/drivers/clk/at91/sama5d3.c
+> +++ b/drivers/clk/at91/sama5d3.c
+> @@ -127,7 +127,7 @@ static void __init sama5d3_pmc_setup(struct device_node *np)
+>  
+>  	sama5d3_pmc = pmc_data_allocate(PMC_MAIN + 1,
+>  					nck(sama5d3_systemck),
+> -					nck(sama5d3_periphck), 0);
+> +					nck(sama5d3_periphck), 0, 3);
+>  	if (!sama5d3_pmc)
+>  		return;
+>  
+> @@ -201,6 +201,8 @@ static void __init sama5d3_pmc_setup(struct device_node *np)
+>  						    &at91sam9x5_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		sama5d3_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(sama5d3_systemck); i++) {
+> @@ -231,7 +233,7 @@ static void __init sama5d3_pmc_setup(struct device_node *np)
+>  	return;
+>  
+>  err_free:
+> -	pmc_data_free(sama5d3_pmc);
+> +	kfree(sama5d3_pmc);
+>  }
+>  /*
+>   * The TCB is used as the clocksource so its clock is needed early. This means
+> diff --git a/drivers/clk/at91/sama5d4.c b/drivers/clk/at91/sama5d4.c
+> index 4ca9a4619500..80692902b4e4 100644
+> --- a/drivers/clk/at91/sama5d4.c
+> +++ b/drivers/clk/at91/sama5d4.c
+> @@ -142,7 +142,7 @@ static void __init sama5d4_pmc_setup(struct device_node *np)
+>  
+>  	sama5d4_pmc = pmc_data_allocate(PMC_MCK2 + 1,
+>  					nck(sama5d4_systemck),
+> -					nck(sama5d4_periph32ck), 0);
+> +					nck(sama5d4_periph32ck), 0, 3);
+>  	if (!sama5d4_pmc)
+>  		return;
+>  
+> @@ -224,6 +224,8 @@ static void __init sama5d4_pmc_setup(struct device_node *np)
+>  						    &at91sam9x5_programmable_layout);
+>  		if (IS_ERR(hw))
+>  			goto err_free;
+> +
+> +		sama5d4_pmc->pchws[i] = hw;
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(sama5d4_systemck); i++) {
+> diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
+> index 38b5554153c8..c3f4aa6a2d29 100644
+> --- a/include/dt-bindings/clock/at91.h
+> +++ b/include/dt-bindings/clock/at91.h
+> @@ -12,6 +12,7 @@
+>  #define PMC_TYPE_SYSTEM		1
+>  #define PMC_TYPE_PERIPHERAL	2
+>  #define PMC_TYPE_GCK		3
+> +#define PMC_TYPE_PROGRAMMABLE	4
+>  
+>  #define PMC_SLOW		0
+>  #define PMC_MCK			1
+> -- 
+> 2.20.1
 > 
-> -	of_property_read_u32(np, "opp-level", &new_opp->level);
-> -
->  	/* Check if the OPP supports hardware's hierarchy of versions or not 
-> */
->  	if (!_opp_is_supported(dev, opp_table, np)) {
->  		dev_dbg(dev, "OPP not supported by hardware: %llu\n", rate);
-> diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
-> index d14e27102730..bcadb1e328a4 100644
-> --- a/drivers/opp/opp.h
-> +++ b/drivers/opp/opp.h
-> @@ -211,6 +211,7 @@ struct opp_device *_add_opp_dev(const struct
-> device *dev, struct opp_table *opp_
->  void _dev_pm_opp_find_and_remove_table(struct device *dev);
->  struct dev_pm_opp *_opp_allocate(struct opp_table *opp_table);
->  void _opp_free(struct dev_pm_opp *opp);
-> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp 
-> *opp2);
->  int _opp_add(struct device *dev, struct dev_pm_opp *new_opp, struct
-> opp_table *opp_table, bool rate_not_available);
->  int _opp_add_v1(struct opp_table *opp_table, struct device *dev,
-> unsigned long freq, long u_volt, bool dynamic);
->  void _dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask,
-> int last_cpu);
 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
