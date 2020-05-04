@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6EA1C3D2A
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 16:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7651C3D49
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2020 16:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729114AbgEDOf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 10:35:27 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:16141 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728187AbgEDOf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 10:35:26 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5eb027e90000>; Mon, 04 May 2020 07:34:17 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 04 May 2020 07:35:26 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 04 May 2020 07:35:26 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 4 May
- 2020 14:35:26 +0000
-Received: from [10.2.165.119] (172.20.13.39) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 4 May 2020
- 14:35:25 +0000
-Subject: Re: [RFC PATCH v11 6/9] media: tegra: Add Tegra210 Video input driver
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <helen.koike@collabora.com>
-CC:     <sboyd@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1588197606-32124-1-git-send-email-skomatineni@nvidia.com>
- <1588197606-32124-7-git-send-email-skomatineni@nvidia.com>
- <f1cbb602-163e-a539-aaa5-c7e947a8945b@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <834b9295-d46a-dd01-2496-2c24a8e7a8e4@nvidia.com>
-Date:   Mon, 4 May 2020 07:36:05 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1728187AbgEDOjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 10:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728434AbgEDOjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 10:39:44 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B170EC061A0F
+        for <devicetree@vger.kernel.org>; Mon,  4 May 2020 07:39:43 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id u127so9381309wmg.1
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2020 07:39:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=w4t0U+D/kp+A2G6So+DAelHTG97Zr7f3qIlp9fzkip4=;
+        b=VT6A3yuhts/Sup1Aaf3TlojcaThJY4hOWcMYKaz7xPgexle4/kuynbkV7mgcUoEEbw
+         Gn/CW2sYLNgTZA45X9XgPW8JrJWgoeIRF3BPeDrgJPKkGIcPRKop0Gyla7rJZz4Ol5w0
+         2lpW0x79AXvLKOlbwqjWSR7H42s53C2/AzDy/RZEYO8aimi5hqvmtvnptqLq1VKbO7a3
+         hJy0881ArJOTDVsdeKrk0ixZzwswHqdRYytNWMCWIzu3HYx7Dg6+cxeyEeodVUIodnze
+         KcHOc3sN/muaK/jcXS+hiuhM9+aCpMI9of01BChv2AdZ+UxLwm0J0i0JNuUhT5jFaKLt
+         cvug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w4t0U+D/kp+A2G6So+DAelHTG97Zr7f3qIlp9fzkip4=;
+        b=qlz2Fm7ju/mXBdTDLkr7CVX/nRoMrJXQOAjaa4eZ52ChBsyTIYJqtjVgIPhtUYL5So
+         J35iPgDFd7oBykq+i9AN60KjT06owvi0d6+21db+1UB5sT3IqhAkg1bGjbjHPUbQ9/Ww
+         e5lxwyF/4qu3qC1sD+Du0m7XEM9jIGP95ZQ3DYwHnyZWuD+4nA7RcBgTrKNxDqc0ADqW
+         9wQ39/V9EcYmCTeV66faRLfRf28UF6abedBiqIImO51nX2C3Q1Wc4pbep5VsIYKZ8++o
+         RhYwwuLvadZneFHM7Tb4yTX/oa7Rdy+7HwAmTW3whYVRJwqThqMd4d5g7S1rDIdpRMbS
+         k62g==
+X-Gm-Message-State: AGi0PuYVjRKWmM247uynX43UUtos1NByfqDjOJ7p3+8yEcNlc9DXJa8+
+        NUMBsy6MLxVQwRfVlnIcgT8Mlw==
+X-Google-Smtp-Source: APiQypI2F7wsUGonQC0TZFKc5uxhIN4f0OL+bxJR0Xwpj7YciVqjrvdRQtQdeeCKgcaZ8I7mLJ+60A==
+X-Received: by 2002:a1c:1d92:: with SMTP id d140mr14822175wmd.67.1588603182395;
+        Mon, 04 May 2020 07:39:42 -0700 (PDT)
+Received: from myrica ([2001:171b:226e:c200:c43b:ef78:d083:b355])
+        by smtp.gmail.com with ESMTPSA id p190sm14130168wmp.38.2020.05.04.07.39.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 May 2020 07:39:41 -0700 (PDT)
+Date:   Mon, 4 May 2020 16:39:32 +0200
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Jacob Pan <jacob.jun.pan@linux.intel.com>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org, joro@8bytes.org, catalin.marinas@arm.com,
+        will@kernel.org, robin.murphy@arm.com, kevin.tian@intel.com,
+        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
+        christian.koenig@amd.com, felix.kuehling@amd.com,
+        zhangfei.gao@linaro.org, jgg@ziepe.ca, xuzaibo@huawei.com,
+        fenghua.yu@intel.com, hch@infradead.org
+Subject: Re: [PATCH v6 02/25] iommu/ioasid: Add ioasid references
+Message-ID: <20200504143932.GC170104@myrica>
+References: <20200430143424.2787566-1-jean-philippe@linaro.org>
+ <20200430143424.2787566-3-jean-philippe@linaro.org>
+ <20200430113931.0fbf7a37@jacob-builder>
+ <20200430134842.74e596b8@jacob-builder>
 MIME-Version: 1.0
-In-Reply-To: <f1cbb602-163e-a539-aaa5-c7e947a8945b@gmail.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1588602857; bh=QbHAIibWev3PVyqXHVQaxCb68Be+zOimcNcvRZM45Ec=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=WhE5NNBNk2KR58CeKJ3JDTLxgB344OmjUeTKqdEmKhd1HZ78sqnH0vFfhVTrZx05a
-         WXVlyyHuW4kCgOKu4JNleNd6oTtCaxH9+0PTpZvFjI57Aj4bkBUSwQGkCZXO0d1g0R
-         nb7CYqEXnEoNKR0Qoi789+TZnaXVlly1lTT6O7gwmFthjPDHsEVeOx9qzWyPh6MUTU
-         OIRHPn1/WZvoacZOR9UBQI35XrrQRHHo5t0FqUjiR4dcyjBOYyXP31QRo/gJVVyG1s
-         hPoB7AqDn9HKFGMi3SdL4Dy5/R/u8WUW6LGkHAiSsMBqYsmYMhKV88e1jhlKZUrAvw
-         ayKTD8qVDkYSw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200430134842.74e596b8@jacob-builder>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 30, 2020 at 01:48:42PM -0700, Jacob Pan wrote:
+> On Thu, 30 Apr 2020 11:39:31 -0700
+> Jacob Pan <jacob.jun.pan@linux.intel.com> wrote:
+> 
+> > > -void ioasid_free(ioasid_t ioasid)
+> > > +bool ioasid_free(ioasid_t ioasid)
+> > >  {
+> Sorry I missed this in the last reply.
+> 
+> I think free needs to be unconditional since there is not a good way to
+> fail it.
+> 
+> Also can we have more symmetric APIs, seems we don't have ioasid_put()
+> in this patchset.
 
-On 5/4/20 12:44 AM, Dmitry Osipenko wrote:
-> 30.04.2020 01:00, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> +/*
->> + * VI channel input data type enum.
->> + * These data type enum value gets programmed into corresponding Tegra =
-VI
->> + * channel register bits.
->> + */
->> +enum tegra_image_dt {
->> +	TEGRA_IMAGE_DT_YUV420_8 =3D 24,
->> +	TEGRA_IMAGE_DT_YUV420_10,
->> +
->> +	TEGRA_IMAGE_DT_YUV420CSPS_8 =3D 28,
->> +	TEGRA_IMAGE_DT_YUV420CSPS_10,
->> +	TEGRA_IMAGE_DT_YUV422_8,
->> +	TEGRA_IMAGE_DT_YUV422_10,
->> +	TEGRA_IMAGE_DT_RGB444,
->> +	TEGRA_IMAGE_DT_RGB555,
->> +	TEGRA_IMAGE_DT_RGB565,
->> +	TEGRA_IMAGE_DT_RGB666,
->> +	TEGRA_IMAGE_DT_RGB888,
->> +
->> +	TEGRA_IMAGE_DT_RAW6 =3D 40,
->> +	TEGRA_IMAGE_DT_RAW7,
->> +	TEGRA_IMAGE_DT_RAW8,
->> +	TEGRA_IMAGE_DT_RAW10,
->> +	TEGRA_IMAGE_DT_RAW12,
->> +	TEGRA_IMAGE_DT_RAW14,
->> +};
-> Are these format IDs common to all Tegra SoCs or they unique to T210?
-Common for all SoCs
+Yes I was thinking of renaming ioasid_free() to ioasid_put() but got lazy. 
+
+> How about?
+> ioasid_alloc()
+> ioasid_free(); //drop reference, mark inactive, but not reclaimed if
+> 		refcount is not zero.
+> ioasid_get() // returns err if the ioasid is marked inactive by
+> 		ioasid_free()
+
+How does the caller know that the ioasid is in active/inactive state, and
+not freed/reallocated?
+
+> ioasid_put();// drop reference, reclaim if refcount is 0.
+
+I'll add ioasid_put() for now. I'd like to avoid introducing the inactive
+state in this patch, so shall I change the calls in the Intel driver to
+ioasid_put(), and not introduce a new ioasid_free() for the moment?
+
+Thanks,
+Jean
+
