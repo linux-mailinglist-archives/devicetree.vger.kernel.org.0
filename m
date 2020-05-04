@@ -2,344 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC491C49AC
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 00:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE011C49F9
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 01:01:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728231AbgEDWiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 18:38:01 -0400
-Received: from rere.qmqm.pl ([91.227.64.183]:60755 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728102AbgEDWiB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 May 2020 18:38:01 -0400
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 49GHn14BJXzKc;
-        Tue,  5 May 2020 00:37:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1588631877; bh=vLx1Xz+sVIE1nUQTfmbe/LKbf1KmxNBQ5oGQOEhrzGI=;
-        h=Date:In-Reply-To:References:From:Subject:To:Cc:From;
-        b=YqVMpoOIeEHijxgDeCc6WsaBR2TxRm9zSkTnkm4GOLe1E3vSCGK5QJcW2YtLRnEmW
-         fWBgruysoXx17wrU1uN3DvRSR70/9bZwOQAM7R7k7imFyr5+N0qiCVo9KuuvAh0E8I
-         nSBlA0PqQx6Gg2CS4Ok2ZfgcD7ZTYaosFbWrabEqgoIxg/kcTM44h584xOPeACUF61
-         MTuS+R0X/c974LG2T01oan+fgw3peixM0mFHGmX11bF2P5Pla8fMgzMJVKtodurN7q
-         I08WzPYFJmKfwEstkJCaWBpmc2o3N4Pgw0d3y8iNbJJ68SVd4PYLe4ft197LjiesZx
-         DM9m7ra9B4Ftw==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-Date:   Tue, 05 May 2020 00:37:57 +0200
-Message-Id: <fa39cc10dab8341ea4bc2b7152be9217b2cd34a5.1588630999.git.mirq-linux@rere.qmqm.pl>
-In-Reply-To: <cover.1588630999.git.mirq-linux@rere.qmqm.pl>
-References: <cover.1588630999.git.mirq-linux@rere.qmqm.pl>
-From:   =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Subject: [PATCH v7 3/3] clk: at91: allow setting all PMC clock parents via DT
+        id S1728318AbgEDXBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 19:01:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728059AbgEDXBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 19:01:09 -0400
+Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC218C061A0E;
+        Mon,  4 May 2020 16:01:09 -0700 (PDT)
+Received: by mail-qv1-xf43.google.com with SMTP id di6so106514qvb.10;
+        Mon, 04 May 2020 16:01:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sr2MDEt6KTuLtYqratJ8mWzr8mlifnfhPq/CL0zWop0=;
+        b=FlwWcvg9JATvZF1AiaebjBtK/ym7D4Bog8N4mqTbq6ShO/0lbBn9K8SPEP1uiYhlId
+         k2XGfSPfPLsj+L/YUoI10NK+dgGXf/dSgsG39BgaGr3wNgMW75olQbUG2PTI+S3FIDxt
+         yfU277GFGAMw0aMOlSwIqjnql1nEohR/wHT+JZrSHx/HhqiSsRCWGNKLtRyelECFqR+Q
+         t9Kkd1AEjzHUan37m6F9A7H44bVkXil37Y/C7BswLzbJ7ea18mP+yc1l1TnrEIgiGW5P
+         0OKmfjcU62lPY4FRqfb/jOHGOjjcs/BG3nremQITg/ggc2wgRJIydWpZHwY55wbpVn2f
+         oFeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sr2MDEt6KTuLtYqratJ8mWzr8mlifnfhPq/CL0zWop0=;
+        b=DtfHFFstCB+d0GKL31kU6fvFRc5pA5hZ0BJgrAAD2KtAmw2bnM5NbwwEkcgzK8CPDE
+         VZVKMk0DFb94+Ch+boGH20A8RSXV4jJuQPsSKMr1kSHb5XPXWTh71j7c651Jfgn8MjN+
+         2Z7fqsxxiUDxqXZmR1JKcklHyL/fRxiEwmBFuhoFbTx80aFsuQv/Hcmw/cPe1vFCbPGq
+         0/+OcnDctUlxFJIo4/dKmMsQ0tCjUWSMnkh5ktVvrAeNel6i6CTlXWljuu2XuwNQNUMf
+         qj9kycR0LDCTjwjnGFywYJeHpojg78VYvbz2G3qDt4JzTz+HSAyGKF+RSPEB3dcC442z
+         tqUw==
+X-Gm-Message-State: AGi0PuYNopWXLT6ByY1cHtPW/rk9zM77u6iwZG87ziiyT6WptWzevKCQ
+        iFGRkUwEbAOQ/tzQ8Ko9cb6ROpQi35k=
+X-Google-Smtp-Source: APiQypIVxS1ZIQaiYcUAl5sFUkEiZNgxETDeUp0tZtSJbCo+IbcMpby88HQvA+T3XfJ/ITLv9gzlmQ==
+X-Received: by 2002:a0c:e6c2:: with SMTP id l2mr363898qvn.91.1588633268281;
+        Mon, 04 May 2020 16:01:08 -0700 (PDT)
+Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id f68sm441126qke.74.2020.05.04.16.01.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 May 2020 16:01:07 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul@pwsan.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: omap3: Migrate AES from hwmods to sysc-omap2
+Date:   Mon,  4 May 2020 18:01:00 -0500
+Message-Id: <20200504230100.181926-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to have clocks accessible via phandle to select them
-as peripheral clock parent using assigned-clock-parents in DT.
-Add support for PLLACK/PLLBCK/AUDIOPLLCK clocks where available.
+Various OMAP3 boards have two AES blocks, but only one is currently
+available, because the hwmods are only configured for one.
 
-Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
-v2: rebase to clk/clk-at91 branch
-v3: no changes
-v4: extend to whole family
-v5: fix copy-and-paste bugs for SAMA5D3/4
-v6: make AUDIOPLL's id separate to PLLB
-v7: no changes
----
- drivers/clk/at91/at91rm9200.c    | 6 +++++-
- drivers/clk/at91/at91sam9260.c   | 6 +++++-
- drivers/clk/at91/at91sam9g45.c   | 4 +++-
- drivers/clk/at91/at91sam9n12.c   | 6 +++++-
- drivers/clk/at91/at91sam9rl.c    | 4 +++-
- drivers/clk/at91/at91sam9x5.c    | 4 +++-
- drivers/clk/at91/sam9x60.c       | 4 +++-
- drivers/clk/at91/sama5d2.c       | 6 +++++-
- drivers/clk/at91/sama5d3.c       | 4 +++-
- drivers/clk/at91/sama5d4.c       | 4 +++-
- include/dt-bindings/clock/at91.h | 3 +++
- 11 files changed, 41 insertions(+), 10 deletions(-)
+This patch migrates the hwmods for the AES engine to sysc-omap2
+which allows the second AES crypto engine to become available.
 
-diff --git a/drivers/clk/at91/at91rm9200.c b/drivers/clk/at91/at91rm9200.c
-index 8da88e9a95d8..38bdb4981315 100644
---- a/drivers/clk/at91/at91rm9200.c
-+++ b/drivers/clk/at91/at91rm9200.c
-@@ -98,7 +98,7 @@ static void __init at91rm9200_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
+  omap-aes 480a6000.aes1: OMAP AES hw accel rev: 2.6
+  omap-aes 480a6000.aes1: will run requests pump with realtime priority
+  omap-aes 480c5000.aes2: OMAP AES hw accel rev: 2.6
+  omap-aes 480c5000.aes2: will run requests pump with realtime priority
+
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/arch/arm/boot/dts/omap3.dtsi b/arch/arm/boot/dts/omap3.dtsi
+index adcdf88717a3..376628b32f77 100644
+--- a/arch/arm/boot/dts/omap3.dtsi
++++ b/arch/arm/boot/dts/omap3.dtsi
+@@ -157,13 +157,56 @@ omap3_pmx_wkup: pinmux@a00 {
+ 			};
+ 		};
  
--	at91rm9200_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91rm9200_pmc = pmc_data_allocate(PMC_PLLBCK + 1,
- 					    nck(at91rm9200_systemck),
- 					    nck(at91rm9200_periphck), 0, 4);
- 	if (!at91rm9200_pmc)
-@@ -123,12 +123,16 @@ static void __init at91rm9200_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	at91rm9200_pmc->chws[PMC_PLLACK] = hw;
+-		aes: aes@480c5000 {
+-			compatible = "ti,omap3-aes";
+-			ti,hwmods = "aes";
+-			reg = <0x480c5000 0x50>;
+-			interrupts = <0>;
+-			dmas = <&sdma 65 &sdma 66>;
+-			dma-names = "tx", "rx";
++		aes1_target: target-module@480a6000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
++			reg = <0x480a6044 0x4>,
++			      <0x480a6048 0x4>,
++			      <0x480a604c 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&aes1_ick>;
++			clock-names = "ick";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0 0x480a6000 0x2000>;
 +
- 	hw = at91_clk_register_pll(regmap, "pllbck", "mainck", 1,
- 				   &at91rm9200_pll_layout,
- 				   &rm9200_pll_characteristics);
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	at91rm9200_pmc->chws[PMC_PLLBCK] = hw;
++			aes1: aes1@0 {
++				compatible = "ti,omap3-aes";
++				reg = <0 0x50>;
++				interrupts = <0>;
++				dmas = <&sdma 65 &sdma 66>;
++				dma-names = "tx", "rx";
++			};
++		};
 +
- 	parent_names[0] = slowxtal_name;
- 	parent_names[1] = "mainck";
- 	parent_names[2] = "pllack";
-diff --git a/drivers/clk/at91/at91sam9260.c b/drivers/clk/at91/at91sam9260.c
-index 7e5ff252fffc..6d0723aa8b13 100644
---- a/drivers/clk/at91/at91sam9260.c
-+++ b/drivers/clk/at91/at91sam9260.c
-@@ -352,7 +352,7 @@ static void __init at91sam926x_pmc_setup(struct device_node *np,
- 	if (IS_ERR(regmap))
- 		return;
- 
--	at91sam9260_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91sam9260_pmc = pmc_data_allocate(PMC_PLLBCK + 1,
- 					    ndck(data->sck, data->num_sck),
- 					    ndck(data->pck, data->num_pck),
- 					    0, data->num_progck);
-@@ -399,12 +399,16 @@ static void __init at91sam926x_pmc_setup(struct device_node *np,
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	at91sam9260_pmc->chws[PMC_PLLACK] = hw;
++		aes2_target: target-module@480c5000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
++			reg = <0x480c5044 0x4>,
++			      <0x480c5048 0x4>,
++			      <0x480c504c 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&aes2_ick>;
++			clock-names = "ick";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0 0x480c5000 0x2000>;
 +
- 	hw = at91_clk_register_pll(regmap, "pllbck", "mainck", 1,
- 				   data->pllb_layout,
- 				   data->pllb_characteristics);
- 	if (IS_ERR(hw))
- 		goto err_free;
++			aes2: aes2@0 {
++				compatible = "ti,omap3-aes";
++				reg = <0 0x50>;
++				interrupts = <0>;
++				dmas = <&sdma 65 &sdma 66>;
++				dma-names = "tx", "rx";
++			};
+ 		};
  
-+	at91sam9260_pmc->chws[PMC_PLLBCK] = hw;
-+
- 	parent_names[0] = slck_name;
- 	parent_names[1] = "mainck";
- 	parent_names[2] = "pllack";
-diff --git a/drivers/clk/at91/at91sam9g45.c b/drivers/clk/at91/at91sam9g45.c
-index 5d18eb04c218..9873b583c260 100644
---- a/drivers/clk/at91/at91sam9g45.c
-+++ b/drivers/clk/at91/at91sam9g45.c
-@@ -115,7 +115,7 @@ static void __init at91sam9g45_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
+ 		prm: prm@48306000 {
+diff --git a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
+index ca02f91237e3..b6c7d98a9eff 100644
+--- a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
++++ b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
+@@ -2342,44 +2342,6 @@ static struct omap_hwmod_ocp_if omap3xxx_l4_core__sham = {
+ 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+ };
  
--	at91sam9g45_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91sam9g45_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					    nck(at91sam9g45_systemck),
- 					    nck(at91sam9g45_periphck), 0, 2);
- 	if (!at91sam9g45_pmc)
-@@ -143,6 +143,8 @@ static void __init at91sam9g45_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
+-/* l4_core -> AES */
+-static struct omap_hwmod_class_sysconfig omap3_aes_sysc = {
+-	.rev_offs	= 0x44,
+-	.sysc_offs	= 0x48,
+-	.syss_offs	= 0x4c,
+-	.sysc_flags	= (SYSC_HAS_SIDLEMODE | SYSC_HAS_SOFTRESET |
+-			   SYSC_HAS_AUTOIDLE | SYSS_HAS_RESET_STATUS),
+-	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART),
+-	.sysc_fields	= &omap3xxx_aes_sysc_fields,
+-};
+-
+-static struct omap_hwmod_class omap3xxx_aes_class = {
+-	.name	= "aes",
+-	.sysc	= &omap3_aes_sysc,
+-};
+-
+-
+-static struct omap_hwmod omap3xxx_aes_hwmod = {
+-	.name		= "aes",
+-	.main_clk	= "aes2_ick",
+-	.prcm		= {
+-		.omap2 = {
+-			.module_offs = CORE_MOD,
+-			.idlest_reg_id = 1,
+-			.idlest_idle_bit = OMAP3430_ST_AES2_SHIFT,
+-		},
+-	},
+-	.class		= &omap3xxx_aes_class,
+-};
+-
+-
+-static struct omap_hwmod_ocp_if omap3xxx_l4_core__aes = {
+-	.master		= &omap3xxx_l4_core_hwmod,
+-	.slave		= &omap3xxx_aes_hwmod,
+-	.clk		= "aes2_ick",
+-	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+-};
+-
+ /*
+  * 'ssi' class
+  * synchronous serial interface (multichannel and full-duplex serial if)
+@@ -2473,20 +2435,11 @@ static struct omap_hwmod_ocp_if *omap34xx_sham_hwmod_ocp_ifs[] __initdata = {
+ 	NULL,
+ };
  
-+	at91sam9g45_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_utmi(regmap, NULL, "utmick", "mainck");
- 	if (IS_ERR(hw))
- 		goto err_free;
-diff --git a/drivers/clk/at91/at91sam9n12.c b/drivers/clk/at91/at91sam9n12.c
-index 3a2564c2f724..630dc5d87171 100644
---- a/drivers/clk/at91/at91sam9n12.c
-+++ b/drivers/clk/at91/at91sam9n12.c
-@@ -128,7 +128,7 @@ static void __init at91sam9n12_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
+-static struct omap_hwmod_ocp_if *omap34xx_aes_hwmod_ocp_ifs[] __initdata = {
+-	&omap3xxx_l4_core__aes,
+-	NULL,
+-};
+-
+ static struct omap_hwmod_ocp_if *omap36xx_sham_hwmod_ocp_ifs[] __initdata = {
+ 	&omap3xxx_l4_core__sham,
+ 	NULL
+ };
  
--	at91sam9n12_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91sam9n12_pmc = pmc_data_allocate(PMC_PLLBCK + 1,
- 					   nck(at91sam9n12_systemck), 31, 0, 2);
- 	if (!at91sam9n12_pmc)
- 		return;
-@@ -162,11 +162,15 @@ static void __init at91sam9n12_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
+-static struct omap_hwmod_ocp_if *omap36xx_aes_hwmod_ocp_ifs[] __initdata = {
+-	&omap3xxx_l4_core__aes,
+-	NULL
+-};
  
-+	at91sam9n12_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_pll(regmap, "pllbck", "mainck", 1,
- 				   &at91rm9200_pll_layout, &pllb_characteristics);
- 	if (IS_ERR(hw))
- 		goto err_free;
+ /*
+  * Apparently the SHA/MD5 and AES accelerator IP blocks are
+@@ -2501,11 +2454,6 @@ static struct omap_hwmod_ocp_if *am35xx_sham_hwmod_ocp_ifs[] __initdata = {
+ 	NULL
+ };
  
-+	at91sam9n12_pmc->chws[PMC_PLLBCK] = hw;
-+
- 	parent_names[0] = slck_name;
- 	parent_names[1] = "mainck";
- 	parent_names[2] = "plladivck";
-diff --git a/drivers/clk/at91/at91sam9rl.c b/drivers/clk/at91/at91sam9rl.c
-index bcf07f6a0e0e..0d1cc44b056f 100644
---- a/drivers/clk/at91/at91sam9rl.c
-+++ b/drivers/clk/at91/at91sam9rl.c
-@@ -87,7 +87,7 @@ static void __init at91sam9rl_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
+-static struct omap_hwmod_ocp_if *am35xx_aes_hwmod_ocp_ifs[] __initdata = {
+-	/* &omap3xxx_l4_core__aes, */
+-	NULL,
+-};
+-
+ /* 3430ES1-only hwmod links */
+ static struct omap_hwmod_ocp_if *omap3430es1_hwmod_ocp_ifs[] __initdata = {
+ 	&omap3430es1_dss__l3,
+@@ -2641,7 +2589,6 @@ int __init omap3xxx_hwmod_init(void)
+ {
+ 	int r;
+ 	struct omap_hwmod_ocp_if **h = NULL, **h_sham = NULL;
+-	struct omap_hwmod_ocp_if **h_aes = NULL;
+ 	struct device_node *bus;
+ 	unsigned int rev;
  
--	at91sam9rl_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91sam9rl_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					   nck(at91sam9rl_systemck),
- 					   nck(at91sam9rl_periphck), 0, 2);
- 	if (!at91sam9rl_pmc)
-@@ -105,6 +105,8 @@ static void __init at91sam9rl_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
+@@ -2664,16 +2611,13 @@ int __init omap3xxx_hwmod_init(void)
+ 	    rev == OMAP3430_REV_ES3_1 || rev == OMAP3430_REV_ES3_1_2) {
+ 		h = omap34xx_hwmod_ocp_ifs;
+ 		h_sham = omap34xx_sham_hwmod_ocp_ifs;
+-		h_aes = omap34xx_aes_hwmod_ocp_ifs;
+ 	} else if (rev == AM35XX_REV_ES1_0 || rev == AM35XX_REV_ES1_1) {
+ 		h = am35xx_hwmod_ocp_ifs;
+ 		h_sham = am35xx_sham_hwmod_ocp_ifs;
+-		h_aes = am35xx_aes_hwmod_ocp_ifs;
+ 	} else if (rev == OMAP3630_REV_ES1_0 || rev == OMAP3630_REV_ES1_1 ||
+ 		   rev == OMAP3630_REV_ES1_2) {
+ 		h = omap36xx_hwmod_ocp_ifs;
+ 		h_sham = omap36xx_sham_hwmod_ocp_ifs;
+-		h_aes = omap36xx_aes_hwmod_ocp_ifs;
+ 	} else {
+ 		WARN(1, "OMAP3 hwmod family init: unknown chip type\n");
+ 		return -EINVAL;
+@@ -2696,11 +2640,6 @@ int __init omap3xxx_hwmod_init(void)
+ 			goto put_node;
+ 	}
  
-+	at91sam9rl_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_utmi(regmap, NULL, "utmick", "mainck");
- 	if (IS_ERR(hw))
- 		goto err_free;
-diff --git a/drivers/clk/at91/at91sam9x5.c b/drivers/clk/at91/at91sam9x5.c
-index f13756b407e2..0ce3da080287 100644
---- a/drivers/clk/at91/at91sam9x5.c
-+++ b/drivers/clk/at91/at91sam9x5.c
-@@ -150,7 +150,7 @@ static void __init at91sam9x5_pmc_setup(struct device_node *np,
- 	if (IS_ERR(regmap))
- 		return;
+-	if (h_aes && omap3xxx_hwmod_is_hs_ip_block_usable(bus, "aes")) {
+-		r = omap_hwmod_register_links(h_aes);
+-		if (r < 0)
+-			goto put_node;
+-	}
+ 	of_node_put(bus);
  
--	at91sam9x5_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	at91sam9x5_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					   nck(at91sam9x5_systemck), 31, 0, 2);
- 	if (!at91sam9x5_pmc)
- 		return;
-@@ -184,6 +184,8 @@ static void __init at91sam9x5_pmc_setup(struct device_node *np,
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	at91sam9x5_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_utmi(regmap, NULL, "utmick", "mainck");
- 	if (IS_ERR(hw))
- 		goto err_free;
-diff --git a/drivers/clk/at91/sam9x60.c b/drivers/clk/at91/sam9x60.c
-index db14e0427c7f..3e20aa68259f 100644
---- a/drivers/clk/at91/sam9x60.c
-+++ b/drivers/clk/at91/sam9x60.c
-@@ -182,7 +182,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sam9x60_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	sam9x60_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					nck(sam9x60_systemck),
- 					nck(sam9x60_periphck),
- 					nck(sam9x60_gck), 8);
-@@ -214,6 +214,8 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sam9x60_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = sam9x60_clk_register_pll(regmap, &pmc_pll_lock, "upllck",
- 				      "main_osc", 1, &upll_characteristics);
- 	if (IS_ERR(hw))
-diff --git a/drivers/clk/at91/sama5d2.c b/drivers/clk/at91/sama5d2.c
-index ae5e83cadb3d..b3fa2291ccd8 100644
---- a/drivers/clk/at91/sama5d2.c
-+++ b/drivers/clk/at91/sama5d2.c
-@@ -166,7 +166,7 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama5d2_pmc = pmc_data_allocate(PMC_I2S1_MUX + 1,
-+	sama5d2_pmc = pmc_data_allocate(PMC_AUDIOPLLCK + 1,
- 					nck(sama5d2_systemck),
- 					nck(sama5d2_periph32ck),
- 					nck(sama5d2_gck), 3);
-@@ -202,6 +202,8 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sama5d2_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_audio_pll_frac(regmap, "audiopll_fracck",
- 					      "mainck");
- 	if (IS_ERR(hw))
-@@ -217,6 +219,8 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sama5d2_pmc->chws[PMC_AUDIOPLLCK] = hw;
-+
- 	regmap_sfr = syscon_regmap_lookup_by_compatible("atmel,sama5d2-sfr");
- 	if (IS_ERR(regmap_sfr))
- 		regmap_sfr = NULL;
-diff --git a/drivers/clk/at91/sama5d3.c b/drivers/clk/at91/sama5d3.c
-index 507eef6797f1..5e4e44dd4c37 100644
---- a/drivers/clk/at91/sama5d3.c
-+++ b/drivers/clk/at91/sama5d3.c
-@@ -125,7 +125,7 @@ static void __init sama5d3_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama5d3_pmc = pmc_data_allocate(PMC_MAIN + 1,
-+	sama5d3_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					nck(sama5d3_systemck),
- 					nck(sama5d3_periphck), 0, 3);
- 	if (!sama5d3_pmc)
-@@ -158,6 +158,8 @@ static void __init sama5d3_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sama5d3_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_utmi(regmap, NULL, "utmick", "mainck");
- 	if (IS_ERR(hw))
- 		goto err_free;
-diff --git a/drivers/clk/at91/sama5d4.c b/drivers/clk/at91/sama5d4.c
-index 80692902b4e4..662ff5fa6e98 100644
---- a/drivers/clk/at91/sama5d4.c
-+++ b/drivers/clk/at91/sama5d4.c
-@@ -140,7 +140,7 @@ static void __init sama5d4_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama5d4_pmc = pmc_data_allocate(PMC_MCK2 + 1,
-+	sama5d4_pmc = pmc_data_allocate(PMC_PLLACK + 1,
- 					nck(sama5d4_systemck),
- 					nck(sama5d4_periph32ck), 0, 3);
- 	if (!sama5d4_pmc)
-@@ -173,6 +173,8 @@ static void __init sama5d4_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sama5d4_pmc->chws[PMC_PLLACK] = hw;
-+
- 	hw = at91_clk_register_utmi(regmap, NULL, "utmick", "mainck");
- 	if (IS_ERR(hw))
- 		goto err_free;
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index c3f4aa6a2d29..eba17106608b 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -21,6 +21,9 @@
- #define PMC_MCK2		4
- #define PMC_I2S0_MUX		5
- #define PMC_I2S1_MUX		6
-+#define PMC_PLLACK		7
-+#define PMC_PLLBCK		8
-+#define PMC_AUDIOPLLCK		9
- 
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
+ 	/*
 -- 
-2.20.1
+2.25.1
 
