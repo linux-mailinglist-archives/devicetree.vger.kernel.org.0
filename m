@@ -2,122 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 998F61C5ED8
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 19:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0999E1C5F02
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 19:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730122AbgEERbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 13:31:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35802 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729885AbgEERbJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 May 2020 13:31:09 -0400
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B9FE720721;
-        Tue,  5 May 2020 17:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588699868;
-        bh=RzTvVkH2WVsAJ6Ltt5T27ZrW2749b4NieHGvxtLnG9U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tS/u1wcR0Q37TVJw/uE8YgnBhtgDScfuck9IX7Q0iLQGTfwFyd8odJaD2kcrM82p6
-         HjikTR5ZOMjXfxiIlj5H/zEWp1Gzef+QoT68Q1tJlotQrUUW0jX83S4VT/HyNN8eNj
-         i+2HZEa5Zj1G4Fze1Kx4NNapdEWOsffuC7brNBus=
-Date:   Tue, 5 May 2020 10:31:05 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Felix Fietkau <nbd@openwrt.org>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [PATCH 05/11] net: core: provide devm_register_netdev()
-Message-ID: <20200505103105.1c8b0ce3@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200505140231.16600-6-brgl@bgdev.pl>
-References: <20200505140231.16600-1-brgl@bgdev.pl>
-        <20200505140231.16600-6-brgl@bgdev.pl>
+        id S1730408AbgEERiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 13:38:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730046AbgEERiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 13:38:23 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F10C061A10
+        for <devicetree@vger.kernel.org>; Tue,  5 May 2020 10:38:22 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id j14so2049702lfg.9
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2020 10:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Nv0AIZrWlMo4m0rNhQ0hmb2K7EScYgYrwU3TenVEmog=;
+        b=EZSQQZlIteDqtbEIcl/sEkeBUfzjC+YtuCRNGMwWCq1AIeFJ3n4lyDDj8t67g6lgOv
+         vG2erCqH5ghfC7q0wRU3CL4Hc1X83XBVUxV/+FOuE8DVCZL3q7jY7Hj7QYyF0Vc85oqH
+         jyFcaDUaWWrs9ZE+JHUIH20XmBu1l0lK2xrnU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Nv0AIZrWlMo4m0rNhQ0hmb2K7EScYgYrwU3TenVEmog=;
+        b=neeSr1Eg9Wn1cLitrGZxAqrmpssbj8oseKcIgFRrxMFknWxlIcjEv3Y4gH4dVnhCQs
+         92M+BoD4O7iYqp2aoTfAw5MmbUbKETt5nkH0nPajh5xaZuNd0Tco+bnGwb7erbkHBSVo
+         mJN0XuaG8dmE+JGbogENldaA3NzBEKOC1SEDQMpsbVt+ZYqz/ATXscnWmUsnZWZIaSQ8
+         QBACrJK4Bx1ZKJ0CirEBStF9Gyu3x8lG/dXQ8Xui04hofVYYnuujzqckhINGJuOKCsiW
+         5+Flm0Z69X4tA0uN1eLddRQomZ94DItxxqGJPIBUIcDvYbJTNBWv9733bv8h5XChPuA+
+         NQvA==
+X-Gm-Message-State: AGi0Pub7TP0ObyQIddmZWXnDrd3fCSb3wOHb2ZzY52Ywc1vKGa4EHazc
+        kgbcLAEaF+IPET6KXQPX0jRkW10EY50=
+X-Google-Smtp-Source: APiQypJdD9W8WMpJFaiXoBANdBVOl/U7EGrq79SMfRZ7N8f0uKVdlrTNWt3t92dEH9/MFMQl+vK/5w==
+X-Received: by 2002:a19:c6c1:: with SMTP id w184mr2401218lff.20.1588700300779;
+        Tue, 05 May 2020 10:38:20 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id z8sm2643508lfb.44.2020.05.05.10.38.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 May 2020 10:38:20 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id x73so2064410lfa.2
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2020 10:38:19 -0700 (PDT)
+X-Received: by 2002:a19:c394:: with SMTP id t142mr2441981lff.129.1588700298965;
+ Tue, 05 May 2020 10:38:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20200505133602.25987-1-geert+renesas@glider.be>
+In-Reply-To: <20200505133602.25987-1-geert+renesas@glider.be>
+From:   Brian Norris <briannorris@chromium.org>
+Date:   Tue, 5 May 2020 10:38:07 -0700
+X-Gmail-Original-Message-ID: <CA+ASDXO8TJ09vNQaCyoMgfoFVouNQRw7Evx2Vfko1k_03q8GHA@mail.gmail.com>
+Message-ID: <CA+ASDXO8TJ09vNQaCyoMgfoFVouNQRw7Evx2Vfko1k_03q8GHA@mail.gmail.com>
+Subject: Re: [PATCH v4 resend 2] dt-bindings: net: btusb: DT fix s/interrupt-name/interrupt-names/
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Rajat Jain <rajatja@google.com>,
+        "<netdev@vger.kernel.org>" <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  5 May 2020 16:02:25 +0200 Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> 
-> Provide devm_register_netdev() - a device resource managed variant
-> of register_netdev(). This new helper will only work for net_device
-> structs that have a parent device assigned and are devres managed too.
-> 
-> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+On Tue, May 5, 2020 at 6:36 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> The standard DT property name is "interrupt-names".
+>
+> Fixes: fd913ef7ce619467 ("Bluetooth: btusb: Add out-of-band wakeup support")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-> diff --git a/net/core/dev.c b/net/core/dev.c
-> index 522288177bbd..99db537c9468 100644
-> --- a/net/core/dev.c
-> +++ b/net/core/dev.c
-> @@ -9519,6 +9519,54 @@ int register_netdev(struct net_device *dev)
->  }
->  EXPORT_SYMBOL(register_netdev);
->  
-> +struct netdevice_devres {
-> +	struct net_device *ndev;
-> +};
+If it matters:
 
-Is there really a need to define a structure if we only need a pointer?
+Reviewed-by: Brian Norris <briannorris@chromium.org>
 
-> +static void devm_netdev_release(struct device *dev, void *this)
-> +{
-> +	struct netdevice_devres *res = this;
-> +
-> +	unregister_netdev(res->ndev);
-> +}
-> +
-> +/**
-> + *	devm_register_netdev - resource managed variant of register_netdev()
-> + *	@ndev: device to register
-> + *
-> + *	This is a devres variant of register_netdev() for which the unregister
-> + *	function will be call automatically when the parent device of ndev
-> + *	is detached.
-> + */
-> +int devm_register_netdev(struct net_device *ndev)
-> +{
-> +	struct netdevice_devres *dr;
-> +	int ret;
-> +
-> +	/* struct net_device itself must be devres managed. */
-> +	BUG_ON(!(ndev->priv_flags & IFF_IS_DEVRES));
-> +	/* struct net_device must have a parent device - it will be the device
-> +	 * managing this resource.
-> +	 */
-> +	BUG_ON(!ndev->dev.parent);
+We're definitely using the plural ("interrupt-names") not the
+singular, so this was just a typo.
 
-Please convert those to WARN_ON, and return an error. No need to crash
-the kernel.
-
-> +	dr = devres_alloc(devm_netdev_release, sizeof(*dr), GFP_KERNEL);
-> +	if (!dr)
-> +		return -ENOMEM;
-> +
-> +	ret = register_netdev(ndev);
-> +	if (ret) {
-> +		devres_free(dr);
-> +		return ret;
-> +	}
-> +
-> +	dr->ndev = ndev;
-> +	devres_add(ndev->dev.parent, dr);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(devm_register_netdev);
+Brian
