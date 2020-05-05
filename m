@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D48F41C57D4
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 16:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 269241C5830
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 16:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729399AbgEEODW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 10:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729379AbgEEODW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 10:03:22 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9A2C0610D5
-        for <devicetree@vger.kernel.org>; Tue,  5 May 2020 07:03:21 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id e16so2894034wra.7
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2020 07:03:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
-        b=b1g+w8BbUfw1KBw5K5flqcpokPuwWxqpurh2OtOPaunuRCeznQpZQlwP/WmuzoQgod
-         CFSP4OiPt1lnEwVmBbNmoJbW8Lp9A94lN6aZgEgid2Id63oLBylgAseWNbdxn6jtSsYR
-         E/Fc3NnZWPVr75Zc4iI18RNGT0JBcgshtWeyJ7ygIa2DncTH6eFWRlYLO+juQ1IJuzRg
-         qq/R2tbLKwU0DYSzilgyEMuOgD9YzdMBKR7ZxLdG9s7DBdX+mipCe+CicuEcioBHW8Pl
-         SLJzfUoWzzS0YBpfZIcrkuLP4G1MO1KO2GPMW7SFg0Od6O4NZwujxJubuNCjSksjEPFg
-         B38Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
-        b=QzgB4GjmieU46DRllrHmVaxjQRMQyeWlQWrdqdhxCkChyNlbu10A5LRuvGP9mGFKKC
-         NlVh9t8xXeQLNCRo94lffd9fnooRB/6RNY5uuIKuCw4aaqEt+Fu4W0PWnAak2tToyDd8
-         LuUTYp2Bgutz7Qoe9Jkz/uIZvirTrjuGY4sYlsZ8j3sGoXGDZjiOnjBNSWCq+yDjhiqO
-         edva/LDEjYkRXZM+h0VBtCuuHXz0F+DFVwA1XKuZ5chafL0z0RjKn1QM1AITWGD/AOws
-         vrINGywRnPLUMYNpY8S7GS6qUvmsk1aHNyHze6RugVxXPFAq6kvTYVRtA3WYwBu44+/p
-         fMWA==
-X-Gm-Message-State: AGi0PuakuyC5SYdKdmmvnCOBtDrQVFy36RlWKMtxk63D6Se1NnNBSgz1
-        Sh4RKpaxKupjePpEfqDNnEJtrA==
-X-Google-Smtp-Source: APiQypKSn8NhwYdJ0V9/oJPNixCPyhQzeTO3N+zmykXTaq3hm8BpCPa3gRNfEdcvq21s3N2xigB8/Q==
-X-Received: by 2002:adf:e905:: with SMTP id f5mr3949344wrm.409.1588687400189;
-        Tue, 05 May 2020 07:03:20 -0700 (PDT)
-Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id c190sm4075755wme.4.2020.05.05.07.03.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2020 07:03:19 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Felix Fietkau <nbd@openwrt.org>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabien Parent <fparent@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH 11/11] ARM64: dts: mediatek: enable ethernet on pumpkin boards
-Date:   Tue,  5 May 2020 16:02:31 +0200
-Message-Id: <20200505140231.16600-12-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200505140231.16600-1-brgl@bgdev.pl>
-References: <20200505140231.16600-1-brgl@bgdev.pl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729311AbgEEOIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 10:08:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57480 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727857AbgEEOIM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 May 2020 10:08:12 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CF24720661;
+        Tue,  5 May 2020 14:08:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588687692;
+        bh=AoQ+QNUrZA3/rI32aJOVMR7iN0dP/ZQu8S525JZhojY=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=JVs7rDb7Ym1UFR/lmjF3UOYYYS5kxRbKXWnS3oWc2rmx/ciRUZgWZpCw1+6nxY+xu
+         CJLEhMTcWIM+YFc0L3HHkyNPJY/QuNozRUBhPjpZupiTJFFPCkNE0PuV4Hc0Y1iujN
+         gS5XZnUeiDji0bOKsHo93/mFve2uTPC8pxKixoA0=
+Date:   Tue, 05 May 2020 15:08:09 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org,
+        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     andriy.shevchenko@linux.intel.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20200505130618.554-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+References: <20200505130618.554-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+Subject: Re: [PATCH v5 0/7] spi: dw: Add support for Intel Keem Bay SPI
+Message-Id: <158868768979.34203.2406918782261039757.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+On Tue, 5 May 2020 21:06:11 +0800, Wan Ahmad Zainie wrote:
+> This patchset adds support for DesignWare DWC_ssi. This soft IP
+> is an AMBA version 2.0-compliant AHB slave device. Existing driver
+> already supports the older APB version.
+> 
+> Intel Keem Bay SPI controller is using this IP. This patchset is
+> tested on Keem Bay evaluation module board.
+> 
+> [...]
 
-Add remaining properties to the ethernet node and enable it.
+Applied to
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- .../boot/dts/mediatek/pumpkin-common.dtsi      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.8
 
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 4b1d5f69aba6..dfceffe6950a 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -167,6 +167,24 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&ethernet {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet_pins_default>;
-+	phy-handle = <&eth_phy>;
-+	phy-mode = "rmii";
-+	mac-address = [00 00 00 00 00 00];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
- &usb0 {
- 	status = "okay";
- 	dr_mode = "peripheral";
--- 
-2.25.0
+Thanks!
 
+[1/7] spi: dw: Fix typo in few registers name
+      commit: 299cb65c9dd4791242a102f216583773d962c1ac
+[2/7] spi: dw: Add update_cr0() callback to update CTRLR0
+      commit: c4eadee21fa9afd3dc9dd867c71b642177bf671f
+[3/7] spi: dw: Add support for DesignWare DWC_ssi
+      commit: e539f435cb9c78c6984b75f16b65a2ece7867981
+[4/7] spi: dw-apb-ssi: Add compatible string for DesignWare DWC_ssi
+      commit: 3812a081d2fcc297d039c4ffafa7778d75abcbe2
+[5/7] spi: dw: Add support for Intel Keem Bay SPI
+      commit: f42377916ed534649341777669628f22ef1edf59
+[6/7] spi: dw-apb-ssi: Add Intel Keem Bay support
+      commit: c48e0c533e72ca264ac914addccab8a328806ed3
+[7/7] dt-bindings: spi: dw-apb-ssi: Convert bindings to json-schema
+      (not applied)
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
