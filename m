@@ -2,32 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B179D1C5DE1
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 18:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5F91C5DE3
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 18:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730155AbgEEQwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 12:52:31 -0400
-Received: from foss.arm.com ([217.140.110.172]:45416 "EHLO foss.arm.com"
+        id S1730069AbgEEQwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 12:52:32 -0400
+Received: from foss.arm.com ([217.140.110.172]:45430 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730069AbgEEQwa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 May 2020 12:52:30 -0400
+        id S1730242AbgEEQwc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 May 2020 12:52:32 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14D8531B;
-        Tue,  5 May 2020 09:52:30 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61614101E;
+        Tue,  5 May 2020 09:52:31 -0700 (PDT)
 Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.25])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BA8E83F305;
-        Tue,  5 May 2020 09:52:28 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 482DE3F305;
+        Tue,  5 May 2020 09:52:30 -0700 (PDT)
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Rob Herring <robh@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
         Sudeep Holla <sudeep.holla@arm.com>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org
-Subject: [PATCH 00/16] dts/dt-bindings: Fix Arm Ltd. ARMv8 "boards"
-Date:   Tue,  5 May 2020 17:51:59 +0100
-Message-Id: <20200505165212.76466-4-andre.przywara@arm.com>
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH 04/16] arm64: dts: arm: Fix node address fields
+Date:   Tue,  5 May 2020 17:52:00 +0100
+Message-Id: <20200505165212.76466-5-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200505165212.76466-1-andre.przywara@arm.com>
 References: <20200505165212.76466-1-andre.przywara@arm.com>
@@ -36,49 +34,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Date: Mon, 4 May 2020 12:43:18 +0100
-Subject: [PATCH 03/16] dt-bindings: ehci/ohci: Allow iommus property
+The Arm Ltd. boards were using an outdated address convention in the DT
+node names, by separating the high from the low 32-bits of an address by
+a comma.
 
-A OHCI/EHCI controller could be behind an IOMMU, in which case an iommus
-property assigns the stream ID for this device.
-
-Allow that property in the DT bindings to fix a complaint about the Arm Juno
-board's DTS file.
+Remove the comma from the node name suffix to be DT spec compliant.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- Documentation/devicetree/bindings/usb/generic-ehci.yaml | 3 +++
- Documentation/devicetree/bindings/usb/generic-ohci.yaml | 3 +++
- 2 files changed, 6 insertions(+)
+ arch/arm/boot/dts/vexpress-v2m-rs1.dtsi              | 10 +++++-----
+ arch/arm64/boot/dts/arm/foundation-v8.dtsi           |  4 ++--
+ arch/arm64/boot/dts/arm/juno-motherboard.dtsi        |  6 +++---
+ arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi |  2 +-
+ arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi     |  6 +++---
+ 5 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-index 10edd05872ea..20664c28bfb2 100644
---- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-@@ -74,6 +74,9 @@ properties:
-   phy-names:
-     const: usb
+diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+index 5c183483ec3b..8010cdcdb37a 100644
+--- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
++++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+@@ -31,7 +31,7 @@
+ 			#interrupt-cells = <1>;
+ 			ranges;
  
-+  iommus:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-index bcffec1f1341..ff6c04cde695 100644
---- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-@@ -73,6 +73,9 @@ properties:
-   phy-names:
-     const: usb
+-			nor_flash: flash@0,00000000 {
++			nor_flash: flash@0 {
+ 				compatible = "arm,vexpress-flash", "cfi-flash";
+ 				reg = <0 0x00000000 0x04000000>,
+ 				      <4 0x00000000 0x04000000>;
+@@ -41,13 +41,13 @@
+ 				};
+ 			};
  
-+  iommus:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+-			psram@1,00000000 {
++			psram@100000000 {
+ 				compatible = "arm,vexpress-psram", "mtd-ram";
+ 				reg = <1 0x00000000 0x02000000>;
+ 				bank-width = <4>;
+ 			};
+ 
+-			ethernet@2,02000000 {
++			ethernet@202000000 {
+ 				compatible = "smsc,lan9118", "smsc,lan9115";
+ 				reg = <2 0x02000000 0x10000>;
+ 				interrupts = <15>;
+@@ -59,14 +59,14 @@
+ 				vddvario-supply = <&v2m_fixed_3v3>;
+ 			};
+ 
+-			usb@2,03000000 {
++			usb@203000000 {
+ 				compatible = "nxp,usb-isp1761";
+ 				reg = <2 0x03000000 0x20000>;
+ 				interrupts = <16>;
+ 				port1-otg;
+ 			};
+ 
+-			iofpga@3,00000000 {
++			iofpga@300000000 {
+ 				compatible = "simple-bus";
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+index 12f039fa3dad..e26b492795c5 100644
+--- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
++++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+@@ -151,7 +151,7 @@
+ 				<0 0 41 &gic 0 0 GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+ 				<0 0 42 &gic 0 0 GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+ 
+-		ethernet@2,02000000 {
++		ethernet@202000000 {
+ 			compatible = "smsc,lan91c111";
+ 			reg = <2 0x02000000 0x10000>;
+ 			interrupts = <15>;
+@@ -178,7 +178,7 @@
+ 			clock-output-names = "v2m:refclk32khz";
+ 		};
+ 
+-		iofpga@3,00000000 {
++		iofpga@300000000 {
+ 			compatible = "simple-bus";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+index e3983ded3c3c..d5cefddde08c 100644
+--- a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+@@ -103,7 +103,7 @@
+ 				};
+ 			};
+ 
+-			flash@0,00000000 {
++			flash@0 {
+ 				/* 2 * 32MiB NOR Flash memory mounted on CS0 */
+ 				compatible = "arm,vexpress-flash", "cfi-flash";
+ 				reg = <0 0x00000000 0x04000000>;
+@@ -120,7 +120,7 @@
+ 				};
+ 			};
+ 
+-			ethernet@2,00000000 {
++			ethernet@200000000 {
+ 				compatible = "smsc,lan9118", "smsc,lan9115";
+ 				reg = <2 0x00000000 0x10000>;
+ 				interrupts = <3>;
+@@ -133,7 +133,7 @@
+ 				vddvario-supply = <&mb_fixed_3v3>;
+ 			};
+ 
+-			iofpga@3,00000000 {
++			iofpga@300000000 {
+ 				compatible = "simple-bus";
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+index 60703b5763c6..350cbf17e8b4 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+@@ -9,7 +9,7 @@
+ 		motherboard {
+ 			arm,v2m-memory-map = "rs2";
+ 
+-			iofpga@3,00000000 {
++			iofpga@300000000 {
+ 				virtio-p9@140000 {
+ 					compatible = "virtio,mmio";
+ 					reg = <0x140000 0x200>;
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+index e333c8d2d0e4..d1bfa62ca073 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+@@ -17,14 +17,14 @@
+ 			#interrupt-cells = <1>;
+ 			ranges;
+ 
+-			flash@0,00000000 {
++			flash@0 {
+ 				compatible = "arm,vexpress-flash", "cfi-flash";
+ 				reg = <0 0x00000000 0x04000000>,
+ 				      <4 0x00000000 0x04000000>;
+ 				bank-width = <4>;
+ 			};
+ 
+-			ethernet@2,02000000 {
++			ethernet@202000000 {
+ 				compatible = "smsc,lan91c111";
+ 				reg = <2 0x02000000 0x10000>;
+ 				interrupts = <15>;
+@@ -51,7 +51,7 @@
+ 				clock-output-names = "v2m:refclk32khz";
+ 			};
+ 
+-			iofpga@3,00000000 {
++			iofpga@300000000 {
+ 				compatible = "simple-bus";
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
 -- 
 2.17.1
 
