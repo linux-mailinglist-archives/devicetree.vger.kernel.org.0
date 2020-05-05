@@ -2,100 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A611C4F21
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 09:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C419F1C4F3D
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 09:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728114AbgEEHdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 03:33:41 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:7718 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725833AbgEEHdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 03:33:41 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0457XE8i019011;
-        Tue, 5 May 2020 09:33:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=iGCDghN3T5Y00zNouGbtPQSvGhwl/OIHxAZ2MQmEADQ=;
- b=EmajLjxqcwUHcoKFOnS/MbPJFNI09jkypCeIsZf9g1TVhc5Zb+ixhiVdNqoy96bu/ktQ
- KAkOLbJAlMdGRbwVrlDws8jkZ8ZA72Edw6KZWfpF82PcD69caXHNDQNkBLJzU1sDLhn4
- GSqG35pnXN5cLuuePB9yMDOjv2rMEZURG7cpXAGtoxYwdc8WP+Je1ipKG7xDYqFVHq/T
- ynRYajyApOLE5vL1hvIAEFz1xvP+c5UCDBHSJMIiLkjpYH00v23AQIQZtL3dNRVPlrck
- FTA8/mMTMjZA9ES3Qq/Ig9h4ZrJozqcZk2dggRXb6og0RyLwHOdzYo2Fu9JlV7rQSis4 6Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30rxmveesn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 May 2020 09:33:31 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B2785100034;
-        Tue,  5 May 2020 09:33:30 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A62F62A4927;
-        Tue,  5 May 2020 09:33:30 +0200 (CEST)
-Received: from localhost (10.75.127.51) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 5 May 2020 09:33:29
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <gregkh@linuxfoundation.org>,
-        <loic.pallardy@st.com>, <linus.walleij@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v3 5/5] ARM: dts: stm32: Use ETZPC firewall bus
-Date:   Tue, 5 May 2020 09:33:08 +0200
-Message-ID: <20200505073308.22914-6-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200505073308.22914-1-benjamin.gaignard@st.com>
-References: <20200505073308.22914-1-benjamin.gaignard@st.com>
+        id S1726337AbgEEHgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 03:36:32 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:10755 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726345AbgEEHgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 03:36:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1588664191; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=E5ikgPmsaSTtogguuprJ4svrQMsqzNWKpQn1yRMxllE=;
+ b=CZFeoS0TasQR5L0A7bu0t+3bdIeC61yv+oZfOgHtPhDuS3FmBVgjc4z2n6h7RFKDZDFR4ruZ
+ mq6B1Ajz/6KFzF/wyQcKfY8fvzQUcqJz1o5WJZDtMSads0OH/BWPghjDuH4nOwZcGfDIdLH6
+ gI0tGydy6fHlbHa/4aFDcB8cp9Y=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 17A48C433F2; Tue,  5 May 2020 07:36:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=2.0 tests=ALL_TRUSTED,MISSING_DATE,
+        MISSING_MID,SPF_NONE autolearn=no autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 661CBC433D2;
+        Tue,  5 May 2020 07:36:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 661CBC433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-05-05_04:2020-05-04,2020-05-05 signatures=0
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 1/3] dt-bindings: ath10k: Add wifi-firmware subnode for
+ wifi node
+From:   Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1586971906-20985-2-git-send-email-pillair@codeaurora.org>
+References: <1586971906-20985-2-git-send-email-pillair@codeaurora.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rakesh Pillai <pillair@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-Id: <20200505073625.17A48C433F2@smtp.codeaurora.org>
+Date:   Tue,  5 May 2020 07:36:25 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow STM32 ETZPC to check firewall configuration before populating
-the platform bus.
+Rakesh Pillai <pillair@codeaurora.org> wrote:
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+> Add a wifi-firmware subnode for the wifi node.
+> This wifi-firmware subnode is needed for the
+> targets which do not support TrustZone.
+> 
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 3ea05ba48215..0290eb6f3c35 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -4,6 +4,7 @@
-  * Author: Ludovic Barre <ludovic.barre@st.com> for STMicroelectronics.
-  */
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/bus/stm32/stm32-etzpc.h>
- #include <dt-bindings/clock/stm32mp1-clks.h>
- #include <dt-bindings/reset/stm32mp1-resets.h>
- 
-@@ -110,8 +111,10 @@
- 		status = "disabled";
- 	};
- 
--	soc {
--		compatible = "simple-bus";
-+	etzpc_bus: soc@5c007000 {
-+		compatible = "st,stm32-etzpc-bus", "simple-bus";
-+		reg = <0x5c007000 0x400>;
-+		#firewall-cells = <2>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		interrupt-parent = <&intc>;
+3 patches applied to ath-next branch of ath.git, thanks.
+
+85325c24d5d2 dt-bindings: ath10k: Add wifi-firmware subnode for wifi node
+727fec790ead ath10k: Setup the msa resources before qmi init
+1423f4327331 ath10k: Add support for targets without trustzone
+
 -- 
-2.15.0
+https://patchwork.kernel.org/patch/11491759/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
