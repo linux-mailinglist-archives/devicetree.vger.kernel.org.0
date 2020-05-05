@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F56C1C5E1B
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 18:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC681C5E42
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 19:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730620AbgEEQ6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 12:58:41 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:7570 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730595AbgEEQ6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 12:58:40 -0400
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 045GW8U1174320;
-        Tue, 5 May 2020 12:58:34 -0400
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 30s2g34xd8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 May 2020 12:58:33 -0400
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 045Gp341000505;
-        Tue, 5 May 2020 16:58:33 GMT
-Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
-        by ppma05wdc.us.ibm.com with ESMTP id 30s0g6jbbb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 May 2020 16:58:33 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 045GwVx912059052
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 5 May 2020 16:58:31 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 602507805E;
-        Tue,  5 May 2020 16:58:32 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D7F917805F;
-        Tue,  5 May 2020 16:58:31 +0000 (GMT)
-Received: from talon7.ibm.com (unknown [9.211.137.116])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Tue,  5 May 2020 16:58:31 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com
-Subject: [PATCH v11 8/8] ARM: dts: Aspeed: Tacoma: Enable XDMA engine
-Date:   Tue,  5 May 2020 11:58:25 -0500
-Message-Id: <1588697905-23444-9-git-send-email-eajames@linux.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1588697905-23444-1-git-send-email-eajames@linux.ibm.com>
-References: <1588697905-23444-1-git-send-email-eajames@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-05-05_09:2020-05-04,2020-05-05 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- suspectscore=1 bulkscore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 adultscore=0 phishscore=0 mlxlogscore=739 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2003020000 definitions=main-2005050126
+        id S1730461AbgEERCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 13:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728804AbgEERCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 13:02:38 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B85C061A0F;
+        Tue,  5 May 2020 10:02:38 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id x25so3111351wmc.0;
+        Tue, 05 May 2020 10:02:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=4Fa9SRX5iGefguq9oBjY0ujY1kxsa+01Ny22B/LnyJg=;
+        b=Ota0VHhLwimGfuqQXDT5Cm/ryqh3nix86NndMnb4/lv3yKDFdLDPzSIF3rL/1VCQ8J
+         c5JfalcNar2PI5aHHHMY+BVkiHyCgS/qr2yRvC8BUxaoZs/Opr9bgDh2xFrJP+yHb42Z
+         kdx2HPpLIBmypvHxR8iRBlw8v1gkOvij88nxQSDewwTherDFxQJ6j7OmpK3SH1fQw3HN
+         JR95is0tt0sfsleV0tTGzH+7CKoFhWTSNDUvBySF3MBuNv/wH3VWrpoijovq8iblG4TK
+         hz7RBOvoR9VUpVy+vH4y2KnH/cXOX8RqaAUT5ZRUfRHzKwXm5tjdXa2WsQZMSAloY40o
+         Oudg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=4Fa9SRX5iGefguq9oBjY0ujY1kxsa+01Ny22B/LnyJg=;
+        b=YdFKyBzCQN0+/UT7zvIg6t2c1Ncz2jvPaFosUPdbRxf5eYkcV4rEtC9SxdodkTDabZ
+         bICF5XX9LyR7ddaKhTiW3RFQBGmPOnXFciSmUkcTrKdnDWUmsb0Mhg3AFseJ2xbj5KVT
+         Pk+379Sj5D7Lh9xBoFelYOkBE6Wtjif+gSIlnypJE6qRSrcdZGzyIKnoSgZeonawU+iG
+         IOOdHhqlPs5+PWHHNmGRxptkqA3gihrhnPtVtYhlF/0SnXovAGNDPYnsJAeT9CgL/glS
+         0k5LUtbNjjnILdMwLUi0ewYwE45bbmLYS4DE/rMPhehBPYEY6uy2IHiStND6tPLmAVv2
+         HTtA==
+X-Gm-Message-State: AGi0Pubm+Il/Fwg7lc+LMNRBm/b3JYC0t414HmzuZvyokkKOCWy7LeaC
+        zfkrxpmSNZgiJmlFs0/3SgE=
+X-Google-Smtp-Source: APiQypJAuuQIMcmMxXCSbON9abfTYyy02Wjgc8Q38il3f+5HzxAp3b1VaD3sXdGSeZIgUiwFGsXi7Q==
+X-Received: by 2002:a7b:c456:: with SMTP id l22mr4204827wmi.148.1588698156757;
+        Tue, 05 May 2020 10:02:36 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id o6sm4397252wrw.63.2020.05.05.10.02.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 05 May 2020 10:02:36 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: fix phy nodename for rk3328
+Date:   Tue,  5 May 2020 19:02:27 +0200
+Message-Id: <20200505170227.6503-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20200321215423.12176-1-jbx6244@gmail.com>
+References: <20200321215423.12176-1-jbx6244@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a reserved memory node for the VGA memory. Add the XDMA engine node,
-enable it, and point it's memory region to the VGA memory.
+A test with the command below gives for example this error:
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
+arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml: phy@0:
+'#phy-cells' is a required property
+
+The phy nodename is normally used by a phy-handle.
+This node is however compatible with
+"ethernet-phy-id1234.d400", "ethernet-phy-ieee802.3-c22"
+which is just been added to 'ethernet-phy.yaml'.
+So change nodename to 'ethernet-phy' for which '#phy-cells'
+is not a required property
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/
+phy/phy-provider.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Changes v2:
+  Reword commit message in the same way as in the patches for
+  'rk3228-evb.dts' and 'rk3229-xms6.dts'
+  that are already aproved.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-index 47293a5..d336dd4 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-@@ -29,6 +29,12 @@
- 			no-map;
- 			reg = <0xb8000000 0x4000000>; /* 64M */
- 		};
-+
-+		vga_memory: region@bf000000 {
-+			no-map;
-+			compatible = "shared-dma-pool";
-+			reg = <0xbf000000 0x01000000>;	/* 16M */
-+		};
- 	};
+  Patch 2-6 of version 1 unchanged.
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 931a9279e..fdf0e1b26 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -935,7 +935,7 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
  
- 	gpio-keys {
-@@ -804,3 +810,8 @@
- 	pinctrl-0 = <&pinctrl_lpc_default>,
- 		    <&pinctrl_lsirq_default>;
- };
-+
-+&xdma {
-+	status = "okay";
-+	memory-region = <&vga_memory>;
-+};
+-			phy: phy@0 {
++			phy: ethernet-phy@0 {
+ 				compatible = "ethernet-phy-id1234.d400", "ethernet-phy-ieee802.3-c22";
+ 				reg = <0>;
+ 				clocks = <&cru SCLK_MAC2PHY_OUT>;
 -- 
-1.8.3.1
+2.11.0
 
