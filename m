@@ -2,159 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C577A1C4AB8
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 01:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 306A81C4B38
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 03:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728622AbgEDXzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 May 2020 19:55:08 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:44860 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728626AbgEDXzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 19:55:07 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1588636506; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=HSbHdKSzouu+GH1sgVv9qkTJ1zJnbqDmfNgHrzsgK2s=; b=CA/WnyEoSKtnJFA9zf/d+Px6uxuwmjVBcRylgTm+/n+Oy+f/XjPKLO2/YUbZ1DzGOIqZvmmv
- RUuAsMglEGCtxywj8plrY2YQxCbOi1eu/o58XUhPusU3urQXTuvzi3sXi7SblNLD0kTnjOxp
- qRHntBVNYyRrrl2IBmFUKmDopcc=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5eb0ab43.7f721f8ba030-smtp-out-n03;
- Mon, 04 May 2020 23:54:43 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 769B3C447A1; Mon,  4 May 2020 23:54:42 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DBD07C44788;
-        Mon,  4 May 2020 23:54:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DBD07C44788
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, p.zabel@pengutronix.de,
-        mgautam@codeaurora.org, vkoul@kernel.org, sboyd@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, jackp@codeaurora.org,
-        Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v8 5/5] phy: qcom-qmp: Rename UFS PCS QMP v4 registers
-Date:   Mon,  4 May 2020 16:54:27 -0700
-Message-Id: <1588636467-23409-6-git-send-email-wcheng@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1588636467-23409-1-git-send-email-wcheng@codeaurora.org>
-References: <1588636467-23409-1-git-send-email-wcheng@codeaurora.org>
+        id S1726531AbgEEBC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 May 2020 21:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726421AbgEEBC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 May 2020 21:02:27 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA90C061A0F;
+        Mon,  4 May 2020 18:02:27 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id n11so249680pgl.9;
+        Mon, 04 May 2020 18:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xWI9B+TTFg6yaOaByAdyaG7ErybvgpfTYV4ZnX/gXNU=;
+        b=M/e9lu+WA5gmHWd39YNtW7Ij9rPgvgYgVGjhaHSDlAU5nuFCLD3+ttURpSHFknMUCF
+         3S5xUU6hUrbSAlh3O626DpXUDPYvvZbBg0Wvfy0xKtYTxxZIeIZwh5XGJOsseNKY2Rwg
+         +/+bUiZ5lX+IbdkKEYn9Ttm8svMG9y2C7g2lMmZUChSKyMOwlZB9M0pEzjdrQO4zljRa
+         eeHlAdMrOWlKJJ4mX1NYYk4mL8v3P/21f49HZDSGFFMbvNskVfW/Kkmrov1OgD8AdVgV
+         K+kPo9INMM3503gtWzTvzshN2pDH4VD/1a9KQMo2ta1GmdLCTOWz2TC9mDEsznmBHy4l
+         DItw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xWI9B+TTFg6yaOaByAdyaG7ErybvgpfTYV4ZnX/gXNU=;
+        b=BjG+NZuv8YTlx0uv7EYNx+OAeK+sqiiuC6liDClsZCfMhaBsjeOlpLuGnLHgcbvdlv
+         h87R27B8ITLw0PGh/5BJdFiohIUb+5Y2ICZMqXO+2MUtLGxMVav4GLfluD1s4yz7PsTy
+         7leZVxj1OqDBZFpGljhvj4DD08csGk7pnDCv6/502xtzMnBnMqlTG5JIkOiLRIV2+OHJ
+         iV/ofteURhBF3pm/BwdacE/NUIeuzHHK0yfabJATImLS4CpKnARbeba+DGo3L+FDa6/2
+         2pciQRRdwh1t/Ck1+hPrUThSm+CqZEVTXqW8pYtX3OJyB8PmxeWOjMkbMkJ+EXWxh7dT
+         7arA==
+X-Gm-Message-State: AGi0PuZdLuabTUcGMcavNIiQjSZLpI/pxjaN9yvDMnjyo2qUrGbBP7rQ
+        f/tPGw/W+HbFwuArLSbLi44=
+X-Google-Smtp-Source: APiQypIJN6mfrLxWSSorrNczpKFfHUaeTe3q/8puMAqodEisMzc29qsPQGzzG4q1wih+BNpxcMDXXg==
+X-Received: by 2002:aa7:951a:: with SMTP id b26mr690679pfp.44.1588640546407;
+        Mon, 04 May 2020 18:02:26 -0700 (PDT)
+Received: from localhost (146.85.30.125.dy.iij4u.or.jp. [125.30.85.146])
+        by smtp.gmail.com with ESMTPSA id 3sm306652pfo.27.2020.05.04.18.02.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 May 2020 18:02:25 -0700 (PDT)
+From:   Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
+X-Google-Original-From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+Date:   Tue, 5 May 2020 10:02:19 +0900
+To:     Pavel Tatashin <pasha.tatashin@soleen.com>
+Cc:     jmorris@namei.org, sashal@kernel.org, linux-kernel@vger.kernel.org,
+        pmladek@suse.com, sergey.senozhatsky@gmail.com,
+        rostedt@goodmis.org, keescook@chromium.org, anton@enomsg.org,
+        ccross@android.com, tony.luck@intel.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] printk: honor the max_reason field in kmsg_dumper
+Message-ID: <20200505010219.GA2282345@jagdpanzerIV.localdomain>
+References: <20200502143555.543636-1-pasha.tatashin@soleen.com>
+ <20200502143555.543636-2-pasha.tatashin@soleen.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200502143555.543636-2-pasha.tatashin@soleen.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UFS QMP v4 PHY has a largely different register set versus USB and
-PCIe.  Rename the register offsets to denote that the value is specific for
-the UFS PCS register.
+On (20/05/02 10:35), Pavel Tatashin wrote:
+[..]
+> +static bool always_kmsg_dump;
+> +module_param_named(always_kmsg_dump, always_kmsg_dump, bool, S_IRUGO | S_IWUSR);
+>  
+>  /**
+>   * kmsg_dump_register - register a kernel log dumper.
+> @@ -3106,6 +3108,12 @@ int kmsg_dump_register(struct kmsg_dumper *dumper)
+>  	spin_lock_irqsave(&dump_list_lock, flags);
+>  	/* Don't allow registering multiple times */
+>  	if (!dumper->registered) {
+> +		if (!dumper->max_reason) {
+> +			if (always_kmsg_dump)
+> +				dumper->max_reason = KMSG_DUMP_MAX;
+> +			else
+> +				dumper->max_reason = KMSG_DUMP_OOPS;
+> +		}
+>  		dumper->registered = 1;
+>  		list_add_tail_rcu(&dumper->list, &dump_list);
+>  		err = 0;
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 20 +++++++++----------
- drivers/phy/qualcomm/phy-qcom-qmp.h | 40 ++++++++++++++++++-------------------
- 2 files changed, 30 insertions(+), 30 deletions(-)
+[..]
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index dec4a17..2d2d5ba 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -191,9 +191,9 @@ enum qphy_reg_layout {
- };
- 
- static const unsigned int sm8150_ufsphy_regs_layout[] = {
--	[QPHY_START_CTRL]		= QPHY_V4_PHY_START,
--	[QPHY_PCS_READY_STATUS]		= QPHY_V4_PCS_READY_STATUS,
--	[QPHY_SW_RESET]			= QPHY_V4_SW_RESET,
-+	[QPHY_START_CTRL]		= QPHY_V4_PCS_UFS_PHY_START,
-+	[QPHY_PCS_READY_STATUS]		= QPHY_V4_PCS_UFS_READY_STATUS,
-+	[QPHY_SW_RESET]			= QPHY_V4_PCS_UFS_SW_RESET,
- };
- 
- static const struct qmp_phy_init_tbl msm8996_pcie_serdes_tbl[] = {
-@@ -1280,13 +1280,13 @@ enum qphy_reg_layout {
- };
- 
- static const struct qmp_phy_init_tbl sm8150_ufsphy_pcs_tbl[] = {
--	QMP_PHY_INIT_CFG(QPHY_V4_RX_SIGDET_CTRL2, 0x6d),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_LARGE_AMP_DRV_LVL, 0x0a),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_SMALL_AMP_DRV_LVL, 0x02),
--	QMP_PHY_INIT_CFG(QPHY_V4_TX_MID_TERM_CTRL1, 0x43),
--	QMP_PHY_INIT_CFG(QPHY_V4_DEBUG_BUS_CLKSEL, 0x1f),
--	QMP_PHY_INIT_CFG(QPHY_V4_RX_MIN_HIBERN8_TIME, 0xff),
--	QMP_PHY_INIT_CFG(QPHY_V4_MULTI_LANE_CTRL1, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2, 0x6d),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0a),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1f),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xff),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
- };
- 
- static const struct qmp_phy_init_tbl sm8150_usb3_serdes_tbl[] = {
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-index c8c06b82..6d017a0 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-@@ -425,26 +425,26 @@
- #define QSERDES_V4_RX_VTH_CODE				0x1c4
- 
- /* Only for QMP V4 PHY - UFS PCS registers */
--#define QPHY_V4_PHY_START				0x000
--#define QPHY_V4_POWER_DOWN_CONTROL			0x004
--#define QPHY_V4_SW_RESET				0x008
--#define QPHY_V4_TIMER_20US_CORECLK_STEPS_MSB		0x00c
--#define QPHY_V4_TIMER_20US_CORECLK_STEPS_LSB		0x010
--#define QPHY_V4_PLL_CNTL				0x02c
--#define QPHY_V4_TX_LARGE_AMP_DRV_LVL			0x030
--#define QPHY_V4_TX_SMALL_AMP_DRV_LVL			0x038
--#define QPHY_V4_BIST_FIXED_PAT_CTRL			0x060
--#define QPHY_V4_TX_HSGEAR_CAPABILITY			0x074
--#define QPHY_V4_RX_HSGEAR_CAPABILITY			0x0b4
--#define QPHY_V4_DEBUG_BUS_CLKSEL			0x124
--#define QPHY_V4_LINECFG_DISABLE				0x148
--#define QPHY_V4_RX_MIN_HIBERN8_TIME			0x150
--#define QPHY_V4_RX_SIGDET_CTRL2				0x158
--#define QPHY_V4_TX_PWM_GEAR_BAND			0x160
--#define QPHY_V4_TX_HS_GEAR_BAND				0x168
--#define QPHY_V4_PCS_READY_STATUS			0x180
--#define QPHY_V4_TX_MID_TERM_CTRL1			0x1d8
--#define QPHY_V4_MULTI_LANE_CTRL1			0x1e0
-+#define QPHY_V4_PCS_UFS_PHY_START				0x000
-+#define QPHY_V4_PCS_UFS_POWER_DOWN_CONTROL			0x004
-+#define QPHY_V4_PCS_UFS_SW_RESET				0x008
-+#define QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB		0x00c
-+#define QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB		0x010
-+#define QPHY_V4_PCS_UFS_PLL_CNTL				0x02c
-+#define QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL			0x030
-+#define QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL			0x038
-+#define QPHY_V4_PCS_UFS_BIST_FIXED_PAT_CTRL			0x060
-+#define QPHY_V4_PCS_UFS_TX_HSGEAR_CAPABILITY			0x074
-+#define QPHY_V4_PCS_UFS_RX_HSGEAR_CAPABILITY			0x0b4
-+#define QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL			0x124
-+#define QPHY_V4_PCS_UFS_LINECFG_DISABLE				0x148
-+#define QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME			0x150
-+#define QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2				0x158
-+#define QPHY_V4_PCS_UFS_TX_PWM_GEAR_BAND			0x160
-+#define QPHY_V4_PCS_UFS_TX_HS_GEAR_BAND				0x168
-+#define QPHY_V4_PCS_UFS_READY_STATUS			0x180
-+#define QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1			0x1d8
-+#define QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1			0x1e0
- 
- /* PCIE GEN3 COM registers */
- #define PCIE_GEN3_QHP_COM_SSC_EN_CENTER			0x14
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> @@ -3157,12 +3162,9 @@ void kmsg_dump(enum kmsg_dump_reason reason)
+>  	struct kmsg_dumper *dumper;
+>  	unsigned long flags;
+>  
+> -	if ((reason > KMSG_DUMP_OOPS) && !always_kmsg_dump)
+> -		return;
+> -
+>  	rcu_read_lock();
+>  	list_for_each_entry_rcu(dumper, &dump_list, list) {
+> -		if (dumper->max_reason && reason > dumper->max_reason)
+> +		if (reason > dumper->max_reason)
+>  			continue;
+
+Why always_kmsg_dump check moved from the dumper loop entry point to the
+dumper registration code? What if the user change always_ksmsg_dump
+dynamically via sysfs?
+
+	-ss
