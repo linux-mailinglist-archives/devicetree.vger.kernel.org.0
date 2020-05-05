@@ -2,227 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ACDE1C5EA8
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 19:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 492AE1C5EE2
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2020 19:31:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729315AbgEERTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 May 2020 13:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49908 "EHLO
+        id S1729987AbgEERbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 May 2020 13:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729199AbgEERTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 13:19:36 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B4FC061A0F;
-        Tue,  5 May 2020 10:19:35 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id g10so1989685lfj.13;
-        Tue, 05 May 2020 10:19:35 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1729729AbgEERbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 May 2020 13:31:38 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5948C061A41
+        for <devicetree@vger.kernel.org>; Tue,  5 May 2020 10:31:37 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id 1so1768101vsl.9
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2020 10:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=fN8WwnE2LRlNaf6M77DU0dZatEfeAbfUlEhfB3nkRns=;
-        b=ar+YQC5+IzrhOrKTrrxeYt4gi+AFiDPYHMrHdE4YM6SBENqFc/X0mJch+2br09u24E
-         WZVB70SwBtqZfVWpSzMOYGg1rlGFYBCp9LVn8RaTDKXJgmDZj7cklL4gA9Ov3emQRwvA
-         izQyeHIf8CzcbAIhDZCq9HFAvBo2hBXCNC2/SVR7f5i5F/oDsW1O/Bah8HtLhSU2y7Vf
-         U3dER7ZjwMdYmuj2URglq9scPEMEQ6ZVOlqjBsuPx/ZGPvn2gvTgopUXaP4NekIbNRBE
-         6KyjZ7QwokC1coozpMxNzczcFhzJLQ2oIdVc7BoAsoVtgnJDSn0P0bCb7lzw7oM1XCYk
-         A/NQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EQsoLSVjLAyR/M3Ocg/DHLH6pm0RmX/436FGjF6WTao=;
+        b=Ke1ddssfTsxp0iPhblhR8uitz3u+NzVLxty3wGO22LNbm/oHweSwOoglBCDtTP/BIT
+         nV1QFq59DQfSmb6KnLtJ20O65z/eG/stUQHHvO8IH4EjGKYIUy9p4mmslme/tNVh5Flm
+         6cGsK5McFrzX89tb9oXS6LtVMITgWloKe3SwFt3NmJYkPMWNvHfXt2Ie7uhSd+23n+/8
+         ATV6FtzN+kcQJYmd3TQIVidF4Kn9qkk/B5Pp0RJ4v+8tQh2QN5nO4biP92tJ6VPwRAnT
+         Gj9H12bpBzqp+B/l/ZfQsusyeGTwkTsHyDvj43JP5reauKAVSHVR8hvyiuB885U4ug4L
+         ZUZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=fN8WwnE2LRlNaf6M77DU0dZatEfeAbfUlEhfB3nkRns=;
-        b=tXWLLGJxQF7tBBkrNNXPI4iNM4kKZoXrtN3GNJGGuwtnTXaovodPD9KRdz6xKr5CYE
-         fuXIESbxs+4XsfssLsqvAbOOKd2s4N+IuoTTs9Rq1X4xvr/15x6w6ipbH8pgpDBwbpqg
-         ylatmtzbbv1y/zaeEEySEqIwruyPlbSM3rWlmKB8QVHYVMs6CZ21gss4nEaip1Wee+6c
-         BLBH2jPpArUVhyw4oMb4P9YjJ9rvC/NgX6BKPeWiMh+VOugoSSMmUOgC66CU0pSse4DJ
-         120pUNfG7Kmy8EjFXnhdciHGtl5uonLBu6X6ZRXOF7LBd5TBT4F/NBlMs+Cz2r+GsuR3
-         TfeA==
-X-Gm-Message-State: AGi0PuZtcN3Yv4Lvk194TQNj6C5Hjgxx3X9cx7hTd818xJPbUbuZdahl
-        bkvy1QLZa59nnA3gwE9nXzk=
-X-Google-Smtp-Source: APiQypKsDr/pXwmUHR9eebHAaQ5nZ+uWqcSwO9LcijLmL2O2nr4OqLhlTriiwsBdbnsr4MUqCEuPMA==
-X-Received: by 2002:a19:c6c1:: with SMTP id w184mr2354137lff.20.1588699173876;
-        Tue, 05 May 2020 10:19:33 -0700 (PDT)
-Received: from ?IPv6:2a01:540:22b8:4400:dc3e:d899:ae3f:7683? ([2a01:540:22b8:4400:dc3e:d899:ae3f:7683])
-        by smtp.gmail.com with ESMTPSA id b1sm2625832lfb.22.2020.05.05.10.19.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 May 2020 10:19:33 -0700 (PDT)
-Subject: Re: [PATCH 1/3] leds: add aw2013 driver
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20200504162934.4693-1-nikitos.tr@gmail.com>
- <20200504180049.GA5067@duo.ucw.cz>
-From:   Nikita Travkin <nikitos.tr@gmail.com>
-Message-ID: <acbc956a-6cd8-97ca-545a-07533e43b7b7@gmail.com>
-Date:   Tue, 5 May 2020 22:19:31 +0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EQsoLSVjLAyR/M3Ocg/DHLH6pm0RmX/436FGjF6WTao=;
+        b=lStGUaNiV2/7DjjQQT3smA1Ji4djMg9zvUEJXzrA1Db9jVm1KLHMitUNIJgWT9nNI0
+         IG8ukesQ9m6R2sqqnGAGxGudng7DfAm2mwl3V7AHZWnVMnKzZHsHt3ZC3JLZmflf/s4e
+         XNHIQoQr+S2VEr2AuE4Yj3yWUMtHWn7q2vzkjAoxoaHYPgihpNvRaApoNybl8hLeP7Rs
+         RimHQNzhcY1uTsZkkydMtTjP+TOvjZhiemBshBdGONd4MlhCgRoD2Z9hhG5lhOrRv+lo
+         LqHyJWiZH+xW3LOqUXm51O7tz76TD2SyjETdWq+Z8tO5oqJH4QjiXKCeB7SE5bunTIDT
+         qOPA==
+X-Gm-Message-State: AGi0PuY9IDDYa2UC5DBmHoqA+4S6mKlRt1QKV+Ql7SOZfUMDnTeXe5Ex
+        2l9WFnj/+8QXTzc5VrxOMlFAoKBpw4x31kAfWUXfJA==
+X-Google-Smtp-Source: APiQypKY+Ec0L+QALIPDIkzOQ4WXjg5IcZuMySRts7hkgSJWNuiacaOPr1fNLfnrg/Vc3j1c0VN+v2jbTt5wryigOLM=
+X-Received: by 2002:a67:302:: with SMTP id 2mr3875137vsd.165.1588699896206;
+ Tue, 05 May 2020 10:31:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200504180049.GA5067@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20200428210229.703309-1-martin.blumenstingl@googlemail.com>
+ <20200428210229.703309-3-martin.blumenstingl@googlemail.com>
+ <1jlfmdi9uw.fsf@starbuckisacylon.baylibre.com> <CAPDyKFoEh8qKYFONo1SHnvwhDwjUa5bMnnT1Kbu8=4rd=T-8Kg@mail.gmail.com>
+ <1jh7x1i3hj.fsf@starbuckisacylon.baylibre.com> <CAPDyKFq_USCNNps3s4+C_1hriycrxtRMKJvnPFcP59CZmLXbGw@mail.gmail.com>
+ <1j1rnygye6.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j1rnygye6.fsf@starbuckisacylon.baylibre.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 5 May 2020 19:30:59 +0200
+Message-ID: <CAPDyKFogZgX05mPgue4UT57cTM-KVPfmoPJPf1BNJurGN+qp-g@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] mmc: host: meson-mx-sdhc: new driver for the
+ Amlogic Meson SDHC host
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        yinxin_1989@aliyun.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        lnykww@gmail.com, Anand Moon <linux.amoon@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hi!
+On Tue, 5 May 2020 at 18:05, Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
->> +#define AW2013_NAME "aw2013"
-> That's.... not really useful define. Make it NAME? Drop it?
-Will drop it as well as (unnecessary) lines it is used in.
->> +#define AW2013_TIME_STEP 130
-> I'd add comment with /* units */.
-Will add.
->> +#define STATE_OFF 0
->> +#define STATE_KEEP 1
->> +#define STATE_ON 2
-> We should add enum into core for this...
 >
->> +static int aw2013_chip_init(struct aw2013 *chip)
->> +{
->> +	int i, ret;
->> +
->> +	ret = regmap_write(chip->regmap, AW2013_GCR, AW2013_GCR_ENABLE);
->> +	if (ret) {
->> +		dev_err(&chip->client->dev, "Failed to enable the chip: %d\n",
->> +			ret);
->> +		goto error;
->> +	}
->> +
->> +	for (i = 0; i < chip->num_leds; i++) {
->> +		ret = regmap_update_bits(chip->regmap,
->> +					 AW2013_LCFG(chip->leds[i].num),
->> +					 AW2013_LCFG_IMAX_MASK,
->> +					 chip->leds[i].imax);
->> +		if (ret) {
->> +			dev_err(&chip->client->dev,
->> +				"Failed to set maximum current for led %d: %d\n",
->> +				chip->leds[i].num, ret);
->> +			goto error;
->> +		}
->> +	}
->> +
->> +error:
->> +	return ret;
->> +}
-> No need for goto if you are just returning.
-Will change it.
->> +static bool aw2013_chip_in_use(struct aw2013 *chip)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < chip->num_leds; i++)
->> +		if (chip->leds[i].cdev.brightness)
->> +			return true;
->> +
->> +	return false;
->> +}
-> How is this going to interact with ledstate == KEEP?
+> On Tue 05 May 2020 at 10:17, Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
->> +static int aw2013_brightness_set(struct led_classdev *cdev,
->> +				 enum led_brightness brightness)
->> +{
->> +	struct aw2013_led *led = container_of(cdev, struct aw2013_led, cdev);
->> +	int ret, num;
->> +
->> +	mutex_lock(&led->chip->mutex);
->> +
->> +	if (aw2013_chip_in_use(led->chip)) {
->> +		ret = aw2013_chip_enable(led->chip);
->> +		if (ret)
->> +			return ret;
->> +	}
-> You are returning with mutex held.
-Will fix.
->> +	/* Never on - just set to off */
->> +	if (!*delay_on)
->> +		return aw2013_brightness_set(&led->cdev, LED_OFF);
->> +
->> +	/* Never off - just set to brightness */
->> +	if (!*delay_off)
->> +		return aw2013_brightness_set(&led->cdev, led->cdev.brightness);
-> Is this dance neccessary? Should we do it in the core somewhere?
-Right now blink_set() can be called with either delay_on or delay_off
-being zero.
+> > [...]
+> >
+> >> >> > +
+> >> >> > +     return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> >> >> > +                                        onecell_data);
+> >> >>
+> >> >> I think registering a provider for a module that does not provide clocks
+> >> >> to any other device is a bit overkill.
+> >> >>
+> >> >> I understand the matter is getting the per-user clk* pointer.
+> >> >> Since this is the module registering the clock, you can use clk_hw->clk
+> >> >> to get it.
+> >> >>
+> >> >> Once you have the clk* of the leaf clocks, you don't even need to keep
+> >> >> track of the clk_hw* since you are using devm_
+> >> >>
+> >> >> Afterward, we should propably discuss with Stephen if something should
+> >> >> be added in CCF to get a struct clk* from struct clk_hw*.
+> >> >>
+> >> >
+> >> > [...]
+> >> >
+> >> > Hmm.
+> >> >
+> >> > I am not sure the above is a good idea, at all. Unless, I am
+> >> > misunderstanding your point, which may be the case.
+> >> >
+> >> > I think above "shortcuts" could lead to abuse of the clock framework
+> >> > and its internal data structures. When going forward, this could make
+> >> > it unnecessary harder to maintain the clock framework.
+> >> >
+> >> > I know, it's not my responsibility, but from my experience with MMC
+> >> > and SDIO interfaces, is that those have been too easy abuse - since
+> >> > most of the data structures and interfaces have been exported. Now,
+> >> > it's hard to roll back that, if you see what I mean.
+> >>
+> >> Indeed, it worth clarifying this first.
+> >>
+> >> With clk_register deprecated in favor of clk_hw_register, we are likely
+> >> to see that case rise elsewhere.
+> >>
+> >
+> > So, according to the separate discussion [1], I think we can let
+> > Martin decide what option to implement at this point.
+> >
+> > 1. Implement the "clk_hw_get_clk()" approach. The preferred option,
+> > but requires wider changes of the clock subsystem as well.
+> >
+> > 2. Keep the existing approach, with devm_clk_get(). I am fine with
+> > this as well, we can always switch to 1) later on.
+>
+> I have a problem with this approach.
+> The dt-bindings would include "#clock-cells = <1>" for a device that
+> does not actually provide and only needs it has a temporary work around.
+> Those bindings are supposed to be stable ...
 
-Passing zero into calculations I do later will result in garbage so
-I'm trying to avoid it.
+I agree, the bindings need to be stable.
 
-Core could probably handle situation where both are zero (This way
-default values will be shared across all drivers) and if only
-delay_on is zero it could disable led and the blink mode. (As if
-brightness was set to 0)
-In case where only delay_off is zero it's a bit more complicated
-since driver should disable blinking but leave led on if it was
-blinking already.
+What is the problem of keeping "#clock-cells = <1>" around, when we
+move to a clk_hw_get_clk() approach in the next step?
 
-That also means that my current solution is a bit broken since changing
-delay_off to zero while led is already blinking will call brightness_set
-without clearing the mode bit so the led will still blink.
-
-For now I will fix that and leave all those checks in place.
->> +		} else {
->> +			led->imax = 1; // 5mA
->> +			dev_info(&client->dev,
->> +				 "DT property led-max-microamp is missing!\n");
->> +		}
-> Lets remove the exclamation mark.
-Will do.
->> +		led->num = source;
->> +		led->chip = chip;
->> +		led->fwnode = of_fwnode_handle(child);
->> +
->> +		if (!of_property_read_string(child, "default-state", &str)) {
->> +			if (!strcmp(str, "on"))
->> +				led->default_state = STATE_ON;
->> +			else if (!strcmp(str, "keep"))
->> +				led->default_state = STATE_KEEP;
->> +			else
->> +				led->default_state = STATE_OFF;
->> +		}
-> We should really have something in core for this. Should we support
-> arbitrary brightness there?
-Not sure if there is good dt property for that.
->> +static void aw2013_read_current_state(struct aw2013 *chip)
->> +{
->> +	int i, led_on;
->> +
->> +	regmap_read(chip->regmap, AW2013_LCTR, &led_on);
->> +
->> +	for (i = 0; i < chip->num_leds; i++) {
->> +		if (!(led_on & AW2013_LCTR_LE(chip->leds[i].num))) {
->> +			chip->leds[i].cdev.brightness = LED_OFF;
->> +			continue;
->> +		}
->> +		regmap_read(chip->regmap, AW2013_REG_PWM(chip->leds[i].num),
->> +			    &chip->leds[i].cdev.brightness);
->> +	}
->> +}
->> +
->> +static void aw2013_init_default_state(struct aw2013_led *led)
->> +{
->> +	switch (led->default_state) {
->> +	case STATE_ON:
->> +		led->cdev.brightness = LED_FULL;
->> +		break;
->> +	case STATE_OFF:
->> +		led->cdev.brightness = LED_OFF;
->> +	} /* On keep - just set brightness that was retrieved previously */
->> +
->> +	aw2013_brightness_set(&led->cdev, led->cdev.brightness);
->> +}
-> Aha; I guess this makes "keeping" the state to work. Do you really
-> need that functionality?
-I don't need that. On some theoretical device the chip could be
-enabled by bootloader but I consider that unlikely. I can drop
-support for keeping state. It would be then easier to get rid of
-"default_state" and "fwnode" in device struct. Should I?
 >
-> Pretty nice driver, thanks.
->
-> 									Pavel
+> I have proposed 2 other short term solutions, let's see how it goes
+
+Yes, seems like we need to wait for Stephen's input then.
+
+Kind regards
+Uffe
