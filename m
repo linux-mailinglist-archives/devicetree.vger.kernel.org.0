@@ -2,100 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 181BD1C8E09
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 16:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC9AA1C7647
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 18:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727926AbgEGOLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 10:11:05 -0400
-Received: from mail1.bemta26.messagelabs.com ([85.158.142.1]:30358 "EHLO
-        mail1.bemta26.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728103AbgEGOLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 10:11:04 -0400
-Received: from [100.113.2.173] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-1.bemta.az-a.eu-central-1.aws.symcld.net id ED/3D-08563-4F614BE5; Thu, 07 May 2020 14:11:00 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRWlGSWpSXmKPExsVy8MN7Xd0vYlv
-  iDK7+ELSYc76FxWL+kXOsFocXvWC0aF68ns3i/tejjBY3P31jtbi8aw6bRfvG2awWS69fZLJ4
-  /6mTyaJ17xF2i/97drBb/Nw1j8Xi9sTJjA58HmvmrWH02LLyJpPHzll32T02repk87hzbQ+bx
-  /65a9g9+v8aeHzeJBfAEcWamZeUX5HAmvF/XSdrwQ/2ioeHOlkaGD+zdjFycQgJrGGU2P1kD0
-  sXIyeQUymxYcUsoAQHB6+AqcTj2WUgYTYBHYlHM9czgdgsAioSN/4eBrOFBawkPl+czAYyR0T
-  gJLNE572vLCAOs8A0Rok9Hw8zg1TxCghKnJz5BGwBs4CExMEXL5ghlmlJnFuzinECI/csJGWz
-  kJQtYGRaxWiZVJSZnlGSm5iZo2toYKBraGisa6hrZGCil1ilm6iXWqqbnJpXUpQIlNVLLC/WK
-  67MTc5J0ctLLdnECAz7lELGMzsYdy1/r3eIUZKDSUmUd8nnzXFCfEn5KZUZicUZ8UWlOanFhx
-  hlODiUJHj3i2yJExIsSk1PrUjLzAHGIExagoNHSYTXGhiHQrzFBYm5xZnpEKlTjLoc19/vXco
-  sxJKXn5cqJc6bCVIkAFKUUZoHNwKWDi4xykoJ8zIyMDAI8RSkFuVmlqDKv2IU52BUEuY9Kgo0
-  hSczrwRu0yugI5iAjvj8aRPIESWJCCmpBqb0TXyvNzscjljso8p4U8bh0GkXp3SuXzGFFX/6d
-  x2pEdka+zEiZ15V9ES3yAKPjGdHU3/vifrB0d1nUXH6BcMuzRbf1mamqffeil6JnmIip9N/LH
-  V7ga6nqm1MrPPEvbynLqy8qeZ89OCWxbXMB1I/CEw+UmKbn/7+0tvO99eEdBbOqymeccUiy2/
-  lbo1+9qge69xyV7NNWf/YXJftOi68+Xja9OpXghWhG9WmH3x279xmyWNTNkwqvRT5YGGyZPSt
-  ON01G5UnRLAf+K/6fr8yy+4d4tHN1XFSp9dkvl9pFtjbZxX2wHtXjfVssUP2co+jZ0xQ/RapM
-  iXUxmwWu6Huwj9rWdY+Oehq6XBCaqUSS3FGoqEWc1FxIgC9hAYEggMAAA==
-X-Env-Sender: roy.im.opensource@diasemi.com
-X-Msg-Ref: server-19.tower-223.messagelabs.com!1588860659!2836654!2
-X-Originating-IP: [193.240.239.45]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 13072 invoked from network); 7 May 2020 14:11:00 -0000
-Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
-  by server-19.tower-223.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 7 May 2020 14:11:00 -0000
-Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Thu, 7 May 2020 16:10:58 +0200
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- 1660413F671; Thu,  7 May 2020 23:10:57 +0900 (KST)
-Message-ID: <cover.1588781316.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Thu, 7 May 2020 01:08:36 +0900
-Subject: [PATCH V13 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+        id S1729927AbgEFQab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 12:30:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727984AbgEFQaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 12:30:30 -0400
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D75EC061A0F
+        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 09:30:28 -0700 (PDT)
+Received: by mail-oi1-x243.google.com with SMTP id o7so2301871oif.2
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 09:30:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EvHPxE7L1Cb6oif98tDAWFYOvy9QzwI+EVnlaf1jpTo=;
+        b=xGbq/nBkeNTeQkh8TeQ07h15oTGAYHX6j5LFfR/RI3sHIvBIymNOSSXRcu+wHZ1aVW
+         Bi9WC0jgv9B5Kp+7cwBmKtfn1QjRyVdEkInImfKuIlVtWGUJmKfhJrI1QWyRGwCX0yJD
+         ZWlgp81bR5ws/479qoQiUXdTQKezTywlxfTMxQqtDA8i2bG+9sntoecsCgJ9HLEPbqvg
+         G34LbxJQDBp7Gtl0+VsmxjLGveZyAEy3fCO4pbX5afZwwEcYRPCDhYIDmwlFwhGzmFcG
+         Lqdq+jCKkXA8vZnRXREVS+dR1h3wiY7f35aHnymxitA672W5CrNu0RAOCSEsoG6c/aHS
+         oveg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EvHPxE7L1Cb6oif98tDAWFYOvy9QzwI+EVnlaf1jpTo=;
+        b=RLFhRC9M7R2Jp1guN3wIOybCPhNTT77fa4k8DEGLt1nj+qH/tnUpV44L7G0wWoDNbo
+         mwH1eda+evsVIs8Uhjgw3AaTnhWwy/ezJphXhx7H3/Skr4P2lcMbThxh2DHcsQJTUu3B
+         e1tn52hy27guMWaU4JuOdff+bjMRWPfgVG0LknCHJxdRmrWm3eO4uz0tKToZ1tdm5D/L
+         fymjy/mmdXN3fyKffwO7sEVNZhZh+GR1/9dHb5oRqEysuqUVriES8qS7PcGtaPgDRVn8
+         i/4ZbFQQItcotpd6rbqdRnr3aQTSsR81RdDkBY3+A7vx/31V+zl8op9lgofSg4nbvQBK
+         bYmw==
+X-Gm-Message-State: AGi0PuYKZeL0cNeY5Y4Akqp7riw31T9XFYVZw0Mx3urj+S22Kc714+uA
+        CQMex0bc/pkqS5pa6zBSjWcxuGl0qthdsmutRGgAhw==
+X-Google-Smtp-Source: APiQypJOjwli0ENiyI3cl299qwfEK7rVXtgNZRAGsYZ2j/Qgmpsi7m4V2zQHdFeurrc2zQ1jwMe1nfOg2GrAWKcKGNo=
+X-Received: by 2002:aca:cf83:: with SMTP id f125mr3336594oig.97.1588782627545;
+ Wed, 06 May 2020 09:30:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20200501073949.120396-1-john.stultz@linaro.org>
+ <20200501073949.120396-2-john.stultz@linaro.org> <20200501104216.4f226c2a7bzval5o@DESKTOP-E1NTVVP.localdomain>
+ <CALAqxLVScV1j-zxw=cwpE0+eDoaubchXx6SJgu=1Zvh8HnE-Tg@mail.gmail.com>
+ <20200504085007.5yrjhknkg6ugbqwk@DESKTOP-E1NTVVP.localdomain> <1bddb721-d4d9-f113-bacc-0a0ca2d57753@ti.com>
+In-Reply-To: <1bddb721-d4d9-f113-bacc-0a0ca2d57753@ti.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Wed, 6 May 2020 09:30:16 -0700
+Message-ID: <CALAqxLWnEj-c3CYGC6p23cwMqce-MV6pJOzGbp+ptWFB0NQoog@mail.gmail.com>
+Subject: Re: [RFC][PATCH 1/4] devicetree: bindings: Add linux,cma-heap tag for
+ reserved memory
+To:     "Andrew F. Davis" <afd@ti.com>
+Cc:     Brian Starkey <brian.starkey@arm.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+        Liam Mark <lmark@codeaurora.org>,
+        Pratik Patel <pratikp@codeaurora.org>,
+        Laura Abbott <labbott@redhat.com>,
+        Chenbo Feng <fengc@google.com>,
+        Alistair Strachan <astrachan@google.com>,
+        Sandeep Patil <sspatil@google.com>,
+        Hridya Valsaraju <hridya@google.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-mm <linux-mm@kvack.org>, nd <nd@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
+On Wed, May 6, 2020 at 9:04 AM Andrew F. Davis <afd@ti.com> wrote:
+> On 5/4/20 4:50 AM, Brian Starkey wrote:
+> > On Fri, May 01, 2020 at 11:40:16AM -0700, John Stultz wrote:
+> >> So the name we expose is the CMA name itself. So with dt it will be
+> >> the name of the reserved memory node that the flag property is added
+> >> to.
+> >>
+> >
+> > Yeah I'm just wondering if that's "stable" so we can say "the heap
+> > will use the node name", or if saying that would cause us a headache
+> > in the future.
+>
+>
+> The issue is going to be this causes the node name in DT to become a
+> kind of ABI. Right now until we have some userspace lib that enumerates
+> the heaps in a stable way programs will hard-code the full heap name,
+> which right now would look like:
+>
+> char *heap = "/dev/dma_heap/dma_heap_mem@89000000";
+>
 
-In this patch set the following is provided:
+If that's what the device chose to export.
 
-[PATCH V13 1/3] MAINTAINERS file update for DA7280
-[PATCH V13 2/3] DA7280 DT Binding
-[PATCH V13 3/3] DA7280 Driver
+> Yuk.. we might want to look into exporting heap properties to make them
+> searchable based on something other than name here soon. Or this will be
+> a mess to cleanup in the future.
 
-This patch applies against linux-next and v5.7-rc4
+Eh. I don't see this as such an issue. On different systems we have
+different device nodes. Some boards have more or fewer NICs, or
+various partitions, etc. There has to be some device specific userland
+config that determines which partitions are mounted where (this is my
+"gralloc is fstab" thesis :)
 
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
+I think with the heaps, qualities other than name are going to be
+poorly specified or unenumerable, so any generic query interface is
+going to fall down there (and be awful to use).
 
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
-
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   13 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1898 ++++++++++++++++++++
- 5 files changed, 2023 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
-
--- 
-end-of-patch for PATCH V13
-
+thanks
+-john
