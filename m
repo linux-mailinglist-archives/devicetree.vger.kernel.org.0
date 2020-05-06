@@ -2,52 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 442591C6C65
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 11:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE8D01C6C77
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 11:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728814AbgEFJEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 05:04:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46906 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726935AbgEFJEn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 May 2020 05:04:43 -0400
-Received: from localhost (unknown [122.181.213.114])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1351920714;
-        Wed,  6 May 2020 09:04:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588755882;
-        bh=UmRfIgrDkfkbhyaF1rH3TCqqTzBBRSFZuTzOSYuwxaI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DwIYbt28Tk7K7gzQRm9dsEZZR1/ORFvc/F7lF3Ro/JpkC49+1aSnZzrv/lhtmToJI
-         KIAx/skmpMjkbY4W0hK0bi6nDtgZjgCps0yT9kEDMa1NWibBJxUXMM59iEp9JlaG6V
-         FqcqcBLWSr9sHuwL1gZ+0SuciCFPZ6wZsENjiSAw=
-Date:   Wed, 6 May 2020 14:34:33 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
-        robh+dt@kernel.org, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, jackp@codeaurora.org
-Subject: Re: [PATCH] dt-bindings: phy: usb-snps-femto-v2: Add regulator
- entries to example
-Message-ID: <20200506090433.GA1375924@vkoul-mobl>
-References: <1588753589-22673-1-git-send-email-wcheng@codeaurora.org>
+        id S1728918AbgEFJMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 05:12:20 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:39366 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728571AbgEFJMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 05:12:19 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04697FwD001978;
+        Wed, 6 May 2020 11:11:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=XGQKAQuav9TpCHTlyeLUSt6M0sNEeVgAi7gME92XMVY=;
+ b=TAlXRj8PvOSk2o3fHUp8vOhRJTsp0BhVr7SPA5dek+Z/i/BSYmOOlyPWjpwMIF3W5x4G
+ Wf3o+psCeMOJb6H7ZXt3rEp460W5KUFuUEvDak6CxDpwifG/Q14Bkj0mTZAXRJ47T7pD
+ akcF6TXd8Z2Efg9kGeGyfYB8nwthd8f83v48W8XTfPS7Pkt5W0SaeVErnBYaFVAJj3CF
+ rZcTlXuAFIG1ffhuvdWa5TnYm0Zf5e1J/u53HuUZ+TP/sXL6ypPis4PYL+YmcFCPaVvs
+ fsz1VaK7feXF5sbCb7H6xPNdqlShQVrXDDRxK7ycrf3VWmnY/e5y/t93yquCip6x0dgF 4A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 30rxb254w7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 06 May 2020 11:11:58 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1A619100034;
+        Wed,  6 May 2020 11:11:57 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D248B222CF7;
+        Wed,  6 May 2020 11:11:57 +0200 (CEST)
+Received: from localhost (10.75.127.48) by SFHDAG6NODE2.st.com (10.75.127.17)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 6 May 2020 11:11:57
+ +0200
+From:   Christophe Kerello <christophe.kerello@st.com>
+To:     <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <gregkh@linuxfoundation.org>, <boris.brezillon@collabora.com>
+CC:     <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <marex@denx.de>,
+        Christophe Kerello <christophe.kerello@st.com>
+Subject: [PATCH v4 00/10] add STM32 FMC2 EBI controller driver
+Date:   Wed, 6 May 2020 11:11:09 +0200
+Message-ID: <1588756279-17289-1-git-send-email-christophe.kerello@st.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1588753589-22673-1-git-send-email-wcheng@codeaurora.org>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG7NODE2.st.com (10.75.127.20) To SFHDAG6NODE2.st.com
+ (10.75.127.17)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-05-06_03:2020-05-04,2020-05-06 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-05-20, 01:26, Wesley Cheng wrote:
-> Fix errors reported by dt_binding_check, due to missing required
-> regulators in the example node.
+The FMC2 functional block makes the interface with: synchronous and
+asynchronous static devices (such as PSNOR, PSRAM or other memory-mapped
+peripherals) and NAND flash memories.
+Its main purposes are:
+  - to translate AXI transactions into the appropriate external device
+    protocol
+  - to meet the access time requirements of the external devices
+All external devices share the addresses, data and control signals with the
+controller. Each external device is accessed by means of a unique Chip
+Select. The FMC2 performs only one access at a time to an external device.
 
-Applied, thanks
+Changes in v4:
+ - bindings:
+   - fix filename: st,stm32-fmc2-ebi.yaml
+
+Changes in v3:
+ - NAND:
+   - rename labels used on errors
+   - add in the commit log the reason to increase FMC2_TIMEOUT_MS (patch 3)
+   - add Miquel reviewed-by tag (patches 2/4/5/9)
+ - EBI:
+   - move in memory folder
+   - merge MFD and BUS drivers to avoid a MFD driver
+ - bindings:
+   - pattern name has been modified
+   - vendor properties have been modified
+     - s/_/-/
+     - add unit suffix (-ns) on timing properties
+
+Christophe Kerello (10):
+  mtd: rawnand: stm32_fmc2: manage all errors cases at probe time
+  mtd: rawnand: stm32_fmc2: remove useless inline comments
+  mtd: rawnand: stm32_fmc2: use FMC2_TIMEOUT_MS for timeouts
+  mtd: rawnand: stm32_fmc2: cleanup
+  mtd: rawnand: stm32_fmc2: use FIELD_PREP/FIELD_GET macros
+  dt-bindings: mtd: update STM32 FMC2 NAND controller documentation
+  dt-bindings: memory-controller: add STM32 FMC2 EBI controller
+    documentation
+  memory: stm32-fmc2-ebi: add STM32 FMC2 EBI controller driver
+  mtd: rawnand: stm32_fmc2: use regmap APIs
+  mtd: rawnand: stm32_fmc2: get resources from parent node
+
+ .../memory-controllers/st,stm32-fmc2-ebi.yaml      |  261 +++++
+ .../bindings/mtd/st,stm32-fmc2-nand.yaml           |   19 +-
+ drivers/memory/Kconfig                             |   10 +
+ drivers/memory/Makefile                            |    1 +
+ drivers/memory/stm32-fmc2-ebi.c                    | 1206 ++++++++++++++++++++
+ drivers/mtd/nand/raw/Kconfig                       |    1 +
+ drivers/mtd/nand/raw/stm32_fmc2_nand.c             | 1176 ++++++++++---------
+ 7 files changed, 2061 insertions(+), 613 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+ create mode 100644 drivers/memory/stm32-fmc2-ebi.c
 
 -- 
-~Vinod
+1.9.1
+
