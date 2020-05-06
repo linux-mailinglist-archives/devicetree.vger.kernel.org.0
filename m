@@ -2,172 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52B0F1C78E6
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 20:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 959E91C7916
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 20:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728619AbgEFSGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 14:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728094AbgEFSGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 14:06:40 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC9F4C061A10
-        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 11:06:40 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id b8so1136679pgi.11
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 11:06:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FE2Opx3hl+uW9jxp1ZVpnasVASKfoo+q149+dKG+qhY=;
-        b=hTnD7UKuMzIgfb5irQV+tZgWTnCYthgLCG21//72Z4Wio0uJW/dBsPCdj3wbKSnlE1
-         vXYCSuIrPhejTchJur0h3EB072yeY2noMGfG7bevc++IXG64YfO8eCkJGZj1QlSAdzJL
-         9l4CwFe9uWCtFWouHMu6CYCvLqj4skiIXD3wi8ea4U58AvmWMdSJOIg+jMrE1OTj66Pa
-         Hc4cC+Kj4OP2CC2uWDlNQ/4xVSrMXjd4jbXX8uyvozgmWRL7oJScP+DJtmij6M/ymSaO
-         /F0AsmB07ttNqKmiT39sdTnD2hKA8HSD8k7V/5B1DojDvm/vxAjIC3cHVnFR/Y8hKx2y
-         pMCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FE2Opx3hl+uW9jxp1ZVpnasVASKfoo+q149+dKG+qhY=;
-        b=t6WxFlrLE3atajHXpmSiyNDiZ+TlRHqDObf2fGYJTrFL72Q1SxfQk27WpL7H5zc8eb
-         Yg+Q55dyELvXhvI7x1KPq9yT/0JzdSa7xIoLPMwsZmEPPAiqZSgPG7wvf8qmhq0u3SLM
-         imF+sevfmsHe6q7O+FhU+Bp8Yk/uStoKgBYlvRXmHgH1kCR9YcROEjb4MF8Lrhj2KC02
-         vfB149EL/fGiiyetssEv45GijkSFqtIVYt3+SPIdMzFWGENrNxiNY+eP7KVK+r35bANo
-         tc0QZjdyP2iOVev6uQ55cpSZ3jz9Awjj4IC1Qrk+JuGuKPhfzp6YbJkkrToXrT8CwO7U
-         3mcQ==
-X-Gm-Message-State: AGi0PuZZ6SsAr2mU3CZHxOwIg6Lk88TPF18rVVg1yFQhTjH7S2BzmWll
-        opNN/D11p5EGakMfbA9U3Dysjw==
-X-Google-Smtp-Source: APiQypLsrgGXX0cuoyAtpxCXsjMUB+pCfX4jIYB7vsfKEQH7brHN2pyTA23mas7aRrd9qaBbObi80w==
-X-Received: by 2002:a62:8741:: with SMTP id i62mr9894246pfe.7.1588788399619;
-        Wed, 06 May 2020 11:06:39 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:bc61:d85d:eb16:9036])
-        by smtp.gmail.com with ESMTPSA id w12sm2432267pfq.133.2020.05.06.11.06.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2020 11:06:38 -0700 (PDT)
-Date:   Wed, 6 May 2020 11:06:32 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, heikki.krogerus@linux.intel.com,
-        twawrzynczak@chromium.org, Benson Leung <bleung@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: chrome: Add cros-ec-typec mux props
-Message-ID: <20200506180632.GA112329@google.com>
-References: <20200422222242.241699-1-pmalani@chromium.org>
+        id S1729550AbgEFSOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 14:14:25 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:40632 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728082AbgEFSOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 14:14:25 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 046IEArB011357;
+        Wed, 6 May 2020 13:14:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1588788850;
+        bh=i7DjKQcoyf7U+urYm+53KnmXgF7F3NKsTjU/TUs3Ap4=;
+        h=From:To:CC:Subject:Date;
+        b=Hbyib1JuMEfN/K7GtiOT/POTCc+fGJl0VEjbG2JF5TSq+sk7jXeUcUdXE4ogchrSX
+         sqgEoS+yLARGLRQ6qNmL8OWWZKHxW+Y3+oi4w65lbBqNxuZ6LL5fL6+mnstaCAeMlQ
+         /uGuo1YN3o8AyJzMZ9FGcflaTByVgDUEhgESOn8s=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 046IEAVl093986
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 May 2020 13:14:10 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 6 May
+ 2020 13:14:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 6 May 2020 13:14:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046IE8Qu064547;
+        Wed, 6 May 2020 13:14:09 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <netdev@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH net-next 0/3] net: ethernet: ti: am65x-cpts: follow up dt bindings update
+Date:   Wed, 6 May 2020 21:13:58 +0300
+Message-ID: <20200506181401.28699-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="C7zPtVaVf+AK4Oqc"
-Content-Disposition: inline
-In-Reply-To: <20200422222242.241699-1-pmalani@chromium.org>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob, David,
 
---C7zPtVaVf+AK4Oqc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series is follow update for  TI A65x/J721E Common platform time sync (CPTS)
+driver [1] to implement  DT bindings review comments from
+Rob Herring <robh@kernel.org> [2].
+ - "reg" and "compatible" properties are made required for CPTS DT nodes which
+   also required to change K3 CPSW driver to use of_platform_device_create()
+   instead of of_platform_populate() for proper CPTS and MDIO initialization
+ - minor DT bindings format changes
+ - K3 CPTS example added to K3 MCU CPSW bindings
 
-Hi Prashant,
+[1] https://lwn.net/Articles/819313/
+[2] https://lwn.net/ml/linux-kernel/20200505040419.GA8509@bogus/
+Grygorii Strashko (3):
+  net: ethernet: ti: am65-cpsw-nuss: use of_platform_device_create() for
+    mdio
+  dt-binding: net: ti: am65x-cpts: make reg and compatible required
+  arm64: dts: ti: k3-am65/j721e-mcu: update cpts node
 
-On Wed, Apr 22, 2020 at 03:22:39PM -0700, Prashant Malani wrote:
-> Add properties for mode, orientation and USB data role switches for
-> Type C connectors. When available, these will allow the Type C connector
-> class port driver to configure the various switches according to USB PD
-> information (like orientation, alt mode etc.) provided by the Chrome OS
-> EC controller.
->=20
-> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 15 ++++++++++-
+ .../bindings/net/ti,k3-am654-cpts.yaml        | 25 +++++++------------
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  4 ++-
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  4 ++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 24 +++++++++++++-----
+ drivers/net/ethernet/ti/am65-cpsw-nuss.h      |  2 ++
+ 6 files changed, 49 insertions(+), 25 deletions(-)
 
-Acked-By: Benson Leung <bleung@chromium.org>
+-- 
+2.17.1
 
-
-Thanks,
-Benson
-
-> ---
->  .../bindings/chrome/google,cros-ec-typec.yaml | 27 ++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-type=
-c.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
-> index 6d7396ab8bee..b5814640aa32 100644
-> --- a/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
-> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
-> @@ -21,7 +21,21 @@ properties:
->      const: google,cros-ec-typec
-> =20
->    connector:
-> -    $ref: /schemas/connector/usb-connector.yaml#
-> +    allOf:
-> +      - $ref: /schemas/connector/usb-connector.yaml#
-> +      - type: object
-> +        properties:
-> +          mode-switch:
-> +            description: Reference to a DT node for the USB Type C Multi=
-plexer
-> +              controlling the data lines routing for this connector.
-> +
-> +          orientation-switch:
-> +            description: Reference to a DT node for the USB Type C orien=
-tation
-> +              switch for this connector.
-> +
-> +          usb-role-switch:
-> +            description: Reference to a DT node for the USB Data role sw=
-itch
-> +              for this connector.
-> =20
->  required:
->    - compatible
-> @@ -49,6 +63,17 @@ examples:
->              data-role =3D "dual";
->              try-power-role =3D "source";
->            };
-> +
-> +          connector@1 {
-> +            compatible =3D "usb-c-connector";
-> +            reg =3D <1>;
-> +            power-role =3D "dual";
-> +            data-role =3D "host";
-> +            try-power-role =3D "source";
-> +            mode-switch =3D <&typec_mux>;
-> +            orientation-switch =3D <&typec_orientation_switch>;
-> +            usb-role-switch =3D <&typec_mux>;
-> +          };
->          };
->        };
->      };
-> --=20
-> 2.26.1.301.g55bc3eb7cb9-goog
->=20
-
---=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
-
---C7zPtVaVf+AK4Oqc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCXrL8qAAKCRBzbaomhzOw
-wjVLAQDAT6R1kgL+06r1tSeEIB9nl4MxBCCxuzFDH+IkrY00OQEA3cKAH7Ac/jOR
-UAz3ne6IqKpqgoS8M5v5+AaZ2pBXJgQ=
-=aGiA
------END PGP SIGNATURE-----
-
---C7zPtVaVf+AK4Oqc--
