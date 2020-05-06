@@ -2,181 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E751C731C
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 16:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49CE1C7328
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 16:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729230AbgEFOmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 10:42:06 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:35586 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729181AbgEFOmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 10:42:06 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1588776124; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=cx846LpCI/mxVQVVyh+RuRGtZ75GrHh3+ShglsOfGD4=;
- b=OTNu/AndhEmi2zrusukaSrTtS1LU95cM3tjQRdqURbipsYnllf/QMTKO1tjGI0Ed+SlHin7w
- Or6ZcsMBe+vMVVwvPQpmS00Y4t1gWls7eaoN7fOxUPMccA7hWxqPV4k3TM7KF2CN1gqld4e0
- 9z/PYHQoMOxl/xM7AW4x1/uyLcs=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5eb2ccb5.7f1064742c70-smtp-out-n02;
- Wed, 06 May 2020 14:41:57 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E0711C44791; Wed,  6 May 2020 14:41:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 887D4C433F2;
-        Wed,  6 May 2020 14:41:54 +0000 (UTC)
+        id S1729165AbgEFOn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 10:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728769AbgEFOn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 10:43:28 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DE8C061A10
+        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 07:43:27 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id g16so2269092eds.1
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 07:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=soleen.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ef/MKYQ5o7wpBd5E71PdTHAAiX3bVS8q0Det6zmMp4Q=;
+        b=kHo6MP4xV9gm4/l+y1zeMl6BZmIh4tyBgNceSvc1sj4c0mBeUd+sfY5iEdBNCMVBgb
+         NZFCLkjHOvl5CPqyBnzmT0ZUKNDWR3vnF7n6cNymuecK4Njt6bDFLuOBQWW5HBfeaLaW
+         ZucfMCs91UG2RjL2FPRatRYJVHM/aydwKKoFyW+9sZytQn/8NMFa0VH8enDH5vpye3p3
+         2GLUyWbFaQhgsxGtgpqsVdJRMCm8f6BbqHMShngToRtlL48x5zA2YBxyUKU1eJcwJaMD
+         kHpUZNXKvuyOh2DML/71BOy1W5/n8qXvsevImRFjk7m4yo163Us3B2kTv4k2gN2vm98V
+         nibw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ef/MKYQ5o7wpBd5E71PdTHAAiX3bVS8q0Det6zmMp4Q=;
+        b=DrisJQVD0bKj+vRxyWVF3w303rz4lJXo48mBQvmxH75Dr7Jex1gN7qDvCS468V5asw
+         kdOOIpsiYBkNNdLxjBhPzYqsNEEpKucWiL02PijG4sDExDxI7x05k7lPORoCN0oSnGHl
+         oLQ/Pni8QtTKaU4/fDPDwMn94NSJYhFE0GFTrg0dWuCkAdqN/IJl6Gx+1hY7OdErx5WX
+         jCGaeUmI+DATMqbYxuXed5toYP8KPWye9MlUYcx5CHRzjvLixjaKGRGzqWcEd8fKIulX
+         R4t5C6z7v21gNzBDuLIb9uJ4HcfXm8d3YxjAJbxPJH/AAu+J0BOQ0DFbTYbIfez9WRCK
+         QDtw==
+X-Gm-Message-State: AGi0PubnznWVbdVTuxgbUlRF8Ghy+ry6bA97iYOFhGhns0BQImO2JwB7
+        UX/GvDozrSYbeovFnMkLBOXbOS83he+vUfNpOUUIzA==
+X-Google-Smtp-Source: APiQypL1/pQhGhyT2fS1Xsi31EQjwmxdDLv/iuU0yAlT0rFz+35SEDcoonWukDS/42xAWz6GHbKUXAKV9/7RdIOywsI=
+X-Received: by 2002:a05:6402:356:: with SMTP id r22mr7716142edw.3.1588776206549;
+ Wed, 06 May 2020 07:43:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 06 May 2020 20:11:54 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Nishanth Menon <nm@ti.com>, Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH v4 00/12] DDR/L3 Scaling support on SDM845 and SC7180 SoCs
-In-Reply-To: <CAHLCerM_wdHDwzEDN7YxU9pBdHo3KvNyJeRWMC6seTG6aCH7nw@mail.gmail.com>
-References: <20200504202243.5476-1-sibis@codeaurora.org>
- <CAHLCerM_wdHDwzEDN7YxU9pBdHo3KvNyJeRWMC6seTG6aCH7nw@mail.gmail.com>
-Message-ID: <87126044e367432ee8722ec2346d1dd5@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20200505154510.93506-1-pasha.tatashin@soleen.com>
+ <20200505154510.93506-3-pasha.tatashin@soleen.com> <202005051444.14B6686@keescook>
+In-Reply-To: <202005051444.14B6686@keescook>
+From:   Pavel Tatashin <pasha.tatashin@soleen.com>
+Date:   Wed, 6 May 2020 10:42:50 -0400
+Message-ID: <CA+CK2bA1_5e8HCwfMJSsCuN7qjRKYTNY2Q-UbJGGVPAEfZVgaw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] pstore/platform: pass max_reason to kmesg dump
+To:     Kees Cook <keescook@chromium.org>
+Cc:     James Morris <jmorris@namei.org>, Sasha Levin <sashal@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Petr Mladek <pmladek@suse.com>,
+        Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+        Steven Rostedt <rostedt@goodmis.org>, anton@enomsg.org,
+        ccross@android.com, Tony Luck <tony.luck@intel.com>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Amit,
-Thanks for taking time to review
-the series!
+On Tue, May 5, 2020 at 5:59 PM Kees Cook <keescook@chromium.org> wrote:
+>
+> On Tue, May 05, 2020 at 11:45:07AM -0400, Pavel Tatashin wrote:
+> > Add a new field to pstore_info that passes information about kmesg dump
+> > maximum reason.
+> >
+> > This allows a finer control of what kmesg dumps are stored on pstore
+> > device.
+> >
+> > Those clients that do not explicitly set this field (keep it equal to 0),
+> > get the default behavior: dump only Oops and Panics, and dump everything
+> > if printk.always_kmsg_dump is provided.
+> >
+> > Signed-off-by: Pavel Tatashin <pasha.tatashin@soleen.com>
+> > ---
+> >  fs/pstore/platform.c   | 4 +++-
+> >  include/linux/pstore.h | 3 +++
+> >  2 files changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/fs/pstore/platform.c b/fs/pstore/platform.c
+> > index 408277ee3cdb..75bf8a43f92a 100644
+> > --- a/fs/pstore/platform.c
+> > +++ b/fs/pstore/platform.c
+> > @@ -602,8 +602,10 @@ int pstore_register(struct pstore_info *psi)
+> >       if (pstore_is_mounted())
+> >               pstore_get_records(0);
+> >
+> > -     if (psi->flags & PSTORE_FLAGS_DMESG)
+> > +     if (psi->flags & PSTORE_FLAGS_DMESG) {
+> > +             pstore_dumper.max_reason = psinfo->max_reason;
+> >               pstore_register_kmsg();
+> > +     }
+>
+> I haven't finished reading the whole series carefully, but I think
+> something we can do here to make things a bit more user-friendly is to
+> do the KMSG_DUMP_UNDEF value here to get us the "all" instead of INT_MAX:
+>
+>         if (psi->flags & PSTORE_FLAGS_DMESG) {
+>                 pstore_dumper.max_reason = psinfo->max_reason;
+>                 if (pstore_dumper.max_reason == KMSG_DUMP_UNDEF)
+>                         pstore_dumper.max_reason = KMSG_DUMP_MAX;
+>                 pstore_register_kmsg();
+>         }
+>
+> That way setting max_reason to 0 without setting dump_oops at all will
+> get "all". I think it'll need some tweaks to the next patch.
 
-On 2020-05-06 18:08, Amit Kucheria wrote:
-> On Tue, May 5, 2020 at 1:54 AM Sibi Sankar <sibis@codeaurora.org> 
-> wrote:
->> 
->> This patch series aims to extend cpu based scaling support to L3/DDR 
->> on
->> SDM845 and SC7180 SoCs.
->> 
->> Patches [1-3] - Blacklist SDM845 and SC7180 in cpufreq-dt-platdev
->> Patches [4-8] - Update bw levels based on cpu frequency change
->> Patches [9-10] - Add tag setting support to OPP
->> Patches [11-12] - Add the cpu opp tables for SDM845 and SC7180 SoCs.
->> 
->> Depends on the following series:
->> https://lore.kernel.org/patchwork/cover/1230626/
-> 
-> Are there any other dependencies for this series? I tried applying
-> this on top of Georgi's series on v5.7-rc3. Patch 12 didn't apply
-> cleanly and needed a manual fixup for the include change.
-> 
+Hm, but if we change it this way, it will change the behavior for
+other backends. With the current version of this patchset,
+when psinfo->max_reason is left undefined (0, KMSG_DUMP_UNDEF) -> the
+existing behaviour is honored, which means: printk chooses the kmesg
+dump level, and users can set dump for all reasons via printk
+always_kmsg_dump. This is what efi-pstore, erst, and nvram_64 are
+currently doing, and I am not sure we should change that.
+However, with the proposed change if the backend specifically sets
+max_reason: printk will use it and ignore always_kmsg_dump.
 
-When I posted out it was based on
-next-20200428 tree, there shouldn't
-be any other dependency needed.
-
-> Compilation failed with:
-> Error:
-> /home/amit/work/sources/worktree-review-pipeline/arch/arm64/boot/dts/qcom/sc7180.dtsi:101.30-31
-> syntax error
-> FATAL ERROR: Unable to parse input tree
-> 
-> I've been squinting at the offending lines with no success:
->                         interconnects = <&gem_noc MASTER_APPSS_PROC
-> &mc_virt SLAVE_EBI1>,
->                                         <&osm_l3 MASTER_OSM_L3_APPS
-> &osm_l3 SLAVE_OSM_L3>;
-> 
-
-#include <dt-bindings/interconnect/qcom,sc7180.h>
-You are probably missing ^^ which
-is present in next.
-
->> Georgi,
->>  Would it make sense to include tag support patches [9-10] in your 
->> next
->>  re-spin?
->> 
->> V4:
->>  * Migrate to using Georgi's new bindings
->>  * Misc fixups based on Matthias comments
->>  * API fixups based on Bjorn's comments on v2
->>  * Picked up a few R-bs from Matthias
->> 
->> v3:
->>  * Migrated to using Saravana's opp-kBps bindings [1]
->>  * Fixed some misc comments from Rajendra
->>  * Added support for SC7180
->> 
->> v2:
->>  * Incorporated Viresh's comments from:
->>  
->> https://lore.kernel.org/lkml/20190410102429.r6j6brm5kspmqxc3@vireshk-i7/
->>  
->> https://lore.kernel.org/lkml/20190410112516.gnh77jcwawvld6et@vireshk-i7/
->>  * Dropped cpufreq-map passive governor
->> 
->> Sibi Sankar (12):
->>   arm64: dts: qcom: sdm845: Add SoC compatible to MTP
->>   cpufreq: blacklist SDM845 in cpufreq-dt-platdev
->>   cpufreq: blacklist SC7180 in cpufreq-dt-platdev
->>   OPP: Add and export helper to update voltage
->>   OPP: Add and export helper to set bandwidth
->>   cpufreq: qcom: Update the bandwidth levels on frequency change
->>   OPP: Add and export helper to get icc path count
->>   cpufreq: qcom: Disable fast switch when scaling ddr/l3
->>   dt-bindings: interconnect: Add interconnect-tags bindings
->>   OPP: Add support for setting interconnect-tags
->>   arm64: dts: qcom: sdm845: Add cpu OPP tables
->>   arm64: dts: qcom: sc7180: Add cpu OPP tables
->> 
->>  .../bindings/interconnect/interconnect.txt    |   5 +
->>  arch/arm64/boot/dts/qcom/sc7180.dtsi          | 168 ++++++++++++
->>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |   2 +-
->>  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 258 
->> ++++++++++++++++++
->>  drivers/cpufreq/cpufreq-dt-platdev.c          |   2 +
->>  drivers/cpufreq/qcom-cpufreq-hw.c             |  89 +++++-
->>  drivers/opp/core.c                            | 114 ++++++++
->>  drivers/opp/of.c                              |  25 +-
->>  include/linux/pm_opp.h                        |  22 ++
->>  9 files changed, 675 insertions(+), 10 deletions(-)
->> 
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Thank you,
+Pasha
