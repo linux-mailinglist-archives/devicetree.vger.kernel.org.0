@@ -2,249 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D25D1C6C8E
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 11:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0681C6CAA
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 11:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729090AbgEFJMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 05:12:53 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:3678 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729089AbgEFJMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 05:12:53 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04697NJC015640;
-        Wed, 6 May 2020 11:12:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=MMKMMyzzzPUYk6uvJXUW0sOtOYv8aZUtFOljFKKKfZg=;
- b=UIrOEqnuUC+yuNFdoPB8dBgMASgXas4z6QxHym5lOBNBrWmVjVtzMy17WjLskv9qSNBB
- lVqvlem1iOauARZUIANl/xI8oIl869Clf83jR6oyIWwNrUEEoCtxyHJu77bZ9aidLAtK
- Ipn+lwb+9dO1uWNIbSAZw+TSCRfc1xnciHWkB4vj77KHw07aHDJ/+kmVnDXnHEtj2Zc8
- JTclOO1Giym/oNpU05R+bwqa5Om8GjeA2VVaYdc+09kV3WKOUO6MhFYHKj5L2oClM6j/
- qgrekzbtrEsM51/dMn6N0aKUg1DGIujwv37PiUp7m8hcb7nqDe8D3yIpLwAOod9Bc43j Yg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 30rxmvn2q8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 06 May 2020 11:12:35 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 46AF210002A;
-        Wed,  6 May 2020 11:12:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 350132AB47E;
-        Wed,  6 May 2020 11:12:35 +0200 (CEST)
-Received: from localhost (10.75.127.49) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 6 May 2020 11:12:34
- +0200
-From:   Christophe Kerello <christophe.kerello@st.com>
-To:     <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <gregkh@linuxfoundation.org>, <boris.brezillon@collabora.com>
-CC:     <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <marex@denx.de>,
-        Christophe Kerello <christophe.kerello@st.com>
-Subject: [PATCH v4 10/10] mtd: rawnand: stm32_fmc2: get resources from parent node
-Date:   Wed, 6 May 2020 11:11:19 +0200
-Message-ID: <1588756279-17289-11-git-send-email-christophe.kerello@st.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1588756279-17289-1-git-send-email-christophe.kerello@st.com>
-References: <1588756279-17289-1-git-send-email-christophe.kerello@st.com>
+        id S1728940AbgEFJQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 05:16:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728385AbgEFJQd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 May 2020 05:16:33 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7D66720714;
+        Wed,  6 May 2020 09:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588756592;
+        bh=zALfP4xVA+WvMHMrj3CUbm45HqoM4nmq5AW9bGrPH2k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ffCmxnVjUNbGEYXs7ebndAaB16aD56h/wOafPQ9nhbc3AQTxKanXfu8za8iS2Sj82
+         bmu9jj4FUSEsJyg0unDcCOcQAysGyMS0gP8Fbht+RdDADAC/HhmXIkK2bKk+Uum8ly
+         YmjKIACtYOKj6oQTAulpDDWFMk09Q1iduE77w1Q8=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1jWGAI-009tyT-Rk; Wed, 06 May 2020 10:16:30 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
- definitions=2020-05-06_03:2020-05-04,2020-05-06 signatures=0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Wed, 06 May 2020 10:16:30 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 07/16] arm64: dts: arm: Fix GIC compatible names
+In-Reply-To: <629da7f9-9cc9-ec9e-f175-ef6c90b5e3f1@arm.com>
+References: <20200505165212.76466-1-andre.przywara@arm.com>
+ <20200505165212.76466-8-andre.przywara@arm.com>
+ <86lfm6tf1f.wl-maz@kernel.org>
+ <629da7f9-9cc9-ec9e-f175-ef6c90b5e3f1@arm.com>
+User-Agent: Roundcube Webmail/1.4.3
+Message-ID: <d9ebbc077d70805bed252656dede750b@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: andre.przywara@arm.com, robh@kernel.org, liviu.dudau@arm.com, sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, mark.rutland@arm.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FMC2 EBI support has been added. Common resources (registers base
-and clock) are now shared between the 2 drivers. It means that the
-common resources should now be found in the parent device when EBI
-node is available.
+On 2020-05-06 09:45, André Przywara wrote:
+> On 05/05/2020 19:25, Marc Zyngier wrote:
+>> On Tue, 05 May 2020 17:52:03 +0100,
+>> Andre Przywara <andre.przywara@arm.com> wrote:
+>>> 
+>>> The GIC DT binding only allows a certain combination of DT compatible
+>>> strings, mostly just consisting of one name.
+>>> 
+>>> Drop the combination of multiple names and go with the
+>>> "arm,cortex-a15-gic" name for GICv2, as this seems to be the most 
+>>> widely
+>>> accepted string. "arm,gic-400" would be more correct, but was 
+>>> introduced
+>>> much later into the kernel's GIC driver.
+>>> 
+>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi | 2 +-
+>>>  arch/arm64/boot/dts/arm/juno-base.dtsi           | 2 +-
+>>>  arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts       | 2 +-
+>>>  3 files changed, 3 insertions(+), 3 deletions(-)
+>>> 
+>>> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi 
+>>> b/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
+>>> index 15fe81738e94..61a1750fcdd6 100644
+>>> --- a/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
+>>> +++ b/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
+>>> @@ -6,7 +6,7 @@
+>>> 
+>>>  / {
+>>>  	gic: interrupt-controller@2c001000 {
+>>> -		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+>>> +		compatible = "arm,cortex-a15-gic";
+>>>  		#interrupt-cells = <3>;
+>>>  		#address-cells = <2>;
+>>>  		interrupt-controller;
+>>> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi 
+>>> b/arch/arm64/boot/dts/arm/juno-base.dtsi
+>>> index 3feefd61eb76..62392ab1f880 100644
+>>> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+>>> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+>>> @@ -69,7 +69,7 @@
+>>>  	};
+>>> 
+>>>  	gic: interrupt-controller@2c010000 {
+>>> -		compatible = "arm,gic-400", "arm,cortex-a15-gic";
+>>> +		compatible = "arm,cortex-a15-gic";
+>> 
+>> Why? GIC-400 is definitely the most correct compatible string. I'd
+>> rather see this compatible being generalised to the models rather than
+>> only referencing the A15 GIC.
+> 
+> I agree that gic-400 is the far better name, but it was only introduced
+> in v3.16. So omitting arm,cortex-a15-gic would break any kernels before
+> that, which I would like to avoid.
 
-Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
----
- drivers/mtd/nand/raw/Kconfig           |  3 +-
- drivers/mtd/nand/raw/stm32_fmc2_nand.c | 89 +++++++++++++++++++++++-----------
- 2 files changed, 62 insertions(+), 30 deletions(-)
+I am not talking about dropping the A15 GIC. I'm saying that both should
+stay. Is there anything in the DT binding that forbids multiple names in
+the compatible property?
 
-diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-index 12b715a..28dccd5 100644
---- a/drivers/mtd/nand/raw/Kconfig
-+++ b/drivers/mtd/nand/raw/Kconfig
-@@ -419,8 +419,7 @@ config MTD_NAND_TEGRA
- config MTD_NAND_STM32_FMC2
- 	tristate "Support for NAND controller on STM32MP SoCs"
- 	depends on MACH_STM32MP157 || COMPILE_TEST
--	select REGMAP
--	select REGMAP_MMIO
-+	select MFD_SYSCON
- 	help
- 	  Enables support for NAND Flash chips on SoCs containing the FMC2
- 	  NAND controller. This controller is found on STM32MP SoCs.
-diff --git a/drivers/mtd/nand/raw/stm32_fmc2_nand.c b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-index 76571da..dfab6b1 100644
---- a/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-+++ b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-@@ -11,8 +11,10 @@
- #include <linux/errno.h>
- #include <linux/interrupt.h>
- #include <linux/iopoll.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/mtd/rawnand.h>
-+#include <linux/of_address.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-@@ -204,16 +206,6 @@
- #define FMC2_BCHDSR4_EBP7		GENMASK(12, 0)
- #define FMC2_BCHDSR4_EBP8		GENMASK(28, 16)
- 
--/* Regmap registers configuration */
--#define FMC2_MAX_REGISTER		0x3fc
--
--static const struct regmap_config stm32_fmc2_regmap_cfg = {
--	.reg_bits = 32,
--	.val_bits = 32,
--	.reg_stride = sizeof(u32),
--	.max_register = FMC2_MAX_REGISTER,
--};
--
- enum stm32_fmc2_ecc {
- 	FMC2_ECC_HAM = 1,
- 	FMC2_ECC_BCH4 = 4,
-@@ -261,6 +253,7 @@ struct stm32_fmc2_nfc {
- 	phys_addr_t data_phys_addr[FMC2_MAX_CE];
- 	struct clk *clk;
- 	u8 irq_state;
-+	bool has_parent;
- 
- 	struct dma_chan *dma_tx_ch;
- 	struct dma_chan *dma_rx_ch;
-@@ -1384,8 +1377,9 @@ static void stm32_fmc2_nfc_init(struct stm32_fmc2_nfc *nfc)
- 	pcr |= FIELD_PREP(FMC2_PCR_TAR, FMC2_PCR_TAR_DEFAULT);
- 
- 	/* Enable FMC2 controller */
--	regmap_update_bits(nfc->regmap, FMC2_BCR1,
--			   FMC2_BCR1_FMC2EN, FMC2_BCR1_FMC2EN);
-+	if (!nfc->has_parent)
-+		regmap_update_bits(nfc->regmap, FMC2_BCR1,
-+				   FMC2_BCR1_FMC2EN, FMC2_BCR1_FMC2EN);
- 
- 	regmap_write(nfc->regmap, FMC2_PCR, pcr);
- 	regmap_write(nfc->regmap, FMC2_PMEM, FMC2_PMEM_DEFAULT);
-@@ -1815,6 +1809,53 @@ static int stm32_fmc2_nfc_parse_dt(struct stm32_fmc2_nfc *nfc)
- 	return ret;
- }
- 
-+static int stm32_fmc2_nfc_set_regmap_clk(struct platform_device *pdev,
-+					 struct stm32_fmc2_nfc *nfc)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct resource res;
-+	int ret;
-+
-+	if (nfc->has_parent)
-+		dev = dev->parent;
-+
-+	ret = of_address_to_resource(dev->of_node, 0, &res);
-+	if (ret)
-+		return ret;
-+
-+	nfc->io_phys_addr = res.start;
-+
-+	nfc->regmap = device_node_to_regmap(dev->of_node);
-+	if (IS_ERR(nfc->regmap))
-+		return PTR_ERR(nfc->regmap);
-+
-+	nfc->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(nfc->clk))
-+		return PTR_ERR(nfc->clk);
-+
-+	return 0;
-+}
-+
-+static bool stm32_fmc2_nfc_check_for_parent(struct platform_device *pdev)
-+{
-+	u32 i;
-+	int nb_resources = 0;
-+
-+	/* Count the number of resources in reg property */
-+	for (i = 0; i < pdev->num_resources; i++) {
-+		struct resource *res = &pdev->resource[i];
-+
-+		if (resource_type(res) == IORESOURCE_MEM)
-+			nb_resources++;
-+	}
-+
-+	/* Each CS needs 3 resources defined (data, cmd and addr) */
-+	if (nb_resources % 3)
-+		return false;
-+
-+	return true;
-+}
-+
- static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -1824,8 +1865,8 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct mtd_info *mtd;
- 	struct nand_chip *chip;
--	void __iomem *mmio;
- 	int chip_cs, mem_region, ret, irq;
-+	int num_region = 1;
- 
- 	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
- 	if (!nfc)
-@@ -1834,23 +1875,19 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 	nfc->dev = dev;
- 	nand_controller_init(&nfc->base);
- 	nfc->base.ops = &stm32_fmc2_nfc_controller_ops;
-+	nfc->has_parent = stm32_fmc2_nfc_check_for_parent(pdev);
-+	if (nfc->has_parent)
-+		num_region = 0;
- 
- 	ret = stm32_fmc2_nfc_parse_dt(nfc);
- 	if (ret)
- 		return ret;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mmio = devm_ioremap_resource(dev, res);
--	if (IS_ERR(mmio))
--		return PTR_ERR(mmio);
--
--	nfc->regmap = devm_regmap_init_mmio(dev, mmio, &stm32_fmc2_regmap_cfg);
--	if (IS_ERR(nfc->regmap))
--		return PTR_ERR(nfc->regmap);
--
--	nfc->io_phys_addr = res->start;
-+	ret = stm32_fmc2_nfc_set_regmap_clk(pdev, nfc);
-+	if (ret)
-+		return ret;
- 
--	for (chip_cs = 0, mem_region = 1; chip_cs < FMC2_MAX_CE;
-+	for (chip_cs = 0, mem_region = num_region; chip_cs < FMC2_MAX_CE;
- 	     chip_cs++, mem_region += 3) {
- 		if (!(nfc->cs_assigned & BIT(chip_cs)))
- 			continue;
-@@ -1888,10 +1925,6 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 
- 	init_completion(&nfc->complete);
- 
--	nfc->clk = devm_clk_get(dev, NULL);
--	if (IS_ERR(nfc->clk))
--		return PTR_ERR(nfc->clk);
--
- 	ret = clk_prepare_enable(nfc->clk);
- 	if (ret) {
- 		dev_err(dev, "can not enable the clock\n");
+> It's actually a pity that we are so picky about the compatible 
+> listings,
+> because the existing combination is actually quite nice: we get
+> compatibility with older DT consumers, but still can say what it
+> actually is.
+> I wonder if I should introduce this combination to the GIC DT binding
+> instead, it seems like there are other users in the tree as well.
+> 
+> What do you think?
+
+I'd say that if the binding forbids multiple compatible strings, the
+binding is likely to be wrong. We should fix it, and not make the DTs
+worse as a result of a binding issue.
+
+Thanks,
+
+         M.
 -- 
-1.9.1
-
+Jazz is not dead. It just smells funny...
