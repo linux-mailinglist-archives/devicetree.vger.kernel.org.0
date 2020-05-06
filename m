@@ -2,104 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4225E1C7D80
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 00:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 566401C7DC5
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 01:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730254AbgEFWk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 18:40:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42440 "EHLO
+        id S1727092AbgEFXOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 19:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728173AbgEFWk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 18:40:26 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAFBC061A0F
-        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 15:40:25 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id t7so1241248plr.0
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 15:40:25 -0700 (PDT)
+        with ESMTP id S1726074AbgEFXOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 19:14:01 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3804DC061A10;
+        Wed,  6 May 2020 16:14:01 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id t12so3657445edw.3;
+        Wed, 06 May 2020 16:14:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QdygR2A72/9LbEfVx2KFs3XOLDP2FAPzE7Df5641CTE=;
-        b=SWWR+UpkmvIE+5IkhyyAYX+75Y/7/mDnDtfjR2ghLwrvagpWXgIcXAMbXN0ctOmC7J
-         r0FxwlPF0uoG20mDKj/ixX1NIadS14OGfhEQm5Yy4h1fp3BkOTWg3wrCj17q6zI+ekN/
-         mDFNQPcrBFBtYUtdiJxBZH03mttId5kD4H4tA=
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vh5sHkIk2ctB42dNaltmVdyOo6gu7M7B4FBlMbUP/78=;
+        b=YZrb7LGmD+n+0wVJ2oxBjUDRo7Q+l5YL+EuBd+JHHr0T97aLS9wt1LuRXYAxG5hxrx
+         91vy6KnrF5ec4Vh8kh7TdoG5yUcNScYVZoXLfmFCNv1OzNMhS5AfjcbZmnZqjlAQzsdQ
+         9yWoSoV4QTqAiBHO25L9qlvP+8NmbNeyQYnts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QdygR2A72/9LbEfVx2KFs3XOLDP2FAPzE7Df5641CTE=;
-        b=SPEaumLUOqqMHbQaWNp855/4T2gjurn5MDTeaqfTb1fDAUTzYcJGhKzURxsAAQcy0d
-         lg1Ta0L/i7SESsIn8qwiKWKPHn5wjixaM+ZCcSMT8x6HBM+ndaJJhSxm7P/yypjMFrmk
-         UpeZ4ZFqBF2oxDayuqziUAx6fRkZdRZW5jeVv38q0RCiysEt0v9avMQo806XQqbfeI/w
-         4DjweyWoaWpyVwsDoL4Iq6wOiujP2XVfqPITqMpG/9eKQeQ/OiGaKRD+zSTDV3fGF8d0
-         fAVHOQKk9Ykn56jJK5jX7nhY6XSO76sYJw0VyyvM/Smt4T8YKTFOsCFJBnD/9z/zWC/Y
-         glUQ==
-X-Gm-Message-State: AGi0PubbiLqQ1U35iAJOHG4OlRBIckx3vem6i85QAs2IFr1btSMX0Wdr
-        dr0sJg9tyDh+GYQzaexEZbXQbA==
-X-Google-Smtp-Source: APiQypLeKev/qpKuUfyxub8k75/PIRWV5N1ol74IL1rE5d96sthNE61DOXvqGS/dnem4REr+Biuuuw==
-X-Received: by 2002:a17:90a:280c:: with SMTP id e12mr11866676pjd.52.1588804824838;
-        Wed, 06 May 2020 15:40:24 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id b140sm2819009pfb.119.2020.05.06.15.40.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2020 15:40:23 -0700 (PDT)
-Date:   Wed, 6 May 2020 15:40:22 -0700
-From:   Kees Cook <keescook@chromium.org>
-To:     Joe Perches <joe@perches.com>
-Cc:     Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
-        Steven Rostedt <rostedt@goodmis.org>, jmorris@namei.org,
-        sashal@kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] pstore/platform: Pass max_reason to kmesg dump
-Message-ID: <202005061540.88ECA85@keescook>
-References: <20200506211523.15077-1-keescook@chromium.org>
- <20200506211523.15077-3-keescook@chromium.org>
- <4cdeaa2af2fe0d6cc2ca8ce3a37608340799df8a.camel@perches.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vh5sHkIk2ctB42dNaltmVdyOo6gu7M7B4FBlMbUP/78=;
+        b=tWrZDhVOsHAniKYQqeyKay99hAGSthloq/c5IE5KCUdMat77VzNvVRSL8eyP+BKkX8
+         C1rP43Y2Wr/8OmhsoFKfvtddhiK9g+3oWRa9ev+5CkcvFmY1vPwJo3b8OcwCgWaJ0vco
+         j67iL7tYag3vSM0zgufRxELg0oGrK0ihd+BclI2DuKJf710sqG7HB7N4XwCbulZZxMkh
+         47O4njgRRSKkYwtPf/wslPfSQ7zinw9S/SOAsSQJYwXzRYXIyZmRq/piSmvc9LXLnQ1w
+         umPe9G3FQds28WWNZycpnGdyU319w0EvpdHmzYLRoOf3Cwy8dPeGEkml/uQIqfqoemSN
+         w/3g==
+X-Gm-Message-State: AGi0PuZoYT0p8bX79ie84RyokJc9em8VbmRSzdHqD42/xFuM1vLobmDb
+        sbP/7fsE9RUzHH5IVjKgv12GliD4ppFhHYvmDKo=
+X-Google-Smtp-Source: APiQypI8Ewgq5yqLktUWwJKPyyv1TxfYTOTbdXEP0SpawXbQmffhZ2z0i20qFvoDhtpRclckUFjOpS0Y51YmfRnpoMs=
+X-Received: by 2002:a50:8dc2:: with SMTP id s2mr9779893edh.318.1588806839283;
+ Wed, 06 May 2020 16:13:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4cdeaa2af2fe0d6cc2ca8ce3a37608340799df8a.camel@perches.com>
+References: <20200507091008.1bd38185@canb.auug.org.au>
+In-Reply-To: <20200507091008.1bd38185@canb.auug.org.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 6 May 2020 23:13:47 +0000
+Message-ID: <CACPK8XfOJqj=E4JwQsZWvAsp7cv=bjqj2twZk0=MR+ZJQP1nqQ@mail.gmail.com>
+Subject: Re: linux-next: build warning after merge of the aspeed tree
+To:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        devicetree-compiler@vger.kernel.org
+Cc:     Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Manikandan Elumalai <manikandan.hcl.ers.epl@gmail.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Vijay Khemka <vkhemka@fb.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 06, 2020 at 02:25:41PM -0700, Joe Perches wrote:
-> On Wed, 2020-05-06 at 14:15 -0700, Kees Cook wrote:
-> > From: Pavel Tatashin <pasha.tatashin@soleen.com>
-> > 
-> > Add a new member to struct pstore_info for passing information about
-> > kmesg dump maximum reason. This allows a finer control of what kmesg
-> > dumps are sent to pstore storage backends.
-> 
-> trivia:
-> 
-> > diff --git a/include/linux/pstore.h b/include/linux/pstore.h
-> []
-> > @@ -96,6 +96,12 @@ struct pstore_record {
-> >   *
-> >   * @read_mutex:	serializes @open, @read, @close, and @erase callbacks
-> >   * @flags:	bitfield of frontends the backend can accept writes for
-> > + * @max_reason:	Used when PSTORE_FLAGS_DMESG is set. Contains the
-> > + *		kmsg_dump_reason enum value. KMSG_DUMP_UNDEF means
-> > + *		"use existing kmsg_dump() filtering, based on the
-> > + *		printk.always_kmsg_dump boot param" (which is either
-> > + *		KMSG_DUMP_OOPS when false, or KMSG_DUMP_MAX when
-> > + *		tree); see printk.always_kmsg_dump for more details.
-> 
-> s/tree/true/
+Hi Rob,
 
-Eek, thanks. I'll fix my typo. :)
+On Wed, 6 May 2020 at 23:10, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>
+> Hi all,
+>
+> After merging the aspeed tree, today's linux-next build (arm
+> multi_v7_defconfig) produced this warning:
 
--- 
-Kees Cook
+Thanks Stephen.
+
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:126.11-130.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@80/ipmb1@10: I2C bus unit address format error, expected "40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:128.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@80/ipmb1@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:137.11-141.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@100/ipmb3@10: I2C bus unit address format error, expected "40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:139.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@100/ipmb3@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:148.11-152.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@180/ipmb5@10: I2C bus unit address format error, expected "40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:150.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@180/ipmb5@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:159.11-163.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@300/ipmb7@10: I2C bus unit address format error, expected "40000010"
+> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:161.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@300/ipmb7@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+
+These are IPMB nodes with the SLAVE_ADDRESS bit set:
+
++&i2c5 {
++       //Host3 IPMB bus
++       status = "okay";
++       multi-master;
++       ipmb5@10 {
++               compatible = "ipmb-dev";
++               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
+
+This is a correct entry, so dtc should not warn about it.
+
+Cheers,
+
+Joel
+
+>
+> Introduced by commit
+>
+>   266056d3c61d ("ARM: dts: aspeed: Adding Facebook Yosemite V2 BMC")
+>
+> --
+> Cheers,
+> Stephen Rothwell
