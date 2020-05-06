@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 504261C7C2C
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 23:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C221C7C1D
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 23:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729819AbgEFVP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 17:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
+        id S1729809AbgEFVPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 17:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729817AbgEFVPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 17:15:33 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96792C0610D6
-        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 14:15:32 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id 145so1738193pfw.13
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 14:15:32 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1729688AbgEFVPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 17:15:32 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB555C0610D5
+        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 14:15:31 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id b8so1421249pgi.11
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 14:15:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=UTadiU/eZ1q2VGZ0zHQqmJyy/ggoeusOcwyRzYvVDUc=;
-        b=cq9duf0KIITAA+Ma8qYIxaZ1ZPr3t1w/UF75OOETMqQdQmgs22XTCQOGl6oiQEjz7p
-         BgKpBL77SS7JZ5xo55zIXSOsqMrKyT1b27dFGHrBuSz/quzXybhAwKS4r8OJ1QwyxhGQ
-         B7rHm2bNXagzf+t9CQEiLLeU6Hp5erNLSitjg=
+        bh=sOeNB9LcGhN4fIyKgIhyr9C2Fp97SWGNqass42XeagE=;
+        b=ZGHBnmoRWA47sVMPMpfEE3xpKwqW46dwJF7TirSqCbZ2wnFBxSIxep+nNk0hjnWMv3
+         VYChVlgZYoyL6mWNVjI4oJXMHIHebQlskD7vG4WX0agEbxql04y4UlKcy7QmpFJzpTaP
+         jrUIOU0VgL6sO/nSPEImXMnOARuCc9oLo/Yqo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UTadiU/eZ1q2VGZ0zHQqmJyy/ggoeusOcwyRzYvVDUc=;
-        b=codGSKVYp5Mu8yrJVIVSracXIW8v2higjOiUehY7JD+KgCPebicuCfHHkivGl3U0Dc
-         3Am2UgIR8Slr5IQHOqVTjenP2Y00Cbue8kJ1eqD4jdxvoqf2UplblOEDE3UVd1L9gnNd
-         hM/Z/Atz8sHSeyleiIgRHZtCxf2fXpB7ZVVDM5NEJnVzHDDtvFFuS+hIAtOoafu3Xr4K
-         Z1teKtd1loRnvQpVTOPUnIwFlsprGjixrwQ6RbYjffheJT8MVn6ifecmuW3Uiqm1MP/F
-         7QZ0rjeGVH1dUvEVt6w3FFtvwD9WNUOHjZXBX7dlfBrHH8q8BeQzSDsOB7FriEKEz2P5
-         dprw==
-X-Gm-Message-State: AGi0Pua7/5zOcse/q/h0NvwyzrlrEAl85ifCihearoOmUVZ2i5KNtOO4
-        uzSCJ9NCH6XcAXTz4jdwFP88dQ==
-X-Google-Smtp-Source: APiQypJMGq3U5ddizQcOsBKxOLGbBmDpeYTINpkjDXZZ8zOo3aE8YDsIBWjDo4JQqzR3y3Z1flDR4Q==
-X-Received: by 2002:aa7:9546:: with SMTP id w6mr10197340pfq.114.1588799732130;
-        Wed, 06 May 2020 14:15:32 -0700 (PDT)
+        bh=sOeNB9LcGhN4fIyKgIhyr9C2Fp97SWGNqass42XeagE=;
+        b=nmLNPGn6jYeI6gSTQjqTS4KLHePCLf4uKZAr1out28/IqSoAzpTPwx4WrgZSQ3MTCY
+         OyjYPdtbxNo4+lJKp+0K0wCI21d4U/yxrHbCU3DT7hdE3iBtUyDDqnxkTGtURa8GIP+5
+         UM825PEo2yVzsZ8Ick6VPrXLfZn/zpM7Bk0zzDmCQxbiWzaT8mIldXupi/NaGXCyVs1F
+         nHDrg2RaBqo0qWgosGxo5Qvrvz6uTMrVkj4iLdhBzRdcM8A7slotamrTpidF8eZjCLLR
+         myh7oqo6wcQWZJJjpRQhHus+KnBqRHw1siJjFp4W03V/oaoPeY7wcPF5nsyQ2J4uY2Qq
+         5Urw==
+X-Gm-Message-State: AGi0PuafFZmJ2x2HytFLq4hqFrMc68MCrvE6egNFdOy7mKBvXDbYQvSn
+        EHGio27g9pfcAHko/6QThVkFFQ==
+X-Google-Smtp-Source: APiQypKmgRUjCOneWzG5vZX/d75RWcfnxHE34jEEkMp7R/IQkS1VfrFSyEBXsJX6qbQH+6arA4VbXQ==
+X-Received: by 2002:a63:fd03:: with SMTP id d3mr8441436pgh.6.1588799731266;
+        Wed, 06 May 2020 14:15:31 -0700 (PDT)
 Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id m19sm5619332pjv.30.2020.05.06.14.15.29
+        by smtp.gmail.com with ESMTPSA id y2sm2767640pfq.16.2020.05.06.14.15.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 06 May 2020 14:15:29 -0700 (PDT)
 From:   Kees Cook <keescook@chromium.org>
@@ -59,9 +59,9 @@ Cc:     Kees Cook <keescook@chromium.org>,
         Steven Rostedt <rostedt@goodmis.org>, jmorris@namei.org,
         sashal@kernel.org, linux-doc@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 1/6] printk: honor the max_reason field in kmsg_dumper
-Date:   Wed,  6 May 2020 14:15:18 -0700
-Message-Id: <20200506211523.15077-2-keescook@chromium.org>
+Subject: [PATCH v3 2/6] pstore/platform: Pass max_reason to kmesg dump
+Date:   Wed,  6 May 2020 14:15:19 -0700
+Message-Id: <20200506211523.15077-3-keescook@chromium.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200506211523.15077-1-keescook@chromium.org>
 References: <20200506211523.15077-1-keescook@chromium.org>
@@ -74,62 +74,64 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Pavel Tatashin <pasha.tatashin@soleen.com>
 
-kmsg_dump() allows to dump kmesg buffer for various system events: oops,
-panic, reboot, etc. It provides an interface to register a callback call
-for clients, and in that callback interface there is a field "max_reason"
-which gets ignored unless always_kmsg_dump is passed as kernel parameter.
+Add a new member to struct pstore_info for passing information about
+kmesg dump maximum reason. This allows a finer control of what kmesg
+dumps are sent to pstore storage backends.
 
-Allow clients to decide max_reason, and keep the current behavior when
-max_reason is not set.
+Those backends that do not explicitly set this field (keeping it equal to
+0), get the default behavior: store only Oopses and Panics, or everything
+if the printk.always_kmsg_dump boot param is set.
 
 Signed-off-by: Pavel Tatashin <pasha.tatashin@soleen.com>
-Link: https://lore.kernel.org/r/20200505154510.93506-2-pasha.tatashin@soleen.com
+Link: https://lore.kernel.org/r/20200505154510.93506-3-pasha.tatashin@soleen.com
+Co-developed-by: Kees Cook <keescook@chromium.org>
 Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- include/linux/kmsg_dump.h |  1 +
- kernel/printk/printk.c    | 15 +++++++++++----
- 2 files changed, 12 insertions(+), 4 deletions(-)
+ fs/pstore/platform.c   | 4 +++-
+ include/linux/pstore.h | 7 +++++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/kmsg_dump.h b/include/linux/kmsg_dump.h
-index 2e7a1e032c71..cfc042066be7 100644
---- a/include/linux/kmsg_dump.h
-+++ b/include/linux/kmsg_dump.h
-@@ -28,6 +28,7 @@ enum kmsg_dump_reason {
- 	KMSG_DUMP_RESTART,
- 	KMSG_DUMP_HALT,
- 	KMSG_DUMP_POWEROFF,
-+	KMSG_DUMP_MAX
- };
+diff --git a/fs/pstore/platform.c b/fs/pstore/platform.c
+index 6fb526187953..3a3906173534 100644
+--- a/fs/pstore/platform.c
++++ b/fs/pstore/platform.c
+@@ -606,8 +606,10 @@ int pstore_register(struct pstore_info *psi)
  
- /**
-diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index 9a9b6156270b..1aab69a8a2bf 100644
---- a/kernel/printk/printk.c
-+++ b/kernel/printk/printk.c
-@@ -3157,12 +3157,19 @@ void kmsg_dump(enum kmsg_dump_reason reason)
- 	struct kmsg_dumper *dumper;
- 	unsigned long flags;
+ 	pstore_get_records(0);
  
--	if ((reason > KMSG_DUMP_OOPS) && !always_kmsg_dump)
--		return;
--
- 	rcu_read_lock();
- 	list_for_each_entry_rcu(dumper, &dump_list, list) {
--		if (dumper->max_reason && reason > dumper->max_reason)
-+		enum kmsg_dump_reason cur_reason = dumper->max_reason;
-+
-+		/*
-+		 * If client has not provided a specific max_reason, default
-+		 * to KMSG_DUMP_OOPS, unless always_kmsg_dump was set.
-+		 */
-+		if (cur_reason == KMSG_DUMP_UNDEF) {
-+			cur_reason = always_kmsg_dump ? KMSG_DUMP_MAX :
-+							KMSG_DUMP_OOPS;
-+		}
-+		if (reason > cur_reason)
- 			continue;
+-	if (psi->flags & PSTORE_FLAGS_DMESG)
++	if (psi->flags & PSTORE_FLAGS_DMESG) {
++		pstore_dumper.max_reason = psinfo->max_reason;
+ 		pstore_register_kmsg();
++	}
+ 	if (psi->flags & PSTORE_FLAGS_CONSOLE)
+ 		pstore_register_console();
+ 	if (psi->flags & PSTORE_FLAGS_FTRACE)
+diff --git a/include/linux/pstore.h b/include/linux/pstore.h
+index e779441e6d26..e78d5c29aa8b 100644
+--- a/include/linux/pstore.h
++++ b/include/linux/pstore.h
+@@ -96,6 +96,12 @@ struct pstore_record {
+  *
+  * @read_mutex:	serializes @open, @read, @close, and @erase callbacks
+  * @flags:	bitfield of frontends the backend can accept writes for
++ * @max_reason:	Used when PSTORE_FLAGS_DMESG is set. Contains the
++ *		kmsg_dump_reason enum value. KMSG_DUMP_UNDEF means
++ *		"use existing kmsg_dump() filtering, based on the
++ *		printk.always_kmsg_dump boot param" (which is either
++ *		KMSG_DUMP_OOPS when false, or KMSG_DUMP_MAX when
++ *		tree); see printk.always_kmsg_dump for more details.
+  * @data:	backend-private pointer passed back during callbacks
+  *
+  * Callbacks:
+@@ -179,6 +185,7 @@ struct pstore_info {
+ 	struct mutex	read_mutex;
  
- 		/* initialize iterator with data about the stored records */
+ 	int		flags;
++	int		max_reason;
+ 	void		*data;
+ 
+ 	int		(*open)(struct pstore_info *psi);
 -- 
 2.20.1
 
