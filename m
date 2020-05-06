@@ -2,143 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E01B41C7BFD
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 23:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69FD11C7C2A
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2020 23:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729347AbgEFVKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 17:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
+        id S1729887AbgEFVPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 17:15:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729614AbgEFVKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 17:10:12 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3079AC061A0F;
-        Wed,  6 May 2020 14:10:12 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id x25so4079164wmc.0;
-        Wed, 06 May 2020 14:10:12 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1729804AbgEFVPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 17:15:33 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6634AC03C1A6
+        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 14:15:33 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id x2so1758556pfx.7
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 14:15:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uMNrkV2+34A5tU5bw9M2aiiNB9ppVQmACDjtc/0mJbI=;
-        b=n+Efog31QV6ez/KjorI5h7hOkEwrYGV/Z4y6Xn6a6an0AVGpBvY+WBuIMwNG4AmGUV
-         WOmBf0421+EEyuQXTlP+/alLSTU/ZnAwrU3zsyBuUxia17seA5y6xEY9290kLA+F32nH
-         gGdwVr6WR3lpDlE4S9W0QFwk3fd5ueVZ3KIUwkhDpFy1wss91Tl8Mme0w8PZPYS0JU/+
-         tjlvmjhyvEEMGSbvDh8U/FGj/4corc/JW8yJ+7zu/oGZMow+9w/7+3mMdYQkkRRVVNJf
-         dQfrnm71ONxvh6bcGyPePETn2cDWhWcTxjHhBN4/iRLACBBaRH5m4BRR5JbMiU2/d+vx
-         PMQA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=u/XCL1fsewz1wv+0YN1B6q5DwndvHtJ46IG2XGKxKkc=;
+        b=LJ17gtKZ5RCiSk4FFPSrLts9kY+6gVoaJHhHAK4elrJ5HYs7Re8PekuMrTMDTbowO/
+         SSluTHjRjYjytzyAq6hHqEC1n5fB2I22oH2gq4YFrhQCpZnhRo1qDJK3q5787DBLZiUz
+         R62JQc4JS07Vmp2QpY7YmwMyVoRd5SXQcqqIU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uMNrkV2+34A5tU5bw9M2aiiNB9ppVQmACDjtc/0mJbI=;
-        b=XmKlF0mNN3yEtJTIkBQfEBOzL+NCybvX/xKeKkzUA98V8r0Sw4Mrwi0qaGxpF8vuXy
-         uE2vIIF2bpy+UKvydsx640RxuYUvmO2VCCqL6Gcs5ifv6ytJsHhr5bOT66LU+Ge4AeZL
-         f+djFShw2VZoETvXEnnp03x1bvo6PqPkxlPlckJ6k1r3qGi8JT9qxj3RuxXpnfZjvZFa
-         nVn3MqaqWgArHH/Q3Cj/r5QbJI1ezfaUlZSOQSDtkYcUcwWhpTXdtu8uuXfuI4EiWNKJ
-         TW5IEJpG5MYaYCsbT91NRG08dPa2jP+0RheAOWKbq25g/NABMx3ZAoNJB27Qir2j1MP0
-         vS7g==
-X-Gm-Message-State: AGi0PuaA9p4aI2bu1SUAsexFwPLKpVPAp8R5JobuFGTR9XQwEV/YOK/u
-        rg5zWItqtJi8575+3yU8lIyI3pJdKUU=
-X-Google-Smtp-Source: APiQypL4m7E2xC6OA9pFcUttY9Vf1hjVi1QM/2nX2qkMTl0FqSgkCHyIQtUOthcYMrM+4gOMI+7RAg==
-X-Received: by 2002:a1c:790e:: with SMTP id l14mr6297060wme.174.1588799410947;
-        Wed, 06 May 2020 14:10:10 -0700 (PDT)
-Received: from localhost.localdomain (abag125.neoplus.adsl.tpnet.pl. [83.6.170.125])
-        by smtp.googlemail.com with ESMTPSA id b191sm5135056wmd.39.2020.05.06.14.10.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=u/XCL1fsewz1wv+0YN1B6q5DwndvHtJ46IG2XGKxKkc=;
+        b=E1Ne92i3LWJVdEGjk2i6gc0OR7y0NRNJjL4eYF+GpYXOY8w1WlbSEsBPj4ksRKAXyb
+         qyEvnUiTxg3i0QsObf5zzQKXD9dJOhQhu1Oc+yPHWgcfCj1vcDndxo/Ls6lxx5XsHAt+
+         Jv9PSwY7qLuthaJKSCrwLKl4C7x3q1DeR6l6a0Twx4+ncUIGRwN6pUG7x1g69OK9ejM7
+         InIOlVSp4cSj+2D5ZIb64Jv0PXoS8i1eqE6kMTNMBM3w9XTWTmueVEP11SrLFCNFEkDX
+         6S+6wGDvn4g0wVSbmGM1mja0MLs54GU5Aoml7xjpNW6BUpIeO0WpoENbO5a4P9jLlwdB
+         NwTw==
+X-Gm-Message-State: AGi0PuYp3H5f9glj3mpiXnvRUYgnUHgl6RS85FY3A/ZsoeBX8D1CgG3r
+        sIOArOqgJAWmzDAqcjeU9/NUfw==
+X-Google-Smtp-Source: APiQypI/pTh6kOO0ohxDbY5vssPPtVaFSIZETH0t6dPMEwVl4GH4h+EMDj98Y0NsEBc9c6g4zYaF4w==
+X-Received: by 2002:a62:a11c:: with SMTP id b28mr2765864pff.180.1588799732927;
+        Wed, 06 May 2020 14:15:32 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id d2sm2752547pfc.7.2020.05.06.14.15.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2020 14:10:10 -0700 (PDT)
-From:   Konrad Dybcio <konradybcio@gmail.com>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Wed, 06 May 2020 14:15:29 -0700 (PDT)
+From:   Kees Cook <keescook@chromium.org>
+To:     Pavel Tatashin <pasha.tatashin@soleen.com>
+Cc:     Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Jonathan Corbet <corbet@lwn.net>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [v4 PATCH 2/2] dt-bindings: display: Document ASUS Z00T TM5P5 NT35596 panel compatible
-Date:   Wed,  6 May 2020 23:09:56 +0200
-Message-Id: <20200506210957.344590-3-konradybcio@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200506210957.344590-1-konradybcio@gmail.com>
-References: <20200506210957.344590-1-konradybcio@gmail.com>
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+        Steven Rostedt <rostedt@goodmis.org>, jmorris@namei.org,
+        sashal@kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/6] allow ramoops to collect all kmesg_dump events
+Date:   Wed,  6 May 2020 14:15:17 -0700
+Message-Id: <20200506211523.15077-1-keescook@chromium.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
----
- .../panel/asus,z00t-tm5p5-nt35596.yaml        | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml
+Hi!
 
-diff --git a/Documentation/devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml b/Documentation/devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml
-new file mode 100644
-index 0000000000000..083d2b9d0c69a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/asus,z00t-tm5p5-nt35596.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ASUS Z00T TM5P5 NT35596 5.5" 1080×1920 LCD Panel
-+
-+maintainers:
-+  - Konrad Dybcio <konradybcio@gmail.com>
-+
-+description: |+
-+  This panel seems to only be found in the Asus Z00T
-+  smartphone and we have no straightforward way of
-+  actually getting the correct model number,
-+  as no schematics are released publicly.
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: asus,z00t-tm5p5-n35596
-+  reg: true
-+  reset-gpios: true
-+  vdd-supply:
-+     description: core voltage supply
-+  vddio-supply:
-+     description: vddio supply
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - vddio-supply
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            panel@0 {
-+                    reg = <0>;
-+
-+                    compatible = "asus,z00t-tm5p5-n35596";
-+
-+                    vdd-supply = <&pm8916_l8>;
-+                    vddio-supply = <&pm8916_l6>;
-+                    reset-gpios = <&msmgpio 25 GPIO_ACTIVE_HIGH>;
-+            };
-+    };
+This is my stab at rearranging a few things based on Pavel's series. Most
+things remain the same; I just tweaked how defaults are arranged and
+detected and expanded the wording in a few places. Pavel, how does this
+v3 look to you?
+
+Pavel's original cover letter:
+
+pstore /mnt/console-ramoops-0 outputs only messages below the console
+loglevel, and our console loglevel is set to 3 due to slowness of
+serial console. Which means only errors and worse types of messages
+are recorded. There is no way to have different log levels for
+different consoles.
+
+This patch series adds a new option to ramoops: max_reason that enables
+it to collect kmdesg dumps for other reasons beside oops and panics.
+
+How to quickly test:
+
+virtme-run --mods=auto --kdir --mods=auto --kdir . \
+	-a memmap=1G$8G -a ramoops.mem_address=0x200000000 \
+	-a ramoops.mem_size=0x100000 -a ramoops.record_size=32768 \
+	-a ramoops.max_reason=5 -a quiet --qemu-opts -m 8G
+..
+# reboot -f
+
+After VM is back:
+
+# mount -t pstore pstore /mnt
+# head /mnt/dmesg-ramoops-0
+Restart#1 Part1
+...
+
+
+Changelog:
+
+v3:
+ - expanded several comments and commit logs
+ - move max_reason member earlier in the structure
+ - refactored DT parsing to allow setting defaults
+ - changed how deprecated dump_oops fields are detected and parsed
+ - cleaned up some module param permissions
+v2: https://lore.kernel.org/lkml/20200505154510.93506-1-pasha.tatashin@soleen.com
+v1: https://lore.kernel.org/lkml/20200502143555.543636-1-pasha.tatashin@soleen.com
+
+
+Thanks!
+
+-Kees
+
+
+Kees Cook (2):
+  pstore/ram: Refactor DT size parsing
+  pstore/ram: Adjust module param permissions to reflect reality
+
+Pavel Tatashin (4):
+  printk: honor the max_reason field in kmsg_dumper
+  pstore/platform: Pass max_reason to kmesg dump
+  pstore/ram: Introduce max_reason and convert dump_oops
+  ramoops: Add max_reason optional field to ramoops DT node
+
+ Documentation/admin-guide/ramoops.rst         | 14 +++-
+ .../bindings/reserved-memory/ramoops.txt      | 13 ++-
+ drivers/platform/chrome/chromeos_pstore.c     |  2 +-
+ fs/pstore/platform.c                          |  4 +-
+ fs/pstore/ram.c                               | 83 ++++++++++++-------
+ include/linux/kmsg_dump.h                     |  1 +
+ include/linux/pstore.h                        |  7 ++
+ include/linux/pstore_ram.h                    |  2 +-
+ kernel/printk/printk.c                        | 15 +++-
+ 9 files changed, 97 insertions(+), 44 deletions(-)
+
 -- 
-2.26.2
+2.20.1
 
