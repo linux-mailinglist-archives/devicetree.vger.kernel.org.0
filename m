@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 084371C7D1D
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 00:17:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B671C7D24
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 00:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729873AbgEFWRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 May 2020 18:17:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38802 "EHLO
+        id S1728851AbgEFWRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 May 2020 18:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728621AbgEFWRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 18:17:09 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E735FC061A10
-        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 15:17:08 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id u16so4474349wmc.5
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 15:17:08 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S1729675AbgEFWRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 May 2020 18:17:11 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC75C061A0F
+        for <devicetree@vger.kernel.org>; Wed,  6 May 2020 15:17:10 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id k1so4016482wrx.4
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2020 15:17:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=izmMGovSSBuc6fozUgZUKC9IOfopD7QjXO+LOgTqnQw=;
-        b=w03sGqIzokibbMuTFXMCesOUMu9VLIM+THhfVeY5bOqZIfEsQoCfnc56BM0p+Ie7c0
-         NO5KdGF8bUW85+o9cUBNdBvvLbFEcLVCDAzbTPatJpYtTPptCSnKewAbdhMLApuzeaj2
-         b86elYRtPRt+WLd0sBEt07NSSOLJLAnqo08sudwPjgcx4swU3wfw8kV04b/JLYLvw1f6
-         3FTm7rcKsRR/vAwEHvY3jU1Y4ElccL/knF3HNskCgbURNV82YioJpKiTohJ2gw9fQiHb
-         396wd22UFwbU2J9T6/sE+ZSQ78aTQE2csYPnMNB41vUz6lhKlRh6Rs9Gagy9+MerqA9W
-         FX/A==
+        bh=XTiLbnU+bbYcNina6WdSi4nhXwiJzisYjraHaG7nzCI=;
+        b=G0NdJSCyn+58VpBj4IgiHTWg9VW/e1APCHxcqDdBgExXPBA5t00NZsCa5PwhQlsSR6
+         32SaRv7bI9+tDwOKdFpJMKnk2342nKJASZWaiendmZxg/FmZ1e9plF4lYtddv89InDSe
+         L4ZG9d53G15j2gNCSHFjxNDsKk190EmA7Cmy30mgJjVKuMktYBWUrZNHJ3bT6lHSF0DC
+         p5LpbPVPUMHTuHuQRgG8HfoKi8ZBeX1c1KM4UR4T1WJA+8F1Az0FX3V39VY4Z+h+qXSU
+         FjoZfdxOZQJNOQ9fvlVzMz4Q8DLGBz9xUvCO2mqAq5oV6pYUsKqvEOhSjOK9JELqCLj8
+         RbmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=izmMGovSSBuc6fozUgZUKC9IOfopD7QjXO+LOgTqnQw=;
-        b=h7xVAk/7JwaL1DaW4IM2WpHVIAwlfYQOnVtIrMCu1HMlisOjgQrGdD3eqAa4fNuF94
-         BJjXg8tq5GiY4B+fLxTTGXbE1ZMgs8ps9IRKmuru2eUl+ebFneiseJXGAVO6pevX2y3y
-         2ChANDxmoOnGXjm3FmukDzt99H3DnQY5pwxKW3q1a+YdOf29hzebSWl5iggQ+/b9717d
-         q8s+A0iu7S2FH4GpjWNLA4WyDjTukDx/n7R0iy5nr3wZ99MDwfrBq1IHP90f+ib02ZEp
-         4fmdxWHf/JfI8LOuroF8IoIzXtlzsCQjg12MgSPGS6lqkLGinKJuN04lf+kr7fwTIIWh
-         xuvw==
-X-Gm-Message-State: AGi0PuZ6++nk8DHBduMcQEAowiBZ9/GHgIdv6nqq0Bd7K+GpGUIdwvQN
-        jcMq+O3f+UOjttYtpOzDvbnefA==
-X-Google-Smtp-Source: APiQypIIDmpm1njecMruJwbDzy3aimIA58Drn0zOPBOKm6iu6Dd6mjbx8mKpad3WfiiNgoWXELYH+w==
-X-Received: by 2002:a1c:2042:: with SMTP id g63mr6812262wmg.70.1588803427613;
-        Wed, 06 May 2020 15:17:07 -0700 (PDT)
+        bh=XTiLbnU+bbYcNina6WdSi4nhXwiJzisYjraHaG7nzCI=;
+        b=m7bPwb5kr0CMO4PSjlr7Z3JKNxnqFYnCHZ1F4O6/YDyO05j3z14HAQymn3Z3xxds2g
+         Snzmdt81SI6NPWWb7J3DlSEB6UZQCZh7Qxkr5X38NWsDFNAWZ2zMjxWciiHTDteDlRQ0
+         cFxQN5C9mGhAc+OQapcZ6SPfSJPVuUB+laqadGZtmQla+IvTCCtQyA80cZbyiukDo4DH
+         2Ug+Tql7ksuE3j/izoLD9Q3bc5G2WT5h/jj2DkZucoX/7dAd3zDK3gAuqZ0mbEUHqcB+
+         T2MBHS26d4Ldlpii5cF3CnDKfCoct9CAp5BxFLL7lFkJh3Ygy5AAQd+Z3VyxujDRR+fT
+         r6nw==
+X-Gm-Message-State: AGi0PuYFIH/hGR1vnfqEDBxsz/WlxRNNds/W1G4Qr41uJXI8ptw4FZ6F
+        CZDZRzlURUTpjCl3lNysbLwYpg==
+X-Google-Smtp-Source: APiQypLxQ4m4rLedaNsN99CEE6SO6iXRQQK2EGYB3T20jnsH6wn7Fc1IP+aEJEkAKpF15Cw5zD3HgA==
+X-Received: by 2002:a5d:6ac1:: with SMTP id u1mr11618638wrw.319.1588803429114;
+        Wed, 06 May 2020 15:17:09 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.googlemail.com with ESMTPSA id f5sm4760671wrp.70.2020.05.06.15.17.05
+        by smtp.googlemail.com with ESMTPSA id f5sm4760671wrp.70.2020.05.06.15.17.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2020 15:17:06 -0700 (PDT)
+        Wed, 06 May 2020 15:17:08 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 4/7] arm64: dts: meson: libretech-ac: add internal DAC support
-Date:   Thu,  7 May 2020 00:16:53 +0200
-Message-Id: <20200506221656.477379-5-jbrunet@baylibre.com>
+Subject: [PATCH 5/7] arm64: dts: meson: libretech-pc: add internal DAC support
+Date:   Thu,  7 May 2020 00:16:54 +0200
+Message-Id: <20200506221656.477379-6-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200506221656.477379-1-jbrunet@baylibre.com>
 References: <20200506221656.477379-1-jbrunet@baylibre.com>
@@ -67,45 +67,46 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Add the internal DAC support on the libretech CC. The output of this
-DAC is provided on the 9J5 connector.
+DAC is provided on the 9J4 connector.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../amlogic/meson-gxl-s805x-libretech-ac.dts  | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ .../dts/amlogic/meson-gx-libretech-pc.dtsi    | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-index 6e0984269662..6a226faab183 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-@@ -98,6 +98,15 @@ vcc_3v3: regulator-vcc_3v3 {
- 		regulator-always-on;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
+index 514fed57a5ce..c2480bab8d33 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
+@@ -30,6 +30,13 @@ aliases {
+ 		spi0 = &spifc;
  	};
  
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
++	dio2133: analog-amplifier {
++		compatible = "simple-audio-amplifier";
++		sound-name-prefix = "AU2";
++		VCC-supply = <&vcc5v>;
++		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
 +	};
 +
- 	vddio_boot: regulator-vddio_boot {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VDDIO_BOOT";
-@@ -110,6 +119,10 @@ vddio_boot: regulator-vddio_boot {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -180,6 +187,13 @@ vddio_card: regulator-vddio-card {
  	sound {
  		compatible = "amlogic,gx-sound-card";
- 		model = "GXL-LIBRETECH-S805X-AC";
-+		audio-widgets = "Speaker", "9J5-3 LEFT",
-+				"Speaker", "9J5-2 RIGHT";
-+		audio-routing = "9J5-3 LEFT", "ACODEC LOLN",
-+				"9J5-2 RIGHT", "ACODEC LORN";
+ 		model = "GXL-LIBRETECH-S9XX-PC";
++		audio-aux-devs = <&dio2133>;
++		audio-widgets = "Speaker", "7J4-14 LEFT",
++				"Speaker", "7J4-11 RIGHT";
++		audio-routing = "AU2 INL", "ACODEC LOLN",
++				"AU2 INR", "ACODEC LORN",
++				"7J4-14 LEFT", "AU2 OUTL",
++				"7J4-11 RIGHT", "AU2 OUTR";
  		assigned-clocks = <&clkc CLKID_MPLL0>,
  				  <&clkc CLKID_MPLL1>,
  				  <&clkc CLKID_MPLL2>;
-@@ -131,6 +144,10 @@ dai-link-1 {
+@@ -201,6 +215,10 @@ dai-link-1 {
  			codec-0 {
  				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
  			};
@@ -116,7 +117,7 @@ index 6e0984269662..6a226faab183 100644
  		};
  
  		dai-link-2 {
-@@ -140,9 +157,22 @@ codec-0 {
+@@ -210,9 +228,22 @@ codec-0 {
  				sound-dai = <&hdmi_tx>;
  			};
  		};
