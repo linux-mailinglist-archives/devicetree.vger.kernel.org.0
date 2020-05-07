@@ -2,681 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D921C95B3
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 17:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 445D91C959C
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 17:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728045AbgEGP5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 11:57:18 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:46575 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728007AbgEGP5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 11:57:18 -0400
-X-Originating-IP: 87.231.134.186
-Received: from localhost (87-231-134-186.rev.numericable.fr [87.231.134.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id D75496000E;
-        Thu,  7 May 2020 15:57:13 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Cristian Birsan <cristian.birsan@microchip.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v2 3/3] ARM: dts: at91: Remove the USB EP child node
-Date:   Thu,  7 May 2020 17:56:51 +0200
-Message-Id: <20200507155651.1094142-4-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200507155651.1094142-1-gregory.clement@bootlin.com>
-References: <20200507155651.1094142-1-gregory.clement@bootlin.com>
+        id S1727801AbgEGP4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 11:56:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727067AbgEGP4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 11:56:42 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550E0C05BD43
+        for <devicetree@vger.kernel.org>; Thu,  7 May 2020 08:56:42 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id j5so7025918wrq.2
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2020 08:56:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9nd2a3PO/+LDgm1Vu9n0q5s4h9DVCpLpJzPVuCZ63KU=;
+        b=Nx3LC3IbvKtNTVEmAzQ/KFOqYYpw/GP1+cD1yxWaXF9ZN50dmGcN+FwQzWUJHf2SiJ
+         HYOLhybnWiXpx+N6hpWSUtUUpne2o1FQunmFR88u7qw4m//q3YwjbfOeIl4v4Kd1WP1M
+         sQ1JUR9bi7Qr/c0rwFj1q7QG0YR52asMBJJ/Njqs7ZuKSnAIwWru6sdJinpKQ1IU2Hd0
+         bGT0DumcFKjKO5xedyLSFcC++pEDuhORe4ydAlnY3JwOAg731Zz3BV3xOToURDMTj8lA
+         Sk0Kc4rfad7Mav3BaoCGj4zJt6I0gBbPPqhsC6tC1ZBMMf/h/geoZwSDg+35zO1uk6sk
+         QzIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9nd2a3PO/+LDgm1Vu9n0q5s4h9DVCpLpJzPVuCZ63KU=;
+        b=Ke8rENFWiE4IBtWzwahmsxOfQw89dlV1W7gfzpQgW+8HQ5WSbu83OYMThZy0uMUFax
+         9jexnQfSX/r30qSMFNdWSoyDAGtxbXK3P8Qy1VXZ7gtVFcE9q/ggTLS1KtPU6gE8St+G
+         lv2VFTZ90+FRNFzpwPZe5yDISObhworESOCHeHCevi5TzOZYnlOl9Nj+L+Xr1iiIhI5u
+         dZ6MdFRi3pacGAsZnSYY1yRgPphbzUJOScdJp+mhbmeuEAYh2IemdEnd4N4HkQxTDUMh
+         ru28B1LDSXLCKwRlbDcNSqFqALsiC/ryhf68LY5MUrHRMSJcy66cq6cQxuZFV+TBCOwa
+         1Y1w==
+X-Gm-Message-State: AGi0PuaevylXpZvGcgXv+njhgwFb4CHZoFT8lCi2ZI3YVg0JXQ+OXSuI
+        i04sFxDqVQ1huoM/e4irUA141A==
+X-Google-Smtp-Source: APiQypLmKMr8r52sf+RwYWYfNgMHo75Wmz7UYlWGQpE7tOtOW43JsiTpxSwbqhBRyIHt2soCkzEApA==
+X-Received: by 2002:a5d:42cf:: with SMTP id t15mr15963353wrr.354.1588867001109;
+        Thu, 07 May 2020 08:56:41 -0700 (PDT)
+Received: from [192.168.0.38] ([176.61.57.127])
+        by smtp.gmail.com with ESMTPSA id c17sm8835844wrn.59.2020.05.07.08.56.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 May 2020 08:56:40 -0700 (PDT)
+Subject: Re: [PATCH v3 0/2] Add Qualcomm MSM8939 GCC binding and driver
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, p.zabel@pengutronix.de,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Konrad Dybcio <konradybcio@gmail.com>
+References: <20200423103406.481289-1-bryan.odonoghue@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+Message-ID: <e9d181a9-938c-a69b-8325-2aabeefd0934@nexus-software.ie>
+Date:   Thu, 7 May 2020 16:57:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200423103406.481289-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The endpoint configuration used to be stored in the device tree,
-however the configuration depend on the "version" of the controller
-itself.
+On 23/04/2020 11:34, Bryan O'Donoghue wrote:
+> V3:
+> This update removes the old clock name arrays which I forgot to prune in
+> the previous V2.
+> 
+> git diff bod/clk-next+msm8939 bod/clk-next+msm8939-v2.1
 
-Then the EP child node are useless and describe as deprecated in the
-documentation binding: remove all the nodes from the SoC device tree
-file. Remove also the #address-cells and #size-cells properties that
-are no longer needed.
+I should have mentioned.
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+If you want to test this you'll need to do the following to your 
+msm8939.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi 
+b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+index 996425a70014..2d54ad7f99b6 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+@@ -673,6 +673,10 @@ gcc: clock-controller@1800000 {
+                         reg = <0x1800000 0x80000>;
++                       clock-names = "xo",
++                                     "sleep_clk";
++                       clocks = <&xo_board>,
++                                <&sleep_clk>;
+                 };
+
+"xo" and "sleep_clk" names can be resolved.
+
 ---
- arch/arm/boot/dts/at91sam9g45.dtsi |  54 -------------
- arch/arm/boot/dts/at91sam9rl.dtsi  |  54 -------------
- arch/arm/boot/dts/at91sam9x5.dtsi  |  54 -------------
- arch/arm/boot/dts/sama5d2.dtsi     | 120 -----------------------------
- arch/arm/boot/dts/sama5d3.dtsi     | 107 -------------------------
- arch/arm/boot/dts/sama5d4.dtsi     | 120 -----------------------------
- 6 files changed, 509 deletions(-)
-
-diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-index fd179097a4bf..342697f53cf7 100644
---- a/arch/arm/boot/dts/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-@@ -1195,8 +1195,6 @@ spi1: spi@fffa8000 {
- 			};
- 
- 			usb2: gadget@fff78000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9g45-udc";
- 				reg = <0x00600000 0x80000
- 				       0xfff78000 0x400>;
-@@ -1204,58 +1202,6 @@ usb2: gadget@fff78000 {
- 				clocks = <&udphs_clk>, <&utmi>;
- 				clock-names = "pclk", "hclk";
- 				status = "disabled";
--
--				ep@0 {
--					reg = <0>;
--					atmel,fifo-size = <64>;
--					atmel,nb-banks = <1>;
--				};
--
--				ep@1 {
--					reg = <1>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@2 {
--					reg = <2>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@3 {
--					reg = <3>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@4 {
--					reg = <4>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@5 {
--					reg = <5>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@6 {
--					reg = <6>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
- 			};
- 
- 			clk32k: sckc@fffffd50 {
-diff --git a/arch/arm/boot/dts/at91sam9rl.dtsi b/arch/arm/boot/dts/at91sam9rl.dtsi
-index ea024e4b6e09..4d70194fd808 100644
---- a/arch/arm/boot/dts/at91sam9rl.dtsi
-+++ b/arch/arm/boot/dts/at91sam9rl.dtsi
-@@ -299,8 +299,6 @@ trigger3 {
- 			};
- 
- 			usb0: gadget@fffd4000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9rl-udc";
- 				reg = <0x00600000 0x100000>,
- 				      <0xfffd4000 0x4000>;
-@@ -308,58 +306,6 @@ usb0: gadget@fffd4000 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 22>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
- 				clock-names = "pclk", "hclk";
- 				status = "disabled";
--
--				ep@0 {
--					reg = <0>;
--					atmel,fifo-size = <64>;
--					atmel,nb-banks = <1>;
--				};
--
--				ep@1 {
--					reg = <1>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@2 {
--					reg = <2>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@3 {
--					reg = <3>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@4 {
--					reg = <4>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@5 {
--					reg = <5>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@6 {
--					reg = <6>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
- 			};
- 
- 			dma0: dma-controller@ffffe600 {
-diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
-index 7c2eb93f8cac..948fe99ab6c3 100644
---- a/arch/arm/boot/dts/at91sam9x5.dtsi
-+++ b/arch/arm/boot/dts/at91sam9x5.dtsi
-@@ -867,8 +867,6 @@ spi1: spi@f0004000 {
- 			};
- 
- 			usb2: gadget@f803c000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9g45-udc";
- 				reg = <0x00500000 0x80000
- 				       0xf803c000 0x400>;
-@@ -876,58 +874,6 @@ usb2: gadget@f803c000 {
- 				clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_PERIPHERAL 23>;
- 				clock-names = "hclk", "pclk";
- 				status = "disabled";
--
--				ep@0 {
--					reg = <0>;
--					atmel,fifo-size = <64>;
--					atmel,nb-banks = <1>;
--				};
--
--				ep@1 {
--					reg = <1>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@2 {
--					reg = <2>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <2>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@3 {
--					reg = <3>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@4 {
--					reg = <4>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--				};
--
--				ep@5 {
--					reg = <5>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
--
--				ep@6 {
--					reg = <6>;
--					atmel,fifo-size = <1024>;
--					atmel,nb-banks = <3>;
--					atmel,can-dma;
--					atmel,can-isoc;
--				};
- 			};
- 
- 			watchdog: watchdog@fffffe40 {
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index ab550d69db91..1ae7a2ea696b 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -113,8 +113,6 @@ nfc_sram: sram@100000 {
- 		};
- 
- 		usb0: gadget@300000 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "atmel,sama5d3-udc";
- 			reg = <0x00300000 0x100000
- 			       0xfc02c000 0x400>;
-@@ -122,124 +120,6 @@ usb0: gadget@300000 {
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 42>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
- 			clock-names = "pclk", "hclk";
- 			status = "disabled";
--
--			ep@0 {
--				reg = <0>;
--				atmel,fifo-size = <64>;
--				atmel,nb-banks = <1>;
--			};
--
--			ep@1 {
--				reg = <1>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@2 {
--				reg = <2>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@3 {
--				reg = <3>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@4 {
--				reg = <4>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@5 {
--				reg = <5>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@6 {
--				reg = <6>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@7 {
--				reg = <7>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@8 {
--				reg = <8>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@9 {
--				reg = <9>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@10 {
--				reg = <10>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@11 {
--				reg = <11>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@12 {
--				reg = <12>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@13 {
--				reg = <13>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@14 {
--				reg = <14>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@15 {
--				reg = <15>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
- 		};
- 
- 		usb1: ohci@400000 {
-diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
-index f11b018e9173..10e4492af234 100644
---- a/arch/arm/boot/dts/sama5d3.dtsi
-+++ b/arch/arm/boot/dts/sama5d3.dtsi
-@@ -1420,8 +1420,6 @@ nfc_sram: sram@200000 {
- 		};
- 
- 		usb0: gadget@500000 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "atmel,sama5d3-udc";
- 			reg = <0x00500000 0x100000
- 			       0xf8030000 0x4000>;
-@@ -1429,111 +1427,6 @@ usb0: gadget@500000 {
- 			clocks = <&udphs_clk>, <&utmi>;
- 			clock-names = "pclk", "hclk";
- 			status = "disabled";
--
--			ep@0 {
--				reg = <0>;
--				atmel,fifo-size = <64>;
--				atmel,nb-banks = <1>;
--			};
--
--			ep@1 {
--				reg = <1>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@2 {
--				reg = <2>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@3 {
--				reg = <3>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--			};
--
--			ep@4 {
--				reg = <4>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--			};
--
--			ep@5 {
--				reg = <5>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--			};
--
--			ep@6 {
--				reg = <6>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--			};
--
--			ep@7 {
--				reg = <7>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--			};
--
--			ep@8 {
--				reg = <8>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@9 {
--				reg = <9>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@10 {
--				reg = <10>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@11 {
--				reg = <11>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@12 {
--				reg = <12>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@13 {
--				reg = <13>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@14 {
--				reg = <14>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
--
--			ep@15 {
--				reg = <15>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--			};
- 		};
- 
- 		usb1: ohci@600000 {
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index c9c0316b5b0e..b0d79524277e 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -96,8 +96,6 @@ nfc_sram: sram@100000 {
- 		};
- 
- 		usb0: gadget@400000 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "atmel,sama5d3-udc";
- 			reg = <0x00400000 0x100000
- 			       0xfc02c000 0x4000>;
-@@ -105,124 +103,6 @@ usb0: gadget@400000 {
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 47>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
- 			clock-names = "pclk", "hclk";
- 			status = "disabled";
--
--			ep@0 {
--				reg = <0>;
--				atmel,fifo-size = <64>;
--				atmel,nb-banks = <1>;
--			};
--
--			ep@1 {
--				reg = <1>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@2 {
--				reg = <2>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <3>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@3 {
--				reg = <3>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@4 {
--				reg = <4>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@5 {
--				reg = <5>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@6 {
--				reg = <6>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@7 {
--				reg = <7>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-dma;
--				atmel,can-isoc;
--			};
--
--			ep@8 {
--				reg = <8>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@9 {
--				reg = <9>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@10 {
--				reg = <10>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@11 {
--				reg = <11>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@12 {
--				reg = <12>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@13 {
--				reg = <13>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@14 {
--				reg = <14>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
--
--			ep@15 {
--				reg = <15>;
--				atmel,fifo-size = <1024>;
--				atmel,nb-banks = <2>;
--				atmel,can-isoc;
--			};
- 		};
- 
- 		usb1: ohci@500000 {
--- 
-2.26.2
-
+bod
