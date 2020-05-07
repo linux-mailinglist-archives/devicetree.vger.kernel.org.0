@@ -2,76 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8C251C889C
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2FBE1C87FB
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbgEGLnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 07:43:22 -0400
-Received: from elvis.franken.de ([193.175.24.41]:43591 "EHLO elvis.franken.de"
+        id S1726029AbgEGLYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 07:24:43 -0400
+Received: from foss.arm.com ([217.140.110.172]:56806 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726575AbgEGLnW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 May 2020 07:43:22 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1jWevq-00081e-06; Thu, 07 May 2020 13:43:14 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 903F3C0409; Thu,  7 May 2020 13:17:53 +0200 (CEST)
-Date:   Thu, 7 May 2020 13:17:53 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Sergey.Semin@baikalelectronics.ru
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Allison Randal <allison@lohutok.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/20] mips: cm: Add L2 ECC/parity errors reporting
-Message-ID: <20200507111753.GG11616@alpha.franken.de>
-References: <20200306124807.3596F80307C2@mail.baikalelectronics.ru>
- <20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru>
- <20200506174238.15385-6-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200506174238.15385-6-Sergey.Semin@baikalelectronics.ru>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+        id S1725948AbgEGLYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 May 2020 07:24:43 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F1D5A1FB;
+        Thu,  7 May 2020 04:24:42 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.25])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCACF3F68F;
+        Thu,  7 May 2020 04:24:41 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [PATCH v2 00/17] dts/dt-bindings: Fix Arm Ltd. ARMv8 "boards"
+Date:   Thu,  7 May 2020 12:24:13 +0100
+Message-Id: <20200507112430.183940-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 06, 2020 at 08:42:23PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> According to the MIPS32 InterAptiv software manual error codes 24 - 26
-> of CM2 indicate L2 ECC/parity error with switching to a corresponding
-> errors info fields. This patch provides these errors parsing code,
-> which handles the read/write uncorrectable and correctable ECC/parity
-> errors, and prints instruction causing the fault, RAM array type, cache
-> way/dword and syndrome associated with the faulty data.
-> 
-> Co-developed-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux-pm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> ---
->  arch/mips/kernel/mips-cm.c | 62 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 60 insertions(+), 2 deletions(-)
+Just some small fixes in v2: changing the GIC binding instead of the
+compatible strings used for Juno, re-ordering the patches, and, most
+importantly, (hopefully) fixing the subject lines ;-)
+I keep the last two patches in, even though I agree that there should be
+a more generic solution.
+-----------------------------------
 
-applied to mips-next.
+The .dts files in the arch/arm64/boot/dts/arm directory describe several
+boards and platforms provided by Arm Ltd. (mostly Juno and fastmodels).
+Both the .dts files and some of their associated .yaml bindings were not
+fully compliant, for some boards a simple dtc run complains already.
+And make dtbs_check would create quite a list of violations.
 
-Thomas.
+This series attempts to fix all of them, although some are not yet
+covered, as they require some discussion about potential binding or
+DT schema changes.
+
+The first three patches fix some minor omissions in the yaml bindings.
+The rest of the series then address the violations that dtbs_check
+reported: many node name scheme mismatches, some missing properties or
+wrong child node handling. See the respective patches for more details.
+
+After applying this series I still see the following warnings:
+- vexpress-v2f-1xv7-ca53x2: leds: linux,default-trigger names not
+  listed. The kernel provides triggers for each CPU core, which the DT
+  tries to use. However cpu<x> is not listed in the binding, and I fail
+  to add a regexp for a property *value* to express this easily.
+  Alternatively we could drop any constraint on this string at all,
+  since this might become a moving target and is not really a hardware
+  property, rather than a convenience Linux configuration option.
+- juno: scp-sram: The compatible names for the SCPI child nodes are not
+  fully converted to yaml yet, so dtbs_check fails to find a matching
+  schema. Converting the SCPI bindings over is next on my list.
+- fvp-base-revc: panel: 'power-supply' is a required property
+  Indeed the Linux driver depends on that property, not sure how this
+  ever worked. I am about to test this, the fix should a rather easy
+  addition of a fixed regulator.
+
+Please have a look, I am open to discussions.
+
+Cheers,
+Andre
+
+Changelog v1 .. v2:
+- drop GIC "compatible" changes for Juno
+- add "arm,gic-400", "arm,cortex-a15-gic" as a valid combination
+- reorder more controversial binding fixes to the end
+- add Robin's Acked-by:
+- fix subject lines in first three emails
+
+Andre Przywara (17):
+  dt-bindings: arm-smmu: Allow mmu-400,smmu-v1 compatible
+  dt-bindings: arm: gic: Allow combining arm,gic-400 compatible strings
+  arm64: dts: arm: Fix node address fields
+  arm64: dts: arm: FVP: Fix motherboard .dtsi
+  arm64: dts: juno: Fix mem-timer
+  arm64: dts: arm: Fix GIC compatible names
+  arm64: dts: arm: Fix GIC child nodes
+  arm64: dts: arm: Fix ITS node names and #msi-cells
+  arm64: dts: juno: usb: Use proper DT node name
+  arm64: dts: arm: Fix serial node names
+  arm64: dts: fvp: Fix SMMU DT node
+  arm64: dts: arm: Fix bus node names
+  arm64: dts: juno: Fix GPU interrupt order
+  arm64: dts: arm: Fix VExpress LED names
+  arm64: dts: juno: Fix SCPI shared mem node name
+  dt-bindings: mali-midgard: Allow dma-coherent
+  dt-bindings: ehci/ohci: Allow iommus property
+
+ .../bindings/gpu/arm,mali-midgard.yaml        |   2 +
+ .../interrupt-controller/arm,gic.yaml         |   6 +
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |   4 +-
+ .../devicetree/bindings/usb/generic-ehci.yaml |   3 +
+ .../devicetree/bindings/usb/generic-ohci.yaml |   3 +
+ arch/arm/boot/dts/vexpress-v2m-rs1.dtsi       |  38 ++---
+ .../boot/dts/arm/foundation-v8-gicv2.dtsi     |   4 +-
+ .../boot/dts/arm/foundation-v8-gicv3.dtsi     |   3 +-
+ arch/arm64/boot/dts/arm/foundation-v8.dtsi    |  12 +-
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts     |  10 +-
+ arch/arm64/boot/dts/arm/juno-base.dtsi        |  42 ++---
+ arch/arm64/boot/dts/arm/juno-motherboard.dtsi |   8 +-
+ arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts    |   2 +-
+ .../boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi |   4 +-
+ .../boot/dts/arm/rtsm_ve-motherboard.dtsi     | 152 +++++++++---------
+ 15 files changed, 155 insertions(+), 138 deletions(-)
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+2.17.1
+
