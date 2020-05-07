@@ -2,94 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5AB1C979B
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA021C97D7
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727794AbgEGRYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 13:24:21 -0400
-Received: from muru.com ([72.249.23.125]:53438 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726778AbgEGRYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 May 2020 13:24:20 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 7E4FB80CD;
-        Thu,  7 May 2020 17:25:06 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Keerthy <j-keerthy@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <aford173@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Brian Hutchinson <b.hutchman@gmail.com>,
-        Graeme Smecher <gsmecher@threespeedlogic.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH 14/14] bus: ti-sysc: Timers no longer need legacy quirk handling
-Date:   Thu,  7 May 2020 10:23:30 -0700
-Message-Id: <20200507172330.18679-15-tony@atomide.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200507172330.18679-1-tony@atomide.com>
-References: <20200507172330.18679-1-tony@atomide.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726491AbgEGRea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 13:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726308AbgEGRea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 13:34:30 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F00C05BD43;
+        Thu,  7 May 2020 10:34:30 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id d184so3338615pfd.4;
+        Thu, 07 May 2020 10:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=XEz7HnmXuCDzCluvC2ciL1p4XelzoBx3kOa65ITXPbY=;
+        b=k2Uw6oeaTUmXWP0RgNbyGpnpPuYiNoHYqdYuYxhX+QUT6YnlL2k6pxSDz4BOu1dUha
+         H5suKdKb8C9eHW5tyv9g9HL6OtuptlEv4r2pOwV92yTPBYdstNmcyV1iiGgSAhJBDijK
+         vSefMGhwU0lgDWF7Y8q9YJz+yONuCFi+L9UADzcmY5l8BDQN0keg9Mopb+XnMG1EULO0
+         YHeOcJLX4ShoiVFBXiCiPHLthWicZzQxypRxKE1Qg5Imp2CHGr3KO7MwN66RfZK9P6T2
+         wWUbaZyOy1kpn39ZceUEqVbSibZuVolwIZwYmAJSCCNWCKD/HWHrdi0NIqbvECeeuELT
+         H/XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=XEz7HnmXuCDzCluvC2ciL1p4XelzoBx3kOa65ITXPbY=;
+        b=cx6uzKBnOcOINCNTDojnUPG92s5dDoeDFdR40MO8DS//G8Y3BY4Em1tjURuiQNXE89
+         kdm2U9IQM6N4jfGHwb4H2tXP1I5+hEIg/bLiSQrglhnfFQq9P+NNHBUEwO/1DDiG27bk
+         KT68Z0lhhs0iPAUJ7+EE8WY0kvll85RBd7LHuX3ZNT/4V8gdxPPQDldD/zsWi8bPK/co
+         ps+PIy7z965u6Z1JrfIK7FJ8Uo3IZBGMddQY6P/06RM0QWZ4Q26Sr+l9kGHVm+nPsmOI
+         0GOC8kdqa2yRcS41HXgDs7IAxSR8bVEeqxZf+87yw7733oVGtrQsq1waELCkLUZV/5ui
+         x0mQ==
+X-Gm-Message-State: AGi0Pub5hHVCa9mVlKcBsyVxQ53jiNyHnkdYqJWM0LhRuudH7CsD7ZnP
+        dGWL1vIoxU1ef8b901rKZUyfV4Nu+os=
+X-Google-Smtp-Source: APiQypKWfdSFshYR1R3HDsp46ph6fFoMsTiaEeFvYHETawZEvcn2RK/7+IAcBUp9J3THS0amPDvOQw==
+X-Received: by 2002:a63:b11:: with SMTP id 17mr12452336pgl.3.1588872869474;
+        Thu, 07 May 2020 10:34:29 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id y14sm5368802pff.205.2020.05.07.10.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 May 2020 10:34:29 -0700 (PDT)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v7 0/5] Add XHCI, EHCI and OHCI support for Broadcom STB SoS's
+Date:   Thu,  7 May 2020 13:34:03 -0400
+Message-Id: <20200507173408.20754-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As timers no longer need legacy quirk handling, let's move them to
-the CONFIG_DEBUG section to make it easier to see which drivers still
-need more work.
+v7 - Cleanup ehci-brcm.c as requested by Greg Kroah-Hartman.
+   - Split out Makefile re-order change into a separate commit.
 
-Let's also add detection for few more older timer revisions while at
-it as that makes CONFIG_DEBUG output easier to read with proper names.
+v6 - Remove "contains:" from compatible section of
+     brcm,bcm7445-ehci.yaml as requested by Rob Herring.
 
-Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Lokesh Vutla <lokeshvutla@ti.com>
-Cc: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/bus/ti-sysc.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+v5 - Use devm_platform_get_and_ioremap_resource() in ehci-brcm.c
+     as requested by Andy Shevchenko.
+   - Add pm_runtime_set_active() to ehci_resume() in ehci-brcm.c
+     as requested by Alan Stern.
 
-diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
---- a/drivers/bus/ti-sysc.c
-+++ b/drivers/bus/ti-sysc.c
-@@ -1275,13 +1275,6 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 		   SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("smartreflex", 0, -ENODEV, 0x38, -ENODEV, 0x00000000, 0xffffffff,
- 		   SYSC_QUIRK_LEGACY_IDLE),
--	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff,
--		   0),
--	/* Some timers on omap4 and later */
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff,
--		   0),
--	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff,
--		   0),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000046, 0xffffffff,
- 		   SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_LEGACY_IDLE),
- 	SYSC_QUIRK("uart", 0, 0x50, 0x54, 0x58, 0x00000052, 0xffffffff,
-@@ -1404,6 +1397,13 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 	SYSC_QUIRK("slimbus", 0, 0, 0x10, -ENODEV, 0x40002903, 0xffffffff, 0),
- 	SYSC_QUIRK("spinlock", 0, 0, 0x10, -ENODEV, 0x50020000, 0xffffffff, 0),
- 	SYSC_QUIRK("rng", 0, 0x1fe0, 0x1fe4, -ENODEV, 0x00000020, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000013, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, 0x14, 0x00000015, 0xffffffff, 0),
-+	/* Some timers on omap4 and later */
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x50002100, 0xffffffff, 0),
-+	SYSC_QUIRK("timer", 0, 0, 0x10, -ENODEV, 0x4fff1301, 0xffff00ff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000040, 0xffffffff, 0),
-+	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000011, 0xffffffff, 0),
- 	SYSC_QUIRK("timer32k", 0, 0, 0x4, -ENODEV, 0x00000060, 0xffffffff, 0),
- 	SYSC_QUIRK("tpcc", 0, 0, -ENODEV, -ENODEV, 0x40014c00, 0xffffffff, 0),
- 	SYSC_QUIRK("usbhstll", 0, 0, 0x10, 0x14, 0x00000004, 0xffffffff, 0),
+v4 - A few more fixes to the brcm,bcm7445-ehci.yaml dt-bindings
+     document requested by Rob Herring.
+   - Fixed ordering issue in MAINTAINERS as requested by
+     Andy Shevchenko.
+
+v3 - Addressed all of Andy Shevchenko's review comments for
+     ehci-brcm.c.
+   - Fixed the brcm,bcm7445-ehci.yaml dt-bindings document,
+     dt_binding_check now passes.
+   - Added the XHCI functionality to xhci-plat.c instead of creating
+     new brcmstb files, as suggested by Mathias Nyman.
+
+v2 - Addressed Andy Shevchenko's review comments.
+   - Fixed dt_binding_check error pointed out by Rob Herring.
+   - Removed pr_info message in ehci_brcm_init as suggested by
+     Greg Kroah-Hartman.
+
+This adds support for the XHCI, EHCI and OHCI host controllers found
+in Broadcom STB SoC's. These drivers depend on getting access to the
+new Broadcom STB USB PHY driver through a device-tree phandle and
+will fail if the driver is not available.
+
+Al Cooper (5):
+  usb: xhci: Change the XHCI link order in the Makefile
+  dt-bindings: Add Broadcom STB USB support
+  usb: xhci: xhci-plat: Add support for Broadcom STB SoC's
+  usb: ehci: Add new EHCI driver for Broadcom STB SoC's
+  usb: host: Add ability to build new Broadcom STB USB drivers
+
+ .../bindings/usb/brcm,bcm7445-ehci.yaml       |  59 ++++
+ .../devicetree/bindings/usb/usb-xhci.txt      |   1 +
+ MAINTAINERS                                   |   8 +
+ drivers/usb/host/Kconfig                      |  20 ++
+ drivers/usb/host/Makefile                     |  17 +-
+ drivers/usb/host/ehci-brcm.c                  | 292 ++++++++++++++++++
+ drivers/usb/host/xhci-plat.c                  |  10 +
+ 7 files changed, 401 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
+ create mode 100644 drivers/usb/host/ehci-brcm.c
+
 -- 
-2.26.2
+2.17.1
+
