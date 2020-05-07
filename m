@@ -2,85 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC7C11C8BDD
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 15:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E3551C8C19
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 15:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726565AbgEGNQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 09:16:51 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:47176 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725948AbgEGNQv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 May 2020 09:16:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=Vk41FiGE7OzvR4Ex8ve/e7chOhsCEpaO414K5RXlxrY=; b=tTp2bzTIB3i1MnLPqrNbuPXcsY
-        WfQt9FVPRWRBztAkewuKACD/1WAg2q6auQUsYJkw/msyPR0OQHQUOfsrFWcF1lafu47rbBSjN6NPB
-        Qbfxri/uC9wv8/ac2eZpekCVKVOOnEnfoIX3VyRlq9uVhbKjNL/MKC3Cpp8aRITHl6Jo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jWgOL-001E3q-DR; Thu, 07 May 2020 15:16:45 +0200
-Date:   Thu, 7 May 2020 15:16:45 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     "Mark-MC.Lee" <Mark-MC.Lee@mediatek.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Felix Fietkau <nbd@openwrt.org>, Arnd Bergmann <arnd@arndb.de>,
-        netdev <netdev@vger.kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sean Wang <sean.wang@mediatek.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
+        id S1726774AbgEGNZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 09:25:16 -0400
+Received: from mta-02.yadro.com ([89.207.88.252]:53614 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726761AbgEGNZO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 May 2020 09:25:14 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 5E2C24C842;
+        Thu,  7 May 2020 13:25:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1588857907; x=
+        1590672308; bh=9C9PVAvhrkZd1qlXzdIJDP96sBVG2rbEzvt7nhtTCXs=; b=U
+        vC3XuDb7OxyKSjsLeyhfxwEGJxWupbBVAgi4YQD/EkKXwgOzL9rFIZx+L1SmnoOE
+        0+GWtZIWdjubBxwyK8bc1AH11U2dZ9cx+iTuetIPrKUOdkv7Z48BrMh43zPoTBoa
+        Wsg0ZV7jgZmsKpCXGKmjri2Q0V61MtPBWXWPe+wdfw=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id dK40BI2aw03v; Thu,  7 May 2020 16:25:07 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 6BB79404CF;
+        Thu,  7 May 2020 16:25:06 +0300 (MSK)
+Received: from localhost.dev.yadro.com (10.199.0.174) by
+ T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Thu, 7 May 2020 16:25:07 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+CC:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        John Crispin <john@phrozen.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 06/11] net: ethernet: mtk-eth-mac: new driver
-Message-ID: <20200507131645.GM208718@lunn.ch>
-References: <20200505140231.16600-1-brgl@bgdev.pl>
- <20200505140231.16600-7-brgl@bgdev.pl>
- <1588844771.5921.27.camel@mtksdccf07>
- <CAMpxmJW4qZ_Wnp_oRa=j=YnvTzVa3HZ13Hgwy71jS6L3Bd3oMQ@mail.gmail.com>
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v13 0/2] iio: proximity: driver for vcnl3020
+Date:   Thu, 7 May 2020 16:25:58 +0300
+Message-ID: <20200507132600.8801-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpxmJW4qZ_Wnp_oRa=j=YnvTzVa3HZ13Hgwy71jS6L3Bd3oMQ@mail.gmail.com>
+Content-Type: text/plain
+X-Originating-IP: [10.199.0.174]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 07, 2020 at 12:50:15PM +0200, Bartosz Golaszewski wrote:
-> czw., 7 maj 2020 o 11:46 Mark-MC.Lee <Mark-MC.Lee@mediatek.com> napisał(a):
-> >
-> > Hi Bartosz:
-> >  I think the naming of this driver and its Kconfig option is too generic
-> > that will confuse with current mediatek SoCs eth driver architecture(for
-> > all mt7xxx SoCs).
-> >   Since mtk_eth_mac.c is not a common MAC part for all mediatek SoC but
-> > only a specific eth driver for mt85xx, it will be more reasonable to
-> > name it as mt85xx_eth.c and change NET_MEDIATEK_MAC to
-> > NET_MEDIATEK_MT85XX. How do you think?
-> >
-> 
-> Hi Mark,
-> 
-> I actually consulted this with MediaTek and the name is their idea.
-> Many drivers in drivers/net/ethernet have very vague names. I guess
-> this isn't a problem.
+Add proximity sensor driver for Vishay vcnl3020. Only on-demand
+measurement is supported for now.
 
-They have vague names, but they tend to be not confusing.
+Changes from v12:
+   1. forgot to change path inside yaml.
 
-NET_MEDIATEK_MAC vs NET_MEDIATEK_SOC is confusing.
+Changes from v11:
+   1. minor changes to yaml.
 
-I think the proposed name, mt85xx_eth.c and NET_MEDIATEK_MT85XX is
-good. Or some variant on this, mt8xxx?
+Changes from v10:
+   1. add vcnl3020_property struct for optional properties.
 
-    Andrew
+Changes from v9:
+   1. minor changes.
+   2. pass microamps from dts, not register value.
+
+Changes from v8:
+   1. add vcnl3020 prefix into get_and_apply_property function.
+   2. add bsd license into yaml.
+   3. vishay,led-current-milliamp -> vishay,led-current-microamp.
+   4. add default value into vishay,led-current-microamp and change
+      register values into microamps.
+
+Changes from v7:
+   1. forgot to add Reviewed-by tag.
+
+Changes from v6:
+   1. minor changes
+     1.1 remove VCNL_DRV_NAME
+     1.2 add braces in get_and_apply_property
+
+Changes from v5:
+   1. add get_and_apply_property function for optional parameters.
+   2. minor changes.
+
+Changes from v4:
+   1. add vdd-supply,vddio-supply,interrupts properties into yaml.
+   2. led-current -> vishay,led-current-milliamp in yaml.
+   3. add possible values enum list.
+   4. add bulk_read for result hi/lo registers.
+   5. add description of vcnl3020_data structure.
+   6. vcnl3020 id table is removed.
+   7. make "vishay,led-current-milliamp" optional in yaml and code.
+
+Changes from v3:
+   1. minor changes.
+   2. add i2c block to fix dts section in yaml.
+
+Changes from v2:
+   1. using regmap_read_poll_timeout instead of do-while in measurement
+      function.
+   2. change struct i2client* in vcnl3020_data to struct dev*
+   3. enable REGMAP_I2C in Kconfig
+
+Changes from v1:
+   1. using regmap interface instead of i2c_smbus_* calls.
+   2. switch from probe to probe_new.
+   3. s32/int32_t -> int
+
+Ivan Mikhaylov (2):
+  dt-bindings: proximity: provide vcnl3020 device tree binding document
+  iio: proximity: Add driver support for vcnl3020 proximity sensor
+
+ .../iio/proximity/vishay,vcnl3020.yaml        |  65 +++++
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/vcnl3020.c              | 258 ++++++++++++++++++
+ 4 files changed, 335 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
+ create mode 100644 drivers/iio/proximity/vcnl3020.c
+
+-- 
+2.21.1
+
