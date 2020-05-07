@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A34B71C87BD
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE1A1C88AA
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:44:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725893AbgEGLNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 07:13:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44558 "EHLO mail.kernel.org"
+        id S1726326AbgEGLni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 07:43:38 -0400
+Received: from elvis.franken.de ([193.175.24.41]:43600 "EHLO elvis.franken.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725903AbgEGLNP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 May 2020 07:13:15 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CF74E208E4;
-        Thu,  7 May 2020 11:13:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1588849994;
-        bh=JpJwu3HzMRZiNarifyoKzt5DSF15LyA9t4q0RBYx/+Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U0ZIgjbxbrUQp22xHRVXhrRyXYovhO9OcSbJLRCt06RzSv/mH0Mi/xwKnQhuqUAE5
-         bq6FwoI59EsiNC3tKiUsGN+5q7sqMFLPCdtlFoH6z0/XtKE9yLiprcbT//sCoJDkbK
-         emJbjo8/AvGo/ULzVUqsZa9FJLI8MDche1ilHUnM=
-Date:   Thu, 7 May 2020 13:13:12 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        linux- stable <stable@vger.kernel.org>,
-        Sasha Levin <sashal@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vince Bridgers <vbridger@opensource.altera.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Vitaly Bordug <vbordug@ru.mvista.com>,
-        Claudiu Manoil <claudiu.manoil@freescale.com>,
-        Li Yang <leoli@freescale.com>,
-        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
-        Felix Fietkau <nbd@openwrt.org>,
-        John Crispin <blogic@openwrt.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Mugunthan V N <mugunthanvnm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@savoirfairelinux.com>,
-        Netdev <netdev@vger.kernel.org>,
-        nios2-dev@lists.rocketboards.org,
-        open list <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org
-Subject: Re: [PATCH net 11/16] net: ethernet: marvell: mvneta: fix fixed-link
- phydev leaks
-Message-ID: <20200507111312.GA1497799@kroah.com>
-References: <1480357509-28074-1-git-send-email-johan@kernel.org>
- <1480357509-28074-12-git-send-email-johan@kernel.org>
- <CA+G9fYvBjUVkVhtRHVm6xXcKe2+tZN4rGdB9FzmpcfpaLhY1+g@mail.gmail.com>
- <20200507064412.GL2042@localhost>
- <20200507064734.GA798308@kroah.com>
+        id S1726579AbgEGLnW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 May 2020 07:43:22 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jWevq-00081e-05; Thu, 07 May 2020 13:43:14 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 89780C0409; Thu,  7 May 2020 13:17:35 +0200 (CEST)
+Date:   Thu, 7 May 2020 13:17:35 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Sergey.Semin@baikalelectronics.ru
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Alexander Lobakin <alobakin@dlink.ru>,
+        Huacai Chen <chenhc@lemote.com>,
+        Cedric Hombourger <Cedric_Hombourger@mentor.com>,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        Ard Biesheuvel <ardb@kernel.org>, Jessica Yu <jeyu@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 07/20] mips: Add MIPS Warrior P5600 support
+Message-ID: <20200507111735.GF11616@alpha.franken.de>
+References: <20200306124807.3596F80307C2@mail.baikalelectronics.ru>
+ <20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru>
+ <20200506174238.15385-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200507064734.GA798308@kroah.com>
+In-Reply-To: <20200506174238.15385-8-Sergey.Semin@baikalelectronics.ru>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 07, 2020 at 08:47:34AM +0200, Greg Kroah-Hartman wrote:
-> On Thu, May 07, 2020 at 08:44:12AM +0200, Johan Hovold wrote:
-> > On Thu, May 07, 2020 at 12:27:53AM +0530, Naresh Kamboju wrote:
-> > > On Tue, 29 Nov 2016 at 00:00, Johan Hovold <johan@kernel.org> wrote:
-> > > >
-> > > > Make sure to deregister and free any fixed-link PHY registered using
-> > > > of_phy_register_fixed_link() on probe errors and on driver unbind.
-> > > >
-> > > > Fixes: 83895bedeee6 ("net: mvneta: add support for fixed links")
-> > > > Signed-off-by: Johan Hovold <johan@kernel.org>
-> > > > ---
-> > > >  drivers/net/ethernet/marvell/mvneta.c | 5 +++++
-> > > >  1 file changed, 5 insertions(+)
-> > > >
-> > > > diff --git a/drivers/net/ethernet/marvell/mvneta.c b/drivers/net/ethernet/marvell/mvneta.c
-> > > > index 0c0a45af950f..707bc4680b9b 100644
-> > > > --- a/drivers/net/ethernet/marvell/mvneta.c
-> > > > +++ b/drivers/net/ethernet/marvell/mvneta.c
-> > > > @@ -4191,6 +4191,8 @@ static int mvneta_probe(struct platform_device *pdev)
-> > > >         clk_disable_unprepare(pp->clk);
-> > > >  err_put_phy_node:
-> > > >         of_node_put(phy_node);
-> > > > +       if (of_phy_is_fixed_link(dn))
-> > > > +               of_phy_deregister_fixed_link(dn);
-> > > 
-> > > While building kernel Image for arm architecture on stable-rc 4.4 branch
-> > > the following build error found.
-> > > 
-> > > drivers/net/ethernet/marvell/mvneta.c:3442:3: error: implicit
-> > > declaration of function 'of_phy_deregister_fixed_link'; did you mean
-> > > 'of_phy_register_fixed_link'? [-Werror=implicit-function-declaration]
-> > > |    of_phy_deregister_fixed_link(dn);
-> > > |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > |    of_phy_register_fixed_link
-> > > 
-> > > ref:
-> > > https://gitlab.com/Linaro/lkft/kernel-runs/-/jobs/541374729
-> > 
-> > Greg, 3f65047c853a ("of_mdio: add helper to deregister fixed-link
-> > PHYs") needs to be backported as well for these.
-> > 
-> > Original series can be found here:
-> > 
-> > 	https://lkml.kernel.org/r/1480357509-28074-1-git-send-email-johan@kernel.org
-> 
-> Ah, thanks for that, I thought I dropped all of the ones that caused
-> build errors, but missed the above one.  I'll go take the whole series
-> instead.
+On Wed, May 06, 2020 at 08:42:25PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
+>  
+> +config CPU_P5600
+> +	bool "MIPS Warrior P5600"
+> +	depends on SYS_HAS_CPU_P5600
+> +	select CPU_HAS_PREFETCH
+> +	select CPU_SUPPORTS_32BIT_KERNEL
+> +	select CPU_SUPPORTS_HIGHMEM
+> +	select CPU_SUPPORTS_MSA
+> +	select CPU_SUPPORTS_UNCACHED_ACCELERATED
+> +	select CPU_SUPPORTS_CPUFREQ
+> +	select CPU_MIPSR2_IRQ_VI
+> +	select CPU_MIPSR2_IRQ_EI
+> +	select HAVE_KVM
+> +	select MIPS_O32_FP64_SUPPORT
+> +	help
+> +	  Choose this option to build a kernel for MIPS Warrior P5600 CPU.
+> +	  It's based on MIPS32r5 ISA with XPA, EVA, dual/quad issue exec pipes,
+> +	  MMU with two-levels TLB, UCA, MSA, MDU core level features and system
+> +	  level features like up to six P5600 calculation cores, CM2 with L2
+> +	  cache, IOCU/IOMMU (though might be unused depending on the system-
+> +	  specific IP core configuration), GIC, CPC, virtualisation module,
+> +	  eJTAG and PDtrace.
+> +
+>  config CPU_R3000
+>  	bool "R3000"
+>  	depends on SYS_HAS_CPU_R3000
+> @@ -1841,7 +1863,8 @@ endchoice
+>  config CPU_MIPS32_3_5_FEATURES
+>  	bool "MIPS32 Release 3.5 Features"
+>  	depends on SYS_HAS_CPU_MIPS32_R3_5
+> -	depends on CPU_MIPS32_R2 || CPU_MIPS32_R5 || CPU_MIPS32_R6
+> +	depends on CPU_MIPS32_R2 || CPU_MIPS32_R5 || CPU_MIPS32_R6 || \
+> +		   CPU_P5600
+>  	help
+>  	  Choose this option to build a kernel for release 2 or later of the
+>  	  MIPS32 architecture including features from the 3.5 release such as
+> @@ -1861,7 +1884,7 @@ config CPU_MIPS32_3_5_EVA
+>  config CPU_MIPS32_R5_FEATURES
+>  	bool "MIPS32 Release 5 Features"
+>  	depends on SYS_HAS_CPU_MIPS32_R5
+> -	depends on CPU_MIPS32_R2 || CPU_MIPS32_R5
+> +	depends on CPU_MIPS32_R2 || CPU_MIPS32_R5 || CPU_P5600
+>  	help
+>  	  Choose this option to build a kernel for release 2 or later of the
+>  	  MIPS32 architecture including features from release 5 such as
+> @@ -2016,6 +2039,10 @@ config SYS_HAS_CPU_MIPS64_R6
+>  	bool
+>  	select ARCH_HAS_SYNC_DMA_FOR_CPU if DMA_NONCOHERENT
+>  
+> +config SYS_HAS_CPU_P5600
+> +	bool
+> +	select ARCH_HAS_SYNC_DMA_FOR_CPU if DMA_NONCOHERENT
+> +
 
-This should now all be fixed up, thanks.
+P5600 is CPU_MIPS_R5 so can't you select it here and drop all the || CPU_5600
+above/below ?
 
-greg k-h
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
