@@ -2,45 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 617901C9825
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A00F1C983A
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726393AbgEGRot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 13:44:49 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:40638 "EHLO
+        id S1727912AbgEGRqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 13:46:46 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:40860 "EHLO
         jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727903AbgEGRot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 13:44:49 -0400
+        with ESMTP id S1726367AbgEGRqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 13:46:46 -0400
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 34B2C1C0257; Thu,  7 May 2020 19:44:47 +0200 (CEST)
-Date:   Thu, 7 May 2020 19:44:46 +0200
+        id 5CA381C025D; Thu,  7 May 2020 19:46:45 +0200 (CEST)
+Date:   Thu, 7 May 2020 19:46:44 +0200
 From:   Pavel Machek <pavel@ucw.cz>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lad Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH v9 0/8] Add endpoint driver for R-Car PCIe controller
-Message-ID: <20200507174446.GC1216@bug>
-References: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] Input: add driver for power button on Dell Wyse 3020
+Message-ID: <20200507174644.GF1216@bug>
+References: <20200503201237.413864-1-lkundrak@v3.sk>
+ <20200503201237.413864-3-lkundrak@v3.sk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200503201237.413864-3-lkundrak@v3.sk>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -49,23 +35,20 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi!
 
+> +struct ec_input_response {
+> +	u8 reserved;
+> +	u8 msg_counter:2;
+> +	u8 count:2;
+> +	u8 type:4;
+> +	u8 data[3];
+> +} __packed;
 
-> R-Car/RZ-G2x SoC's, this also extends the epf framework to handle multiple windows
-> supported by the controller for mapping PCI address locally.
-> 
-> Note:
-> The cadence/rockchip/designware endpoint drivers are build tested only.
-> 
-> Changes for v9 (Re-spun this series as there were minimal changes requested):
-...
-> * Replaced mdelay(1) with usleep_range(1000, 1001) in rcar_pcie_ep_assert_intx()
+Bitfields, and relying on them being in the right place for communication with hardware.
 
-Are you sure that is good idea? You are requesting 1ms sleep time with 1us tolerance,
-I dont believe common systems can do that.
+We don't usually do that, and there may be reasons why we don't. I'm pretty sure it 
+breaks on big endian... and Im not sure if there's something else.
 
-Best regards,
-									Pavel
-
+										Pavel
 -- 
 (english) http://www.livejournal.com/~pavelmachek
 (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
