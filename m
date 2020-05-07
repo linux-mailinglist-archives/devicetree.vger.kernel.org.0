@@ -2,75 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F23CB1C88E5
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5996E1C8A11
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 14:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725948AbgEGLut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 07:50:49 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37504 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727795AbgEGLup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 07:50:45 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id AABF42A29AB;
-        Thu,  7 May 2020 12:50:43 +0100 (BST)
-Date:   Thu, 7 May 2020 13:50:41 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>
-Subject: Re: [PATCH v3 5/8] MAINTAINERS: Add Arasan NAND controller and
- bindings
-Message-ID: <20200507135041.7438ad63@collabora.com>
-In-Reply-To: <20200507110034.14736-6-miquel.raynal@bootlin.com>
-References: <20200507110034.14736-1-miquel.raynal@bootlin.com>
-        <20200507110034.14736-6-miquel.raynal@bootlin.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1725964AbgEGMFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 08:05:20 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:58121 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725848AbgEGMFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 08:05:20 -0400
+X-Originating-IP: 86.202.105.35
+Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 015A2FF814;
+        Thu,  7 May 2020 12:03:01 +0000 (UTC)
+Date:   Thu, 7 May 2020 14:03:01 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-mips@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] dt-bindings: timer: Move snps,dw-apb-timer DT
+ schema from rtc
+Message-ID: <20200507120301.GF34497@piout.net>
+References: <20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru>
+ <20200506214107.25956-1-Sergey.Semin@baikalelectronics.ru>
+ <20200506214107.25956-3-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200506214107.25956-3-Sergey.Semin@baikalelectronics.ru>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  7 May 2020 13:00:31 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-
-Missing commit message here.
-
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+On 07/05/2020 00:41:02+0300, Serge Semin wrote:
+> This binding file doesn't belong to the rtc seeing it's a pure timer
+> with no rtc facilities like days/months/years counting and alarms.
+> So move the YAML-file to the Documentation/devicetree/bindings/timer/
+> directory.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b816a453b10e..1f2c83ead00b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1285,6 +1285,13 @@ S:	Supported
->  W:	http://www.aquantia.com
->  F:	drivers/net/ethernet/aquantia/atlantic/aq_ptp*
->  
-> +ARASAN NAND CONTROLLER DRIVER
-> +M:	Naga Sureshkumar Relli <nagasure@xilinx.com>
-> +L:	linux-mtd@lists.infradead.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/mtd/arasan,nand-controller.yaml
-> +F:	drivers/mtd/nand/raw/arasan-nand-controller.c
-> +
->  ARC FRAMEBUFFER DRIVER
->  M:	Jaya Kumar <jayalk@intworks.biz>
->  S:	Maintained
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: linux-mips@vger.kernel.org
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
+> ---
+>  .../devicetree/bindings/{rtc => timer}/snps,dw-apb-timer.yaml   | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/{rtc => timer}/snps,dw-apb-timer.yaml (96%)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/snps,dw-apb-timer.yaml b/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
+> similarity index 96%
+> rename from Documentation/devicetree/bindings/rtc/snps,dw-apb-timer.yaml
+> rename to Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
+> index 002fe1ee709b..5d300efdf0ca 100644
+> --- a/Documentation/devicetree/bindings/rtc/snps,dw-apb-timer.yaml
+> +++ b/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/rtc/snps,dw-apb-timer.yaml#
+> +$id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Synopsys DesignWare APB Timer
+> -- 
+> 2.25.1
+> 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
