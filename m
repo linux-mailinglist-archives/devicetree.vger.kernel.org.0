@@ -2,147 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A783A1C97E4
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617901C9825
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 19:44:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728018AbgEGRel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 13:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728003AbgEGRek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 13:34:40 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B44C05BD43;
-        Thu,  7 May 2020 10:34:40 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id 7so4062755pjo.0;
-        Thu, 07 May 2020 10:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EPpfdrDWyIyJoF1ulwtJ3Qw81WLSoebaZdFuuGZoDek=;
-        b=l+q+VPJf0AqTmc1n+v80+kTMlTK2z8npyK82OZfZ/9x/TOF1BzCAl2PQ70xUHvMDpQ
-         8uZIuUt3gx5UjJ7qVIm8vO368Zqk+LKpZqoQB9Lvz4Kjb+tgM9ViIsc48W+C39T6g4ye
-         yfR+UH6TQzzTJTiafMhWOCfdcFHWXtjX8IVw39LgjLqJ2w6vHGwkrFUvyKbcO54wR1i9
-         skBln5pPuZAApexgE7HfQX6k55kd/Lkt6fpeVcvNn7QrMnMY6ywQGRapZUiUuq49NqLj
-         nfNAAEz+/tRjZPThHV+InM9L1e83fQ1c+adoLjoYfZuOtq80duRilt9LRoe8FvWihLDn
-         tpLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=EPpfdrDWyIyJoF1ulwtJ3Qw81WLSoebaZdFuuGZoDek=;
-        b=UmWcC9Ol+wVuIgXFHAB3nAJQ2NESARJo0mDsmXrBEz4acZUdSDofEhjAV+T5aQzOsM
-         MsLmCH/rLHRlhGpxsYj0BRW1KvjPrByslukbAgx8PO5+ZQVhqv25rrOGZZpnMrmxlHPc
-         Kj3WxXAgmxAARCIBowMTvDLbsVn+wSWioQhbm4a1vN/qzjhBC+SFWxXS/HIpqWzlfiD0
-         30F1ohHgFsiNQm6GDJrXS2c1+fSJJvDj9j71tT4AunlMEX0aAzxOggEzpESBeDJ7w0Xm
-         J2kjQZ21zSnQfbHl11QGQq3pNUeXpp5P/yO62lw8j81ANeG4ZGG+9Wed0kIXRgDw3SlK
-         oQpA==
-X-Gm-Message-State: AGi0PuaUAbO99oEalIKUJBhDld29IS8QGgKnPRjyblwpxFh6d9I9eI57
-        dwOy8vFzr0hFnqS1HzEGz6j8h5vlt88=
-X-Google-Smtp-Source: APiQypL3czYk300rpBGKg2G+mjGxZ5lSkGhjC6H19yktBCHPl5NOAmYDW2y9mD2Ze8Q84xRxXPwWFQ==
-X-Received: by 2002:a17:90a:1501:: with SMTP id l1mr1307791pja.82.1588872879825;
-        Thu, 07 May 2020 10:34:39 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id y14sm5368802pff.205.2020.05.07.10.34.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2020 10:34:39 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
+        id S1726393AbgEGRot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 13:44:49 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:40638 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727903AbgEGRot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 May 2020 13:44:49 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 34B2C1C0257; Thu,  7 May 2020 19:44:47 +0200 (CEST)
+Date:   Thu, 7 May 2020 19:44:46 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v7 5/5] usb: host: Add ability to build new Broadcom STB USB drivers
-Date:   Thu,  7 May 2020 13:34:08 -0400
-Message-Id: <20200507173408.20754-6-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200507173408.20754-1-alcooperx@gmail.com>
-References: <20200507173408.20754-1-alcooperx@gmail.com>
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lad Prabhakar <prabhakar.csengg@gmail.com>
+Subject: Re: [PATCH v9 0/8] Add endpoint driver for R-Car PCIe controller
+Message-ID: <20200507174446.GC1216@bug>
+References: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1587666159-6035-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the build system changes needed to get the Broadcom STB XHCI,
-EHCI and OHCI functionality working. The OHCI support does not
-require anything unique to Broadcom so the standard ohci-platform
-driver is being used. Also update MAINTAINERS.
+Hi!
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
----
- MAINTAINERS               |  8 ++++++++
- drivers/usb/host/Kconfig  | 20 ++++++++++++++++++++
- drivers/usb/host/Makefile |  1 +
- 3 files changed, 29 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2926327e4976..fb55300c2a84 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3481,6 +3481,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/i2c/brcm,brcmstb-i2c.yaml
- F:	drivers/i2c/busses/i2c-brcmstb.c
- 
-+BROADCOM BRCMSTB USB EHCI DRIVER
-+M:	Al Cooper <alcooperx@gmail.com>
-+L:	linux-usb@vger.kernel.org
-+L:	bcm-kernel-feedback-list@broadcom.com
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
-+F:	drivers/usb/host/ehci-brcm.*
-+
- BROADCOM BRCMSTB USB2 and USB3 PHY DRIVER
- M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-kernel@vger.kernel.org
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index 55bdfdf11e4c..973386bbb522 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -97,6 +97,26 @@ config USB_XHCI_TEGRA
- 
- endif # USB_XHCI_HCD
- 
-+config USB_EHCI_BRCMSTB
-+       tristate
-+
-+config USB_BRCMSTB
-+	tristate "Broadcom STB USB support"
-+	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
-+	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
-+	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	help
-+	  Enables support for XHCI, EHCI and OHCI host controllers
-+	  found in Broadcom STB SoC's.
-+
-+	  To compile these drivers as modules, choose M here: the
-+	  modules will be called ohci-platform.ko, ehci-brcm.ko and
-+	  xhci-plat-hcd.ko
-+
-+	  Disabling this will keep the controllers and corresponding
-+	  PHYs powered down.
-+
- config USB_EHCI_HCD
- 	tristate "EHCI HCD (USB 2.0) support"
- 	depends on HAS_DMA && HAS_IOMEM
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index a7f0b8ff7179..265e26cf9209 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -59,6 +59,7 @@ obj-$(CONFIG_USB_EHCI_HCD_STI)	+= ehci-st.o
- obj-$(CONFIG_USB_EHCI_EXYNOS)	+= ehci-exynos.o
- obj-$(CONFIG_USB_EHCI_HCD_AT91) += ehci-atmel.o
- obj-$(CONFIG_USB_EHCI_TEGRA)	+= ehci-tegra.o
-+obj-$(CONFIG_USB_EHCI_BRCMSTB)	+= ehci-brcm.o
- 
- obj-$(CONFIG_USB_OXU210HP_HCD)	+= oxu210hp-hcd.o
- obj-$(CONFIG_USB_ISP116X_HCD)	+= isp116x-hcd.o
+> R-Car/RZ-G2x SoC's, this also extends the epf framework to handle multiple windows
+> supported by the controller for mapping PCI address locally.
+> 
+> Note:
+> The cadence/rockchip/designware endpoint drivers are build tested only.
+> 
+> Changes for v9 (Re-spun this series as there were minimal changes requested):
+...
+> * Replaced mdelay(1) with usleep_range(1000, 1001) in rcar_pcie_ep_assert_intx()
+
+Are you sure that is good idea? You are requesting 1ms sleep time with 1us tolerance,
+I dont believe common systems can do that.
+
+Best regards,
+									Pavel
+
 -- 
-2.17.1
-
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
