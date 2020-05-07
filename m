@@ -2,79 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7821C889E
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34B71C87BD
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2020 13:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726641AbgEGLnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 May 2020 07:43:22 -0400
-Received: from elvis.franken.de ([193.175.24.41]:43588 "EHLO elvis.franken.de"
+        id S1725893AbgEGLNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 May 2020 07:13:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44558 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726572AbgEGLnV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 May 2020 07:43:21 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1jWevq-00081e-04; Thu, 07 May 2020 13:43:14 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 952AEC0409; Thu,  7 May 2020 13:10:07 +0200 (CEST)
-Date:   Thu, 7 May 2020 13:10:07 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Sergey.Semin@baikalelectronics.ru
-Cc:     Ralf Baechle <ralf@linux-mips.org>,
-        Markos Chandras <markos.chandras@imgtec.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paul Burton <paulburton@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Allison Randal <allison@lohutok.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/20] mips: cm: Fix an invalid error code of
- INTVN_*_ERR
-Message-ID: <20200507111007.GE11616@alpha.franken.de>
-References: <20200306124807.3596F80307C2@mail.baikalelectronics.ru>
- <20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru>
- <20200506174238.15385-5-Sergey.Semin@baikalelectronics.ru>
+        id S1725903AbgEGLNP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 May 2020 07:13:15 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CF74E208E4;
+        Thu,  7 May 2020 11:13:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588849994;
+        bh=JpJwu3HzMRZiNarifyoKzt5DSF15LyA9t4q0RBYx/+Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U0ZIgjbxbrUQp22xHRVXhrRyXYovhO9OcSbJLRCt06RzSv/mH0Mi/xwKnQhuqUAE5
+         bq6FwoI59EsiNC3tKiUsGN+5q7sqMFLPCdtlFoH6z0/XtKE9yLiprcbT//sCoJDkbK
+         emJbjo8/AvGo/ULzVUqsZa9FJLI8MDche1ilHUnM=
+Date:   Thu, 7 May 2020 13:13:12 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        linux- stable <stable@vger.kernel.org>,
+        Sasha Levin <sashal@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vince Bridgers <vbridger@opensource.altera.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+        Vitaly Bordug <vbordug@ru.mvista.com>,
+        Claudiu Manoil <claudiu.manoil@freescale.com>,
+        Li Yang <leoli@freescale.com>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Felix Fietkau <nbd@openwrt.org>,
+        John Crispin <blogic@openwrt.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Mugunthan V N <mugunthanvnm@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@savoirfairelinux.com>,
+        Netdev <netdev@vger.kernel.org>,
+        nios2-dev@lists.rocketboards.org,
+        open list <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org
+Subject: Re: [PATCH net 11/16] net: ethernet: marvell: mvneta: fix fixed-link
+ phydev leaks
+Message-ID: <20200507111312.GA1497799@kroah.com>
+References: <1480357509-28074-1-git-send-email-johan@kernel.org>
+ <1480357509-28074-12-git-send-email-johan@kernel.org>
+ <CA+G9fYvBjUVkVhtRHVm6xXcKe2+tZN4rGdB9FzmpcfpaLhY1+g@mail.gmail.com>
+ <20200507064412.GL2042@localhost>
+ <20200507064734.GA798308@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200506174238.15385-5-Sergey.Semin@baikalelectronics.ru>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20200507064734.GA798308@kroah.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 06, 2020 at 08:42:22PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On Thu, May 07, 2020 at 08:47:34AM +0200, Greg Kroah-Hartman wrote:
+> On Thu, May 07, 2020 at 08:44:12AM +0200, Johan Hovold wrote:
+> > On Thu, May 07, 2020 at 12:27:53AM +0530, Naresh Kamboju wrote:
+> > > On Tue, 29 Nov 2016 at 00:00, Johan Hovold <johan@kernel.org> wrote:
+> > > >
+> > > > Make sure to deregister and free any fixed-link PHY registered using
+> > > > of_phy_register_fixed_link() on probe errors and on driver unbind.
+> > > >
+> > > > Fixes: 83895bedeee6 ("net: mvneta: add support for fixed links")
+> > > > Signed-off-by: Johan Hovold <johan@kernel.org>
+> > > > ---
+> > > >  drivers/net/ethernet/marvell/mvneta.c | 5 +++++
+> > > >  1 file changed, 5 insertions(+)
+> > > >
+> > > > diff --git a/drivers/net/ethernet/marvell/mvneta.c b/drivers/net/ethernet/marvell/mvneta.c
+> > > > index 0c0a45af950f..707bc4680b9b 100644
+> > > > --- a/drivers/net/ethernet/marvell/mvneta.c
+> > > > +++ b/drivers/net/ethernet/marvell/mvneta.c
+> > > > @@ -4191,6 +4191,8 @@ static int mvneta_probe(struct platform_device *pdev)
+> > > >         clk_disable_unprepare(pp->clk);
+> > > >  err_put_phy_node:
+> > > >         of_node_put(phy_node);
+> > > > +       if (of_phy_is_fixed_link(dn))
+> > > > +               of_phy_deregister_fixed_link(dn);
+> > > 
+> > > While building kernel Image for arm architecture on stable-rc 4.4 branch
+> > > the following build error found.
+> > > 
+> > > drivers/net/ethernet/marvell/mvneta.c:3442:3: error: implicit
+> > > declaration of function 'of_phy_deregister_fixed_link'; did you mean
+> > > 'of_phy_register_fixed_link'? [-Werror=implicit-function-declaration]
+> > > |    of_phy_deregister_fixed_link(dn);
+> > > |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > > |    of_phy_register_fixed_link
+> > > 
+> > > ref:
+> > > https://gitlab.com/Linaro/lkft/kernel-runs/-/jobs/541374729
+> > 
+> > Greg, 3f65047c853a ("of_mdio: add helper to deregister fixed-link
+> > PHYs") needs to be backported as well for these.
+> > 
+> > Original series can be found here:
+> > 
+> > 	https://lkml.kernel.org/r/1480357509-28074-1-git-send-email-johan@kernel.org
 > 
-> Commit 3885c2b463f6 ("MIPS: CM: Add support for reporting CM cache
-> errors") adds cm2_causes[] array with map of error type ID and
-> pointers to the short description string. There is a mistake in
-> the table, since according to MIPS32 manual CM2_ERROR_TYPE = {17,18}
-> correspond to INTVN_WR_ERR and INTVN_RD_ERR, while the table
-> claims they have {0x17,0x18} codes. This is obviously hex-dec
-> copy-paste bug. Moreover codes {0x18 - 0x1a} indicate L2 ECC errors.
-> 
-> Fixes: 3885c2b463f6 ("MIPS: CM: Add support for reporting CM cache errors")
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux-pm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> ---
->  arch/mips/kernel/mips-cm.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Ah, thanks for that, I thought I dropped all of the ones that caused
+> build errors, but missed the above one.  I'll go take the whole series
+> instead.
 
-applied to mips-next.
+This should now all be fixed up, thanks.
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+greg k-h
