@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C621CB577
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 19:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F901CB57B
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 19:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727953AbgEHRNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 May 2020 13:13:49 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:45463 "EHLO
+        id S1727977AbgEHRNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 May 2020 13:13:53 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:35203 "EHLO
         relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727943AbgEHRNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 May 2020 13:13:49 -0400
+        with ESMTP id S1727943AbgEHRNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 May 2020 13:13:51 -0400
 X-Originating-IP: 91.224.148.103
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id A489224000B;
-        Fri,  8 May 2020 17:13:46 +0000 (UTC)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 152E1240006;
+        Fri,  8 May 2020 17:13:47 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -28,9 +28,9 @@ Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Michal Simek <monstr@monstr.eu>,
         Naga Sureshkumar Relli <nagasure@xilinx.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v4 3/8] mtd: rawnand: Ensure the number of bitflips is consistent
-Date:   Fri,  8 May 2020 19:13:34 +0200
-Message-Id: <20200508171339.8052-4-miquel.raynal@bootlin.com>
+Subject: [PATCH v4 4/8] mtd: rawnand: Add nand_extract_bits()
+Date:   Fri,  8 May 2020 19:13:35 +0200
+Message-Id: <20200508171339.8052-5-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200508171339.8052-1-miquel.raynal@bootlin.com>
 References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
@@ -42,62 +42,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The main NAND read page function can loop over "page reads" many times
-in if the reading reports uncorrectable error(s) and if the chip
-supports the read_retry feature.
+There are cases where ECC bytes are not byte-aligned. Indeed, BCH
+implies using a number of ECC bits, which are not always a multiple of
+8. We then need a helper like nand_extract_bits() to extract these
+syndromes from a buffer.
 
-In this case, the number of bitflips is summarized between
-attempts. Fix this by re-initializing the entire mtd_ecc_stats object
-each time we retry.
-
-Suggested-by: Boris Brezillon <boris.brezillon@collabora.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/mtd/nand/raw/nand_base.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/mtd/nand/raw/nand_base.c | 42 ++++++++++++++++++++++++++++++++
+ include/linux/mtd/rawnand.h      |  4 +++
+ 2 files changed, 46 insertions(+)
 
 diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
-index dda82217e12c..25d298938aa9 100644
+index 25d298938aa9..d3b3b929e038 100644
 --- a/drivers/mtd/nand/raw/nand_base.c
 +++ b/drivers/mtd/nand/raw/nand_base.c
-@@ -3235,7 +3235,7 @@ static int nand_do_read_ops(struct nand_chip *chip, loff_t from,
- 	oob_required = oob ? 1 : 0;
+@@ -224,6 +224,48 @@ static int check_offs_len(struct nand_chip *chip, loff_t ofs, uint64_t len)
+ 	return ret;
+ }
  
- 	while (1) {
--		unsigned int ecc_failures = mtd->ecc_stats.failed;
-+		struct mtd_ecc_stats ecc_stats = mtd->ecc_stats;
++/** nand_extract_bits - Copy unaligned bits from one buffer to another one
++ * @dst: destination buffer
++ * @dst_off: bit offset at which the writing starts
++ * @src: source buffer
++ * @src_off: bit offset at which the reading starts
++ * @nbits: number of bits to copy from @src to @dst
++ *
++ * Copy bits from one memory region to another (overlap authorized).
++ */
++void nand_extract_bits(u8 *dst, unsigned int dst_off, const u8 *src,
++		       unsigned int src_off, unsigned int nbits)
++{
++	unsigned int tmp, n;
++
++	dst += dst_off / 8;
++	dst_off %= 8;
++	src += src_off / 8;
++	src_off %= 8;
++
++	while (nbits) {
++		n = min3(8 - dst_off, 8 - src_off, nbits);
++
++		tmp = (*src >> src_off) & GENMASK(n - 1, 0);
++		*dst &= ~GENMASK(n - 1 + dst_off, dst_off);
++		*dst |= tmp << dst_off;
++
++		dst_off += n;
++		if (dst_off >= 8) {
++			dst++;
++			dst_off -= 8;
++		}
++
++		src_off += n;
++		if (src_off >= 8) {
++			src++;
++			src_off -= 8;
++		}
++
++		nbits -= n;
++	}
++}
++
+ /**
+  * nand_select_target() - Select a NAND target (A.K.A. die)
+  * @chip: NAND chip object
+diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+index 406e9ff0f45c..8159bd818536 100644
+--- a/include/linux/mtd/rawnand.h
++++ b/include/linux/mtd/rawnand.h
+@@ -1404,6 +1404,10 @@ int nand_gpio_waitrdy(struct nand_chip *chip, struct gpio_desc *gpiod,
+ void nand_select_target(struct nand_chip *chip, unsigned int cs);
+ void nand_deselect_target(struct nand_chip *chip);
  
- 		bytes = min(mtd->writesize - col, readlen);
- 		aligned = (bytes == mtd->writesize);
-@@ -3286,7 +3286,7 @@ static int nand_do_read_ops(struct nand_chip *chip, loff_t from,
- 			 */
- 			if (use_bounce_buf) {
- 				if (!NAND_HAS_SUBPAGE_READ(chip) && !oob &&
--				    !(mtd->ecc_stats.failed - ecc_failures) &&
-+				    !(mtd->ecc_stats.failed - ecc_stats.failed) &&
- 				    (ops->mode != MTD_OPS_RAW)) {
- 					chip->pagecache.page = realpage;
- 					chip->pagecache.bitflips = ret;
-@@ -3309,7 +3309,7 @@ static int nand_do_read_ops(struct nand_chip *chip, loff_t from,
- 
- 			nand_wait_readrdy(chip);
- 
--			if (mtd->ecc_stats.failed - ecc_failures) {
-+			if (mtd->ecc_stats.failed - ecc_stats.failed) {
- 				if (retry_mode + 1 < chip->read_retries) {
- 					retry_mode++;
- 					ret = nand_setup_read_retry(chip,
-@@ -3317,8 +3317,8 @@ static int nand_do_read_ops(struct nand_chip *chip, loff_t from,
- 					if (ret < 0)
- 						break;
- 
--					/* Reset failures; retry */
--					mtd->ecc_stats.failed = ecc_failures;
-+					/* Reset ecc_stats; retry */
-+					mtd->ecc_stats = ecc_stats;
- 					goto read_retry;
- 				} else {
- 					/* No more retry modes; real failure */
++/* Bitops */
++void nand_extract_bits(u8 *dst, unsigned int dst_off, const u8 *src,
++		       unsigned int src_off, unsigned int nbits);
++
+ /**
+  * nand_get_data_buf() - Get the internal page buffer
+  * @chip: NAND chip object
 -- 
 2.20.1
 
