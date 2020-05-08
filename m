@@ -2,177 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0831CB580
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 19:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C731CB5AB
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 19:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728005AbgEHRNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 May 2020 13:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727981AbgEHRNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 May 2020 13:13:55 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12384C05BD43
-        for <devicetree@vger.kernel.org>; Fri,  8 May 2020 10:13:55 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id 145so1263040pfw.13
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2020 10:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Nb47I82/IxA2gle1iw0XqnYNPtNXoYXnaPYNxEi54LA=;
-        b=KEeH6BFZU9eraiCcEwOrrHoh1rqTJnlfgwHucNffiqawEYszvUgBxksGXmTs1Tq8DG
-         pRBC0CkKC9G1MB5LyfkiyVONeMJMKW0LahPEfZm7lB6WftSVKGQ0mZPspkCVtVxzRDHv
-         UbzQ7XGzVWDVB+h7SKnxQU6UxfLrXGdHGIUqQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Nb47I82/IxA2gle1iw0XqnYNPtNXoYXnaPYNxEi54LA=;
-        b=nXSfMtAs/42EiyN8D+dD65zPQnUWLZyUtk0lPd5rJp22lpiaMB+JjPhgE/cBHDQu+B
-         hgWis3HoL2MPCOfK99jjuLyygT9dezlO9mRRllNsJHCHEjPf0gxqcc/8CDM6lUM5S23h
-         Oo4bYeODrQE7QZ4c9Zh8+/OjP7HUmUEFoqwIGeQcoxpY3U6Vl34l/aW2hCIx/KG3+SQN
-         feCv84ilVO9ZRpKmg4dXCfBN2HSf/5Gu/QsTTIuuZZGxfk1d9LfFFChaPcOZNHmFFkXt
-         cwh3tocw58Fi2bsu+DINOHfcSWpSxpvx36dyhdkLR+2Yc1DmgyT6HIOETtPApSgpI9ju
-         YPJg==
-X-Gm-Message-State: AGi0PuZIqNwzzGLz6ZH1xFbWd6kx+3u8kKZLkKJS6pxlS5UILa2FpHZ0
-        PVxGRFy7mfflVm3+tqHulytCxQ==
-X-Google-Smtp-Source: APiQypJqUtILU9Di1LjiTI4FCIAn9705PSxM0Ut708GH64qmbLmlmtgLcjT6tKrSg02YtLlyIOrcKA==
-X-Received: by 2002:aa7:8bc5:: with SMTP id s5mr4040633pfd.19.1588958034462;
-        Fri, 08 May 2020 10:13:54 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id a2sm1709593pgh.57.2020.05.08.10.13.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 May 2020 10:13:53 -0700 (PDT)
-Date:   Fri, 8 May 2020 10:13:52 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Akash Asthana <akashast@codeaurora.org>
-Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-serial@vger.kernel.org, dianders@chromium.org,
-        evgreen@chromium.org, georgi.djakov@linaro.org
-Subject: Re: [PATCH V5 1/7] soc: qcom: geni: Support for ICC voting
-Message-ID: <20200508171352.GA4525@google.com>
-References: <1588919619-21355-1-git-send-email-akashast@codeaurora.org>
- <1588919619-21355-2-git-send-email-akashast@codeaurora.org>
+        id S1726904AbgEHRRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 May 2020 13:17:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52978 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726756AbgEHRRd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 May 2020 13:17:33 -0400
+Received: from localhost (mobile-166-175-190-200.mycingular.net [166.175.190.200])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 253BE21775;
+        Fri,  8 May 2020 17:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588958252;
+        bh=AmScCZpZxiRrJNvHWkz9TKJv6t/f/ZRNkLLPkkZ3I8Q=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=UJRtPzmVwMWVnflrX3KDmQSe9RghPB6FFqzryHss0CmhasZffpCJ6w7TrGX91nj0t
+         h1Px988c9VKfcx2bSGVHdGHjXSco6eahi9hxaDwfTOjjfnksyMZYJfddu7O5c0vD9p
+         nI3RS0gDNSuAXsGv8bG79vY/AsMZ2P8uFEfJeuJA=
+Date:   Fri, 8 May 2020 12:17:30 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     maz@kernel.org, Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Paul Burton <paulburton@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v8 2/5] PCI: Add Loongson PCI Controller support
+Message-ID: <20200508171730.GA77036@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1588919619-21355-2-git-send-email-akashast@codeaurora.org>
+In-Reply-To: <20200508113414.3091532-2-jiaxun.yang@flygoat.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Akash,
+On Fri, May 08, 2020 at 07:34:02PM +0800, Jiaxun Yang wrote:
+> This controller can be found on Loongson-2K SoC, Loongson-3
+> systems with RS780E/LS7A PCH.
+> 
+> The RS780E part of code was previously located at
+> arch/mips/pci/ops-loongson3.c and now it can use generic PCI
+> driver implementation.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-note: my comments below are clearly entering bikeshed territory. Please
-take what you agree with and feel free to ignore the rest.
-
-On Fri, May 08, 2020 at 12:03:33PM +0530, Akash Asthana wrote:
-> Add necessary macros and structure variables to support ICC BW
-> voting from individual SE drivers.
-> 
-> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
-> ---
-> Changes in V2:
->  - As per Bjorn's comment dropped enums for ICC paths, given the three
->    paths individual members
-> 
-> Changes in V3:
->  - Add geni_icc_get, geni_icc_vote_on and geni_icc_vote_off as helper API.
->  - Add geni_icc_path structure in common header
-> 
-> Changes in V4:
->  - As per Bjorn's comment print error message in geni_icc_get if return
->    value is not -EPROBE_DEFER.
->  - As per Bjorn's comment remove NULL on path before calling icc_set_bw
->    API.
->  - As per Bjorn's comment drop __func__ print.
->  - As per Matthias's comment, make ICC path a array instead of individual
->    member entry in geni_se struct.
-> 
-> Note: I have ignored below check patch suggestion because it was throwing
->       compilation error as 'icc_ddr' is not compile time comstant.
-> 
-> WARNING: char * array declaration might be better as static const
->  - FILE: drivers/soc/qcom/qcom-geni-se.c:726:
->  - const char *icc_names[] = {"qup-core", "qup-config", icc_ddr};
-> 
-> Changes in V5:
->  - As per Matthias's comment defined enums for ICC paths.
->  - Integrate icc_enable/disable with power on/off call for driver.
->  - As per Matthias's comment added icc_path_names array to print icc path name
->    in failure case.
->  - As per Georgi's suggestion assume peak_bw = avg_bw if not mentioned.
-> 
->  drivers/soc/qcom/qcom-geni-se.c | 92 +++++++++++++++++++++++++++++++++++++++++
->  include/linux/qcom-geni-se.h    | 42 +++++++++++++++++++
->  2 files changed, 134 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-> index 7d622ea..63403bf 100644
-> --- a/drivers/soc/qcom/qcom-geni-se.c
-> +++ b/drivers/soc/qcom/qcom-geni-se.c
-> @@ -92,6 +92,9 @@ struct geni_wrapper {
->  	struct clk_bulk_data ahb_clks[NUM_AHB_CLKS];
->  };
->  
-> +static const char * const icc_path_names[] = {"qup-core", "qup-config",
-> +								"qup-memory"};
-
-nit: the indentation is a bit odd. I would align it either with "qup-core" or
-at a tab stop nearby.
-
-> +
->  #define QUP_HW_VER_REG			0x4
->  
->  /* Common SE registers */
-> @@ -720,6 +723,95 @@ void geni_se_rx_dma_unprep(struct geni_se *se, dma_addr_t iova, size_t len)
->  }
->  EXPORT_SYMBOL(geni_se_rx_dma_unprep);
->  
-> +int geni_icc_get(struct geni_se *se, const char *icc_ddr)
+> +static void system_bus_quirk(struct pci_dev *pdev)
 > +{
-> +	int i, icc_err;
-
-nit: the 'icc_' prefix doesn't add value here, just 'err' would be less
-'noisy' IMO.
-
-> +	const char *icc_names[] = {"qup-core", "qup-config", icc_ddr};
-
-nit: you could avoid repeating the first to strings by referencing
-icc_path_names[GENI_TO_CORE] and icc_path_names[CPU_TO_GENI]. Not sure
-if it's really better, it avoids the redundant names, but is slightly
-less readable.
-
+> +	u16 tmp;
 > +
-> +	for (i = 0; i < ARRAY_SIZE(se->icc_paths); i++) {
-> +		if (!icc_names[i])
-> +			continue;
+> +	/* 
+> +	 * System buses on Loongson system contain garbage in BARs
+> +	 * but their decoding need to be enabled to ensure devices
+> +	 * under system buses are reachable. In most cases it should
+> +	 * be done by the firmware.
+
+This isn't a very satisfying explanation because devices that have
+decoding enabled can interfere with other devices in the system, and I
+can't tell whether that's a problem here.
+
+What happens when you turn on MEM/IO decoding below?  Does the device
+decode any address space?  How do we know what it is?  Is it related
+to the BAR contents?
+
+I'm a little dubious about the need for the PCI_COMMAND write because
+the previous version didn't do it (since it incorrectly wrote to
+PCI_STATUS), and I assume that version worked.
+
+> +	pdev->mmio_always_on = 1;
+> +	pdev->non_compliant_bars = 1;
+> +	/* Enable MEM & IO Decoding */
+> +	pci_read_config_word(pdev, PCI_COMMAND, &tmp);
+> +	tmp |= PCI_COMMAND_IO | PCI_COMMAND_MEMORY;
+> +	pci_write_config_word(pdev, PCI_COMMAND, tmp);
+
+
+> +}
 > +
-> +		se->icc_paths[i].path = devm_of_icc_get(se->dev, icc_names[i]);
-> +		if (IS_ERR(se->icc_paths[i].path))
-> +			goto icc_get_failure;
 
-nit: since there is only a single label it isn't really necessary to be so
-precise. 'goto err' is very common in the kernel, 'err_icc_get' would be
-another alternative.
+Omit this blank line.
 
+> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_LOONGSON,
+> +			DEV_LS2K_APB, system_bus_quirk);
+> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_LOONGSON,
+> +			DEV_LS7A_CONF, system_bus_quirk);
+> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_LOONGSON,
+> +			DEV_LS7A_LPC, system_bus_quirk);
+> +
+> +static void loongson_mrrs_quirk(struct pci_dev *dev)
+> +{
+> +	struct pci_bus *bus = dev->bus;
+> +	struct pci_dev *bridge;
+> +	static const struct pci_device_id bridge_devids[] = {
+> +		{ PCI_VDEVICE(LOONGSON, DEV_PCIE_PORT_0) },
+> +		{ PCI_VDEVICE(LOONGSON, DEV_PCIE_PORT_1) },
+> +		{ PCI_VDEVICE(LOONGSON, DEV_PCIE_PORT_2) },
+> +		{ 0, },
+> +	};
+> +
+> +
+
+Remove one of these blank lines.
+
+> +	/* look for the matching bridge */
+> +	while (!pci_is_root_bus(bus)) {
+> +		bridge = bus->self;
+> +		bus = bus->parent;
+> +		/*
+> +		 * Some Loongson PCIe ports have a h/w limitation of
+> +		 * 256 bytes maximum read request size. They can't handle
+> +		 * anything larger than this. So force this limit on
+> +		 * any devices attached under these ports.
+> +		 */
+> +		if (pci_match_id(bridge_devids, bridge)) {
+> +			if (pcie_get_readrq(dev) > 256) {
+> +				pci_info(dev, "limiting MRRS to 256\n");
+> +				pcie_set_readrq(dev, 256);
+> +			}
+> +			break;
+> +		}
 > +	}
-> +
-> +	return 0;
-> +
-> +icc_get_failure:
-> +	icc_err = PTR_ERR(se->icc_paths[i].path);
-> +	if (icc_err != -EPROBE_DEFER)
-> +		dev_err_ratelimited(se->dev, "Failed to get ICC path:%s, ret:%d\n",
+> +}
+> +DECLARE_PCI_FIXUP_ENABLE(PCI_ANY_ID, PCI_ANY_ID, loongson_mrrs_quirk);
 
-All the logs in this patch result in something like "... path:qup-core, ret:42".
-For humans I think it is more intuitive to parse "... path 'qup-core': 42".
+> +void __iomem *pci_loongson_map_bus(struct pci_bus *bus, unsigned int devfn,
+> +			       int where)
+> +{
+> +	unsigned char busnum = bus->number;
+> +	struct pci_host_bridge *bridge = pci_find_host_bridge(bus);
+> +	struct loongson_pci *priv =  pci_host_bridge_priv(bridge);
+> +
+> +	/*
+> +	 * Do not read more than one device on the bus other than
+> +	 * the host bridge.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+s/host bridge/root bus/ ?
+
+IIUC, the test below assumes the root bus is bus 0, which is not
+necessarily the case.  Many other .*_map_bus() implementations have
+similar tests for devices on the root bus:
+
+  al_pcie_map_bus(...)
+  {
+    if (bus->number == cfg->busr.start) {
+
+> +	if (priv->flags & FLAG_DEV_FIX && bus->primary != 0 &&
+> +		PCI_SLOT(devfn) > 0)
+> +		return NULL;
