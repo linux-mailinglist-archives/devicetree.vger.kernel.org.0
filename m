@@ -2,147 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EFA11CB9A5
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 23:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B701CBA47
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2020 23:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727983AbgEHVUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 May 2020 17:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727978AbgEHVUL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 May 2020 17:20:11 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB6BC061A0C;
-        Fri,  8 May 2020 14:20:10 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id s8so3544596wrt.9;
-        Fri, 08 May 2020 14:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EPpfdrDWyIyJoF1ulwtJ3Qw81WLSoebaZdFuuGZoDek=;
-        b=OnAVIHm0tfjIc2NibvMhJwLGl2CL40M3yxtSeUuzYhavYsy87/kPDPXF4y/UIcR3Nz
-         /G13c0MgHhdkrpgPqXpchbCcYG2J4L2iJlaqsSldny2oCX2NjeUufnZRbdOkPj69ls1H
-         c3fhBHRH/CV3d64GynddHyZygq8loDBU1/yNC5ostKqkOBdjdBhYvkZOjAHRQEB4xS2o
-         T+wfhh7knyeVHsKiYFM6jjlJ+EqChpE4GcR7M3BWG4dBrIfVUXi0RzNoCBPi/rOiDTYj
-         L7KA4Roa5VSdyz0UbU+Y54ZcJxCxaTsl32+jBQGdLnzkliC/8LrQTtYFSb/8/WGbihgR
-         mNWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=EPpfdrDWyIyJoF1ulwtJ3Qw81WLSoebaZdFuuGZoDek=;
-        b=mueeeN150aWvAUd0gFEySHdnU/auCZWAo6Hzn2sJEYmHz9tQ2ps47NlQLoBOEnWZf0
-         9DGP8+rHMI52nuETd1xT+VbCFYeU3UG1ktTwcsY7y4JWjC7+nSxdX/wqY9BEuFv9OOin
-         pIBpts5/TGAQa0wMA996u8/tlFMMWJVmj3dtAa3iFO+pkqweEnl29EzVmikA87sybHLt
-         xMmEQtKldzYqQ8CBvp4YdeEIWeldJvooGwsWUmdSlR4E+hLt2OhqG/GAK5rYw3c7wlXe
-         cTBBznd0/eUNnNrHLuWWTxQdpcyLEI5DUk2GNZJmYF9NEdwbhyvroupNgL51+8wMYOMc
-         6Huw==
-X-Gm-Message-State: AGi0PubLU+o/RhvAi+F96Tg7KQg6LIDpnUPsPzNZndwVc8Wz+THUytHL
-        TiJjp/M2Mho6xgnT98QwexGOkBX0wZ0=
-X-Google-Smtp-Source: APiQypKbsNs1EGz2yStUD4V1y76G1Omvs2yge9aFnapbHsI3Mw9hhhSdpUGSwXKYyotjxPwcNjlLJQ==
-X-Received: by 2002:adf:f487:: with SMTP id l7mr4358463wro.381.1588972809267;
-        Fri, 08 May 2020 14:20:09 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id n9sm4669705wrv.43.2020.05.08.14.20.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 May 2020 14:20:08 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v8 5/5] usb: host: Add ability to build new Broadcom STB USB drivers
-Date:   Fri,  8 May 2020 17:19:29 -0400
-Message-Id: <20200508211929.39020-6-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200508211929.39020-1-alcooperx@gmail.com>
-References: <20200508211929.39020-1-alcooperx@gmail.com>
+        id S1727816AbgEHV5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 May 2020 17:57:43 -0400
+Received: from freas.net ([62.173.152.33]:37802 "EHLO host.securessvsmail.xyz"
+        rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727774AbgEHV5n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 May 2020 17:57:43 -0400
+X-Greylist: delayed 560 seconds by postgrey-1.27 at vger.kernel.org; Fri, 08 May 2020 17:57:42 EDT
+Received: from securessvsmail.xyz (2rt7.w.time4vps.cloud [89.40.10.200])
+        by host.securessvsmail.xyz (Postfix) with ESMTPA id 37886301229CB
+        for <devicetree@vger.kernel.org>; Sat,  9 May 2020 00:47:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 host.securessvsmail.xyz 37886301229CB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=securessvsmail.xyz;
+        s=default; t=1588974458;
+        bh=TOUrQtNA/9Lcm9zkDMeg72zVB746Q4FAPUpPflwTIWQ=;
+        h=Reply-To:From:To:Subject:Date:From;
+        b=paHqxgQjXZiCXq/A4MXTcb0uL2k2C/Yz2UWLg8/nGLUccU2oZdPB9ZjpxQDrkZkH6
+         AyVaL9a0/eStbq3+yv0oHXwpviYnEQMCX71UMi0wa2Zd0vSouCQNrDmBH9emWclM6o
+         fPiAtBz3b8BRyshBkIrqORFa/rOILnj7Y8DsTEZw=
+DKIM-Filter: OpenDKIM Filter v2.11.0 host.securessvsmail.xyz 37886301229CB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=securessvsmail.xyz;
+        s=default; t=1588974458;
+        bh=TOUrQtNA/9Lcm9zkDMeg72zVB746Q4FAPUpPflwTIWQ=;
+        h=Reply-To:From:To:Subject:Date:From;
+        b=paHqxgQjXZiCXq/A4MXTcb0uL2k2C/Yz2UWLg8/nGLUccU2oZdPB9ZjpxQDrkZkH6
+         AyVaL9a0/eStbq3+yv0oHXwpviYnEQMCX71UMi0wa2Zd0vSouCQNrDmBH9emWclM6o
+         fPiAtBz3b8BRyshBkIrqORFa/rOILnj7Y8DsTEZw=
+Reply-To: labdellatif@securesvsmail.com
+From:   Laghouili <labdellatif@securessvsmail.xyz>
+To:     devicetree@vger.kernel.org
+Subject: Collaboration
+Date:   08 May 2020 22:47:38 +0100
+Message-ID: <20200508224738.8287794E93112D67@securessvsmail.xyz>
+Mime-Version: 1.0
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the build system changes needed to get the Broadcom STB XHCI,
-EHCI and OHCI functionality working. The OHCI support does not
-require anything unique to Broadcom so the standard ohci-platform
-driver is being used. Also update MAINTAINERS.
+Hello there,
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
----
- MAINTAINERS               |  8 ++++++++
- drivers/usb/host/Kconfig  | 20 ++++++++++++++++++++
- drivers/usb/host/Makefile |  1 +
- 3 files changed, 29 insertions(+)
+I am Laghouili Abdellatif. I am contacting you because I have a=20
+proposal that I think may be interested in. I represent the=20
+interest of my brother in-law who was a minister in the Syrian=20
+Government. As you probably know, there is a lot of crisis going=20
+on currently in Syria and my brother in-law has fallen out with=20
+the ruling Junta and the president because of his foreign=20
+policies and the senseless war and killings that has been going=20
+on for a while. Everybody in Syria is fed up and want a change=20
+but the president is too powerfull and he simply kills anyone=20
+that tries to oppose him. My brother in-law belives that he is at=20
+risk and he is now very scared for the safety of his family=20
+especially his kids. In order to ensure that his family is taken=20
+care of and protected incase anything happens to him, he has=20
+asked me to help him find a foreign investor who can help him=20
+accommodate and invest 100 MUSD privately that he has secured in=20
+Europe. He wants these funds safely invested so that the future=20
+and safety of his family can be secured.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2926327e4976..fb55300c2a84 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3481,6 +3481,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/i2c/brcm,brcmstb-i2c.yaml
- F:	drivers/i2c/busses/i2c-brcmstb.c
- 
-+BROADCOM BRCMSTB USB EHCI DRIVER
-+M:	Al Cooper <alcooperx@gmail.com>
-+L:	linux-usb@vger.kernel.org
-+L:	bcm-kernel-feedback-list@broadcom.com
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
-+F:	drivers/usb/host/ehci-brcm.*
-+
- BROADCOM BRCMSTB USB2 and USB3 PHY DRIVER
- M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-kernel@vger.kernel.org
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index 55bdfdf11e4c..973386bbb522 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -97,6 +97,26 @@ config USB_XHCI_TEGRA
- 
- endif # USB_XHCI_HCD
- 
-+config USB_EHCI_BRCMSTB
-+       tristate
-+
-+config USB_BRCMSTB
-+	tristate "Broadcom STB USB support"
-+	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
-+	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
-+	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	help
-+	  Enables support for XHCI, EHCI and OHCI host controllers
-+	  found in Broadcom STB SoC's.
-+
-+	  To compile these drivers as modules, choose M here: the
-+	  modules will be called ohci-platform.ko, ehci-brcm.ko and
-+	  xhci-plat-hcd.ko
-+
-+	  Disabling this will keep the controllers and corresponding
-+	  PHYs powered down.
-+
- config USB_EHCI_HCD
- 	tristate "EHCI HCD (USB 2.0) support"
- 	depends on HAS_DMA && HAS_IOMEM
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index a7f0b8ff7179..265e26cf9209 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -59,6 +59,7 @@ obj-$(CONFIG_USB_EHCI_HCD_STI)	+= ehci-st.o
- obj-$(CONFIG_USB_EHCI_EXYNOS)	+= ehci-exynos.o
- obj-$(CONFIG_USB_EHCI_HCD_AT91) += ehci-atmel.o
- obj-$(CONFIG_USB_EHCI_TEGRA)	+= ehci-tegra.o
-+obj-$(CONFIG_USB_EHCI_BRCMSTB)	+= ehci-brcm.o
- 
- obj-$(CONFIG_USB_OXU210HP_HCD)	+= oxu210hp-hcd.o
- obj-$(CONFIG_USB_ISP116X_HCD)	+= isp116x-hcd.o
--- 
-2.17.1
+I am contacting you with the hope that you will be interested in=20
+helping us. We need your help to accommodate the funds in the=20
+banking system in your country and also invest it in a lucrative=20
+projects that will yeild good profits. We will handle all the=20
+logistics involved in the movement of the funds to you. The funds=20
+is already in Europe so you have nothing to worry about because=20
+this transaction will be executed in a legal way. My brother in-
+law has also promised to compensate you for your help. He wants=20
+this to be done discretely so I will be acting as his eyes and=20
+ears during the course of this transaction.
 
+If this proposal interests you, please kindly respond so that I=20
+can give you more details.
+
+Regards,
+
+Laghouili.
