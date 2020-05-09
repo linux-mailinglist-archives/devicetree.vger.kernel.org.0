@@ -2,201 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 463901CBEC1
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 10:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F481CBEE2
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 10:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725920AbgEIIKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 May 2020 04:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725850AbgEIIKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 04:10:32 -0400
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 248F4C061A0C;
-        Sat,  9 May 2020 01:10:32 -0700 (PDT)
-Received: by mail-vs1-xe41.google.com with SMTP id a5so2550786vsm.7;
-        Sat, 09 May 2020 01:10:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=hg2j4yDUwU/HdTy91WVT+D8cDbi67SkruoSAu6walPg=;
-        b=cmAwXjqzTs4mGPYVsr1LRa/7NH7QWL+ied3aAdEqVx+8AhccAWLtdFRjQJVW4AujgG
-         NzhEAj/FI/1az32WuUjuIlt/beelqF3cUYZyJkt3uDV0ppjLKRH65s9Oa5Uj2OQnodmN
-         IeETq/CyU5jych/jLblezYeAVvA9S8a6harjeNvjsIXHQdyDTJ/8WgHPsxDn/t+KnqX2
-         isAzn++2aPYs/Bf61eR05iUUmdQ7ND69oNlHPXG3+FA4u3QwlcjtS53Va4OwRzk0Dv30
-         N10GxSA/KX+L5BsSt8RVO4bWTc6khulHWVB5wR1YUhS8Q8KwJFVsod1mVWF8hWAMBDLz
-         6r+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hg2j4yDUwU/HdTy91WVT+D8cDbi67SkruoSAu6walPg=;
-        b=uZS2JNhuL0SJT+JnXoslxNf/1NRYMDxav6Ab4QV5BSYiln2mVLRKPReo71YGCFvltL
-         DsD31BySuZ5FmKmwvr5fOOBeB7asxV9kJ3LReeNC1RHsboU03vjzRVHOD1tInyE4bIXp
-         Jy24ycolFwnt9O4Lkq9j7arDQcHvgh140tVEXnO8Wx2Rw9mGcOrldwwZfXWashM8imF0
-         DeTnLHcr4bOejdEM8fPMDTnMim/qaeWLyT8XyTQmzzZP2hubZIvsFvOn9N5PZNdDvvsf
-         fIOcL8jKutQSeKxdJBD9mPYAML/k+jeF+PnD0Ucup3frYcVH591pPlzFTR9RUnERksmK
-         RrcQ==
-X-Gm-Message-State: AGi0Puag3+oG7poBX5U7XlDePXvFWb47ggnl7mBaOK9z8pnTAdyv1B3s
-        cUnA2ClZX1hAObRUvFVAaE1GFHVr2ADaEqLmUds=
-X-Google-Smtp-Source: APiQypKhiLPAytkBC1so8+Xa11Vq69wFO63GCNQ8pk3I0jEMQahK0ObW836JL5fza3z6uG0EO6M3gq1OoNA5x0K77U4=
-X-Received: by 2002:a67:fe8c:: with SMTP id b12mr4980915vsr.186.1589011831107;
- Sat, 09 May 2020 01:10:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191028215919.83697-1-john.stultz@linaro.org>
- <20191028215919.83697-4-john.stultz@linaro.org> <87mudjj4rc.fsf@gmail.com>
- <CALAqxLU+9uEcdRVaLfh+eQrDtZbDGod9pRXhBX=prAhg9MXagw@mail.gmail.com>
- <CAKgpwJVaKpsgMjKcnYyJsfNj0ibkPt=mdn-NxfOkeX1jfL=9iQ@mail.gmail.com> <87h7wqmwrv.fsf@kernel.org>
-In-Reply-To: <87h7wqmwrv.fsf@kernel.org>
-From:   Jun Li <lijun.kernel@gmail.com>
-Date:   Sat, 9 May 2020 16:10:19 +0800
-Message-ID: <CAKgpwJXfWv5=MDqBCADhe2iXf6eiP0GQ13Bwo9fkuU5kGO7dsw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/9] usb: dwc3: Increase timeout for CmdAct cleared by
- device controller
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yu Chen <chenyu56@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        ShuFan Lee <shufan_lee@richtek.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Jack Pham <jackp@codeaurora.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, peter.chen@nxp.com,
-        Li Jun <jun.li@nxp.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S1727838AbgEIIX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 May 2020 04:23:57 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:42004 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727812AbgEIIX5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 May 2020 04:23:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 925031A028B;
+        Sat,  9 May 2020 10:23:54 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 349F91A015F;
+        Sat,  9 May 2020 10:23:50 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BB55D40285;
+        Sat,  9 May 2020 16:23:44 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] dt-bindings: reset: Convert i.MX7 reset to json-schema
+Date:   Sat,  9 May 2020 16:14:37 +0800
+Message-Id: <1589012077-12088-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Convert the i.MX7 reset binding to DT schema format using json-schema.
 
-Felipe Balbi <balbi@kernel.org> =E4=BA=8E2020=E5=B9=B45=E6=9C=888=E6=97=A5=
-=E5=91=A8=E4=BA=94 =E4=B8=8B=E5=8D=888:33=E5=86=99=E9=81=93=EF=BC=9A
->
->
-> Hi,
->
-> Jun Li <lijun.kernel@gmail.com> writes:
-> > John Stultz <john.stultz@linaro.org> =E4=BA=8E2019=E5=B9=B410=E6=9C=883=
-0=E6=97=A5=E5=91=A8=E4=B8=89 =E4=B8=8A=E5=8D=885:18=E5=86=99=E9=81=93=EF=BC=
-=9A
-> >>
-> >> On Tue, Oct 29, 2019 at 2:11 AM Felipe Balbi <balbi@kernel.org> wrote:
-> >> > John Stultz <john.stultz@linaro.org> writes:
-> >> > > From: Yu Chen <chenyu56@huawei.com>
-> >> > >
-> >> > > It needs more time for the device controller to clear the CmdAct o=
-f
-> >> > > DEPCMD on Hisilicon Kirin Soc.
-> >> >
-> >> > Why does it need more time? Why is it so that no other platform need=
-s
-> >> > more time, only this one? And which command, specifically, causes
-> >> > problem?
-> >
-> > Sorry for my back to this so late.
-> >
-> > This change is required on my dwc3 based HW too, I gave a check
-> > and the reason is suspend_clk is used in case the PIPE phy is at P3,
-> > this slow clock makes my EP command below timeout.
->
-> The phy needs to woken up before the command is triggered. Currently we
-> only wake up the HS PHY. Does it help you if we wake up the SS phy as
-> well?
->
-> Something like below ought to do it:
->
-> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-> index a0555252dee0..ee46c2dacaeb 100644
-> --- a/drivers/usb/dwc3/gadget.c
-> +++ b/drivers/usb/dwc3/gadget.c
-> @@ -274,7 +274,8 @@ int dwc3_send_gadget_ep_cmd(struct dwc3_ep *dep, unsi=
-gned cmd,
->         const struct usb_endpoint_descriptor *desc =3D dep->endpoint.desc=
-;
->         struct dwc3             *dwc =3D dep->dwc;
->         u32                     timeout =3D 1000;
-> -       u32                     saved_config =3D 0;
-> +       u32                     saved_hs_config =3D 0;
-> +       u32                     saved_ss_config =3D 0;
->         u32                     reg;
->
->         int                     cmd_status =3D 0;
-> @@ -293,19 +294,28 @@ int dwc3_send_gadget_ep_cmd(struct dwc3_ep *dep, un=
-signed cmd,
->         if (dwc->gadget.speed <=3D USB_SPEED_HIGH) {
->                 reg =3D dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
->                 if (unlikely(reg & DWC3_GUSB2PHYCFG_SUSPHY)) {
-> -                       saved_config |=3D DWC3_GUSB2PHYCFG_SUSPHY;
-> +                       saved_hs_config |=3D DWC3_GUSB2PHYCFG_SUSPHY;
->                         reg &=3D ~DWC3_GUSB2PHYCFG_SUSPHY;
->                 }
->
->                 if (reg & DWC3_GUSB2PHYCFG_ENBLSLPM) {
-> -                       saved_config |=3D DWC3_GUSB2PHYCFG_ENBLSLPM;
-> +                       saved_hs_config |=3D DWC3_GUSB2PHYCFG_ENBLSLPM;
->                         reg &=3D ~DWC3_GUSB2PHYCFG_ENBLSLPM;
->                 }
->
-> -               if (saved_config)
-> +               if (saved_hs_config)
->                         dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
->         }
->
-> +       reg =3D dwc3_readl(dwc->regs, DWC3_GUSB3PIPECTL(0));
-> +       if (unlikely(reg & DWC3_GUSB3PIPECTL_SUSPHY)) {
-> +               saved_ss_config |=3D DWC3_GUSB3PIPECTL_SUSPHY;
-> +               reg &=3D ~DWC3_GUSB3PIPECTL_SUSPHY;
-> +       }
-> +
-> +       if (saved_ss_config)
-> +               dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(0), reg);
-> +
->         if (DWC3_DEPCMD_CMD(cmd) =3D=3D DWC3_DEPCMD_STARTTRANSFER) {
->                 int             needs_wakeup;
->
-> @@ -397,12 +407,18 @@ int dwc3_send_gadget_ep_cmd(struct dwc3_ep *dep, un=
-signed cmd,
->                         dwc3_gadget_ep_get_transfer_index(dep);
->         }
->
-> -       if (saved_config) {
-> +       if (saved_hs_config) {
->                 reg =3D dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> -               reg |=3D saved_config;
-> +               reg |=3D saved_hs_config;
->                 dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
->         }
->
-> +       if (saved_ss_config) {
-> +               reg =3D dwc3_readl(dwc->regs, DWC3_GUSB3PIPECTL(0));
-> +               reg |=3D saved_ss_config;
-> +               dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(0), reg);
-> +       }
-> +
->         return ret;
->  }
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ .../devicetree/bindings/reset/fsl,imx7-src.txt     | 56 -------------------
+ .../devicetree/bindings/reset/fsl,imx7-src.yaml    | 64 ++++++++++++++++++++++
+ 2 files changed, 64 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx7-src.yaml
 
-Unfortunately this way can't work, once the SS PHY enters P3, disable
-suspend_en can't force SS PHY exit P3, unless do this at the very beginning
-to prevent SS PHY entering P3(e.g. add "snps,dis_u3_susphy_quirk" for test)=
-.
+diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+deleted file mode 100644
+index e10502d..0000000
+--- a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-Freescale i.MX7 System Reset Controller
+-======================================
+-
+-Please also refer to reset.txt in this directory for common reset
+-controller binding usage.
+-
+-Required properties:
+-- compatible:
+-	- For i.MX7 SoCs should be "fsl,imx7d-src", "syscon"
+-	- For i.MX8MQ SoCs should be "fsl,imx8mq-src", "syscon"
+-	- For i.MX8MM SoCs should be "fsl,imx8mm-src", "fsl,imx8mq-src", "syscon"
+-	- For i.MX8MN SoCs should be "fsl,imx8mn-src", "fsl,imx8mq-src", "syscon"
+-	- For i.MX8MP SoCs should be "fsl,imx8mp-src", "syscon"
+-- reg: should be register base and length as documented in the
+-  datasheet
+-- interrupts: Should contain SRC interrupt
+-- #reset-cells: 1, see below
+-
+-example:
+-
+-src: reset-controller@30390000 {
+-     compatible = "fsl,imx7d-src", "syscon";
+-     reg = <0x30390000 0x2000>;
+-     interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+-     #reset-cells = <1>;
+-};
+-
+-
+-Specifying reset lines connected to IP modules
+-==============================================
+-
+-The system reset controller can be used to reset various set of
+-peripherals. Device nodes that need access to reset lines should
+-specify them as a reset phandle in their corresponding node as
+-specified in reset.txt.
+-
+-Example:
+-
+-	pcie: pcie@33800000 {
+-
+-		...
+-
+-		resets = <&src IMX7_RESET_PCIEPHY>,
+-			 <&src IMX7_RESET_PCIE_CTRL_APPS_EN>;
+-		reset-names = "pciephy", "apps";
+-
+-		...
+-        };
+-
+-
+-For list of all valid reset indices see
+-<dt-bindings/reset/imx7-reset.h> for i.MX7,
+-<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ and
+-<dt-bindings/reset/imx8mq-reset.h> for i.MX8MM and
+-<dt-bindings/reset/imx8mq-reset.h> for i.MX8MN and
+-<dt-bindings/reset/imx8mp-reset.h> for i.MX8MP
+diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.yaml b/Documentation/devicetree/bindings/reset/fsl,imx7-src.yaml
+new file mode 100644
+index 0000000..ad254ba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/fsl,imx7-src.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/fsl,imx7-src.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX7 System Reset Controller
++
++maintainers:
++  - Anson Huang <Anson.Huang@nxp.com>
++
++description: |
++  The system reset controller can be used to reset various set of
++  peripherals. Device nodes that need access to reset lines should
++  specify them as a reset phandle in their corresponding node as
++  specified in reset.txt.
++
++  For list of all valid reset indices see
++    <dt-bindings/reset/imx7-reset.h> for i.MX7,
++    <dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ and
++    <dt-bindings/reset/imx8mq-reset.h> for i.MX8MM and
++    <dt-bindings/reset/imx8mq-reset.h> for i.MX8MN and
++    <dt-bindings/reset/imx8mp-reset.h> for i.MX8MP
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - fsl,imx7d-src
++        - fsl,imx8mq-src
++        - fsl,imx8mm-src
++        - fsl,imx8mn-src
++        - fsl,imx8mp-src
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  '#reset-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#reset-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    reset-controller@30390000 {
++        compatible = "fsl,imx7d-src", "syscon";
++        reg = <0x30390000 0x2000>;
++        interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
++        #reset-cells = <1>;
++    };
++
++...
+-- 
+2.7.4
 
-thanks
-Li Jun
->
-> --
-> balbi
