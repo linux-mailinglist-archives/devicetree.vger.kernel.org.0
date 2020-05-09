@@ -2,75 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A4A1CC26D
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 17:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 701F41CC982
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2020 10:38:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbgEIPdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 May 2020 11:33:19 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50868 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727092AbgEIPdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 May 2020 11:33:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
-        From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JgmA1XKh2hvtQmy33sPmh16aTHMDwUxJXCit/7l1/68=; b=Y1MBgsdLckmFXnnOd2KWaSLqct
-        LeKw5X/AfbnevefC7rR3qIDml7EQDBp09/kaBW1OWVfDP1gUGUMkPKPmPyebhQdqMrujHBkNvj5sA
-        jZ0p8yz+rIC1tIPu8+9LduuLqtDDwsokuurXwnoSwI+jVfTi4JH+H5Ak2P7oS94U0dZ0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jXRTX-001W1U-DD; Sat, 09 May 2020 17:33:15 +0200
-Date:   Sat, 9 May 2020 17:33:15 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Hui Song <hui.song_1@nxp.com>
-Cc:     u-boot@linux.nxdi.nxp.com, jiafei.pan@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] armv8: gpio: add gpio feature
-Message-ID: <20200509153315.GR208718@lunn.ch>
+        id S1727834AbgEJIhk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 10 May 2020 04:37:40 -0400
+Received: from tarvos.retrosnub.co.uk ([93.93.130.7]:48340 "EHLO
+        tarvos.retrosnub.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726630AbgEJIhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 May 2020 04:37:40 -0400
+X-Greylist: delayed 589 seconds by postgrey-1.27 at vger.kernel.org; Sun, 10 May 2020 04:37:38 EDT
+Received: from [192.168.0.10] (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        by tarvos.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id DD222C03DA;
+        Sun, 10 May 2020 09:27:47 +0100 (BST)
+Date:   Sat, 09 May 2020 16:44:04 +0100
+User-Agent: K-9 Mail for Android
+In-Reply-To: <61e9c83b910b3df44291a49b5587b772d4145036.camel@yadro.com>
+References: <20200507132600.8801-1-i.mikhaylov@yadro.com> <20200507132600.8801-2-i.mikhaylov@yadro.com> <20200508155050.0000008e@Huawei.com> <61e9c83b910b3df44291a49b5587b772d4145036.camel@yadro.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200509103956.26038-3-hui.song_1@nxp.com>
- <20200509103956.26038-2-hui.song_1@nxp.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: 8BIT
+Subject: Re: [PATCH v13 1/2] dt-bindings: proximity: provide vcnl3020 device tree binding document
+To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
+        Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+Message-ID: <DC81C6F6-5510-4477-B9D2-29CB3DBCA9F3@jic23.retrosnub.co.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 09, 2020 at 06:39:55PM +0800, Hui Song wrote:
-> From: "hui.song" <hui.song_1@nxp.com>
-> 
-> add one struct mpc8xxx_gpio_plat to enable gpio feature.
-> 
-> Signed-off-by: hui.song <hui.song_1@nxp.com>
-> ---
->  .../include/asm/arch-fsl-layerscape/gpio.h    | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 arch/arm/include/asm/arch-fsl-layerscape/gpio.h
-> 
-> diff --git a/arch/arm/include/asm/arch-fsl-layerscape/gpio.h b/arch/arm/include/asm/arch-fsl-layerscape/gpio.h
-> new file mode 100644
-> index 0000000000..d8dd750a72
-> --- /dev/null
-> +++ b/arch/arm/include/asm/arch-fsl-layerscape/gpio.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * Copyright 2014 Freescale Semiconductor, Inc.
-> + */
-> +
-> +/*
-> + * Dummy header file to enable CONFIG_OF_CONTROL.
-> + * If CONFIG_OF_CONTROL is enabled, lib/fdtdec.c is compiled.
-> + * It includes <asm/arch/gpio.h> via <asm/gpio.h>, so those SoCs that enable
-> + * OF_CONTROL must have arch/gpio.h.
-> + */
 
-This does not seem right. You would expect each sub arch to have a
-subdirectory in arch/arm/include/asm/ when in fact none do.
 
-	     Andrew
+On 9 May 2020 11:38:46 BST, Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+>On Fri, 2020-05-08 at 15:51 +0100, Jonathan Cameron wrote:
+>> On Thu, 7 May 2020 16:25:59 +0300
+>> Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+>> 
+>> > Mostly standard i2c driver with some additional led-current option
+>> > for vcnl3020.
+>> > 
+>> > Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
+>> > ---
+>> >  .../iio/proximity/vishay,vcnl3020.yaml        | 65
+>+++++++++++++++++++
+>> >  1 file changed, 65 insertions(+)
+>> >  create mode 100644
+>> >
+>Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
+>> > 
+>> > diff --git
+>> >
+>a/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
+>> >
+>b/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
+>> > new file mode 100644
+>> > index 000000000000..408dee17cdf5
+>> > --- /dev/null
+>> > +++
+>b/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
+>> > @@ -0,0 +1,65 @@
+>> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> > +%YAML 1.2
+>> > +---
+>> > +$id:
+>http://devicetree.org/schemas/iio/proximity/vishay,vcnl3020.yaml#
+>> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> > +
+>> > +title: Integrated Proximity Sensor With Infrared Emitter
+>> > +
+>> > +maintainers:
+>> > +  - Ivan Mikhaylov <i.mikhaylov@yadro.com>
+>> > +
+>> > +description: |
+>> > +  The VCNL3020 is a fully integrated proximity sensor. Fully
+>integrated
+>> > means
+>> > +  that the infrared emitter is included in the package. It has
+>16-bit
+>> > +  resolution. It includes a signal processing IC and features
+>standard I2C
+>> > +  communication interface. It features an interrupt function.
+>> > +
+>> > +  Specifications about the devices can be found at:
+>> > +  https://www.vishay.com/docs/84150/vcnl3020.pdf
+>> > +
+>> > +properties:
+>> > +  compatible:
+>> > +    enum:
+>> > +      - vishay,vcnl3020
+>> > +
+>> > +  reg:
+>> > +    maxItems: 1
+>> > +
+>> > +  interrupts:
+>> > +    maxItems: 1
+>> > +
+>> > +  vdd-supply:
+>> > +    description: Regulator that provides power to the sensor
+>> > +
+>> > +  vddio-supply:
+>> > +    description: Regulator that provides power to the bus
+>> > +
+>> > +  vishay,led-current-microamp:
+>> > +    description:
+>> > +      IR LED current value with valid Range = 0 to 20d. e.g. 0 = 0
+>mA,
+>> > +      1 = 10 mA, 20 = 200 mA. LED Current is limited to 200 mA for
+>values
+>> > +      higher than decimal 20. The drive current for the LED used
+>in
+>> > proximity
+>> > +      sensing.
+>> 
+>> This text is really confusing. Just let the enum speak for itself and
+>leave
+>> text as
+>> something short like
+>> 
+>> "The driver current for the LED used in proximity sensing. "
+>> 
+>> Units and values are clear already.
+>> 
+>
+>Jonathan, just to double check, for preventing further problems with
+>misunderstanding, is that what you want?
+>
+>  vishay,led-current-microamp:
+>    description:
+>        The driver current for the LED used in proximity sensing.
+>
+>    enum: [0..200000] <- just for shortening
+>    default: 20000
+>
+>Thanks.
+
+Yes
+
+J
+
+-- 
+Sent from my Android device with K-9 Mail. Please excuse my brevity.
