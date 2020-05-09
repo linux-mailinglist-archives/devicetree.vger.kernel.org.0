@@ -2,134 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5591CC1A9
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 15:12:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6691CC16F
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 14:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727820AbgEINMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 May 2020 09:12:21 -0400
-Received: from fieber.vanmierlo.com ([84.243.197.177]:36179 "EHLO
-        kerio9.vanmierlo.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726370AbgEINMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 09:12:21 -0400
-X-Footer: dmFubWllcmxvLmNvbQ==
-Received: from roundcube.vanmierlo.com ([192.168.37.37])
-        (authenticated user m.brock@vanmierlo.com)
-        by kerio9.vanmierlo.com (Kerio Connect 9.2.12 patch 1) with ESMTPA;
-        Sat, 9 May 2020 14:41:38 +0200
+        id S1727051AbgEIMwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 May 2020 08:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbgEIMwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 08:52:04 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6716C061A0C;
+        Sat,  9 May 2020 05:52:03 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 13BBF2A2CA6
+Message-ID: <458fcdc1d934c12a81a3bd9728cdca9cd2ad874c.camel@collabora.com>
+Subject: Re: [PATCH v2 7/9] media: MAINTAINERS: rkisp1: add path to
+ dt-bindings
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Helen Koike <helen.koike@collabora.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        robh+dt@kernel.org, heiko@sntech.de, kernel@collabora.com,
+        dafna.hirschfeld@collabora.com, mark.rutland@arm.com,
+        karthik.poduval@gmail.com, jbx6244@gmail.com, kishon@ti.com
+Date:   Sat, 09 May 2020 09:51:49 -0300
+In-Reply-To: <9a95d227-9592-2c5c-fe6d-dff9b84f4292@xs4all.nl>
+References: <20200403161538.1375908-1-helen.koike@collabora.com>
+         <20200403161538.1375908-8-helen.koike@collabora.com>
+         <9a95d227-9592-2c5c-fe6d-dff9b84f4292@xs4all.nl>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.0-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Sat, 09 May 2020 14:41:38 +0200
-From:   Maarten Brock <m.brock@vanmierlo.com>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org, jslaby@suse.com,
-        pascal.huerst@gmail.com, linux-serial-owner@vger.kernel.org
-Subject: Re: [PATCH 3/4] sc16is7xx: Always use falling edge IRQ
-In-Reply-To: <20200508143757.2609740-4-daniel@zonque.org>
-References: <20200508143757.2609740-1-daniel@zonque.org>
- <20200508143757.2609740-4-daniel@zonque.org>
-Message-ID: <d36a13cdeafd5fe35f662644b1c285c0@vanmierlo.com>
-X-Sender: m.brock@vanmierlo.com
-User-Agent: Roundcube Webmail/1.3.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-05-08 16:37, Daniel Mack wrote:
-> The driver currently only uses IRQF_TRIGGER_FALLING if the probing
-> happened without a device-tree setup. The device however will always
-> generate falling edges on its IRQ line, so let's use that flag in
-> all cases.
+Hi Hans,
 
-Would it not be wise to also select IRQF_SHARED?
+On Fri, 2020-04-17 at 09:18 +0200, Hans Verkuil wrote:
+> On 03/04/2020 18:15, Helen Koike wrote:
+> > The Rockchip ISP bindings was moved out of staging.
+> > Update MAINTAINERS file with the new path.
+> 
+> Shouldn't there be a reference to Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml
+> as well in MAINTAINERS?
+> 
 
-Which leads me to a more generic question: Is there a general method to 
-tell
-in the device tree that an interrupt line is shared?
+Indeed, and I can take care of that later. I was planning to move
+this PHY driver out of staging, but was waiting on patches 4 and 5
+of this series.
 
+They seem fine, would you mind picking them?
+
+Thanks!
+Ezequiel
+
+> Regards,
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
-> ---
->  drivers/tty/serial/sc16is7xx.c | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
+> 	Hans
 > 
-> diff --git a/drivers/tty/serial/sc16is7xx.c 
-> b/drivers/tty/serial/sc16is7xx.c
-> index e4025b8566a4..0997a5cac02a 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -1185,7 +1185,7 @@ static int
-> sc16is7xx_gpio_direction_output(struct gpio_chip *chip,
+> > Suggested-by: Johan Jonker <jbx6244@gmail.com>
+> > Signed-off-by: Helen Koike <helen.koike@collabora.com>
+> > ---
+> > 
+> > V2:
+> > - This is a new patch in the series
+> > ---
+> >  MAINTAINERS | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d66ac41ef5872..726044b84cf23 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -14303,6 +14303,7 @@ M:	Helen Koike <helen.koike@collabora.com>
+> >  L:	linux-media@vger.kernel.org
+> >  S:	Maintained
+> >  F:	drivers/staging/media/rkisp1/
+> > +F:	Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> >  
+> >  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
+> >  M:	Jacob Chen <jacob-chen@iotwrt.com>
+> > 
 > 
->  static int sc16is7xx_probe(struct device *dev,
->  			   const struct sc16is7xx_devtype *devtype,
-> -			   struct regmap *regmap, int irq, unsigned long flags)
-> +			   struct regmap *regmap, int irq)
->  {
->  	struct sched_param sched_param = { .sched_priority = MAX_RT_PRIO / 2 
-> };
->  	unsigned long freq = 0, *pfreq = dev_get_platdata(dev);
-> @@ -1318,7 +1318,7 @@ static int sc16is7xx_probe(struct device *dev,
 > 
->  	/* Setup interrupt */
->  	ret = devm_request_irq(dev, irq, sc16is7xx_irq,
-> -			       flags, dev_name(dev), s);
-> +			       IRQF_TRIGGER_FALLING, dev_name(dev), s);
->  	if (!ret)
->  		return 0;
-> 
-> @@ -1392,7 +1392,6 @@ static struct regmap_config regcfg = {
->  static int sc16is7xx_spi_probe(struct spi_device *spi)
->  {
->  	const struct sc16is7xx_devtype *devtype;
-> -	unsigned long flags = 0;
->  	struct regmap *regmap;
->  	int ret;
-> 
-> @@ -1413,14 +1412,13 @@ static int sc16is7xx_spi_probe(struct 
-> spi_device *spi)
->  		const struct spi_device_id *id_entry = spi_get_device_id(spi);
-> 
->  		devtype = (struct sc16is7xx_devtype *)id_entry->driver_data;
-> -		flags = IRQF_TRIGGER_FALLING;
->  	}
-> 
->  	regcfg.max_register = (0xf << SC16IS7XX_REG_SHIFT) |
->  			      (devtype->nr_uart - 1);
->  	regmap = devm_regmap_init_spi(spi, &regcfg);
-> 
-> -	return sc16is7xx_probe(&spi->dev, devtype, regmap, spi->irq, flags);
-> +	return sc16is7xx_probe(&spi->dev, devtype, regmap, spi->irq);
->  }
-> 
->  static int sc16is7xx_spi_remove(struct spi_device *spi)
-> @@ -1459,7 +1457,6 @@ static int sc16is7xx_i2c_probe(struct i2c_client 
-> *i2c,
->  			       const struct i2c_device_id *id)
->  {
->  	const struct sc16is7xx_devtype *devtype;
-> -	unsigned long flags = 0;
->  	struct regmap *regmap;
-> 
->  	if (i2c->dev.of_node) {
-> @@ -1468,14 +1465,13 @@ static int sc16is7xx_i2c_probe(struct 
-> i2c_client *i2c,
->  			return -ENODEV;
->  	} else {
->  		devtype = (struct sc16is7xx_devtype *)id->driver_data;
-> -		flags = IRQF_TRIGGER_FALLING;
->  	}
-> 
->  	regcfg.max_register = (0xf << SC16IS7XX_REG_SHIFT) |
->  			      (devtype->nr_uart - 1);
->  	regmap = devm_regmap_init_i2c(i2c, &regcfg);
-> 
-> -	return sc16is7xx_probe(&i2c->dev, devtype, regmap, i2c->irq, flags);
-> +	return sc16is7xx_probe(&i2c->dev, devtype, regmap, i2c->irq);
->  }
-> 
->  static int sc16is7xx_i2c_remove(struct i2c_client *client)
+
 
