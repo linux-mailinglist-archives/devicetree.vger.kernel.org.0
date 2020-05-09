@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0EF1CC07E
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 12:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A32801CC0EC
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 13:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728278AbgEIKom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 May 2020 06:44:42 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:46222 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728130AbgEIKoj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 May 2020 06:44:39 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D9AF7200102;
-        Sat,  9 May 2020 12:44:37 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C3F772002EE;
-        Sat,  9 May 2020 12:44:34 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 90B0540302;
-        Sat,  9 May 2020 18:44:30 +0800 (SGT)
-From:   Hui Song <hui.song_1@nxp.com>
-To:     u-boot@linux.nxdi.nxp.com, jiafei.pan@nxp.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        "hui.song" <hui.song_1@nxp.com>
-Subject: [PATCH v1 3/3] dm: armv8: gpio: include <asm/arch/gpio.h> for fsl-layerscape
-Date:   Sat,  9 May 2020 18:39:56 +0800
-Message-Id: <20200509103956.26038-3-hui.song_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200509103956.26038-1-hui.song_1@nxp.com>
-References: <20200509103956.26038-1-hui.song_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728365AbgEIL1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 May 2020 07:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728359AbgEIL1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 07:27:01 -0400
+Received: from pruto.48.io (48.io [IPv6:2a01:430:17:1::ffff:361])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045F9C061A0C;
+        Sat,  9 May 2020 04:27:00 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by pruto.48.io (Postfix) with ESMTPSA id 2620B94C8C;
+        Sat,  9 May 2020 13:18:10 +0200 (CEST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 pruto.48.io 2620B94C8C
+Authentication-Results: pruto.48.io; dmarc=none (p=none dis=none) header.from=48.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=48.io; s=default;
+        t=1589023090; bh=KARkDbiFWBw5fwU/CBmudfRgDCP3DX1QEy8rHToFI6w=;
+        h=From:To:Cc:Subject:Date;
+        b=TpYDnwlozMKCJmINVAMNyROL4vRGCGtwNP6WniI11KG05i8Vsb0n9UZ9E9lVXlRNX
+         zh9RTmRj2cyjohHodu5zFNwQs2z9zRNEv8QrdY3SElPv7j/4SNe6I0wHTqisB9F+W7
+         b8deqXBknDw0ZIQOWg/cP9UrEClkpaJx8ghg32WQ=
+From:   srk@48.io
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Richard Marko <srk@48.io>,
+        Marek Vasut <marex@denx.de>, Sean Cross <xobs@kosagi.com>
+Subject: [PATCH 0/2] Novena laptop: LVDS-to-eDP bridge
+Date:   Sat,  9 May 2020 13:17:30 +0200
+Message-Id: <20200509111732.26102-1-srk@48.io>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "hui.song" <hui.song_1@nxp.com>
+From: Richard Marko <srk@48.io>
 
-Enable the gpio feature on fsl-layerscape platform.
+Contains updated patches I've received from Marek with the following
+changes:
 
-Signed-off-by: hui.song <hui.song_1@nxp.com>
----
- arch/arm/include/asm/gpio.h | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+- yaml docs migration
+- extended documentation
 
-diff --git a/arch/arm/include/asm/gpio.h b/arch/arm/include/asm/gpio.h
-index 333e407b66..7715a01706 100644
---- a/arch/arm/include/asm/gpio.h
-+++ b/arch/arm/include/asm/gpio.h
-@@ -1,12 +1,8 @@
- #if !defined(CONFIG_ARCH_UNIPHIER) && !defined(CONFIG_ARCH_STI) && \
- 	!defined(CONFIG_ARCH_K3) && !defined(CONFIG_ARCH_BCM68360) && \
- 	!defined(CONFIG_ARCH_BCM6858) && !defined(CONFIG_ARCH_BCM63158) && \
--	!defined(CONFIG_ARCH_ROCKCHIP) && !defined(CONFIG_ARCH_LX2160A) && \
--	!defined(CONFIG_ARCH_LS1028A) && !defined(CONFIG_ARCH_LS2080A) && \
--	!defined(CONFIG_ARCH_LS1088A) && !defined(CONFIG_ARCH_ASPEED) && \
--	!defined(CONFIG_ARCH_LS1012A) && !defined(CONFIG_ARCH_LS1043A) && \
--	!defined(CONFIG_ARCH_LS1046A) && !defined(CONFIG_ARCH_U8500) && \
--	!defined(CONFIG_CORTINA_PLATFORM)
-+	!defined(CONFIG_ARCH_ROCKCHIP) && !defined(CONFIG_ARCH_ASPEED) && \
-+	!defined(CONFIG_ARCH_U8500) && !defined(CONFIG_CORTINA_PLATFORM)
- #include <asm/arch/gpio.h>
- #endif
- #include <asm-generic/gpio.h>
+Tested on a Kosagi Novena laptop with imx6 display controller.
+
+Based on v5.7-rc2, applies to drm-misc-next 5e6ed29d72d2
+
+CC: Marek Vasut <marex@denx.de>
+Cc: Sean Cross <xobs@kosagi.com>
+
+Marek Vasut (2):
+  dt-bindings: it6251: add bindings for IT6251 LVDS-to-eDP bridge
+  drm/bridge: Add ITE IT6251 bridge driver
+
+ .../bindings/display/bridge/ite,it6251.yaml   |  97 +++
+ drivers/gpu/drm/bridge/Kconfig                |  12 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/ite-it6251.c           | 582 ++++++++++++++++++
+ 4 files changed, 692 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6251.yaml
+ create mode 100644 drivers/gpu/drm/bridge/ite-it6251.c
+
+
+base-commit: ae83d0b416db002fe95601e7f97f64b59514d936
 -- 
-2.17.1
+2.25.1
 
