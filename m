@@ -2,187 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C78811CC0D5
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 13:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E122A1CC0F9
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2020 13:28:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728244AbgEILTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 May 2020 07:19:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44634 "EHLO
+        id S1728379AbgEIL1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 May 2020 07:27:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725920AbgEILTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 07:19:18 -0400
-X-Greylist: delayed 63 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 09 May 2020 04:19:18 PDT
-Received: from pruto.48.io (48.io [IPv6:2a01:430:17:1::ffff:361])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66977C061A0C;
-        Sat,  9 May 2020 04:19:18 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by pruto.48.io (Postfix) with ESMTPSA id AA1599167A;
-        Sat,  9 May 2020 13:19:16 +0200 (CEST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 pruto.48.io AA1599167A
-Authentication-Results: pruto.48.io; dmarc=none (p=none dis=none) header.from=48.io
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=48.io; s=default;
-        t=1589023156; bh=PD4G1VYzdYofQB3xLNm3Mdoe2zymwjMy9UKjQHmAphY=;
-        h=From:To:Cc:Subject:Date;
-        b=xCPj/SzfAgpQ7IypVAykco6zMAZCdBHNDnx0EZZVwCVNE0rD7DTCIvdg2WMCzlguZ
-         /YJsGK5UjY2YgVkdKKqaETxN6QUVMqT4fEpqzLSJOnTvAv665NvGtTNnhO8iBfj9yn
-         DyWBwnzwYYaMrYGmC84w+ADoSyoR0D7a0sNUK4r8=
-From:   srk@48.io
-To:     Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Richard Marko <srk@48.io>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH 1/1] ARM: dts: novena: Add LVDS-to-eDP bridge bindings
-Date:   Sat,  9 May 2020 13:19:07 +0200
-Message-Id: <20200509111907.26685-1-srk@48.io>
+        by vger.kernel.org with ESMTP id S1727980AbgEIL1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 May 2020 07:27:38 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:3201:214:fdff:fe10:1be6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1892C061A0C;
+        Sat,  9 May 2020 04:27:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=YUdChrOZQNPx7l/p1mjJOCHERADDlB8MQg4GwZPVIJI=; b=Oc4KF42B3UBTaTTeKm0O8iDlY
+        BxrB2iSGe8nhReKz/aLMlNyR+IkQ8zQ6tXmmjSOdlqrONefjvAO1GQRKzZptDBMtJS8uLaTVrkjQQ
+        NnaIKY+vcVZRs5gAT1XtUOxskcn9GThB54Xf1MOHeyw1AFkMyyucZYIfJQNHKq8XjetID6psBur7s
+        ulKyC98yB8Au9WlSlDmgmckLzEj+H4vLxHIUQRdkUyLs7giCsXydRFzs8YHMeYsgpaAx9oUJ7c7Af
+        6PiNdckPz1KifuC2ivsulw/9Ik0YTZXPR/+QfSdkadBizG/ozlmrg8RmdlNLhrQaglDXtpgJIL0Nn
+        S7mKGKy5g==;
+Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:37982)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1jXNdg-0003eW-Au; Sat, 09 May 2020 12:27:28 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1jXNdd-0002nq-Vf; Sat, 09 May 2020 12:27:26 +0100
+Date:   Sat, 9 May 2020 12:27:25 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     jagdish.gediya@nxp.com, priyanka.jain@nxp.com,
+        pramod.kumar_1@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] gpio: mpc8xxx: support fsl-layerscape platform.
+Message-ID: <20200509112725.GA1551@shell.armlinux.org.uk>
+References: <20200509103537.22865-1-hui.song_1@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200509103537.22865-1-hui.song_1@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Vasut <marex@denx.de>
+On Sat, May 09, 2020 at 06:35:35PM +0800, Hui Song wrote:
+> From: "hui.song" <hui.song_1@nxp.com>
+> 
+> Make the MPC8XXX gpio driver to support the fsl-layerscape.
+> 
+> Signed-off-by: hui.song <hui.song_1@nxp.com>
+> ---
+>  drivers/gpio/mpc8xxx_gpio.c | 59 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 
-Add bindings for the LVDS-to-eDP bridge chip, IT6251, which is
-used to connect the standard 1920x1080 panel on Novena laptop.
+What project are these for?  There is no such file in the kernel tree.
 
-Tested on a Kosagi Novena laptop with imx6 display controller.
+I think you've sent these patches to the wrong people and mailing lists.
 
-Based on v5.7-rc2, applies to drm-misc-next 5e6ed29d72d2
-
-Signed-off-by: Marek Vasut <marex@denx.de>
-Signed-off-by: Richard Marko <srk@48.io>
-Cc: Fabio Estevam <fabio.estevam@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
----
- arch/arm/boot/dts/imx6q-novena.dts | 57 +++++++++++++++++++++++++++++-
- 1 file changed, 56 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx6q-novena.dts b/arch/arm/boot/dts/imx6q-novena.dts
-index 69f170ff31c5..803a97e04dc4 100644
---- a/arch/arm/boot/dts/imx6q-novena.dts
-+++ b/arch/arm/boot/dts/imx6q-novena.dts
-@@ -109,6 +109,12 @@ heartbeat {
- 	panel: panel {
- 		compatible = "innolux,n133hse-ea1";
- 		backlight = <&backlight>;
-+
-+		port {
-+			panel_in_edp0: endpoint {
-+				remote-endpoint = <&bridge_out_edp0>;
-+			};
-+		};
- 	};
- 
- 	reg_2p5v: regulator-2p5v {
-@@ -146,6 +152,7 @@ reg_display: regulator-display {
- 		startup-delay-us = <200000>;
- 		gpio = <&gpio5 28 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
-+		regulator-always-on;
- 	};
- 
- 	reg_lvds_lcd: regulator-lvds-lcd {
-@@ -155,6 +162,7 @@ reg_lvds_lcd: regulator-lvds-lcd {
- 		regulator-max-microvolt = <3300000>;
- 		gpio = <&gpio4 15 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
-+		regulator-always-on;
- 	};
- 
- 	reg_pcie: regulator-pcie {
-@@ -212,6 +220,17 @@ &audmux {
- 	status = "okay";
- };
- 
-+&clks {
-+	assigned-clocks = <&clks IMX6QDL_CLK_LDB_DI0_SEL>,
-+			  <&clks IMX6QDL_CLK_LDB_DI1_SEL>,
-+			  <&clks IMX6QDL_CLK_IPU1_DI0_PRE_SEL>,
-+			  <&clks IMX6QDL_CLK_IPU2_DI0_PRE_SEL>;
-+	assigned-clock-parents = <&clks IMX6QDL_CLK_PLL5_VIDEO_DIV>,
-+				 <&clks IMX6QDL_CLK_PLL5_VIDEO_DIV>,
-+				 <&clks IMX6QDL_CLK_PLL2_PFD2_396M>,
-+				 <&clks IMX6QDL_CLK_PLL2_PFD2_396M>;
-+};
-+
- &ecspi3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ecspi3_novena>;
-@@ -423,6 +442,29 @@ codec: es8328@11 {
- 					 <&clks IMX6QDL_CLK_CKO1_PODF>;
- 		assigned-clock-rates = <0 0 722534400 22579200>;
- 	};
-+
-+	it6251@5c {
-+		compatible = "ite,it6251";
-+		reg = <0x5c>, <0x5e>;
-+		reg-names = "bridge", "lvds";
-+		power-supply = <&reg_display>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_lvdsbridge_novena>;
-+
-+		ports {
-+			port@0 {
-+				bridge_out_edp0: endpoint {
-+					remote-endpoint = <&panel_in_edp0>;
-+				};
-+			};
-+
-+			port@1 {
-+				bridge_in_lvds0: endpoint {
-+					remote-endpoint = <&lvds0_out>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &kpp {
-@@ -443,6 +485,14 @@ lvds-channel@0 {
- 		fsl,data-width = <24>;
- 		fsl,panel = <&panel>;
- 		status = "okay";
-+
-+		port@4 {
-+			reg = <4>;
-+
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&bridge_in_lvds0>;
-+			};
-+		};
- 	};
- };
- 
-@@ -529,10 +579,15 @@ MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS		0x130b0
- 		>;
- 	};
- 
-+	pinctrl_lvdsbridge_novena: lvdsbridgegrp-novena {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT10__GPIO5_IO28	0x1b0b1
-+		>;
-+	};
-+
- 	pinctrl_backlight_novena: backlightgrp-novena {
- 		fsl,pins = <
- 			MX6QDL_PAD_DISP0_DAT8__PWM1_OUT		0x1b0b0
--			MX6QDL_PAD_CSI0_DAT10__GPIO5_IO28	0x1b0b1
- 			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x1b0b1
- 		>;
- 	};
 -- 
-2.25.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 10.2Mbps down 587kbps up
