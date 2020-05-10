@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A06B41CC75B
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2020 08:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B7F1CC75D
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2020 08:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725994AbgEJGvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 May 2020 02:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
+        id S1726043AbgEJGwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 May 2020 02:52:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725810AbgEJGvx (ORCPT
+        by vger.kernel.org with ESMTP id S1725810AbgEJGwY (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 May 2020 02:51:53 -0400
+        Sun, 10 May 2020 02:52:24 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D074C061A0C
-        for <devicetree@vger.kernel.org>; Sat,  9 May 2020 23:51:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38EEC061A0C
+        for <devicetree@vger.kernel.org>; Sat,  9 May 2020 23:52:23 -0700 (PDT)
 Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 456222A0354;
-        Sun, 10 May 2020 07:51:50 +0100 (BST)
-Date:   Sun, 10 May 2020 08:51:46 +0200
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7E3E72A013A;
+        Sun, 10 May 2020 07:52:22 +0100 (BST)
+Date:   Sun, 10 May 2020 08:52:19 +0200
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -35,10 +35,11 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Naga Sureshkumar Relli <nagasure@xilinx.com>
 Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
  controller
-Message-ID: <20200510085146.3f5274b2@collabora.com>
-In-Reply-To: <20200508171339.8052-8-miquel.raynal@bootlin.com>
+Message-ID: <20200510085219.2f726178@collabora.com>
+In-Reply-To: <20200510085146.3f5274b2@collabora.com>
 References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
         <20200508171339.8052-8-miquel.raynal@bootlin.com>
+        <20200510085146.3f5274b2@collabora.com>
 Organization: Collabora
 X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
@@ -49,12 +50,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  8 May 2020 19:13:38 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+On Sun, 10 May 2020 08:51:46 +0200
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
 
-> +			pktsize = DIV_ROUND_UP(nfc_op->len, nfc_op->steps);
-> +			nfc_op->pkt_reg |= PKT_SIZE(round_up(pktsize, 4)) |
-> +					   PKT_STEPS(nfc_op->steps);
+> On Fri,  8 May 2020 19:13:38 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> 
+> > +			pktsize = DIV_ROUND_UP(nfc_op->len, nfc_op->steps);
+> > +			nfc_op->pkt_reg |= PKT_SIZE(round_up(pktsize, 4)) |
+> > +					   PKT_STEPS(nfc_op->steps);  
+> 
+> I thought we agreed on reject any mismatch in the size. Any reason for
 
-I thought we agreed on reject any mismatch in the size. Any reason for
-not being strict here?
+			 ^rejecting
+
+> not being strict here?
+
