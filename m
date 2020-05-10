@@ -2,194 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F671CCA7B
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2020 12:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C4671CCB1F
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2020 14:41:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729057AbgEJK6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 May 2020 06:58:53 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:46576 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728990AbgEJK6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 May 2020 06:58:47 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 92AB38030791;
-        Sun, 10 May 2020 10:58:44 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 8Rk4FAtzyDFb; Sun, 10 May 2020 13:58:43 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Jack Mitchell <ml@embed.me.uk>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Wang, Peng 1. (NSB - CN/Hangzhou)" <peng.1.wang@nokia-sbell.com>,
-        <linux-watchdog@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 7/7] watchdog: dw_wdt: Add DebugFS files
-Date:   Sun, 10 May 2020 13:58:07 +0300
-Message-ID: <20200510105807.880-8-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200510105807.880-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200306132758.703FC8030704@mail.baikalelectronics.ru>
- <20200510105807.880-1-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+        id S1728468AbgEJMlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 May 2020 08:41:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53982 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728360AbgEJMlh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 May 2020 08:41:37 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9FBC061A0C;
+        Sun, 10 May 2020 05:41:36 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id 188so5077860lfa.10;
+        Sun, 10 May 2020 05:41:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=0AyjPmU7cn4BL2KfMfomHiNoXCghCD471CVQpZJ9/fA=;
+        b=VoPU/c2qR6kaasYGmq75epVPaJ7EX1CNYybYsdh1EZdTegUmWKOsLBAQKv7hp6p7aU
+         ulB/CtLmA4KHX72RDM+ppAU1bq9rQr9aqgmhYCavrPhj3B0nrQ0t0HLkW+a0aKTdqmWd
+         Ot9Os80PYnd6NTDwshKerDa9nsLLwr9P+eyTda6LWBOXCqLkd6txcB8VjCgiJGm5h2V2
+         IbgTmoNcN1B78SzcOKwSUaeCe6ue9Ly/NBeqD0nrKgHG8mnBQm7ZhJZ6oS/SbY2D0XX4
+         /7AxTN6barEYBGFroWlHEEndwZrCbn1udU55wkNcInSwI3UlOkFym/99parkpzIqmchB
+         exgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=0AyjPmU7cn4BL2KfMfomHiNoXCghCD471CVQpZJ9/fA=;
+        b=VNV3ZtUO9PjfDb5CfxC14nwalb+5dK+s6Q7AdxMhfibFFlnTcBI5pZ3BUvccvDumyo
+         vhEdTPT2Lda/BN8qE6ozoqaTQaIGmCaNgqjot5n1RRfNe70Rgm/mMaGcDcHEwBYuVHbI
+         L7Swq1DZBNzlJI8PSHh8bH52MMPdBrMDbVn/iB9eBY3u8FCSYh4wKA4ytFPVJWMjmaTz
+         smxZCwm1wawC8yii2VB00UszFYCdSF5qBM5PVNzLCxLXBx2gp3xaLVKKJ0lKN6s5cErY
+         UzVEk+XWHG31J0izpfLOkxlvc1nBnQrQzjGsQbdLYUiWltUdOX/LOqw/zTMOaw1CZaVN
+         7wOA==
+X-Gm-Message-State: AOAM530XNE964dj33W6PCwrAxI4xRFi6v0uffXRGLpxZ/5Vyw2ofS9rB
+        VrrdcVOOQOhFmtX82AwyEig=
+X-Google-Smtp-Source: ABdhPJxmyYroaExtRfpqTEZIzCVhUi16AUhZ0f52+ranCiNyS1GYl1IwuOIihO9UzZuRtWlWB9vIiQ==
+X-Received: by 2002:ac2:57cd:: with SMTP id k13mr7748654lfo.104.1589114494913;
+        Sun, 10 May 2020 05:41:34 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id m11sm7136611lfo.55.2020.05.10.05.41.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 May 2020 05:41:34 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v8 0/3] arm64: dts: meson: add dts/bindings for SmartLabs SML-5442TW
+Date:   Sun, 10 May 2020 12:41:26 +0000
+Message-Id: <20200510124129.31575-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the sake of the easier device-driver debug procedure, we added a
-DebugFS file with the controller registers state. It's available only if
-kernel is configured with DebugFS support.
+This series adds new bindings and a device-tree file for the Smartlabs
+SML-5442TW set-top box which is based on the P231 reference design.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: devicetree@vger.kernel.org
+As requested, I have reworked the device-tree on the p23x-q20x dtsi. I
+have also re-added the BT device with new bindings that have now  been
+merged in bluetooth-next for inclusion in Linux 5.8. See [1].
 
----
+v8 - reworked on p23x-q20x dtsi
+   - add BT module
 
-Changelog v2:
-- Rearrange SoBs.
-- Discard timeout/pretimeout/ping/enable DebugFS nodes. Registers state
-  dump node is only left.
----
- drivers/watchdog/dw_wdt.c | 68 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+v7 - update gpio-led nodes
+   - remove gpio-hog for BT enable
+   - add bindings acks from Rob
 
-diff --git a/drivers/watchdog/dw_wdt.c b/drivers/watchdog/dw_wdt.c
-index 3cd7c485cd70..012681baaa6d 100644
---- a/drivers/watchdog/dw_wdt.c
-+++ b/drivers/watchdog/dw_wdt.c
-@@ -28,6 +28,7 @@
- #include <linux/platform_device.h>
- #include <linux/reset.h>
- #include <linux/watchdog.h>
-+#include <linux/debugfs.h>
- 
- #define WDOG_CONTROL_REG_OFFSET		    0x00
- #define WDOG_CONTROL_REG_WDT_EN_MASK	    0x01
-@@ -39,8 +40,14 @@
- #define WDOG_COUNTER_RESTART_KICK_VALUE	    0x76
- #define WDOG_INTERRUPT_STATUS_REG_OFFSET    0x10
- #define WDOG_INTERRUPT_CLEAR_REG_OFFSET     0x14
-+#define WDOG_COMP_PARAMS_5_REG_OFFSET       0xe4
-+#define WDOG_COMP_PARAMS_4_REG_OFFSET       0xe8
-+#define WDOG_COMP_PARAMS_3_REG_OFFSET       0xec
-+#define WDOG_COMP_PARAMS_2_REG_OFFSET       0xf0
- #define WDOG_COMP_PARAMS_1_REG_OFFSET       0xf4
- #define WDOG_COMP_PARAMS_1_USE_FIX_TOP      BIT(6)
-+#define WDOG_COMP_VERSION_REG_OFFSET        0xf8
-+#define WDOG_COMP_TYPE_REG_OFFSET           0xfc
- 
- /* There are sixteen TOPs (timeout periods) that can be set in the watchdog. */
- #define DW_WDT_NUM_TOPS		16
-@@ -85,6 +92,10 @@ struct dw_wdt {
- 	/* Save/restore */
- 	u32			control;
- 	u32			timeout;
-+
-+#ifdef CONFIG_DEBUG_FS
-+	struct dentry		*dbgfs_dir;
-+#endif
- };
- 
- #define to_dw_wdt(wdd)	container_of(wdd, struct dw_wdt, wdd)
-@@ -484,6 +495,59 @@ static int dw_wdt_init_timeouts(struct dw_wdt *dw_wdt, struct device *dev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_DEBUG_FS
-+
-+#define DW_WDT_DBGFS_REG(_name, _off) \
-+{				      \
-+	.name = _name,		      \
-+	.offset = _off		      \
-+}
-+
-+static const struct debugfs_reg32 dw_wdt_dbgfs_regs[] = {
-+	DW_WDT_DBGFS_REG("cr", WDOG_CONTROL_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("torr", WDOG_TIMEOUT_RANGE_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("ccvr", WDOG_CURRENT_COUNT_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("crr", WDOG_COUNTER_RESTART_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("stat", WDOG_INTERRUPT_STATUS_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param5", WDOG_COMP_PARAMS_5_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param4", WDOG_COMP_PARAMS_4_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param3", WDOG_COMP_PARAMS_3_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param2", WDOG_COMP_PARAMS_2_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param1", WDOG_COMP_PARAMS_1_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("version", WDOG_COMP_VERSION_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("type", WDOG_COMP_TYPE_REG_OFFSET)
-+};
-+
-+static void dw_wdt_dbgfs_init(struct dw_wdt *dw_wdt)
-+{
-+	struct device *dev = dw_wdt->wdd.parent;
-+	struct debugfs_regset32 *regset;
-+
-+	regset = devm_kzalloc(dev, sizeof(*regset), GFP_KERNEL);
-+	if (!regset)
-+		return;
-+
-+	regset->regs = dw_wdt_dbgfs_regs;
-+	regset->nregs = ARRAY_SIZE(dw_wdt_dbgfs_regs);
-+	regset->base = dw_wdt->regs;
-+
-+	dw_wdt->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
-+
-+	debugfs_create_regset32("registers", 0444, dw_wdt->dbgfs_dir, regset);
-+}
-+
-+static void dw_wdt_dbgfs_clear(struct dw_wdt *dw_wdt)
-+{
-+	debugfs_remove_recursive(dw_wdt->dbgfs_dir);
-+}
-+
-+#else /* !CONFIG_DEBUG_FS */
-+
-+static void dw_wdt_dbgfs_init(struct dw_wdt *dw_wdt) {}
-+static void dw_wdt_dbgfs_clear(struct dw_wdt *dw_wdt) {}
-+
-+#endif /* !CONFIG_DEBUG_FS */
-+
- static int dw_wdt_drv_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -607,6 +671,8 @@ static int dw_wdt_drv_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto out_disable_pclk;
- 
-+	dw_wdt_dbgfs_init(dw_wdt);
-+
- 	return 0;
- 
- out_disable_pclk:
-@@ -621,6 +687,8 @@ static int dw_wdt_drv_remove(struct platform_device *pdev)
- {
- 	struct dw_wdt *dw_wdt = platform_get_drvdata(pdev);
- 
-+	dw_wdt_dbgfs_clear(dw_wdt);
-+
- 	watchdog_unregister_device(&dw_wdt->wdd);
- 	reset_control_assert(dw_wdt->rst);
- 	clk_disable_unprepare(dw_wdt->pclk);
+v6 - removed audio nodes again
+
+v5 - typo in card name
+
+v4 - typos/corrections from Andreas
+   - convert to yaml bindings
+   - add sound node back
+   - confirmed gpio-hog is necessary
+
+v3 - change to Smartlabs LLC
+   - removed sound node
+
+v2 - removed audio nodes
+   - changes soundcard name to "meson-gx-audio"
+   - added missing uart-has-rtscts;
+
+[1] https://patchwork.kernel.org/cover/11504823/
+
+Christian Hewitt (3):
+  dt-bindings: add vendor prefix for Smartlabs LLC
+  dt-bindings: arm: amlogic: add support for the Smartlabs SML-5442TW
+  arm64: dts: meson: add support for the Smartlabs SML-5442TW
+
+ .../devicetree/bindings/arm/amlogic.yaml      |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 80 +++++++++++++++++++
+ 4 files changed, 84 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+
 -- 
-2.25.1
+2.17.1
 
