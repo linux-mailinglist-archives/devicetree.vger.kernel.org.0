@@ -2,149 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E2F1CE4A0
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 21:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFCEF1CE4B3
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 21:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731555AbgEKThQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 15:37:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731586AbgEKThQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 May 2020 15:37:16 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97AF5C061A0C;
-        Mon, 11 May 2020 12:37:15 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id l18so12453960wrn.6;
-        Mon, 11 May 2020 12:37:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=egDbjx4i60tyIfoIHmSfvSBTjfuuqWNL6ee0lZwkILc=;
-        b=MIEV1848iC9ubENv8qw7uFDtYPjAp4xEX8AIjia7hbAdIfW9dP/og8bobYOS1DegI6
-         U16ZgG1T3zJ8uBAGVwjyUghKbrmjaBkzRbkzj7YW+Sewtm/l8Ft40Lr8bHHZ+2m2Q20P
-         rwixhZlo/Q1XhdaLawYWvkG0IlG6mDjBMgOhJATDv7T624Axf5pGXDpF63CJR+7wROfy
-         TK9e1cUYPg53DgRIIMKj2IqZ6lQVOkrvsI6smWplgZvewLKDy4nMWxNiKltUJopht1B8
-         nT9KEBpsxuai8+eiWc4HQw2aexU0usz2ybUspRcurOB6+jJYlsJpsEQfUgViG313bMqY
-         HJhw==
+        id S1729453AbgEKTn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 15:43:58 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:46244 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728283AbgEKTn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 15:43:58 -0400
+Received: by mail-oi1-f193.google.com with SMTP id c124so15952124oib.13;
+        Mon, 11 May 2020 12:43:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=egDbjx4i60tyIfoIHmSfvSBTjfuuqWNL6ee0lZwkILc=;
-        b=Rt81RBjBAvwx26IiXLpBV632fB0Sef8ctQKwEqM6nzIHAas0GhLB1YDlfWBhq1wXux
-         mzVdnAvnC1ayOJnKNSjDSUwsn6So2SpragWOCS9R4U4A6DC3eRLYfF1a4eK7Zks7Y2kn
-         UsN6RpFFBjvWPwt/P8ntM1wjwEJjMiWVuPbzoeD1hK1nHGwVonR3Kj/Ec90vGnGFP+Yi
-         zmc+PKRdFgXH1XTmHDhD8vkE1pYe5ZMw8hHkI2QjG2jkqq3j1c5W2ZiTfd2rA8wQFDEG
-         hD8zRv4BXsc881lgxk745WYlxUk4SFwRFEE+/tbLtRpefxI3mACYJ+FhZb9jhIMzs8ea
-         Tk9w==
-X-Gm-Message-State: AGi0PuY6e7xJ3ng/mxAjx2GQ+KbqAUHqeWX6HKmlVp1saPVtH0Jy57Hs
-        UBfjQDPFUIBNLza96ejZ2WLsFtdNdp4=
-X-Google-Smtp-Source: APiQypL1kt5hwbojUcSXit65ybe12pN3tCBWV5mjBE4EdaEWWQ9/NBZUmh2fxa2DxPGG+8Iq1x/Obg==
-X-Received: by 2002:adf:afd6:: with SMTP id y22mr20368179wrd.417.1589225833975;
-        Mon, 11 May 2020 12:37:13 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id o203sm11529030wme.12.2020.05.11.12.37.11
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=iMz0W2EMpeB90U+JkODUeNWGmTF1lcaEfrSEzlJrKEE=;
+        b=OoDa8bXt01wIWtgBQCGjYBp9CBz7S/PpCbtbTH8AASz0eH047F8TgjM90rHC15jA1t
+         XfMJKE3Ojqw0cUEMOIsCaKLfgEBJyvFZv36RiiPOo0IYByHGbdbu9PiJbmavi9j6u1u9
+         nM3/SB0RVISaSNSxPd3QGlEiR3WKmk94ftAAcuqKKMwXWwdd20xe2glcjIFnd3qQV8fS
+         ESI07hAo42/PPwhJbt+O/RDWzw6vGF4kWr7baElIOVFTv5LFj8AKMUoKV3ip0seRnXXH
+         yifj0m7VF3aFPYWRFkecnQRanfsDsCWi8L3cu+GDPdyyzD+FoLehsmt7/pC1vA2PP0hM
+         BAgQ==
+X-Gm-Message-State: AGi0PuYGCxrCNMAqAmJ+gFIiENve5GcTaMv5x1N9jn3hXGVf7dJsW62x
+        KQU6hrcX/LHx+WeOvTEAE6LciCk=
+X-Google-Smtp-Source: APiQypKAd9AOvs5jO4W0FbO633ynlzZryjn9opCL1TP8ro0jDfP1gSkql9L3yfzGMqZgr4GmXDNc3A==
+X-Received: by 2002:aca:75c3:: with SMTP id q186mr19828152oic.41.1589226236707;
+        Mon, 11 May 2020 12:43:56 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m16sm3011429oou.44.2020.05.11.12.43.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 12:37:13 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v9 5/5] usb: host: Add ability to build new Broadcom STB USB drivers
-Date:   Mon, 11 May 2020 15:36:43 -0400
-Message-Id: <20200511193643.30926-6-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200511193643.30926-1-alcooperx@gmail.com>
-References: <20200511193643.30926-1-alcooperx@gmail.com>
+        Mon, 11 May 2020 12:43:55 -0700 (PDT)
+Received: (nullmailer pid 4451 invoked by uid 1000);
+        Mon, 11 May 2020 19:43:54 -0000
+Date:   Mon, 11 May 2020 14:43:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: add cznic,turris-omnia-leds
+ binding
+Message-ID: <20200511194354.GA15606@bogus>
+References: <20200423065100.2652-1-marek.behun@nic.cz>
+ <20200423065100.2652-2-marek.behun@nic.cz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200423065100.2652-2-marek.behun@nic.cz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the build system changes needed to get the Broadcom STB XHCI,
-EHCI and OHCI functionality working. The OHCI support does not
-require anything unique to Broadcom so the standard ohci-platform
-driver is being used. Also update MAINTAINERS.
+On Thu, Apr 23, 2020 at 08:50:59AM +0200, Marek Behún wrote:
+> Add device-tree bindings documentation for Turris Omnia RGB LEDs.
+> 
+> Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  .../leds/cznic,turris-omnia-leds.yaml         | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> new file mode 100644
+> index 000000000000..f3d13fa65df2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CZ.NIC's Turris Omnia LEDs driver
+> +
+> +maintainers:
+> +  - Marek Behún <marek.behun@nic.cz>
+> +
+> +description:
+> +  This module adds support for the RGB LEDs found on the fron panel of the
+> +  Turris Omnia router. There are 12 RGB LEDs, they are controlled by device's
+> +  microcontroller with which the system communicates via I2C. Each LED is
+> +  described as a subnode of this I2C device.
+> +
+> +properties:
+> +  compatible:
+> +    const: cznic,turris-omnia-leds
+> +
+> +  reg:
+> +    description: I2C slave address of the microcontroller.
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^led[0-9][0-9]?$":
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- MAINTAINERS               |  8 ++++++++
- drivers/usb/host/Kconfig  | 20 ++++++++++++++++++++
- drivers/usb/host/Makefile |  1 +
- 3 files changed, 29 insertions(+)
+'led-' is preferred. And numbering is usually hex.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 091ec22c1a23..e5e44b595bc4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3481,6 +3481,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/i2c/brcm,brcmstb-i2c.yaml
- F:	drivers/i2c/busses/i2c-brcmstb.c
- 
-+BROADCOM BRCMSTB USB EHCI DRIVER
-+M:	Al Cooper <alcooperx@gmail.com>
-+L:	linux-usb@vger.kernel.org
-+L:	bcm-kernel-feedback-list@broadcom.com
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
-+F:	drivers/usb/host/ehci-brcm.*
-+
- BROADCOM BRCMSTB USB2 and USB3 PHY DRIVER
- M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-kernel@vger.kernel.org
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index 55bdfdf11e4c..973386bbb522 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -97,6 +97,26 @@ config USB_XHCI_TEGRA
- 
- endif # USB_XHCI_HCD
- 
-+config USB_EHCI_BRCMSTB
-+       tristate
-+
-+config USB_BRCMSTB
-+	tristate "Broadcom STB USB support"
-+	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
-+	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
-+	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	help
-+	  Enables support for XHCI, EHCI and OHCI host controllers
-+	  found in Broadcom STB SoC's.
-+
-+	  To compile these drivers as modules, choose M here: the
-+	  modules will be called ohci-platform.ko, ehci-brcm.ko and
-+	  xhci-plat-hcd.ko
-+
-+	  Disabling this will keep the controllers and corresponding
-+	  PHYs powered down.
-+
- config USB_EHCI_HCD
- 	tristate "EHCI HCD (USB 2.0) support"
- 	depends on HAS_DMA && HAS_IOMEM
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index a7f0b8ff7179..265e26cf9209 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -59,6 +59,7 @@ obj-$(CONFIG_USB_EHCI_HCD_STI)	+= ehci-st.o
- obj-$(CONFIG_USB_EHCI_EXYNOS)	+= ehci-exynos.o
- obj-$(CONFIG_USB_EHCI_HCD_AT91) += ehci-atmel.o
- obj-$(CONFIG_USB_EHCI_TEGRA)	+= ehci-tegra.o
-+obj-$(CONFIG_USB_EHCI_BRCMSTB)	+= ehci-brcm.o
- 
- obj-$(CONFIG_USB_OXU210HP_HCD)	+= oxu210hp-hcd.o
- obj-$(CONFIG_USB_ISP116X_HCD)	+= isp116x-hcd.o
--- 
-2.17.1
+What's the numbering here based on? Might be better to use 'reg' (and a 
+unit-address) rather than led-sources. led-sources was for cases where 
+the control interface (defined by reg) could have differing regulators 
+connected to the LEDs.
 
+> +    type: object
+> +    allOf:
+> +      - $ref: /schemas/leds/common.yaml#
+> +    description:
+> +      This node can either represent one channel of a RGB LED or a whole RGB
+> +      LED.
+> +
+> +    properties:
+> +      led-sources:
+> +        description:
+> +          List of device current outputs the LED connects to. If one number is
+> +          given, the device described by this node will control one channel of a
+> +          RGB LED. If three numbers are given (one for each channel of a RGB
+> +          LED), the device described by this node will control one RGB LED. In
+> +          this case the numbers must increase by one and the first must be a
+> +          multiple of 3.
+> +        allOf:
+> +          - $ref: /schemas/leds/common.yaml#/properties/led-sources
+
+No need for this. It is already done with the previous $ref.
+
+> +          - oneOf:
+> +              - items:
+> +                  minimum: 0
+> +                  maximum: 35
+> +                minItems: 1
+> +                maxItems: 1
+> +              - items:
+> +                  enum: [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 9, 10, 11 ],
+> +                          [ 12, 13, 14 ], [ 15, 16, 17 ], [ 18, 19, 20 ],
+> +                          [ 21, 22, 23 ], [ 24, 25, 26 ], [ 27, 28, 29 ],
+> +                          [ 30, 31, 32 ], [ 33, 34, 35] ]
+> +
+> +      color:
+> +        description:
+> +          Should be one of LED_COLOR_ID_*. Allowed values are red, green or blue
+> +          if there is one item in led-sources, otherwise white.
+> +        allOf:
+> +          - $ref: /schemas/leds/common.yaml#/properties/color
+
+Can be dropped.
+
+> +          - enum: [ 0, 1, 2, 3 ]
+> +
+> +    required:
+> +      - led-sources
+> +      - color
+> +
+> +examples:
+> +  - |
+> +
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@2b {
+> +            compatible = "cznic,turris-omnia-leds";
+> +            reg = <0x2b>;
+> +
+> +            led0 {
+> +                led-sources = <33 34 35>;
+> +                color = <LED_COLOR_ID_WHITE>;
+> +                function = LED_FUNCTION_POWER;
+> +                linux,default-trigger = "heartbeat";
+> +            };
+> +
+> +            led1 {
+> +                led-sources = <3>;
+> +                color = <LED_COLOR_ID_RED>;
+> +                function = LED_FUNCTION_INDICATOR;
+> +                function-enumerator = <1>;
+> +            };
+> +
+> +            led2 {
+> +                led-sources = <4>;
+> +                color = <LED_COLOR_ID_GREEN>;
+> +                function = LED_FUNCTION_INDICATOR;
+> +                function-enumerator = <1>;
+> +            };
+> +
+> +            led3 {
+> +                led-sources = <5>;
+> +                color = <LED_COLOR_ID_BLUE>;
+> +                function = LED_FUNCTION_INDICATOR;
+> +                function-enumerator = <1>;
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.24.1
+> 
