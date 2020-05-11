@@ -2,134 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF131CD517
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 11:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D44C71CD5DB
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 12:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729531AbgEKJdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 05:33:11 -0400
-Received: from mga12.intel.com ([192.55.52.136]:33548 "EHLO mga12.intel.com"
+        id S1727093AbgEKKGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 06:06:53 -0400
+Received: from mga14.intel.com ([192.55.52.115]:5438 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729529AbgEKJdK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 May 2020 05:33:10 -0400
-IronPort-SDR: RgQtd9rP8233Y9yvMg3fk7LOgvTrZrjafupW2FIBOxq+nkzUuzrV6GqmComyJexjd5ZtYF4gg1
- fN3iQOjCQtRg==
+        id S1725983AbgEKKGx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 06:06:53 -0400
+IronPort-SDR: e5/RS5bBSf+CjFQFdqYKKgPH/Kg6mXiswhDenjuf/XJ0zMaZpAvxoWUkHEdiOEmo7pnqTC0SIf
+ iJcyAXuavUHQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2020 02:33:10 -0700
-IronPort-SDR: ONYW+QqYbjMLn1MDFmvWENe6egF5WQnYr3Nj7Te1ktN7xBvPMhyHdGCfc/X9xjhrYEJUEWRnwl
- KL4sexatOzeQ==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2020 03:06:52 -0700
+IronPort-SDR: WD55mJq6LC6VU99cffrXnEEvX1vMeS+4vEwmvyZ1HE5zL4Mscw9lUqUCHpDdrCfhFPPMeadb7B
+ uj2FHreMbwAg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.73,379,1583222400"; 
-   d="scan'208";a="371171194"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001.fm.intel.com with ESMTP; 11 May 2020 02:33:06 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jY4o8-005vQO-I5; Mon, 11 May 2020 12:33:08 +0300
-Date:   Mon, 11 May 2020 12:33:08 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V8, 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
-Message-ID: <20200511093308.GF185537@smile.fi.intel.com>
-References: <20200509080627.23222-1-dongchun.zhu@mediatek.com>
- <20200509080627.23222-3-dongchun.zhu@mediatek.com>
+   d="scan'208";a="286224031"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga004.fm.intel.com with ESMTP; 11 May 2020 03:06:52 -0700
+Received: from [10.215.144.121] (ekotax-MOBL.gar.corp.intel.com [10.215.144.121])
+        by linux.intel.com (Postfix) with ESMTP id 7BEFE5803C5;
+        Mon, 11 May 2020 03:06:49 -0700 (PDT)
+Subject: Re: [PATCH v7 3/3] phy: intel: Add driver support for ComboPhy
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, kishon@ti.com,
+        devicetree@vger.kernel.org, lee.jones@linaro.org, arnd@arndb.de,
+        robh@kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, yixin.zhu@intel.com
+References: <cover.1588230494.git.eswara.kota@linux.intel.com>
+ <af8a7d7025990d22f6062953247cf80e64c6fd2f.1588230494.git.eswara.kota@linux.intel.com>
+ <20200504072923.GN1375924@vkoul-mobl>
+ <f12e76ac-e0fd-4afa-e1cd-2b90f175adfd@linux.intel.com>
+ <20200504092034.GS1375924@vkoul-mobl>
+ <0de7ba47-bc98-9267-46b4-230a86151c2d@linux.intel.com>
+ <20200505052122.GW1375924@vkoul-mobl>
+ <dd259c37-d273-44d3-c095-8618264e3a19@linux.intel.com>
+Message-ID: <1ceebf17-ea95-b3ac-9b93-42a974a0d715@linux.intel.com>
+Date:   Mon, 11 May 2020 18:06:47 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200509080627.23222-3-dongchun.zhu@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <dd259c37-d273-44d3-c095-8618264e3a19@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 09, 2020 at 04:06:27PM +0800, Dongchun Zhu wrote:
-> Add a V4L2 sub-device driver for OV02A10 image sensor.
+Hi Vinod,
 
-...
+On 5/5/2020 3:54 PM, Dilip Kota wrote:
+>
+> On 5/5/2020 1:21 PM, Vinod Koul wrote:
+>> On 04-05-20, 17:32, Dilip Kota wrote:
+>>> On 5/4/2020 5:20 PM, Vinod Koul wrote:
+>>>> On 04-05-20, 16:26, Dilip Kota wrote:
+>>>>> On 5/4/2020 3:29 PM, Vinod Koul wrote:
+>>>>>> On 30-04-20, 15:15, Dilip Kota wrote:
+>>>>>>
+>>>>>>> +                      u32 mask, u32 val)
+>>>>>>> +{
+>>>>>>> +    u32 reg_val;
+>>>>>>> +
+>>>>>>> +    reg_val = readl(base + reg);
+>>>>>>> +    reg_val &= ~mask;
+>>>>>>> +    reg_val |= FIELD_PREP(mask, val);
+>>>>>>> +    writel(reg_val, base + reg);
+>>>>>> bypassing regmap here... why?
+>>>>> It is not regmap address, one of the below two addresses are 
+>>>>> passed to this
+>>>>> function.
+>>>> okay, perhaps add a comment somewhere that regmap is not used for this
+>>>> base?
+>>> I dont see a need of adding a comment, describing don't do regmap here.
+>> Driver uses regmap except here, which seems odd hence explanation
+>> required for this.
+> During the driver Probe, the register phandles are stored in regmap 
+> datatype variables and PHY core addresses are stored in iomem datatype.
+> Since then, regmap access is performed for the regmap datatype 
+> variables and readl/writel access is performed on the iomem datatype 
+> variables. And nowhere in the driver iomem datatype address are 
+> converted to regmap address and performed regmap access.
+>
+> Driver is not doing any 'regmap_init' on any physical address. Driver 
+> is getting the register address phandle from the device tree node and 
+> performing the regmap access.
+> ret = fwnode_property_get_reference_args(fwnode, "intel,syscfg", NULL, 
+> 1, 0, &ref);
+> [...]
+> cbphy->syscfg = device_node_to_regmap(to_of_node(ref.fwnode));
+>
+> [...]
+> ret = fwnode_property_get_reference_args(fwnode, "intel,hsio", NULL, 
+> 1, 0, &ref);
+> [...]
+>
+> cbphy->hsiocfg = device_node_to_regmap(to_of_node(ref.fwnode));
+>
+> [...]
+> cbphy->app_base = devm_platform_ioremap_resource_byname(pdev, "app");
+>  [...]
+> cbphy->cr_base = devm_platform_ioremap_resource_byname(pdev, "core");
+>
+> The DT parsing logic in the driver is explaining why the PHY driver 
+> should do regmap access and to whom should be done. For this reason i 
+> am a bit puzzled to what more is needed to explain in the comments and 
+> where to add it.
+> Please let me know your view.
+>
+Gentle Reminder!
+Could you please update on this.
 
-> +#define OV02A10_ID(_msb, _lsb)				((_msb) << 8 | (_lsb))
+Regards,
+Dilip
 
-How often do you use this macro?
-
-...
-
-> +static int ov02a10_read_smbus(struct ov02a10 *ov02a10, unsigned char reg,
-> +			      unsigned char *val)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&ov02a10->subdev);
-> +	int ret;
-> +
-> +	ret = i2c_smbus_read_byte_data(client, reg);
-
-> +
-
-Extra blank line.
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*val = (unsigned char)ret;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ov02a10_entity_init_cfg(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_pad_config *cfg)
-> +{
-> +	struct v4l2_subdev_format fmt = {
-
-> +		.which = cfg ? V4L2_SUBDEV_FORMAT_TRY
-> +			     : V4L2_SUBDEV_FORMAT_ACTIVE,
-
-I think it would be fine to have it on one line.
-
-> +		.format = {
-> +			.width = 1600,
-> +			.height = 1200,
-> +		}
-> +	};
-> +
-> +	ov02a10_set_fmt(sd, cfg, &fmt);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	if (!ret) {
-> +		if (rotation == 180) {
-
-if (a) {
-	if (b) {
-		...
-	}
-}
-
-==
-
-if (a && b) {
-	...
-}
-
-> +			ov02a10->upside_down = true;
-> +			ov02a10->fmt.code = MEDIA_BUS_FMT_SRGGB10_1X10;
-> +		}
-> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Regards,
+> Dilip
