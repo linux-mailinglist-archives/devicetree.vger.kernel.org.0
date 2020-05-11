@@ -2,135 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 641821CE02E
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 18:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5485B1CE073
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 18:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730553AbgEKQOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 12:14:46 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:23659 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726687AbgEKQOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 12:14:46 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id E8D2D24000A;
-        Mon, 11 May 2020 16:14:40 +0000 (UTC)
-Date:   Mon, 11 May 2020 18:14:39 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>
-Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
- controller
-Message-ID: <20200511181439.0c7b2768@xps13>
-In-Reply-To: <20200510090230.1ba6f6d7@collabora.com>
-References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
-        <20200508171339.8052-8-miquel.raynal@bootlin.com>
-        <20200510090230.1ba6f6d7@collabora.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730713AbgEKQ3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 12:29:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39608 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730711AbgEKQ3k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 12:29:40 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 089D920714;
+        Mon, 11 May 2020 16:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589214579;
+        bh=8csVDA0D9z9jtZUTy5qoiG/d2QehN3l9NvwT7lCR40Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Zm47HiMNNv65glLD4nueb3/VG5CUosakOhKxvFx4sUg6tyM/atlR/0wnYx7gGPcZj
+         r6bH9W4hFmNIH0BPj7lu/TrQ825Uy8OAryo4G2R1go8xNiS1LfESbdlGPxEX3ZGZOL
+         AdJUG886ti5hwpI2mUYQOxJTpaKzdVaKGsCtQ0sI=
+Date:   Mon, 11 May 2020 18:18:01 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Jiri Slaby <jslaby@suse.com>,
+        kernel@collabora.com
+Subject: Re: [PATCH 3/6] tty/sysrq: Allow configurable SysRq key
+Message-ID: <20200511161801.GA2221063@kroah.com>
+References: <20200511135918.8203-1-andrzej.p@collabora.com>
+ <20200511135918.8203-4-andrzej.p@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200511135918.8203-4-andrzej.p@collabora.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+On Mon, May 11, 2020 at 03:59:15PM +0200, Andrzej Pietrasiewicz wrote:
+> There are existing machines which don't have SysRq key, e.g. chromebooks.
+> This patch allows configuring which key acts as SysRq. The value is passed
+> with sysrq's module parameter.
+> 
+> Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+> ---
+>  drivers/tty/sysrq.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/tty/sysrq.c b/drivers/tty/sysrq.c
+> index 93202fc24308..ebad9799fdc0 100644
+> --- a/drivers/tty/sysrq.c
+> +++ b/drivers/tty/sysrq.c
+> @@ -604,6 +604,7 @@ EXPORT_SYMBOL(handle_sysrq);
+>  
+>  #ifdef CONFIG_INPUT
+>  static int sysrq_reset_downtime_ms;
+> +static unsigned short sysrq_key = KEY_SYSRQ;
+>  
+>  /* Simple translation table for the SysRq keys */
+>  static const unsigned char sysrq_xlate[KEY_CNT] =
+> @@ -735,10 +736,10 @@ static void sysrq_reinject_alt_sysrq(struct work_struct *work)
+>  
+>  		/* Simulate press and release of Alt + SysRq */
+>  		input_inject_event(handle, EV_KEY, alt_code, 1);
+> -		input_inject_event(handle, EV_KEY, KEY_SYSRQ, 1);
+> +		input_inject_event(handle, EV_KEY, sysrq_key, 1);
+>  		input_inject_event(handle, EV_SYN, SYN_REPORT, 1);
+>  
+> -		input_inject_event(handle, EV_KEY, KEY_SYSRQ, 0);
+> +		input_inject_event(handle, EV_KEY, sysrq_key, 0);
+>  		input_inject_event(handle, EV_KEY, alt_code, 0);
+>  		input_inject_event(handle, EV_SYN, SYN_REPORT, 1);
+>  
+> @@ -770,6 +771,7 @@ static bool sysrq_handle_keypress(struct sysrq_state *sysrq,
+>  		}
+>  		break;
+>  
+> +key_sysrq:
+>  	case KEY_SYSRQ:
+>  		if (value == 1 && sysrq->alt != KEY_RESERVED) {
+>  			sysrq->active = true;
+> @@ -790,11 +792,15 @@ static bool sysrq_handle_keypress(struct sysrq_state *sysrq,
+>  		 * triggering print screen function.
+>  		 */
+>  		if (sysrq->active)
+> -			clear_bit(KEY_SYSRQ, sysrq->handle.dev->key);
+> +			clear_bit(sysrq_key, sysrq->handle.dev->key);
+>  
+>  		break;
+>  
+>  	default:
+> +		/* handle non-default sysrq key */
+> +		if (code == sysrq_key)
+> +			goto key_sysrq;
+> +
+>  		if (sysrq->active && value && value != 2) {
+>  			sysrq->need_reinject = false;
+>  			__handle_sysrq(sysrq_xlate[code], true);
+> @@ -995,6 +1001,8 @@ module_param_array_named(reset_seq, sysrq_reset_seq, sysrq_reset_seq,
+>  
+>  module_param_named(sysrq_downtime_ms, sysrq_reset_downtime_ms, int, 0644);
+>  
+> +module_param(sysrq_key, ushort, 0644);
 
-Boris Brezillon <boris.brezillon@collabora.com> wrote on Sun, 10 May
-2020 09:02:30 +0200:
+No documentation of this new module parameter?
 
-> On Fri,  8 May 2020 19:13:38 +0200
-> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> 
-> > +static int anfc_len_to_steps(struct nand_chip *chip, unsigned int len)
-> > +{
-> > +	unsigned int steps = 1, pktsize = len;
-> > +
-> > +	while (pktsize > ANFC_MAX_PKT_SIZE) {
-> > +		steps *= 2;
-> > +		pktsize = DIV_ROUND_UP(len, steps);
-> > +	}  
-> 
-> 
-> Same here, you shouldn't have a round_up() but instead complain if
-> "len != pkt_size * steps"
-> 
-> 	if (len % 4)
-> 		return -ENOTSUPP;
-> 
-> 	if (len < ANFC_MAX_PKT_SIZE)
-> 		return len;
-> 
-> 	for (steps = 2; steps < ANFC_MAX_STEPS; steps *= 2) {
-> 		pkt_size = len / steps;
-> 		if (pkt_size <= ANFC_MAX_PKT_SIZE)
-> 			break;
-> 	}
-> 
-> 	if (pkt_size * steps != len)
-> 		return -ENOTSUPP;
-> 
-> 	return pkt_size;
-> 
-> > +
-> > +	if (steps > ANFC_MAX_STEPS)
-> > +		return -ENOTSUPP;
-> > +
-> > +	return steps;
-> > +}  
+:(
 
-I took the logic of the above proposal and extended the helper to be
-"anfc_pkt_len_config", taking two pointers as argument: *steps and
-*pktsize, which will be updated in case of success. Otherwise
-this function returns an error and can be added to the "check_op" path
-instead of only failing at execution time.
-
----8<---
-
-+static int anfc_pkt_len_config(unsigned int len, unsigned int *steps,
-+                              unsigned int *pktsize)
-+{
-+       unsigned int nb, sz;
-+
-+       for (nb = 1; nb < ANFC_MAX_STEPS; nb *= 2) {
-+               sz = len / nb;
-+               if (sz <= ANFC_MAX_PKT_SIZE)
-+                       break;
-+       }
-+
-+       if (sz * nb != len)
-+               return -ENOTSUPP;
-+
-+       if (steps)
-+               *steps = nb;
-+
-+       if (pktsize)
-+               *pktsize = sz;
-+
-+       return 0;
-+}
-
---->8---
-
-And then, in anfc_check_op():
-
-+               case NAND_OP_DATA_IN_INSTR:
-+               case NAND_OP_DATA_OUT_INSTR:
-+                       if (instr->ctx.data.len > ANFC_MAX_CHUNK_SIZE)
-+                               return -ENOTSUPP;
-+
-+                       if (anfc_pkt_len_config(instr->ctx.data.len NULL, NULL))
-+                               return -ENOTSUPP;
-+
-+                       break;
