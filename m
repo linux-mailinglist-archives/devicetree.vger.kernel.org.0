@@ -2,206 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D421CE2A3
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 20:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641821CE02E
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 18:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729825AbgEKS1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 14:27:30 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:34300 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729772AbgEKS13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 14:27:29 -0400
-Received: by mail-oi1-f193.google.com with SMTP id c12so14963890oic.1;
-        Mon, 11 May 2020 11:27:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7Dq6v2RgQ1NzWRtNWHz7ueSOJkRsa7ZUQ4A+tRGmEk0=;
-        b=IGtzoL25r7bVwaABBJlubOvf7v1TLCK4QhcxRsYXvSDFitGboO7IX6iVSlNHo668DZ
-         pNtUx9RiydiDih+N22JpuZzgUL3CmUGHnjBoGRraR6bXxx3kndy+9b8LWFnwb520uM59
-         xCf6rJGAw3QTh3ZCxbp2p4ud3boe9v/WM/+IcO35VoqAn41Yj5En7IMZ0Z6brFedDSXs
-         3tB/2SYlsAHV8TnQ+lYrC0sErOfzjnrNigMbZ36mL79g3VUa4fnpoAcKB78mv6ougpId
-         gYs4NcMrTW2RvQntRCnN7irFV4F0DjCJGIYfauuuxlPhTfSSIJhU2BpCNwWkiFCn0Tbz
-         wEdw==
-X-Gm-Message-State: AGi0PuYs0hoF7eHcCXC7VPalRiVfGnwYmBriSwDLohrP80n0TcmXI1W8
-        HZLRH+ZkeX8yLsijCS+xYg==
-X-Google-Smtp-Source: APiQypIddoKpSsY4vXjl9FBRpjHvq4vl8fRKeIJdFi0j9WY+HcG6j9RKFSXh8teT5bLZUpju5w9kTA==
-X-Received: by 2002:aca:cc0d:: with SMTP id c13mr12333340oig.125.1589221648092;
-        Mon, 11 May 2020 11:27:28 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k26sm2859224ots.3.2020.05.11.11.27.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 11:27:27 -0700 (PDT)
-Received: (nullmailer pid 22174 invoked by uid 1000);
-        Mon, 11 May 2020 16:11:27 -0000
-Date:   Mon, 11 May 2020 11:11:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        id S1730553AbgEKQOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 12:14:46 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:23659 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726687AbgEKQOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 12:14:46 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id E8D2D24000A;
+        Mon, 11 May 2020 16:14:40 +0000 (UTC)
+Date:   Mon, 11 May 2020 18:14:39 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: counter: microchip-tcb-capture
- counter
-Message-ID: <20200511161127.GA21385@bogus>
-References: <20200511140505.1649111-1-kamel.bouhara@bootlin.com>
- <20200511140505.1649111-5-kamel.bouhara@bootlin.com>
+        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>
+Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
+ controller
+Message-ID: <20200511181439.0c7b2768@xps13>
+In-Reply-To: <20200510090230.1ba6f6d7@collabora.com>
+References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
+        <20200508171339.8052-8-miquel.raynal@bootlin.com>
+        <20200510090230.1ba6f6d7@collabora.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200511140505.1649111-5-kamel.bouhara@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 May 2020 16:05:04 +0200, Kamel Bouhara wrote:
-> Describe the devicetree binding for the Microchip TCB module.
-> Each counter blocks exposes three independent counters.
+Hi Boris,
+
+Boris Brezillon <boris.brezillon@collabora.com> wrote on Sun, 10 May
+2020 09:02:30 +0200:
+
+> On Fri,  8 May 2020 19:13:38 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 > 
-> However, when configured in quadrature decoder, both channel <0> and <1>
-> are required for speed/position and rotation capture (yet only the
-> position is captured).
+> > +static int anfc_len_to_steps(struct nand_chip *chip, unsigned int len)
+> > +{
+> > +	unsigned int steps = 1, pktsize = len;
+> > +
+> > +	while (pktsize > ANFC_MAX_PKT_SIZE) {
+> > +		steps *= 2;
+> > +		pktsize = DIV_ROUND_UP(len, steps);
+> > +	}  
 > 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> ---
->  .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 29 +++++++++++++++++--
->  1 file changed, 26 insertions(+), 3 deletions(-)
 > 
+> Same here, you shouldn't have a round_up() but instead complain if
+> "len != pkt_size * steps"
+> 
+> 	if (len % 4)
+> 		return -ENOTSUPP;
+> 
+> 	if (len < ANFC_MAX_PKT_SIZE)
+> 		return len;
+> 
+> 	for (steps = 2; steps < ANFC_MAX_STEPS; steps *= 2) {
+> 		pkt_size = len / steps;
+> 		if (pkt_size <= ANFC_MAX_PKT_SIZE)
+> 			break;
+> 	}
+> 
+> 	if (pkt_size * steps != len)
+> 		return -ENOTSUPP;
+> 
+> 	return pkt_size;
+> 
+> > +
+> > +	if (steps > ANFC_MAX_STEPS)
+> > +		return -ENOTSUPP;
+> > +
+> > +	return steps;
+> > +}  
 
+I took the logic of the above proposal and extended the helper to be
+"anfc_pkt_len_config", taking two pointers as argument: *steps and
+*pktsize, which will be updated in case of success. Otherwise
+this function returns an error and can be added to the "check_op" path
+instead of only failing at execution time.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+---8<---
 
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 64, in <module>
-    ret = check_doc(args.yamldt)
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number, duplicate_keys=False)
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 592, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "examples" with value "[]" (original value: "[]")
-  in "<unicode string>", line 157, column 1
++static int anfc_pkt_len_config(unsigned int len, unsigned int *steps,
++                              unsigned int *pktsize)
++{
++       unsigned int nb, sz;
++
++       for (nb = 1; nb < ANFC_MAX_STEPS; nb *= 2) {
++               sz = len / nb;
++               if (sz <= ANFC_MAX_PKT_SIZE)
++                       break;
++       }
++
++       if (sz * nb != len)
++               return -ENOTSUPP;
++
++       if (steps)
++               *steps = nb;
++
++       if (pktsize)
++               *pktsize = sz;
++
++       return 0;
++}
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+--->8---
 
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
+And then, in anfc_check_op():
 
-Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-mk-schema", line 34, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 554, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 507, in process_schema
-    schema = load_schema(filename)
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 123, in load_schema
-    return do_load(os.path.join(schema_basedir, schema))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 108, in do_load
-    return yaml.load(tmp)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "examples" with value "[]" (original value: "[]")
-  in "<unicode string>", line 157, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-mk-schema", line 34, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 554, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 507, in process_schema
-    schema = load_schema(filename)
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 123, in load_schema
-    return do_load(os.path.join(schema_basedir, schema))
-  File "/usr/local/lib/python3.6/dist-packages/dtschema/lib.py", line 108, in do_load
-    return yaml.load(tmp)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.6/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "examples" with value "[]" (original value: "[]")
-  in "<unicode string>", line 157, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-Documentation/devicetree/bindings/Makefile:41: recipe for target 'Documentation/devicetree/bindings/processed-schema-examples.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/processed-schema-examples.yaml] Error 123
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema-examples.yaml'
-Documentation/devicetree/bindings/Makefile:45: recipe for target 'Documentation/devicetree/bindings/processed-schema.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/processed-schema.yaml] Error 123
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.yaml'
-Makefile:1300: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
-
-See https://patchwork.ozlabs.org/patch/1287813
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
++               case NAND_OP_DATA_IN_INSTR:
++               case NAND_OP_DATA_OUT_INSTR:
++                       if (instr->ctx.data.len > ANFC_MAX_CHUNK_SIZE)
++                               return -ENOTSUPP;
++
++                       if (anfc_pkt_len_config(instr->ctx.data.len NULL, NULL))
++                               return -ENOTSUPP;
++
++                       break;
