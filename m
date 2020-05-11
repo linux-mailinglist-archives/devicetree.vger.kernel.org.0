@@ -2,122 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9A61CDE3B
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692721CDEBC
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730509AbgEKPIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 11:08:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45718 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730489AbgEKPIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 May 2020 11:08:41 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98896C05BD0B
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:08:41 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id u16so19697647wmc.5
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:08:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
-        b=seBpYegPZMs/leR6JMfg7RpttvfOQmjhwYGL5XqCrl0ivqZ8SgNJfl5MrK6SNZU0x7
-         s+P+5zxeVYMfWsvU+TruIPRs58u2N7gNKpF12dehHxew8uZn0wyQlXvRs81sH/cUAU/A
-         kDiLytEcupQFinP/tSVSDYeJHqjKGk/S/swcSaT9uPiZDBURaYvEzFY1KQfq187G//Gn
-         fP7p4AVjZ9rbwczBJGBw15zMRSFOqPTKu+IA1dWJoqAajrlxLUjrFo00xOd0Oskl6NXS
-         vFI181kFNL42vS94eYWzxhtiRzUpW9BwFO6iLc+Bp3c1tgfqYpiA57PqAjvUSUmXKZ85
-         b5iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
-        b=tvr7avdjOEQqm9B2tAmP9fzSa5mdjDiUwrbT7BB4hp3iRxKLHjQDZYf6ICdS0q43GK
-         HMGdGZRe9KGlpVFBWZoTfxFcuHGMKyrBJIJB0iuobC7Z7USNfAV7vVuU+yXRmqPTzqTB
-         ZSZneHAHtWDlnwUDo6TSk0DnfGFZ/w4sCJ+u3pwJfyRDvksOqUjULxjZvVtc6Iv6qi8S
-         sk915DSEsxndTEhZh7/u1yk6AhFFo4H5QguAD6a1LM+TQdWP9swhkRsQE7OxTsIb94G7
-         PZi5ygsEcYNM6+/EYanTYgBiPAjVbKjV7Sw+Mo6ObaI/u8U2z6DEQSfujo5Jfd7yzL1/
-         6sUQ==
-X-Gm-Message-State: AGi0PuaEG+iBDSwRAGGMfVshUU3abycKyHNyIWr4nZHexRpRLeb2En96
-        GdByOKKS9DPE7MZ0sjtXgQANhA==
-X-Google-Smtp-Source: APiQypIPr9fJcUgRNwzXEgdam3rXk6Or+HXAPoKGbi/pvrOEjCYCARRhvNo55PBWgkqCWw6ysRwOhw==
-X-Received: by 2002:a1c:2e91:: with SMTP id u139mr31309130wmu.18.1589209720425;
-        Mon, 11 May 2020 08:08:40 -0700 (PDT)
-Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id 94sm3514792wrf.74.2020.05.11.08.08.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 08:08:39 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabien Parent <fparent@baylibre.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Edwin Peer <edwin.peer@broadcom.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Stephane Le Provost <stephane.leprovost@mediatek.com>,
-        Pedro Tsai <pedro.tsai@mediatek.com>,
-        Andrew Perepech <andrew.perepech@mediatek.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v2 14/14] ARM64: dts: mediatek: enable ethernet on pumpkin boards
-Date:   Mon, 11 May 2020 17:07:59 +0200
-Message-Id: <20200511150759.18766-15-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200511150759.18766-1-brgl@bgdev.pl>
-References: <20200511150759.18766-1-brgl@bgdev.pl>
+        id S1729659AbgEKPT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:19:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42326 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726410AbgEKPT2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 11:19:28 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1B0C72075E;
+        Mon, 11 May 2020 15:19:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589210367;
+        bh=Vx5tkaJ5+8qSlz4jqAEeatoBE0vml0nOKjm6vTJ0MDM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R7mBUh8Prm22Nhxty7oPgq/yAadEyCJ+jvXK+rB4iaUkO6e6XuJ7OFc/Mw+G2nd0s
+         H7tRz0LcSfkW5yAI9wdReePSJoV7lXVPerCJ9e4R0hdNC+p7PCjR0Hww+nkGd/Q7Ik
+         089zxavkwS69EdGpPK0szggvk+O2gv/2+0zJce+E=
+Received: by mail-oi1-f172.google.com with SMTP id c12so14392704oic.1;
+        Mon, 11 May 2020 08:19:27 -0700 (PDT)
+X-Gm-Message-State: AGi0PuZlitsliAnW9zTGDys3SKOssmXVg+LJURujaTWg5qkGHmCov94T
+        2kQPJDFOXze+rRK7ik6RSr8MV7m8YWWUUiPaLA==
+X-Google-Smtp-Source: APiQypL/w118jK2PRogqhnLIcl/CwJVNIQVD7H1pp1UoYu9VNY0MM/zShEvMXFbngIgCJJEHL12/+7+35Kjv/vt5OnA=
+X-Received: by 2002:aca:51c3:: with SMTP id f186mr7715173oib.147.1589210366395;
+ Mon, 11 May 2020 08:19:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200507091008.1bd38185@canb.auug.org.au> <CACPK8XfOJqj=E4JwQsZWvAsp7cv=bjqj2twZk0=MR+ZJQP1nqQ@mail.gmail.com>
+ <CACPK8XcUydETZvJEkWPvLnLXatAg3D-MfA1yeDzE0epc-hisJQ@mail.gmail.com>
+In-Reply-To: <CACPK8XcUydETZvJEkWPvLnLXatAg3D-MfA1yeDzE0epc-hisJQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 11 May 2020 10:19:15 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJWXH4JMZgRQa9r_aPLW6Muz6BRtf_NmeqJv21Aefji1A@mail.gmail.com>
+Message-ID: <CAL_JsqJWXH4JMZgRQa9r_aPLW6Muz6BRtf_NmeqJv21Aefji1A@mail.gmail.com>
+Subject: Re: linux-next: build warning after merge of the aspeed tree
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Devicetree Compiler <devicetree-compiler@vger.kernel.org>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Manikandan Elumalai <manikandan.hcl.ers.epl@gmail.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Vijay Khemka <vkhemka@fb.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+On Fri, May 8, 2020 at 1:40 AM Joel Stanley <joel@jms.id.au> wrote:
+>
+> On Wed, 6 May 2020 at 23:13, Joel Stanley <joel@jms.id.au> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Wed, 6 May 2020 at 23:10, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> > >
+> > > Hi all,
+> > >
+> > > After merging the aspeed tree, today's linux-next build (arm
+> > > multi_v7_defconfig) produced this warning:
+> >
+> > Thanks Stephen.
+> >
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:126.11-130.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@80/ipmb1@10: I2C bus unit address format error, expected "40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:128.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@80/ipmb1@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:137.11-141.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@100/ipmb3@10: I2C bus unit address format error, expected "40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:139.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@100/ipmb3@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:148.11-152.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@180/ipmb5@10: I2C bus unit address format error, expected "40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:150.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@180/ipmb5@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:159.11-163.4: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@300/ipmb7@10: I2C bus unit address format error, expected "40000010"
+> > > arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts:161.3-30: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@300/ipmb7@10:reg: I2C address must be less than 10-bits, got "0x40000010"
+> >
+> > These are IPMB nodes with the SLAVE_ADDRESS bit set:
+> >
+> > +&i2c5 {
+> > +       //Host3 IPMB bus
+> > +       status = "okay";
+> > +       multi-master;
+> > +       ipmb5@10 {
+> > +               compatible = "ipmb-dev";
+> > +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> > +               i2c-protocol;
+> > +       };
+> >
+> > This is a correct entry, so dtc should not warn about it.
+>
+> I sent a patch for dtc here:
+> https://lore.kernel.org/lkml/20200508063904.60162-1-joel@jms.id.au/
 
-Add remaining properties to the ethernet node and enable it.
+Patches for dtc need to be against upstream dtc. There's already a
+similar patch posted for it which I commented on and never saw a
+respin.
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- .../boot/dts/mediatek/pumpkin-common.dtsi      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 4b1d5f69aba6..dfceffe6950a 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -167,6 +167,24 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&ethernet {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet_pins_default>;
-+	phy-handle = <&eth_phy>;
-+	phy-mode = "rmii";
-+	mac-address = [00 00 00 00 00 00];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
- &usb0 {
- 	status = "okay";
- 	dr_mode = "peripheral";
--- 
-2.25.0
-
+Rob
