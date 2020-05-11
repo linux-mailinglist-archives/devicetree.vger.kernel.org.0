@@ -2,129 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6596C1CDE21
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58CDD1CDE58
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729442AbgEKPHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 11:07:37 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:51179 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728090AbgEKPHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 11:07:37 -0400
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 0EA6E200014;
-        Mon, 11 May 2020 15:07:31 +0000 (UTC)
-Date:   Mon, 11 May 2020 17:07:29 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>
-Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
- controller
-Message-ID: <20200511170729.4766eeaa@xps13>
-In-Reply-To: <20200510090314.10426b6e@collabora.com>
-References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
-        <20200508171339.8052-8-miquel.raynal@bootlin.com>
-        <20200510090314.10426b6e@collabora.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730037AbgEKPIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:08:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45600 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729131AbgEKPIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 11:08:22 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3241C05BD09
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:08:20 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id w19so4951830wmc.1
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/J8miyILwwd4yeHypeApHEY6tVwb+3C32vv+icx83JU=;
+        b=OTdMO8s1WgboMNhaDTGwQRLL6oPTm6LLnYMKvpds/gLxCEYm/L/tz9ICUGzZLiU3ei
+         YvwiSmIcssbhOdrNVTjU1HfBqBCs40dnl89hXOHPRmjaAeJghS71NCJu97EEFzClXyBj
+         zTErYcE0rLjPIXk+WVMw1CWhUrB1AnSiADXS9GirXjYlf3y0SX2kJ2UxyLMjh70hVx8I
+         8EHLcu3Ps8hB00DG8HRf8pVDeNBL0fkVe//Q9BB7IlC/wjAB4W/ZNdfHvQ/nEkSNqcuW
+         58RZ2Gwh4Oygoe8bll6iXGBANCMQIPkT9lY0vDfjRphc+q+S6RvvW0gPn4yLXGy29b/Y
+         zW1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/J8miyILwwd4yeHypeApHEY6tVwb+3C32vv+icx83JU=;
+        b=WstbfzfJsCkQvLf69s4vIn4wGNGgpnSpTA1U1+ybhCTaF2Td6KFfiXtPmGTCu1eF4K
+         Z1MizhV+QyjKXtserrwGwDTiW3Rf6Xyuha3mVthIKCuu+G06+o4MCs3+kwr9teDAjm6x
+         mx38Uzcy/GD578VmBonVZBQgHrh32jPsprcYJ4UKkYNxdOmWbvVe01WnmXJRy7PkHmzU
+         wTBj/a0M1tliuwUleGQ6D9xOWPwcVnuWb95U/BjSzRHZiQc7wPFCaeZ6MS6/SfaYFnll
+         ExSp4xRWjNZYRMO14xQrPBQIuGHiiS4zBrSd6tn7Qdbvh7Y37EVFs12AcV/9q6i925/k
+         7kqA==
+X-Gm-Message-State: AGi0PuY3LBQU/shn/aKsIZxDq/u/51cMWPq0n+ota6BZLBi9zMYjZRV3
+        EOmhjlTB4xnLDDC/WninWzhWxA==
+X-Google-Smtp-Source: APiQypKvNSjq4TfJ0CivzedoluQIOXBiXcFnJi5slyojLcRrav800+2iZaWdjk73vkbbGixHhUBMBA==
+X-Received: by 2002:a1c:2457:: with SMTP id k84mr30052808wmk.96.1589209699367;
+        Mon, 11 May 2020 08:08:19 -0700 (PDT)
+Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
+        by smtp.gmail.com with ESMTPSA id 94sm3514792wrf.74.2020.05.11.08.08.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 May 2020 08:08:18 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabien Parent <fparent@baylibre.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Edwin Peer <edwin.peer@broadcom.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH v2 00/14] mediatek: add support for MediaTek Ethernet MAC
+Date:   Mon, 11 May 2020 17:07:45 +0200
+Message-Id: <20200511150759.18766-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Boris Brezillon <boris.brezillon@collabora.com> wrote on Sun, 10 May
-2020 09:03:14 +0200:
+This adds support for the Ethernet Controller present on MediaTeK SoCs
+from the MT8* family.
 
-> On Fri,  8 May 2020 19:13:38 +0200
-> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> 
-> > +static int anfc_exec_op(struct nand_chip *chip,
-> > +			const struct nand_operation *op,
-> > +			bool check_only)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (check_only)
-> > +		return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
-> > +					      check_only);  
-> 
-> You should also check the DATA_IN/OUT size here ^.
+The first two patches add binding documents for the PERICFG syscon and
+for the MAC itself.
 
-Here is my proposal:
+Patches 3/14 & 4/14 do some cleanup of the mediatek ethernet drivers
+directory.
 
----8<---
+Patch 5/14 provides a new helper that allows to retrieve the address of
+the net_device associated with given private data address.
 
-+static int anfc_check_op(struct nand_chip *chip,
-+                        const struct nand_operation *op)
-+{
-+       int op_id;
-+
-+       /*
-+        * The controller abstracts all the NAND operations and do not support
-+        * data only operations.
-+        */
-+       for (op_id = 0; op_id < op->ninstrs; op_id++) {
-+               instr = &op->instrs[op_id];
-+
-+               switch (instr->type) {
-+               case NAND_OP_ADDR_INSTR:
-+                       if (instr->ctx.addr.naddrs > ANFC_MAX_ADDR_CYC)
-+                               return -ENOTSUPP;
-+                       break;
-+               case NAND_OP_DATA_IN_INSTR:
-+               case NAND_OP_DATA_OUT_INSTR:
-+                       if (instr->ctx.data.len > ANFC_MAX_CHUNK_SIZE)
-+                               return -ENOTSUPP;
-+                       break;
-+               default:
-+               }
-+       }
-+
-+       /*
-+        * The controller does not allow to proceed with a CMD+DATA_IN cycle
-+        * manually on the bus by reading data from the data register. Instead,
-+        * the controller abstract a status read operation with its own status
-+        * register after ordering a read status operation. Hence, we cannot
-+        * support any CMD+DATA_IN operation other than a READ STATUS.
-+        */
-+       if (op->ninstrs == 2 &&
-+           op->instrs[0].type == NAND_OP_CMD_INSTR &&
-+           op->instrs[0].ctx.cmd.opcode != NAND_CMD_STATUS &&
-+           op->instrs[1].type == NAND_OP_DATA_IN_INSTR)
-+               return -ENOTSUPP;
-+
-+       return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
-+                                     check_only);
-+}
-+
- static int anfc_exec_op(struct nand_chip *chip,
-                        const struct nand_operation *op,
-                        bool check_only)
-@@ -774,8 +813,7 @@ static int anfc_exec_op(struct nand_chip *chip,
-        int ret;
- 
-        if (check_only)
--               return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
--                                             check_only);
-+               return anfc_check_op(chip, op);
- 
-        ret = anfc_select_target(chip, op->cs);
-        if (ret)
+Patches 6-8/14 introduce the managed variant of register_netdev().
 
---->8---
+Patch 9/11 adds the new ethernet driver.
 
-What do you think?
+The rest of the patches add DT fixups for the boards already supported
+upstream.
+
+v1 -> v2:
+- add a generic helper for retrieving the net_device associated with given
+  private data
+- fix several typos in commit messages
+- remove MTK_MAC_VERSION and don't set the driver version
+- use NET_IP_ALIGN instead of a magic number (2) but redefine it as it defaults
+  to 0 on arm64
+- don't manually turn the carrier off in mtk_mac_enable()
+- process TX cleanup in napi poll callback
+- configure pause in the adjust_link callback
+- use regmap_read_poll_timeout() instead of handcoding the polling
+- use devres_find() to verify that struct net_device is managed by devres in
+  devm_register_netdev()
+- add a patch moving all networking devres helpers into net/devres.c
+- tweak the dma barriers: remove where unnecessary and add comments to the
+  remaining barriers
+- don't reset internal counters when enabling the NIC
+- set the net_device's mtu size instead of checking the framesize in
+  ndo_start_xmit() callback
+- fix a race condition in waking up the netif queue
+- don't emit log messages on OOM errors
+- use dma_set_mask_and_coherent()
+- use eth_hw_addr_random()
+- rework the receive callback so that we reuse the previous skb if unmapping
+  fails, like we already do if skb allocation fails
+- rework hash table operations: add proper timeout handling and clear bits when
+  appropriate
+
+Bartosz Golaszewski (14):
+  dt-bindings: arm: add a binding document for MediaTek PERICFG
+    controller
+  dt-bindings: net: add a binding document for MediaTek Ethernet MAC
+  net: ethernet: mediatek: rename Kconfig prompt
+  net: ethernet: mediatek: remove unnecessary spaces from Makefile
+  net: core: provide priv_to_netdev()
+  net: move devres helpers into a separate source file
+  net: devres: define a separate devres structure for
+    devm_alloc_etherdev()
+  net: devres: provide devm_register_netdev()
+  net: ethernet: mtk-eth-mac: new driver
+  ARM64: dts: mediatek: add pericfg syscon to mt8516.dtsi
+  ARM64: dts: mediatek: add the ethernet node to mt8516.dtsi
+  ARM64: dts: mediatek: add an alias for ethernet0 for pumpkin boards
+  ARM64: dts: mediatek: add ethernet pins for pumpkin boards
+  ARM64: dts: mediatek: enable ethernet on pumpkin boards
+
+ .../arm/mediatek/mediatek,pericfg.yaml        |   34 +
+ .../bindings/net/mediatek,eth-mac.yaml        |   80 +
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi      |   17 +
+ .../boot/dts/mediatek/pumpkin-common.dtsi     |   34 +
+ drivers/net/ethernet/mediatek/Kconfig         |    8 +-
+ drivers/net/ethernet/mediatek/Makefile        |    3 +-
+ drivers/net/ethernet/mediatek/mtk_eth_mac.c   | 1561 +++++++++++++++++
+ include/linux/netdevice.h                     |   14 +
+ net/Makefile                                  |    2 +-
+ net/devres.c                                  |   95 +
+ net/ethernet/eth.c                            |   28 -
+ 11 files changed, 1845 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/mediatek,eth-mac.yaml
+ create mode 100644 drivers/net/ethernet/mediatek/mtk_eth_mac.c
+ create mode 100644 net/devres.c
+
+-- 
+2.25.0
+
