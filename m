@@ -2,309 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09AE11CE29D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 20:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA7A1CE2B9
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 20:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731133AbgEKS1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 14:27:24 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41244 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731028AbgEKS1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 14:27:24 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 19so15950496oiy.8;
-        Mon, 11 May 2020 11:27:22 -0700 (PDT)
+        id S1731163AbgEKS1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 14:27:34 -0400
+Received: from mail-oo1-f68.google.com ([209.85.161.68]:40411 "EHLO
+        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729772AbgEKS1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 14:27:32 -0400
+Received: by mail-oo1-f68.google.com with SMTP id r1so2151722oog.7;
+        Mon, 11 May 2020 11:27:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qXhlH20xl+SARUCA4rhfAEYWxQyu62FZrWp9XsKvGVg=;
-        b=e4Rb9XxCdT0obAPmNTHn4umD2mfoY40cCYe5oX+Fogf8bJvKveLkBdsLEc+0kAXCEe
-         HJR9wJyMHxHdqQhWciX1gpwtltlFoNZqXEQMOSgwWvXRMGACbYzcM7At2snPM6n+EHDw
-         av5d8dsHEKQ8nA12lSPTwi8IH18Z7HjKxEuQVRNzcv6HaQD6tblLa9WoZpu5kxe6Oxo2
-         G4g6wBioHcMVxfZ8kEgf5BJOisdFLsnF+NpQyA+VZM6ItqZrtQFLtn1Oxcky6+6bxMBn
-         Z7/0miPLXNOyZi2jUrAFQlm9AxjPzC7XtAK4iJJ3L47urLCfnusrxoC4yPtE1tiBRzGL
-         tzzg==
-X-Gm-Message-State: AGi0PuYgCEXFzDnyS9Y3uIVNeiKJ1VM4kXZ2ISVbnQATHz0YTS/ZHDxW
-        Yf11jH48flKFMPWtcKHSQA==
-X-Google-Smtp-Source: APiQypKs3Fghjq4SPEnasGGKQrJQnDjXMHnsE2wETrSBrc6VCtFD/eACI9dYBaqhcmfSSj7fJPaitA==
-X-Received: by 2002:a05:6808:30b:: with SMTP id i11mr19891919oie.124.1589221642433;
-        Mon, 11 May 2020 11:27:22 -0700 (PDT)
+        bh=NEhmUjxmMxFS/+AGYCBakZM95xtx9z/rJXXQu+QnHis=;
+        b=NG4i3uAAs6BrKoDllf0C3jwAGyHZ02i2NlhvYXE+flvCJCSt5PvlIHJYiTABm13yzz
+         m5Ij8YBf0R7mFoaQqyPT1SVkdlyZmTDQPwAHv8V86pWS6mlbP+9+h9xE9lou1B31LjwU
+         OT92w8R24enpn+iyjHxDiJESLOJsJ/m71OOeOyi1s5NjqGbNvZaVupiNCfqdgdVLYSX8
+         HEmlA6pUyMFFamWWMPguIvLk5iPxhSiaTVG/tuV8qg+NM1BrE3PqM1bPlovyXT7Ib/KT
+         3LMYlaStU9cH/QqJPR6Dq/wUMq/A4gpZ2FaNC1RvFxxjXAkEOIVBhRA7HbHb8gpu7fGt
+         XoNA==
+X-Gm-Message-State: AGi0PuZOTSFVhyQ78od9bMC3x9skDTITc9ndcuVpDyiBwoBy9pFDYH5t
+        hPWpzrU71RmHIY/G77eVcA==
+X-Google-Smtp-Source: APiQypJ2tCEY94DibtPhSB6E64qp0zvWDNdnfInerFAEcuNveALL2bqOE3j3w2SQt788EebeNwR/cA==
+X-Received: by 2002:a4a:e59a:: with SMTP id o26mr14874963oov.54.1589221650502;
+        Mon, 11 May 2020 11:27:30 -0700 (PDT)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r67sm4754220oie.19.2020.05.11.11.27.21
+        by smtp.gmail.com with ESMTPSA id e63sm2836662ote.41.2020.05.11.11.27.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 11:27:21 -0700 (PDT)
-Received: (nullmailer pid 9052 invoked by uid 1000);
-        Mon, 11 May 2020 16:02:07 -0000
-Date:   Mon, 11 May 2020 11:02:07 -0500
+        Mon, 11 May 2020 11:27:29 -0700 (PDT)
+Received: (nullmailer pid 19038 invoked by uid 1000);
+        Mon, 11 May 2020 16:09:24 -0000
+Date:   Mon, 11 May 2020 11:09:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
-        mark.rutland@arm.com, sakari.ailus@linux.intel.com,
-        drinkcat@chromium.org, tfiga@chromium.org, matthias.bgg@gmail.com,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V8, 1/2] media: dt-bindings: media: i2c: Document OV02A10
- bindings
-Message-ID: <20200511160207.GA32476@bogus>
-References: <20200509080627.23222-1-dongchun.zhu@mediatek.com>
- <20200509080627.23222-2-dongchun.zhu@mediatek.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mips@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/12] dt-bindings: i2c: Convert DW I2C binding to DT
+ schema
+Message-ID: <20200511160924.GA9628@bogus>
+References: <20200306132001.1B875803087C@mail.baikalelectronics.ru>
+ <20200510095019.20981-1-Sergey.Semin@baikalelectronics.ru>
+ <20200510095019.20981-3-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200509080627.23222-2-dongchun.zhu@mediatek.com>
+In-Reply-To: <20200510095019.20981-3-Sergey.Semin@baikalelectronics.ru>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 09, 2020 at 04:06:26PM +0800, Dongchun Zhu wrote:
-> Add DT bindings documentation for Omnivision OV02A10 image sensor.
+On Sun, May 10, 2020 at 12:50:08PM +0300, Serge Semin wrote:
+> Modern device tree bindings are supposed to be created as YAML-files
+> in accordance with dt-schema. This commit replaces Synopsys DW I2C
+> legacy bare text bindings with YAML file. As before the bindings file
+> states that the corresponding dts node is supposed to be compatible
+> either with generic DW I2C controller or with Microsemi Ocelot SoC I2C
+> one, to have registers, interrupts and clocks properties. In addition
+> the node may have clock-frequency, i2c-sda-hold-time-ns,
+> i2c-scl-falling-time-ns and i2c-sda-falling-time-ns optional properties.
 > 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: linux-mips@vger.kernel.org
+> 
 > ---
->  .../bindings/media/i2c/ovti,ov02a10.yaml           | 184 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 +
->  2 files changed, 191 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> Changelog v2:
+> - Make sure that "mscc,ocelot-i2c" compatible node may have up to two
+>   registers space defined, while normal DW I2C controller will have only
+>   one registers space.
+> - Add "mscc,ocelot-i2c" example to test the previous fix.
+> - Declare "unevaluatedProperties" property instead of
+>   "additionalProperties" one.
+> - Due to the previous fix we can now discard the dummy boolean properties
+>   definitions, since the proper type evaluation will be performed by the
+>   generic i2c-controller.yaml schema.
+> ---
+>  .../bindings/i2c/i2c-designware.txt           |  73 ---------
+>  .../bindings/i2c/snps,designware-i2c.yaml     | 154 ++++++++++++++++++
+>  2 files changed, 154 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-designware.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-designware.txt b/Documentation/devicetree/bindings/i2c/i2c-designware.txt
+> deleted file mode 100644
+> index 08be4d3846e5..000000000000
+> --- a/Documentation/devicetree/bindings/i2c/i2c-designware.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -* Synopsys DesignWare I2C
+> -
+> -Required properties :
+> -
+> - - compatible : should be "snps,designware-i2c"
+> -                or "mscc,ocelot-i2c" with "snps,designware-i2c" for fallback
+> - - reg : Offset and length of the register set for the device
+> - - interrupts : <IRQ> where IRQ is the interrupt number.
+> - - clocks : phandles for the clocks, see the description of clock-names below.
+> -   The phandle for the "ic_clk" clock is required. The phandle for the "pclk"
+> -   clock is optional. If a single clock is specified but no clock-name, it is
+> -   the "ic_clk" clock. If both clocks are listed, the "ic_clk" must be first.
+> -
+> -Recommended properties :
+> -
+> - - clock-frequency : desired I2C bus clock frequency in Hz.
+> -
+> -Optional properties :
+> -
+> - - clock-names : Contains the names of the clocks:
+> -    "ic_clk", for the core clock used to generate the external I2C clock.
+> -    "pclk", the interface clock, required for register access.
+> -
+> - - reg : for "mscc,ocelot-i2c", a second register set to configure the SDA hold
+> -   time, named ICPU_CFG:TWI_DELAY in the datasheet.
+> -
+> - - i2c-sda-hold-time-ns : should contain the SDA hold time in nanoseconds.
+> -   This option is only supported in hardware blocks version 1.11a or newer and
+> -   on Microsemi SoCs ("mscc,ocelot-i2c" compatible).
+> -
+> - - i2c-scl-falling-time-ns : should contain the SCL falling time in nanoseconds.
+> -   This value which is by default 300ns is used to compute the tLOW period.
+> -
+> - - i2c-sda-falling-time-ns : should contain the SDA falling time in nanoseconds.
+> -   This value which is by default 300ns is used to compute the tHIGH period.
+> -
+> -Examples :
+> -
+> -	i2c@f0000 {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		compatible = "snps,designware-i2c";
+> -		reg = <0xf0000 0x1000>;
+> -		interrupts = <11>;
+> -		clock-frequency = <400000>;
+> -	};
+> -
+> -	i2c@1120000 {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		compatible = "snps,designware-i2c";
+> -		reg = <0x1120000 0x1000>;
+> -		interrupt-parent = <&ictl>;
+> -		interrupts = <12 1>;
+> -		clock-frequency = <400000>;
+> -		i2c-sda-hold-time-ns = <300>;
+> -		i2c-sda-falling-time-ns = <300>;
+> -		i2c-scl-falling-time-ns = <300>;
+> -	};
+> -
+> -	i2c@1120000 {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		reg = <0x2000 0x100>;
+> -		clock-frequency = <400000>;
+> -		clocks = <&i2cclk>;
+> -		interrupts = <0>;
+> -
+> -		eeprom@64 {
+> -			compatible = "linux,slave-24c02";
+> -			reg = <0x40000064>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
 > new file mode 100644
-> index 0000000..5468d1b
+> index 000000000000..8d4e5fccbd1c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> @@ -0,0 +1,184 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2020 MediaTek Inc.
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov02a10.yaml#
+> +$id: http://devicetree.org/schemas/i2c/snps,designware-i2c.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Omnivision OV02A10 CMOS Sensor Device Tree Bindings
+> +title: Synopsys DesignWare APB I2C Controller
 > +
 > +maintainers:
-> +  - Dongchun Zhu <dongchun.zhu@mediatek.com>
+> +  - Jarkko Nikula <jarkko.nikula@linux.intel.com>
 > +
-> +description: |-
-> +  The Omnivision OV02A10 is a low-cost, high performance, 1/5-inch, 2 megapixel
-> +  image sensor, which is the latest production derived from Omnivision's CMOS
-> +  image sensor technology. Ihis chip supports high frame rate speeds up to 30fps
-> +  @ 1600x1200 (UXGA) resolution transferred over a 1-lane MIPI interface. The
-> +  sensor output is available via CSI-2 serial data output.
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: mscc,ocelot-i2c
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
 > +
 > +properties:
 > +  compatible:
-> +    const: ovti,ov02a10
+> +    oneOf:
+> +      - description: Generic Synopsys DesignWare I2C controller
+> +        const: snps,designware-i2c
+> +      - description: Microsemi Ocelot SoCs I2C controller
+> +        items:
+> +          - const: mscc,ocelot-i2c
+> +          - const: snps,designware-i2c
 > +
 > +  reg:
-> +    description: I2C device address
-
-Drop this. Nothing specific to this device.
-
+> +    minItems: 1
+> +    items:
+> +      - description: DW APB I2C controller memory mapped registers
+> +      - description: |
+> +          ICPU_CFG:TWI_DELAY registers to setup the SDA hold time.
+> +          This registers are specific to the Ocelot I2C-controller.
+> +
+> +  interrupts:
 > +    maxItems: 1
 > +
 > +  clocks:
+> +    minItems: 1
 > +    items:
-> +      - description: top mux camtg clock
-> +      - description: devider clock
-
-typo
-
+> +      - description: I2C controller reference clock source
+> +      - description: APB interface clock source
 > +
 > +  clock-names:
+> +    minItems: 1
 > +    items:
-> +      - const: eclk
-> +      - const: freq_mux
+> +      - const: ref
+> +      - const: pclk
+> +
+> +  resets:
+> +    maxItems: 1
 > +
 > +  clock-frequency:
-> +    description:
-> +      Frequency of the eclk clock in Hertz.
+> +    description: Desired I2C bus clock frequency in Hz
+> +    enum: [100000, 400000, 1000000, 3400000]
+> +    default: 400000
 > +
-> +  dovdd-supply:
-> +    description:
-> +      Definition of the regulator used as interface power supply.
-> +
-> +  avdd-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
-> +
-> +  dvdd-supply:
-> +    description:
-> +      Definition of the regulator used as digital power supply.
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  rotation:
-> +    description:
-> +      Definition of the sensor's placement, valid values are 0 and 180.
-> +    allOf:
-> +      - $ref: "/schemas/types.yaml#/definitions/uint32"
-> +      - enum:
-> +          - 0    # Sensor Mounted Upright (default)
-> +          - 180  # Sensor Mounted Upside Down
-> +
-> +  ovti,mipi-tx-speed:
-> +    description:
-> +      Indication of MIPI transmission speed select, which is to control D-PHY
-> +      timing setting by adjusting MIPI clock voltage to improve the clock
-> +      driver capability.
-> +    allOf:
-> +      - $ref: "/schemas/types.yaml#/definitions/uint32"
-> +      - enum:
-> +          - 0    #  20MHz -  30MHz
-> +          - 1    #  30MHz -  50MHz
-> +          - 2    #  50MHz -  75MHz
-> +          - 3    #  75MHz - 100MHz
-> +          - 4    # 100MHz - 130MHz (suggested)
-> +          - 5    # Manual
-> +
-> +  # See ../video-interfaces.txt for details
-> +  port:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      A node containing an output port node with an endpoint definition
-> +      as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +  i2c-sda-hold-time-ns:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-No need for repeating a generic description of a common property.
+Don't need a type ref as properties with a unit-suffix already have one.
 
+> +    description: |
+> +      The property should contain the SDA hold time in nanoseconds. This option
+> +      is only supported in hardware blocks version 1.11a or newer or on
+> +      Microsemi SoCs.
 > +
-> +    properties:
-> +      endpoint:
-> +        type: object
+> +  i2c-scl-falling-time-ns:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The property should contain the SCL falling time in nanoseconds.
+> +      This value is used to compute the tLOW period.
+> +    default: 300
 > +
-> +        properties:
-> +          data-lanes:
-> +            description: |-
-> +              The driver only supports 1-lane operation.
-
-What the driver supports is not relevant.
-
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
+> +  i2c-sda-falling-time-ns:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The property should contain the SDA falling time in nanoseconds.
+> +      This value is used to compute the tHIGH period.
+> +    default: 300
 > +
-> +          clock-noncontinuous:
-> +            type: boolean
-> +            description: |-
-> +              MIPI CSI-2 clock is non-continuous if this property is present,
-> +              otherwise it's continuous.
-
-Assume this has a common definition, so just need:
-
-clock-noncontinuous: true
-
+> +  dmas:
+> +    items:
+> +      - description: TX DMA Channel
+> +      - description: RX DMA Channel
 > +
-> +          link-frequencies:
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint64-array
-> +            description:
-> +              Allowed data bus frequencies. 39000000 Hz is supported by
-> +              the driver.
-
-This too is a common property.
-
-Though 39000000 looks like a constraint. However, what the driver 
-supports is not relevant.
-
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
 > +
-> +        required:
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
+> +unevaluatedProperties: false
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - dovdd-supply
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - powerdown-gpios
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - interrupts
 > +
 > +examples:
 > +  - |
-> +
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        clock-frequency = <400000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov02a10: camera-sensor@3d {
-> +            compatible = "ovti,ov02a10";
-> +            reg = <0x3d>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&clk_24m_cam>;
-> +
-> +            clocks = <&topckgen CLK_TOP_MUX_CAMTG>,
-> +                     <&topckgen CLK_TOP_UNIVP_192M_D8>;
-> +            clock-names = "eclk", "freq_mux";
-> +            clock-frequency = <24000000>;
-> +
-> +            rotation = <180>;
-> +            ovti,mipi-tx-speed = <3>;
-> +
-> +            dovdd-supply = <&mt6358_vcamio_reg>;
-> +            avdd-supply = <&mt6358_vcama1_reg>;
-> +            dvdd-supply = <&mt6358_vcn18_reg>;
-> +
-> +            powerdown-gpios = <&pio 107 GPIO_ACTIVE_LOW>;
-> +            reset-gpios = <&pio 109 GPIO_ACTIVE_HIGH>;
-> +
-> +            port {
-> +                wcam_out: endpoint {
-> +                    remote-endpoint = <&mipi_in_wcam>;
-> +                    data-lanes = <1>;
-
-This doesn't match the schema which says this should be 4 entries.
-
-> +                    clock-noncontinuous;
-> +                    link-frequencies = /bits/ 64 <390000000>;
-> +                };
-> +            };
-> +        };
+> +    i2c@f0000 {
+> +      compatible = "snps,designware-i2c";
+> +      reg = <0xf0000 0x1000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      interrupts = <11>;
+> +      clock-frequency = <400000>;
 > +    };
+> +  - |
+> +    i2c@1120000 {
+> +      compatible = "snps,designware-i2c";
+> +      reg = <0x1120000 0x1000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      interrupts = <12 1>;
+> +      clock-frequency = <400000>;
+> +      i2c-sda-hold-time-ns = <300>;
+> +      i2c-sda-falling-time-ns = <300>;
+> +      i2c-scl-falling-time-ns = <300>;
+> +    };
+> +  - |
+> +    i2c@2000 {
+> +      compatible = "snps,designware-i2c";
+> +      reg = <0x2000 0x100>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      clock-frequency = <400000>;
+> +      clocks = <&i2cclk>;
+> +      interrupts = <0>;
 > +
+> +      eeprom@64 {
+> +        compatible = "linux,slave-24c02";
+> +        reg = <0x40000064>;
+
+This causes 'make dt_binding_check' to fail. The unit-address should be 
+'40000064'. However, there's a bug in dtc not liking the high bits set 
+either. There's a fix pending, but I'd just fix the example here to 
+avoid the issue. 
+
+> +      };
+> +    };
+> +  - |
+> +    i2c@100400 {
+> +      compatible = "mscc,ocelot-i2c", "snps,designware-i2c";
+> +      reg = <0x100400 0x100>, <0x198 0x8>;
+> +      pinctrl-0 = <&i2c_pins>;
+> +      pinctrl-names = "default";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      interrupts = <8>;
+> +      clocks = <&ahb_clk>;
+> +    };
 > +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e64e5db..63a2335 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12389,6 +12389,13 @@ M:	Harald Welte <laforge@gnumonks.org>
->  S:	Maintained
->  F:	drivers/char/pcmcia/cm4040_cs.*
->  
-> +OMNIVISION OV02A10 SENSOR DRIVER
-> +M:	Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> +
->  OMNIVISION OV13858 SENSOR DRIVER
->  M:	Sakari Ailus <sakari.ailus@linux.intel.com>
->  L:	linux-media@vger.kernel.org
 > -- 
-> 2.9.2
+> 2.25.1
+> 
