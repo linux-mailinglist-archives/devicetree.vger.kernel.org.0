@@ -2,91 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3199C1CE298
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 20:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B951CDF0D
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:31:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731112AbgEKS1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 14:27:21 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37202 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731028AbgEKS1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 14:27:20 -0400
-Received: by mail-oi1-f193.google.com with SMTP id r25so15965797oij.4;
-        Mon, 11 May 2020 11:27:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=VnDVXODMrSuBUynBLZ2vD//e4JWl2ZZnhBhHzSJKxpk=;
-        b=P3MrAuGfnnd0DZdgtPEZEgjlQj5hkgFyOJShojWU4oE60S3lOBTe6Xyl8UWwBDLkpz
-         p0WCShPpddttyBKgtubu6hSmwVyktVjJevT6tbDH2LnCCuzVJTA+NGFWZPFgLF1+L7SX
-         o4SVLLU8THVKcCYh50hDoPtOp/rbyEDYKuRl1kVXNMAi0Hs+AsfsLMWCLh/Nphkx+Lj+
-         nooJVomxRWnzwKqT1XTGYjvgtZXWY4ipKwId70CwedCeY0gw6thNeVLsg8dS8Z9rxNdC
-         BqPW+r+dUgt4wM9m97ClfTdeBoAdajRloTcm/QrEk35GqncwwUyRSgZFDhIBhKBKHKXd
-         aw+A==
-X-Gm-Message-State: AGi0Pua5kiF0gRPOp2K+0rCOnYGqnzHijsO/9TczWlkfiGIDrKdjtK0/
-        Q5NOMigYlgCuxVTJ9sp+Bw==
-X-Google-Smtp-Source: APiQypJjhFM4wDlm69yPql7xC9Gfrg0xTT+8CFFRWUQT66HfRY0DoEtoUmKzUox2WFQNwSKROeUGEQ==
-X-Received: by 2002:a05:6808:3d4:: with SMTP id o20mr19556684oie.47.1589221639554;
-        Mon, 11 May 2020 11:27:19 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f25sm536810ooj.20.2020.05.11.11.27.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 11:27:18 -0700 (PDT)
-Received: (nullmailer pid 23990 invoked by uid 1000);
-        Mon, 11 May 2020 15:26:49 -0000
-Date:   Mon, 11 May 2020 10:26:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Angus Ainslie <angus@akkea.ca>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: usb: ti,tps6598x: add dt binding doc
-Message-ID: <20200511152649.GA23481@bogus>
-References: <20200506191718.2144752-1-angus@akkea.ca>
- <20200506191718.2144752-3-angus@akkea.ca>
+        id S1729131AbgEKPbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:31:00 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52660 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727093AbgEKPbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 11:31:00 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 3BCD62A0923
+Received: by earth.universe (Postfix, from userid 1000)
+        id 0AA733C08C6; Mon, 11 May 2020 17:30:56 +0200 (CEST)
+Date:   Mon, 11 May 2020 17:30:55 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     linux-pm@vger.kernel.org, robh@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>
+Subject: Re: [PATCH v2] dt-bindings: power: Convert bq27xxx dt to yaml
+Message-ID: <20200511153055.7u7afdcpcfbsmswq@earth.universe>
+References: <20200507183013.27261-1-dmurphy@ti.com>
+ <20200510161721.257vprq6rqp64wu5@earth.universe>
+ <fb9b240e-9bfe-1295-6fc4-700d886ea7c9@ti.com>
+ <20200511143241.nmkti7meahvj2swt@earth.universe>
+ <8674289c-038d-d811-4786-322d66072527@ti.com>
+ <20200511145700.lnytcr747snnolya@earth.universe>
+ <57e2495d-ec06-53ff-c2b5-10062da2848f@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p6a5pm5xcfp2qz24"
 Content-Disposition: inline
-In-Reply-To: <20200506191718.2144752-3-angus@akkea.ca>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <57e2495d-ec06-53ff-c2b5-10062da2848f@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  6 May 2020 12:17:18 -0700, Angus Ainslie wrote:
-> Document the tps6598x driver
-> 
-> Signed-off-by: Angus Ainslie <angus@akkea.ca>
-> ---
->  .../devicetree/bindings/usb/ti,tps6598x.yaml  | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> 
 
+--p6a5pm5xcfp2qz24
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hi,
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml: maintainers:0: None is not of type 'string'
-Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/usb/ti,tps6598x.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/usb/ti,tps6598x.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml: ignoring, error in schema: maintainers: 0
-warning: no schema found in file: ./Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml: ignoring, error in schema: maintainers: 0
-warning: no schema found in file: ./Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-Makefile:1300: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+On Mon, May 11, 2020 at 09:55:11AM -0500, Dan Murphy wrote:
+> On 5/11/20 9:57 AM, Sebastian Reichel wrote:
+> > On Mon, May 11, 2020 at 09:29:59AM -0500, Dan Murphy wrote:
+> > > On 5/11/20 9:32 AM, Sebastian Reichel wrote:
+> > > > On Mon, May 11, 2020 at 07:25:06AM -0500, Dan Murphy wrote:
+> > > > > On 5/10/20 11:17 AM, Sebastian Reichel wrote:
+> > > > > > This needs is missing the power-supplies property. The N900 DT
+> > > > > > contains a bq27200 referencing the charger, so it should fail t=
+he DT
+> > > > > > check without the property being listed here.
+> > > > > Hmm.=A0 I ran the dt checker specifically on the binding and it d=
+id not fail.
+> > > > > Unless I need to build some other DTs as well.
+> > > > > Either I will have the power-supplies property
+> > > > I just tried it myself. The problem is the way you are specifying
+> > > > the compatible strings. This is the parsing result:
+> > > >=20
+> > > > enum: ['ti,bq27200 - BQ27200', 'ti,bq27210 - BQ27210', 'ti,bq27500 =
+- deprecated,
+> > > >         use revision specific property below', ...
+> > > >=20
+> > > > You can see this in Documentation/devicetree/bindings/processed-sch=
+ema.yaml, which
+> > > > is generated by running the check. The compatible comments need a #=
+ as separation
+> > > > character like this to generate proper bindings:
+> > > >=20
+> > > > properties:
+> > > >     compatible:
+> > > >       enum:
+> > > >         - ti,bq27200 # BQ27200
+> > > >         - ti,bq27210 # BQ27210
+> > > >         - ti,bq27500 # deprecated, use revision specific property b=
+elow
+> > > Well honestly not sure why we need the comment either.=A0These are pr=
+etty
+> > > self explanatory maybe we should just remove the additional comments
+> > Fine with me.
+> Ack
+> >=20
+> > > Any consideration on just removing the deprecated values?
+> > Let's keep them with their comment for now. Removing them should
+> > start with marking them as depracated in the binding and generating
+> > a runtime warning in the driver, so that people become aware of the
+> > problem. At least for ti,bq27500 we have mainline users At least for
+> > ti,bq27500 we have mainline users.
+>=20
+> There are only 2 dts files that have this reference unless we are not sure
+> which device is actually in use.
 
-See https://patchwork.ozlabs.org/patch/1284704
+DT is considered ABI and one is supposed to be able to boot a new
+kernel with an old DT. It's not enough to just update the in-tree
+dts files. I suppose we can consider removing support for the old
+compatible values after having the warning being printed for some
+time and the mainline users being converted to the new binding.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+-- Sebastian
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+--p6a5pm5xcfp2qz24
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please check and re-submit.
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl65b6oACgkQ2O7X88g7
++prdsA/+LRNbHjpJM/eGMeZL07Zi7D0x1usYEjVEkUDLpt4jUoyk+rwGe7Lf5c/f
+UZJHzGn6FvTKpNi8IJNYZ/mBywIPIyt/0PYqAuHpE2vNaEB+g7IA4KzDkWlLOxxX
+Oep5YeyezarXQwLrv/2m6DFvOYteMxn1/FPwGgMED3T6diw1691ajAmLTSyshshp
+tKkXtK0gMcPHNKzdSh85z7eNXRGpQh0V9Zi+iOc6Hz1/VlC+cPysOgF2zjaUTfAR
+g0E+jR7FAfBsexmQt/IedMS1vjusQhqQN/ogQrjGEkRnoAb1HgJojvLWmLfRgn/k
+bF7uwfh+fqShrkBtyl7uPJQMsAMuTKkWNZwjaNtZfsyylpLP7ugDiBVqUg+ni17d
+mkcYKuQ9hdJQ99Rkn/FH+atEUKqnCUzX5PKgMMfyszeklyAZ8fEi1D3/0w7A8U39
+a96TBija1qzCQh3yR4vLNkeNoVajlf0k1xdigL2YKvDMjQ3AyTRdDzD1/6/Zn9VS
+mVyczXSpb27X5oNGOPrstf/UQvtzTJ6nUIdVnOeGzu0m0LWQ7ViAneKdePT9aNKY
+RohcxgnRxnIeTcKdzy119iE3kHogyf0hgeH0HUBfv/wuWGQHHFpTFv97bG23C3p+
+gv34Kd8ytuTW8ga9M4nFCyVqFWI5riic49ZbtGqxuwwXKaPOMqs=
+=0M+W
+-----END PGP SIGNATURE-----
+
+--p6a5pm5xcfp2qz24--
