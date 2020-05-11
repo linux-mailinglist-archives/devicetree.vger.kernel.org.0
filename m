@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A174C1CE05C
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 18:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BF201CE0C3
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 18:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730066AbgEKQ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 12:26:31 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:48750 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729463AbgEKQ0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 12:26:31 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 24955804E0;
-        Mon, 11 May 2020 18:26:24 +0200 (CEST)
-Date:   Mon, 11 May 2020 18:26:22 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     robh+dt@kernel.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
-        laurent.pinchart@ideasonboard.com
-Subject: Re: [RFC PATCH] dt-bindings: display: ti,tfp410.txt: convert to yaml
-Message-ID: <20200511162622.GA19798@ravnborg.org>
-References: <20200428092048.14939-1-ricardo.canuelo@collabora.com>
- <3e377c73-25a3-a7b3-0604-41c54d70039e@ti.com>
- <20200506155320.GC15206@pendragon.ideasonboard.com>
- <20200511145911.2yv3aepofxqwdsju@rcn-XPS-13-9360>
+        id S1729550AbgEKQjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 12:39:17 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54004 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728556AbgEKQjQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 12:39:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=PO2c3L65UWqL1EcOkY6DtrTcnu4QOhrD4mFFAvp9mOQ=; b=kRR8fAIckpSJoyBIVZvk5Ch9q/
+        8NsxPE3cQU+6IoWGenHjd+iDoF4PopnCIiln9GsylXeZN+Gmg4aLn2Gh/1wGK/q2s53Oi1jc9iamT
+        2W8dv+rlBtfIaLOlx01u831Bev6nPjrTpk8VeQZez+6vCAEUVxnsA+6FTKo0EkYG12fU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jYBSM-001sLM-JX; Mon, 11 May 2020 18:39:06 +0200
+Date:   Mon, 11 May 2020 18:39:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabien Parent <fparent@baylibre.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Edwin Peer <edwin.peer@broadcom.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [PATCH v2 05/14] net: core: provide priv_to_netdev()
+Message-ID: <20200511163906.GD413878@lunn.ch>
+References: <20200511150759.18766-1-brgl@bgdev.pl>
+ <20200511150759.18766-6-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200511145911.2yv3aepofxqwdsju@rcn-XPS-13-9360>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=8nJEP1OIZ-IA:10 a=_bxB9wg1tD68s7t2c6IA:9 a=wPNLvfGTeEIA:10
+In-Reply-To: <20200511150759.18766-6-brgl@bgdev.pl>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo.
-
-On Mon, May 11, 2020 at 04:59:11PM +0200, Ricardo Cañuelo wrote:
-> Hi Rob,
+On Mon, May 11, 2020 at 05:07:50PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 > 
-> What's your opinion on this?
-
-I'm not Rob, but anyway.
+> Appropriate amount of extra memory for private data is allocated at
+> the end of struct net_device. We have a helper - netdev_priv() - that
+> returns its address but we don't have the reverse: a function which
+> given the address of the private data, returns the address of struct
+> net_device.
 > 
-> Some context: It's about bindings that define signed integer properties
-> with range checks that go below and above zero. The schema checker fails
-> because, apparently, it interprets every cell value as an uint32, which
-> makes the range check fail for negative numbers.
-> 
-> > > >    b) Redefine this property to be closer to the datasheet description
-> > > >    (ie. unsigned integers from 0 to 7) and adapt the driver accordingly.
-> > > >    This would also let us define its range properly using minimum and
-> > > >    maximum properties for it.
-> > > > 
-> > > >    I think (b) is the right thing to do but I want to know your
-> > > >    opinion. Besides, I don't have this hardware at hand and if I updated
-> > > >    the driver I wouldn't be able to test it.
+> This has caused many drivers to store the pointer to net_device in
+> the private data structure, which basically means storing the pointer
+> to a structure in this very structure.
 
-Based on the discussions option b) above seems like the best compromise.
-
-	Sam
+To some extent, that is the way it is done now. To do anything else
+just makes your driver different and so harder to maintain. Is 4/8
+bytes for a pointer really worth being different?
+ 
+	Andrew
