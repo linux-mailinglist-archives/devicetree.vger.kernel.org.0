@@ -2,120 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1FF1CE2B0
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 20:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3B11CDF53
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731198AbgEKS1m convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 May 2020 14:27:42 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:39247 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729772AbgEKS1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 14:27:41 -0400
-Received: by mail-oi1-f195.google.com with SMTP id b18so15958578oic.6;
-        Mon, 11 May 2020 11:27:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=2JfjrBftKXN1Y8kaiLtcmfBfKVjdy+M8XvkIRemlfR0=;
-        b=ld6cX7Fo0Ub01MfgPkT7KEytD2kQ/36Oxxhz2wLoxLTaNcly5gZdrlmlB55O81mfAc
-         dNJfsP1d9XtZn9iYg+SnQWJg/CI1eeVCFDRWMjJ8dPQ15uM977jn7P3RbNdn8UwowWxG
-         hWJg0GzOqwNXD5uoIzrwYPbXBPcTKCBGHccmBDiUuESZV5iiPUK876dTBPGn8WVI1ZPW
-         LFXhJlWkH3L5T2mni0ARYcOIncETpQkrBKHZiop8Q4F0q2xfilAgLE8mwVi47NEnHa6V
-         GMA2StoEulTJexM7KBGf1HReAsDvNk7dDdYo/A/dqrM/fhxk7wXUUDTOy+mJoyF8M6e4
-         j92Q==
-X-Gm-Message-State: AGi0Puaw35Ds8TsFyAw+9EkAOPw2TAYHTkEXeWwGbi7S/EPgJlqBMptO
-        SPU9pdMPma0uijKBeJr9wF60EV4=
-X-Google-Smtp-Source: APiQypK9DJaEDWtbzE/LXd1gCQLYx0ARKrfAhytLbY5MnQhV/Uv5zb6kFMG5kSsOB2OTrWH2cf8+rw==
-X-Received: by 2002:aca:c4d3:: with SMTP id u202mr20837487oif.113.1589221659931;
-        Mon, 11 May 2020 11:27:39 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r6sm3011205oom.26.2020.05.11.11.27.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2020 11:27:39 -0700 (PDT)
-Received: (nullmailer pid 8023 invoked by uid 1000);
-        Mon, 11 May 2020 15:38:04 -0000
-Date:   Mon, 11 May 2020 10:38:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        soc@kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>, linux-kernel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        devicetree@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: memory: Add Baikal-T1 L2-cache
- Control Block binding
-Message-ID: <20200511153804.GA7015@bogus>
-References: <20200306130731.938808030702@mail.baikalelectronics.ru>
- <20200507230705.6468-1-Sergey.Semin@baikalelectronics.ru>
- <20200507230705.6468-2-Sergey.Semin@baikalelectronics.ru>
+        id S1726934AbgEKPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:46:20 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:10379 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726687AbgEKPqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 11:46:20 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id EAD4B240002;
+        Mon, 11 May 2020 15:46:15 +0000 (UTC)
+Date:   Mon, 11 May 2020 17:46:14 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>
+Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
+ controller
+Message-ID: <20200511174614.38058ec7@xps13>
+In-Reply-To: <20200511173235.2e2fe467@collabora.com>
+References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
+ <20200508171339.8052-8-miquel.raynal@bootlin.com>
+ <20200510090314.10426b6e@collabora.com>
+ <20200511170729.4766eeaa@xps13>
+ <20200511173235.2e2fe467@collabora.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20200507230705.6468-2-Sergey.Semin@baikalelectronics.ru>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 May 2020 02:07:03 +0300, Serge Semin wrote:
-> There is a single register provided by the SoC system controller,
-> which can be used to tune the L2-cache RAM up. It only provides a way
-> to change the L2-RAM access latencies. So aside from "be,bt1-l2-ctl"
-> compatible string the device node can be optionally equipped with the
-> properties of Tag/Data/WS latencies.
+Hi Boris,
+
+Boris Brezillon <boris.brezillon@collabora.com> wrote on Mon, 11 May
+2020 17:32:35 +0200:
+
+> On Mon, 11 May 2020 17:07:29 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Olof Johansson <olof@lixom.net>
-> Cc: Boris Brezillon <bbrezillon@kernel.org>
-> Cc: Paul Cercueil <paul@crapouillou.net>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-> Cc: linux-mips@vger.kernel.org
-> Cc: soc@kernel.org
+> > Hi Boris,
+> > 
+> > Boris Brezillon <boris.brezillon@collabora.com> wrote on Sun, 10 May
+> > 2020 09:03:14 +0200:
+> >   
+> > > On Fri,  8 May 2020 19:13:38 +0200
+> > > Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> > >     
+> > > > +static int anfc_exec_op(struct nand_chip *chip,
+> > > > +			const struct nand_operation *op,
+> > > > +			bool check_only)
+> > > > +{
+> > > > +	int ret;
+> > > > +
+> > > > +	if (check_only)
+> > > > +		return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> > > > +					      check_only);      
+> > > 
+> > > You should also check the DATA_IN/OUT size here ^.    
+> > 
+> > Here is my proposal:
+> > 
+> > ---8<---
+> > 
+> > +static int anfc_check_op(struct nand_chip *chip,
+> > +                        const struct nand_operation *op)
+> > +{
+> > +       int op_id;
+> > +
+> > +       /*
+> > +        * The controller abstracts all the NAND operations and do not support
+> > +        * data only operations.  
 > 
-> ---
+> 	* FIXME: The nand_op_parser framework should be extended to
+> 	* support custom checks on DATA instructions.
+
+Oh you really want to extend the core for that? I thought having a
+"check_op" helper like this was enough, as it gives enough freedom to
+the controller driver to return all the corner cases that are not very
+generic. See below for more details.
+
 > 
-> Changelog v2:
-> - Move driver to the memory subsystem.
-> - Use dual GPL/BSD license.
-> - Use single lined copyright header.
-> - Move "allOf" restrictions to the root level of the properties.
-> - Discard syscon compatible string and reg property.
-> - The DT node is supposed to be a child of the Baikal-T1 system controller
->   node.
-> ---
->  .../memory-controllers/baikal,bt1-l2-ctl.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
+> > +        */  
+> 
+> You also didn't mention the fact that the number of data cycles should
+> be aligned on 4 bytes, and that the controller might read/write more
+> than requested when that's not the case. But maybe you have that
+> comment elsewhere in the code (where you do the round_up(4)?).
+
+Precisely, for me the previous check is not a problem from the core
+perspective (hence not deserving a FIXME) because the driver do not lie
+at any moment. Conversely, the driver limitations of what is supported
+and what is not is clear and accurate.
+
+However for this round_up() operation you are talking about, this is an
+issue as we have currently no mean to say to the core that something
+different than ordered was actually requested by the driver, so there
+is lying involved and this deserves a FIXME.
+> 
+> 	/*
+> 	 * Number of DATA cycles must be aligned on 4, that means the
+> 	 * controller might read/write more than requested This is
+> 	 * harmless most of the time as extra DATA are discarded in
+> 	 * the write path and read pointer adjusted in the read path.
+> 	 * FIXME: The core should mark operations where reading/writing
+> 	 * more is allowed so the exec_op() implementation can take
+> 	 * the right decision when the alignment constraint is not met:
+> 	 * adjust the number of DATA cycles when it's allowed, and
+> 	 * reject the operation otherwise.
+> 	 */
+
+I want to put this comment where the round_up takes place.
+
+> 
+> > +       for (op_id = 0; op_id < op->ninstrs; op_id++) {
+> > +               instr = &op->instrs[op_id];
+> > +
+> > +               switch (instr->type) {
+> > +               case NAND_OP_ADDR_INSTR:
+> > +                       if (instr->ctx.addr.naddrs > ANFC_MAX_ADDR_CYC)
+> > +                               return -ENOTSUPP;
+> > +                       break;
+> > +               case NAND_OP_DATA_IN_INSTR:
+> > +               case NAND_OP_DATA_OUT_INSTR:
+> > +                       if (instr->ctx.data.len > ANFC_MAX_CHUNK_SIZE)
+> > +                               return -ENOTSUPP;
+> > +                       break;
+> > +               default:
+> > +               }
+> > +       }
+> > +
+> > +       /*
+> > +        * The controller does not allow to proceed with a CMD+DATA_IN cycle
+> > +        * manually on the bus by reading data from the data register. Instead,
+> > +        * the controller abstract a status read operation with its own status
+> > +        * register after ordering a read status operation. Hence, we cannot
+> > +        * support any CMD+DATA_IN operation other than a READ STATUS.  
+> 
+> 	* FIXME: The nand_op_parser() framework should be extended to
+> 	* describe fixed patterns instead of open-coding this check
+> 	* here.
+
+For this one, I am not against a FIXME as this is something that might
+be useful for other drivers too.
+
+> 
+> > +        */
+> > +       if (op->ninstrs == 2 &&
+> > +           op->instrs[0].type == NAND_OP_CMD_INSTR &&
+> > +           op->instrs[0].ctx.cmd.opcode != NAND_CMD_STATUS &&
+> > +           op->instrs[1].type == NAND_OP_DATA_IN_INSTR)
+> > +               return -ENOTSUPP;
+> > +
+> > +       return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> > +                                     check_only);
+> > +}
+> > +
+> >  static int anfc_exec_op(struct nand_chip *chip,
+> >                         const struct nand_operation *op,
+> >                         bool check_only)
+> > @@ -774,8 +813,7 @@ static int anfc_exec_op(struct nand_chip *chip,
+> >         int ret;
+> >  
+> >         if (check_only)
+> > -               return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> > -                                             check_only);
+> > +               return anfc_check_op(chip, op);
+> >  
+> >         ret = anfc_select_target(chip, op->cs);
+> >         if (ret)
+> >   
+> > --->8---    
+> > 
+> > What do you think?  
 > 
 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.example.dt.yaml: l2_ctl: 'baikal,l2-data-latency', 'baikal,l2-tag-latency', 'baikal,l2-ws-latency' do not match any of the regexes: '^#.*', '^(at25|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|simple-graph-card|st-plgpio|st-spics|ts),.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abilis,.*', '^abracon,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^al,.*', '^allegro,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^andestech,.*', '^anvo,.*', '^apm,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^aspeed,.*', '^asus,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^bananapi,.*', '^beacon,.*', '^bhf,.*', '^bitmain,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^calaosystems,.*', '^calxeda,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cdns,.*', '^cdtech,.*', '^ceva,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csq,.*', '^cubietech,.*', '^cypress,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*', '^denx,.*', '^devantech,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edt,.*', '^eeti,.*', '^einfochips,.*', '^elan,.*', '^elgin,.*', '^elida,.*', '^embest,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*', '^faraday,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^firefly,.*', '^focaltech,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^gardena,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gemei,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goodix,.*', '^google,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haoyu,.*', '^hardkernel,.*', '^hideep,.*', '^himax,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honeywell,.*', '^hoperun,.*', '^hp,.*', '^hsg,.*', '^hugsun,.*', '^hwacom,.*', '^hydis,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*', '^ilitek,.*', '^img,.*', '^incircuit,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^innolux,.*', '^inside-secure,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inversepath,.*', '^iom,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^iwave,.*', '^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jianda,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^loongson,.*', '^lsi,.*', '^lwn,.*', '^macnica,.*', '^mapleboard,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsic,.*', '^menlo,.*', '^merrii,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^mikroe,.*', '^miniand,.*', '^minix,.*', '^miramems,.*', '^mitsubishi,.*', '^mosaixtech,.*', '^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^opencores,.*', '^openrisc,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powervr,.*', '^primux,.*', '^probox2,.*', '^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qnap,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^renesas,.*', '^rervision,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^seagate,.*', '^seirobotics,.*', '^semtech,.*', '^sensirion,.*', '^sensortek,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shimafuji,.*', '^si-en,.*', '^si-linux,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silead,.*', '^silergy,.*', '^siliconmitus,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skyworks,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^spansion,.*', '^sprd,.*', '^sst,.*', '^st,.*', '^st-ericsson,.*', '^starry,.*', '^startek,.*', '^ste,.*', '^stericsson,.*', '^summit,.*', '^sunchip,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^tempo,.*', '^terasic,.*', '^tfc,.*', '^thine,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^tyan,.*', '^u-blox,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ugoos,.*', '^uniwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^utoo,.*', '^v3,.*', '^vamrs,.*', '^variscite,.*', '^via,.*', '^videostrong,.*', '^virtio,.*', '^vishay,.*', '^vitesse,.*', '^vivante,.*', '^vocore,.*', '^voipac,.*', '^vot,.*', '^vxt,.*', '^waveshare,.*', '^wd,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^winbond,.*', '^winstar,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^x-powers,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xinpeng,.*', '^xlnx,.*', '^xunlong,.*', '^xylon,.*', '^yna,.*', '^yones-toptech,.*', '^ysoft,.*', '^zarlink,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zte,.*', '^zyxel,.*'
-
-See https://patchwork.ozlabs.org/patch/1285665
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
 
