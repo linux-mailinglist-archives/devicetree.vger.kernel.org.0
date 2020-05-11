@@ -2,130 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B951CDF0D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C600B1CDF1A
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:33:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729131AbgEKPbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 11:31:00 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52660 "EHLO
+        id S1730128AbgEKPcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:32:45 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52676 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727093AbgEKPbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 11:31:00 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 3BCD62A0923
-Received: by earth.universe (Postfix, from userid 1000)
-        id 0AA733C08C6; Mon, 11 May 2020 17:30:56 +0200 (CEST)
-Date:   Mon, 11 May 2020 17:30:55 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     linux-pm@vger.kernel.org, robh@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
-        "Andrew F . Davis" <afd@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: power: Convert bq27xxx dt to yaml
-Message-ID: <20200511153055.7u7afdcpcfbsmswq@earth.universe>
-References: <20200507183013.27261-1-dmurphy@ti.com>
- <20200510161721.257vprq6rqp64wu5@earth.universe>
- <fb9b240e-9bfe-1295-6fc4-700d886ea7c9@ti.com>
- <20200511143241.nmkti7meahvj2swt@earth.universe>
- <8674289c-038d-d811-4786-322d66072527@ti.com>
- <20200511145700.lnytcr747snnolya@earth.universe>
- <57e2495d-ec06-53ff-c2b5-10062da2848f@ti.com>
+        with ESMTP id S1727994AbgEKPcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 11:32:45 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B76402A0945;
+        Mon, 11 May 2020 16:32:42 +0100 (BST)
+Date:   Mon, 11 May 2020 17:32:35 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>
+Subject: Re: [PATCH v4 7/8] mtd: rawnand: arasan: Add new Arasan NAND
+ controller
+Message-ID: <20200511173235.2e2fe467@collabora.com>
+In-Reply-To: <20200511170729.4766eeaa@xps13>
+References: <20200508171339.8052-1-miquel.raynal@bootlin.com>
+        <20200508171339.8052-8-miquel.raynal@bootlin.com>
+        <20200510090314.10426b6e@collabora.com>
+        <20200511170729.4766eeaa@xps13>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p6a5pm5xcfp2qz24"
-Content-Disposition: inline
-In-Reply-To: <57e2495d-ec06-53ff-c2b5-10062da2848f@ti.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 11 May 2020 17:07:29 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
---p6a5pm5xcfp2qz24
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi Boris,
+> 
+> Boris Brezillon <boris.brezillon@collabora.com> wrote on Sun, 10 May
+> 2020 09:03:14 +0200:
+> 
+> > On Fri,  8 May 2020 19:13:38 +0200
+> > Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> >   
+> > > +static int anfc_exec_op(struct nand_chip *chip,
+> > > +			const struct nand_operation *op,
+> > > +			bool check_only)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	if (check_only)
+> > > +		return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> > > +					      check_only);    
+> > 
+> > You should also check the DATA_IN/OUT size here ^.  
+> 
+> Here is my proposal:
+> 
+> ---8<---
+> 
+> +static int anfc_check_op(struct nand_chip *chip,
+> +                        const struct nand_operation *op)
+> +{
+> +       int op_id;
+> +
+> +       /*
+> +        * The controller abstracts all the NAND operations and do not support
+> +        * data only operations.
 
-Hi,
+	* FIXME: The nand_op_parser framework should be extended to
+	* support custom checks on DATA instructions.
 
-On Mon, May 11, 2020 at 09:55:11AM -0500, Dan Murphy wrote:
-> On 5/11/20 9:57 AM, Sebastian Reichel wrote:
-> > On Mon, May 11, 2020 at 09:29:59AM -0500, Dan Murphy wrote:
-> > > On 5/11/20 9:32 AM, Sebastian Reichel wrote:
-> > > > On Mon, May 11, 2020 at 07:25:06AM -0500, Dan Murphy wrote:
-> > > > > On 5/10/20 11:17 AM, Sebastian Reichel wrote:
-> > > > > > This needs is missing the power-supplies property. The N900 DT
-> > > > > > contains a bq27200 referencing the charger, so it should fail t=
-he DT
-> > > > > > check without the property being listed here.
-> > > > > Hmm.=A0 I ran the dt checker specifically on the binding and it d=
-id not fail.
-> > > > > Unless I need to build some other DTs as well.
-> > > > > Either I will have the power-supplies property
-> > > > I just tried it myself. The problem is the way you are specifying
-> > > > the compatible strings. This is the parsing result:
-> > > >=20
-> > > > enum: ['ti,bq27200 - BQ27200', 'ti,bq27210 - BQ27210', 'ti,bq27500 =
-- deprecated,
-> > > >         use revision specific property below', ...
-> > > >=20
-> > > > You can see this in Documentation/devicetree/bindings/processed-sch=
-ema.yaml, which
-> > > > is generated by running the check. The compatible comments need a #=
- as separation
-> > > > character like this to generate proper bindings:
-> > > >=20
-> > > > properties:
-> > > >     compatible:
-> > > >       enum:
-> > > >         - ti,bq27200 # BQ27200
-> > > >         - ti,bq27210 # BQ27210
-> > > >         - ti,bq27500 # deprecated, use revision specific property b=
-elow
-> > > Well honestly not sure why we need the comment either.=A0These are pr=
-etty
-> > > self explanatory maybe we should just remove the additional comments
-> > Fine with me.
-> Ack
-> >=20
-> > > Any consideration on just removing the deprecated values?
-> > Let's keep them with their comment for now. Removing them should
-> > start with marking them as depracated in the binding and generating
-> > a runtime warning in the driver, so that people become aware of the
-> > problem. At least for ti,bq27500 we have mainline users At least for
-> > ti,bq27500 we have mainline users.
->=20
-> There are only 2 dts files that have this reference unless we are not sure
-> which device is actually in use.
+> +        */
 
-DT is considered ABI and one is supposed to be able to boot a new
-kernel with an old DT. It's not enough to just update the in-tree
-dts files. I suppose we can consider removing support for the old
-compatible values after having the warning being printed for some
-time and the mainline users being converted to the new binding.
+You also didn't mention the fact that the number of data cycles should
+be aligned on 4 bytes, and that the controller might read/write more
+than requested when that's not the case. But maybe you have that
+comment elsewhere in the code (where you do the round_up(4)?).
 
--- Sebastian
+	/*
+	 * Number of DATA cycles must be aligned on 4, that means the
+	 * controller might read/write more than requested This is
+	 * harmless most of the time as extra DATA are discarded in
+	 * the write path and read pointer adjusted in the read path.
+	 * FIXME: The core should mark operations where reading/writing
+	 * more is allowed so the exec_op() implementation can take
+	 * the right decision when the alignment constraint is not met:
+	 * adjust the number of DATA cycles when it's allowed, and
+	 * reject the operation otherwise.
+	 */
 
---p6a5pm5xcfp2qz24
-Content-Type: application/pgp-signature; name="signature.asc"
+> +       for (op_id = 0; op_id < op->ninstrs; op_id++) {
+> +               instr = &op->instrs[op_id];
+> +
+> +               switch (instr->type) {
+> +               case NAND_OP_ADDR_INSTR:
+> +                       if (instr->ctx.addr.naddrs > ANFC_MAX_ADDR_CYC)
+> +                               return -ENOTSUPP;
+> +                       break;
+> +               case NAND_OP_DATA_IN_INSTR:
+> +               case NAND_OP_DATA_OUT_INSTR:
+> +                       if (instr->ctx.data.len > ANFC_MAX_CHUNK_SIZE)
+> +                               return -ENOTSUPP;
+> +                       break;
+> +               default:
+> +               }
+> +       }
+> +
+> +       /*
+> +        * The controller does not allow to proceed with a CMD+DATA_IN cycle
+> +        * manually on the bus by reading data from the data register. Instead,
+> +        * the controller abstract a status read operation with its own status
+> +        * register after ordering a read status operation. Hence, we cannot
+> +        * support any CMD+DATA_IN operation other than a READ STATUS.
 
------BEGIN PGP SIGNATURE-----
+	* FIXME: The nand_op_parser() framework should be extended to
+	* describe fixed patterns instead of open-coding this check
+	* here.
 
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl65b6oACgkQ2O7X88g7
-+prdsA/+LRNbHjpJM/eGMeZL07Zi7D0x1usYEjVEkUDLpt4jUoyk+rwGe7Lf5c/f
-UZJHzGn6FvTKpNi8IJNYZ/mBywIPIyt/0PYqAuHpE2vNaEB+g7IA4KzDkWlLOxxX
-Oep5YeyezarXQwLrv/2m6DFvOYteMxn1/FPwGgMED3T6diw1691ajAmLTSyshshp
-tKkXtK0gMcPHNKzdSh85z7eNXRGpQh0V9Zi+iOc6Hz1/VlC+cPysOgF2zjaUTfAR
-g0E+jR7FAfBsexmQt/IedMS1vjusQhqQN/ogQrjGEkRnoAb1HgJojvLWmLfRgn/k
-bF7uwfh+fqShrkBtyl7uPJQMsAMuTKkWNZwjaNtZfsyylpLP7ugDiBVqUg+ni17d
-mkcYKuQ9hdJQ99Rkn/FH+atEUKqnCUzX5PKgMMfyszeklyAZ8fEi1D3/0w7A8U39
-a96TBija1qzCQh3yR4vLNkeNoVajlf0k1xdigL2YKvDMjQ3AyTRdDzD1/6/Zn9VS
-mVyczXSpb27X5oNGOPrstf/UQvtzTJ6nUIdVnOeGzu0m0LWQ7ViAneKdePT9aNKY
-RohcxgnRxnIeTcKdzy119iE3kHogyf0hgeH0HUBfv/wuWGQHHFpTFv97bG23C3p+
-gv34Kd8ytuTW8ga9M4nFCyVqFWI5riic49ZbtGqxuwwXKaPOMqs=
-=0M+W
------END PGP SIGNATURE-----
+> +        */
+> +       if (op->ninstrs == 2 &&
+> +           op->instrs[0].type == NAND_OP_CMD_INSTR &&
+> +           op->instrs[0].ctx.cmd.opcode != NAND_CMD_STATUS &&
+> +           op->instrs[1].type == NAND_OP_DATA_IN_INSTR)
+> +               return -ENOTSUPP;
+> +
+> +       return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> +                                     check_only);
+> +}
+> +
+>  static int anfc_exec_op(struct nand_chip *chip,
+>                         const struct nand_operation *op,
+>                         bool check_only)
+> @@ -774,8 +813,7 @@ static int anfc_exec_op(struct nand_chip *chip,
+>         int ret;
+>  
+>         if (check_only)
+> -               return nand_op_parser_exec_op(chip, &anfc_op_parser, op,
+> -                                             check_only);
+> +               return anfc_check_op(chip, op);
+>  
+>         ret = anfc_select_target(chip, op->cs);
+>         if (ret)
+> 
+> --->8---  
+> 
+> What do you think?
 
---p6a5pm5xcfp2qz24--
