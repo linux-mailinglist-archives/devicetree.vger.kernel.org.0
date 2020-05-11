@@ -2,113 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 939BA1CD053
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 05:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73E41CD189
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 08:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728104AbgEKDRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 May 2020 23:17:53 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:4435 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727094AbgEKDRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 May 2020 23:17:53 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5eb8c3d30001>; Sun, 10 May 2020 20:17:39 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Sun, 10 May 2020 20:17:52 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Sun, 10 May 2020 20:17:52 -0700
-Received: from [10.19.66.205] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 11 May
- 2020 03:17:49 +0000
-Subject: Re: [PATCH V2 6/8] phy: tegra: xusb: Add support for charger detect
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <kishon@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1586939108-10075-1-git-send-email-nkristam@nvidia.com>
- <1586939108-10075-7-git-send-email-nkristam@nvidia.com>
- <20200428105510.GH3592148@ulmo>
- <ea0f5906-4681-8b84-a55a-e959ce40aece@nvidia.com>
- <20200504155029.GB614153@ulmo>
-X-Nvconfidentiality: public
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-Message-ID: <229333de-8dd6-2d09-c8ad-99afdcec703f@nvidia.com>
-Date:   Mon, 11 May 2020 08:49:37 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1728329AbgEKGC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 02:02:27 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:63895 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725916AbgEKGC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 02:02:27 -0400
+X-UUID: bcf760d93a5643c68a53d6605df7a878-20200511
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=KXbgKqeV1jVjM680D36sEteF5YwDhnYQQbhiljtwUfA=;
+        b=XgEvgHZHesGhebPzMCYukgw1TLEmPm8Yjvynb3rikJ0PItXUNPlk/p0YMex37B/wfkJveNcwB0e3Wh9ek5WElssz4/qNkvLQ443NiDlGE2srSZ7IvdGKpeHomWdAtWSEjJlCS1R6S7WKwCZUHHdli2PfIbZnczFh1iUtLrr4rcs=;
+X-UUID: bcf760d93a5643c68a53d6605df7a878-20200511
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1432146354; Mon, 11 May 2020 14:02:24 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 11 May 2020 14:00:50 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 May 2020 14:00:50 +0800
+Message-ID: <1589176850.21832.7.camel@mtksdaap41>
+Subject: Re: [PATCH v14 01/11] dt-bindings: mediatek: Add property to mt8183
+ smi-common
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+CC:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        <srv_heupstream@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        Fan Chen <fan.chen@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+Date:   Mon, 11 May 2020 14:00:50 +0800
+In-Reply-To: <7165ec9f-03ca-3020-2c34-246465094c46@collabora.com>
+References: <1588752963-19934-1-git-send-email-weiyi.lu@mediatek.com>
+         <1588752963-19934-2-git-send-email-weiyi.lu@mediatek.com>
+         <7165ec9f-03ca-3020-2c34-246465094c46@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20200504155029.GB614153@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1589167059; bh=dhOCrrvTkzHB+DWGZHHMWxRBnVmIB3xIwhi9oro8Ae4=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=EjLINloir2HvrF0Xcs//fNNihRZi7fY12ShF48GOmR2ek7FpdH28Fd56VuOqH90Ea
-         eMgsFlP41Y3N4fqJBLDkoL/tOZiTQtp2RAYh1WXI5DZD5GnI6TH6P0HUH8j9QcTEui
-         uZgYjpVwQDhYs2dC/KOyG9pIgErQaf4Wj3moctX+6r+GWdo8yeIghs+CR56oKe4mgI
-         LvwhEC6Ox9J0FS58SL4NFlyEQ988BzhxYj3012lFzQkHdWN3UpKvrQjxA3EPrd1pNR
-         PpwckUh4jC8DUv7pSArMHGjGtTMOUv7H9uFVzsML82zs3J7hd+dQQ0yoS9SMRUEcIv
-         GUmi4oW+StK/Q==
+X-TM-SNTS-SMTP: E8D7064CEC30C202B634F9239908F66108878567A329A3426389968E2E92D1EB2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+DQpPbiBXZWQsIDIwMjAtMDUtMDYgYXQgMjI6NTkgKzAyMDAsIEVucmljIEJhbGxldGJvIGkgU2Vy
+cmEgd3JvdGU6DQo+IEhpIFdlaXlpLA0KPiANCj4gVGhhbmsgeW91IGZvciB5b3VyIHBhdGNoLiBE
+b24ndCBmb3JnZXQgdG8gY2MgPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPiwNCj4gb3RoZXJ3
+aXNlIHRoaXMgcGF0Y2ggY291bGQgYmUgc2lsZW50bHkgaWdub3JlZC4NCj4gDQoNClRoYW5rIHlv
+dSBmb3IgcmVtaW5kaW5nIQ0KDQo+IE9uIDYvNS8yMCAxMDoxNSwgV2VpeWkgTHUgd3JvdGU6DQo+
+ID4gRm9yIHNjcHN5cyBkcml2ZXIgdXNpbmcgcmVnbWFwIGJhc2VkIHN5c2NvbiBkcml2ZXIgQVBJ
+Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFdlaXlpIEx1IDx3ZWl5aS5sdUBtZWRpYXRlay5j
+b20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9s
+bGVycy9tZWRpYXRlayxzbWktY29tbW9uLnR4dCAgICAgIHwgMiArLQ0KPiA+ICAxIGZpbGUgY2hh
+bmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0
+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy9t
+ZWRpYXRlayxzbWktY29tbW9uLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1vbi50eHQNCj4gPiBpbmRleCBi
+NDc4YWRlLi4wMTc0NGVjIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1vbi50eHQNCj4g
+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xs
+ZXJzL21lZGlhdGVrLHNtaS1jb21tb24udHh0DQo+ID4gQEAgLTIwLDcgKzIwLDcgQEAgUmVxdWly
+ZWQgcHJvcGVydGllczoNCj4gPiAgCSJtZWRpYXRlayxtdDI3MTItc21pLWNvbW1vbiINCj4gPiAg
+CSJtZWRpYXRlayxtdDc2MjMtc21pLWNvbW1vbiIsICJtZWRpYXRlayxtdDI3MDEtc21pLWNvbW1v
+biINCj4gPiAgCSJtZWRpYXRlayxtdDgxNzMtc21pLWNvbW1vbiINCj4gPiAtCSJtZWRpYXRlayxt
+dDgxODMtc21pLWNvbW1vbiINCj4gPiArCSJtZWRpYXRlayxtdDgxODMtc21pLWNvbW1vbiIsICJz
+eXNjb24iDQo+ID4gIC0gcmVnIDogdGhlIHJlZ2lzdGVyIGFuZCBzaXplIG9mIHRoZSBTTUkgYmxv
+Y2suDQo+ID4gIC0gcG93ZXItZG9tYWlucyA6IGEgcGhhbmRsZSB0byB0aGUgcG93ZXIgZG9tYWlu
+IG9mIHRoaXMgbG9jYWwgYXJiaXRlci4NCj4gPiAgLSBjbG9ja3MgOiBNdXN0IGNvbnRhaW4gYW4g
+ZW50cnkgZm9yIGVhY2ggZW50cnkgaW4gY2xvY2stbmFtZXMuDQo+ID4gDQoNCg0K
 
-
-On 04-05-2020 21:20, Thierry Reding wrote:
-> 
-> On Mon, May 04, 2020 at 02:32:51PM +0530, Nagarjuna Kristam wrote:
->>> On 28-04-2020 16:25, Thierry Reding wrote:
->>>> On Wed, Apr 15, 2020 at 01:55:06PM +0530, Nagarjuna Kristam wrote:
-> [...]
->>>> diff --git a/drivers/phy/tegra/xusb-tegra-cd.c b/drivers/phy/tegra/xusb-tegra-cd.c
->>>> +static void tegra_xusb_padctl_utmi_pad_dcd(struct tegra_xusb_padctl *padctl,
->>>> +					      u32 index)
->>>> +{
->>>> +	u32 value;
->>>> +	int dcd_timeout_ms = 0;
->>>> +	bool ret = false;
->>>> +
->>>> +	/* Turn on IDP_SRC */
->>>> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
->>>> +	value |= OP_I_SRC_EN;
->>>> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
->>>> +
->>>> +	/* Turn on D- pull-down resistor */
->>>> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
->>>> +	value |= USBON_RPD_OVRD_VAL;
->>>> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
->>>> +
->>>> +	/* Wait for TDCD_DBNC */
->>>> +	usleep_range(10000, 120000);
->>>   From the comment this looks like we're waiting for some hardware
->>> condition. Can we somehow obtain this rather than implementing a fixed
->>> sleep? Especially since the range here is so large.
->>>
->> As per data sheet we need to wait for 10 micro seconds as settle time.
-> Okay, so TDCD_DBNC is a value that comes from a timing diagram in a
-> datasheet? Seems fine to leave it as-is then. Perhaps add parentheses
-> and mention which exact datasheet that's from, and perhaps which figure
-> so that people can more easily reference it. Provided there is a
-> publicly available datasheet, of course.
-> 
-Will update reference to table in the data sheet where these values are 
-recommended. ITs part of BC 1.2 spec from USB.
-
-> Actually, one other thing: If the data sheet says to wait 10 us, why do
-> you use an upper range of 120 us? Shouldn't a range of 10-20 us be good
-> enough?
-> Yes, will reduce it to 20ms.
-
--Nagarjuna
