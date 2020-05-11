@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F501CDDEF
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 16:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFCD11CDE1C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2020 17:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729439AbgEKO7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 May 2020 10:59:17 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52402 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727019AbgEKO7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 May 2020 10:59:16 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 67E002A1873
-Date:   Mon, 11 May 2020 16:59:11 +0200
-From:   Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     Tomi Valkeinen <tomi.valkeinen@ti.com>, robh+dt@kernel.org,
-        kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
-        laurent.pinchart@ideasonboard.com
-Subject: Re: [RFC PATCH] dt-bindings: display: ti,tfp410.txt: convert to yaml
-Message-ID: <20200511145911.2yv3aepofxqwdsju@rcn-XPS-13-9360>
-Mail-Followup-To: robh+dt@kernel.org,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>, kernel@collabora.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
-        laurent.pinchart@ideasonboard.com
-References: <20200428092048.14939-1-ricardo.canuelo@collabora.com>
- <3e377c73-25a3-a7b3-0604-41c54d70039e@ti.com>
- <20200506155320.GC15206@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200506155320.GC15206@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20171215
+        id S1730128AbgEKPFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 May 2020 11:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45070 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728090AbgEKPFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 May 2020 11:05:07 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5920DC061A0C
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:05:07 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id a7so7937490pju.2
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2020 08:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Ihuf7frb146tYEK8HG0xGK1ErUJGbIsIWcyrfSF6Hdo=;
+        b=ZPKzgpl3pT9jy6kyIPt/XjKgPouRFLhdel90rozXGL93vNMmJabHabpuvXUhmL6eoI
+         QoB43KnX02epvjmWQTYoXco2CjmOeSmNgECOYiH0VU4z3XAFYsKPdXdtzcnT9MtTUzoK
+         FzAyhUTKvDnhbUuv/m2sEZJKA0sq2rZJOD+vuBu9MXMmxL2ryc7qaBNCENH7dCTrVRgU
+         OQOoKjPiCWubAKtgbNoF9affc5IVYXDoda2GSqsYLjJbGkHfBHur1ZhdYaXi0WrlMLYY
+         1PHFZetHmcyMG+P3w34PDR9GwZ206DZZzjbBvRLmEL/sJ3susz/h2nfqABSBtMztjinO
+         wX6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Ihuf7frb146tYEK8HG0xGK1ErUJGbIsIWcyrfSF6Hdo=;
+        b=Lh2EQ7j8M3cJKwl4ZR64zMZz6XYilovOVUOCSbeaCKiGkCVLWoe3HU2rH2zxYsn542
+         a8yDbJsyXj6BKuiDQviHIzisgfOGDz/QY6AuxLxb7ljINNIPDBDXiO6oNCZYmc8JVdaL
+         lIVtd2gqMpPxGTsgh0O5naXynnkETIAvHMutfIho3OX0wTKEosWCtqg7EnusvEs3J03e
+         dnoTcMxiB0UN7zFkSvGP1/t8r1aBN7ZKUQRcdJuJhyeb1l6b8YURloOMzUT1iosA5zhP
+         AyI/LTU9lHRsrDGhRlDaB+5P5Vz+jEIOlwG1XOG15udIIT6iyKjYYUnTt1a9q+mVuqwj
+         Wt1Q==
+X-Gm-Message-State: AGi0PuYnBQeWm6rbL6Nys7ZhDW2rjxLGLfuK4hY+PrO2/Zijsi1fRUkT
+        BhTwgC/w7GmKqaGt5D1IpaQ=
+X-Google-Smtp-Source: APiQypKrebweybPanlhUHTouzsIflvpNdK0IXCls7WXBwT+Kfihw26PQYUQFiG/gwxAKil5rbrX9/g==
+X-Received: by 2002:a17:902:968a:: with SMTP id n10mr16334033plp.259.1589209506831;
+        Mon, 11 May 2020 08:05:06 -0700 (PDT)
+Received: from localhost ([43.224.245.179])
+        by smtp.gmail.com with ESMTPSA id 19sm10084933pjl.52.2020.05.11.08.05.05
+        (version=TLS1_2 cipher=AES128-SHA bits=128/128);
+        Mon, 11 May 2020 08:05:05 -0700 (PDT)
+From:   qiwuchen55@gmail.com
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, chenqiwu <chenqiwu@xiaomi.com>
+Subject: [PATCH] drivers/of: keep description of function consistent with function name
+Date:   Mon, 11 May 2020 23:04:57 +0800
+Message-Id: <1589209497-13945-1-git-send-email-qiwuchen55@gmail.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: chenqiwu <chenqiwu@xiaomi.com>
 
-What's your opinion on this?
+Currently, there are some descriptions of function not
+consistent with function name, fixing them will make
+the code more readable.
 
-Some context: It's about bindings that define signed integer properties
-with range checks that go below and above zero. The schema checker fails
-because, apparently, it interprets every cell value as an uint32, which
-makes the range check fail for negative numbers.
+Signed-off-by: chenqiwu <chenqiwu@xiaomi.com>
+---
+ drivers/of/fdt.c             |  2 +-
+ drivers/of/of_reserved_mem.c | 10 +++++-----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-On mié 06-05-2020 18:53:20, Laurent Pinchart wrote:
-> Hi Tomi,
-> 
-> On Tue, Apr 28, 2020 at 12:49:28PM +0300, Tomi Valkeinen wrote:
-> > On 28/04/2020 12:20, Ricardo Cañuelo wrote:
-> > 
-> > > 2) The definition of ti,deskew in the original binding seems to be
-> > > tailored to the current driver and the way it's defined may not be very
-> > > DT-friendly.
-> > > 
-> > >    This parameter maps to a 3-bit field in a hardware register that takes
-> > >    a value from 0 to 7, so the [-4, 3] range described for this would map
-> > >    to [000, 111]: -4 -> 000, -3 -> 001, -2 -> 010, ... 3 -> 111.
-> > > 
-> > >    Then, the driver parses the parameter (unsigned) and casts it to a
-> > >    signed integer to get a number in the [-4, 3] range.
-> > 
-> > Interestingly the current example has ti,deskew = <4>...
-> > 
-> > >    A vendor-specific property must have a type definition in json-schema,
-> > >    so if I translate the original bindings semantics directly, I should
-> > >    define ti,deskew as an int32, but this makes dt_binding_check fail if
-> > >    the property has a negative value in the example because of the
-> > >    internal representation of cells as unsigned integers:
-> > > 
-> > >       ti,deskew:0:0: 4294967293 is greater than the maximum of 2147483647
-> > 
-> > I don't quite understand this. We cannot have negative numbers in dts files? Or we can, but 
-> > dt_binding_check doesn't handle them correctly? Or that int32 is not supported in yaml bindings?
-> > 
-> > >    So I can think of two solutions to this:
-> > > 
-> > >    a) Keep the ti,deskew property as an uint32 and document the valid
-> > >    range ([-4, 3]) in the property description (this is what this patch
-> > >    does currently).
-> > > 
-> > >    b) Redefine this property to be closer to the datasheet description
-> > >    (ie. unsigned integers from 0 to 7) and adapt the driver accordingly.
-> > >    This would also let us define its range properly using minimum and
-> > >    maximum properties for it.
-> > > 
-> > >    I think (b) is the right thing to do but I want to know your
-> > >    opinion. Besides, I don't have this hardware at hand and if I updated
-> > >    the driver I wouldn't be able to test it.
-> > 
-> > I don't think anyone has used deskew property, so I guess changing it is not out of the question.
-> > 
-> > Laurent, did you have a board that needs deskew when you added it to tfp410?
-> 
-> I didn't if I remember correctly, I just mapped it to the hardware
-> features. The hardware register indeed takes a value between 0 and 7,
-> and that is mapped to [-4,3] x t(STEP). I don't mind either option.
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 2cdf64d..a86392a 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -471,7 +471,7 @@ void *of_fdt_unflatten_tree(const unsigned long *blob,
+ static u32 of_fdt_crc32;
+ 
+ /**
+- * res_mem_reserve_reg() - reserve all memory described in 'reg' property
++ * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
+  */
+ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 					     const char *uname)
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 1a84bc0..6f6fea3 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -46,7 +46,7 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+ }
+ 
+ /**
+- * res_mem_save_node() - save fdt node for second pass initialization
++ * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
+  */
+ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ 				      phys_addr_t base, phys_addr_t size)
+@@ -68,8 +68,8 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ }
+ 
+ /**
+- * res_mem_alloc_size() - allocate reserved memory described by 'size', 'align'
+- *			  and 'alloc-ranges' properties
++ * __reserved_mem_alloc_size() - allocate reserved memory described by
++ *	'size', 'align'  and 'alloc-ranges' properties.
+  */
+ static int __init __reserved_mem_alloc_size(unsigned long node,
+ 	const char *uname, phys_addr_t *res_base, phys_addr_t *res_size)
+@@ -165,7 +165,7 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
+ 	__used __section(__reservedmem_of_table_end);
+ 
+ /**
+- * res_mem_init_node() - call region specific reserved memory init code
++ * __reserved_mem_init_node() - call region specific reserved memory init code
+  */
+ static int __init __reserved_mem_init_node(struct reserved_mem *rmem)
+ {
+@@ -232,7 +232,7 @@ static void __init __rmem_check_for_overlap(void)
+ }
+ 
+ /**
+- * fdt_init_reserved_mem - allocate and init all saved reserved memory regions
++ * fdt_init_reserved_mem() - allocate and init all saved reserved memory regions
+  */
+ void __init fdt_init_reserved_mem(void)
+ {
+-- 
+1.9.1
 
-I haven't found any examples of yaml bindings defining signed integer
-properties such as this, what's the norm in this case? Do you agree with
-any of the proposed solutions? Do you have a better suggestion?
-
-Thanks,
-Ricardo
