@@ -2,77 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D39EB1CF4B8
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F551CF49B
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729645AbgELMru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 08:47:50 -0400
-Received: from mailout3.hostsharing.net ([176.9.242.54]:54785 "EHLO
-        mailout3.hostsharing.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729626AbgELMru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 08:47:50 -0400
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
-        by mailout3.hostsharing.net (Postfix) with ESMTPS id B829C101C01C0;
-        Tue, 12 May 2020 14:47:47 +0200 (CEST)
-Received: from localhost (unknown [87.130.102.138])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by h08.hostsharing.net (Postfix) with ESMTPSA id 14486627549D;
-        Tue, 12 May 2020 14:47:46 +0200 (CEST)
-X-Mailbox-Line: From 3d32e182ebefce6144844adf12fe481a35580633 Mon Sep 17 00:00:00 2001
-Message-Id: <3d32e182ebefce6144844adf12fe481a35580633.1589285874.git.lukas@wunner.de>
-In-Reply-To: <cover.1589285873.git.lukas@wunner.de>
-References: <cover.1589285873.git.lukas@wunner.de>
-From:   Lukas Wunner <lukas@wunner.de>
-Date:   Tue, 12 May 2020 14:40:03 +0200
-Subject: [PATCH v2 3/4] dt-bindings: serial: Add binding for rs485 bus
- termination GPIO
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     "Matwey V. Kornilov" <matwey@sai.msu.ru>,
-        Giulio Benetti <giulio.benetti@micronovasrl.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+        id S1729570AbgELMmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 08:42:15 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:53368 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726891AbgELMmP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 08:42:15 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id B0FAC803080B;
+        Tue, 12 May 2020 12:42:07 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id PTikmzJM42z6; Tue, 12 May 2020 15:42:07 +0300 (MSK)
+Date:   Tue, 12 May 2020 15:42:06 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/6] dmaengine: dw: Print warning if multi-block is
+ unsupported
+Message-ID: <20200512124206.l3uv5hg2zimi24dq@mobilestation>
+References: <20200508105304.14065-5-Sergey.Semin@baikalelectronics.ru>
+ <20200508112604.GJ185537@smile.fi.intel.com>
+ <20200508115334.GE4820@sirena.org.uk>
+ <20200511021016.wptcgnc3iq3kadgz@mobilestation>
+ <20200511115813.GG8216@sirena.org.uk>
+ <20200511134502.hjbu5evkiuh75chr@mobilestation>
+ <CAHp75VdOi1rwaKjzowhj0KA-eNNL4NxpiCeqfELFgO_RcnZ-xw@mail.gmail.com>
+ <20200511193255.t6orpcdz5ukmwmqo@mobilestation>
+ <20200511210714.GO185537@smile.fi.intel.com>
+ <20200511210800.GP185537@smile.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200511210800.GP185537@smile.fi.intel.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e8759ad17d41 ("serial: uapi: Add support for bus termination")
-introduced the ability to enable rs485 bus termination from user space.
-So far the feature is only used by a single driver, 8250_exar.c, using a
-hardcoded GPIO pin specific to Siemens IOT2040 products.
+Vinod,
 
-Provide for a more generic solution by allowing specification of an
-rs485 bus termination GPIO pin in the device tree.  An upcoming commit
-implements support for this pin for any 8250 driver.  The binding is
-used in device trees of the "Revolution Pi" PLCs offered by KUNBUS.
+Could you join the discussion for a little bit?
 
-[Heiko Stuebner converted the binding to YAML, hence his Signed-off-by.]
+In order to properly fix the problem discussed in this topic, we need to
+introduce an additional capability exported by DMA channel handlers on per-channel
+basis. It must be a number, which would indicate an upper limitation of the SG list
+entries amount.
+Something like this would do it:
+struct dma_slave_caps {
+...
+	unsigned int max_sg_nents;
+...
+};
+As Andy suggested it's value should be interpreted as:
+0          - unlimited number of entries,
+1:MAX_UINT - actual limit to the number of entries.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
-Cc: Jan Kiszka <jan.kiszka@siemens.com>
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+In addition to that seeing the dma_get_slave_caps() method provide the caps only
+by getting them from the DMA device descriptor, while we need to have an info on
+per-channel basis, it would be good to introduce a new DMA-device callback like:
+struct dma_device {
+...
+	int (*device_caps)(struct dma_chan *chan,
+			   struct dma_slave_caps *caps);
+...
+};
+So the DMA driver could override the generic DMA device capabilities with the
+values specific to the DMA channels. Such functionality will be also helpful for
+the max-burst-len parameter introduced by this patchset, since depending on the
+IP-core synthesis parameters it may be channel-specific.
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index d4beaf11222d..a9ad17864889 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -43,3 +43,7 @@ properties:
-   rs485-rx-during-tx:
-    description: enables the receiving of data even while sending data.
-    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  rs485-term-gpios:
-+    description: GPIO pin to enable RS485 bus termination.
-+    maxItems: 1
--- 
-2.26.2
+Alternatively we could just introduce a new fields to the dma_chan structure and
+retrieve the new caps values from them in the dma_get_slave_caps() method.
+Though the solution with callback I like better.
 
+What is your opinion about this? What solution you'd prefer?
+
+On Tue, May 12, 2020 at 12:08:00AM +0300, Andy Shevchenko wrote:
+> On Tue, May 12, 2020 at 12:07:14AM +0300, Andy Shevchenko wrote:
+> > On Mon, May 11, 2020 at 10:32:55PM +0300, Serge Semin wrote:
+> > > On Mon, May 11, 2020 at 04:58:53PM +0300, Andy Shevchenko wrote:
+> > > > On Mon, May 11, 2020 at 4:48 PM Serge Semin
+> > > > <Sergey.Semin@baikalelectronics.ru> wrote:
+> > > > >
+> > > > > On Mon, May 11, 2020 at 12:58:13PM +0100, Mark Brown wrote:
+> > > > > > On Mon, May 11, 2020 at 05:10:16AM +0300, Serge Semin wrote:
+> > > > > >
+> > > > > > > Alas linearizing the SPI messages won't help in this case because the DW DMA
+> > > > > > > driver will split it into the max transaction chunks anyway.
+> > > > > >
+> > > > > > That sounds like you need to also impose a limit on the maximum message
+> > > > > > size as well then, with that you should be able to handle messages up
+> > > > > > to whatever that limit is.  There's code for that bit already, so long
+> > > > > > as the limit is not too low it should be fine for most devices and
+> > > > > > client drivers can see the limit so they can be updated to work with it
+> > > > > > if needed.
+> > > > >
+> > > > > Hmm, this might work. The problem will be with imposing such limitation through
+> > > > > the DW APB SSI driver. In order to do this I need to know:
+> > > > > 1) Whether multi-block LLP is supported by the DW DMA controller.
+> > > > > 2) Maximum DW DMA transfer block size.
+> > > > > Then I'll be able to use this information in the can_dma() callback to enable
+> > > > > the DMA xfers only for the safe transfers. Did you mean something like this when
+> > > > > you said "There's code for that bit already" ? If you meant the max_dma_len
+> > > > > parameter, then setting it won't work, because it just limits the SG items size
+> > > > > not the total length of a single transfer.
+> > > > >
+> > > > > So the question is of how to export the multi-block LLP flag from DW DMAc
+> > > > > driver. Andy?
+> > > > 
+> > > > I'm not sure I understand why do you need this being exported. Just
+> > > > always supply SG list out of single entry and define the length
+> > > > according to the maximum segment size (it's done IIRC in SPI core).
+> > > 
+> > > Finally I see your point. So you suggest to feed the DMA engine with SG list
+> > > entries one-by-one instead of sending all of them at once in a single
+> > > dmaengine_prep_slave_sg() -> dmaengine_submit() -> dma_async_issue_pending()
+> > > session. Hm, this solution will work, but there is an issue. There is no
+> > > guarantee, that Tx and Rx SG lists are symmetric, consisting of the same
+> > > number of items with the same sizes. It depends on the Tx/Rx buffers physical
+> > > address alignment and their offsets within the memory pages. Though this
+> > > problem can be solved by making the Tx and Rx SG lists symmetric. I'll have
+> > > to implement a clever DMA IO loop, which would extract the DMA
+> > > addresses/lengths from the SG entries and perform the single-buffer DMA 
+> > > transactions with the DMA buffers of the same length.
+> > > 
+> > > Regarding noLLP being exported. Obviously I intended to solve the problem in a
+> > > generic way since the problem is common for noLLP DW APB SSI/DW DMAC combination.
+> > > In order to do this we need to know whether the multi-block LLP feature is
+> > > unsupported by the DW DMA controller. We either make such info somehow exported
+> > > from the DW DMA driver, so the DMA clients (like Dw APB SSI controller driver)
+> > > could be ready to work around the problem; or just implement a flag-based quirk
+> > > in the DMA client driver, which would be enabled in the platform-specific basis
+> > > depending on the platform device actually detected (for instance, a specific
+> > > version of the DW APB SSI IP). AFAICS You'd prefer the later option. 
+> > 
+> > So, we may extend the struct of DMA parameters to tell the consumer amount of entries (each of which is no longer than maximum segment size) it can afford:
+> > - 0: Auto (DMA driver handles any cases itself)
+> > - 1: Only single entry
+> > - 2: Up to two...
+> 
+> It will left implementation details (or i.o.w. obstacles or limitation) why DMA
+> can't do otherwise.
+
+Sounds good. Thanks for assistance.
+
+-Sergey
+
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
