@@ -2,134 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E991D0133
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 23:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 931311D0154
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 23:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731567AbgELVr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 17:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731560AbgELVr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 17:47:56 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9005C061A0C
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 14:47:55 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id l73so949645pjb.1
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 14:47:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Uv52gchuUhEIM8QP1BdGMzRp2+Ut2TatOyzveq7OlWs=;
-        b=jkxjg0T2haVmUpTShuETFu1Wq++3MwjgbyneltOHIfk8XQsJNKxt922t1Ytvkm8wYD
-         RuA4OJxZWBa/vXJiaIIZHvY9Y6cbdCyREuLDwkiTLEgkpxB1w1x5Blst/fjWuwf3ERc/
-         bjUma8IUpfYR5TD4vtu6DAmnX6ipRd9lYuxZ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Uv52gchuUhEIM8QP1BdGMzRp2+Ut2TatOyzveq7OlWs=;
-        b=qnkTah3HNK48gSZPpIDVu30JsarqnOzrUfTz59UW/XuwNTnaicnsys2qIw/SstHRL+
-         Vj+W595NBCXlbL9nv66Ke05GWl4y5JxHcmIKD2PC7+kumbSaHTpZvyC6DGmYhWuikI+Z
-         FEAVn20Q/KN5IdjpDHoKxRRJfaIc6r3WyqSrLDjQMX5jvKmFV6zMRoSrBFmPusMFlwe+
-         qFLXin+L0fCS7/aTl/eDaX0mSLa3cXL3ynKtQ49EetUDhCMc7h+yJs5QkUNXUOE/LWeY
-         Dghymsokt9toi093ky2jJoU17+WMx1ny/67HA2b5R/Gz/he635GQqyn620ue2qgP7j3U
-         ZHWQ==
-X-Gm-Message-State: AGi0Pua6KIaOyT7op6gHeI6H0tLST6pjo7qWOerKeU7b9a++xbFUQBfg
-        DEQ6JqMMxvWQT0VJLV7B1oT62w==
-X-Google-Smtp-Source: APiQypJrjYK11lvG/VkCX0mmTLzIKKq0JSP9JmFg20XkcRaUfiuly0oHj8otgh7EUG0Oi/xXtpM8GA==
-X-Received: by 2002:a17:90b:957:: with SMTP id dw23mr31666614pjb.101.1589320075184;
-        Tue, 12 May 2020 14:47:55 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id 135sm12786295pfu.125.2020.05.12.14.47.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2020 14:47:54 -0700 (PDT)
-Date:   Tue, 12 May 2020 14:47:53 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, rjw@rjwysocki.net,
-        saravanak@google.com, sibis@codeaurora.org, robh+dt@kernel.org,
-        rnayak@codeaurora.org, bjorn.andersson@linaro.org,
-        vincent.guittot@linaro.org, jcrouse@codeaurora.org,
-        evgreen@chromium.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 08/10] cpufreq: dt: Validate all interconnect paths
-Message-ID: <20200512214753.GJ4525@google.com>
-References: <20200512125327.1868-1-georgi.djakov@linaro.org>
- <20200512125327.1868-9-georgi.djakov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200512125327.1868-9-georgi.djakov@linaro.org>
+        id S1731190AbgELVy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 17:54:26 -0400
+Received: from lists.gateworks.com ([108.161.130.12]:51387 "EHLO
+        lists.gateworks.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731171AbgELVyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 17:54:25 -0400
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by lists.gateworks.com with esmtp (Exim 4.82)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1jYctT-0007Fl-Pl; Tue, 12 May 2020 21:56:55 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] ARM: dts: imx6qdl-gw5910: add support for bcm4330-bt
+Date:   Tue, 12 May 2020 14:54:15 -0700
+Message-Id: <1589320455-23844-1-git-send-email-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
+The Sterling-LWB has a BCM4330 which has a UART based bluetooth
+HCI. Add support for binding to the bcm_hci driver to take care
+of handling the shutdown gpio and loading firmware.
 
-On Tue, May 12, 2020 at 03:53:25PM +0300, Georgi Djakov wrote:
-> Currently when we check for the available resources, we assume that there
-> is only one interconnect path, but in fact it could be more than one. Do
-> some validation to determine the number of paths and verify if each one
-> of them is available.
-> 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> ---
-> v8:
-> * New patch.
-> 
->  drivers/cpufreq/cpufreq-dt.c | 49 ++++++++++++++++++++++++++++++++----
->  1 file changed, 44 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/cpufreq-dt.c b/drivers/cpufreq/cpufreq-dt.c
-> index 4ecef3257532..3dd28c2c1633 100644
-> --- a/drivers/cpufreq/cpufreq-dt.c
-> +++ b/drivers/cpufreq/cpufreq-dt.c
-> @@ -91,12 +91,54 @@ static const char *find_supply_name(struct device *dev)
->  	return name;
->  }
->  
-> +static int find_icc_paths(struct device *dev)
-> +{
-> +	struct device_node *np;
-> +	struct icc_path **paths;
-> +	int i, count, num_paths;
-> +	int ret = 0;
-> +
-> +	np = of_node_get(dev->of_node);
-> +	if (!np)
-> +		return 0;
-> +
-> +	count = of_count_phandle_with_args(np, "interconnects",
-> +					   "#interconnect-cells");
-> +	of_node_put(np);
-> +	if (count < 0)
-> +		return 0;
-> +
-> +	/* two phandles when #interconnect-cells = <1> */
-> +	if (count % 2) {
-> +		dev_err(dev, "%s: Invalid interconnects values\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	num_paths = count / 2;
-> +	paths = kcalloc(num_paths, sizeof(*paths), GFP_KERNEL);
-> +	if (!paths)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < num_paths; i++) {
-> +		paths[i] = of_icc_get_by_index(dev, i);
-> +		ret = PTR_ERR_OR_ZERO(paths[i]);
-> +		if (ret)
-> +			break;
-> +	}
-> +
-> +	while (i--)
-> +		icc_put(paths[i]);
+Because the shutdown gpio is more of an enable than a regulator
+go ahead and replace the regulator with a shutdown-gpio.
 
-Since the function only does a validation and throws the paths away
-afterwards you don't really need the dynamic allocation and 'icc_put'
-loop. Just have a single 'struct icc_path' pointer and call icc_put()
-inside the for loop.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm/boot/dts/imx6qdl-gw5910.dtsi | 32 ++++++++++++--------------------
+ 1 file changed, 12 insertions(+), 20 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx6qdl-gw5910.dtsi b/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
+index 30fe47f..b850f8f 100644
+--- a/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
+@@ -83,19 +83,6 @@
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-always-on;
+ 	};
+-
+-	reg_bt: regulator-bt {
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_reg_bt>;
+-		compatible = "regulator-fixed";
+-		regulator-name = "bt";
+-		gpio = <&gpio1 2 GPIO_ACTIVE_HIGH>;
+-		startup-delay-us = <100>;
+-		enable-active-high;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		regulator-always-on;
+-	};
+ };
+ 
+ 
+@@ -231,9 +218,14 @@
+ /* Sterling-LWB Bluetooth */
+ &uart4 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_uart4>;
++	pinctrl-0 = <&pinctrl_uart4>,<&pinctrl_bten>;
+ 	uart-has-rtscts;
+ 	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm4330-bt";
++		shutdown-gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ /* GPS */
+@@ -288,6 +280,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_bten: btengrp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x1b0b1
++		>;
++	};
++
+ 	pinctrl_ecspi3: escpi3grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_DISP0_DAT0__ECSPI3_SCLK	0x100b1
+@@ -393,12 +391,6 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_reg_bt: regbtgrp {
+-		fsl,pins = <
+-			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x1b0b1
+-		>;
+-	};
+-
+ 	pinctrl_reg_wl: regwlgrp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_GPIO_5__GPIO1_IO05		0x1b0b1
+-- 
+2.7.4
+
