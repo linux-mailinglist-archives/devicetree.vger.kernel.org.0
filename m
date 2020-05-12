@@ -2,88 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A98B21CF48B
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E271CF4A8
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729524AbgELMim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 08:38:42 -0400
-Received: from mga04.intel.com ([192.55.52.120]:29143 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726891AbgELMim (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 08:38:42 -0400
-IronPort-SDR: VkWmPzneX9LNlzsLsx8GQeQd3rKF1ORl72YYX8j04ijjXT13G4NUUbuY7ZB8n5WD7TVCeuf/b6
- 0IWLU0De3VzQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2020 05:38:41 -0700
-IronPort-SDR: pjLjBdE9D2a4APL55HZwnwPVi9BgWVq/KAIUuq5ZJlncezMc2fiRyJtto+cb2MGsL2bfk5r8Pf
- kv0Qg0HksgfA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; 
-   d="scan'208";a="262108558"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003.jf.intel.com with ESMTP; 12 May 2020 05:38:37 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jYUBE-006CfE-IT; Tue, 12 May 2020 15:38:40 +0300
-Date:   Tue, 12 May 2020 15:38:40 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dan Williams <dan.j.williams@intel.com>,
-        linux-mips@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: dma: dw: Add max burst transaction
- length property
-Message-ID: <20200512123840.GY185537@smile.fi.intel.com>
-References: <20200306131048.ADBE18030797@mail.baikalelectronics.ru>
- <20200508105304.14065-1-Sergey.Semin@baikalelectronics.ru>
- <20200508105304.14065-3-Sergey.Semin@baikalelectronics.ru>
- <20200508111242.GH185537@smile.fi.intel.com>
- <20200511200528.nfkc2zkh3bvupn7l@mobilestation>
- <20200511210138.GN185537@smile.fi.intel.com>
- <20200511213531.wnywlljiulvndx6s@mobilestation>
- <20200512090804.GR185537@smile.fi.intel.com>
- <20200512114946.x777yb6bhe22ccn5@mobilestation>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200512114946.x777yb6bhe22ccn5@mobilestation>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+        id S1727859AbgELMqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 08:46:54 -0400
+Received: from mailout2.hostsharing.net ([83.223.78.233]:34385 "EHLO
+        mailout2.hostsharing.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727783AbgELMqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 08:46:54 -0400
+X-Greylist: delayed 392 seconds by postgrey-1.27 at vger.kernel.org; Tue, 12 May 2020 08:46:53 EDT
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
+        by mailout2.hostsharing.net (Postfix) with ESMTPS id 4DC951037030B;
+        Tue, 12 May 2020 14:40:18 +0200 (CEST)
+Received: from localhost (pd95be530.dip0.t-ipconnect.de [217.91.229.48])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by h08.hostsharing.net (Postfix) with ESMTPSA id ED7D5627549D;
+        Tue, 12 May 2020 14:40:17 +0200 (CEST)
+X-Mailbox-Line: From dafe8ecb9897efdbe530667657377ba96c43b8c7 Mon Sep 17 00:00:00 2001
+Message-Id: <cover.1589285873.git.lukas@wunner.de>
+From:   Lukas Wunner <lukas@wunner.de>
+Date:   Tue, 12 May 2020 14:40:00 +0200
+Subject: [PATCH v2 0/4] rs485 bus termination GPIO
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>
+Cc:     "Matwey V. Kornilov" <matwey@sai.msu.ru>,
+        Giulio Benetti <giulio.benetti@micronovasrl.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 12, 2020 at 02:49:46PM +0300, Serge Semin wrote:
-> On Tue, May 12, 2020 at 12:08:04PM +0300, Andy Shevchenko wrote:
-> > On Tue, May 12, 2020 at 12:35:31AM +0300, Serge Semin wrote:
-> > > On Tue, May 12, 2020 at 12:01:38AM +0300, Andy Shevchenko wrote:
-> > > > On Mon, May 11, 2020 at 11:05:28PM +0300, Serge Semin wrote:
-> > > > > On Fri, May 08, 2020 at 02:12:42PM +0300, Andy Shevchenko wrote:
-> > > > > > On Fri, May 08, 2020 at 01:53:00PM +0300, Serge Semin wrote:
+Define a device tree binding for an rs485 bus termination GPIO
+(patch [3/4]), amend the serial core to retrieve the GPIO from
+the device tree and amend the default ->rs485_config() callback
+for 8250 drivers to change the GPIO on request from user space
+(patch [4/4]).
 
-...
+Retrieving the GPIO from the device tree may fail, so allow
+uart_get_rs485_mode() to return an errno and change all callers
+to check for failure (patch [2/4]).
 
-I leave it to Rob and Vinod.
-It won't break our case, so, feel free with your approach.
+Fix a bug in the 8250 core if retrieval of the GPIO initially
+fails with -EPROBE_DEFER and is later retried (patch [1/4]).
 
-P.S. Perhaps at some point we need to
-1) convert properties to be u32 (it will simplify things);
-2) convert legacy ones to proper format ('-' instead of '_', vendor prefix added);
-3) parse them in core with device property API.
+
+Changes v1 -> v2:
+
+Patch [1/4]:
+* Drop unnecessary "else" after "if ... goto" statement. (Andy)
+* Document applicability to older kernels in commit message. (Andy)
+* Add Fixes tag. (Andy)
+
+Patch [4/4]:
+* Drop unnecessary devm_gpiod_put(). (Andy)
+* Use GPIOD_OUT_LOW macro for brevity. (Andy)
+* Document the rationale for disabling termination by default.
+* Drop nonsensical read of GPIO after setting its direction to out.
+
+
+Link to v1:
+https://lore.kernel.org/linux-serial/cover.1588505407.git.lukas@wunner.de/
+
+
+Lukas Wunner (4):
+  serial: 8250: Avoid error message on reprobe
+  serial: Allow uart_get_rs485_mode() to return errno
+  dt-bindings: serial: Add binding for rs485 bus termination GPIO
+  serial: 8250: Support rs485 bus termination GPIO
+
+ .../devicetree/bindings/serial/rs485.yaml     |  4 ++++
+ drivers/tty/serial/8250/8250_core.c           | 18 ++++++++++-----
+ drivers/tty/serial/8250/8250_port.c           |  4 ++++
+ drivers/tty/serial/ar933x_uart.c              |  6 +++--
+ drivers/tty/serial/atmel_serial.c             |  6 +++--
+ drivers/tty/serial/fsl_lpuart.c               |  5 ++++-
+ drivers/tty/serial/imx.c                      |  6 ++++-
+ drivers/tty/serial/omap-serial.c              |  4 +++-
+ drivers/tty/serial/serial_core.c              | 22 ++++++++++++++++++-
+ drivers/tty/serial/stm32-usart.c              |  8 +++----
+ include/linux/serial_core.h                   |  4 +++-
+ 11 files changed, 69 insertions(+), 18 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.26.2
 
