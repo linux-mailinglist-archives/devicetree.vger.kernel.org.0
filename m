@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E90E1CFF2F
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 22:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00BC71CFF29
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 22:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729656AbgELU0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 16:26:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37294 "EHLO
+        id S1728882AbgELU0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 16:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729181AbgELU0r (ORCPT
+        by vger.kernel.org with ESMTP id S1725950AbgELU0O (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 16:26:47 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1EE6C061A0E
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 13:21:05 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id m7so5884276plt.5
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 13:21:05 -0700 (PDT)
+        Tue, 12 May 2020 16:26:14 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4BBC05BD0D
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 13:26:13 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id a4so6712373pgc.0
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 13:26:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=72idvkPptmj1azU8rAtl48UwMaAUDdF2tMlyiTXbnO4=;
-        b=PqfkBtYQ1kGKKPCnNm4FQaAcD/duxrZ0D+KqZulhbu60V+BUGbU3hkn+7OlOnT7Rvd
-         TUuOw5ILHWJELrrGFl9NAjuOfL+avlMHcvT05sn6egYjgVnmjtwN5B4Y5YJmes4f83j2
-         jzUB2wKtNIHUs2AzJNj8IAX12teZOpIrsw5OpU02cadd3MzdcvySCv90rrQP/h2FD5nN
-         QZ1r1MIMWeFFA970hWjba9RpjQ0M4VmCQtQ6om1dhBKUz97cRWwmNRmnaedj+c2Hpvv3
-         aoYUwWwZu72kykMmaDgwibTh+fJ8dRyoDmx4zSqJsCDuDEuhJhSnyPyY/Qfo0PGlvwms
-         URYA==
+        bh=Hf8u/FwaVvgqSOEmZzk2sCNjlpK0lHpr3UPDWazaR2Y=;
+        b=QoxeALWt+Phg1Y5xvPvc+yC7kf1URW8QNGvYGTgTMMk4y+joJOQE4ELuLbGz/AH6Wx
+         qyMEEw/soOeEyWq/iR9/lTFpmGOAM5E4u8JIG8A0y9so1cosGrif3WovUtsasZ1xgtUu
+         oDLD6aEF7Fz4y/PlZVTNm7Jr6PrDzNzYyiErKAqJulvMkw1tMvxrHCP2xHmjd3IPu+Ft
+         OffkO1M6BYxqWTwoLBAwVM6U/15XwO/YMM+LXMZAsew1ZO7e5apTnqnhdYN4Iqo4jwSE
+         aeWfJ0rg5hcJnDmeW4Rb7UKX66yFSrcvN+hzLIXwXlEThvrYsBAjS5kOJwhaBlC1brr+
+         YyGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=72idvkPptmj1azU8rAtl48UwMaAUDdF2tMlyiTXbnO4=;
-        b=Sy8Ly9C68jsbRBw8mZsccnTpcm4Q8TWiEbTzn7OB/LNvmNzCflr1hy7H6rJWpjaQ4s
-         8eXMBdTnxMK36ih7eGqw8G8/IAKO8Q+8goLQInbsT01RQyKrB5/vkplVCXy1Iyq2/unb
-         2Xnd37nnouLtRCf5DQNW15Dw5cHfE452qpGdzbK/2anZ5iivyuvkSA4Ng22F6E/yBSDd
-         8Fe0tKvbAd53xDCnbRiBIivwLeOMdOEUs5sUN3HJ+p1mbtDPWsO+8gnYi9eggg+1wyJk
-         UvAXs1/QHCUwNZ+/veBPImLjpYaJ61Jtf4h8Ou3Av9etzJ1aGpgo/cZwLZtDhUIUM29A
-         7dcg==
-X-Gm-Message-State: AGi0PuZaKrMRf4Prw/in1k5ZR9s6Zdb5ecBCUoIT/hjYCOFEMClpkFPf
-        qAKQK5ZxAIBtgoKQpGQc2nCJcQ==
-X-Google-Smtp-Source: APiQypLSU4mmFZVr2gVYe8hrtjzekUuVMmUf92oq/XmFxexZYGEEojsaDEN5PnC7TLeYTd7zUpFrmQ==
-X-Received: by 2002:a17:90a:80c2:: with SMTP id k2mr30090534pjw.6.1589314865246;
-        Tue, 12 May 2020 13:21:05 -0700 (PDT)
+        bh=Hf8u/FwaVvgqSOEmZzk2sCNjlpK0lHpr3UPDWazaR2Y=;
+        b=phR8pPVduTN/i890XIL1kcscaMu6QyOohY7yJkseaXc9cCKE5SlgRBOnML35wvFWXL
+         mcxWWmKkCK5kGwrmSIDIVV6TyHW1v5Bmf5huz4/fLm5Lv71Xb3Xb4iDKsqtUrff7DhA7
+         1Btw4hzQQSX2+UJcotq6B92TiwQOR/Xf2adtdf46oAuLEwVcyxQEAM/GXbdfuXVMDxSF
+         O6r6XQIbzjdKQZUgXpV3oSx6e7u3R14bamZSdISlpZLo2aQ+ihdt+0xdVphQiqM5uyxk
+         dZeSam7xNk8Ng+BSgU4CDG6x2nZNmw4xGxpq/8AG1mocqhMC6+gxG+E5V13WIjDUx6Fy
+         QHsg==
+X-Gm-Message-State: AGi0PuYA6a7yoHPyMS1sF8gxRpuwy3Q19mNcveuFKuVaYiiEb9K2t2TL
+        zTnA54z/3CD4AgJta8CHZYy6hQ==
+X-Google-Smtp-Source: APiQypKvP4JTRPU10Z/QlH/qaxqh9uVfwanejPjs00mSq7UCRg1PX40Nu6fqh0g8byS2KINrwXw8Tg==
+X-Received: by 2002:a63:180a:: with SMTP id y10mr22641316pgl.204.1589315172346;
+        Tue, 12 May 2020 13:26:12 -0700 (PDT)
 Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id u5sm11055229pgi.70.2020.05.12.13.21.03
+        by smtp.gmail.com with ESMTPSA id r26sm13066527pfq.75.2020.05.12.13.26.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2020 13:21:04 -0700 (PDT)
-Date:   Tue, 12 May 2020 13:19:31 -0700
+        Tue, 12 May 2020 13:26:11 -0700 (PDT)
+Date:   Tue, 12 May 2020 13:24:39 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
 Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
         robh+dt@kernel.org, jassisinghbrar@gmail.com,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 7/8] mailbox: qcom: Add ipq6018 apcs compatible
-Message-ID: <20200512201931.GJ2165@builder.lan>
+Subject: Re: [PATCH V4 8/8] arm64: dts: ipq6018: Add a53 pll and apcs clock
+Message-ID: <20200512202439.GK2165@builder.lan>
 References: <1588573224-3038-1-git-send-email-sivaprak@codeaurora.org>
- <1588573224-3038-8-git-send-email-sivaprak@codeaurora.org>
+ <1588573224-3038-9-git-send-email-sivaprak@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1588573224-3038-8-git-send-email-sivaprak@codeaurora.org>
+In-Reply-To: <1588573224-3038-9-git-send-email-sivaprak@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -70,97 +70,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun 03 May 23:20 PDT 2020, Sivaprakash Murugesan wrote:
 
-> The Qualcomm ipq6018 has apcs block, add compatible for the same.
-> Also, the apcs provides a clock controller functionality similar
-> to msm8916 but the clock driver is different.
-> 
-> Create a child platform device based on the apcs compatible for the
-> clock controller functionality.
+> add support for apps pll and apcs clock.
 > 
 > Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
 > ---
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 26 +++++++++++++++++---------
->  1 file changed, 17 insertions(+), 9 deletions(-)
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> index eeebafd..7c0c4b0 100644
-> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> @@ -45,6 +45,16 @@ static const struct mbox_chan_ops qcom_apcs_ipc_ops = {
->  	.send_data = qcom_apcs_ipc_send_data,
->  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 1aa8d85..af2ceeb 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -294,12 +294,22 @@
+>  		};
 >  
-> +static const struct of_device_id apcs_clk_match_table[] = {
-> +	{ .compatible = "qcom,msm8916-apcs-kpss-global",
-> +	  .data = "qcom-apcs-msm8916-clk", },
+>  		apcs_glb: mailbox@b111000 {
+> -			compatible = "qcom,ipq8074-apcs-apps-global";
+> -			reg = <0x0b111000 0xc>;
+> -
+> +			compatible = "qcom,ipq6018-apcs-apps-global";
+> +			reg = <0x0b111000 0x1000>;
 
-These are easier to read if you ignore the 80-char limit.
-Unless Jassi's object that is.
+My documentation states that IPQ8074 indeed has this block at
+0x0b111000, but IPQ6018 it's at 0x6b111000. Can you confirm this is
+correct? Same with the pll below.
 
-> +	{ .compatible = "qcom,qcs404-apcs-apps-global",
-> +	  .data = "qcom-apcs-msm8916-clk", },
-> +	{ .compatible = "qcom,ipq6018-apcs-apps-global",
-
-Add your entry on top, to maintain sort order.
-
-> +	  .data = "qcom,apss-ipq-clk", },
-> +	{}
-> +};
-> +
->  static int qcom_apcs_ipc_probe(struct platform_device *pdev)
->  {
->  	struct qcom_apcs_ipc *apcs;
-> @@ -54,11 +64,7 @@ static int qcom_apcs_ipc_probe(struct platform_device *pdev)
->  	void __iomem *base;
->  	unsigned long i;
->  	int ret;
-> -	const struct of_device_id apcs_clk_match_table[] = {
-> -		{ .compatible = "qcom,msm8916-apcs-kpss-global", },
-> -		{ .compatible = "qcom,qcs404-apcs-apps-global", },
-> -		{}
-> -	};
-> +	const struct of_device_id *clk_device;
->  
->  	apcs = devm_kzalloc(&pdev->dev, sizeof(*apcs), GFP_KERNEL);
->  	if (!apcs)
-> @@ -93,11 +99,12 @@ static int qcom_apcs_ipc_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	if (of_match_device(apcs_clk_match_table, &pdev->dev)) {
-> +	clk_device = of_match_device(apcs_clk_match_table, &pdev->dev);
-
-Better use of_device_match_data() and get the string directly (or NULL).
-
-> +	if (clk_device) {
->  		apcs->clk = platform_device_register_data(&pdev->dev,
-> -							  "qcom-apcs-msm8916-clk",
-> -							  PLATFORM_DEVID_NONE,
-> -							  NULL, 0);
-> +						(const char *)clk_device->data,
-> +						PLATFORM_DEVID_NONE,
-> +						NULL, 0);
-
-I didn't apply the patch to look for myself, but please ensure to
-maintain indentation to follow the parenthesis on the line before.
-
->  		if (IS_ERR(apcs->clk))
->  			dev_err(&pdev->dev, "failed to register APCS clk\n");
->  	}
-> @@ -127,6 +134,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
->  	{ .compatible = "qcom,sdm845-apss-shared", .data = (void *)12 },
->  	{ .compatible = "qcom,sm8150-apss-shared", .data = (void *)12 },
->  	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = (void *)8 },
-> +	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = (void *)8 },
-
-Add it one line up and you'll maintain partial sorting...
+Apart from that the patch looks good.
 
 Regards,
 Bjorn
 
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, qcom_apcs_ipc_of_match);
+> +			#clock-cells = <1>;
+> +			clocks = <&apsspll>, <&xo>;
+> +			clock-names = "pll", "xo";
+>  			#mbox-cells = <1>;
+>  		};
+>  
+> +		apsspll: clock@b116000 {
+> +			compatible = "qcom,ipq-apss-pll";
+> +			reg = <0x0b116000 0x40>;
+> +			#clock-cells = <0>;
+> +			clocks = <&xo>;
+> +			clock-names = "xo";
+> +		};
+> +
+>  		timer {
+>  			compatible = "arm,armv8-timer";
+>  			interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
 > -- 
 > 2.7.4
 > 
