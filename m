@@ -2,152 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CC591CF4EE
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0AB1CF50B
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:56:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730011AbgELMyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 08:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730013AbgELMyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 08:54:17 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9EA3C05BD12
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:15 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id g12so23128114wmh.3
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fvKbAOWfl/knTZNX27VnXfewubIaPbz+/XetIklYZ7g=;
-        b=CtAO3vqc/5ciyMQoZsCfVYtGsZMc+eGRSXx8OOoeAcTbEVI4XVBa71bqTsRSIHZ0gK
-         cIoZxWJLoMHxPgfW90arxdJ8OlAjwSTl9umY/OPCe30eJ/bW7vTcQkNceICuv313oULW
-         TOGrpVNZ9fr3FpbebaRAGuhnQhXb7jCQv3QOwonNO2kt4Ps1rNkm//Xwdg34qLqRAsiw
-         ZF0XfOyfRoK6lhpW+QCop6SAla1XYxNLOWCXFpFzGfqvQkIGLdm42P0TaQuoqZBRveos
-         tJhRidy4xOS3ok+vXCq8VghzXgIU1qoCXK7qMumPAlU/3O+ElEbAbTKGV5pfpG4mgQ0B
-         137Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fvKbAOWfl/knTZNX27VnXfewubIaPbz+/XetIklYZ7g=;
-        b=uZ5kzvRrcW/iqmb0MRgAY3/yR40moqTUDa7uv4AAKSCnCsvN90ClbpSbqQPx2n6sh4
-         /3j3qn2q1QwOBXkPuXLVbTEdmvdr4tP91RedYpTzUa4MTT6waNHYL4C6Sv5FkiY8A3yW
-         Mp7vGGrqWHe5ahIFgd0oCmXg8EUeGr5tiUuNbk7vNjl4i8b4gWQUdVHm274iEjxbS+AV
-         ysDf5J9A/YT7uDUk7cBgfvj6Bk4FkWYFVs/q87/dB4WySleZ5YxP6ixbZucL4gM505Yv
-         EwjY8rlSEM3G3TUPOzQCI9c3ThA1O9Ar0bVj4p7bq7NS6X3kWAmTfeZPqXSldGe21YVh
-         WZaw==
-X-Gm-Message-State: AOAM533Yh/dVXRMHlt3Bdw617umrNpJ1SU8gYseQtJG2jcklV4LmHC5U
-        PJDbJfls76a5zI16vsJ1saEZ4Q==
-X-Google-Smtp-Source: ABdhPJwY/a0cn3q6lCGX60mZA2InAaE/IzVG1DBnCICgZqVoe54tj6ukY4c547zEb5HQfe3aDNwFYA==
-X-Received: by 2002:a1c:444:: with SMTP id 65mr351423wme.21.1589288054568;
-        Tue, 12 May 2020 05:54:14 -0700 (PDT)
-Received: from localhost.localdomain (212-39-89-66.ip.btc-net.bg. [212.39.89.66])
-        by smtp.googlemail.com with ESMTPSA id n13sm2433938wrs.2.2020.05.12.05.54.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 12 May 2020 05:54:13 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, rjw@rjwysocki.net,
-        saravanak@google.com, sibis@codeaurora.org, mka@chromium.org
-Cc:     robh+dt@kernel.org, rnayak@codeaurora.org,
-        bjorn.andersson@linaro.org, vincent.guittot@linaro.org,
-        jcrouse@codeaurora.org, evgreen@chromium.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, georgi.djakov@linaro.org
-Subject: [PATCH v8 10/10] OPP: Add support for setting interconnect-tags
-Date:   Tue, 12 May 2020 15:53:27 +0300
-Message-Id: <20200512125327.1868-11-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200512125327.1868-1-georgi.djakov@linaro.org>
-References: <20200512125327.1868-1-georgi.djakov@linaro.org>
+        id S1728283AbgELM4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 08:56:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35490 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728085AbgELM4o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 May 2020 08:56:44 -0400
+Received: from localhost (p54B332DE.dip0.t-ipconnect.de [84.179.50.222])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 850FC206D3;
+        Tue, 12 May 2020 12:56:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589288204;
+        bh=cPsBmJJP+6Qh3Vr+QAI5Nhxpl2klgoaErTdBEfzdb3A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ibwhBXiYDwV9QFOHLmZFFBH+jOyNvDQbE8vRWjcP+eN8gp8AOyC1qSCKJpB9zTxGx
+         DRc3mHF0NjU/ZBpacfA5XfGyN4eKkhAOeZJd5eqw2s2EmcpMAInkBdj+57TdXoB/GZ
+         EoTOiondY6Zr0rtu0nfGAPKtskQaTFYXKkH/kgYw=
+Date:   Tue, 12 May 2020 14:56:41 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: eeprom: at24: Fix list of page sizes for
+ writing
+Message-ID: <20200512125641.GA13516@ninjato>
+References: <20200512122450.20205-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZGiS0Q5IWpPtfppv"
+Content-Disposition: inline
+In-Reply-To: <20200512122450.20205-1-geert+renesas@glider.be>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sibi Sankar <sibis@codeaurora.org>
 
-Add support for setting tags on icc paths associated with
-the opp_table.
+--ZGiS0Q5IWpPtfppv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
-v8:
-* New patch, picked from here:
-  https://lore.kernel.org/r/20200504202243.5476-11-sibis@codeaurora.org
+On Tue, May 12, 2020 at 02:24:47PM +0200, Geert Uytterhoeven wrote:
+> "258" is an odd power-of-two ;-)
 
- drivers/opp/of.c | 24 +++++++++++++++++++-----
- 1 file changed, 19 insertions(+), 5 deletions(-)
+Geez, you got two additional for free, Geert ;)
 
-diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-index 3a64f2aa0f86..fd148d54022f 100644
---- a/drivers/opp/of.c
-+++ b/drivers/opp/of.c
-@@ -336,6 +336,7 @@ int _of_find_icc_paths(struct opp_table *opp_table, struct device *dev)
- {
- 	struct device_node *np;
- 	int ret, i, count, num_paths;
-+	u32 tag;
- 
- 	np = of_node_get(dev->of_node);
- 	if (!np)
-@@ -344,20 +345,25 @@ int _of_find_icc_paths(struct opp_table *opp_table, struct device *dev)
- 	count = of_count_phandle_with_args(np, "interconnects",
- 					   "#interconnect-cells");
- 	of_node_put(np);
--	if (count < 0)
--		return 0;
-+	if (count < 0) {
-+		ret = 0;
-+		goto put_np;
-+	}
- 
- 	/* two phandles when #interconnect-cells = <1> */
- 	if (count % 2) {
- 		dev_err(dev, "%s: Invalid interconnects values\n", __func__);
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto put_np;
- 	}
- 
- 	num_paths = count / 2;
- 	opp_table->paths = kcalloc(num_paths, sizeof(*opp_table->paths),
- 				   GFP_KERNEL);
--	if (!opp_table->paths)
--		return -ENOMEM;
-+	if (!opp_table->paths) {
-+		ret = -ENOMEM;
-+		goto put_np;
-+	}
- 
- 	for (i = 0; i < num_paths; i++) {
- 		opp_table->paths[i] = of_icc_get_by_index(dev, i);
-@@ -369,8 +375,14 @@ int _of_find_icc_paths(struct opp_table *opp_table, struct device *dev)
- 			}
- 			goto err;
- 		}
-+
-+		/* Set tag if present */
-+		if (!of_property_read_u32_index(np, "interconnect-tags",
-+						i, &tag))
-+			icc_set_tag(opp_table->paths[i], tag);
- 	}
- 	opp_table->path_count = num_paths;
-+	of_node_put(np);
- 
- 	return 0;
- 
-@@ -380,6 +392,8 @@ int _of_find_icc_paths(struct opp_table *opp_table, struct device *dev)
- 
- 	kfree(opp_table->paths);
- 	opp_table->paths = NULL;
-+put_np:
-+	of_node_put(np);
- 
- 	return ret;
- }
+> Obviously this is a typo, and the intended value is "256".
+
+Obviously.
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+
+--ZGiS0Q5IWpPtfppv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl66nQUACgkQFA3kzBSg
+KbYQ9BAAsuHP4dwKs2aleW0gb7U53oIvcbFwy0rSjBmVkldgihRfBx5Tu2hI9Lfb
+Whxarj5wOBXk/WPiT1ReJ0NW22S5QcXuHp8oWeqDAWHoe0s1Yx5X2qa88/xA1PzL
+w9DL3TdufvugzDjYgnEqyM+LuEklkma1HGOU8QVYD2s/ol2KtKM4k0v9y10TnLPr
+nw9vJFEd3CMC3Dnw+dh121r+LjQ0mv8+HpwRyLoTB8IRs/2vhryb0795VeFCZgYs
+WxuakNEDDoraOwehY8cQ9m7nkQFRMD3h6LpbQbiWBih+lflcsl9ZcOarGroo0gRz
+G3Wr3pdXR5+ZaGLzAysKfGTHtUGMMqhmaL4KpXJhI1EjHCmr1jm960Dc027fvc4l
+itYNzKdJYIuaxUU/sQmKowP0kd68iGl2M5IBy9snHEfjDqkyTT3aiJZ8vsjGKMuT
+hfwNHlU7FBTeJVo0zVgm7zeFxMLnOsC1pWrswyaVKBSpBtluRATKXEXExp7RJyC3
+E/xQgpmK/AiPLT/5BYMDdfb0b3AzBS3GRN2nk4pNMvxinXVQZYyce9AqWmTi4+UC
++74RI0yqaFWdDNwdi5uPOEGcmQu+xJpxgM49xzXkSum2v0RbGFbH5wQVbjwAHMi/
+KdLM8OMTz6oibAytH3W3TBeSbp7HSmw3hICNNcoYECpP/8zhMIA=
+=Tjw4
+-----END PGP SIGNATURE-----
+
+--ZGiS0Q5IWpPtfppv--
