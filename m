@@ -2,69 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 655BE1CEE6A
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 09:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5BC1CEE89
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 09:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728416AbgELHpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 03:45:36 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:33396 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725823AbgELHpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 03:45:36 -0400
-Received: from flygoat-x1e (unknown [IPv6:2409:891e:6960:188a:d689:51ea:9df3:fb0d])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 1B86220EF2;
-        Tue, 12 May 2020 07:45:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1589269536; bh=gLTp49mpZiT1mKN/xk1CeZnPzNwoQHdm6EUF8eGHTgM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rG40wsRKJ6uQTQ64Ys7UF25V9HsQSUtEkolqpkkodA0hksCCNXDd6+CMEkDxM2mWt
-         JcnEQgE8RR0iBu+UZig2p4t4R6KAN3oZkck/FQwI+yvJUSjjQR3qKSJkd1vtAtqvW6
-         TtLbxnuo7qfN+yRteAFbsND/vT3Qz5It6srkI2ojM9+rznRz92kwOQtM9OSJewU0T7
-         5JB+IYwEwHYS2sRKiI1ptPNBtWJgX4rnrnxi+7eKsX8TsEZZmH0Oz7xgY2mgs03k/z
-         Q4FUw0T9G+/iWgewqq/8SKdTXED+rQBvdyNJX8TxUosSLjDdZ+JNWsf3LF8EtUtkMh
-         TUOZkArcudZHQ==
-Date:   Tue, 12 May 2020 15:45:21 +0800
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     maz@kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] irqchip: Add Loongson HyperTransport Vector
- support
-Message-ID: <20200512154521.7d3c47b6@flygoat-x1e>
-In-Reply-To: <20200501092139.2988670-1-jiaxun.yang@flygoat.com>
-References: <20200422142428.1249684-1-jiaxun.yang@flygoat.com>
-        <20200501092139.2988670-1-jiaxun.yang@flygoat.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726193AbgELHuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 03:50:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725813AbgELHuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 03:50:15 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4795BC05BD09
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 00:50:15 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id 188so9717634lfa.10
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 00:50:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=0WcvL1fwWHBcoJrzzXl8Y9z1jSMK5TQ31/Tsh0Md1tM=;
+        b=lNCp3F2Ygx600BVUbC8Dg65qCe8TRx2s/0qFe+EqHdwdxv8YFEdJi6IcfbzWVt2HMY
+         MalNqPo0hm6pS+0/z3OeeB9uZfVhY09wz6Di5PMa/AW14vJUx72Kf52Zbt0ijbNPSCFW
+         jxBe1qKSLXTDwcfPqRa14svgGfsA4qQ4zAdmGPrrCVk42hnFa6qnDI+WmBD2TU3kx1CX
+         1yXMOF/tFh6ipOPxz/o0vqXDO0wD+mraXvv02dfmalJ78h04Lw+15lAQtS24wuJvb2gr
+         RkZ0SAcnyQgKHD+Rn2r8MZE0HzLSK3hhMf/tZuc2DoDnA+EDkvHt5TBXt94hi3IV5Oxt
+         0HiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0WcvL1fwWHBcoJrzzXl8Y9z1jSMK5TQ31/Tsh0Md1tM=;
+        b=ZFt5xxB6pWUsFM+/GQi2bcggY1YPVyJuZ0QEg8W46Dx3PT6lOkCBEwy+8XH5GrYBHu
+         U2P6AIFVzY7trpyfCsEDxNRan4KdRhkxIk4oNilVbyBROIbu2JhKFe4jkQ8gRoFdJZt2
+         OOEOT8rCShdt1np5MLx5uFACHWerzhCxGw0fVHp30dfwa3c+0o/lnxkWE9defQWBQlMh
+         nCMCgYXJhnAAyk2tSfgYsTaS89/MLMCMZrn81IryysjN3h0YDDaYDNvuB8F9jlOT4hS3
+         eUebSWy0X1S9U2rr17IQu4upW5giVbwAcoh/UEXga2U8/v9daM7shpttx0xcAmm3yiZd
+         nA9g==
+X-Gm-Message-State: AOAM530ZxXFrrxN6T19kgjCFg0N/mZuQVP2MKDPmriLMauHoa/fo4DqR
+        n5ccFWizeeOnq31CvT0MfGbNf+Aa0GjxBQ==
+X-Google-Smtp-Source: ABdhPJz1U/AKQVEmTfopcIhAFk7bSfKlU8QA5XuMgd57DBQmKEFzrpOVHrwsLbl+e3E3ff+YR113KA==
+X-Received: by 2002:ac2:5199:: with SMTP id u25mr13532900lfi.80.1589269813516;
+        Tue, 12 May 2020 00:50:13 -0700 (PDT)
+Received: from ?IPv6:2a00:1fa0:61b:c4fe:68d6:9937:777b:c884? ([2a00:1fa0:61b:c4fe:68d6:9937:777b:c884])
+        by smtp.gmail.com with ESMTPSA id y129sm13395002lfc.23.2020.05.12.00.50.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 May 2020 00:50:12 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: sh_eth: Sort compatible string in increasing
+ number of the SoC
+To:     Rob Herring <robh@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Simon Horman <horms+renesas@verge.net.au>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org
+References: <1587724695-27295-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200511212204.GA1071@bogus>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <bba5ab6f-d077-544a-5085-4f7cdc9aa0ca@cogentembedded.com>
+Date:   Tue, 12 May 2020 10:50:06 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20200511212204.GA1071@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  1 May 2020 17:21:32 +0800
-Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+Hello!
 
-> This controller appears on Loongson-3 chips for receiving interrupt
-> vectors from PCH's PIC and PCH's PCIe MSI interrupts.
+On 12.05.2020 0:22, Rob Herring wrote:
+
+>> Sort the items in the compatible string list in increasing number of SoC.
+>>
+>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/renesas,ether.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
 > 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-> v2:
-> 	- Style cleanup
-> 	- Set ack callback and set correct edge_irq handler
-> 
-> v3:
-> 	- Correct bitops in ACK callback
+> Applied, thanks!
 
-Any update about v3?
+    Mhm, there was v2 with a corrected subject?
 
-Thanks.
-
-[...]
---
-Jiaxun Yang
+MBR, Sergei
