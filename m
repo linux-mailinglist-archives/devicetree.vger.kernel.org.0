@@ -2,136 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 218341CEE2E
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 09:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C94101CEE43
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 09:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729143AbgELHev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 03:34:51 -0400
-Received: from mail-eopbgr60063.outbound.protection.outlook.com ([40.107.6.63]:46131
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729105AbgELHes (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 03:34:48 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IoEVtvLIAmUuYT7w/KEoXjGC8LZVhy6FhGzHDQZNwfetg7nM5nrT0Ed7BgKmi/GzgfsA+ZSEhLCIX3XSDnMf4BInm5xrXchmkgxgwf1DwydyyE4W9j74E9Z6b/x2R2wV5nAsTvHWfC3r7xwJMBcdYyfmYLXw2czVdnzOxRWg8eothAaGJM70n8V4ShNcgIcvVwIZVV0whqP4T/zBa95K2UvFzmvMsQAejBNMK0a7/Ch0lJPlf7I8HT7MhfbChCszFX5LAW/JTo+QWg8Yu57NP5HF3/1sMX4mgsa3PmNd4UzAbs9GiGJHfaLdXM2UIrcbu2pX8CMaYi+KmOZwsxn1Xg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UbE94RXXb1PGc57/+DWQQG3Qm5eLZrZMgFVcM//jU8s=;
- b=JMnTHZ4B/ETda53Osu1G+WxbZRrPVMsOXBTWlCjm+WIBlPhO0dbYKtSFawCxakiBaThNMzjLubyZ7UViEbeyrc/P1TtOl5rUunV2ESUw+zd1NVFFxQxHxeOqZGDcolQJ5J2RmYY1Gi9AMnGnLgmxq+PahajOkxmsabIvC4bClB7hVbOQfUc5mtSJZ3+ojRWsz2FVsIjwyAfpuFXy/hnLiDcnzCgnEAAHjDab6yJO1qPU1ZIXJAaHOcU/6YRheG/Qvzm8vBi3H0//Q1CFe5FPV8b0KbiHjgNbp5BRFV0ufI+jwCOg4P5tQyamxyOJzd42bFKIx4A/zt6LwHJ8kwz56A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UbE94RXXb1PGc57/+DWQQG3Qm5eLZrZMgFVcM//jU8s=;
- b=ckBD9Rn+BKeqivtp3sRYbYQ7FL7rlJTaD/jEP5H1LqwCOdBM4L1o14JZsiK6732IORdJN9OF7sIzoEflDLv9Z83Y31du72y+TDUTsA1T1Q8mHWQVUwkpOXNA1NbnYIDJLxB8JoGC2vMLa0dEHF1cwW9CiZfWKv5P60karHKB9y4=
-Authentication-Results: huawei.com; dkim=none (message not signed)
- header.d=none;huawei.com; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB8PR04MB5882.eurprd04.prod.outlook.com (2603:10a6:10:ae::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.26; Tue, 12 May
- 2020 07:34:44 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::2924:94ba:2206:216e]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::2924:94ba:2206:216e%6]) with mapi id 15.20.2979.033; Tue, 12 May 2020
- 07:34:43 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     john.garry@huawei.com, will@kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, shawnguo@kernel.org
-Cc:     linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V1 RESEND 3/3] arch: arm64: imx8mq/m/n: remove unused compatible string
-Date:   Tue, 12 May 2020 15:31:15 +0800
-Message-Id: <20200512073115.14177-4-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200512073115.14177-1-qiangqing.zhang@nxp.com>
-References: <20200512073115.14177-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR0401CA0006.apcprd04.prod.outlook.com
- (2603:1096:3:1::16) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR0401CA0006.apcprd04.prod.outlook.com (2603:1096:3:1::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.27 via Frontend Transport; Tue, 12 May 2020 07:34:40 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [119.31.174.71]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7fdc86f4-99f9-46c6-4405-08d7f646f016
-X-MS-TrafficTypeDiagnostic: DB8PR04MB5882:|DB8PR04MB5882:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB5882012F7180F45186CBB5E8E6BE0@DB8PR04MB5882.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:626;
-X-Forefront-PRVS: 0401647B7F
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LxdisFZZWnAvbv0wDdR5nUNbJvQv3PJnIsAuvYzXSyr5ek8Z6ubYQTU8T2ZnUteqdwN853YkNZ99PdLNBb1leKSbbRliKcuzL9uApd7VkKd52hghgCuNFWK6e9hBlMt1dLxcYdf62FIMQ3Oz4NFWEIQsfgNUixyww2qfyK55sLx5C73RcPySnwJ4RE1XDz7iHOZ5x/zqqjeWAN7XLrX5r+DxMeBEwb9ncDc4Vol4qSmvIcHzjpqvoeUht3FAYCe6K+geuMeAtCBZInQz2/4QLPPA9kWlKiGDNTjLj1LeXCCnffqZUzh4FQJKh0mUi8E0nDZEg8S0DZ2yxtJWWGab30R3HIZ1O9+N3epDUnrWDweHLTUJFpHJRUbYnFJDjQTRzWfqnrDBHnIQiPCgpmjlRBke62EWOmvWsdcPDJ27LiYLmPRlX8+UEb6G4f+beNUpB0BpnI+FcDrImArTqsp0mD7JoArh63pgjJqEWB4VGZl/wypeCzcvEi5VwDorJgOrhyFxzRohtaO9icL/Q6pnXGF++XH5xqI99QXWVGiGwXzMJMXnKQXfQo7NCcsFtkGAFUfGBrRx0rM85FpqYpkXwA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(136003)(39860400002)(346002)(376002)(366004)(33430700001)(8676002)(69590400007)(33440700001)(5660300002)(66476007)(36756003)(66946007)(1076003)(8936002)(66556008)(186003)(4326008)(86362001)(16526019)(6666004)(26005)(956004)(316002)(478600001)(2616005)(6512007)(6506007)(2906002)(52116002)(6486002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: R39mFwyfNWpk6xH0RJcAAWZu3vdyGNwnjfuNooEgWgz5VpphGhhgQMwhQcRnE7Fnk2gP7939/pYcPy8HkaTmY9oY5D3sWibvMoCn7GFU3mjgN75Yh+8qH7mNge3aqLSIDvIey5klCEFPqKpfvKGJz6wSM5EjWX1A5oZ8X1beS6qgr3aqjsSEC1QwNqGQsEXk36mNvD0E6u6OWhgH1rS5IPxy8hzeOLKbQS8DP63BdoaxO2ez31tiQHkowtETOTE3aJdeAN5vkqMutUf9CgSRNr2L6gnnPlFmSckTgDxCK2Gy7ggh3rNKHLw9T5efLn9G2rBUFIa06TPqaPcTKzvW58oFPm8EVVua2ltHZ82MBFkqA45U6QqBaGsrrHKxIbbs9R2Q1i+LjTABOsFFX26mIFRID96bKq1/L8g1QK1t8guch0gH0ThISVpkDK9+E800IFnVKzkY2+Iw7ibT+Fi42i6qK7ECe0D/X8MAhsGJCkD3Pwa2FMAFLkhylnbS55kn
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fdc86f4-99f9-46c6-4405-08d7f646f016
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2020 07:34:43.9029
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VxLfpfQNUWUrD/ux8UjFMbmsDUHQUpSA4UxCB+smJE33QEtaFaoD5S2oVTpYp27UqWaMUOa5tyf9C6uD4snitw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5882
+        id S1729013AbgELHg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 03:36:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727859AbgELHg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 03:36:56 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12941C061A0C;
+        Tue, 12 May 2020 00:36:56 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id fu13so8985786pjb.5;
+        Tue, 12 May 2020 00:36:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=oJmUzMw42DTbrXzzUYd7Ks8dtTTCqqycjSbTZSaOap0=;
+        b=cCKlHK9w4o+2S8+AIROccI9rcib+ct01tsHVfjDmeGmiPY0Wn0Dc73yHEqH3sN4XQk
+         AAIp3z9L5wcSNtfz5GuHrOsNcWQ2KyOnD3Mi+3rQJ0sEoBWI2zysRtB+iQg9+1Az0oKU
+         5mDgji33MT0GJE0sltyWnLxivbDrec0xxp5llL9doCR9UattDLmvRJZA3E9cQ5Nh7y4z
+         0KrhW+XCAj7kNMMAE0Hv36lDa+4DAVCVTwdoCieHnyRhaoVzpSBcSfY/3/29ZqBdYYIY
+         rtcUQe5HLpU0QMXT3xVnsISP5f39SHz3Q6vhH9mXoYgiTZOhIjiDwgnZ6DipQhF8ulxU
+         1jpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=oJmUzMw42DTbrXzzUYd7Ks8dtTTCqqycjSbTZSaOap0=;
+        b=eaSVwOb+xd1mdunXUeHY4oNDYKmjes7nxzGBXZ5JTJhCnLVh/ULXWhU1AHu/hKjKZT
+         FqLJ1c4/KU1PrtDzoHzHNWULPY2zjuEN2sWNXbjyH/40L6mGmooLTu66A7uKRGCZ0G+L
+         f+/Ci0OGSmbq88ZUE7S+6kjHXAHW+Ph2mpW6HUAp0KFdH6Mv4cgzU8C4bikIMEZYCyMs
+         6Gg8eka0t1LacBuXWnVPtHinJzE90du2/NN10ECQWUgK3SKDUqKWK2TWjgnM9z1mlcd2
+         7IEhr0GWFFcWJtzSTVkkjueblYUe6h67YjAFh2b+3k00r8qxWOwIucYctkhe+yXLnm4o
+         rElg==
+X-Gm-Message-State: AGi0PuY3PI1sn8sO2LlTahNWhrMaIXwUYQPNX0OxdcsE0TXBFWiMK14o
+        i/b+2Q/Ed0YpI1WTGaiI+G9Zv9zDCLQ=
+X-Google-Smtp-Source: APiQypKmaZEGYk0fHOt/kEOG6LJdizurDE2nYIhhfFMWLuELWHUAe3JTjq8LUtwXSDcZzGgVK06Iag==
+X-Received: by 2002:a17:90b:78e:: with SMTP id l14mr27370151pjz.144.1589269015605;
+        Tue, 12 May 2020 00:36:55 -0700 (PDT)
+Received: from fmin-OptiPlex-7060.nreal.work ([103.206.190.146])
+        by smtp.gmail.com with ESMTPSA id 5sm11732471pjf.19.2020.05.12.00.36.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 May 2020 00:36:55 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, broonie@kernel.org, p.zabel@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, dillonhua@gmail.com,
+        dillon.minfei@gmail.com
+Subject: [PATCH v2 0/3] Enable l3gd20 on stm32f429-disco board
+Date:   Tue, 12 May 2020 15:36:47 +0800
+Message-Id: <1589269010-18472-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the unused compatible string.
+From: dillon min <dillon.minfei@gmail.com>
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+This patchset is for enable l3gd20 on stm32f429-disco board
+has following changes:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 1e5e11592f7b..136a6653252c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -894,7 +894,7 @@
- 		};
- 
- 		ddr-pmu@3d800000 {
--			compatible = "fsl,imx8mm-ddr-pmu", "fsl,imx8m-ddr-pmu";
-+			compatible = "fsl,imx8mm-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index a44b5438e842..76c8db04b4f7 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -793,7 +793,7 @@
- 		};
- 
- 		ddr-pmu@3d800000 {
--			compatible = "fsl,imx8mn-ddr-pmu", "fsl,imx8m-ddr-pmu";
-+			compatible = "fsl,imx8mn-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 6a1e83922c71..970ffcc664b8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1213,7 +1213,7 @@
- 		};
- 
- 		ddr-pmu@3d800000 {
--			compatible = "fsl,imx8mq-ddr-pmu", "fsl,imx8m-ddr-pmu";
-+			compatible = "fsl,imx8mq-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+V2:
+    1, insert blank line at stm32f420-disco.dts line 143
+    2, add more description for l3gd20 in commit message
+
+V1:
+    1, enable spi5 controller on stm32f429-disco (dts)
+    2, add spi5 pinmap for stm32f429-disco  (dts)
+    3, add SPI_SIMPLEX_RX, SPI_3WIRE_RX support for stm32f4
+
+dillon min (3):
+  ARM: dts: stm32: Add pin map for spi5 on stm32f429-disco board
+  ARM: dts: stm32: enable l3gd20 on stm32429-disco board
+  spi: stm32: Add SPI_SIMPLEX_RX, SPI_3WIRE_RX support for stm32f4
+
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 17 +++++++++++++++++
+ arch/arm/boot/dts/stm32f429-disco.dts  | 25 +++++++++++++++++++++++++
+ drivers/spi/spi-stm32.c                | 29 +++++++++++++++++++++++++----
+ 3 files changed, 67 insertions(+), 4 deletions(-)
+
 -- 
-2.17.1
+2.7.4
 
