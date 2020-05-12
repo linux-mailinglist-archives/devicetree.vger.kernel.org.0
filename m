@@ -2,91 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 267641CF38E
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 13:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C75F1CF3B6
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 13:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbgELLo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 07:44:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35654 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726187AbgELLo4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 07:44:56 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C96AA206CC;
-        Tue, 12 May 2020 11:44:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1589283895;
-        bh=q7CeDCgeFWLtQ2pVmu7QUtCPdGgoF7Ine1hJnCzA+TI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sOQnMm5QEEkxQGEc0XhMom0YLJgMFWRbDd1OZbc4nvJgTW9dvJlvEe/H8uwRX8ZRu
-         i3sxiaQLQJ7to6eXqAfUme3ryq//pv5dzlcVqgYvBBPzfbcD1xDjjR9KudGYQiQQof
-         BXxDpDoHLMosu4nLP9vXdhfPAthHPo6N6EXhDWdw=
-Date:   Tue, 12 May 2020 12:44:52 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Sumit Semwal <sumit.semwal@linaro.org>, agross@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        nishakumari@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kgunda@codeaurora.org, rnayak@codeaurora.org
-Subject: Re: [v2 3/4] regulator: qcom: Add labibb driver
-Message-ID: <20200512114452.GE5110@sirena.org.uk>
-References: <20200508204200.13481-1-sumit.semwal@linaro.org>
- <20200508204200.13481-4-sumit.semwal@linaro.org>
- <20200512021509.GF57962@builder.lan>
+        id S1729692AbgELLt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 07:49:58 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:53002 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729700AbgELLt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 07:49:56 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 8E42E803080B;
+        Tue, 12 May 2020 11:49:48 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id X9U0mGSQWcVy; Tue, 12 May 2020 14:49:47 +0300 (MSK)
+Date:   Tue, 12 May 2020 14:49:46 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dan Williams <dan.j.williams@intel.com>,
+        <linux-mips@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: dma: dw: Add max burst transaction
+ length property
+Message-ID: <20200512114946.x777yb6bhe22ccn5@mobilestation>
+References: <20200306131048.ADBE18030797@mail.baikalelectronics.ru>
+ <20200508105304.14065-1-Sergey.Semin@baikalelectronics.ru>
+ <20200508105304.14065-3-Sergey.Semin@baikalelectronics.ru>
+ <20200508111242.GH185537@smile.fi.intel.com>
+ <20200511200528.nfkc2zkh3bvupn7l@mobilestation>
+ <20200511210138.GN185537@smile.fi.intel.com>
+ <20200511213531.wnywlljiulvndx6s@mobilestation>
+ <20200512090804.GR185537@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nHwqXXcoX0o6fKCv"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200512021509.GF57962@builder.lan>
-X-Cookie: The only perfect science is hind-sight.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200512090804.GR185537@smile.fi.intel.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 12, 2020 at 12:08:04PM +0300, Andy Shevchenko wrote:
+> On Tue, May 12, 2020 at 12:35:31AM +0300, Serge Semin wrote:
+> > On Tue, May 12, 2020 at 12:01:38AM +0300, Andy Shevchenko wrote:
+> > > On Mon, May 11, 2020 at 11:05:28PM +0300, Serge Semin wrote:
+> > > > On Fri, May 08, 2020 at 02:12:42PM +0300, Andy Shevchenko wrote:
+> > > > > On Fri, May 08, 2020 at 01:53:00PM +0300, Serge Semin wrote:
+> > > > > > This array property is used to indicate the maximum burst transaction
+> > > > > > length supported by each DMA channel.
+> > > > > 
+> > > > > > +  snps,max-burst-len:
+> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > > > +    description: |
+> > > > > > +      Maximum length of burst transactions supported by hardware.
+> > > > > > +      It's an array property with one cell per channel in units of
+> > > > > > +      CTLx register SRC_TR_WIDTH/DST_TR_WIDTH (data-width) field.
+> > > > > > +    items:
+> > > > > > +      maxItems: 8
+> > > > > > +      items:
+> > > > > 
+> > > > > > +        enum: [4, 8, 16, 32, 64, 128, 256]
+> > > > > 
+> > > > > Isn't 1 allowed?
+> > > > 
+> > > > Burst length of 1 unit is supported, but in accordance with Data Book the MAX
+> > > > burst length is limited to be equal to a value from the set I submitted. So the
+> > > > max value can be either 4, or 8, or 16 and so on.
+> > > 
+> > > Hmm... It seems you mistakenly took here DMAH_CHx_MAX_MULT_SIZE pre-silicon
+> > > configuration parameter instead of runtime as described in Table 26:
+> > > CTLx.SRC_MSIZE and DEST_MSIZE Decoding.
+> > 
+> > No. You misunderstood what I meant. We shouldn't use a runtime parameters values
+> > here. Why would we?
+> 
+> Because what we describe in the DTS is what user may do to the hardware. In
+> some cases user might want to limit this to 1, how to achieve that?
 
---nHwqXXcoX0o6fKCv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+No, dts isn't about hardware configuration, it's about hardware description. It's not
+what user want, it's about what hardware can and can't. If a developer wants to limit
+it to 1, one need to do this in software. The IP-core just can't be synthesized
+with such limitation. No matter what, it must be no less than 4 as I described
+in the enum setting.
 
-On Mon, May 11, 2020 at 07:15:09PM -0700, Bjorn Andersson wrote:
-> On Fri 08 May 13:41 PDT 2020, Sumit Semwal wrote:
+> 
+> Rob, is there any clarification that schema describes only synthesized values?
+> Or i.o.w. shall we allow user to setup whatever hardware supports at run time?
 
-> > +	int ret;
-> > +	struct labibb_regulator *reg = rdev_get_drvdata(rdev);
-> > +
-> > +	while (retries--) {
+One more time. max-burst-len set to 1 wouldn't describe the real hardware capability
+because the Dw DMAC IP-core simply can't be synthesized with such max-burst-len.
+In this patch I submitted the "max-burst-len" property, not just "burst-len"
+setting.
 
-> Mark's suggestion of extending _regulator_enable_delay() to support
-> polling is_enable() seems reasonable.
+> 
+> > Property "snps,max-burst-len" matches DMAH_CHx_MAX_MULT_SIZE
+> > config parameter.
+> 
+> Why? User should have a possibility to ask whatever hardware supports at run time.
 
-> The only complication I can see is that code path currently doesn't have
-> any expectations of the regulator not being operational at the end -
-> this seems to offer that possibility. So some care needs to be taken
-> there.
+Because the run time parameter is limited with DMAH_CHx_MAX_MULT_SIZE value, you agreed
+with that further and "snps,max-burst-len" is about hardware limitation. For the
+same reason the dma-channels property is limited to belong the segment 1 - 8, dma-masters
+number must be limited with 1 - 4, block_size should be one of the set [3, 7, 15, 31, 63,
+127, 255, 511, 1023, 2047, 4095] and so on. For instance, the block-size can be
+set any but not greater than a value of the "block-size" property found in the
+dt node or retrieved from the corresponding IP param register. It's not what user want,
+but what hardware can support.
 
-Are we expecting that to happen in normal operation?  Generally this is
-a pretty serious problem.  In any caser if we're adding checks of status
-we'd need an error return if the status doesn't show the regulator is on
-after some reasonable time.
+-Sergey
 
---nHwqXXcoX0o6fKCv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl66jDMACgkQJNaLcl1U
-h9CdOggAgXP9kFKpXNgKVebfykSbXg94s/dvk5jSk4VzlFuvOt/R8fDWQtR2SedB
-8VPyx7o8DFR1CbiVq20OnqfNn7cygyu9FeLyB1+/BZXfOXTALqYHnB+38EgVVN2u
-k/HNUYRl8L7e8aI/+eSettgICpsN55xlY/SXu4bKhEgAOcCDFQVb3jAKE2bYR89L
-tRSC1eDzIRbHlhaEg3Z/t5hOv2l+AiU5dzTBiVkHe0S34CHTmu8o3fuT2jOYgDdd
-zi2R7S86GLo64+5SwbhY6jP76msta5BEvLisU5Dant8pwVBBQ6ExrRYdwiRHCOir
-g7NGd1XsPqbxRW4l9Pb8Hhatnw2H+w==
-=QxDp
------END PGP SIGNATURE-----
-
---nHwqXXcoX0o6fKCv--
+> 
+> > See a comment to the "SRC_MSIZE" and "DEST_MSIZE" fields of the
+> > registers. You'll find out that their maximum value is determined by the
+> > DMAH_CHx_MAX_MULT_SIZE parameter, which must belong to the set [4, 8, 16, 32, 64,
+> > 128, 256]. So no matter how you synthesize the DW DMAC block you'll have at least
+> > 4x max burst length supported.
+> 
+> That's true.
+> 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
