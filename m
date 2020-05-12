@@ -2,150 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91A851CFE0C
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 21:12:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CA01CFE31
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 21:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728039AbgELTMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 15:12:10 -0400
-Received: from mga12.intel.com ([192.55.52.136]:27703 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725938AbgELTMJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 15:12:09 -0400
-IronPort-SDR: M/43pkxa0jYVDxFZspa90Xfr3Wo2TZoc28c01LqnTASzGcGi7ZzMh4iWQPQZucuZqG6yONb68v
- M1ihk32/1PVA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2020 12:12:08 -0700
-IronPort-SDR: Hj6ERzOQBz1/w/qIyG8ahutgiQb3fqztQsHu4kdAATgpC6eyikWwGDnvOj0OZqGUu/Zdgosggg
- MXhQZok7YIig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; 
-   d="scan'208";a="250997265"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga007.jf.intel.com with ESMTP; 12 May 2020 12:12:05 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jYaK0-006Hz4-5i; Tue, 12 May 2020 22:12:08 +0300
-Date:   Tue, 12 May 2020 22:12:08 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] dmaengine: dw: Introduce max burst length hw
- config
-Message-ID: <20200512191208.GG185537@smile.fi.intel.com>
-References: <20200306131048.ADBE18030797@mail.baikalelectronics.ru>
- <20200508105304.14065-1-Sergey.Semin@baikalelectronics.ru>
- <20200508105304.14065-6-Sergey.Semin@baikalelectronics.ru>
- <20200508114153.GK185537@smile.fi.intel.com>
- <20200512140820.ssjv6pl7busqqi3t@mobilestation>
+        id S1730200AbgELTYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 15:24:25 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:58604 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbgELTYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 15:24:25 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04CJONQT051359;
+        Tue, 12 May 2020 14:24:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1589311463;
+        bh=JV3NkJcEcKPyn54NlxuDfeDsXdREcpR0zm2k3q5672g=;
+        h=From:To:CC:Subject:Date;
+        b=PYIiGEjiMYDcgLk6tL0jo04FKvpiiVtFDHo8fkonh97aVhU0mLEDaSH4ZOG4KqYzx
+         8UVaHL1iH426bjTPe+SBaZv0caQIxfB+zzgKBcLHa3lIViTBL2d6p30/izBMic/U+8
+         3BgJ16iihoWMWOLth2UfGmuRDsiA7dQZPqfy7vmI=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04CJONu9056909;
+        Tue, 12 May 2020 14:24:23 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 12
+ May 2020 14:24:23 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 12 May 2020 14:24:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04CJONFf026311;
+        Tue, 12 May 2020 14:24:23 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <sre@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <robh@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>
+Subject: [PATCH v3] dt-bindings: power: Convert bq27xxx dt to yaml
+Date:   Tue, 12 May 2020 14:14:51 -0500
+Message-ID: <20200512191451.1517-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200512140820.ssjv6pl7busqqi3t@mobilestation>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 12, 2020 at 05:08:20PM +0300, Serge Semin wrote:
-> On Fri, May 08, 2020 at 02:41:53PM +0300, Andy Shevchenko wrote:
-> > On Fri, May 08, 2020 at 01:53:03PM +0300, Serge Semin wrote:
-> > > IP core of the DW DMA controller may be synthesized with different
-> > > max burst length of the transfers per each channel. According to Synopsis
-> > > having the fixed maximum burst transactions length may provide some
-> > > performance gain. At the same time setting up the source and destination
-> > > multi size exceeding the max burst length limitation may cause a serious
-> > > problems. In our case the system just hangs up. In order to fix this
-> > > lets introduce the max burst length platform config of the DW DMA
-> > > controller device and don't let the DMA channels configuration code
-> > > exceed the burst length hardware limitation. Depending on the IP core
-> > > configuration the maximum value can vary from channel to channel.
-> > > It can be detected either in runtime from the DWC parameter registers
-> > > or from the dedicated dts property.
-> > 
-> > I'm wondering what can be the scenario when your peripheral will ask something
-> > which is not supported by DMA controller?
-> 
-> I may misunderstood your statement, because seeing your activity around my
-> patchsets including the SPI patchset and sometimes very helpful comments,
-> this question answer seems too obvious to see you asking it.
-> 
-> No need to go far for an example. See the DW APB SSI driver. Its DMA module
-> specifies the burst length to be 16, while not all of ours channels supports it.
-> Yes, originally it has been developed for the Intel Midfield SPI, but since I
-> converted the driver into a generic code we can't use a fixed value. For instance
-> in our hardware only two DMA channels of total 16 are capable of bursting up to
-> 16 bytes (data items) at a time, the rest of them are limited with up to 4 bytes
-> burst length. While there are two SPI interfaces, each of which need to have two
-> DMA channels for communications. So I need four channels in total to allocate to
-> provide the DMA capability for all interfaces. In order to set the SPI controller
-> up with valid optimized parameters the max-burst-length is required. Otherwise we
-> can end up with buffers overrun/underrun.
+Convert the bq27xxx.txt to yaml format
 
-Right, and we come to the question which channel better to be used by SPI and
-the rest devices. Without specific filter function you can easily get into a
-case of inverted optimizations, when SPI got channels with burst = 4, while
-it's needed 16, and other hardware otherwise. Performance wise it's worse
-scenario which we may avoid in the first place, right?
+CC: Pali Rohár <pali@kernel.org>
+CC: Andrew F. Davis <afd@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../bindings/power/supply/bq27xxx.txt         | 56 ------------
+ .../bindings/power/supply/bq27xxx.yaml        | 91 +++++++++++++++++++
+ 2 files changed, 91 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/supply/bq27xxx.txt
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
 
-> > Peripheral needs to supply a lot of configuration parameters specific to the
-> > DMA controller in use (that's why we have struct dw_dma_slave).
-> > So, seems to me the feasible approach is supply correct data in the first place.
-> 
-> How to supply a valid data if clients don't know the DMA controller limitations
-> in general?
-
-This is a good question. DMA controllers are quite different and having unified
-capabilities structure for all is almost impossible task to fulfil. That's why
-custom filter function(s) can help here. Based on compatible string you can
-implement whatever customized quirks like two functions, for example, to try 16
-burst size first and fallback to 4 if none was previously found.
-
-> > If you have specific channels to acquire then you probably need to provide a
-> > custom xlate / filter functions. Because above seems a bit hackish workaround
-> > of dynamic channel allocation mechanism.
-> 
-> No, I don't have a specific channel to acquire and in general you may use any
-> returned from the DMA subsystem (though some platforms may need a dedicated
-> channels to use, in this case xlate / filter is required). In our SoC any DW DMAC
-> channel can be used for any DMA-capable peripherals like SPI, I2C, UART. But the
-> their DMA settings must properly and optimally configured. It can be only done
-> if you know the DMA controller parameters like max burst length, max block-size,
-> etc.
-> 
-> So no. The change proposed by this patch isn't workaround, but a useful feature,
-> moreover expected to be supported by the generic DMA subsystem.
-
-See above.
-
-> > But let's see what we can do better. Since maximum is defined on the slave side
-> > device, it probably needs to define minimum as well, otherwise it's possible
-> > that some hardware can't cope underrun bursts.
-> 
-> There is no need to define minimum if such limit doesn't exists except a
-> natural 1. Moreover it doesn't exist for all DMA controllers seeing noone has
-> added such capability into the generic DMA subsystem so far.
-
-There is a contract between provider and consumer about DMA resource. That's
-why both sides should participate in fulfilling it. Theoretically it may be a
-hardware that doesn't support minimum burst available in DMA by a reason. For
-such we would need minimum to be provided as well.
-
+diff --git a/Documentation/devicetree/bindings/power/supply/bq27xxx.txt b/Documentation/devicetree/bindings/power/supply/bq27xxx.txt
+deleted file mode 100644
+index 4fa8e08df2b6..000000000000
+--- a/Documentation/devicetree/bindings/power/supply/bq27xxx.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-TI BQ27XXX fuel gauge family
+-
+-Required properties:
+-- compatible: contains one of the following:
+- * "ti,bq27200" - BQ27200
+- * "ti,bq27210" - BQ27210
+- * "ti,bq27500" - deprecated, use revision specific property below
+- * "ti,bq27510" - deprecated, use revision specific property below
+- * "ti,bq27520" - deprecated, use revision specific property below
+- * "ti,bq27500-1" - BQ27500/1
+- * "ti,bq27510g1" - BQ27510-g1
+- * "ti,bq27510g2" - BQ27510-g2
+- * "ti,bq27510g3" - BQ27510-g3
+- * "ti,bq27520g1" - BQ27520-g1
+- * "ti,bq27520g2" - BQ27520-g2
+- * "ti,bq27520g3" - BQ27520-g3
+- * "ti,bq27520g4" - BQ27520-g4
+- * "ti,bq27521" - BQ27521
+- * "ti,bq27530" - BQ27530
+- * "ti,bq27531" - BQ27531
+- * "ti,bq27541" - BQ27541
+- * "ti,bq27542" - BQ27542
+- * "ti,bq27546" - BQ27546
+- * "ti,bq27742" - BQ27742
+- * "ti,bq27545" - BQ27545
+- * "ti,bq27411" - BQ27411
+- * "ti,bq27421" - BQ27421
+- * "ti,bq27425" - BQ27425
+- * "ti,bq27426" - BQ27426
+- * "ti,bq27441" - BQ27441
+- * "ti,bq27621" - BQ27621
+-- reg: integer, I2C address of the fuel gauge.
+-
+-Optional properties:
+-- monitored-battery: phandle of battery characteristics node
+-    The fuel gauge uses the following battery properties:
+-    + energy-full-design-microwatt-hours
+-    + charge-full-design-microamp-hours
+-    + voltage-min-design-microvolt
+-  Both or neither of the *-full-design-*-hours properties must be set.
+-  See Documentation/devicetree/bindings/power/supply/battery.txt
+-
+-Example:
+-
+-	bat: battery {
+-		compatible = "simple-battery";
+-		voltage-min-design-microvolt = <3200000>;
+-		energy-full-design-microwatt-hours = <5290000>;
+-		charge-full-design-microamp-hours = <1430000>;
+-	};
+-
+-	bq27510g3: fuel-gauge@55 {
+-		compatible = "ti,bq27510g3";
+-		reg = <0x55>;
+-		monitored-battery = <&bat>;
+-	};
+diff --git a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+new file mode 100644
+index 000000000000..03d1020a2e47
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: GPL-2.0
++# Copyright (C) 2020 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/bq27xxx.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: TI BQ27XXX fuel gauge family
++
++maintainers:
++  - Pali Rohár <pali@kernel.org>
++  - Andrew F. Davis <afd@ti.com>
++  - Sebastian Reichel <sre@kernel.org>
++
++description: |
++  Support various Texas Instruments fuel gauge devices that share similar
++  register maps and power supply properties
++
++allOf:
++  - $ref: power-supply.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,bq27200
++      - ti,bq27210
++      - ti,bq27500 # deprecated, use revision specific property below
++      - ti,bq27510 # deprecated, use revision specific property below
++      - ti,bq27520 # deprecated, use revision specific property below
++      - ti,bq27500-1
++      - ti,bq27510g1
++      - ti,bq27510g2
++      - ti,bq27510g3
++      - ti,bq27520g1
++      - ti,bq27520g2
++      - ti,bq27520g3
++      - ti,bq27520g4
++      - ti,bq27521
++      - ti,bq27530
++      - ti,bq27531
++      - ti,bq27541
++      - ti,bq27542
++      - ti,bq27546
++      - ti,bq27742
++      - ti,bq27545
++      - ti,bq27411
++      - ti,bq27421
++      - ti,bq27425
++      - ti,bq27426
++      - ti,bq27441
++      - ti,bq27621
++
++  reg:
++    maxItems: 1
++    description: integer, I2C address of the fuel gauge.
++
++  monitored-battery:
++    description: |
++       phandle of battery characteristics node.
++       The fuel gauge uses the following battery properties:
++       - energy-full-design-microwatt-hours
++       - charge-full-design-microamp-hours
++       - voltage-min-design-microvolt
++       Both or neither of the *-full-design-*-hours properties must be set.
++       See Documentation/devicetree/bindings/power/supply/battery.txt
++
++  power-supplies: true
++
++required:
++  - compatible
++  - reg
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      bat: battery {
++        compatible = "simple-battery";
++        voltage-min-design-microvolt = <3200000>;
++        energy-full-design-microwatt-hours = <5290000>;
++        charge-full-design-microamp-hours = <1430000>;
++      };
++
++      bq27510g3: fuel-gauge@55 {
++        compatible = "ti,bq27510g3";
++        reg = <0x55>;
++        monitored-battery = <&bat>;
++      };
++    };
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
