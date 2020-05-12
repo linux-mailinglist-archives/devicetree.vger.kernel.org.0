@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39AF71CF4E9
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764B21CF4F6
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 14:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729972AbgELMyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 08:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51548 "EHLO
+        id S1730042AbgELMyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 08:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729970AbgELMyI (ORCPT
+        by vger.kernel.org with ESMTP id S1729983AbgELMyK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 08:54:08 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E5BC061A0E
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:06 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id h17so6342852wrc.8
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:06 -0700 (PDT)
+        Tue, 12 May 2020 08:54:10 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED3CC061A0C
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:08 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id j5so15247846wrq.2
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 05:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3LiHGYQJdrfKidREPKcP85nvhchSzlTD7vf2JY+btAU=;
-        b=scW+/E3VOhb7ANMkVGJAkt7I46OvXaM5bUd9N0yFWjWVfeIAu2lIjkgtUMGJUGqT2v
-         o87Z65cKvS6wBr1IJmeiic/ITKuZXfTMO3Lrvxc+/WHFSUoyB3/mx0JGmHF+vOoXEUs2
-         rHpa0IRoHt2Epz3mA1yq70MMy1zH25WqxYc0aOfgnhc7UqNR8SVfQ2uPac0T6QUdzCGs
-         PlYJ3NC9syl5LHu9dZstEPrZLF7cd70ILMfQDuoG1KDEUlQSpD7WVvDF3Yh7rF8t0Oc4
-         lnXedUVI+mIg2DOvSe5eL9UBRK16w9fSAzbzQ+nAG3nbu7hrkh8Fu5IvXKUNoKZCwCAN
-         4E/A==
+        bh=UrDz0VtEFIllRgR/SygMJHwSLsI5h5gjPBKpNjucqnU=;
+        b=hRQiCfERNwcKeaXH+vBgWstpdhfVeFUqZ1HMM5gInNFUPCUmTIxlN+nW06ZqEyr1MT
+         WJt82jfFMhSh3/RaGC13yJslFwkNU9IP5rTAXxevITstBNNe0Q0GqLiQ8X/4kMoTb5St
+         9DB5LdqtelZUdP4aOiA8r4r6CKfpEsAkHPc+1ZB0OvODMQGzdCislqEz/wGa5WTmLoY2
+         d/LAisGXl4ceWObzMaSX+TnByQmuW6rujCdNxrDyZktJU5cYwJDxyLT3uqKLbzHAA/zv
+         4Q+Skz9YusrYZTS4w02hgcM5lS0pRpHRcUHCIILUcGrWW36OTz9Rc638ZOyVZKUaow2B
+         luIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3LiHGYQJdrfKidREPKcP85nvhchSzlTD7vf2JY+btAU=;
-        b=pPt9HIsLN7CuXIcVpREVi1uTJRJN/QiWC1fHd/e2FkAF4QMY39nHfjfOJmk1iM2VoP
-         Gxjbg1a/p6zleqqB449UOYHKhLR7xlsT7MCl+f+Vhv9kIokG7KVDoQz6IurWTUQykX95
-         QaZXKxK75gO4LNSjS9wJmQ7YLM2JBG8psi4AUttr9Ebxbk2weYeAmhei/QHCWCUo98tc
-         lxhtRgLJNouCVopDMizVeU4bf9N8EXxCNg6oA5ggLb/HXMYThPAuisEGwYzO2geXVrga
-         ZLONROD9NVm/v5LqzaWX906eEbHkGvAIhmkTSdSyCumGLTy4mk947WIxs2yrkhgBy+2R
-         IkEQ==
-X-Gm-Message-State: AGi0PuYrfT9NRl6ix7aVHVeLOkPdLacBL25m8G5/S+XOiyHOHCgvkser
-        yQfOFbOOmPIsGCbtsiGHFESobA==
-X-Google-Smtp-Source: APiQypLWnsIijAZkCoIPv0Yw0p6DgOwRj7KRO6OOZp0lKCb8xAu9CIukABYCZLAyYnm8VEBr1P0w2w==
-X-Received: by 2002:adf:b30f:: with SMTP id j15mr26775441wrd.394.1589288045298;
-        Tue, 12 May 2020 05:54:05 -0700 (PDT)
+        bh=UrDz0VtEFIllRgR/SygMJHwSLsI5h5gjPBKpNjucqnU=;
+        b=Qtvt8oH94RRvyoR9PpBuu7Ljf9SQpM7s7IDaclMBuC642kxogGWa1Z+GTylMLDo7u0
+         uKGDs2VmbdmKGRA5HQvCY90c6dyIj64RrFv/RumcvpjDUuRa1rz7TkiQyOPh5gAX3//V
+         lWRUF1cyEgkDEMpNaEeAobXPqLBL3k1WSAto1SmOKK4GJBsTiDZGf9A5SgepgaSWJG5I
+         B2QAIoq4+fa0/n5OWu4wk43kPAsnATYd4Z3xU8YupeJ7qvxikwyUk9rOjx5MBPzDyaPI
+         jnFA0BD1pkQHNJI5S3qXxMjfQQ/LfMPybc3f9b3nM6LEtdfDoNK76w+Fj8To1oWuEpuk
+         k5AA==
+X-Gm-Message-State: AGi0PubNvB5sboTs2ANByk8SlZRo3iWKWUEhtoupdPi3VOjItoVVor6I
+        YcMe+ZSuMG7kK4B5bT8WUG2Tng==
+X-Google-Smtp-Source: APiQypKf6IbOeOx+5EfHUUqCWzbaipquaePVOHE175HL0LBNU9ynasyUz/CcO62uWiKdOHOo00HWLA==
+X-Received: by 2002:a5d:614b:: with SMTP id y11mr26414026wrt.77.1589288047573;
+        Tue, 12 May 2020 05:54:07 -0700 (PDT)
 Received: from localhost.localdomain (212-39-89-66.ip.btc-net.bg. [212.39.89.66])
-        by smtp.googlemail.com with ESMTPSA id n13sm2433938wrs.2.2020.05.12.05.54.03
+        by smtp.googlemail.com with ESMTPSA id n13sm2433938wrs.2.2020.05.12.05.54.05
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 12 May 2020 05:54:04 -0700 (PDT)
+        Tue, 12 May 2020 05:54:06 -0700 (PDT)
 From:   Georgi Djakov <georgi.djakov@linaro.org>
 To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, rjw@rjwysocki.net,
         saravanak@google.com, sibis@codeaurora.org, mka@chromium.org
@@ -56,9 +56,9 @@ Cc:     robh+dt@kernel.org, rnayak@codeaurora.org,
         jcrouse@codeaurora.org, evgreen@chromium.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, georgi.djakov@linaro.org
-Subject: [PATCH v8 06/10] OPP: Update the bandwidth on OPP frequency changes
-Date:   Tue, 12 May 2020 15:53:23 +0300
-Message-Id: <20200512125327.1868-7-georgi.djakov@linaro.org>
+Subject: [PATCH v8 07/10] cpufreq: dt: Add support for interconnect bandwidth scaling
+Date:   Tue, 12 May 2020 15:53:24 +0300
+Message-Id: <20200512125327.1868-8-georgi.djakov@linaro.org>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200512125327.1868-1-georgi.djakov@linaro.org>
 References: <20200512125327.1868-1-georgi.djakov@linaro.org>
@@ -69,47 +69,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the OPP bandwidth values are populated, we want to switch also the
-interconnect bandwidth in addition to frequency and voltage.
+In addition to clocks and regulators, some devices can scale the bandwidth
+of their on-chip interconnect - for example between CPU and DDR memory. Add
+support for that, so that platforms which support it can make use of it.
 
 Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
 Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 ---
 v8:
-* Picked reviewed-by tags.
+* Picked reviewed-by tag.
+* Added a separate patch to check the number of paths in DT and validate
+  each one of them.
 
- drivers/opp/core.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/cpufreq/Kconfig      |  1 +
+ drivers/cpufreq/cpufreq-dt.c | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-index a3dd0bc9b9f6..b4cc4b12d57b 100644
---- a/drivers/opp/core.c
-+++ b/drivers/opp/core.c
-@@ -808,7 +808,7 @@ int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
- 	unsigned long freq, old_freq, temp_freq;
- 	struct dev_pm_opp *old_opp, *opp;
- 	struct clk *clk;
--	int ret;
-+	int ret, i;
+diff --git a/drivers/cpufreq/Kconfig b/drivers/cpufreq/Kconfig
+index c3e6bd59e920..db2ad54ee67f 100644
+--- a/drivers/cpufreq/Kconfig
++++ b/drivers/cpufreq/Kconfig
+@@ -217,6 +217,7 @@ config CPUFREQ_DT
  
- 	opp_table = _find_opp_table(dev);
- 	if (IS_ERR(opp_table)) {
-@@ -909,6 +909,17 @@ int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
- 			dev_err(dev, "Failed to set required opps: %d\n", ret);
- 	}
+ config CPUFREQ_DT_PLATDEV
+ 	bool
++	depends on INTERCONNECT || !INTERCONNECT
+ 	help
+ 	  This adds a generic DT based cpufreq platdev driver for frequency
+ 	  management.  This creates a 'cpufreq-dt' platform device, on the
+diff --git a/drivers/cpufreq/cpufreq-dt.c b/drivers/cpufreq/cpufreq-dt.c
+index 26fe8dfb9ce6..4ecef3257532 100644
+--- a/drivers/cpufreq/cpufreq-dt.c
++++ b/drivers/cpufreq/cpufreq-dt.c
+@@ -13,6 +13,7 @@
+ #include <linux/cpufreq.h>
+ #include <linux/cpumask.h>
+ #include <linux/err.h>
++#include <linux/interconnect.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/pm_opp.h>
+@@ -95,6 +96,7 @@ static int resources_available(void)
+ 	struct device *cpu_dev;
+ 	struct regulator *cpu_reg;
+ 	struct clk *cpu_clk;
++	struct icc_path *cpu_path;
+ 	int ret = 0;
+ 	const char *name;
  
-+	if (!ret && opp_table->paths) {
-+		for (i = 0; i < opp_table->path_count; i++) {
-+			ret = icc_set_bw(opp_table->paths[i],
-+					 opp->bandwidth[i].avg,
-+					 opp->bandwidth[i].peak);
-+			if (ret)
-+				dev_err(dev, "Failed to set bandwidth[%d]: %d\n",
-+					i, ret);
-+		}
+@@ -121,6 +123,19 @@ static int resources_available(void)
+ 
+ 	clk_put(cpu_clk);
+ 
++	cpu_path = of_icc_get(cpu_dev, NULL);
++	ret = PTR_ERR_OR_ZERO(cpu_path);
++	if (ret) {
++		if (ret == -EPROBE_DEFER)
++			dev_dbg(cpu_dev, "defer icc path: %d\n", ret);
++		else
++			dev_err(cpu_dev, "failed to get icc path: %d\n", ret);
++
++		return ret;
 +	}
 +
- put_opp:
- 	dev_pm_opp_put(opp);
- put_old_opp:
++	icc_put(cpu_path);
++
+ 	name = find_supply_name(cpu_dev);
+ 	/* Platform doesn't require regulator */
+ 	if (!name)
