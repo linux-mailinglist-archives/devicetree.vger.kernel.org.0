@@ -2,78 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 863DF1CF83C
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 17:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA50D1CF894
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 17:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730485AbgELPA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 11:00:59 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:34420 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726610AbgELPAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 11:00:48 -0400
-Received: by mail-oi1-f193.google.com with SMTP id c12so17474741oic.1;
-        Tue, 12 May 2020 08:00:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=K2qEAhn3BL894xmtaV/upHqpgOLZLhF17B7mhH3SLdw=;
-        b=EQPd2xqybJGXrUnMdAohRdQypB0fQEtUJgvegjsikb1Y7OVePu+xywjtTgJ4v+0y9X
-         1WTBrYJXXPn2SK/1Ea+a8GVC9Wx5NipwZA3ZLIyCU+v3eCpwJMCQdj0vqYiWC8bv4f0O
-         hiFalfZgnFOqFd7sQUzyQzIzlDC2doPZG7iP1OgYlFSlQqT8qzRnb0+xTOsvuoOmYDoo
-         JFiWw3f4zB1r7oIeQk1LBM72GyxLOdBciSADDz4h3CCg5DkprfVcrRPOWqYyvqCBwWIQ
-         xfCDYsRz2OuUGAxpfmrKGxOAwf7MsiEiISz77Z3Tq/Oz9x8ec/bPAgdeH5KG9XhB9yam
-         bJPA==
-X-Gm-Message-State: AGi0PuZcljvu3vCrbrMtHlOwuYcrwU1inmCHTpXKcagTrkvYnR6S3gHG
-        yK58rTViK3rwq2rUoX9HHQ==
-X-Google-Smtp-Source: APiQypKZIkofztkq59hpBx1iHRg0VN9CZze8uMwIbm08YX4fu5XJHMAkcofCOlv4ErOSk8Lh5NqzAg==
-X-Received: by 2002:a05:6808:8ed:: with SMTP id d13mr22974291oic.149.1589295647581;
-        Tue, 12 May 2020 08:00:47 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c25sm3476892otp.50.2020.05.12.08.00.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2020 08:00:46 -0700 (PDT)
-Received: (nullmailer pid 8751 invoked by uid 1000);
-        Tue, 12 May 2020 15:00:46 -0000
-Date:   Tue, 12 May 2020 10:00:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Subject: Re: [PATCH v2] dt-bindings: thermal: Convert UniPhier thermal
- monitor to json-schema
-Message-ID: <20200512150046.GA8622@bogus>
-References: <1588215934-13252-1-git-send-email-hayashi.kunihiko@socionext.com>
+        id S1728047AbgELPHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 11:07:03 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:59786 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726610AbgELPHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 May 2020 11:07:02 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04CF1em8023749;
+        Tue, 12 May 2020 10:06:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=D95AZ6qA+hhDwF46fVfOwPe7tq0kH/15sfSGGHy9jgU=;
+ b=ccmZgk3pRYxdkno8BKHE8OcQdAoymYQY3W6ZE7F/fujlj20yQPrwh4pP2dtjiJkXcutE
+ x+GxD06zsgc6CaVgBMTIOvF/Z6/XxdenPHp/+kRBpi6AO33AokRqx2+LpmiIvr6QOXYy
+ XBB2m8pf6cYvpRCP0W9crGdAHax63YcmEK+YB4huDNu+PXAc91G22eljg2qrEAbUS3Q+
+ NksC13mFuPm+kHLn6A6FQw71M7XKBvVZ2FsPiM/+vA0tfR1Vo/vY3cp1/x0bS+1zD3o6
+ F812NA1qNYa4cERbBZqJ1cDHMwgm236TKA1n4VQCYvE1Ghzc6tM9C/rErlJRKhJ+5gs5 Yw== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 30wrxq5009-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 12 May 2020 10:06:37 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 12 May
+ 2020 16:06:36 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Tue, 12 May 2020 16:06:36 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 73E972C6;
+        Tue, 12 May 2020 15:06:36 +0000 (UTC)
+Date:   Tue, 12 May 2020 15:06:36 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <lee.jones@linaro.org>, <broonie@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <jdelvare@suse.com>,
+        <linux@roeck-us.net>, <linus.walleij@linaro.org>,
+        <lgirdwood@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH v2 5/5] mfd: lochnagar: Move binding over to dtschema
+Message-ID: <20200512150636.GD71940@ediswmail.ad.cirrus.com>
+References: <20200504154757.17519-1-ckeepax@opensource.cirrus.com>
+ <20200504154757.17519-5-ckeepax@opensource.cirrus.com>
+ <20200512134949.GA14057@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1588215934-13252-1-git-send-email-hayashi.kunihiko@socionext.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200512134949.GA14057@bogus>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ ip4:5.172.152.52 -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 lowpriorityscore=0 impostorscore=0
+ bulkscore=0 priorityscore=1501 suspectscore=0 spamscore=0 clxscore=1015
+ malwarescore=0 mlxscore=0 mlxlogscore=986 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2005120114
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Apr 2020 12:05:34 +0900, Kunihiko Hayashi wrote:
-> Convert the UniPhier thermal monitor binding to DT schema format.
+On Tue, May 12, 2020 at 08:49:49AM -0500, Rob Herring wrote:
+> On Mon, May 04, 2020 at 04:47:57PM +0100, Charles Keepax wrote:
+> > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > ---
+> > 
+> > Changes since v1:
+> >  - Removed contains on the compatible
+> >  - Moved all sub-nodes into here directly only using $ref for properties
+> >  - As the regulator binding only contained subnodes that file is now deleted
+> >  - Removed some pointless descriptions
+> > 
+> > A little nervous about the amount of clock and regulator stuff this
+> > pulls into the MFD file, any comments on that welcome? Would it be worth
+> > looking into something along the lines of the definitions stuff to keep
+> > some of that out in the clock and regulator bindings?
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
-> 
-> Changes since v1:
-> - Add maxItems to "socionext,tmod-calibration" property
-> - Fix indents in examples
-> 
-> .../thermal/socionext,uniphier-thermal.yaml        | 59 ++++++++++++++++++++
->  .../bindings/thermal/uniphier-thermal.txt          | 65 ----------------------
->  2 files changed, 59 insertions(+), 65 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
->  delete mode 100644 Documentation/devicetree/bindings/thermal/uniphier-thermal.txt
+> It's fine like this. Other than my comments on patch 3, looks fine. 
+> Respin and I'll apply.
 > 
 
-Applied, thanks!
+Groovy thanks for the reviews.
+
+Thanks,
+Charles
