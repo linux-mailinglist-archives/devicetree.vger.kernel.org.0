@@ -2,119 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5A561D0229
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 00:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CF71D0260
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 00:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731964AbgELWYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 18:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731994AbgELWYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 18:24:42 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B66AC061A0C;
-        Tue, 12 May 2020 15:24:42 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id f134so11971897wmf.1;
-        Tue, 12 May 2020 15:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=T6/lnxUNaPxPPXlTLJRj6AhR7vTkkb3EZ8aqBlM0OWk=;
-        b=SrTd/ro7AvaEauxrrPTxDh3wvmrjWHigYFTwI6OCAchA0LTOoEpBuyhjdECOi3W5JP
-         nloq0YQb4LVaFJ6VN6jMc4vp45mu2GK2NfcpiPSB7PZcjFY/G4TJ/29TgVI+riddVEoL
-         zUHupnteXosHUlb6g5tBM3MRUBRaAsYsPgJw5YGIK6TJcOeGeHWH2noAhwAjEgJ7xuNp
-         NNWp6qZDm9EDrFYn8eWry4sxi1E95y7tlM33Mvgvv9fYzK+5509XDCTKjRnTh53apiu2
-         Uz9wc7CXgR42yew0ceWmexHuk4qJEcsX4qtzfW0GyiDsj0ePezsQiGlpEqBQz3rQxeQC
-         ZpSw==
+        id S1726031AbgELWde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 18:33:34 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42836 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725938AbgELWde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 18:33:34 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m18so11857462otq.9;
+        Tue, 12 May 2020 15:33:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T6/lnxUNaPxPPXlTLJRj6AhR7vTkkb3EZ8aqBlM0OWk=;
-        b=GujbnWv5+SB277d9bNMCbcOMg3wGZsdrrw17pWgFf9Sj+oog6aKn3KdqDh49JdrHra
-         VtwaopqEvxgoBFp+Z4gBNoAFtWOXXYN4LDX1YHodlBtUDMBPG+cfD8avIrRplkVFkQzZ
-         Lt9bAgXkf6E3KFVQG5u4efqqWOUKck+4Vi7y/kErkHozz//Cylfv0GywlNlbkigvMehY
-         n2bE4plcXrlgkIZSIn3+AMjuInZmJ1asWrKqE8n00/J64q5RDgTdD3nIturI3CFJPC4/
-         3nuR/fGhLikrlV90HbSjWv8Yoj0d1H410AEo9DV9xeKrCKBVGbALAmeh4SJX2Gc7RPDx
-         9t5g==
-X-Gm-Message-State: AGi0Puabrw42p9goXtTK0bRxGpri/xJmYIY4xo8QGuTTocyWvIbQxoy7
-        5/pjlNMsB8Nk5TR6MI2XsfA=
-X-Google-Smtp-Source: APiQypIFFG9NZZdOzQj9vGlbbtC4ygVpYGhkLOO2LmO2sp/3GaDT2eT9UR+jUxCZfNfk8KIGsqyO7A==
-X-Received: by 2002:a1c:f211:: with SMTP id s17mr43022273wmc.168.1589322280765;
-        Tue, 12 May 2020 15:24:40 -0700 (PDT)
-Received: from localhost.localdomain (p200300F137132E00428D5CFFFEB99DB8.dip0.t-ipconnect.de. [2003:f1:3713:2e00:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id b2sm21758758wrm.30.2020.05.12.15.24.39
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=y+bYEHG5+H41i0k9IKvYB5czzxQ6apM29KdhUZ9VKVw=;
+        b=LiOQxStM01MH4NI9nUxIRfG791lM9xS8/X8MMpP2um7Vd+pDE7gqNzWHf/MwZ8H77G
+         9VCbwhcBeKcCIQ1Ic2dyH9zwpEUhb50Yw3u47dytNwpYeV19kSsotcHJ/MpovhzGbI8m
+         7fOOJZJVetj97gZxF8zSR5KY9fRZN0ce5uzGxzB7HVlNDxTrG2xFL6tkKma0vc3FNK76
+         xM50yqaToB5wBZMY7sPj6Mq/sBazCnde+bMN8OpQJa0XvH4BmBKMDgXfE29U1G9Q154z
+         TsGt8PWrirqadx30b+qi98gckJFC9xUXf4ArKSHB/xEWW74LJU/dUhESJCSlZu1pXK6m
+         UhHw==
+X-Gm-Message-State: AGi0PubAz451tZMB0ynIuAFIP/02QnUKY/1EJhFznLGMrWHsFbL49BuN
+        1xXG3baMPfs7VnYBWUOuZQ==
+X-Google-Smtp-Source: APiQypJ0QgJBXdaoUzcntJkXYpa7uIVyzsVMP96rgaq721CYrNfs2z6IEGTEW8h4iS6VdvsJIoVFEg==
+X-Received: by 2002:a9d:39b6:: with SMTP id y51mr17894918otb.368.1589322811717;
+        Tue, 12 May 2020 15:33:31 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 10sm3750640oto.80.2020.05.12.15.33.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2020 15:24:40 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     kishon@ti.com, robh+dt@kernel.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     narmstrong@baylibre.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, hexdump0815@googlemail.com,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>
-Subject: [PATCH v2 6/6] phy: amlogic: meson8b-usb2: Add a compatible string for Meson8m2
-Date:   Wed, 13 May 2020 00:24:24 +0200
-Message-Id: <20200512222424.549351-7-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200512222424.549351-1-martin.blumenstingl@googlemail.com>
-References: <20200512222424.549351-1-martin.blumenstingl@googlemail.com>
+        Tue, 12 May 2020 15:33:31 -0700 (PDT)
+Received: (nullmailer pid 25179 invoked by uid 1000);
+        Tue, 12 May 2020 22:33:29 -0000
+Date:   Tue, 12 May 2020 17:33:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        linux-renesas-soc@vger.kernel.org, sakari.ailus@iki.fi,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>, linux-kernel@vger.kernel.org,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Hyun Kwon <hyunk@xilinx.com>
+Subject: Re: [PATCH v9 1/4] dt-bindings: media: i2c: Add bindings for Maxim
+ Integrated MAX9286
+Message-ID: <20200512223329.GA23701@bogus>
+References: <20200512155105.1068064-1-kieran.bingham+renesas@ideasonboard.com>
+ <20200512155105.1068064-2-kieran.bingham+renesas@ideasonboard.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200512155105.1068064-2-kieran.bingham+renesas@ideasonboard.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 3.10 vendor kernel sets the ACA_ENABLE bit on Meson8b, Meson8m2 and
-GXBB, but not on Meson8. Add a compatible string for Meson8m2 which also
-sets that bit.
-While here, also update the Kconfig text and MODULE_DESCRIPTION.
+On Tue, 12 May 2020 16:51:02 +0100, Kieran Bingham wrote:
+> From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> 
+> The MAX9286 deserializes video data received on up to 4 Gigabit
+> Multimedia Serial Links (GMSL) and outputs them on a CSI-2 port using up
+> to 4 data lanes.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> ---
+> 
+> v7:
+>  - Collect Rob's RB tag
+>  - Remove redundant maxItems from remote-endpoints
+>  - Fix SPDX licence tag
+> 
+>  .../bindings/media/i2c/maxim,max9286.yaml     | 287 ++++++++++++++++++
+>  1 file changed, 287 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> 
 
-Tested-by: Thomas Graichen <thomas.graichen@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/Kconfig            | 2 +-
- drivers/phy/amlogic/phy-meson8b-usb2.c | 6 +++++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index 3495b23af797..5ec53874d1ea 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -3,7 +3,7 @@
- # Phy drivers for Amlogic platforms
- #
- config PHY_MESON8B_USB2
--	tristate "Meson8, Meson8b and GXBB USB2 PHY driver"
-+	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
- 	default ARCH_MESON
- 	depends on OF && (ARCH_MESON || COMPILE_TEST)
- 	depends on USB_SUPPORT
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index 436dfa1a8a04..03c061dd5f0d 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -302,6 +302,10 @@ static const struct of_device_id phy_meson8b_usb2_of_match[] = {
- 		.compatible = "amlogic,meson8b-usb2-phy",
- 		.data = &phy_meson8b_usb2_match_data
- 	},
-+	{
-+		.compatible = "amlogic,meson8m2-usb2-phy",
-+		.data = &phy_meson8b_usb2_match_data
-+	},
- 	{
- 		.compatible = "amlogic,meson-gxbb-usb2-phy",
- 		.data = &phy_meson8b_usb2_match_data
-@@ -320,5 +324,5 @@ static struct platform_driver phy_meson8b_usb2_driver = {
- module_platform_driver(phy_meson8b_usb2_driver);
- 
- MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
--MODULE_DESCRIPTION("Meson8, Meson8b and GXBB USB2 PHY driver");
-+MODULE_DESCRIPTION("Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver");
- MODULE_LICENSE("GPL");
--- 
-2.26.2
+My bot found errors running 'make dt_binding_check' on your patch:
+
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
+Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/media/i2c/maxim,max9286.example.dts' failed
+make[1]: *** [Documentation/devicetree/bindings/media/i2c/maxim,max9286.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1300: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1288573
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
