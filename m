@@ -2,84 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2C71CFD0D
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 20:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A6B1CFD32
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 20:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726300AbgELSSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 14:18:47 -0400
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:62322 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725938AbgELSSq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 14:18:46 -0400
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 12 May 2020 23:48:43 +0530
-Received: from c-rbokka-linux.qualcomm.com ([10.206.232.238])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 12 May 2020 23:48:24 +0530
-Received: by c-rbokka-linux.qualcomm.com (Postfix, from userid 203305)
-        id 6D0A72ACA; Tue, 12 May 2020 23:48:23 +0530 (IST)
-From:   Ravi Kumar Bokka <rbokka@codeaurora.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        dhavalp@codeaurora.org, mturney@codeaurora.org,
-        sparate@codeaurora.org, c_rbokka@codeaurora.org,
-        mkurumel@codeaurora.org, Ravi Kumar Bokka <rbokka@codeaurora.org>
-Subject: [RFC v1 3/3] arm64: dts: qcom: sc7180: Add qfprom-efuse
-Date:   Tue, 12 May 2020 23:48:00 +0530
-Message-Id: <1589307480-27508-4-git-send-email-rbokka@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589307480-27508-1-git-send-email-rbokka@codeaurora.org>
-References: <1589307480-27508-1-git-send-email-rbokka@codeaurora.org>
+        id S1730850AbgELSZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 14:25:26 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:54564 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725938AbgELSZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 14:25:23 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id A05C6803088B;
+        Tue, 12 May 2020 18:25:19 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id zxp3zYwZ9_2x; Tue, 12 May 2020 21:25:17 +0300 (MSK)
+Date:   Tue, 12 May 2020 21:25:14 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Olof Johansson <olof@lixom.net>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        SoC Team <soc@kernel.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: memory: Add Baikal-T1 L2-cache
+ Control Block binding
+Message-ID: <20200512182514.imlmmjhyz73dc6z7@mobilestation>
+References: <20200306130731.938808030702@mail.baikalelectronics.ru>
+ <20200507230705.6468-1-Sergey.Semin@baikalelectronics.ru>
+ <20200507230705.6468-2-Sergey.Semin@baikalelectronics.ru>
+ <CAL_Jsq+rka7hXVy46=O3pTrN0DLCAQQ=TSpSqzoB2dxb30h66g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+rka7hXVy46=O3pTrN0DLCAQQ=TSpSqzoB2dxb30h66g@mail.gmail.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device tree node for qfprom-efuse controller.
+On Mon, May 11, 2020 at 05:43:58PM -0500, Rob Herring wrote:
+> On Thu, May 7, 2020 at 6:07 PM Serge Semin
+> <Sergey.Semin@baikalelectronics.ru> wrote:
+> >
+> > There is a single register provided by the SoC system controller,
+> > which can be used to tune the L2-cache RAM up. It only provides a way
+> > to change the L2-RAM access latencies. So aside from "be,bt1-l2-ctl"
+> > compatible string the device node can be optionally equipped with the
+> > properties of Tag/Data/WS latencies.
+> >
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> > Cc: Paul Burton <paulburton@kernel.org>
+> > Cc: Ralf Baechle <ralf@linux-mips.org>
+> > Cc: Olof Johansson <olof@lixom.net>
+> > Cc: Boris Brezillon <bbrezillon@kernel.org>
+> > Cc: Paul Cercueil <paul@crapouillou.net>
+> > Cc: Thomas Gleixner <tglx@linutronix.de>
+> > Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > Cc: linux-mips@vger.kernel.org
+> > Cc: soc@kernel.org
+> >
+> > ---
+> >
+> > Changelog v2:
+> > - Move driver to the memory subsystem.
+> > - Use dual GPL/BSD license.
+> > - Use single lined copyright header.
+> > - Move "allOf" restrictions to the root level of the properties.
+> > - Discard syscon compatible string and reg property.
+> > - The DT node is supposed to be a child of the Baikal-T1 system controller
+> >   node.
+> > ---
+> >  .../memory-controllers/baikal,bt1-l2-ctl.yaml | 59 +++++++++++++++++++
+> >  1 file changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml b/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
+> > new file mode 100644
+> > index 000000000000..263f0cdab4e6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/memory-controllers/baikal,bt1-l2-ctl.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Baikal-T1 L2-cache Control Block
+> > +
+> > +maintainers:
+> > +  - Serge Semin <fancer.lancer@gmail.com>
+> > +
+> > +description: |
+> > +  By means of the System Controller Baikal-T1 SoC exposes a few settings to
+> > +  tune the MIPS P5600 CM2 L2 cache performance up. In particular it's possible
+> > +  to change the Tag, Data and Way-select RAM access latencies. Baikal-T1
+> > +  L2-cache controller block is responsible for the tuning. Its DT node is
+> > +  supposed to be a child of the system controller.
+> 
+> Is there a register range for just the L2 registers in the system
+> controller. If so, please add a 'reg' property.
 
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts | 4 ++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 9 +++++++++
- 2 files changed, 13 insertions(+)
+It's just a single register, though almost fully dedicated for this feature.
+Should I add the reg property anyway? Since you touched this topic, aside from
+this l2-control block the system controller has also got sub-blocks of PLLs, clock
+dividers, reboot, reboot-mode and indirectly addressed i2c in the same MMIO space.
+These blocks all have got a dedicated registers range within the syscon regmap
+space. Shall I add an optional reg property for them too? If so shall their node
+names to be in the regexp-format like "^name(@[0-9a-f]+)?" ?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4dd8ebc..7378c82 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -234,6 +234,10 @@
- 	};
- };
- 
-+&qfprom_efuse {
-+	vcc-supply = <&vreg_l11a_1p8>;
-+};
-+
- &qspi {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 4216b57..bbd22fb 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -457,6 +457,15 @@
- 			#power-domain-cells = <1>;
- 		};
- 
-+		qfprom_efuse: efuse@780000 {
-+			compatible = "qcom,sc7180-qfprom-efuse";
-+			reg = <0 0x00780000 0 0x100>,
-+			      <0 0x00780120 0 0x7a0>,
-+			      <0 0x00782000 0 0x100>;
-+			clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-+			clock-names = "secclk";
-+		};
-+
- 		qfprom@784000 {
- 			compatible = "qcom,qfprom";
- 			reg = <0 0x00784000 0 0x8ff>;
--- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
+> 
+> This should all be part of the system controller schema either as 1
+> file or by a $ref from the system controller to this file. That's how
+> we ensure "supposed to be a child of the system controller".
 
+Oh, that's clever solution. I was thinking of how to signify this parent-child
+dependency. I'll add the $ref in the corresponding properties of the system
+controller. So this DT schema should live here, separately from the syscon DT
+node. Thanks for the note.
+
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: baikal,bt1-l2-ctl
+> > +
+> > +  baikal,l2-ws-latency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Cycles of latency for Way-select RAM accesses
+> > +    default: 0
+> > +    minimum: 0
+> > +    maximum: 3
+> > +
+> > +  baikal,l2-tag-latency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Cycles of latency for Tag RAM accesses
+> > +    default: 0
+> > +    minimum: 0
+> > +    maximum: 3
+> > +
+> > +  baikal,l2-data-latency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Cycles of latency for Data RAM accesses
+> > +    default: 1
+> > +    minimum: 0
+> > +    maximum: 3
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +examples:
+> > +  - |
+> > +    l2_ctl {
+> > +      compatible = "baikal,bt1-l2-ctl";
+> > +
+> > +      baikal,l2-ws-latency = <0>;
+> > +      baikal,l2-tag-latency = <0>;
+> 
+> 0 is the default, why list it?
+
+1 is the default for the l2-data-latency too. Why not? It's just an
+example.
+
+-Sergey
+
+> 
+> > +      baikal,l2-data-latency = <1>;
+> > +    };
+> > +...
+> > --
+> > 2.25.1
+> >
