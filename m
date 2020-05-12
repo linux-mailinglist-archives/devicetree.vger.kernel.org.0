@@ -2,80 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E341CF926
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 17:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597B81CF95A
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2020 17:37:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726300AbgELP3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 11:29:44 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:44804 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725912AbgELP3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 11:29:44 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04CFIgm8000977;
-        Tue, 12 May 2020 10:29:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=eHJfT1MWX4xSQro+aagNAch/LHPwF75iGKAQv5HLG80=;
- b=Ro3Un3etve/t07nGyLxvxTBucmDOAIjBOOWkMWxKBV+Jk9j0UtmceFkwaXWEdY5WsGf8
- rGmdXJqQl26uZETP0Ekb+sDIV9jrxHsHNUCDluVF8lW/jQ8HImLBSj0naSIMfHwdkkus
- H362wirFcfjzeHVw8R08NFt+381+c/ybS/fGewo79bmP6itNMevx9qdgo2pdLZwAqVtn
- eTkQMKUg2OfYCkGq+xP5iUjlPgPvKV209Eq8n/QVdsWWYZu3UJbETlfFa30SdgLZTNOs
- RdIzuDg+q6cLbPdS3J6pqkxZFsFt7MmgzdB8s0QyDdAF0CmNOPeDIxK23J04YFLX9L6u lg== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 30wsx3msur-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 12 May 2020 10:29:39 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 12 May
- 2020 16:29:37 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Tue, 12 May 2020 16:29:37 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 185F42C5;
-        Tue, 12 May 2020 15:29:37 +0000 (UTC)
-Date:   Tue, 12 May 2020 15:29:37 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <cw00.choi@samsung.com>, <robh+dt@kernel.org>,
-        <lee.jones@linaro.org>, <linus.walleij@linaro.org>,
-        <broonie@kernel.org>
-CC:     <myungjoo.ham@samsung.com>, <lgirdwood@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: Re: [PATCH v2 1/7] regulator: arizona-regulator: Move binding over
- to dtschema
-Message-ID: <20200512152937.GE71940@ediswmail.ad.cirrus.com>
-References: <20200506155758.14643-1-ckeepax@opensource.cirrus.com>
+        id S1730791AbgELPh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 11:37:29 -0400
+Received: from v6.sk ([167.172.42.174]:53270 "EHLO v6.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727847AbgELPh3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 May 2020 11:37:29 -0400
+Received: from localhost (v6.sk [IPv6:::1])
+        by v6.sk (Postfix) with ESMTP id 0A134610A8;
+        Tue, 12 May 2020 15:36:57 +0000 (UTC)
+Date:   Tue, 12 May 2020 17:36:54 +0200
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH 07/11] ASoC: mmp-sspa: Prepare/unprepare the clocks
+Message-ID: <20200512153654.GB604838@furthur.local>
+References: <20200511210134.1224532-1-lkundrak@v3.sk>
+ <20200511210134.1224532-8-lkundrak@v3.sk>
+ <20200512124520.GH5110@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200506155758.14643-1-ckeepax@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- ip4:5.172.152.52 -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 lowpriorityscore=0 impostorscore=0
- mlxscore=0 adultscore=0 priorityscore=1501 suspectscore=0 phishscore=0
- mlxlogscore=696 malwarescore=0 spamscore=0 clxscore=1015 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
- definitions=main-2005120116
+In-Reply-To: <20200512124520.GH5110@sirena.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 06, 2020 at 04:57:52PM +0100, Charles Keepax wrote:
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> ---
+On Tue, May 12, 2020 at 01:45:20PM +0100, Mark Brown wrote:
+> On Mon, May 11, 2020 at 11:01:30PM +0200, Lubomir Rintel wrote:
+> > The driver enables the clocks without preparing them and disables
+> > without unpreparing afterwards. Fix that.
+> 
+> This fix should've been earlier in the series so it could be sent as a
+> fix.
 
-Will update this series to match comments on my Lochnagar series
-as well.
+I'll order it earlier on v2.
 
-Thanks,
-Charles
+However, there's not much of a point in picking this patch alone,
+because the driver is certainly not used anywhere and very likely
+doesn't even work to any sensible extent without the rest of the
+series.
+
+Lubo
