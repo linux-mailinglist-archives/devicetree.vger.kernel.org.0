@@ -2,80 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765321D126F
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 14:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5701D1D129A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 14:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731792AbgEMMPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 08:15:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726020AbgEMMPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 08:15:50 -0400
-Received: from Galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F597C061A0C;
-        Wed, 13 May 2020 05:15:50 -0700 (PDT)
-Received: from p5de0bf0b.dip0.t-ipconnect.de ([93.224.191.11] helo=nanos.tec.linutronix.de)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
-        (Exim 4.80)
-        (envelope-from <tglx@linutronix.de>)
-        id 1jYqIX-00020P-0Z; Wed, 13 May 2020 14:15:41 +0200
-Received: by nanos.tec.linutronix.de (Postfix, from userid 1000)
-        id 67ED9100605; Wed, 13 May 2020 14:15:40 +0200 (CEST)
-From:   Thomas Gleixner <tglx@linutronix.de>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>, maz@kernel.org
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jason Cooper <jason@lakedaemon.net>,
+        id S1731693AbgEMM0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 08:26:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35094 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726020AbgEMM0R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 08:26:17 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 845F623126;
+        Wed, 13 May 2020 12:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589372776;
+        bh=2nPOeFMik9ZQ6xUKx8jufYdpBAmDTPfySWDo5YjI/wo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cjGFtJREmNTq4FgZ+a7ie6IwGzteTC/KDPnz6U8iBRnMyIZgw8KSg+tkkQY2K/XN5
+         SbFGEpjin9G6axFoke7d3ZIox+x7r8pKNnv4obxEEdO+/ok8me1Pgjq5D8AxYPwfYF
+         Mjbp5BdabWGT9x5mF/k7xzDCFd3CIHIs2V1YXgCY=
+Date:   Wed, 13 May 2020 14:26:13 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] irqchip: Add Loongson PCH MSI controller
-In-Reply-To: <874ksk3uda.fsf@nanos.tec.linutronix.de>
-References: <20200422142428.1249684-1-jiaxun.yang@flygoat.com> <20200428063247.2223499-1-jiaxun.yang@flygoat.com> <20200428063247.2223499-5-jiaxun.yang@flygoat.com> <874ksk3uda.fsf@nanos.tec.linutronix.de>
-Date:   Wed, 13 May 2020 14:15:40 +0200
-Message-ID: <871rno3uab.fsf@nanos.tec.linutronix.de>
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v10 1/5] usb: xhci: Change the XHCI link order in the
+ Makefile
+Message-ID: <20200513122613.GA1023594@kroah.com>
+References: <20200512150019.25903-1-alcooperx@gmail.com>
+ <20200512150019.25903-2-alcooperx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200512150019.25903-2-alcooperx@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thomas Gleixner <tglx@linutronix.de> writes:
-> Jiaxun Yang <jiaxun.yang@flygoat.com> writes:
->> +
->> +struct pch_msi_data {
->> +	spinlock_t		msi_map_lock;
->> +	phys_addr_t		doorbell;
->> +	u32			irq_first;	/* The vector number that MSIs starts */
->> +	u32			num_irqs;	/* The number of vectors for MSIs */
->> +	unsigned long		*msi_map;
->> +};
->> +
->> +static void pch_msi_mask_msi_irq(struct irq_data *d)
->> +{
->> +	pci_msi_mask_irq(d);
->> +	irq_chip_mask_parent(d);
->> +}
->> +
->> +static void pch_msi_unmask_msi_irq(struct irq_data *d)
->> +{
->> +	pci_msi_unmask_irq(d);
->> +	irq_chip_unmask_parent(d);
->
-> The ordering of mask and unmask is assymetric. That does not make sense.
->
->> +static struct msi_domain_info pch_msi_domain_info = {
->> +	.flags		= MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS |
->> +			  MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX,
->> +	.chip	= &pch_msi_irq_chip,
->
-> Please maintain tabular layout.
+On Tue, May 12, 2020 at 11:00:15AM -0400, Al Cooper wrote:
+> Some BRCMSTB USB chips have an XHCI, EHCI and OHCI controller
+> on the same port where XHCI handles 3.0 devices, EHCI handles 2.0
+> devices and OHCI handles <2.0 devices. Currently the Makefile
+> has XHCI linking at the bottom which will result in the XHIC driver
+> initalizing after the EHCI and OHCI drivers and any installed 3.0
+> device will be seen as a 2.0 device. Moving the XHCI linking
+> above the EHCI and OHCI linking fixes the issue.
 
-Ooops. Wanted to reply to V3, but the comments are valid for V3 as well.
+What happens if all of these are modules and they are loaded in a
+different order?  This makefile change will not help with that, you need
+to have logic in the code in order to properly coordinate this type of
+mess, sorry.
 
-Thanks,
+thanks,
 
-        tglx
+greg k-h
