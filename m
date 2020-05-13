@@ -2,83 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E346B1D1DEB
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 20:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 190721D1DFB
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 20:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390153AbgEMSrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 14:47:16 -0400
-Received: from out28-2.mail.aliyun.com ([115.124.28.2]:54780 "EHLO
-        out28-2.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390318AbgEMSrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 14:47:08 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2469164|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00914966-0.00051073-0.99034;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03268;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=19;RT=19;SR=0;TI=SMTPD_---.HY8LAU0_1589395602;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.HY8LAU0_1589395602)
-          by smtp.aliyun-inc.com(10.147.44.118);
-          Thu, 14 May 2020 02:47:03 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        tsbogend@alpha.franken.de, paulburton@kernel.org,
-        jiaxun.yang@flygoat.com, chenhc@lemote.com, tglx@linutronix.de,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        keescook@chromium.org, paul@crapouillou.net, krzk@kernel.org,
-        hns@goldelico.com, ebiederm@xmission.com,
-        dongsheng.qiu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Subject: [PATCH v7 6/6] MIPS: CI20: Update defconfig to support SMP.
-Date:   Thu, 14 May 2020 02:46:17 +0800
-Message-Id: <1589395578-87441-8-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589395578-87441-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1589395578-87441-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S2390272AbgEMSue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 14:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2387462AbgEMSue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 14:50:34 -0400
+Received: from mxa2.seznam.cz (mxa2.seznam.cz [IPv6:2a02:598:2::90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2A4C061A0C;
+        Wed, 13 May 2020 11:50:33 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc25a.ng.seznam.cz (email-smtpc25a.ng.seznam.cz [10.23.18.34])
+        id 5989d7e10287838858201bbf;
+        Wed, 13 May 2020 20:50:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1589395821; bh=7OSh5aIXDq9/eo++d56tCZG9ZYJX4E/V+wxJv3MwvRI=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding;
+        b=ewxniBxkw2CEd+RHE9YBPBcxcdsLae2+rx5djacSBGHPH17PuJkS0yDZcOqVN7R3C
+         de5eVtqTAzqzOUd/8LKS8IvzrBFBgXkzsXYzgS80tg+Pddkh2m8Hbr3gDz0Jg6psTW
+         QbnSuNBPkG5mvycaBK30QwL5/8yZ4+jPcGTPvcyc=
+Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
+        by email-relay21.ng.seznam.cz (Seznam SMTPD 1.3.114) with ESMTP;
+        Wed, 13 May 2020 20:50:17 +0200 (CEST)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Michael Srba <michael.srba@seznam.cz>
+Subject: [PATCH] arm64: dts: qcom: msm8916: Disable coresight by default
+Date:   Wed, 13 May 2020 20:47:35 +0200
+Message-Id: <20200513184735.30104-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "CONFIG_SMP=y" and "CONFIG_NR_CPUS=2" to support SMP.
+From: Michael Srba <michael.srba@seznam.cz>
 
-Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
-Tested-by: Paul Boddie <paul@boddie.org.uk>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+On some msm8916 devices, attempts at initializing coresight cause the boot to
+fail. This was fixed by disabling the coresight-related nodes in the board dts
+files. However, a cleaner approach was chosen for fixing the same issue on
+msm8998: disabling coresight by default, and enabling it in board dts files
+where desired.
+
+This patch implements the same solution for msm8916, removes now redundant 
+overwrites in board specific dts files and and enables coresight in db410c's
+board dts in order to keep the current behavior.
+
+Fixes: b1fcc5702a41 ("arm64: dts: qcom: msm8916: Add CTI options")
+Signed-off-by: Michael Srba <michael.srba@seznam.cz>
+
 ---
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi     | 21 +++++++++++
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 23 ------------
+ .../qcom/msm8916-samsung-a2015-common.dtsi    | 23 ------------
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         | 35 +++++++++++++++++++
+ 4 files changed, 56 insertions(+), 46 deletions(-)
 
-Notes:
-    v1->v2:
-    No change.
-    
-    v2->v3:
-    No change.
-    
-    v3->v4:
-    Rebase on top of kernel 5.6-rc1.
-    
-    v4->v5:
-    No change.
-    
-    v5->v6:
-    No change.
-    
-    v6->v7:
-    No change.
-
- arch/mips/configs/ci20_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/mips/configs/ci20_defconfig b/arch/mips/configs/ci20_defconfig
-index 0db0088..c8dd136 100644
---- a/arch/mips/configs/ci20_defconfig
-+++ b/arch/mips/configs/ci20_defconfig
-@@ -1,3 +1,5 @@
-+CONFIG_SMP=y
-+CONFIG_NR_CPUS=2
- # CONFIG_LOCALVERSION_AUTO is not set
- CONFIG_MODULES=y
- CONFIG_KERNEL_XZ=y
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+index 14982762088d..07c150b0ed54 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+@@ -519,6 +519,27 @@ mpps@a000 {
+ 		wcnss@a21b000 {
+ 			status = "okay";
+ 		};
++
++		tpiu@820000 { status = "okay"; };
++		funnel@821000 { status = "okay"; };
++		replicator@824000 { status = "okay"; };
++		etf@825000 { status = "okay"; };
++		etr@826000 { status = "okay"; };
++		funnel@841000 { status = "okay"; };
++		debug@850000 { status = "okay"; };
++		debug@852000 { status = "okay"; };
++		debug@854000 { status = "okay"; };
++		debug@856000 { status = "okay"; };
++		etm@85c000 { status = "okay"; };
++		etm@85d000 { status = "okay"; };
++		etm@85e000 { status = "okay"; };
++		etm@85f000 { status = "okay"; };
++		cti@810000 { status = "okay"; };
++		cti@811000 { status = "okay"; };
++		cti@858000 { status = "okay"; };
++		cti@859000 { status = "okay"; };
++		cti@85a000 { status = "okay"; };
++		cti@85b000 { status = "okay"; };
+ 	};
+ 
+ 	usb2513 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index d1ccb9472c8b..691eb1a87bc9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -82,29 +82,6 @@ phy {
+ 		wcnss@a21b000 {
+ 			status = "okay";
+ 		};
+-
+-		/*
+-		 * Attempting to enable these devices causes a "synchronous
+-		 * external abort". Suspected cause is that the debug power
+-		 * domain is not enabled by default on this device.
+-		 * Disable these devices for now to avoid the crash.
+-		 *
+-		 * See: https://lore.kernel.org/linux-arm-msm/20190618202623.GA53651@gerhold.net/
+-		 */
+-		tpiu@820000 { status = "disabled"; };
+-		funnel@821000 { status = "disabled"; };
+-		replicator@824000 { status = "disabled"; };
+-		etf@825000 { status = "disabled"; };
+-		etr@826000 { status = "disabled"; };
+-		funnel@841000 { status = "disabled"; };
+-		debug@850000 { status = "disabled"; };
+-		debug@852000 { status = "disabled"; };
+-		debug@854000 { status = "disabled"; };
+-		debug@856000 { status = "disabled"; };
+-		etm@85c000 { status = "disabled"; };
+-		etm@85d000 { status = "disabled"; };
+-		etm@85e000 { status = "disabled"; };
+-		etm@85f000 { status = "disabled"; };
+ 	};
+ 
+ 	// FIXME: Use extcon device provided by charger driver when available
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+index 43c5e0f882f1..af812f76e8be 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+@@ -75,29 +75,6 @@ phy {
+ 		wcnss@a21b000 {
+ 			status = "okay";
+ 		};
+-
+-		/*
+-		 * Attempting to enable these devices causes a "synchronous
+-		 * external abort". Suspected cause is that the debug power
+-		 * domain is not enabled by default on this device.
+-		 * Disable these devices for now to avoid the crash.
+-		 *
+-		 * See: https://lore.kernel.org/linux-arm-msm/20190618202623.GA53651@gerhold.net/
+-		 */
+-		tpiu@820000 { status = "disabled"; };
+-		funnel@821000 { status = "disabled"; };
+-		replicator@824000 { status = "disabled"; };
+-		etf@825000 { status = "disabled"; };
+-		etr@826000 { status = "disabled"; };
+-		funnel@841000 { status = "disabled"; };
+-		debug@850000 { status = "disabled"; };
+-		debug@852000 { status = "disabled"; };
+-		debug@854000 { status = "disabled"; };
+-		debug@856000 { status = "disabled"; };
+-		etm@85c000 { status = "disabled"; };
+-		etm@85d000 { status = "disabled"; };
+-		etm@85e000 { status = "disabled"; };
+-		etm@85f000 { status = "disabled"; };
+ 	};
+ 
+ 	gpio-keys {
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 8b429954ea29..5cf117e247df 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1228,6 +1228,8 @@ tpiu@820000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			in-ports {
+ 				port {
+ 					tpiu_in: endpoint {
+@@ -1244,6 +1246,8 @@ funnel@821000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			in-ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+@@ -1283,6 +1287,8 @@ replicator@824000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			out-ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+@@ -1317,6 +1323,8 @@ etf@825000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			in-ports {
+ 				port {
+ 					etf_in: endpoint {
+@@ -1341,6 +1349,8 @@ etr@826000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			in-ports {
+ 				port {
+ 					etr_in: endpoint {
+@@ -1357,6 +1367,8 @@ funnel@841000 {	/* APSS funnel only 4 inputs are used */
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+ 
++			status = "disabled";
++
+ 			in-ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+@@ -1402,6 +1414,7 @@ debug@850000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
+ 			cpu = <&CPU0>;
++			status = "disabled";
+ 		};
+ 
+ 		debug@852000 {
+@@ -1410,6 +1423,7 @@ debug@852000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
+ 			cpu = <&CPU1>;
++			status = "disabled";
+ 		};
+ 
+ 		debug@854000 {
+@@ -1418,6 +1432,7 @@ debug@854000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
+ 			cpu = <&CPU2>;
++			status = "disabled";
+ 		};
+ 
+ 		debug@856000 {
+@@ -1426,6 +1441,7 @@ debug@856000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
+ 			cpu = <&CPU3>;
++			status = "disabled";
+ 		};
+ 
+ 		etm0: etm@85c000 {
+@@ -1438,6 +1454,8 @@ etm0: etm@85c000 {
+ 
+ 			cpu = <&CPU0>;
+ 
++			status = "disabled";
++
+ 			out-ports {
+ 				port {
+ 					etm0_out: endpoint {
+@@ -1457,6 +1475,8 @@ etm1: etm@85d000 {
+ 
+ 			cpu = <&CPU1>;
+ 
++			status = "disabled";
++
+ 			out-ports {
+ 				port {
+ 					etm1_out: endpoint {
+@@ -1476,6 +1496,8 @@ etm2: etm@85e000 {
+ 
+ 			cpu = <&CPU2>;
+ 
++			status = "disabled";
++
+ 			out-ports {
+ 				port {
+ 					etm2_out: endpoint {
+@@ -1495,6 +1517,8 @@ etm3: etm@85f000 {
+ 
+ 			cpu = <&CPU3>;
+ 
++			status = "disabled";
++
+ 			out-ports {
+ 				port {
+ 					etm3_out: endpoint {
+@@ -1512,6 +1536,8 @@ cti@810000 {
+ 
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
++
++			status = "disabled";
+ 		};
+ 
+ 		/* CTI 1 - TPIU connections */
+@@ -1521,6 +1547,8 @@ cti@811000 {
+ 
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
++
++			status = "disabled";
+ 		};
+ 
+ 		/* CTIs 2-11 - no information - not instantiated */
+@@ -1538,6 +1566,7 @@ cti@858000 {
+ 			cpu = <&CPU0>;
+ 			arm,cs-dev-assoc = <&etm0>;
+ 
++			status = "disabled";
+ 		};
+ 
+ 		/* CTI - CPU-1 */
+@@ -1551,6 +1580,8 @@ cti@859000 {
+ 
+ 			cpu = <&CPU1>;
+ 			arm,cs-dev-assoc = <&etm1>;
++
++			status = "disabled";
+ 		};
+ 
+ 		/* CTI - CPU-2 */
+@@ -1564,6 +1595,8 @@ cti@85a000 {
+ 
+ 			cpu = <&CPU2>;
+ 			arm,cs-dev-assoc = <&etm2>;
++
++			status = "disabled";
+ 		};
+ 
+ 		/* CTI - CPU-3 */
+@@ -1577,6 +1610,8 @@ cti@85b000 {
+ 
+ 			cpu = <&CPU3>;
+ 			arm,cs-dev-assoc = <&etm3>;
++
++			status = "disabled";
+ 		};
+ 
+ 
 -- 
-2.7.4
+2.24.0
 
