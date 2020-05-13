@@ -2,126 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E605F1D1DF4
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 20:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 316ED1D1E5E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 20:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390103AbgEMSse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 14:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48676 "EHLO
+        id S2390368AbgEMS4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 14:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1732218AbgEMSse (ORCPT
+        by vger.kernel.org with ESMTP id S2390362AbgEMS4d (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 May 2020 14:48:34 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576C9C061A0C;
-        Wed, 13 May 2020 11:48:34 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id j2so676485qtr.12;
-        Wed, 13 May 2020 11:48:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=O+v6/HetATnirOETJaaLYtIOTXHLeVK+a1zo9bE2gjg=;
-        b=lzM2sulhP4qvY5Yfcz80VJJ/6KP/AAFPw4Ul23TqYASG7trju8lwDfuL8titQ0jZlv
-         pjoiyH9x77REXE2zTeNU96T4g+W9D1X0m42DZkHpTqRfAkeYkwHhAYvSktB38IctD3O5
-         MocLBnWco8QQ12xSE+JXVTeLLgMYCqIHQrAPWcTxvXw1XytMrzQu3v7eVuT2jxXSp3st
-         whgkxqoPcK3AXknEZPVA2Af5kkKaVA2RYdegbIi0S8NtzUjnO1JSvq4ccIKB7Kit7qGY
-         mNJ2dgZ/W1hiO0tKZHtzpOuVtUVzYWtdzHOYX5T/7qkRE0XzGDqrP/zSlVX26slvxzhO
-         fG3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=O+v6/HetATnirOETJaaLYtIOTXHLeVK+a1zo9bE2gjg=;
-        b=ht0EKmFhaOGZyRGItLrTwmC07qq14Yp8t0U+CZ/qvDYD5GsfW5iBGcvpYevLDQsIDC
-         3OAyqX0Y796VyAk+xB/6rJDvStWXOttZ4SztwZKZBUDtTxeMlNcZH/s0/zU0eKutMWRB
-         1nZ83apRpaBSWy9YY+L1Th3kU9WxvhjCsvx7jW+C6zLu/1IHpIrtCxnmDyaIjRFgEZWL
-         wn4m4ZdNOCFKkVNRf8ug5ZFoEAq9vmmGTmUREMl07H4bauSPicLjMjfvWCrXrRlDSaFu
-         mWLYgWSJpJJUSCWPeKTmJq0v0ejA8ysMFlJ1wWzzq01v6SPIaE3WGlAUf4ZtByTQ6SBJ
-         vVuQ==
-X-Gm-Message-State: AOAM533Z4GnHs/+k01Gicwc7xraXb5tcFQnYMfGyJzhXhkWWh6uLOTLi
-        jOwlHSEg5Nmq5K4gKZ9Q1olCsTWrTxtkPQ==
-X-Google-Smtp-Source: ABdhPJzo+BKzKMDFOJBotQJKCE9cz6QqtNmPnYV1hMHxXuy6OFQe5eC5fsOpQdPerkDWi5jWYsyDFw==
-X-Received: by 2002:aed:3949:: with SMTP id l67mr506854qte.313.1589395713113;
-        Wed, 13 May 2020 11:48:33 -0700 (PDT)
-Received: from sca.dev ([201.17.110.164])
-        by smtp.gmail.com with ESMTPSA id j9sm526484qkg.88.2020.05.13.11.48.30
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 13 May 2020 11:48:32 -0700 (PDT)
-From:   Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <alencar.fmce@imbel.gov.br>
-To:     linux-fbdev@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, b.zolnierkie@samsung.com,
-        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
-        Rodrigo Rolim Mendes de Alencar <alencar.fmce@imbel.gov.br>,
-        Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Subject: [PATCH v3] video: fbdev: ssd1307fb: Added support to Column offset
-Date:   Wed, 13 May 2020 15:48:11 -0300
-Message-Id: <1589395691-8762-1-git-send-email-alencar.fmce@imbel.gov.br>
-X-Mailer: git-send-email 1.9.3
+        Wed, 13 May 2020 14:56:33 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B77C061A0E;
+        Wed, 13 May 2020 11:56:33 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id DAE132A2521
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 63EF24800F8; Wed, 13 May 2020 20:56:29 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv1 00/19] Improve SBS battery support
+Date:   Wed, 13 May 2020 20:55:56 +0200
+Message-Id: <20200513185615.508236-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rodrigo Rolim Mendes de Alencar <alencar.fmce@imbel.gov.br>
+This patchset improves support for SBS compliant batteries. Due to
+the changes, the battery now exposes 32 power supply properties and
+(un)plugging it generates a backtrace containing the following message
+without the first patch in this series:
 
-This patch provides support for displays like VGM128064B0W10,
-which requires a column offset of 2, i.e., its segments starts
-in SEG2 and ends in SEG129.
+---------------------------
+WARNING: CPU: 0 PID: 20 at lib/kobject_uevent.c:659 add_uevent_var+0xd4/0x104
+add_uevent_var: too many keys
+---------------------------
 
-Signed-off-by: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
----
- Documentation/devicetree/bindings/display/ssd1307fb.txt | 1 +
- drivers/video/fbdev/ssd1307fb.c                         | 8 ++++++--
- 2 files changed, 7 insertions(+), 2 deletions(-)
+For references this is what an SBS battery status looks like after
+the patch series has been applied:
 
-diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
-index 27333b9551b3..2dcb6d12d137 100644
---- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
-+++ b/Documentation/devicetree/bindings/display/ssd1307fb.txt
-@@ -19,6 +19,7 @@ Optional properties:
-   - vbat-supply: The supply for VBAT
-   - solomon,segment-no-remap: Display needs normal (non-inverted) data column
-                               to segment mapping
-+  - solomon,col-offset: Offset of columns (COL/SEG) that the screen is mapped to.
-   - solomon,com-seq: Display uses sequential COM pin configuration
-   - solomon,com-lrremap: Display uses left-right COM pin remap
-   - solomon,com-invdir: Display uses inverted COM pin scan direction
-diff --git a/drivers/video/fbdev/ssd1307fb.c b/drivers/video/fbdev/ssd1307fb.c
-index 8e06ba912d60..102f941104c0 100644
---- a/drivers/video/fbdev/ssd1307fb.c
-+++ b/drivers/video/fbdev/ssd1307fb.c
-@@ -74,6 +74,7 @@ struct ssd1307fb_par {
- 	struct fb_info *info;
- 	u8 lookup_table[4];
- 	u32 page_offset;
-+	u32 col_offset;
- 	u32 prechargep1;
- 	u32 prechargep2;
- 	struct pwm_device *pwm;
-@@ -458,11 +459,11 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 	if (ret < 0)
- 		return ret;
- 
--	ret = ssd1307fb_write_cmd(par->client, 0x0);
-+	ret = ssd1307fb_write_cmd(par->client, par->col_offset);
- 	if (ret < 0)
- 		return ret;
- 
--	ret = ssd1307fb_write_cmd(par->client, par->width - 1);
-+	ret = ssd1307fb_write_cmd(par->client, par->col_offset + par->width - 1);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -626,6 +627,9 @@ static int ssd1307fb_probe(struct i2c_client *client)
- 	if (device_property_read_u32(dev, "solomon,page-offset", &par->page_offset))
- 		par->page_offset = 1;
- 
-+	if (device_property_read_u32(dev, "solomon,col-offset", &par->col_offset))
-+		par->col_offset = 0;
-+
- 	if (device_property_read_u32(dev, "solomon,com-offset", &par->com_offset))
- 		par->com_offset = 0;
- 
+cat /sys/class/power_supply/sbs-0-000b/uevent 
+POWER_SUPPLY_NAME=sbs-0-000b
+POWER_SUPPLY_TYPE=Battery
+POWER_SUPPLY_STATUS=Discharging
+POWER_SUPPLY_CAPACITY_LEVEL=Normal
+POWER_SUPPLY_HEALTH=Good
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=12
+POWER_SUPPLY_VOLTAGE_NOW=11441000
+POWER_SUPPLY_CURRENT_NOW=-26000
+POWER_SUPPLY_CURRENT_AVG=-24000
+POWER_SUPPLY_CAPACITY=76
+POWER_SUPPLY_CAPACITY_ERROR_MARGIN=1
+POWER_SUPPLY_TEMP=198
+POWER_SUPPLY_TIME_TO_EMPTY_AVG=438600
+POWER_SUPPLY_TIME_TO_FULL_AVG=3932100
+POWER_SUPPLY_SERIAL_NUMBER=0000
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=10800000
+POWER_SUPPLY_VOLTAGE_MAX_DESIGN=10800000
+POWER_SUPPLY_ENERGY_NOW=31090000
+POWER_SUPPLY_ENERGY_FULL=42450000
+POWER_SUPPLY_ENERGY_FULL_DESIGN=41040000
+POWER_SUPPLY_CHARGE_NOW=2924000
+POWER_SUPPLY_CHARGE_FULL=3898000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=3800000
+POWER_SUPPLY_CONSTANT_CHARGE_CURRENT_MAX=3000000
+POWER_SUPPLY_CONSTANT_CHARGE_VOLTAGE_MAX=12300000
+POWER_SUPPLY_MANUFACTURE_YEAR=2017
+POWER_SUPPLY_MANUFACTURE_MONTH=7
+POWER_SUPPLY_MANUFACTURE_DAY=3
+POWER_SUPPLY_MANUFACTURER=UR18650A
+POWER_SUPPLY_MODEL_NAME=GEHC
+
+-- Sebastian
+
+Jean-Francois Dagenais (1):
+  power: supply: sbs-battery: add ability to disable charger broadcasts
+
+Sebastian Reichel (18):
+  kobject: increase allowed number of uevent variables
+  power: supply: core: add capacity error margin property
+  power: supply: core: add manufacture date properties
+  power: supply: core: add POWER_SUPPLY_HEALTH_CALIBRATION_REQUIRED
+  power: supply: sbs-battery: Add TI BQ20Z65 support
+  power: supply: sbs-battery: add
+    POWER_SUPPLY_PROP_CAPACITY_ERROR_MARGIN support
+  power: supply: sbs-battery: simplify read_read_string_data
+  power: supply: sbs-battery: add PEC support
+  power: supply: sbs-battery: add POWER_SUPPLY_PROP_CURRENT_AVG support
+  power: supply: sbs-battery: Improve POWER_SUPPLY_PROP_TECHNOLOGY
+    support
+  power: supply: sbs-battery: add
+    POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT/VOLTAGE_MAX support
+  power: supply: sbs-battery: add MANUFACTURE_DATE support
+  power: supply: sbs-battery: add
+    POWER_SUPPLY_HEALTH_CALIBRATION_REQUIRED support
+  power: supply: sbs-battery: fix idle battery status
+  power: supply: sbs-battery: switch from of_property_* to
+    device_property_*
+  power: supply: sbs-battery: switch to i2c's probe_new
+  power: supply: sbs-battery: constify power-supply property array
+  dt-bindings: power: sbs-battery: Convert to yaml
+
+ Documentation/ABI/testing/sysfs-class-power   |  45 ++-
+ .../power/supply/sbs,sbs-battery.yaml         |  83 +++++
+ .../bindings/power/supply/sbs_sbs-battery.txt |  27 --
+ drivers/power/supply/power_supply_sysfs.c     |   5 +
+ drivers/power/supply/sbs-battery.c            | 348 +++++++++++++-----
+ include/linux/kobject.h                       |   2 +-
+ include/linux/power_supply.h                  |   5 +
+ 7 files changed, 404 insertions(+), 111 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
+
 -- 
-2.23.0.rc1
+2.26.2
 
