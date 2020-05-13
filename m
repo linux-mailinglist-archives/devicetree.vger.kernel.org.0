@@ -2,81 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5511D1F21
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 21:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C991D1F38
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 21:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390625AbgEMT1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 15:27:18 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:37904 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390206AbgEMT1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 15:27:18 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id C195A1C026E; Wed, 13 May 2020 21:27:16 +0200 (CEST)
-Date:   Wed, 13 May 2020 21:27:16 +0200
-From:   Pavel Machek <pavel@denx.de>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
-        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
-        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Peter Hurley <peter@hurleysoftware.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 6/6] ARM: dts: omap4-droid4: Configure modem for
- serdev-ngsm
-Message-ID: <20200513192716.GB20994@duo.ucw.cz>
-References: <20200512214713.40501-1-tony@atomide.com>
- <20200512214713.40501-7-tony@atomide.com>
+        id S2390667AbgEMTbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 15:31:03 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58762 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389392AbgEMTbC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 15:31:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=1du+c2CL7V/+7gcDWkwxD8HxF7gSpeGkfz5LZanDME0=; b=jB1qOzU+gJuXzzEQhOGrz8uEkB
+        CD5wu2KTAKS46BqqJ84NOIstxKAUAZeU+7ATvZaVgkXGfhKP1kA9PXgiGoVeFB58IQIDLag5xrOjj
+        AwiKBpaCiT5H1C7667Y63qfsGOo5O0iB9H62QZ5Smpuy8fSUd6vB7k8cbDrhu+nHSq0U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jYx5k-002CLm-2E; Wed, 13 May 2020 21:30:56 +0200
+Date:   Wed, 13 May 2020 21:30:56 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Marek Vasut <marex@denx.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        "David S. Miller" <davem@davemloft.net>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH net-next v1] net: phy: tja11xx: add cable-test support
+Message-ID: <20200513193056.GN499265@lunn.ch>
+References: <20200513123440.19580-1-o.rempel@pengutronix.de>
+ <20200513133925.GD499265@lunn.ch>
+ <20200513174011.kl6l767cimeo6dpy@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="kXdP64Ggrk/fb43R"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200512214713.40501-7-tony@atomide.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200513174011.kl6l767cimeo6dpy@pengutronix.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> > Do these registers all conform to the standard? Can we pull this code
+> > out into a library which all standards conformant PHY drivers can use?
+> 
+> According to opensig, this functionality should be present on all new T1 PHYs.
+> But the register/bit layout is no specified as standard. At least I was not able
+> to find it. I assume, current layout is TJA11xx specific.
 
---kXdP64Ggrk/fb43R
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+O.K. then:
 
-On Tue 2020-05-12 14:47:13, Tony Lindgren wrote:
-> Let's enable the TS 27.010 /dev/gsmmux* interfaces via Linux n_gsm that
-> can be used for voice calls and SMS with commands using a custom Motorola
-> format.
->=20
-> And let's also enable the kernel GNSS driver via serdev-ngsm that uses a
-> dedicated TS 27.010 channel.
->=20
-> Note that voice call audio mixer is not supported yet.
->=20
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Reviewed-by: Pavel Machek <pavel@ucw.cz>
-
-Best regards,
-                                                                Pavel
-
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---kXdP64Ggrk/fb43R
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXrxKFAAKCRAw5/Bqldv6
-8inPAJ0aV3C5kMif1WPGg8RRI+KpmCL94gCfcrDwy628UP3GlXtFzIE8VBW/xwU=
-=ycpJ
------END PGP SIGNATURE-----
-
---kXdP64Ggrk/fb43R--
+    Andrew
