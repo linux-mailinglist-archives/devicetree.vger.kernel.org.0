@@ -2,89 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F501D186A
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 17:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8341D18A7
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 17:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389348AbgEMPB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 11:01:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389141AbgEMPB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 11:01:27 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A88C061A0C;
-        Wed, 13 May 2020 08:01:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=DmrZcraATTKpezV6Q30kyckoxm8JSVjW6okXPFLe6l8=; b=kMw1t4FoBCZOGmkMPomMQwnW+Z
-        Jr+jmw5I+1xdHsW6TD8v0jNvwLNCwTh6c4fDjCBrzI1ZJVnDxOJEgzJfGenUZa6dhVQ9citzzKhtz
-        9/ALc0ixW2HXGlPdsA2qd+c95eb36/i7CDRh5vi7s/zsVuhmX0e+5YKH4SvsubEUY6y8j9ZiMqtEO
-        k4GGYrre1ohw7DjuF3xw08FidcSJ1s6kPZnAJFuGqTqJ0PUKIutKGA7w/tZZqkNSZ2VxLyZK2eWDk
-        QsyJAAg8cMwOyhcnAgar9sw8t+kwwEcspANvFdUN0STxP95t+xj9SeCqxaTzej2NAuQZQGRtqw8JF
-        rDFlGqIg==;
-Received: from [2601:1c0:6280:3f0:897c:6038:c71d:ecac]
-        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1jYsss-0007Ms-QN; Wed, 13 May 2020 15:01:22 +0000
-Subject: Re: [PATCH 2/3] pinctrl: mchp-sgpio: Add pinctrl driver for Microsemi
- Serial GPIO
-To:     Lars Povlsen <lars.povlsen@microchip.com>,
-        SoC Team <soc@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-References: <20200513141134.25819-1-lars.povlsen@microchip.com>
- <20200513141134.25819-3-lars.povlsen@microchip.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <fb104436-69c1-3f5a-85d9-af0aee35547f@infradead.org>
-Date:   Wed, 13 May 2020 08:01:21 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1729400AbgEMPFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 11:05:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33674 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729392AbgEMPFV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 11:05:21 -0400
+Received: from localhost (mobile-166-175-190-200.mycingular.net [166.175.190.200])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BEB5B205ED;
+        Wed, 13 May 2020 15:05:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589382321;
+        bh=fYO8JH34C0Fa8TeL6MWg6T7hkyBbRx2lT9T57V5nNEI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=0tKUfYB77rF36GhX7vkFhCKsL4lNCdQvDfludtEaZw7LsyojeBSDDENwYvHu/81/s
+         EB6koZK9gpStML0lzTQBXWljUMfwvQ4eXMASGhivk55joAMwLjTNoCK+ucFP1k3ZJq
+         bqUI7wU4B2/1GPj9/BMcti5tWT0+/tLj8eYP3WGo=
+Date:   Wed, 13 May 2020 10:05:18 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-pci@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Paul Burton <paulburton@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v9 2/5] PCI: Add Loongson PCI Controller support
+Message-ID: <20200513150518.GA321047@bjorn-Precision-5520>
 MIME-Version: 1.0
-In-Reply-To: <20200513141134.25819-3-lars.povlsen@microchip.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <08C2301A-7349-4044-80F4-0B0520780DB9@flygoat.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/13/20 7:11 AM, Lars Povlsen wrote:
-> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-> index 834c59950d1cf..2b0e9021fd7e0 100644
-> --- a/drivers/pinctrl/Kconfig
-> +++ b/drivers/pinctrl/Kconfig
-> @@ -396,6 +396,23 @@ config PINCTRL_OCELOT
->  	select OF_GPIO
->  	select REGMAP_MMIO
+On Wed, May 13, 2020 at 09:20:08AM +0800, Jiaxun Yang wrote:
+> 于 2020年5月13日 GMT+08:00 上午2:06:02, Bjorn Helgaas <helgaas@kernel.org> 写到:
+> >On Tue, May 12, 2020 at 03:43:56PM +0800, Jiaxun Yang wrote:
+> >> This controller can be found on Loongson-2K SoC, Loongson-3
+> >> systems with RS780E/LS7A PCH.
+> >> 
+> >> The RS780E part of code was previously located at
+> >> arch/mips/pci/ops-loongson3.c and now it can use generic PCI
+> >> driver implementation.
+> >> 
+> >> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> >> +static void system_bus_quirk(struct pci_dev *pdev)
+> >> +{
+> >> +	u16 tmp;
+> >> +
+> >> +	/* 
+> >> +	 * These devices are not sharing resouces with rest of devices
+> >> +	 * on host bus and firmware will ensure their BARs are placed
+> >> +	 * in safe ranges. Also there might be some config registers
+> >> +	 * in their config space so kernel shouldn't ignore them.
+> >
+> >"Firmware ensuring BARs are placed in 'safe' ranges" is not a
+> >sufficient answer.  As I said before, Linux needs to know both the
+> >ADDRESS and the SIZE of whatever non-standard BARs these are.
+> >Otherwise, we're liable to assign that space to a different device.
 > 
-> +config PINCTRL_MSCC_SGPIO
-> +	bool "Pinctrl driver for Microsemi Serial GPIO"
-> +	depends on OF
-> +	depends on HAS_IOMEM
-> +	select GPIOLIB
-> +	select GENERIC_PINCONF
-> +	select GENERIC_PINCTRL_GROUPS
-> +	select GENERIC_PINMUX_FUNCTIONS
-> +	select OF_GPIO
-> +	help
-> +          Support for the VCoreIII SoC serial GPIO device. By using a
+> The address assigned to these devices will never be a part of resources
+> belongs to the host bridge. That's enforced by hardware and firmware,
+> so address conflict would never happen.
+> 
+> I'm doing like this to ensure kernel will discover this device but do nothing
+> about assignment of resources to it.
 
-Line above should be indented with one tab + 2 spaces...
-like the lines below.
+OK, that's really ugly, but I guess we can't do anything about it.  It
+would be helpful to make the comment say something like:
 
-> +	  serial interface, the SIO controller significantly extends
-> +	  the number of available GPIOs with a minimum number of
-> +	  additional pins on the device. The primary purpose of the
-> +	  SIO controller is to connect control signals from SFP
-> +	  modules and to act as an LED controller.
-> +
+  The address space consumed by these devices is outside the resources
+  of the host bridge.
 
-thanks.
--- 
-~Randy
+Side note: in ACPI systems, the ACPI namespace is supposed to describe
+all resources consumed by all devices.  Does DT have a similar
+expectation?  Is there something in DT that tells us about the address
+space used by these devices?  Even if that space never overlaps with
+the PCI host bridge apertures, it might be useful to show the space in
+/proc/iomem and similar places.
 
+Bjorn
