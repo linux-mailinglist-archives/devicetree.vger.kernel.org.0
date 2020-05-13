@@ -2,288 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B891D1AE3
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 18:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3F41D19EA
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 17:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389348AbgEMQVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 12:21:07 -0400
-Received: from disco-boy.misterjones.org ([51.254.78.96]:38078 "EHLO
-        disco-boy.misterjones.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728354AbgEMQVH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 12:21:07 -0400
-X-Greylist: delayed 2494 seconds by postgrey-1.27 at vger.kernel.org; Wed, 13 May 2020 12:21:04 EDT
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@misterjones.org>)
-        id 1jYtTi-00C1J1-Tf; Wed, 13 May 2020 16:39:27 +0100
+        id S1729469AbgEMPvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 11:51:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49242 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729121AbgEMPvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 11:51:22 -0400
+X-Greylist: delayed 82 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 May 2020 08:51:21 PDT
+Received: from mxa2.seznam.cz (mxa2.seznam.cz [IPv6:2a02:598:2::90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0B4C061A0C;
+        Wed, 13 May 2020 08:51:21 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc6b.ng.seznam.cz (email-smtpc6b.ng.seznam.cz [10.23.13.165])
+        id 52fbe97b09f5bd1253522525;
+        Wed, 13 May 2020 17:51:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1589385077; bh=aNMmxbEhQ4116ra/TFzsO/WUqMIRJ1ETfre2+VnJRMc=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding;
+        b=jQ/2ofxGw8oM4xo/Rv9UY2PnBABlc+GCQRAXJeIbUjXkTgD5ybptwHbzSONO7jjz6
+         i8OMc626J4g1sDvHh9/Meizj5J1Tl6Jvn8nas2Di1oOuRmKV9WeESyfh1digR1kecW
+         WTe2+ucJsV+dGOK3W/wlhApDSpq2IexHh6YLcNSQ=
+Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
+        by email-relay12.ng.seznam.cz (Seznam SMTPD 1.3.114) with ESMTP;
+        Wed, 13 May 2020 17:49:49 +0200 (CEST)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Michael Srba <michael.srba@seznam.cz>
+Subject: [PATCH] arm64: dts: qcom: disable the new cti nodes on devices with broken coresight
+Date:   Wed, 13 May 2020 17:47:18 +0200
+Message-Id: <20200513154718.17401-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 13 May 2020 16:39:26 +0100
-From:   Marc Zyngier <maz@misterjones.org>
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Olof Johansson <olof@lixom.net>,
-        Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH 06/14] arm64: dts: sparx5: Add basic cpu support
-In-Reply-To: <20200513125532.24585-7-lars.povlsen@microchip.com>
-References: <20200513125532.24585-1-lars.povlsen@microchip.com>
- <20200513125532.24585-7-lars.povlsen@microchip.com>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <2d230dab95ee96727a42f9c242c93c18@misterjones.org>
-X-Sender: maz@misterjones.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: lars.povlsen@microchip.com, soc@kernel.org, arnd@arndb.de, sboyd@kernel.org, linus.walleij@linaro.org, devicetree@vger.kernel.org, alexandre.belloni@bootlin.com, Steen.Hegelund@microchip.com, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, olof@lixom.net, mturquette@baylibre.com
-X-SA-Exim-Mail-From: maz@misterjones.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-05-13 13:55, Lars Povlsen wrote:
-> This adds the basic DT structure for the Microchip Sparx5 SoC, and the
-> reference boards, pcb125, pcb134 and pcb135. The two latter have a
-> NAND vs a eMMC centric variant (as a mount option),
-> 
-> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> ---
->  MAINTAINERS                                   |   1 +
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/microchip/Makefile        |   4 +
->  arch/arm64/boot/dts/microchip/sparx5.dtsi     | 135 ++++++++++++++++++
->  .../boot/dts/microchip/sparx5_pcb125.dts      |  17 +++
->  .../boot/dts/microchip/sparx5_pcb134.dts      |  17 +++
->  .../dts/microchip/sparx5_pcb134_board.dtsi    |  15 ++
->  .../boot/dts/microchip/sparx5_pcb134_emmc.dts |  17 +++
->  .../boot/dts/microchip/sparx5_pcb135.dts      |  17 +++
->  .../dts/microchip/sparx5_pcb135_board.dtsi    |  15 ++
->  .../boot/dts/microchip/sparx5_pcb135_emmc.dts |  17 +++
->  .../boot/dts/microchip/sparx5_pcb_common.dtsi |  15 ++
->  12 files changed, 271 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/microchip/Makefile
->  create mode 100644 arch/arm64/boot/dts/microchip/sparx5.dtsi
->  create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
->  create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb134.dts
->  create mode 100644 
-> arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
->  create mode 100644 
-> arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dts
->  create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb135.dts
->  create mode 100644 
-> arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
->  create mode 100644 
-> arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dts
->  create mode 100644 
-> arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 1b5a18d3dbb9f..5aa28d6e39d4f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2084,6 +2084,7 @@ M:	Lars Povlsen <lars.povlsen@microchip.com>
->  M:	Steen Hegelund <Steen.Hegelund@microchip.com>
->  M:	Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
->  L:	linux-arm-kernel@lists.infradead.org (moderated for 
-> non-subscribers)
-> +F:	arch/arm64/boot/dts/microchip/
->  N:	sparx5
->  S:	Supported
-> 
-> diff --git a/arch/arm64/boot/dts/Makefile 
-> b/arch/arm64/boot/dts/Makefile
-> index f19b762c008d8..9680a7f20c307 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -17,6 +17,7 @@ subdir-y += intel
->  subdir-y += lg
->  subdir-y += marvell
->  subdir-y += mediatek
-> +subdir-y += microchip
->  subdir-y += nvidia
->  subdir-y += qcom
->  subdir-y += realtek
-> diff --git a/arch/arm64/boot/dts/microchip/Makefile
-> b/arch/arm64/boot/dts/microchip/Makefile
-> new file mode 100644
-> index 0000000000000..c6e0313eea0f9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/microchip/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb125.dtb
-> +dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb134.dtb sparx5_pcb134_emmc.dtb
-> +dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb135.dtb sparx5_pcb135_emmc.dtb
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> new file mode 100644
-> index 0000000000000..3136b4369f507
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> @@ -0,0 +1,135 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "microchip,sparx5";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +			};
-> +		};
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,cortex-a53", "arm,armv8";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "spin-table";
+From: Michael Srba <michael.srba@seznam.cz>
 
-Really? This is 2020, not 2012 any more. Surely a new platform
-boots using PSCI, and not *this*.
+Attempting to enable these devices causes a "synchronous
+external abort". Suspected cause is that the debug power
+domain is not enabled by default on this device.
+Disable these devices for now to avoid the crash.
 
-> +			cpu-release-addr = <0x0 0x0000fff8>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +		cpu1: cpu@1 {
-> +			compatible = "arm,cortex-a53", "arm,armv8";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x0000fff8>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +		L2_0: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts =
-> +			<GIC_PPI 13
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 14
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 11
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 10
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+See: https://lore.kernel.org/linux-arm-msm/20190618202623.GA53651@gerhold.net/
 
-You have a GICv3. These interrupt specifiers are not the ones GICv3 
-expects.
+Fixes: b1fcc5702a41 ("arm64: dts: qcom: msm8916: Add CTI options")
+Signed-off-by: Michael Srba <michael.srba@seznam.cz>
 
-> +	};
-> +
-> +	clocks: clocks {
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +		ahb_clk: ahb-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <250000000>;
-> +		};
-> +		sys_clk: sys-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <625000000>;
-> +		};
-> +	};
-> +
-> +	axi: axi@600000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@600300000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupt-controller;
-> +			reg = <0x6 0x00300000 0x20000>,	/* GICD */
-> +			      <0x6 0x00340000 0x1000000>;	/* GICR */
+---
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts       | 6 ++++++
+ arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 6 ++++++
+ 2 files changed, 12 insertions(+)
 
-You are missing the GICv3 compatibility interfaces (GICV/GICH), which
-are implemented by the CPUs.
-
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		uart0: serial@600100000 {
-> +			compatible = "ns16550a";
-> +			reg = <0x6 0x00100000 0x20>;
-> +			clocks = <&ahb_clk>;
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
-> +			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		uart1: serial@600102000 {
-> +			compatible = "ns16550a";
-> +			reg = <0x6 0x00102000 0x20>;
-> +			clocks = <&ahb_clk>;
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
-> +			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		timer1: timer@600105000 {
-> +			compatible = "snps,dw-apb-timer";
-> +			reg = <0x6 0x00105000 0x1000>;
-> +			clocks = <&ahb_clk>;
-> +			clock-names = "timer";
-> +			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +	};
-> +};
-
-Where is the PMU node?
-
-Thanks,
-
-         M.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index d1ccb9472c8b..28983b871a70 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -105,6 +105,12 @@ wcnss@a21b000 {
+ 		etm@85d000 { status = "disabled"; };
+ 		etm@85e000 { status = "disabled"; };
+ 		etm@85f000 { status = "disabled"; };
++		cti@810000 { status = "disabled"; };
++		cti@811000 { status = "disabled"; };
++		cti@858000 { status = "disabled"; };
++		cti@859000 { status = "disabled"; };
++		cti@85a000 { status = "disabled"; };
++		cti@85b000 { status = "disabled"; };
+ 	};
+ 
+ 	// FIXME: Use extcon device provided by charger driver when available
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+index 43c5e0f882f1..8569a1532a3f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+@@ -98,6 +98,12 @@ wcnss@a21b000 {
+ 		etm@85d000 { status = "disabled"; };
+ 		etm@85e000 { status = "disabled"; };
+ 		etm@85f000 { status = "disabled"; };
++		cti@810000 { status = "disabled"; };
++		cti@811000 { status = "disabled"; };
++		cti@858000 { status = "disabled"; };
++		cti@859000 { status = "disabled"; };
++		cti@85a000 { status = "disabled"; };
++		cti@85b000 { status = "disabled"; };
+ 	};
+ 
+ 	gpio-keys {
 -- 
-Who you jivin' with that Cosmik Debris?
+2.24.0
+
