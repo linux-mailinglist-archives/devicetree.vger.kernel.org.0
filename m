@@ -2,90 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B43A1D17D3
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 16:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 118FD1D17FB
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 16:55:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388800AbgEMOm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 10:42:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40496 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388777AbgEMOm5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 May 2020 10:42:57 -0400
-Received: from localhost (p5486CF35.dip0.t-ipconnect.de [84.134.207.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D094A207D5;
-        Wed, 13 May 2020 14:42:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1589380977;
-        bh=zHZKVOQrw4iw1BYZotmmbCpHSm3rHNSI8b2j1BlvFYA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mvXJRT2oJSavng4jGGwzEFhHegydiclz8aPDt0QP1O1szj+96SM3Yk7nkkc8UZfYj
-         XXLax2E1kLirXPhiZwHSP8AQ1KkAhN0sygzJqxmioG4IGUY7q2t/sKRd37eAtrRVcW
-         HrdeG5laMpYZK9LOfM+nI0xX5K/T0d8jO+TIj6wE=
-Date:   Wed, 13 May 2020 16:42:54 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Russell King <rmk+kernel@armlinux.org.uk>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>
-Subject: Re: [PATCH] i2c: pxa: implement generic i2c bus recovery
-Message-ID: <20200513144254.GA7446@ninjato>
-References: <E1jYnlI-0002Nw-83@rmk-PC.armlinux.org.uk>
- <20200513131843.GB499265@lunn.ch>
+        id S2388965AbgEMOz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 10:55:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388167AbgEMOz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 10:55:57 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9FFCC061A0C;
+        Wed, 13 May 2020 07:55:57 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id t7so6925379plr.0;
+        Wed, 13 May 2020 07:55:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q0we0+GBX6q0qsW/YELPh66cYe9GwOpY4tlrJBAC4pY=;
+        b=dbVXtppEdGfbCzGErxALcHVIJjRBUe5SR4gI+aW8gGwrpxSLPy95nUwKeOViTlMJJa
+         GetvmXVu6j1ZaiqMj4ZA0CI6ROcZ4mDH55B/Cfk2OA0nNVt4eZRRr7NsHAb4JkNqLgsK
+         s51l3826ndpc6C7+MmyNtQ1Wh/8J8THb3G2oKksmFcptHgxpvbGiU8IyCfxSJWnKVpCz
+         fv7pJ8FmzZMP268zQaGv/ASAnz/7NGa7D/v801KXMvnvuS+B35jW3K91J1C7mNBQpWKw
+         6ShgfD4zx07M3n4f8Vthv8RuzRgKPSlm6+HfkQ/IfNJSjLB/xMotG+w5eSX0JME536PM
+         GdZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q0we0+GBX6q0qsW/YELPh66cYe9GwOpY4tlrJBAC4pY=;
+        b=XvH4OvOcpX2NlsPRePUefcMn4jDXEpDXhXLJWKADIxgqy7Git5h6GqyoOZdkbyqxNn
+         51s5DCZFwMLoKAyrbob7r78juY7Xsr2ybhrbWWNzgwZTHDlez6HSCShaEJBn9YvMsAi5
+         drMLd3wMSuefS+LGTC4h7Fqsw/ViVjmK0El6bJVmvVtkjW9dhyoTRMi2E/+dyQ9BMiCZ
+         6nnQR9GEiqefrlCG7W740EjJonqjIaqpADKZ3zb9JrOGYFmi90fEmmwlvPbsF8aBfzlw
+         +wOCOoAAH+Lmwrf/356oNalZk/FccIWxuWCOvUtwilcNJWm/XresxNPf4PyB9HN16/nc
+         bnrQ==
+X-Gm-Message-State: AGi0PuZquY3O0/hGnXI/mDHc8xR5Efbmg4IdEpeyYlDKfoJPyAptWd+8
+        nmIM7wKaqf3HIskZDMR3lFXuxn0mKdUJkHNq8dxx0SS4QPo=
+X-Google-Smtp-Source: APiQypJStWKnwCbOzDaephSclhi7lT0hpHLD+NSnoaKCFmfLEuG9RPUzE+cPZl9AlTEKQ08Sn8uR/rwkx0DqCXY6/+w=
+X-Received: by 2002:a17:902:7003:: with SMTP id y3mr25899813plk.18.1589381757070;
+ Wed, 13 May 2020 07:55:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FCuugMFkClbJLl1L"
-Content-Disposition: inline
-In-Reply-To: <20200513131843.GB499265@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200513140031.25633-1-lars.povlsen@microchip.com> <20200513140031.25633-2-lars.povlsen@microchip.com>
+In-Reply-To: <20200513140031.25633-2-lars.povlsen@microchip.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 13 May 2020 17:55:50 +0300
+Message-ID: <CAHp75VcA-oDboufsDNx1ZR4+HBwYt7LdLOpbfs7-bM9ByucKJA@mail.gmail.com>
+Subject: Re: [PATCH 01/10] spi: dw: Add support for polled operation via no
+ IRQ specified in DT
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Mark Brown <broonie@kernel.org>, SoC Team <soc@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 13, 2020 at 5:03 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+>
+> With this change a SPI controller can be added without having a IRQ
+> associated, and causing all transfers to be polled. For SPI controllers
+> without DMA, this can significantly improve performance by less
+> interrupt handling overhead.
 
---FCuugMFkClbJLl1L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Wed, May 13, 2020 at 03:18:43PM +0200, Andrew Lunn wrote:
-> On Wed, May 13, 2020 at 10:33:12AM +0100, Russell King wrote:
-> > Implement generic GPIO-based I2C bus recovery for the PXA I2C driver.
->=20
-> Hi Russell
->=20
-> I assume this is going to be merged via i2c? So Wolfram Sang?  He is
-> not on To: or Cc:
+> +#define VALID_IRQ(i) (i >= 0)
 
-But I read the i2c list :) I know some maintainers request CC, but I am
-fine as long as it is on the list.
+drivers/rtc/rtc-cmos.c:95:#define is_valid_irq(n)               ((n) > 0)
+
+Candidate to be in include/linux/irq.h ?
+
+...
+
+> +       if (VALID_IRQ(dws->irq))
+> +               free_irq(dws->irq, master);
+
+Isn't free_irq() aware of invalid ones (not found IRQ in the tree or
+any other backend container won't do anything)?
 
 
---FCuugMFkClbJLl1L
-Content-Type: application/pgp-signature; name="signature.asc"
+>  err_free_master:
+>         spi_controller_put(master);
+>         return ret;
+> --
+> 2.26.2
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl68B2oACgkQFA3kzBSg
-KbYAhg/+KOJpSs2n9SV0i9OsvjhuoQNKYIuQKFbNAyoFkDrIOxv473cx4JA89DeF
-FdwdSA5p0K3hqzXyb2Mp+NFTHW6BdHrkEROUbJnR5GkAdWW/lT7qjfrfRDaMvO71
-BGMn7mRwVb1eU0bzIsxZjMEQ7rDxREMn9FLmwfvlvE9CJ3tZkp0PU5vYQ7oR6481
-+Syn6EusLFjH4Jb3HJdNI+6HVSe9wPSCul8E8vWgj9n9dXr78WMtAnKzpm+x1RZy
-gfaNVDQtMtWCX3wcdQCGegBumZ9H2CUJ56CIERdn3p4BmCUJX1sm5M+ZprhfLdeI
-9JHZIYi5rxLnbe737mntlHQ/BcJgkTRQgldPre9IE91a98QV/UL5v+4YXSGTa9TK
-+BDs0oQFin7ZrOkq5330SsdPzs5CVDoYsjD2VYmy8k7DTLU2ArYmkusBTiRKwBnB
-SKFas7O+LVNEQyX+qJ+rmf2nqZGDBXKui02t7BQm+UoGq59Qw2PSVh9C2jinaRh3
-1auy5B1LN2pUXpiQnliwllO63bE+yVBBey3vPx/AkXh+Fu+a25h+N7F2lItIeWMo
-94/PHne8JInu29fkK/lKYDo71T8XpDIVEEqLG9iNAbTzInbXMB3CCDvoqj3IjhFa
-Uki43KWsNZ0RkqhCWGG0XZf1r6rhtbyXJIET6VwIXDeFYE1fjJU=
-=SnWv
------END PGP SIGNATURE-----
 
---FCuugMFkClbJLl1L--
+--
+With Best Regards,
+Andy Shevchenko
