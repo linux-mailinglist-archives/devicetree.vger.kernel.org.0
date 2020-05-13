@@ -2,80 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9E91D10B2
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 13:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E238C1D10F8
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 13:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728133AbgEMLKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 07:10:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726743AbgEMLKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 07:10:01 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73930C061A0C
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 04:10:01 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 1B6D92A0521
-Date:   Wed, 13 May 2020 13:09:57 +0200
-From:   Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ti.com>, robh+dt@kernel.org,
-        kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net
-Subject: Re: [RFC PATCH] dt-bindings: display: ti,tfp410.txt: convert to yaml
-Message-ID: <20200513110957.dgb3axle24pmqp3a@rcn-XPS-13-9360>
-Mail-Followup-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>, robh+dt@kernel.org,
-        kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net
-References: <20200428092048.14939-1-ricardo.canuelo@collabora.com>
- <3e377c73-25a3-a7b3-0604-41c54d70039e@ti.com>
- <20200506155320.GC15206@pendragon.ideasonboard.com>
+        id S1732203AbgEMLQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 07:16:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48448 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730286AbgEMLQy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 07:16:54 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0FBA5206E5;
+        Wed, 13 May 2020 11:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589368614;
+        bh=40kDCCPvDFkDZnvfE0oEeO/xo+Tmp5VDSTcS0YnGUcs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sXXj67nUm87Aj49o92BvnC3oSAFsTthqZjQKC0eGfYLl0piCJ61Rh/94Vv33cn0qU
+         NlwzFE3k3y3tH6QW1f+W4FOXT00EvVDZ1cSdL1TRZLYm6Pb+OPk/XkfSd3f3oNJF2N
+         +vpKvMCxEV0BPtWUsbbo7nJzNa8KBH7fAK3nsooc=
+Received: by pali.im (Postfix)
+        id E89ED774; Wed, 13 May 2020 13:16:51 +0200 (CEST)
+Date:   Wed, 13 May 2020 13:16:51 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Remi Pommarel <repk@triplefau.lt>,
+        Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Xogium <contact@xogium.me>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v4 00/12] PCI: aardvark: Fix support for Turris MOX and
+ Compex wifi cards
+Message-ID: <20200513111651.q62dqauatryh6xd6@pali>
+References: <20200430080625.26070-1-pali@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200506155320.GC15206@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20200430080625.26070-1-pali@kernel.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Thursday 30 April 2020 10:06:13 Pali Rohár wrote:
+> Hello,
+> 
+> this is the fourth version of the patch series for Armada 3720 PCIe
+> controller (aardvark). It's main purpose is to fix some bugs regarding
+> buggy ath10k cards, but we also found out some suspicious stuff about
+> the driver and the SOC itself, which we try to address.
+> 
+> Patches are available also in my git branch pci-aardvark:
+> https://git.kernel.org/pub/scm/linux/kernel/git/pali/linux.git/log/?h=pci-aardvark
 
-On mié 06-05-2020 18:53:20, Laurent Pinchart wrote:
-> I didn't if I remember correctly, I just mapped it to the hardware
-> features. The hardware register indeed takes a value between 0 and 7,
-> and that is mapped to [-4,3] x t(STEP). I don't mind either option.
+Hello! Thanks everybody for review and testing of this patch series.
 
-I was taking a look at the ti-tfp410.c driver to see if it needs any
-changes to support the updated deskew property ranges [0-7], but I don't
-fully understand what this does (line 276):
-
-	/* Get the setup and hold time from vendor-specific properties. */
-	of_property_read_u32(dvi->dev->of_node, "ti,deskew", (u32 *)&deskew);
-	if (deskew < -4 || deskew > 3)
-		return -EINVAL;
-
-	timings->setup_time_ps = min(0, 1200 - 350 * deskew);
-	timings->hold_time_ps = min(0, 1300 + 350 * deskew);
-
-It looks like that the driver doesn't really apply the deskew settings
-to the device and that this has not been really tested, so it's probably
-not a big deal.
-
-I guess what you wanted to do was to adjust the setup and hold times
-around 1200 and 1300 ps respectively in increments/decrements of 350 ps
-depending on the deskew value, as the datasheet describes. But this code
-would set timings->setup_time_ps to 0 regardless of the deskew value,
-and timings->hold_time_ps would be either 0 or a very big integer value
-if deskew is -4 (both setup_time_ps and hold_time_ps are u32).
-
-Am I missing something? Was this intentional?
-
-Thanks,
-Ricardo
+I would like to ask, is there something needed to fix / modify in this
+patch series? If everything is OK, would you Bjorn or Lorenzo take this
+patch series into your tree?
