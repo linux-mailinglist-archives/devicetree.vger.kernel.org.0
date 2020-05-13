@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57EEA1D14C6
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 15:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD41F1D14EC
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 15:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728461AbgEMN1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 09:27:03 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:52071 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726001AbgEMN1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 09:27:03 -0400
-X-Originating-IP: 90.65.91.255
-Received: from localhost (lfbn-lyo-1-1912-bdcst.w90-65.abo.wanadoo.fr [90.65.91.255])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id C7572240003;
-        Wed, 13 May 2020 13:27:00 +0000 (UTC)
-Date:   Wed, 13 May 2020 15:27:00 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        id S2387831AbgEMNbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 09:31:36 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:59452 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387730AbgEMNbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 09:31:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1589376696; x=1620912696;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=t4aCbU2kHB3bhhe/yGQIKD1b0a2xuEV7ZDV6usSs6jg=;
+  b=scf8V5lnIxQqpR5p4kT4/gU8Gxowx9AZ5/Gg7LYsYqwHoJwzbQ68gerR
+   Npw6dHkIzDaPfuaCHbLsnyEgenbqE23oi28es23WnYZ6uxdPCMg+frDKe
+   eIh7Di8HCJRZmNWHohArH3HffBOlvNo1iKIRRWzThbAn0begCOI7AHKd3
+   n1krZ1DZAuVUyagXeXvpUVnZ+LeI1Uzhpvy594A3eh9z+C7EddIb+Di4U
+   7QTvOXdLQiWRV/NTR8is9iGZ6WUf6ue4pthe/oNzuIcpNZ/+3aqgwr6w9
+   02vnlVGLlgrr7rdRQ3N+3C57g4D8Am5XcI3rt60y/nJlQWKF4kDle8omD
+   Q==;
+IronPort-SDR: bUWPzFdWKX2/k51R9GST6UyKSuQiwjQpNUP4sqAL0kaIvI/PVupWW5wInfBl3DCG/OalO0JfXs
+ xplVwZwEwkQsQKeqND3sE0Gzq9C8M6o2QgCm4wNj36JW/bDwvDJLifefNkpBRrnszpXEtmrS53
+ upstPfDAcPqWqFlxCHwC2ma66TRhknZvnmdzHQOQvw1YTFywC8rFsOri6R/cUs+ghKQSXUduVU
+ MrrUW+Qd2MO1823QRxdvuzSfpo4IgMuQSGtFcV4RImTP3doQjndbb5j0ZcI6WTH6ZQtehDatRs
+ evg=
+X-IronPort-AV: E=Sophos;i="5.73,387,1583218800"; 
+   d="scan'208";a="75770577"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 May 2020 06:31:34 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 13 May 2020 06:31:35 -0700
+Received: from soft-dev15.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Wed, 13 May 2020 06:31:33 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        SoC Team <soc@kernel.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
         Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] MIPS: dts: mscc: Updated changed name for miim pinctrl
- function
-Message-ID: <20200513132700.GI34497@piout.net>
-References: <20200513132347.24975-1-lars.povlsen@microchip.com>
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] mmc: Adding support for Microchip Sparx5 SoC
+Date:   Wed, 13 May 2020 15:31:19 +0200
+Message-ID: <20200513133122.25121-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200513132347.24975-1-lars.povlsen@microchip.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2020 15:23:47+0200, Lars Povlsen wrote:
-> This is an add-on patch to the main SoC Sparx5 series
-> (Message-ID: <20200513125532.24585-1-lars.povlsen@microchip.com>).
-> 
-> This changes the miim pinctrl function name from "miim1" to "miim" due
-> to refactoring in the driver, obsoleting the instance number.
-> 
-> The change in the driver was to better fit new platforms, as the
-> instance number is redundant information. Specifically, support for
-> the Microchip Sparx5 SoC is being submitted, where this change became
-> necessary.
-> 
-> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+This is an add-on series to the main SoC Sparx5 series
+(Message-ID: <20200513125532.24585-1-lars.povlsen@microchip.com>).
 
-> ---
->  arch/mips/boot/dts/mscc/ocelot.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/mips/boot/dts/mscc/ocelot.dtsi b/arch/mips/boot/dts/mscc/ocelot.dtsi
-> index 797d336db54d3..f94e8a02ed06b 100644
-> --- a/arch/mips/boot/dts/mscc/ocelot.dtsi
-> +++ b/arch/mips/boot/dts/mscc/ocelot.dtsi
-> @@ -214,7 +214,7 @@ uart2_pins: uart2-pins {
-> 
->  			miim1: miim1 {
->  				pins = "GPIO_14", "GPIO_15";
-> -				function = "miim1";
-> +				function = "miim";
->  			};
-> 
->  		};
-> --
-> 2.26.2
+It adds eMMC support for Sparx5, by adding a driver for the SoC SDHCI
+controller, DT configuration and DT binding documentation.
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Lars Povlsen (3):
+  dt-bindings: mmc: Add Sparx5 SDHCI controller bindings
+  sdhci: sparx5: Add Sparx5 SoC eMMC driver
+  arm64: dts: sparx5: Add Sparx5 eMMC support
+
+ .../mmc/microchip,dw-sparx5-sdhci.yaml        |  57 +++
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  24 ++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |  23 ++
+ .../boot/dts/microchip/sparx5_pcb134_emmc.dts |  23 ++
+ .../boot/dts/microchip/sparx5_pcb135_emmc.dts |  23 ++
+ drivers/mmc/host/Kconfig                      |  13 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-sparx5.c            | 348 ++++++++++++++++++
+ 8 files changed, 512 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-sparx5.c
+
+--
+2.26.2
