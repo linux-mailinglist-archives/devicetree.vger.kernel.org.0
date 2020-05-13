@@ -2,98 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B4F1D0BDA
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 11:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6F31D0BEB
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 11:22:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728338AbgEMJUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 05:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728224AbgEMJUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 05:20:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A80C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 02:20:50 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1jYnZ9-0005Uj-6g; Wed, 13 May 2020 11:20:39 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1jYnZ8-00072r-Or; Wed, 13 May 2020 11:20:38 +0200
-Date:   Wed, 13 May 2020 11:20:38 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     "vkoul@kernel.org" <vkoul@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v7 RESEND 07/13] spi: imx: fix ERR009165
-Message-ID: <20200513092038.GR5877@pengutronix.de>
-References: <1589218356-17475-1-git-send-email-yibin.gong@nxp.com>
- <1589218356-17475-8-git-send-email-yibin.gong@nxp.com>
- <20200513072132.GL5877@pengutronix.de>
- <VE1PR04MB6638F5096376BA0AF204C64189BF0@VE1PR04MB6638.eurprd04.prod.outlook.com>
- <20200513084815.GP5877@pengutronix.de>
- <VE1PR04MB6638857DD94A05DC7252E69589BF0@VE1PR04MB6638.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VE1PR04MB6638857DD94A05DC7252E69589BF0@VE1PR04MB6638.eurprd04.prod.outlook.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:20:29 up 83 days, 16:50, 119 users,  load average: 0.32, 0.19,
- 0.17
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1730336AbgEMJWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 05:22:46 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:54487 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727840AbgEMJWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 05:22:46 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1589361766; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=KL8q0qHaN0LMU/5PVv/5GqlNmJerHkWI+Gi3mhaXNzk=; b=cU48VANdIZT79Z26w9NyKVnf/GgCR2xw6ks9YhZBfoEcIp3lSPdGpobE3I91L+pQnP/xs9eC
+ zD9g/HQ2XR+uJRsEe34a3klOsZQ/V9b1PmKlZKeUJdBBJpVkQ/HV3TX+oa1Kvhe54O6k2zhG
+ N6kRaeolSgSBJ9l0iMXAzveKtY0=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5ebbbc5b.7efc2372afb8-smtp-out-n04;
+ Wed, 13 May 2020 09:22:35 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4CB84C432C2; Wed, 13 May 2020 09:22:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jprakash-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jprakash)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 33B32C433D2;
+        Wed, 13 May 2020 09:22:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 33B32C433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jprakash@codeaurora.org
+From:   Jishnu Prakash <jprakash@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, linus.walleij@linaro.org,
+        Jonathan.Cameron@huawei.com, andy.shevchenko@gmail.com,
+        amit.kucheria@verdurent.com, smohanad@codeaurora.org,
+        kgunda@codeaurora.org, aghayal@codeaurora.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        Jishnu Prakash <jprakash@codeaurora.org>
+Subject: [PATCH V4 0/5] iio: adc: Add support for QCOM SPMI PMIC7 ADC
+Date:   Wed, 13 May 2020 14:52:11 +0530
+Message-Id: <1589361736-816-1-git-send-email-jprakash@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 13, 2020 at 08:52:39AM +0000, Robin Gong wrote:
-> On 2020/05/13 16:48 Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > On Wed, May 13, 2020 at 08:38:26AM +0000, Robin Gong wrote:
-> > > On 2020/05/13 Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > > > This patch is the one bisecting will end up with when somebody uses
-> > > > an older SDMA firmware or the ROM scripts. It should have a better
-> > > > description what happens and what should be done about it.
-> > > Emm..That's true. Timeout will be caught in such case, hence, maybe we can
-> > fall back it to pio always.
-> > 
-> > With my patch applied sdma_load_context() will fail. I don't know how exactly
-> > this hits into the SPI driver, but it won't be a timeout.
-> Thanks for your quick test, assume you use ROM firmware, right?
+The following changes are made in V4:
 
-Yes.
+Made some recommended minor changes in the third patch. Removed
+the info member from adc5_data, and adc exit function, to be
+added back in fifth patch.
 
-Sascha
+Added a fifth patch to clean up code common to PMIC5 and PMIC7 ADC.
 
+Jishnu Prakash (5):
+  iio: adc: Convert the QCOM SPMI ADC bindings to .yaml format
+  iio: adc: Add PMIC7 ADC bindings
+  iio: adc: Add support for PMIC7 ADC
+  iio: adc: Update error checks and debug prints
+  iio: adc: Clean up ADC code common to PMIC5 and PMIC7
+
+ .../devicetree/bindings/iio/adc/qcom,spmi-vadc.txt | 173 -------------
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml           | 278 +++++++++++++++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c                   | 266 ++++++++++++++++++--
+ drivers/iio/adc/qcom-vadc-common.c                 | 260 +++++++++++++++++++
+ drivers/iio/adc/qcom-vadc-common.h                 |  15 ++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h    |  67 +++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h   |  88 +++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h   |  46 ++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h   |  28 +++
+ include/dt-bindings/iio/qcom,spmi-vadc.h           |  78 +++++-
+ 11 files changed, 1134 insertions(+), 193 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
+ create mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
