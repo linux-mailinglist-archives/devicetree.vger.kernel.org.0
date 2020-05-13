@@ -2,148 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F1E1D0386
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 02:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C98C1D040E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 02:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731771AbgEMAVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 May 2020 20:21:04 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:36982 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731803AbgEMAVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 May 2020 20:21:03 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3A281201190;
-        Wed, 13 May 2020 02:21:00 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 226252002A6;
-        Wed, 13 May 2020 02:20:55 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 29AA140318;
-        Wed, 13 May 2020 08:20:49 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V5 5/5] dt-bindings: clock: Convert i.MX6UL clock to json-schema
-Date:   Wed, 13 May 2020 08:11:24 +0800
-Message-Id: <1589328684-1397-6-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589328684-1397-1-git-send-email-Anson.Huang@nxp.com>
-References: <1589328684-1397-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1732083AbgEMAzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 May 2020 20:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732075AbgEMAza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 May 2020 20:55:30 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09655C061A0F
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 17:55:30 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id t9so10382794pjw.0
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2020 17:55:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+aVsTRV0Vd7AjARuX1FSoP3j3p4vMbsUynYNIWG2zcg=;
+        b=ITZ6s8nfqeBtfn0oVoLGCgrnjOV1Xy0pZ3QdECW67KsV/hkeylPh/9bZ5pY1ytrDEv
+         MYdwBAJh+8DHuXK6VaGPgTKlQozijma7VAZhrA2jziS2Wlfl2Aj0GO+oGXYBdvOHYkNI
+         1zyQX/hfzOnC2niIDuG1u0ohwO0xg+hWVawxT9+Pn0+2OOKKwn0xZv2Qvv+BXw3KPfaT
+         Ba0QGr4CYQTEmMg3MUxArtF/PEekKi386oRGyi9pXGwCAQiIgxbtoqYViHsSJgREiy1K
+         Y7ilsmDsR0Th/RdJdnf+j5yqKLOCA3bz1sKYYSDzKdxvqgerEGPd3qk7PmVJDXYSzYoI
+         zGxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+aVsTRV0Vd7AjARuX1FSoP3j3p4vMbsUynYNIWG2zcg=;
+        b=CqdXG2c9gbwvx6rOB3iopmY/sVigDJIdpCenWHHIX73AwuCc4FFj3BpN2V6T9mT7c9
+         SAANnQum6QBly41bYsYnp0asns9CGLponHB1sR9OxcDjn1Jtw/nUUx5B4wczye4bl1vq
+         JrQ/nq+gOZNC+9JYpZxZd/OscCXMosTE8wSotek+q2TTRQ4hSudkMqx9zfiQqrul4UJS
+         /kKobLySg5PP5XJISSY88IwalUQ44OdCgATpbH+9nRi7fed+zo4DhPBZHOypdMbAEuPq
+         EXbROgjtIXMiPJR9UgEwUGAtCnyFQbr3BajpMpCe1U06u7PKeQSoFH7jMJp61WAiCPp6
+         PgCw==
+X-Gm-Message-State: AGi0PuacIo7MYn6aiyL6iLm+V1wAtNi8fKk/itifhnyP3a0gmkzt65do
+        M2vn1n6TYDOdJVennjaB2ZXp9A==
+X-Google-Smtp-Source: APiQypI3O4oBkDtpKaBNHwg5f+8AZEbJC5eKmdrym5Hi5g9Mw7N4wvHIlkhR/lrQNiEANYIJvRADLA==
+X-Received: by 2002:a17:90a:da05:: with SMTP id e5mr32780994pjv.140.1589331329287;
+        Tue, 12 May 2020 17:55:29 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id p2sm11057428pgh.25.2020.05.12.17.55.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2020 17:55:28 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] hwspinlock: qcom: Allow dropping the intermediate TCSR mutex syscon
+Date:   Tue, 12 May 2020 17:54:37 -0700
+Message-Id: <20200513005441.1102586-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX6UL clock binding to DT schema format using json-schema.
+In all modern Qualcomm platforms the mutex region of the TCSR is forked
+off into its own block, all with a offset of 0 and stride of 4096.
+Update the binding to allow the hardware block to be described directly
+on the mmio bus, in addition to allowing the existing syscon based
+definition.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Acked-by: Stephen Boyd <sboyd@kernel.org>
----
-Changes since V4:
-	- add descriptions for interrupts and each item of it.
----
- .../devicetree/bindings/clock/imx6ul-clock.txt     | 13 -----
- .../devicetree/bindings/clock/imx6ul-clock.yaml    | 66 ++++++++++++++++++++++
- 2 files changed, 66 insertions(+), 13 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/imx6ul-clock.txt
- create mode 100644 Documentation/devicetree/bindings/clock/imx6ul-clock.yaml
+Bjorn Andersson (4):
+  dt-bindings: hwlock: qcom: Migrate binding to YAML
+  dt-bindings: hwlock: qcom: Allow device on mmio bus
+  hwspinlock: qcom: Allow mmio usage in addition to syscon
+  arm64: dts: qcom: sm8250: Drop tcsr_mutex syscon
 
-diff --git a/Documentation/devicetree/bindings/clock/imx6ul-clock.txt b/Documentation/devicetree/bindings/clock/imx6ul-clock.txt
-deleted file mode 100644
-index 571d503..0000000
---- a/Documentation/devicetree/bindings/clock/imx6ul-clock.txt
-+++ /dev/null
-@@ -1,13 +0,0 @@
--* Clock bindings for Freescale i.MX6 UltraLite
--
--Required properties:
--- compatible: Should be "fsl,imx6ul-ccm"
--- reg: Address and length of the register set
--- #clock-cells: Should be <1>
--- clocks: list of clock specifiers, must contain an entry for each required
--  entry in clock-names
--- clock-names: should include entries "ckil", "osc", "ipp_di0" and "ipp_di1"
--
--The clock consumer should specify the desired clock by having the clock
--ID in its "clocks" phandle cell.  See include/dt-bindings/clock/imx6ul-clock.h
--for the full list of i.MX6 UltraLite clock IDs.
-diff --git a/Documentation/devicetree/bindings/clock/imx6ul-clock.yaml b/Documentation/devicetree/bindings/clock/imx6ul-clock.yaml
-new file mode 100644
-index 0000000..3c779ee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/imx6ul-clock.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/imx6ul-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Clock bindings for Freescale i.MX6 UltraLite
-+
-+maintainers:
-+  - Anson Huang <Anson.Huang@nxp.com>
-+
-+properties:
-+  compatible:
-+    const: fsl,imx6ul-ccm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: CCM provides 2 interrupt requests, request 1 is to generate
-+      interrupt for frequency or mux change, request 2 is to generate
-+      interrupt for oscillator read or PLL lock.
-+    items:
-+      - description: CCM interrupt request 1
-+      - description: CCM interrupt request 2
-+    maxItems: 2
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  clocks:
-+    items:
-+      - description: 32k osc
-+      - description: 24m osc
-+      - description: ipp_di0 clock input
-+      - description: ipp_di1 clock input
-+
-+  clock-names:
-+    items:
-+      - const: ckil
-+      - const: osc
-+      - const: ipp_di0
-+      - const: ipp_di1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#clock-cells'
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  # Clock Control Module node:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    clock-controller@20c4000 {
-+        compatible = "fsl,imx6ul-ccm";
-+        reg = <0x020c4000 0x4000>;
-+        interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+        #clock-cells = <1>;
-+        clocks = <&ckil>, <&osc>, <&ipp_di0>, <&ipp_di1>;
-+        clock-names = "ckil", "osc", "ipp_di0", "ipp_di1";
-+    };
+ .../bindings/hwlock/qcom-hwspinlock.yaml      | 65 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 11 +--
+ drivers/hwspinlock/qcom_hwspinlock.c          | 72 ++++++++++++++-----
+ 3 files changed, 124 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwlock/qcom-hwspinlock.yaml
+
 -- 
-2.7.4
+2.26.2
 
