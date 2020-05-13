@@ -2,114 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6CEA1D17B2
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 16:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F12241D17CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2020 16:41:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388974AbgEMOfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 10:35:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388395AbgEMOfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 10:35:54 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EA5C061A0C
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 07:35:54 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id n17so14388052ejh.7
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 07:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AlqVC8u4P9PNkoT8l8vMpZfu06Dmj3nts225WoeRAJA=;
-        b=ZLQrV0nneosBHj+7xCc5egcsUtP65O31+mSG+ARmurEXovdMccDV3mFX15VNW2ByBl
-         QO4llNH+5o4bhlXHKGm0KbtQIJ3+Z1GRZSWSE/M5qV65RflL1tf78xgJe7A4rE8M2qJW
-         ntHk1Z/Jd+55anPZ9E0wqcCyq8rnGIdyrGqTGORajq8YkayNJ1XuO7h7NgQSoAkFP2kL
-         53h0HrwXoZrsg4DB33/bqlCSIQpB1aGOnaVpTfwGrZn5FWoDCoYsCyy0fvL07HZwXNkI
-         zWPvp6MiCgszDsuRdhpk8HEMAcRwTIKiMTPgV4iJvA0Jsw7VqEDejipUKNQjiekb3m9P
-         cGrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AlqVC8u4P9PNkoT8l8vMpZfu06Dmj3nts225WoeRAJA=;
-        b=kCN/7bp4YCL6xtGMmOMQQZLrk34YGP/ujzL7j9f/v1o6QVTdQxIMJ5YmsTR8L9JTSA
-         s4q5dMTEYPV/SI0zIFhGz4ZT87pSUFVzlVr0wt856qVk3X9fL52MmGnBQp+pEEfKehhy
-         vEn/7DTd7273+SNBJd9VU8qrG2EID4j4n0FrNWQFgYs3CfN3Kwi3MVLf1BKRwJQ8SIr8
-         2VfMn7Zjv7yPcn21u6zV6k75iefEfdE/N15nmeZBSsB6ycX05bf5Bs8diA6oQgHRuBLP
-         UEjgTmOWjTgvgeIx/dFJ1+xMjxL39JDYcGkXeTNYKluJC0OFSxswIryix7zv9lyp1IFL
-         P0zw==
-X-Gm-Message-State: AGi0PuYSS+Qkz7a6JfcGM8HO3gfRCxtxEoKOpFReNaUdettAw81T37Ab
-        d90cwW42hfpzap4epLcOeuiGT8L6deqlsYRSQMohHfxQnus=
-X-Google-Smtp-Source: APiQypKK6WVF7jNOMbzOYGstLdxFuP03Og914DSw6UgaUl3VURf6RhYpE2KLwj09JfmwrN8oLKW+BCRRSdYt8gBuuKw=
-X-Received: by 2002:a17:906:404d:: with SMTP id y13mr23435201ejj.43.1589380552850;
- Wed, 13 May 2020 07:35:52 -0700 (PDT)
+        id S2389009AbgEMOlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 10:41:39 -0400
+Received: from mga05.intel.com ([192.55.52.43]:14940 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388395AbgEMOlj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 May 2020 10:41:39 -0400
+IronPort-SDR: fMcQmLgdCp9QN0PT92LMvDpFxtMC1+thL3c5pb7SQx8oWTDIzh0mTiaywaa57clcE/RtjMoEyS
+ UT0H8OvFCfLA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2020 07:41:39 -0700
+IronPort-SDR: z/LwwDOuZhSyS3rvaD9yFkLshHEjGog5cmKgX+mVSZttANYRsDanxeHRqykqKaOzpXjY2HC7j0
+ n95DSdK68+Mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,388,1583222400"; 
+   d="scan'208";a="251271896"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga007.jf.intel.com with ESMTP; 13 May 2020 07:41:33 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jYsZj-006RTr-Aw; Wed, 13 May 2020 17:41:35 +0300
+Date:   Wed, 13 May 2020 17:41:35 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Allison Randal <allison@lohutok.net>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, fengsheng <fengsheng5@huawei.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+        Aditya Pakki <pakki001@umn.edu>,
+        "wuxu.wu" <wuxu.wu@huawei.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 17/17] spi: dw: Use regset32 DebugFS method to create a
+ registers file
+Message-ID: <20200513144135.GO185537@smile.fi.intel.com>
+References: <20200508132943.9826-1-Sergey.Semin@baikalelectronics.ru>
+ <20200508132943.9826-18-Sergey.Semin@baikalelectronics.ru>
+ <20200508193027.GW185537@smile.fi.intel.com>
+ <20200513124422.z6ctlmvipwer45q4@mobilestation>
 MIME-Version: 1.0
-References: <20200506211523.15077-1-keescook@chromium.org> <20200512131655.GE17734@linux-b0ei>
- <CA+CK2bBMUxxuTBicQ7ihKpN3jK94mMjcNCXhnAXUaODce09Wmw@mail.gmail.com>
- <20200512155207.GF17734@linux-b0ei> <202005121111.6BECC45@keescook>
- <20200513073448.GG7340@linux-b0ei> <202005130045.EF013D12E@keescook>
-In-Reply-To: <202005130045.EF013D12E@keescook>
-From:   Pavel Tatashin <pasha.tatashin@soleen.com>
-Date:   Wed, 13 May 2020 10:35:16 -0400
-Message-ID: <CA+CK2bAPv5u1ih5y9t5FUnTyximtFCtDYXJCpuyjOyHNOkRdqw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] allow ramoops to collect all kmesg_dump events
-To:     Kees Cook <keescook@chromium.org>
-Cc:     Petr Mladek <pmladek@suse.com>, Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        James Morris <jmorris@namei.org>,
-        Sasha Levin <sashal@kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200513124422.z6ctlmvipwer45q4@mobilestation>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> >   + reason: panic, oops, emergency, shutdown    (ordered by severity)
-> >   + handling: restart, halt, poweroff
-> >
-> > Or we might just replace KMSG_DUMP_RESTART, KMSG_DUMP_HALT,
-> > KMSG_DUMP_POWEROFF with a single KMSG_DUMP_SHUTDOWN.
-> >
-> > Then the max reason variable would make sense.
->
-> That would work for me, yeah. Pavel, is that enough granularity for you?
->
+On Wed, May 13, 2020 at 03:44:22PM +0300, Serge Semin wrote:
+> On Fri, May 08, 2020 at 10:30:27PM +0300, Andy Shevchenko wrote:
+> > On Fri, May 08, 2020 at 04:29:42PM +0300, Serge Semin wrote:
+> > > DebugFS kernel interface provides a dedicated method to create the
+> > > registers dump file. Use it instead of creating a generic DebugFS
+> > > file with manually written read callback function.
 
-Yes, I like the second approach: where we combine all shutdown type
-events into a single type.
-max_reason will have 4 levels:
+> > > +#define DW_SPI_DBGFS_REG(_name, _off)	\
+> > > +{					\
+> > > +	.name = _name,			\
+> > > +	.offset = _off			\
+> > 
+> > Leave comma here.
+> 
+> don't see a point.
 
-   KMSG_DUMP_PANIC,
-   KMSG_DUMP_OOPS,
-   KMSG_DUMP_EMERG,
-   KMSG_DUMP_SHUTDOWN,
+It will help in case if this getting extended. Also slightly better to
+distinguish between terminator type of members vs. data structures.
 
-If needed it is possible to determine from dmesg logs what kind of
-shutdown was taken, because there is a message logged right before
-every kmsg_dump() for these events:
+> > >  }
 
-249   if (!cmd)
-250   pr_emerg("Restarting system\n");
-251   else
-252   pr_emerg("Restarting system with command '%s'\n", cmd);
-253   kmsg_dump(KMSG_DUMP_RESTART);
+> > > +	struct debugfs_regset32 regset;
+> > 
+> > I'm wondering why we need it here and not simple on the stack?
+> 
+> Please see the way the DebugFS regset work. A prompt: how does the DebugFS
+> core get to know what is a base address of the registers? =)
 
-276   pr_emerg("System halted\n");
-277   kmsg_dump(KMSG_DUMP_HALT);
+If they have a member in the struct which passed thru private pointer of inode.
+But I see your point.
 
-294   pr_emerg("Power down\n");
-295   kmsg_dump(KMSG_DUMP_POWEROFF);
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Kees, I will submit a new series with these changes soon.
 
-Thank you,
-Pasha
