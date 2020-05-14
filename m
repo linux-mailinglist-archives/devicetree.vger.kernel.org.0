@@ -2,149 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 622F81D2649
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 07:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC5BC1D26FC
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 08:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726289AbgENFDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 01:03:45 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:35471 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726145AbgENFDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 01:03:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1589432601; x=1620968601;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=7Qtw8WyIBpRyf9s4WJQQZLKYcduXMVC0l968XR9oamU=;
-  b=2d0n+g2LIT9FMy9qIUQrKt4TsD2T4opzdkU/tkbrBTJCa9qd4V/jiPHk
-   FwSWEjwLTk19Rlx18AyhFkSWvScdkKJqLFG+oSxjNEJlb1/3W1ZSwkQmH
-   /uz/l5DFPotee0tjQAKa69CFXbdo2i2TkdzCLtWBSRBtbOUZI8sYxOYU1
-   f9hg4rI0cRut4juoRhL44wBd2FzNMn4LRlFTDFtjsEomgPHmfUQ0h+lLy
-   oJwchVCXr8zFTXeWtb34/EmqOVly+wacx8E2Bde7Nh78sdh30n5PUrnv2
-   d3qWHmMJEzwA0vSWXM0Rho/hncV0GI+SI7jTpXtB4JFYzACt0ZxKuCcM+
-   g==;
-IronPort-SDR: UpcwKiGBOWuZ+83MnuTLHv3U3ywQO58kegbGi6Dt+lYTc8Tq1HK/m+zHfzVKkjMlhcSAMnjszU
- JwBXSi3zScwCafq7jkImom91R4cHxPIEo9iad05zEowXtkxYxfz4O6r0eDMBDM5TQMs7+nKXiP
- i7epjZqnOxfbbsOEbdQD0mTOPTQUq/KvrRgcM/drKtG0832oellS2/trFYyRk3ekoCXkgxEQB+
- dIbPTwVsHXUXgghsVYtLVFXGo8/z8wF0CGRxQ3I7qrUQsWim+rNvkXDEnT46eDBZJQMcIppEt0
- dto=
-X-IronPort-AV: E=Sophos;i="5.73,390,1583218800"; 
-   d="scan'208";a="79551128"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 May 2020 22:03:20 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 13 May 2020 22:03:22 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
- Transport; Wed, 13 May 2020 22:03:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VN/hjzMp9Q/5DKRp+05MjsX9KAJCvQN6L5yCuD8I5VteaRLiKdVPrHI7p1JG+VYQLvwaQ7dYY/GLzWw+SSAkHZ8rnCK5NtwS/ValFkjunfIGx7SzYQCyXlyuSzEd3qzx7Ae8HrfaNV/AYP27EcM9qBKw1IyQPKImxP6GiVAJWFFUFd67DmZOEQmMtT8tTAv/pfdNuSRZ2zdv5smiv3hwWFJ/86oF6lQGXFffokpMnUQnhaN6af+R+3lPCc7tDj0sFyuh+e8MZJAjOtmd54FpWBsNFGHOIf9gSXm0qCGZuQE009E/pk+dDjv5TM9zTZbwhEiDN62xX7m3Vv2V4m8bIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4grfYYfXHkKtzPg9SswqCLnAlHDofbIxigWygQqcD/A=;
- b=bYgr1b3r6ywba6Upe9BQyPh9YRzUJUJic7BATgPz6uGCAEcEAFW53KNQ2JwkcPz3GO2IItEZUBWrhc2G8n01jKNwv32WEmrwM4O6g4yq4ehvwz6I8bRtBvQk+tvNot+ve09pcRUIrwjojm/qoA0iliqeiZH5lYeZTX4SX2WX/YRFkXyS3RvE48SOcmb0HCNQxrjakHKcqfjbuUXGjTQyU41Gd7KbJgFrrQQzrADrrY2zG+hdybvimJ0aoQgJZNhh0QNi+n7fNySRx7jpFgcO/qOg2LYBM0Fa6Ce9+ETEFoaKoSvzbPg3ebE+lq3gPZvtKcDyvA5Q3laWpCjrezPHEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S1725976AbgENGE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 02:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725794AbgENGE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 02:04:26 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42568C061A0C
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 23:04:26 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id p21so801352pgm.13
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2020 23:04:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4grfYYfXHkKtzPg9SswqCLnAlHDofbIxigWygQqcD/A=;
- b=Oeo0u/A/6qIB69cemUypyuMPU2u/pKrpijn9UhBWcvPsPa7bVIiCzuW4DfuY17gGW2GEoayFrY6ZUQy78C7urXYjXiTpKDThCofFB0bD0tMosgn+/Nm7v3zLiuThZTExJMkiITaKOV883Rk4Nn6G7g3RX7alSxlfQs4QyMnJQck=
-Received: from BY5PR11MB4419.namprd11.prod.outlook.com (2603:10b6:a03:1c8::13)
- by BY5PR11MB4040.namprd11.prod.outlook.com (2603:10b6:a03:186::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.33; Thu, 14 May
- 2020 05:03:18 +0000
-Received: from BY5PR11MB4419.namprd11.prod.outlook.com
- ([fe80::d847:5d58:5325:c536]) by BY5PR11MB4419.namprd11.prod.outlook.com
- ([fe80::d847:5d58:5325:c536%7]) with mapi id 15.20.3000.022; Thu, 14 May 2020
- 05:03:18 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <alexandre.belloni@bootlin.com>, <Ludovic.Desroches@microchip.com>,
-        <Nicolas.Ferre@microchip.com>
-CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Codrin.Ciubotariu@microchip.com>,
-        <Tudor.Ambarus@microchip.com>
-Subject: [PATCH 16/16] ARM: dts: at91: sama5d2_ptc_ek: Add comments to
- describe the aliases
-Thread-Topic: [PATCH 16/16] ARM: dts: at91: sama5d2_ptc_ek: Add comments to
- describe the aliases
-Thread-Index: AQHWKaz7B/63x91lDEatHaURenNffw==
-Date:   Thu, 14 May 2020 05:03:17 +0000
-Message-ID: <20200514050301.147442-17-tudor.ambarus@microchip.com>
-References: <20200514050301.147442-1-tudor.ambarus@microchip.com>
-In-Reply-To: <20200514050301.147442-1-tudor.ambarus@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: bootlin.com; dkim=none (message not signed)
- header.d=none;bootlin.com; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [94.177.32.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 690dd394-b430-4c24-69dc-08d7f7c41dd2
-x-ms-traffictypediagnostic: BY5PR11MB4040:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR11MB404066C81030D8415CA161AAF0BC0@BY5PR11MB4040.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:962;
-x-forefront-prvs: 040359335D
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: d714Tu0dkBDofQB+QkFSqHG7fgYvxr0hbaawdDCVfFE59czXDY5e54Y11tWK792n6og+q9EQobs2RWp3eESHQSMrVnX+gFT30CgpYvPQ+upokE4MTpJGqpISokHofR9WU/HEIhFyvIJPyk8pmy/fG4ULNDUCGvZ2ZKoZaf6x7Zgpa+iAlY1oFBMme/4H7uiP++ksTo8jBRcCgNCqPdOIU/wuZxaIxzwGMUkb8uensEBB8CCMx3sql7rK1GDOA83ylj04vxF77rmjWLDwNfJB230qffa69cn4rwpMpgtAj9cGol7x1bsHnXOaAMOapuNFyp05xHPALSQ7G2b7+hXee8nsJ28EarNZkmbG46eQn0qfLC2CvsemryDO51r2wU0+iXZn3v9ua70M91Lnmj0Hcpmjqywcs4Ks6+W9HTfqGWv50DHN4olW7+sjo+41hVoh
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4419.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(376002)(396003)(366004)(39860400002)(346002)(136003)(186003)(8936002)(36756003)(6512007)(5660300002)(66476007)(316002)(66446008)(66556008)(6636002)(4744005)(110136005)(4326008)(54906003)(8676002)(1076003)(2616005)(64756008)(107886003)(66946007)(26005)(86362001)(6506007)(76116006)(478600001)(6486002)(2906002)(71200400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 7WQ/5S21oHpPIyvNp9ulQxwCm25WkQtwbzq+TjI2F28lNz2Kd++l1MWUu3jVM/fNczxW3BnM6FiMqQ93Ls9qme/1+vGg2P9ljRNA2N+XK8ZqxKAG6BBI41Gx2dKUYRtnU9GnA4bdF1eAmEICgQEBH6LorTNUTOk2/FnkO/jtPTpiqOgVpNNyEZq4J5oBkPfNXcu6gRcf2Ic7H5+Bb3cpEjnWqvL/DcJcbEKie3roVHCLBBSEqNopsR5TTnDUU9Dim7hKj/od656rtF11HUhPktCBNhzzPmeRv5HSRhOJxTpkmp91+DeDCZ/3xQal1Dypy3MtXZvl4otdzrozke1RR9qpYf47WUDdWFah8RcQG+pbnd+sc4iaKhue8rmMiPbubqRBHg757/NeuaFLgF7DvMmGUlIpdBtbXzYUFIWdqNd0I4e1Gu+CmAIEgQXnmdvJUXJAEZVPZUJpjkSLDniPuPg0X8tQ3L7WFuFQsQJE7s45KwjlsLtLIGoMJtXv3Up/
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=fdmSIWMsCpUW7wJAjQcM04l5EV2d38V1LLlFH56zh/Q=;
+        b=t+81K8xIWHZAb+qZy4b/CyLYaDJEC3buGiFxgEM+vGGtP3OpgN/uRorgVQdklsZolt
+         fUMiHNpNafAs3xthBI978lkA1NzlDyGuLkTuTs++Fwos6trlUHlOCcWOLT51P/tbaPa8
+         EMAX6Xneovwlf0jYO+DSG7ju4bF4ps5Pnu6r04J47Kkq3Jn9Yqr0qHK99/QnLcb9TWOe
+         ELDo+1d9D3l3uzm0ltFq+Gz3mTRDd7+gli5UHpqztRYjkZV+BL79pSaa/x1f/AvQIBqA
+         eMHOSwaYnIjuc0cY0Fbh7YoccJUt6COcV9CoG13JZrx4h1P3lnzkrDoHP+bYr+91ROv4
+         5yDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fdmSIWMsCpUW7wJAjQcM04l5EV2d38V1LLlFH56zh/Q=;
+        b=mDurQGGXg9dKpPFk/RImMLq7alMm2t5nGcoSsnfO563oeG2/DV0LiRUcJD/g+IbNWl
+         jQyXeDmXf5EnZcQGFHG2fDTFQWgEuhd/blD1kFHWKU6roFunIbqVAy3G+KgMsuccmBdW
+         LzTUFX40FF5QqqMA62a2d4pPMfgXICO6XznMRE0ExoI0eVEtvdea1UUalHafMNbtbgx3
+         4mp2bP6+wO/U26SMpNS6EYfkaFP4mB3wcUwfQv+OxH9V9LD9UhMoh0Z5UZL/XxLkeu3y
+         NZDPAKkxmMIT+8qV/b0Xe8nRLOLiczkFUbgEYPGvmQ+9uAHKZ32IlL7Ey9NgSyOaei7U
+         cmUA==
+X-Gm-Message-State: AOAM533otk2EBRGzFKReiFkJASBfgSmewCQE5qXg8npBViD09heds8f5
+        hpiOZ8qlQpaOH9sRMUCh8vdehQ==
+X-Google-Smtp-Source: ABdhPJy8/5JndA1WeHN8nNz8gCYQDDpjdxcICz8QbFZopFUpG6xUKfXZ6hED2rLKq8OOCHvu7Dtn/w==
+X-Received: by 2002:a62:6dc3:: with SMTP id i186mr2697519pfc.273.1589436265605;
+        Wed, 13 May 2020 23:04:25 -0700 (PDT)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id v189sm1218271pfv.176.2020.05.13.23.04.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 May 2020 23:04:24 -0700 (PDT)
+Date:   Wed, 13 May 2020 23:04:22 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sm8250 pinctrl
+ bindings
+Message-ID: <20200514060422.GL1302550@yoga>
+References: <20200417061907.1226490-1-bjorn.andersson@linaro.org>
+ <20200417061907.1226490-2-bjorn.andersson@linaro.org>
+ <20200429213453.GA32114@bogus>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 690dd394-b430-4c24-69dc-08d7f7c41dd2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2020 05:03:18.0215
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xBLPV8C1NQATB2yHexbOQwS8/YXaotFFhi1QCfi+j5++BVkWJnr1hlYxFqhrxrI3pFViklJNAoyehVGlE4nX39Mx485sitGsYuR+fBoNWqM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4040
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200429213453.GA32114@bogus>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tudor Ambarus <tudor.ambarus@microchip.com>
+On Wed 29 Apr 14:34 PDT 2020, Rob Herring wrote:
+> On Thu, Apr 16, 2020 at 11:19:06PM -0700, Bjorn Andersson wrote:
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
+[..]
+> > +#PIN CONFIGURATION NODES
+> > +patternProperties:
+> > +  '^.*$':
+> > +    if:
+> > +      type: object
+> > +    then:
+> 
+> Needs a $ref to the standard properties.
+> 
+> Would be good to show a child node in the example too. (And try having 
+> an error in a standard property type to verify you get an error).
+> 
 
-Indicate which i2c alias is for which connector on the board.
-Specify that serial0 is for DBGU. This eases tester's life.
+Finally looked into this. By $ref'ing pinmux-node.yaml I can drop pins
+and function from below properties, and by $ref'ing pincfg-node.yaml I
+can drop the pinconf entries listed.
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+But how do I $ref both?
 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/=
-at91-sama5d2_ptc_ek.dts
-index 0e0341c83aa5..45c671a2bcf2 100644
---- a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-@@ -18,9 +18,9 @@
- 	compatible =3D "atmel,sama5d2-ptc_ek", "atmel,sama5d2", "atmel,sama5";
-=20
- 	aliases {
--		serial0 =3D &uart0;
--		i2c0	=3D &i2c0;
--		i2c1	=3D &i2c1;
-+		serial0 =3D &uart0;	/* DBGU */
-+		i2c0	=3D &i2c0;	/* mikroBUS 1 */
-+		i2c1	=3D &i2c1;	/* XPRO EXT1 */
- 		i2c2	=3D &i2c2;
- 	};
-=20
---=20
-2.23.0
+What's the appropriate method for amending pins, function and
+drive-strength with the more specific value set? Should I both $ref them
+and list them here?
+
+How do I limit which standard properties are actually supported in this
+binding?
+
+Thanks,
+Bjorn
+
+> > +      properties:
+> > +        pins:
+> > +          description:
+> > +            List of gpio pins affected by the properties specified in this
+> > +            subnode.
+> > +          items:
+> > +            oneOf:
+> > +              - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9])$"
+> > +              - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
+> > +          minItems: 1
+> > +          maxItems: 36
+> > +
+> > +        function:
+> > +          description:
+> > +            Specify the alternative function to be configured for the specified
+> > +            pins.
+> > +
+> > +          enum: [ aoss_cti, atest, audio_ref, cam_mclk, cci_async, cci_i2c,
+> > +            cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4, cri_trng,
+> > +            cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
+> > +            ddr_pxi2, ddr_pxi3, dp_hot, dp_lcd, gcc_gp1, gcc_gp2, gcc_gp3, gpio,
+> > +            ibi_i3c, jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0,
+> > +            mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1,
+> > +            mi2s0_sck, mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck, mi2s1_ws,
+> > +            mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws, pci_e0, pci_e1,
+> > +            pci_e2, phase_flag, pll_bist, pll_bypassnl, pll_clk, pll_reset,
+> > +            pri_mi2s, prng_rosc, qdss_cti, qdss_gpio, qspi0, qspi1, qspi2, qspi3,
+> > +            qspi_clk, qspi_cs, qup0, qup1, qup10, qup11, qup12, qup13, qup14,
+> > +            qup15, qup16, qup17, qup18, qup19, qup2, qup3, qup4, qup5, qup6,
+> > +            qup7, qup8, qup9, qup_l4, qup_l5, qup_l6, sd_write, sdc40, sdc41,
+> > +            sdc42, sdc43, sdc4_clk, sdc4_cmd, sec_mi2s, sp_cmu, tgu_ch0, tgu_ch1,
+> > +            tgu_ch2, tgu_ch3, tsense_pwm1, tsense_pwm2, tsif0_clk, tsif0_data,
+> > +            tsif0_en, tsif0_error, tsif0_sync, tsif1_clk, tsif1_data, tsif1_en,
+> > +            tsif1_error, tsif1_sync, usb2phy_ac, usb_phy, vsense_trigger ]
+> > +
+> > +        drive-strength:
+> > +          enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> > +          default: 2
+> > +          description:
+> > +            Selects the drive strength for the specified pins, in mA.
+> > +
+> > +        bias-pull-down: true
+> > +
+> > +        bias-pull-up: true
+> > +
+> > +        bias-disable: true
+> > +
+> > +        output-high: true
+> > +
+> > +        output-low: true
+> > +
+> > +      required:
+> > +        - pins
+> > +        - function
+> > +
+> > +      additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-controller
+> > +  - '#interrupt-cells'
+> > +  - gpio-controller
+> > +  - '#gpio-cells'
+> > +  - gpio-ranges
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +        pinctrl@1f00000 {
+> > +                compatible = "qcom,sm8250-pinctrl";
+> > +                reg = <0x0f100000 0x300000>,
+> > +                      <0x0f500000 0x300000>,
+> > +                      <0x0f900000 0x300000>;
+> > +                reg-names = "west", "south", "north";
+> > +                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> > +                gpio-controller;
+> > +                #gpio-cells = <2>;
+> > +                interrupt-controller;
+> > +                #interrupt-cells = <2>;
+> > +                gpio-ranges = <&tlmm 0 0 180>;
+> > +                wakeup-parent = <&pdc>;
+> > +        };
+> > -- 
+> > 2.24.0
+> > 
