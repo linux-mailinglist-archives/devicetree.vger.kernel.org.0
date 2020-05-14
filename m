@@ -2,106 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 128A51D2DA5
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 12:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4501D2E36
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 13:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbgENKyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 06:54:55 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:13093 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726245AbgENKyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 06:54:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1589453694; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=IFw+MdK9cB0nOb0XyjKcs2qAJSm5K1ae8zeof47RqpI=; b=Ia2F+SefLbDO0j6E/D+9xX2eq2rER/DKkSoqdRxNy3rMhJ5H+TyGMyPU0deo9ecq6aCZLUa/
- d6828YqKrf6v80/nhmNd9+18RcQr0CdqYD0E8oI1veI58w2L82x/7Zu6jsFWTAqeEoyQZ/2l
- yioVpnwMz2rNBnyDkUIkgpPWjCE=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5ebd237d.7f2e20d0c340-smtp-out-n05;
- Thu, 14 May 2020 10:54:53 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B44C1C44792; Thu, 14 May 2020 10:54:53 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld559.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: smasetty)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2D4B6C44791;
-        Thu, 14 May 2020 10:54:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2D4B6C44791
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
-From:   Sharat Masetty <smasetty@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jcrouse@codeaurora.org,
-        georgi.djakov@linaro.org, mka@chromium.org,
-        Sharat Masetty <smasetty@codeaurora.org>
-Subject: [PATCH 6/6] dt-bindings: drm/msm/gpu: Document gpu opp table
-Date:   Thu, 14 May 2020 16:24:19 +0530
-Message-Id: <1589453659-27581-7-git-send-email-smasetty@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589453659-27581-1-git-send-email-smasetty@codeaurora.org>
-References: <1589453659-27581-1-git-send-email-smasetty@codeaurora.org>
+        id S1726067AbgENL0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 07:26:23 -0400
+Received: from mga01.intel.com ([192.55.52.88]:35176 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726056AbgENL0W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 07:26:22 -0400
+IronPort-SDR: ZmwZzeHN14KIJYkoNZ6u8t72slnvL8kj2RV8dl6rEKgDE5O02sYdfmek13PeZ5VQn11U9A3ICy
+ kVqaUJMFeRcQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 May 2020 04:26:22 -0700
+IronPort-SDR: +jfDun7cOEjJ/dNmFy7jyIpp1N07moS8qViN2jFj9nFLdqUijfTUpompb60TjJ87ofQ9AwFqrA
+ k0dHHnJhWC6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,391,1583222400"; 
+   d="scan'208";a="262807125"
+Received: from apogrebi-mobl2.ger.corp.intel.com ([10.249.39.119])
+  by orsmga003.jf.intel.com with ESMTP; 14 May 2020 04:26:14 -0700
+Message-ID: <5e66f2d3e3f2c6af4bafd25f0d228774b8302e8d.camel@linux.intel.com>
+Subject: Re: [PATCH v8 1/8] tpm: tpm_tis: Make implementation of read16,
+ read32 and write32 optional
+From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+To:     amirmizi6@gmail.com, Eyal.Cohen@nuvoton.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        robh+dt@kernel.org, benoit.houyere@st.com, mark.rutland@arm.com,
+        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Date:   Thu, 14 May 2020 14:26:14 +0300
+In-Reply-To: <20200512141431.83833-2-amirmizi6@gmail.com>
+References: <20200512141431.83833-1-amirmizi6@gmail.com>
+         <20200512141431.83833-2-amirmizi6@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.1-2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update documentation to list the gpu opp table bindings including the
-newly added "opp-peak-kBps" needed for GPU-DDR bandwidth scaling.
+On Tue, 2020-05-12 at 17:14 +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+> 
+> Only tpm_tis can use memory-mapped I/O, which is truly mapped into
+> the kernel's memory space. Therefore, using ioread16/ioread32/iowrite32
+> turns into a straightforward pointer dereference.
+> Every other driver requires more complicated operations to read more than
+> one byte at a time and will just fall back to read_bytes/write_bytes.
+> Therefore, move this common code out of tpm_tis_spi and into tpm_tis_core
+> so that it is used automatically when low-level drivers do not implement
+> the specialized methods.
+> 
+> Co-developed-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> Reviewed-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
 
-Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
----
- .../devicetree/bindings/display/msm/gpu.txt        | 28 ++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+OK, so I applied this one:
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-index 70025cb..48bd4ab 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
-@@ -79,6 +79,34 @@ Example a6xx (with GMU):
+http://git.infradead.org/users/jjs/linux-tpmdd.git/commit/fa05dc792ea02043f3c21467cb4485a38ac19bdf
 
- 		interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
+I.e. no need to carry this one any more in the series. Sorry that
+I haven't done this before (should have).
 
-+		gpu_opp_table: opp-table {
-+			compatible = "operating-points-v2";
-+
-+			opp-430000000 {
-+				opp-hz = /bits/ 64 <430000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+				opp-peak-kBps = <5412000>;
-+			};
-+
-+			opp-355000000 {
-+				opp-hz = /bits/ 64 <355000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+				opp-peak-kBps = <3072000>;
-+			};
-+
-+			opp-267000000 {
-+				opp-hz = /bits/ 64 <267000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+				opp-peak-kBps = <3072000>;
-+			};
-+
-+			opp-180000000 {
-+				opp-hz = /bits/ 64 <180000000>;
-+				opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				opp-peak-kBps = <1804000>;
-+			};
-+		};
-+
- 		qcom,gmu = <&gmu>;
+/Jarkko
 
- 		zap-shader {
---
-2.7.4
