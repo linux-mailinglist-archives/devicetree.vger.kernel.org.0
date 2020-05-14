@@ -2,85 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 339F91D3325
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 16:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E1B1D332A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 16:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727928AbgENOgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 10:36:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
+        id S1727819AbgENOhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 10:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726146AbgENOgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 10:36:37 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2700C061A0C
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 07:36:37 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id DE0952A2EE9
-From:   =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     Laurent.pinchart@ideasonboard.com
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
-        tomi.valkeinen@ti.com, robh+dt@kernel.org, airlied@linux.ie,
-        shawnguo@kernel.org
-Subject: [PATCH v2 4/4] drm/bridge: tfp410: Fix setup and hold time calculation
-Date:   Thu, 14 May 2020 16:36:12 +0200
-Message-Id: <20200514143612.2094-5-ricardo.canuelo@collabora.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200514143612.2094-1-ricardo.canuelo@collabora.com>
-References: <20200514143612.2094-1-ricardo.canuelo@collabora.com>
+        with ESMTP id S1726179AbgENOhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 10:37:46 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA2DC061A0C
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 07:37:46 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id y18so1384836pfl.9
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 07:37:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=myAfLnmBUwxOXrWpGmgAhuCrYyR/+Qq8ha9lCmTxobQ=;
+        b=VVJT+tRdvrHedNG3fWcxgTVWuPw1kNXTpW31v+Zdv+sQr+6lTcPgup5zkVZ9D7YNKG
+         sGXHX1XE/Ca+gIB8IBrlzNwi+Mko1SqNSHfodsk12A9YwLOnksgHlalr0gCQE/McA0Pm
+         MLAhafXzPZTcbuXIWkQRsIsTGeXX5vm6ujwTR3aC8vCv3cRiHZ6rRaDEpSJg9tFoEfF/
+         V480eHYm2hDmTpSj79PvM3VpG475Nlp4IP0mA+qnTjcS4VVyqWyvuEq61oyht9AWrW+Y
+         AqfNHZq/nAxOgWvR6YMkZL/BZA9CPzIAxtn6q6gOA4Lp2yJKaYIIgAXLrl9BjABi37/L
+         uYkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=myAfLnmBUwxOXrWpGmgAhuCrYyR/+Qq8ha9lCmTxobQ=;
+        b=GmWgOcb+N0yh6dV0irw5IhlSUZz4FqMHgQc32Cn1HxmqCZEo539UkMY8CjgT2YLMQy
+         Y6pqGvReeQDw2d0ZZTUt75zJDtpqlm5FrQYBLZhvREmk0fo+AeLb2zH4IYZ83yJUbmxj
+         Y5/I7mUsVcU4lU4w30EUXUAY9YWQJfaJInlDDd8l6y+78nc07dLmnCMzP99Zyy6KkZlJ
+         mFziUCONBTLpRixJlZDIaT/9dZ2aAnEPTX+NGHeB+RuQ4isfRtlqr3gTObfo1r66f063
+         JziY2C6YjmFM9KdemB9OWAcjJSzGx97pzpfwqsu79IH0sRqyu9ISrxr6UuZ03fm6tpoI
+         Z6sQ==
+X-Gm-Message-State: AOAM530MUgx2bn3EfUPuQJ/qshkwqatXbgJRProErYdnBAC+KK3TBoi2
+        b3jZ2pCIF27+9mWZt1S830EIPg==
+X-Google-Smtp-Source: ABdhPJzMUAO/Hp/8HePC/WpyIdkcWchv8FZml1mVlO6EUQe7g4ISZjDUtlBSdcFzqCdLKZBeYAn4ig==
+X-Received: by 2002:a63:440e:: with SMTP id r14mr4398210pga.340.1589467066271;
+        Thu, 14 May 2020 07:37:46 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id h14sm18053136pjc.46.2020.05.14.07.37.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2020 07:37:45 -0700 (PDT)
+Date:   Thu, 14 May 2020 07:36:16 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sm8250 pinctrl
+ bindings
+Message-ID: <20200514143616.GU2165@builder.lan>
+References: <20200417061907.1226490-1-bjorn.andersson@linaro.org>
+ <20200417061907.1226490-2-bjorn.andersson@linaro.org>
+ <20200429213453.GA32114@bogus>
+ <20200514060422.GL1302550@yoga>
+ <CACRpkdZpfgb0wwt2FUwqPab4XhtLXfDWOvZLdCc+NF-mVJkKYw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZpfgb0wwt2FUwqPab4XhtLXfDWOvZLdCc+NF-mVJkKYw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tfp410 has a data de-skew feature that allows the user to compensate
-the skew between IDCK and the pixel data and control signals.
+On Thu 14 May 07:12 PDT 2020, Linus Walleij wrote:
 
-In the driver, the setup and hold times are calculated from the de-skew
-value. This retrieves the deskew value from the DT using the proper
-datatype and range check as described by the binding (u32 from 0 to 7)
-and fixes the calculation of the setup and hold times.
+> On Thu, May 14, 2020 at 8:04 AM Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> > On Wed 29 Apr 14:34 PDT 2020, Rob Herring wrote:
+> > > On Thu, Apr 16, 2020 at 11:19:06PM -0700, Bjorn Andersson wrote:
+> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
+> > [..]
+> > > > +#PIN CONFIGURATION NODES
+> > > > +patternProperties:
+> > > > +  '^.*$':
+> > > > +    if:
+> > > > +      type: object
+> > > > +    then:
+> > >
+> > > Needs a $ref to the standard properties.
+> > >
+> > > Would be good to show a child node in the example too. (And try having
+> > > an error in a standard property type to verify you get an error).
+> > >
+> >
+> > Finally looked into this.
+> 
+> Can you send an incremental patch because otherwise I have
+> to revert the patch that I merged (maybe to trigger happy, mea culpa).
+> 
 
-Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
----
- drivers/gpu/drm/bridge/ti-tfp410.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+I appreciate that you merged this already, so I'm happy to fix this
+incrementally.
 
-diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
-index e3eb6364c0f7..21d99b4ea0c9 100644
---- a/drivers/gpu/drm/bridge/ti-tfp410.c
-+++ b/drivers/gpu/drm/bridge/ti-tfp410.c
-@@ -220,7 +220,7 @@ static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
- 	struct device_node *ep;
- 	u32 pclk_sample = 0;
- 	u32 bus_width = 24;
--	s32 deskew = 0;
-+	u32 deskew = 0;
- 
- 	/* Start with defaults. */
- 	*timings = tfp410_default_timings;
-@@ -274,12 +274,12 @@ static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
- 	}
- 
- 	/* Get the setup and hold time from vendor-specific properties. */
--	of_property_read_u32(dvi->dev->of_node, "ti,deskew", (u32 *)&deskew);
--	if (deskew < -4 || deskew > 3)
-+	of_property_read_u32(dvi->dev->of_node, "ti,deskew", &deskew);
-+	if (deskew > 7)
- 		return -EINVAL;
- 
--	timings->setup_time_ps = min(0, 1200 - 350 * deskew);
--	timings->hold_time_ps = min(0, 1300 + 350 * deskew);
-+	timings->setup_time_ps = 1200 - 350 * ((s32)deskew - 4);
-+	timings->hold_time_ps = max(0, 1300 + 350 * ((s32)deskew - 4));
- 
- 	return 0;
- }
--- 
-2.18.0
+> (If it's too hard I can just revert it.)
+> 
 
+Afaict there are two different $refs available with standard properties
+and adding either one works, but I don't understand how to add both.
+Also $ref'ing pincfg-node.yaml means that the binding suddenly accepts
+standard properties that the hardware doesn't support, so I would like
+to be able to reduce this list somehow...
+
+But I don't see anything preventing this from being done incrementally.
+
+Thanks,
+Bjorn
