@@ -2,144 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E84341D3808
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 19:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B73C41D3875
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 19:40:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726096AbgENRY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 13:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34730 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725965AbgENRY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 13:24:57 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D9AC061A0C
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 10:24:57 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id t16so1406305plo.7
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 10:24:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LHBsucMd2sTr3HvWbUbdv7RFH1xfljlHMp94He6hhIA=;
-        b=jw3JoqZcR+JkpSIRFVF6bzCezMt2ET2v0lnfG4lEuwXpjsAC//cobs0yPbOlb/wEmD
-         R2247f4DjnI796d5bBmtgO51BUOwEB/UIblYzqfETbfyf5kdcqSwulnO/KoXXQAs9Fht
-         wMuwYjYO/UH8CxTVs5CRx8Hts6qyWazW4DdC6vYV5FqGxK7kG+ingJovqls06Hm9MhCX
-         LXIpu0bhRm0+N7WLxcCPO+9oKzTwKWXNpgub58PgRUEE8z34W4Jp7XBIIdy1ssAb0Fjj
-         unayclz4Cyu6FEkrJw1MTaxnj4IIRpNvBq/NIqtPjjT50QVB3rTiKDSRaKItdfkCDrrg
-         N13A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LHBsucMd2sTr3HvWbUbdv7RFH1xfljlHMp94He6hhIA=;
-        b=p2eMmMvxI8iv9QZicN4y1CNQBGD7POvxCg2yYfBEi7g3rKVm16dM46Qs3bzX9VrLy+
-         bEKJaKq6AiypENiGtqeOE2W+j8tQQVOOAngAx+pZA33e+hk1aXDSXqslayq7GdBskWra
-         Fa1xyJ8+lbI3U67Ad+sIaavJHTSJ1pfiluKQ2yLTaQ7dDXcAA7cWEE46JBZShF3usMRa
-         IvpmXtLgeGrQzH6GR74yxaHB3rbG8+AHMaexe7ingwLWgf5/bwnoCXSx1THKdQOUUdVw
-         BMfB2W/SL0uoUUDhYhZdui86FwVWLuvln4ePyXLHb03QVxZzupgFbhkoLI/OGmQIF9/Q
-         Uf4A==
-X-Gm-Message-State: AGi0Pub02RBA+z1WpM/4AKR3iZTEGPTxvcVBFwXVJ4MxMIFMkC9E3oKM
-        wyscC2tNZEIXZtSvaf/Dh4PJSQ==
-X-Google-Smtp-Source: APiQypJtsZHdqMh3QbEvlnEnAPVD9kLl8H9v3APnId1I2aEM7HIPo4p7CBOJ4YY+WlIh4C4yplr/PQ==
-X-Received: by 2002:a17:90b:888:: with SMTP id bj8mr40059263pjb.91.1589477096443;
-        Thu, 14 May 2020 10:24:56 -0700 (PDT)
-Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id e11sm2753242pfl.85.2020.05.14.10.24.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2020 10:24:55 -0700 (PDT)
-Date:   Thu, 14 May 2020 10:23:26 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     michael.srba@seznam.cz
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916-samsung-a3u: add nodes for
- display panel
-Message-ID: <20200514172326.GC279327@builder.lan>
-References: <20200514170129.10902-1-michael.srba@seznam.cz>
+        id S1726027AbgENRkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 13:40:37 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:39590 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbgENRkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 13:40:37 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EHeUgH072300;
+        Thu, 14 May 2020 12:40:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1589478030;
+        bh=T0S0PrMDnscedGj/aLkJ2AVh5rDA+PnvysBuppihou0=;
+        h=From:To:CC:Subject:Date;
+        b=nAH7WcTe+jm+ba5M7brbLLj/nWMada1X5c9r66KPNC68YQ0dDtH0iJvcoJtUpdPxr
+         hBS4UjriMyT5B04Qc6TioicLZWL4seaAB0k+vl3Y12FK4e/f3scKL+WYe5wC59VGKK
+         kAw/uFKlgWgXcztllzoUt/iPjvC6D+vkFja6Kd/s=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EHeUqL092853;
+        Thu, 14 May 2020 12:40:30 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
+ May 2020 12:40:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 14 May 2020 12:40:30 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EHeTb1127102;
+        Thu, 14 May 2020 12:40:30 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <davem@davemloft.net>
+CC:     <robh@kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH net-next 0/2] DP83822 Fiber enablement
+Date:   Thu, 14 May 2020 12:30:53 -0500
+Message-ID: <20200514173055.15013-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200514170129.10902-1-michael.srba@seznam.cz>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 14 May 10:01 PDT 2020, michael.srba@seznam.cz wrote:
+Hello
 
-> From: Michael Srba <michael.srba@seznam.cz>
-> 
-> This patch wires up display support on Samsung Galaxy A3 2015.
-> 
-> Signed-off-by: Michael Srba <michael.srba@seznam.cz>
-> 
-> ---
->  .../qcom/msm8916-samsung-a2015-common.dtsi    | 44 +++++++++++++++
->  .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts | 54 +++++++++++++++++++
->  2 files changed, 98 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> index af812f76e8be..2a64aa269f52 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> @@ -72,6 +72,24 @@ phy {
->  			};
->  		};
->  
-> +		mdss@1a00000 {
-> +			dsi@1a98000 {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				vdda-supply = <&pm8916_l2>;
-> +				vddio-supply = <&pm8916_l6>;
-> +
-> +				pinctrl-names = "default", "sleep";
-> +				pinctrl-0 = <&mdss_default>;
-> +				pinctrl-1 = <&mdss_sleep>;
-> +			};
-> +
-> +			dsi-phy@1a98300 {
-> +				vddio-supply = <&pm8916_l6>;
-> +			};
-> +		};
-> +
->  		wcnss@a21b000 {
->  			status = "okay";
->  		};
-> @@ -172,6 +190,32 @@ pinconf {
->  			bias-disable;
->  		};
->  	};
-> +
-> +	pmx-mdss {
-> +		mdss_default: mdss-default {
-> +			pinmux {
-> +				function = "gpio";
-> +				pins = "gpio25";
-> +			};
-> +			pinconf {
-> +				pins = "gpio25";
-> +				drive-strength = <8>;
-> +				bias-disable;
-> +			};
-> +		};
+The DP83822 Ethernet PHY has the ability to connect via a Fiber port.  The
+DP83825 or DP83826 do not have this ability.  In order to keep the same
+driver the DP83822 and the 825/826 phy_driver call backs need to be changed
+so that the DP83822 has it's own call back for config_init and adds a probe
+call back.
 
-Fyi, when you have a state with a single set of properties you don't
-need the pinmux/pinconf level here, you can directly do:
+A devicetree binding was added to set the signal polarity for the fiber
+connection.  This property is only applicable in fiber mode and is optional
+in fiber mode.
 
-		mdss_default: mdss-default {
-			pins = "gpio25";
-			function = "gpio";
+Dan
 
-			drive-strength = <8>;
-			bias-disable;
-		};
+Dan Murphy (2):
+  dt-bindings: net: dp83822: Add TI dp83822 phy
+  net: phy: DP83822: Add ability to advertise Fiber connection
 
+ .../devicetree/bindings/net/ti,dp83822.yaml   |  49 ++++++
+ drivers/net/phy/dp83822.c                     | 140 +++++++++++++++++-
+ 2 files changed, 181 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,dp83822.yaml
 
-But this looks good, applied towards v5.8.
+-- 
+2.26.2
 
-Regards,
-Bjorn
