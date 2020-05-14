@@ -2,68 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D4EE1D3CFF
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 21:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641CE1D3A95
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 20:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728018AbgENTLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 15:11:04 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:60854 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728210AbgENSwV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 14:52:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=8Za+3ZMb7xHzue8msAwcSz9/IVxF8Kntejn/v5bSVMY=; b=k5pArpMPipxHuMUO1R7sFONOXr
-        tIofq8Qa5rrQaoggQXefTCyyk0ryRf+rfm/EKa60JtlZVA/1gH2yJe3AVEqOZL/MOeTfnQCr5CWqB
-        p44gcsQYsft64KdGT5qvpcDXPKOQD9qTOEArhRNDM+5/0E+5pU8pU3VyoErHvTkscd2E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jZIxt-002JVc-4J; Thu, 14 May 2020 20:52:17 +0200
-Date:   Thu, 14 May 2020 20:52:17 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     f.fainelli@gmail.com, hkallweit1@gmail.com, davem@davemloft.net,
-        robh@kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: phy: DP83822: Add ability to advertise
- Fiber connection
-Message-ID: <20200514185217.GX499265@lunn.ch>
-References: <20200514173055.15013-1-dmurphy@ti.com>
- <20200514173055.15013-3-dmurphy@ti.com>
+        id S1728841AbgENS5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 14:57:48 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35487 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727829AbgENS5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 14:57:42 -0400
+Received: by mail-ot1-f66.google.com with SMTP id k110so3265756otc.2;
+        Thu, 14 May 2020 11:57:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/8LVtCx28CvxbjaUol4yCcZRY15FgJyZvvF69XKd/M0=;
+        b=dLvm+WCSUlUSXJR/rqNr2Dxk9KK0IJR65mGaI0Tz98XQiQvn973Sd3ih6PMzq8cBv/
+         PUJehRhFpIvqB5IGrT0O3MEmRZuY4ViwQwJdPYfO1o7Wfjm32ALCBp+lFsfMOCvahUNp
+         E1g/ihdbYXzlSOAJaiht+h70NQ9Dg3MlnnKBkEwZ7sGCuXQEkO9nc/nuA1NVPZDg8zop
+         iJZn1aNJvolUnXxyHef1wIXyAQF7R2PSg9Ry8wC/4lRYkfiZUN3/PJaY0MW2CVrca5co
+         G/PC2xCVONPTl04hekwHsfNv4EqpZ8QwMrB5z0WD8yCijSQPgU6byM9IZq8AzqxAsWz3
+         4P+A==
+X-Gm-Message-State: AOAM533QjKBpbmzxoAtF0GM9t8yqnmVz2V5rl5glcjj8dfrNdwz6EzYN
+        P+LvHRrdhofdDoUyEBeiew==
+X-Google-Smtp-Source: ABdhPJw4mI4ppO8Dr25m9miTZxWJsae+emSBHCwQBGETRYpqm7RzS1GGvMUZ3eI0ctgemKfzl+w5Vw==
+X-Received: by 2002:a05:6830:3148:: with SMTP id c8mr4567539ots.138.1589482661322;
+        Thu, 14 May 2020 11:57:41 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t6sm1003881otb.27.2020.05.14.11.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2020 11:57:40 -0700 (PDT)
+Received: (nullmailer pid 29213 invoked by uid 1000);
+        Thu, 14 May 2020 18:57:39 -0000
+Date:   Thu, 14 May 2020 13:57:39 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, linux-mmc@vger.kernel.org,
+        linux-serial@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v2 2/9] dt-bindings: irqchip: renesas-irqc: Document
+ r8a7742 bindings
+Message-ID: <20200514185739.GA27521@bogus>
+References: <1588794695-27852-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1588794695-27852-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200514184306.GA8929@bogus>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200514173055.15013-3-dmurphy@ti.com>
+In-Reply-To: <20200514184306.GA8929@bogus>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int dp83822_config_init(struct phy_device *phydev)
-> +{
-> +	struct dp83822_private *dp83822 = phydev->priv;
-> +	int err = 0;
-> +
-> +	if (dp83822->fx_enabled) {
-> +		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT,
-> +				 phydev->supported);
-> +		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT,
-> +				 phydev->advertising);
-> +
-> +		/*  Auto negotiation is not available in fiber mode */
-> +		phydev->autoneg = AUTONEG_DISABLE;
-> +		phydev->speed = SPEED_100;
-> +		phydev->duplex = DUPLEX_FULL;
+On Thu, May 14, 2020 at 01:43:06PM -0500, Rob Herring wrote:
+> On Wed,  6 May 2020 20:51:28 +0100, Lad Prabhakar wrote:
+> > Document SoC specific bindings for RZ/G1H (r8a7742) SoC.
+> > 
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v1->v2:
+> > * No change
+> > ---
+> > 
+> >  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Hi Dan
+I'll just apply this with the others that haven't been picked up.
 
-This is normally determined by reading the ability registers,
-genphy_read_abilities(). When strapped to fibre mode, does it still
-indicate all the usual copper capabilities, which it can not actually
-do?
+Rob
 
-	Andrew
