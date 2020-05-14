@@ -2,74 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D2C21D309C
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 15:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38C31D30AB
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 15:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbgENNEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 09:04:14 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:58910 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726056AbgENNEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 09:04:14 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 4DA46803087B;
-        Thu, 14 May 2020 13:04:09 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 1H7tDBhNpUNg; Thu, 14 May 2020 16:04:08 +0300 (MSK)
-Date:   Thu, 14 May 2020 16:04:07 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        SoC Team <soc@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 01/10] spi: dw: Add support for polled operation via no
- IRQ specified in DT
-Message-ID: <20200514130407.guyk3r4ltjvszy5s@mobilestation>
-References: <20200513140031.25633-1-lars.povlsen@microchip.com>
- <20200513140031.25633-2-lars.povlsen@microchip.com>
- <20200513142050.GH4803@sirena.org.uk>
+        id S1726216AbgENNIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 09:08:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725955AbgENNIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 09:08:17 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1112C061A0C;
+        Thu, 14 May 2020 06:08:16 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id o5so1064720iow.8;
+        Thu, 14 May 2020 06:08:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TxjLQAmlgCmIbW66ttakmR+UHsu55ZGYYjiNgQ7pD60=;
+        b=HQy57GttiwVxh24sQLfeiQngcOiErLC6lrc6A6arkVum1pGd0PXCrQaHvOCK4hPNEV
+         b/059ZwlWVA1AS8FK1q2/gCJIeug5/mReyn6myQQGKj7Nqz7CVRv86DNFSRbqqL9jNJu
+         tITMdAKorHxeF7YvlIBXB8sc7+tzC2Jw9Tf81bsZ6FJbcXdDfUt6nlqKXBjb5tQmn5MB
+         gsR5CUzH/zKAUZsVkX976vv3QKAm1v8PnXFZ2eAaurKTEVbK4xwSxyYq0RD28bfWf5Cm
+         c7yPr6SgCzeFtV1ZHtYdDrrDUR4DC+KkcElHzh4hDhUaeG4VHhyQV+JNQPmJwrKZiy5d
+         Dj2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TxjLQAmlgCmIbW66ttakmR+UHsu55ZGYYjiNgQ7pD60=;
+        b=uDIITVugJ18J9MzAI1K+7uH1u3m1je5J4rJ+RkFXN/vQGs5ORJGQUAdFRVwL8CvoUo
+         s9W/PI70ZJjjQr+sk9hHXil6NBfoDeOuhRIzULjy5811CxksvyX+qQPt1UI3UffBzwV4
+         JkoyDMsEIy1/isXnh9zp8w70brsnypgRgsR6tmU+hlBpeCGRGS7Cph9lmNAt6t+J3ZQJ
+         0BfH8CDTbQtNf6yaLQP0QJRlDC7NxkgvnL6yMlud9w/f7MQOvtukjSfz5B+lRRte3ycS
+         WgZRFzVvlwfUSyHRGIc4RWHgBLS0WGIP8iJP3HooxRQDYXXv8XU1ea48WK86PWVCJXAq
+         E4vQ==
+X-Gm-Message-State: AOAM533KS1NSUVIvgJ/r7+LxyfLkzvAIGEZ5mnRVXLJv9oYeMQapcr2P
+        jTmstuOgHgN7+KYVy4ztAmw536EefhUULf30/n8=
+X-Google-Smtp-Source: ABdhPJxFXm/snfV7f+PaeEk0/JpSTrHSkPZMuSqd6hBKK/zxQapVp8rf2U8UIu+qvc9Q33J56Hi8hFlnpuvp0XR2Wlk=
+X-Received: by 2002:a5d:8b8e:: with SMTP id p14mr3979084iol.110.1589461696306;
+ Thu, 14 May 2020 06:08:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200513142050.GH4803@sirena.org.uk>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <1589267017-17294-1-git-send-email-dillon.minfei@gmail.com>
+ <1589267017-17294-4-git-send-email-dillon.minfei@gmail.com>
+ <CACRpkda5VjjBdbruXTi33QBNb=VU6vK2zDE8yyQXoWw7=NQFeg@mail.gmail.com> <a4ebd7cd-5756-0683-135f-0f96be8a4a7b@st.com>
+In-Reply-To: <a4ebd7cd-5756-0683-135f-0f96be8a4a7b@st.com>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Thu, 14 May 2020 21:07:40 +0800
+Message-ID: <CAL9mu0Jt_xwo5pJfcx6G3grBuOaxLXvakpEjiB4gV3=bkiq2fg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] ARM: dts: stm32: enable ltdc binding with ili9341
+ on stm32429-disco board
+To:     Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark
+Hi Alexandre,
 
-On Wed, May 13, 2020 at 03:20:50PM +0100, Mark Brown wrote:
-> On Wed, May 13, 2020 at 04:00:22PM +0200, Lars Povlsen wrote:
-> > With this change a SPI controller can be added without having a IRQ
-> > associated, and causing all transfers to be polled. For SPI controllers
-> > without DMA, this can significantly improve performance by less
-> > interrupt handling overhead.
-> 
-> This overlaps substantially with some work that Serge Semin (CCed) has
-> in progress, please coordinate with him.
+On Thu, May 14, 2020 at 8:53 PM Alexandre Torgue
+<alexandre.torgue@st.com> wrote:
+>
+>
+>
+> On 5/14/20 10:24 AM, Linus Walleij wrote:
+> > On Tue, May 12, 2020 at 9:04 AM <dillon.minfei@gmail.com> wrote:
+> >
+> >> From: dillon min <dillon.minfei@gmail.com>
+> >>
+> >> Enable the ltdc & ili9341 on stm32429-disco board.
+> >>
+> >> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> >
+> > This mostly looks good but...
+> >
+> >> +&spi5 {
+> >> +       status = "okay";
+> >> +       pinctrl-0 = <&spi5_pins>;
+> >> +       pinctrl-names = "default";
+> >> +       #address-cells = <1>;
+> >> +       #size-cells = <0>;
+> >> +       cs-gpios = <&gpioc 2 GPIO_ACTIVE_LOW>;
+> >> +       dmas = <&dma2 3 2 0x400 0x0>,
+> >> +              <&dma2 4 2 0x400 0x0>;
+> >> +       dma-names = "rx", "tx";
+> >
+> > These DMA assignments seem to be SoC things and should
+> > rather be in the DTS(I) file where &spi5 is defined, right?
+> > stm32f429.dtsi I suppose?
+>
+> I agree with Linus, DMA have to be defined in SoC dtsi. And if a board
+> doesn't want to use it, we use the "delete-property".
+Yes, will move to Soc dtsi in next submits.
 
-Thanks for copying me these mails. I haven't been Cc'ed in the series and
-hasn't been subscribed to the SPI mailing list, so I would have definitely
-missed that.
+i'm working on write a v4l2-m2m driver for dma2d of stm32 to support
+pixel conversion
+alpha blending between foreground and background graphics.
 
-I would like to coordinate my efforts with Lars. I'll have the patchset reviewed
-soon in addition providing my comments/suggestions of how to make it useful for
-both mine and Lars solution.
+as you know, some soc's engineer trying to add this function to drm system.
 
-One thing I can tell about the mem_ops he implemented, is that they aren't
-mem_ops, but dirmap (as you remember it's also implemented in my code, but with
-alignment specific), and the exec_mem_op partly consists of a code, which belong
-to the supports_op() callback. The rest of my comments will be inlined in the
-patches.
+do you know st's planning about soc's hardware accelerator driver on stm32mp?
+such as chrom-art, will add to drm subsystem via ioctl to access, or to v4l2,
 
--Sergey
+thanks.
+
+>
+> >
+> > It is likely the same no matter which device is using spi5.
+> >
+> > Yours,
+> > Linus Walleij
+> >
