@@ -2,117 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E1B1D332A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 16:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6E71D33CC
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 16:59:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727819AbgENOhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 10:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbgENOhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 10:37:46 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA2DC061A0C
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 07:37:46 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id y18so1384836pfl.9
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 07:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=myAfLnmBUwxOXrWpGmgAhuCrYyR/+Qq8ha9lCmTxobQ=;
-        b=VVJT+tRdvrHedNG3fWcxgTVWuPw1kNXTpW31v+Zdv+sQr+6lTcPgup5zkVZ9D7YNKG
-         sGXHX1XE/Ca+gIB8IBrlzNwi+Mko1SqNSHfodsk12A9YwLOnksgHlalr0gCQE/McA0Pm
-         MLAhafXzPZTcbuXIWkQRsIsTGeXX5vm6ujwTR3aC8vCv3cRiHZ6rRaDEpSJg9tFoEfF/
-         V480eHYm2hDmTpSj79PvM3VpG475Nlp4IP0mA+qnTjcS4VVyqWyvuEq61oyht9AWrW+Y
-         AqfNHZq/nAxOgWvR6YMkZL/BZA9CPzIAxtn6q6gOA4Lp2yJKaYIIgAXLrl9BjABi37/L
-         uYkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=myAfLnmBUwxOXrWpGmgAhuCrYyR/+Qq8ha9lCmTxobQ=;
-        b=GmWgOcb+N0yh6dV0irw5IhlSUZz4FqMHgQc32Cn1HxmqCZEo539UkMY8CjgT2YLMQy
-         Y6pqGvReeQDw2d0ZZTUt75zJDtpqlm5FrQYBLZhvREmk0fo+AeLb2zH4IYZ83yJUbmxj
-         Y5/I7mUsVcU4lU4w30EUXUAY9YWQJfaJInlDDd8l6y+78nc07dLmnCMzP99Zyy6KkZlJ
-         mFziUCONBTLpRixJlZDIaT/9dZ2aAnEPTX+NGHeB+RuQ4isfRtlqr3gTObfo1r66f063
-         JziY2C6YjmFM9KdemB9OWAcjJSzGx97pzpfwqsu79IH0sRqyu9ISrxr6UuZ03fm6tpoI
-         Z6sQ==
-X-Gm-Message-State: AOAM530MUgx2bn3EfUPuQJ/qshkwqatXbgJRProErYdnBAC+KK3TBoi2
-        b3jZ2pCIF27+9mWZt1S830EIPg==
-X-Google-Smtp-Source: ABdhPJzMUAO/Hp/8HePC/WpyIdkcWchv8FZml1mVlO6EUQe7g4ISZjDUtlBSdcFzqCdLKZBeYAn4ig==
-X-Received: by 2002:a63:440e:: with SMTP id r14mr4398210pga.340.1589467066271;
-        Thu, 14 May 2020 07:37:46 -0700 (PDT)
-Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h14sm18053136pjc.46.2020.05.14.07.37.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2020 07:37:45 -0700 (PDT)
-Date:   Thu, 14 May 2020 07:36:16 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sm8250 pinctrl
- bindings
-Message-ID: <20200514143616.GU2165@builder.lan>
-References: <20200417061907.1226490-1-bjorn.andersson@linaro.org>
- <20200417061907.1226490-2-bjorn.andersson@linaro.org>
- <20200429213453.GA32114@bogus>
- <20200514060422.GL1302550@yoga>
- <CACRpkdZpfgb0wwt2FUwqPab4XhtLXfDWOvZLdCc+NF-mVJkKYw@mail.gmail.com>
+        id S1726294AbgENO7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 10:59:54 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:50314 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726146AbgENO7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 10:59:53 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EExiru032389;
+        Thu, 14 May 2020 09:59:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1589468384;
+        bh=tUFSc5e3vWYmXAkLT7Sd4YjZeEIhHflHraicrk/VvBA=;
+        h=From:To:CC:Subject:Date;
+        b=vD+Rw7zFOH+srUr+y4GAohWyTVkn1BZEgS7Xw85BMOzUQ1t7lGqh9Zwc1mhZNCEWA
+         gpI8uMuTAjHT2R8T93YzS4UNFyWeQ421ccwriPD/WC4covLaXPtlcfzS1ELz6r0L+A
+         UsPXFoSd51QqcTaftvN9LMJu/WPUwdMcRUjWdQwQ=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EExiOG126993;
+        Thu, 14 May 2020 09:59:44 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
+ May 2020 09:59:44 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 14 May 2020 09:59:43 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EExhkF126732;
+        Thu, 14 May 2020 09:59:44 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <davem@davemloft.net>
+CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next] dt-bindings: net: dp83869: Update licensing info
+Date:   Thu, 14 May 2020 09:50:12 -0500
+Message-ID: <20200514145012.16145-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZpfgb0wwt2FUwqPab4XhtLXfDWOvZLdCc+NF-mVJkKYw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 14 May 07:12 PDT 2020, Linus Walleij wrote:
+Add BSD 2 Clause to the licensing.
 
-> On Thu, May 14, 2020 at 8:04 AM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> > On Wed 29 Apr 14:34 PDT 2020, Rob Herring wrote:
-> > > On Thu, Apr 16, 2020 at 11:19:06PM -0700, Bjorn Andersson wrote:
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
-> > [..]
-> > > > +#PIN CONFIGURATION NODES
-> > > > +patternProperties:
-> > > > +  '^.*$':
-> > > > +    if:
-> > > > +      type: object
-> > > > +    then:
-> > >
-> > > Needs a $ref to the standard properties.
-> > >
-> > > Would be good to show a child node in the example too. (And try having
-> > > an error in a standard property type to verify you get an error).
-> > >
-> >
-> > Finally looked into this.
-> 
-> Can you send an incremental patch because otherwise I have
-> to revert the patch that I merged (maybe to trigger happy, mea culpa).
-> 
+CC: Rob Herring <robh@kernel.org>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ Documentation/devicetree/bindings/net/ti,dp83869.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I appreciate that you merged this already, so I'm happy to fix this
-incrementally.
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83869.yaml b/Documentation/devicetree/bindings/net/ti,dp83869.yaml
+index 6fe3e451da8a..5b69ef03bbf7 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83869.yaml
++++ b/Documentation/devicetree/bindings/net/ti,dp83869.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+ # Copyright (C) 2019 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-- 
+2.26.2
 
-> (If it's too hard I can just revert it.)
-> 
-
-Afaict there are two different $refs available with standard properties
-and adding either one works, but I don't understand how to add both.
-Also $ref'ing pincfg-node.yaml means that the binding suddenly accepts
-standard properties that the hardware doesn't support, so I would like
-to be able to reduce this list somehow...
-
-But I don't see anything preventing this from being done incrementally.
-
-Thanks,
-Bjorn
