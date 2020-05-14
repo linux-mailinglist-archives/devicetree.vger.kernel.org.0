@@ -2,127 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D67DA1D27A2
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 08:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E528F1D2770
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 08:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726146AbgENGXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 02:23:31 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:36940 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726098AbgENGXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 02:23:00 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B758620022F;
-        Thu, 14 May 2020 08:22:57 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E6986200247;
-        Thu, 14 May 2020 08:22:53 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8178D402B4;
-        Thu, 14 May 2020 14:22:48 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, tremyfr@gmail.com, p.bruenn@beckhoff.com,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 2/2] dt-bindings: rtc: Convert MXC RTC V2 to json-schema
-Date:   Thu, 14 May 2020 14:13:25 +0800
-Message-Id: <1589436805-22923-2-git-send-email-Anson.Huang@nxp.com>
+        id S1725864AbgENGWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 02:22:50 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:17875 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725818AbgENGWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 02:22:50 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ebce36f0000>; Wed, 13 May 2020 23:21:35 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 13 May 2020 23:22:50 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 13 May 2020 23:22:50 -0700
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 May
+ 2020 06:22:50 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 14 May 2020 06:22:49 +0000
+Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.67.128]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5ebce3b60000>; Wed, 13 May 2020 23:22:48 -0700
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+To:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>, <kishon@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nagarjuna Kristam <nkristam@nvidia.com>
+Subject: [PATCH V3 0/8] Tegra XUSB charger detect support
+Date:   Thu, 14 May 2020 11:52:35 +0530
+Message-ID: <1589437363-16727-1-git-send-email-nkristam@nvidia.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589436805-22923-1-git-send-email-Anson.Huang@nxp.com>
-References: <1589436805-22923-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+X-NVConfidentiality: public
+MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1589437295; bh=dCrSdDPfqMabU4Rtjih+53UFPUq2Jf/3H2721hE+UMo=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=Zjl0+N3ldDdS6Fdqyhin2/sjQ/i9t2fUGxhCN4ag/y3FWawpvpoBvMd2N0UQMiV54
+         gIKSaKsO7++kZ5OZC6Q4pO+yTzqX7qb99iAZiOcpV72RjpiKzkwDPopwd3UGffmLS1
+         Q+ZmgCxpzISerxMMXQF/vjYFRt1MYRhJd2+RXT4MUOv6OQoR9o1KTX2kRVfPmZYYTW
+         AEfjYOxZmUYxHWV3qIPIuUrIahKaLkk9VLsb2nsGaXGR809+XbYGGgxmtCWivajwRb
+         +J7VLprt5chwee2cDgUmhNYPji6iyYWkCU/6EYg1tr7JvbXXokSMojRIHlh6UVgJ7p
+         iOtPUYBZNOPGw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MXC RTC V2 binding to DT schema format using json-schema.
+This patch series adds charger detect support on XUSB hardware used in
+Tegra210 and Tegra186 SoCs.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- .../devicetree/bindings/rtc/rtc-mxc_v2.txt         | 17 --------
- .../devicetree/bindings/rtc/rtc-mxc_v2.yaml        | 46 ++++++++++++++++++++++
- 2 files changed, 46 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-mxc_v2.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mxc_v2.yaml
+This patchset is composed with :
+ - dt bindings of XUSB Pad Controller
+ - Tegra XUSB device mode driver to add vbus_draw support 
+ - Tegra PHY driver for charger detect support
 
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.txt b/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.txt
-deleted file mode 100644
-index 79d7e87..0000000
---- a/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--* i.MX53 Secure Real Time Clock (SRTC)
--
--Required properties:
--- compatible: should be: "fsl,imx53-rtc"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--- clocks: should contain the phandle for the rtc clock
--- interrupts: rtc alarm interrupt
--
--Example:
--
--rtc@53fa4000 {
--	compatible = "fsl,imx53-rtc";
--	reg = <0x53fa4000 0x4000>;
--	interrupts = <24>;
--	clocks = <&clks IMX5_CLK_SRTC_GATE>;
--};
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.yaml b/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.yaml
-new file mode 100644
-index 0000000..2d1a306
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/rtc-mxc_v2.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/rtc-mxc_v2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: i.MX53 Secure Real Time Clock (SRTC)
-+
-+allOf:
-+  - $ref: "rtc.yaml#"
-+
-+maintainers:
-+  - Patrick Bruenn <p.bruenn@beckhoff.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx53-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx5-clock.h>
-+
-+    rtc@53fa4000 {
-+        compatible = "fsl,imx53-rtc";
-+        reg = <0x53fa4000 0x4000>;
-+        interrupts = <24>;
-+        clocks = <&clks IMX5_CLK_SRTC_GATE>;
-+    };
+Tests done:
+ - Connect USB cable from ubuntu host to micro-B port of DUT to detect
+   SDP_TYPE charger
+ - Connect USB cable from external powered USB hub(which inturn connects
+   to ubuntu host) to micro-B port of DUT to detect CDP_TYPE charger.
+ - Connect USB cable from USB charger to micro-B port of DUT to detect
+   DCP_TYPE charger.
+DUT: Jetson-tx1, Jetson tx2.
+
+V3:
+ - Added ACKed-by details for PHY driver and DT changes.
+ - Functions and its arguments are aligned.
+ - Tabs are used for alignment of MACRO's
+ - For vbus_draw USDC callback, usb_phy set_power error is propogated.
+ - Fixed various comments given by thierry.
+V2:
+ - Added ACKed-by details for DT patches.
+ - All patches rebased.
+
+Nagarjuna Kristam (8):
+  dt-bindings: phy: tegra-xusb: Add charger-detect property
+  usb: gadget: tegra-xudc: Add vbus_draw support
+  phy: tegra: xusb: Add support for UTMI pad power control
+  phy: tegra: xusb: Add USB2 pad power control support for Tegra210
+  phy: tegra: xusb: Add soc ops API to enable UTMI PAD protection
+  phy: tegra: xusb: Add support for charger detect
+  phy: tegra: xusb: Enable charger detect for Tegra186
+  phy: tegra: xusb: Enable charger detect for Tegra210
+
+ .../bindings/phy/nvidia,tegra124-xusb-padctl.txt   |   4 +
+ drivers/phy/tegra/Makefile                         |   2 +-
+ drivers/phy/tegra/cd.c                             | 283 +++++++++++++++++++++
+ drivers/phy/tegra/xusb-tegra186.c                  |  92 +++++--
+ drivers/phy/tegra/xusb-tegra210.c                  | 223 +++++++++++-----
+ drivers/phy/tegra/xusb.c                           |  80 ++++++
+ drivers/phy/tegra/xusb.h                           |  22 ++
+ drivers/usb/gadget/udc/tegra-xudc.c                |  17 ++
+ 8 files changed, 638 insertions(+), 85 deletions(-)
+ create mode 100644 drivers/phy/tegra/cd.c
+
 -- 
 2.7.4
 
