@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2AC11D24CC
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 03:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34F8C1D24D4
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 03:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgENBhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 May 2020 21:37:32 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:51468 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725925AbgENBhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 21:37:31 -0400
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C807E51F;
-        Thu, 14 May 2020 03:37:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1589420250;
-        bh=AZvfkT/3qOUK0pEh61PQ1h6H54uQqgG9FuCVwwTWtqU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bmJQH7uRpm7kKV/n2mhcUI/9VCqmpuykmeG9q5pJqwgU40PBQEFxIU1XHFh++ggVY
-         Y84bkYR4/cKygjDfFbMRjHV69E42fivEHhsDVTnAWE1rmjMxghgq/IyDuZtoXsNb3y
-         /bjlbUGvwerR53+amcYxkbmNf2WIdWD/8kFSZh8o=
-Date:   Thu, 14 May 2020 04:37:23 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be,
-        robh+dt@kernel.org, xuwei5@hisilicon.com
-Subject: Re: [PATCH v2 4/6] arm64: dts: hisilicon: hikey: fixes to comply
- with adi,adv7533 DT binding
-Message-ID: <20200514013723.GD7425@pendragon.ideasonboard.com>
-References: <20200511110611.3142-1-ricardo.canuelo@collabora.com>
- <20200511110611.3142-5-ricardo.canuelo@collabora.com>
+        id S1725967AbgENBjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 May 2020 21:39:13 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:14344 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725925AbgENBjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 May 2020 21:39:13 -0400
+X-UUID: 4b3c483eabb647ccac6f02e4391850e8-20200514
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=c6lbM5ORaD1df0n3V09w+vUyABWL3OC0bP3q4G96Tcg=;
+        b=JFQDRTdeKMXmptoNuzltVULKMmUll5JnMpZe+S/kxnVb3BXqfeqP1ULq3AwK4EnwxqfzDmXQxK0c+nkNkt3zagqihn2OJNX4bii+4inY22I5mQiBsFyUAKCdcVlVLezmo+Tym+beCV4iNcHRGN9BS7j1Cv5UcwLflgjVM0szfMI=;
+X-UUID: 4b3c483eabb647ccac6f02e4391850e8-20200514
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 127096153; Thu, 14 May 2020 09:39:07 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N2.mediatek.inc
+ (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 May
+ 2020 09:39:04 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 14 May 2020 09:39:03 +0800
+Message-ID: <1589420265.5899.0.camel@mhfsdcap03>
+Subject: Re: [PATCH 3/3] usb: dwc3: keystone: Turn on USB3 PHY before
+ controller
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Roger Quadros <rogerq@ti.com>
+CC:     <balbi@kernel.org>, <robh+dt@kernel.org>, <vigneshr@ti.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Thu, 14 May 2020 09:37:45 +0800
+In-Reply-To: <20200513130709.10239-4-rogerq@ti.com>
+References: <20200513130709.10239-1-rogerq@ti.com>
+         <20200513130709.10239-4-rogerq@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200511110611.3142-5-ricardo.canuelo@collabora.com>
+X-TM-SNTS-SMTP: 3195E2F93C14396777CFF1A5A593F242391F9645814601659A98E9F49774BB9F2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+T24gV2VkLCAyMDIwLTA1LTEzIGF0IDE2OjA3ICswMzAwLCBSb2dlciBRdWFkcm9zIHdyb3RlOg0K
+PiBUaGUgTG9jYWwgUG93ZXIgU2xlZXAgQ29udHJvbGxlciAoTFBTQykgZGVwZW5kZW5jeSBvbiBB
+TTY1DQo+IHJlcXVpcmVzIFNFUkRFUzAgdG8gYmUgcG93ZXJlZCBvbiBiZWZvcmUgVVNCLg0KPiAN
+Cj4gV2UgbmVlZCB0byBwb3dlciB1cCBTRVJERVMwIHBvd2VyIGRvbWFpbiBhbmQgaG9sZCBpdCBv
+bg0KPiB0aHJvdWdob3V0IHRoZSByZXNldCwgaW5pdCwgcG93ZXIgb24gc2VxdWVuY2UuDQo+IA0K
+PiBTaWduZWQtb2ZmLWJ5OiBSb2dlciBRdWFkcm9zIDxyb2dlcnFAdGkuY29tPg0KPiAtLS0NCj4g
+IGRyaXZlcnMvdXNiL2R3YzMvZHdjMy1rZXlzdG9uZS5jIHwgNDcgKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA0NiBpbnNlcnRpb25zKCspLCAxIGRl
+bGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy91c2IvZHdjMy9kd2MzLWtleXN0
+b25lLmMgYi9kcml2ZXJzL3VzYi9kd2MzL2R3YzMta2V5c3RvbmUuYw0KPiBpbmRleCAxZTE0YTZm
+NDg4NGIuLjQ2ZDQ2ZjM1MDdmYyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy91c2IvZHdjMy9kd2Mz
+LWtleXN0b25lLmMNCj4gKysrIGIvZHJpdmVycy91c2IvZHdjMy9kd2MzLWtleXN0b25lLmMNCj4g
+QEAgLTE0LDYgKzE0LDcgQEANCj4gICNpbmNsdWRlIDxsaW51eC9kbWEtbWFwcGluZy5oPg0KPiAg
+I2luY2x1ZGUgPGxpbnV4L2lvLmg+DQo+ICAjaW5jbHVkZSA8bGludXgvb2ZfcGxhdGZvcm0uaD4N
+Cj4gKyNpbmNsdWRlIDxsaW51eC9waHkvcGh5Lmg+DQo+ICAjaW5jbHVkZSA8bGludXgvcG1fcnVu
+dGltZS5oPg0KPiAgDQo+ICAvKiBVU0JTUyByZWdpc3RlciBvZmZzZXRzICovDQo+IEBAIC0zNCw2
+ICszNSw3IEBADQo+ICBzdHJ1Y3QgZHdjM19rZXlzdG9uZSB7DQo+ICAJc3RydWN0IGRldmljZQkJ
+CSpkZXY7DQo+ICAJdm9pZCBfX2lvbWVtCQkJKnVzYnNzOw0KPiArCXN0cnVjdCBwaHkJCQkqdXNi
+M19waHk7DQo+ICB9Ow0KPiAgDQo+ICBzdGF0aWMgaW5saW5lIHUzMiBrZHdjM19yZWFkbCh2b2lk
+IF9faW9tZW0gKmJhc2UsIHUzMiBvZmZzZXQpDQo+IEBAIC05NSw4ICs5Nyw0NCBAQCBzdGF0aWMg
+aW50IGtkd2MzX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ICAJaWYgKElT
+X0VSUihrZHdjLT51c2JzcykpDQo+ICAJCXJldHVybiBQVFJfRVJSKGtkd2MtPnVzYnNzKTsNCj4g
+IA0KPiAtCXBtX3J1bnRpbWVfZW5hYmxlKGtkd2MtPmRldik7DQo+ICsJLyogUFNDIGRlcGVuZGVu
+Y3kgb24gQU02NSBuZWVkcyBTRVJERVMwIHRvIGJlIHBvd2VyZWQgYmVmb3JlIFVTQjAgKi8NCj4g
+KwlrZHdjLT51c2IzX3BoeSA9IGRldm1fcGh5X2dldChkZXYsICJ1c2IzLXBoeSIpOw0KVXNlIGRl
+dm1fcGh5X29wdGlvbmFsX2dldCgpIGluc3RlYWQ/DQoNCj4gKwlpZiAoSVNfRVJSKGtkd2MtPnVz
+YjNfcGh5KSkgew0KPiArCQllcnJvciA9IFBUUl9FUlIoa2R3Yy0+dXNiM19waHkpOw0KPiArCQlp
+ZiAoZXJyb3IgPT0gLUVOT1NZUyB8fCBlcnJvciA9PSAtRU5PREVWKSB7DQo+ICsJCQlrZHdjLT51
+c2IzX3BoeSA9IE5VTEw7DQo+ICsJCX0gZWxzZSB7DQo+ICsJCQlpZiAoZXJyb3IgIT0gLUVQUk9C
+RV9ERUZFUikgew0KPiArCQkJCWRldl9lcnIoZGV2LCAiY291bGRuJ3QgZ2V0IHVzYjMgcGh5OiAl
+ZFxuIiwNCj4gKwkJCQkJZXJyb3IpOw0KPiArCQkJfQ0KPiArDQo+ICsJCQlyZXR1cm4gZXJyb3I7
+DQo+ICsJCX0NCj4gKwl9DQo+ICsNCj4gKwlwaHlfcG1fcnVudGltZV9nZXRfc3luYyhrZHdjLT51
+c2IzX3BoeSk7DQo+ICsNCj4gKwllcnJvciA9IHBoeV9yZXNldChrZHdjLT51c2IzX3BoeSk7DQo+
+ICsJaWYgKGVycm9yIDwgMCkgew0KPiArCQlkZXZfZXJyKGRldiwgInVzYjMgcGh5IHJlc2V0IGZh
+aWxlZDogJWRcbiIsIGVycm9yKTsNCj4gKwkJcmV0dXJuIGVycm9yOw0KPiArCX0NCj4gKw0KPiAr
+CWVycm9yID0gcGh5X2luaXQoa2R3Yy0+dXNiM19waHkpOw0KPiArCWlmIChlcnJvciA8IDApIHsN
+Cj4gKwkJZGV2X2VycihkZXYsICJ1c2IzIHBoeSBpbml0IGZhaWxlZDogJWRcbiIsIGVycm9yKTsN
+Cj4gKwkJcmV0dXJuIGVycm9yOw0KPiArCX0NCj4gIA0KPiArCWVycm9yID0gcGh5X3Bvd2VyX29u
+KGtkd2MtPnVzYjNfcGh5KTsNCj4gKwlpZiAoZXJyb3IgPCAwKSB7DQo+ICsJCWRldl9lcnIoZGV2
+LCAidXNiMyBwaHkgcG93ZXIgb24gZmFpbGVkOiAlZFxuIiwgZXJyb3IpOw0KPiArCQlwaHlfZXhp
+dChrZHdjLT51c2IzX3BoeSk7DQo+ICsJCXJldHVybiBlcnJvcjsNCj4gKwl9DQo+ICsNCj4gKwlw
+bV9ydW50aW1lX2VuYWJsZShrZHdjLT5kZXYpOw0KPiAgCWVycm9yID0gcG1fcnVudGltZV9nZXRf
+c3luYyhrZHdjLT5kZXYpOw0KPiAgCWlmIChlcnJvciA8IDApIHsNCj4gIAkJZGV2X2VycihrZHdj
+LT5kZXYsICJwbV9ydW50aW1lX2dldF9zeW5jIGZhaWxlZCwgZXJyb3IgJWRcbiIsDQo+IEBAIC0x
+MzgsNiArMTc2LDkgQEAgc3RhdGljIGludCBrZHdjM19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2
+aWNlICpwZGV2KQ0KPiAgZXJyX2lycToNCj4gIAlwbV9ydW50aW1lX3B1dF9zeW5jKGtkd2MtPmRl
+dik7DQo+ICAJcG1fcnVudGltZV9kaXNhYmxlKGtkd2MtPmRldik7DQo+ICsJcGh5X3Bvd2VyX29m
+ZihrZHdjLT51c2IzX3BoeSk7DQo+ICsJcGh5X2V4aXQoa2R3Yy0+dXNiM19waHkpOw0KPiArCXBo
+eV9wbV9ydW50aW1lX3B1dF9zeW5jKGtkd2MtPnVzYjNfcGh5KTsNCj4gIA0KPiAgCXJldHVybiBl
+cnJvcjsNCj4gIH0NCj4gQEAgLTE2Myw2ICsyMDQsMTAgQEAgc3RhdGljIGludCBrZHdjM19yZW1v
+dmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gIAlwbV9ydW50aW1lX3B1dF9zeW5j
+KGtkd2MtPmRldik7DQo+ICAJcG1fcnVudGltZV9kaXNhYmxlKGtkd2MtPmRldik7DQo+ICANCj4g
+KwlwaHlfcG93ZXJfb2ZmKGtkd2MtPnVzYjNfcGh5KTsNCj4gKwlwaHlfZXhpdChrZHdjLT51c2Iz
+X3BoeSk7DQo+ICsJcGh5X3BtX3J1bnRpbWVfcHV0X3N5bmMoa2R3Yy0+dXNiM19waHkpOw0KPiAr
+DQo+ICAJcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgTlVMTCk7DQo+ICANCj4gIAlyZXR1cm4g
+MDsNCg0K
 
-Thank you for the patch.
-
-On Mon, May 11, 2020 at 01:06:09PM +0200, Ricardo Cañuelo wrote:
-> hi3660-hikey960.dts:
->   Define a 'ports' node for 'adv7533: adv7533@39' and the
->   'adi,dsi-lanes' property to make it compliant with the adi,adv7533 DT
->   binding.
-> 
->   This fills the requirements to meet the binding requirements,
->   remote endpoints are not defined.
-> 
-> hi6220-hikey.dts:
->   Change property name s/pd-gpio/pd-gpios, gpio properties should be
->   plural. This is just a cosmetic change.
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-
-Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts | 11 +++++++++++
->  arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts    |  2 +-
->  2 files changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> index e035cf195b19..8c4bfbaf3a80 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> @@ -530,6 +530,17 @@
->  		status = "ok";
->  		compatible = "adi,adv7533";
->  		reg = <0x39>;
-> +		adi,dsi-lanes = <4>;
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			port@0 {
-> +				reg = <0>;
-> +			};
-> +			port@1 {
-> +				reg = <1>;
-> +			};
-> +		};
->  	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> index c14205cd6bf5..3e47150c05ec 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> @@ -516,7 +516,7 @@
->  		reg = <0x39>;
->  		interrupt-parent = <&gpio1>;
->  		interrupts = <1 2>;
-> -		pd-gpio = <&gpio0 4 0>;
-> +		pd-gpios = <&gpio0 4 0>;
->  		adi,dsi-lanes = <4>;
->  		#sound-dai-cells = <0>;
->  
-
--- 
-Regards,
-
-Laurent Pinchart
