@@ -2,78 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C74371D3794
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 19:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C951D37AA
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 19:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726137AbgENRHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 13:07:10 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:44463 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726125AbgENRHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 13:07:10 -0400
-Received: from localhost.localdomain (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 07E1E200008;
-        Thu, 14 May 2020 17:07:07 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH] of/platform: Avoid compilation warning
-Date:   Thu, 14 May 2020 19:07:07 +0200
-Message-Id: <20200514170707.24466-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726073AbgENRLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 13:11:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38248 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725975AbgENRLq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 13:11:46 -0400
+Received: from localhost (unknown [122.182.193.86])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EEB5E2065D;
+        Thu, 14 May 2020 17:11:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589476306;
+        bh=GJ+zMvzM9NaCTf4oi/AU+Wf/RvXsh4BDEFrZEBVzsa0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CzPReWBYjG7+wqnmeeEIWmeD9RWs4vL9vCYbYnotstb30e8xEP3lehH3+XYDhw1s4
+         6mJDmjn7UYm6heeM8UnKzqT/DVtoYcjIOHzwhK6vs1+fyneGY6eE19SrTgs6Na/Wa0
+         UQaaNk+fPqk7xWikpI8ROUyS8WTuNYVK74HY1VYQ=
+Date:   Thu, 14 May 2020 22:41:30 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] clk: qcom: gdsc: Handle supply regulators
+Message-ID: <20200514171130.GB14092@vkoul-mobl>
+References: <20200417070044.1376212-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200417070044.1376212-1-bjorn.andersson@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The of_find_device_by_node() helper has its dummy counterpart for when
-CONFIG_OF is not enabled. However, it is clearly stated in the kernel
-documentation that it "takes a reference to the embedded struct device
-which needs to be dropped after use". Which means the of_dev_put()
-helper might have to be called afterwards. Unfortunately, there is no
-of_dev_put() dummy function if OF_CONFIG is not enabled which seems
-odd in this case. The of_dev_put() helper is pretty simple, it just
-checks the validity of the single argument and calls put_device() on
-it. One can just call put_device() directly to avoid any build issue
-but I find much more accurate in this case to create the dummy
-helper.
+On 17-04-20, 00:00, Bjorn Andersson wrote:
+> Handle supply regulators for GDSCs to allow probe deferral when regulators are
+> not yet present/enabled and to allow the GDSC to enable/disable dependencies as
+> needed.
 
-With this helper, a file using of_find_device_by_node() can also call
-of_dev_put() without triggering the following:
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-error: implicit declaration of function ‘of_dev_put’; did you mean ‘of_node_put’? [-Werror=implicit-function-declaration]
-
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- include/linux/of_platform.h | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
-index 84a966623e78..84d9e60e517e 100644
---- a/include/linux/of_platform.h
-+++ b/include/linux/of_platform.h
-@@ -54,11 +54,13 @@ extern struct platform_device *of_device_alloc(struct device_node *np,
- 					 struct device *parent);
- #ifdef CONFIG_OF
- extern struct platform_device *of_find_device_by_node(struct device_node *np);
-+extern void of_dev_put(struct platform_device *dev);
- #else
- static inline struct platform_device *of_find_device_by_node(struct device_node *np)
- {
- 	return NULL;
- }
-+static inline void of_dev_put(struct platform_device *dev) { }
- #endif
- 
- /* Platform devices and busses creation */
 -- 
-2.20.1
-
+~Vinod
