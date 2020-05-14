@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 463911D295E
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 10:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4ABA1D295A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 10:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726188AbgENIAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 04:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
+        id S1727033AbgENIAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 04:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726848AbgENIA3 (ORCPT
+        by vger.kernel.org with ESMTP id S1726948AbgENIAb (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 04:00:29 -0400
+        Thu, 14 May 2020 04:00:31 -0400
 Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BBFC061A0C
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 01:00:28 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id h4so29164741wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 01:00:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C277C061A0C
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 01:00:30 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id m12so24245416wmc.0
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 01:00:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=KiLRpfO6b7G+PZFXWrA65hqZV6E46x1U4Qg5U0775pc=;
-        b=Vs7BWdW4qtjuWLul+b3IMZZZnvBlsodINipnQPxtpW/F7ENBD558mOLpTqiiVB3x8t
-         hLT1BV2jrTOFkQu3nW4Su+sDY0Y9SjF1qdgjI2avlRSXBWGtoyup1WdDhscdp4FSyz/+
-         MqrADU0tNfAhxW4oXxQnnKc65GJ9UdZBzNyHKLJkPr4Z8OGo9w8MMWDUQ4A8XNu8x6Wb
-         O0CHpyM30xiSeFh3K4OT3R9Z7oD7u3674d9224CetXPrYmxKG4VOSQVY2jh1vT6SdQCw
-         37CfB6SJsMXQU1dZB4OfcABQw8ds7oxxV9nnA6Vhw7l0QsIy+W7PrITFiF70cVow9PKS
-         hQLA==
+        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
+        b=nXmcTgWKai8rBQ2DXas2d5H6t5IBpKKtBOFHUcEyAvlLdEQGxeg/oH6FNz59RFXfP1
+         P7Qkldx/02KKtlnaijnKKo8qjlOii2FQNyb0gmqEdu8VwcCQdYj6QtgMy32fr6gphqMs
+         7RJ1yCfST+TpHaSnZ1uw1gU9H+l+9GEZ4z8cIuXsToR7E6n+IZbRXPy8YZmXzcTpV4j0
+         nKM0IY3O82aZcgwehgScYrbMYMQyyI2Gy90P+Et9IdpErBIOvAYByQc+cW+D49uP72Lm
+         NOIOWdT1Jgd2LiHVVUqA2u2f/rYlHEJc0jXjQ0XYKT7TteUWkZPzMfha+VuT7f4ys2Ky
+         tuOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=KiLRpfO6b7G+PZFXWrA65hqZV6E46x1U4Qg5U0775pc=;
-        b=ITzcQxMqD/gkSyysRIDZB2rhHrriMQvYjqFFvDunJFnErCtbJpP8ZrdFdBmR9UjkPV
-         IcpLsrylILpA8/DaiprWOMpoONEbGkOQl7JTPEhG1OLUGYjVBL7oaKCnn0xO4SKwg2tq
-         QTIz6/CWNomXrAFbWwDpPg1cOHKTjI/d99iVlmaslg4NSGdkci22gAxk+bpLLAK52dJn
-         l3NBwxYQKuUVrU+whFHmJj0FX/EBSU4pJuE8etvkCtC8Z5eUKKc2CR4dVlMWk6wpYo1R
-         5mvK8pVNyzWe8k1qlV9oh7ywmJFgxiQWrixdbn/1in3JzVeOmyjR0xl5m03RdM4tliDq
-         9KWw==
-X-Gm-Message-State: AGi0PuYGlLzY/NKAkliTMrm+QcMknot8vdryUAbUf7MgIMHlCKqbS0Wg
-        NpkWYFXoyqWPcgYrD8p75g1MPQ==
-X-Google-Smtp-Source: APiQypJbzO8pCBFuVuOAqVYsKQ0PvXVzzMvcQ4KkdS8eawJ/v7ILL6jWzMqCUpbB7Qo0NSK+v2z2MA==
-X-Received: by 2002:a7b:c41a:: with SMTP id k26mr41792532wmi.85.1589443227078;
-        Thu, 14 May 2020 01:00:27 -0700 (PDT)
+        bh=nZF4M1Ryr6CWnpRgUMWuRsLTKn/UHmWXZ3+MZTEjA0A=;
+        b=tVrzBOQDsDOw3v5V5BJtn1GbLSz6iM+eSlnyUdnJkEdwjg/rDbdI06j8rj4fiPrp5L
+         0ydl1O1zmD8S7Yk84+yI/YaNuv75iHD2/axEY43yGw1bbyrABENEfyl8xFXlSfc0qpza
+         mnoA1GSynDU2dLAV8enFAMrRlAFFJQFrX52mjM8zUOExh//JKFOh/7BOKheL+oDwtL+x
+         QGrD+RGz/XgcFrhsaI7bVmm2BEeU37uwQRWWBeXseXBhCTdHjZOxejXhohedmn80bMUe
+         T0bK1CAZZzUykaka2Ky3YgR84wgxAXe69pwCFsJxkHaSe4sJExiWky4mFkm9l3mVYVQR
+         1U9Q==
+X-Gm-Message-State: AGi0PuYKNgjooYcaqKyIJQcPXcrsNTrhdrQ7KR65G+xuYvxPceX94ZMf
+        ZrirhGPKNTGczKK3JVlUXV1MFg==
+X-Google-Smtp-Source: APiQypLkHL0DWLpTgfSdy1BAdMqLrKiddZcunwHMW5P3bAckgztG6gV48Xmw/vqS4Ej0EtW7WbyHNQ==
+X-Received: by 2002:a1c:f609:: with SMTP id w9mr46778546wmc.123.1589443229077;
+        Thu, 14 May 2020 01:00:29 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id 81sm23337446wme.16.2020.05.14.01.00.25
+        by smtp.gmail.com with ESMTPSA id 81sm23337446wme.16.2020.05.14.01.00.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2020 01:00:26 -0700 (PDT)
+        Thu, 14 May 2020 01:00:28 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
         "David S . Miller" <davem@davemloft.net>,
@@ -67,9 +67,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v3 14/15] ARM64: dts: mediatek: add ethernet pins for pumpkin boards
-Date:   Thu, 14 May 2020 09:59:41 +0200
-Message-Id: <20200514075942.10136-15-brgl@bgdev.pl>
+Subject: [PATCH v3 15/15] ARM64: dts: mediatek: enable ethernet on pumpkin boards
+Date:   Thu, 14 May 2020 09:59:42 +0200
+Message-Id: <20200514075942.10136-16-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200514075942.10136-1-brgl@bgdev.pl>
 References: <20200514075942.10136-1-brgl@bgdev.pl>
@@ -82,37 +82,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Setup the pin control for the Ethernet MAC.
+Add remaining properties to the ethernet node and enable it.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ .../boot/dts/mediatek/pumpkin-common.dtsi      | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 97d9b000c37e..4b1d5f69aba6 100644
+index 4b1d5f69aba6..dfceffe6950a 100644
 --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -219,4 +219,19 @@ gpio_mux_int_n_pin {
- 			bias-pull-up;
- 		};
- 	};
+@@ -167,6 +167,24 @@ &uart0 {
+ 	status = "okay";
+ };
+ 
++&ethernet {
++	pinctrl-names = "default";
++	pinctrl-0 = <&ethernet_pins_default>;
++	phy-handle = <&eth_phy>;
++	phy-mode = "rmii";
++	mac-address = [00 00 00 00 00 00];
++	status = "okay";
 +
-+	ethernet_pins_default: ethernet {
-+		pins_ethernet {
-+			pinmux = <MT8516_PIN_0_EINT0__FUNC_EXT_TXD0>,
-+				 <MT8516_PIN_1_EINT1__FUNC_EXT_TXD1>,
-+				 <MT8516_PIN_5_EINT5__FUNC_EXT_RXER>,
-+				 <MT8516_PIN_6_EINT6__FUNC_EXT_RXC>,
-+				 <MT8516_PIN_7_EINT7__FUNC_EXT_RXDV>,
-+				 <MT8516_PIN_8_EINT8__FUNC_EXT_RXD0>,
-+				 <MT8516_PIN_9_EINT9__FUNC_EXT_RXD1>,
-+				 <MT8516_PIN_12_EINT12__FUNC_EXT_TXEN>,
-+				 <MT8516_PIN_38_MRG_DI__FUNC_EXT_MDIO>,
-+				 <MT8516_PIN_39_MRG_DO__FUNC_EXT_MDC>;
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		eth_phy: ethernet-phy@0 {
++			reg = <0>;
 +		};
 +	};
- };
++};
++
+ &usb0 {
+ 	status = "okay";
+ 	dr_mode = "peripheral";
 -- 
 2.25.0
 
