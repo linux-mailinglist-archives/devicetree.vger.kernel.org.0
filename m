@@ -2,150 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D641D2EFC
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 13:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7FD01D2F13
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 14:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbgENL7u convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 May 2020 07:59:50 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45233 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgENL7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 07:59:49 -0400
-Received: by mail-oi1-f193.google.com with SMTP id d191so3996461oib.12;
-        Thu, 14 May 2020 04:59:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jEYL14eESp80nRZi1JF+P2foLyJj6Mx55wfqANlAKcc=;
-        b=mOZzvlhKhc0E1a3RCsWPGY0HNbNz76iDOisqeGPJ9V9V4Wivspi+cQYF3H7WaxSWqr
-         45uvZzoGOPfKCeDuJZNOkUTLRAux98P1OShpPNZV1K7AqsgTbv+HzEz/jIQyqhsLSZaY
-         0cjxrRws5A2pt8hq0bdagJ8RVZBms4ySMuwLOaen7cz2dF42SYvuklXoDeNcd1mWFRlM
-         gN03DbCaJRlnIFbC5j0ZDn0ReBFQuOe54wO5DDskCoMr4NSjjXxTeR29wCAJQaAaBOfP
-         gaBRUW6YUv6mInUmSdCz6O45ubel2OOCzPZ3u3Y5nGWXAQrG1kF5RVCmoDQOXd6oFLIM
-         mYLA==
-X-Gm-Message-State: AOAM530ICIdY2081pi8mgQqje1ppQHO5GW7qDiuzndKaRWTVK8uS9vGd
-        9EdRkhP/Rt49PEFiXrelQYMOUbh3ZZsw25X6xxU=
-X-Google-Smtp-Source: ABdhPJz88z3dxpOcoyTxa6ill55+uwbWotEXoYTdXICFz750JcG4sRlNn03GSjnTbn3iwd1O8UNJSvWqVG3FrE6YzlA=
-X-Received: by 2002:aca:895:: with SMTP id 143mr3197679oii.153.1589457587072;
- Thu, 14 May 2020 04:59:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200512155105.1068064-1-kieran.bingham+renesas@ideasonboard.com>
- <20200512155105.1068064-3-kieran.bingham+renesas@ideasonboard.com>
- <20200512181706.GA21014@Mani-XPS-13-9360> <11aca587-9438-4fba-081c-b82631e96989@ideasonboard.com>
- <20200514101356.GF2877@Mani-XPS-13-9360> <d492cbcb-3b13-82b8-8e5d-0f49320170a2@ideasonboard.com>
-In-Reply-To: <d492cbcb-3b13-82b8-8e5d-0f49320170a2@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 14 May 2020 13:59:35 +0200
-Message-ID: <CAMuHMdWSEY2q1f1iobrSXHYWzweV9yjk4i1ROj2Yde7DJMiabQ@mail.gmail.com>
-Subject: Re: [PATCH v9 2/4] media: i2c: Add MAX9286 driver
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Hyun Kwon <hyunk@xilinx.com>, Rob Herring <robh+dt@kernel.org>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        id S1726908AbgENMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 08:03:29 -0400
+Received: from mx.socionext.com ([202.248.49.38]:18126 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbgENMD0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 08:03:26 -0400
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 14 May 2020 21:03:24 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id A9EE060057;
+        Thu, 14 May 2020 21:03:24 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 14 May 2020 21:03:24 +0900
+Received: from plum.e01.socionext.com (unknown [10.213.132.32])
+        by kinkan.css.socionext.com (Postfix) with ESMTP id EBE581A12AD;
+        Thu, 14 May 2020 21:03:23 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH v4 0/2]  PCI: Add new UniPhier PCIe endpoint driver
+Date:   Thu, 14 May 2020 21:03:19 +0900
+Message-Id: <1589457801-12796-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+This series adds PCIe endpoint controller driver for Socionext UniPhier
+SoCs. This controller is based on the DesignWare PCIe core.
 
-On Thu, May 14, 2020 at 1:47 PM Kieran Bingham
-<kieran.bingham+renesas@ideasonboard.com> wrote:
-> On 14/05/2020 11:13, Manivannan Sadhasivam wrote:
-> > On Thu, May 14, 2020 at 11:02:53AM +0100, Kieran Bingham wrote:
-> >> On 12/05/2020 19:17, Manivannan Sadhasivam wrote:
-> >>> On Tue, May 12, 2020 at 04:51:03PM +0100, Kieran Bingham wrote:
-> >>>> The MAX9286 is a 4-channel GMSL deserializer with coax or STP input and
-> >>>> CSI-2 output. The device supports multicamera streaming applications,
-> >>>> and features the ability to synchronise the attached cameras.
-> >>>>
-> >>>> CSI-2 output can be configured with 1 to 4 lanes, and a control channel
-> >>>> is supported over I2C, which implements an I2C mux to facilitate
-> >>>> communications with connected cameras across the reverse control
-> >>>> channel.
-> >>>>
-> >>>> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> >>>> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> >>>> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> >>>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+This driver supports Pro5 SoC only, so Pro5 needs multiple clocks and
+resets in devicetree node.
 
-> >>>> --- /dev/null
-> >>>> +++ b/drivers/media/i2c/max9286.c
+Changes since v3:
+- dt-bindings: Convert with dt-schema
+- Replace with devm_platform_ioremap_resource()
+- Add a commnet that mutex covers raising legacy IRQ
 
-> >>>> +static int max9286_register_gpio(struct max9286_priv *priv)
-> >>>> +{
-> >>>> +  struct device *dev = &priv->client->dev;
-> >>>> +  struct gpio_chip *gpio = &priv->gpio;
-> >>>> +  int ret;
-> >>>> +
-> >>>> +  static const char * const names[] = {
-> >>>> +          "GPIO0OUT",
-> >>>> +          "GPIO1OUT",
-> >>>> +  };
-> >>>> +
-> >>>> +  /* Configure the GPIO */
-> >>>> +  gpio->label = dev_name(dev);
-> >>>
-> >>> So if you have more than one MAX9286 in a system, all gpiochips will appear
-> >>> with the same name. I'd recommend to append the index to distinguish properly.
-> >>
-> >> Ah yes, that's a good point, and I think I've even seen that.
-> >>
-> >> I'll fix it now.
->
-> Oh, in fact actually this doesn't.
->
-> gpiodetect prints:
->
-> gpiochip10 [4-004c] (2 lines)
-> gpiochip11 [4-006c] (2 lines)
->
-> and mostly references them as gpiochip10 and gpiochip11.
+Changes since v2:
+- dt-bindings: Add clock-names, reset-names, and fix example for Pro5
+- Remove 'is_legacy' indicating that the compatible is for legacy SoC
+- Use pci_epc_features instead of defining uniphier_soc_data
+- Remove redundant register read access
+- Clean up return code on uniphier_add_pcie_ep()
+- typo: intx -> INTx
 
-Indeed, dev_name() should be different for each instance.
+Changes since v1:
+- dt-bindings: Add Reviewed-by line
+- Fix register value to set EP mode
+- Add error message when failed to get phy
+- Replace INTx assertion time with macro
 
-> However,
->
-> > [    2.318533] gpio gpiochip11: Detected name collision for GPIO name 'GPIO0OUT'
-> > [    2.325739] gpio gpiochip11: Detected name collision for GPIO name 'GPIO1OUT'
->
-> That seems to be more of a problem for the gpio library, so I think I'll
-> just drop the const names. I don't think they add much value.
+Kunihiko Hayashi (2):
+  dt-bindings: PCI: Add UniPhier PCIe endpoint controller description
+  PCI: uniphier: Add Socionext UniPhier Pro5 PCIe endpoint controller
+    driver
 
-These are the line names.  If they're not unique, a warning is printed,
-but they are still registered.
-So probably you want to use kasprintf("%s.%s", dev_name(dev), names[i]) to
-generate names.
-
-See "[PATCH] gpiolib: Document that GPIO line names are not globally unique"
-(https://lore.kernel.org/linux-gpio/20200511101828.30046-1-geert+renesas@glider.be/)
-to clear up the details.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/pci/socionext,uniphier-pcie-ep.yaml   |  92 +++++
+ MAINTAINERS                                        |   4 +-
+ drivers/pci/controller/dwc/Kconfig                 |  13 +-
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-uniphier-ep.c      | 383 +++++++++++++++++++++
+ 5 files changed, 489 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-uniphier-ep.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
