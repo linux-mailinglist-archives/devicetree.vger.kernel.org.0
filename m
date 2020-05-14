@@ -2,121 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DE41D2B1A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 11:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C26661D2B3D
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 11:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725935AbgENJSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 05:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725878AbgENJSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 05:18:21 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89AADC061A0C;
-        Thu, 14 May 2020 02:18:20 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id j2so31609ilr.5;
-        Thu, 14 May 2020 02:18:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ydoBtyjQkZ71HME1rY9/L3edxtQ8UTZXOUoGaJuGgqs=;
-        b=ZYqSa8L/3MIGZtdjLm0uDEAUX9qw4WfHyEd/Xw3RGOzYb1CkiCmu64wr9INtmjvKAv
-         emNDZI8PC9mqxdaFO/x+7iDPFrRBkDTofku3oFwDsonyzK71UUmM/f2Ph34IYVB1ePui
-         TRYJEkf6+HZ5dpJwh+khw4qEqdRQ1Yz4UtEMkaULjMFHZPky5finqqVyz2JPi5d/Mocq
-         Ga+oJmmuDjPRydwsVFRhLCydvb7MAqHM/hyGTEJ+1CxinGcEilDhOARv4nY1Mia/4k5g
-         0CjcHoE1TsdomFZGSZaCa096y7nxhGm4PrO3r+27z96mUV9fH7IfZq7KcSOXdK64+inC
-         4q8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ydoBtyjQkZ71HME1rY9/L3edxtQ8UTZXOUoGaJuGgqs=;
-        b=XgmuF3P3HSIQdiZq5nvGM4PC5volrhSK+Q/k92hEYAGIVfZRHAnpWUgxmfRp6au2Oh
-         0dvouz+a3Y4fsC1JkBUpzl6BvgeLT0zTf6g4kZWOwcx7O876cxfa2IuxYkwoo6TlOE36
-         t3Y+DLdSfRm3khn8hWL33GiDSWAf1QRc3gD9UBNRt4bRESkQOHX9OMmU5qbHm1BUEwW7
-         qzQdeBSptNF2Qc0WTYa3X9o+MzY4q4iLDcDGQ87k6XLWqYo/Bo+p9/xWEegp6xXyMKof
-         Fumtlfqmp/NkRD280Fh7GmZEEOrThMXZcqrdM9tqv1Q9SIL/UI20FGJm2/m+QAXvdzkQ
-         K01w==
-X-Gm-Message-State: AOAM533o0QBL2hhJZzYJ6TnpB9MJdY90kVxfQ7jEDSuewK2GTFNS5XmE
-        j6d27Znb8zQac4sNanHXbKObRJPzt8eIuwnJ3Xw=
-X-Google-Smtp-Source: ABdhPJx7BSQgQE4F6HtJZDnTuhUIhxQY0EfiByegZhfXtsPPqB/OWed28lLtaW/x8ef7ztWZ46mbWs3Tdl5vZCAZRP0=
-X-Received: by 2002:a92:3556:: with SMTP id c83mr3346133ila.218.1589447900002;
- Thu, 14 May 2020 02:18:20 -0700 (PDT)
+        id S1726101AbgENJVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 05:21:48 -0400
+Received: from rtits2.realtek.com ([211.75.126.72]:52955 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbgENJVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 05:21:48 -0400
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.69 with qID 04E9LPFq8025251, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexmb06.realtek.com.tw[172.21.6.99])
+        by rtits2.realtek.com.tw (8.15.2/2.66/5.86) with ESMTPS id 04E9LPFq8025251
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 14 May 2020 17:21:25 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXMB06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Thu, 14 May 2020 17:21:25 +0800
+Received: from RTEXMB06.realtek.com.tw (172.21.6.99) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Thu, 14 May 2020 17:21:25 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXMB01.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server id
+ 15.1.1779.2 via Frontend Transport; Thu, 14 May 2020 17:21:25 +0800
+From:   TY Chang <tychang@realtek.com>
+To:     <linux-realtek-soc@lists.infradead.org>, <afaerber@suse.de>
+CC:     <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/7] pinctrl: update realtek DHC pinctrl driver
+Date:   Thu, 14 May 2020 17:21:18 +0800
+Message-ID: <20200514092125.6875-1-tychang@realtek.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <1589267017-17294-1-git-send-email-dillon.minfei@gmail.com>
- <1589267017-17294-4-git-send-email-dillon.minfei@gmail.com> <CACRpkda5VjjBdbruXTi33QBNb=VU6vK2zDE8yyQXoWw7=NQFeg@mail.gmail.com>
-In-Reply-To: <CACRpkda5VjjBdbruXTi33QBNb=VU6vK2zDE8yyQXoWw7=NQFeg@mail.gmail.com>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Thu, 14 May 2020 17:17:42 +0800
-Message-ID: <CAL9mu0JZdgJ0yjULUHkXzU0CyKeMi0dcA1L7PxPiZucpuuyQ9Q@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] ARM: dts: stm32: enable ltdc binding with ili9341
- on stm32429-disco board
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dave Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Linus,
+Hi Andreas,
 
-thanks for reviewing.
+This series update Realtek DHC pinctrl driver with the following details:
 
-On Thu, May 14, 2020 at 4:24 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Tue, May 12, 2020 at 9:04 AM <dillon.minfei@gmail.com> wrote:
->
-> > From: dillon min <dillon.minfei@gmail.com>
-> >
-> > Enable the ltdc & ili9341 on stm32429-disco board.
-> >
-> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
->
-> This mostly looks good but...
->
-> > +&spi5 {
-> > +       status = "okay";
-> > +       pinctrl-0 = <&spi5_pins>;
-> > +       pinctrl-names = "default";
-> > +       #address-cells = <1>;
-> > +       #size-cells = <0>;
-> > +       cs-gpios = <&gpioc 2 GPIO_ACTIVE_LOW>;
-> > +       dmas = <&dma2 3 2 0x400 0x0>,
-> > +              <&dma2 4 2 0x400 0x0>;
-> > +       dma-names = "rx", "tx";
->
-> These DMA assignments seem to be SoC things and should
-> rather be in the DTS(I) file where &spi5 is defined, right?
-> stm32f429.dtsi I suppose?
->
-> It is likely the same no matter which device is using spi5.
->
-> Yours,
-> Linus Walleij
+* add missed pins
+* add pin configuration feature 
+* add realtek DHC pinctrl documentation
+* fix the warnings checked by running scripts/checkpatch.pl
+* move realtek DHC pinctrl driver to realtek directory
+* add suspend/resume callback function
 
-Yes, the dma assignments can be moved to stm32f429.dtsi file.
-i will change it.
+Cc: Andreas Färber <afaerber@suse.de>
 
-thanks.
 
-best regards.
+TY Chang (7):
+  pinctrl: realtek: rtd1295: Add missed pins.
+  pinctrl: realtek: rtd1295: Add pin configs.
+  pinctrl: realtek: rtd1195: Add missed pins and pin configs.
+  dt-bindings: pinctrl: realtek: Add Realtek DHC SoC rtd1195 and
+    rtd1295.
+  pinctrl: realtek: DHC: Fix pinctrl driver coding style according to
+    checkpatch.pl.
+  pinctrl: realtek: DHC: Move pinctrl drivers to realtek directory and
+    rename.
+  pinctrl: realtek: DHC: Add suspend/resume callback function.
 
-dillon,
+ .../bindings/pinctrl/realtek,rtd-pinctrl.yaml |  59 ++
+ drivers/pinctrl/Kconfig                       |  10 +-
+ drivers/pinctrl/Makefile                      |   2 +-
+ drivers/pinctrl/pinctrl-rtd119x.c             | 383 ---------
+ drivers/pinctrl/realtek/Kconfig               |  14 +
+ drivers/pinctrl/realtek/Makefile              |   3 +
+ drivers/pinctrl/realtek/pinctrl-rtd.c         | 600 +++++++++++++
+ .../pinctrl/{ => realtek}/pinctrl-rtd1195.h   | 490 ++++++++---
+ .../pinctrl/{ => realtek}/pinctrl-rtd1295.h   | 805 +++++++++++++++---
+ 9 files changed, 1733 insertions(+), 633 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd-pinctrl.yaml
+ delete mode 100644 drivers/pinctrl/pinctrl-rtd119x.c
+ create mode 100644 drivers/pinctrl/realtek/Kconfig
+ create mode 100644 drivers/pinctrl/realtek/Makefile
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd.c
+ rename drivers/pinctrl/{ => realtek}/pinctrl-rtd1195.h (64%)
+ rename drivers/pinctrl/{ => realtek}/pinctrl-rtd1295.h (62%)
+
+-- 
+2.26.2
+
