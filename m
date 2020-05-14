@@ -2,120 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2061D3028
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 14:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0ED01D2FF6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 14:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726825AbgENMoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 08:44:10 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:49584 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726087AbgENMoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 08:44:10 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EChLJW068221;
-        Thu, 14 May 2020 07:43:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1589460201;
-        bh=e5oLHvSAcu1wID8AuM4YdTSx1fGtweYfUrxREiY/l9M=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZzYL2yj4lW+zhLcKMjsSTdTS2fE29lTKlJ8Ggipl0k8j3MPxk5B3VZXMxQJYjqbya
-         7CXtPd1IQRbCKiqb7+1bbug0Fp2QmrztoxTl2a2AL9D7ku42OwaRNIO2P67p5TPKfa
-         gXpaubt1qVABlteXdF/td+vUct15nOCJzrupxfZ8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04EChLME122019
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 14 May 2020 07:43:21 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
- May 2020 07:43:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 14 May 2020 07:43:21 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EChLrv030975;
-        Thu, 14 May 2020 07:43:21 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH v3 3/3] ASoC: tlv320adcx140: Configure PDM sampling edge
-Date:   Thu, 14 May 2020 07:33:38 -0500
-Message-ID: <20200514123338.20392-3-dmurphy@ti.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200514123338.20392-1-dmurphy@ti.com>
-References: <20200514123338.20392-1-dmurphy@ti.com>
+        id S1726239AbgENMjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 08:39:08 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:30316 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726232AbgENMjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 08:39:06 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04ECWRpb031347;
+        Thu, 14 May 2020 14:38:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=gK4gRac8zCJ49BVWhgCYszm1HwapCUJoPR2k/1pndPk=;
+ b=qPxbDB2jBqpiVaEwpezjOHZi/uxRnvCZ6Exwe+7WK52uI0EdKnWpTbUqyUuiZPXCnxJ4
+ Do6vdK1vZ0BxbplxQakO7YP4qQZWe06PIx/FpH1gIMcKGPzyorjE+R6N4d64sBoQYGFp
+ 6XO7K2XAzNc3Z7GAh/KLe7Mvzt1CrlA+Sfk7Nw+jVvL318TTMhJ4u+i4zo6wiH69qmza
+ OKPCF+Htv29t+IyHli1feCCpVLZJGh0yYtHEWLOOzm08UKgOsA2t3tMOXT/ZnjgJDPpd
+ UNX2aYKc3WJbUEPgHfToOJA+AmAwRIjoU0NPtm6/GAGnGRvPxTKb/D3g7lAKGvY+CXG8 Sw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3100vqk4kq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 May 2020 14:38:55 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8996610002A;
+        Thu, 14 May 2020 14:38:55 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 786702B8A1F;
+        Thu, 14 May 2020 14:38:55 +0200 (CEST)
+Received: from lmecxl0912.tpe.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 14 May
+ 2020 14:38:51 +0200
+Subject: Re: [PATCH v2 0/6] Add Stinger96 and IoT Box board support
+To:     <mani@kernel.org>, <robh+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200503154215.23654-1-mani@kernel.org>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <abbd6fd1-ec74-3ae5-b041-d31dfc5ded82@st.com>
+Date:   Thu, 14 May 2020 14:38:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200503154215.23654-1-mani@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.676
+ definitions=2020-05-14_03:2020-05-14,2020-05-14 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the PDM sampling edges based on the values from the firmware.
+Hi Mani
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tlv320adcx140.c | 22 ++++++++++++++++++++++
- sound/soc/codecs/tlv320adcx140.h |  3 +++
- 2 files changed, 25 insertions(+)
+On 5/3/20 5:42 PM, mani@kernel.org wrote:
+> From: Manivannan Sadhasivam <mani@kernel.org>
+> 
+> Hello,
+> 
+> This series adds Stinger96 and IoT Box board support. These boards are
+> based on STM32MP157A SoC, designed and manufactured by Shiratech solutions.
+> 
+> The Stinger96 is a base board (96Boards IoT Extended edition) while IoT Box
+> adds one mezzanine on top of it and sold as a gateway device.
+> 
+> This series depends on below patchsets already submitted and gone through
+> reviews:
+> 
+> [PATCH v3 0/3] Add Reset and Wakeup support for CCS811
+> [PATCH v3 0/2] Add CTS/RTS gpio support to STM32 UART
+> 
+> More information about these boards can be found in below links:
+> 
+> https://www.shiratech-solutions.com/products/stinger96/
+> https://www.shiratech-solutions.com/products/iot-box/
+> 
+> Thanks,
+> Mani
+> 
 
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 97634e0ca0ba..140a5802a9a9 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -760,6 +760,10 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 	int sleep_cfg_val = ADCX140_WAKE_DEV;
- 	u8 bias_source;
- 	u8 vref_source;
-+	int pdm_count;
-+	u32 pdm_edges[ADCX140_NUM_PDM_EDGES];
-+	u32 pdm_edge_val = 0;
-+	int i;
- 	int ret;
- 
- 	ret = device_property_read_u8(adcx140->dev, "ti,mic-bias-source",
-@@ -786,6 +790,24 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 
- 	bias_source |= vref_source;
- 
-+	pdm_count = device_property_count_u32(adcx140->dev,
-+					      "ti,pdm-edge-select");
-+	if (pdm_count <= ADCX140_NUM_PDM_EDGES && pdm_count > 0) {
-+		ret = device_property_read_u32_array(adcx140->dev,
-+						     "ti,pdm-edge-select",
-+						     pdm_edges, pdm_count);
-+		if (ret)
-+			return ret;
-+
-+		for (i = 0; i < pdm_count; i++)
-+			pdm_edge_val |= pdm_edges[i] << (ADCX140_PDM_EDGE_SHIFT - i);
-+
-+		ret = regmap_write(adcx140->regmap, ADCX140_PDM_CFG,
-+				   pdm_edge_val);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = adcx140_reset(adcx140);
- 	if (ret)
- 		goto out;
-diff --git a/sound/soc/codecs/tlv320adcx140.h b/sound/soc/codecs/tlv320adcx140.h
-index 6d055e55909e..432eaf25d1a7 100644
---- a/sound/soc/codecs/tlv320adcx140.h
-+++ b/sound/soc/codecs/tlv320adcx140.h
-@@ -128,4 +128,7 @@
- 
- #define ADCX140_TX_OFFSET_MASK		GENMASK(4, 0)
- 
-+#define ADCX140_NUM_PDM_EDGES		4
-+#define ADCX140_PDM_EDGE_SHIFT		7
-+
- #endif /* _TLV320ADCX140_ */
--- 
-2.26.2
+Series applied on stm32-next.
 
+Regards
+Alex
+
+> Changes in v2:
+> 
+> * Used "stm32" prefix for all DT commits
+> * Dropped custom sdmmc2 pinctrl node since existing node itself has pullup
+>    enabled and works fine.
+> 
+> Manivannan Sadhasivam (6):
+>    dt-bindings: Add vendor prefix for Shiratech Solutions
+>    ARM: dts: stm32: Add missing pinctrl entries for STM32MP15
+>    dt-bindings: arm: stm32: Document Stinger96 compatible
+>    ARM: dts: stm32: Add Stinger96 board support
+>    dt-bindings: arm: stm32: Document IoT Box compatible
+>    ARM: dts: stm32: Add IoT Box board support
+> 
+>   .../devicetree/bindings/arm/stm32/stm32.yaml  |   2 +
+>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>   arch/arm/boot/dts/Makefile                    |   2 +
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |  64 ++++
+>   arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  68 ++++
+>   arch/arm/boot/dts/stm32mp157a-stinger96.dts   |  12 +
+>   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  | 342 ++++++++++++++++++
+>   7 files changed, 492 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-iot-box.dts
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-stinger96.dts
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> 
