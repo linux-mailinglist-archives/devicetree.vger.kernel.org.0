@@ -2,87 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 816B31D30A7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 15:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651B31D30B0
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 15:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726051AbgENNIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 09:08:05 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:33628 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgENNIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 09:08:04 -0400
-Received: by mail-oi1-f195.google.com with SMTP id o24so24466565oic.0;
-        Thu, 14 May 2020 06:08:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fbQaej0+IJeKYT0mug72y3TFgNAGh3pGBDCTmds+4Dg=;
-        b=ggKxPgTE5lsEr2Lp9mtxlQaGy9V5W46OIASq8eTGlIKRtUWAQMZ9Rv8Cbf4vTUSHdq
-         kOWfW4N9COBe9b1BLrLqzn4zBgGI3VhMS08Lhj6bb1t05rBHyoTNMdCU/dZKe42lgwIc
-         C/qbdU6/l93p+hl8epFdr6cn7tDZKyh4w5wQO6iP1+SCqwVZnCL9thCiUBflTOKkYpw6
-         KOJrIwyWWnlO8GFElD+dmMjE9eT7Y5X2dFbY0kFgiuJjKayj96XRgbaKT/QIntkQqdd9
-         2A6IrjtgYVMciuIBp55Br5AMKpEF4aGDsacjMqU9W5s7RTA3c2cvXwH6esSSB9BziaSb
-         S09w==
-X-Gm-Message-State: AOAM530LVQtpFYCTazIu0gt7ORlYb/jkwRY14/TQM2bFd1e1qr59tbtX
-        46gAvd9CAC2omOyg+hEZ2w==
-X-Google-Smtp-Source: ABdhPJw9GMygDyZnfEXw9k49JWUj2GYlVgzzt4Ko7/p8rxdjnplLymQ5zNFFIPHAyaQ6bZG1qZsHbQ==
-X-Received: by 2002:aca:af94:: with SMTP id y142mr4549151oie.111.1589461682497;
-        Thu, 14 May 2020 06:08:02 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l89sm757614otc.32.2020.05.14.06.08.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2020 06:08:01 -0700 (PDT)
-Received: (nullmailer pid 23923 invoked by uid 1000);
-        Thu, 14 May 2020 13:08:01 -0000
-Date:   Thu, 14 May 2020 08:08:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     TY Chang <tychang@realtek.com>
-Cc:     robh+dt@kernel.org, afaerber@suse.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        linux-realtek-soc@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 4/7] dt-bindings: pinctrl: realtek: Add Realtek DHC SoC
- rtd1195 and rtd1295.
-Message-ID: <20200514130801.GA23147@bogus>
-References: <20200514092125.6875-1-tychang@realtek.com>
- <20200514092125.6875-5-tychang@realtek.com>
+        id S1726067AbgENNJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 09:09:08 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53917 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725955AbgENNJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 09:09:08 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 385C05C026D;
+        Thu, 14 May 2020 09:09:07 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Thu, 14 May 2020 09:09:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=X49GiuDf4PDo5pvDp+DDj6/4ujD
+        zydI+cxg5rjxkb8Q=; b=PMerBt88FGdPWZPyvTAHbMuJPJC341fKMF5zRi+s8Yy
+        sZ/jhoiFho0eotjCCkvOGfE3EjaA+h1BGB4VnqSLyxKdcAl6nSECocL0dRG240lq
+        geze6iYR/nf74YzyrqtNNnTjhqbRkUV/UvFI/6asa2AAYUUUQZxrPlevbZ9dqBKg
+        hkxumwuQ0a76LGI1Qe9OEIGV23M4/jles+c3qVaz+roiO9+k8FPNS88qaPUiltR4
+        unHADLGOO7feMHaHDlHxe7zfm23BBmiNf/B062YQ9tg1L4C0JAYkjz2udGBQ7luO
+        U9pZWgWAGnChEC0e6omE7QNSdnOmf/WuABIZ3TtFpQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=X49Giu
+        Df4PDo5pvDp+DDj6/4ujDzydI+cxg5rjxkb8Q=; b=B9P7z/rmXlEX8CrBMT5DbM
+        ts901KvCWNbr71aaWaADAtx7EvkDKhq3KKjSQtGcYFsNx3/B7tnBXdU30sH+EfVw
+        BZG6v1A4RSwqRXTyDqb5ne4sN9cOH/6GnueHAbiZQknBJt+wC+4NvfzjUZQCjK4b
+        xkjrS7YL82gQWvFcTwV3Nsa31TFsn40hvr1Aug5NnPVHEB3DYAl5crDR3EghiyWg
+        x6GYafx9/irgX0/LQikdzbq/jx1R5R/+nGFjhKsNIJLatUlpSzZCjqFMRJ7Jcxyj
+        AKuT8Os4CC1Qpi8ILIUS9KBsILYNmW6PNjnyvueJlf8T5its0GPcr6E7x1911dVg
+        ==
+X-ME-Sender: <xms:7kK9XuqXZVmzoOgqAGSvzonpQKadd_8xBmGKTLQh2quEw5oekYZ9Fw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrleeigdehjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:7kK9XsoGbJbl7LISqne3Lv1MsLtKo0Ie8szc4RWVjI3JENzynBmb7g>
+    <xmx:7kK9XjO4sH_omPfFJKa7yynl-MI9OuhJtfE6LWariLVqyUGuQZ_4OA>
+    <xmx:7kK9Xt6ro3GOIJ9rIbp0jbLDVtiUps4BawGqnAyZYunheIqksT-aDA>
+    <xmx:80K9Xg0hp1EhaAhLTnMC_e0UQ1wDwKMBo44WjMOJJoUA0w7VrV2zvA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 39825328005A;
+        Thu, 14 May 2020 09:09:02 -0400 (EDT)
+Date:   Thu, 14 May 2020 15:09:00 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org
+Subject: Re: [PATCH v4 0/5] iommu: Add Allwinner H6 IOMMU driver
+Message-ID: <20200514130900.k4gvr3zcajg3rouc@gilmour.lan>
+References: <cover.b27dedd61e008ffcf55a028ccddda3bb4d21dfc8.1589378833.git-series.maxime@cerno.tech>
+ <20200514123855.GI18353@8bytes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nqnml6fovdrucnar"
 Content-Disposition: inline
-In-Reply-To: <20200514092125.6875-5-tychang@realtek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200514123855.GI18353@8bytes.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 May 2020 17:21:22 +0800, TY Chang wrote:
-> Add compatible string for RTD1195 and RTD1295.
-> 
-> Signed-off-by: TY Chang <tychang@realtek.com>
-> ---
->  .../bindings/pinctrl/realtek,rtd-pinctrl.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd-pinctrl.yaml
-> 
 
+--nqnml6fovdrucnar
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Thu, May 14, 2020 at 02:38:55PM +0200, Joerg Roedel wrote:
+> On Wed, May 13, 2020 at 04:07:19PM +0200, Maxime Ripard wrote:
+> > Maxime Ripard (5):
+> >   dt-bindings: iommu: Add Allwinner H6 IOMMU bindings
+> >   dt-bindings: display: sun8i-mixer: Allow for an iommu property
+> >   iommu: Add Allwinner H6 IOMMU driver
+> >   arm64: dts: allwinner: h6: Add IOMMU
+> >   drm/sun4i: mixer: Call of_dma_configure if there's an IOMMU
+>=20
+> Applied all to the IOMMU tree, thanks. The code lives in the
+> arm/allwinner branch.
 
-Error: Documentation/devicetree/bindings/pinctrl/realtek,rtd-pinctrl.example.dts:24.5-6 syntax error
-FATAL ERROR: Unable to parse input tree
-scripts/Makefile.lib:312: recipe for target 'Documentation/devicetree/bindings/pinctrl/realtek,rtd-pinctrl.example.dt.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/pinctrl/realtek,rtd-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1300: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+Did you also merge the DTS and DRM patches?
 
-See https://patchwork.ozlabs.org/patch/1290046
+Ideally, they should be merged through other trees to avoid the conflicts as
+much as possible (arm-soc and drm-misc respectively).
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+If it's an option, could you drop all of them but "dt-bindings: iommu: Add
+Allwinner H6 IOMMU bindings" and "iommu: Add Allwinner H6 IOMMU driver"?
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+> Please use 'iommu/sun50i: <Capital Letter>...' as the pattern for your fu=
+ture
+> subject lines when changing the driver.
 
-Please check and re-submit.
+I'll try to remember that, thanks! :)
 
+> I also have two fixes on-top which I will send out shortly and add to
+> that branch.
+
+Ugh. I'm not sure how the first one slipped through.. Sorry for that, I'm f=
+ine
+with both.
+
+Thanks!
+Maxime
+
+--nqnml6fovdrucnar
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXr1C7AAKCRDj7w1vZxhR
+xXGkAP0Y56azc0zLB0nzAvlu6+1IBmkd/BHghzQYprbgXKwlHgEAq0vPPaxdykZf
+e5mP7oAXBQpOFWak0Bg5vMTZ6fX92Q0=
+=33ck
+-----END PGP SIGNATURE-----
+
+--nqnml6fovdrucnar--
