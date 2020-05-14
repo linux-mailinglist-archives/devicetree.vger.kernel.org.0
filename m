@@ -2,71 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFA61D2E73
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 13:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195621D2EBF
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 13:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726056AbgENLgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 07:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36642 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726011AbgENLgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 07:36:52 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D487C061A0C;
-        Thu, 14 May 2020 04:36:52 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id a9so2319316lfb.8;
-        Thu, 14 May 2020 04:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zGigY40HNC0vIIg2KqrMRVX3IHwlm3zXsKb7MGlt1hE=;
-        b=eXqfYEcGXhSVo+xqDDZGlPliR281ArKBPClCeLdkTj649PZFDo0KHiPpfLyMmVbOBB
-         W2dQj8QZV3a6sYqgDyggORuRFa2RhWt1VedY9tRCcV24BFp8iju+JKwPzuGw6SgkGFC0
-         FYPhLZ6d8dJ+0ed1Vz+EjiCppgbgkPvQfwCnMiB40rE6yA+etGnSDSnR6RU+3PAGxAh5
-         MvmFq7mAeqKUD2LF/opZd7OUV514O06q53xXl0CwM4GzprAzGiDbIxZ6DqwMs413pFzx
-         MuL+s1EkiJla5d5R2yYkmTaEinqAnkxMNWo8Fuzb2uONO5X4z+d3Ctw0upZYvWtCu4pG
-         BEXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zGigY40HNC0vIIg2KqrMRVX3IHwlm3zXsKb7MGlt1hE=;
-        b=aE/+sjiXbER8X7oh3vtRZ3oc+W5YM9kIoyCx5Uo3IqvgMuZ7yH1vV1edpglynp98mC
-         dPrdfBW9Gi0JVvHvegv1/f9fpyTK0/pB3r6/VZyVH3XgC0+LwuVNned+dFyfa5NTDs45
-         1uUnQ2uNmv3GokyxmDrNcYForzgghNL/p26lQZXLPc9bA0NciIp3s9B9y6bjlV3x0vq9
-         61lhLTY1ptidX+N9Ms440ohbTaSictFJchlX/fsu3TUqADBTZpUkOvLbkLunL4nWGE/d
-         UR6zLya7IDDEoCaY+1Om/JJpZPmmjK3H8NkQXZDe/L3zJiibKFb0QFWF71idU0KeteN9
-         MMPw==
-X-Gm-Message-State: AOAM533Nw8IakXS2KUQ63uPaT4VIfYRmRccRl+wwxP4A12A8X3ncOHRm
-        wXgzyvLF1Wg/gj5n4HY13Wrm+1K4nCrhiqdS8pG5Rw==
-X-Google-Smtp-Source: ABdhPJxBmTa1h8WlktzqD3pLbVyqrx3p3qFiTuM+yFXGEoO7RIjFXQifYAYsXge406O6IyIPcO5/3UB23gV5x4p5eQM=
-X-Received: by 2002:ac2:5e9c:: with SMTP id b28mr3067625lfq.50.1589456210950;
- Thu, 14 May 2020 04:36:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200514113003.19067-1-geert@linux-m68k.org>
-In-Reply-To: <20200514113003.19067-1-geert@linux-m68k.org>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Thu, 14 May 2020 13:36:39 +0200
-Message-ID: <CANiq72=tpSaYkZHf9ip0A1Lhip+B4rWPf-fCJorq7oigaVe98Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: auxdisplay: hd44780: Convert to json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726156AbgENLuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 07:50:46 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:35176 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725925AbgENLup (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 07:50:45 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7E9E91A0300;
+        Thu, 14 May 2020 13:50:43 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8992A1A02D1;
+        Thu, 14 May 2020 13:50:38 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3CCD540245;
+        Thu, 14 May 2020 19:50:32 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] dt-bindings: pwm: Convert mxs pwm to json-schema
+Date:   Thu, 14 May 2020 19:41:10 +0800
+Message-Id: <1589456470-2658-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Convert the mxs pwm binding to DT schema format using json-schema.
 
-On Thu, May 14, 2020 at 1:30 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Convert the Hitachi HD44780 Character LCD Controller Device Tree binding
-> documentation to json-schema.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ Documentation/devicetree/bindings/pwm/mxs-pwm.txt  | 17 ---------
+ Documentation/devicetree/bindings/pwm/mxs-pwm.yaml | 43 ++++++++++++++++++++++
+ 2 files changed, 43 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/mxs-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
 
-Do you usually take these ones or should I?
+diff --git a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt b/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
+deleted file mode 100644
+index a1b8a48..0000000
+--- a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Freescale MXS PWM controller
+-
+-Required properties:
+-- compatible: should be "fsl,imx23-pwm"
+-- reg: physical base address and length of the controller's registers
+-- #pwm-cells: should be 3. See pwm.yaml in this directory for a description of
+-  the cells format.
+-- fsl,pwm-number: the number of PWM devices
+-
+-Example:
+-
+-pwm: pwm@80064000 {
+-	compatible = "fsl,imx28-pwm", "fsl,imx23-pwm";
+-	reg = <0x80064000 0x2000>;
+-	#pwm-cells = <3>;
+-	fsl,pwm-number = <8>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml b/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
+new file mode 100644
+index 0000000..da68f4a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/mxs-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MXS PWM controller
++
++maintainers:
++  - Shawn Guo <shawn.guo@linaro.org>
++  - Anson Huang <anson.huang@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx23-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++  fsl,pwm-number:
++    $ref: '/schemas/types.yaml#/definitions/uint32'
++    description: u32 value representing the number of PWM devices
++
++required:
++  - compatible
++  - reg
++  - "#pwm-cells"
++  - fsl,pwm-number
++
++additionalProperties: false
++
++examples:
++  - |
++    pwm@80064000 {
++        compatible = "fsl,imx23-pwm";
++        reg = <0x80064000 0x2000>;
++        #pwm-cells = <3>;
++        fsl,pwm-number = <8>;
++    };
+-- 
+2.7.4
 
-Cheers,
-Miguel
