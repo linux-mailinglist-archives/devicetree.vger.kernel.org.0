@@ -2,252 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8551D2820
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 08:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9302A1D286A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 09:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726143AbgENGqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 02:46:14 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:61430 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726128AbgENGqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 May 2020 02:46:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1589438772; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=cKgghdOXnhc+2aVtVa22OYQ1NH4oXGcYByObqibfJT4=; b=SVV8FTIftVlLvhg0x4tknpNQ+XYO8HByQ21mVyQ8Wa98zEyIvF8d2NOcRoXZR6sxFsi6PUpj
- G4p12s/59V68ebCOh7aMM1p8RZnBgxtfvXHONCZDkKhhh7uj9MFxxHjYE1CT/q+Fc1pF79Oo
- gRenDNsc5nIQdtAJheo8WW5pm74=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 5ebce92232b098143c915602 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 14 May 2020 06:45:54
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1886DC43636; Thu, 14 May 2020 06:45:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.206.24.246] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akashast)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A0AD8C433D2;
-        Thu, 14 May 2020 06:45:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A0AD8C433D2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
-Subject: Re: [PATCH V5 2/7] soc: qcom-geni-se: Add interconnect support to fix
- earlycon crash
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-serial@vger.kernel.org, dianders@chromium.org,
-        evgreen@chromium.org, georgi.djakov@linaro.org
-References: <1588919619-21355-1-git-send-email-akashast@codeaurora.org>
- <1588919619-21355-3-git-send-email-akashast@codeaurora.org>
- <20200508175938.GB4525@google.com>
-From:   Akash Asthana <akashast@codeaurora.org>
-Message-ID: <294b33e5-cf5a-8abc-2152-afa01664d962@codeaurora.org>
-Date:   Thu, 14 May 2020 12:15:44 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <20200508175938.GB4525@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+        id S1726073AbgENHDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 03:03:54 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:44246 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726005AbgENHDy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 May 2020 03:03:54 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DB4881A0148;
+        Thu, 14 May 2020 09:03:51 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6C4481A0132;
+        Thu, 14 May 2020 09:03:46 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AE84F402B4;
+        Thu, 14 May 2020 15:03:39 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, p.zabel@pengutronix.de,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/2] dt-bindings: pwm: Convert imx pwm to json-schema
+Date:   Thu, 14 May 2020 14:54:18 +0800
+Message-Id: <1589439259-28510-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Convert the imx pwm binding to DT schema format using json-schema.
 
-On 5/8/2020 11:29 PM, Matthias Kaehlcke wrote:
-> Hi Akash,
->
-> overall this looks good to me, a few comments inline
->
-> On Fri, May 08, 2020 at 12:03:34PM +0530, Akash Asthana wrote:
->> QUP core clock is shared among all the SE drivers present on particular
->> QUP wrapper, the system will reset(unclocked access) if earlycon used after
->> QUP core clock is put to 0 from other SE drivers before real console comes
->> up.
->>
->> As earlycon can't vote for it's QUP core need, to fix this add ICC
->> support to common/QUP wrapper driver and put vote for QUP core from
->> probe on behalf of earlycon and remove vote during earlycon exit call.
->>
->> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
->> Reported-by: Matthias Kaehlcke <mka@chromium.org>
->> ---
->> Change in V3:
->>   - Add geni_remove_earlycon_icc_vote API that will be used by earlycon
->>     exit function to remove ICC vote for earlyconsole.
->>   - Remove suspend/resume hook for geni-se driver as we are no longer
->>     removing earlyconsole ICC vote from system suspend, we are removing
->>     from earlycon exit.
->>
->> Change in V4:
->>   - As per Matthias comment make 'earlycon_wrapper' as static structure.
->>
->> Changes in V5:
->>   - Vote for core path only after checking whether "qcom_geni" earlycon is
->>     actually present or not by traversing over structure "console_drivers".
->>
->>   drivers/soc/qcom/qcom-geni-se.c       | 63 +++++++++++++++++++++++++++++++++++
->>   drivers/tty/serial/qcom_geni_serial.c |  7 ++++
->>   include/linux/qcom-geni-se.h          |  2 ++
->>   3 files changed, 72 insertions(+)
->>
->> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
->> index 63403bf..66fe6f2 100644
->> --- a/drivers/soc/qcom/qcom-geni-se.c
->> +++ b/drivers/soc/qcom/qcom-geni-se.c
->> @@ -3,6 +3,7 @@
->>   
->>   #include <linux/acpi.h>
->>   #include <linux/clk.h>
->> +#include <linux/console.h>
->>   #include <linux/slab.h>
->>   #include <linux/dma-mapping.h>
->>   #include <linux/io.h>
->> @@ -90,11 +91,14 @@ struct geni_wrapper {
->>   	struct device *dev;
->>   	void __iomem *base;
->>   	struct clk_bulk_data ahb_clks[NUM_AHB_CLKS];
->> +	struct geni_icc_path to_core;
->>   };
->>   
->>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
->>   								"qup-memory"};
->>   
->> +static struct geni_wrapper *earlycon_wrapper;
->> +
->>   #define QUP_HW_VER_REG			0x4
->>   
->>   /* Common SE registers */
->> @@ -812,11 +816,33 @@ int geni_icc_disable(struct geni_se *se)
->>   }
->>   EXPORT_SYMBOL(geni_icc_disable);
->>   
->> +void geni_remove_earlycon_icc_vote(void)
->> +{
->> +	struct geni_wrapper *wrapper = earlycon_wrapper;
->> +	struct device_node *parent = of_get_next_parent(wrapper->dev->of_node);
-> Do we need to check that earlycon_wrapper != NULL before dereferencing it?
-> In theory this should not happen, but better be safe.
-Ok, I will add NULL check.
->
->> +	struct device_node *child;
->> +
->> +	for_each_child_of_node(parent, child) {
->> +		if (of_device_is_compatible(child, "qcom,geni-se-qup")) {
->> +			wrapper = platform_get_drvdata(of_find_device_by_node(
->> +					child));
->> +			icc_put(wrapper->to_core.path);
->> +			wrapper->to_core.path = NULL;
-> nit: setting the path to NULL isn't really needed IIUC.
-icc_put just free the path and don't reinitialize the path to NULL, if 
-the path is used after it is put target will crash. So just for safety I 
-am setting this path to NULL.
->
->> +		}
->> +	}
->> +	of_node_put(parent);
->> +
->> +	earlycon_wrapper = NULL;
->> +}
->> +EXPORT_SYMBOL(geni_remove_earlycon_icc_vote);
->> +
->>   static int geni_se_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	struct resource *res;
->>   	struct geni_wrapper *wrapper;
->> +	struct console *bcon;
->> +	int earlycon_present = 0;
-> use bool & true/false
->
-> The variable is only used when CONFIG_SERIAL_EARLYCON is set, I think
-> you need to add '__maybe_unused' to avoid a compiler warning then earlycon
-> support is disabled.
->
-> bikeshed: 'has_earlycon' would be slightly more concise (feel free to ignore).
-Ok
->
->>   	int ret;
->>   
->>   	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
->> @@ -839,6 +865,43 @@ static int geni_se_probe(struct platform_device *pdev)
->>   		}
->>   	}
->>   
->> +#ifdef CONFIG_SERIAL_EARLYCON
->> +	if (console_drivers)
-> The loop should have curly braces ("use braces when a loop contains more than
-> a single simple statement"), even though the compiler doesn't need them in
-> this case. This is not a loop, but I was told by a maintainer that it equally
-> applies, which makes sense.
->
-> You could avoid one level of indentation through:
-Ok
->
-> if (!console_drivers)
-> 	goto exit;
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ Documentation/devicetree/bindings/pwm/imx-pwm.txt  | 27 ---------
+ Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 66 ++++++++++++++++++++++
+ 2 files changed, 66 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/imx-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/imx-pwm.yaml
 
-I think I can omit this extra check because "for_each_console" will take 
-care of this.
-
->
->> +		for_each_console(bcon)
-> ditto (braces)
->
->> +			if (!strcmp(bcon->name, "qcom_geni")) {
->> +				earlycon_present = 1;
->> +				break;
->> +			}
->> +	if (!earlycon_present)
->> +		goto exit;
->> +
->> +	wrapper->to_core.path = devm_of_icc_get(dev, "qup-core");
->> +	if (IS_ERR(wrapper->to_core.path))
->> +		return PTR_ERR(wrapper->to_core.path);
->> +	/*
->> +	 * Put minmal BW request on core clocks on behalf of early console.
->> +	 * The vote will be removed earlycon exit function.
->> +	 *
->> +	 * Note: We are putting vote on each QUP wrapper instead only to which
->> +	 * earlycon is connected because QUP core clock of different wrapper
->> +	 * share same voltage domain. If core1 is put to 0, then core2 will
->> +	 * also run at 0, if not voted. Default ICC vote will be removed ASA
->> +	 * we touch any of the core clock.
->> +	 * core1 = core2 = max(core1, core2)
->> +	 */
->> +	ret = icc_set_bw(wrapper->to_core.path, GENI_DEFAULT_BW,
->> +							GENI_DEFAULT_BW);
-> nit: the indentation is a bit odd. Align with 'wrapper->to_core.path' or a
-> nearby tab stop?
-
-ok
-
-
-Thanks for providing the feedback.
-
-Regards,
-
-Akash
-
+diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.txt b/Documentation/devicetree/bindings/pwm/imx-pwm.txt
+deleted file mode 100644
+index 22f1c3d..0000000
+--- a/Documentation/devicetree/bindings/pwm/imx-pwm.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Freescale i.MX PWM controller
+-
+-Required properties:
+-- compatible : should be "fsl,<soc>-pwm" and one of the following
+-   compatible strings:
+-  - "fsl,imx1-pwm" for PWM compatible with the one integrated on i.MX1
+-  - "fsl,imx27-pwm" for PWM compatible with the one integrated on i.MX27
+-- reg: physical base address and length of the controller's registers
+-- #pwm-cells: 2 for i.MX1 and 3 for i.MX27 and newer SoCs. See pwm.yaml
+-  in this directory for a description of the cells format.
+-- clocks : Clock specifiers for both ipg and per clocks.
+-- clock-names : Clock names should include both "ipg" and "per"
+-See the clock consumer binding,
+-	Documentation/devicetree/bindings/clock/clock-bindings.txt
+-- interrupts: The interrupt for the pwm controller
+-
+-Example:
+-
+-pwm1: pwm@53fb4000 {
+-	#pwm-cells = <3>;
+-	compatible = "fsl,imx53-pwm", "fsl,imx27-pwm";
+-	reg = <0x53fb4000 0x4000>;
+-	clocks = <&clks IMX5_CLK_PWM1_IPG_GATE>,
+-		 <&clks IMX5_CLK_PWM1_HF_GATE>;
+-	clock-names = "ipg", "per";
+-	interrupts = <61>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+new file mode 100644
+index 0000000..4b62af2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/imx-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX PWM controller
++
++maintainers:
++  - Philipp Zabel <p.zabel@pengutronix.de>
++
++properties:
++  "#pwm-cells":
++    description: |
++      Should be 2 for i.MX1 and 3 for i.MX27 and newer SoCs. See pwm.yaml
++      in this directory for a description of the cells format.
++    enum:
++      - 2
++      - 3
++
++  compatible:
++    enum:
++      - fsl,imx1-pwm
++      - fsl,imx27-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: SoC PWM ipg clock
++      - description: SoC PWM per clock
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: ipg
++      - const: per
++    maxItems: 2
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - "#pwm-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx5-clock.h>
++
++    pwm@53fb4000 {
++        #pwm-cells = <3>;
++        compatible = "fsl,imx27-pwm";
++        reg = <0x53fb4000 0x4000>;
++        clocks = <&clks IMX5_CLK_PWM1_IPG_GATE>,
++                 <&clks IMX5_CLK_PWM1_HF_GATE>;
++        clock-names = "ipg", "per";
++        interrupts = <61>;
++    };
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
+2.7.4
 
