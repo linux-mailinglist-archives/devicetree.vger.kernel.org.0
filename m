@@ -2,120 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EAD11D3450
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 17:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E0751D3405
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 17:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727849AbgENPCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 11:02:19 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47426 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727082AbgENPCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 11:02:17 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EF1I8J000696;
-        Thu, 14 May 2020 10:01:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1589468478;
-        bh=4C0TWTfTSDRj2w7qQ6T4h7AbzhbqZ2/D2YKSd7EQANY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KG8A1qVYr8Sx0FqQY3Y0xB251hbSAtYSeTEbT3dgOYfs909oQrC/sEkV8Cg6jNdGu
-         sy80oRXNcAeaS6DU5I3LFSdk8ZjqMwrtH5VMNTVOsnCkhZVI4PxrXx5gnBh6LiZBvx
-         rHKE4dxj8+XJXbAScJI73AjZszolEnLfhG/2Jtf0=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04EF1IQG104549
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 14 May 2020 10:01:18 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
- May 2020 10:01:17 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 14 May 2020 10:01:17 -0500
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EExgB3019279;
-        Thu, 14 May 2020 10:01:13 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Jon Mason <jdmason@kudzu.us>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Allen Hubbe <allenbh@gmail.com>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>, <linux-pci@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-ntb@googlegroups.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [PATCH 19/19] NTB: ntb_perf/ntb_tool: Use PCI device for dma_alloc_coherent()
-Date:   Thu, 14 May 2020 20:29:27 +0530
-Message-ID: <20200514145927.17555-20-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200514145927.17555-1-kishon@ti.com>
-References: <20200514145927.17555-1-kishon@ti.com>
+        id S1727991AbgENPAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 11:00:33 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:37341 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726948AbgENPAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 11:00:33 -0400
+Received: by mail-ot1-f65.google.com with SMTP id z17so2577111oto.4;
+        Thu, 14 May 2020 08:00:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=b4HeH81d7CC2pFdjz+KIc9E1a6jJhBx25lXQ9gtMpzM=;
+        b=LDr0V/g7lU4mfrKVFlAzBhPfFjpnLKqUWtDGOZTQRWAcVGUaTfareZm8aCHe0TnVBZ
+         KWC6IPzCkma8QwgBjPiTdVrAzP9Dox6Je/5E9sho2a/+0W9ln0I0iXKilExH9l5KlmO5
+         1nxKMt6DZiAdXmQGlguq8fwZ0faOWuLa8xd65yyGJ+nxbkNHzQFQzKKPX5qzA9r7EZ1z
+         sp77BNMjgsH50GHKvTtIUaLhUOkMjLJLR/x1ftHapFIi2L0mBPJbo3AtGmyTDSPcT8bR
+         hq5bIuXhreruOcJQuVxRbHpM012FE0h3Xi7ME+fJhtPIR7gy09G6BRGq0K91lEvw2YFt
+         4e9g==
+X-Gm-Message-State: AOAM5314U7Ti1EA00J3afmsQkn3Sjb6ew76IrG+GXyFbXWJsL2iQG8Fv
+        4diMEDSZ0+M5RwG5FCffkQ==
+X-Google-Smtp-Source: ABdhPJzW85ZeQbTbhD2yMI5gcvb3x7Kv8qJI1H0Pl22tcfxBOiO1jCVwwbhxlPlqaQj6fzuo6pKuzg==
+X-Received: by 2002:a9d:7343:: with SMTP id l3mr3559142otk.276.1589468430559;
+        Thu, 14 May 2020 08:00:30 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u45sm818344ooi.41.2020.05.14.08.00.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2020 08:00:29 -0700 (PDT)
+Received: (nullmailer pid 8677 invoked by uid 1000);
+        Thu, 14 May 2020 15:00:28 -0000
+Date:   Thu, 14 May 2020 10:00:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Christophe Kerello <christophe.kerello@st.com>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        mark.rutland@arm.com, gregkh@linuxfoundation.org,
+        boris.brezillon@collabora.com, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org, marex@denx.de
+Subject: Re: [PATCH v4 06/10] dt-bindings: mtd: update STM32 FMC2 NAND
+ controller documentation
+Message-ID: <20200514150028.GB28489@bogus>
+References: <1588756279-17289-1-git-send-email-christophe.kerello@st.com>
+ <1588756279-17289-7-git-send-email-christophe.kerello@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1588756279-17289-7-git-send-email-christophe.kerello@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NTB device is not a real device and the piece of hardware actually
-doing the DMA is the PCI device itself. Fix ntb_perf.c and ntb_tool.c
-to use PCI device for dma_alloc_coherent() instead of NTB device.
-ntb_transport.c already uses PCI device for dma_alloc_coherent().
+On Wed, May 06, 2020 at 11:11:15AM +0200, Christophe Kerello wrote:
+> These bindings can be used on SOCs where the FMC2 NAND controller is
+> in standalone. In case that the FMC2 embeds 2 controllers (an external
+> bus controller and a raw NAND controller), the register base and the
+> clock will be defined in the parent node. It is the reason why the
+> register base address and the clock are now optional.
+> 
+> Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
+> ---
+>  .../devicetree/bindings/mtd/st,stm32-fmc2-nand.yaml   | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/st,stm32-fmc2-nand.yaml b/Documentation/devicetree/bindings/mtd/st,stm32-fmc2-nand.yaml
+> index b059267..68fac1a 100644
+> --- a/Documentation/devicetree/bindings/mtd/st,stm32-fmc2-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/st,stm32-fmc2-nand.yaml
+> @@ -18,13 +18,15 @@ properties:
+>  
+>    reg:
+>      items:
+> -      - description: Registers
+> +      - description: Registers (optional)
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- drivers/ntb/test/ntb_perf.c | 3 ++-
- drivers/ntb/test/ntb_tool.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+The only thing that can be optional are the last entries. You have to do 
+a 'oneOf' with 6 entries and 7 entries.
 
-diff --git a/drivers/ntb/test/ntb_perf.c b/drivers/ntb/test/ntb_perf.c
-index 972f6d984f6d..7f830a3e5b14 100644
---- a/drivers/ntb/test/ntb_perf.c
-+++ b/drivers/ntb/test/ntb_perf.c
-@@ -566,6 +566,7 @@ static int perf_setup_inbuf(struct perf_peer *peer)
- {
- 	resource_size_t xlat_align, size_align, size_max;
- 	struct perf_ctx *perf = peer->perf;
-+	struct pci_dev *pdev = perf->ntb->pdev;
- 	int ret;
- 
- 	/* Get inbound MW parameters */
-@@ -586,7 +587,7 @@ static int perf_setup_inbuf(struct perf_peer *peer)
- 
- 	perf_free_inbuf(peer);
- 
--	peer->inbuf = dma_alloc_coherent(&perf->ntb->dev, peer->inbuf_size,
-+	peer->inbuf = dma_alloc_coherent(&pdev->dev, peer->inbuf_size,
- 					 &peer->inbuf_xlat, GFP_KERNEL);
- 	if (!peer->inbuf) {
- 		dev_err(&perf->ntb->dev, "Failed to alloc inbuf of %pa\n",
-diff --git a/drivers/ntb/test/ntb_tool.c b/drivers/ntb/test/ntb_tool.c
-index 4b4f9e2a2c43..5c9f034122b7 100644
---- a/drivers/ntb/test/ntb_tool.c
-+++ b/drivers/ntb/test/ntb_tool.c
-@@ -576,6 +576,7 @@ static int tool_setup_mw(struct tool_ctx *tc, int pidx, int widx,
- {
- 	resource_size_t size, addr_align, size_align;
- 	struct tool_mw *inmw = &tc->peers[pidx].inmws[widx];
-+	struct pci_dev *pdev = tc->ntb->pdev;
- 	char buf[TOOL_BUF_LEN];
- 	int ret;
- 
-@@ -590,7 +591,7 @@ static int tool_setup_mw(struct tool_ctx *tc, int pidx, int widx,
- 	inmw->size = min_t(resource_size_t, req_size, size);
- 	inmw->size = round_up(inmw->size, addr_align);
- 	inmw->size = round_up(inmw->size, size_align);
--	inmw->mm_base = dma_alloc_coherent(&tc->ntb->dev, inmw->size,
-+	inmw->mm_base = dma_alloc_coherent(&pdev->dev, inmw->size,
- 					   &inmw->dma_base, GFP_KERNEL);
- 	if (!inmw->mm_base)
- 		return -ENOMEM;
--- 
-2.17.1
+And where's your new compatible string for this different h/w?
 
+>        - description: Chip select 0 data
+>        - description: Chip select 0 command
+>        - description: Chip select 0 address space
+>        - description: Chip select 1 data
+>        - description: Chip select 1 command
+>        - description: Chip select 1 address space
+> +    minItems: 6
+> +    maxItems: 7
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -61,7 +63,6 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - clocks
+>  
+>  examples:
+>    - |
+> @@ -77,13 +78,13 @@ examples:
+>              <0x81000000 0x1000>,
+>              <0x89010000 0x1000>,
+>              <0x89020000 0x1000>;
+> -            interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> -            dmas = <&mdma1 20 0x10 0x12000a02 0x0 0x0>,
+> -                   <&mdma1 20 0x10 0x12000a08 0x0 0x0>,
+> -                   <&mdma1 21 0x10 0x12000a0a 0x0 0x0>;
+> -            dma-names = "tx", "rx", "ecc";
+> -            clocks = <&rcc FMC_K>;
+> -            resets = <&rcc FMC_R>;
+> +      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> +      dmas = <&mdma1 20 0x2 0x12000a02 0x0 0x0>,
+> +             <&mdma1 20 0x2 0x12000a08 0x0 0x0>,
+> +             <&mdma1 21 0x2 0x12000a0a 0x0 0x0>;
+> +      dma-names = "tx", "rx", "ecc";
+> +      clocks = <&rcc FMC_K>;
+> +      resets = <&rcc FMC_R>;
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+>  
+> -- 
+> 1.9.1
+> 
