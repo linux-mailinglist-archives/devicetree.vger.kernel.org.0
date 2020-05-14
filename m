@@ -2,276 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB66F1D3605
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 18:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2091D361A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 18:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726240AbgENQIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 12:08:46 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:59114 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726140AbgENQIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 12:08:46 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EG8cRY051077;
-        Thu, 14 May 2020 11:08:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1589472518;
-        bh=DWuRI69VJhwA75p0adY2f23XQmUB8NXX6FfYCzE7bCM=;
-        h=From:To:CC:Subject:Date;
-        b=Ztt20Lw38DPeUIV8HkE08ppOj7nK/PvvvemjraFSJR1DRyEA4NBnLbuXaaysF+sPv
-         tTjle5SJUmFXBG8W4vA4aPqa/uyKqdN0Ckj6IHdZPU8r3O/tJXw07Alx+N3d8raQ2G
-         dWxXB6lYPOcZpVB5/9buX/2DJuHENY+ydaimqdYo=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04EG8cNH088896
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 14 May 2020 11:08:38 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
- May 2020 11:08:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 14 May 2020 11:08:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EG8bJD003060;
-        Thu, 14 May 2020 11:08:38 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>
-CC:     <robh@kernel.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH net-next] dt-bindings: dp83867: Convert DP83867 to yaml
-Date:   Thu, 14 May 2020 10:59:05 -0500
-Message-ID: <20200514155905.26845-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726294AbgENQL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 12:11:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726073AbgENQL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 12:11:59 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B043C061A0C
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 09:11:59 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id r22so1417119pga.12
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 09:11:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=kERbVPKOH+FX4g8aG+gjJYUwyTHcVS7ylYTdMC7w4rU=;
+        b=M6gmBW2wkreDT1FjE3XduSEnQnlx1OmUN/sGm+c1dA/9z8Lf+QwnE+4mSUZQxq3Yqu
+         M+JaZF5Iuuwjecknhi+K9sE/vriSN4mlm9OwWCv2XKKJCA1r0Y1TW0CEjmAZ3XrnKeu1
+         6dlncoMK7eu2uW+ysxkfQK101dKE0lU0xBsST/dXRin/2gdLg5OQKZ6nQltS4hfH/7F1
+         40eds0q0Ae92dk8jUUsigc+rLMM26S2w3p3JAieBkUe9F1kZFZjFs/+Wv/R30hIWvBQz
+         dSYWgFo7wkCPwULy0CDpZ+UwLEXqPIMC6ucOabOIVLSIk1rCiq+/QRzlJpmvZGrIyObB
+         WivA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=kERbVPKOH+FX4g8aG+gjJYUwyTHcVS7ylYTdMC7w4rU=;
+        b=cgEwXqsQ55grOVQLzVaLIs/KlO5LWyRRRi9ajRHcGiDjAfGq7fNzjHD21XWGrcwB+6
+         nG7vVjZs8TchJcGq4z3m5z0q3+fU5tGSUoFyDlbGvFUK9RaF9F227MsaOdn0dvz+4DKy
+         JCX6bHVAxR8D3mDu5nceMl+vi0bo42Axmiocpof39Ml4fXz9ioCxZgWEYuvBM1NlHGEe
+         xChAuFQ8AWQOS56crvXxqxjJPEtJiclHTOVPRpV0EDZ3VohROAopZYPlDR108kBo5EkS
+         WutZdUORLYkOVFpBXieuSCl3rS82C80LZe1u/eoRc80ee8ZoH27ChwhUCLjMGTUAf+4z
+         iAHQ==
+X-Gm-Message-State: AOAM530qE5byZHJrrZUkz+jvfEn6NFDRnyWTMflT/n6RANqt3V5AgA3d
+        XPx1o5sVzJBAoVQtRrBs1Lo=
+X-Google-Smtp-Source: ABdhPJx221SdCqxog59nayKDC2HJHmIZOnrjna5bc90Ic4mLEglczKwHZp+qojX8hzWdHl57pCXkSA==
+X-Received: by 2002:a63:f90a:: with SMTP id h10mr4621315pgi.57.1589472718688;
+        Thu, 14 May 2020 09:11:58 -0700 (PDT)
+Received: from localhost.localdomain ([106.215.24.137])
+        by smtp.gmail.com with ESMTPSA id t5sm2331755pgp.80.2020.05.14.09.11.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 May 2020 09:11:58 -0700 (PDT)
+From:   Amit Singh Tomar <amittomer25@gmail.com>
+To:     andre.przywara@arm.com, afaerber@suse.de,
+        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org
+Cc:     cristian.ciocaltea@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v1 4/9] arm64: dts: actions: do not merge disable sps node from S700
+Date:   Thu, 14 May 2020 21:40:52 +0530
+Message-Id: <1589472657-3930-5-git-send-email-amittomer25@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1589472657-3930-1-git-send-email-amittomer25@gmail.com>
+References: <1589472657-3930-1-git-send-email-amittomer25@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the dp83867 binding to yaml.
+After commit 7cdf8446ed1d ("arm64: dts: actions: Add pinctrl node for
+Actions Semi S700") following error has been observed while booting
+Linux on Cubieboard7-lite(based on S700 SoC).
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
+[    0.257415] pinctrl-s700 e01b0000.pinctrl: can't request region for
+resource [mem 0xe01b0000-0xe01b0fff]
+[    0.266902] pinctrl-s700: probe of e01b0000.pinctrl failed with error -16
+
+This is due to the fact that memory range for "sps" power domain controller
+clashes with pinctrl.
+
+This commit disable "sps" to avoid this conflict and let us test DMA and MMC
+related changes.
+
+Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
 ---
- .../devicetree/bindings/net/ti,dp83867.txt    |  68 ----------
- .../devicetree/bindings/net/ti,dp83867.yaml   | 127 ++++++++++++++++++
- 2 files changed, 127 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/ti,dp83867.txt
- create mode 100644 Documentation/devicetree/bindings/net/ti,dp83867.yaml
+Changes since RFC:
+	* kept as do not merge.
+---
+ arch/arm64/boot/dts/actions/s700.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.txt b/Documentation/devicetree/bindings/net/ti,dp83867.txt
-deleted file mode 100644
-index 44e2a4fab29e..000000000000
---- a/Documentation/devicetree/bindings/net/ti,dp83867.txt
-+++ /dev/null
-@@ -1,68 +0,0 @@
--* Texas Instruments - dp83867 Giga bit ethernet phy
--
--Required properties:
--	- reg - The ID number for the phy, usually a small integer
--	- ti,rx-internal-delay - RGMII Receive Clock Delay - see dt-bindings/net/ti-dp83867.h
--		for applicable values. Required only if interface type is
--		PHY_INTERFACE_MODE_RGMII_ID or PHY_INTERFACE_MODE_RGMII_RXID
--	- ti,tx-internal-delay - RGMII Transmit Clock Delay - see dt-bindings/net/ti-dp83867.h
--		for applicable values. Required only if interface type is
--		PHY_INTERFACE_MODE_RGMII_ID or PHY_INTERFACE_MODE_RGMII_TXID
--
--Note: If the interface type is PHY_INTERFACE_MODE_RGMII the TX/RX clock delays
--      will be left at their default values, as set by the PHY's pin strapping.
--      The default strapping will use a delay of 2.00 ns.  Thus
--      PHY_INTERFACE_MODE_RGMII, by default, does not behave as RGMII with no
--      internal delay, but as PHY_INTERFACE_MODE_RGMII_ID.  The device tree
--      should use "rgmii-id" if internal delays are desired as this may be
--      changed in future to cause "rgmii" mode to disable delays.
--
--Optional property:
--	- ti,min-output-impedance - MAC Interface Impedance control to set
--				    the programmable output impedance to
--				    minimum value (35 ohms).
--	- ti,max-output-impedance - MAC Interface Impedance control to set
--				    the programmable output impedance to
--				    maximum value (70 ohms).
--	- ti,dp83867-rxctrl-strap-quirk - This denotes the fact that the
--				    board has RX_DV/RX_CTRL pin strapped in
--				    mode 1 or 2. To ensure PHY operation,
--				    there are specific actions that
--				    software needs to take when this pin is
--				    strapped in these modes. See data manual
--				    for details.
--	- ti,clk-output-sel - Muxing option for CLK_OUT pin.  See dt-bindings/net/ti-dp83867.h
--			      for applicable values.  The CLK_OUT pin can also
--			      be disabled by this property.  When omitted, the
--			      PHY's default will be left as is.
--	- ti,sgmii-ref-clock-output-enable - This denotes which
--				    SGMII configuration is used (4 or 6-wire modes).
--				    Some MACs work with differential SGMII clock.
--				    See data manual for details.
--
--	- ti,fifo-depth - Transmitt FIFO depth- see dt-bindings/net/ti-dp83867.h
--		for applicable values (deprecated)
--
--	-tx-fifo-depth - As defined in the ethernet-controller.yaml.  Values for
--			 the depth can be found in dt-bindings/net/ti-dp83867.h
--	-rx-fifo-depth - As defined in the ethernet-controller.yaml.  Values for
--			 the depth can be found in dt-bindings/net/ti-dp83867.h
--
--Note: ti,min-output-impedance and ti,max-output-impedance are mutually
--      exclusive. When both properties are present ti,max-output-impedance
--      takes precedence.
--
--Default child nodes are standard Ethernet PHY device
--nodes as described in Documentation/devicetree/bindings/net/phy.txt
--
--Example:
--
--	ethernet-phy@0 {
--		reg = <0>;
--		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
--		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
--		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
--	};
--
--Datasheet can be found:
--http://www.ti.com/product/DP83867IR/datasheet
-diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-new file mode 100644
-index 000000000000..554dcd7a40a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+# Copyright (C) 2019 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/ti,dp83867.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: TI DP83867 ethernet PHY
-+
-+allOf:
-+  - $ref: "ethernet-controller.yaml#"
-+
-+maintainers:
-+  - Dan Murphy <dmurphy@ti.com>
-+
-+description: |
-+  The DP83867 device is a robust, low power, fully featured Physical Layer
-+  transceiver with integrated PMD sublayers to support 10BASE-Te, 100BASE-TX
-+  and 1000BASE-T Ethernet protocols.
-+
-+  The DP83867 is designed for easy implementation of 10/100/1000 Mbps Ethernet
-+  LANs. It interfaces directly to twisted pair media via an external
-+  transformer. This device interfaces directly to the MAC layer through the
-+  IEEE 802.3 Standard Media Independent Interface (MII), the IEEE 802.3 Gigabit
-+  Media Independent Interface (GMII) or Reduced GMII (RGMII).
-+
-+  Specifications about the charger can be found at:
-+    https://www.ti.com/lit/gpn/dp83867ir
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  ti,min-output-impedance:
-+    type: boolean
-+    description: |
-+       MAC Interface Impedance control to set the programmable output impedance
-+       to a minimum value (35 ohms).
-+
-+  ti,max-output-impedance:
-+    type: boolean
-+    description: |
-+      MAC Interface Impedance control to set the programmable output impedance
-+      to a maximum value (70 ohms).
-+      Note: ti,min-output-impedance and ti,max-output-impedance are mutually
-+        exclusive. When both properties are present ti,max-output-impedance
-+        takes precedence.
-+
-+  tx-fifo-depth:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+       Transmitt FIFO depth see dt-bindings/net/ti-dp83867.h for values
-+
-+  rx-fifo-depth:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+       Receive FIFO depth see dt-bindings/net/ti-dp83867.h for values
-+
-+  ti,clk-output-sel:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+      Muxing option for CLK_OUT pin.  See dt-bindings/net/ti-dp83867.h
-+      for applicable values. The CLK_OUT pin can also be disabled by this
-+      property.  When omitted, the PHY's default will be left as is.
-+
-+  ti,rx-internal-delay:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+      RGMII Receive Clock Delay - see dt-bindings/net/ti-dp83867.h
-+      for applicable values. Required only if interface type is
-+      PHY_INTERFACE_MODE_RGMII_ID or PHY_INTERFACE_MODE_RGMII_RXID.
-+
-+  ti,tx-internal-delay:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+      RGMII Transmit Clock Delay - see dt-bindings/net/ti-dp83867.h
-+      for applicable values. Required only if interface type is
-+      PHY_INTERFACE_MODE_RGMII_ID or PHY_INTERFACE_MODE_RGMII_TXID.
-+
-+        Note: If the interface type is PHY_INTERFACE_MODE_RGMII the TX/RX clock
-+          delays will be left at their default values, as set by the PHY's pin
-+          strapping. The default strapping will use a delay of 2.00 ns.  Thus
-+          PHY_INTERFACE_MODE_RGMII, by default, does not behave as RGMII with no
-+          internal delay, but as PHY_INTERFACE_MODE_RGMII_ID.  The device tree
-+          should use "rgmii-id" if internal delays are desired as this may be
-+          changed in future to cause "rgmii" mode to disable delays.
-+
-+  ti,dp83867-rxctrl-strap-quirk:
-+    type: boolean
-+    description: |
-+      This denotes the fact that the board has RX_DV/RX_CTRL pin strapped in
-+      mode 1 or 2. To ensure PHY operation, there are specific actions that
-+      software needs to take when this pin is strapped in these modes.
-+      See data manual for details.
-+
-+  ti,sgmii-ref-clock-output-enable:
-+    type: boolean
-+    description: |
-+      This denotes which SGMII configuration is used (4 or 6-wire modes).
-+      Some MACs work with differential SGMII clock. See data manual for details.
-+
-+  ti,fifo-depth:
-+    deprecated: true
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    description: |
-+      Transmitt FIFO depth- see dt-bindings/net/ti-dp83867.h for applicable
-+      values.
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    #include <dt-bindings/net/ti-dp83867.h>
-+    mdio0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      ethphy0: ethernet-phy@0 {
-+        reg = <0>;
-+        tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+        rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+        ti,max-output-impedance;
-+        ti,clk-output-sel = <DP83867_CLK_O_SEL_CHN_A_RCLK>;
-+        ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-+        ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
-+      };
-+    };
+diff --git a/arch/arm64/boot/dts/actions/s700.dtsi b/arch/arm64/boot/dts/actions/s700.dtsi
+index 2006ad5424fa..0397c5dd3dec 100644
+--- a/arch/arm64/boot/dts/actions/s700.dtsi
++++ b/arch/arm64/boot/dts/actions/s700.dtsi
+@@ -220,6 +220,7 @@
+ 			compatible = "actions,s700-sps";
+ 			reg = <0x0 0xe01b0100 0x0 0x100>;
+ 			#power-domain-cells = <1>;
++			status = "disabled";
+ 		};
+ 
+ 		timer: timer@e024c000 {
 -- 
-2.26.2
+2.7.4
 
