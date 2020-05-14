@@ -2,66 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0111D33A8
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 16:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2EAD1D33D5
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2020 17:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727927AbgENOzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 May 2020 10:55:15 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38690 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727918AbgENOzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 10:55:15 -0400
-Received: by mail-oi1-f195.google.com with SMTP id j145so2937764oib.5;
-        Thu, 14 May 2020 07:55:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6GKTQ1hvayQx5OvCaJHWXeEsZVK5jinIl8AV+xK1lWo=;
-        b=lTcyUiGFFkdMuuqbO77J4nqP46ynWyY76DXx+7ZogbFgicQk1O8HJJtXsVmMUVA3yl
-         rCDqfPIDGm97lJYBseSrNTRrHK5c9vMlyu7vZsdAKITPYQawz688v0QGv9Bw5GZyYrj5
-         WKKTbP+JTezvPFeLTSKg3XohduuPZINxAhTszS7Vj8s6db4SPD/FTRMbazKKwMlc110A
-         ZtXXZw54oZAbwDLNaNIb7Ji+rCXkggw9WtJfkwnQ6evHFE1e+fABzKFX4Sn0QmX3SMWv
-         m69pBih2BYuRwWZ++qRjP8+DaaOF5U8sAlk/nFxDZnDzwqUtqhECQfQ3wCb8Z0co4cbb
-         JAXA==
-X-Gm-Message-State: AOAM532eIFqtA6HyR8+SO3z6aAgTIvbJpcSnpuNlowDSmL900pnj4NiL
-        t+QMooUHxNNSSWreLIQuFEfRbeM=
-X-Google-Smtp-Source: ABdhPJzPExS9+yhGzaOvpYeJu0M9Sj6OuOpDB5AsKxDZI3H8LoAnJ+egHuHqWQI81CVMcYTdbNgB0g==
-X-Received: by 2002:aca:aa91:: with SMTP id t139mr2198536oie.176.1589468114895;
-        Thu, 14 May 2020 07:55:14 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u17sm837801ote.63.2020.05.14.07.55.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2020 07:55:14 -0700 (PDT)
-Received: (nullmailer pid 28709 invoked by uid 1000);
-        Thu, 14 May 2020 14:55:13 -0000
-Date:   Thu, 14 May 2020 09:55:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add odroid-c4 bindings
-Message-ID: <20200514145513.GA28489@bogus>
-References: <20200506080702.6645-1-narmstrong@baylibre.com>
- <20200506080702.6645-2-narmstrong@baylibre.com>
+        id S1727899AbgENPAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 May 2020 11:00:04 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46960 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726146AbgENPAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 May 2020 11:00:03 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04EExlpp130892;
+        Thu, 14 May 2020 09:59:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1589468387;
+        bh=s/fQErzjm3QWmzuHGPvhu9iIxEqXqRByZCvFxc1DEN4=;
+        h=From:To:CC:Subject:Date;
+        b=i+2ydMI+oiRlbtVsZIBgxJ+3etcFKZwqw6IA1wtzMtwRNFjkZBGg7soHOrZKxXqES
+         G641ITK0XPozOlrBpY8YYW8WUQusKwx0w3Gf94ErVxicNCm6aaSjEJ5did+txkmv6r
+         Td8ts4DzOqYOSMd4lBA3cWotoRFWo2av+1z2HGXs=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EExlHx127031;
+        Thu, 14 May 2020 09:59:47 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
+ May 2020 09:59:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 14 May 2020 09:59:47 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04EExgAi019279;
+        Thu, 14 May 2020 09:59:42 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Jon Mason <jdmason@kudzu.us>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Allen Hubbe <allenbh@gmail.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>, <linux-pci@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-ntb@googlegroups.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: [PATCH 00/19] Implement NTB Controller using multiple PCI EP
+Date:   Thu, 14 May 2020 20:29:08 +0530
+Message-ID: <20200514145927.17555-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200506080702.6645-2-narmstrong@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  6 May 2020 10:07:01 +0200, Neil Armstrong wrote:
-> Add the board bindings for the Hardkernel Odroid-C4 single board computer.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+This series is about implementing SW defined NTB using
+multiple endpoint instances. This series has been tested using
+2 endpoint instances in J7 connected to two DRA7 boards. However there
+is nothing platform specific for the NTB functionality.
 
-Acked-by: Rob Herring <robh@kernel.org>
+This was presented in Linux Plumbers Conference. The presentation
+can be found @ [1]
+
+RFC patch series can be found @ [2]
+
+This series has been validated after applying [3] and [4]
+
+Changes from RFC:
+1) Converted the DT binding patches to YAML schema and merged the
+   DT binding patches together
+2) NTB documentation is converted to .rst
+3) One HOST can now interrupt the other HOST using MSI-X interrupts
+4) Added support for teardown of memory window and doorbell
+   configuration
+5) Add support to provide support 64-bit memory window size from
+   DT
+
+[1] -> https://www.linuxplumbersconf.org/event/4/contributions/395/attachments/284/481/Implementing_NTB_Controller_Using_PCIe_Endpoint_-_final.pdf
+[2] -> http://lore.kernel.org/r/20190926112933.8922-1-kishon@ti.com
+[3] -> http://lore.kernel.org/r/20200508130646.23939-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20200506151429.12255-1-kishon@ti.com
+
+Kishon Vijay Abraham I (19):
+  dt-bindings: PCI: Endpoint: Add DT bindings for PCI EPF NTB Device
+  Documentation: PCI: Add specification for the *PCI NTB* function
+    device
+  PCI: endpoint: Add API to get reference to EPC from device-tree
+  PCI: endpoint: Add API to create EPF device from device tree
+  PCI: endpoint: Add "pci-epf-bus" driver
+  PCI: endpoint: Make *_get_first_free_bar() take into account 64 bit
+    BAR
+  PCI: endpoint: Add helper API to get the 'next' unreserved BAR
+  PCI: endpoint: Make *_free_bar() to return error codes on failure
+  PCI: endpoint: Remove unused pci_epf_match_device()
+  PCI: endpoint: Make pci_epf_driver ops optional
+  PCI: endpoint: Add helper API to populate header with values from DT
+  PCI: endpoint: Add support to associate secondary EPC with EPF
+  PCI: endpoint: Add pci_epc_ops to map MSI irq
+  PCI: cadence: Implement ->msi_map_irq() ops
+  PCI: endpoint: Add EP function driver to provide NTB functionality
+  PCI: Add TI J721E device to pci ids
+  NTB: Add support for EPF PCI-Express Non-Transparent Bridge
+  NTB: tool: Enable the NTB/PCIe link on the local or remote side of
+    bridge
+  NTB: ntb_perf/ntb_tool: Use PCI device for dma_alloc_coherent()
+
+ Documentation/PCI/endpoint/index.rst          |    1 +
+ Documentation/PCI/endpoint/pci-test-ntb.rst   |  344 +++
+ .../bindings/pci/endpoint/pci-epf-bus.yaml    |   42 +
+ .../bindings/pci/endpoint/pci-epf-device.yaml |   69 +
+ .../bindings/pci/endpoint/pci-epf-ntb.yaml    |   68 +
+ drivers/misc/pci_endpoint_test.c              |    1 -
+ drivers/ntb/hw/Kconfig                        |    1 +
+ drivers/ntb/hw/Makefile                       |    1 +
+ drivers/ntb/hw/epf/Kconfig                    |    5 +
+ drivers/ntb/hw/epf/Makefile                   |    1 +
+ drivers/ntb/hw/epf/ntb_hw_epf.c               |  752 ++++++
+ drivers/ntb/test/ntb_perf.c                   |    3 +-
+ drivers/ntb/test/ntb_tool.c                   |    4 +-
+ .../pci/controller/cadence/pcie-cadence-ep.c  |   50 +
+ drivers/pci/endpoint/Makefile                 |    3 +-
+ drivers/pci/endpoint/functions/Kconfig        |   12 +
+ drivers/pci/endpoint/functions/Makefile       |    1 +
+ drivers/pci/endpoint/functions/pci-epf-ntb.c  | 2038 +++++++++++++++++
+ drivers/pci/endpoint/functions/pci-epf-test.c |   13 +-
+ drivers/pci/endpoint/pci-ep-cfs.c             |    6 +-
+ drivers/pci/endpoint/pci-epc-core.c           |  216 +-
+ drivers/pci/endpoint/pci-epf-bus.c            |   54 +
+ drivers/pci/endpoint/pci-epf-core.c           |  137 +-
+ include/linux/pci-epc.h                       |   43 +-
+ include/linux/pci-epf.h                       |   26 +-
+ include/linux/pci_ids.h                       |    1 +
+ 26 files changed, 3823 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/PCI/endpoint/pci-test-ntb.rst
+ create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf-bus.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf-ntb.yaml
+ create mode 100644 drivers/ntb/hw/epf/Kconfig
+ create mode 100644 drivers/ntb/hw/epf/Makefile
+ create mode 100644 drivers/ntb/hw/epf/ntb_hw_epf.c
+ create mode 100644 drivers/pci/endpoint/functions/pci-epf-ntb.c
+ create mode 100644 drivers/pci/endpoint/pci-epf-bus.c
+
+-- 
+2.17.1
+
