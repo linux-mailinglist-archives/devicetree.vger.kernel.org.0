@@ -2,184 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B6DD1D4E5A
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DAD41D4E8F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726339AbgEONDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 09:03:16 -0400
-Received: from mga14.intel.com ([192.55.52.115]:17722 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726140AbgEONDP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 May 2020 09:03:15 -0400
-IronPort-SDR: eKDLOppNzXtQhO6bOZ/9GMroJQLPXBtvX+wyLRENTdy6g9Ei42kHdwnZHell9oT2uppYImlgdC
- gLVZo7VThcXA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2020 06:03:13 -0700
-IronPort-SDR: PKjN5VSpRweaEgwde2nYhTaRA/f/RxBzVbIZ0FwXWecKHXGIbKZ7gpUIYyxreDvcR7fnRLV5Yf
- agoJaxnfe9tA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,395,1583222400"; 
-   d="scan'208";a="252027692"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga007.jf.intel.com with ESMTP; 15 May 2020 06:03:04 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jZZzV-006s9U-DW; Fri, 15 May 2020 16:03:05 +0300
-Date:   Fri, 15 May 2020 16:03:05 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Allison Randal <allison@lohutok.net>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Clement Leger <cleger@kalray.eu>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        "wuxu.wu" <wuxu.wu@huawei.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 08/19] spi: dw: Discard dma_width member of the dw_spi
- structure
-Message-ID: <20200515130305.GA1634618@smile.fi.intel.com>
-References: <20200508132943.9826-1-Sergey.Semin@baikalelectronics.ru>
- <20200515104758.6934-1-Sergey.Semin@baikalelectronics.ru>
- <20200515104758.6934-9-Sergey.Semin@baikalelectronics.ru>
+        id S1726168AbgEONMT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 15 May 2020 09:12:19 -0400
+Received: from mout.kundenserver.de ([212.227.126.135]:46405 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726140AbgEONMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 09:12:19 -0400
+Received: from mail-qv1-f52.google.com ([209.85.219.52]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.129]) with ESMTPSA (Nemesis)
+ id 1MlsWZ-1irCxX2oex-00j3ld; Fri, 15 May 2020 15:12:16 +0200
+Received: by mail-qv1-f52.google.com with SMTP id l3so1010890qvo.7;
+        Fri, 15 May 2020 06:12:16 -0700 (PDT)
+X-Gm-Message-State: AOAM530LkO6Ejh7NLH/YllxbvXRsA0epdjGiwFt5cehSdCFbS8SzU0dp
+        V7p7FUM8Wu4CihVnDBaASbRXTCCbey/Gu5qEqU4=
+X-Google-Smtp-Source: ABdhPJzL0kbPaWt/UYw2Uz2rNIXYk/KnlaMI5B0hSICGSdegHY/AByOI15lsImUtudCP8+CPlNhdx49cfpzs91/rvyQ=
+X-Received: by 2002:a05:6214:1392:: with SMTP id g18mr3170818qvz.210.1589548335328;
+ Fri, 15 May 2020 06:12:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200515104758.6934-9-Sergey.Semin@baikalelectronics.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200514075942.10136-1-brgl@bgdev.pl> <20200514075942.10136-11-brgl@bgdev.pl>
+ <CAK8P3a3=xgbvqrSpCK5h96eRH32AA7xnoK2ossvT0-cLFLzmXA@mail.gmail.com>
+ <CAMRc=MeypzZBHo6dJGKm4JujYyejqHxtdo7Ts95DXuL0VuMYCw@mail.gmail.com>
+ <CAK8P3a0u53rHSW=72CnnbhrY28Z+9f=Yv2K-bbj5OD+2Ds4unA@mail.gmail.com> <CAMRc=Mf_vYt1J-cc6aZ2-Qv_YDEymVoC7ZiwuG9BrXoGMsXepw@mail.gmail.com>
+In-Reply-To: <CAMRc=Mf_vYt1J-cc6aZ2-Qv_YDEymVoC7ZiwuG9BrXoGMsXepw@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 15 May 2020 15:11:59 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a13k+X0XkkX=12x+22qVt_xxTBZr52ONQGdAY2T6XbpyA@mail.gmail.com>
+Message-ID: <CAK8P3a13k+X0XkkX=12x+22qVt_xxTBZr52ONQGdAY2T6XbpyA@mail.gmail.com>
+Subject: Re: [PATCH v3 10/15] net: ethernet: mtk-eth-mac: new driver
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Edwin Peer <edwin.peer@broadcom.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:Fbbb/Tu1JEHdbirs7W2eZ4b5soDWkcqrpUNCd5AaHYPNk6HxGy2
+ OSilgEREmRLlSUYRmbxeJZ85CkgnfW4dK1joqZ3jpfDTq4NRC0izCAffyT40kiZzV1i9FLq
+ A1yhR0K89YColUJjT0UhQ4vNN3yQPnVsQWWCcE6V8NNBW00qi1BgU9sK72ZD8AynvMdl1zz
+ ZMyZoFoeBfDDXmQBmG6hQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/aU9I5jDUPI=:U4e6GhX/+tv+OxvqBwcDO/
+ b0pfnGyT5+zIonA26dv83VamYMMs3WmnG/ofxiOzpfRB6WRvdJQDM+vbQr4ZeamjIb6kOOXoR
+ PWkqIe5XJL8jJBv0cyZ9gfFVqUSVokQel8BQA5G2OA5Lv4M7WDo8UMdAekijVV+xqIMtft+4k
+ Coo2Rtdm4vGG3ApnDOa7MsPIXUnHuZI0sPOFn/xgaB1rtHzIcl2sN8xtQPjvtZ33t7Atpk9ht
+ djwz+V6SnN1KbXT5HEPYiKXJQ2GPX825lmd/gvjW3V/afKjhqCmhCj7ZRNDvsJ58wLPQqJgev
+ Ez0u6D5IsNRXaugy6jHJe5sP0dIGs/cSeNeQJcSZgx2RLIda96pMxCM5E1Jf7Sc7GIBGD9iLP
+ fP+hpCBfqjUxbdtp2tpSTtHuHRR0wiV8wUNjqr66UullH+sjzH5EdK6ZVJPNRNKIVuT5za3UU
+ sBedh6JGQ325SVv05i/3v5IsjR6YUidCGjVKmUl9AFXMNuXJtfr+bMHBsc4MvdfaQn725yvTt
+ CFYobvYhrDZAa/gW4txI9C2/4yppbom8TPCwslmd+kHIRmzqoiQOVtXQBE+Uzw4t4iIKuTdmH
+ aLp+0K9DK3L4n+cMiAzH/uKBaFSC8r4+twq62UpOxRlHDcQqloDgwxEzPVn6aMMH/6i5ofFug
+ qtEtxxXQB2L39Pi+gevNMvv6iAgtl+S2ZwMjlNDYxc6mnkCLLDOWGLMXtvdzLtKAnqYIEyV9Q
+ FyYkH2LOrLxakAQGI9lIER04XlKrtLuC1jXYLJvh6Oav62Jcj51NbJht/gvLaJrn0qjLX8WAp
+ UuVCzeHLdEK/xMBQs5hosTYMq/9z7yVIqRZ+qSVl+A5uhx0ZjI=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 15, 2020 at 01:47:47PM +0300, Serge Semin wrote:
-> This member has exactly the same value as n_bytes of the DW SPI private
-> data object, it's calculated at the same point of the transfer method,
-> n_bytes isn't changed during the whole transfer, and they even serve for
-> the same purpose - keep number of bytes per transfer word, though the
-> dma_width is used only to calculate the DMA source/destination addresses
-> width, which n_bytes could be also utilized for. Taking all of these
-> into account let's replace the dma_width member usage with n_bytes one
-> and remove the former.
+On Fri, May 15, 2020 at 2:56 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> pt., 15 maj 2020 o 14:04 Arnd Bergmann <arnd@arndb.de> napisał(a):
+> > On Fri, May 15, 2020 at 9:11 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
 
-I've no strong opinion about this.
-So, after addressing one issue below,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > >
+> > > > It looks like most of the stuff inside of the loop can be pulled out
+> > > > and only done once here.
+> > > >
+> > >
+> > > I did that in one of the previous submissions but it was pointed out
+> > > to me that a parallel TX path may fill up the queue before I wake it.
+> >
+> > Right, I see you plugged that hole, however the way you hold the
+> > spinlock across the expensive DMA management but then give it
+> > up in each loop iteration feels like this is not the most efficient
+> > way.
+> >
+>
+> Maybe my thinking is wrong here, but I assumed that with a spinlock
+> it's better to give other threads the chance to run in between each
+> iteration. I didn't benchmark it though.
 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
-> Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Allison Randal <allison@lohutok.net>
-> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Cc: Gareth Williams <gareth.williams.jx@renesas.com>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux-mips@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> 
-> ---
-> 
-> Changelog v2:
-> - It's a new patch created as a result of more thorough driver study.
-> ---
->  drivers/spi/spi-dw-mid.c | 10 +++++-----
->  drivers/spi/spi-dw.c     |  1 -
->  drivers/spi/spi-dw.h     |  1 -
->  3 files changed, 5 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-dw-mid.c b/drivers/spi/spi-dw-mid.c
-> index be886e22a1b1..ca8813a693d8 100644
-> --- a/drivers/spi/spi-dw-mid.c
-> +++ b/drivers/spi/spi-dw-mid.c
-> @@ -132,10 +132,10 @@ static bool mid_spi_can_dma(struct spi_controller *master,
->  	return xfer->len > dws->fifo_len;
->  }
->  
-> -static enum dma_slave_buswidth convert_dma_width(u32 dma_width) {
-> -	if (dma_width == 1)
+It depends. You want to avoid lock contention (two threads trying to
+get the lock at the same time) but you also want to avoid bouncing
+around the spinlock between the caches.
 
-> +static enum dma_slave_buswidth convert_dma_width(u8 n_bytes) {
+In the contention case, what I think would happen here is that the
+cleanup thread gives up the lock and the xmit function gets it, but
+then the cleanup thread is spinning again, so you are still blocked
+on one of the two CPUs but also pay the overhead of synchronizing
+between the two.
 
-It seems somebody (maybe even me) at some point messed up between enum
-definition and function that returns an enum.
+Holding the lock the whole time would speed up both the good case
+(no contention) and the bad case (bouncing the lock) a little bit
+because it saves some overhead. Holding the lock for shorter
+times (i.e. not during the cache operations) would reduce the
+amount of lock-contention but not help in the good case.
 
-For what said, { should be on the separate line.
+Not needing a lock at all is generally best, but getting it right
+is tricky ;-)
 
-> +	if (n_bytes == 1)
->  		return DMA_SLAVE_BUSWIDTH_1_BYTE;
-> -	else if (dma_width == 2)
-> +	else if (n_bytes == 2)
->  		return DMA_SLAVE_BUSWIDTH_2_BYTES;
->  
->  	return DMA_SLAVE_BUSWIDTH_UNDEFINED;
-> @@ -195,7 +195,7 @@ static struct dma_async_tx_descriptor *dw_spi_dma_prepare_tx(struct dw_spi *dws,
->  	txconf.dst_addr = dws->dma_addr;
->  	txconf.dst_maxburst = 16;
->  	txconf.src_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
-> -	txconf.dst_addr_width = convert_dma_width(dws->dma_width);
-> +	txconf.dst_addr_width = convert_dma_width(dws->n_bytes);
->  	txconf.device_fc = false;
->  
->  	dmaengine_slave_config(dws->txchan, &txconf);
-> @@ -268,7 +268,7 @@ static struct dma_async_tx_descriptor *dw_spi_dma_prepare_rx(struct dw_spi *dws,
->  	rxconf.src_addr = dws->dma_addr;
->  	rxconf.src_maxburst = 16;
->  	rxconf.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
-> -	rxconf.src_addr_width = convert_dma_width(dws->dma_width);
-> +	rxconf.src_addr_width = convert_dma_width(dws->n_bytes);
->  	rxconf.device_fc = false;
->  
->  	dmaengine_slave_config(dws->rxchan, &rxconf);
-> diff --git a/drivers/spi/spi-dw.c b/drivers/spi/spi-dw.c
-> index 450c8218caeb..1edb8cdd11ee 100644
-> --- a/drivers/spi/spi-dw.c
-> +++ b/drivers/spi/spi-dw.c
-> @@ -353,7 +353,6 @@ static int dw_spi_transfer_one(struct spi_controller *master,
->  	}
->  
->  	dws->n_bytes = DIV_ROUND_UP(transfer->bits_per_word, BITS_PER_BYTE);
-> -	dws->dma_width = DIV_ROUND_UP(transfer->bits_per_word, BITS_PER_BYTE);
->  
->  	cr0 = dws->update_cr0(master, spi, transfer);
->  	dw_writel(dws, DW_SPI_CTRLR0, cr0);
-> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-> index b6ab81e0c747..4902f937c3d7 100644
-> --- a/drivers/spi/spi-dw.h
-> +++ b/drivers/spi/spi-dw.h
-> @@ -136,7 +136,6 @@ struct dw_spi {
->  	void			*rx_end;
->  	int			dma_mapped;
->  	u8			n_bytes;	/* current is a 1/2 bytes op */
-> -	u32			dma_width;
->  	irqreturn_t		(*transfer_handler)(struct dw_spi *dws);
->  	u32			current_freq;	/* frequency in hz */
->  
-> -- 
-> 2.25.1
-> 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+      Arnd
