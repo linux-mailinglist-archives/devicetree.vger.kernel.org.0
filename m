@@ -2,96 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6AD71D454D
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 07:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B580B1D4561
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 07:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726657AbgEOFfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 01:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726659AbgEOFfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 May 2020 01:35:14 -0400
-Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D33C05BD0A
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 22:35:14 -0700 (PDT)
-Received: by mail-qk1-x749.google.com with SMTP id d187so1077109qkc.18
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2020 22:35:14 -0700 (PDT)
+        id S1726248AbgEOFtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 01:49:32 -0400
+Received: from mail-mw2nam12on2105.outbound.protection.outlook.com ([40.107.244.105]:52320
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725899AbgEOFtb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 May 2020 01:49:31 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NyEuX+LeYlTWa7PKN8brfEjkkMTW6cmpvqFMuPr9AztXDMpW2s5JdDQWwyC8J8bkKZpbbSDKU0nQHhgnjcTbiF6z6NSYYAiBZpxtN/53Kg9sMGB4c2iCdxRRBChNlcEYEPanD1HLk0uMUgG2ZCMz1YrXHN5uFRsBO1oO0nxB63WXajFVCWk6B7KkHVspyQpc6PxrGSZAx42fCRjV2vxwE8+bi7rXE1pEOA9AqWPpvwlX+5ot+d8qBv0K8Ny/lCdXvQAKdQ9dMh+Co/4YJookSBT8NRdqJ0wjC+oonGl4V0FfwhUxEXQVfgCAadfIgep34QCdWtNnrTAvgpfY8m9Emg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Cwqbvv8QcEVow6I7FbphHs1hFgKwk2phXjRDkPn6Wjg=;
+ b=LF6tHn7S7YGTR3+OMGdRFnPeF/pA/ZlC8UYdmhhOtG7Hmhwr2s8ir1EC08y5qa9L3ON7qNXVQvtIZrNy0qmjq4zcLugkg3atjaYtjY/GbxIXrkpggZjWURlr+JsHiseKEK76cIysjB8OxvDGR1mwdTWbShpuFe2JbYjDtuEX4k2xQcG+RfADaklSpDXXyAMBeDjdaKxHa0u4nrcujW0mp/LDb8ohjwxNf/d8NYiDUTjRl1pWM81At6fI7BRdN4mcsh5pv4aDJc+3wd5V6wSzJ4uh3y2V7dBasdhrkm1bF3Ng62MuEzLX7K4cKOSeVvsGhGA3MTwF0tViB8fhkDQ8rA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=DX4XT+k02Ir/KDfouowfMsuBfYhxf4GU86W0BHIaHtQ=;
-        b=h+QlbAmrwT3Qk4XUER329GnhkSmrKvVq49brjpGM/uyL/DEiMw6DIaqHwVX6GqCOIB
-         TknypZylAeb9WhesT1jWWEO02DyLbugXMPf5rmRsRnZpaiaTUzo1fs0oLRyuhWXbpsjX
-         Pm8gJKEfiAsoM8LYcey7kctMNCeL/9WKjacPxTokZ+UIIzANPDcR9JeLWvI6uWYrHNub
-         sFN6BSjBRFFZy9Pwb5Gjo8WOwwMO3bxjCGrUOBF46x30sYznw9flhLN/Gzgy35+RvJm4
-         l5cZChSPp7ithvlffbtvdVokmYA3Pm1O94rTPKB8RtxdWUkQjt+64irBeKpJWbv5xSlg
-         dgig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=DX4XT+k02Ir/KDfouowfMsuBfYhxf4GU86W0BHIaHtQ=;
-        b=fBTQFlEdAs++xKEOIWyHylR5E4BTn/mwx501Pxzj8B01Ej4h6MGq7/rFP4qFYkUhgN
-         qkBQZ6btrcIhSQ8CAaPe4p1lZcjAIIJ2VtSzPuw5fbYarROnvDBN2DCxYhVPbizXRIap
-         xDbqtmM9oH4WbM35dyht1H5Rc85em1ffDbSXoO5DOAlW/EJF1rLAJpOL5lsc4CKFdQEn
-         RIsEqU9KSex85pI3cwvLKZeJ8TJZa/VqWauw6Xw9J5SMsyJ4Ivff7m4wfNu93Ka3nLto
-         WLOr9pdW3bqnLJQ8C9AnUNES7jIvueI6Fh6eksvb+XN4ZTlXlMSdy8iwfTWqxDzCCPKK
-         zbuA==
-X-Gm-Message-State: AOAM533jxGacoMnbSqOo0EAnH1neZz1AhT3utSBqXcLU+4013qWY0D3y
-        7s8W2x+xtJuUhKNsCJPt4X932+zaJXwcuOA=
-X-Google-Smtp-Source: ABdhPJwU9KkQfudVyjXyuE1Z396eMGSwdCB1SS/UClNjOPAmBPGEnfF7OqgDxMbxzOdUKsYQeJryPfZDxQez2Aw=
-X-Received: by 2002:a05:6214:42f:: with SMTP id a15mr1851765qvy.170.1589520913709;
- Thu, 14 May 2020 22:35:13 -0700 (PDT)
-Date:   Thu, 14 May 2020 22:35:00 -0700
-In-Reply-To: <20200515053500.215929-1-saravanak@google.com>
-Message-Id: <20200515053500.215929-5-saravanak@google.com>
-Mime-Version: 1.0
-References: <20200515053500.215929-1-saravanak@google.com>
-X-Mailer: git-send-email 2.26.2.761.g0e0b3e54be-goog
-Subject: [PATCH v1 4/4] of: platform: Batch fwnode parsing when adding all top
- level devices
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, Ji Luo <ji.luo@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Cwqbvv8QcEVow6I7FbphHs1hFgKwk2phXjRDkPn6Wjg=;
+ b=hDRLiKohHDZUKFF7kxLeWKLdfzUQ726GU/yJqHQssaHoea8KI/DQjmP8iunE881z2duA6bvataHrhNEY+C/ymEMAIohiJKnfKFzq/gVjiqkzgnl+wSdSDnjsa+3IzYlmUsVOYqfI8jDQGQQWIlNW7jfvTKFo1M+QRaamXaNrmuE=
+Authentication-Results: analogixsemi.com; dkim=none (message not signed)
+ header.d=none;analogixsemi.com; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BY5PR04MB6519.namprd04.prod.outlook.com (2603:10b6:a03:1d5::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.25; Fri, 15 May
+ 2020 05:49:27 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::4517:bcc8:a3bd:407f]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::4517:bcc8:a3bd:407f%6]) with mapi id 15.20.3000.022; Fri, 15 May 2020
+ 05:49:27 +0000
+Date:   Fri, 15 May 2020 13:49:20 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Pi-Hsun Shih <pihsun@chromium.org>,
+        Sheng Pan <span@analogixsemi.com>
+Subject: [PATCH v11 1/2] dt-bindings: drm/bridge: anx7625: MIPI to DP
+ transmitter DT schema
+Message-ID: <393386c0a18753cb4b3f695348fe506a192ea82a.1589511894.git.xji@analogixsemi.com>
+References: <cover.1589511894.git.xji@analogixsemi.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1589511894.git.xji@analogixsemi.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-ClientProxiedBy: HK2PR0302CA0022.apcprd03.prod.outlook.com
+ (2603:1096:202::32) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xin-VirtualBox (114.247.245.254) by HK2PR0302CA0022.apcprd03.prod.outlook.com (2603:1096:202::32) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3021.11 via Frontend Transport; Fri, 15 May 2020 05:49:27 +0000
+X-Originating-IP: [114.247.245.254]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 32c9e1e4-5ada-4f75-0123-08d7f893bad4
+X-MS-TrafficTypeDiagnostic: BY5PR04MB6519:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR04MB651931F010FFF6BF969E4378C7BD0@BY5PR04MB6519.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-Forefront-PRVS: 04041A2886
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: n6tBr2HwZMYPJuGo9JPtb+cVGS1hAEW+vLxMC2d1aHTsMEfee4JQQgGhqNXpddODq9sVQN+44uNH0j9uda6R1hM0Qynoz/obPQW4FpUyu+S86A7NJX3UWaGFtYmGQ8huM9z/gm4+U1LT40BPJe45bTeyy3l1IUBtFmYmxEKKaCURmKzVWhOBeBPm/1NGK4YQ59fhg5XTZ72sFVdcwX4ZNGQhr0dTG5AjVPMiJ2L38bX27H01vKw3TXObJII6orBUwyKfbegOpttR9H57muvd/Inb9TaTDYeWsIL/AbGyc7ebu3bi+BWGgQXXOz8f12ON6LJFGiihX6pxId6yneUthnTluhZHROR4rgZfZxp87+TmNwDuCx3gJ/+gHJoCZKkpAPPgDqSUr5hfzYoj/ZdasPtXBsRzYhyGkGlhHLjhHZaewuVnUKMJn0KwW2+rgJuAwnnZZWN1uxvRCohxpXeWITZf2rjQ7aGjF8mGTjyz3ilLE7BEl92DnlaWgIJUs1beBj4e2OKXBUFROCvrdT4moA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(376002)(366004)(39840400004)(136003)(396003)(346002)(16526019)(6666004)(107886003)(5660300002)(186003)(26005)(86362001)(36756003)(8936002)(8676002)(6486002)(7416002)(2906002)(4326008)(66556008)(66476007)(66946007)(110136005)(54906003)(52116002)(2616005)(956004)(6496006)(316002)(478600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: 74YHCnfyWTVYjjpBZaOJCx888EUCt6rIAjWMd5fclM3IACwRCvWgRahpxEG7t4nKpAE3iaav9keXCvdX9Gd9SoZ1cr4JkrOZSckYeIZ1RPPfObVYBAG6cilT3JfwWy01dGEpKXwIAMCr8qwDMPZ9Peg+/SImGP6Z/bDfV2ZBDop6N70UpAwlwWmGaDC7PwdwT7fvnXBqlzMbR3cJ3IgMVRkXkugvB5iqlc4EYVVnWwSHAXAMRtpFhK0mIAf/xmmzScpxsimFBZp0kKHlymgqZ7rNOu+ApukogidiCOnMnVueivbe+I/AbIka8p3KOQZ7jXT5oT4Q/pqmVipRk9sKpl2lJg5muSP1LcEaC1gWGiQ/+ZRxxt4uQlmqpH/CJ66g3ln2O6C6rY+0N91AOxotgK2aRVIgPZwI8egfXIdb20pzBJQ0qcjUHEelKqkFUQQhUEDsC2u1rR8qrzV37SUYxI7TjwzHhgch4ymPI61yCha1P+o1N9MLOITyJB6kAIS+
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32c9e1e4-5ada-4f75-0123-08d7f893bad4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 05:49:27.7857
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pKyjhjX34MfdYn3j5fKBqnkPKi5treLZtPsBBaIAY8UgGDMNfKl2RWO2zjKzgbRZ+kcgoEbmgyULq9ZKpvndDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6519
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The fw_devlink_pause() and fw_devlink_resume() APIs allow batching the
-parsing of the device tree nodes when a lot of devices are added. This
-will significantly cut down parsing time (as much a 1 second on some
-systems). So, use them when adding devices for all the top level device
-tree nodes in a system.
+anx7625: MIPI to DP transmitter DT schema
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
 ---
- drivers/of/platform.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/display/bridge/analogix,anx7625.yaml  | 95 ++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 3371e4a06248..55d719347810 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -538,7 +538,9 @@ static int __init of_platform_default_populate_init(void)
- 	}
- 
- 	/* Populate everything else. */
-+	fw_devlink_pause();
- 	of_platform_default_populate(NULL, NULL, NULL);
-+	fw_devlink_resume();
- 
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+new file mode 100644
+index 0000000..60585a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 Analogix Semiconductor, Inc.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/display/bridge/analogix,anx7625.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Analogix ANX7625 SlimPort (4K Mobile HD Transmitter)
++
++maintainers:
++  - Xin Ji <xji@analogixsemi.com>
++
++description: |
++  The ANX7625 is an ultra-low power 4K Mobile HD Transmitter
++  designed for portable devices.
++
++properties:
++  compatible:
++    items:
++      - const: analogix,anx7625
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: used for interrupt pin B8.
++    maxItems: 1
++
++  enable-gpios:
++    description: used for power on chip control, POWER_EN pin D2.
++    maxItems: 1
++
++  reset-gpios:
++    description: used for reset chip control, RESET_N pin B7.
++    maxItems: 1
++
++  ports:
++    type: object
++
++    properties:
++      port@0:
++        type: object
++        description:
++          Video port for MIPI DSI input.
++
++      port@1:
++        type: object
++        description:
++          Video port for panel or connector.
++
++    required:
++        - port@0
++        - port@1
++
++required:
++  - compatible
++  - reg
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        encoder@58 {
++            compatible = "analogix,anx7625";
++            reg = <0x58>;
++            enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                mipi2dp_bridge_in: port@0 {
++                    reg = <0>;
++                    anx7625_in: endpoint {
++                        remote-endpoint = <&mipi_dsi>;
++                    };
++                };
++
++                mipi2dp_bridge_out: port@1 {
++                    reg = <1>;
++                    anx7625_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++            };
++        };
++    };
 -- 
-2.26.2.761.g0e0b3e54be-goog
+2.7.4
 
