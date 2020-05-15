@@ -2,127 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C91D41D52C5
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 17:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23FE61D52DF
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 17:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726275AbgEOPAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 11:00:38 -0400
-Received: from mga02.intel.com ([134.134.136.20]:52670 "EHLO mga02.intel.com"
+        id S1726671AbgEOPCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 11:02:39 -0400
+Received: from foss.arm.com ([217.140.110.172]:57696 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726174AbgEOPAg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 May 2020 11:00:36 -0400
-IronPort-SDR: lm38IzyeuYoWTXcFTI2oNYDdiZ8+7f4oY7B2iujOQvivT9wERmzGZw2EPg5cQOHovJcWfj3LUo
- kOTx3feu6//A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2020 08:00:36 -0700
-IronPort-SDR: HSjIdpF/nRZGCr9SJb8mEf4rh552y15IUtOVwWugyT0lBpAgNRZRf9Bw5E4bPvIRTnXLfZDfho
- y39by4V9ZCyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,395,1583222400"; 
-   d="scan'208";a="266626401"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga006.jf.intel.com with ESMTP; 15 May 2020 08:00:30 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jZbpA-006tQd-83; Fri, 15 May 2020 18:00:32 +0300
-Date:   Fri, 15 May 2020 18:00:32 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Allison Randal <allison@lohutok.net>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Clement Leger <cleger@kalray.eu>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        "wuxu.wu" <wuxu.wu@huawei.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 08/19] spi: dw: Discard dma_width member of the dw_spi
- structure
-Message-ID: <20200515150032.GK1634618@smile.fi.intel.com>
-References: <20200508132943.9826-1-Sergey.Semin@baikalelectronics.ru>
- <20200515104758.6934-1-Sergey.Semin@baikalelectronics.ru>
- <20200515104758.6934-9-Sergey.Semin@baikalelectronics.ru>
- <20200515130305.GA1634618@smile.fi.intel.com>
- <20200515130559.psq2zwfhovt6rzhl@mobilestation>
- <20200515134956.GC1634618@smile.fi.intel.com>
- <20200515141627.pqdaic6wksatusl6@mobilestation>
+        id S1726144AbgEOPCj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 May 2020 11:02:39 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D0BB2F;
+        Fri, 15 May 2020 08:02:38 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 167523F71E;
+        Fri, 15 May 2020 08:02:36 -0700 (PDT)
+Subject: Re: [PATCH v1 8/9] arm64: dts: actions: Add MMC controller support
+ for S700
+To:     Amit Singh Tomar <amittomer25@gmail.com>, afaerber@suse.de,
+        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org
+Cc:     cristian.ciocaltea@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
+References: <1589472657-3930-1-git-send-email-amittomer25@gmail.com>
+ <1589472657-3930-9-git-send-email-amittomer25@gmail.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <b2ad8a81-619f-5f35-9596-c2061ae15e4c@arm.com>
+Date:   Fri, 15 May 2020 16:01:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200515141627.pqdaic6wksatusl6@mobilestation>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <1589472657-3930-9-git-send-email-amittomer25@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 15, 2020 at 05:16:27PM +0300, Serge Semin wrote:
-> On Fri, May 15, 2020 at 04:49:56PM +0300, Andy Shevchenko wrote:
-> > On Fri, May 15, 2020 at 04:05:59PM +0300, Serge Semin wrote:
-> > > On Fri, May 15, 2020 at 04:03:05PM +0300, Andy Shevchenko wrote:
-> > > > On Fri, May 15, 2020 at 01:47:47PM +0300, Serge Semin wrote:
-> > > > > This member has exactly the same value as n_bytes of the DW SPI private
-> > > > > data object, it's calculated at the same point of the transfer method,
-> > > > > n_bytes isn't changed during the whole transfer, and they even serve for
-> > > > > the same purpose - keep number of bytes per transfer word, though the
-> > > > > dma_width is used only to calculate the DMA source/destination addresses
-> > > > > width, which n_bytes could be also utilized for. Taking all of these
-> > > > > into account let's replace the dma_width member usage with n_bytes one
-> > > > > and remove the former.
-> > > > 
-> > > > I've no strong opinion about this.
-> > > > So, after addressing one issue below,
-> > > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > 
-> > ...
-> > 
-> > > > > -static enum dma_slave_buswidth convert_dma_width(u32 dma_width) {
-> > > > > -	if (dma_width == 1)
-> > > > 
-> > > > > +static enum dma_slave_buswidth convert_dma_width(u8 n_bytes) {
-> > > > 
-> > > > It seems somebody (maybe even me) at some point messed up between enum
-> > > > definition and function that returns an enum.
-> > > > 
-> > > > For what said, { should be on the separate line.
-> > > 
-> > > See the patch 16/19: "spi: dw: Cleanup generic DW DMA code namings"
-> > > in this series.
-> > 
-> > Since you are touching that line here, it makes sense to do it here rather than
-> > ping-pong to other patch in very same series.
+On 14/05/2020 17:10, Amit Singh Tomar wrote:
+
+Hi,
+
+> This commits adds support for MMC controllers present on Actions S700 SoC,
+> there are 3 MMC controllers in this SoC which can be used for accessing
+> SD/EMMC/SDIO cards.
 > 
-> You didn't open the patch I referred to, did you?
+> Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
+> ---
+> Changes since RFC:
+> 	* No change.
+> ---
+>  arch/arm64/boot/dts/actions/s700.dtsi | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/actions/s700.dtsi b/arch/arm64/boot/dts/actions/s700.dtsi
+> index 56f2f84812cb..3f1fc3e48415 100644
+> --- a/arch/arm64/boot/dts/actions/s700.dtsi
+> +++ b/arch/arm64/boot/dts/actions/s700.dtsi
+> @@ -258,5 +258,38 @@
+>  			dma-requests = <44>;
+>  			clocks = <&cmu CLK_DMAC>;
+>  		};
+> +
+> +		mmc0: mmc@e0210000 {
+> +			compatible = "actions,owl-mmc";
 
-Patches in the series are going on purpose. I look at them in the sequence of
-the appearance. But okay, I looked at it and I found what I expected. I think
-that you may reorder patch 16 to be one right after renaming module.
+I was wondering if we should add a SoC specific compatible here, to be
+on the safe side. The BSP driver seems to differentiate between S900 and
+S700, although it looks like only to cover some misplaced platform setup.
 
-> If you did, you would have
-> seen that I touched that line there too in the framework of the naming cleanup
-> procedure. So please, stop wasting my time with trivial stuff.
+But if we later find a problem, the DTs stay the same, and the driver
+can easily be fixed.
 
-Haven't you missed my tag? It means I spent *my* time on *your* stuff. Please,
-be respectful to reviewers.
+So, using "actions,s700-mmc", "actions,owl-mmc" here, adding this combo
+to the binding, but leaving the driver alone for now.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Cheers,
+Andre
 
+> +			reg = <0x0 0xe0210000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD0>;
+> +			resets = <&cmu RESET_SD0>;
+> +			dmas = <&dma 2>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@e0214000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe0214000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD1>;
+> +			resets = <&cmu RESET_SD1>;
+> +			dmas = <&dma 3>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc2: mmc@e0218000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe0218000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD2>;
+> +			resets = <&cmu RESET_SD2>;
+> +			dmas = <&dma 4>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+>  	};
+>  };
+> 
 
