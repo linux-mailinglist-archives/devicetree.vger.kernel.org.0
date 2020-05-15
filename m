@@ -2,135 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 818751D482D
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 10:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D29C21D48DA
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 10:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbgEOIcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 04:32:36 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:57810 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726730AbgEOIcf (ORCPT
+        id S1728015AbgEOIxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 04:53:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727927AbgEOIxO (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 May 2020 04:32:35 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04F8RKCf008633;
-        Fri, 15 May 2020 10:31:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=eJdDgRjKpklAGeIMtYx/P/MnYN9oSC9vUDGlJU7uW3M=;
- b=tSlFRvwIszSbH0n6EGhT1cOhcWrR9N2lmFcwsg/0R87FHKn48HaYPpw5Pd1UipFyXSQf
- o1WT15VZt4K04hoYJfOVeGJS0OyBw72LcR736Vyq5gavdNH19bZr8EQhYDHOa3vvq4w/
- XHHgKFeWfc2w6eTVqh35Qw27A+tji4plzvhLdiIs1gnBniHPcQ5R2u+rIZaxdSUMe3BO
- HGoaa12AGYiq2WH6HHLFbfFFZZbq0guYb3R4WaZQHPGf2yX1VuSFO07Eudozax+s4wyS
- WDQWn6+PwKlqIoLgYaB5lFQfjiJOEZwtU/+r+maXSYYGhIMdApxU38rRUoVDx3cEvGvQ bQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3100vyrw43-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 May 2020 10:31:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DC686100034;
-        Fri, 15 May 2020 10:31:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B664E2208D2;
-        Fri, 15 May 2020 10:31:54 +0200 (CEST)
-Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 15 May
- 2020 10:31:54 +0200
-Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
- SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
- 15.00.1347.000; Fri, 15 May 2020 10:31:54 +0200
-From:   Benjamin GAIGNARD <benjamin.gaignard@st.com>
-To:     dillon min <dillon.minfei@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>
-CC:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        Dave Airlie <airlied@linux.ie>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Sam Ravnborg" <sam@ravnborg.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [Linux-stm32] [PATCH v3 3/5] ARM: dts: stm32: enable ltdc binding
- with ili9341 on stm32429-disco board
-Thread-Topic: [Linux-stm32] [PATCH v3 3/5] ARM: dts: stm32: enable ltdc
- binding with ili9341 on stm32429-disco board
-Thread-Index: AQHWKckeJCttwtJ4Q0KZXBBPInzZ9ainaAuAgAAEJgCAAUVIgA==
-Date:   Fri, 15 May 2020 08:31:54 +0000
-Message-ID: <818b93b4-4431-8338-cd90-ed125ecac615@st.com>
-References: <1589267017-17294-1-git-send-email-dillon.minfei@gmail.com>
- <1589267017-17294-4-git-send-email-dillon.minfei@gmail.com>
- <CACRpkda5VjjBdbruXTi33QBNb=VU6vK2zDE8yyQXoWw7=NQFeg@mail.gmail.com>
- <a4ebd7cd-5756-0683-135f-0f96be8a4a7b@st.com>
- <CAL9mu0Jt_xwo5pJfcx6G3grBuOaxLXvakpEjiB4gV3=bkiq2fg@mail.gmail.com>
-In-Reply-To: <CAL9mu0Jt_xwo5pJfcx6G3grBuOaxLXvakpEjiB4gV3=bkiq2fg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.49]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EEC9925CAF78A046ADDC74F9DCF8557D@st.com>
-Content-Transfer-Encoding: base64
+        Fri, 15 May 2020 04:53:14 -0400
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C67C05BD0A
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 01:53:14 -0700 (PDT)
+Received: by mail-oo1-xc42.google.com with SMTP id u190so276750ooa.10
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 01:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dPqMiI17LOUe2nKh0vdLBm3601Jfamy6/fV1SlLaYgs=;
+        b=lBrSiIXHPPzqbQXkQfMzB4upzKLZwIfjYe3KXVYeeYOku2ihD1cIyXITPTc463DnhK
+         kpzSUi/+CaynNnMyOl3yQnf7TdGJ8qSiUDxrRxdmVdfIh+l2vcbJ3exWnZo6rEJHbvfE
+         xczw8lYq7b4VcW7ZN2GuX91TJvka1HmFx7r7QDM/NXBzNIpBWCJPEypk+KIQfeA/G/Er
+         nI/HxwRHXloYhThPaBdV/UaNr/wf9LZbhygIERuwcD0YEDDBXS7eD+jpq0uNztkBfgq8
+         a87ryFCBz1ULAnCJYLEgz+Z7SUS6+4OUGF7Dymo0ckjKFQDeZ8f1JSE384ncQC3VDtzf
+         noNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dPqMiI17LOUe2nKh0vdLBm3601Jfamy6/fV1SlLaYgs=;
+        b=lF+FsiAAnSQjxmQaqFc3RVovx1EWyTR5xcSyO951K3YDAtYVUQvdyocBs1oT7KCN/H
+         U7RMaM58+wRHHiHPLU2e3gvpJJlWv5EqLwNqzsqT2SrnOZHzTKQISPOqQ1tIxWYt4uoD
+         zmiE9NcLKUbsuBenAvK4UZRgOwZheQoId9YhteUhvpC7clIXmNUziJ/T7QE08bMCr68e
+         ECzL2LWKqWUdDNdjwQSDyDQK7Q79cdslLvgcOGzoHbDIrOjZf4oA7tb2JYDWMenl0afa
+         vmg24uc/i0/mR14Ko/5G1UtzCZ76ifdk3NrMePRYoTxhTUsdx4IV5o58PXk0JheN2Zm3
+         4MtQ==
+X-Gm-Message-State: AOAM530TNkbegfXkeRLKdPLW2Z/LsDNxRJcstKFDu5nj6121N96oDfe3
+        G3yeApqGRD+0gSwziGBVDj1A0tLnJ96lZ8wyBltk6g==
+X-Google-Smtp-Source: ABdhPJyfvXUA8lQ8XP5wykD/if2cBbfoaZJWEKhUEomcApBXwi9LlIMUwePsKHZppv0vzHh+EVrb+lvApcU1PMkJJyQ=
+X-Received: by 2002:a4a:615d:: with SMTP id u29mr1649801ooe.15.1589532793051;
+ Fri, 15 May 2020 01:53:13 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.676
- definitions=2020-05-15_03:2020-05-14,2020-05-15 signatures=0
+References: <20200515053500.215929-1-saravanak@google.com>
+In-Reply-To: <20200515053500.215929-1-saravanak@google.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 15 May 2020 01:52:37 -0700
+Message-ID: <CAGETcx-7qnNXug4PGssdXciy0BZrspXP0njJG+GFGFgie_Dwnw@mail.gmail.com>
+Subject: Re: [PATCH v1 0/4] Optimize fw_devlink parsing
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     Android Kernel Team <kernel-team@android.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Ji Luo <ji.luo@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCk9uIDUvMTQvMjAgMzowNyBQTSwgZGlsbG9uIG1pbiB3cm90ZToNCj4gSGkgQWxleGFuZHJl
-LA0KPg0KPiBPbiBUaHUsIE1heSAxNCwgMjAyMCBhdCA4OjUzIFBNIEFsZXhhbmRyZSBUb3JndWUN
-Cj4gPGFsZXhhbmRyZS50b3JndWVAc3QuY29tPiB3cm90ZToNCj4+DQo+Pg0KPj4gT24gNS8xNC8y
-MCAxMDoyNCBBTSwgTGludXMgV2FsbGVpaiB3cm90ZToNCj4+PiBPbiBUdWUsIE1heSAxMiwgMjAy
-MCBhdCA5OjA0IEFNIDxkaWxsb24ubWluZmVpQGdtYWlsLmNvbT4gd3JvdGU6DQo+Pj4NCj4+Pj4g
-RnJvbTogZGlsbG9uIG1pbiA8ZGlsbG9uLm1pbmZlaUBnbWFpbC5jb20+DQo+Pj4+DQo+Pj4+IEVu
-YWJsZSB0aGUgbHRkYyAmIGlsaTkzNDEgb24gc3RtMzI0MjktZGlzY28gYm9hcmQuDQo+Pj4+DQo+
-Pj4+IFNpZ25lZC1vZmYtYnk6IGRpbGxvbiBtaW4gPGRpbGxvbi5taW5mZWlAZ21haWwuY29tPg0K
-Pj4+IFRoaXMgbW9zdGx5IGxvb2tzIGdvb2QgYnV0Li4uDQo+Pj4NCj4+Pj4gKyZzcGk1IHsNCj4+
-Pj4gKyAgICAgICBzdGF0dXMgPSAib2theSI7DQo+Pj4+ICsgICAgICAgcGluY3RybC0wID0gPCZz
-cGk1X3BpbnM+Ow0KPj4+PiArICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+Pj4+
-ICsgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+Pj4+ICsgICAgICAgI3NpemUtY2VsbHMg
-PSA8MD47DQo+Pj4+ICsgICAgICAgY3MtZ3Bpb3MgPSA8JmdwaW9jIDIgR1BJT19BQ1RJVkVfTE9X
-PjsNCj4+Pj4gKyAgICAgICBkbWFzID0gPCZkbWEyIDMgMiAweDQwMCAweDA+LA0KPj4+PiArICAg
-ICAgICAgICAgICA8JmRtYTIgNCAyIDB4NDAwIDB4MD47DQo+Pj4+ICsgICAgICAgZG1hLW5hbWVz
-ID0gInJ4IiwgInR4IjsNCj4+PiBUaGVzZSBETUEgYXNzaWdubWVudHMgc2VlbSB0byBiZSBTb0Mg
-dGhpbmdzIGFuZCBzaG91bGQNCj4+PiByYXRoZXIgYmUgaW4gdGhlIERUUyhJKSBmaWxlIHdoZXJl
-ICZzcGk1IGlzIGRlZmluZWQsIHJpZ2h0Pw0KPj4+IHN0bTMyZjQyOS5kdHNpIEkgc3VwcG9zZT8N
-Cj4+IEkgYWdyZWUgd2l0aCBMaW51cywgRE1BIGhhdmUgdG8gYmUgZGVmaW5lZCBpbiBTb0MgZHRz
-aS4gQW5kIGlmIGEgYm9hcmQNCj4+IGRvZXNuJ3Qgd2FudCB0byB1c2UgaXQsIHdlIHVzZSB0aGUg
-ImRlbGV0ZS1wcm9wZXJ0eSIuDQo+IFllcywgd2lsbCBtb3ZlIHRvIFNvYyBkdHNpIGluIG5leHQg
-c3VibWl0cy4NCj4NCj4gaSdtIHdvcmtpbmcgb24gd3JpdGUgYSB2NGwyLW0ybSBkcml2ZXIgZm9y
-IGRtYTJkIG9mIHN0bTMyIHRvIHN1cHBvcnQNCj4gcGl4ZWwgY29udmVyc2lvbg0KPiBhbHBoYSBi
-bGVuZGluZyBiZXR3ZWVuIGZvcmVncm91bmQgYW5kIGJhY2tncm91bmQgZ3JhcGhpY3MuDQo+DQo+
-IGFzIHlvdSBrbm93LCBzb21lIHNvYydzIGVuZ2luZWVyIHRyeWluZyB0byBhZGQgdGhpcyBmdW5j
-dGlvbiB0byBkcm0gc3lzdGVtLg0KPg0KPiBkbyB5b3Uga25vdyBzdCdzIHBsYW5uaW5nIGFib3V0
-IHNvYydzIGhhcmR3YXJlIGFjY2VsZXJhdG9yIGRyaXZlciBvbiBzdG0zMm1wPw0KPiBzdWNoIGFz
-IGNocm9tLWFydCwgd2lsbCBhZGQgdG8gZHJtIHN1YnN5c3RlbSB2aWEgaW9jdGwgdG8gYWNjZXNz
-LCBvciB0byB2NGwyLA0KT24gc3RtMzJtcCB3ZSBkbyBub3QgcGxhbiB0byB1c2UgY2hyb20tYXJ0
-IGluIGRybSBvciB2NGwyIGJlY2F1c2UgaXQgDQpkb2VzIGZpdA0Kd2l0aCB1c2VybGFuZCB3YXkg
-b2Ygd29ya2luZy4gV2UgdXNlIHRoZSBHUFUgdG8gZG8gY29udmVyc2lvbiwgc2NhbGluZywgDQpi
-bGVuZGluZw0KYW5kIGNvbXBvc2l0aW9uIGluIG9ubHkgb25lIGdvLg0KQXMgZXhwbGFpbiBoZXJl
-IFsxXSBEUk0gc3Vic3l0ZW0gaXQgaXNuJ3QgYSBzb2x1dGlvbiBhbmQgdjRsMi1tMm0gaXNuJ3Qg
-DQp1c2VkIGluIGFueQ0KbWFpbmxpbmUgY29tcG9zaXRvcnMgbGlrZSBXZXN0b24gb3IgYW5kcm9p
-ZCBzdXJmYWNlZmxpbmdlci4NCg0KQmVuamFtaW4NCg0KWzFdIA0KaHR0cHM6Ly93d3cucGhvcm9u
-aXguY29tL3NjYW4ucGhwP3BhZ2U9bmV3c19pdGVtJnB4PUxpbnV4LURSTS1Oby0yRC1BY2NlbC1B
-UEkNCj4NCj4gdGhhbmtzLg0KPg0KPj4+IEl0IGlzIGxpa2VseSB0aGUgc2FtZSBubyBtYXR0ZXIg
-d2hpY2ggZGV2aWNlIGlzIHVzaW5nIHNwaTUuDQo+Pj4NCj4+PiBZb3VycywNCj4+PiBMaW51cyBX
-YWxsZWlqDQo+Pj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4gTGludXgtc3RtMzIgbWFpbGluZyBsaXN0DQo+IExpbnV4LXN0bTMyQHN0LW1kLW1h
-aWxtYW4uc3Rvcm1yZXBseS5jb20NCj4gaHR0cHM6Ly9zdC1tZC1tYWlsbWFuLnN0b3JtcmVwbHku
-Y29tL21haWxtYW4vbGlzdGluZm8vbGludXgtc3RtMzINCg==
+On Thu, May 14, 2020 at 10:35 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> When fw_devlink is enabled on hardware with a large number of device
+> tree nodes, the initial device addition done in
+> of_platform_default_populate_init() can be very inefficient. This is
+> because most devices will fail to find all their suppliers when they are
+> added and will keep trying to parse their device tree nodes and link to
+> any newly added devices
+>
+> This was an item on my TODO list that I'm finally getting around to. On
+> hardware I'm testing on, this saved 1.216 _seconds_!
+
+Correction. It went from 1.216 _seconds_ to 61 _milliseconds_! So
+about 95% reduction in time.
+
+-Saravana
