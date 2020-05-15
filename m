@@ -2,122 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B3B1D5951
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 20:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B31111D599E
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 21:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726813AbgEOSop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 14:44:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46664 "EHLO
+        id S1726183AbgEOTFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 15:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726786AbgEOSoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 14:44:44 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A37C05BD0A
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 11:44:44 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id b8so1384349pgi.11
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 11:44:44 -0700 (PDT)
+        with ESMTP id S1726023AbgEOTFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 15:05:54 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58CCC061A0C
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 12:05:52 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id nv1so3144366ejb.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 12:05:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rZrZZlEq92Pse6AsQBZ3gt5RG0ZPIDCja3ntEc/+5UQ=;
-        b=OF8azeut5MIuxlonteG99mx9a8Av6BpOuIl5byPuyYv0PuO0UXM/SByDvX2ewPXsPg
-         /og5vzn72KRD56TgC3VrKeifwDs395skcMWCdtpGQCKKj5PJMqovDHzFGlQ73nEVgASR
-         oFyOSxGmQZhWbIGuJ7bgbNsyLESS4/HoKrUm4=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ownehjnT16AeaOm+l2W7DPInUnd4hMg6fuB995cXtKg=;
+        b=IP/nxo/6SfWq7KT7kJmWp4mNJd5k5YCm2N1NtheM85kGUZV7uphToZTGEhsge96QY5
+         t33GhDrF2X14dvzkFcxjwAf63vdNOJEfshNtRj1at//RV2ILdCeefNTwfgtUG5ZQfDpP
+         PEmVpZ1gRnFYaB2vbY09Sr4uMBmtytAbokbaO8xUSjpL6WO3UlgVpY8IPGowF38bldiM
+         kdxtQro62hJG/N0sjnOs2Ny48VKhdA1f6JgvT2dJG1qT+uJqxe1831B3in98+Q08o/cY
+         Yyp2i9lKgcd3jZLGJLaZsInJBKLX7gfvr3rmjgvV7dLMrMxDAaKDMDCZLqMB7xlsmnUT
+         S5ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rZrZZlEq92Pse6AsQBZ3gt5RG0ZPIDCja3ntEc/+5UQ=;
-        b=OBJ+ubk1kGWdTEMXlTKUEZuAefqroHS2WHVUF/9M8xuvwmKUigc4rOjRBRyLhacVee
-         ruKYSaOD94Z3RYPb2ew6el0Qff/j1ne5hp/MiFlInQDx9zSzG7g9zuQI1EYGpDn3nHF4
-         9S1fby0KrEu9oZtvD+Tzan8t0aD4UzbOQiX7rYBjcGc6iFlAaAEooui0YeaBYdgoQnYY
-         P1S3E8U8p/SwHAvYWpKXRpKT4QmZjBKR6g+Z9Fp7dywoEFMj6cxStoXkhirGqMz/dMxp
-         uvwUHENDiS7RuiAIP1pO9AxDnpL+mob7es95Fys+yOqncwJcP3IDYvVo5mOhRTP1VVCn
-         TcTw==
-X-Gm-Message-State: AOAM530c1WVarSkWghtp0CcI7wq2sN/LAIXZ0LGqQevgFm1t2QzhQggc
-        3yTiKgFUbmkdKIaha3ETI/uJVQ==
-X-Google-Smtp-Source: ABdhPJy0Km/ifgMEiePh3m/4wFYQO+7PiRxrK/I+HUaIW+MrdLPTJ2yAIsLPOcL7MweyQmOZrjJPtQ==
-X-Received: by 2002:a62:2544:: with SMTP id l65mr5284782pfl.288.1589568284068;
-        Fri, 15 May 2020 11:44:44 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id a2sm2509003pfl.28.2020.05.15.11.44.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2020 11:44:43 -0700 (PDT)
-From:   Kees Cook <keescook@chromium.org>
-To:     Pavel Tatashin <pasha.tatashin@soleen.com>
-Cc:     Kees Cook <keescook@chromium.org>, Petr Mladek <pmladek@suse.com>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Benson Leung <bleung@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v4 6/6] ramoops: Add max_reason optional field to ramoops DT node
-Date:   Fri, 15 May 2020 11:44:34 -0700
-Message-Id: <20200515184434.8470-7-keescook@chromium.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200515184434.8470-1-keescook@chromium.org>
-References: <20200515184434.8470-1-keescook@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ownehjnT16AeaOm+l2W7DPInUnd4hMg6fuB995cXtKg=;
+        b=sKjyPY+3RwY+nxrmScU1geFWEFpdbKrPvJO+rVrDBqDgo1Bd9pMiuuHmxrAp3KYu1C
+         sCtqfoA73ISwYf5hDZuFSS74z+n1Ie10GBDf5IiuGvifPnScc03dU/4NmnhQaglqskUl
+         j/nK9SpAer1J5Ykt78Qtm8u54vWKoNo02huMv1psuUQBiwhFqkm/0NqXEt+HkOWJAuEi
+         ZySWdWhtRskD5BgeQl+Ob37bEXVazJvIdd2141TTvC61lyt1oHiGo9wUt5bc3bekOLIz
+         z1x0PFn/VWWvsQTm96kUA8hicXmjFzlvPR+nfYbcKtNz7wDJotwQ+eMnWhfse6jiTtp6
+         YT0Q==
+X-Gm-Message-State: AOAM5319m8VG+juj963uisNfTccckoqcpSpkBxsvC09xE1yq7tjN2CwJ
+        46FkW8AiiOoL2Ehc2258AZnQo0h+MrioSz6w9p4=
+X-Google-Smtp-Source: ABdhPJx7c4EEMNLReYLEuyFi/aZ+DUocKLS1t2lZ7DCZmV6nAOMT8syRynGCemDJbZJc1BUoOLTY7Wq/5sfXKOPlLss=
+X-Received: by 2002:a17:906:d8c1:: with SMTP id re1mr4438325ejb.184.1589569551527;
+ Fri, 15 May 2020 12:05:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1589472657-3930-1-git-send-email-amittomer25@gmail.com>
+ <1589472657-3930-6-git-send-email-amittomer25@gmail.com> <afc0d7f3-d763-b936-988c-d802b86836bc@arm.com>
+In-Reply-To: <afc0d7f3-d763-b936-988c-d802b86836bc@arm.com>
+From:   Amit Tomer <amittomer25@gmail.com>
+Date:   Sat, 16 May 2020 00:35:15 +0530
+Message-ID: <CABHD4K_BpHMSypfdiQKeRfHOgdO8e7ekU0TKBmqisDe_+4hGPg@mail.gmail.com>
+Subject: Re: [PATCH v1 5/9] dt-bindings: dmaengine: convert Actions Semi Owl
+ SoCs bindings to yaml
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, cristian.ciocaltea@gmail.com,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pavel Tatashin <pasha.tatashin@soleen.com>
+Hi,
 
-Currently, it is possible to dump kmsges for panic, or oops.
-With max_reason it is possible to dump messages for other
-kmesg_dump events, for example reboot, halt, shutdown, kexec.
+> Could you replace those "maxItems: 1" here and below with:
+>   - description: ...., copying in the explanation from the .txt binding?
+> That should serve the same purpose as "maxItems: 1", but is more
+> descriptive.
 
-Signed-off-by: Pavel Tatashin <pasha.tatashin@soleen.com>
-Link: https://lore.kernel.org/lkml/20200506211523.15077-6-keescook@chromium.org/
-Signed-off-by: Kees Cook <keescook@chromium.org>
----
- .../devicetree/bindings/reserved-memory/ramoops.txt | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+But having it under reg: looks bit odd to me, no?
 
-diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.txt b/Documentation/devicetree/bindings/reserved-memory/ramoops.txt
-index 0eba562fe5c6..b7886fea368c 100644
---- a/Documentation/devicetree/bindings/reserved-memory/ramoops.txt
-+++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.txt
-@@ -30,7 +30,7 @@ Optional properties:
- - ecc-size: enables ECC support and specifies ECC buffer size in bytes
-   (defaults to 0: no ECC)
- 
--- record-size: maximum size in bytes of each dump done on oops/panic
-+- record-size: maximum size in bytes of each kmsg dump.
-   (defaults to 0: disabled)
- 
- - console-size: size in bytes of log buffer reserved for kernel messages
-@@ -45,7 +45,16 @@ Optional properties:
- - unbuffered: if present, use unbuffered mappings to map the reserved region
-   (defaults to buffered mappings)
- 
--- no-dump-oops: if present, only dump panics (defaults to panics and oops)
-+- max-reason: if present, sets maximum type of kmsg dump reasons to store
-+  (defaults to 2: log Oopses and Panics). This can be set to INT_MAX to
-+  store all kmsg dumps. See include/linux/kmsg_dump.h KMSG_DUMP_* for other
-+  kmsg dump reason values. Setting this to 0 (KMSG_DUMP_UNDEF), means the
-+  reason filtering will be controlled by the printk.always_kmsg_dump boot
-+  param: if unset, it will be KMSG_DUMP_OOPS, otherwise KMSG_DUMP_MAX.
-+
-+- no-dump-oops: deprecated, use max_reason instead. If present, and
-+  max_reason is not specified, it is equivalent to max_reason = 1
-+  (KMSG_DUMP_PANIC).
- 
- - flags: if present, pass ramoops behavioral flags (defaults to 0,
-   see include/linux/pstore_ram.h RAMOOPS_FLAG_* for flag values).
--- 
-2.20.1
+reg:
+   - description: ...
 
+Or did you mean something else ?
+
+Thanks
+-Amit
