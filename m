@@ -2,157 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA6D1D4EA0
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EBF21D4EB5
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726243AbgEONMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 09:12:36 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:53568 "EHLO honk.sigxcpu.org"
+        id S1726174AbgEONPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 09:15:09 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33974 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726296AbgEONMa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 May 2020 09:12:30 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id BA145FB03;
-        Fri, 15 May 2020 15:12:28 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 7VPSUBShava6; Fri, 15 May 2020 15:12:26 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 98055445AC; Fri, 15 May 2020 15:12:15 +0200 (CEST)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1726140AbgEONPJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 May 2020 09:15:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=iWit2H79Tb0qaINFisbPojdkHSI5mJJzBhDaFk5Qr7E=; b=hhpHlRaYRjua1uzCeXxgDoEOCt
+        lAV6E7I5b1M2C99iceVmPVZFIdm65z6dBzz+K5ZS0+rYbhvUQzuCN4x3V6Cwe5qMIXraMRRfRqBf4
+        Iof8oT26KglqmqYzlByG4bgcwab347Pa/whj1QTLL/FUnXVS2KAEddTscechzQ91hxpg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jZaB1-002NcN-Fb; Fri, 15 May 2020 15:14:59 +0200
+Date:   Fri, 15 May 2020 15:14:59 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Edwin Peer <edwin.peer@broadcom.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Networking <netdev@vger.kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [RFC PATCH 6/6] arm64: dts: imx8mq-librem5-devkit: Enable MIPI DSI panel
-Date:   Fri, 15 May 2020 15:12:15 +0200
-Message-Id: <7f91beb1ce51a88dbe43e69c8af35b8684c0ac4c.1589548223.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <cover.1589548223.git.agx@sigxcpu.org>
-References: <cover.1589548223.git.agx@sigxcpu.org>
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        John Crispin <john@phrozen.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v3 10/15] net: ethernet: mtk-eth-mac: new driver
+Message-ID: <20200515131459.GQ527401@lunn.ch>
+References: <20200514075942.10136-1-brgl@bgdev.pl>
+ <20200514075942.10136-11-brgl@bgdev.pl>
+ <CAK8P3a3=xgbvqrSpCK5h96eRH32AA7xnoK2ossvT0-cLFLzmXA@mail.gmail.com>
+ <CAMRc=MeypzZBHo6dJGKm4JujYyejqHxtdo7Ts95DXuL0VuMYCw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MeypzZBHo6dJGKm4JujYyejqHxtdo7Ts95DXuL0VuMYCw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable MIPI LCD panel output by adding nodes for the NWL DSI host
-controller, the mux-input-bridge, the Rocktech panel and the eLCDIF
-display controller.
+On Fri, May 15, 2020 at 09:11:14AM +0200, Bartosz Golaszewski wrote:
+> czw., 14 maj 2020 o 18:19 Arnd Bergmann <arnd@arndb.de> napisał(a):
+> >
+> > On Thu, May 14, 2020 at 10:00 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> > >
+> > > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > >
+> > > This adds the driver for the MediaTek Ethernet MAC used on the MT8* SoC
+> > > family. For now we only support full-duplex.
+> > >
+> > > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> >
+> > Looks very nice overall. Just a few things I noticed, and some ideas
+> > that may or may not make sense:
+> >
+> > > +/* This is defined to 0 on arm64 in arch/arm64/include/asm/processor.h but
+> > > + * this IP doesn't work without this alignment being equal to 2.
+> > > + */
+> > > +#ifdef NET_IP_ALIGN
+> > > +#undef NET_IP_ALIGN
+> > > +#endif
+> > > +#define NET_IP_ALIGN                           2
+> >
+> > Maybe you should just define your own macro instead of replacing
+> > the normal one then?
+> >
+> 
+> I did in an earlier version and was told to use NET_IP_ALIGN but then
+> found out its value on arm64 doesn't work for me so I did the thing
+> that won't make anybody happy - redefine the existing constant. :)
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- .../dts/freescale/imx8mq-librem5-devkit.dts   | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
+Hi Bartosz
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 7fc31c71a626..d98f9b8dede8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -841,6 +841,87 @@ MX8MQ_IOMUXC_NAND_DATA03_GPIO3_IO9	0x19 /* WWAN_RESET */
- 	};
- };
- 
-+&lcdif {
-+	status = "okay";
-+
-+	port@0 {
-+		lcdif_dpi_out: endpoint {
-+			remote-endpoint = <&dpi_mux_from_lcdif>;
-+		};
-+	};
-+};
-+
-+&iomuxc_gpr {
-+	mipi_mux: mipi-mux {
-+		compatible = "mux-input-bridge";
-+		mux-controls = <&mux 0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "okay";
-+		default-input = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				dpi_mux_from_lcdif: endpoint {
-+					remote-endpoint = <&lcdif_dpi_out>;
-+				};
-+			};
-+
-+			port@1 { /* dcss */
-+				reg = <1>;
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+				dpi_mux_out: endpoint {
-+					remote-endpoint = <&nwl_dpi_in>;
-+				};
-+
-+			};
-+		};
-+	};
-+};
-+
-+&mipi_dsi {
-+	status = "okay";
-+	panel@0 {
-+		compatible = "rocktech,jh057n00900";
-+		reg = <0>;
-+		backlight = <&backlight_dsi>;
-+		reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&reg_2v8_p>;
-+		iovcc-supply = <&reg_1v8_p>;
-+		port@0 {
-+			panel_in: endpoint {
-+				remote-endpoint = <&nwl_dsi_out>;
-+			};
-+		};
-+	};
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			nwl_dpi_in: endpoint {
-+				remote-endpoint = <&dpi_mux_out>;
-+			};
-+		};
-+		port@1 {
-+			reg = <1>;
-+			nwl_dsi_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
- &pgc_gpu {
- 	power-supply = <&buck3_reg>;
- };
--- 
-2.26.1
+I did not realise ARM64 set it to 0. As Arnd suggested, please define
+your own macro.
 
+    Andrew
