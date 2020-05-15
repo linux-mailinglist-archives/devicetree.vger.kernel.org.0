@@ -2,105 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9F01D4AA8
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 12:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 723761D4AE9
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 12:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728154AbgEOKOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 06:14:39 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43398 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728047AbgEOKOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 06:14:38 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04FAEKJM120008;
-        Fri, 15 May 2020 05:14:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1589537660;
-        bh=5VD+ZVOvXQx3TUmellcch5gik8b6+bYkOX6VNcCUEp0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=CSoxSEe2X9CPHZzR6JUpwFS5KEX2i05Nz07Z8cadYjaS+sdLoEwvxhlMHECWY3X+/
-         Z0l2m2SKD+bt6YVBGD7aaFXan0KhVTBi1gYIwtDK2L6AreFB55huoLLbhCflJq5x98
-         RGq7Gy3LtYqrNRFt8gbLlUjI52f1Q2IdY0qUCgj0=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04FAEK0D114544
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 15 May 2020 05:14:20 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
- May 2020 05:14:19 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 15 May 2020 05:14:19 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04FAEFE7038725;
-        Fri, 15 May 2020 05:14:18 -0500
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am654-main: Update otap-del-sel
- values
-To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>
-References: <20200507181526.12529-1-faiz_abbas@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <c59653d0-2e24-8917-f5b9-8c1044786bc9@ti.com>
-Date:   Fri, 15 May 2020 13:14:14 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        id S1728194AbgEOK2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 06:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53242 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728164AbgEOK2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 06:28:53 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1762FC05BD0A
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 03:28:53 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id j5so2949994wrq.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 03:28:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=xpA4uoROidais1iNpnkNzF9vq5C6X235V0wZ35uHdEI=;
+        b=CXEYEEqcvkty6QbjHU8IC9+4m00nYkEX+SNv9RcxVR5/SFF+YXke+BvJ6oVoOabQdZ
+         zNfD971SDDWzHM8i6tMy7Ide1qyTwoimukooCDQG010KoMF5GvG2qiwCDrJzTOJ/ST1J
+         prbm8Ynnzt8vqseddRKMMZbinTDqtdohbq4rUwGgpc6TUwZFSsD+mzok7VbjTnaA+NPE
+         7SxmiCj38OP6B2dbzDqJc0ZqywE58/rTxvAnd+HOSQ/e7PuK5vIet7N3V1P5fBuJTFqx
+         810hQ3AwpINxJ1EOF2q5K54I50ZckVeqd/fsfxWyzTJVbsxau3rGuKWQxQF/tGuS+Hp3
+         egGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=xpA4uoROidais1iNpnkNzF9vq5C6X235V0wZ35uHdEI=;
+        b=oJf+npdS8uw73Kba/xZ1Mpd3rQjNuS4tTeiFPQIHGNG9F0HMGwRO4PbJtcmTRk0yUH
+         whQh+M6qcPfGxtKX3FAiOLxNFoGcqGwl46VPrXoQifyaq4nsIQz0H1ZJiwMYhpuJHGen
+         9PjQI5oi5YQnS0kO69cvFIziumn105nA+Vs4DbhG8Ko4m1wgnZgCmKQBCiIIjnZZwGD7
+         /gQQ7h7LYUmNHdhxl4RsGp0BpFQNpPW2yhHp14hqEnJl4Y+dZW/Wk4P/0ahjEBWFzR5E
+         /V00RvdLEE+0CUm2aePFFMdWWIRmNe7eeNUAy70W0H/rGktYrYrEsuXWYM/84xDEpd0x
+         P5SQ==
+X-Gm-Message-State: AOAM53374kusnbgxGyjBrHQ/oLGesRncuUP+wrMczaosViBCJnKoTGWK
+        sGmEvxfKjz85IAgleByDMJPAFw==
+X-Google-Smtp-Source: ABdhPJxTv+9YnkgoMuYBGuW3wQDNEiVk0bNzw09WJsjwgIV7JP0J+YUnU47dJL1yqsEb92xCMVOBXw==
+X-Received: by 2002:adf:a1d7:: with SMTP id v23mr3514719wrv.155.1589538531500;
+        Fri, 15 May 2020 03:28:51 -0700 (PDT)
+Received: from dell ([2.31.163.63])
+        by smtp.gmail.com with ESMTPSA id j16sm2878629wru.13.2020.05.15.03.28.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 May 2020 03:28:50 -0700 (PDT)
+Date:   Fri, 15 May 2020 11:28:48 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 03/16] mfd: mfd-core: match device tree node against
+ reg property
+Message-ID: <20200515102848.GH271301@dell>
+References: <20200423174543.17161-1-michael@walle.cc>
+ <20200423174543.17161-4-michael@walle.cc>
+ <67e90dafd67c285158c2c6f67f92edb7@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <20200507181526.12529-1-faiz_abbas@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <67e90dafd67c285158c2c6f67f92edb7@walle.cc>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2020 21:15, Faiz Abbas wrote:
-> According to the latest AM65x Data Manual[1], a different output tap
-> delay value is optimum for a given speed mode. Update these values.
-> 
-> [1] http://www.ti.com/lit/gpn/am6526
-> 
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> ---
-> v2: Rebased to the latest mainline kernel
-> 
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 12 +++++++++++-
->   1 file changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 11887c72f23a..6cd9701e4ead 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -244,7 +244,17 @@
->   		interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
->   		mmc-ddr-1_8v;
->   		mmc-hs200-1_8v;
-> -		ti,otap-del-sel = <0x2>;
-> +		ti,otap-del-sel-legacy = <0x0>;
-> +		ti,otap-del-sel-mmc-hs = <0x0>;
-> +		ti,otap-del-sel-sd-hs = <0x0>;
-> +		ti,otap-del-sel-sdr12 = <0x0>;
-> +		ti,otap-del-sel-sdr25 = <0x0>;
-> +		ti,otap-del-sel-sdr50 = <0x8>;
-> +		ti,otap-del-sel-sdr104 = <0x5>;
+On Thu, 30 Apr 2020, Michael Walle wrote:
 
-Isn't this wrong? Doc claims the value for sdr104 should be 0x7?
-
--Tero
-
-> +		ti,otap-del-sel-ddr50 = <0x5>;
-> +		ti,otap-del-sel-ddr52 = <0x5>;
-> +		ti,otap-del-sel-hs200 = <0x5>;
-> +		ti,otap-del-sel-hs400 = <0x0>;
->   		ti,trm-icp = <0x8>;
->   		dma-coherent;
->   	};
+> Hi Lee,
 > 
+> Am 2020-04-23 19:45, schrieb Michael Walle:
+> > There might be multiple children with the device tree compatible, for
+> > example if a MFD has multiple instances of the same function. In this
+> > case only the first is matched and the other children get a wrong
+> > of_node reference.
+> > Add a new option to match also against the unit address of the child
+> > node. Additonally, a new helper OF_MFD_CELL_REG is added.
+> 
+> 
+> Do you think this is feasible? I guess this is the biggest uncertainty
+> for me at the moment in this patch series.
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+I think it sounds fine in principle.  So long as it doesn't change the
+existing behaviour when of_reg isn't set.
+
+> > Signed-off-by: Michael Walle <michael@walle.cc>
+> > ---
+> >  drivers/mfd/mfd-core.c   | 29 ++++++++++++++++++++---------
+> >  include/linux/mfd/core.h | 26 ++++++++++++++++++++------
+> >  2 files changed, 40 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/mfd/mfd-core.c b/drivers/mfd/mfd-core.c
+> > index e735565969b3..4ecb376338f7 100644
+> > --- a/drivers/mfd/mfd-core.c
+> > +++ b/drivers/mfd/mfd-core.c
+> > @@ -117,6 +117,7 @@ static int mfd_add_device(struct device *parent, int
+> > id,
+> >  	struct device_node *np = NULL;
+> >  	int ret = -ENOMEM;
+> >  	int platform_id;
+> > +	u32 of_reg;
+> >  	int r;
+> > 
+> >  	if (id == PLATFORM_DEVID_AUTO)
+> > @@ -151,16 +152,26 @@ static int mfd_add_device(struct device *parent,
+> > int id,
+> > 
+> >  	if (parent->of_node && cell->of_compatible) {
+> >  		for_each_child_of_node(parent->of_node, np) {
+> > -			if (of_device_is_compatible(np, cell->of_compatible)) {
+> > -				if (!of_device_is_available(np)) {
+> > -					/* Ignore disabled devices error free */
+> > -					ret = 0;
+> > -					goto fail_alias;
+> > -				}
+> > -				pdev->dev.of_node = np;
+> > -				pdev->dev.fwnode = &np->fwnode;
+> > -				break;
+> > +			if (!of_device_is_compatible(np, cell->of_compatible))
+> > +				continue;
+> > +
+> > +			/* also match the unit address if set */
+
+Please use correct grammar in comments (leaving off the full-stop).
+
+> > +			if (cell->of_reg & MFD_OF_REG_VALID) {
+> > +				if (of_property_read_u32(np, "reg", &of_reg))
+> > +					continue;
+> > +				if ((cell->of_reg & MFD_OF_REG_MASK) != of_reg)
+> > +					continue;
+> >  			}
+> > +
+> > +			if (!of_device_is_available(np)) {
+> > +				/* Ignore disabled devices error free */
+> > +				ret = 0;
+> > +				goto fail_alias;
+> > +			}
+> > +
+> > +			pdev->dev.of_node = np;
+> > +			pdev->dev.fwnode = &np->fwnode;
+> > +			break;
+> >  		}
+> >  	}
+> > 
+> > diff --git a/include/linux/mfd/core.h b/include/linux/mfd/core.h
+> > index d01d1299e49d..c2c0ad6b14f3 100644
+> > --- a/include/linux/mfd/core.h
+> > +++ b/include/linux/mfd/core.h
+> > @@ -13,8 +13,11 @@
+> >  #include <linux/platform_device.h>
+> > 
+> >  #define MFD_RES_SIZE(arr) (sizeof(arr) / sizeof(struct resource))
+> > +#define MFD_OF_REG_VALID	BIT(31)
+
+What about 64bit platforms?
+
+> > +#define MFD_OF_REG_MASK		GENMASK(30, 0)
+> > 
+> > -#define MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, _compat,
+> > _match)\
+> > +#define MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, _compat,	\
+> > +		     _of_reg, _match)					\
+> >  	{								\
+> >  		.name = (_name),					\
+> >  		.resources = (_res),					\
+> > @@ -22,24 +25,32 @@
+> >  		.platform_data = (_pdata),				\
+> >  		.pdata_size = (_pdsize),				\
+> >  		.of_compatible = (_compat),				\
+> > +		.of_reg = (_of_reg),					\
+> >  		.acpi_match = (_match),					\
+> >  		.id = (_id),						\
+> >  	}
+> > 
+> > +#define OF_MFD_CELL_REG(_name, _res, _pdata, _pdsize, _id, _compat,	\
+> > +			_of_reg)					\
+> > +	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, _compat,	\
+> > +		     ((_of_reg) | MFD_OF_REG_VALID), NULL)		\
+> > +
+> >  #define OF_MFD_CELL(_name, _res, _pdata, _pdsize,_id, _compat)		\
+> > -	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, _compat, NULL)	\
+> > +	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, _compat,	\
+> > +		     0, NULL)						\
+> > 
+> >  #define ACPI_MFD_CELL(_name, _res, _pdata, _pdsize, _id, _match)	\
+> > -	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, NULL, _match)	\
+> > +	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, NULL, 0,	\
+> > +		     _match)						\
+> > 
+> >  #define MFD_CELL_BASIC(_name, _res, _pdata, _pdsize, _id)		\
+> > -	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, NULL, NULL)	\
+> > +	MFD_CELL_ALL(_name, _res, _pdata, _pdsize, _id, NULL, 0, NULL) \
+> > 
+> >  #define MFD_CELL_RES(_name, _res)					\
+> > -	MFD_CELL_ALL(_name, _res, NULL, 0, 0, NULL, NULL)		\
+> > +	MFD_CELL_ALL(_name, _res, NULL, 0, 0, NULL, 0, NULL)		\
+> > 
+> >  #define MFD_CELL_NAME(_name)						\
+> > -	MFD_CELL_ALL(_name, NULL, NULL, 0, 0, NULL, NULL)		\
+> > +	MFD_CELL_ALL(_name, NULL, NULL, 0, 0, NULL, 0, NULL)		\
+> > 
+> >  struct irq_domain;
+> >  struct property_entry;
+> > @@ -78,6 +89,9 @@ struct mfd_cell {
+> >  	 */
+> >  	const char		*of_compatible;
+> > 
+> > +	/* matching the reg property if set */
+
+Proper grammar please.
+
+"OF unit address for device matching"
+
+> > +	unsigned int		of_reg;
+> > +
+> >  	/* Matches ACPI */
+> >  	const struct mfd_cell_acpi_match	*acpi_match;
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
