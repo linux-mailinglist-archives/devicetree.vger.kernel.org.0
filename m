@@ -2,279 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9C91D4BB5
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 12:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD76D1D4BC1
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 12:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726607AbgEOKyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 06:54:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726118AbgEOKyk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 06:54:40 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67AD2C05BD09
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 03:54:40 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id n5so2179526wmd.0
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 03:54:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=IwrZ0WdoI5tZaZzzOBHL3SSlbNqaieIG8m76ANK/LD8=;
-        b=MBp8l35N8cKa9fTo/EyMr3FAsY3MQBon2114fVllM/wNd3CGTCAFUUlZAphgy5RCCy
-         ghj+obFDAoKbTJqw4oE8AryLhZT6uxGd3xAx4IoKKrPHqLs679Iyvr8k5U6k5o2v3RBr
-         2sV/5PVNAIP1LcYIEg6pqF8Avscb2kMgK6d9/fvRUYWef7VKipRs6M4IQigW01T2boG2
-         Py4huMMZrexFmDFRF6i7bGE8FzueSLDOphT2qW9q9fg+9atNbtT1pIRBMbG9h8N4gYgE
-         moXyl+1xyPlKAVm4JJr+At7nxv+16u9ouH+WSD4ePVjddrzrGB6j7//B0TN4CSapwohb
-         vBPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IwrZ0WdoI5tZaZzzOBHL3SSlbNqaieIG8m76ANK/LD8=;
-        b=KOwwvVWclg8Crd1ft6yB0IWf2f9AOy37b2ocJXLYaUoQr80H13rcVLlRd31CV//+1X
-         UH54+AGswSNXMgCUMCa78t9b+9edIV/U2NOn18AKX4Qn/zwqzQVWwHx8JRrhjeEZdl2N
-         cHrRHMGfJLVBnCd+wR3zdAQ0/BxjTHWD39YLJfEIWxgC5a2YqLpJe/Zq6+RrMP92Kx5g
-         WPbZvGl14okIjyAhCuoBlIK86gzJdm/rk5Mjg/JotAUDi59yyrk72/9W7kxSaiP7Azg9
-         Fg2cwBGnr62LdP0apUV2z2w5TccIXOAqNFuUehhcNG+4mmsYQ34FMVyl8WVVpMfxtudr
-         yEVg==
-X-Gm-Message-State: AOAM533VbBlDZYfQBlrPFUudxpwpQsGvq+MMT+6kAuycz+d2FvFOq2x2
-        7zGeH2aJCosgtWI12TlAV2YdGg==
-X-Google-Smtp-Source: ABdhPJx+z4WBxH2HwMhoKEV3PPTzm/r8BuYaChb1qiTcaH/Ubdn66OddDUT3aEyOp6gk2w/z6HiMFg==
-X-Received: by 2002:a05:600c:29a:: with SMTP id 26mr3595042wmk.151.1589540078883;
-        Fri, 15 May 2020 03:54:38 -0700 (PDT)
-Received: from dell ([2.31.163.63])
-        by smtp.gmail.com with ESMTPSA id m82sm3215702wmf.3.2020.05.15.03.54.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2020 03:54:38 -0700 (PDT)
-Date:   Fri, 15 May 2020 11:54:36 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Robert Jones <rjones@gateworks.com>
-Subject: Re: [PATCH v9 2/3] mfd: add Gateworks System Controller core driver
-Message-ID: <20200515105436.GL271301@dell>
-References: <1588259247-15536-1-git-send-email-tharvey@gateworks.com>
- <1588259247-15536-3-git-send-email-tharvey@gateworks.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1588259247-15536-3-git-send-email-tharvey@gateworks.com>
+        id S1726023AbgEOK4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 06:56:51 -0400
+Received: from mga09.intel.com ([134.134.136.24]:29753 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725980AbgEOK4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 May 2020 06:56:51 -0400
+IronPort-SDR: FqAscLUA2hEzO+ya5AJRGn+/bGJY0DXFFmietN5ErDNeZKprfWj3omUDZu07BawZw3LsmeDb43
+ /WL/hSJhtZmQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2020 03:56:50 -0700
+IronPort-SDR: jLkaikoZ73kKNWmoysRWcdGNbUmdICjc8PJkEm9mTk8eafFwSLzxvLRsjNeT0JoiZ1tZqXHBnt
+ 8NVdbQc1ptoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,395,1583222400"; 
+   d="scan'208";a="281183729"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga002.jf.intel.com with ESMTP; 15 May 2020 03:56:46 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        arnd@arndb.de, brendanhiggins@google.com, tglx@linutronix.de,
+        boris.brezillon@collabora.com, anders.roxell@linaro.org,
+        masonccyang@mxic.com.tw, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, hauke.mehrtens@intel.com,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        cheol.yong.kim@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v7 0/2] mtd: rawnand: Add NAND controller support on Intel LGM SoC
+Date:   Fri, 15 May 2020 18:55:35 +0800
+Message-Id: <20200515105537.4876-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Apr 2020, Tim Harvey wrote:
+This patch adds the new IP of Nand Flash Controller(NFC) support
+on Intel's Lightning Mountain(LGM) SoC.
 
-> The Gateworks System Controller (GSC) is an I2C slave controller
-> implemented with an MSP430 micro-controller whose firmware embeds the
-> following features:
->  - I/O expander (16 GPIO's) using PCA955x protocol
->  - Real Time Clock using DS1672 protocol
->  - User EEPROM using AT24 protocol
->  - HWMON using custom protocol
->  - Interrupt controller with tamper detect, user pushbotton
->  - Watchdog controller capable of full board power-cycle
->  - Power Control capable of full board power-cycle
-> 
-> see http://trac.gateworks.com/wiki/gsc for more details
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
-> v9:
-> - rebase against 5.7-rc2
-> - cleanup gsc_powerdown() by using BIT(), put_unaligned_le32(), and avoid
->   unnecessary assignments
-> - rename GSC_CTRL_1 SLEEP related defines to simplify
-> - add better description and sub-module info to driver description
-> - whitespace changes per review
-> - remove unused irq_data pointer in ddata
-> - remove unnecesary i2c_set_clientdata
-> - use devm_i2c_new_dummy_device to avoid need of free's
-> - change regsiter definitions to enum
-> - export gsc_{read,write} instead of sharing them via ddata
-> 
-> v8:
-> - whitespace fixes
-> - describe sub-devices in Kconfig
-> - add error print for invalid command
-> - update copyright
-> - use devm_of_platform_populate
-> - use probe_new
-> - move hwmon's regmap init to hwmon
-> 
-> v7:
-> - remove irq from private data struct
-> 
-> v6:
-> - remove duplicate signature and fix commit log
-> 
-> v5:
-> - simplify powerdown function
-> 
-> v4:
-> - remove hwmon max reg check/define
-> - fix powerdown function
-> 
-> v3:
-> - rename gsc->gateworks-gsc
-> - remove uncecessary include for linux/mfd/core.h
-> - upercase I2C in comments
-> - remove i2c debug
-> - remove uncecessary comments
-> - don't use KBUILD_MODNAME for name
-> - remove unnecessary v1/v2/v3 tracking
-> - unregister hwmon i2c adapter on remove
-> 
-> v2:
-> - change license comment block style
-> - remove COMPILE_TEST (Randy)
-> - fixed whitespace issues
-> - replaced a printk with dev_err
-> ---
->  MAINTAINERS                 |   8 ++
->  drivers/mfd/Kconfig         |  16 +++
->  drivers/mfd/Makefile        |   1 +
->  drivers/mfd/gateworks-gsc.c | 284 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/gsc.h     |  76 ++++++++++++
->  5 files changed, 385 insertions(+)
->  create mode 100644 drivers/mfd/gateworks-gsc.c
->  create mode 100644 include/linux/mfd/gsc.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b816a45..035dfb9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7032,6 +7032,14 @@ F:	kernel/futex.c
->  F:	tools/perf/bench/futex*
->  F:	tools/testing/selftests/futex/
->  
-> +GATEWORKS SYSTEM CONTROLLER (GSC) DRIVER
-> +M:	Tim Harvey <tharvey@gateworks.com>
-> +M:	Robert Jones <rjones@gateworks.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
-> +F:	drivers/mfd/gateworks-gsc.c
-> +F:	include/linux/mfd/gsc.h
-> +
->  GASKET DRIVER FRAMEWORK
->  M:	Rob Springer <rspringer@google.com>
->  M:	Todd Poynor <toddpoynor@google.com>
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 0a59249..d7546cd 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -407,6 +407,22 @@ config MFD_EXYNOS_LPASS
->  	  Select this option to enable support for Samsung Exynos Low Power
->  	  Audio Subsystem.
->  
-> +config MFD_GATEWORKS_GSC
-> +	tristate "Gateworks System Controller"
-> +	depends on (I2C && OF)
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	select REGMAP_IRQ
-> +	help
-> +	  Enable support for the Gateworks System Controller (GSC) found
-> +	  on Gateworks Single Board Computers supporting system system
+DMA is used for burst data transfer operation, also DMA HW supports
+aligned 32bit memory address and aligned data access by default.
+DMA burst of 8 supported. Data register used to support the read/write
+operation from/to device.
 
-"system"
+NAND controller also supports in-built HW ECC engine.
 
-> +	  functions such as pushbutton monitor, multiple ADC's for voltage
+NAND controller driver implements ->exec_op() to replace legacy hooks,
+these specific call-back method to execute NAND operations.
 
-"push-button"
+---
+v7:
+  - indentation issue is fixed
+  - add error check for retrieve the resource from dt
+  - Rob's review comments addressed 
+  - dt-schema build issue fixed with upgraded dt-schema
+v6:
+  - update EBU_ADDR_SELx register base value build it from DT
+  - Add tabs in in Kconfig
+  - Rob's review comments addressed in YAML file
+  - add addr_sel0 and addr_sel1 reg-names in YAML example
+v5:
+  - replace by 'HSNAND_CLE_OFFS | HSNAND_CS_OFFS' to NAND_WRITE_CMD and NAND_WRITE_ADDR
+  - remove the unused macros
+  - update EBU_ADDR_MASK(x) macro
+  - update the EBU_ADDR_SELx register values to be written
+  - add the example in YAML file
+v4:
+  - add ebu_nand_cs structure for multiple-CS support
+  - mask/offset encoding for 0x51 value
+  - update macro HSNAND_CTL_ENABLE_ECC
+  - drop the op argument and un-used macros.
+  - updated the datatype and macros
+  - add function disable nand module
+  - remove ebu_host->dma_rx = NULL;
+  - rename MMIO address range variables to ebu and hsnand
+  - implement ->setup_data_interface()
+  - update label err_cleanup_nand and err_cleanup_dma
+  - add return value check in the nand_remove function
+  - add/remove tabs and spaces as per coding standard
+  - encoded CS ids by reg property
+v3:
+  - Add depends on MACRO in Kconfig
+  - file name update in Makefile
+  - file name update to intel-nand-controller
+  - modification of MACRO divided like EBU, HSNAND and NAND
+  - add NAND_ALE_OFFS, NAND_CLE_OFFS and NAND_CS_OFFS
+  - rename lgm_ to ebu_ and _va suffix is removed in the whole file
+  - rename structure and varaibles as per review comments.
+  - remove lgm_read_byte(), lgm_dev_ready() and cmd_ctrl() un-used function
+  - update in exec_op() as per review comments
+  - rename function lgm_dma_exit() by lgm_dma_cleanup()
+  - hardcoded magic value  for base and offset replaced by MACRO defined
+  - mtd_device_unregister() + nand_cleanup() instead of nand_release()
+v2:
+  - implement the ->exec_op() to replaces the legacy hook-up.
+  - update the commit message
+  - YAML compatible string update to intel, lgm-nand-controller
+  - add MIPS maintainers and xway_nand driver author in CC
 
-> +	  and temperature, fan controller, and watchdog monitor. This
+v1:
+ - initial version
 
-"voltage and temperature" what?
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC
+  mtd: rawnand: Add NAND controller support on Intel LGM SoC
 
-Monitoring, adjusting, guessing, mixing, matching?
-
-I'd drop the pre-and comma myself.
-
-> +	  driver provides common support for accessing the device and
-
-Turn the "and" into a full-stop.
-
-> +	  additional drivers must be enabled in order to use the
-> +	  functionality of the device:
-> +		gsc-hwmon for ADC readings and fan controller support
-
-What does this line represent?  Is it an example?
-
->  config MFD_MC13XXX
->  	tristate
->  	depends on (SPI_MASTER || I2C)
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index f935d10..ed433ae 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_MFD_BCM590XX)	+= bcm590xx.o
->  obj-$(CONFIG_MFD_BD9571MWV)	+= bd9571mwv.o
->  obj-$(CONFIG_MFD_CROS_EC_DEV)	+= cros_ec_dev.o
->  obj-$(CONFIG_MFD_EXYNOS_LPASS)	+= exynos-lpass.o
-> +obj-$(CONFIG_MFD_GATEWORKS_GSC)	+= gateworks-gsc.o
->  
->  obj-$(CONFIG_HTC_PASIC3)	+= htc-pasic3.o
->  obj-$(CONFIG_HTC_I2CPLD)	+= htc-i2cpld.o
-> diff --git a/drivers/mfd/gateworks-gsc.c b/drivers/mfd/gateworks-gsc.c
-> new file mode 100644
-> index 00000000..796effb
-> --- /dev/null
-> +++ b/drivers/mfd/gateworks-gsc.c
-> @@ -0,0 +1,284 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * The Gateworks System Controller (GSC) is a multi-function
-> + * device designed for use in Gateworks Single Board Computers.
-> + * The control interface is I2C, with an interrupt. The device supports
-> + * system functions such as pushbutton monitoring, multiple ADC's for
-> + * voltage and temperature, fan controller, and watchdog monitor.
-
-As above.
-
-> + * Copyright (C) 2020 Gateworks Corporation
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/gsc.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <asm/unaligned.h>
-
-[...]
-
-> +static const struct i2c_device_id gsc_id_table[] = {
-> +	{ "gsc", GSC_MISC },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, gsc_id_table);
-
-Using probe_new means you can omit this unused table.
-
-Once all of the above has been fixed, please add my:
-
-
-For my own reference (apply this as-is to your sign-off block):
-
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+ .../devicetree/bindings/mtd/intel,lgm-nand.yaml    |  91 +++
+ drivers/mtd/nand/raw/Kconfig                       |   8 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/intel-nand-controller.c       | 748 +++++++++++++++++++++
+ 4 files changed, 848 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/intel-nand-controller.c
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.11.0
+
