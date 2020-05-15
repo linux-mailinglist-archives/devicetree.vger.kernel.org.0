@@ -2,94 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B4A1D4E87
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6631D4E9E
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2020 15:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726163AbgEONMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 May 2020 09:12:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726141AbgEONMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 May 2020 09:12:06 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3390FC05BD09
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2020 06:12:06 -0700 (PDT)
-Received: from ramsan ([IPv6:2a02:1810:ac12:ed60:ad37:48f9:900a:523e])
-        by albert.telenet-ops.be with bizsmtp
-        id f1C32200o1TfvYq061C3mq; Fri, 15 May 2020 15:12:04 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jZa8B-0006QT-JB; Fri, 15 May 2020 15:12:03 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jZa8B-0006V8-Gq; Fri, 15 May 2020 15:12:03 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: serial: renesas,scifa: Remove part numbers from comments
-Date:   Fri, 15 May 2020 15:12:02 +0200
-Message-Id: <20200515131202.24949-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1726251AbgEONM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 May 2020 09:12:27 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:53422 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726140AbgEONMX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 May 2020 09:12:23 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 52D22FB09;
+        Fri, 15 May 2020 15:12:18 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id MkNYiLtyIAdX; Fri, 15 May 2020 15:12:16 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 5C6A9445A7; Fri, 15 May 2020 15:12:15 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [RFC PATCH 0/6] drm/bridge: Add mux input selection bridge
+Date:   Fri, 15 May 2020 15:12:09 +0200
+Message-Id: <cover.1589548223.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.26.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The conversion to json-schema accidentally retained some SoC part
-numbers in comments for compatible values.  Drop them, as they're part
-of the compatible values anyway.
+This bridge driver allows to select the input to a downstream bridge (or panel)
+via device tree.
 
-Fixes: 384d00fae8e51f8f ("dt-bindings: serial: sh-sci: Convert to json-schema")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-This depends on:
-"[PATCH v2 03/10] dt-bindings: serial: renesas,scifa: Document r8a7742 bindings"
-https://lore.kernel.org/dmaengine/1588542414-14826-4-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com
+It can be useful to separate the pixel source selection from the actual bridge
+processing the pixel data. E.g. NXP's imx8mq has two display controllers. Both
+can feed the pixel data to the NWL DSI IP core. The input selection is done via
+a separate mux register elsewhere on the chip, so separating this out avoids SoC
+specific code in such drivers.
 
-Rob: as you have taken:
+The current implementation allows to select the input source via device tree.
+The long term goal is to allow to switch the input source at run time. This
+can be useful to e.g. use the less power hungry display controller for normal
+operation but switch to a the other display controller when running full screen
+games (since it can detile textures more efficiently).
 
-+ 8908a822663f6958 dt-bindings: serial: renesas,scif: Document r8a7742 bindings
-+ 3cf1601ab00ce558 dt-bindings: serial: renesas,scifb: Document r8a7742 bindings
-+ 65994c09bc66d724 dt-bindings: serial: renesas,hscif: Document r8a7742 bindings
+This was initially suggested by Laurent Pinchart¹. It is similar in spirit to
+the video-mux in the media subsystem but for DRM bridges.
 
-can you please take this one, and its dependency, too?
+Besides the actual driver this series includes the necessary bits to demo the
+usage for the Librem5 devkit.
 
-Thanks!
+The series is based on linux-next as of next-20200512.
 
- .../bindings/serial/renesas,scifa.yaml           | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+¹ https://lore.kernel.org/dri-devel/20200415021908.GH19819@pendragon.ideasonboard.com/
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-index 97ddd76d700f78ca..78b8e20dd34db322 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-@@ -24,14 +24,14 @@ properties:
- 
-       - items:
-           - enum:
--              - renesas,scifa-r8a7742      # R8A7742 RZ/G1H
--              - renesas,scifa-r8a7743      # R8A7743 RZ/G1M
--              - renesas,scifa-r8a7744      # R8A7744 RZ/G1N
--              - renesas,scifa-r8a7745      # R8A7745 RZ/G1E
--              - renesas,scifa-r8a7790      # R8A7790 R-Car H2
--              - renesas,scifa-r8a7791      # R8A7791 R-Car M2-W
--              - renesas,scifa-r8a7793      # R8A7793 R-Car M2-N
--              - renesas,scifa-r8a7794      # R8A7794 R-Car E2
-+              - renesas,scifa-r8a7742      # RZ/G1H
-+              - renesas,scifa-r8a7743      # RZ/G1M
-+              - renesas,scifa-r8a7744      # RZ/G1N
-+              - renesas,scifa-r8a7745      # RZ/G1E
-+              - renesas,scifa-r8a7790      # R-Car H2
-+              - renesas,scifa-r8a7791      # R-Car M2-W
-+              - renesas,scifa-r8a7793      # R-Car M2-N
-+              - renesas,scifa-r8a7794      # R-Car E2
-           - const: renesas,rcar-gen2-scifa # R-Car Gen2 and RZ/G1
-           - const: renesas,scifa           # generic SCIFA compatible UART
- 
+Guido Günther (6):
+  dt-bindings: display/bridge: Add binding for input mux bridge
+  drm/bridge: Add mux-input bridge
+  dt-bindings: display/bridge/nwl-dsi: Drop mux handling
+  drm/bridge/nwl-dsi: Drop mux handling
+  arm64: dts: imx8mq: Add NWL dsi controller
+  arm64: dts: imx8mq-librem5-devkit: Enable MIPI DSI panel
+
+ .../display/bridge/mux-input-bridge.yaml      | 123 +++++++++
+ .../bindings/display/bridge/nwl-dsi.yaml      |   6 -
+ .../dts/freescale/imx8mq-librem5-devkit.dts   |  81 ++++++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  31 +++
+ drivers/gpu/drm/bridge/Kconfig                |  10 +-
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/mux-input.c            | 238 ++++++++++++++++++
+ drivers/gpu/drm/bridge/nwl-dsi.c              |  61 -----
+ 8 files changed, 483 insertions(+), 68 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/mux-input-bridge.yaml
+ create mode 100644 drivers/gpu/drm/bridge/mux-input.c
+
 -- 
-2.17.1
+2.26.1
 
