@@ -2,178 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D5F11D6794
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 13:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB801D67B9
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 13:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727832AbgEQLGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 May 2020 07:06:51 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:43824 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727785AbgEQLGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 07:06:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1589713609; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=a+8uUs3KZErtQFYLwRFcI4Y9Qu/GahR4WBEx76kMicU=;
-        b=JcNP/sXXR5LlAQyGgIDVT84jR1N8QUsQZViSBBi4neVMfuz8zSKI3xrAbm6Kt4hZTkGpY8
-        oANNPgIIs9BhTuh23iqoxGTXZyOnEhbUrzyq5kOrxlI15KXhg6XigZB2qW1jydrd/+UJ55
-        TLLg3EO0buSMfIKZ5hHd8H+D4AJM7O8=
-Date:   Sun, 17 May 2020 13:06:38 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 02/12] dt-bindings: display: Add ingenic,ipu.yaml
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, od@zcrc.me,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Message-Id: <2V2HAQ.FED0YBJJAZ7D2@crapouillou.net>
-In-Reply-To: <20200517061710.GB609600@ravnborg.org>
-References: <20200516215057.392609-1-paul@crapouillou.net>
-        <20200516215057.392609-2-paul@crapouillou.net>
-        <20200517061710.GB609600@ravnborg.org>
+        id S1727898AbgEQL1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 May 2020 07:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727893AbgEQL1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 07:27:46 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51BBC061A0C
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2020 04:27:45 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id o10so6370544ejn.10
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2020 04:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=wFo4edMgiMvDCE2ZNhrsI8JxusUUeYELSKbsEkZuweU=;
+        b=eYroECOfkbshRN4UHce19TarI42rYOPdoOO+Ae5Nvz54wRupZXnV/wp734PaIrRK0I
+         Gwbbwr5pIrfyRL71CrZCuQz1hOOrysD7VYolrMJeWbTGk/r/cwk7z2kvL2SFp/NobJs1
+         jbsyODoR/xA4Qtm6Jv3KSg+v8Kyi5Y1L+73MRedIKQkNlNwU41vWNU2jRyiNJbu4pVlJ
+         FRtBNsCL8lK+huBmker8gzIrDYc7PtoP0tbPSF3YeI/99t+S9O+2S9Ax9oCd/Oy4Z/CG
+         4Jf+aZD4U1vLPo64fMAPtSrs3BluE/GSPeaVvERlI0d+l6eHYm/WQhuormaWhcJF6NGc
+         071w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=wFo4edMgiMvDCE2ZNhrsI8JxusUUeYELSKbsEkZuweU=;
+        b=e3Bd1ljIm173zKkbXEjGi7BaqXgydCW4Pf7pAZhMBc0cmORDlHPGyd3KuZOaz81ScP
+         OzuZRfe6FUqFUKh33mU+l/KJ9bhXs0zmkT+k1H0pZczDjjCHglPOT1NyhP0Uf8tVHAym
+         c7ogbHmKupLPBaevDW3kKQN0AGvV1oTqER2ZSsHxztZ6p250v8GbUOj8MvZEzoQ6v1G1
+         vjuK8o29vmVyl3f890RN46B3QJh1891WGJh0Yy+i3RVDj9hQZqwZSc8UHhGA5alLyw6z
+         zw4Zc20H4XeahUwQuvMd9k4wb46JeoiLBN0nvZIFVy07li6S3T258fZ5N9aTjcnk6Gm4
+         TFWQ==
+X-Gm-Message-State: AOAM531VQgT+tm5CRJeZLepCPYIZqJL+1gYkJZ61IZwLhIAm73JD86YX
+        SD52Jmpe96g5QXelW26asl28qJQ9ic1R6cTSca/uva5H
+X-Google-Smtp-Source: ABdhPJzEzPGimMRiyAfg2Ypa5oq0NmZuWJm0dAmlAp0WVhFv98aBqUbL9NK3nj9Y8vhrka8EL/zGBz9rbOgRuDmRLvs=
+X-Received: by 2002:a17:906:4c8e:: with SMTP id q14mr11262106eju.208.1589714864311;
+ Sun, 17 May 2020 04:27:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Received: by 2002:ab4:a881:0:0:0:0:0 with HTTP; Sun, 17 May 2020 04:27:43
+ -0700 (PDT)
+From:   Jupiter <jupiter.hce@gmail.com>
+Date:   Sun, 17 May 2020 21:27:43 +1000
+Message-ID: <CAA=hcWQ8ZjjdzdTVtBas42L0_qbhJhayqogz_Gg5wgtDBVo+hg@mail.gmail.com>
+Subject: Issue with 'ubi part' ubi_io_read: error -74 (ECC error)
+To:     linux-mtd <linux-mtd@lists.infradead.org>
+Cc:     u-boot@lists.denx.de
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+Sorry for a bit recalcitrant with the issue of calling 'ubi part"
+error -74 -EBADMSG, is it MTD issue or u-boot issue?
 
-Le dim. 17 mai 2020 =E0 8:17, Sam Ravnborg <sam@ravnborg.org> a =E9crit :
-> Hi Paul.
-> On Sat, May 16, 2020 at 11:50:47PM +0200, Paul Cercueil wrote:
->>  Add documentation of the Device Tree bindings for the Image=20
->> Processing
->>  Unit (IPU) found in most Ingenic SoCs.
->>=20
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->=20
-> For me it fails like this:
+I used Linux kernel 4.19 to flash UBIFS volume images ubi.img to
+imx6ull NAND using following command in Linux:
 
-Oops. I missed the 'const:' in the item list. Will fix when I send a=20
-V2, and verify it this time.
+flash_erase /dev/mtd2 0 0
+ubiformat /dev/mtd2 -f ubi.img
 
-Cheers,
--Paul
+The flashing image process went well, not errors, but in NAND booting
+(u-boot version 2018), running "ubi part" stuck following errors:
 
-> /Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
-> ignoring, error in schema: properties: compatible: oneOf: 1: items
-> warning: no schema found in file:=20
-> Documentation/devicetree/bindings/display/ingenic,ipu.yaml
-> make[2]: *** [Documentation/devicetree/bindings/Makefile:42:=20
-> Documentation/devicetree/bindings/processed-schema.yaml] Error 255
-> make[2]: *** Waiting for unfinished jobs....
-> Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
-> properties:compatible:oneOf:1:items: ['ingenic,jz4770-ipu',=20
-> 'ingenic,jz4760-ipu'] is not valid under any of the given schemas=20
-> (Possible causes of the failure):
-> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
-> properties:compatible:oneOf:1:items: ['ingenic,jz4770-ipu',=20
-> 'ingenic,jz4760-ipu'] is not of type 'object', 'boolean'
-> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
-> properties:compatible:oneOf:1:items:0: 'ingenic,jz4770-ipu' is not of=20
-> type 'object', 'boolean'
-> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
-> properties:compatible:oneOf:1:items:1: 'ingenic,jz4760-ipu' is not of=20
-> type 'object', 'boolean'
->=20
->=20
-> 	Sam
->=20
->>  ---
->>   .../bindings/display/ingenic,ipu.yaml         | 65=20
->> +++++++++++++++++++
->>   1 file changed, 65 insertions(+)
->>   create mode 100644=20
->> Documentation/devicetree/bindings/display/ingenic,ipu.yaml
->>=20
->>  diff --git=20
->> a/Documentation/devicetree/bindings/display/ingenic,ipu.yaml=20
->> b/Documentation/devicetree/bindings/display/ingenic,ipu.yaml
->>  new file mode 100644
->>  index 000000000000..22fe02ca866d
->>  --- /dev/null
->>  +++ b/Documentation/devicetree/bindings/display/ingenic,ipu.yaml
->>  @@ -0,0 +1,65 @@
->>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: http://devicetree.org/schemas/display/ingenic,ipu.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +
->>  +title: Ingenic SoCs Image Processing Unit (IPU) devicetree bindings
->>  +
->>  +maintainers:
->>  +  - Paul Cercueil <paul@crapouillou.net>
->>  +
->>  +properties:
->>  +  compatible:
->>  +    oneOf:
->>  +      - enum:
->>  +        - ingenic,jz4725b-ipu
->>  +        - ingenic,jz4760-ipu
->>  +      - items:
->>  +        - ingenic,jz4770-ipu
->>  +        - ingenic,jz4760-ipu
->>  +
->>  +  reg:
->>  +    maxItems: 1
->>  +
->>  +  interrupts:
->>  +    maxItems: 1
->>  +
->>  +  clocks:
->>  +    maxItems: 1
->>  +
->>  +  clock-names:
->>  +    const: ipu
->>  +
->>  +patternProperties:
->>  +  "^ports?$":
->>  +    description: OF graph bindings (specified in=20
->> bindings/graph.txt).
->>  +
->>  +required:
->>  +  - compatible
->>  +  - reg
->>  +  - interrupts
->>  +  - clocks
->>  +  - clock-names
->>  +
->>  +additionalProperties: false
->>  +
->>  +examples:
->>  +  - |
->>  +    #include <dt-bindings/clock/jz4770-cgu.h>
->>  +    ipu@13080000 {
->>  +      compatible =3D "ingenic,jz4770-ipu", "ingenic,jz4760-ipu";
->>  +      reg =3D <0x13080000 0x800>;
->>  +
->>  +      interrupt-parent =3D <&intc>;
->>  +      interrupts =3D <29>;
->>  +
->>  +      clocks =3D <&cgu JZ4770_CLK_IPU>;
->>  +      clock-names =3D "ipu";
->>  +
->>  +      port {
->>  +        ipu_ep: endpoint {
->>  +          remote-endpoint =3D <&lcdc_ep>;
->>  +        };
->>  +      };
->>  +    };
->>  --
->>  2.26.2
->>=20
->>  _______________________________________________
->>  dri-devel mailing list
->>  dri-devel@lists.freedesktop.org
->>  https://lists.freedesktop.org/mailman/listinfo/dri-devel
+ubi0 error: ubi_io_read: error -74 (ECC error) while reading 64 bytes from PEB 2
+35:0, read 64 bytes
+ubi0 error: ubi_io_read: error -74 (ECC error) while reading 2048 bytes from PEB
+ 235:2048, read 2048 bytes
+
+The document says "The -74 error code is -EBADMSG and means an ECC
+error. In other words, UBI tried to read some data from the flash, but
+the flash driver found that there is an uncorrectable ECC error, and
+returned -EBADMSG."
+
+My question for ubiformat, how does it write ECC to UBIFS volume
+partition when it flashed UBIFS image to NAND?
+
+In NAND booting, how does the "ubi part" read ECC (DTB) from?
+
+Thank you very much, appreciate your kind advice.
+
+- j
 
 
+-- 
+"A man can fail many times, but he isn't a failure until he begins to
+blame somebody else."
+-- John Burroughs
