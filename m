@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA30E1D68B5
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 17:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1277F1D68C0
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 18:10:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727981AbgEQP5K convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 17 May 2020 11:57:10 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:54937 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727979AbgEQP5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 11:57:10 -0400
+        id S1728045AbgEQQKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 May 2020 12:10:30 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:50663 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727979AbgEQQKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 12:10:30 -0400
+X-Originating-IP: 91.175.115.186
 Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 39B1F200005;
-        Sun, 17 May 2020 15:57:03 +0000 (UTC)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id CAC9440005;
+        Sun, 17 May 2020 16:10:27 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+To:     Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-i2c@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
         Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Remi Pommarel <repk@triplefau.lt>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <marek.behun@nic.cz>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Xogium <contact@xogium.me>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v4 00/12] PCI: aardvark: Fix support for Turris MOX and Compex wifi cards
-In-Reply-To: <20200513135643.478ffbda@windsurf.home>
-References: <20200430080625.26070-1-pali@kernel.org> <20200513135643.478ffbda@windsurf.home>
-Date:   Sun, 17 May 2020 17:57:02 +0200
-Message-ID: <87pnb2h7w1.fsf@FE-laptop>
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>
+Subject: Re: [PATCH 2/2] arm64: dts: add uDPU i2c bus recovery
+In-Reply-To: <E1jWGXd-0000Z7-1n@rmk-PC.armlinux.org.uk>
+References: <20200506094001.GP1551@shell.armlinux.org.uk> <E1jWGXd-0000Z7-1n@rmk-PC.armlinux.org.uk>
+Date:   Sun, 17 May 2020 18:10:27 +0200
+Message-ID: <87eerih79o.fsf@FE-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Russell,
 
-> Hello,
->
-> On Thu, 30 Apr 2020 10:06:13 +0200
-> Pali Rohár <pali@kernel.org> wrote:
->
->> Marek Behún (5):
->>   PCI: aardvark: Improve link training
->>   PCI: aardvark: Add PHY support
->>   dt-bindings: PCI: aardvark: Describe new properties
->>   arm64: dts: marvell: armada-37xx: Set pcie_reset_pin to gpio function
->>   arm64: dts: marvell: armada-37xx: Move PCIe comphy handle property
->> 
->> Pali Rohár (7):
->>   PCI: aardvark: Train link immediately after enabling training
->>   PCI: aardvark: Don't blindly enable ASPM L0s and don't write to
->>     read-only register
->>   PCI: of: Zero max-link-speed value is invalid
->>   PCI: aardvark: Issue PERST via GPIO
->>   PCI: aardvark: Add FIXME comment for PCIE_CORE_CMD_STATUS_REG access
->>   PCI: aardvark: Replace custom macros by standard linux/pci_regs.h
->>     macros
->>   arm64: dts: marvell: armada-37xx: Move PCIe max-link-speed property
->
-> Thanks a lot for this work. For a number of reasons, I'm less involved
-> in Marvell platform support in Linux, but I reviewed your series and
-> followed the discussions around it, and I'm happy to give my:
->
-> Acked-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
 
-With this acked-by for the series, the reviewed-by from Rob on the
-binding and the tested-by, I am pretty confident so I applied the
-patches 10, 11 and 12 on mvebu/dt64.
+Applied on mvebu/dt64
 
 Thanks,
 
 Gregory
 
 
+> ---
+>  .../boot/dts/marvell/armada-3720-uDPU.dts     | 22 +++++++++++++++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
 >
-> for the whole series. The changes all seem sensible, and have been
-> tested by several folks.
->
-> Thanks!
->
-> Thomas
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> index 7eb6c1796cef..95d46e8d081c 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> @@ -117,18 +117,36 @@
+>  	};
+>  };
+>  
+> +&pinctrl_nb {
+> +	i2c1_recovery_pins: i2c1-recovery-pins {
+> +		groups = "i2c1";
+> +		function = "gpio";
+> +	};
+> +
+> +	i2c2_recovery_pins: i2c2-recovery-pins {
+> +		groups = "i2c2";
+> +		function = "gpio";
+> +	};
+> +};
+> +
+>  &i2c0 {
+>  	status = "okay";
+> -	pinctrl-names = "default";
+> +	pinctrl-names = "default", "recovery";
+>  	pinctrl-0 = <&i2c1_pins>;
+> +	pinctrl-1 = <&i2c1_recovery_pins>;
+>  	/delete-property/mrvl,i2c-fast-mode;
+> +	scl-gpios = <&gpionb 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	sda-gpios = <&gpionb 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  };
+>  
+>  &i2c1 {
+>  	status = "okay";
+> -	pinctrl-names = "default";
+> +	pinctrl-names = "default", "recovery";
+>  	pinctrl-0 = <&i2c2_pins>;
+> +	pinctrl-1 = <&i2c2_recovery_pins>;
+>  	/delete-property/mrvl,i2c-fast-mode;
+> +	scl-gpios = <&gpionb 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	sda-gpios = <&gpionb 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  
+>  	lm75@48 {
+>  		status = "okay";
 > -- 
-> Thomas Petazzoni, CTO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> 2.20.1
+>
 
 -- 
 Gregory Clement, Bootlin
