@@ -2,76 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0E091D67D7
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 13:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 496CE1D67F2
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 14:19:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727911AbgEQL44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 May 2020 07:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727833AbgEQL44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 07:56:56 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0985CC061A0C
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2020 04:56:56 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id s21so6430957ejd.2
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2020 04:56:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n2zu9JqKU5bD9sWT2p4LZR3ZmrdpAMY3DJ+tw0eadKI=;
-        b=QfoWxHBpfNJW5n5jO+SfP+ueYUTnzn93yioe/AsSefpOShVmtxDv3cL/k+BYJzZjj4
-         loieYc/Q/FcRVoUHHeotMND7sImOYHIoviE3FL8yIzu4US/1bHhoOcZP+2pgzt5J4EsO
-         Rqc9UsDZ74x5UX8eXAVrtFiiXy35g0V6+tD7S4CyXim+O5+la6H+e6hTeyZeThhIu/Ft
-         V+D/hkxsUR/Pt79mjclETYLMGe9a4fUWw+uuQyHCclwnP6/+mtDinfpBpAXtab5pJ/vc
-         mYyaZxirHk5YTr8deDgu2Rge972T3kys/KPxmQLvoBKAKDwPtJPI6EhkgabNln8mEx+1
-         lEFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n2zu9JqKU5bD9sWT2p4LZR3ZmrdpAMY3DJ+tw0eadKI=;
-        b=R2FSPJ1W+qRRzYASJvboErr+flsXnGmNc+cH+5ew6kacWn1VggN7UTQhPFJcJe1rHM
-         TyzqoM5myqjpTggrKaFMv8DQTcAJTs5t1Jis/a5tNdYeVpUuW/IP6riDyV5Eny30hci2
-         yXcLDKuJiHCfqGYMyJHkX1ZMQzaFEfbzISn0LRbswtXqYQ5acEvZn+IjOTPUKVWKodng
-         zc+4/TayD89q1sAZUfH6MneF1By+gTwhJK2QhsD2+3fFfGYaImIECEIR5chPgKwkX5d2
-         v6c1Fm7L1d5702C8g1swKR1Z+3vH8/Sp13u3di0YFDkGkqyoIsKCt8eAryI3yjfxn45g
-         X5MQ==
-X-Gm-Message-State: AOAM533E5AcVJ8zN2MgE3Y3QDtHlI+iilUSz+AdtRLQHfoewFqlQgQWA
-        fYZl6G95ZTlSlEckLrjtcUqhEaCLKMXG5hZqzoLRWwv2LSg=
-X-Google-Smtp-Source: ABdhPJzZ/QScx0gQ2p297ajwfhl1LwTq7Gispx4C00yR1Em6K9vahsl5Aaq2FRtkVMhA4PtTiZTacouGjS+1fUspoqA=
-X-Received: by 2002:a17:906:d8c1:: with SMTP id re1mr11417735ejb.184.1589716614442;
- Sun, 17 May 2020 04:56:54 -0700 (PDT)
+        id S1727893AbgEQMT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 May 2020 08:19:27 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:45644 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727833AbgEQMT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 08:19:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1589717965; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=m6rR31/j2rzqBrfWiu7P6GCD7jhwshKtwnMGtC/OSLY=;
+        b=fuS89dnmSKIjpFcz/qNlJ+E8jHHaHdPlWnM24ibfuN+m1Jqhubn8n0Bh4nKT4jncckq/lQ
+        FWcQUBihGzB60pDmo3T87kL/WrnWkNYFcrYwRsupHAJEDdKNKUTvdCTZgau7p1pudvpXTE
+        gum5raRCQxfIwdDXQNnqai/sCrm6VPk=
+Date:   Sun, 17 May 2020 14:19:14 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 04/12] gpu/drm: ingenic: Fix bogus crtc_atomic_check
+ callback
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, od@zcrc.me, dri-devel@lists.freedesktop.org
+Message-Id: <286HAQ.VQDCISW6S4DW2@crapouillou.net>
+In-Reply-To: <20200517061737.GC609600@ravnborg.org>
+References: <20200516215057.392609-1-paul@crapouillou.net>
+        <20200516215057.392609-4-paul@crapouillou.net>
+        <20200517061737.GC609600@ravnborg.org>
 MIME-Version: 1.0
-References: <1589472657-3930-1-git-send-email-amittomer25@gmail.com>
- <1589472657-3930-9-git-send-email-amittomer25@gmail.com> <b2ad8a81-619f-5f35-9596-c2061ae15e4c@arm.com>
-In-Reply-To: <b2ad8a81-619f-5f35-9596-c2061ae15e4c@arm.com>
-From:   Amit Tomer <amittomer25@gmail.com>
-Date:   Sun, 17 May 2020 17:26:17 +0530
-Message-ID: <CABHD4K9yjUGuo0w-RfhdZQJm3Wtj6bU2H4DXcp4Jjp=e0fFeyA@mail.gmail.com>
-Subject: Re: [PATCH v1 8/9] arm64: dts: actions: Add MMC controller support
- for S700
-To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
-Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, cristian.ciocaltea@gmail.com,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Sam,
 
-> So, using "actions,s700-mmc", "actions,owl-mmc" here, adding this combo
-> to the binding, but leaving the driver alone for now.
+Le dim. 17 mai 2020 =E0 8:17, Sam Ravnborg <sam@ravnborg.org> a =E9crit :
+> On Sat, May 16, 2020 at 11:50:49PM +0200, Paul Cercueil wrote:
+>>  The code was comparing the SoC's maximum height with the mode's=20
+>> width,
+>>  and vice-versa. D'oh.
+>>=20
+>>  Cc: stable@vger.kernel.org # v5.6
+>>  Fixes: a7c909b7c037 ("gpu/drm: ingenic: Check for display size in=20
+>> CRTC atomic check")
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>=20
+> Looks correct.
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-But if we leave this new string from driver , there would be DT
-validation issue.
-Are we okay with it ?
+Pushed to drm-misc-fixes, thanks for the review.
 
-Thanks
--Amit
+-Paul
+
+>>  ---
+>>=20
+>>  Notes:
+>>      This patch was previously sent standalone.
+>>      I marked it as superseded in patchwork.
+>>      Nothing has been changed here.
+>>=20
+>>   drivers/gpu/drm/ingenic/ingenic-drm.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>=20
+>>  diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.c=20
+>> b/drivers/gpu/drm/ingenic/ingenic-drm.c
+>>  index 632d72177123..0c472382a08b 100644
+>>  --- a/drivers/gpu/drm/ingenic/ingenic-drm.c
+>>  +++ b/drivers/gpu/drm/ingenic/ingenic-drm.c
+>>  @@ -330,8 +330,8 @@ static int ingenic_drm_crtc_atomic_check(struct=20
+>> drm_crtc *crtc,
+>>   	if (!drm_atomic_crtc_needs_modeset(state))
+>>   		return 0;
+>>=20
+>>  -	if (state->mode.hdisplay > priv->soc_info->max_height ||
+>>  -	    state->mode.vdisplay > priv->soc_info->max_width)
+>>  +	if (state->mode.hdisplay > priv->soc_info->max_width ||
+>>  +	    state->mode.vdisplay > priv->soc_info->max_height)
+>>   		return -EINVAL;
+>>=20
+>>   	rate =3D clk_round_rate(priv->pix_clk,
+>>  --
+>>  2.26.2
+>>=20
+>>  _______________________________________________
+>>  dri-devel mailing list
+>>  dri-devel@lists.freedesktop.org
+>>  https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
