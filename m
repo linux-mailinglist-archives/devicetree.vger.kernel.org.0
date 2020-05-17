@@ -2,130 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D1C1D6774
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 12:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D5F11D6794
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2020 13:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727838AbgEQKrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 May 2020 06:47:04 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:64667 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727122AbgEQKrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 May 2020 06:47:03 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1589712422; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=bpYRKGxi7S4lmPb9T2zE3w/nH3uH2ZxR+FnFM4pHa+Y=; b=rmE+uGGfYIA+Bkyt7xArMuGiDzCayiXyZ/8QNwNEthJ3+0OOUtW/oNdNqWSE3d/ltLBPY2Xx
- UltUnkBkpwRz8KiTztLXQxmjLKVQuXDy1KFxvRw10/9z5XwJs1ImSask+jZy7y4XYzS99Uxl
- R4yOnuBWunPQPFa+u3q2wyhNDdY=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5ec11626.7f9b1f1e1570-smtp-out-n01;
- Sun, 17 May 2020 10:47:02 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2BE57C433D2; Sun, 17 May 2020 10:47:01 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from pillair-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B753DC433F2;
-        Sun, 17 May 2020 10:46:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B753DC433F2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH v9] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module device node
-Date:   Sun, 17 May 2020 16:16:51 +0530
-Message-Id: <1589712411-26718-1-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1727832AbgEQLGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 May 2020 07:06:51 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:43824 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727785AbgEQLGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 07:06:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1589713609; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=a+8uUs3KZErtQFYLwRFcI4Y9Qu/GahR4WBEx76kMicU=;
+        b=JcNP/sXXR5LlAQyGgIDVT84jR1N8QUsQZViSBBi4neVMfuz8zSKI3xrAbm6Kt4hZTkGpY8
+        oANNPgIIs9BhTuh23iqoxGTXZyOnEhbUrzyq5kOrxlI15KXhg6XigZB2qW1jydrd/+UJ55
+        TLLg3EO0buSMfIKZ5hHd8H+D4AJM7O8=
+Date:   Sun, 17 May 2020 13:06:38 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 02/12] dt-bindings: display: Add ingenic,ipu.yaml
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, od@zcrc.me,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Message-Id: <2V2HAQ.FED0YBJJAZ7D2@crapouillou.net>
+In-Reply-To: <20200517061710.GB609600@ravnborg.org>
+References: <20200516215057.392609-1-paul@crapouillou.net>
+        <20200516215057.392609-2-paul@crapouillou.net>
+        <20200517061710.GB609600@ravnborg.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for the ath10k SNOC platform driver probe
-and add resources required for WCN3990 on sc7180 soc.
+Hi Sam,
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
-Changes from v8:
-- Removed the qcom,msa-fixed-perm
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  7 +++++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 27 +++++++++++++++++++++++++++
- 2 files changed, 34 insertions(+)
+Le dim. 17 mai 2020 =E0 8:17, Sam Ravnborg <sam@ravnborg.org> a =E9crit :
+> Hi Paul.
+> On Sat, May 16, 2020 at 11:50:47PM +0200, Paul Cercueil wrote:
+>>  Add documentation of the Device Tree bindings for the Image=20
+>> Processing
+>>  Unit (IPU) found in most Ingenic SoCs.
+>>=20
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>=20
+> For me it fails like this:
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4e9149d..38b102e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -389,6 +389,13 @@
- 	};
- };
- 
-+&wifi {
-+	status = "okay";
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0xc2 0x1>;
-+	};
-+};
-+
- /* PINCTRL - additions to nodes defined in sc7180.dtsi */
- 
- &qspi_clk {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index f1280e0..dd4e095 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -63,6 +63,11 @@
- 			clock-frequency = <32764>;
- 			#clock-cells = <0>;
- 		};
-+
-+		wlan_fw_mem: memory@94100000 {
-+			reg = <0 0x94100000 0 0x200000>;
-+			no-map;
-+		};
- 	};
- 
- 	reserved_memory: reserved-memory {
-@@ -944,6 +949,28 @@
- 			};
- 		};
- 
-+		wifi: wifi@18800000 {
-+			compatible = "qcom,wcn3990-wifi";
-+			reg = <0 0x18800000 0 0x800000>;
-+			reg-names = "membase";
-+			iommus = <&apps_smmu 0xc0 0x1>;
-+			interrupts =
-+				<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
-+				<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
-+				<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
-+				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH /* CE3 */ >,
-+				<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH /* CE4 */ >,
-+				<GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH /* CE5 */ >,
-+				<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH /* CE6 */ >,
-+				<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH /* CE7 */ >,
-+				<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH /* CE8 */ >,
-+				<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH /* CE9 */ >,
-+				<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10 */>,
-+				<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11 */>;
-+			memory-region = <&wlan_fw_mem>;
-+			status = "disabled";
-+		};
-+
- 		config_noc: interconnect@1500000 {
- 			compatible = "qcom,sc7180-config-noc";
- 			reg = <0 0x01500000 0 0x28000>;
--- 
-2.7.4
+Oops. I missed the 'const:' in the item list. Will fix when I send a=20
+V2, and verify it this time.
+
+Cheers,
+-Paul
+
+> /Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
+> ignoring, error in schema: properties: compatible: oneOf: 1: items
+> warning: no schema found in file:=20
+> Documentation/devicetree/bindings/display/ingenic,ipu.yaml
+> make[2]: *** [Documentation/devicetree/bindings/Makefile:42:=20
+> Documentation/devicetree/bindings/processed-schema.yaml] Error 255
+> make[2]: *** Waiting for unfinished jobs....
+> Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
+> properties:compatible:oneOf:1:items: ['ingenic,jz4770-ipu',=20
+> 'ingenic,jz4760-ipu'] is not valid under any of the given schemas=20
+> (Possible causes of the failure):
+> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
+> properties:compatible:oneOf:1:items: ['ingenic,jz4770-ipu',=20
+> 'ingenic,jz4760-ipu'] is not of type 'object', 'boolean'
+> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
+> properties:compatible:oneOf:1:items:0: 'ingenic,jz4770-ipu' is not of=20
+> type 'object', 'boolean'
+> 	Documentation/devicetree/bindings/display/ingenic,ipu.yaml:=20
+> properties:compatible:oneOf:1:items:1: 'ingenic,jz4760-ipu' is not of=20
+> type 'object', 'boolean'
+>=20
+>=20
+> 	Sam
+>=20
+>>  ---
+>>   .../bindings/display/ingenic,ipu.yaml         | 65=20
+>> +++++++++++++++++++
+>>   1 file changed, 65 insertions(+)
+>>   create mode 100644=20
+>> Documentation/devicetree/bindings/display/ingenic,ipu.yaml
+>>=20
+>>  diff --git=20
+>> a/Documentation/devicetree/bindings/display/ingenic,ipu.yaml=20
+>> b/Documentation/devicetree/bindings/display/ingenic,ipu.yaml
+>>  new file mode 100644
+>>  index 000000000000..22fe02ca866d
+>>  --- /dev/null
+>>  +++ b/Documentation/devicetree/bindings/display/ingenic,ipu.yaml
+>>  @@ -0,0 +1,65 @@
+>>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>  +%YAML 1.2
+>>  +---
+>>  +$id: http://devicetree.org/schemas/display/ingenic,ipu.yaml#
+>>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  +
+>>  +title: Ingenic SoCs Image Processing Unit (IPU) devicetree bindings
+>>  +
+>>  +maintainers:
+>>  +  - Paul Cercueil <paul@crapouillou.net>
+>>  +
+>>  +properties:
+>>  +  compatible:
+>>  +    oneOf:
+>>  +      - enum:
+>>  +        - ingenic,jz4725b-ipu
+>>  +        - ingenic,jz4760-ipu
+>>  +      - items:
+>>  +        - ingenic,jz4770-ipu
+>>  +        - ingenic,jz4760-ipu
+>>  +
+>>  +  reg:
+>>  +    maxItems: 1
+>>  +
+>>  +  interrupts:
+>>  +    maxItems: 1
+>>  +
+>>  +  clocks:
+>>  +    maxItems: 1
+>>  +
+>>  +  clock-names:
+>>  +    const: ipu
+>>  +
+>>  +patternProperties:
+>>  +  "^ports?$":
+>>  +    description: OF graph bindings (specified in=20
+>> bindings/graph.txt).
+>>  +
+>>  +required:
+>>  +  - compatible
+>>  +  - reg
+>>  +  - interrupts
+>>  +  - clocks
+>>  +  - clock-names
+>>  +
+>>  +additionalProperties: false
+>>  +
+>>  +examples:
+>>  +  - |
+>>  +    #include <dt-bindings/clock/jz4770-cgu.h>
+>>  +    ipu@13080000 {
+>>  +      compatible =3D "ingenic,jz4770-ipu", "ingenic,jz4760-ipu";
+>>  +      reg =3D <0x13080000 0x800>;
+>>  +
+>>  +      interrupt-parent =3D <&intc>;
+>>  +      interrupts =3D <29>;
+>>  +
+>>  +      clocks =3D <&cgu JZ4770_CLK_IPU>;
+>>  +      clock-names =3D "ipu";
+>>  +
+>>  +      port {
+>>  +        ipu_ep: endpoint {
+>>  +          remote-endpoint =3D <&lcdc_ep>;
+>>  +        };
+>>  +      };
+>>  +    };
+>>  --
+>>  2.26.2
+>>=20
+>>  _______________________________________________
+>>  dri-devel mailing list
+>>  dri-devel@lists.freedesktop.org
+>>  https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
