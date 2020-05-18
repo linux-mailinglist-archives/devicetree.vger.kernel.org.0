@@ -2,100 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4938F1D7BEB
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B1E1D7C08
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728012AbgERO4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 10:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727005AbgERO4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:56:03 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F24C061A0C;
-        Mon, 18 May 2020 07:56:03 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id 5so2137839pjd.0;
-        Mon, 18 May 2020 07:56:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=j0vgPkzC0SrMw1LKftBMhKbRArXUYnbbA1/YhTB9uaQ=;
-        b=H24gkmj4DfDfuJCrO+06TCGDojdN1L9EUvpR5Ip3kE+bWfnp24rarC1anGDdbcKBM8
-         hDgd2N7B6rmEETzkobnuyliskxRCTQlzWNrzdQ+PsYY+Q9/zRy23jmiGPHREE1MM0NV/
-         yP2jVkjfW363I9E4dh+FK5deMTF+E5pXAlZ+D0N3ZDO8+wQ2ofNpPS5WNbOQV6zbfx2U
-         LQA+xrE7n3ZnbOLCtZV5e0shXEb4ctn9y91k8CDcZToocRNuweWiDt8nsacjdm8son3A
-         mPSrlUxJzdjMFPkm6wH+ZjHcd3LVWWTbGRdLxOl0fjfT6zRgnDvBBTDOf1gF8bt9auI2
-         zXVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=j0vgPkzC0SrMw1LKftBMhKbRArXUYnbbA1/YhTB9uaQ=;
-        b=EdBiMPnk3SSVkr3YM9+sEVoanOs4IO4uhp0LNWSq8OkryJba2VvFlJA9J5b/v2bW0i
-         IZyNYWVdS8hGbUGjtbvb6iFfD9rLe1Y0qpeu7noMhF1GyAqMsi+UhzeX7Wk6BRLFeNwR
-         z+zRwWamhmrK7pWZQpoFN6V2wNofSD+QFY0gyovfBqpvloujyU13U0sfA7fsxro/RxWq
-         PsgOmG3uRHT+uHvmc0qlvOhoZlVEtwF+9J/312rGmx1epsEF/4JaesPfo8hl3UJQ404v
-         julLiSehGgwKEI6hWxH76GQ5ID0/CVqF9KHRrpB57iPSeVEjTyDI76wbCgNJK0MdzYsD
-         ix/g==
-X-Gm-Message-State: AOAM530Sc2U6VNVfKlD7nXpMxbnWhsDWeXUsJFgr6qTzKjDOX9+1uBBX
-        s40/KMg7FUhxcoBwZKuDlk8ElCqXTyPFgNEEHH8=
-X-Google-Smtp-Source: ABdhPJzz4iSJwpMHgi49aKOPdGMYFISG3X9YPDm7J/TYfsTMb/LHGyys39ppu1LINRhi2P3ZQj6t6s08ynYuAvMi11E=
-X-Received: by 2002:a17:902:6ac2:: with SMTP id i2mr15165549plt.18.1589813762929;
- Mon, 18 May 2020 07:56:02 -0700 (PDT)
+        id S1728215AbgERO6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 10:58:09 -0400
+Received: from foss.arm.com ([217.140.110.172]:42212 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727903AbgERO6J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 10:58:09 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9C4101E;
+        Mon, 18 May 2020 07:58:08 -0700 (PDT)
+Received: from red-moon.cambridge.arm.com (unknown [10.57.25.108])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED0463F52E;
+        Mon, 18 May 2020 07:58:06 -0700 (PDT)
+Date:   Mon, 18 May 2020 15:57:59 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] PCI: cadence: Deprecate inbound/outbound specific
+ bindings
+Message-ID: <20200518145759.GA19714@red-moon.cambridge.arm.com>
+References: <20200508130646.23939-1-kishon@ti.com>
 MIME-Version: 1.0
-References: <20200518133645.19127-1-jonathan.albrieux@gmail.com> <20200518133645.19127-4-jonathan.albrieux@gmail.com>
-In-Reply-To: <20200518133645.19127-4-jonathan.albrieux@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 18 May 2020 17:55:51 +0300
-Message-ID: <CAHp75VdFJUNOtRyCNEGnvoOCZYoPvyhjC15_iC72JD-1sOavwA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] iio: magnetometer: ak8975: Add gpio reset support
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Steve Winslow <swinslow@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200508130646.23939-1-kishon@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 18, 2020 at 4:38 PM Jonathan Albrieux
-<jonathan.albrieux@gmail.com> wrote:
+On Fri, May 08, 2020 at 06:36:42PM +0530, Kishon Vijay Abraham I wrote:
+> This series is a result of comments given by Rob Herring @ [1].
+> Patch series changes the DT bindings and makes the corresponding driver
+> changes.
+> 
+> Changes from v2:
+> 1) Changed the order of patches (no solid reason. Just save some
+> rebasing effort for me)
+> 2) Added Acked-by Tom and Rob except for the dma-ranges patch
+> 3) Re-worked dma-ranges patch for it do decode multiple dma-ranges
+>    and configure BAR0, BAR1 and NO_BAR instead of just NO_BAR [2].
+> 
+> Changes from v1:
+> 1) Added Reviewed-by: Rob Herring <robh@kernel.org> for dt-binding patch
+> 2) Fixed nitpick comments from Bjorn Helgaas
+> 3) Added a patch to read 32-bit Vendor ID/Device ID property from DT
+> 
+> [1] -> http://lore.kernel.org/r/20200219202700.GA21908@bogus
+> [2] -> http://lore.kernel.org/r/eb1ffcb3-264f-5174-1f25-b5b2d3269840@ti.com
+> 
+> Kishon Vijay Abraham I (4):
+>   dt-bindings: PCI: cadence: Deprecate inbound/outbound specific
+>     bindings
+>   PCI: cadence: Remove "cdns,max-outbound-regions" DT property
+>   PCI: cadence: Fix to read 32-bit Vendor ID/Device ID property from DT
+>   PCI: cadence: Use "dma-ranges" instead of "cdns,no-bar-match-nbits"
+>     property
+> 
+>  .../bindings/pci/cdns,cdns-pcie-ep.yaml       |   2 +-
+>  .../bindings/pci/cdns,cdns-pcie-host.yaml     |   3 +-
+>  .../devicetree/bindings/pci/cdns-pcie-ep.yaml |  25 +++
+>  .../bindings/pci/cdns-pcie-host.yaml          |  10 ++
+>  .../devicetree/bindings/pci/cdns-pcie.yaml    |   8 -
+>  .../controller/cadence/pcie-cadence-host.c    | 151 +++++++++++++++---
+>  drivers/pci/controller/cadence/pcie-cadence.h |  23 ++-
+>  7 files changed, 182 insertions(+), 40 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml
 
-> +       gpiod_set_value_cansleep(data->reset_gpiod, 1);
+I have applied patches 1-3 to pci/cadence (that I think are
+self-contained), waiting for the dma-ranges discussion to wrap up on
+patch 4.
 
-(1)
-
-...
-
-> +       /*
-> +        * If reset pin is provided then will be set to high on power on
-> +        * and to low on power off according to AK09911 datasheet
-> +        */
-
-Wording is confusing, perhaps you have to use 'asserted / deasserted'.
-
-Btw, in (1) it's also "high" (asserted). I barely understand how it's
-supposed to work in all cases?
-
-> +       reset_gpiod = devm_gpiod_get_optional(&client->dev,
-> +                                             "reset", GPIOD_OUT_HIGH);
-> +       if (IS_ERR(reset_gpiod))
-> +               return PTR_ERR(reset_gpiod);
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+Lorenzo
