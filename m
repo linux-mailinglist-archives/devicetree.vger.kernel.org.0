@@ -2,83 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACBDF1D71E8
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 09:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 011551D721C
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 09:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727117AbgERHdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 03:33:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
+        id S1726876AbgERHmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 03:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726729AbgERHdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 03:33:24 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBDBC061A0C
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 00:33:23 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id a4so7104619lfh.12
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 00:33:23 -0700 (PDT)
+        with ESMTP id S1726729AbgERHms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 03:42:48 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CA9C061A0C
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 00:42:48 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id q8so2763689pfu.5
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 00:42:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6uhRFGDARrcoHPrKHMBYkaN/2j11MRjpDJJbVmx54CE=;
-        b=H+oFxtUqptu6CrGRKkzcmJs+eMoraTQOATafIq2NDm8CwHwFmls5nvwqEoT+8/mmOE
-         WU7jisauq4/IiaKjcokmWtKJ1DP0tvQIHBs2ljdiXl8qlGxOtvQEAa4lD7HDUDrqwTWo
-         VnA6gPlW7BZEITXpxQXAFUfO8KJGhgyzDF2UXRCdOQb2doToExJaRRP+vFv2jjUUPojT
-         48hRbviNApp8pFFIMOcAtQbGT6U+m0T/qRRWzR9Dw1pnv66azfT1YUY+BE6/qqXLbxuk
-         l+jytCjh61iQMLKyg95PEYoavnodXi3brpiHHaRO7wI6myD90jtTysY/uu3Mf+GJycpC
-         l10w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=H6Fz3grvmOGwKwIiO4rhQMwdNkIsWum4LGUtO8Cm5uw=;
+        b=ewfOGWB6Q7IULYGZK2jjnw3iboiuUrKM4DhV+jFlpFQFbRA5okIM4q8ZPinJzBHjXj
+         mZ8stSwg+I6/BDqQjXwU4TW+9EeA+Q7dqV33iVJT0cve85sXWZG2GKOpnbC0nazeavQW
+         uD2K/aYltBH+aRgSHhQ1GL6tt1ZIiWAL4BbjgulNzJDXYao6iYmk+zspziWyeRWKizew
+         1t4Gx5iG9noNUfjxFQFcIDzuUeLU5VzKWkU1jnKq1/hM4tpV42WBA0gJAyuNTAXhKrFY
+         RYMcv8p3mlOBIESVYnhQ6bKiAIpTClAWAFOGYdQn8AgUml92+/lQy217nSP+eIF6Mf1L
+         XuYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6uhRFGDARrcoHPrKHMBYkaN/2j11MRjpDJJbVmx54CE=;
-        b=MgDzAB+RgN3y93nlUgRdoUu00nMSNH97Bw8KIZ9ushPe191sKFFSyvZziR0eOiL+we
-         ATPR9r3WLI+D2MYJwuaPgOXcMA4kJnnNYHfe2GMUBoAc3UtDxVCaU+jyPQf5r0oSmN65
-         eVoPXIHNGkM4G21GHBAidK0uLPsU2ssvdg2GnIPCOeXT1y5G0DkycCOqd4ofVSJnLDYi
-         y41QmWOH3s/v45vsazhaTGBAnOlgj42lglIOAOkkvDy5rOhWpMcrNynPh8ATI9eacC4l
-         WTT/fgZ45lA2HAeMF5IHNkjGqbresoSj6XgyqlU/qit3E6jMNUiIWiaBI4GG4yucoKVd
-         tNrA==
-X-Gm-Message-State: AOAM531MMXReNOlJOFlpY+pgggI73zLf2uOE8CKs1FfKtXEYI7F11u/S
-        9+qiuvNUxahoOZ4RxiVuTCDcoKIvNGTzxcIzHJQeKw==
-X-Google-Smtp-Source: ABdhPJzM1cLtBMnZR+j+nSiG3KeWErg7zOIoRWARiHZUlNStxktk9ge3qdAjjUUMvZG6fIllhCXtTAAglY/emlzid+o=
-X-Received: by 2002:ac2:5a07:: with SMTP id q7mr3670246lfn.77.1589787202475;
- Mon, 18 May 2020 00:33:22 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=H6Fz3grvmOGwKwIiO4rhQMwdNkIsWum4LGUtO8Cm5uw=;
+        b=DjMO9g1cm0WmHajcsxHzmVa1u49MLE3YaLlG+MbB9wa8hm7qjPRYxKe7hSAqWvy6og
+         SJCtoOyAjRFHWfn5Z/CZZ0f2r8vvxC9Y7nf4d/zWsar5fTJqd57LkAQ3nliz5XrP3ZnU
+         Gw8oMb6PTf/SojWdUMSl+E+8KYScKQiTDri5q30CwOckLs4PNeg0nMx57NKg9As6sR3E
+         QYc0572nNaaJzi/arTDhX2lkLLWddo8rkkNzsPp1h+3wK6UUETUVjxL+n6hrVzulP4jD
+         VUT8MCila0a7F5OL9ULfZVFmj1BofSdF/Qd8xEnEwwJdAjXypXjWncStZ+LTvRWfpX73
+         OL9g==
+X-Gm-Message-State: AOAM532vNIT80LWoSwx5f6zOsY2ibKdIxkGtMhUWOcRmANdxVq1AvxUU
+        F9Nj3EGkYwvhW8VVY30ALDAsRhK1C7c=
+X-Google-Smtp-Source: ABdhPJxwPIzeEsdVfsAIZTCk/Z/xP8GEG1alivNq3g2OZ4I1NIJDYth9EiNk49gcYQ9Lcgb+XKFKAw==
+X-Received: by 2002:a17:902:bcc4:: with SMTP id o4mr13873074pls.275.1589787317608;
+        Mon, 18 May 2020 00:35:17 -0700 (PDT)
+Received: from localhost ([122.167.130.103])
+        by smtp.gmail.com with ESMTPSA id b74sm7021330pga.31.2020.05.18.00.35.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 May 2020 00:35:16 -0700 (PDT)
+Date:   Mon, 18 May 2020 13:05:14 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC] dt-bindings: mailbox: add doorbell support to ARM MHU
+Message-ID: <20200518073514.tjodf6qxg3wjzyb4@vireshk-i7>
+References: <0a50f0cf5593baeb628dc8606c523665e5e2ae6c.1589519600.git.viresh.kumar@linaro.org>
+ <CABb+yY1wJMzakpz0h6ZxAh4Z3OB718f+Wq3RP0R4NZ_U=vRMkw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20200513125532.24585-1-lars.povlsen@microchip.com> <20200513125532.24585-8-lars.povlsen@microchip.com>
-In-Reply-To: <20200513125532.24585-8-lars.povlsen@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 May 2020 09:33:11 +0200
-Message-ID: <CACRpkdZP=E=LvEFW4b8HvXR3yYFMzALC5_abiJuoewod6V+Y4w@mail.gmail.com>
-Subject: Re: [PATCH 07/14] dt-bindings: pinctrl: ocelot: Add Sparx5 SoC support
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Olof Johansson <olof@lixom.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABb+yY1wJMzakpz0h6ZxAh4Z3OB718f+Wq3RP0R4NZ_U=vRMkw@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 13, 2020 at 2:56 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+On 15-05-20, 11:46, Jassi Brar wrote:
+> As I asked you yesterday over the call, it may help if you could share
+> some numbers to back up the doomsday scenario.
 
-> This adds documentation for the "compatible" value designated for Sparx5
->
-> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Yes, I have already asked Sudeep to get some numbers for this. He will
+get back to us.
 
-This patch applied to the pinctrl tree.
+> > - With the current approach it isn't possible to assign different bits
+> >   (or doorbell numbers) to clients from DT and the only way of doing
+> >   that without adding new bindings is by extending #mbox-cells to accept
+> >   a value of 2 as done in this patch.
+> >
+> I am afraid you are confused. You can use bit/doorbell-6 by passing
+> 0x40 to mhu as the data to send.
 
-Yours,
-Linus Walleij
+That's how the code will do it, right I agree. What I was asking was
+the way this information is passed from DT.
+
+-- 
+viresh
