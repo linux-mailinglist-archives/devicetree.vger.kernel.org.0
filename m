@@ -2,87 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E8A1D7AE3
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0271D7AE7
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727840AbgERORh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 10:17:37 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:42242 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726998AbgERORh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:17:37 -0400
-Received: by mail-il1-f193.google.com with SMTP id 18so1027868iln.9;
-        Mon, 18 May 2020 07:17:36 -0700 (PDT)
+        id S1726989AbgEROSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 10:18:45 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:32821 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726918AbgEROSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:18:44 -0400
+Received: by mail-il1-f194.google.com with SMTP id o67so5327766ila.0;
+        Mon, 18 May 2020 07:18:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=s4TcDNDS3QM/2KVd7294s1MpV8sGjG6xtKJIu72IkFw=;
-        b=jrm6oCb+JSL+NzHvRdGWxqGcWr6PtW3U6ZyMn0JziQhq2QWjSp+i4m3JL+jRa6JILt
-         t0+jMvTlGtb3JxoWxvZnaado4Yt08gwtBVYdCCLWLMWyWbuCoKO56DBpu+qXcQHu8909
-         adYX3xNXCGNOSdW4gGdYzMOblUjzpIajiHgwt9Ff64GMghdH/l6S7KGu9pfo3NIy/V+q
-         oLJERjGW2YwWBUsH+GW4KB7AsWsnbt4ybz/RtSqBQIr1Nd5Y7y1cS3UqCZsaDP9ehgRr
-         gMIhV9Zo3oAtqYqpOZ1gikEk8u8wAAPcF+DrBVlb8WCJPinSglDRhBY6srpx2Pv/P0fK
-         mvyQ==
-X-Gm-Message-State: AOAM533b87vGmpWFCBK0gj5q0HwceSAKjOIf+RXsDlmyWEH7F3OgujMl
-        SVWPrUMPA3wSIFurjuUDYg==
-X-Google-Smtp-Source: ABdhPJzHP8Ro8/4oUA9Fgt5ZOHrfRK+rsvNiPBByP3WgO3+qiK7XcLyuhVX7Th3TGlo7ugCodmENbg==
-X-Received: by 2002:a92:c68c:: with SMTP id o12mr14945066ilg.96.1589811456172;
-        Mon, 18 May 2020 07:17:36 -0700 (PDT)
+        bh=hnYbcDiYIwRZpK5nxVRVHqZ/c+O+PvlmAbbpRYWtFzY=;
+        b=Hd7R652AVaV2gwozb5ELGFyvAECB4pwp5GbuEQhcEv/kmbIUDw+CZIyyiQDXOO6fvd
+         +dI8BLOgud35WJlgGDxzc0QnctY7yP6E4yvZIWeQO80wPBoFg7K3iH2K+OiYRVulVjZ/
+         QejyB01n/lHBObruVapr//ifeQ9U+qIpR/6oKtrNobUqHyxI7x+7kQzmnS8yt6DAwyNm
+         irP4JsxyCLWP7sEepoM18hzCLQ6YvaWbazhHYXNUUh0ofbuQuW0a7bfura2aBaqaPITg
+         aV26bywYfH9wB/0kd//+CCHMqxC0BPmoUdHWGCKfU+Nf1embCil1FgbRA8ETVO4DPWhu
+         rPpQ==
+X-Gm-Message-State: AOAM530j/b6srS8KcgQk8bikhZlM3LpjfaLTF3MXAERe+lEmCf3GaYnX
+        w/Xfv6eI3TSO6e0TeL6Lkw==
+X-Google-Smtp-Source: ABdhPJw2jhVb59il54p7l9FO5I6xjlCWG0g+rmAafwg+mWPaUxQsMLNZEfXGxrK1AecUdVSQe1gXyQ==
+X-Received: by 2002:a92:2a09:: with SMTP id r9mr15979239ile.103.1589811523682;
+        Mon, 18 May 2020 07:18:43 -0700 (PDT)
 Received: from rob-hp-laptop ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id k5sm4353242ilg.55.2020.05.18.07.17.34
+        by smtp.gmail.com with ESMTPSA id 137sm3929056iob.32.2020.05.18.07.18.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2020 07:17:35 -0700 (PDT)
-Received: (nullmailer pid 2493 invoked by uid 1000);
-        Mon, 18 May 2020 14:17:34 -0000
-Date:   Mon, 18 May 2020 08:17:34 -0600
+        Mon, 18 May 2020 07:18:43 -0700 (PDT)
+Received: (nullmailer pid 4792 invoked by uid 1000);
+        Mon, 18 May 2020 14:18:42 -0000
+Date:   Mon, 18 May 2020 08:18:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Felipe Balbi <balbi@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: qcom,dwc3: Convert USB DWC3
- bindings
-Message-ID: <20200518141734.GA2367@bogus>
-References: <1589534960-6973-1-git-send-email-sanm@codeaurora.org>
- <1589534960-6973-2-git-send-email-sanm@codeaurora.org>
+To:     vineetha.g.jaya.kumaran@intel.com
+Cc:     devicetree@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        wan.ahmad.zainie.wan.mohamad@intel.com, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH 3/3] dt-bindings: pwm: keembay: Add bindings for Intel
+ Keem Bay PWM
+Message-ID: <20200518141842.GA3594@bogus>
+References: <1589723560-5734-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+ <1589723560-5734-4-git-send-email-vineetha.g.jaya.kumaran@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1589534960-6973-2-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <1589723560-5734-4-git-send-email-vineetha.g.jaya.kumaran@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 May 2020 14:59:19 +0530, Sandeep Maheswaram wrote:
-> Convert USB DWC3 bindings to DT schema format using json-schema.
+On Sun, 17 May 2020 21:52:40 +0800,  wrote:
+> From: "Vineetha G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+> 
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
 > ---
->  .../devicetree/bindings/usb/qcom,dwc3.txt          | 104 -------------
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         | 162 +++++++++++++++++++++
->  2 files changed, 162 insertions(+), 104 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>  .../devicetree/bindings/pwm/pwm-keembay.yaml       | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-keembay.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-Documentation/devicetree/bindings/usb/qcom,dwc3.example.dts:28.13-20: Warning (ranges_format): /example-0/usb@a6f8800:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
-Documentation/devicetree/bindings/usb/qcom,dwc3.example.dts:28.13-20: Warning (ranges_format): /example-0/usb@a6f8800:ranges: empty "ranges" property but its #size-cells (2) differs from /example-0 (1)
+Error: Documentation/devicetree/bindings/pwm/pwm-keembay.example.dts:22.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+scripts/Makefile.lib:312: recipe for target 'Documentation/devicetree/bindings/pwm/pwm-keembay.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/pwm/pwm-keembay.example.dt.yaml] Error 1
+Makefile:1300: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1290971
+See https://patchwork.ozlabs.org/patch/1292157
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
