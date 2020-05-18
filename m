@@ -2,77 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3531E1D84DA
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 20:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E691D8455
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 20:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732116AbgERR7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 13:59:46 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:41262 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730218AbgERR7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 13:59:45 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id CA4C980648;
-        Mon, 18 May 2020 19:59:40 +0200 (CEST)
-Date:   Mon, 18 May 2020 19:59:39 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LinusW <linus.walleij@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Sandeep Panda <spanda@codeaurora.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 0/6] drm: Prepare to use a GPIO on ti-sn65dsi86 for
- Hot Plug Detect
-Message-ID: <20200518175939.GA770425@ravnborg.org>
-References: <20200507213500.241695-1-dianders@chromium.org>
- <20200509201511.GD30802@ravnborg.org>
- <CAD=FV=VBU7JmTdvgWjyj_ytrFmz6Gkx2OjVr1FxLh9DBG_jN6w@mail.gmail.com>
- <CAD=FV=UNuwb+YYJKw9+HNMKUNfuNFxj+Gr+yB9tXANbXAvDgCg@mail.gmail.com>
+        id S1729634AbgERSLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 14:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732843AbgERSEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 14:04:49 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D23C05BD09
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:04:49 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id q24so192627pjd.1
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:04:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nGHpGwwWCzCJVc7bPHElzmAcZWD6x2usMfgTF/Hyv34=;
+        b=yezs7gGmWNEMQgES7TZ+xcCNcGDm2+5zFxorxpSP+ZD8d645MzsEgn/+ELaoNKXIFF
+         jwt25o2C1yM1vnTI6Hq0qT4rrZeh8aZYdo99QBYcXaJAED8NNz97cHQPfyanqByvOh8p
+         q2P6P9PgOakAS2y/R7ywxQeQLTluzvw4DRj7LTbweDTceoXUwix5YjtjzbpIgwZhWacL
+         u0kJHWnongsmlnxe9x81xW8PMi4x3cfmmaFf76hlMYAh3p7i/SevDZdLWIdwtV+XIvZo
+         HsJG3QBKDPJKTLwyqp0nSxh4qC5QRhrQ6MTB5zCV25Y/P42K/Yk+kupocFQObxdpjLwh
+         mzsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nGHpGwwWCzCJVc7bPHElzmAcZWD6x2usMfgTF/Hyv34=;
+        b=TQ4qcacdDrdGEfTnMoU8dF3T9FGUNvz4P3ajzZ2jAX+OUosyWOPoZlrVfqDLBYZ6xj
+         rDlz4uB0L22KxoonzfNu4V71pGtTAckCWTkCGQT0H2EmOjbWRlxzNkTR867ls6osUgKm
+         7sFPNTqdfejEWHzfDDsG5P4PNGcj0rZ07knADQXWMpjQ9A029p4Q1y0iYE1OSFr7omnm
+         b15ECeAghKw0Yg/W4Ks5acMp+PEHZxjcd8GAulTr14DpT+n0ZL3gh9Ar3FtwEEkjTjGH
+         wVRr0b3qSGx6Sc9CVMzDy4fvtXBrYDFhi84RYHXPSzD86Nucb+mX3U7d33BRMNs6Z4da
+         p6Tw==
+X-Gm-Message-State: AOAM531kid+F+HIgTLibwyd5chTwg5iQSChwuASDnWnC5l9zusY+KKPr
+        J21iiN2I4iPFaBaTX0/70e5PDQ==
+X-Google-Smtp-Source: ABdhPJy0os+7IoFCFKg7k+EZgJxjNXzkxcklwepEVVeiJOSzaLYyRQZOx0XwQFhan0Ma7PyXS/9uNQ==
+X-Received: by 2002:a17:90a:bb81:: with SMTP id v1mr605595pjr.168.1589825088878;
+        Mon, 18 May 2020 11:04:48 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id c24sm172998pjs.51.2020.05.18.11.04.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2020 11:04:48 -0700 (PDT)
+Date:   Mon, 18 May 2020 11:03:25 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
+Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, jassisinghbrar@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 8/8] arm64: dts: ipq6018: Add a53 pll and apcs clock
+Message-ID: <20200518180325.GB2165@builder.lan>
+References: <1588573224-3038-1-git-send-email-sivaprak@codeaurora.org>
+ <1588573224-3038-9-git-send-email-sivaprak@codeaurora.org>
+ <20200512202439.GK2165@builder.lan>
+ <80039c21-41cf-2ace-939a-ef48fd773aa4@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=UNuwb+YYJKw9+HNMKUNfuNFxj+Gr+yB9tXANbXAvDgCg@mail.gmail.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=kj9zAlcOel0A:10 a=A5vhPJNbEhw8tvalPI0A:9 a=CjuIK1q_8ugA:10
+In-Reply-To: <80039c21-41cf-2ace-939a-ef48fd773aa4@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Douglas.
+On Tue 12 May 20:55 PDT 2020, Sivaprakash Murugesan wrote:
 
-> > Given the previous feedback from Linus W, Stephen, and Laurent I
-> > expect things are good enough to land now, but it'd be good to get
-> > confirmation (I removed some of the previous tags just to get
-> > confirmation).  If we can get review tags early next week maybe it'll
-> > still be in time to land for 5.8?
+> Hi Bjorn,
 > 
-> I think all the others have reviews now.  Is there anything blocking
-> them from getting applied?
-Applied, including the small fix pointed out by Linus.
+> On 5/13/2020 1:54 AM, Bjorn Andersson wrote:
+> > On Sun 03 May 23:20 PDT 2020, Sivaprakash Murugesan wrote:
+> > 
+> > > add support for apps pll and apcs clock.
+> > > 
+> > > Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 16 +++++++++++++---
+> > >   1 file changed, 13 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > index 1aa8d85..af2ceeb 100644
+> > > --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > @@ -294,12 +294,22 @@
+> > >   		};
+> > >   		apcs_glb: mailbox@b111000 {
+> > > -			compatible = "qcom,ipq8074-apcs-apps-global";
+> > > -			reg = <0x0b111000 0xc>;
+> > > -
+> > > +			compatible = "qcom,ipq6018-apcs-apps-global";
+> > > +			reg = <0x0b111000 0x1000>;
+> > My documentation states that IPQ8074 indeed has this block at
+> > 0x0b111000, but IPQ6018 it's at 0x6b111000. Can you confirm this is
+> > correct? Same with the pll below.
+> The address 0x6b111000 is how the RPM sees this block. For A53 it is still
+> 0xb111000
 
-	Sam
+Okay, thanks for confirming.
+
+Regards,
+Bjorn
