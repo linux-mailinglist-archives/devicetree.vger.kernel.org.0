@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9732C1D8B09
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 00:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E61181D8B1B
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 00:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728318AbgERWgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 18:36:47 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:45702 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728223AbgERWgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 18:36:46 -0400
-Received: by mail-il1-f196.google.com with SMTP id b15so11512543ilq.12;
-        Mon, 18 May 2020 15:36:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lDHijTmy+IOAetUHiwAUcflxm9U9CcYAXapEIE7xXd0=;
-        b=FiAChHXI8kgtqgLRlbKTwvm76orL+nMD3DVsrRxRrDuzJE1ab37cNL03CBzd60wdWT
-         zK/YC8Uao8Os/rLk/VvYa+82T+OkTIc6l94yOxWpAsg10UQ6AS9jZ0wOI1/Id01Tl3jb
-         7LGYXSO7kkf/+UTP6EaYc1uLZXiHc+esG3D7Q0CCF+pWPnaCB0u7+3aiJ518i1uouLAJ
-         2uNs9TnLDqIBMGXCe6+dGASS7NiHnmQeVF3TP+X/KtNFjzVOdRYSK8phs/L7r5sElWl0
-         /e6jmii3Xnk4xL0I7NhuSG1t/pUeeOLv+ILLvZNVDteWKkVOnQb9/4X9LqkgQ5diQuMx
-         hpeA==
-X-Gm-Message-State: AOAM532UONrv4unyCjvh59l1fn5qWmidUFwHVFPCyR1kxj1CJMYGbrQR
-        goMz33fjSzI2qKnhw0rc/w==
-X-Google-Smtp-Source: ABdhPJyfB//q3n3N5C4f18+VIRekJCumkD01M8aTVQWfd0ekd3pS2p2Qu/LenJQcXvB2ZvLMqPEexw==
-X-Received: by 2002:a92:afcd:: with SMTP id v74mr18237211ill.305.1589841404926;
-        Mon, 18 May 2020 15:36:44 -0700 (PDT)
-Received: from rob-hp-laptop ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id c26sm4336676iod.16.2020.05.18.15.36.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2020 15:36:44 -0700 (PDT)
-Received: (nullmailer pid 4555 invoked by uid 1000);
-        Mon, 18 May 2020 22:36:41 -0000
-Date:   Mon, 18 May 2020 16:36:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     nikitos.tr@gmail.com
-Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, pavel@ucw.cz,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/3] dt-bindings: leds: Add binding for aw2013
-Message-ID: <20200518223641.GA4338@bogus>
-References: <20200511111128.16210-1-nikitos.tr@gmail.com>
- <20200511111128.16210-2-nikitos.tr@gmail.com>
+        id S1726700AbgERWmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 18:42:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726500AbgERWmZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 18:42:25 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0652820829;
+        Mon, 18 May 2020 22:42:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589841745;
+        bh=ZI+2+ZLy6El97MHhuoWAAbeg02T2A/2czo6xMrDyQeQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vOSx/Y4IyKGmqAuJ61atK8+HUo9I3nP2s/Bv2HwbAZtQyPTNC8eS0qTDTgCHuLzXv
+         I2qDAi7eosVWfEPP8f93XGzMjuPg2uOHxtBV16eQOU+HZNNRrUu14Femx1bHay9t5q
+         UBicFWQvH4DuOZhs/GVewhTX+Nfir9BToSzdHxA4=
+Received: by mail-ot1-f46.google.com with SMTP id d26so9603230otc.7;
+        Mon, 18 May 2020 15:42:24 -0700 (PDT)
+X-Gm-Message-State: AOAM533dP0jgB7Of9I+vUag6ovpR+AicHdu9uJkcV5A7lpsCyll++5dh
+        wS4jFZdo4bvo1Pn4oMkUWBANULC28nXUMMHLCw==
+X-Google-Smtp-Source: ABdhPJyTKe6FGOymx9XkJB3VrJm6FEmEGYNTais4t83A3HPZxAJIq6IGr2eZbbeLBRbZNy+cx/WbS3w2gtcXkBXBluc=
+X-Received: by 2002:a9d:1441:: with SMTP id h59mr14114210oth.192.1589841744310;
+ Mon, 18 May 2020 15:42:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200511111128.16210-2-nikitos.tr@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1589198262-21372-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1589198262-21372-1-git-send-email-Anson.Huang@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 18 May 2020 16:42:13 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+dTFy5HBhV9-eU1a0UZikXkUd1HJuHG0KfU-PFetsAMg@mail.gmail.com>
+Message-ID: <CAL_Jsq+dTFy5HBhV9-eU1a0UZikXkUd1HJuHG0KfU-PFetsAMg@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: reset: Convert i.MX7 reset to json-schema
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 May 2020 16:11:27 +0500,  wrote:
-> From: Nikita Travkin <nikitos.tr@gmail.com>
-> 
-> Add YAML devicetree binding for AWINIC AW2013 3-channel led driver
-> 
-> Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
+On Mon, May 11, 2020 at 6:07 AM Anson Huang <Anson.Huang@nxp.com> wrote:
+>
+> Convert the i.MX7 reset binding to DT schema format using json-schema.
+>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 > ---
->  .../devicetree/bindings/leds/leds-aw2013.yaml | 91 +++++++++++++++++++
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-aw2013.yaml
-> 
+> Changes since V1:
+>         - Improve description;
+>         - Remove i.MX8MM and i.MX8MN compatible, they use i.MX8MQ's compatible;
+>         - Keep original author as maintainer;
+>         - Remove unnecessary "..." at the end of file.
+> ---
+>  .../devicetree/bindings/reset/fsl,imx7-src.txt     | 56 ---------------------
+>  .../devicetree/bindings/reset/fsl,imx7-src.yaml    | 58 ++++++++++++++++++++++
+>  2 files changed, 58 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx7-src.yaml
+
+I'd apply but doesn't apply cleanly to my tree, so:
 
 Reviewed-by: Rob Herring <robh@kernel.org>
