@@ -2,106 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E691D8455
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 20:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EE51D8416
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 20:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729634AbgERSLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 14:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35160 "EHLO
+        id S1733152AbgERSGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 14:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732843AbgERSEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 14:04:49 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D23C05BD09
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:04:49 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id q24so192627pjd.1
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:04:49 -0700 (PDT)
+        with ESMTP id S1733130AbgERSGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 14:06:14 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43882C05BD09
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:06:13 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id 62so6170656vsi.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:06:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nGHpGwwWCzCJVc7bPHElzmAcZWD6x2usMfgTF/Hyv34=;
-        b=yezs7gGmWNEMQgES7TZ+xcCNcGDm2+5zFxorxpSP+ZD8d645MzsEgn/+ELaoNKXIFF
-         jwt25o2C1yM1vnTI6Hq0qT4rrZeh8aZYdo99QBYcXaJAED8NNz97cHQPfyanqByvOh8p
-         q2P6P9PgOakAS2y/R7ywxQeQLTluzvw4DRj7LTbweDTceoXUwix5YjtjzbpIgwZhWacL
-         u0kJHWnongsmlnxe9x81xW8PMi4x3cfmmaFf76hlMYAh3p7i/SevDZdLWIdwtV+XIvZo
-         HsJG3QBKDPJKTLwyqp0nSxh4qC5QRhrQ6MTB5zCV25Y/P42K/Yk+kupocFQObxdpjLwh
-         mzsw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c3UXUPcrt3P6Bgw39Gw3bWHJNGcf+91G7bjcoOjFILM=;
+        b=li91YZRk4xYKI9MXE0tWUzbZMwcWG60O5oELkyNKU4sTYVNPY20T5Tu/2C4PXO0pSb
+         metKaUg3abydKAsYDkjq5QAPkQqK7PqGeCwzCrjMqbAJG1JvjKQ0vB5xZdrqIZcj7Gph
+         UoleVSIHc/fp4FoD48l5IFZcAOxm20aQrn4GE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nGHpGwwWCzCJVc7bPHElzmAcZWD6x2usMfgTF/Hyv34=;
-        b=TQ4qcacdDrdGEfTnMoU8dF3T9FGUNvz4P3ajzZ2jAX+OUosyWOPoZlrVfqDLBYZ6xj
-         rDlz4uB0L22KxoonzfNu4V71pGtTAckCWTkCGQT0H2EmOjbWRlxzNkTR867ls6osUgKm
-         7sFPNTqdfejEWHzfDDsG5P4PNGcj0rZ07knADQXWMpjQ9A029p4Q1y0iYE1OSFr7omnm
-         b15ECeAghKw0Yg/W4Ks5acMp+PEHZxjcd8GAulTr14DpT+n0ZL3gh9Ar3FtwEEkjTjGH
-         wVRr0b3qSGx6Sc9CVMzDy4fvtXBrYDFhi84RYHXPSzD86Nucb+mX3U7d33BRMNs6Z4da
-         p6Tw==
-X-Gm-Message-State: AOAM531kid+F+HIgTLibwyd5chTwg5iQSChwuASDnWnC5l9zusY+KKPr
-        J21iiN2I4iPFaBaTX0/70e5PDQ==
-X-Google-Smtp-Source: ABdhPJy0os+7IoFCFKg7k+EZgJxjNXzkxcklwepEVVeiJOSzaLYyRQZOx0XwQFhan0Ma7PyXS/9uNQ==
-X-Received: by 2002:a17:90a:bb81:: with SMTP id v1mr605595pjr.168.1589825088878;
-        Mon, 18 May 2020 11:04:48 -0700 (PDT)
-Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id c24sm172998pjs.51.2020.05.18.11.04.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2020 11:04:48 -0700 (PDT)
-Date:   Mon, 18 May 2020 11:03:25 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
-Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, jassisinghbrar@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 8/8] arm64: dts: ipq6018: Add a53 pll and apcs clock
-Message-ID: <20200518180325.GB2165@builder.lan>
-References: <1588573224-3038-1-git-send-email-sivaprak@codeaurora.org>
- <1588573224-3038-9-git-send-email-sivaprak@codeaurora.org>
- <20200512202439.GK2165@builder.lan>
- <80039c21-41cf-2ace-939a-ef48fd773aa4@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c3UXUPcrt3P6Bgw39Gw3bWHJNGcf+91G7bjcoOjFILM=;
+        b=SKlq6jRjStFHgQ3NqMSg7vfSNvymDsNK1ukAJvrah4yix3oVXkq6hxoNwitc8kvDde
+         wFSUWdl34dERqnt6uFPPqjxGkt0GoGl2rIk812Mk79nkcyUoUP9eHROX5OcqEaPUcRE5
+         n5FCeEgdEPcVidldHioWd77BK99jpfLwS0cTm1d8DqG7wHYRoa0ucXcNq3W4AZzTPQb5
+         GzQRjXzAWDI84UKlrEtZ5hrV9DoFw4QVyQ8WxybNYkQGjMf+a1skFXnGbxJOLno1HGii
+         vhyIKbiWF5l6kA3HHW2AdMdoPlMNBNvjag16d0I1zg4NnJzQR91+S7Hp04xd5PsA50KD
+         /vyg==
+X-Gm-Message-State: AOAM530W1SymVinOqOKEsnMTtXVhAG703w+EHryVLne/G47o8+oos8M6
+        E6063lDo5eWzwdK3L1SeJwNcaR4k0vI=
+X-Google-Smtp-Source: ABdhPJxukKqREoNICFPlCzqqBS/YA6ClDMoJdBEwjYiNZjI3d+PNK4h65VQdh0BAtMHxtI4dje413w==
+X-Received: by 2002:a67:2e45:: with SMTP id u66mr6268786vsu.123.1589825171790;
+        Mon, 18 May 2020 11:06:11 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id f207sm3359951vka.41.2020.05.18.11.06.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 May 2020 11:06:10 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id v192so2655357vkd.3
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 11:06:10 -0700 (PDT)
+X-Received: by 2002:a1f:4e46:: with SMTP id c67mr11262026vkb.92.1589825169814;
+ Mon, 18 May 2020 11:06:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <80039c21-41cf-2ace-939a-ef48fd773aa4@codeaurora.org>
+References: <20200507213500.241695-1-dianders@chromium.org>
+ <20200509201511.GD30802@ravnborg.org> <CAD=FV=VBU7JmTdvgWjyj_ytrFmz6Gkx2OjVr1FxLh9DBG_jN6w@mail.gmail.com>
+ <CAD=FV=UNuwb+YYJKw9+HNMKUNfuNFxj+Gr+yB9tXANbXAvDgCg@mail.gmail.com> <20200518175939.GA770425@ravnborg.org>
+In-Reply-To: <20200518175939.GA770425@ravnborg.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 18 May 2020 11:05:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XmUrF3nCZF4dDom5RrWrdVe-iJocenU3cJEDx-gGkDRA@mail.gmail.com>
+Message-ID: <CAD=FV=XmUrF3nCZF4dDom5RrWrdVe-iJocenU3cJEDx-gGkDRA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] drm: Prepare to use a GPIO on ti-sn65dsi86 for Hot
+ Plug Detect
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     LinusW <linus.walleij@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Sandeep Panda <spanda@codeaurora.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Clark <robdclark@chromium.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 12 May 20:55 PDT 2020, Sivaprakash Murugesan wrote:
+Sam,
 
-> Hi Bjorn,
-> 
-> On 5/13/2020 1:54 AM, Bjorn Andersson wrote:
-> > On Sun 03 May 23:20 PDT 2020, Sivaprakash Murugesan wrote:
-> > 
-> > > add support for apps pll and apcs clock.
-> > > 
-> > > Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 16 +++++++++++++---
-> > >   1 file changed, 13 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> > > index 1aa8d85..af2ceeb 100644
-> > > --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> > > @@ -294,12 +294,22 @@
-> > >   		};
-> > >   		apcs_glb: mailbox@b111000 {
-> > > -			compatible = "qcom,ipq8074-apcs-apps-global";
-> > > -			reg = <0x0b111000 0xc>;
-> > > -
-> > > +			compatible = "qcom,ipq6018-apcs-apps-global";
-> > > +			reg = <0x0b111000 0x1000>;
-> > My documentation states that IPQ8074 indeed has this block at
-> > 0x0b111000, but IPQ6018 it's at 0x6b111000. Can you confirm this is
-> > correct? Same with the pll below.
-> The address 0x6b111000 is how the RPM sees this block. For A53 it is still
-> 0xb111000
+On Mon, May 18, 2020 at 10:59 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Douglas.
+>
+> > > Given the previous feedback from Linus W, Stephen, and Laurent I
+> > > expect things are good enough to land now, but it'd be good to get
+> > > confirmation (I removed some of the previous tags just to get
+> > > confirmation).  If we can get review tags early next week maybe it'll
+> > > still be in time to land for 5.8?
+> >
+> > I think all the others have reviews now.  Is there anything blocking
+> > them from getting applied?
+> Applied, including the small fix pointed out by Linus.
 
-Okay, thanks for confirming.
+Thanks!  Ugh, I just realized what the problem was.  I posted a v6
+with this fix but insanely somehow didn't CC you (!!!).  It was here:
 
-Regards,
-Bjorn
+https://lore.kernel.org/r/20200513215902.261547-1-dianders@chromium.org
+
+I'm super sorry about that and thanks for fixing the nit.  That was
+the only difference between v5 and v6.  I just checked what you pushed
+and it looks great, thank you.
+
+-Doug
