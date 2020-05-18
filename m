@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F21F1D7AD3
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85E8A1D7AE3
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726958AbgEROPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 10:15:47 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:37268 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726907AbgEROPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:15:47 -0400
-Received: by mail-il1-f195.google.com with SMTP id n11so9976723ilj.4;
-        Mon, 18 May 2020 07:15:46 -0700 (PDT)
+        id S1727840AbgERORh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 10:17:37 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:42242 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726998AbgERORh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:17:37 -0400
+Received: by mail-il1-f193.google.com with SMTP id 18so1027868iln.9;
+        Mon, 18 May 2020 07:17:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NiavkdLPqGu3sdeEgEzastsxcKs5S9EbJ8pP8VASFE0=;
-        b=Bk4QBE5MIBwTJ2m0hR0qL4XZyrBXuCpK9loj3X+4GAxsq07UOMIkBLp49a2wt7A/rj
-         JIA5/oz+mQomLz+MXuJMPkYMSnRwu97PehVqbCDocAc4DBBV7sn2OO5BfBaX4y4UVPk3
-         +ORY+7CnmGfaJXNbI2PQqIUO2mvBpVDddlOEIxUUftha29ckkxaGqK4Km2P7ntGWVpD3
-         NoYWPjkIZ2mAtTaDzso3/vmdAme4YKQ0H8HO4WdpDhtoe4f9x660E8kdJta1dXGN+2Hw
-         pHomSbdo9rCr4Fq8r3qE6z1vY3RFEQuuFsWAgnlihlmrfWnyp0ESmK1LiJ4it7y8TMNp
-         jh+A==
-X-Gm-Message-State: AOAM5306q5OT74+5Lcb9nHqBmmrgBsbprGtgEYJABVj+TFECMDzodET/
-        KlsEBCz84Y0CVc+NLGm0SfpPQRM=
-X-Google-Smtp-Source: ABdhPJyWaai1niB/pKI4PDVBUgD6yt6JC62eo2eqfl9jOjznl2OcupHi7LxCPkiaQa7lqygnSoUx+g==
-X-Received: by 2002:a92:8415:: with SMTP id l21mr15997886ild.214.1589811346565;
-        Mon, 18 May 2020 07:15:46 -0700 (PDT)
+        bh=s4TcDNDS3QM/2KVd7294s1MpV8sGjG6xtKJIu72IkFw=;
+        b=jrm6oCb+JSL+NzHvRdGWxqGcWr6PtW3U6ZyMn0JziQhq2QWjSp+i4m3JL+jRa6JILt
+         t0+jMvTlGtb3JxoWxvZnaado4Yt08gwtBVYdCCLWLMWyWbuCoKO56DBpu+qXcQHu8909
+         adYX3xNXCGNOSdW4gGdYzMOblUjzpIajiHgwt9Ff64GMghdH/l6S7KGu9pfo3NIy/V+q
+         oLJERjGW2YwWBUsH+GW4KB7AsWsnbt4ybz/RtSqBQIr1Nd5Y7y1cS3UqCZsaDP9ehgRr
+         gMIhV9Zo3oAtqYqpOZ1gikEk8u8wAAPcF+DrBVlb8WCJPinSglDRhBY6srpx2Pv/P0fK
+         mvyQ==
+X-Gm-Message-State: AOAM533b87vGmpWFCBK0gj5q0HwceSAKjOIf+RXsDlmyWEH7F3OgujMl
+        SVWPrUMPA3wSIFurjuUDYg==
+X-Google-Smtp-Source: ABdhPJzHP8Ro8/4oUA9Fgt5ZOHrfRK+rsvNiPBByP3WgO3+qiK7XcLyuhVX7Th3TGlo7ugCodmENbg==
+X-Received: by 2002:a92:c68c:: with SMTP id o12mr14945066ilg.96.1589811456172;
+        Mon, 18 May 2020 07:17:36 -0700 (PDT)
 Received: from rob-hp-laptop ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id i27sm495013ilf.79.2020.05.18.07.15.45
+        by smtp.gmail.com with ESMTPSA id k5sm4353242ilg.55.2020.05.18.07.17.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2020 07:15:45 -0700 (PDT)
-Received: (nullmailer pid 32260 invoked by uid 1000);
-        Mon, 18 May 2020 14:15:44 -0000
-Date:   Mon, 18 May 2020 08:15:44 -0600
+        Mon, 18 May 2020 07:17:35 -0700 (PDT)
+Received: (nullmailer pid 2493 invoked by uid 1000);
+        Mon, 18 May 2020 14:17:34 -0000
+Date:   Mon, 18 May 2020 08:17:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jeff Chase <jnchase@google.com>
-Cc:     robh+dt@kernel.org, hverkuil-cisco@xs4all.nl, mchehab@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add ch7322 media i2c device
-Message-ID: <20200518141544.GA31928@bogus>
-References: <20200515025159.101081-1-jnchase@google.com>
- <20200515025159.101081-2-jnchase@google.com>
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Felipe Balbi <balbi@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: qcom,dwc3: Convert USB DWC3
+ bindings
+Message-ID: <20200518141734.GA2367@bogus>
+References: <1589534960-6973-1-git-send-email-sanm@codeaurora.org>
+ <1589534960-6973-2-git-send-email-sanm@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200515025159.101081-2-jnchase@google.com>
+In-Reply-To: <1589534960-6973-2-git-send-email-sanm@codeaurora.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 May 2020 22:51:58 -0400, Jeff Chase wrote:
-> The ch7322 is a Chrontel CEC controller.
+On Fri, 15 May 2020 14:59:19 +0530, Sandeep Maheswaram wrote:
+> Convert USB DWC3 bindings to DT schema format using json-schema.
 > 
-> Signed-off-by: Jeff Chase <jnchase@google.com>
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
 > ---
->  .../bindings/media/i2c/chrontel,ch7322.yaml   | 65 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  MAINTAINERS                                   |  7 ++
->  3 files changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+>  .../devicetree/bindings/usb/qcom,dwc3.txt          | 104 -------------
+>  .../devicetree/bindings/usb/qcom,dwc3.yaml         | 162 +++++++++++++++++++++
+>  2 files changed, 162 insertions(+), 104 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/media/i2c/chrontel,ch7322.yaml#
+Documentation/devicetree/bindings/usb/qcom,dwc3.example.dts:28.13-20: Warning (ranges_format): /example-0/usb@a6f8800:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
+Documentation/devicetree/bindings/usb/qcom,dwc3.example.dts:28.13-20: Warning (ranges_format): /example-0/usb@a6f8800:ranges: empty "ranges" property but its #size-cells (2) differs from /example-0 (1)
 
-See https://patchwork.ozlabs.org/patch/1290799
+See https://patchwork.ozlabs.org/patch/1290971
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
