@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DCAB1D6ECC
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 04:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C466C1D6EEA
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 04:34:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727012AbgERCZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 May 2020 22:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57714 "EHLO
+        id S1726696AbgERCeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 May 2020 22:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgERCZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 22:25:53 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7C8C061A0C;
-        Sun, 17 May 2020 19:25:51 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id l19so8139944lje.10;
-        Sun, 17 May 2020 19:25:51 -0700 (PDT)
+        with ESMTP id S1726639AbgERCeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 May 2020 22:34:10 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88419C061A0C;
+        Sun, 17 May 2020 19:34:10 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id d22so6634594lfm.11;
+        Sun, 17 May 2020 19:34:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZobNRLV9OWt6qIUL1QmRkgHnNT9DqVov1qFrkfSpiCI=;
-        b=Fa+sLwXFj+6YJYZB5+V59CKynIEG0EI/zUj+KfUX4xmhj8vB9k/z7JNHN8xbvXmYFD
-         xfDZYHPB+uVelSfJrpTryuhGjFcZQ7nNUo3+E8wS4G9nSELGNdMxEIvWWazEjXu1l+zc
-         3FyAYbtMvOJeFsAhO9lHQzrhvJp48lzG3LDnIj5YrnscpNnY5Pyhtrp/I4+AgwdouMN/
-         MSe6UdHngOusWGsmSxXMRMlDakiAFYPFD8N0HKGy/2eTn+gn+jo/G4UMqwWQcFAt92H0
-         ldCc11Rc41Qi2S2GpcZHuKDbpQCGBKT18lADXixjVqIvg1lZOg3nphctkMolxdhwH2Az
-         ZBMA==
+        h=from:to:cc:subject:date:message-id;
+        bh=RJIP0CQmzhZgZi7curoUhxtyDwhM7Gccf5L+02fqCt4=;
+        b=GPMfBxuBBwkDGH07WQUV82WfnOHnZ1riGASfaG56/QtFxTjZboeHxdQTIpFFNNl5bg
+         Bs9wi618SiRwIYBdYr73+8qX7GmNiBUOrnCO3+ztB6N40KxeuGSJ4OtAjjDPTuy5OOOY
+         pxp9+6gFBhJoyNcPjU3LS/yzAJav+7T8I8uDeiLDzv7P3H6Ova7R58Y0Hej5aGUxJ6JZ
+         JN7yCGVvt4Cy+vuzGcWXF3BBObINI3YQULKfGF19/KFvXDtxTmUwgM1ertv2ijh0hkFK
+         7FKBjtEa78Y9VCJ5/HT6KSrZF83dwl2i+5IzD4c48f0MbtwxoxTDFJFZzyCVNzDTczuJ
+         0nMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZobNRLV9OWt6qIUL1QmRkgHnNT9DqVov1qFrkfSpiCI=;
-        b=ufUai+mF/pbY8Y4F2RP6fUQ9zWEtElsKJa3mJ+3Y7oygfSfatBipsyjIUyrMOglgOP
-         1TbLPAhDQsdWLCZHEugJKWfWKRMT+TI+N4gIKkaUXKEQ/iz21KaqhiRNfBWBYVQkD79z
-         ViBpJgudGV0zAMARPlDitft5cctTXdulX6vYyHy2MlUU4PD62kzNx/SKirRNUkEkOhih
-         lAH7/qFZqx/wx2fh87WmfVk1eGxUVUhm2M7zVuAbxtjrvmS3DDMkjDm21q2RLEb9YUN7
-         TlAmlVm9ktMyJbwuJTpTdMm2RiX0nY7wnBPEmKTJKmCDoEzEUwE9nNAJKbGNh2jzKj81
-         VQCQ==
-X-Gm-Message-State: AOAM530LAYTEma/ROoK57Hg7gJVGrZDZpHPuemqy6M81ejaLpCTn4e8d
-        7JLshw8/WmuOdPfRa2VfN8I=
-X-Google-Smtp-Source: ABdhPJyTs/i33Mtq1ks1n/wp7BfL4n8MywZwlykIMrasJArCJe8s8j9a/sNJ+A/zXsSEhWD6Bjra9g==
-X-Received: by 2002:a05:651c:545:: with SMTP id q5mr9218846ljp.57.1589768750372;
-        Sun, 17 May 2020 19:25:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=RJIP0CQmzhZgZi7curoUhxtyDwhM7Gccf5L+02fqCt4=;
+        b=ar2k010v6FdFI6v+aUhaLG0R/Yu1YTIxcSinKUUiOXA1LG+IZd0eQwTH1+zL6j1FgS
+         c7MXaj+jhJyiW5Sex1CoNDJSfjpIFr4khrVFqDCKIg/CBU/hai7Im/l99TvKSdYug1qc
+         /KKjeSM2wHNfyTqZKwTWf3VA9UbjAfSJ2VCeKo3VLQcv/E1G+U18/PAI2Hpdqs5Gpu/G
+         F0o8AjrS81ZFZJNUA+MGp55f2Hu0Wj6I+tNef4JWXB768naGhtc7ujvFoYadUQd5L2HA
+         Q5/idhzGvvtRP1OmdbA70RJkjCquHGvocwrOLkF5g5Oar/CxvuQbmI5/5HfjkMS45Hja
+         xycQ==
+X-Gm-Message-State: AOAM5327Cv1Sk6cDpzYsBNOkGu9K+Ln757nQfj+GmA5+2ICn/NjZntVc
+        CGAt6b/JaKaIm49kn/mcgD4=
+X-Google-Smtp-Source: ABdhPJyC+tzEUGGGFXi/i85Sz9gsnT2zFVj63FdZWioYtju4fNMBf7vye7YPay2X6xjyITXnMzZ6Sw==
+X-Received: by 2002:ac2:4145:: with SMTP id c5mr10067638lfi.91.1589769248843;
+        Sun, 17 May 2020 19:34:08 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id m13sm5997306lfk.12.2020.05.17.19.25.48
+        by smtp.gmail.com with ESMTPSA id l25sm5937498lfh.71.2020.05.17.19.34.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 May 2020 19:25:49 -0700 (PDT)
+        Sun, 17 May 2020 19:34:08 -0700 (PDT)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -53,183 +52,44 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: meson-g12b-gtking-pro: add initial device-tree
-Date:   Mon, 18 May 2020 02:25:31 +0000
-Message-Id: <20200518022531.14739-6-christianshewitt@gmail.com>
+Subject: [PATCH v3 0/5] arm64: dts: meson: add W400 dtsi and GT-King/Pro devices
+Date:   Mon, 18 May 2020 02:33:59 +0000
+Message-Id: <20200518023404.15166-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200518022531.14739-1-christianshewitt@gmail.com>
-References: <20200518022531.14739-1-christianshewitt@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400
-reference board with an S922X chip.
+This series combines patch 2 from [1] which converts the existing Ugoos
+AM6 device-tree to a common W400 dtsi and dts, and then reworks the
+Beelink GT-King/GT-King Pro serries from [2] to use the dtsi, but this
+time without the offending common audio dtsi approach. I've carried
+forwards acks on bindings from Rob as these did not change.
 
-- 4GB LPDDR4 RAM
-- 64GB eMMC storage
-- 10/100/1000 Base-T Ethernet
-- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-- HDMI 2.1 video
-- Analogue audio output
-- 1x RS232 port
-- 2x USB 2.0 port
-- 2x USB 3.0 ports
-- IR receiver
-- 1x micro SD card slot
-- 1x Power on/off button
+v3 - amend author full-name on bindings patch
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../dts/amlogic/meson-g12b-gtking-pro.dts     | 125 ++++++++++++++++++
- 2 files changed, 126 insertions(+)
+[1] https://patchwork.kernel.org/patch/11497105/
+[2] https://patchwork.kernel.org/project/linux-amlogic/list/?series=273483
+
+Christian Hewitt (5):
+  arm64: dts: meson: convert ugoos-am6 to common w400 dtsi
+  dt-bindings: arm: amlogic: add support for the Beelink GT-King
+  arm64: dts: meson-g12b-gtking: add initial device-tree
+  dt-bindings: arm: amlogic: add support for the Beelink GT-King Pro
+  arm64: dts: meson-g12b-gtking-pro: add initial device-tree
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../dts/amlogic/meson-g12b-gtking-pro.dts     | 125 ++++++
+ .../boot/dts/amlogic/meson-g12b-gtking.dts    | 145 ++++++
+ .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts | 410 +----------------
+ .../boot/dts/amlogic/meson-g12b-w400.dtsi     | 423 ++++++++++++++++++
+ 6 files changed, 698 insertions(+), 409 deletions(-)
  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 66691090b30c..38bb1f6e6ef6 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-tanix-tx5max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-new file mode 100644
-index 000000000000..f0c56a16af3d
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-w400.dtsi"
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "azw,gtking", "amlogic,g12b";
-+	model = "Beelink GT-King Pro";
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		power-button {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		white {
-+			label = "power:white";
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12B-GTKING-PRO";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
 -- 
 2.17.1
 
