@@ -2,144 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 401861D7BFC
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D758E1D7BC5
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728152AbgERO5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 10:57:31 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:56358 "EHLO inva020.nxp.com"
+        id S1727987AbgEROsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 10:48:38 -0400
+Received: from mga04.intel.com ([192.55.52.120]:31744 "EHLO mga04.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728115AbgERO5a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 May 2020 10:57:30 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DF4281A0B13;
-        Mon, 18 May 2020 16:57:28 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6D0791A097E;
-        Mon, 18 May 2020 16:57:23 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 138D6402B3;
-        Mon, 18 May 2020 22:57:17 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ping.bai@nxp.com, aisheng.dong@nxp.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] dt-bindings: timer: Convert i.MX SYSCTR to json-schema
-Date:   Mon, 18 May 2020 22:47:40 +0800
-Message-Id: <1589813260-20036-4-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589813260-20036-1-git-send-email-Anson.Huang@nxp.com>
-References: <1589813260-20036-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726918AbgEROsi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 10:48:38 -0400
+IronPort-SDR: H+r+wI2Uw71V6/c6spsJrUy8UNdXfKwXgW3DzQczYrVgoYgWbx2uSLKd6RrR3tcsctzlJHxIoP
+ Ok+rofseahyw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2020 07:48:37 -0700
+IronPort-SDR: 18Uv75IZIa38f2SAIcO0y0GV3VWK8Vuxilb8uNi1VYtEemEuJLyhedZ1p2MYO9CKlHxG4XlpmQ
+ s2Qn0418B4pA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; 
+   d="scan'208";a="263977274"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga003.jf.intel.com with ESMTP; 18 May 2020 07:48:32 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andy.shevchenko@gmail.com>)
+        id 1jah4E-007Rnm-Ik; Mon, 18 May 2020 17:48:34 +0300
+Date:   Mon, 18 May 2020 17:48:34 +0300
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Allison Randal <allison@lohutok.net>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Clement Leger <cleger@kalray.eu>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 10/19] spi: dw: Use DMA max burst to set the request
+ thresholds
+Message-ID: <20200518144834.GD1634618@smile.fi.intel.com>
+References: <20200508132943.9826-1-Sergey.Semin@baikalelectronics.ru>
+ <20200515104758.6934-1-Sergey.Semin@baikalelectronics.ru>
+ <20200515104758.6934-11-Sergey.Semin@baikalelectronics.ru>
+ <20200515143842.GG1634618@smile.fi.intel.com>
+ <20200516200133.wmaqnfjbr7234fzo@mobilestation>
+ <20200518110343.GY1634618@smile.fi.intel.com>
+ <20200518125253.r4fpr4mjflclqpym@mobilestation>
+ <CAHp75VeMcv-hQViCANQARiNh0LwmugsDWk=MF1c5E3t7z5h02Q@mail.gmail.com>
+ <20200518134306.7rvydoasv7pmxwxl@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200518134306.7rvydoasv7pmxwxl@mobilestation>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX SYSCTR binding to DT schema format using json-schema.
+On Mon, May 18, 2020 at 04:43:06PM +0300, Serge Semin wrote:
+> On Mon, May 18, 2020 at 04:25:20PM +0300, Andy Shevchenko wrote:
+> > On Mon, May 18, 2020 at 3:53 PM Serge Semin
+> > <Sergey.Semin@baikalelectronics.ru> wrote:
+> > > On Mon, May 18, 2020 at 02:03:43PM +0300, Andy Shevchenko wrote:
+> > > > On Sat, May 16, 2020 at 11:01:33PM +0300, Serge Semin wrote:
+> > > > > On Fri, May 15, 2020 at 05:38:42PM +0300, Andy Shevchenko wrote:
+> > > > > > On Fri, May 15, 2020 at 01:47:49PM +0300, Serge Semin wrote:
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- .../devicetree/bindings/timer/nxp,sysctr-timer.txt | 25 ----------
- .../bindings/timer/nxp,sysctr-timer.yaml           | 54 ++++++++++++++++++++++
- 2 files changed, 54 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
+...
 
-diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-deleted file mode 100644
-index d576599..0000000
---- a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--NXP System Counter Module(sys_ctr)
--
--The system counter(sys_ctr) is a programmable system counter which provides
--a shared time base to Cortex A15, A7, A53, A73, etc. it is intended for use in
--applications where the counter is always powered and support multiple,
--unrelated clocks. The compare frame inside can be used for timer purpose.
--
--Required properties:
--
--- compatible :      should be "nxp,sysctr-timer"
--- reg :             Specifies the base physical address and size of the comapre
--                    frame and the counter control, read & compare.
--- interrupts :      should be the first compare frames' interrupt
--- clocks : 	    Specifies the counter clock.
--- clock-names: 	    Specifies the clock's name of this module
--
--Example:
--
--	system_counter: timer@306a0000 {
--		compatible = "nxp,sysctr-timer";
--		reg = <0x306a0000 0x20000>;/* system-counter-rd & compare */
--		clocks = <&clk_8m>;
--		clock-names = "per";
--		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
--	};
-diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
-new file mode 100644
-index 0000000..830211c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/nxp,sysctr-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP System Counter Module(sys_ctr)
-+
-+maintainers:
-+  - Bai Ping <ping.bai@nxp.com>
-+
-+description: |
-+  The system counter(sys_ctr) is a programmable system counter
-+  which provides a shared time base to Cortex A15, A7, A53, A73,
-+  etc. it is intended for use in applications where the counter
-+  is always powered and support multiple, unrelated clocks. The
-+  compare frame inside can be used for timer purpose.
-+
-+properties:
-+  compatible:
-+    const: nxp,sysctr-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: per
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    timer@306a0000 {
-+        compatible = "nxp,sysctr-timer";
-+        reg = <0x306a0000 0x20000>;
-+        clocks = <&clk_8m>;
-+        clock-names = "per";
-+        interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+     };
+> > > > > It's not like anyone cared about padding in this structure in the first place)
+> > > >
+> > > > I think I have been caring (to some extend).
+> > >
+> > > Well, If you have then instead of asking to rearrange just two members (which
+> > > by the way finely grouped by the Tx-Rx affiliation) why not sending a
+> > > patch, which would refactor the whole structure so to be optimal for the x64
+> > > platforms? I don't really see why this gets very important for you seeing
+> > > Mark is Ok with this. My current commit follows the common driver design
+> > > including the DW SSI data members grouping. On the second thought I'll leave
+> > > it as is then.
+> > 
+> > Again same issue here. What is really easy to do for you here, will
+> > become a burden and additional churn to anybody else.
+> > So, why not to minimize it in the first place? Same with comma in
+> > another patch. Sorry, I really don't get it.
+> 
+> If comma is more or less understandable (though adding it is absolutely
+> redundant there and doesn't worth even a bit of time spending for the
+> discussion), here you consider the patch from padding point of view.
+> The driver developer didn't care about it, but did care about grouping the
+> members in a corresponding way. The padding burden will be there anyway and
+> should be fixed for the whole structure in an additional patch. Until then
+> the way of grouping should be preserved.
+
+Like you said, we spent already much more time than that simple change can be
+satisfied. And like you said, "deleloper ... did care about groupping members
+in a corresponding way". So, if we look at this in the original code, my
+suggestion, besides padding benefit, is consistent with existing pattern in
+that data structure.
+
+Note, I agree on extern keyword change can be postponed (it was in the original
+code), but here you introduce a new code...
+
 -- 
-2.7.4
+With Best Regards,
+Andy Shevchenko
+
 
