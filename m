@@ -2,103 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F401D76FF
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 13:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F9C1D772B
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 13:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726590AbgERL1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 07:27:14 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:53178 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726557AbgERL1O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 07:27:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1589801230; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Tvn5nLaWGrzfShxUOvOGAY+B3v9oKV0REWchgAjg+ps=;
-        b=qIFV6CKF52U3yd4k3ke3sIOnyAJmRhauaGV3FzX3WGiZNmRDhflWKDE0YQRdC5VuFgGyyE
-        31fwL2ACyG91ZYgJ+yMID+k6fILOmdHEnYO+ZsoSFU9aI1lwZyt6tpLWMuEwvj6yTy5NUt
-        aFjUKd/YRQCXMKn4IrMIFDDnuBl89vE=
-Date:   Mon, 18 May 2020 13:26:58 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 11/12] gpu/drm: Ingenic: Add support for the IPU
-To:     Emil Velikov <emil.l.velikov@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, od@zcrc.me,
-        linux-kernel@vger.kernel.org,
-        ML dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <YGYIAQ.7N9YGTBML0143@crapouillou.net>
-In-Reply-To: <CACvgo50q=qJXk3nFSCm+S6JHBMxpY0C_HwH8KGB2EAcKwgL0oQ@mail.gmail.com>
-References: <20200516215057.392609-1-paul@crapouillou.net>
-        <20200516215057.392609-11-paul@crapouillou.net>
-        <CACvgo50q=qJXk3nFSCm+S6JHBMxpY0C_HwH8KGB2EAcKwgL0oQ@mail.gmail.com>
+        id S1727122AbgERLco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 07:32:44 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:44912 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726590AbgERLco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 07:32:44 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04IBR8En030210;
+        Mon, 18 May 2020 11:32:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=Nf4Rh2W7FuA5dcxB52Yb3a1cDcQWNzGxXYU7kpXcYOs=;
+ b=reQJpdgKciM7tKTDXmtbEwWYIBsfiLz5q0YT3X14iPZz7K/GfjX8lEWRBFCqcsR9LX+i
+ KKS9hLMm3Yxm95bKmOC17YhIBcm9frl/1HaS42mJzoLHMOuvGSKkhqeLeHFHGPj6MYIE
+ woE/F9Odues1s1B2meS6bluwBuYbeGmy6DAG22T7QFVeHGLMJqFFJMFrqS+OebYYE7fo
+ cfoN5XCqV9mgVaFIKqnZvDRgNbnh/WRhc0zZn0c4WvTeNlJDITcJfuD1G4LZoYp2DTDj
+ ZxqDpe/v+Lf2EbEwuDgOBef67eoIJIlmi2M8K1m5icqF8s8t3NjH1ffCZ2swvqSJSYij OQ== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by userp2130.oracle.com with ESMTP id 3127kqx7tp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 18 May 2020 11:32:37 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04IBSuGt121191;
+        Mon, 18 May 2020 11:30:36 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+        by aserp3020.oracle.com with ESMTP id 312t30m2qd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 18 May 2020 11:30:36 +0000
+Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
+        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 04IBUTmb001719;
+        Mon, 18 May 2020 11:30:29 GMT
+Received: from mwanda (/41.57.98.10)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 18 May 2020 04:30:29 -0700
+Date:   Mon, 18 May 2020 14:30:21 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH] of: drop a reference on error in __of_attach_node_sysfs()
+Message-ID: <20200518113021.GB48709@mwanda>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9624 signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 spamscore=0 mlxlogscore=999
+ phishscore=0 mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2005180104
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9624 signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0 spamscore=0
+ bulkscore=0 clxscore=1011 priorityscore=1501 mlxscore=0 impostorscore=0
+ suspectscore=0 mlxlogscore=999 malwarescore=0 cotscore=-2147483648
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2004280000 definitions=main-2005180103
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Emil,
+We add a new of_node_get() to this function, but we should drop the
+reference if kobject_add().
 
-Le lun. 18 mai 2020 =E0 11:48, Emil Velikov <emil.l.velikov@gmail.com> a=20
-=E9crit :
-> Hi Paul,
->=20
-> Disclaimer: I don't know much about the hardware :-P
->=20
-> On Sun, 17 May 2020 at 00:31, Paul Cercueil <paul@crapouillou.net>=20
-> wrote:
->>=20
->>  Add support for the Image Processing Unit (IPU) found in all Ingenic
->>  SoCs.
->>=20
-> Since the IPU is present on all devices supported, does it make sense
-> to have it as separate module?
-> Didn't check closely although I suspect doing that will remove the
-> need for the component patch.
+Fixes: 5b2c2f5a0ea3 ("of: overlay: add missing of_node_get() in __of_attach_node_sysfs")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+From static analysis.  Maybe we should just call of_node_get() right
+before we return 0?
 
-It makes sense to me; you may not want to enable the IPU on platforms=20
-where it doesn't add much, e.g. on the JZ4725B where it only handles=20
-YUV and not RGB.
+ drivers/of/kobj.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Besides, while the older JZ4740 SoC has a IPU, it's mem-to-mem and=20
-cannot output directly to the CRTC, so it cannot be represented as a=20
-plane. On this SoC the current IPU code cannot be used. So the Ingenic=20
-DRM driver must still be able to probe with zero components.
-
->>  --- a/drivers/gpu/drm/ingenic/ingenic-drm.c
->>  +++ b/drivers/gpu/drm/ingenic/ingenic-drm.c
->>  @@ -50,7 +50,7 @@ struct jz_soc_info {
->>=20
->>   struct ingenic_drm {
->>          struct drm_device drm;
->>  -       struct drm_plane f0, f1;
->>  +       struct drm_plane f0, f1, *ipu_plane;
->>          struct drm_crtc crtc;
->>          struct drm_encoder encoder;
->>=20
->>  @@ -186,13 +186,16 @@ static void=20
->> ingenic_drm_crtc_update_timings(struct ingenic_drm *priv,
->>          regmap_update_bits(priv->map, JZ_REG_LCD_CTRL,
->>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16,
->>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16);
->>  +
->>  +       regmap_write(priv->map, JZ_REG_LCD_IPUR, JZ_LCD_IPUR_IPUREN=20
->> |
->>  +                    (ht * vpe / 3) << JZ_LCD_IPUR_IPUR_LSB);
->=20
-> This hunk also indicates that it may be better to merge the IPU within
-> the existing driver.
-
-This writes the IPUR register of the CRTC, nothing wrong here.
-
--Paul
-
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index c72eef988041..a90dc4b3b060 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -138,8 +138,10 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 
+ 	rc = kobject_add(&np->kobj, parent, "%s", name);
+ 	kfree(name);
+-	if (rc)
++	if (rc) {
++		of_node_put(np);
+ 		return rc;
++	}
+ 
+ 	for_each_property_of_node(np, pp)
+ 		__of_add_property_sysfs(np, pp);
+-- 
+2.26.2
 
