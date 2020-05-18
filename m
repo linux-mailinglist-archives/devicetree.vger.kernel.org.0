@@ -2,214 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D09331D74DD
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 12:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58C91D74B4
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 12:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726274AbgERKNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 06:13:16 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:48832 "EHLO inva021.nxp.com"
+        id S1726919AbgERKF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 06:05:28 -0400
+Received: from mx.socionext.com ([202.248.49.38]:2449 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726130AbgERKNQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 May 2020 06:13:16 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D9583200060;
-        Mon, 18 May 2020 12:13:14 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 759A6200781;
-        Mon, 18 May 2020 12:13:10 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0D20A402A6;
-        Mon, 18 May 2020 18:13:04 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2] dt-bindings: reset: Convert i.MX reset to json-schema
-Date:   Mon, 18 May 2020 18:03:32 +0800
-Message-Id: <1589796212-9993-1-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726274AbgERKF1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 06:05:27 -0400
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 18 May 2020 19:05:25 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 26634180B84;
+        Mon, 18 May 2020 19:05:26 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Mon, 18 May 2020 19:05:26 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by iyokan.css.socionext.com (Postfix) with ESMTP id DEC7D41C5A;
+        Mon, 18 May 2020 19:05:25 +0900 (JST)
+Received: from [10.213.31.127] (unknown [10.213.31.127])
+        by yuzu.css.socionext.com (Postfix) with ESMTP id 26A161207BB;
+        Mon, 18 May 2020 19:05:25 +0900 (JST)
+Subject: Re: [PATCH v2 4/5] PCI: uniphier: Add iATU register support
+To:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+References: <1589536743-6684-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1589536743-6684-5-git-send-email-hayashi.kunihiko@socionext.com>
+ <DM5PR12MB1276D6181D86C8DF0F98427ADABD0@DM5PR12MB1276.namprd12.prod.outlook.com>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <e3c5a841-7098-542d-cf71-9591fd24db5c@socionext.com>
+Date:   Mon, 18 May 2020 19:05:24 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <DM5PR12MB1276D6181D86C8DF0F98427ADABD0@DM5PR12MB1276.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX reset binding to DT schema format using json-schema.
+Hi Gustavo,
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+On 2020/05/15 22:16, Gustavo Pimentel wrote:
+> Hi Kunihiko,
+> 
+> On Fri, May 15, 2020 at 10:59:2, Kunihiko Hayashi
+> <hayashi.kunihiko@socionext.com> wrote:
+> 
+>> This gets iATU register area from reg property. In Synopsis DWC version
+> 
+> s/Synopsis/Synopsys
+> in all patches
+Thank you for pointing out.
+I'll fix and be careful about this.
+
+Thank you,
+
 ---
-Changes since V1:
-	- add the compatible strings per SoC;
-	- use "reset-controller" as node name instead of src;
-	- add interrupt items description.
----
- .../devicetree/bindings/reset/fsl,imx-src.txt      | 49 -----------
- .../devicetree/bindings/reset/fsl,imx-src.yaml     | 98 ++++++++++++++++++++++
- 2 files changed, 98 insertions(+), 49 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/reset/fsl,imx-src.txt
- create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx-src.yaml
-
-diff --git a/Documentation/devicetree/bindings/reset/fsl,imx-src.txt b/Documentation/devicetree/bindings/reset/fsl,imx-src.txt
-deleted file mode 100644
-index 6ed79e6..0000000
---- a/Documentation/devicetree/bindings/reset/fsl,imx-src.txt
-+++ /dev/null
-@@ -1,49 +0,0 @@
--Freescale i.MX System Reset Controller
--======================================
--
--Please also refer to reset.txt in this directory for common reset
--controller binding usage.
--
--Required properties:
--- compatible: Should be "fsl,<chip>-src"
--- reg: should be register base and length as documented in the
--  datasheet
--- interrupts: Should contain SRC interrupt and CPU WDOG interrupt,
--  in this order.
--- #reset-cells: 1, see below
--
--example:
--
--src: src@20d8000 {
--        compatible = "fsl,imx6q-src";
--        reg = <0x020d8000 0x4000>;
--        interrupts = <0 91 0x04 0 96 0x04>;
--        #reset-cells = <1>;
--};
--
--Specifying reset lines connected to IP modules
--==============================================
--
--The system reset controller can be used to reset the GPU, VPU,
--IPU, and OpenVG IP modules on i.MX5 and i.MX6 ICs. Those device
--nodes should specify the reset line on the SRC in their resets
--property, containing a phandle to the SRC device node and a
--RESET_INDEX specifying which module to reset, as described in
--reset.txt
--
--example:
--
--        ipu1: ipu@2400000 {
--                resets = <&src 2>;
--        };
--        ipu2: ipu@2800000 {
--                resets = <&src 4>;
--        };
--
--The following RESET_INDEX values are valid for i.MX5:
--GPU_RESET     0
--VPU_RESET     1
--IPU1_RESET    2
--OPEN_VG_RESET 3
--The following additional RESET_INDEX value is valid for i.MX6:
--IPU2_RESET    4
-diff --git a/Documentation/devicetree/bindings/reset/fsl,imx-src.yaml b/Documentation/devicetree/bindings/reset/fsl,imx-src.yaml
-new file mode 100644
-index 0000000..7cd6095
---- /dev/null
-+++ b/Documentation/devicetree/bindings/reset/fsl,imx-src.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reset/fsl,imx-src.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX System Reset Controller
-+
-+maintainers:
-+  - Philipp Zabel <p.zabel@pengutronix.de>
-+
-+description: |
-+  The system reset controller can be used to reset the GPU, VPU,
-+  IPU, and OpenVG IP modules on i.MX5 and i.MX6 ICs. Those device
-+  nodes should specify the reset line on the SRC in their resets
-+  property, containing a phandle to the SRC device node and a
-+  RESET_INDEX specifying which module to reset, as described in
-+  reset.txt
-+
-+  The following RESET_INDEX values are valid for i.MX5:
-+    GPU_RESET     0
-+    VPU_RESET     1
-+    IPU1_RESET    2
-+    OPEN_VG_RESET 3
-+  The following additional RESET_INDEX value is valid for i.MX6:
-+    IPU2_RESET    4
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: on i.MX51 the following compatible must be specified
-+        items:
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX50 the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx50-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX53 the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx53-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX6Q the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx6q-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX6SX the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx6sx-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX6SL the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx6sl-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX6UL the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx6ul-src"
-+          - const: "fsl,imx51-src"
-+
-+      - description: on i.MX6SLL the following compatibles must be specified
-+        items:
-+          - const: "fsl,imx6sll-src"
-+          - const: "fsl,imx51-src"
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: SRC interrupt
-+      - description: CPU WDOG interrupts out of SRC
-+    minItems: 1
-+    maxItems: 2
-+
-+  '#reset-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#reset-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reset-controller@73fd0000 {
-+        compatible = "fsl,imx51-src";
-+        reg = <0x73fd0000 0x4000>;
-+        interrupts = <75>;
-+        #reset-cells = <1>;
-+    };
--- 
-2.7.4
-
+Best Regards
+Kunihiko Hayashi
