@@ -2,530 +2,1626 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D1E1D7CE9
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 17:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8805C1D7CEF
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 17:34:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728300AbgERPdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 11:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728298AbgERPdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 11:33:52 -0400
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDED5C05BD0A
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 08:33:50 -0700 (PDT)
-Received: by mail-vs1-xe44.google.com with SMTP id e20so5244221vsb.5
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2020 08:33:50 -0700 (PDT)
+        id S1728335AbgERPeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 11:34:10 -0400
+Received: from mx0a-00328301.pphosted.com ([148.163.145.46]:51534 "EHLO
+        mx0a-00328301.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727006AbgERPeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 11:34:04 -0400
+Received: from pps.filterd (m0156134.ppops.net [127.0.0.1])
+        by mx0a-00328301.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04IFVZBN005947;
+        Mon, 18 May 2020 08:33:49 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=invensense.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pfpt1;
+ bh=hMu5JfqS2aHBvAVwpyxgkfyyTParYFpw84es1KAjgoU=;
+ b=AyowP8oM6VgcrNQAHzWCRJc+COAJAqXq0l1gJwLOFRUtt09xPbtbY74A/vUiPftMggiv
+ BZixMdWASNrfD1OLmXVzkPL1KRez9KIdtAj0JDfVbZRh10R4f86zqz62SEjqWJl3bzT5
+ byx0WsoPkAx6PlwNb8u82RM5Ax/DrCc3u1FpAYHlmdlfieADMFSGOcclAWILsQ9eS4cu
+ EOOn681iwecnJh5624apo8yZ3jzZDhrM/zWIeWZsQ89X1MyJe6vPMZp7i8iwBYAHzU8c
+ Qre9u1JEhFVj6z1X7pdYRtF8Q2yPljKPnqDNz1p8Twk+P9OX9KCeal2b5MCu11EXWEKM bA== 
+Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2172.outbound.protection.outlook.com [104.47.58.172])
+        by mx0a-00328301.pphosted.com with ESMTP id 313dph8aqs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 18 May 2020 08:33:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CcHXWsP3gGkAhHHk1OG3/QdaKK/fz8z4UxbGe79KJA9WD1Vz7AxGG0Tgz4PTEQCUXNbm82KrU6rkrwXAoNcDy9Xw5PF6U0/ILMtA5IBdz5btZMwIH+iy9ML7CxSZoWZK+EPDtVIlu7v1PwIop5/HsbSyBc/Lkoo25nw8eiVzZcEfV8kdggXr4t0KEGjxpw5kEcCw6MaMQ3nQQ1j80CLMyUz0MK2G5GzsyVvSzcqAdpU1wiY5pMr3eVd3aZNtfgFUUryqqajEaHCBHOFkjoWtNQNRYzJUnTd8exIN08L/yl+//XW2nGa59uNlNr0FGdmBmpvLArLZpXhNULDjV1znKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hMu5JfqS2aHBvAVwpyxgkfyyTParYFpw84es1KAjgoU=;
+ b=RISXSWivJr7CJS4FssBGjOIgey1Qu+hL2JAkGTy1+tCYFb+DsNk36H0iFTngO3Ngv6uTX3NA8/EiCaRgybC0ZoH211vMXd1g5rALSz564GfvsLdhHhUmZbaRY0R2aJhBFwMXyUJct+gM9mjsqzktuIvZ/Rj+/muFnc+/ZLTAnYB8ZDiIA8vLweXg4WhoJ6+793teXGPKwVLJVjjFiW9tb+fmqJQECRoVipY6xixim6Z2Ig8OTYEssZjUGKq48Z7V84aCgvFM5sn+sri2+bhce6sB/pHntphHb8N5ATr61NglDBru++zaa/SpyMwHyy4gP/t3bbxxP8RzStCIlWTwzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=invensense.com; dmarc=pass action=none
+ header.from=invensense.com; dkim=pass header.d=invensense.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JuiFjY8rEtzI/nuU668c1fxC0KXzwIHtxU4PRAgXJyo=;
-        b=sMn9DL9CZYB69iY3reUMMbflCQ2y4bWTfqHsPnZBREWJx9vhhcn9EhPyTkmB3CB/JH
-         3IlAwL/eNCpg+f3Do0RI/2PrWO1hxxs4qpJ4ytnFj9tK1ANYvJrGI1k6t3xrpOkT+aaS
-         uM8TtccQ3xjkORxk7WAYS37ujathyuhWA2eSRNAgo6Nz7apx1C/2sIoGx4NdC/zchW1q
-         0C6eQ89woo4Is039pm2TEu9WEZwoubMM4YUHZDtsEH8Awr/CSDynVTQ/UfR5iuA8+b3w
-         GpnKnUwDEbf8STqdnMpfUKJKOIin5DBcHSE8uLk8xsz+nDB8WLMMKZJBee49ywQcKmHy
-         baCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JuiFjY8rEtzI/nuU668c1fxC0KXzwIHtxU4PRAgXJyo=;
-        b=gBoaQgcOBlEEe6QxsSTNs5DwmnthhbppRHUnKCWz3JCU8LhxHvSBeBbklpxlGJHQaf
-         FiY/FMr/dIod+MYcJz3X1LNVK4cIocobMVSakcGoBM1SGzjzcH1cnNrjud+v6uIhYNWv
-         04DsYwAXWRS6IG5OLCJvj52i3BlilcgNTSNDPWV943OJML5Av6Jewiov+DOsNnFhxlrA
-         tPwl41f8OvO+ZBIJcIhjcFYVpcj+qqD8TtQ9IxvWc8mQoJQcewfxJIO+081E4itRpnrv
-         RzekREGhoe73/F4wXOtTPm7EDncjLIlMnkENLXlxiIUYzZOvg67FMRBE7Q3PC51L1M7r
-         4R1A==
-X-Gm-Message-State: AOAM533v56c1jaBEkFPnA/VYRfwljaa/dIWo+cOKIHhhx2JW8oe/8ChB
-        54+TEUKgdDybOjqAQymIZfD1yvZmPi8BpHO9L3w6aw==
-X-Google-Smtp-Source: ABdhPJzNx/5LlZZ3QuAqylyNO5Um3dEgEtotqJZHfZSvZ1JyOQH3UkRnQR3Qoow/q2apducZelmI/FuhfphFiTteExM=
-X-Received: by 2002:a67:407:: with SMTP id 7mr10909399vse.95.1589816028859;
- Mon, 18 May 2020 08:33:48 -0700 (PDT)
+ d=invensense.onmicrosoft.com; s=selector2-invensense-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hMu5JfqS2aHBvAVwpyxgkfyyTParYFpw84es1KAjgoU=;
+ b=B5v5opfHaIUnuubNihSXa9NeSbWkpXulCMJD4HlBXMCVkCFOjVDck8LiL3mnRF11/v3MzVDxJj2sxVI2ULBGZvK+OAkjTaIruIzLaPTkbT7EmPRPQ8lXf5a5hsFkQxAksRydy95PI/Scnhqn0gMPmPMJEXgrEKqx7i0rtanau8M=
+Received: from MN2PR12MB4422.namprd12.prod.outlook.com (2603:10b6:208:265::9)
+ by MN2PR12MB3071.namprd12.prod.outlook.com (2603:10b6:208:cc::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Mon, 18 May
+ 2020 15:33:45 +0000
+Received: from MN2PR12MB4422.namprd12.prod.outlook.com
+ ([fe80::8940:8e95:6996:cc0]) by MN2PR12MB4422.namprd12.prod.outlook.com
+ ([fe80::8940:8e95:6996:cc0%9]) with mapi id 15.20.3000.034; Mon, 18 May 2020
+ 15:33:45 +0000
+From:   Jean-Baptiste Maneyrol <JManeyrol@invensense.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+CC:     "jic23@kernel.org" <jic23@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 04/12] iio: imu: inv_icm42600: add gyroscope IIO device
+Thread-Topic: [PATCH 04/12] iio: imu: inv_icm42600: add gyroscope IIO device
+Thread-Index: AQHWJH3VTdruQdr81U6zFO6GVd/AHKieOT0AgA/Om3aAAAJhcw==
+Date:   Mon, 18 May 2020 15:33:45 +0000
+Message-ID: <MN2PR12MB44221A85B6BE6548CFE80572C4B80@MN2PR12MB4422.namprd12.prod.outlook.com>
+References: <20200507144222.20989-1-jmaneyrol@invensense.com>
+        <20200507144222.20989-5-jmaneyrol@invensense.com>,<20200508150104.000010c2@Huawei.com>,<MN2PR12MB4422B32CB3C4BFD0AF5FFF3CC4B80@MN2PR12MB4422.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB4422B32CB3C4BFD0AF5FFF3CC4B80@MN2PR12MB4422.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: Huawei.com; dkim=none (message not signed)
+ header.d=none;Huawei.com; dmarc=none action=none header.from=invensense.com;
+x-originating-ip: [91.174.78.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d681a660-f114-4357-b921-08d7fb40da5e
+x-ms-traffictypediagnostic: MN2PR12MB3071:
+x-microsoft-antispam-prvs: <MN2PR12MB30715B59F451BC5D5AD3920AC4B80@MN2PR12MB3071.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 04073E895A
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: K3LoXr9nFQsliyoGajE6G0LTyQmPrzQ9U+hbi9Xh1iDa4dFWYPfToXkRf3qZ4unHO9BHFWt/84Dp8eCzWlKzeLW/Vt+YdHUGWHe1BYLm/i0y4Wp9fLLfact03yPZmp+w5vCWqlKeUdpgUSXu1R5/lP3WkPQOja/LSDv9rOC0/h5yddG096unuzx4rC3W2XLIUf+DLaY2cvuCmAfrxlsxiq7VIdsNBzJ3k/YtA2AHEW5cg2s5TyDoB1O+LtNd4HKCOQn6eZZ5nE/8UwxfTR5FfMD/2yuIq8/Ra+psDlgChVfnOQczJ3JVEtOXBrJioPVGTlsoW4Apj3lhcXa/9CBazqSV4XIEoSYzdkz+ERxNkmGFojIiVsyprEeIR4d44UPHs3iFiSlPGR+dhWgDwIZK+XodyyFzDH9hlw8jHtJ6Z1mRUXuVD99XPzLzNNOIrZZw
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4422.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(366004)(396003)(376002)(39850400004)(136003)(346002)(30864003)(186003)(86362001)(2906002)(7416002)(26005)(66446008)(64756008)(66556008)(76116006)(91956017)(66946007)(66476007)(33656002)(71200400001)(52536014)(6916009)(316002)(5660300002)(53546011)(8676002)(54906003)(6506007)(4326008)(478600001)(8936002)(2940100002)(7696005)(55016002)(9686003)(579004)(559001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: HOxK3J7/mvWoC9Zmm6J0GeBg3dBXl23A/T4dST2i2ITKX1U3f7dyJp8d5VVPD4sC4sjdfUetER12Uy4Zwoth2Jpyu9yr5hOOb3WeU7EvfYyxIdq2ul0h2ip+vWJqAQx06lSnLpzZnFBOwlr95dQCZDQHNhpi1d3/ptHqV7P8nSiJKaznluie4KxNIRDOf6uCV0AWcumy4jTc4kFdNnZeEZyPTunVjtX+xxs7KvK4MxXw9mBrlUnzbp7d08Ici28DNC+g/+RzEUqQ8E6auYrC+zZGX7WVWw1pgbOF3gCZ6jbLrhMNRvInmv52iqY2jNbfk4tbmsXmBMv/J0kpPnoPZV08G0wHq1Uof4FOYy2zUOb/BM1wcwSrX0FqKvcN1BUK4uWjTGT5A12liUw0pGSigkc6pRqdQjvpo0aXWuIW4Yq9NWYQpDBczLHR7Hh7Fe8+Ml6KOfcqjRokxVnCVeTWu5IDRxAPRAw1fsFqZDlSVXQ=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20200505111204.963-1-manafm@codeaurora.org> <20200505111204.963-2-manafm@codeaurora.org>
- <CAP245DV3-WXa1183tY=AzREAfzt3nXYugngG+zn6pEjXLc68cA@mail.gmail.com> <bbc9eef884f3b83191b582a80d3dd5d3@codeaurora.org>
-In-Reply-To: <bbc9eef884f3b83191b582a80d3dd5d3@codeaurora.org>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 18 May 2020 21:03:09 +0530
-Message-ID: <CAHLCerPZu9DwafFLB37+FT7V91Q0HcJ101gx7m5PjRigeiHY9g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drivers: thermal: tsens: Add 0C (zeorC) interrupt support
-To:     manafm@codeaurora.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: invensense.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d681a660-f114-4357-b921-08d7fb40da5e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 May 2020 15:33:45.5467
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 462b3b3b-e42b-47ea-801a-f1581aac892d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cjYnm9SbdWY0gE1jWLfhs3iV54+rjUAsE7SfBUGh6yF74BBBqPnz2ZCL6t3jbTQ7WSUJEab6Ujhayg/PcaYt4juSnO2JyFcD1IfdS3sR1dE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3071
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.676
+ definitions=2020-05-18_06:2020-05-15,2020-05-18 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 clxscore=1015 mlxscore=0 mlxlogscore=999 suspectscore=0
+ bulkscore=0 cotscore=-2147483648 lowpriorityscore=0 impostorscore=0
+ adultscore=0 spamscore=0 malwarescore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2005180133
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 17, 2020 at 3:58 PM <manafm@codeaurora.org> wrote:
->
-> On 2020-05-05 17:39, Amit Kucheria wrote:
-> > Hi Manaf,
-> >
-> > Typo: fix zeorC in subject line.
-> Done
-> >
-> > Please rebase this patch[1] on top of my patch merging tsens-common.c
-> > and tsens.c.
-> >
-> > [1]
-> > https://lore.kernel.org/linux-arm-msm/e30e2ba6fa5c007983afd4d7d4e0311c0b57917a.1588183879.git.amit.kucheria@linaro.org/
-> Done
-> >
-> > On Tue, May 5, 2020 at 4:42 PM Manaf Meethalavalappu Pallikunhi
-> > <manafm@codeaurora.org> wrote:
-> >>
-> >> TSENS IP v2.6+ adds 0C interrupt support. It triggers set
-> >> interrupt when aggregated minimum temperature of all TSENS falls
-> >> below 0C preset threshold and triggers reset interrupt when aggregate
-> >> minimum temperature of all TSENS crosses above reset threshold.
-> >> Add support for this interrupt in the driver.
-> >>
-> >> It adds another sensor to the of-thermal along with all individual
-> >> TSENS. It enables to add any mitigation for 0C interrupt.
-> >>
-> >> Signed-off-by: Manaf Meethalavalappu Pallikunhi
-> >> <manafm@codeaurora.org>
-> >> ---
-> >>  drivers/thermal/qcom/tsens-common.c | 72
-> >> ++++++++++++++++++++++++++++-
-> >>  drivers/thermal/qcom/tsens-v2.c     |  7 +++
-> >>  drivers/thermal/qcom/tsens.c        | 51 ++++++++++++++++++--
-> >>  drivers/thermal/qcom/tsens.h        | 11 +++++
-> >>  4 files changed, 135 insertions(+), 6 deletions(-)
-> >>
-> >> diff --git a/drivers/thermal/qcom/tsens-common.c
-> >> b/drivers/thermal/qcom/tsens-common.c
-> >> index 172545366636..44e7edeb9a90 100644
-> >> --- a/drivers/thermal/qcom/tsens-common.c
-> >> +++ b/drivers/thermal/qcom/tsens-common.c
-> >> @@ -198,7 +198,8 @@ static void tsens_set_interrupt_v1(struct
-> >> tsens_priv *priv, u32 hw_id,
-> >>                 index = LOW_INT_CLEAR_0 + hw_id;
-> >>                 break;
-> >>         case CRITICAL:
-> >> -               /* No critical interrupts before v2 */
-> >> +       case ZEROC:
-> >> +               /* No critical and 0c interrupts before v2 */
-> >>                 return;
-> >>         }
-> >>         regmap_field_write(priv->rf[index], enable ? 0 : 1);
-> >> @@ -229,6 +230,9 @@ static void tsens_set_interrupt_v2(struct
-> >> tsens_priv *priv, u32 hw_id,
-> >>                 index_mask  = CRIT_INT_MASK_0 + hw_id;
-> >>                 index_clear = CRIT_INT_CLEAR_0 + hw_id;
-> >>                 break;
-> >> +       case ZEROC:
-> >> +               /* Nothing to handle for 0c interrupt */
-> >> +               return;
-> >>         }
-> >>
-> >>         if (enable) {
-> >> @@ -360,6 +364,34 @@ static inline u32 masked_irq(u32 hw_id, u32 mask,
-> >> enum tsens_ver ver)
-> >>         return 0;
-> >>  }
-> >>
-> >> +/**
-> >> + * tsens_0c_irq_thread - Threaded interrupt handler for 0c interrupt
-> >
-> > Let's use zeroc instead of 0c in the function and variable names and
-> > comments everywhere. Easier to grep and better consistency too.
-> Done
-> >
-> >> + * @irq: irq number
-> >> + * @data: tsens controller private data
-> >> + *
-> >> + * Whenever interrupt triggers notify thermal framework using
-> >> + * thermal_zone_device_update() to update cold temperature
-> >> mitigation.
-> >
-> > How is this mitigation updated?
-> Updated comment section
-> >> + *
-> >> + * Return: IRQ_HANDLED
-> >> + */
-> >> +irqreturn_t tsens_0c_irq_thread(int irq, void *data)
-> >> +{
-> >> +       struct tsens_priv *priv = data;
-> >> +       struct tsens_sensor *s = &priv->sensor[priv->num_sensors];
-> >> +       int temp, ret;
-> >> +
-> >> +       ret = regmap_field_read(priv->rf[TSENS_0C_STATUS], &temp);
-
-
-> >> +       if (ret)
-> >> +               return ret;
-> >> +
-> >> +       dev_dbg(priv->dev, "[%u] %s: 0c interrupt is %s\n",
-> >> +               s->hw_id, __func__, temp ? "triggered" : "cleared");
-> >
-> > So triggered is printed for non-zero (including negative) values?
-> This zeroc hardware generates each interrupt when any of the TSENS that
-> it monitors goes below 5C or above 10c. These thresholds are not
-> configurable. Hence we don't expect this to be changed from kernel side.
-> So this sensor (status register) will read 0 or 1.  1 means soc
-> temperature is in cold condition and 0 means it is in normal
-> temperature.
-
-All this information belongs in the function description and the part
-about the status register returning 0 (for temp > 10) and 1 (for temp
-<=5) belongs in the patch description too. Please add it to v3.
-
-What happens at 7 degrees? Will the HW continue returning 1 due to
-some hysteresis?
-
-I'll review v2 in a bit.
-
-> >
-> >> +
-> >> +       thermal_zone_device_update(s->tzd, THERMAL_EVENT_UNSPECIFIED);
-> >> +
-> >> +       return IRQ_HANDLED;
-> >> +}
-> >> +
-> >>  /**
-> >>   * tsens_critical_irq_thread() - Threaded handler for critical
-> >> interrupts
-> >>   * @irq: irq number
-> >> @@ -566,6 +598,20 @@ void tsens_disable_irq(struct tsens_priv *priv)
-> >>         regmap_field_write(priv->rf[INT_EN], 0);
-> >>  }
-> >>
-> >> +int tsens_get_0c_int_status(const struct tsens_sensor *s, int *temp)
-> >> +{
-> >> +       struct tsens_priv *priv = s->priv;
-> >> +       int last_temp = 0, ret;
-> >> +
-> >> +       ret = regmap_field_read(priv->rf[TSENS_0C_STATUS],
-> >> &last_temp);
-> >> +       if (ret)
-> >> +               return ret;
-> >> +
-> >> +       *temp = last_temp;
-> >> +
-> >> +       return 0;
-> >> +}
-> >> +
-> >>  int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp)
-> >>  {
-> >>         struct tsens_priv *priv = s->priv;
-> >> @@ -833,6 +879,30 @@ int __init init_common(struct tsens_priv *priv)
-> >>                 regmap_field_write(priv->rf[CC_MON_MASK], 1);
-> >>         }
-> >>
-> >> +       if (tsens_version(priv) > VER_1_X &&  ver_minor > 5) {
-> >> +               /* 0C interrupt is present only on v2.6+ */
-> >> +               priv->rf[TSENS_0C_INT_EN] =
-> >> devm_regmap_field_alloc(dev,
-> >> +                                               priv->srot_map,
-> >> +
-> >> priv->fields[TSENS_0C_INT_EN]);
-> >> +               if (IS_ERR(priv->rf[TSENS_0C_INT_EN])) {
-> >> +                       ret = PTR_ERR(priv->rf[TSENS_0C_INT_EN]);
-> >> +                       goto err_put_device;
-> >> +               }
-> >> +
-> >> +               /* Check whether 0C interrupt is enabled or not */
-> >> +               regmap_field_read(priv->rf[TSENS_0C_INT_EN],
-> >> &enabled);
-> >> +               if (enabled) {
-> >> +                       priv->feat->zero_c_int = 1;
-> >
-> > This should be done at the beginning of the block where you check our
-> > version is > 2.6 since the flag only says whether the feature is
-> > present.
-> Done
-> >
-> >> +                       priv->rf[TSENS_0C_STATUS] =
-> >> devm_regmap_field_alloc(dev,
-> >> +                                               priv->tm_map,
-> >> +
-> >> priv->fields[TSENS_0C_STATUS]);
-> >> +                       if (IS_ERR(priv->rf[TSENS_0C_STATUS])) {
-> >> +                               ret =
-> >> PTR_ERR(priv->rf[TSENS_0C_STATUS]);
-> >> +                               goto err_put_device;
-> >> +                       }
-> >> +               }
-> >> +       }
-> >> +
-> >>         spin_lock_init(&priv->ul_lock);
-> >>         tsens_enable_irq(priv);
-> >>         tsens_debug_init(op);
-> >> diff --git a/drivers/thermal/qcom/tsens-v2.c
-> >> b/drivers/thermal/qcom/tsens-v2.c
-> >> index b293ed32174b..ce80d82c7255 100644
-> >> --- a/drivers/thermal/qcom/tsens-v2.c
-> >> +++ b/drivers/thermal/qcom/tsens-v2.c
-> >> @@ -11,6 +11,7 @@
-> >>  /* ----- SROT ------ */
-> >>  #define SROT_HW_VER_OFF        0x0000
-> >>  #define SROT_CTRL_OFF          0x0004
-> >> +#define SROT_OC_CTRL_OFF       0x0018
-> >>
-> >>  /* ----- TM ------ */
-> >>  #define TM_INT_EN_OFF                  0x0004
-> >> @@ -23,6 +24,7 @@
-> >>  #define TM_Sn_UPPER_LOWER_THRESHOLD_OFF 0x0020
-> >>  #define TM_Sn_CRITICAL_THRESHOLD_OFF   0x0060
-> >>  #define TM_Sn_STATUS_OFF               0x00a0
-> >> +#define TM_0C_INT_STATUS_OFF           0x00e0
-> >>  #define TM_TRDY_OFF                    0x00e4
-> >>  #define TM_WDOG_LOG_OFF                0x013c
-> >>
-> >> @@ -45,6 +47,7 @@ static const struct reg_field
-> >> tsens_v2_regfields[MAX_REGFIELDS] = {
-> >>         /* CTRL_OFF */
-> >>         [TSENS_EN]     = REG_FIELD(SROT_CTRL_OFF,    0,  0),
-> >>         [TSENS_SW_RST] = REG_FIELD(SROT_CTRL_OFF,    1,  1),
-> >> +       [TSENS_0C_INT_EN] = REG_FIELD(SROT_OC_CTRL_OFF, 0,  0),
-> >>
-> >>         /* ----- TM ------ */
-> >>         /* INTERRUPT ENABLE */
-> >> @@ -86,6 +89,9 @@ static const struct reg_field
-> >> tsens_v2_regfields[MAX_REGFIELDS] = {
-> >>         REG_FIELD_FOR_EACH_SENSOR16(CRITICAL_STATUS, TM_Sn_STATUS_OFF,
-> >> 19,  19),
-> >>         REG_FIELD_FOR_EACH_SENSOR16(MAX_STATUS,      TM_Sn_STATUS_OFF,
-> >> 20,  20),
-> >>
-> >> +       /* 0C INETRRUPT STATUS */
-> >
-> > Typo: Interrupt
-> >
-> >> +       [TSENS_0C_STATUS] = REG_FIELD(TM_0C_INT_STATUS_OFF, 0, 0),
-> >> +
-> >>         /* TRDY: 1=ready, 0=in progress */
-> >>         [TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
-> >>  };
-> >> @@ -93,6 +99,7 @@ static const struct reg_field
-> >> tsens_v2_regfields[MAX_REGFIELDS] = {
-> >>  static const struct tsens_ops ops_generic_v2 = {
-> >>         .init           = init_common,
-> >>         .get_temp       = get_temp_tsens_valid,
-> >> +       .get_0c_status  = tsens_get_0c_int_status,
-> >>  };
-> >>
-> >>  struct tsens_plat_data data_tsens_v2 = {
-> >> diff --git a/drivers/thermal/qcom/tsens.c
-> >> b/drivers/thermal/qcom/tsens.c
-> >> index 2f77d235cf73..e60870c53383 100644
-> >> --- a/drivers/thermal/qcom/tsens.c
-> >> +++ b/drivers/thermal/qcom/tsens.c
-> >> @@ -14,6 +14,17 @@
-> >>  #include <linux/thermal.h>
-> >>  #include "tsens.h"
-> >>
-> >> +static int tsens_0c_get_temp(void *data, int *temp)
-> >> +{
-> >> +       struct tsens_sensor *s = data;
-> >> +       struct tsens_priv *priv = s->priv;
-> >> +
-> >> +       if (priv->ops->get_0c_status)
-> >> +               return priv->ops->get_0c_status(s, temp);
-> >> +
-> >> +       return -ENOTSUPP;
-> >> +}
-> >> +
-> >>  static int tsens_get_temp(void *data, int *temp)
-> >>  {
-> >>         struct tsens_sensor *s = data;
-> >> @@ -85,6 +96,10 @@ static const struct thermal_zone_of_device_ops
-> >> tsens_of_ops = {
-> >>         .set_trips = tsens_set_trips,
-> >>  };
-> >>
-> >> +static const struct thermal_zone_of_device_ops tsens_0c_of_ops = {
-> >> +       .get_temp = tsens_0c_get_temp,
-> >> +};
-> >> +
-> >>  static int tsens_register_irq(struct tsens_priv *priv, char *irqname,
-> >>                               irq_handler_t thread_fn)
-> >>  {
-> >> @@ -142,6 +157,21 @@ static int tsens_register(struct tsens_priv
-> >> *priv)
-> >>                 ret = tsens_register_irq(priv, "critical",
-> >>                                          tsens_critical_irq_thread);
-> >>
-> >> +       if (priv->feat->zero_c_int) {
-> >> +               priv->sensor[priv->num_sensors].priv = priv;
-> >> +               tzd = devm_thermal_zone_of_sensor_register(priv->dev,
-> >> +
-> >> priv->sensor[priv->num_sensors].hw_id,
-> >> +
-> >> &priv->sensor[priv->num_sensors],
-> >> +                                       &tsens_0c_of_ops);
-> >> +               if (IS_ERR(tzd)) {
-> >> +                       ret = 0;
-> >> +                       return ret;
-> >> +               }
-> >> +
-> >> +               priv->sensor[priv->num_sensors].tzd = tzd;
-> >
-> > Why can't this happen in the previous loop, but increase the loop to
-> > <= num_sensors? It is duplicated code.
-> I think if i change  default loop logic to <= num_sensors, it will break
-> other legacy targets, right ?
-> My idea is to guard all changes related to zeroc under zeroc related
-> feature flag.
-> Again, since we cannot configure any threshold from kernel side, there
-> is no set_trip ops for this sensor, so we need to call register function
-> differently in compared to regular sensor
-> >
-> >> +               ret = tsens_register_irq(priv, "zeroc",
-> >> tsens_0c_irq_thread);
-> >> +       }
-> >> +
-> >>         return ret;
-> >>  }
-> >>
-> >> @@ -178,11 +208,22 @@ static int tsens_probe(struct platform_device
-> >> *pdev)
-> >>                 return -EINVAL;
-> >>         }
-> >>
-> >> -       priv = devm_kzalloc(dev,
-> >> -                            struct_size(priv, sensor, num_sensors),
-> >> -                            GFP_KERNEL);
-> >> -       if (!priv)
-> >> -               return -ENOMEM;
-> >> +       /* Check for 0c interrupt is enabled or not */
-> >> +       if (platform_get_irq_byname(pdev, "zeroc") > 0) {
-> >> +               priv = devm_kzalloc(dev,
-> >> +                               struct_size(priv, sensor, num_sensors
-> >> + 1),
-> >> +                               GFP_KERNEL);
-> >
-> > Instead of doing this, simply do the following,
-> >
-> > if (platform_get_irq_byname(pdev, "zeroc") > 0) {
-> >         num_sensors++;
-> >
-> > The kzalloc will just work then, no?
-> I just changed logic in v2.  Basically this zeroc feature is an
-> optional. There is a chance that we don't need to enable in software
-> even though hardware support is present.
-> So I used another variable to check whether feature is enabled or not by
-> checking DT interrupt configuration.
-
-I've looked briefly at v2 and I don't like the way we play around with
-num_sensors by special casing zeroc_en to allocate extra memory and
-then revert it. It feels very convoluted. I'll address the rest of the
-comments on v2.
-
-> >
-> >> +               if (!priv)
-> >> +                       return -ENOMEM;
-> >> +               /* Use Max sensor index as 0c sensor hw_id */
-> >> +               priv->sensor[num_sensors].hw_id =
-> >> data->feat->max_sensors;
-> >> +       } else {
-> >> +               priv = devm_kzalloc(dev,
-> >> +                               struct_size(priv, sensor,
-> >> num_sensors),
-> >> +                               GFP_KERNEL);
-> >> +               if (!priv)
-> >> +                       return -ENOMEM;
-> >> +       }
-> >>
-> >>         priv->dev = dev;
-> >>         priv->num_sensors = num_sensors;
-> >> diff --git a/drivers/thermal/qcom/tsens.h
-> >> b/drivers/thermal/qcom/tsens.h
-> >> index 502acf0e6828..5b53a0352b4d 100644
-> >> --- a/drivers/thermal/qcom/tsens.h
-> >> +++ b/drivers/thermal/qcom/tsens.h
-> >> @@ -34,6 +34,7 @@ enum tsens_irq_type {
-> >>         LOWER,
-> >>         UPPER,
-> >>         CRITICAL,
-> >> +       ZEROC,
-> >>  };
-> >>
-> >>  /**
-> >> @@ -64,6 +65,7 @@ struct tsens_sensor {
-> >>   * @suspend: Function to suspend the tsens device
-> >>   * @resume: Function to resume the tsens device
-> >>   * @get_trend: Function to get the thermal/temp trend
-> >> + * @get_0c_status: Function to get the 0c interrupt status
-> >>   */
-> >>  struct tsens_ops {
-> >>         /* mandatory callbacks */
-> >> @@ -76,6 +78,7 @@ struct tsens_ops {
-> >>         int (*suspend)(struct tsens_priv *priv);
-> >>         int (*resume)(struct tsens_priv *priv);
-> >>         int (*get_trend)(struct tsens_sensor *s, enum thermal_trend
-> >> *trend);
-> >> +       int (*get_0c_status)(const struct tsens_sensor *s, int *temp);
-> >>  };
-> >>
-> >>  #define REG_FIELD_FOR_EACH_SENSOR11(_name, _offset, _startbit,
-> >> _stopbit) \
-> >> @@ -161,6 +164,8 @@ enum regfield_ids {
-> >>         TSENS_SW_RST,
-> >>         SENSOR_EN,
-> >>         CODE_OR_TEMP,
-> >> +       /* 0C CTRL OFFSET */
-> >> +       TSENS_0C_INT_EN,
-> >>
-> >>         /* ----- TM ------ */
-> >>         /* TRDY */
-> >> @@ -485,6 +490,8 @@ enum regfield_ids {
-> >>         MAX_STATUS_14,
-> >>         MAX_STATUS_15,
-> >>
-> >> +       TSENS_0C_STATUS,        /* 0C INTERRUPT status */
-> >> +
-> >>         /* Keep last */
-> >>         MAX_REGFIELDS
-> >>  };
-> >> @@ -497,6 +504,7 @@ enum regfield_ids {
-> >>   * @srot_split: does the IP neatly splits the register space into
-> >> SROT and TM,
-> >>   *              with SROT only being available to secure boot
-> >> firmware?
-> >>   * @has_watchdog: does this IP support watchdog functionality?
-> >> + * @zero_c_int: does this IP support 0C interrupt ?
-> >>   * @max_sensors: maximum sensors supported by this version of the IP
-> >>   */
-> >>  struct tsens_features {
-> >> @@ -505,6 +513,7 @@ struct tsens_features {
-> >>         unsigned int adc:1;
-> >>         unsigned int srot_split:1;
-> >>         unsigned int has_watchdog:1;
-> >> +       unsigned int zero_c_int:1;
-> >
-> > zeroc_interrupt
-> Done
-> >
-> >>         unsigned int max_sensors;
-> >>  };
-> >>
-> >> @@ -580,11 +589,13 @@ void compute_intercept_slope(struct tsens_priv
-> >> *priv, u32 *pt1, u32 *pt2, u32 mo
-> >>  int init_common(struct tsens_priv *priv);
-> >>  int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp);
-> >>  int get_temp_common(const struct tsens_sensor *s, int *temp);
-> >> +int tsens_get_0c_int_status(const struct tsens_sensor *s, int *temp);
-> >>  int tsens_enable_irq(struct tsens_priv *priv);
-> >>  void tsens_disable_irq(struct tsens_priv *priv);
-> >>  int tsens_set_trips(void *_sensor, int low, int high);
-> >>  irqreturn_t tsens_irq_thread(int irq, void *data);
-> >>  irqreturn_t tsens_critical_irq_thread(int irq, void *data);
-> >> +irqreturn_t tsens_0c_irq_thread(int irq, void *data);
-> >>
-> >>  /* TSENS target */
-> >>  extern struct tsens_plat_data data_8960;
-> >> --
-> >> 2.26.2
+Hi Jonathan,=0A=
+=0A=
+I agree with all comments.=0A=
+=0A=
+For regmap_bulk_read, by looking at source code it doesn't seem to requires=
+ specific alignment, except if bus read callback is expecting that. But I c=
+an see numerous drivers calling regmap_bulk_read with a data buffer on the =
+stack and not particularly aligned.=0A=
+=0A=
+And we definitely can read calibration offset registers while running, the =
+lock is indeed not needed.=0A=
+=0A=
+Thanks,=0A=
+JB=0A=
+=0A=
+=0A=
+=0A=
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>=0A=
+=0A=
+Sent: Friday, May 8, 2020 16:01=0A=
+=0A=
+To: Jean-Baptiste Maneyrol <JManeyrol@invensense.com>=0A=
+=0A=
+Cc: jic23@kernel.org <jic23@kernel.org>; robh+dt@kernel.org <robh+dt@kernel=
+.org>; robh@kernel.org <robh@kernel.org>; mchehab+huawei@kernel.org <mcheha=
+b+huawei@kernel.org>; davem@davemloft.net <davem@davemloft.net>; gregkh@lin=
+uxfoundation.org <gregkh@linuxfoundation.org>;=0A=
+ linux-iio@vger.kernel.org <linux-iio@vger.kernel.org>; devicetree@vger.ker=
+nel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-k=
+ernel@vger.kernel.org>=0A=
+=0A=
+Subject: Re: [PATCH 04/12] iio: imu: inv_icm42600: add gyroscope IIO device=
+=0A=
+=0A=
+=A0=0A=
+=0A=
+=0A=
+=A0CAUTION: This email originated from outside of the organization. Please =
+make sure the sender is who they say they are and do not click links or ope=
+n attachments unless you recognize the sender and know the content is safe.=
+=0A=
+=0A=
+=0A=
+=0A=
+On Thu, 7 May 2020 16:42:14 +0200=0A=
+=0A=
+Jean-Baptiste Maneyrol <jmaneyrol@invensense.com> wrote:=0A=
+=0A=
+=0A=
+=0A=
+> Add IIO device for gyroscope sensor with data polling interface.=0A=
+=0A=
+> Attributes: raw, scale, sampling_frequency, calibbias.=0A=
+=0A=
+> =0A=
+=0A=
+> Gyroscope in low noise mode.=0A=
+=0A=
+> =0A=
+=0A=
+> Signed-off-by: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>=0A=
+=0A=
+Few trivial things and questions inline.=0A=
+=0A=
+=0A=
+=0A=
+J=0A=
+=0A=
+=0A=
+=0A=
+> ---=0A=
+=0A=
+>=A0 drivers/iio/imu/inv_icm42600/inv_icm42600.h=A0=A0 |=A0=A0 4 +=0A=
+=0A=
+>=A0 .../iio/imu/inv_icm42600/inv_icm42600_core.c=A0 |=A0=A0 5 +=0A=
+=0A=
+>=A0 .../iio/imu/inv_icm42600/inv_icm42600_gyro.c=A0 | 549 ++++++++++++++++=
+++=0A=
+=0A=
+>=A0 3 files changed, 558 insertions(+)=0A=
+=0A=
+>=A0 create mode 100644 drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c=0A=
+=0A=
+> =0A=
+=0A=
+> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600.h b/drivers/iio/im=
+u/inv_icm42600/inv_icm42600.h=0A=
+=0A=
+> index 8da4c8249aed..ca41a9d6404a 100644=0A=
+=0A=
+> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600.h=0A=
+=0A=
+> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600.h=0A=
+=0A=
+> @@ -120,6 +120,7 @@ struct inv_icm42600_suspended {=0A=
+=0A=
+>=A0=A0 *=A0 @orientation:=A0=A0=A0 sensor chip orientation relative to mai=
+n hardware.=0A=
+=0A=
+>=A0=A0 *=A0 @conf:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 chip sensors configuratio=
+ns.=0A=
+=0A=
+>=A0=A0 *=A0 @suspended:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 suspended s=
+ensors configuration.=0A=
+=0A=
+> + *=A0 @indio_gyro:=A0=A0=A0=A0 gyroscope IIO device.=0A=
+=0A=
+>=A0=A0 */=0A=
+=0A=
+>=A0 struct inv_icm42600_state {=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 struct mutex lock;=0A=
+=0A=
+> @@ -131,6 +132,7 @@ struct inv_icm42600_state {=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 struct iio_mount_matrix orientation;=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 struct inv_icm42600_conf conf;=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 struct inv_icm42600_suspended suspended;=0A=
+=0A=
+> +=A0=A0=A0=A0 struct iio_dev *indio_gyro;=0A=
+=0A=
+>=A0 };=0A=
+=0A=
+>=A0 =0A=
+=0A=
+>=A0 /* Virtual register addresses: @bank on MSB (4 upper bits), @address o=
+n LSB */=0A=
+=0A=
+> @@ -369,4 +371,6 @@ int inv_icm42600_debugfs_reg(struct iio_dev *indio_de=
+v, unsigned int reg,=0A=
+=0A=
+>=A0 int inv_icm42600_core_probe(struct regmap *regmap, int chip,=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 inv_icm42600_bus_setup bus_setup);=0A=
+=0A=
+>=A0 =0A=
+=0A=
+> +int inv_icm42600_gyro_init(struct inv_icm42600_state *st);=0A=
+=0A=
+> +=0A=
+=0A=
+>=A0 #endif=0A=
+=0A=
+> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c b/drivers/i=
+io/imu/inv_icm42600/inv_icm42600_core.c=0A=
+=0A=
+> index 35bdf4f9d31e..151257652ce6 100644=0A=
+=0A=
+> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c=0A=
+=0A=
+> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c=0A=
+=0A=
+> @@ -503,6 +503,11 @@ int inv_icm42600_core_probe(struct regmap *regmap, i=
+nt chip,=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=0A=
+=0A=
+>=A0 =0A=
+=0A=
+> +=A0=A0=A0=A0 /* create and init gyroscope iio device */=0A=
+=0A=
+=0A=
+=0A=
+'Kind' of obvious from function name?=A0=A0 Maybe drop the comment?=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D inv_icm42600_gyro_init(st);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 /* setup runtime power management */=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 ret =3D pm_runtime_set_active(dev);=0A=
+=0A=
+>=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c b/drivers/i=
+io/imu/inv_icm42600/inv_icm42600_gyro.c=0A=
+=0A=
+> new file mode 100644=0A=
+=0A=
+> index 000000000000..74aa2b5fa611=0A=
+=0A=
+> --- /dev/null=0A=
+=0A=
+> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c=0A=
+=0A=
+> @@ -0,0 +1,549 @@=0A=
+=0A=
+> +// SPDX-License-Identifier: GPL-2.0-or-later=0A=
+=0A=
+> +/*=0A=
+=0A=
+> + * Copyright (C) 2020 Invensense, Inc.=0A=
+=0A=
+> + */=0A=
+=0A=
+> +=0A=
+=0A=
+> +#include <linux/device.h>=0A=
+=0A=
+> +#include <linux/mutex.h>=0A=
+=0A=
+> +#include <linux/interrupt.h>=0A=
+=0A=
+> +#include <linux/pm_runtime.h>=0A=
+=0A=
+> +#include <linux/regmap.h>=0A=
+=0A=
+> +#include <linux/delay.h>=0A=
+=0A=
+> +#include <linux/iio/iio.h>=0A=
+=0A=
+> +=0A=
+=0A=
+> +#include "inv_icm42600.h"=0A=
+=0A=
+> +=0A=
+=0A=
+> +#define INV_ICM42600_GYRO_CHAN(_modifier, _index, _ext_info)=A0=A0=A0=A0=
+=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0 {=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .type =3D IIO_ANGL_VEL,=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .modified =3D 1,=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .channel2 =3D _modifier,=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .info_mask_separate =3D=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_RAW) |=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_CALIBBIAS),=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .info_mask_shared_by_type =3D=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_SCALE),=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .info_mask_shared_by_type_available=
+ =3D=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_SCALE),=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .info_mask_shared_by_all =3D=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_SAMP_FREQ),=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .info_mask_shared_by_all_available =
+=3D=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 BIT(IIO_CHA=
+N_INFO_SAMP_FREQ),=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .scan_index =3D _index,=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .scan_type =3D {=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .sign =3D '=
+s',=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .realbits =
+=3D 16,=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .storagebit=
+s =3D 16,=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .shift =3D =
+0,=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+=0A=
+=0A=
+Shift has the 'obviously' default of 0, so normally we don't bother explici=
+tly=0A=
+=0A=
+setting it to 0 like this.=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .endianness=
+ =3D IIO_BE,=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 },=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .ext_info =3D _ext_info,=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 \=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +enum inv_icm42600_gyro_scan {=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_SCAN_X,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_SCAN_Y,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_SCAN_Z,=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static const struct iio_chan_spec_ext_info inv_icm42600_gyro_ext_infos[]=
+ =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 IIO_MOUNT_MATRIX(IIO_SHARED_BY_ALL, inv_icm42600_get_mount_=
+matrix),=0A=
+=0A=
+> +=A0=A0=A0=A0 {},=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static const struct iio_chan_spec inv_icm42600_gyro_channels[] =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_CHAN(IIO_MOD_X, INV_ICM42600_GYRO_SCAN_X,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 inv_icm42600_gyro_ext_infos),=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_CHAN(IIO_MOD_Y, INV_ICM42600_GYRO_SCAN_Y,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 inv_icm42600_gyro_ext_infos),=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_GYRO_CHAN(IIO_MOD_Z, INV_ICM42600_GYRO_SCAN_Z,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 inv_icm42600_gyro_ext_infos),=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_sensor(struct inv_icm42600_state *st,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int16_t *val)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 struct inv_icm42600_sensor_conf conf =3D INV_ICM42600_SENSO=
+R_CONF_INIT;=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int reg;=0A=
+=0A=
+> +=A0=A0=A0=A0 __be16 data;=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (chan->channel2) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_X:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_GYRO_DATA_=
+X;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Y:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_GYRO_DATA_=
+Y;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Z:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_GYRO_DATA_=
+Z;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_get_sync(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* enable gyro sensor */=0A=
+=0A=
+> +=A0=A0=A0=A0 conf.mode =3D INV_ICM42600_SENSOR_MODE_LOW_NOISE;=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D inv_icm42600_set_gyro_conf(st, &conf, NULL);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto exit;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* read gyro register data */=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D regmap_bulk_read(st->map, reg, &data, sizeof(data))=
+;=0A=
+=0A=
+=0A=
+=0A=
+IIRC bulk reads need to be to dma safe buffers.=A0 So typically on the stac=
+k and=0A=
+=0A=
+in appropriately aligned location in any containing structure.=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto exit;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 *val =3D (int16_t)be16_to_cpu(data);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (*val =3D=3D INV_ICM42600_DATA_INVALID)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D -EINVAL;=0A=
+=0A=
+> +exit:=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_mark_last_busy(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_put_autosuspend(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +/* IIO format int + nano */=0A=
+=0A=
+> +static const int inv_icm42600_gyro_scale[] =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 2000dps =3D> 0.001065264 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_2000DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_2000DPS + 1] =3D 1065264,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 1000dps =3D> 0.000532632 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_1000DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_1000DPS + 1] =3D 532632,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 500dps =3D> 0.000266316 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_500DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_500DPS + 1] =3D 266316,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 250dps =3D> 0.000133158 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_250DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_250DPS + 1] =3D 133158,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 125dps =3D> 0.000066579 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_125DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_125DPS + 1] =3D 66579,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 62.5dps =3D> 0.000033290 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_62_5DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_62_5DPS + 1] =3D 33290,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 31.25dps =3D> 0.000016645 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_31_25DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_31_25DPS + 1] =3D 16645,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* +/- 15.625dps =3D> 0.000008322 rad/s */=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_15_625DPS] =3D 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 [2 * INV_ICM42600_GYRO_FS_15_625DPS + 1] =3D 8322,=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_scale(struct inv_icm42600_state *st,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int *val, int *val2)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int idx;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 idx =3D st->conf.gyro.fs;=0A=
+=0A=
+=0A=
+=0A=
+Seems like we shouldn't need the lock to retrieve a single value.=0A=
+=0A=
+Is there some odd intermediate state somewhere I'm missing?=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 *val =3D inv_icm42600_gyro_scale[2 * idx];=0A=
+=0A=
+> +=A0=A0=A0=A0 *val2 =3D inv_icm42600_gyro_scale[2 * idx + 1];=0A=
+=0A=
+> +=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_NANO;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_write_scale(struct inv_icm42600_state *st,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int val, int val2)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int idx;=0A=
+=0A=
+> +=A0=A0=A0=A0 struct inv_icm42600_sensor_conf conf =3D INV_ICM42600_SENSO=
+R_CONF_INIT;=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 for (idx =3D 0; idx < ARRAY_SIZE(inv_icm42600_gyro_scale); =
+idx +=3D 2) {=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (val =3D=3D inv_icm42600_gyro_sc=
+ale[idx] &&=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 val2 =3D=3D inv_icm42600_gyro_scale[idx + 1])=0A=
+=0A=
+=0A=
+=0A=
+Alignment of code seems odd.=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=A0=A0=A0=A0 if (idx >=3D ARRAY_SIZE(inv_icm42600_gyro_scale))=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* update gyro fs */=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_get_sync(dev);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 conf.fs =3D idx / 2;=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D inv_icm42600_set_gyro_conf(st, &conf, NULL);=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_mark_last_busy(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_put_autosuspend(dev);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +/* IIO format int + micro */=0A=
+=0A=
+> +static const int inv_icm42600_gyro_odr[] =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 12.5Hz */=0A=
+=0A=
+> +=A0=A0=A0=A0 12, 500000,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 25Hz */=0A=
+=0A=
+> +=A0=A0=A0=A0 25, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 50Hz */=0A=
+=0A=
+> +=A0=A0=A0=A0 50, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 100Hz */=0A=
+=0A=
+> +=A0=A0=A0=A0 100, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 200Hz */=0A=
+=0A=
+> +=A0=A0=A0=A0 200, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 1kHz */=0A=
+=0A=
+> +=A0=A0=A0=A0 1000, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 2kHz */=0A=
+=0A=
+> +=A0=A0=A0=A0 2000, 0,=0A=
+=0A=
+> +=A0=A0=A0=A0 /* 4kHz */=0A=
+=0A=
+> +=A0=A0=A0=A0 4000, 0,=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static const int inv_icm42600_gyro_odr_conv[] =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_12_5HZ,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_25HZ,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_50HZ,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_100HZ,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_200HZ,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_1KHZ_LN,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_2KHZ_LN,=0A=
+=0A=
+> +=A0=A0=A0=A0 INV_ICM42600_ODR_4KHZ_LN,=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_odr(struct inv_icm42600_state *st,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int *val, int *val2)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int odr;=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int i;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 odr =3D st->conf.gyro.odr;=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 for (i =3D 0; i < ARRAY_SIZE(inv_icm42600_gyro_odr_conv); +=
++i) {=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (inv_icm42600_gyro_odr_conv[i] =
+=3D=3D odr)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=A0=A0=A0=A0 if (i >=3D ARRAY_SIZE(inv_icm42600_gyro_odr_conv))=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 *val =3D inv_icm42600_gyro_odr[2 * i];=0A=
+=0A=
+> +=A0=A0=A0=A0 *val2 =3D inv_icm42600_gyro_odr[2 * i + 1];=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_MICRO;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_write_odr(struct inv_icm42600_state *st,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int val, int val2)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int idx;=0A=
+=0A=
+> +=A0=A0=A0=A0 struct inv_icm42600_sensor_conf conf =3D INV_ICM42600_SENSO=
+R_CONF_INIT;=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 for (idx =3D 0; idx < ARRAY_SIZE(inv_icm42600_gyro_odr); id=
+x +=3D 2) {=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (val =3D=3D inv_icm42600_gyro_od=
+r[idx] &&=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 val2 =3D=3D inv_icm42600_gyro_odr[idx + 1])=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=A0=A0=A0=A0 if (idx >=3D ARRAY_SIZE(inv_icm42600_gyro_odr))=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* update gyro odr */=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_get_sync(dev);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 conf.odr =3D inv_icm42600_gyro_odr_conv[idx / 2];=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D inv_icm42600_set_gyro_conf(st, &conf, NULL);=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_mark_last_busy(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_put_autosuspend(dev);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_offset(struct inv_icm42600_state *st,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int16_t *val)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int reg;=0A=
+=0A=
+> +=A0=A0=A0=A0 uint8_t data[2];=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (chan->channel2) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_X:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R0;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Y:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R1;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Z:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R3;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_get_sync(dev);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* read gyro offset data */=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D regmap_bulk_read(st->map, reg, &data, sizeof(data))=
+;=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto exit;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (chan->channel2) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_X:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D (int16_t)(((data[1] & 0x0F=
+) << 8) | data[0]);=0A=
+=0A=
+=0A=
+=0A=
+This doesn't look right for negative values.=A0 You would be better=0A=
+=0A=
+off with a sign extend of the 12 bit value.=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Y:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D (int16_t)(((data[0] & 0xF0=
+) << 4) | data[1]);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Z:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D (int16_t)(((data[1] & 0x0F=
+) << 8) | data[0]);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +exit:=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_mark_last_busy(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_put_autosuspend(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_write_offset(struct inv_icm42600_state *st,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan=
+,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int val)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 unsigned int reg, regval;=0A=
+=0A=
+> +=A0=A0=A0=A0 uint8_t data[2];=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (chan->channel2) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_X:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R0;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Y:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R1;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Z:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D INV_ICM42600_REG_OFFSET_USE=
+R3;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 /* value is limited to 12 bits signed */=0A=
+=0A=
+> +=A0=A0=A0=A0 if (val < -2048 || val > 2047)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+=0A=
+=0A=
+Perhaps worth an available callback to give the range?=0A=
+=0A=
+=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_get_sync(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_lock(&st->lock);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (chan->channel2) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_X:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* OFFSET_USER1 register is shared =
+*/=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D regmap_read(st->map, INV_IC=
+M42600_REG_OFFSET_USER1,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 &regval);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_un=
+lock;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[0] =3D val & 0xFF;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[1] =3D (regval & 0xF0) | ((val=
+ & 0xF00) >> 8);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Y:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* OFFSET_USER1 register is shared =
+*/=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D regmap_read(st->map, INV_IC=
+M42600_REG_OFFSET_USER1,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 &regval);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_un=
+lock;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[0] =3D ((val & 0xF00) >> 4) | =
+(regval & 0x0F);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[1] =3D val & 0xFF;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_MOD_Z:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* OFFSET_USER4 register is shared =
+*/=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D regmap_read(st->map, INV_IC=
+M42600_REG_OFFSET_USER4,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 &regval);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_un=
+lock;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[0] =3D val & 0xFF;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 data[1] =3D (regval & 0xF0) | ((val=
+ & 0xF00) >> 8);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 break;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_unlock;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 ret =3D regmap_bulk_write(st->map, reg, data, sizeof(data))=
+;=0A=
+=0A=
+> +=0A=
+=0A=
+> +out_unlock:=0A=
+=0A=
+> +=A0=A0=A0=A0 mutex_unlock(&st->lock);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_mark_last_busy(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 pm_runtime_put_autosuspend(dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_raw(struct iio_dev *indio_dev,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int *val, int *val2, long mask)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct inv_icm42600_state *st =3D iio_device_get_drvdata(in=
+dio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 int16_t data;=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (mask) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_RAW:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D iio_device_claim_direct_mod=
+e(indio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D inv_icm42600_gyro_read_sens=
+or(st, chan, &data);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 iio_device_release_direct_mode(indi=
+o_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D data;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SCALE:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return inv_icm42600_gyro_read_scale=
+(st, val, val2);=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SAMP_FREQ:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return inv_icm42600_gyro_read_odr(s=
+t, val, val2);=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_CALIBBIAS:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D iio_device_claim_direct_mod=
+e(indio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+=0A=
+=0A=
+I'm curious.=A0 Why can't we read back a calibration offset whilst doing=0A=
+=0A=
+buffered capture?=0A=
+=0A=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D inv_icm42600_gyro_read_offs=
+et(st, chan, &data);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 iio_device_release_direct_mode(indi=
+o_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D data;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_read_avail(struct iio_dev *indio_dev,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 const int **vals,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int *type, int *length, long mask)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (mask) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SCALE:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *vals =3D inv_icm42600_gyro_scale;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *type =3D IIO_VAL_INT_PLUS_NANO;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *length =3D ARRAY_SIZE(inv_icm42600=
+_gyro_scale);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_AVAIL_LIST;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SAMP_FREQ:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *vals =3D inv_icm42600_gyro_odr;=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *type =3D IIO_VAL_INT_PLUS_MICRO;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *length =3D ARRAY_SIZE(inv_icm42600=
+_gyro_odr);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_AVAIL_LIST;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_write_raw(struct iio_dev *indio_dev,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const *chan,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int val, int val2, long mask)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct inv_icm42600_state *st =3D iio_device_get_drvdata(in=
+dio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0 int ret;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (mask) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SCALE:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D iio_device_claim_direct_mod=
+e(indio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D inv_icm42600_gyro_write_sca=
+le(st, val, val2);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 iio_device_release_direct_mode(indi=
+o_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SAMP_FREQ:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return inv_icm42600_gyro_write_odr(=
+st, val, val2);=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_CALIBBIAS:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D iio_device_claim_direct_mod=
+e(indio_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D inv_icm42600_gyro_write_off=
+set(st, chan, val);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 iio_device_release_direct_mode(indi=
+o_dev);=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static int inv_icm42600_gyro_write_raw_get_fmt(struct iio_dev *indio_dev=
+,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_s=
+pec const *chan,=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 long mask)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 if (chan->type !=3D IIO_ANGL_VEL)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 switch (mask) {=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SCALE:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_NANO;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_SAMP_FREQ:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_MICRO;=0A=
+=0A=
+> +=A0=A0=A0=A0 case IIO_CHAN_INFO_CALIBBIAS:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT;=0A=
+=0A=
+> +=A0=A0=A0=A0 default:=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+=0A=
+> +=A0=A0=A0=A0 }=0A=
+=0A=
+> +}=0A=
+=0A=
+> +=0A=
+=0A=
+> +static const struct iio_info inv_icm42600_gyro_info =3D {=0A=
+=0A=
+> +=A0=A0=A0=A0 .read_raw =3D inv_icm42600_gyro_read_raw,=0A=
+=0A=
+> +=A0=A0=A0=A0 .read_avail =3D inv_icm42600_gyro_read_avail,=0A=
+=0A=
+> +=A0=A0=A0=A0 .write_raw =3D inv_icm42600_gyro_write_raw,=0A=
+=0A=
+> +=A0=A0=A0=A0 .write_raw_get_fmt =3D inv_icm42600_gyro_write_raw_get_fmt,=
+=0A=
+=0A=
+> +=A0=A0=A0=A0 .debugfs_reg_access =3D inv_icm42600_debugfs_reg,=0A=
+=0A=
+> +};=0A=
+=0A=
+> +=0A=
+=0A=
+> +int inv_icm42600_gyro_init(struct inv_icm42600_state *st)=0A=
+=0A=
+> +{=0A=
+=0A=
+> +=A0=A0=A0=A0 struct device *dev =3D regmap_get_device(st->map);=0A=
+=0A=
+> +=A0=A0=A0=A0 const char *name;=0A=
+=0A=
+> +=A0=A0=A0=A0 struct iio_dev *indio_dev;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 name =3D devm_kasprintf(dev, GFP_KERNEL, "%s-gyro", st->nam=
+e);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (!name)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -ENOMEM;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev =3D devm_iio_device_alloc(dev, 0);=0A=
+=0A=
+> +=A0=A0=A0=A0 if (!indio_dev)=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -ENOMEM;=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 iio_device_set_drvdata(indio_dev, st);=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->dev.parent =3D dev;=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->name =3D name;=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->info =3D &inv_icm42600_gyro_info;=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->modes =3D INDIO_DIRECT_MODE;=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->channels =3D inv_icm42600_gyro_channels;=0A=
+=0A=
+> +=A0=A0=A0=A0 indio_dev->num_channels =3D ARRAY_SIZE(inv_icm42600_gyro_ch=
+annels);=0A=
+=0A=
+> +=0A=
+=0A=
+> +=A0=A0=A0=A0 st->indio_gyro =3D indio_dev;=0A=
+=0A=
+> +=A0=A0=A0=A0 return devm_iio_device_register(dev, st->indio_gyro);=0A=
+=0A=
+> +}=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
