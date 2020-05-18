@@ -2,137 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C181D7BBE
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8BD1D7B93
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 16:44:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727063AbgEROrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 10:47:12 -0400
-Received: from mailout2.hostsharing.net ([83.223.78.233]:45505 "EHLO
-        mailout2.hostsharing.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727938AbgEROrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:47:12 -0400
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
-        by mailout2.hostsharing.net (Postfix) with ESMTPS id DCDE410189B69;
-        Mon, 18 May 2020 16:47:09 +0200 (CEST)
-Received: from localhost (pd95be530.dip0.t-ipconnect.de [217.91.229.48])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by h08.hostsharing.net (Postfix) with ESMTPSA id 9A0F8612B6E6;
-        Mon, 18 May 2020 16:47:09 +0200 (CEST)
-X-Mailbox-Line: From 94c6c800d1ca9fa04766dd1d43a8272c5ad4bedd Mon Sep 17 00:00:00 2001
-Message-Id: <94c6c800d1ca9fa04766dd1d43a8272c5ad4bedd.1589811297.git.lukas@wunner.de>
-In-Reply-To: <cover.1589811297.git.lukas@wunner.de>
-References: <cover.1589811297.git.lukas@wunner.de>
-From:   Lukas Wunner <lukas@wunner.de>
-Date:   Mon, 18 May 2020 16:45:02 +0200
-Subject: [PATCH v3 2/2] serial: 8250: Support rs485 bus termination GPIO
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     "Matwey V. Kornilov" <matwey@sai.msu.ru>,
-        Giulio Benetti <giulio.benetti@micronovasrl.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+        id S1728053AbgEROnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 10:43:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726997AbgEROnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 10:43:50 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD13C061A0C;
+        Mon, 18 May 2020 07:43:50 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id x27so8161961lfg.9;
+        Mon, 18 May 2020 07:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DyWQUbdQsaHneMIkUnV+0Uk+0v8VHubO0aOYCQH2OTE=;
+        b=ozieOzdt8X9dRrNZ2ZBFb/NJ0RGMHbQ3G0pKcrAI4K8deYDIHTwEHkizIvfUP2PJf3
+         0jgF4HQmgdaYp1xOhtyN3xLe0Ntm40NsHOIxwe56JxpTa30T4cZvOVlwDhOFBXDOGate
+         Wpenob7UAHBnLuJQ/4BT8tbW1BTo9qk//+WZ1zsA50SUULGQ7H9xeU9IKiQfCwOB+6jq
+         qWuBcMqRn9aVcwpJRUSyfmr2db/NuDRbd1ElsaN/e8NsTaPFme/pjzrcBfrmW0ZESFoh
+         ia6R8Yrf92SS6WwoRdKM+mBeNbDJFizblaBIIi/dWxeEZbpJHHWknoLXa7chPAl+QRsr
+         o9Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DyWQUbdQsaHneMIkUnV+0Uk+0v8VHubO0aOYCQH2OTE=;
+        b=K1bCv8TT+DcDU1dW1O0p0zlW9xQrwxoVt2cJSoKL3p+ntW1YrMYPQIRvVj3bxZrgWO
+         7TLr/7PIXWulpFMqJF0P3aKmDY5NnH+9yQCOENkm5Qw5XYQmf+BQXXmnVLq6sFFVywBr
+         KrSOyp4UGTP63Ohh/32Q+11WmL4iLVIcrY296b0DZicGw0e19ueJ4x2x2ssRy+4x40Im
+         3Zzh/zKs7URhjOPxsGdjvVVDyKeY6xZQ0nc7pPMtXHO77A/V42R6Sk3lcaXNqbB4AdSA
+         DVNxWhtPFbV7tzwMPkrQAesMWXJarviyOlRN6rdn1P6zIFbUujPuRvdH4nOZU/876XTU
+         yVig==
+X-Gm-Message-State: AOAM532wEhQisodktmxy2MNsOFPJkskDQ4IGm8ZBnlmBqCdzdzE4jY3i
+        qrPYz05m0bf6dT8bXzX5WzD2k+9LhBNW8CKV7MHrzlqV
+X-Google-Smtp-Source: ABdhPJzqZ8nVo/dLSyrZUSSg9UbXrWgh7ZRtGhpGbCTSwOmErjkT5zwNhl9/wuvY2EmNrcCww0AbHYRzQN6W515PhCs=
+X-Received: by 2002:a19:c6c2:: with SMTP id w185mr10282694lff.69.1589813028498;
+ Mon, 18 May 2020 07:43:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <1589810819-19851-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1589810819-19851-1-git-send-email-Anson.Huang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 18 May 2020 11:45:07 -0300
+Message-ID: <CAOMZO5BeBcvmAwEJTUhHSn=_chx7OVkkxj2oB+50hGH-7H7SfA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: Convert i.MX7D clock to json-schema
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Frank Li <Frank.Li@freescale.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e8759ad17d41 ("serial: uapi: Add support for bus termination")
-introduced the ability to enable rs485 bus termination from user space.
-So far the feature is only used by a single driver, 8250_exar.c, using a
-hardcoded GPIO pin specific to Siemens IOT2040 products.
+On Mon, May 18, 2020 at 11:16 AM Anson Huang <Anson.Huang@nxp.com> wrote:
 
-Provide for a more generic solution by allowing specification of an
-rs485 bus termination GPIO pin in the device tree:  Amend the serial
-core to retrieve the GPIO from the device tree (or ACPI table) and amend
-the default ->rs485_config() callback for 8250 drivers to change the
-GPIO on request from user space.
+> +maintainers:
+> +  - Frank Li <Frank.Li@freescale.com>
 
-Perhaps 8250_exar.c can be converted to the generic approach in a
-follow-up patch.
-
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jan Kiszka <jan.kiszka@siemens.com>
----
- drivers/tty/serial/8250/8250_port.c |  3 +++
- drivers/tty/serial/serial_core.c    | 16 ++++++++++++++++
- include/linux/serial_core.h         |  2 ++
- 3 files changed, 21 insertions(+)
-
-diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
-index 4d83c85a7389..4f6ff54175ce 100644
---- a/drivers/tty/serial/8250/8250_port.c
-+++ b/drivers/tty/serial/8250/8250_port.c
-@@ -681,6 +681,9 @@ int serial8250_em485_config(struct uart_port *port, struct serial_rs485 *rs485)
- 	memset(rs485->padding, 0, sizeof(rs485->padding));
- 	port->rs485 = *rs485;
- 
-+	gpiod_set_value(port->rs485_term_gpio,
-+			rs485->flags & SER_RS485_TERMINATE_BUS);
-+
- 	/*
- 	 * Both serial8250_em485_init() and serial8250_em485_destroy()
- 	 * are idempotent.
-diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_core.c
-index 43b6682877d5..57840cf90388 100644
---- a/drivers/tty/serial/serial_core.c
-+++ b/drivers/tty/serial/serial_core.c
-@@ -3317,6 +3317,7 @@ int uart_get_rs485_mode(struct uart_port *port)
- 	 * to get to a defined state with the following properties:
- 	 */
- 	rs485conf->flags &= ~(SER_RS485_RX_DURING_TX | SER_RS485_ENABLED |
-+			      SER_RS485_TERMINATE_BUS |
- 			      SER_RS485_RTS_AFTER_SEND);
- 	rs485conf->flags |= SER_RS485_RTS_ON_SEND;
- 
-@@ -3331,6 +3332,21 @@ int uart_get_rs485_mode(struct uart_port *port)
- 		rs485conf->flags |= SER_RS485_RTS_AFTER_SEND;
- 	}
- 
-+	/*
-+	 * Disabling termination by default is the safe choice:  Else if many
-+	 * bus participants enable it, no communication is possible at all.
-+	 * Works fine for short cables and users may enable for longer cables.
-+	 */
-+	port->rs485_term_gpio = devm_gpiod_get_optional(dev, "rs485-term",
-+							GPIOD_OUT_LOW);
-+	if (IS_ERR(port->rs485_term_gpio)) {
-+		ret = PTR_ERR(port->rs485_term_gpio);
-+		port->rs485_term_gpio = NULL;
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Cannot get rs485-term-gpios\n");
-+		return ret;
-+	}
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(uart_get_rs485_mode);
-diff --git a/include/linux/serial_core.h b/include/linux/serial_core.h
-index b649a2b894e7..9fd550e7946a 100644
---- a/include/linux/serial_core.h
-+++ b/include/linux/serial_core.h
-@@ -10,6 +10,7 @@
- #include <linux/bitops.h>
- #include <linux/compiler.h>
- #include <linux/console.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/circ_buf.h>
- #include <linux/spinlock.h>
-@@ -251,6 +252,7 @@ struct uart_port {
- 	struct attribute_group	*attr_group;		/* port specific attributes */
- 	const struct attribute_group **tty_groups;	/* all attributes (serial core use only) */
- 	struct serial_rs485     rs485;
-+	struct gpio_desc	*rs485_term_gpio;	/* enable RS485 bus termination */
- 	struct serial_iso7816   iso7816;
- 	void			*private_data;		/* generic platform data pointer */
- };
--- 
-2.26.2
-
+The freescale.com e-mail domain is no longer valid for quite some time :-)
