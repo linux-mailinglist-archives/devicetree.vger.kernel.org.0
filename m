@@ -2,99 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F9C1D772B
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 13:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04EAD1D7717
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2020 13:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727122AbgERLco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 07:32:44 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:44912 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726590AbgERLco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 May 2020 07:32:44 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04IBR8En030210;
-        Mon, 18 May 2020 11:32:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=Nf4Rh2W7FuA5dcxB52Yb3a1cDcQWNzGxXYU7kpXcYOs=;
- b=reQJpdgKciM7tKTDXmtbEwWYIBsfiLz5q0YT3X14iPZz7K/GfjX8lEWRBFCqcsR9LX+i
- KKS9hLMm3Yxm95bKmOC17YhIBcm9frl/1HaS42mJzoLHMOuvGSKkhqeLeHFHGPj6MYIE
- woE/F9Odues1s1B2meS6bluwBuYbeGmy6DAG22T7QFVeHGLMJqFFJMFrqS+OebYYE7fo
- cfoN5XCqV9mgVaFIKqnZvDRgNbnh/WRhc0zZn0c4WvTeNlJDITcJfuD1G4LZoYp2DTDj
- ZxqDpe/v+Lf2EbEwuDgOBef67eoIJIlmi2M8K1m5icqF8s8t3NjH1ffCZ2swvqSJSYij OQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2130.oracle.com with ESMTP id 3127kqx7tp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 18 May 2020 11:32:37 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04IBSuGt121191;
-        Mon, 18 May 2020 11:30:36 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by aserp3020.oracle.com with ESMTP id 312t30m2qd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 18 May 2020 11:30:36 +0000
-Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 04IBUTmb001719;
-        Mon, 18 May 2020 11:30:29 GMT
-Received: from mwanda (/41.57.98.10)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 18 May 2020 04:30:29 -0700
-Date:   Mon, 18 May 2020 14:30:21 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] of: drop a reference on error in __of_attach_node_sysfs()
-Message-ID: <20200518113021.GB48709@mwanda>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9624 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 spamscore=0 mlxlogscore=999
- phishscore=0 mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2005180104
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9624 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0 spamscore=0
- bulkscore=0 clxscore=1011 priorityscore=1501 mlxscore=0 impostorscore=0
- suspectscore=0 mlxlogscore=999 malwarescore=0 cotscore=-2147483648
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2005180103
+        id S1726855AbgERLbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 07:31:47 -0400
+Received: from foss.arm.com ([217.140.110.172]:38570 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726585AbgERLbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 07:31:47 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A0AC5106F;
+        Mon, 18 May 2020 04:31:46 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6B7FA3F52E;
+        Mon, 18 May 2020 04:31:45 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v3 00/20] dts/dt-bindings: Fix Arm Ltd. ARMv8 "boards"
+Date:   Mon, 18 May 2020 12:31:32 +0100
+Message-Id: <158980112843.33280.16226851289892007676.b4-ty@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200513103016.130417-1-andre.przywara@arm.com>
+References: <20200513103016.130417-1-andre.przywara@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We add a new of_node_get() to this function, but we should drop the
-reference if kobject_add().
+On Wed, 13 May 2020 11:29:56 +0100, Andre Przywara wrote:
+> A few updates compared to v2. The most important is to fix the
+> interrupt-maps, triggered by changing the number of address-cells in
+> the GIC node. For this I split the former patch 07/17 into two (09/20
+> and 10/20), one for the foundation model, the other for Juno.
+> Also I fixed a dtc complaint about device nodes without reg properties
+> being inside simple-bus nodes, those are the new patches 04-06/20.
+> Will took patch 01/17 from v2 already, so I removed this from this
+> series.
+> The rest of the patches stayed the same.
+> -----------------------------------
+> 
+> [...]
 
-Fixes: 5b2c2f5a0ea3 ("of: overlay: add missing of_node_get() in __of_attach_node_sysfs")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
-From static analysis.  Maybe we should just call of_node_get() right
-before we return 0?
+Hi Andre,
 
- drivers/of/kobj.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Patch 12/20 was missing your Signed-off tags, re-applied adding the same.
 
-diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
-index c72eef988041..a90dc4b3b060 100644
---- a/drivers/of/kobj.c
-+++ b/drivers/of/kobj.c
-@@ -138,8 +138,10 @@ int __of_attach_node_sysfs(struct device_node *np)
- 
- 	rc = kobject_add(&np->kobj, parent, "%s", name);
- 	kfree(name);
--	if (rc)
-+	if (rc) {
-+		of_node_put(np);
- 		return rc;
-+	}
- 
- 	for_each_property_of_node(np, pp)
- 		__of_add_property_sysfs(np, pp);
--- 
-2.26.2
+Applied to scmi-vexpress-juno (for-next/juno), thanks!
+
+[02/20] arm64: dts: fvp/juno: Fix node address fields
+        https://git.kernel.org/sudeep.holla/c/bb5cce12ac
+[03/20] arm64: dts: fvp: Move fixed devices out of bus node
+        https://git.kernel.org/sudeep.holla/c/849bfc3dfc
+[04/20] arm64: dts: vexpress: Move fixed devices out of bus node
+        https://git.kernel.org/sudeep.holla/c/d9258898ad
+[05/20] arm64: dts: fvp: Move fixed clocks out of bus node
+        https://git.kernel.org/sudeep.holla/c/feebdc3f79
+[06/20] arm64: dts: juno: Move fixed devices out of bus node
+        https://git.kernel.org/sudeep.holla/c/948204a1bf
+[07/20] arm64: dts: juno: Fix mem-timer
+        https://git.kernel.org/sudeep.holla/c/0e529dae51
+[08/20] arm64: dts: fvp: Fix GIC compatible names
+        https://git.kernel.org/sudeep.holla/c/336edacfb9
+[09/20] arm64: dts: juno: Fix GIC child nodes
+        https://git.kernel.org/sudeep.holla/c/a78aee9e43
+[10/20] arm64: dts: fvp: Fix GIC child nodes
+        https://git.kernel.org/sudeep.holla/c/78631aecc5
+[11/20] arm64: dts: fvp: Fix ITS node names and #msi-cells
+        https://git.kernel.org/sudeep.holla/c/fac959c93f
+[12/20] arm64: dts: juno: Use proper DT node name for USB
+        https://git.kernel.org/sudeep.holla/c/a66ab61b2c
+[13/20] arm64: dts: fvp/juno: Fix serial node names
+        https://git.kernel.org/sudeep.holla/c/1d33445a19
+[14/20] arm64: dts: fvp: Fix SMMU DT node
+        https://git.kernel.org/sudeep.holla/c/386270bad0
+[15/20] arm64: dts: fvp/juno: Fix bus node names
+        https://git.kernel.org/sudeep.holla/c/48db29f2c9
+[16/20] arm64: dts: juno: Fix GPU interrupt order
+        https://git.kernel.org/sudeep.holla/c/90280c4dc0
+[17/20] arm64: dts: vexpress: Fix VExpress LED names
+        https://git.kernel.org/sudeep.holla/c/dc6e874179
+[18/20] arm64: dts: juno: Fix SCPI shared mem node name
+        https://git.kernel.org/sudeep.holla/c/267c673233
+
+--
+Regards,
+Sudeep
 
