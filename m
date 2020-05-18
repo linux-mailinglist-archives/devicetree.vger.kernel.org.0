@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA01A1D8ACE
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 00:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6251D8AC5
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 00:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728424AbgERW2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 May 2020 18:28:11 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:52628 "EHLO gloria.sntech.de"
+        id S1728364AbgERW2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 May 2020 18:28:10 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:52634 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728354AbgERW2L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 May 2020 18:28:11 -0400
+        id S1728339AbgERW2K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 May 2020 18:28:10 -0400
 Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1jaoEw-00005F-0v; Tue, 19 May 2020 00:28:06 +0200
+        id 1jaoEw-00005F-9d; Tue, 19 May 2020 00:28:06 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
 To:     Johan Jonker <jbx6244@gmail.com>
 Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
         linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: fix phy nodename for rk3328
-Date:   Tue, 19 May 2020 00:28:01 +0200
-Message-Id: <158984064169.2259329.15579989069543124777.b4-ty@sntech.de>
+Subject: Re: [PATCH v3 1/4] ARM: dts: rockchip: remove identical #include from rk3288.dtsi
+Date:   Tue, 19 May 2020 00:28:02 +0200
+Message-Id: <158984064169.2259329.2459091557844833236.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200505170227.6503-1-jbx6244@gmail.com>
-References: <20200321215423.12176-1-jbx6244@gmail.com> <20200505170227.6503-1-jbx6244@gmail.com>
+In-Reply-To: <20200403180159.13387-1-jbx6244@gmail.com>
+References: <20200403180159.13387-1-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -34,25 +34,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 May 2020 19:02:27 +0200, Johan Jonker wrote:
-> A test with the command below gives for example this error:
-> 
-> arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml: phy@0:
-> '#phy-cells' is a required property
-> 
-> The phy nodename is normally used by a phy-handle.
-> This node is however compatible with
-> "ethernet-phy-id1234.d400", "ethernet-phy-ieee802.3-c22"
-> which is just been added to 'ethernet-phy.yaml'.
-> So change nodename to 'ethernet-phy' for which '#phy-cells'
-> is not a required property
-> 
-> [...]
+On Fri, 3 Apr 2020 20:01:56 +0200, Johan Jonker wrote:
+> There are 2 identical '#include' for 'rk3288-power.h',
+> so remove one of them.
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: fix phy nodename for rk3328
-      commit: 8370cc5533b3baa5e0f18075ae638b050458aabd
+[1/1] ARM: dts: rockchip: remove identical #include from rk3288.dtsi
 
 Best regards,
 -- 
