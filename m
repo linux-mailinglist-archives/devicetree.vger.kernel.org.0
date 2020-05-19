@@ -2,178 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 443871D9D7F
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8FD01D9DBB
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729386AbgESRHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 13:07:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38912 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728689AbgESRHT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 13:07:19 -0400
-Received: from localhost (unknown [122.182.207.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E93C20709;
-        Tue, 19 May 2020 17:07:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1589908038;
-        bh=pw3JRnvv4LiS9CjnXT7JJ1OaHHlAgFV9RnoBXtjbSWg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pJKA64OLl3rmcOsYz0uFiDd5uRBE2khGJ3iiTmJfGnwypwpCn0QsgeQskAfpROgB1
-         lZTwv7Koq0c21yjJsg9H2Lv5hejl8kTK4PxYCn2FvLqQxKHw+UECWv1BLEesp2Ffem
-         aRa9AkWIFMMOJGQb8Ubw0v3hm2/TYbXzKjI6PGik=
-Date:   Tue, 19 May 2020 22:37:14 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] dmaengine: dw: Introduce max burst length hw
- config
-Message-ID: <20200519170714.GT374218@vkoul-mobl.Dlink>
-References: <20200306131048.ADBE18030797@mail.baikalelectronics.ru>
- <20200508105304.14065-1-Sergey.Semin@baikalelectronics.ru>
- <20200508105304.14065-6-Sergey.Semin@baikalelectronics.ru>
- <20200508114153.GK185537@smile.fi.intel.com>
- <20200512140820.ssjv6pl7busqqi3t@mobilestation>
- <20200512191208.GG185537@smile.fi.intel.com>
- <20200515063950.GI333670@vkoul-mobl>
- <20200517193818.jaiwgzgz7tutj4mk@mobilestation>
+        id S1729210AbgESRUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 13:20:22 -0400
+Received: from mailrelay4.webfaction.com ([185.20.51.6]:60504 "EHLO
+        mailrelay4.webfaction.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729197AbgESRUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 13:20:22 -0400
+X-Greylist: delayed 563 seconds by postgrey-1.27 at vger.kernel.org; Tue, 19 May 2020 13:20:22 EDT
+Received: from mailrelay3.webfaction.com (mailrelay3.webfaction.com [207.38.93.110])
+        by mailrelay4.webfaction.com (Postfix) with ESMTPS id AA711A6D79;
+        Tue, 19 May 2020 17:10:54 +0000 (UTC)
+Received: from mailrelay1.webfaction.com (mailrelay1.webfaction.com [207.38.86.46])
+        by mailrelay3.webfaction.com (Postfix) with ESMTPS id DEEE32A5088;
+        Tue, 19 May 2020 17:10:52 +0000 (UTC)
+Received: from smtp.webfaction.com (mail6.webfaction.com [31.170.123.134])
+        by mailrelay1.webfaction.com (Postfix) with ESMTPS id EA76E1A0E3D;
+        Tue, 19 May 2020 17:10:51 +0000 (UTC)
+Received: from jeremy.localnet (host-37-191-188-128.lynet.no [37.191.188.128])
+        by smtp.webfaction.com (Postfix) with ESMTPSA id 810DA60038E8E;
+        Tue, 19 May 2020 17:11:01 +0000 (UTC)
+From:   Paul Boddie <paul@boddie.org.uk>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Emil Velikov <emil.l.velikov@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>, od@zcrc.me,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 11/12] gpu/drm: Ingenic: Add support for the IPU
+Date:   Tue, 19 May 2020 19:10:32 +0200
+Message-ID: <3220152.ycyENPvHUQ@jeremy>
+User-Agent: KMail/4.14.1 (Linux/3.16.0-10-586; KDE/4.14.2; i686; ; )
+In-Reply-To: <YGYIAQ.7N9YGTBML0143@crapouillou.net>
+References: <20200516215057.392609-1-paul@crapouillou.net> <CACvgo50q=qJXk3nFSCm+S6JHBMxpY0C_HwH8KGB2EAcKwgL0oQ@mail.gmail.com> <YGYIAQ.7N9YGTBML0143@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200517193818.jaiwgzgz7tutj4mk@mobilestation>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-05-20, 22:38, Serge Semin wrote:
-> On Fri, May 15, 2020 at 12:09:50PM +0530, Vinod Koul wrote:
-> > On 12-05-20, 22:12, Andy Shevchenko wrote:
-> > > On Tue, May 12, 2020 at 05:08:20PM +0300, Serge Semin wrote:
-> > > > On Fri, May 08, 2020 at 02:41:53PM +0300, Andy Shevchenko wrote:
-> > > > > On Fri, May 08, 2020 at 01:53:03PM +0300, Serge Semin wrote:
-> > > > > > IP core of the DW DMA controller may be synthesized with different
-> > > > > > max burst length of the transfers per each channel. According to Synopsis
-> > > > > > having the fixed maximum burst transactions length may provide some
-> > > > > > performance gain. At the same time setting up the source and destination
-> > > > > > multi size exceeding the max burst length limitation may cause a serious
-> > > > > > problems. In our case the system just hangs up. In order to fix this
-> > > > > > lets introduce the max burst length platform config of the DW DMA
-> > > > > > controller device and don't let the DMA channels configuration code
-> > > > > > exceed the burst length hardware limitation. Depending on the IP core
-> > > > > > configuration the maximum value can vary from channel to channel.
-> > > > > > It can be detected either in runtime from the DWC parameter registers
-> > > > > > or from the dedicated dts property.
-> > > > > 
-> > > > > I'm wondering what can be the scenario when your peripheral will ask something
-> > > > > which is not supported by DMA controller?
-> > > > 
-> > > > I may misunderstood your statement, because seeing your activity around my
-> > > > patchsets including the SPI patchset and sometimes very helpful comments,
-> > > > this question answer seems too obvious to see you asking it.
-> > > > 
-> > > > No need to go far for an example. See the DW APB SSI driver. Its DMA module
-> > > > specifies the burst length to be 16, while not all of ours channels supports it.
-> > > > Yes, originally it has been developed for the Intel Midfield SPI, but since I
-> > > > converted the driver into a generic code we can't use a fixed value. For instance
-> > > > in our hardware only two DMA channels of total 16 are capable of bursting up to
-> > > > 16 bytes (data items) at a time, the rest of them are limited with up to 4 bytes
-> > > > burst length. While there are two SPI interfaces, each of which need to have two
-> > > > DMA channels for communications. So I need four channels in total to allocate to
-> > > > provide the DMA capability for all interfaces. In order to set the SPI controller
-> > > > up with valid optimized parameters the max-burst-length is required. Otherwise we
-> > > > can end up with buffers overrun/underrun.
-> > > 
-> > > Right, and we come to the question which channel better to be used by SPI and
-> > > the rest devices. Without specific filter function you can easily get into a
-> > > case of inverted optimizations, when SPI got channels with burst = 4, while
-> > > it's needed 16, and other hardware otherwise. Performance wise it's worse
-> > > scenario which we may avoid in the first place, right?
+On Monday 18. May 2020 13.26.58 Paul Cercueil wrote:
+> >>  
+> >>  @@ -186,13 +186,16 @@ static void
+> >> 
+> >> ingenic_drm_crtc_update_timings(struct ingenic_drm *priv,
+> >> 
+> >>          regmap_update_bits(priv->map, JZ_REG_LCD_CTRL,
+> >>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16,
+> >>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16);
+> >>  
+> >>  +
+> >>  +       regmap_write(priv->map, JZ_REG_LCD_IPUR, JZ_LCD_IPUR_IPUREN
+> >>  +                    (ht * vpe / 3) << JZ_LCD_IPUR_IPUR_LSB);
 > > 
-> > If one has channels which are different and described as such in DT,
-> > then I think it does make sense to specify in your board-dt about the
-> > specific channels you would require...
+> > This hunk also indicates that it may be better to merge the IPU within
+> > the existing driver.
 > 
-> Well, we do have such hardware. Our DW DMA controller has got different max
-> burst lengths assigned to first two and the rest of the channels. But creating
-> a functionality of the individual channels assignment is a matter of different
-> patchset. Sorry. It's not one of my task at the moment.
-> 
-> My primary task is to integrate the Baikal-T1 SoC support into the kernel. I've
-> refactored a lot of code found in the Baikal-T1 SDK and currently under a pressure
-> of a lot of review. Alas there is no time to create new functionality as you
-> suggest. In future I may provide such, but not in the framework of this patchset.
+> This writes the IPUR register of the CRTC, nothing wrong here.
 
-Well you need to tell your folks that upstreaming does not work under
-pressure and we can't put a timeline for upstreaming. It needs to do
-what is deemed the right way. Reviews can take time, that needs to be
-comprehended as well!
+Since I noticed it in the above patch details, I think the mask when updating 
+the burst setting in the LCD_CTRL register should - in general - involve 
+multiple bits, since the BST field is 3 bits wide on the JZ4780 and 2 bits 
+wide on earlier products. Just setting BURST_16 (0b10) could potentially 
+enable BURST_32 (0b11) or other field values that are not explicitly defined.
 
-> > > > > Peripheral needs to supply a lot of configuration parameters specific to the
-> > > > > DMA controller in use (that's why we have struct dw_dma_slave).
-> > > > > So, seems to me the feasible approach is supply correct data in the first place.
-> > > > 
-> > > > How to supply a valid data if clients don't know the DMA controller limitations
-> > > > in general?
-> > > 
-> > > This is a good question. DMA controllers are quite different and having unified
-> > > capabilities structure for all is almost impossible task to fulfil. That's why
-> > > custom filter function(s) can help here. Based on compatible string you can
-> > > implement whatever customized quirks like two functions, for example, to try 16
-> > > burst size first and fallback to 4 if none was previously found.
-> > > 
-> > > > > If you have specific channels to acquire then you probably need to provide a
-> > > > > custom xlate / filter functions. Because above seems a bit hackish workaround
-> > > > > of dynamic channel allocation mechanism.
-> > > > 
-> > > > No, I don't have a specific channel to acquire and in general you may use any
-> > > > returned from the DMA subsystem (though some platforms may need a dedicated
-> > > > channels to use, in this case xlate / filter is required). In our SoC any DW DMAC
-> > > > channel can be used for any DMA-capable peripherals like SPI, I2C, UART. But the
-> > > > their DMA settings must properly and optimally configured. It can be only done
-> > > > if you know the DMA controller parameters like max burst length, max block-size,
-> > > > etc.
-> > > > 
-> > > > So no. The change proposed by this patch isn't workaround, but a useful feature,
-> > > > moreover expected to be supported by the generic DMA subsystem.
-> > > 
-> > > See above.
-> > > 
-> > > > > But let's see what we can do better. Since maximum is defined on the slave side
-> > > > > device, it probably needs to define minimum as well, otherwise it's possible
-> > > > > that some hardware can't cope underrun bursts.
-> > > > 
-> > > > There is no need to define minimum if such limit doesn't exists except a
-> > > > natural 1. Moreover it doesn't exist for all DMA controllers seeing noone has
-> > > > added such capability into the generic DMA subsystem so far.
-> > > 
-> > > There is a contract between provider and consumer about DMA resource. That's
-> > > why both sides should participate in fulfilling it. Theoretically it may be a
-> > > hardware that doesn't support minimum burst available in DMA by a reason. For
-> > > such we would need minimum to be provided as well.
-> > 
-> > Agreed and if required caps should be extended to tell consumer the
-> > minimum values supported.
-> 
-> Sorry, it's not required by our hardware. Is there any, which actually has such
-> limitation? (minimum burst length)
+Hope this is useful!
 
-IIUC the idea is that you will tell maximum and minimum values supported
-and client can pick the best value. Esp in case of slave transfers
-things like burst, msize are governed by client capability and usage. So
-exposing the set to pick from would make sense
-
--- 
-~Vinod
+Paul
