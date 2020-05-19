@@ -2,110 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8471D98DD
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4180F1DA467
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 00:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729110AbgESOFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 10:05:07 -0400
-Received: from mail-db8eur05on2073.outbound.protection.outlook.com ([40.107.20.73]:8160
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728982AbgESOFE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 10:05:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ul+a2wJQjs1huUyq8QeSm6PCGgmN2Q4HqkJGJnS44pAi4MI011J+fO5sy0PE2kYTUew6mlhxboy4iN48XuqkIowITK2YUfND5Q2g+BkJKNB9PJcel8iiyvtojSxmdEAbOQmv4aJnZ8MxQ+z+x7ZS2DkgYCriIn4Osb7mUcTiHRig2meZpZI0mRffsn5c1ehsWkhU6MxIJigqCW/f/zZnjul6A5y0cgYuhi+/iyNF/Z5aUqL+ZgwCH/61HhQCAPBwutpc/k2q/wA8XYj/Ng2MlDRyeFRRrqpfbSl2IFN3zKpUMHMu2xN9bH4p+kt+Q4WNPS4tHKQ2BOMdHltkeZ6PnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LTLiHa2vMVTb/qu7hQYVMHmXWHuN/6xwzyfcbluYw/Q=;
- b=GOHQn6BO+MI7LddjO1/wpFW8bFfsY64psR5Z0hh6cOHN6ILo1b6g94XjJ4N333qE2azdfKbuTw1IVPZ8okt/1NX5yOwdjj9Uw3Q/zz9NR8mhKGvlh9qPrGpY53AcZASQ/s8Xz2MiQqT5rIK1EDzc9+7nxOB6gbJJgXQJFpjIYP7zqghxT++9Bk9hM+0o1MDI3Rio6aG1RF49KkfCdYQ3TSnAyzP7OWwlMD0qqpVNvdGJ9vEEMLf+qUKGv00mD1+FaXvZGWm2u38naRwwvSKHCnQMBskwcOLTXIDNNa8XJehTnGKD4SfnLLOHTM8dv6SOFCa1pi/1Nee6LhdJMmmK+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LTLiHa2vMVTb/qu7hQYVMHmXWHuN/6xwzyfcbluYw/Q=;
- b=bx+4ntuQxJqKq9zoOiD3dzmQ5xpTeBC6IaclQrTOrMZ0/+0c4T/MZBOoh87FPvq9BkVBp+c8gS7e7LTfMbsm1aiwLkYs0p1+gk62D5cj6Q/mdHUTfDhgs027Q0OkmNeaVBmvYhPs93M8+ghkKqjK+aw0WmjXpRPzxPawvVZQy5c=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VE1PR04MB6429.eurprd04.prod.outlook.com (2603:10a6:803:11a::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Tue, 19 May
- 2020 14:04:59 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::d5f0:c948:6ab0:c2aa]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::d5f0:c948:6ab0:c2aa%4]) with mapi id 15.20.3000.034; Tue, 19 May 2020
- 14:04:59 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
-        anson.huang@nxp.com, festevam@gmail.com, s.hauer@pengutronix.de,
-        john.lee@nxp.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: [PATCH v1 4/4] arm64: configs: add pca9450 pmic driver
-Date:   Wed, 20 May 2020 06:05:07 +0800
-Message-Id: <1589925907-9195-5-git-send-email-yibin.gong@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589925907-9195-1-git-send-email-yibin.gong@nxp.com>
-References: <1589925907-9195-1-git-send-email-yibin.gong@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR03CA0128.apcprd03.prod.outlook.com
- (2603:1096:4:91::32) To VE1PR04MB6638.eurprd04.prod.outlook.com
- (2603:10a6:803:119::15)
+        id S1727989AbgESWV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 18:21:59 -0400
+Received: from v6.sk ([167.172.42.174]:58478 "EHLO v6.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725998AbgESWV7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 18:21:59 -0400
+Received: from localhost (v6.sk [IPv6:::1])
+        by v6.sk (Postfix) with ESMTP id 115EA610B0;
+        Tue, 19 May 2020 22:21:26 +0000 (UTC)
+Date:   Wed, 20 May 2020 00:21:22 +0200
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: sound: Add Marvell MMP Audio Clock
+ Controller binding
+Message-ID: <20200519222122.GI1695525@furthur.local>
+References: <20200511195534.1207927-1-lkundrak@v3.sk>
+ <20200511195534.1207927-2-lkundrak@v3.sk>
+ <158949036750.215346.11234071140104055350@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR03CA0128.apcprd03.prod.outlook.com (2603:1096:4:91::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3021.12 via Frontend Transport; Tue, 19 May 2020 14:04:54 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [119.31.174.66]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ec1a46fa-74fb-4825-ec20-08d7fbfd9dd3
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6429:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VE1PR04MB642956E2FDD11A73D35FCE8189B90@VE1PR04MB6429.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
-X-Forefront-PRVS: 040866B734
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: t+uPU6balgi4KTp5wLvcK4VeXM3BWV7va8HrFwKWCj1hZND4o9H3Zg80z04gc/eJPST7U2gMsToPMowd49lJuLNFPoEKTd9RlEjTKrxS/JIDG5MopJiV9bDgSOT7+t88UntqpNbOIbAFp/GPkVWiHJZ5UQ3Bgxb2JnrVNaN12BDKwiJOXxw7U9oQO9KA4X+W5LHKJHfFk5uKX7F+1adBn5oQ1d+bbdlblAZjy9BdDzk+jyswCRQ729Spvb0cdZ3FatzsUidurVi0fPtU5fx2VZ77fcU4u3i9GIV7FytdsR00Lbt+tDzBOYB4cJ4KriqVyiQeJ1Bc7YPdgodfDQEgjxL6WECDcut7c1UAnM2ijIFvA4aVOl+YwK3pao9fcHQbHxb+NdmU84+BIHrNzrhsahG8qiaUOiHjcyZqJXHQQ6Q9BVPAXXinJs/fDiiCwWj96HuwjmAKyFYVvJ86i+BQlOXFayxOmkKqQJ+e55RZTKE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(498600001)(6506007)(6486002)(5660300002)(4744005)(4326008)(186003)(2906002)(2616005)(6636002)(956004)(16526019)(86362001)(52116002)(6512007)(26005)(8676002)(36756003)(6666004)(7416002)(8936002)(66476007)(66556008)(66946007)(921003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: dLVKBYovJwrz7ulJcEfTBhh4xKUxHa7lTNXeLvGP9wSfK0AtHw9UWpk9A+Wpx5zytzMmacbUl0Cvqzb4r/vYUd5dXB8dt6myyQiE8h2E+hUl4HU0zF6O71yrFllE46JUM9ibVZ8f0LRovc6atU6Q89GQcHQzVMnwCTtk7ZB+TfQxu+x+N6IjLABWqu57iqaMjKmzBDkuQwA0C4vnz8RTeMg8IP6vf3DylwE+WOXEkvGQZVHUq3HE6mfz6bP08yVyonyJPvg8AafeZBioCNnPpXE5qPMqbJb3JdYTjHQlX8bfcu2lJVWdHlGiAbCYBlywY11spoVNne3mSsEmeL0OHHg7mpRQ8FCcdG9TNHShk3/Aq2Mj+3I80T2+kPPV8idmNjyw2pmpqBlE+8yKm26hX1nOV4C76788/i39Tm0UBxlGyNyccpnLsZZyTcStxiCoX/1mmGeYsLwTp4XmjeqZP27tTzztpixBcTllIQRFaRU=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec1a46fa-74fb-4825-ec20-08d7fbfd9dd3
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2020 14:04:59.3381
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GbxdSs37euDMVpqhRkIt6rRt+tJT44/dDKHJfg/pPqdpqDARQWDeVq9+gryVcqV9/zlfSiRqWvxbNtSJP94izA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6429
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <158949036750.215346.11234071140104055350@swboyd.mtv.corp.google.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pca9450 pmic driver.
+On Thu, May 14, 2020 at 02:06:07PM -0700, Stephen Boyd wrote:
+> Quoting Lubomir Rintel (2020-05-11 12:55:33)
+> > diff --git a/Documentation/devicetree/bindings/clock/marvell,mmp2-audio-clock.yaml b/Documentation/devicetree/bindings/clock/marvell,mmp2-audio-clock.yaml
+> > new file mode 100644
+> > index 000000000000..b86e9fbfa56d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/marvell,mmp2-audio-clock.yaml
+> > @@ -0,0 +1,73 @@
+> > +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/marvell,mmp2-audio-clock.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Marvell MMP2 Audio Clock Controller
+> > +
+> > +maintainers:
+> > +  - Lubomir Rintel <lkundrak@v3.sk>
+> > +
+> > +description: |
+> > +  The audio clock controller generates and supplies the clocks to the audio
+> > +  codec.
+> > +
+> > +  Each clock is assigned an identifier and client nodes use this identifier
+> > +  to specify the clock which they consume.
+> > +
+> > +  All these identifiers could be found in <dt-bindings/clock/marvell,mmp2.h>.
+> 
+> Is this right? The patch puts them in mmp2-audio.h
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - marvell,mmp2-audio-clock
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Audio subsystem clock
+> > +      - description: The crystal oscillator clock
+> > +      - description: First I2S clock
+> > +      - description: Second I2S clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: audio
+> > +      - const: vctcxo
+> > +      - const: i2s0
+> > +      - const: i2s1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - '#clock-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/marvell,mmp2.h>
+> > +    #include <dt-bindings/power/marvell,mmp2.h>
+> > +
+> > +    clocks@d42a0c30 {
+> 
+> clock-controller@d42a0c30
+> 
+> > +      compatible = "marvell,mmp2-audio-clock";
+> > +      reg = <0xd42a0c30 0x10>;
+> 
+> That is a very specific and tiny region. Presumably this is part of a
+> larger hardware block and thus shouldn't be described in DT this way.
+> Instead there should be one clock-controller node and a driver that
+> controls all the clks that it wants to inside that hardware block.
 
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This resides in a block that's entirely separate from SoC's main clock
+controllers ("power management units"). It is inside the audio block,
+separate power island along with two I2S ("SSPA") controllers. The
+addresses are weirdly interleaved, with the clock controller being
+mapped between the two channels of the first SSPA:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c6c7e7e..36fcfd8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -550,6 +550,7 @@ CONFIG_REGULATOR_HI6421V530=y
- CONFIG_REGULATOR_HI655X=y
- CONFIG_REGULATOR_MAX77620=y
- CONFIG_REGULATOR_MAX8973=y
-+CONFIG_REGULATOR_PCA9450=y
- CONFIG_REGULATOR_PFUZE100=y
- CONFIG_REGULATOR_PWM=y
- CONFIG_REGULATOR_QCOM_RPMH=y
--- 
-2.7.4
+  0xd42a0c00 - 0xd42a0c30 SSPA1 RX
+  0xd42a0c30 - 0xd42a0c40 Clock Control
+  0xd42a0c80 - 0xd42a0cb0 SSPA1 TX
+  0xd42a0d00 - 0xd42a0d30 SSPA2 RX
+  0xd42a0d80 - 0xd42a0cb0 SSPA2 TX
 
+Despite the addresses being interwoven in this way, the Clock Controller
+is pretty much independent of the SSPAs and deserves a separate device
+node, regardless of how tiny its range is.
+
+> > +      clock-names = "audio", "vctcxo", "i2s0", "i2s1";
+> > +      clocks = <&soc_clocks MMP2_CLK_AUDIO>,
+> > +               <&soc_clocks MMP2_CLK_VCTCXO>,
+> > +               <&soc_clocks MMP2_CLK_I2S0>,
+> > +               <&soc_clocks MMP2_CLK_I2S1>;
+> > +      power-domains = <&soc_clocks MMP2_POWER_DOMAIN_AUDIO>;
+> > +      #clock-cells = <1>;
+> > +    };
+> > diff --git a/include/dt-bindings/clock/marvell,mmp2-audio.h b/include/dt-bindings/clock/marvell,mmp2-audio.h
+> > new file mode 100644
+> > index 000000000000..127b48ec0f0a
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/marvell,mmp2-audio.h
+> > @@ -0,0 +1,8 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause) */
+> > +#ifndef __DT_BINDINGS_CLOCK_MARVELL_MMP2_AUDIO_H
+> > +#define __DT_BINDINGS_CLOCK_MARVELL_MMP2_AUDIO_H
+> > +
+> > +#define MMP2_CLK_AUDIO_SYSCLK          1
+> 
+> Any reason to start at 1 vs. 0?
+> 
+> > +#define MMP2_CLK_AUDIO_SSPA0           2
+> > +#define MMP2_CLK_AUDIO_SSPA1           3
+> > +#endif
+> > -- 
+> > 2.26.2
+> >
