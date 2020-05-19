@@ -2,249 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C08951DA54E
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 01:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050691DA5B8
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 01:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728229AbgESXZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 19:25:05 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:58454 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728219AbgESXZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 19:25:03 -0400
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:b93f:9fae:b276:a89a])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 764542A26CB;
-        Wed, 20 May 2020 00:25:01 +0100 (BST)
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Harvey Hunt <harveyhuntnexus@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726535AbgESXmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 19:42:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725998AbgESXml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 19:42:41 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FB7C061A0E
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 16:42:41 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id s8so1229575wrt.9
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 16:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:date:message-id:mime-version;
+        bh=MmIqjO1PtTVd+rdNu9nNb4mADvKA71b2ZrcUks1uRJo=;
+        b=vTfMJ8PtHJc/TjzQRTrRhPNVRyHHYycwdoNu7rn6SwqPvWLZ6+03X7Pq1xlTAqKfbq
+         pSkz8erEmZbl5NEC7ffg1vjDBeV91vWIi/UpMblVVUXG7fICkxan3TIDYjBEiTzCKrUw
+         qVb0ilGsCIYZu/z62LoRz/O/WEvNJUKhVB5XjQyTGwvbc4x6bXh9Iqiq500D+DFFVuBw
+         XiFkgIHC3IELUdOO7nHfyfTiYvRDM/6Gaj0O0ZJynaFsDQR93goRr1Ox957iafchATMC
+         74fwNFO/J48rEQSFBTg7/aNrT89cUvNxZYrb076WOjRmwcY4hot6ljnVFsjINyEJnk9s
+         Q7gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:date:message-id
+         :mime-version;
+        bh=MmIqjO1PtTVd+rdNu9nNb4mADvKA71b2ZrcUks1uRJo=;
+        b=rZzxsGnA1wQOy5uC8M+PYncLrpr+48Bu0wh2BKeZtLUFtdgFQWtV1/GsMoqVkp4kUA
+         5ET8kHIWCLY5SZ3XB1CSyCZLgfCPCJMaf2/3sdbkoxam5X0lqQh24NvoiAiOqUjHggrQ
+         i6G663A22E4OuXusQIX277IkCnsdUTvNoW1E51bk7Y4c5ExtJr5IriJoX5snQFqJoEez
+         fFM+9g4Dmi0j9uVjQleX65vylyJX3dSZnb3NgCB6WbtvPIe0f6Gf4+ni0bBDgH4Nh9FX
+         92t5sbE5MjSTW/ad5IcYnvRRhp9p1Z4kwKKNAqdmeeNatNkE2+ZmAfpqr+QXL8LNQVGQ
+         wzpA==
+X-Gm-Message-State: AOAM533FDqYLKpwW/Nl031WKPwOoing6TgvkejmgRxixGQAFTuXqdigT
+        FtYkTW32bl0+Y2uy2/lwe7Cs2A==
+X-Google-Smtp-Source: ABdhPJzYYXY2GYO9fXGwE5+SEib2GsKVQjkMTferPikSHMR/G5SF/9GqcN7uN6IzDDLc5LOSCjL3Dw==
+X-Received: by 2002:adf:f102:: with SMTP id r2mr1249229wro.376.1589931759860;
+        Tue, 19 May 2020 16:42:39 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id n17sm1010174wrr.42.2020.05.19.16.42.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2020 16:42:39 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v2 4/4] mtd: rawnand: ingenic: Convert the driver to exec_op()
-Date:   Wed, 20 May 2020 01:24:54 +0200
-Message-Id: <20200519232454.374081-4-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200519232454.374081-1-boris.brezillon@collabora.com>
-References: <20200519232454.374081-1-boris.brezillon@collabora.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH v3 0/5] arm64: dts: meson: add W400 dtsi and GT-King/Pro devices
+In-Reply-To: <20200518023404.15166-1-christianshewitt@gmail.com>
+Date:   Tue, 19 May 2020 16:42:36 -0700
+Message-ID: <7hmu63trtf.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's convert the driver to exec_op() to have one less driver relying
-on the legacy interface.
+Hi Christian,
 
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
----
-Changes in v2:
-* Add a delay after instructions when needed
-* s/cmd_offset/addr_offset/
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-Paul, I didn't add your T-b since this new version follows the path
-you proposed for the R/B polarity inversion issue. Feel free to add
-it back if it still works.
----
- .../mtd/nand/raw/ingenic/ingenic_nand_drv.c   | 139 +++++++++++-------
- 1 file changed, 83 insertions(+), 56 deletions(-)
+> This series combines patch 2 from [1] which converts the existing Ugoos
+> AM6 device-tree to a common W400 dtsi and dts, and then reworks the
+> Beelink GT-King/GT-King Pro serries from [2] to use the dtsi, but this
+> time without the offending common audio dtsi approach. I've carried
+> forwards acks on bindings from Rob as these did not change.
 
-diff --git a/drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c b/drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c
-index e939404e1383..3659e62829f9 100644
---- a/drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c
-+++ b/drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c
-@@ -27,9 +27,6 @@
- 
- #define DRV_NAME	"ingenic-nand"
- 
--/* Command delay when there is no R/B pin. */
--#define RB_DELAY_US	100
--
- struct jz_soc_info {
- 	unsigned long data_offset;
- 	unsigned long addr_offset;
-@@ -49,7 +46,6 @@ struct ingenic_nfc {
- 	struct nand_controller controller;
- 	unsigned int num_banks;
- 	struct list_head chips;
--	int selected;
- 	struct ingenic_nand_cs cs[];
- };
- 
-@@ -142,51 +138,6 @@ static const struct mtd_ooblayout_ops jz4725b_ooblayout_ops = {
- 	.free = jz4725b_ooblayout_free,
- };
- 
--static void ingenic_nand_select_chip(struct nand_chip *chip, int chipnr)
--{
--	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
--	struct ingenic_nfc *nfc = to_ingenic_nfc(nand->chip.controller);
--	struct ingenic_nand_cs *cs;
--
--	/* Ensure the currently selected chip is deasserted. */
--	if (chipnr == -1 && nfc->selected >= 0) {
--		cs = &nfc->cs[nfc->selected];
--		jz4780_nemc_assert(nfc->dev, cs->bank, false);
--	}
--
--	nfc->selected = chipnr;
--}
--
--static void ingenic_nand_cmd_ctrl(struct nand_chip *chip, int cmd,
--				  unsigned int ctrl)
--{
--	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
--	struct ingenic_nfc *nfc = to_ingenic_nfc(nand->chip.controller);
--	struct ingenic_nand_cs *cs;
--
--	if (WARN_ON(nfc->selected < 0))
--		return;
--
--	cs = &nfc->cs[nfc->selected];
--
--	jz4780_nemc_assert(nfc->dev, cs->bank, ctrl & NAND_NCE);
--
--	if (cmd == NAND_CMD_NONE)
--		return;
--
--	if (ctrl & NAND_ALE)
--		writeb(cmd, cs->base + nfc->soc_info->addr_offset);
--	else if (ctrl & NAND_CLE)
--		writeb(cmd, cs->base + nfc->soc_info->cmd_offset);
--}
--
--static int ingenic_nand_dev_ready(struct nand_chip *chip)
--{
--	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
--
--	return gpiod_get_value_cansleep(nand->busy_gpio);
--}
--
- static void ingenic_nand_ecc_hwctl(struct nand_chip *chip, int mode)
- {
- 	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
-@@ -298,8 +249,91 @@ static int ingenic_nand_attach_chip(struct nand_chip *chip)
- 	return 0;
- }
- 
-+static int ingenic_nand_exec_instr(struct nand_chip *chip,
-+				   struct ingenic_nand_cs *cs,
-+				   const struct nand_op_instr *instr)
-+{
-+	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
-+	struct ingenic_nfc *nfc = to_ingenic_nfc(chip->controller);
-+	unsigned int i;
-+
-+	switch (instr->type) {
-+	case NAND_OP_CMD_INSTR:
-+		writeb(instr->ctx.cmd.opcode,
-+		       cs->base + nfc->soc_info->cmd_offset);
-+		return 0;
-+	case NAND_OP_ADDR_INSTR:
-+		for (i = 0; i < instr->ctx.addr.naddrs; i++)
-+			writeb(instr->ctx.addr.addrs[i],
-+			       cs->base + nfc->soc_info->addr_offset);
-+		return 0;
-+	case NAND_OP_DATA_IN_INSTR:
-+		if (instr->ctx.data.force_8bit ||
-+		    !(chip->options & NAND_BUSWIDTH_16))
-+			ioread8_rep(cs->base + nfc->soc_info->data_offset,
-+				    instr->ctx.data.buf.in,
-+				    instr->ctx.data.len);
-+		else
-+			ioread16_rep(cs->base + nfc->soc_info->data_offset,
-+				     instr->ctx.data.buf.in,
-+				     instr->ctx.data.len);
-+		return 0;
-+	case NAND_OP_DATA_OUT_INSTR:
-+		if (instr->ctx.data.force_8bit ||
-+		    !(chip->options & NAND_BUSWIDTH_16))
-+			iowrite8_rep(cs->base + nfc->soc_info->data_offset,
-+				     instr->ctx.data.buf.out,
-+				     instr->ctx.data.len);
-+		else
-+			iowrite16_rep(cs->base + nfc->soc_info->data_offset,
-+				      instr->ctx.data.buf.out,
-+				      instr->ctx.data.len);
-+		return 0;
-+	case NAND_OP_WAITRDY_INSTR:
-+		if (!nand->busy_gpio)
-+			return nand_soft_waitrdy(chip,
-+						 instr->ctx.waitrdy.timeout_ms);
-+
-+		return nand_gpio_waitrdy(chip, nand->busy_gpio,
-+					 instr->ctx.waitrdy.timeout_ms);
-+	default:
-+		break;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int ingenic_nand_exec_op(struct nand_chip *chip,
-+				const struct nand_operation *op,
-+				bool check_only)
-+{
-+	struct ingenic_nand *nand = to_ingenic_nand(nand_to_mtd(chip));
-+	struct ingenic_nfc *nfc = to_ingenic_nfc(nand->chip.controller);
-+	struct ingenic_nand_cs *cs;
-+	unsigned int i;
-+	int ret = 0;
-+
-+	if (check_only)
-+		return 0;
-+
-+	cs = &nfc->cs[op->cs];
-+	jz4780_nemc_assert(nfc->dev, cs->bank, true);
-+	for (i = 0; i < op->ninstrs; i++) {
-+		ret = ingenic_nand_exec_instr(chip, cs, &op->instrs[i]);
-+		if (ret)
-+			break;
-+
-+		if (op->instrs[i].delay_ns)
-+			ndelay(op->instrs[i].delay_ns);
-+	}
-+	jz4780_nemc_assert(nfc->dev, cs->bank, false);
-+
-+	return ret;
-+}
-+
- static const struct nand_controller_ops ingenic_nand_controller_ops = {
- 	.attach_chip = ingenic_nand_attach_chip,
-+	.exec_op = ingenic_nand_exec_op,
- };
- 
- static int ingenic_nand_init_chip(struct platform_device *pdev,
-@@ -339,8 +373,6 @@ static int ingenic_nand_init_chip(struct platform_device *pdev,
- 		ret = PTR_ERR(nand->busy_gpio);
- 		dev_err(dev, "failed to request busy GPIO: %d\n", ret);
- 		return ret;
--	} else if (nand->busy_gpio) {
--		nand->chip.legacy.dev_ready = ingenic_nand_dev_ready;
- 	}
- 
- 	/*
-@@ -371,12 +403,7 @@ static int ingenic_nand_init_chip(struct platform_device *pdev,
- 		return -ENOMEM;
- 	mtd->dev.parent = dev;
- 
--	chip->legacy.IO_ADDR_R = cs->base + nfc->soc_info->data_offset;
--	chip->legacy.IO_ADDR_W = cs->base + nfc->soc_info->data_offset;
--	chip->legacy.chip_delay = RB_DELAY_US;
- 	chip->options = NAND_NO_SUBPAGE_WRITE;
--	chip->legacy.select_chip = ingenic_nand_select_chip;
--	chip->legacy.cmd_ctrl = ingenic_nand_cmd_ctrl;
- 	chip->ecc.mode = NAND_ECC_HW;
- 	chip->controller = &nfc->controller;
- 	nand_set_flash_node(chip, np);
--- 
-2.25.4
+This looks good to me, thank you very much for reworking into a
+w400-based include.
 
+Unfortunately, it no longer applies on top of all the other stuff I have
+queued for v5.8.
+
+Could you please do a rebase on top of my v5.8/dt64 branch[1], and I'll
+queue for v5.8.
+
+Thanks,
+
+Kevin
+
+> v3 - amend author full-name on bindings patch
+>
+> [1] https://patchwork.kernel.org/patch/11497105/
+> [2] https://patchwork.kernel.org/project/linux-amlogic/list/?series=273483
+>
+> Christian Hewitt (5):
+>   arm64: dts: meson: convert ugoos-am6 to common w400 dtsi
+>   dt-bindings: arm: amlogic: add support for the Beelink GT-King
+>   arm64: dts: meson-g12b-gtking: add initial device-tree
+>   dt-bindings: arm: amlogic: add support for the Beelink GT-King Pro
+>   arm64: dts: meson-g12b-gtking-pro: add initial device-tree
+>
+>  .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+>  arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+>  .../dts/amlogic/meson-g12b-gtking-pro.dts     | 125 ++++++
+>  .../boot/dts/amlogic/meson-g12b-gtking.dts    | 145 ++++++
+>  .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts | 410 +----------------
+>  .../boot/dts/amlogic/meson-g12b-w400.dtsi     | 423 ++++++++++++++++++
+>  6 files changed, 698 insertions(+), 409 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
+>
+> -- 
+> 2.17.1
