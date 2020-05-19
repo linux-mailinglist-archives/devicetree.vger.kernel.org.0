@@ -2,150 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA231D9796
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 15:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39AD11D97A5
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 15:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727910AbgESNYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 09:24:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
+        id S1728894AbgESN0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 09:26:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726471AbgESNYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 09:24:05 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A31C08C5C2
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 06:24:03 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id x27so11096742lfg.9
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 06:24:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=J1EagSeqT/3hRw9PlSOk/6Jo3bCIp/4AjuBFz8qTGQo=;
-        b=P5GGg8FTAebv5YHBzDwy/NA+Pb0/hhk5tGhHN/6Zp35VJvAyb2VNannMq+B9Gky3rB
-         TGTu+1BOjz8xRPMmJ3vlPBcFvlV192DO/UxajGeDKfgTD6bfKqBmegQbXLHAa6rINe05
-         YbRFZ/AH4i+2GZ4rAOCYBsMpAFM0I5P4av+SdCVYUrhLolCa+j6qEAgbWHYLy9l0RW8O
-         atIn2xCgeQS8U+6VO18HirD8WfWsMWgTaKABHicANTgapLgQDFzslokXMZ9qUBz7Gpvo
-         e7c8FzuIQT1uiJkX24OxVb6YXu4ZP07P2CCI9GtIawRld5ALutKcxm8lVJrK6ZYUs085
-         07IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=J1EagSeqT/3hRw9PlSOk/6Jo3bCIp/4AjuBFz8qTGQo=;
-        b=E2iI9YT2vyRjfvuKTrWDG7PF+tuufW1tU5Ig4bZw7/1zy9mfoXD2ZCtpWkB5lwwsdG
-         +coS4aBaBBbiQW6K2UfTgyvm3m8qi12eRNsPGr4mpZ1TUs9nukU9yg42kCA5cPLKJ9hd
-         AG7ynnVWyYsDP2YE1Bnth8lFk5YDjBGz6TL7iDxnbpE0PtGTBP+4mlo54qS7xQVGydzP
-         QduNSiJhf4lbpgxxPxN321mqrRYhHNZ7KRRo/BcW4Gx6zK41+kzH68GJCpY58iDCraEH
-         suoMAX0yno72I5CO5PbWNSt0Idk/r/kbmx/ieFqyq0KQy1copkh956vDFYRHIEYV268X
-         7UQA==
-X-Gm-Message-State: AOAM533p+Tnw4kNOAQubKzAbkHxHVbLa1P90mk842K7VzaKVzKVKXBmd
-        tSRJtIhV8bXrk9lpeX73FnhTng==
-X-Google-Smtp-Source: ABdhPJwHiLIqIrqU451dZhunm6Wgq2SvF8KYkSJemlDv966oh3Pe4JnO+at5+ht1brskAcIWPtJMLw==
-X-Received: by 2002:a19:c751:: with SMTP id x78mr10756302lff.82.1589894641624;
-        Tue, 19 May 2020 06:24:01 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id y8sm7435855ljh.83.2020.05.19.06.24.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 06:24:00 -0700 (PDT)
-Date:   Tue, 19 May 2020 15:24:00 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: Add renesas,em-uart bindings
-Message-ID: <20200519132400.GC470768@oden.dyn.berto.se>
-References: <20200519080945.28798-1-geert+renesas@glider.be>
+        with ESMTP id S1726880AbgESN0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 09:26:34 -0400
+Received: from mo6-p02-ob.smtp.rzone.de (mo6-p02-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5302::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15F5C08C5C0;
+        Tue, 19 May 2020 06:26:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1589894792;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=/iyQysFjE7xolBZ1naSvo7228GHiugrOaI4sO8bPUTk=;
+        b=fwr+dDGEkpoZpHRFsi8fcLwOsy/sYVESVb8GgLSpv79t4LUto9ST3ru1G2W+/CNwUq
+        jsKGEs64/RRB2TBFLOhxGwgyGUi/0C9R/12t0ttN6ghkc7h7qa4ziOZQH0bTDYb4fIhG
+        zfMC/tbsIUoA8ygDpRE9b0aSD1/Mo1N2L3fKZEfEuJTL1xOZP869A/CZ+/Hulugqnwh6
+        EIWjwN126W3TG9fRQZHxF1QPQaCMFZaD7X7Wc7+TX444DaIfLjlxyxxCLoAx+H17hnAU
+        u5Yauj09xAg7rlIo7bs97bvRPURUeYWWuh/+E7UPFhw770eXxnIwg1CFGQpUJnkc1yNy
+        sJsQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j9IczFaoo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.6.2 DYNA|AUTH)
+        with ESMTPSA id 60b02dw4JDPDl1o
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Tue, 19 May 2020 15:25:13 +0200 (CEST)
+Date:   Tue, 19 May 2020 15:25:12 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Jilayne Lovejoy <opensource@jilayne.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Steve Winslow <swinslow@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Allison Randal <allison@lohutok.net>
+Subject: Re: [PATCH v3 4/4] iio: magnetometer: ak8975: Add gpio reset support
+Message-ID: <20200519132512.GC4623@gerhold.net>
+References: <20200519124402.26076-1-jonathan.albrieux@gmail.com>
+ <20200519124402.26076-5-jonathan.albrieux@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200519080945.28798-1-geert+renesas@glider.be>
+In-Reply-To: <20200519124402.26076-5-jonathan.albrieux@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thanks for your work.
-
-On 2020-05-19 10:09:45 +0200, Geert Uytterhoeven wrote:
-> Document Device Tree bindings for the Renesas EMMA Mobile UART
-> Interface.
+On Tue, May 19, 2020 at 02:43:54PM +0200, Jonathan Albrieux wrote:
+> According to AK09911 datasheet, if reset gpio is provided then
+> deassert reset on ak8975_power_on() and assert reset on ak8975_power_off().
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Without reset's deassertion during ak8975_power_on(), driver's probe fails
+> on ak8975_who_i_am while() checking for device identity for AK09911 chip.
+> 
+> AK09911 has an active low reset gpio to handle register's reset.
+> AK09911 datasheed says that, if not used, reset pin should be connected
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Another minor typo: datasheed -> datasheet
 
+In any case, FWIW:
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+
+> to VID. This patch emulates this situation.
+> 
+> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
 > ---
->  .../bindings/serial/renesas,em-uart.yaml      | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+>  drivers/iio/magnetometer/ak8975.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-> new file mode 100644
-> index 0000000000000000..82aefdb0d45e5f1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/serial/renesas,em-uart.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> diff --git a/drivers/iio/magnetometer/ak8975.c b/drivers/iio/magnetometer/ak8975.c
+> index fd368455cd7b..a23422aad97d 100644
+> --- a/drivers/iio/magnetometer/ak8975.c
+> +++ b/drivers/iio/magnetometer/ak8975.c
+> @@ -358,6 +358,7 @@ struct ak8975_data {
+>  	u8			asa[3];
+>  	long			raw_to_gauss[3];
+>  	struct gpio_desc	*eoc_gpiod;
+> +	struct gpio_desc	*reset_gpiod;
+>  	int			eoc_irq;
+>  	wait_queue_head_t	data_ready_queue;
+>  	unsigned long		flags;
+> @@ -384,6 +385,9 @@ static int ak8975_power_on(const struct ak8975_data *data)
+>  			 "Failed to enable specified Vid supply\n");
+>  		return ret;
+>  	}
 > +
-> +title: Renesas EMMA Mobile UART Interface
+> +	gpiod_set_value_cansleep(data->reset_gpiod, 0);
 > +
-> +maintainers:
-> +  - Magnus Damm <magnus.damm@gmail.com>
+>  	/*
+>  	 * According to the datasheet the power supply rise time is 200us
+>  	 * and the minimum wait time before mode setting is 100us, in
+> @@ -396,6 +400,8 @@ static int ak8975_power_on(const struct ak8975_data *data)
+>  /* Disable attached power regulator if any. */
+>  static void ak8975_power_off(const struct ak8975_data *data)
+>  {
+> +	gpiod_set_value_cansleep(data->reset_gpiod, 1);
 > +
-> +allOf:
-> +  - $ref: serial.yaml#
+>  	regulator_disable(data->vid);
+>  	regulator_disable(data->vdd);
+>  }
+> @@ -839,6 +845,7 @@ static int ak8975_probe(struct i2c_client *client,
+>  	struct ak8975_data *data;
+>  	struct iio_dev *indio_dev;
+>  	struct gpio_desc *eoc_gpiod;
+> +	struct gpio_desc *reset_gpiod;
+>  	const void *match;
+>  	unsigned int i;
+>  	int err;
+> @@ -856,6 +863,16 @@ static int ak8975_probe(struct i2c_client *client,
+>  	if (eoc_gpiod)
+>  		gpiod_set_consumer_name(eoc_gpiod, "ak_8975");
+>  
+> +	/*
+> +	 * According to AK09911 datasheet, if reset GPIO is provided then
+> +	 * deassert reset on ak8975_power_on() and assert reset on
+> +	 * ak8975_power_off().
+> +	 */
+> +	reset_gpiod = devm_gpiod_get_optional(&client->dev,
+> +					      "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(reset_gpiod))
+> +		return PTR_ERR(reset_gpiod);
 > +
-> +properties:
-> +  compatible:
-> +    const: renesas,em-uart
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: sclk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    uart0: serial@e1020000 {
-> +            compatible = "renesas,em-uart";
-> +            reg = <0xe1020000 0x38>;
-> +            interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&usia_u0_sclk>;
-> +            clock-names = "sclk";
-> +    };
+>  	/* Register with IIO */
+>  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>  	if (indio_dev == NULL)
+> @@ -866,6 +883,7 @@ static int ak8975_probe(struct i2c_client *client,
+>  
+>  	data->client = client;
+>  	data->eoc_gpiod = eoc_gpiod;
+> +	data->reset_gpiod = reset_gpiod;
+>  	data->eoc_irq = 0;
+>  
+>  	err = iio_read_mount_matrix(&client->dev, "mount-matrix", &data->orientation);
 > -- 
 > 2.17.1
-> 
-
--- 
-Regards,
-Niklas Söderlund
