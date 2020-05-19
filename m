@@ -2,87 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4451D99FD
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CD8A1D99F8
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729176AbgESOgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 10:36:33 -0400
-Received: from out28-52.mail.aliyun.com ([115.124.28.52]:54493 "EHLO
-        out28-52.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729140AbgESOgc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 10:36:32 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2608087|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00899973-0.000492283-0.990508;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03307;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=20;RT=20;SR=0;TI=SMTPD_---.HalgxFh_1589898954;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.HalgxFh_1589898954)
-          by smtp.aliyun-inc.com(10.147.42.198);
-          Tue, 19 May 2020 22:36:27 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        tsbogend@alpha.franken.de, paulburton@kernel.org,
-        jiaxun.yang@flygoat.com, chenhc@lemote.com, tglx@linutronix.de,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        keescook@chromium.org, paul@crapouillou.net, krzk@kernel.org,
-        hns@goldelico.com, ebiederm@xmission.com,
-        dongsheng.qiu@ingenic.com, yanfei.li@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: [PATCH v8 6/6] MIPS: CI20: Update defconfig to support SMP.
-Date:   Tue, 19 May 2020 22:35:23 +0800
-Message-Id: <1589898923-60048-8-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589898923-60048-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1589898923-60048-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S1729132AbgESOg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 10:36:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37668 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729103AbgESOg0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 10:36:26 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BAC3E204EA;
+        Tue, 19 May 2020 14:36:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589898986;
+        bh=C6EWjtedLGwqvy2K9YYDlSlp1wXijD0Uj/LprssIUUQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HPEBnsqfBP5p2Z0eY8BUg8oZJQfjWPvKZhp/BxnLMe8Q+CGhoJeuMuw8OcXLmRkbs
+         CTteO+I2FEsEXCTTw6Mhgw6LFUO1K72lr/dxPrJcB4CCWggr0BrMx/3rXEbrjCWwQi
+         xtWORGVAyZEUywWO3pC3a44dmg0s+uevjnLuL3AY=
+Date:   Tue, 19 May 2020 15:36:23 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>
+Subject: Re: [PATCH] ASoC: fsi: Add missing properties to DT bindings
+Message-ID: <20200519143623.GL4611@sirena.org.uk>
+References: <20200519075858.27869-1-geert+renesas@glider.be>
+ <20200519124714.GA45550@sirena.org.uk>
+ <CAMuHMdUHHzBNFHy07hgdryJEeHUDMOCP8XauCn7TmUK7uGZcFg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sCNd3Ivk/oijKKf1"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUHHzBNFHy07hgdryJEeHUDMOCP8XauCn7TmUK7uGZcFg@mail.gmail.com>
+X-Cookie: Do not write below this line.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "CONFIG_SMP=y" and "CONFIG_NR_CPUS=2" to support SMP.
 
-Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
-Tested-by: Paul Boddie <paul@boddie.org.uk>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+--sCNd3Ivk/oijKKf1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Notes:
-    v1->v2:
-    No change.
-    
-    v2->v3:
-    No change.
-    
-    v3->v4:
-    Rebase on top of kernel 5.6-rc1.
-    
-    v4->v5:
-    No change.
-    
-    v5->v6:
-    No change.
-    
-    v6->v7:
-    No change.
-    
-    v7->v8:
-    No change.
+On Tue, May 19, 2020 at 03:33:01PM +0200, Geert Uytterhoeven wrote:
+> On Tue, May 19, 2020 at 2:47 PM Mark Brown <broonie@kernel.org> wrote:
 
- arch/mips/configs/ci20_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+> > This doesn't apply against current code, please check and resend.
 
-diff --git a/arch/mips/configs/ci20_defconfig b/arch/mips/configs/ci20_defconfig
-index 0db0088..c8dd136 100644
---- a/arch/mips/configs/ci20_defconfig
-+++ b/arch/mips/configs/ci20_defconfig
-@@ -1,3 +1,5 @@
-+CONFIG_SMP=y
-+CONFIG_NR_CPUS=2
- # CONFIG_LOCALVERSION_AUTO is not set
- CONFIG_MODULES=y
- CONFIG_KERNEL_XZ=y
--- 
-2.7.4
+> It indeed doesn't apply to your sound/for-next branch.
+> It does apply to robh/for-next, which has commit 9f60a65bc5e6cd88
+> ("dt-bindings: Clean-up schema indentation formatting"), so I guess
+> Rob will have to take it.
 
+Makes sense
+
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--sCNd3Ivk/oijKKf1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7D7uYACgkQJNaLcl1U
+h9AdXwf9F+QuYk9a+SUgYNZ1Ji+henF264E7f4Bh7WdvB4oiefqaaK5meCJ0PxhV
+mIUVO6ScSgRHcidWCJXIFNsmjNTS/vutR3RULzT+I9QPJIrx7IvMgnBAFsTxssOE
+JdCtLWUqKYqRmbHk8ngmCu+It3I8KxOQvruZoVxrpLIrui4Ld0+2K7PosiESg8LM
+xa9oNFfperdahGO4zbQ1Q6j1goTwnSO5qywsbgrfLa9Ft6GhlLdZqPsXg5WgH37G
+y1SsfhFcsMjyx4UaiBBJM7Y3gVxwEt9KI0WxEfER6brc4nE5VBOAMo4cWjEXRkvZ
+zoffd+yPURmu7eFDZB413wlK2Trlbw==
+=DeUG
+-----END PGP SIGNATURE-----
+
+--sCNd3Ivk/oijKKf1--
