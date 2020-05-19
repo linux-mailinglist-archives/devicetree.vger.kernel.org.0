@@ -2,117 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4634A1D9E3D
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C12FA1D9E5F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 20:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729492AbgESRw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 13:52:28 -0400
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2226 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729001AbgESRw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 13:52:28 -0400
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.108])
-        by Forcepoint Email with ESMTP id 5D9B76180D7930E2DFAC;
-        Tue, 19 May 2020 18:52:27 +0100 (IST)
-Received: from localhost (10.47.86.149) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Tue, 19 May
- 2020 18:52:26 +0100
-Date:   Tue, 19 May 2020 18:51:59 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: imu: bmi160: add regulators
- and mount-matrix
-Message-ID: <20200519185159.00001bd1@Huawei.com>
-In-Reply-To: <20200519075111.6356-3-jonathan.albrieux@gmail.com>
-References: <20200519075111.6356-1-jonathan.albrieux@gmail.com>
-        <20200519075111.6356-3-jonathan.albrieux@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1726862AbgESSBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 14:01:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33350 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726059AbgESSBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 14:01:43 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3157CC08C5C0
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 11:01:43 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id h17so387719wrc.8
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 11:01:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bX55m437g7MeykE1US3Tftk0H5lzLx6XUpXZp2Kvxoc=;
+        b=M9vyZZ9mATtJfZDUOxfdmdgx0RZHnvTGKbSm5F+JwH4itQZSpjYwKXYMCkR2huFvi2
+         twh626xwy7oiPNTooN5mL8olWtFlkxdKNWun/7JJy52nt9PxCNGgU3iNKo7o3OgGBjBv
+         GtcGwtOW+y4rz0r0Z0/zqBdnL/m4CdO70VTsExVbCbEatxP0xilLLUZJnBsBvKMv2tyJ
+         vq/V4yM3GGmE/FtHGK5VR9w0BMSpmTebXfbAaoplg6/qbzV58lFR5DsR+sAVolk1TARd
+         9BUbrrk/lyNFvpD6HXmUxfASJGR586E46CfIK9SG/6YNZ8RwjVHLC9QEQCyMTEN7B8Bf
+         1ctA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bX55m437g7MeykE1US3Tftk0H5lzLx6XUpXZp2Kvxoc=;
+        b=sAE70pBpMG5ydOuJKxD2nvqop0SaYffP/K0XuDV6rFjXSPL4wG1Il9hcCBugAyh9n4
+         HIld2hJV9BuWQSFPKLsjXXhSrMBeq2+Jc6PQXaYm1BAqjarZ9KjkdB3m07wlIlLk25Ax
+         epoci2c1xI5vQlGmaO8y9vpWl6753wfvFpM8yTi/J4Y/0dUxRXRvETC4jTletJE+80WT
+         l24TrkTE4mjYKx6fd9hWeDVAX+8pOZ0L//S9MW/qOvIACt1X+U7Lnu+mQ7nfY18TlLfG
+         8De2L3HaoKUERIfhjUjftwzyLAp44CWdjOMsb44KWBoX0vPtMLEdo1fawNzm1xddfOoe
+         IqKA==
+X-Gm-Message-State: AOAM531ok+gTon2DdQeSzo9lxNGcWVWjs7a6LV75V4+QMpkyi6yuasMm
+        UqfxXwwI1ka0vYGzvfYnAwJiuw==
+X-Google-Smtp-Source: ABdhPJx1fsDPOtceAXONrGmaumNlQajybGcyP41uWlcXsFpwhVtjyrg3sPruM6jEsNsAR5hEmsZ2Cw==
+X-Received: by 2002:adf:ec88:: with SMTP id z8mr125600wrn.44.1589911301763;
+        Tue, 19 May 2020 11:01:41 -0700 (PDT)
+Received: from localhost.localdomain ([2001:171b:226e:c200:c43b:ef78:d083:b355])
+        by smtp.gmail.com with ESMTPSA id 1sm510496wmz.13.2020.05.19.11.01.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2020 11:01:41 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org
+Cc:     joro@8bytes.org, catalin.marinas@arm.com, will@kernel.org,
+        robin.murphy@arm.com, kevin.tian@intel.com,
+        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
+        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
+        felix.kuehling@amd.com, zhangfei.gao@linaro.org, jgg@ziepe.ca,
+        xuzaibo@huawei.com, fenghua.yu@intel.com, hch@infradead.org,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v7 00/24] iommu: Shared Virtual Addressing for SMMUv3
+Date:   Tue, 19 May 2020 19:54:38 +0200
+Message-Id: <20200519175502.2504091-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.86.149]
-X-ClientProxiedBy: lhreml705-chm.china.huawei.com (10.201.108.54) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 May 2020 09:50:58 +0200
-Jonathan Albrieux <jonathan.albrieux@gmail.com> wrote:
+Shared Virtual Addressing (SVA) allows to share process page tables with
+devices using the IOMMU, PASIDs and I/O page faults. Add SVA support to
+the Arm SMMUv3 driver.
 
-> Add vdd-supply and vddio-supply support.
-> Add mount-matrix support.
-> 
-> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Since v6 [1]:
+* Rename ioasid_free() to ioasid_put() in patch 02, requiring changes to
+  the Intel drivers.
+* Use mmu_notifier_register() in patch 16 to avoid copying the ops and
+  simplify the invalidate() notifier in patch 17.
+* As a result, replace context spinlock with a mutex. Simplified locking in
+  patch 11 (That patch still looks awful, but I think the series is more
+  readable overall). And I've finally been able to remove the GFP_ATOMIC
+  allocations.
+* Use a single patch (04) for io-pgfault.c, since the code was simplified
+  in v6. Fixed partial list in patch 04.
 
-A few minor comments inline.
+[1] https://lore.kernel.org/linux-iommu/20200430143424.2787566-1-jean-philippe@linaro.org/
 
-> ---
->  .../devicetree/bindings/iio/imu/bmi160.yaml   | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/bmi160.yaml b/Documentation/devicetree/bindings/iio/imu/bmi160.yaml
-> index 6b464ce5ed0b..5b13af7a209f 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/bmi160.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/bmi160.yaml
-> @@ -46,6 +46,21 @@ properties:
->        set if the specified interrupt pin should be configured as
->        open drain. If not set, defaults to push-pull.
->  
-> +  vdd-supply:
-> +    maxItems: 1
-> +    description: |
-> +      an optional regulator that needs to be on to provide VDD power to
-> +      the sensor.
+Jean-Philippe Brucker (24):
+  mm: Add a PASID field to mm_struct
+  iommu/ioasid: Add ioasid references
+  iommu/sva: Add PASID helpers
+  iommu: Add a page fault handler
+  arm64: mm: Add asid_gen_match() helper
+  arm64: mm: Pin down ASIDs for sharing mm with devices
+  iommu/io-pgtable-arm: Move some definitions to a header
+  iommu/arm-smmu-v3: Manage ASIDs with xarray
+  arm64: cpufeature: Export symbol read_sanitised_ftr_reg()
+  iommu/arm-smmu-v3: Share process page tables
+  iommu/arm-smmu-v3: Seize private ASID
+  iommu/arm-smmu-v3: Add support for VHE
+  iommu/arm-smmu-v3: Enable broadcast TLB maintenance
+  iommu/arm-smmu-v3: Add SVA feature checking
+  iommu/arm-smmu-v3: Add SVA device feature
+  iommu/arm-smmu-v3: Implement iommu_sva_bind/unbind()
+  iommu/arm-smmu-v3: Hook up ATC invalidation to mm ops
+  iommu/arm-smmu-v3: Add support for Hardware Translation Table Update
+  iommu/arm-smmu-v3: Maintain a SID->device structure
+  dt-bindings: document stall property for IOMMU masters
+  iommu/arm-smmu-v3: Add stall support for platform devices
+  PCI/ATS: Add PRI stubs
+  PCI/ATS: Export PRI functions
+  iommu/arm-smmu-v3: Add support for PRI
 
-They aren't optional.  Whether we specify them or rely on stub regulators
-being provided because they aren't controllable is the optional bit.
-That's clearly defined by them not being in the required list below.
-So say something li.e
+ drivers/iommu/Kconfig                         |   12 +
+ drivers/iommu/Makefile                        |    2 +
+ .../devicetree/bindings/iommu/iommu.txt       |   18 +
+ arch/arm64/include/asm/mmu.h                  |    1 +
+ arch/arm64/include/asm/mmu_context.h          |   11 +-
+ drivers/iommu/io-pgtable-arm.h                |   30 +
+ drivers/iommu/iommu-sva.h                     |   15 +
+ include/linux/ioasid.h                        |   10 +-
+ include/linux/iommu.h                         |   53 +
+ include/linux/mm_types.h                      |    4 +
+ include/linux/pci-ats.h                       |    8 +
+ arch/arm64/kernel/cpufeature.c                |    1 +
+ arch/arm64/mm/context.c                       |  103 +-
+ drivers/iommu/arm-smmu-v3.c                   | 1552 +++++++++++++++--
+ drivers/iommu/intel-iommu.c                   |    4 +-
+ drivers/iommu/intel-svm.c                     |    6 +-
+ drivers/iommu/io-pgfault.c                    |  459 +++++
+ drivers/iommu/io-pgtable-arm.c                |   27 +-
+ drivers/iommu/ioasid.c                        |   38 +-
+ drivers/iommu/iommu-sva.c                     |   85 +
+ drivers/iommu/of_iommu.c                      |    5 +-
+ drivers/pci/ats.c                             |    4 +
+ MAINTAINERS                                   |    3 +-
+ 23 files changed, 2286 insertions(+), 165 deletions(-)
+ create mode 100644 drivers/iommu/io-pgtable-arm.h
+ create mode 100644 drivers/iommu/iommu-sva.h
+ create mode 100644 drivers/iommu/io-pgfault.c
+ create mode 100644 drivers/iommu/iommu-sva.c
 
-   description: |
-      provide VDD power to the sensor.
-
-> +
-> +  vddio-supply:
-> +    maxItems: 1
-> +    description: |
-> +      an optional regulator that needs to be on to provide the VDD IO power to
-> +      the sensor.
-> +
-> +  mount-matrix:
-> +    description: an optional 3x3 mounting rotation matrix
-> +
->  required:
->    - compatible
->    - reg
-> @@ -61,9 +76,15 @@ examples:
->          bmi160@68 {
->                  compatible = "bosch,bmi160";
->                  reg = <0x68>;
-> +                vdd-supply = <&pm8916_l17>;
-> +                vddio-supply = <&pm8916_l6>;
->                  interrupt-parent = <&gpio4>;
->                  interrupts = <12 1>;
->                  interrupt-names = "INT1";
-> +                mount-matrix = "0", "1", "0",
-> +                               "-1", "0", "0",
-> +                               "0", "0", "1";
-> +                };
->          };
->    - |
->      // Example for SPI
-
+-- 
+2.26.2
 
