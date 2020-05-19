@@ -2,175 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 051781DA3EF
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 23:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C040A1D98D3
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728289AbgESVrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 17:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726030AbgESVqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 17:46:55 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA2FFC08C5C1
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 14:46:54 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id x15so532498pfa.1
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 14:46:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Qesi/iapCeL81abTWSknFcADHHNz/GjwcctDzvBe+pM=;
-        b=bazibPMzI6USEfuV1VFPXiUOb/M/tOR2dXABcWMSo5t3Khkjc2196Z2Emfe7+qkVd7
-         cxbKccfvUoXxLoxudL9No/cpfn/7vqOqA1uuilax+SZ9E8gor8M1S1/K7ynKTVfiwd6i
-         Qfnp4RyncTT1PZQjtg4w+2H7p7vIayJrN2Iww=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Qesi/iapCeL81abTWSknFcADHHNz/GjwcctDzvBe+pM=;
-        b=FTmSDIScOnSZyXUUfZ/yOP47tjB4ZCR6HM4Uqh9efMUckvPYq0u4KFzw9+jlUSBeYf
-         L6c3EJrJzBYi7o0THSBZlG8Pm5/s/NtRs0wvTIo9QmbXhtaLNo5YaydZO1t4mHocGVMK
-         LSTwo08H2THVlnEXupjaM1dqcdZZEr3qxQk/fgl8ARleXJLLU9gohLhzk9rlxIKiCMXw
-         VW0Iu2d1pQzUG+lObopAg+FNEwlJR5MMktkF2tWZBGK6tReJrCts/wNXtMp2xeclgV6V
-         yyqoU0LEv4mw7cdD2nyrdJI3aOdSItTOweToq47ftJc9xSmhiezogeofey3kHcpV0TJ2
-         bD5Q==
-X-Gm-Message-State: AOAM533W2FiR4AtwBlJIj6e2wUTJBxxxrt1MnETHW5wcdbje1aKJ0pKB
-        Yp9c+VONG41Q8XR3Zo51SYDvbg==
-X-Google-Smtp-Source: ABdhPJzjZsXLf/lBFThq5mgbKp/LSSbl4Rl7Hi7MR9R3uYwD+us9fjyyxT0gcryKKjIxuOEoFI8rFA==
-X-Received: by 2002:a62:7f11:: with SMTP id a17mr1179971pfd.36.1589924814184;
-        Tue, 19 May 2020 14:46:54 -0700 (PDT)
-Received: from pmalani2.mtv.corp.google.com ([2620:15c:202:201:476b:691:abc3:38db])
-        by smtp.gmail.com with ESMTPSA id w1sm323779pgh.53.2020.05.19.14.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 14:46:53 -0700 (PDT)
-From:   Prashant Malani <pmalani@chromium.org>
-To:     linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Cc:     heikki.krogerus@linux.intel.com,
-        Prashant Malani <pmalani@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), Guenter Roeck <groeck@chromium.org>
-Subject: [PATCH v3 2/2] platform/chrome: typec: Register Type C switches
-Date:   Tue, 19 May 2020 14:46:04 -0700
-Message-Id: <20200519214604.180036-2-pmalani@chromium.org>
-X-Mailer: git-send-email 2.26.2.761.g0e0b3e54be-goog
-In-Reply-To: <20200519214604.180036-1-pmalani@chromium.org>
-References: <20200519214604.180036-1-pmalani@chromium.org>
+        id S1728737AbgESOEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 10:04:45 -0400
+Received: from mail-vi1eur05on2052.outbound.protection.outlook.com ([40.107.21.52]:30592
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727057AbgESOEp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 10:04:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nTh4PWcUa3pqzoh9fb3ug3BhfjZOLczceQyECkaVTbkEJPebl3w/C6dP+NVM0jf43w9KD60m4kuseH7YnRVDB3acsO3OFoElEeFrQjQX55FKQZ4UZ+AS9uaMpNuK/zfegDnU8mS44ALmNx8urBT+x5OcmUhE47r5O51GYRKhfqNPw8PEERJHtXQAFNSa0UwA5o8hkbC2zUhNY58Ct44ueulvj+5MaP5CNspuoykyljZoecNXT5tSvytBPfUlN+18r8qSaaFCZLk3jP1L7OZsLYfueuR+SPYNaaEFCIKW/P5vnR0aUoI8TIAovmroC6bLjuqB6J089cIaTRmEVzkk4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VvKADXgze9LQNvclFGZFl9Lh7DQ8boLySckeI/ZehzQ=;
+ b=VP4SPeQLRHzS5HpbezIlyg2Bjoiatm+Igr+xQTOFpx/TCggQAtgq6NBfR/Vd2zhmcGbsf2vQaFwMjWjweJAT33vx38H1SSdM6oz/olkLx5Hc+xEBxJF06OsgXcEpGpcQH+4o1YyW+WlzXjq6vEfRW5b+MwdA+4W9365K9PhjpwlS35IdAJgHNzaQu8wDjfTDUKDsAv9VjGtraaI3uI/XRjdx3x6Wfvwg1ZE2poEwXGnbubMIVNtj5QAt7Mn91OFwUbcE+BFtw+jFOtHfWf9WdKDsXGfh8Vl/JKRPhGZe0+2sJqWQu66V3Z7HtxzRs7NvNPVUeTLxkI22dWEJyS5evA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VvKADXgze9LQNvclFGZFl9Lh7DQ8boLySckeI/ZehzQ=;
+ b=C+485zBHx08DIirZyecQXwjwZA4sSttPI/BfYvhjtN5T+UVupsPNm09zYp+3f68af3sgdGxR6wdwMZ44Vgg6E0irYS22Eib4wKCNyQ+fJNP+i0GfkFsfMc7ko/0fC+0bVn/kSwIDb6p0oqvKBPf3vLsI/6QXKN7CbLVU8QSA9Pc=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VE1PR04MB6367.eurprd04.prod.outlook.com (2603:10a6:803:11a::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Tue, 19 May
+ 2020 14:04:40 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::d5f0:c948:6ab0:c2aa]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::d5f0:c948:6ab0:c2aa%4]) with mapi id 15.20.3000.034; Tue, 19 May 2020
+ 14:04:40 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
+        anson.huang@nxp.com, festevam@gmail.com, s.hauer@pengutronix.de,
+        john.lee@nxp.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH v1 0/4] Add pca9450 driver
+Date:   Wed, 20 May 2020 06:05:03 +0800
+Message-Id: <1589925907-9195-1-git-send-email-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR03CA0128.apcprd03.prod.outlook.com
+ (2603:1096:4:91::32) To VE1PR04MB6638.eurprd04.prod.outlook.com
+ (2603:10a6:803:119::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR03CA0128.apcprd03.prod.outlook.com (2603:1096:4:91::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3021.12 via Frontend Transport; Tue, 19 May 2020 14:04:35 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.66]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 1815eb46-83e4-4b3c-bba7-08d7fbfd9272
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6367:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6367FEA1966385C8DFD271E589B90@VE1PR04MB6367.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-Forefront-PRVS: 040866B734
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uTtFK8/uPW9pfmDZ+W0gYodMIThrItzhB45uS9JanhBulVWOon3dY72qzGivVsQKX1j7hL8mVCrFvoaDi/ihZxTz6aqt2mX9hZXl5lWr3+pqGBnJOYwiRguPv6hEHxvIbLwwK/WgoCu6Ju6GMIyXG/IV8zg0MdBW3HwmRZZm4vBgp5jVlxJthjC7v6jTdLypWtk1REjjWTONt/d7O/j4ObsJxdm7KzpZET6E/RRHFMwRKMJAc93Sl8jzEMJ5D4Pe6mfxURU6r/nTl+iTNH4sV8zrnXnMGgjczTtI2Zr7+oeQVN7pMNMF7RjO23W0/hGb10rIwiSzfHo95STDc+OzEc9DN7Qzvs+UyRm0RpVU/R2M8S3qDa4CviLbpfB5Wb8+Je6fx2HhgtexjhNpbqH78RWwqvLWJP+6zb2sxBhd8w2SF3wo6O5C3Llc8r/6+CvT105ubREBJ7i2SLBNCSHwj9Wag0GhdqCKg9TyebG8KuF/nf0l8nT1sLayGDvUHfnc2pCXoSeg7M4rFIQjX1sqOzb3p6EFy5GEPXUjvxoThM7/dCaqnS3qtzLljOf5Rc8F
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(6636002)(6512007)(4326008)(2616005)(6506007)(6666004)(5660300002)(7416002)(26005)(186003)(16526019)(956004)(52116002)(8936002)(36756003)(66946007)(66556008)(2906002)(6486002)(66476007)(86362001)(8676002)(498600001)(966005)(921003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: bcwcDOSxv8k5Ftbi0SFldsTm/v8lb6sP9CjIitGTXkNLN8tLfODejmce4C5G4a4Fv9bnu5dKTTV/ay4013GpOlDUjF8/2xLmAy4Osh2BzTymvgkyzNKNTUWK5cMaf4qELkAbCsjebmxzWhX6nyx8PB2waMfINTmM/l4hYVHSSP/BxIFmyX3s3MSUIzsg9Sm2rApGlUZzfunB2K/WnZMSHdx7XXR70IoUTYOAHJ1kqzyzby3kMy2KmaQD3wRnWxueYVH9bXklGiXjrlkn4C9GLy5wWQ+GoSG2vX0+1t1ZniXL74h13li8MQ7HVREF/TC2nAZJcrX6QPo6uVRSOoZLhxw7gO9rTjCPY55ek7mADbiQKc8fIC5bhoAO4JbEyOllActcdM6h63zpFxDWDeY7S0i4qU5Vd8nRcIt9J99gydzSd0bzWomDgUu8hBMwKYcJ2vG7SonxzmIKHaMvOItWQ3z7KHeQLUVepuFhR67QQdA=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1815eb46-83e4-4b3c-bba7-08d7fbfd9272
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2020 14:04:40.2892
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sTr4sugCeDy4syG3LNAetfBohVqDkeB0T2VszWytn3plFBvdC2sJHmPLmPHT74bL4TT3GeoOCK747a7SaYmxSQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6367
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register Type C mux and switch handles, when provided via firmware
-bindings. These will allow the cros-ec-typec driver, and also alternate
-mode drivers to configure connected Muxes correctly, according to PD
-information retrieved from the Chrome OS EC.
+Add pca9450 driver for i.mx8mn-evk board. PCA9450A/B/C supported now.
+Please refer to below link for PCA9450 datasheet:
+https://www.nxp.com/docs/en/data-sheet/PCA9450DS.pdf
 
-Signed-off-by: Prashant Malani <pmalani@chromium.org>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Acked-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
+Robin Gong (4):
+  regulator: pca9450: add pca9450 pmic driver
+  dt-bindings: regulator: add pca9450 regulator yaml
+  arm64: dts: imx8mn-evk: add pca9450 for i.mx8mn-evk board
+  arm64: configs: add pca9450 pmic driver
 
-Changes in v3:
-- Added Acked-by tag.
-- Fixed Heikki's email address in Reviewed-by tag.
+ .../bindings/regulator/nxp,pca9450-regulator.yaml  | 190 +++++
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dts       |  96 +++
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi      |   6 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/regulator/Kconfig                          |   8 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pca9450-regulator.c              | 859 +++++++++++++++++++++
+ include/linux/regulator/pca9450.h                  | 219 ++++++
+ 8 files changed, 1380 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+ create mode 100644 drivers/regulator/pca9450-regulator.c
+ create mode 100644 include/linux/regulator/pca9450.h
 
-Changes in v2:
-- Changed dev_info prints to dev_dbg.
-
- drivers/platform/chrome/cros_ec_typec.c | 47 +++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/drivers/platform/chrome/cros_ec_typec.c b/drivers/platform/chrome/cros_ec_typec.c
-index 66b8d21092af..6e79f917314b 100644
---- a/drivers/platform/chrome/cros_ec_typec.c
-+++ b/drivers/platform/chrome/cros_ec_typec.c
-@@ -14,6 +14,8 @@
- #include <linux/platform_data/cros_usbpd_notify.h>
- #include <linux/platform_device.h>
- #include <linux/usb/typec.h>
-+#include <linux/usb/typec_mux.h>
-+#include <linux/usb/role.h>
- 
- #define DRV_NAME "cros-ec-typec"
- 
-@@ -25,6 +27,9 @@ struct cros_typec_port {
- 	struct typec_partner *partner;
- 	/* Port partner PD identity info. */
- 	struct usb_pd_identity p_identity;
-+	struct typec_switch *ori_sw;
-+	struct typec_mux *mux;
-+	struct usb_role_switch *role_sw;
- };
- 
- /* Platform-specific data for the Chrome OS EC Type C controller. */
-@@ -84,6 +89,40 @@ static int cros_typec_parse_port_props(struct typec_capability *cap,
- 	return 0;
- }
- 
-+static int cros_typec_get_switch_handles(struct cros_typec_port *port,
-+					 struct fwnode_handle *fwnode,
-+					 struct device *dev)
-+{
-+	port->mux = fwnode_typec_mux_get(fwnode, NULL);
-+	if (IS_ERR(port->mux)) {
-+		dev_dbg(dev, "Mux handle not found.\n");
-+		goto mux_err;
-+	}
-+
-+	port->ori_sw = fwnode_typec_switch_get(fwnode);
-+	if (IS_ERR(port->ori_sw)) {
-+		dev_dbg(dev, "Orientation switch handle not found.\n");
-+		goto ori_sw_err;
-+	}
-+
-+	port->role_sw = fwnode_usb_role_switch_get(fwnode);
-+	if (IS_ERR(port->role_sw)) {
-+		dev_dbg(dev, "USB role switch handle not found.\n");
-+		goto role_sw_err;
-+	}
-+
-+	return 0;
-+
-+role_sw_err:
-+	usb_role_switch_put(port->role_sw);
-+ori_sw_err:
-+	typec_switch_put(port->ori_sw);
-+mux_err:
-+	typec_mux_put(port->mux);
-+
-+	return -ENODEV;
-+}
-+
- static void cros_unregister_ports(struct cros_typec_data *typec)
- {
- 	int i;
-@@ -91,6 +130,9 @@ static void cros_unregister_ports(struct cros_typec_data *typec)
- 	for (i = 0; i < typec->num_ports; i++) {
- 		if (!typec->ports[i])
- 			continue;
-+		usb_role_switch_put(typec->ports[i]->role_sw);
-+		typec_switch_put(typec->ports[i]->ori_sw);
-+		typec_mux_put(typec->ports[i]->mux);
- 		typec_unregister_port(typec->ports[i]->port);
- 	}
- }
-@@ -153,6 +195,11 @@ static int cros_typec_init_ports(struct cros_typec_data *typec)
- 			ret = PTR_ERR(cros_port->port);
- 			goto unregister_ports;
- 		}
-+
-+		ret = cros_typec_get_switch_handles(cros_port, fwnode, dev);
-+		if (ret)
-+			dev_dbg(dev, "No switch control for port %d\n",
-+				port_num);
- 	}
- 
- 	return 0;
 -- 
-2.26.2.761.g0e0b3e54be-goog
+2.7.4
 
