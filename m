@@ -2,110 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8335A1D8E71
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 06:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FDF1D8ECE
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 06:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726131AbgESEFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 00:05:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725791AbgESEFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 00:05:16 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754B3C061A0C;
-        Mon, 18 May 2020 21:05:16 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id a14so6733141ilk.2;
-        Mon, 18 May 2020 21:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3tOm8zzhCxaJy3Xz/20xYyI/RssQ51tXhkdhSGs8XvM=;
-        b=PZ2PdY14xr+Ro5d+ddOFHl4D+ksurvlmAHT//qsqdw6SDeJ+Njtcdx18griVnejEdH
-         RyRkSXIYdKX/QnNCX73NqkQSMFny0/TLKJVmtHCqogKergXIYgNPnC+sWShWwHid6DgO
-         rZChs500Frt8l+dJeR9HN/bKB6DMTCd43fpRBI1StRoTu2ypdjcromQ1EdKQGaF7jUL2
-         k1Mo4tt2cZ/sfBEpHouIAjKpsEHx2ZvW/f3+q1ym8GsM6In6VWrj0ykApbU5WXFbKW7n
-         XTBb6Te9L3nMOrMTEcdrlWbdIKxPWpZW8GAUT+UEjPomvSFpmSDC9JtXZ3rsk5ZiVxU/
-         WhyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3tOm8zzhCxaJy3Xz/20xYyI/RssQ51tXhkdhSGs8XvM=;
-        b=T7hS6eiX9hjyx5uu9VCuWXApHIhBBc0i/O+qN4lA99Jp8DCjqFOltpsmW5Cd0SQ9hF
-         nadUTLMoXxurxckuqPhakmaxFlwfvRggmqxT6Wn5tUEoaVNo4paXLIcnUp8ora3NrUAr
-         4Zf1Gdph5MiBZV5MJMMrP6MKY8xu5mv1My/20okDHygFKMlgyzEXzSAlPWfhAe2SO1qe
-         x0wM+nk+RaKhnJLevJpIUfW1fufK6AWvAfqby/X+N+kPasliDzzE+Mo3tItNtJFDHgiU
-         6Y4TPjSkavpO3omAdPnFlaYaHjFCD7JJ+FtPkdfRqkmUGTfZEQ4/HMdpz3N3O9qoE6ZK
-         mXMw==
-X-Gm-Message-State: AOAM533lBqsfE7e9rNmRB817eN/GIOocKXrEkB8musNRkURf1R3BlJu+
-        vTikTDHxiB64bKjIA2mc+AlpTSTBuIkaogY3zSs=
-X-Google-Smtp-Source: ABdhPJxNZWuYH/8A7JmkXsS57791uw/AMFZzdoXTYEeXfyUEtNq49rXkuAD3c9lok1aG2vmSkwVYra8Cz/oOSTZ1rpU=
-X-Received: by 2002:a92:d40a:: with SMTP id q10mr20463435ilm.87.1589861114283;
- Mon, 18 May 2020 21:05:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <0a50f0cf5593baeb628dc8606c523665e5e2ae6c.1589519600.git.viresh.kumar@linaro.org>
- <20200519012927.GT2165@builder.lan> <20200519034055.hfvifqz442yfduhg@vireshk-i7>
-In-Reply-To: <20200519034055.hfvifqz442yfduhg@vireshk-i7>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Mon, 18 May 2020 23:05:03 -0500
-Message-ID: <CABb+yY30nmbBUzYG62xGEbrr7107h_Edyq3jKPheZAQ0Cvr9Yg@mail.gmail.com>
-Subject: Re: [RFC] dt-bindings: mailbox: add doorbell support to ARM MHU
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726307AbgESEjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 00:39:10 -0400
+Received: from mga02.intel.com ([134.134.136.20]:9584 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726045AbgESEjK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 00:39:10 -0400
+IronPort-SDR: zfqGls+3QlCzr8mRyuP8kYzhUujwrRGUDWkJlNGdhH6V7X4yPSS5p/sScZn6KBEupY9rwTbEZz
+ ejS8tGlW+Jtg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2020 21:39:09 -0700
+IronPort-SDR: 8mFOiM+39VuBxWASAysHXewTpOtidiceoOSqLjXv/IycC3xyWZ/8jD6ZhN0sEBxUR9J+FJiaC1
+ MRng08Znjv9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,409,1583222400"; 
+   d="scan'208";a="264180100"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga003.jf.intel.com with ESMTP; 18 May 2020 21:39:04 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        arnd@arndb.de, brendanhiggins@google.com, tglx@linutronix.de,
+        boris.brezillon@collabora.com, anders.roxell@linaro.org,
+        masonccyang@mxic.com.tw, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, hauke.mehrtens@intel.com,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        cheol.yong.kim@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v8 0/2] mtd: rawnand: Add NAND controller support on Intel LGM SoC
+Date:   Tue, 19 May 2020 12:37:48 +0800
+Message-Id: <20200519043750.47789-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 18, 2020 at 10:40 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 18-05-20, 18:29, Bjorn Andersson wrote:
-> > On Thu 14 May 22:17 PDT 2020, Viresh Kumar wrote:
-> > > This stuff has been doing rounds on the mailing list since several years
-> > > now with no agreed conclusion by all the parties. And here is another
-> > > attempt to get some feedback from everyone involved to close this once
-> > > and for ever. Your comments will very much be appreciated.
-> > >
-> > > The ARM MHU is defined here in the TRM [1] for your reference, which
-> > > states following:
-> > >
-> > >     "The MHU drives the signal using a 32-bit register, with all 32
-> > >     bits logically ORed together. The MHU provides a set of
-> > >     registers to enable software to set, clear, and check the status
-> > >     of each of the bits of this register independently.  The use of
-> > >     32 bits for each interrupt line enables software to provide more
-> > >     information about the source of the interrupt. For example, each
-> > >     bit of the register can be associated with a type of event that
-> > >     can contribute to raising the interrupt."
-> > >
-> >
-> > Does this mean that there are 32 different signals and they are all ORed
-> > into the same interrupt line to trigger software action when something
-> > happens?
-> >
-> > Or does it mean that this register is used to pass multi-bit information
-> > and when any such information is passed an interrupt will be triggered?
-> > If so, what does that information mean? How is it tied into other Linux
-> > drivers/subsystems?
->
-> I have started to believe the hardware is written badly at this point
-> :)
->
-H/W is actually fine :)   Its just that the driver is written to
-_also_ support a platform (my original) that doesn't have shmem and
-need to pass data via 32bit registers.
-Frankly, I am not against the doorbell mode, I am against implementing
-two modes in a driver. If it really helped (note the past tense) the
-SCMI, we could implement the driver only in doorbell mode but
-unfortunately SCMI would still be _broken_ for non-doorbell
-controllers.
+This patch adds the new IP of Nand Flash Controller(NFC) support
+on Intel's Lightning Mountain(LGM) SoC.
+
+DMA is used for burst data transfer operation, also DMA HW supports
+aligned 32bit memory address and aligned data access by default.
+DMA burst of 8 supported. Data register used to support the read/write
+operation from/to device.
+
+NAND controller also supports in-built HW ECC engine.
+
+NAND controller driver implements ->exec_op() to replace legacy hooks,
+these specific call-back method to execute NAND operations.
+
+Thanks Boris, Andy and Arnd for the review comments and suggestions.
+---
+v8:
+  - fix the kbuild bot warnings
+  - correct the typo's
+v7:
+  - indentation issue is fixed
+  - add error check for retrieve the resource from dt
+  - Rob's review comments addressed
+  - dt-schema build issue fixed with upgraded dt-schema
+v6:
+  - update EBU_ADDR_SELx register base value build it from DT
+  - Add tabs in in Kconfig
+  - Rob's review comments addressed in YAML file
+  - add addr_sel0 and addr_sel1 reg-names in YAML example
+v5:
+  - replace by 'HSNAND_CLE_OFFS | HSNAND_CS_OFFS' to NAND_WRITE_CMD and NAND_WRITE_ADDR
+  - remove the unused macros
+  - update EBU_ADDR_MASK(x) macro
+  - update the EBU_ADDR_SELx register values to be written
+  - add the example in YAML file
+v4:
+  - add ebu_nand_cs structure for multiple-CS support
+  - mask/offset encoding for 0x51 value
+  - update macro HSNAND_CTL_ENABLE_ECC
+  - drop the op argument and un-used macros.
+  - updated the datatype and macros
+  - add function disable nand module
+  - remove ebu_host->dma_rx = NULL;
+  - rename MMIO address range variables to ebu and hsnand
+  - implement ->setup_data_interface()
+  - update label err_cleanup_nand and err_cleanup_dma
+  - add return value check in the nand_remove function
+  - add/remove tabs and spaces as per coding standard
+  - encoded CS ids by reg property
+v3:
+  - Add depends on MACRO in Kconfig
+  - file name update in Makefile
+  - file name update to intel-nand-controller
+  - modification of MACRO divided like EBU, HSNAND and NAND
+  - add NAND_ALE_OFFS, NAND_CLE_OFFS and NAND_CS_OFFS
+  - rename lgm_ to ebu_ and _va suffix is removed in the whole file
+  - rename structure and varaibles as per review comments.
+  - remove lgm_read_byte(), lgm_dev_ready() and cmd_ctrl() un-used function
+  - update in exec_op() as per review comments
+  - rename function lgm_dma_exit() by lgm_dma_cleanup()
+  - hardcoded magic value  for base and offset replaced by MACRO defined
+  - mtd_device_unregister() + nand_cleanup() instead of nand_release()
+v2:
+  - implement the ->exec_op() to replaces the legacy hook-up.
+  - update the commit message
+  - YAML compatible string update to intel, lgm-nand-controller
+  - add MIPS maintainers and xway_nand driver author in CC
+
+v1:
+ - initial version
+
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC
+  mtd: rawnand: Add NAND controller support on Intel LGM SoC
+
+ .../devicetree/bindings/mtd/intel,lgm-nand.yaml    |  91 +++
+ drivers/mtd/nand/raw/Kconfig                       |   8 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/intel-nand-controller.c       | 743 +++++++++++++++++++++
+ 4 files changed, 843 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/intel-nand-controller.c
+
+-- 
+2.11.0
+
