@@ -2,89 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6381B1D9BD7
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 18:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373F91D9B9A
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 17:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729303AbgESQAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 12:00:11 -0400
-Received: from elvis.franken.de ([193.175.24.41]:59275 "EHLO elvis.franken.de"
+        id S1729204AbgESPsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 11:48:10 -0400
+Received: from muru.com ([72.249.23.125]:55022 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729211AbgESQAK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 12:00:10 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1jb4ew-0001Fc-00; Tue, 19 May 2020 18:00:02 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 0EC79C012F; Tue, 19 May 2020 17:42:13 +0200 (CEST)
-Date:   Tue, 19 May 2020 17:42:13 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Sergey.Semin@baikalelectronics.ru
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Allison Randal <allison@lohutok.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Zhou Yanjie <zhouyanjie@zoho.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 12/20] mips: MAAR: Add XPA mode support
-Message-ID: <20200519154213.GA15797@alpha.franken.de>
-References: <20200306124807.3596F80307C2@mail.baikalelectronics.ru>
- <20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru>
- <20200506174238.15385-13-Sergey.Semin@baikalelectronics.ru>
+        id S1729007AbgESPsK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 11:48:10 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 9831D80FA;
+        Tue, 19 May 2020 15:48:59 +0000 (UTC)
+Date:   Tue, 19 May 2020 08:48:07 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Faiz Abbas <faiz_abbas@ti.com>
+Cc:     Keerthy <j-keerthy@ti.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        robh+dt@kernel.org, bcousson@baylibre.com,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: Re: [PATCH v2] arm: dts: Move am33xx and am43xx mmc nodes to
+ sdhci-omap driver
+Message-ID: <20200519154807.GT37466@atomide.com>
+References: <20200512203804.9340-1-faiz_abbas@ti.com>
+ <20200513162327.GM37466@atomide.com>
+ <94025425-95e2-e53d-cfac-a1e73e6c011a@ti.com>
+ <53c815db-dd7d-e6e1-f81a-cf05ef340c71@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200506174238.15385-13-Sergey.Semin@baikalelectronics.ru>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <53c815db-dd7d-e6e1-f81a-cf05ef340c71@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 06, 2020 at 08:42:30PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+* Faiz Abbas <faiz_abbas@ti.com> [200519 08:23]:
+> Tony,
 > 
-> When XPA mode is enabled the normally 32-bits MAAR pair registers
-> are extended to be of 64-bits width as in pure 64-bits MIPS
-> architecture. In this case the MAAR registers can enable the
-> speculative loads/stores for addresses of up to 39-bits width.
-> But in this case the process of the MAAR initialization changes a bit.
-> The upper 32-bits of the registers are supposed to be accessed by mean
-> of the dedicated instructions mfhc0/mthc0 and there is a CP0.MAAR.VH
-> bit which should be set together with CP0.MAAR.VL as indication
-> of the boundary validity. All of these peculiarities were taken into
-> account in this commit so the speculative loads/stores would work
-> when XPA mode is enabled.
-> 
-> Co-developed-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux-pm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> ---
->  arch/mips/include/asm/maar.h     | 17 +++++++++++++++--
->  arch/mips/include/asm/mipsregs.h | 10 ++++++++++
->  arch/mips/mm/init.c              |  8 +++++++-
->  3 files changed, 32 insertions(+), 3 deletions(-)
+> On 15/05/20 3:04 pm, Faiz Abbas wrote:
+> > Hi Tony,
+> > 
+> > On 13/05/20 9:53 pm, Tony Lindgren wrote:
+> >> * Faiz Abbas <faiz_abbas@ti.com> [200512 13:39]:
+> >>> Move mmc nodes to be compatible with the sdhci-omap driver. The following
+> >>> modifications are required for omap_hsmmc specific properties:
+> >>>
+> >>> ti,non-removable: convert to the generic mmc non-removable
+> >>> ti,needs-special-reset:  co-opted into the sdhci-omap driver
+> >>> ti,dual-volt: removed. Legacy property not used in am335x or am43xx
+> >>> ti,needs-special-hs-handling: removed. Legacy property not used in am335x
+> >>> or am43xx
+> >>>
+> >>> Also since the sdhci-omap driver does not support runtime PM, explicitly
+> >>> disable the mmc3 instance in the dtsi.
+> >>>
+> >>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+> >>> ---
+> >>>
+> >>> v2: Rebased to latest mainline where all kernel dependancies have been merged.
+> >>>
+> >>> Suspend/Resume is now supported in the sdhci-omap driver.
+> >>
+> >> Great, thanks for updating it.
+> >>
+> >> Keerthy, care to test for am3 and am4?
+> >>
+> > 
+> > Suspend/resume on am43xx-gpevm is broken right now in mainline and the regression looks
+> > like it is caused by the display subsystem. I have reported this to Tomi and
+> > its being investigated.
+> > 
+> > Meanwhile I have tested this patch with display configs disabled and Keerthy's
+> > suspend/resume tests pass on both am3 and am4.
 
-applied to mips-next.
+OK great thanks for checking it. Do you have the display subsystem
+related commit that broke PM? I'm wondering if my recent DSS platform
+data removal changes might have caused the regression.
 
-Thomas.
+> Can this patch be picked up? I would really like this to be merged by v5.8
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Yeah me too :) Looks good to me, planning on applying these today.
+
+Thanks,
+
+Tony
