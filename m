@@ -2,69 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA321DA4BA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 00:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AE101DA4E0
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 00:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728271AbgESWmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 18:42:18 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:46121 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728258AbgESWmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 18:42:17 -0400
-Received: by mail-io1-f66.google.com with SMTP id j8so970119iog.13;
-        Tue, 19 May 2020 15:42:17 -0700 (PDT)
+        id S1726318AbgESWoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 18:44:13 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:37324 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726283AbgESWoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 18:44:13 -0400
+Received: by mail-io1-f67.google.com with SMTP id t15so1043888ios.4;
+        Tue, 19 May 2020 15:44:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qgFe2xy8/2xQB5QWY3CO3CsIleZgaMC14NjFZj3FgiM=;
-        b=ZQg9Ej2ED0oro1OcanCcmE3rxj800ia8KRPCyV0n3vmbcjTFy9U1CrlMweEfJlX3M4
-         9EIu/j8+xy5xtNRX7ZiMyzaUuAl546eHTXs6M6fNQ6bDE3Qgk3ZeU2kXUnRUfz9zLNBe
-         TBMONeSp+3oBVmtYmEkvSgbBNK76PruWbrX12JbDbjgUJMZ8KUkFg7/p17HcLhj/uJ79
-         rO2R7IBZmXVmJQBrP8MEeKc+wO0cUHcCn9GD6DpwBd0E5a1ImPbqVtEU9Twet41a7vis
-         5si3PWoZfQQTUMIlKu1r/Zh+DSDfe7bi+jbI2Cni++XWf5Ooy2rUgVLl3v4etmXtjC8U
-         a61w==
-X-Gm-Message-State: AOAM530rXFN94+KzILHEyznHRveeN/rojPTVJNmvMia8ugGPEr5LXIt4
-        dPq4K+Ek3x+BgCkvL4viWA==
-X-Google-Smtp-Source: ABdhPJytDRwoiZt9xLZNqCqKB1TxQKbXQJnN0x8nPz/zWntjyvp5bG6L19VYqss8zFDavc6WNxSe4Q==
-X-Received: by 2002:a6b:700a:: with SMTP id l10mr1152861ioc.170.1589928136705;
-        Tue, 19 May 2020 15:42:16 -0700 (PDT)
+        bh=N1lmJuXT33q6aZH18d7DfYmv0StosYI0OPktchqqKbA=;
+        b=OtUsF+RqRV1tX9pbf5h7C6lMXhObFIJe4jmotw3LJPDpxAtsNGhbvo5tmcpmdcXaQS
+         C37YIE4vnrUNaY9BijeQPF+ZhJ8lB1RrTVkulGWHZLleOtlFZwGjjAAjgifljgSiJge8
+         KGNc4tHwR9ASBDAVUmJxJhugByWm47bggakCs14unNpmWngcwdk0ncubZIDQYn5WqY3B
+         q4t2ECyNl0HSCDb3xh4IaM6bPXGhrbA9QroZxH2hRcHQUI6FH6g/D3UZLeKrdp8g5EKa
+         scDu0UOVRXs2ckwFiMjLpqLURfQlXKbJtsrLjrZZGWg7i7EB9GT0eLBuLSoYGT4mkSd1
+         yXbQ==
+X-Gm-Message-State: AOAM533PNk+0kb5xu+0IFsgg2m74VgjV+BNfEW0y/1/Ln3qh596JxtFM
+        KuZvoJwq+meJIBF3r7pW2A==
+X-Google-Smtp-Source: ABdhPJxKQ/TzQq03uf2VEzCewTAUROD8cEguB2dRtrUO2bJaC96i0KsUN7VLp2Hv2j6a2B1DjXP6BA==
+X-Received: by 2002:a02:76c4:: with SMTP id z187mr1922106jab.72.1589928252182;
+        Tue, 19 May 2020 15:44:12 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id q75sm398796ili.11.2020.05.19.15.42.15
+        by smtp.gmail.com with ESMTPSA id b7sm366733ioq.40.2020.05.19.15.44.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 15:42:16 -0700 (PDT)
-Received: (nullmailer pid 824100 invoked by uid 1000);
-        Tue, 19 May 2020 22:42:15 -0000
-Date:   Tue, 19 May 2020 16:42:15 -0600
+        Tue, 19 May 2020 15:44:11 -0700 (PDT)
+Received: (nullmailer pid 827084 invoked by uid 1000);
+        Tue, 19 May 2020 22:44:10 -0000
+Date:   Tue, 19 May 2020 16:44:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] bindings: sound: Add documentation for TI j721e
- EVM (CPB and IVI)
-Message-ID: <20200519224215.GB488519@bogus>
-References: <20200512131633.32668-1-peter.ujfalusi@ti.com>
- <20200512131633.32668-3-peter.ujfalusi@ti.com>
+To:     amirmizi6@gmail.com
+Cc:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Subject: Re: [PATCH v8 7/8] tpm: Add YAML schema for TPM TIS I2C options
+Message-ID: <20200519224410.GA824372@bogus>
+References: <20200512141431.83833-1-amirmizi6@gmail.com>
+ <20200512141431.83833-8-amirmizi6@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200512131633.32668-3-peter.ujfalusi@ti.com>
+In-Reply-To: <20200512141431.83833-8-amirmizi6@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 12, 2020 at 04:16:32PM +0300, Peter Ujfalusi wrote:
-> The audio support on the Common Processor Board board is using
-> pcm3168a codec connected to McASP10 serializers in parallel setup.
+On Tue, May 12, 2020 at 05:14:30PM +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
 > 
-> The Infotainment board plugs into the Common Processor Board, the support
-> of the extension board is extending the CPB audio support by adding
-> the two codecs on the expansion board.
+> Added a YAML schema to support tpm tis i2c related dt-bindings for the I2c
+> PTP based physical layer.
 > 
-> The audio support on the Infotainment Expansion Board consists of McASP0
-> connected to two pcm3168a codecs with dedicated set of serializers to each.
-> The SCKI for pcm3168a is sourced from j721e AUDIO_REFCLK0 pin.
+> This patch adds the documentation for corresponding device tree bindings of
+> I2C based Physical TPM.
+> Refer to the 'I2C Interface Definition' section in
+> 'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
+> for specification.
+> 
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> ---
+>  .../bindings/security/tpm/tpm-tis-i2c.yaml         | 51 ++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> new file mode 100644
+> index 0000000..628c8f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Would the audio graph card work for you on this? 
+Dual license new bindings please:
+
+(GPL-2.0-only OR BSD-2-Clause)
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C PTP based TPM Device Tree Bindings
+> +
+> +maintainers:
+> +  - Amir Mizinski <amirmizi6@gmail.com>
+> +
+> +description:
+> +  Device Tree Bindings for I2C based Trusted Platform Module(TPM).
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+
+You don't need 'oneOf'.
+
+> +          - enum:
+> +              # Nuvoton's Trusted Platform Module (TPM) (NPCT75x)
+> +              - nuvoton,npct75x
+> +          - const: tcg,tpm-tis-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt:
+> +    maxItems: 1
+> +
+> +  crc-checksum:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Set this flag to enable CRC checksum.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      tpm_tis@2e {
+
+tpm@2e
+
+> +        compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
+> +        reg = <0x2e>;
+> +        crc-checksum;
+> +      };
+> +    };
+> +...
+> -- 
+> 2.7.4
+> 
