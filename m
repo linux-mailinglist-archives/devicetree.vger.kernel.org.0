@@ -2,166 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D1D1D9DE0
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ACB11D9DFB
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729233AbgESR2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 13:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726059AbgESR2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 13:28:52 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E80DC08C5C0
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 10:28:52 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id h26so210568lfg.6
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 10:28:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2UU2uDfoQ0XDU5KpKT4RRKwHm6V5OiKc9FhAQ/MpRZE=;
-        b=AlU1mY950tCF9utrFQJlkpHmR4B291Dm6iDtNg/pIX2GtWDmyyj5nBCfZdHnxlIZBo
-         x8d58nILrz8M4S83m3rVZ34JaujF1PMsA2JJq7UjB/1bl30tz/Tzgvfcjf0g6OMPbQwW
-         OeCiSlziacIOl3984F0dNQIh887yHOmDn6RUo=
+        id S1729365AbgESRhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 13:37:02 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:37155 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729001AbgESRhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 13:37:02 -0400
+Received: by mail-io1-f67.google.com with SMTP id t15so40477ios.4;
+        Tue, 19 May 2020 10:37:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2UU2uDfoQ0XDU5KpKT4RRKwHm6V5OiKc9FhAQ/MpRZE=;
-        b=PKBQWdfYSEXVCZGpypi7cRZjkMg/MwmvRje8Bc3Xax+ZbZwjJBwA9O+pf51dv44f3S
-         Uc3KXcDN+lLXTzYUOm8YHmWNOF7G68vecSWAB5UN/Dn1F96kelMI3xu9r/3FPcTqk3Qf
-         3dX0EtjZJgaI7naPMzBK1KQYbzk9Hv+xw7+drVlfOLymqWiNsA8Mm/mpfXGB6NpHJ1vG
-         6k5/lVpPPKjCQQPVERnThLQLPffRcLWga/Ir41dRXnVtmtW0eA7V815UTl3VeNc7IXgH
-         xf3BW7kH8pnbsaTFzokS2g4mw870ZNIfC3HqSnodVxjqDWIWTsXs11rK2DYV7bbiDnhG
-         lanw==
-X-Gm-Message-State: AOAM533S2YoO8qoQfzjgDBMFnb6P+oXmch1zC/8nB8OSiMVCqbVS3euc
-        6xzwI3nI3BR2pLM5NhsM6II2jz1XeKI=
-X-Google-Smtp-Source: ABdhPJy+3vHlKjcdVoZKw1IW27aXw+EfrKvgxUteNEzbLP1NJMX90S8342cpw7+pf9JkZFpmGjRs+g==
-X-Received: by 2002:a19:5f04:: with SMTP id t4mr16199187lfb.208.1589909330683;
-        Tue, 19 May 2020 10:28:50 -0700 (PDT)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
-        by smtp.gmail.com with ESMTPSA id y130sm28016lfc.22.2020.05.19.10.28.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 May 2020 10:28:50 -0700 (PDT)
-Received: by mail-lf1-f48.google.com with SMTP id 202so215495lfe.5
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 10:28:49 -0700 (PDT)
-X-Received: by 2002:a19:b06:: with SMTP id 6mr12546467lfl.104.1589909329254;
- Tue, 19 May 2020 10:28:49 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XTPJr0RoCtcKkiWN8fbDLRyRDQpXZpviGSZLqL/Da5g=;
+        b=LW41viB7s8Sjv6KJfEB+P/EXQE5HrneqawvZL60GZiOu2fGYVtsz1GnXeh1nti8J6j
+         S5fJ5W8DW51OMK6u0TZALywnnC5lx77tkrnYVF6Nyfx9p8t8Fgd07G0QdzIIUYcpYZU2
+         +vOBVFCEPBPzMZqcqANgDIaQn7c+PL2HYpQNeCNKEQXtTeUwPhisK5nlUGcdnZuHjQlu
+         Xu9xwzuF/1lY2103vKFLFjnfU+f3U4vSr28ZYyqQKYzvwGn7SExphnxR1zFlNRKBQkyx
+         +O4At3463i46J61TAq5yoQ8GXCUixXB35cj0OpdUW988uZ6eRvtWEYvJl4SvDEyQJxEe
+         W2ZQ==
+X-Gm-Message-State: AOAM530pvKjFMEYVsotyA5XAhPnoGxxnvq8QCi9UtEOdE0h0TiTfjcUv
+        U6fj0N0f09hnDGCsteSXBWqD3FA=
+X-Google-Smtp-Source: ABdhPJwH2K7ECQ4/Q1DUnIHStWxaucXWvfJTMS0U8iF4gW6tfpn8mAiwZOMeQ4V6tSAqwn3rTWkewQ==
+X-Received: by 2002:a6b:d219:: with SMTP id q25mr41096iob.202.1589909821031;
+        Tue, 19 May 2020 10:37:01 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id h9sm127992ioa.6.2020.05.19.10.36.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2020 10:37:00 -0700 (PDT)
+Received: (nullmailer pid 341666 invoked by uid 1000);
+        Tue, 19 May 2020 17:36:58 -0000
+Date:   Tue, 19 May 2020 11:36:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Cc:     Mason Yang <masonccyang@mxic.com.tw>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: memory: document Renesas RPC-IF
+ bindings
+Message-ID: <20200519173658.GA340788@bogus>
+References: <26faf5e8-26eb-cceb-a500-f0fd64609737@cogentembedded.com>
+ <f998fe6c-c586-17cb-9343-30460ce0bf9d@cogentembedded.com>
 MIME-Version: 1.0
-References: <1589712411-26718-1-git-send-email-pillair@codeaurora.org>
-In-Reply-To: <1589712411-26718-1-git-send-email-pillair@codeaurora.org>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Tue, 19 May 2020 10:28:12 -0700
-X-Gmail-Original-Message-ID: <CAE=gft577zxP5F6OdFXt6taLuLyye+tdRqZa63mPSRtPXO3Lcw@mail.gmail.com>
-Message-ID: <CAE=gft577zxP5F6OdFXt6taLuLyye+tdRqZa63mPSRtPXO3Lcw@mail.gmail.com>
-Subject: Re: [PATCH v9] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module
- device node
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f998fe6c-c586-17cb-9343-30460ce0bf9d@cogentembedded.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 17, 2020 at 3:47 AM Rakesh Pillai <pillair@codeaurora.org> wrote:
->
-> Add device node for the ath10k SNOC platform driver probe
-> and add resources required for WCN3990 on sc7180 soc.
->
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+On Mon, 18 May 2020 23:33:15 +0300, Sergei Shtylyov wrote:
+> Renesas Reduced Pin Count Interface (RPC-IF) allows a SPI flash or
+> HyperFlash connected to the SoC to be accessed via the external address
+> space read mode or the manual mode.
+> 
+> Document the device tree bindings for the Renesas RPC-IF found in the R-Car
+> gen3 SoCs.
+> 
+> Based on the original patch by Mason Yang <masonccyang@mxic.com.tw>.
+> 
+> Signed-off-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+> 
 > ---
-> Changes from v8:
-> - Removed the qcom,msa-fixed-perm
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts |  7 +++++++
->  arch/arm64/boot/dts/qcom/sc7180.dtsi    | 27 +++++++++++++++++++++++++++
->  2 files changed, 34 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> index 4e9149d..38b102e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> @@ -389,6 +389,13 @@
->         };
->  };
->
-> +&wifi {
-> +       status = "okay";
-> +       wifi-firmware {
-> +               iommus = <&apps_smmu 0xc2 0x1>;
-> +       };
-> +};
-> +
->  /* PINCTRL - additions to nodes defined in sc7180.dtsi */
->
->  &qspi_clk {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index f1280e0..dd4e095 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -63,6 +63,11 @@
->                         clock-frequency = <32764>;
->                         #clock-cells = <0>;
->                 };
-> +
-> +               wlan_fw_mem: memory@94100000 {
-> +                       reg = <0 0x94100000 0 0x200000>;
-> +                       no-map;
-> +               };
-
-This node is not in the right place. Up through v8, this lived inside
-reserved-memory. Here it seems to apply into the clocks {} node, which
-is not the right spot.
+> Changes in version 3:
+> - fixed up the whitespace and added hyphens in the "compatible" prop text, also
+>   removed the comments;
+> - specified the subnode name as "flash", and used "enum" in the subnode text;
+> - fixed up the SPDX-License-Identifier: tag.
+> 
+> Changes in version 2:
+> - rewrote the bindings in YAML.
+> 
+>  Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml |   88 ++++++++++
+>  1 file changed, 88 insertions(+)
+> 
 
 
->         };
->
->         reserved_memory: reserved-memory {
-> @@ -944,6 +949,28 @@
->                         };
->                 };
->
-> +               wifi: wifi@18800000 {
-> +                       compatible = "qcom,wcn3990-wifi";
-> +                       reg = <0 0x18800000 0 0x800000>;
-> +                       reg-names = "membase";
-> +                       iommus = <&apps_smmu 0xc0 0x1>;
-> +                       interrupts =
-> +                               <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
-> +                               <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
-> +                               <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
-> +                               <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH /* CE3 */ >,
-> +                               <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH /* CE4 */ >,
-> +                               <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH /* CE5 */ >,
-> +                               <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH /* CE6 */ >,
-> +                               <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH /* CE7 */ >,
-> +                               <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH /* CE8 */ >,
-> +                               <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH /* CE9 */ >,
-> +                               <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10 */>,
-> +                               <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11 */>;
-> +                       memory-region = <&wlan_fw_mem>;
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Should any of the *-supply regulators be specified? Or are they all
-board specific? Or just not needed? The example has these:
-vdd-0.8-cx-mx-supply = <&pm8998_l5>;
-vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml: patternProperties:flash@[0-9a-f]+$:properties:compatible: [{'enum': ['cfi-flash', 'jedec,spi-nor']}] is not of type 'object', 'boolean'
+Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.example.dts' failed
+make[1]: *** [Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1300: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
+See https://patchwork.ozlabs.org/patch/1292811
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
 
-> +                       status = "disabled";
-> +               };
-> +
->                 config_noc: interconnect@1500000 {
->                         compatible = "qcom,sc7180-config-noc";
->                         reg = <0 0x01500000 0 0x28000>;
-> --
-> 2.7.4
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
