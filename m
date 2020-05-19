@@ -2,51 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD091D9952
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:20:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51DA21D995B
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 16:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729193AbgESOS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 10:18:28 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52862 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729246AbgESOS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 10:18:26 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04JEILqg120856;
-        Tue, 19 May 2020 09:18:21 -0500
+        id S1728725AbgESOTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 10:19:21 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:35836 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726880AbgESOTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 10:19:21 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04JEJJVi060318;
+        Tue, 19 May 2020 09:19:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1589897901;
-        bh=7cEMewK4Dv4aBSc5J3k0txTglRN+Y1e+MxBhdDrWOk8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ONxEvuKbrDDp1glzRc3K1QahIt4TjB5gPhpf4G6TVGPkAwhwt787qXhOovwS42Z1O
-         zf+foupkxElMIr7ahNJm11d+N4O65zOz2nyKfC2X2x9cSqbCmPW5dV/5lXuJQg310t
-         Jp4gYAsoKfIGpMc1LJTuph1OAOdtegYNljmbtXl8=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04JEILHQ057284
+        s=ti-com-17Q1; t=1589897959;
+        bh=+YqheDvBm/tN5emqmsMckKPwgvtTPi+iG5bT6OZ54Bs=;
+        h=From:To:CC:Subject:Date;
+        b=V5fQgwFMer4pIZ7FwOCQPDtefs8ZV/e+BJvefXYLWotkaZAA6jP27YbZsuQ4QbilE
+         CFkd60dJDj6KHKrHItWvGJ5dAo44YYyh09/noyM37YrHRm6aEAITYQtS7/VfUWlNVJ
+         cnXFWcQDThYt3aBoXlu91uxJ7XogYWkLSWTP9cQ8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04JEJJ6a035936
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 19 May 2020 09:18:21 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 19 May 2020 09:19:19 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 19
- May 2020 09:18:20 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ May 2020 09:19:19 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 19 May 2020 09:18:20 -0500
+ Frontend Transport; Tue, 19 May 2020 09:19:19 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04JEIKBQ058773;
-        Tue, 19 May 2020 09:18:20 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04JEJIHO038542;
+        Tue, 19 May 2020 09:19:19 -0500
 From:   Dan Murphy <dmurphy@ti.com>
-To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>
-CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     <sre@kernel.org>
+CC:     <sspatil@android.com>, <linux-pm@vger.kernel.org>,
+        <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH net-next 4/4] net: dp83869: Add RGMII internal delay configuration
-Date:   Tue, 19 May 2020 09:18:13 -0500
-Message-ID: <20200519141813.28167-5-dmurphy@ti.com>
+Subject: [PATCH v7 0/3] Add JEITA properties and introduce the bq2515x charger
+Date:   Tue, 19 May 2020 09:19:13 -0500
+Message-ID: <20200519141916.28282-1-dmurphy@ti.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200519141813.28167-1-dmurphy@ti.com>
-References: <20200519141813.28167-1-dmurphy@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -56,143 +54,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add RGMII internal delay configuration for Rx and Tx.
+Hello,
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/net/phy/dp83869.c | 84 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+This patchset adds additional health properties to the power_supply header.
+These additional properties are taken from the JEITA specification. This
+patchset also introduces the bq2515x family of charging ICs.
 
-diff --git a/drivers/net/phy/dp83869.c b/drivers/net/phy/dp83869.c
-index 64fa2d911074..7d0b11220e47 100644
---- a/drivers/net/phy/dp83869.c
-+++ b/drivers/net/phy/dp83869.c
-@@ -99,6 +99,14 @@
- #define DP83869_OP_MODE_MII			BIT(5)
- #define DP83869_SGMII_RGMII_BRIDGE		BIT(6)
- 
-+/* RGMIIDCTL bits */
-+#define DP83869_RGMII_TX_CLK_DELAY_MAX		0xf
-+#define DP83869_RGMII_TX_CLK_DELAY_SHIFT	4
-+#define DP83869_RGMII_TX_CLK_DELAY_INV	(DP83869_RGMII_TX_CLK_DELAY_MAX + 1)
-+#define DP83869_RGMII_RX_CLK_DELAY_MAX		0xf
-+#define DP83869_RGMII_RX_CLK_DELAY_SHIFT	0
-+#define DP83869_RGMII_RX_CLK_DELAY_INV	(DP83869_RGMII_RX_CLK_DELAY_MAX + 1)
-+
- enum {
- 	DP83869_PORT_MIRRORING_KEEP,
- 	DP83869_PORT_MIRRORING_EN,
-@@ -108,6 +116,8 @@ enum {
- struct dp83869_private {
- 	int tx_fifo_depth;
- 	int rx_fifo_depth;
-+	u32 rx_id_delay;
-+	u32 tx_id_delay;
- 	int io_impedance;
- 	int port_mirroring;
- 	bool rxctrl_strap_quirk;
-@@ -232,6 +242,26 @@ static int dp83869_of_init(struct phy_device *phydev)
- 				 &dp83869->tx_fifo_depth))
- 		dp83869->tx_fifo_depth = DP83869_PHYCR_FIFO_DEPTH_4_B_NIB;
- 
-+	dp83869->rx_id_delay = DP83869_RGMII_RX_CLK_DELAY_INV;
-+	ret = of_property_read_u32(of_node, "ti,rx-internal-delay",
-+				   &dp83869->rx_id_delay);
-+	if (!ret && dp83869->rx_id_delay > DP83869_RGMII_RX_CLK_DELAY_MAX) {
-+		phydev_err(phydev,
-+			   "ti,rx-internal-delay value of %u out of range\n",
-+			   dp83869->rx_id_delay);
-+		return -EINVAL;
-+	}
-+
-+	dp83869->tx_id_delay = DP83869_RGMII_TX_CLK_DELAY_INV;
-+	ret = of_property_read_u32(of_node, "ti,tx-internal-delay",
-+				   &dp83869->tx_id_delay);
-+	if (!ret && dp83869->tx_id_delay > DP83869_RGMII_TX_CLK_DELAY_MAX) {
-+		phydev_err(phydev,
-+			   "ti,tx-internal-delay value of %u out of range\n",
-+			   dp83869->tx_id_delay);
-+		return -EINVAL;
-+	}
-+
- 	return ret;
- }
- #else
-@@ -270,6 +300,29 @@ static int dp83869_configure_rgmii(struct phy_device *phydev,
- 	return ret;
- }
- 
-+static int dp83869_verify_rgmii_cfg(struct phy_device *phydev)
-+{
-+	struct dp83869_private *dp83869 = phydev->priv;
-+
-+	/* RX delay *must* be specified if internal delay of RX is used. */
-+	if ((phydev->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	     phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID) &&
-+	     dp83869->rx_id_delay == DP83869_RGMII_RX_CLK_DELAY_INV) {
-+		phydev_err(phydev, "ti,rx-internal-delay must be specified\n");
-+		return -EINVAL;
-+	}
-+
-+	/* TX delay *must* be specified if internal delay of TX is used. */
-+	if ((phydev->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	     phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID) &&
-+	     dp83869->tx_id_delay == DP83869_RGMII_TX_CLK_DELAY_INV) {
-+		phydev_err(phydev, "ti,tx-internal-delay must be specified\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int dp83869_configure_mode(struct phy_device *phydev,
- 				  struct dp83869_private *dp83869)
- {
-@@ -371,6 +424,11 @@ static int dp83869_config_init(struct phy_device *phydev)
- {
- 	struct dp83869_private *dp83869 = phydev->priv;
- 	int ret, val;
-+	u16 delay;
-+
-+	ret = dp83869_verify_rgmii_cfg(phydev);
-+	if (ret)
-+		return ret;
- 
- 	ret = dp83869_configure_mode(phydev, dp83869);
- 	if (ret)
-@@ -394,6 +452,32 @@ static int dp83869_config_init(struct phy_device *phydev)
- 				     dp83869->clk_output_sel <<
- 				     DP83869_IO_MUX_CFG_CLK_O_SEL_SHIFT);
- 
-+	if (phy_interface_is_rgmii(phydev)) {
-+		val = phy_read_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL);
-+
-+		val &= ~(DP83869_RGMII_TX_CLK_DELAY_EN | DP83869_RGMII_RX_CLK_DELAY_EN);
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_ID)
-+			val |= (DP83869_RGMII_TX_CLK_DELAY_EN | DP83869_RGMII_RX_CLK_DELAY_EN);
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID)
-+			val |= DP83869_RGMII_TX_CLK_DELAY_EN;
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID)
-+			val |= DP83869_RGMII_RX_CLK_DELAY_EN;
-+
-+		phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL, val);
-+
-+		delay = 0;
-+		if (dp83869->rx_id_delay != DP83869_RGMII_RX_CLK_DELAY_INV)
-+			delay |= dp83869->rx_id_delay;
-+		if (dp83869->tx_id_delay != DP83869_RGMII_TX_CLK_DELAY_INV)
-+			delay |= dp83869->tx_id_delay <<
-+				 DP83869_RGMII_TX_CLK_DELAY_SHIFT;
-+
-+		phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIIDCTL,
-+			      delay);
-+	}
-+
- 	return ret;
- }
- 
+Dan Murphy (1):
+  power_supply: Add additional health properties to the header
+
+Ricardo Rivera-Matos (2):
+  Add the bindings for the bq25150 and bq25155 500mA charging ICs from
+    Texas Instruments.
+  power: supply: bq25150 introduce the bq25150
+
+ Documentation/ABI/testing/sysfs-class-power   |    2 +-
+ .../bindings/power/supply/bq2515x.yaml        |  106 ++
+ drivers/power/supply/Kconfig                  |   13 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/bq2515x_charger.c        | 1167 +++++++++++++++++
+ drivers/power/supply/power_supply_sysfs.c     |    2 +-
+ include/linux/power_supply.h                  |    3 +
+ 7 files changed, 1292 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq2515x.yaml
+ create mode 100644 drivers/power/supply/bq2515x_charger.c
+
 -- 
 2.26.2
 
