@@ -2,76 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FD01D9DBB
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BADB61D9D97
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 19:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729210AbgESRUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 13:20:22 -0400
-Received: from mailrelay4.webfaction.com ([185.20.51.6]:60504 "EHLO
-        mailrelay4.webfaction.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729197AbgESRUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 13:20:22 -0400
-X-Greylist: delayed 563 seconds by postgrey-1.27 at vger.kernel.org; Tue, 19 May 2020 13:20:22 EDT
-Received: from mailrelay3.webfaction.com (mailrelay3.webfaction.com [207.38.93.110])
-        by mailrelay4.webfaction.com (Postfix) with ESMTPS id AA711A6D79;
-        Tue, 19 May 2020 17:10:54 +0000 (UTC)
-Received: from mailrelay1.webfaction.com (mailrelay1.webfaction.com [207.38.86.46])
-        by mailrelay3.webfaction.com (Postfix) with ESMTPS id DEEE32A5088;
-        Tue, 19 May 2020 17:10:52 +0000 (UTC)
-Received: from smtp.webfaction.com (mail6.webfaction.com [31.170.123.134])
-        by mailrelay1.webfaction.com (Postfix) with ESMTPS id EA76E1A0E3D;
-        Tue, 19 May 2020 17:10:51 +0000 (UTC)
-Received: from jeremy.localnet (host-37-191-188-128.lynet.no [37.191.188.128])
-        by smtp.webfaction.com (Postfix) with ESMTPSA id 810DA60038E8E;
-        Tue, 19 May 2020 17:11:01 +0000 (UTC)
-From:   Paul Boddie <paul@boddie.org.uk>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Emil Velikov <emil.l.velikov@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>, od@zcrc.me,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 11/12] gpu/drm: Ingenic: Add support for the IPU
-Date:   Tue, 19 May 2020 19:10:32 +0200
-Message-ID: <3220152.ycyENPvHUQ@jeremy>
-User-Agent: KMail/4.14.1 (Linux/3.16.0-10-586; KDE/4.14.2; i686; ; )
-In-Reply-To: <YGYIAQ.7N9YGTBML0143@crapouillou.net>
-References: <20200516215057.392609-1-paul@crapouillou.net> <CACvgo50q=qJXk3nFSCm+S6JHBMxpY0C_HwH8KGB2EAcKwgL0oQ@mail.gmail.com> <YGYIAQ.7N9YGTBML0143@crapouillou.net>
+        id S1729053AbgESRL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 13:11:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729001AbgESRL4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 13:11:56 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 78AA7207D8;
+        Tue, 19 May 2020 17:11:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1589908315;
+        bh=J1Y30cmsXnTK+NpTbd/xD2zpvVMzNGnZNpopIBUAdOI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TLbCPhb4n0z4OOZth5bBxZ6VeNK677WoS6fBfxN7NTf8lXpCGiYv5YiDEsXfmiT0t
+         XrwIh0sAqkggc1hAxQbSeB6Zi6l+JIgCmwyPx0GHCi9VI9aDsjf/KyS7UgG0Ip79XR
+         lQUV4pbrxKCykGqXmxuD72w2Bid7Uv7Ret2WcZj4=
+Received: by mail-oi1-f176.google.com with SMTP id y85so364629oie.11;
+        Tue, 19 May 2020 10:11:55 -0700 (PDT)
+X-Gm-Message-State: AOAM531FmMnGSLLvn+AcEpondCGO1+N3L3egPZWUs9xrCinSo2sqq+tf
+        Lhi52ZJDwgf0AX5LfVHy2+Om2/PrleGyToBdrQ==
+X-Google-Smtp-Source: ABdhPJyaeG/VOd9sCaHIqKFgnKTdazwA1yv63I0/uCkGphrfwVHO31fj1lCt2eCihWn6JIce5iLdBPaPVV9gZstFRsM=
+X-Received: by 2002:a05:6808:24f:: with SMTP id m15mr347220oie.152.1589908314771;
+ Tue, 19 May 2020 10:11:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20200508130646.23939-1-kishon@ti.com> <20200508130646.23939-5-kishon@ti.com>
+In-Reply-To: <20200508130646.23939-5-kishon@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 19 May 2020 11:11:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ1Om2CX5e1y32bzeiuv4fAdyFpZ88a346g4Q+jq_Ldcg@mail.gmail.com>
+Message-ID: <CAL_JsqJ1Om2CX5e1y32bzeiuv4fAdyFpZ88a346g4Q+jq_Ldcg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] PCI: cadence: Use "dma-ranges" instead of
+ "cdns,no-bar-match-nbits" property
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 18. May 2020 13.26.58 Paul Cercueil wrote:
-> >>  
-> >>  @@ -186,13 +186,16 @@ static void
-> >> 
-> >> ingenic_drm_crtc_update_timings(struct ingenic_drm *priv,
-> >> 
-> >>          regmap_update_bits(priv->map, JZ_REG_LCD_CTRL,
-> >>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16,
-> >>                             JZ_LCD_CTRL_OFUP | JZ_LCD_CTRL_BURST_16);
-> >>  
-> >>  +
-> >>  +       regmap_write(priv->map, JZ_REG_LCD_IPUR, JZ_LCD_IPUR_IPUREN
-> >>  +                    (ht * vpe / 3) << JZ_LCD_IPUR_IPUR_LSB);
-> > 
-> > This hunk also indicates that it may be better to merge the IPU within
-> > the existing driver.
-> 
-> This writes the IPUR register of the CRTC, nothing wrong here.
+On Fri, May 8, 2020 at 7:07 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>
+> Cadence PCIe core driver (host mode) uses "cdns,no-bar-match-nbits"
+> property to configure the number of bits passed through from PCIe
+> address to internal address in Inbound Address Translation register.
+> This only used the NO MATCH BAR.
+>
+> However standard PCI dt-binding already defines "dma-ranges" to
+> describe the address ranges accessible by PCIe controller. Add support
+> in Cadence PCIe host driver to parse dma-ranges and configure the
+> inbound regions for BAR0, BAR1 and NO MATCH BAR. Cadence IP specifies
+> maximum size for BAR0 as 256GB, maximum size for BAR1 as 2 GB, so if
+> the dma-ranges specifies a size larger than the maximum allowed, the
+> driver will split and configure the BARs.
 
-Since I noticed it in the above patch details, I think the mask when updating 
-the burst setting in the LCD_CTRL register should - in general - involve 
-multiple bits, since the BST field is 3 bits wide on the JZ4780 and 2 bits 
-wide on earlier products. Just setting BURST_16 (0b10) could potentially 
-enable BURST_32 (0b11) or other field values that are not explicitly defined.
+Would be useful to know what your dma-ranges contains now.
 
-Hope this is useful!
 
-Paul
+> Legacy device tree binding compatibility is maintained by retaining
+> support for "cdns,no-bar-match-nbits".
+>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../controller/cadence/pcie-cadence-host.c    | 141 ++++++++++++++++--
+>  drivers/pci/controller/cadence/pcie-cadence.h |  17 ++-
+>  2 files changed, 141 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index 6ecebb79057a..2485ecd8434d 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -11,6 +11,12 @@
+>
+>  #include "pcie-cadence.h"
+>
+> +static u64 cdns_rp_bar_max_size[] = {
+> +       [RP_BAR0] = _ULL(128 * SZ_2G),
+> +       [RP_BAR1] = SZ_2G,
+> +       [RP_NO_BAR] = SZ_64T,
+> +};
+> +
+>  void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
+>                                int where)
+>  {
+> @@ -106,6 +112,117 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>         return 0;
+>  }
+>
+> +static void cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> +                                        enum cdns_pcie_rp_bar bar,
+> +                                        u64 cpu_addr, u32 aperture)
+> +{
+> +       struct cdns_pcie *pcie = &rc->pcie;
+> +       u32 addr0, addr1;
+> +
+> +       addr0 = CDNS_PCIE_AT_IB_RP_BAR_ADDR0_NBITS(aperture) |
+> +               (lower_32_bits(cpu_addr) & GENMASK(31, 8));
+> +       addr1 = upper_32_bits(cpu_addr);
+> +       cdns_pcie_writel(pcie, CDNS_PCIE_AT_IB_RP_BAR_ADDR0(bar), addr0);
+> +       cdns_pcie_writel(pcie, CDNS_PCIE_AT_IB_RP_BAR_ADDR1(bar), addr1);
+> +}
+> +
+> +static int cdns_pcie_host_bar_config(struct cdns_pcie_rc *rc,
+> +                                    struct resource_entry *entry,
+> +                                    enum cdns_pcie_rp_bar *index)
+> +{
+> +       u64 cpu_addr, pci_addr, size, winsize;
+> +       struct cdns_pcie *pcie = &rc->pcie;
+> +       struct device *dev = pcie->dev;
+> +       enum cdns_pcie_rp_bar bar;
+> +       unsigned long flags;
+> +       u32 aperture;
+> +       u32 value;
+> +
+> +       cpu_addr = entry->res->start;
+> +       flags = entry->res->flags;
+> +       pci_addr = entry->res->start - entry->offset;
+> +       size = resource_size(entry->res);
+> +       bar = *index;
+> +
+> +       if (entry->offset) {
+> +               dev_err(dev, "Cannot map PCI addr: %llx to CPU addr: %llx\n",
+> +                       pci_addr, cpu_addr);
+
+Would be a bit more clear to say PCI addr must equal CPU addr.
+
+> +               return -EINVAL;
+> +       }
+> +
+> +       value = cdns_pcie_readl(pcie, CDNS_PCIE_LM_RC_BAR_CFG);
+> +       while (size > 0) {
+> +               if (bar > RP_NO_BAR) {
+> +                       dev_err(dev, "Failed to map inbound regions!\n");
+> +                       return -EINVAL;
+> +               }
+> +
+> +               winsize = size;
+> +               if (size > cdns_rp_bar_max_size[bar])
+> +                       winsize = cdns_rp_bar_max_size[bar];
+> +
+> +               aperture = ilog2(winsize);
+> +
+> +               cdns_pcie_host_bar_ib_config(rc, bar, cpu_addr, aperture);
+> +
+> +               if (bar == RP_NO_BAR)
+> +                       break;
+> +
+> +               if (winsize + cpu_addr >= SZ_4G) {
+> +                       if (!(flags & IORESOURCE_PREFETCH))
+> +                               value |= LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar);
+> +                       value |= LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar);
+> +               } else {
+> +                       if (!(flags & IORESOURCE_PREFETCH))
+> +                               value |= LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar);
+> +                       value |= LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar);
+> +               }
+> +
+> +               value |= LM_RC_BAR_CFG_APERTURE(bar, aperture);
+> +
+> +               size -= winsize;
+> +               cpu_addr += winsize;
+> +               bar++;
+> +       }
+> +       cdns_pcie_writel(pcie, CDNS_PCIE_LM_RC_BAR_CFG, value);
+> +       *index = bar;
+> +
+> +       return 0;
+> +}
+> +
+> +static int cdns_pcie_host_map_dma_ranges(struct cdns_pcie_rc *rc)
+> +{
+> +       enum cdns_pcie_rp_bar bar = RP_BAR0;
+> +       struct cdns_pcie *pcie = &rc->pcie;
+> +       struct device *dev = pcie->dev;
+> +       struct device_node *np = dev->of_node;
+> +       struct pci_host_bridge *bridge;
+> +       struct resource_entry *entry;
+> +       u32 no_bar_nbits = 32;
+> +       int err;
+> +
+> +       bridge = pci_host_bridge_from_priv(rc);
+> +       if (!bridge)
+> +               return -ENOMEM;
+> +
+> +       if (list_empty(&bridge->dma_ranges)) {
+> +               of_property_read_u32(np, "cdns,no-bar-match-nbits",
+> +                                    &no_bar_nbits);
+> +               cdns_pcie_host_bar_ib_config(rc, RP_NO_BAR, 0x0, no_bar_nbits);
+> +               return 0;
+> +       }
+> +
+> +       resource_list_for_each_entry(entry, &bridge->dma_ranges) {
+> +               err = cdns_pcie_host_bar_config(rc, entry, &bar);
+
+Seems like this should have some better logic to pick which BAR to
+use. Something like find the biggest region and then find the smallest
+BAR that it fits in. Then get the next biggest...
+
+> +               if (err) {
+> +                       dev_err(dev, "Fail to configure IB using dma-ranges\n");
+> +                       return err;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
