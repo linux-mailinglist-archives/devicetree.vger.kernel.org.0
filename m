@@ -2,94 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB111D965F
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 14:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 613531D9662
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2020 14:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728757AbgESMdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 08:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38428 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728579AbgESMdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 08:33:05 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F61C08C5C1
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 05:33:05 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id v4so10927085qte.3
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 05:33:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F+t7VT6RnoX76WR9ri3gPhMmUz1SOd30HZsDXWBjt9w=;
-        b=fzkoxnSg0zliPjtIMba4XqsZAfUU+OBGnGTw8WY0OxgxMbY4MzJXjvnhyeAtM0dSYU
-         4uirB1AnaOuQjFyBDGcDlYjS8i9JYmjrWu9BLkpOaPfFgUs0F4LlQHzP0ZInkwFCEzWy
-         GMPWnBAEJpo0b3EsDbwRKlOJ9Wryaia+QGEksDCyCM4hRJV8WlqkCZtK/thet7Acaq7D
-         VfEJrO6zD0To+8Q6Z5d6KxKbVF2/eu0pfrjahgx7jirG2A/6vOZTCM2pOtLa153BeEHm
-         wQAnOAS39epji14eep3+9RIoaNOol2+h6dXCyvcTrNC17d+rkuTRghCwRvvahBbMUJEw
-         O5qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F+t7VT6RnoX76WR9ri3gPhMmUz1SOd30HZsDXWBjt9w=;
-        b=jvtTtFTG54pUFAnpSdOVEBBd1HdhOKyxi64FkwCTlM6r4fLYqR1ByWpleHJXvzIEw5
-         rACaYypumKOA56BQCsIaZpTDvBanAC1lIIyRb7jR1P2axwIl7OtQogPwK9mnMLVEXOsE
-         P/dlOE9ECiWkxefp/BysQrkKjgVPVO7Prr3eebKQrIQgARR+Rl8SbN4BEnjZ5OLx8lk2
-         ZWaG9wtb9vMqY+DXddRahKlckW3P0VPiaIXG7AlIC85z/B4NNWMNNUOmflx6gCi/tXvz
-         DvGJWKAIHoc75Vmnv3W52WN0mVZJUdYIv8u1o5OgI/0SxkK17IC6qDg415WPfU8tWKnh
-         jBZQ==
-X-Gm-Message-State: AOAM533hqskxnYqXgYPQIVpCfhDORzVQ240E7YDa6lAehJ7We3bEmHCO
-        ndRiO0yM0DedkWB7zZ14ktX06Q==
-X-Google-Smtp-Source: ABdhPJzaTybmIlbDP8Dmzb8h8nZcJnchUinV/svAwS+RzFvpa3fMsFrDzgoS0g2/M5xAZRvI0FXoFA==
-X-Received: by 2002:ac8:1c67:: with SMTP id j36mr20582493qtk.34.1589891584148;
-        Tue, 19 May 2020 05:33:04 -0700 (PDT)
-Received: from localhost.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id p9sm5439907qkp.88.2020.05.19.05.33.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 05:33:03 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     evgreen@chromium.org, subashab@codeaurora.org,
-        cpratapa@codeaurora.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: sdm845-mtp: enable IPA
-Date:   Tue, 19 May 2020 07:32:58 -0500
-Message-Id: <20200519123258.29228-1-elder@linaro.org>
-X-Mailer: git-send-email 2.20.1
+        id S1728795AbgESMdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 08:33:09 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:53612 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728745AbgESMdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 08:33:08 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 68FF9803087C;
+        Tue, 19 May 2020 12:33:05 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id KO-6LsdpDdS1; Tue, 19 May 2020 15:33:03 +0300 (MSK)
+Date:   Tue, 19 May 2020 15:33:02 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-mips@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clk: Add Baikal-T1 CCU PLLs binding
+Message-ID: <20200519123302.2lydamjy62ugkjb6@mobilestation>
+References: <20200306130053.BCBFC803078F@mail.baikalelectronics.ru>
+ <20200506222300.30895-1-Sergey.Semin@baikalelectronics.ru>
+ <20200506222300.30895-2-Sergey.Semin@baikalelectronics.ru>
+ <20200514191318.GA10192@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200514191318.GA10192@bogus>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable IPA on the SDM845 MTP.
+On Thu, May 14, 2020 at 02:13:18PM -0500, Rob Herring wrote:
+> On Thu, May 07, 2020 at 01:22:57AM +0300, Serge Semin wrote:
+> > Baikal-T1 Clocks Control Unit is responsible for transformation of a
+> > signal coming from an external oscillator into clocks of various
+> > frequencies to propagate them then to the corresponding clocks
+> > consumers (either individual IP-blocks or clock domains). In order
+> > to create a set of high-frequency clocks the external signal is
+> > firstly handled by the embedded into CCU PLLs. So the corresponding
+> > dts-node is just a normal clock-provider node with standard set of
+> > properties. Note as being part of the Baikal-T1 System Controller its
+> > DT node is supposed to be a child the system controller node.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > Cc: Paul Burton <paulburton@kernel.org>
+> > Cc: Ralf Baechle <ralf@linux-mips.org>
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: linux-mips@vger.kernel.org
+> > 
+> > ---
+> > 
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
+[nip]
 
-v2: This device uses the AP--not the modem--for early initialization.
+> > +examples:
+> > +  # Clock Control Unit PLL node:
+> > +  - |
+> > +    clock-controller-pll {
+> > +      compatible = "baikal,bt1-ccu-pll";
+> > +      #clock-cells = <1>;
+> > +
+> > +      clocks = <&clk25m>;
+> > +      clock-names = "ref_clk";
+> 
+> If there's a register range within the system controller for the pll, 
+> then add 'reg' even if Linux doesn't use it.
 
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Rob, are you saying that the reg property should be mandatory or optional?
+I've got a similar issue in several other patches you've already took a look.
+In order to fix it there too could you please clarify this to me?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-index 1372fe8601f5..91ede9296aff 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-@@ -448,6 +448,11 @@
- 	clock-frequency = <400000>;
- };
- 
-+&ipa {
-+	status = "okay";
-+	memory-region = <&ipa_fw_mem>;
-+};
-+
- &mdss {
- 	status = "okay";
- };
--- 
-2.20.1
-
+-Sergey
