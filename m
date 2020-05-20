@@ -2,120 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C9BA1DA8DF
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 05:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8671DA8F6
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 06:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728329AbgETD5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 23:57:11 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:30230 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726938AbgETD5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 23:57:11 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1589947031; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=oYqkZXvOg2NEoW8d38oiFR6euHSrJZsCm+dRjRv+gVY=; b=sgwfZ5Dyo4zfO3l0+qP/Niysk7XkC/lW3qRRlSw2CeMiSJBe1LgGK+rNXc8QJBB68H72u82K
- u4htvEMaUdetRNX/qrcTsywlzCDoLSNC2YlpngXrHarhvF/0BN32NTVm4o465lNBBLgURHxZ
- aHGV25x9IQhfdlwGHCzPvTSpb+g=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5ec4aa7d.7f7235a1b6f8-smtp-out-n04;
- Wed, 20 May 2020 03:56:45 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C08B4C433CA; Wed, 20 May 2020 03:56:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from pillair-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 667A5C433C6;
-        Wed, 20 May 2020 03:56:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 667A5C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH v11] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module device node
-Date:   Wed, 20 May 2020 09:26:36 +0530
-Message-Id: <1589946996-31264-1-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1726483AbgETEHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 00:07:23 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:42628 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725785AbgETEHX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 00:07:23 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 93AFD2001D3;
+        Wed, 20 May 2020 06:07:20 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 367E22001D4;
+        Wed, 20 May 2020 06:07:18 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5A691402A6;
+        Wed, 20 May 2020 12:07:14 +0800 (SGT)
+From:   Qiang Zhao <qiang.zhao@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Zhao Qiang <qiang.zhao@nxp.com>
+Subject: [PATCH v3 1/2] arm64: dts: add qe node to ls1043ardb
+Date:   Wed, 20 May 2020 12:02:20 +0800
+Message-Id: <20200520040221.10536-1-qiang.zhao@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for the ath10k SNOC platform driver probe
-and add resources required for WCN3990 on sc7180 soc.
+From: Zhao Qiang <qiang.zhao@nxp.com>
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
-Changes from v10:
-- Corrected the position of wifi node, as per address
-- Removed the wlan_fw_mem from reserved memory, since
-  its already added as reserved memory in board DT file.
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  7 +++++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 22 ++++++++++++++++++++++
- 2 files changed, 29 insertions(+)
+Add qe node to fsl-ls1043a.dtsi and fsl-ls1043a-rdb.dts
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4e9149d..38b102e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -389,6 +389,13 @@
+Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
+---
+v2:
+ - add commit msg and drop a new blank line
+
+v3:
+ - Keep labeling node sort alphabetically
+ - remove unused device_type
+ - use GIC_SPI and IRQ_TYPE_LEVEL_HIGH
+ - use "arm64: dts:" format for subject
+
+ arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts | 16 ++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi    | 65 +++++++++++++++++++++++
+ 2 files changed, 81 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts
+index dde50c8..44d9343 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts
+@@ -176,3 +176,19 @@
+ 		};
  	};
  };
- 
-+&wifi {
-+	status = "okay";
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0xc2 0x1>;
++
++&uqe {
++	ucc_hdlc: ucc@2000 {
++		compatible = "fsl,ucc-hdlc";
++		rx-clock-name = "clk8";
++		tx-clock-name = "clk9";
++		fsl,rx-sync-clock = "rsync_pin";
++		fsl,tx-sync-clock = "tsync_pin";
++		fsl,tx-timeslot-mask = <0xfffffffe>;
++		fsl,rx-timeslot-mask = <0xfffffffe>;
++		fsl,tdm-framer-type = "e1";
++		fsl,tdm-id = <0>;
++		fsl,siram-entry-id = <0>;
++		fsl,tdm-interface;
 +	};
 +};
-+
- /* PINCTRL - additions to nodes defined in sc7180.dtsi */
- 
- &qspi_clk {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6b12c60..da79f8f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2811,6 +2811,28 @@
- 
- 			#freq-domain-cells = <1>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+index c084c7a4..3b641bd 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+@@ -525,6 +525,71 @@
+ 			#interrupt-cells = <2>;
  		};
-+
-+		wifi: wifi@18800000 {
-+			compatible = "qcom,wcn3990-wifi";
-+			reg = <0 0x18800000 0 0x800000>;
-+			reg-names = "membase";
-+			iommus = <&apps_smmu 0xc0 0x1>;
-+			interrupts =
-+				<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
-+				<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
-+				<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
-+				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH /* CE3 */ >,
-+				<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH /* CE4 */ >,
-+				<GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH /* CE5 */ >,
-+				<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH /* CE6 */ >,
-+				<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH /* CE7 */ >,
-+				<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH /* CE8 */ >,
-+				<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH /* CE9 */ >,
-+				<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10 */>,
-+				<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11 */>;
-+			memory-region = <&wlan_mem>;
-+			status = "disabled";
-+		};
- 	};
  
- 	thermal-zones {
++		uqe: uqe@2400000 {
++			#address-cells = <1>;
++			#size-cells = <1>;
++			compatible = "fsl,qe", "simple-bus";
++			ranges = <0x0 0x0 0x2400000 0x40000>;
++			reg = <0x0 0x2400000 0x0 0x480>;
++			brg-frequency = <100000000>;
++			bus-frequency = <200000000>;
++			fsl,qe-num-riscs = <1>;
++			fsl,qe-num-snums = <28>;
++
++			qeic: qeic@80 {
++				compatible = "fsl,qe-ic";
++				reg = <0x80 0x80>;
++				#address-cells = <0>;
++				interrupt-controller;
++				#interrupt-cells = <1>;
++				interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
++			};
++
++			si1: si@700 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "fsl,ls1043-qe-si",
++						"fsl,t1040-qe-si";
++				reg = <0x700 0x80>;
++			};
++
++			siram1: siram@1000 {
++				#address-cells = <1>;
++				#size-cells = <1>;
++				compatible = "fsl,ls1043-qe-siram",
++						"fsl,t1040-qe-siram";
++				reg = <0x1000 0x800>;
++			};
++
++			ucc@2000 {
++				cell-index = <1>;
++				reg = <0x2000 0x200>;
++				interrupts = <32>;
++				interrupt-parent = <&qeic>;
++			};
++
++			ucc@2200 {
++				cell-index = <3>;
++				reg = <0x2200 0x200>;
++				interrupts = <34>;
++				interrupt-parent = <&qeic>;
++			};
++
++			muram@10000 {
++				#address-cells = <1>;
++				#size-cells = <1>;
++				compatible = "fsl,qe-muram", "fsl,cpm-muram";
++				ranges = <0x0 0x10000 0x6000>;
++
++				data-only@0 {
++					compatible = "fsl,qe-muram-data",
++					"fsl,cpm-muram-data";
++					reg = <0x0 0x6000>;
++				};
++			};
++		};
++
+ 		lpuart0: serial@2950000 {
+ 			compatible = "fsl,ls1021a-lpuart";
+ 			reg = <0x0 0x2950000 0x0 0x1000>;
 -- 
 2.7.4
+
