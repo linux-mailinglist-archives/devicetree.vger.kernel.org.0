@@ -2,181 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C3C1DA8E9
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 06:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40D21DA908
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 06:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725798AbgETEAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 00:00:43 -0400
-Received: from mailout3.samsung.com ([203.254.224.33]:11520 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725785AbgETEAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 00:00:42 -0400
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20200520040038epoutp03fb43e02274531a8eeae5fb6d96c64801~QoJbjI7Nh0700207002epoutp03B
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 04:00:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20200520040038epoutp03fb43e02274531a8eeae5fb6d96c64801~QoJbjI7Nh0700207002epoutp03B
+        id S1726570AbgETEV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 00:21:27 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:49302 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726379AbgETEV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 00:21:27 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200520042125euoutp02a5806877ea2d4e77132194b373741435~QoblQFuS70515605156euoutp02d
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 04:21:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200520042125euoutp02a5806877ea2d4e77132194b373741435~QoblQFuS70515605156euoutp02d
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1589947238;
-        bh=+A93EgRDoz7uCPtvKzScjT7YCC3iGmFF0K5t8LgUfsY=;
+        s=mail20170921; t=1589948485;
+        bh=xiWXMWfNTMDhpyYN6ynqaEoNJ+Fc3bIMAx5GVLMVvWo=;
         h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=TnDmT1d/aGi/fTN7+LhlGLDvEc9oqWQsW1+sBqaWJ5vUgw4Gk9REx4oKi84hR24jt
-         XvgD1yS0UmwPEm14kNrDSBTiXit+E3L/9XWnomCxdsih0wY+B09vMQCD2NGBUIHewZ
-         mampQ2YulMmtvsThpZ8yWugeqNifQED3VSvdLiQ4=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20200520040037epcas1p3d899d50212fdfb99f0cf0fb08413ddb7~QoJajZThm0716307163epcas1p3m;
-        Wed, 20 May 2020 04:00:37 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.154]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 49RfDM1TTkzMqYkn; Wed, 20 May
-        2020 04:00:35 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        99.9B.04658.36BA4CE5; Wed, 20 May 2020 13:00:35 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200520040033epcas1p24774bccf513be863ab4a2b5499eb61fd~QoJXKZ9s60392403924epcas1p2x;
-        Wed, 20 May 2020 04:00:33 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200520040033epsmtrp2b8b9163d2e6d734804559d37671ace69~QoJXJIvbC0682106821epsmtrp2k;
-        Wed, 20 May 2020 04:00:33 +0000 (GMT)
-X-AuditID: b6c32a39-a99ff70000001232-72-5ec4ab63a02a
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C6.5D.25866.16BA4CE5; Wed, 20 May 2020 13:00:33 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200520040033epsmtip1bf656738f910c076b9f02a7400fa6ce7~QoJWyTxic1684816848epsmtip1W;
-        Wed, 20 May 2020 04:00:33 +0000 (GMT)
-Subject: Re: [PATCH 00/12] Add cpufreq and cci devfreq for mt8183, and SVS
- support
-To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
+        b=bxVvSUqCDndl8Du69qqiRAAfgUbulItHjsf613JVgWJGI/P1MxvZLTlIisZd63tV0
+         HBpni8DG4f61uPBNqNloGRoIWaf1H/CRdyjFeNLMjYA69y+XRXRUr3BPjio1JTQAXi
+         AXc2YPY2TFwrJoyacya6G+6CHJPEZcgluPc7vcfI=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200520042125eucas1p261681d480f781be6db7485d6b3f328ba~QobktHNkQ2740227402eucas1p2a;
+        Wed, 20 May 2020 04:21:25 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 69.70.60698.540B4CE5; Wed, 20
+        May 2020 05:21:25 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200520042124eucas1p1a848a7353c8cc5183688f9acd189b360~QobkVS_eG2110621106eucas1p1F;
+        Wed, 20 May 2020 04:21:24 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200520042124eusmtrp2cdbe049b0513fdc44ac09ed185f1f0e9~QobkUnVw20913609136eusmtrp2x;
+        Wed, 20 May 2020 04:21:24 +0000 (GMT)
+X-AuditID: cbfec7f5-a0fff7000001ed1a-2a-5ec4b0452ffa
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 75.57.07950.440B4CE5; Wed, 20
+        May 2020 05:21:24 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200520042124eusmtip1e56f8e692b6a8f3e6890b7fb4fcc62e9~QobjrEmBf2685426854eusmtip10;
+        Wed, 20 May 2020 04:21:24 +0000 (GMT)
+Subject: Re: [PATCH v1 4/4] of: platform: Batch fwnode parsing when adding
+ all top level devices
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <d08c0dc0-5573-6ba0-1d9f-18857c7f6fb6@samsung.com>
-Date:   Wed, 20 May 2020 13:10:46 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Ji Luo <ji.luo@nxp.com>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <f53cee8b-c4e9-fc1c-a340-e8cda7b10311@samsung.com>
+Date:   Wed, 20 May 2020 06:21:25 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200520034307.20435-1-andrew-sh.cheng@mediatek.com>
-Content-Language: en-US
+In-Reply-To: <CAGETcx_VtJXCqih4ZadZ0dFVJwKOBEQnnrr9JxxmGNh7HX_vNQ@mail.gmail.com>
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrEJsWRmVeSWpSXmKPExsWy7bCmrm7y6iNxBod7OCy2r3/BajH14RM2
-        i/lHzrFanG16w27x7UoHk8Wmx9dYLS7vmsNmcbn5IqPF594jjBZLr19ksmhqMba43biCzeLN
-        j7NMFmdOX2K1aN17hN3i37WNLBbT7wpZbPzq4SDksWbeGkaPnbPusntsWtXJ5nHn2h42j81L
-        6j1aTu5n8dhytZ3Fo2/LKkaP4ze2M3l83iQXwBWVbZORmpiSWqSQmpecn5KZl26r5B0c7xxv
-        amZgqGtoaWGupJCXmJtqq+TiE6DrlpkD9JKSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYp
-        tSAlp8CyQK84Mbe4NC9dLzk/18rQwMDIFKgwITtj/q2JjAVzRSqWrelnaWDcztfFyMEhIWAi
-        8fVbQRcjF4eQwA5GiWlX+pkhnE+MEjfezGWBcD4zSjy4v4yxi5ETrOP2z0msEIldjBIf771n
-        h3DeM0r8v9DADFIlLBAisXbHejBbROA2s8SE2SEgRcwCBxklpl+6yASSYBPQktj/4gYbiM0v
-        oChx9cdjsBW8AnYSr689ZAGxWQRUJbbe3AlmiwqESZzc1gJVIyhxcuYTsDingJPE5DPPwGxm
-        AXGJW0/mM0HY8hLb384Be0hCYDKnxJ+XB9khfnCRmNy1mwXCFpZ4dXwLVFxK4vO7vWwQdrXE
-        ypNH2CCaOxgltuy/wAqRMJbYv3QyEyj4mAU0Jdbv0ocIK0rs/D2XEWIxn8S7rz2skBDmleho
-        E4IoUZa4/OAuE4QtKbG4vZNtAqPSLCTvzELywiwkL8xCWLaAkWUVo1hqQXFuemqxYYEpcnRv
-        YgSndy3LHYzHzvkcYhTgYFTi4b2x83CcEGtiWXFl7iFGCQ5mJRHeCS8OxQnxpiRWVqUW5ccX
-        leakFh9iNAWG9kRmKdHkfGDuySuJNzQ1MjY2tjAxNDM1NFQS5516PSdOSCA9sSQ1OzW1ILUI
-        po+Jg1OqgVGUs6ZfzHqb9qPKX0KX+7fLXHJ1m76l7PaFvXaGXzYt1AnI1X535bem6dn3BWev
-        Wy2O/Zvx+5+8733v8Ff7jmWJrzsleuH+1MtLJt7euEmX/21Wxt16Kyl1KW7XKzpmTD/UJZkS
-        WV/UJ0icDijbupTTjdtFzzdM56rvh5WJ4SvtmTuz5XLyNymxFGckGmoxFxUnAgBGfzrDBQQA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIIsWRmVeSWpSXmKPExsWy7bCSnG7i6iNxBluXKlhsX/+C1WLqwyds
-        FvOPnGO1ONv0ht3i25UOJotNj6+xWlzeNYfN4nLzRUaLz71HGC2WXr/IZNHUYmxxu3EFm8Wb
-        H2eZLM6cvsRq0br3CLvFv2sbWSym3xWy2PjVw0HIY828NYweO2fdZffYtKqTzePOtT1sHpuX
-        1Hu0nNzP4rHlajuLR9+WVYwex29sZ/L4vEkugCuKyyYlNSezLLVI3y6BK2P+rYmMBXNFKpat
-        6WdpYNzO18XIySEhYCJx++ck1i5GLg4hgR2MEo8PbGaDSEhKTLt4lLmLkQPIFpY4fLgYouYt
-        o8S2hglMIDXCAiESa3esZwZJiAjcZ5ZYfvcqG4jDLHCQUeJZ9x92iJapjBIvX61gBmlhE9CS
-        2P/iBtgKfgFFias/HjOC2LwCdhKvrz1kAbFZBFQltt7cCWaLCoRJ7FzymAmiRlDi5MwnYHFO
-        ASeJyWeegdnMAuoSf+ZdYoawxSVuPZnPBGHLS2x/O4d5AqPwLCTts5C0zELSMgtJywJGllWM
-        kqkFxbnpucWGBUZ5qeV6xYm5xaV56XrJ+bmbGMGxrqW1g3HPqg96hxiZOBgPMUpwMCuJ8E54
-        cShOiDclsbIqtSg/vqg0J7X4EKM0B4uSOO/XWQvjhATSE0tSs1NTC1KLYLJMHJxSDUyOf27N
-        fFj2fVHePwMjG9vo9NmXlu5fe5tj/5f5209cU1FrzQ12SPOM/BG72iBpwsLje2onfko4+XXl
-        3cmZ6a51H6x0v73QN4gu5NNs33F/5wzHnyJtuj/uSPn/dhDTnCG6/rBlD2/ImrXKhqGHeL+e
-        fXWjtaK8u1h8dTC3X9/UQ6vPqTOwtJUevC0XN+lU02mtHc86VyvuqGpaI5fK/CkrLP/7tUqZ
-        HcypQfGT92pys1p5h29qkY0oncHLJOB9/3//M98TW7Tfn2aplPpfYmgfLG8oKHPq8v7Jdds9
-        BM6uc1VMXm6ZI2C2apc3k/JNjcf/AmYk7NlwdZWyPc+8T3uUJt+ft3ZL384yjv7IsqVKLMUZ
-        iYZazEXFiQAg1dBHZAMAAA==
-X-CMS-MailID: 20200520040033epcas1p24774bccf513be863ab4a2b5499eb61fd
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDKsWRmVeSWpSXmKPExsWy7djPc7quG47EGUxq47CYf+Qcq8XMN//Z
+        LJoXr2ezmHHnCLvFju0iFjsfvmWzWL6vn9Hi8q45QPHz+5gs5n6ZymzRuheoouvQXzYHHo9t
+        u7exeuycdZfdY8GmUo9NqzrZPPbPXcPusfHdDiaPz5vkAtijuGxSUnMyy1KL9O0SuDJ2bnrA
+        XtAnU9Hf/5mpgbFXvIuRk0NCwERi28V+1i5GLg4hgRWMEpsWz2SDcL4wSvx/3cUCUiUk8JlR
+        YtEZN5iOl0dXQ3UsZ5Q4/P4uE4TznlFi6qV1QO0cHMICSRLfp/CBNIgIaElsuvaYBaSGWaCF
+        ReL2zHlsIAk2AUOJrrddYDavgJ3EhxXrwLaxCKhK/GraxQ5iiwrESpxevJkRokZQ4uTMJ2A1
+        nAKBEmfbTzOD2MwC8hLb386BssUlbj2ZD3aQhMA9domrx2czQpztIjF52z8WCFtY4tXxLewQ
+        tozE/50wDc2MEg/PrWWHcHoYJS43zYDqtpa4c+4X2GvMApoS63fpQ4QdJTY3TmYBCUsI8Enc
+        eCsIcQSfxKRt05khwrwSHW1CENVqErOOr4Nbe/DCJeYJjEqzkLw2C8k7s5C8Mwth7wJGllWM
+        4qmlxbnpqcXGeanlesWJucWleel6yfm5mxiBaez0v+NfdzDu+5N0iFGAg1GJh/fGzsNxQqyJ
+        ZcWVuYcYJTiYlUR4J7w4FCfEm5JYWZValB9fVJqTWnyIUZqDRUmc13jRy1ghgfTEktTs1NSC
+        1CKYLBMHp1QD40Upz19XlIXzlEW5F620Xes6ge+DSVCErXE395wHpuwqR95L2OfF2DreWHT6
+        xflig2ar22f+WwoKnvicqbZB4VN46G9J2bfb2hMX6GaxLeNN2Wj0QfrQtJCvH675qItuY3NP
+        uKlw3+xXzNubZsdXpqgV3Q825sqf8FpgoUzhy/hDn9d/2ct2V4mlOCPRUIu5qDgRACuhKx9f
+        AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPIsWRmVeSWpSXmKPExsVy+t/xu7ouG47EGVw/qmMx/8g5VouZb/6z
+        WTQvXs9mMePOEXaLHdtFLHY+fMtmsXxfP6PF5V1zgOLn9zFZzP0yldmidS9QRdehv2wOPB7b
+        dm9j9dg56y67x4JNpR6bVnWyeeyfu4bdY+O7HUwenzfJBbBH6dkU5ZeWpCpk5BeX2CpFG1oY
+        6RlaWugZmVjqGRqbx1oZmSrp29mkpOZklqUW6dsl6GXs3PSAvaBPpqK//zNTA2OveBcjJ4eE
+        gInEy6OrWbsYuTiEBJYySrzomsMOkZCRODmtgRXCFpb4c62LDaLoLaPElittQAkODmGBJIkH
+        8yxBakQEtCQ2XXvMAlLDLNDGInFo/nGohjfMEmu2/AabxCZgKNH1FmQSJwevgJ3EhxXrWEBs
+        FgFViV9Nu8A2iwrESqy+1soIUSMocXLmE7AaToFAibPtp5lBbGYBM4l5mx9C2fIS29/OgbLF
+        JW49mc80gVFoFpL2WUhaZiFpmYWkZQEjyypGkdTS4tz03GIjveLE3OLSvHS95PzcTYzAyN12
+        7OeWHYxd74IPMQpwMCrx8BrsORwnxJpYVlyZe4hRgoNZSYR3wotDcUK8KYmVValF+fFFpTmp
+        xYcYTYGem8gsJZqcD0wqeSXxhqaG5haWhubG5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4
+        OKUaGJOMGUs4p2h02divUvjp6ua6aoPCwo03FGQrRaPmXnX2+d3z9ml0YP5kS4nJievW8wtH
+        /EhYVeBtfceOReU7X+17wzlbP6Q+07YX0z3I2XVzw/GWR4sW9IXUeDvLlrM5aDvteJ3dEi/l
+        eTXwzUdp4eeXHn87JNJyRlv8eHcQa8f0S0nvanjXKLEUZyQaajEXFScCAIIPUZLyAgAA
+X-CMS-MailID: 20200520042124eucas1p1a848a7353c8cc5183688f9acd189b360
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20200520034324epcas1p3affbd24bd1f3fe40d51baade07c1abba
-References: <CGME20200520034324epcas1p3affbd24bd1f3fe40d51baade07c1abba@epcas1p3.samsung.com>
-        <20200520034307.20435-1-andrew-sh.cheng@mediatek.com>
+X-RootMTR: 20200519062510eucas1p27bc59da66e1b77534855103a27f87452
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200519062510eucas1p27bc59da66e1b77534855103a27f87452
+References: <20200515053500.215929-1-saravanak@google.com>
+        <CGME20200519062510eucas1p27bc59da66e1b77534855103a27f87452@eucas1p2.samsung.com>
+        <20200515053500.215929-5-saravanak@google.com>
+        <e0f9211d-9cf6-a12d-eb63-df06910920ed@samsung.com>
+        <CAGETcx_FOGgHdaNY8Dd-4rgT28U7_OHYeLsazbUE-1hyuatRSg@mail.gmail.com>
+        <18332705-dd61-9a0e-d931-ae610c8fb600@samsung.com>
+        <8dd9ecc2-0c61-49b7-d485-b169eb721712@samsung.com>
+        <CAGETcx_VtJXCqih4ZadZ0dFVJwKOBEQnnrr9JxxmGNh7HX_vNQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Saravana,
 
-Could you explain the base commit of these patches?
-When I tried to apply them to v5.7-rc1 for testing,
-the merge conflict occurs.
+On 19.05.2020 20:02, Saravana Kannan wrote:
+> On Tue, May 19, 2020 at 3:32 AM Marek Szyprowski
+> <m.szyprowski@samsung.com> wrote:
+>> On 19.05.2020 09:11, Marek Szyprowski wrote:
+>>> On 19.05.2020 08:48, Saravana Kannan wrote:
+>>>> On Mon, May 18, 2020 at 11:25 PM Marek Szyprowski
+>>>> <m.szyprowski@samsung.com> wrote:
+>>>>> On 15.05.2020 07:35, Saravana Kannan wrote:
+>>>>>> The fw_devlink_pause() and fw_devlink_resume() APIs allow batching the
+>>>>>> parsing of the device tree nodes when a lot of devices are added. This
+>>>>>> will significantly cut down parsing time (as much a 1 second on some
+>>>>>> systems). So, use them when adding devices for all the top level
+>>>>>> device
+>>>>>> tree nodes in a system.
+>>>>>>
+>>>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+>>>>> This patch recently landed in linux-next 20200518. Sadly, it causes
+>>>>> regression on Samsung Exynos5433-based TM2e board:
+>>>>>
+>>>>> ...
+>>>>>
+>>>>> Both issues, the lack of DMA for SPI device and Synchronous abort in
+>>>>> I2S
+>>>>> probe are new after applying this patch. I'm trying to investigate
+>>>>> which
+>>>>> resources are missing and why. The latter issue means typically that
+>>>>> the
+>>>>> registers for the given device has been accessed without enabling the
+>>>>> needed clocks or power domains.
+>>>> Did you try this copy-pasta fix that I sent later?
+>>>> https://lore.kernel.org/lkml/20200517173453.157703-1-saravanak@google.com/
+>>>>
+>>>>
+>>>> Not every system would need it (my test setup didn't), but it helps
+>>>> some cases.
+>>>>
+>>>> If that fix doesn't help, then some tips for debugging the failing
+>>>> drivers.
+>>>> What this pause/resume patch effectively (not explicitly) does is:
+>>>> 1. Doesn't immediately probe the devices as they are added in
+>>>> of_platform_default_populate_init()
+>>>> 2. Adds them in order to the deferred probe list.
+>>>> 3. Then kicks off deferred probe on them in the order they were added.
+>>>>
+>>>> These drivers are just not handling -EPROBE_DEFER correctly or
+>>>> assuming probe order and that's causing these issues.
+>>>>
+>>>> So, we can either fix that or you can try adding some code to flush
+>>>> the deferred probe workqueue at the end of fw_devlink_resume().
+>>>>
+>>>> Let me know how it goes.
+>>> So far it looks that your patch revealed a hidden issue in exynos5433
+>>> clocks configuration, because adding clk_ignore_unused parameter to
+>>> kernel command line fixes the boot. I'm still investigating it, so
+>>> probable you can ignore my regression report. I will let you know asap
+>>> I finish checking it.
+>>>
+>> Okay, I confirm that the issue is in the Exynos I2S driver and
+>> Exynos5433 clock provider. I've posted a quick workaround. I'm sorry for
+>> the noise, your patch is fine.
+> Thanks for debugging and finding the real issue. I tried finding your
+> patches, but couldn't. Can you point me to a lore.kernel.org link? I'm
+> just curious to see what the issue was.
 
-Thanks,
-Chanwoo Choi
+https://lore.kernel.org/linux-samsung-soc/f67db8c1-453b-4c70-67b9-59762ac34f64@kernel.org/T/#t
 
-On 5/20/20 12:42 PM, Andrew-sh.Cheng wrote:
-> MT8183 supports CPU DVFS and CCI DVFS, and LITTLE cpus and CCI are in the same voltage domain.
-> So, this series is to add drivers to handle the voltage coupling between CPU and CCI DVFS.
-> 
-> For SVS support, need OPP_EVENT_ADJUST_VOLTAGE and corresponding reaction.
-> 
-> Change since v5:
-> 	- Changing dt-binding format to yaml.
-> 	- Extending current devfreq passive_governor instead of create a new one.
-> 	- Resend depending patches of Sravana Kannan base on kernel-5.7
-> 
-> 
-> Andrew-sh.Cheng (6):
->   cpufreq: mediatek: add clock and regulator enable for intermediate
->     clock
->   dt-bindings: devfreq: add compatible for mt8183 cci devfreq
->   devfreq: add mediatek cci devfreq
->   opp: Modify opp API, dev_pm_opp_get_freq(), find freq in opp, even it
->     is disabled
->   cpufreq: mediatek: add opp notification for SVS support
->   devfreq: mediatek: cci devfreq register opp notification for SVS
->     support
-> 
-> Saravana Kannan (6):
->   OPP: Allow required-opps even if the device doesn't have power-domains
->   OPP: Add function to look up required OPP's for a given OPP
->   OPP: Improve required-opps linking
->   PM / devfreq: Cache OPP table reference in devfreq
->   PM / devfreq: Add required OPPs support to passive governor
->   PM / devfreq: Add cpu based scaling support to passive_governor
-> 
->  .../devicetree/bindings/devfreq/mt8183-cci.yaml    |  51 ++++
->  drivers/cpufreq/mediatek-cpufreq.c                 | 122 ++++++++-
->  drivers/devfreq/Kconfig                            |  12 +
->  drivers/devfreq/Makefile                           |   1 +
->  drivers/devfreq/devfreq.c                          |   6 +
->  drivers/devfreq/governor_passive.c                 | 298 +++++++++++++++++++--
->  drivers/devfreq/mt8183-cci-devfreq.c               | 233 ++++++++++++++++
->  drivers/opp/core.c                                 |  85 +++++-
->  drivers/opp/of.c                                   | 108 ++++----
->  drivers/opp/opp.h                                  |   5 +
->  include/linux/devfreq.h                            |  42 ++-
->  include/linux/pm_opp.h                             |  11 +
->  12 files changed, 874 insertions(+), 100 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/devfreq/mt8183-cci.yaml
->  create mode 100644 drivers/devfreq/mt8183-cci-devfreq.c
-> 
+It looks that one more clock has to be enabled to properly read init 
+configuration. So far it worked, because that device was probed much 
+earlier, before the unused clocks are turned off. Your patch changed the 
+probe order, so that device is probed later.
+
+> I'm guessing you didn't need to pick up this one?
+> https://lore.kernel.org/lkml/20200517173453.157703-1-saravanak@google.com/
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
