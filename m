@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15AE41DB880
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 17:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853481DB8A6
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 17:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbgETPlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 11:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39216 "EHLO
+        id S1726785AbgETPtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 11:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726596AbgETPlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 11:41:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F537C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 08:41:22 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jbQqM-0008V5-GX; Wed, 20 May 2020 17:41:18 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jbQqL-0003jR-Jw; Wed, 20 May 2020 17:41:17 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v8 5/5] dt-bindings: arm: fsl: add different Protonic boards
-Date:   Wed, 20 May 2020 17:41:16 +0200
-Message-Id: <20200520154116.12909-6-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200520154116.12909-1-o.rempel@pengutronix.de>
-References: <20200520154116.12909-1-o.rempel@pengutronix.de>
+        with ESMTP id S1726596AbgETPtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 11:49:19 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C7FC061A0E;
+        Wed, 20 May 2020 08:49:19 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id h17so3638074wrc.8;
+        Wed, 20 May 2020 08:49:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qO5KMhvNfzj9bbNCDfA7x6Sp4zrCAtfu4VyOnO2ezqg=;
+        b=R0eTv50DGORz/BclJPmcolpMoipyElicThx6Epo19ngTZoDX+44lPGD/tJr33MWNk3
+         ESymGiErCdjZwsWJPD1YWwRtm2pF8QoTkouxQkZUZI1K6s6x9/o04+82otPixnV/MpF4
+         OnfJik8x08m7bzjOjxHblEhvk7FFcnPmjC9NSBGwi6P6yHkN+DN4dJHTKBju7hkihTkc
+         mYH6SI+Ft1z9vASRliYYXqrhEbKVEQDG9CoVhZb7c7KrL1ygWJ1qjIj60Iv9Yw+dGb/Y
+         938Gy5BzwPQRStM84Z+oS0eXhV1AVq/6uyyXwOqXf5HTYQ+oxr+XvdHlaBHKYdXqdrgM
+         RAZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qO5KMhvNfzj9bbNCDfA7x6Sp4zrCAtfu4VyOnO2ezqg=;
+        b=rwG2ecEzHFjwbu8FWcS8GpmIJV9HALMkACROZWEe1B5yKixUc4BRR7xRJpV8D52yR0
+         jVKzzOjgr2mgwdFQaQWBU8ZtVZdsr7knPYAgcqBS8LE5Ye0ISkWWWnC3bRBh+5bhhebE
+         +i1JKeoPRt5xb4QLc7EHu/nvi/pwYx2Gl72CGwsI5GH0ans0R1nqq+02OwRp22W74riw
+         hpAsqfWb3SsviFnyUIGpcdPbErpSl5hS/XKDyxlAjQ0R+jnsyPetExmqqy+2L6u7fEnv
+         lfs5eP/s/BZKaJK25/yita2FT9J9umOyUw0dtMQ606Duamlrz5RzXBhxJzpz4kcmftuj
+         zkEA==
+X-Gm-Message-State: AOAM531dmlSV3pNC9jNA+ms/Yo59la6FMwgrAVwJKsBQpvUa724hqi+1
+        dX0uefLSDd+kXKIxXkx9lTlTgdc/
+X-Google-Smtp-Source: ABdhPJym+kJeWiwlFXD5FHmX7APmf8B+yHSjHLR97rWIHzV5F8DcSlFRcwMNjvPYn3prx64Xg9Z/hg==
+X-Received: by 2002:a5d:6584:: with SMTP id q4mr5015280wru.12.1589989757686;
+        Wed, 20 May 2020 08:49:17 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id b145sm3728520wme.41.2020.05.20.08.49.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 May 2020 08:49:16 -0700 (PDT)
+Subject: Re: [PATCH net-next v2 2/4] net: phy: dp83869: Set opmode from straps
+To:     Dan Murphy <dmurphy@ti.com>, andrew@lunn.ch, hkallweit1@gmail.com,
+        davem@davemloft.net
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20200520121835.31190-1-dmurphy@ti.com>
+ <20200520121835.31190-3-dmurphy@ti.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <b19dda18-2d33-34de-b8e2-6ccb6ff685a9@gmail.com>
+Date:   Wed, 20 May 2020 08:49:12 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20200520121835.31190-3-dmurphy@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Protonic PRTI6Q, WD2, RVT, VT7 boards.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index cd3fbe7e39487..a1657505b3357 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -119,6 +119,8 @@ properties:
-               - fsl,imx6q-sabreauto
-               - fsl,imx6q-sabrelite
-               - fsl,imx6q-sabresd
-+              - prt,prti6q                # Protonic PRTI6Q board
-+              - prt,prtwd2                # Protonic WD2 board
-               - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-               - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-               - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-@@ -170,6 +172,8 @@ properties:
-               - emtrion,emcon-mx6-avari   # emCON-MX6S or emCON-MX6DL SoM on Avari Base
-               - fsl,imx6dl-sabreauto      # i.MX6 DualLite/Solo SABRE Automotive Board
-               - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
-+              - prt,prtrvt                # Protonic RVT board
-+              - prt,prtvt7                # Protonic VT7 board
-               - technexion,imx6dl-pico-dwarf   # TechNexion i.MX6DL Pico-Dwarf
-               - technexion,imx6dl-pico-hobbit  # TechNexion i.MX6DL Pico-Hobbit
-               - technexion,imx6dl-pico-nymph   # TechNexion i.MX6DL Pico-Nymph
+On 5/20/2020 5:18 AM, Dan Murphy wrote:
+> If the op-mode for the device is not set in the device tree then set
+> the strapped op-mode and store it for later configuration.
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.26.2
-
+Florian
