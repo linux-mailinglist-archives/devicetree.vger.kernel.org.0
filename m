@@ -2,89 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58AEB1DB3E4
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 14:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D021DB3F8
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 14:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726831AbgETMnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 08:43:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41138 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726443AbgETMnd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 May 2020 08:43:33 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D9FB7207C4;
-        Wed, 20 May 2020 12:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1589978612;
-        bh=Achw6u2biUSzYpt7lckAtUxEhj9ckmJi3eP9xb6WHM8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sHUEOW2Tvnp1JASks+INQpiCZxdRRlpi7pMkV2c3FlYjsMlLlMU4WAh9mIFLtuZNd
-         Ck1KI6uFONv+G7ViQs+cZ9Sv3/Ars8HUbL3YbReqMQWoLEArdvnKjMNB2LFAcNsOfI
-         Qu1e2EmwbdB/uz+Dlc+qffoS9PCwskOnBEHYbKKY=
-Date:   Wed, 20 May 2020 13:43:29 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, vigneshr@ti.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v2 1/1] dt-bindings: spi: Add schema for Cadence QSPI
- Controller driver
-Message-ID: <20200520124329.GF4823@sirena.org.uk>
-References: <20200520123612.11797-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1726868AbgETMpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 08:45:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33262 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726570AbgETMpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 08:45:31 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04KCj0uD006158;
+        Wed, 20 May 2020 07:45:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1589978700;
+        bh=8nwhAbh5OTRkKkm30f70KfL0dIF8WSriIhQIaxxmJpc=;
+        h=From:To:CC:Subject:Date;
+        b=c3cWrTEriFZcDIzEnZoHtBYNDTpzG4pcB4hT1aAvivjOmT1CpuXa5nen6Y0x/4lHV
+         jdaXxB8Z2MfdpoqbcPqbbmenJRWIASwvZ7Cfr8K025YOKWy6+aluCLzPy9DT2nMLfu
+         8/Jdudu8utktIk+0DbDINqQuUoCsXuqpD+SOU574=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04KCj0LG048681;
+        Wed, 20 May 2020 07:45:00 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
+ May 2020 07:45:00 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 20 May 2020 07:45:00 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04KCiuvK026764;
+        Wed, 20 May 2020 07:44:57 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 00/12] irqchip: ti,sci-intr/inta: Update the dt bindings to accept different interrupt parents
+Date:   Wed, 20 May 2020 18:14:42 +0530
+Message-ID: <20200520124454.10532-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="oFbHfjnMgUMsrGjO"
-Content-Disposition: inline
-In-Reply-To: <20200520123612.11797-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Cookie: You can't get there from here.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
+	This is continuation of the RFC patches[0] regarding the driver
+updates to support for following interrupt parent connection:
+- INTR -> INTR
+- INTA -> GICv3
+The current existing driver assumes that INTR is always connected to
+GICv3 and INTA is always connected to INTR.
 
---oFbHfjnMgUMsrGjO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+As discussed this change breaks the DT backward compatibility but it
+allows to not depend on TISCI firmware properties in DT node. IMHO, this
+will ensure that any future changes will not effect DT properties.
 
-On Wed, May 20, 2020 at 08:36:12PM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel=
-=2Ecom>
->=20
-> Add dt-bindings documentation for Cadence-QSPI controller to support
-> spi based flash memories.
->=20
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@li=
-nux.intel.com>
-> ---
->  .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 -----------
->  .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 133 +++++++++++++++=
-++++++
+[0] https://lore.kernel.org/linux-arm-kernel/20190923042405.26064-1-lokeshvutla@ti.com/
 
-The changelog says this is adding a new binding but the actual change is
-mostly a conversion to YAML.  Please split the additions out into a
-separate change, ideally doing that before the conversion since there is
-a backlog on review of YAML conversions.
+Thanks and regards,
+Lokesh
 
---oFbHfjnMgUMsrGjO
-Content-Type: application/pgp-signature; name="signature.asc"
+Lokesh Vutla (12):
+  firmware: ti_sci: Drop the device id to resource type translation
+  firmware: ti_sci: Drop unused structure ti_sci_rm_type_map
+  firmware: ti_sci: Add support for getting resource with subtype
+  dt-bindings: irqchip: ti,sci-intr: Update bindings to drop the usage
+    of gic as parent
+  dt-bindings: irqchip: Convert ti,sci-intr bindings to yaml
+  irqchip/ti-sci-intr: Add support for INTR being a parent to INTR
+  dt-bindings: irqchip: ti,sci-inta: Update docs to support different
+    parent.
+  dt-bindings: irqchip: Convert ti,sci-inta bindings to yaml
+  irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
+  arm64: dts: k3-j721e: ti-sci-inta/intr: Update to latest bindings
+  arm64: dts: k3-am65: ti-sci-inta/intr: Update to latest bindings
+  arm64: dts: k3-am65: Update the RM resource types
 
------BEGIN PGP SIGNATURE-----
+ .../interrupt-controller/ti,sci-inta.txt      |  66 --------
+ .../interrupt-controller/ti,sci-inta.yaml     | 104 ++++++++++++
+ .../interrupt-controller/ti,sci-intr.txt      |  82 ---------
+ .../interrupt-controller/ti,sci-intr.yaml     | 113 +++++++++++++
+ MAINTAINERS                                   |   4 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  34 ++--
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  12 +-
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |   8 +-
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   4 +-
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  10 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  41 ++---
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  12 +-
+ drivers/firmware/ti_sci.c                     | 155 ++++++++----------
+ drivers/irqchip/irq-ti-sci-inta.c             |  90 ++++++++--
+ drivers/irqchip/irq-ti-sci-intr.c             | 150 ++++++++++-------
+ include/linux/soc/ti/ti_sci_protocol.h        |  13 ++
+ 16 files changed, 527 insertions(+), 371 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7FJfEACgkQJNaLcl1U
-h9Dl3Qf+LTw6kS7EVKhUNveex8WPCXk8hJiM52SWUTX/njGNYrVCplAyGQd9Hnvk
-bTc+7RDW6mAQ7Hum+CIJzNb7DgJQGCV9MEQ4V/f+/lhDAvNI5x0QSPBLZp9DOI1b
-RA/tyCJfh4hwm9RtoK1HT4sDhvFGQR3Sb/nMpVlkZPLd1Jpox5zuuDaCOJEJHAKb
-Gss5uyXiON9Qk5ee4vwrIykntpBN/snP1b/FBZf8d0xzw01nfm2lsrAHQMk6n4CJ
-oxSL8dArY7vq1ZkNUKNE5qkn0Y6VRjohPZzzc8evRtLR3xaQl+FwAsllDH5VMWTP
-oa4tOoSbipP93UpzOvMah+tPGuguUA==
-=IU1B
------END PGP SIGNATURE-----
+-- 
+2.17.1
 
---oFbHfjnMgUMsrGjO--
