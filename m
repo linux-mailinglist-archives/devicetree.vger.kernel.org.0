@@ -2,135 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFFB1DAE8B
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 11:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F50D1DAEA3
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 11:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726576AbgETJTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 05:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726224AbgETJTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 05:19:44 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15448C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 02:19:44 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id x5so2362167ioh.6
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 02:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4MtCeXtYJztBAdny7JMpr9tFuQgehgsjdymzaj9y89A=;
-        b=gr9GMxtdJnZ4/HGUFlPqG3223EEHFYHgbywWo5fZ7nEcHZ/0L6m/rPRz9EMomdinGX
-         gw+4y2Ot7K3hqcXBlicBJGhv59sV6FTdDVXFBbOpizlDxwLs1N1BwdpncaefpyUFWwiT
-         2J4oHkfgE9Q7nJ/GxD0HVIozJ54ni07wwhAoUxEzFtI34chD+Iv01o/teHe3Gqw7nvHW
-         V2Rks6kPST1qvYf+/zQ49dKrWE79INi0q4sdTLF9TbU36N9xr5znY/VfLju3YaIUC3Zl
-         oldzyJFzVLpQtquHM9cyLQrc+K1nX2S9NO+aqt/tmtrmU/a97iKz1e8XIocgiaitIdS7
-         UccQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4MtCeXtYJztBAdny7JMpr9tFuQgehgsjdymzaj9y89A=;
-        b=recygNzx77ar3b0L6GRg7HAnpLTkLH/6AIlI7xLeH3AC0KSgG5m8HtdqWiUG2+nsmu
-         TXw315zyCY7I8eoMyAH/lWAa0cPxF1J0TAHzjh0fSh2bYXEG5NqvoCkU059pCBBu7Myi
-         zZV12yL/KMLZKt/9nofEnZ6ox38TS4/U64sHK9AYA/BkoTIZB19enEhjaMm/D4ivsn2t
-         ZsYASIuR7WvsoJqj2RtPRdNmwdGX/EDRlqY5fDlNWFQBmQUFoePej1iwMNOWyuiw2n38
-         xPg+PouQ5s2IqisiO4yeSrPGqdWXn9Pa+DYMXQrkB2h/haTu85TaNG+yO291YAb8nNQ7
-         6TOg==
-X-Gm-Message-State: AOAM531Y8O/BaznmrrJEaeKALnm/EseFdi/jIsZic3JKscDt87fR9Ftz
-        jttipTY4JeEuLzlsgeECjMhgrKZCKLm3HMzdGYib/Q==
-X-Google-Smtp-Source: ABdhPJxfcMFcRpgMe3jPhIr7dlnaeApgO41HN00hg/DL0f0uo79Shv8ju19FCk5CWaCaCcGPEVG3ppJTh2gjtP/n54o=
-X-Received: by 2002:a5d:9e11:: with SMTP id h17mr2551601ioh.119.1589966383474;
- Wed, 20 May 2020 02:19:43 -0700 (PDT)
+        id S1726436AbgETJWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 05:22:54 -0400
+Received: from mail-vi1eur05on2041.outbound.protection.outlook.com ([40.107.21.41]:6029
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726224AbgETJWx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 05:22:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JOMEmdfHnlUsZnvKCcHQmNrML8g1cJHxQwSDDzbkArpDpIHniUw3Z7N8bbmla7+gmS21zWpfCzAebzqfGr6dcRJlq1dxPOe+ouJZbMkxIuNXZO5hbV1Sr7jhWvPNb44C836484cqKzYjCueflGX0apxC2izRL+pXvrs0QSBTff4lxJgJR/bbs/VdUPZJ5ZtfiQFS5umx+bAsjadYqBdcRKM4f6iJ6rsi7LZ29qsJvr+v7DDdnw3I+sGYi7SkH1S2LSyzYTtXFwFnMkA8r6Dhcbkj8Qy1xZ/vPjgDPJ9euL5gV4gBeSnkuIhOZhJatdRq1mXKqnQLbfT+omaA1OXN5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n0y5MvQVEDiJ7MEMSHn2a09wJC3gJfWvzcrY4rnINjQ=;
+ b=fU1S5UhxeXyd/duGImpQRkTvfysJ7UqcG/UuVCkvF+WyI18SZQd++mFyBsvaMWj5MpP/8QcF4sptDdauhBe/66e0vYyPd19mPovc2xaU+imLCiEDfp0Cr87SZgKtioC19yOEPGfX7KF/iXYBWZLR28qGQyiSiXLFnY8E1grRsWtkSXefvveIXbWzKH5ny3y4i1DX7yJG3iCgSrLSGDTjBkMkjWlA4cvq1zuE4edENa2oSw5tFgBcxsZOah9lAohMUDKVZyXxMiT+0IWjklfhcj5KjxvhVMKSp1nAXTpWtNEmQpc+bqwUQzrvfOLDPZCWmxLHredzo8fa5EoWDxqEgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n0y5MvQVEDiJ7MEMSHn2a09wJC3gJfWvzcrY4rnINjQ=;
+ b=j1ZRFRcyrAZYN6naY2bdBcGS6UmwcXfYjm4aP/ja0uPBAmhTq4dy3A0Ot8pKwGcFNWQ6QC9R325Lq8e5f3BuKr6P/orZflYY2F6zYH0DeP1Hv+VfSzSWN3ohcmBEV1zqDpt3EmWD7C1duX4CtVu25Y6nnL/DeyES9PrlcqPNeds=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM6PR04MB6662.eurprd04.prod.outlook.com (2603:10a6:20b:ff::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Wed, 20 May
+ 2020 09:22:48 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3c6c:a0e9:9a4e:c51d]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3c6c:a0e9:9a4e:c51d%7]) with mapi id 15.20.3000.034; Wed, 20 May 2020
+ 09:22:48 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Anson Huang <anson.huang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH] ARM: dts: imx: Make tempmon node as child of anatop node
+Thread-Topic: [PATCH] ARM: dts: imx: Make tempmon node as child of anatop node
+Thread-Index: AQHWLnGKahSSyBKEm0SO3VgjiRIl16iwl6BQgAABCwCAAASd8IAAAmqAgAATvdA=
+Date:   Wed, 20 May 2020 09:22:48 +0000
+Message-ID: <AM6PR04MB49665F56FA9FD8331F90D5B980B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <1589956216-22499-1-git-send-email-Anson.Huang@nxp.com>
+ <AM6PR04MB49663B517C218072B2845DBF80B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
+ <DB3PR0402MB39167A0961963B73758F6CA9F5B60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+ <AM6PR04MB496661BDF6B5F966A218092380B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
+ <DB3PR0402MB39161EA7B95886D56EB91E8BF5B60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+In-Reply-To: <DB3PR0402MB39161EA7B95886D56EB91E8BF5B60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 021d004d-403e-4089-b2fa-08d7fc9f5d00
+x-ms-traffictypediagnostic: AM6PR04MB6662:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB66627920669990E89D2113BA80B60@AM6PR04MB6662.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3383;
+x-forefront-prvs: 04097B7F7F
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BwJnJbmLSYVbpBwASvSsGEWWDv8Kj+xZyVk5N1Hlt3DPlM623uccc+Kc3bxdKpnT4XNboT7ox+JIy9Hu12bi3//2xBEbEb1wZycYgCJPQvvAzZYHKUzJq4LH+1RDoKDjym5ZbNYhZI85odKOiJMCzC9unxGPKZ7S74qKBH5vDaMR8Z5CS0P3DjhMFHXuAc8jzWoQJh/XdQAkT4lQpLxkNB/nph10007mTU3xkw66fBntMTE5PCVx9xOIIa/6+nwXOiV88YarBSa90X2xe0qwJOJApH2l9Rxlza7/Gg9M6K30Zs7L7Z4DJTPS4+KFOD3e28sNdtHU9RuK/RgDS2wHKotU2UICCij7BTyH5JF2rMTJaqUCxNv0hww0JIFP6shmFgjFDQcS3oYg1Uckgl3NfTxmh8b0lLNIxXEgj9WvK7khB+fuvHPpysfYOyFdWORv
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(376002)(39860400002)(136003)(396003)(366004)(346002)(64756008)(2906002)(4326008)(8936002)(33656002)(52536014)(66446008)(8676002)(66556008)(66476007)(76116006)(55016002)(44832011)(9686003)(66946007)(6506007)(7696005)(71200400001)(26005)(86362001)(316002)(110136005)(53546011)(186003)(5660300002)(478600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: NshwA9a/4UpX0obX/bKAVk+jOG6QuWr/QktCNKKaH8KXPpWRiYXTdggMvSfQUEN0L6Hy/xHu2xmDxSrmR3tdGswqiglRMpGYbz5jaT2ypKc6dpEGOquFarOEkKxoAdp8ftlgkltc+UfqjJe+aRRvd7iec5KwoZidAR8t+APPWhs0tSRZYlm3o2cxVEJBTH4jZbvllMcAbS00CPRPxmd9eIT+tIMXJfo4NKxoosKlB+VUjy/F/VFWU1RA5cdDfocjrS15yUcyo1qQoerkQhKKPL63pePGnSE6FPxgVekAPxDaOg/N3vk5TMDq6BwXAtKxcbUnk5LH0f4m6R7GScid4obqOsSMob/XxU2fIQECE1QlpjF80ksxHDBJRiP3+E6iVMn1pbWVy1zq3pGEy1YuDhzO2MaYUjP5/u/E3AJTlh31wOM9zyu3RIkTtZf1xWnsWERXXkYasXLIjXFuhS4JwSzqa2s3Tp7IBthEacty04WmW86N8YEb2Lsz6rGFbiFy
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20200511150759.18766-1-brgl@bgdev.pl> <20200511150759.18766-2-brgl@bgdev.pl>
- <20200519182831.GA418402@bogus>
-In-Reply-To: <20200519182831.GA418402@bogus>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 20 May 2020 11:19:32 +0200
-Message-ID: <CAMRc=Md6Be41XEu3ZnR1Du_hSMaAcPn4t4Ci9jAOZ1VXz6vbfA@mail.gmail.com>
-Subject: Re: [PATCH v2 01/14] dt-bindings: arm: add a binding document for
- MediaTek PERICFG controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabien Parent <fparent@baylibre.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Edwin Peer <edwin.peer@broadcom.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
-        Stephane Le Provost <stephane.leprovost@mediatek.com>,
-        Pedro Tsai <pedro.tsai@mediatek.com>,
-        Andrew Perepech <andrew.perepech@mediatek.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 021d004d-403e-4089-b2fa-08d7fc9f5d00
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2020 09:22:48.5531
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jIppbuPyuDnSPQaCzN6aikAI/8tvJMG+SSISLt3N+m3vt2bglI/69dJKi0vIWnsalPxkxpKLpEA8KtPpkCw83A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6662
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wt., 19 maj 2020 o 20:28 Rob Herring <robh@kernel.org> napisa=C5=82(a):
->
-> On Mon, May 11, 2020 at 05:07:46PM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> >
-> > This adds a binding document for the PERICFG controller present on
-> > MediaTek SoCs. For now the only variant supported is 'mt8516-pericfg'.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > ---
-> >  .../arm/mediatek/mediatek,pericfg.yaml        | 34 +++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/medi=
-atek,pericfg.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pe=
-ricfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericf=
-g.yaml
-> > new file mode 100644
-> > index 000000000000..74b2a6173ffb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.y=
-aml
-> > @@ -0,0 +1,34 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,pericfg.yaml=
-#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: MediaTek Peripheral Configuration Controller
-> > +
-> > +maintainers:
-> > +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
->
-> Don't need oneOf here.
->
-> > +      - items:
-> > +        - enum:
-> > +          - mediatek,pericfg
->
-> Doesn't match the example (which is correct).
->
-
-Hi Rob,
-
-FYI this was superseded by v3 which should now be correct.
-
-Bart
+PiBGcm9tOiBBbnNvbiBIdWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4NCj4gU2VudDogV2VkbmVz
+ZGF5LCBNYXkgMjAsIDIwMjAgNDoxMiBQTQ0KPiANCj4gPiBTdWJqZWN0OiBSRTogW1BBVENIXSBB
+Uk06IGR0czogaW14OiBNYWtlIHRlbXBtb24gbm9kZSBhcyBjaGlsZCBvZg0KPiA+IGFuYXRvcCBu
+b2RlDQo+ID4NCj4gPiA+IEZyb206IEFuc29uIEh1YW5nIDxhbnNvbi5odWFuZ0BueHAuY29tPg0K
+PiA+ID4gU2VudDogV2VkbmVzZGF5LCBNYXkgMjAsIDIwMjAgMzo0NyBQTQ0KPiA+ID4NCj4gPiA+
+ID4gU3ViamVjdDogUkU6IFtQQVRDSF0gQVJNOiBkdHM6IGlteDogTWFrZSB0ZW1wbW9uIG5vZGUg
+YXMgY2hpbGQgb2YNCj4gPiA+ID4gYW5hdG9wIG5vZGUNCj4gPiA+ID4NCj4gPiA+ID4gPiBGcm9t
+OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gPiA+ID4gPiBTZW50OiBXZWRu
+ZXNkYXksIE1heSAyMCwgMjAyMCAyOjMwIFBNDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBpLk1YNi83
+IFNvQ3MnIHRlbXBlcmF0dXJlIHNlbnNvciBpcyBpbnNpZGUgYW5hdG9wIG1vZHVsZSBmcm9tIEhX
+DQo+ID4gPiA+ID4gcGVyc3BlY3RpdmUsIHNvIGl0IHNob3VsZCBiZSBhIGNoaWxkIG5vZGUgb2Yg
+YW5hdG9wLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogQW5zb24gSHVhbmcg
+PEFuc29uLkh1YW5nQG54cC5jb20+DQo+ID4gPiA+DQo+ID4gPiA+IFJldmlld2VkLWJ5OiBEb25n
+IEFpc2hlbmcgPGFpc2hlbmcuZG9uZ0BueHAuY29tPg0KPiA+ID4gPg0KPiA+ID4gPiBCVFcsIEkg
+dGhpbmsgeW91IGFsc28gbmVlZCBhIGJpbmRpbmcgZG9jIGZvciB0aGlzIGNoYW5nZS4NCj4gPiA+
+DQo+ID4gPiBUaGUgYmluZGluZyBkb2MgaXMgdGhlIGlteC10aGVybWFsLnlhbWwgSSBzZW50IG91
+dCwgaXQgaXMgc3VnZ2VzdGVkDQo+ID4gPiBieSBSb2IgdG8gbW92ZSB0ZW1wbW9uIGludG8gYW5h
+dG9wIG5vZGUsIHRoYXQgaXMgd2h5IEkgZGlkIHRoaXMNCj4gPiA+IHBhdGNoIHRvIGFsaWduIHdp
+dGggdGhlIGJpbmRpbmcgZG9jLg0KPiA+DQo+ID4gVGhhdCdzIHRoZXJtYWwgYmluZGluZyBkb2Mu
+DQo+ID4gV2UgbmVlZCBhIGJpbmRpbmcgZG9jIHRvIGRlc2NyaWJlIHRoZSBjb25zdHJhaW50cyBm
+b3IgYW5hdG9wIGFzIHdlbGwuDQo+IA0KPiBhbmF0b3AgaW5jbHVkZXMgUE1VLCB0aGVybWFsIGV0
+Yy4sIG5lZWQgdG8gdGhpbmsgYWJvdXQgaG93IHRvIGFkZCBpdCBhbmQNCj4gd2hlcmUgdG8gcHV0
+IGl0LCB3aWxsIHRoaW5rIGFib3V0IGl0IGxhdGVyLg0KDQpXZSBjYW4gY29tYmluZSB0aGVtIGlu
+dG8gb25lLg0KDQpSZWdhcmRzDQpBaXNoZW5nDQo+IA0KPiBBbnNvbg0K
