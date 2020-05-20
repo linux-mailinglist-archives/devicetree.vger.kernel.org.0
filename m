@@ -2,102 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0590C1DA72D
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 03:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1EB1DA731
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 03:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726938AbgETB2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 21:28:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37242 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726352AbgETB2G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 May 2020 21:28:06 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C8517207C4;
-        Wed, 20 May 2020 01:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1589938086;
-        bh=yaMpbg/CqIf6nS95IhGjsX1jBrk4yx1tjQoacauEKM8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QoUNqcK649U1kMFA8EAx6Mqn6NBCNVbih/trnWoHHfzaGMojBkRiHOmQj3XJ6o8HJ
-         LvOvm0VxpaKwySo3YFYwUUIPTDLMOnaFBVfOyJ+dvQTEze8wbKBZ+DFb3GFNGdDWuT
-         njJJG3akXFzjrqa7jkwBaBIMhSDg7+NXA1cbpURA=
-Date:   Wed, 20 May 2020 09:27:59 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     peng.fan@nxp.com
-Cc:     s.hauer@pengutronix.de, leonard.crestez@nxp.com, abel.vesa@nxp.com,
-        aisheng.dong@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V3 00/10] clk: imx: fixes and improve for i.MX8M
-Message-ID: <20200520012758.GJ11739@dragon>
-References: <1588830979-11586-1-git-send-email-peng.fan@nxp.com>
+        id S1726432AbgETB3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 21:29:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726352AbgETB3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 21:29:23 -0400
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F07C061A0E
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 18:29:22 -0700 (PDT)
+Received: by mail-ot1-x343.google.com with SMTP id h7so1221692otr.3
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 18:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=fS8BoALlEmEhdNJ/8YKWC3J9QO6yhpm7x3ntFRYv3PU=;
+        b=IuDYOETENv2vFqjbn01+2XCAXzrFpfzDqfbuIKG4ckrB8KeK3nGSU0E1K81i9Bm9WK
+         jQqAlP37RO4R2zpNTQD4mJnAZJmn8XZYq+dhxkpcL7D6INeZ3UDW9gEUqrsno+oOGqMm
+         AE5aC2IIj8WurX0jNrGQXiC4uepGaOpVjx+bfz4im1sy0DXj135l/pS3YqHrs67h/4Va
+         m5wwZCtIqz8LhRiqavE91h2lMsWO5ciFEdFUWN6IcwBJf78INm8RWS+vY5oTku51O9hG
+         wp/henQ7tXX0jggV5S/2JkAw5DbI4lul78TykYdtzSpPJxhehx6rDUt0auRvu531Hid1
+         wvqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=fS8BoALlEmEhdNJ/8YKWC3J9QO6yhpm7x3ntFRYv3PU=;
+        b=igdPzhDIQciiSUcQDof6RKEzU+VTmzFpe+HqdSwfxqF/NEGnP26wrdSPYMr3gcWtEb
+         uHawXiWSlNJqZ/aBSfOfdw1M2BxunmPIJX6hCEwJBLScqAEl1Llew+2vCAhHJGZHvYA/
+         AuAotWFhlYQiIACYchF3gXKgfFohEgOyyerOBvZV2UWyjmNo03jkizlPfzPJIrNNtCQY
+         KY8MMxIyhxi1aXCoZf0MLSJ62ol/ar1x9Bom2AAp14li5xe5Oa2Ei12dESrA+3J/st/Z
+         MUA4xGYcLmGoQ8xfok4o3Q1WzMO1AIc6b3gQOajGCe7huQSg2toliBwhzZE4xd6qHhBi
+         QXOg==
+X-Gm-Message-State: AOAM5327jX37gLExF0DV9u7GGueams+wcV8u9lQZNfsY6inlzBKGV6AU
+        06XaJBqmvDZfHGAFIDy1G8FxhhKGp5fSALIVHIY=
+X-Google-Smtp-Source: ABdhPJykBxe7wUBIxYC7Eq0iwcQdfQsIie7tTUr/VAFG5+QRAX0evylbGE9OmoNyuiKYdnf4oXWPPf+SCB6heGOIrEM=
+X-Received: by 2002:a9d:444:: with SMTP id 62mr1457358otc.272.1589938162177;
+ Tue, 19 May 2020 18:29:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1588830979-11586-1-git-send-email-peng.fan@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Received: by 2002:a05:6830:c:0:0:0:0 with HTTP; Tue, 19 May 2020 18:29:21
+ -0700 (PDT)
+Reply-To: mrs.chantala2055@gmail.com
+From:   MrS Chantal <mrs.chantalw11@gmail.com>
+Date:   Wed, 20 May 2020 01:29:21 +0000
+Message-ID: <CAA87ukUxv0njTxebwudL-Ay8yEQJiC8MsS=KBz9eHUvb=8Mc3Q@mail.gmail.com>
+Subject: ai.Compliment
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 07, 2020 at 01:56:09PM +0800, peng.fan@nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Patches rebased on for-next
-> 
-> V3:
->  Add R-b tag for patch 1-6,10
->  Use clk_mux_ops in patch 7, explain more details in commit log
->  Boot test on i.MX8MM/N/MQ/P
-> 
-> V2:
->  Patch 7, drop wait after write, add one line comment for write twice
-> 
-> V1:
-> Patch 1,2 is to fix the lockdep warning reported by Leonard
-> Patch 3 is to fix pll mux bit
-> Patch 4 is align with other i.MX8M using gate
-> Patch 5 is to simplify i.MX8MP clk root using composite
-> 
-> Patch 3~5 is actually https://patchwork.kernel.org/patch/11402761/
-> with a minimal change to patch 5 here.
-> 
-> Patch 6 is to use composite core clk for A53 clk root
-> Patch 7,8,9 is actually to fix CORE/BUS clk slice issue.
->  This issue is triggerred after we update U-Boot to include
->  the A53 clk fixes to sources from PLL, not from A53 root clk,
->  because of the signoff timing is 1GHz. U-Boot set the A53 root
->  mux to 2, sys pll2 500MHz. Kernel will set the A53 root mux to
->  4, sys pll1 800MHz, then gate off sys pll2 500MHz. Then kernel
->  will gate off A53 root because clk_ignore_unsed, A53 directly sources
->  PLL, so it is ok to gate off A53 root. However when gate off A53
->  root clk, system hang, because the original mux sys pll2 500MHz
->  gated off with CLK_OPS_PARENT_ENABLE flag.
-> 
->  It is lucky that we not met issue for other core/bus clk slice
->  except A53 ROOT core slice. But it is always triggerred after
->  U-Boot and Linux both switch to use ARM PLL for A53 core, but
->  have different mux settings for A53 root clk slice.
-> 
->  So the three patches is to address this issue.
-> 
-> Patch 10 is make memrepair as critical.
-> 
-> Peng Fan (10):
->   arm64: dts: imx8m: assign clocks for A53
->   clk: imx8m: drop clk_hw_set_parent for A53
->   clk: imx: imx8mp: fix pll mux bit
->   clk: imx8mp: Define gates for pll1/2 fixed dividers
->   clk: imx8mp: use imx8m_clk_hw_composite_core to simplify code
->   clk: imx8m: migrate A53 clk root to use composite core
->   clk: imx: add mux ops for i.MX8M composite clk
->   clk: imx: add imx8m_clk_hw_composite_bus
->   clk: imx: use imx8m_clk_hw_composite_bus for i.MX8M bus clk slice
+    ai.Compliment
 
-Applied 1 ~ 9, thanks.
-
->   clk: imx8mp: mark memrepair clock as critical
+     Compliment of the day to you. I am Mrs.CHANTAL I am sending this brief
+    letter to solicit your partnership to transfer $13.5 Million US
+    Dollars.I shall send you more information and procedures when I receive
+    positive response From you. Please send me a message in My private
+    email address is ( mrschantal066@gmail.com  )
+    Best Regards
+    MrS.Chantal
