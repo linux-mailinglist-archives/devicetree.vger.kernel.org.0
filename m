@@ -2,242 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F831DC113
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 23:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B92B1DC149
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 23:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728496AbgETVN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 17:13:58 -0400
-Received: from muru.com ([72.249.23.125]:55340 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728439AbgETVN4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 May 2020 17:13:56 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id B6EBD81BF;
-        Wed, 20 May 2020 21:14:43 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     "Andrew F . Davis" <afd@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Suman Anna <s-anna@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 6/6] ARM: dts: Configure omap4 and 5 l4_abe for genpd and drop platform data
-Date:   Wed, 20 May 2020 14:13:34 -0700
-Message-Id: <20200520211334.61814-7-tony@atomide.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200520211334.61814-1-tony@atomide.com>
-References: <20200520211334.61814-1-tony@atomide.com>
+        id S1726946AbgETVXG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 20 May 2020 17:23:06 -0400
+Received: from mout.kundenserver.de ([217.72.192.74]:52935 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726892AbgETVXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 17:23:06 -0400
+Received: from mail-qk1-f177.google.com ([209.85.222.177]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.145]) with ESMTPSA (Nemesis)
+ id 1MDhth-1jjWFd3pd1-00AjXF; Wed, 20 May 2020 23:23:03 +0200
+Received: by mail-qk1-f177.google.com with SMTP id z80so5241757qka.0;
+        Wed, 20 May 2020 14:23:02 -0700 (PDT)
+X-Gm-Message-State: AOAM530+4XTsxvzjPhSLBin0cpDLo9y2f91Y0R2+LF80GcbwIikIORur
+        pBa53MPvHr1pB0CXehBARuUBDyut2h3N5t2OiKQ=
+X-Google-Smtp-Source: ABdhPJwZcCZSxDynCH3r3gKmPJPpPeE9FrIMPWva+zbjlW1lcOdkg0GE0sngrt5N6VQ/g7lU1Cjl02NdfnJS0lbfHTc=
+X-Received: by 2002:a37:46c9:: with SMTP id t192mr3853110qka.3.1590009781522;
+ Wed, 20 May 2020 14:23:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200520112523.30995-1-brgl@bgdev.pl> <20200520112523.30995-7-brgl@bgdev.pl>
+ <CAK8P3a3jhrQ3p1JsqMNMOOnfo9t=rAPWaOAwAdDuFMh7wUtZQw@mail.gmail.com> <CAMRc=MeuQk9rFDFGWK0ijsiM-r296cVz9Rth8hWhW5Aeeti_cA@mail.gmail.com>
+In-Reply-To: <CAMRc=MeuQk9rFDFGWK0ijsiM-r296cVz9Rth8hWhW5Aeeti_cA@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 20 May 2020 23:22:45 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1nhPj6kRhwyXzDK3BGbh66XG6Fmp44QuM1NhFPPBTtPQ@mail.gmail.com>
+Message-ID: <CAK8P3a1nhPj6kRhwyXzDK3BGbh66XG6Fmp44QuM1NhFPPBTtPQ@mail.gmail.com>
+Subject: Re: [PATCH v4 06/11] net: ethernet: mtk-eth-mac: new driver
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Edwin Peer <edwin.peer@broadcom.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:/gC/5Naxf714EfIF7VfC28t3aDY3Z5zwTf0bIDD9BdZYwi1aXcQ
+ wOAjoLgJmY8yqt0tKwvjPxlYQ+YHeUWSIugxeSDb9jafNiVALoWHpxKqOE0Fe00bZNgWbGx
+ iEyFxQ3un9OWUbA9NjfuAGpCULoebm33vwCBY8/VOyy+DRplmE4KqkhuQQwTIRAMIvrYGOy
+ w9+U66RvOrIdXm53Qth/A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:5ZVhrGWEVig=:MlewIc1FlCowA24CzIifiW
+ my+BBmPcV4f7xG20qgT44Dniq/cekNL0vxCJFHqfgv295t3XjNGj1Z8+/C+QBDDIw2Fl+iEzd
+ GjUpQm0FZn4bGKRO1MLD2kb4ETS6EzCBoOY73Hl1LZ8Zz8dssR2HVWtlmgHHWe8nEouK1TMGG
+ BzCw6+EeQGg9ZbSNmNRnxy6JS7DR22doUghbO5SUD8gLQoeIiiiBHu6vTx1FiwZ901OBOHcTJ
+ Otlcf8hZ0axSrjU7i2dwXA6vdPkorfuxxjgDTySPwp9f/2CFQFDg/CBjoWian5nmBPKgDKnzm
+ LJeIfeACi2ptva/SS/mfAmeDe12mrScIm7HCzCYd9rtMhfvNhhWnhHRXIJVMsMWRh1IBOMg1s
+ 3REl8+v6LKhC1V7NoEvT2rfTTOQ/hmwQg7hDUjl1dJcWdZu20swCmK06z0LG+3XNwNu/54+y1
+ lcG+JiEvK3ySHgdp0Q1jXRVXiVmNYZG+dvsiHYOcR8Q/Xt7refjI0rC7mO82P1IaCSk62ykvL
+ wER9MK6H9YleFs2FHk0VvqGSir5+ifjDx+N7hJ13yJDUy6tRRI6DymSkJonDzJMWnd8b/Hde6
+ pjn1HRmWOxEwj0fbFtNn3hKToZoNEJm2itITl/X9PxDdlrjSYL/hWxAV0kpOFPiQV7KWLRidK
+ mOxI+/NnX7fqmQubUWr8ASozgGWcx67roHtxljG84+wZr1efzQ0XKgzzxEUKMURPZi1ZYZFEt
+ 5h3+ONVmZCrYln6pbM63bB+kz2syqE1ioEzLO/CjkVMfqqqS0JUf96/CUWrI5Eym50SeFdZdx
+ k2Lev8IcWKg8EEU9a7GOqTeFqxseVkdqdS2zl6WWStvjErVoFM=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can power off l4_abe domain when not in use when we configure it for
-genpd. And with that change, we can now also drop the old unused legacy
-platform data.
+On Wed, May 20, 2020 at 7:35 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> śr., 20 maj 2020 o 16:37 Arnd Bergmann <arnd@arndb.de> napisał(a):
 
-Note that we also need to now use "simple-pm-bus" instead of "simple-bus"
-for PM runtime to get enabled for the bus.
+> > I just noticed how the naming of NET_MEDIATEK_MAC and NET_MEDIATEK_SOC
+> > for two different drivers doing the same thing is really confusing.
+> >
+> > Maybe someone can come up with a better name, such as one
+> > based on the soc it first showed up in.
+> >
+>
+> This has been discussed under one of the previous submissions.
+> MediaTek wants to use this IP on future designs as well and it's
+> already used on multiple SoCs so they want the name to be generic. I
+> also argued that this is a driver strongly tied to a specific
+> platform(s) so if someone wants to compile it - they probably know
+> what they're doing.
+>
+> That being said: I verified with MediaTek and the name of the IP I can
+> use is "star" so they proposed "mtk-star-eth". I would personally
+> maybe go with "mtk-star-mac". How about those two?
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/omap4-l4-abe.dtsi        |  6 ++--
- arch/arm/boot/dts/omap4.dtsi               |  6 ++++
- arch/arm/boot/dts/omap5-l4-abe.dtsi        |  6 ++--
- arch/arm/boot/dts/omap5.dtsi               |  6 ++++
- arch/arm/mach-omap2/omap_hwmod_44xx_data.c | 33 ----------------------
- arch/arm/mach-omap2/omap_hwmod_54xx_data.c | 31 --------------------
- 6 files changed, 20 insertions(+), 68 deletions(-)
+Both seem fine to me. If this was previously discussed, I don't want
+do further bike-shedding and I'd trust you to pick a sensible name
+based on the earlier discussions.
 
-diff --git a/arch/arm/boot/dts/omap4-l4-abe.dtsi b/arch/arm/boot/dts/omap4-l4-abe.dtsi
---- a/arch/arm/boot/dts/omap4-l4-abe.dtsi
-+++ b/arch/arm/boot/dts/omap4-l4-abe.dtsi
-@@ -1,14 +1,16 @@
- &l4_abe {						/* 0x40100000 */
--	compatible = "ti,omap4-l4-abe", "simple-bus";
-+	compatible = "ti,omap4-l4-abe", "simple-pm-bus";
- 	reg = <0x40100000 0x400>,
- 	      <0x40100400 0x400>;
- 	reg-names = "la", "ap";
-+	power-domains = <&prm_abe>;
-+	/* OMAP4_L4_ABE_CLKCTRL is read-only */
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 	ranges = <0x00000000 0x40100000 0x100000>,	/* segment 0 */
- 		 <0x49000000 0x49000000 0x100000>;
- 	segment@0 {					/* 0x40100000 */
--		compatible = "simple-bus";
-+		compatible = "simple-pm-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges =
-diff --git a/arch/arm/boot/dts/omap4.dtsi b/arch/arm/boot/dts/omap4.dtsi
---- a/arch/arm/boot/dts/omap4.dtsi
-+++ b/arch/arm/boot/dts/omap4.dtsi
-@@ -637,6 +637,12 @@ prm_tesla: prm@400 {
- 		#reset-cells = <1>;
- 	};
- 
-+	prm_abe: prm@500 {
-+		compatible = "ti,omap4-prm-inst", "ti,omap-prm-inst";
-+		reg = <0x500 0x100>;
-+		#power-domain-cells = <0>;
-+	};
-+
- 	prm_core: prm@700 {
- 		compatible = "ti,omap4-prm-inst", "ti,omap-prm-inst";
- 		reg = <0x700 0x100>;
-diff --git a/arch/arm/boot/dts/omap5-l4-abe.dtsi b/arch/arm/boot/dts/omap5-l4-abe.dtsi
---- a/arch/arm/boot/dts/omap5-l4-abe.dtsi
-+++ b/arch/arm/boot/dts/omap5-l4-abe.dtsi
-@@ -1,14 +1,16 @@
- &l4_abe {						/* 0x40100000 */
--	compatible = "ti,omap5-l4-abe", "simple-bus";
-+	compatible = "ti,omap5-l4-abe", "simple-pm-bus";
- 	reg = <0x40100000 0x400>,
- 	      <0x40100400 0x400>;
- 	reg-names = "la", "ap";
-+	power-domains = <&prm_abe>;
-+	/* OMAP5_L4_ABE_CLKCTRL is read-only */
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 	ranges = <0x00000000 0x40100000 0x100000>,	/* segment 0 */
- 		 <0x49000000 0x49000000 0x100000>;
- 	segment@0 {					/* 0x40100000 */
--		compatible = "simple-bus";
-+		compatible = "simple-pm-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges =
-diff --git a/arch/arm/boot/dts/omap5.dtsi b/arch/arm/boot/dts/omap5.dtsi
---- a/arch/arm/boot/dts/omap5.dtsi
-+++ b/arch/arm/boot/dts/omap5.dtsi
-@@ -563,6 +563,12 @@ prm_dsp: prm@400 {
- 		#reset-cells = <1>;
- 	};
- 
-+	prm_abe: prm@500 {
-+		compatible = "ti,omap5-prm-inst", "ti,omap-prm-inst";
-+		reg = <0x500 0x100>;
-+		#power-domain-cells = <0>;
-+	};
-+
- 	prm_core: prm@700 {
- 		compatible = "ti,omap5-prm-inst", "ti,omap-prm-inst";
- 		reg = <0x700 0x100>;
-diff --git a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-@@ -124,21 +124,6 @@ static struct omap_hwmod_class omap44xx_l4_hwmod_class = {
- 	.name	= "l4",
- };
- 
--/* l4_abe */
--static struct omap_hwmod omap44xx_l4_abe_hwmod = {
--	.name		= "l4_abe",
--	.class		= &omap44xx_l4_hwmod_class,
--	.clkdm_name	= "abe_clkdm",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = OMAP4_CM1_ABE_L4ABE_CLKCTRL_OFFSET,
--			.context_offs = OMAP4_RM_ABE_AESS_CONTEXT_OFFSET,
--			.lostcontext_mask = OMAP4430_LOSTMEM_AESSMEM_MASK,
--			.flags	      = HWMOD_OMAP4_NO_CONTEXT_LOSS_BIT,
--		},
--	},
--};
--
- /* l4_cfg */
- static struct omap_hwmod omap44xx_l4_cfg_hwmod = {
- 	.name		= "l4_cfg",
-@@ -1007,22 +992,6 @@ static struct omap_hwmod_ocp_if omap44xx_l4_cfg__l3_main_3 = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* l3_main_1 -> l4_abe */
--static struct omap_hwmod_ocp_if omap44xx_l3_main_1__l4_abe = {
--	.master		= &omap44xx_l3_main_1_hwmod,
--	.slave		= &omap44xx_l4_abe_hwmod,
--	.clk		= "l3_div_ck",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* mpu -> l4_abe */
--static struct omap_hwmod_ocp_if omap44xx_mpu__l4_abe = {
--	.master		= &omap44xx_mpu_hwmod,
--	.slave		= &omap44xx_l4_abe_hwmod,
--	.clk		= "ocp_abe_iclk",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /* l3_main_1 -> l4_cfg */
- static struct omap_hwmod_ocp_if omap44xx_l3_main_1__l4_cfg = {
- 	.master		= &omap44xx_l3_main_1_hwmod,
-@@ -1266,8 +1235,6 @@ static struct omap_hwmod_ocp_if *omap44xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap44xx_l3_main_1__l3_main_3,
- 	&omap44xx_l3_main_2__l3_main_3,
- 	&omap44xx_l4_cfg__l3_main_3,
--	&omap44xx_l3_main_1__l4_abe,
--	&omap44xx_mpu__l4_abe,
- 	&omap44xx_l3_main_1__l4_cfg,
- 	&omap44xx_l3_main_2__l4_per,
- 	&omap44xx_l4_cfg__l4_wkup,
-diff --git a/arch/arm/mach-omap2/omap_hwmod_54xx_data.c b/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
-@@ -121,19 +121,6 @@ static struct omap_hwmod_class omap54xx_l4_hwmod_class = {
- 	.name	= "l4",
- };
- 
--/* l4_abe */
--static struct omap_hwmod omap54xx_l4_abe_hwmod = {
--	.name		= "l4_abe",
--	.class		= &omap54xx_l4_hwmod_class,
--	.clkdm_name	= "abe_clkdm",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = OMAP54XX_CM_ABE_L4_ABE_CLKCTRL_OFFSET,
--			.flags = HWMOD_OMAP4_NO_CONTEXT_LOSS_BIT,
--		},
--	},
--};
--
- /* l4_cfg */
- static struct omap_hwmod omap54xx_l4_cfg_hwmod = {
- 	.name		= "l4_cfg",
-@@ -618,22 +605,6 @@ static struct omap_hwmod_ocp_if omap54xx_l4_cfg__l3_main_3 = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* l3_main_1 -> l4_abe */
--static struct omap_hwmod_ocp_if omap54xx_l3_main_1__l4_abe = {
--	.master		= &omap54xx_l3_main_1_hwmod,
--	.slave		= &omap54xx_l4_abe_hwmod,
--	.clk		= "abe_iclk",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* mpu -> l4_abe */
--static struct omap_hwmod_ocp_if omap54xx_mpu__l4_abe = {
--	.master		= &omap54xx_mpu_hwmod,
--	.slave		= &omap54xx_l4_abe_hwmod,
--	.clk		= "abe_iclk",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /* l3_main_1 -> l4_cfg */
- static struct omap_hwmod_ocp_if omap54xx_l3_main_1__l4_cfg = {
- 	.master		= &omap54xx_l3_main_1_hwmod,
-@@ -741,8 +712,6 @@ static struct omap_hwmod_ocp_if *omap54xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap54xx_l3_main_1__l3_main_3,
- 	&omap54xx_l3_main_2__l3_main_3,
- 	&omap54xx_l4_cfg__l3_main_3,
--	&omap54xx_l3_main_1__l4_abe,
--	&omap54xx_mpu__l4_abe,
- 	&omap54xx_l3_main_1__l4_cfg,
- 	&omap54xx_l3_main_2__l4_per,
- 	&omap54xx_l3_main_1__l4_wkup,
--- 
-2.26.2
+> >  +               /* One of the counters reached 0x8000000 - update stats and
+> > > +                * reset all counters.
+> > > +                */
+> > > +               if (unlikely(status & MTK_MAC_REG_INT_STS_MIB_CNT_TH)) {
+> > > +                       mtk_mac_intr_disable_stats(priv);
+> > > +                       schedule_work(&priv->stats_work);
+> > > +               }
+> > > + befor
+> > > +               mtk_mac_intr_ack_all(priv);
+> >
+> > The ack here needs to be dropped, otherwise you can get further
+> > interrupts before the bottom half has had a chance to run.
+> >
+>
+> My thinking was this: if I mask the relevant interrupt (TX/RX
+> complete) and ack it right away, the status bit will be asserted on
+> the next packet received/sent but the process won't get interrupted
+> and when I unmask it, it will fire right away and I won't have to
+> recheck the status register. I noticed that if I ack it at the end of
+> napi poll callback, I end up missing certain TX complete interrupts
+> and end up seeing a lot of retransmissions even if I reread the status
+> register. I'm not yet sure where this race happens.
+
+Right, I see. If you just ack at the end of the poll function, you need
+to check the rings again to ensure you did not miss an interrupt
+between checking observing both rings to be empty and the irq-ack.
+
+I suspect it's still cheaper to check the two rings with an uncached
+read from memory than to to do the read-modify-write on the mmio,
+but you'd have to measure that to be sure.
+
+> > > +static void mtk_mac_tx_complete_all(struct mtk_mac_priv *priv)
+> > > +{
+> > > +       struct mtk_mac_ring *ring = &priv->tx_ring;
+> > > +       struct net_device *ndev = priv->ndev;
+> > > +       int ret, pkts_compl, bytes_compl;
+> > > +       bool wake = false;
+> > > +
+> > > +       mtk_mac_lock(priv);
+> > > +
+> > > +       for (pkts_compl = 0, bytes_compl = 0;;
+> > > +            pkts_compl++, bytes_compl += ret, wake = true) {
+> > > +               if (!mtk_mac_ring_descs_available(ring))
+> > > +                       break;
+> > > +
+> > > +               ret = mtk_mac_tx_complete_one(priv);
+> > > +               if (ret < 0)
+> > > +                       break;
+> > > +       }
+> > > +
+> > > +       netdev_completed_queue(ndev, pkts_compl, bytes_compl);
+> > > +
+> > > +       if (wake && netif_queue_stopped(ndev))
+> > > +               netif_wake_queue(ndev);
+> > > +
+> > > +       mtk_mac_intr_enable_tx(priv);
+> >
+> > No need to ack the interrupt here if napi is still active. Just
+> > ack both rx and tx when calling napi_complete().
+> >
+> > Some drivers actually use the napi budget for both rx and tx:
+> > if you have more than 'budget' completed tx frames, return
+> > early from this function and skip the napi_complete even
+> > when less than 'budget' rx frames have arrived.
+> >
+>
+> IIRC Jakub said that the most seen approach is to free all TX descs
+> and receive up to budget packets, so this is what I did. I think it
+> makes the most sense.
+
+Ok, he's probably right then.
+
+My idea was that the dma_unmap operation for the tx cleanup is
+rather expensive on chips without cache-coherent DMA, so you
+might not want to do too much of it but rather do it in reasonably
+sized batches. It would also avoid the case where you renable the
+tx-complete interrupt after cleaning the already-sent frames but
+then immediately get an irq when the next frame that is already
+queued is done.
+
+This probably depends on the specific workload which one works
+better here.
+
+         Arnd
