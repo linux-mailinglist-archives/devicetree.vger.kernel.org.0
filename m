@@ -2,116 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C791DACF1
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 10:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C56A1DAD41
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 10:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726425AbgETILr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 04:11:47 -0400
-Received: from mail-eopbgr20070.outbound.protection.outlook.com ([40.107.2.70]:40334
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726403AbgETILq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 May 2020 04:11:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a6svDrZITWPy2aleVqJAjG2Mzk0fbEt+MtV9+0DxfuaKymovdZcX0D3L+r5WPVX5870NVqz9k2zvLybF/xb8tEJIrQ7Xi9qI4z1N+ezX29ck0LPVXxTeJWN7UiGYwOFXF7eNHPPCpEmUvm+WkxosgDwYyPYpsqlgUWyezZS9o5STtqas9xFjOapbp+JqNWsqmtrLgg2903YXTLIoapx19C5dix/GBrS+3FRSGAU5BlrwHUY3QuGwToZU4XkHVW5FxcQGNwa37bpr0pv5o1TR+zsKhzxR6p1Ofsz3E+0nCeK7vXbXuDUjax7J4dLX/9cA6r6Xa0RW9aD3enJ4AZrdVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YJrQbDfNQGzrLyEB8x9OawLS5/sK5dTyCpcvKdeACOQ=;
- b=e+ZWaqdB3GnC1psOgeeTHEqfB/pwgq3v+c8fc0ygQKWNZNNnzr6NIrfbU+VGYYlU9xzY+WyVTkIuw6HRtyjmvmw2/owXj3ow5BNUgDH1DWnvBnI0YPbvNbGpg9Nb/jaC+46TY1JieQolOJWn3dY9Pf9lHiDiaGZKkrX1ZZV8vs+K9Jibi5mAksVzksvCKXzoOW0AjY9FkQcL4sgTcGIbNYrmTy4U/d6t7ATKejiY1mLhBrcC66R2PQVKPzZitJgkJrik2jOF3ahOe5bZ7ZQ9A0PlRMBbfiTnOhBvji5OmGvZ3Dc5c0Nxrt1LU1ONUBzU5Y5SlJ8qyscE/wYXjFB7HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YJrQbDfNQGzrLyEB8x9OawLS5/sK5dTyCpcvKdeACOQ=;
- b=GvEyBcpDa/O6fvRpNjs6WMSXEhwvL7ze0l5opiJVrVo8xNfgy9XcXU0K4YINhe626oIvl9VPkLJ68iMbyok3jIT1WP5cO9IIJY6vN5WCzsCzYA/0nTTvmvsvwBxUu6Agn2Di11H9I455ACLMeEpLowrvN6rVJviRVTBzvGbC+tA=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (2603:10a6:8:10::18)
- by DB3PR0402MB3659.eurprd04.prod.outlook.com (2603:10a6:8:5::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.27; Wed, 20 May
- 2020 08:11:42 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::1dab:b68c:e028:acb3]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::1dab:b68c:e028:acb3%6]) with mapi id 15.20.3000.034; Wed, 20 May 2020
- 08:11:42 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH] ARM: dts: imx: Make tempmon node as child of anatop node
-Thread-Topic: [PATCH] ARM: dts: imx: Make tempmon node as child of anatop node
-Thread-Index: AQHWLnGKHrF20oveIESDr3+xecMSEqiwl/QAgAAARbCAAAYAgIAAAQaA
-Date:   Wed, 20 May 2020 08:11:41 +0000
-Message-ID: <DB3PR0402MB39161EA7B95886D56EB91E8BF5B60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1589956216-22499-1-git-send-email-Anson.Huang@nxp.com>
- <AM6PR04MB49663B517C218072B2845DBF80B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
- <DB3PR0402MB39167A0961963B73758F6CA9F5B60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <AM6PR04MB496661BDF6B5F966A218092380B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB496661BDF6B5F966A218092380B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [183.192.13.100]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8d134e61-7e21-4b1e-1f76-08d7fc956df7
-x-ms-traffictypediagnostic: DB3PR0402MB3659:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB365939F4C4628CE94A45790FF5B60@DB3PR0402MB3659.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2958;
-x-forefront-prvs: 04097B7F7F
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CVQgYzg3CiV4gPSV4gmhryJPhTZtIgreF67/H3e7zFsrCCYT+lAPqetquu5Ln5B7AM23iG0MtCDL+uEDLaPgrZ8MVQyNpUYRT9kBPfcSzcjS20yw/EZ+h4WjT6Ri25GFtQCJerpw83foe3uXpeuj8IHQV8XeNxCfhymX1wEPBN/HPFbyc7kimOyeckEWiYgPteL0yccPdEcVKnWCbCRRTgvuVwehUYizsjsuoKzdh48ehV3KSzPS3bTzIIspYqy1iSsGr3ofCc+/pEhp3hJ4dttAJg4JB93DhoI6Nw36gRM7B7Mfnu8nAIbkpdZzID2fjvQJeqOdbmtdiyxQOcwCMx7nfEcJl7K20XJiOOtq/cjniWm2ioZI6fM9vCC6YfXovjFQeGUb+Q2KpsgpNdbvAmg+NVdiOL3Id7tdqxs+16G1vmGtrT0Adj1g5Tg5xOgm
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(376002)(396003)(346002)(39860400002)(366004)(136003)(53546011)(33656002)(6506007)(7696005)(316002)(186003)(55016002)(2906002)(9686003)(5660300002)(86362001)(66476007)(66556008)(66446008)(64756008)(8936002)(66946007)(110136005)(8676002)(26005)(52536014)(44832011)(76116006)(71200400001)(4326008)(478600001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: cBccdhrJybQg56bDyk8QeBtILkNRBa5m/HMSZ4KFnCCMAHHF08Ao/DXSePrMGfzk6Mvq2bIOvJHmalPtnNx/3ToAKuu5ItDr2M3vW/PNm/2sSRmZvVeiTjL1t4UTHJbWqT8c+wgLD5BBIt+TYQOs7A0wCBJ/7zwUwkpUePTAa3XbTEeByiwUaixNfgouKGyjoN0eqoPKdDO6Qm8BX2b4M7UCBLjWGOwgcn4YjvLl3kCAKt4V6+Rf2ZTap/Z/j15seLlFmEJg9Yt3f9WXIFJwid5DkjEY62B3IcXz+GSj05YRBkD/NQcmJFdfp3gZbhYOiot2Qq8gQ3fK615A2C1EbKrrIPhn3iU+heXeczlIyLHN4xbcAwtOx2SKaaJEEawpNY0u2z3e8Au3zMMnJlAQA2z12+Q13LMOqPaGFb19RgTI81wDfWjftbJkA+d5PFsxxfOwREGMadgb7NHTGCpnoDvqMOZKionulOypiSScsbAoAaTJlV7cTPFMndGfEUlx
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d134e61-7e21-4b1e-1f76-08d7fc956df7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2020 08:11:41.9974
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bQlPf4V0KdabNljw82DZOv88LzMPxJNoKCOIrXGPH05ykUwquWHJOYPfG+61mx2WbE+2UTQCqjadCWlSCqImBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3659
+        id S1726435AbgETI0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 04:26:54 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:39624 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726425AbgETI0y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 04:26:54 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9481D1A02DC;
+        Wed, 20 May 2020 10:26:51 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 276F11A02DD;
+        Wed, 20 May 2020 10:26:46 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 692A540299;
+        Wed, 20 May 2020 16:26:39 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amit.kucheria@verdurent.com, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V3] dt-bindings: thermal: Convert i.MX to json-schema
+Date:   Wed, 20 May 2020 16:16:59 +0800
+Message-Id: <1589962619-28256-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gU3ViamVjdDogUkU6IFtQQVRDSF0gQVJNOiBkdHM6IGlteDogTWFrZSB0ZW1wbW9uIG5v
-ZGUgYXMgY2hpbGQgb2YgYW5hdG9wDQo+IG5vZGUNCj4gDQo+ID4gRnJvbTogQW5zb24gSHVhbmcg
-PGFuc29uLmh1YW5nQG54cC5jb20+DQo+ID4gU2VudDogV2VkbmVzZGF5LCBNYXkgMjAsIDIwMjAg
-Mzo0NyBQTQ0KPiA+DQo+ID4gPiBTdWJqZWN0OiBSRTogW1BBVENIXSBBUk06IGR0czogaW14OiBN
-YWtlIHRlbXBtb24gbm9kZSBhcyBjaGlsZCBvZg0KPiA+ID4gYW5hdG9wIG5vZGUNCj4gPiA+DQo+
-ID4gPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+ID4gPiBT
-ZW50OiBXZWRuZXNkYXksIE1heSAyMCwgMjAyMCAyOjMwIFBNDQo+ID4gPiA+DQo+ID4gPiA+IGku
-TVg2LzcgU29DcycgdGVtcGVyYXR1cmUgc2Vuc29yIGlzIGluc2lkZSBhbmF0b3AgbW9kdWxlIGZy
-b20gSFcNCj4gPiA+ID4gcGVyc3BlY3RpdmUsIHNvIGl0IHNob3VsZCBiZSBhIGNoaWxkIG5vZGUg
-b2YgYW5hdG9wLg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFuZyA8
-QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gPiA+DQo+ID4gPiBSZXZpZXdlZC1ieTogRG9uZyBBaXNo
-ZW5nIDxhaXNoZW5nLmRvbmdAbnhwLmNvbT4NCj4gPiA+DQo+ID4gPiBCVFcsIEkgdGhpbmsgeW91
-IGFsc28gbmVlZCBhIGJpbmRpbmcgZG9jIGZvciB0aGlzIGNoYW5nZS4NCj4gPg0KPiA+IFRoZSBi
-aW5kaW5nIGRvYyBpcyB0aGUgaW14LXRoZXJtYWwueWFtbCBJIHNlbnQgb3V0LCBpdCBpcyBzdWdn
-ZXN0ZWQgYnkNCj4gPiBSb2IgdG8gbW92ZSB0ZW1wbW9uIGludG8gYW5hdG9wIG5vZGUsIHRoYXQg
-aXMgd2h5IEkgZGlkIHRoaXMgcGF0Y2ggdG8NCj4gPiBhbGlnbiB3aXRoIHRoZSBiaW5kaW5nIGRv
-Yy4NCj4gDQo+IFRoYXQncyB0aGVybWFsIGJpbmRpbmcgZG9jLg0KPiBXZSBuZWVkIGEgYmluZGlu
-ZyBkb2MgdG8gZGVzY3JpYmUgdGhlIGNvbnN0cmFpbnRzIGZvciBhbmF0b3AgYXMgd2VsbC4NCg0K
-YW5hdG9wIGluY2x1ZGVzIFBNVSwgdGhlcm1hbCBldGMuLCBuZWVkIHRvIHRoaW5rIGFib3V0DQpo
-b3cgdG8gYWRkIGl0IGFuZCB3aGVyZSB0byBwdXQgaXQsIHdpbGwgdGhpbmsgYWJvdXQgaXQgbGF0
-ZXIuDQoNCkFuc29uDQo=
+Convert the i.MX thermal binding to DT schema format using json-schema
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V2:
+	- remove unnecessary property in compatible;
+	- add detail description for interrupts;
+	- add description for each item of nvmem-cells;
+	- add more detail for "fsl,tempmon" description.
+---
+ .../devicetree/bindings/thermal/imx-thermal.txt    |  61 ------------
+ .../devicetree/bindings/thermal/imx-thermal.yaml   | 102 +++++++++++++++++++++
+ 2 files changed, 102 insertions(+), 61 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/thermal/imx-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+
+diff --git a/Documentation/devicetree/bindings/thermal/imx-thermal.txt b/Documentation/devicetree/bindings/thermal/imx-thermal.txt
+deleted file mode 100644
+index 823e417..0000000
+--- a/Documentation/devicetree/bindings/thermal/imx-thermal.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-* Temperature Monitor (TEMPMON) on Freescale i.MX SoCs
+-
+-Required properties:
+-- compatible : must be one of following:
+-  - "fsl,imx6q-tempmon" for i.MX6Q,
+-  - "fsl,imx6sx-tempmon" for i.MX6SX,
+-  - "fsl,imx7d-tempmon" for i.MX7S/D.
+-- interrupts : the interrupt output of the controller:
+-  i.MX6Q has one IRQ which will be triggered when temperature is higher than high threshold,
+-  i.MX6SX and i.MX7S/D have two more IRQs than i.MX6Q, one is IRQ_LOW and the other is IRQ_PANIC,
+-  when temperature is below than low threshold, IRQ_LOW will be triggered, when temperature
+-  is higher than panic threshold, system will auto reboot by SRC module.
+-- fsl,tempmon : phandle pointer to system controller that contains TEMPMON
+-  control registers, e.g. ANATOP on imx6q.
+-- nvmem-cells: A phandle to the calibration cells provided by ocotp.
+-- nvmem-cell-names: Should be "calib", "temp_grade".
+-
+-Deprecated properties:
+-- fsl,tempmon-data : phandle pointer to fuse controller that contains TEMPMON
+-  calibration data, e.g. OCOTP on imx6q.  The details about calibration data
+-  can be found in SoC Reference Manual.
+-
+-Direct access to OCOTP via fsl,tempmon-data is incorrect on some newer chips
+-because it does not handle OCOTP clock requirements.
+-
+-Optional properties:
+-- clocks : thermal sensor's clock source.
+-
+-Example:
+-ocotp: ocotp@21bc000 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	compatible = "fsl,imx6sx-ocotp", "syscon";
+-	reg = <0x021bc000 0x4000>;
+-	clocks = <&clks IMX6SX_CLK_OCOTP>;
+-
+-	tempmon_calib: calib@38 {
+-		reg = <0x38 4>;
+-	};
+-
+-	tempmon_temp_grade: temp-grade@20 {
+-		reg = <0x20 4>;
+-	};
+-};
+-
+-tempmon: tempmon {
+-	compatible = "fsl,imx6sx-tempmon", "fsl,imx6q-tempmon";
+-	interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+-	fsl,tempmon = <&anatop>;
+-	nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
+-	nvmem-cell-names = "calib", "temp_grade";
+-	clocks = <&clks IMX6SX_CLK_PLL3_USB_OTG>;
+-};
+-
+-Legacy method (Deprecated):
+-tempmon {
+-	compatible = "fsl,imx6q-tempmon";
+-	fsl,tempmon = <&anatop>;
+-	fsl,tempmon-data = <&ocotp>;
+-	clocks = <&clks 172>;
+-};
+diff --git a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+new file mode 100644
+index 0000000..8bfd9f9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/imx-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX Thermal Binding
++
++maintainers:
++  - Shawn Guo <shawn.guo@linaro.org>
++  - Anson Huang <Anson.Huang@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx6q-tempmon
++      - fsl,imx6sx-tempmon
++      - fsl,imx7d-tempmon
++
++  interrupts:
++    description: |
++      The interrupt output of the controller, i.MX6Q has IRQ_HIGH which
++      will be triggered when temperature is higher than high threshold,
++      i.MX6SX and i.MX7S/D have two more IRQs than i.MX6Q, one is IRQ_LOW
++      and the other is IRQ_PANIC, when temperature is lower than low
++      threshold, IRQ_LOW will be triggered, when temperature is higher
++      than panic threshold, IRQ_PANIC will be triggered, and system can
++      be configured to auto reboot by SRC module for IRQ_PANIC. IRQ_HIGH,
++      IRQ_LOW and IRQ_PANIC share same interrupt output of controller.
++    maxItems: 1
++
++  nvmem-cells:
++    items:
++      - description: Phandle to the calibration data provided by ocotp
++      - description: Phandle to the temperature grade provided by ocotp
++
++  nvmem-cell-names:
++    items:
++      - const: calib
++      - const: temp_grade
++
++  fsl,tempmon:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: Phandle to the temperature sensor register map node.
++
++  fsl,tempmon-data:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: |
++      Deprecated property, phandle pointer to fuse controller that contains
++      TEMPMON calibration data, e.g. OCOTP on imx6q. The details about
++      calibration data can be found in SoC Reference Manual.
++    deprecated: true
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - interrupts
++  - fsl,tempmon
++  - nvmem-cells
++  - nvmem-cell-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx6sx-clock.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    efuse@21bc000 {
++         #address-cells = <1>;
++         #size-cells = <1>;
++         compatible = "fsl,imx6sx-ocotp", "syscon";
++         reg = <0x021bc000 0x4000>;
++         clocks = <&clks IMX6SX_CLK_OCOTP>;
++
++         tempmon_calib: calib@38 {
++             reg = <0x38 4>;
++         };
++
++         tempmon_temp_grade: temp-grade@20 {
++             reg = <0x20 4>;
++         };
++    };
++
++    anatop@20c8000 {
++        compatible = "fsl,imx6q-anatop", "syscon", "simple-mfd";
++        reg = <0x020c8000 0x1000>;
++        interrupts = <0 49 IRQ_TYPE_LEVEL_HIGH>,
++                     <0 54 IRQ_TYPE_LEVEL_HIGH>,
++                     <0 127 IRQ_TYPE_LEVEL_HIGH>;
++
++        tempmon {
++             compatible = "fsl,imx6sx-tempmon";
++             interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
++             fsl,tempmon = <&anatop>;
++             nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
++             nvmem-cell-names = "calib", "temp_grade";
++             clocks = <&clks IMX6SX_CLK_PLL3_USB_OTG>;
++        };
++    };
+-- 
+2.7.4
+
