@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A584C1DBCCA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 20:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 660B61DBD0B
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 20:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbgETS07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 14:26:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726548AbgETS06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 14:26:58 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AFFC061A0E
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 11:26:58 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id h4so3397381wmb.4
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 11:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0Y/fdBR4NjwtQDCcpCctgOyCn9js/D87HSWqbK2WjCk=;
-        b=X4Dyq5Ze9JCoNjG3KsaNqU1dDeKCUMh00Xiz7+8OVNwUiocD0n54uYbDAPqVAc+JPG
-         2jr4mRkAj3MRIH3H62IPk0SHcRtbUooIhrXZjOW4OXNF4scXgT5ySHRquY+Lgb61+whu
-         mXsmvrHLfNQ3Jh8mB2zUaH1Hmo2Kd1wMnxKJQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0Y/fdBR4NjwtQDCcpCctgOyCn9js/D87HSWqbK2WjCk=;
-        b=koRmctC2t2xpsZfeO+SDYaaYFRP1oOvJapxCjTsknU4x4+wt5fgVamlVqTW+pjSpcG
-         qhGOQv4IG5/UODb/anQNSeWEEk8GRLNscO7CTOnB3LIM3ricbqCLLJz/g6W3mIHzTimP
-         7uXcJPw2CSo6yMjl3vVUTmll2z+smQKllCPoJpLS8uMLAPVe95jbnOy98dSJFiC6zsd9
-         za1OSLT2dQJIuBvZDfB/W2E1qQ2NIWJe7jO9t5kUFFVnnElUT2DA0L7S/6P5PjdnjdF4
-         VJftIm+vGZwzohA4at6e/AYTEB2vFpUVEEnQbXo4hiaC+p2anTP5KwEzx4YwCMWVwmAT
-         m/Jw==
-X-Gm-Message-State: AOAM530AxIBiXYET9+AEy95ZM4et7RMeO8A5xmvmlAFSAk/cMRiYY7c+
-        mlN+3YOK34RknsH1obNYlI0EMHKhdIjhxvt25LPQKQ==
-X-Google-Smtp-Source: ABdhPJyKeMi9gaTkOXDaBSgAZ5jBfQr9fDEE+1qJ1e9vX2WhhGVEmL6fshDM82dD1DyIM9MqcUXl+6DgXk1CBF0SP+Y=
-X-Received: by 2002:a1c:7305:: with SMTP id d5mr5874355wmb.85.1589999217222;
- Wed, 20 May 2020 11:26:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200519203419.12369-1-james.quinlan@broadcom.com>
- <20200519203419.12369-10-james.quinlan@broadcom.com> <20200520174216.GA11770@lst.de>
-In-Reply-To: <20200520174216.GA11770@lst.de>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Wed, 20 May 2020 14:26:43 -0400
-Message-ID: <CA+-6iNzy_nELB0ptE0vH5KrGMFq4CctFKDipk3ZzXnjnT9hfuQ@mail.gmail.com>
-Subject: Re: [PATCH 09/15] device core: Add ability to handle multiple dma offsets
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>,
+        id S1726803AbgETSki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 14:40:38 -0400
+Received: from elvis.franken.de ([193.175.24.41]:60593 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726548AbgETSkg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 14:40:36 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jbTdq-0005JR-00; Wed, 20 May 2020 20:40:34 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id ABE3CC0153; Wed, 20 May 2020 20:30:57 +0200 (CEST)
+Date:   Wed, 20 May 2020 20:30:57 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DMA MAPPING HELPERS" <iommu@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 18/20] mips: csrc-r4k: Decrease r4k-clocksource rating
+ if CPU_FREQ enabled
+Message-ID: <20200520183057.GA23855@alpha.franken.de>
+References: <20200511133121.cz5axbwynhmqkx7x@mobilestation>
+ <20200515074827.6p5zx4sb3bmavjih@mobilestation>
+ <20200515210647.GA22922@alpha.franken.de>
+ <20200518134820.wedoumgbsllvhem6@mobilestation>
+ <20200518163206.GA17800@alpha.franken.de>
+ <20200518205752.txbylbjt2zkwdwwe@mobilestation>
+ <20200519155053.GB15797@alpha.franken.de>
+ <20200520121201.wohv6u646rx5otkf@mobilestation>
+ <20200520133827.GA17714@alpha.franken.de>
+ <20200520134826.pc6si3k6boaexp4i@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200520134826.pc6si3k6boaexp4i@mobilestation>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, I meant to put you on the to-list for all patches.   The last
-time I sent out this many patches using a collective cc-list for all
-patches I was told to reduce my cc-list.
-Jim
+On Wed, May 20, 2020 at 04:48:26PM +0300, Serge Semin wrote:
+> On Wed, May 20, 2020 at 03:38:27PM +0200, Thomas Bogendoerfer wrote:
+> > On Wed, May 20, 2020 at 03:12:01PM +0300, Serge Semin wrote:
+> > > Since you don't like the way I initially fixed it, suppose there we don't have
+> > > another way but to introduce something like CONFIG_MIPS_CPS_NS16550_WIDTH
+> > > parameter to select a proper accessors, like sw in our case, and sb by defaul).
+> > > Right?
+> > 
+> > to be on the safe side it's probably the best thing. But I don't know
+> > enough about CPS_NS16550 to judge whether shift value correlates with
+> > possible access width.
+> 
+> The base address passed to the _mips_cps_putc() leaf is UART-base address. It
+> has nothing to do with CPS. See:
 
-On Wed, May 20, 2020 at 1:42 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> If you don't Cc me on the whole series I have absolutely no way to
-> review it.  Don't ever do these stupid partial Ccs as they cause nothing
-> but pain.
+ok, I'm confused. So this isn't an uart inside CPS hardware, but an uart used
+by CPS code for debug output, right ? 
+
+To solve the issued please add CONFIG_MIPS_CPS_NS16550_WIDTH to select the
+correct access width.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
