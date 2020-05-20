@@ -2,140 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 072051DAAB7
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 08:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE3D1DAACD
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 08:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726503AbgETGjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 02:39:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726475AbgETGjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 02:39:39 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86564C05BD43
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 23:39:39 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id i15so1876749wrx.10
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 23:39:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=t0COEyXj5D7NvkjtdvydID9BlBfxGe8of0Dfo1AtG48=;
-        b=JNEE1o6yhLVdcuKXhiGY+WKqOeJP/cguKffC8RXamxJeYUzNWMSAf5svkdHabJt3X2
-         fQ/ibhR69Q/0NTu4DHD1BhZyV7yp+1jx/ogls2VBx5Anqks+AxyaB+uFdCiAWepuXPml
-         fU++yx8fB9HPa9iEI3CLdd7jRQ8FEfbiI9/EAAJzPFP8dR3c/XRJncHAWqD0LnIOzUZh
-         U1ES+pAUkLOyI1r5UuXphntFHQOmYJ4LYw9cTLf2lsrZDPH1C0w9p4dv82Isr1hUoaU+
-         xcHPLrBKE0qyoZ45tbz1tXRA7gkPXpD3oBKkI2k0xxQrJ4CHs/8EbN1fojDjeTAKR2lR
-         mqcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=t0COEyXj5D7NvkjtdvydID9BlBfxGe8of0Dfo1AtG48=;
-        b=AdoHIaw9XhHHEkJgKrVR3Dn5pUPfRc/7okpWpnE9O678OJgs3xSSQETRsaI2/QinNH
-         E8U09gOYSDChaZHWTyozJj/YWV0CvDHtmdCFY9t8jIqhXGbyE56EwhjasadFRFQdjZtM
-         6XXSDy9mSG76vc1XHrlh/dWyMaXPcG+bNTQ7VNtaDnGttdT3mvQii78cCwCW0r/4s+Sc
-         DyvMFbeNcrpVmr7M98kt55IEsNf6h7p77vFxiYI4S7Zt9GCMWNkWGBKJX5NEs1vFqWtV
-         RFy1R5XSsMNzZaILVlOVvf5C9SPLg/8ZJhW0OvQH+O9ihpzG0i0EAK/Yl0RFkCt3XR0f
-         vsTg==
-X-Gm-Message-State: AOAM531eTK1+qtIXpRxPGZVe4qmw6uN4J8j5/Rqwpsq328TbUsKstdEK
-        cDeIiYeXRO7khzsvR/2mo1xZrgu6thY=
-X-Google-Smtp-Source: ABdhPJz10hiF6TxXkTZa5JarAelnWM1tRH1Rh9uBwIjHWV9cX2CCPggm62zNbl3YzgDThSkN+F/BhA==
-X-Received: by 2002:a5d:43d1:: with SMTP id v17mr2579195wrr.282.1589956777948;
-        Tue, 19 May 2020 23:39:37 -0700 (PDT)
-Received: from dell ([95.149.164.102])
-        by smtp.gmail.com with ESMTPSA id z132sm2217692wmc.29.2020.05.19.23.39.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 23:39:37 -0700 (PDT)
-Date:   Wed, 20 May 2020 07:39:35 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     devicetree@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        David Collins <collinsd@codeaurora.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] mfd: Introduce QTI I2C PMIC controller
-Message-ID: <20200520063935.GZ271301@dell>
-References: <cover.1588115326.git.gurus@codeaurora.org>
- <5644dea146f8b49a5b827c56392ff916bfb343e9.1588115326.git.gurus@codeaurora.org>
- <20200429075010.GX3559@dell>
- <20200501011319.GA28441@codeaurora.org>
- <20200515104520.GK271301@dell>
- <20200519185757.GA13992@codeaurora.org>
+        id S1726631AbgETGlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 02:41:21 -0400
+Received: from mail-db8eur05on2075.outbound.protection.outlook.com ([40.107.20.75]:45198
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726425AbgETGlR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 02:41:17 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KK0Fx6MJTxdUMk51B+QQi9bTwSxikBDVyUrntsskU4u8k3F1M08kPW43x+z8ghmasDeJPZat9RhF1UIEd+XeoYz1KlhVwmQQyhYhst0Wm/ykUq7tRGmDD4iTJk1mHC9QV9x/Pmu5FQeMi9TkLuES4xT6nN4jswJhrl/WLd/+JMuefFKgSA3LuyWrlGXwSMUbo1o2cSvXGZyO7acUQgpa6uDj1qC30jIzmXqeidbCqpznkvDSbQyH7+JpFibjlU5p/bo1wEH5Fay85Q4vc1hJCRUS1+u71WXYtkZVoro1/2FL/1HXqT4qwK+wV7EDVNQZY6BdYG/TlY3MjEqBrwgy4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JTMHKX7ai+SeVlCoUMLA4HsyVUYE3FQ3HqF8Tlf35ro=;
+ b=Q6ad3ngrsO49u0K80CWTp2ZqE5IxuEKndLMv7PPlJy6f4wgIwPI+jh/9I8wZHA/5kJaXcVxjn+9PAqrsNxwd9SwBOU6wqpZ099zju6OHf8bLh69ilvLDheQGNteRCuLefICEKS7mmtRxcXaltx3fI63ZNvHhd3Emrhg+teSdK5oVB9CTIBmnTo3hYjwcfIOej+4Q8v/mgkjAMAe1fK6hDySDcFERCYER0rZXsco0ys7NIRgpIIMSbSX3C8B+2dhE9kl7zMQ3MzFV0ePpAmU7klBtMXiZxp14klJkudTEVf3pyIZbXsN1iydsigSnQO/Nil8amBYyt295XKnD0I9Gug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JTMHKX7ai+SeVlCoUMLA4HsyVUYE3FQ3HqF8Tlf35ro=;
+ b=sJORLtI8+77Pv6N0k/jNwVBMVPdLkJLpcURWBZvdT1BVxqwZMLJI77Rz7t8tPuSvV076y8QoNdXOFDZBs5uz9dM5bu6GRrJlkuD2HeiqIViRavnHpSZTwYkPLpGispHBReMSGD7iXY8WEJTDdTkpOqd0F93HZnzszvW9ZxBZVfw=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM6PR04MB4120.eurprd04.prod.outlook.com (2603:10a6:209:4b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23; Wed, 20 May
+ 2020 06:41:15 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3c6c:a0e9:9a4e:c51d]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3c6c:a0e9:9a4e:c51d%7]) with mapi id 15.20.3000.034; Wed, 20 May 2020
+ 06:41:14 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Peng Fan <peng.fan@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 0/4] arm64: dts: imx8m: dtb aliases update
+Thread-Topic: [PATCH 0/4] arm64: dts: imx8m: dtb aliases update
+Thread-Index: AQHWLkwkW+oc0zbvzkitTZ4UpbqnCKiwhm7g
+Date:   Wed, 20 May 2020 06:41:14 +0000
+Message-ID: <AM6PR04MB4966C199450F7EC8665E0C9980B60@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <1589940166-736-1-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1589940166-736-1-git-send-email-peng.fan@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 016f118e-489b-4a72-df38-08d7fc88cb13
+x-ms-traffictypediagnostic: AM6PR04MB4120:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB41201D0ACE49AF675B83EF2F80B60@AM6PR04MB4120.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1468;
+x-forefront-prvs: 04097B7F7F
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EQ6fYvTC8oyLjtnaM+KeR+zygv0YN5AK44m9u1fPkQi7+f+twRbyf3xyYpMonjik8Y6TpbGNGAziSTM45BwGC8N3+RahkN4eujBzvPO2EGQEn4HebMspIGuivVDpps7s/kH+LffIfCc3qVZt+YVKjIikaG5wh+zk5xKsRhBTpnqBfd7B2pSIOQH0jRuLGce3328Xl4W8cZWZTPJeP4grgGiJAE1Ev8E6rtFsoBjKq6rPT+OYlswzHfvqME3UmmlpvVL93qWB3Oee8eeBU/+ccXmNg1HG043uAYgF/oulz0f+4a4u9xidQmzEcDF2nImitqhW85oXUYhX9W6K8gJmksj2kscrECCvDdaWydhWfteed+b97lnpWlCY+TVRPYwN
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(346002)(396003)(136003)(376002)(39860400002)(33656002)(8936002)(6506007)(15650500001)(186003)(26005)(110136005)(8676002)(316002)(54906003)(86362001)(4326008)(7696005)(66476007)(66556008)(4744005)(66946007)(66446008)(71200400001)(64756008)(52536014)(2906002)(44832011)(478600001)(76116006)(5660300002)(55016002)(9686003)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: LfIk+R8H98ou9JPNsXgsSQ93mDMM393t+auEWAGLbDPSBxWCL94PoGqx/Ca9pn7AYxcd0HTqPAZNoOFk09A9lm+vqNUe3FB9E6EmU3GIQE+07QF8E/H7I+RHr7cgm5jIlImsLVRjUO8EuR46+OzfBZqLqGn7M3utNHLGXGgb9Vq8hUQ6zVJ1UXS9zQEUlvuKYtJhCdI61rLjcISRYPGI+yhMaeidUjgtm4i5y4qTOoQrbUYjp7jn0diSp6LVPqyBmq5lby06zUkSJKFIu4pAPJPczEVkVDOPc713O6Tf71WYKlA5G/tDuOQi3A2OSQ0W0cNdm4LKKwitnozHRKOJeHEBXMgAgxa6rYwthlHAm8Av5eb106+ee5hXvjsQEksWi40x/LjTU+6594NhA1h22zBkIAjiWHhShjZqyEWGbIsmsSZ1EeepLR9i/d0hWZScOyhAMWb0IsEu1gjSVaZLBFFGKinPyQ2/3agLxg03iyc=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200519185757.GA13992@codeaurora.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 016f118e-489b-4a72-df38-08d7fc88cb13
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2020 06:41:14.7754
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xmqhMLpMlxqDPUQxTDeLT2QnaFfPAS7N4Z1UTCWbMzUIoIg9T6kfglDo2Tf2qL22dRDbkjM8y+49BEIFRq+C5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4120
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 May 2020, Guru Das Srinagesh wrote:
-
-> On Fri, May 15, 2020 at 11:45:20AM +0100, Lee Jones wrote:
-> > On Thu, 30 Apr 2020, Guru Das Srinagesh wrote:
-> > 
-> > > On Wed, Apr 29, 2020 at 08:50:10AM +0100, Lee Jones wrote:
-> > > > On Tue, 28 Apr 2020, Guru Das Srinagesh wrote:
-> > > > 
-> > > > > The Qualcomm Technologies, Inc. I2C PMIC Controller is used by
-> > > > > multi-function PMIC devices which communicate over the I2C bus.  The
-> > > > > controller enumerates all child nodes as platform devices, and
-> > > > > instantiates a regmap interface for them to communicate over the I2C
-> > > > > bus.
-> > > > > 
-> > > > > The controller also controls interrupts for all of the children platform
-> > > > > devices.  The controller handles the summary interrupt by deciphering
-> > > > > which peripheral triggered the interrupt, and which of the peripheral
-> > > > > interrupts were triggered.  Finally, it calls the interrupt handlers for
-> > > > > each of the virtual interrupts that were registered.
-> > > > > 
-> > > > > Nicholas Troast is the original author of this driver.
-> > > > > 
-> > > > > Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
-> > > > > ---
-> > > > >  drivers/mfd/Kconfig         |  11 +
-> > > > >  drivers/mfd/Makefile        |   1 +
-> > > > >  drivers/mfd/qcom-i2c-pmic.c | 737 ++++++++++++++++++++++++++++++++++++++++++++
-> > > > 
-> > > > The vast majority of this driver deals with IRQ handling.  Why can't
-> > > > this be split out into its own IRQ Chip driver and moved to
-> > > > drivers/irqchip?
-> > > 
-> > > There appear to be quite a few in-tree MFD drivers that register IRQ
-> > > controllers, like this driver does:
-> > > 
-> > > $ grep --exclude-dir=.git -rnE "irq_domain_(add|create).+\(" drivers/mfd | wc -l
-> > > 23
-> > > 
-> > > As a further example, drivers/mfd/stpmic1.c closely resembles this
-> > > driver in that it uses both devm_regmap_add_irq_chip() as well as
-> > > devm_of_platform_populate().
-> > > 
-> > > As such, it seems like this driver is in line with some of the
-> > > architectural choices that have been accepted in already-merged drivers.
-> > > Could you please elaborate on your concerns?
-> > 
-> > It is true that *basic* IRQ domain support has been added to these
-> > drivers in the past.  However, IMHO the support added to this driver
-> > goes beyond those realms such that it would justify a driver of its
-> > own.
-> 
-> I am exploring an option to see if the regmap-irq APIs may be used in
-> this driver, similar to stpmic1.c. Just to let you know, it might be a
-> few days before I am able to post my next patchset as I'll have to make
-> the necessary changes and test them out first.
-
-Take your time.
-
-The next release is due imminently, so you have as long as you need.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+PiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gU2VudDogV2VkbmVzZGF5LCBN
+YXkgMjAsIDIwMjAgMTA6MDMgQU0NCj4gDQo+IE1pbm9yIHBhdGNoc2V0IHRvIHVwZGF0ZSBkZXZp
+Y2UgdHJlZSBhbGlhc2VzDQo+IA0KPiBQZW5nIEZhbiAoNCk6DQo+ICAgYXJtNjQ6IGR0czogaW14
+OG1xOiBBZGQgbW1jIGFsaWFzZXMNCj4gICBhcm02NDogZHRzOiBpbXg4bXE6IEFkZCBldGhlcm5l
+dCBhbGlhcw0KPiAgIGFybTY0OiBkdHM6IGlteDhtbTogc29ydCB0aGUgYWxpYXNlcw0KPiAgIGFy
+bTY0OiBkdHM6IGlteDhtcDogYWRkIGkyYyBhbGlhc2VzDQoNCkZvciB0aGlzIHBhdGNoc2V0LA0K
+DQpSZXZpZXdlZC1ieTogRG9uZyBBaXNoZW5nIDxhaXNoZW5nLmRvbmdAbnhwLmNvbT4NCg0KUmVn
+YXJkcw0KQWlzaGVuZw0K
