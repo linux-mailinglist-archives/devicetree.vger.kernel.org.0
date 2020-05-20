@@ -2,137 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62EB81DBDB3
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 21:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5AF61DBDF9
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 21:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726823AbgETTOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 15:14:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726566AbgETTOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 15:14:04 -0400
-Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 946B2C061A0E
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 12:14:04 -0700 (PDT)
-Received: by mail-oo1-xc41.google.com with SMTP id r12so914957ool.4
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 12:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FRPY2XoLC1HQ0rwn66pqOU81U3Fi4846T5ndJoAtH6c=;
-        b=Yg9w9UDs6tUntrB8W23rRvi1y7E7NEUOuEnjPj0mpeq+am0z5b0QbPNF4VDCSYPmNw
-         sBKAPvUKJzHKaDsnJH2JZpY+FDRJKMQvzx3iFRit/JfcMVrpJTmpnbVON7Bxf/XfxXhx
-         SqiWGOZt4iUaAr+64SgvFOUa9XCxMkdB6tCyl/NUpElBr6edcOltHM/5iVm0zqFlnR6B
-         Yb7RDU9oYm08GbL3xXfcqX/RZN1Ku84LRuC3b4+YrMeIBDOc5ogEIiVlGEFj2UD6Rtxn
-         7GHIxjZo9asxYbuP015cF2S2T+fsqaJGBwfVzgfZO6eo7G0AmhoP/sm90raRXD6asDHf
-         GitQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FRPY2XoLC1HQ0rwn66pqOU81U3Fi4846T5ndJoAtH6c=;
-        b=LDTGHfe0rIq0rlQK8U/YLzHgVK0cGMNE9U8xyf0/O8GoGe+Dt1zhqyYlYFnJwe6oQw
-         kUA7AMQQygGMDIe37Sb0Zf97m3WKfY84/gxDFVP7YRzCE6OLhLZLff8jmvecxLvl8Shc
-         jkFo/6FITPAbl6TTgisS3HpYErHZa3j7UWnv183/3gLx9rhQ6gRfiVhFx2p4jErJhkZD
-         DPhnwpmDoHc/X+0WcBgFuyy26RhOaT77E+mY7zfYV1YewGhGK+jZ82DIu1J+HLh++9Cv
-         a4BGWlDqDqlvgEaKgRDJPbvZ3oXOz1I9BQ9+m9v5PubvZzGbqr7GB2pcTA9AFS9Jxqzm
-         DBow==
-X-Gm-Message-State: AOAM533KSWEAkow1fTV8An6JK/AXBI5VnY7G7yIrKzRX96JD9Fmt26IS
-        TuPV4FpNKHNoG81AfX2ZT2SLo6D4Fbd45k2PdjSYlA==
-X-Google-Smtp-Source: ABdhPJyGZsapr+npAruEBsDKJ42yyXDu4Y+4ye6UYWC88Y9NpvopN4BSuewmoE4/1wwkovB0eTsyoA2KR87k48NO6+A=
-X-Received: by 2002:a4a:b389:: with SMTP id p9mr4566919ooo.84.1590002043642;
- Wed, 20 May 2020 12:14:03 -0700 (PDT)
+        id S1726903AbgETT11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 15:27:27 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41932 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726893AbgETT10 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 15:27:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=4rHhSwlt0coVHMURe6/q1fSVBHKApGrHanOZroyRRls=; b=yJq3Ul7dmw24UfEWAAp7TeKPCO
+        EELwjXzfv5c4o0CwVxXIej+jkdnnHCqT+KiLG1fVR2qCgWRhVOvlJWpVZclLWBykY9TcP+pM09qKa
+        y6+ae1+zt8pEBsEiywLrG1G8Und2InNCz8uiuD2S8OU7QN8vGY9aC7OVG+/czQ6Lr+gM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jbUN5-002pxx-0p; Wed, 20 May 2020 21:27:19 +0200
+Date:   Wed, 20 May 2020 21:27:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>, hkallweit1@gmail.com,
+        davem@davemloft.net, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/4] dt-bindings: net: Add RGMII internal
+ delay for DP83869
+Message-ID: <20200520192719.GK652285@lunn.ch>
+References: <20200520121835.31190-1-dmurphy@ti.com>
+ <20200520121835.31190-4-dmurphy@ti.com>
+ <20200520135624.GC652285@lunn.ch>
+ <770e42bb-a5d7-fb3e-3fc1-b6f97a9aeb83@ti.com>
+ <20200520153631.GH652285@lunn.ch>
+ <95ab99bf-2fb5-c092-ad14-1b0a47c782a4@ti.com>
+ <20200520164313.GI652285@lunn.ch>
+ <d5d46c21-0afa-0c51-9baf-4f99de94bbd5@ti.com>
+ <41101897-5b29-4a9d-0c14-9b8080089850@gmail.com>
+ <7e117c01-fa6e-45f3-05b7-4efe7a3c1943@ti.com>
 MIME-Version: 1.0
-References: <20200512125327.1868-1-georgi.djakov@linaro.org>
- <20200512125327.1868-10-georgi.djakov@linaro.org> <20200519185836.GA469006@bogus>
- <CAGETcx8+NZYT863ySLf6XvgLBm8PM_4euue2=zbDscgmDFh+7g@mail.gmail.com> <3a392629be195fa6bebca18309efffab@codeaurora.org>
-In-Reply-To: <3a392629be195fa6bebca18309efffab@codeaurora.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 20 May 2020 12:13:27 -0700
-Message-ID: <CAGETcx9a=9pMonfyoNGqkkfaDwJ+=U6OqK1op5UYM2zQbktsXQ@mail.gmail.com>
-Subject: Re: [PATCH v8 09/10] dt-bindings: interconnect: Add interconnect-tags bindings
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Evan Green <evgreen@chromium.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7e117c01-fa6e-45f3-05b7-4efe7a3c1943@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 20, 2020 at 11:51 AM Sibi Sankar <sibis@codeaurora.org> wrote:
->
-> On 2020-05-20 01:27, Saravana Kannan wrote:
-> > On Tue, May 19, 2020 at 11:58 AM Rob Herring <robh@kernel.org> wrote:
-> >>
-> >> On Tue, May 12, 2020 at 03:53:26PM +0300, Georgi Djakov wrote:
-> >> > From: Sibi Sankar <sibis@codeaurora.org>
-> >> >
-> >> > Add interconnect-tags bindings to enable passing of optional
-> >> > tag information to the interconnect framework.
-> >> >
-> >> > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> >> > Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> >> > ---
-> >> > v8:
-> >> > * New patch, picked from here:
-> >> >   https://lore.kernel.org/r/20200504202243.5476-10-sibis@codeaurora.org
-> >> >
-> >> >  .../devicetree/bindings/interconnect/interconnect.txt        | 5 +++++
-> >> >  1 file changed, 5 insertions(+)
-> >> >
-> >> > diff --git a/Documentation/devicetree/bindings/interconnect/interconnect.txt b/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> >> > index 6f5d23a605b7..c1a226a934e5 100644
-> >> > --- a/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> >> > +++ b/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> >> > @@ -55,6 +55,11 @@ interconnect-names : List of interconnect path name strings sorted in the same
-> >> >                        * dma-mem: Path from the device to the main memory of
-> >> >                                   the system
-> >> >
-> >> > +interconnect-tags : List of interconnect path tags sorted in the same order as the
-> >> > +                 interconnects property. Consumers can append a specific tag to
-> >> > +                 the path and pass this information to the interconnect framework
-> >> > +                 to do aggregation based on the attached tag.
-> >>
-> >> Why isn't this information in the 'interconnect' arg cells?
-> >>
-> >> We have 'interconnect-names' because strings don't mix with cells. An
-> >> expanding list of 'interconnect-.*' is not a good pattern IMO.
->
-> Rob,
-> Currently the interconnect paths
-> assume a default tag and only few
-> icc paths require tags that differ
-> from the default ones. Encoding the
-> tags in the interconnect arg cells
-> would force all paths to specify
-> the tags. I guess that's okay.
+Hi Dan
 
-I think that's the right thing. Those cells are meant to be "args" to
-the provider.
+> UGH I think I just got volunteered to do make them common.
 
-> >
-> > Also, is there an example for interconnect-tags that I missed? Is it a
-> > list of strings, numbers, etc?
->
-> Saravana,
-> https://patchwork.kernel.org/patch/11527589/
-> ^^ is an example of interconnect-tag useage.
+There is code you can copy from PHY drivers. :-)
 
-If we actually merge interconnect-tags, I think the doc should be
-updated. Instead of having to grep around.
+What would be kind of nice is if the validate was in the core as
+well. Pass a list of possible delays in pS, and it will do a
+phydev_err() if what is in DT does not match one of the listed
+delays. Take a look around at what current drivers do and see if you
+can find a nice abstraction which will work for a few drivers. We
+cannot easily convert existing drivers without breaking DT, but a
+design which works in theory for what we currently have has a good
+chance of working for any new PHY driver.
 
--Saravana
+     Andrew
