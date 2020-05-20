@@ -2,97 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C1B1DA61F
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 02:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A861DA690
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 02:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728292AbgETAHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 May 2020 20:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728369AbgETAHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 May 2020 20:07:52 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265AAC061A0E
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 17:07:52 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id a5so430474pjh.2
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2020 17:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=v4Zua8syvVDyjlKtRUfz1/JaYZeWqEjXOGIn23EyWyY=;
-        b=K+j+o19Q2tjCH8aojaNFPWFNI5EAyV3RM0XCJbordzLCrPzzRJzsvDX6PBJYj6/mXs
-         y9/kW8FQem+xVoDvQ4JOnEg+Exqf5VUe6UU8eb4qdNibziBOVvkn/0A3SgEOvIZqNTeg
-         LbsfdqYe3c6woAkL9qYV11X4NkGYe2+StiJB7exTsj/X2H9OKtpocEz11GQL7skYh8hj
-         rIKgmaTIgrO1ntQxvY5xdDhlyNhIrXYOzIlTF+tiQxpSuHNW/fJoRrmhiyZzT9tSbyj9
-         tPlAitPiGpgSxszcZBgqCbeSr/wCrYfBEJUzFDMdMCz8yTYFomT3tOySyHoR+iLVsQvC
-         cZ9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=v4Zua8syvVDyjlKtRUfz1/JaYZeWqEjXOGIn23EyWyY=;
-        b=nExurbXHsGbz90b4un/C/bEIWc9b66dOEzWecnS11aRyxDJHJINB+lnkUV4WJ4LA/d
-         saXgDIs1dmC8rb/oOwdWxM9PiPebFxcyT5RdDaYwKCGVqfauTl7mO5o+9P+jAEadfSRF
-         Mo2yS0u1ATxAA4FXkZZTtUCEFJUtUYxk3eT1a6zfnknZbqGd7JBWiJJ4vWOmSG/3FYbZ
-         wclzjVbtfDVWnuqqANIKW26jDNLuhbCmUDJFG/janWrLLX1zvEATrhURMN/imBX5AOmh
-         tIjf6UF6LRgoNZ98NTS5eSVKW+z8EQDRLE7Qyx3vR8Xwzqg7oLbL8mne/s0uBK0wBKUY
-         zUSQ==
-X-Gm-Message-State: AOAM531DTROXpI+u9zWYrBYZdpz55wFeEnmyQOaDoQ5kgN4ttEwPhTIu
-        OCz4r7kcUFLee7eTalWlh5E/OA==
-X-Google-Smtp-Source: ABdhPJzrZMtPAglu8Lp6rv2NhYAg8uMIsQJ02jmlsVDWUhGgpM4226LIixXFfHuO8Pd9+30COJ9tFw==
-X-Received: by 2002:a17:902:b18b:: with SMTP id s11mr1886573plr.160.1589933271579;
-        Tue, 19 May 2020 17:07:51 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id w186sm505288pff.83.2020.05.19.17.07.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2020 17:07:51 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 0/7] arm64: dts: meson: add internal audio DAC support
-Date:   Tue, 19 May 2020 17:07:45 -0700
-Message-Id: <158993320300.34448.14791273150623120523.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200506221656.477379-1-jbrunet@baylibre.com>
-References: <20200506221656.477379-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728303AbgETAa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 May 2020 20:30:27 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:56780 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726178AbgETAa0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 May 2020 20:30:26 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 948661A0210;
+        Wed, 20 May 2020 02:30:23 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7BF0F1A0237;
+        Wed, 20 May 2020 02:30:18 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2401F402BB;
+        Wed, 20 May 2020 08:30:12 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] dt-bindings: gpio: Convert mxs to json-schema
+Date:   Wed, 20 May 2020 08:20:35 +0800
+Message-Id: <1589934035-5309-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 May 2020 00:16:49 +0200, Jerome Brunet wrote:
-> This patchset adds support for the internal audio DAC found on the gxl,
-> g12 and sm1 SoC family.
-> 
-> It was mainly tested on the gxl libretech-cc and g12a u200.
-> 
-> /!\
-> This series (patches 1 in particular) depends on this reset binding [0].
-> Philipp has provided an immutable with it here [1]
-> 
-> [...]
+Convert the MXS GPIO binding to DT schema format using json-schema.
 
-Applied, thanks!
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ .../devicetree/bindings/gpio/gpio-mxs.txt          |  88 -------------
+ .../devicetree/bindings/gpio/gpio-mxs.yaml         | 136 +++++++++++++++++++++
+ 2 files changed, 136 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mxs.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
 
-[1/7] arm64: dts: meson: gxl: add acodec support
-      commit: a66d4ae3144a18476626dd8de8b8dff5f523daee
-[2/7] arm64: dts: meson: p230-q200: add internal DAC support
-      commit: f3c35382259f67c2ae878de2142fb58b94df0525
-[3/7] arm64: dts: meson: libretech-cc: add internal DAC support
-      commit: 249ce3777c25b383702e91a6547ffc676dc004a5
-[4/7] arm64: dts: meson: libretech-ac: add internal DAC support
-      commit: 451323f8bc9e9b701b87b4598ec1cac8eff82d15
-[5/7] arm64: dts: meson: libretech-pc: add internal DAC support
-      commit: 2989a2d6c7f36da2bddffdb293bdf123e735d5f7
-[6/7] arm64: dts: meson: g12: add internal DAC
-      commit: 457fa78771a23ecedf3bcd9ce9946a5183472ff6
-[7/7] arm64: dts: meson: g12: add internal DAC glue
-      commit: dbffd7f9bdb463437d3c3f7c3e1bd4379a785fe4
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mxs.txt b/Documentation/devicetree/bindings/gpio/gpio-mxs.txt
+deleted file mode 100644
+index 1e677a4..0000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-mxs.txt
++++ /dev/null
+@@ -1,88 +0,0 @@
+-* Freescale MXS GPIO controller
+-
+-The Freescale MXS GPIO controller is part of MXS PIN controller.  The
+-GPIOs are organized in port/bank.  Each port consists of 32 GPIOs.
+-
+-As the GPIO controller is embedded in the PIN controller and all the
+-GPIO ports share the same IO space with PIN controller, the GPIO node
+-will be represented as sub-nodes of MXS pinctrl node.
+-
+-Required properties for GPIO node:
+-- compatible : Should be "fsl,<soc>-gpio".  The supported SoCs include
+-  imx23 and imx28.
+-- interrupts : Should be the port interrupt shared by all 32 pins.
+-- gpio-controller : Marks the device node as a gpio controller.
+-- #gpio-cells : Should be two.  The first cell is the pin number and
+-  the second cell is used to specify the gpio polarity:
+-      0 = active high
+-      1 = active low
+-- interrupt-controller: Marks the device node as an interrupt controller.
+-- #interrupt-cells : Should be 2.  The first cell is the GPIO number.
+-  The second cell bits[3:0] is used to specify trigger type and level flags:
+-      1 = low-to-high edge triggered.
+-      2 = high-to-low edge triggered.
+-      4 = active high level-sensitive.
+-      8 = active low level-sensitive.
+-
+-Note: Each GPIO port should have an alias correctly numbered in "aliases"
+-node.
+-
+-Examples:
+-
+-aliases {
+-	gpio0 = &gpio0;
+-	gpio1 = &gpio1;
+-	gpio2 = &gpio2;
+-	gpio3 = &gpio3;
+-	gpio4 = &gpio4;
+-};
+-
+-pinctrl@80018000 {
+-	compatible = "fsl,imx28-pinctrl", "simple-bus";
+-	reg = <0x80018000 2000>;
+-
+-	gpio0: gpio@0 {
+-		compatible = "fsl,imx28-gpio";
+-		interrupts = <127>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-
+-	gpio1: gpio@1 {
+-		compatible = "fsl,imx28-gpio";
+-		interrupts = <126>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-
+-	gpio2: gpio@2 {
+-		compatible = "fsl,imx28-gpio";
+-		interrupts = <125>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-
+-	gpio3: gpio@3 {
+-		compatible = "fsl,imx28-gpio";
+-		interrupts = <124>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-
+-	gpio4: gpio@4 {
+-		compatible = "fsl,imx28-gpio";
+-		interrupts = <123>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+new file mode 100644
+index 0000000..ccf5b50
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+@@ -0,0 +1,136 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MXS GPIO controller
++
++maintainers:
++  - Shawn Guo <shawn.guo@linaro.org>
++  - Anson Huang <Anson.Huang@nxp.com>
++
++description: |
++  The Freescale MXS GPIO controller is part of MXS PIN controller.
++  The GPIOs are organized in port/bank, each port consists of 32 GPIOs.
++  As the GPIO controller is embedded in the PIN controller and all the
++  GPIO ports share the same IO space with PIN controller, the GPIO node
++  will be represented as sub-nodes of MXS pinctrl node.
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx23-pinctrl
++      - fsl,imx28-pinctrl
++
++  '#address-cells':
++    const: 1
++  '#size-cells':
++    const: 0
++
++  reg:
++    maxItems: 1
++
++patternProperties:
++  "gpio@[0-9]+$":
++    type: object
++    properties:
++      compatible:
++        enum:
++          - fsl,imx23-gpio
++          - fsl,imx28-gpio
++
++      reg:
++        maxItems: 1
++
++      interrupts:
++        description: Should be the port interrupt shared by all 32 pins.
++        maxItems: 1
++
++      interrupt-controller: true
++
++      "#interrupt-cells":
++        const: 2
++
++      "#gpio-cells":
++        const: 2
++
++      gpio-controller: true
++
++    required:
++      - compatible
++      - reg
++      - interrupts
++      - interrupt-controller
++      - "#interrupt-cells"
++      - "#gpio-cells"
++      - gpio-controller
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    pinctrl@80018000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        compatible = "fsl,imx28-pinctrl";
++        reg = <0x80018000 0x2000>;
++
++        gpio@0 {
++                compatible = "fsl,imx28-gpio";
++                reg = <0>;
++                interrupts = <127>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
++
++        gpio@1 {
++                compatible = "fsl,imx28-gpio";
++                reg = <1>;
++                interrupts = <126>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
++
++        gpio@2 {
++                compatible = "fsl,imx28-gpio";
++                reg = <2>;
++                interrupts = <125>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
++
++        gpio@3 {
++                compatible = "fsl,imx28-gpio";
++                reg = <3>;
++                interrupts = <124>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
++
++        gpio@4 {
++                compatible = "fsl,imx28-gpio";
++                reg = <4>;
++                interrupts = <123>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
++    };
 -- 
-Kevin Hilman <khilman@baylibre.com>
+2.7.4
+
