@@ -2,89 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D0A91DB35B
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 14:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A3F1DB3A7
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2020 14:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726958AbgETMda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 08:33:30 -0400
-Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17708 "EHLO
-        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726868AbgETMd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 May 2020 08:33:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1589977932; cv=none; 
-        d=zoho.com.cn; s=zohoarc; 
-        b=Ik0Yigs8kImtKhjXZnlMAInonF7b/WsWonJh+gODoNZXScAlhj+leFUpuOQGOFU2QVL9m0hstajj9njFXh7BeEZaD+0c4rMG0bmZ1bVV4eYTYBdiYHVXXU+dbZpfnZMHhqZzKu+IH4SW6Yfa6ycINAoyAeAUkFgTsG7I36u/mbc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com.cn; s=zohoarc; 
-        t=1589977932; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:Reply-To:References:Subject:To; 
-        bh=TJqmWfeUuN5LE75nul3wH3FZ6nQ1yQSdQfK6PtOHOHs=; 
-        b=O2Au6E6yKNllX40+daihOylvmzJCdZenyqgJHZaYbeCGZvSlQ5nEjMfUDwDKkZjsYDs8M70ZoKeYOuT4P0dGYpi2Pgv0TRAPtO714bx/bs3nFrIbvdEwcTjNi5Xhvz8Lz0dmIyfboL2mB4nLD+YDyMnSmmGYKXW3n9gpM22f3ik=
-ARC-Authentication-Results: i=1; mx.zoho.com.cn;
-        dkim=pass  header.i=flygoat.com;
-        spf=pass  smtp.mailfrom=jiaxun.yang@flygoat.com;
-        dmarc=pass header.from=<jiaxun.yang@flygoat.com> header.from=<jiaxun.yang@flygoat.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1589977932;
-        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
-        h=Date:From:To:CC:Subject:Reply-to:In-Reply-To:References:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
-        bh=TJqmWfeUuN5LE75nul3wH3FZ6nQ1yQSdQfK6PtOHOHs=;
-        b=FPh8G8GY+zJnnKuDxur7rUuF/DurU4V4e9Wx3Za4T0yrgFvXXKgl8Q/MJRyK+zby
-        5p529MSsXY5b722bnTsLlU5d6PaW5DfyXR+SCdodNEMEmHQY5Ntpxo1uvU3c+Uo+1jj
-        M5MLJ7GLWH66SmoY4v3+X+wGHp0Sz5Tasa2+cKw8=
-Received: from [127.0.0.1] (223.104.210.187 [223.104.210.187]) by mx.zoho.com.cn
-        with SMTPS id 1589977929817309.0615537915593; Wed, 20 May 2020 20:32:09 +0800 (CST)
-Date:   Wed, 20 May 2020 20:32:01 +0800
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Zhou Yanjie <zhouyanjie@wanyeetech.com>
-CC:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, tsbogend@alpha.franken.de,
-        paulburton@kernel.org, chenhc@lemote.com, tglx@linutronix.de,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        keescook@chromium.org, krzk@kernel.org, hns@goldelico.com,
-        ebiederm@xmission.com, dongsheng.qiu@ingenic.com,
-        yanfei.li@ingenic.com, rick.tyliu@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Subject: Re: [PATCH v8 1/6] MIPS: JZ4780: Introduce SMP support.
-User-Agent: K-9 Mail for Android
-Reply-to: jiaxun.yang@flygoat.com
-In-Reply-To: <M3OMAQ.GEVVI159THK33@crapouillou.net>
-References: <1589898923-60048-1-git-send-email-zhouyanjie@wanyeetech.com> <1589898923-60048-3-git-send-email-zhouyanjie@wanyeetech.com> <M1GLAQ.UK9S5G64TOOO3@crapouillou.net> <5EC4DADD.1000801@wanyeetech.com> <M3OMAQ.GEVVI159THK33@crapouillou.net>
-Message-ID: <13934660-2138-489A-A87E-A6AA222F6218@flygoat.com>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-ZohoCNMailClient: External
+        id S1726435AbgETMh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 08:37:29 -0400
+Received: from mga03.intel.com ([134.134.136.65]:9336 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726224AbgETMh2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 May 2020 08:37:28 -0400
+IronPort-SDR: k7Y1Pe3kkZeKiDKbKkQMuPtC+ZTtLebrb1dM5Rpi4hgBpX1r3KNEyKNPIJ0uo9ByEBp7tjl7tx
+ 0Uy7liME92rw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2020 05:37:27 -0700
+IronPort-SDR: D5/HcTSd977KFLxOHQe/HElu2vRfxizSz4HNHvwrYSkd5NtICZkOT9hg2FOQPuV68APxcZxgcg
+ vwHJhpKNr74g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,414,1583222400"; 
+   d="scan'208";a="412004419"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga004.jf.intel.com with ESMTP; 20 May 2020 05:37:25 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        broonie@kernel.org, vigneshr@ti.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com,
+        Ramuthevar Vadivel Murugan 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v2 1/1] dt-bindings: spi: Add schema for Cadence QSPI Controller driver
+Date:   Wed, 20 May 2020 20:36:12 +0800
+Message-Id: <20200520123612.11797-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 
+Add dt-bindings documentation for Cadence-QSPI controller to support
+spi based flash memories.
 
-=E4=BA=8E 2020=E5=B9=B45=E6=9C=8820=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=887=
-:33:22, Paul Cercueil <paul@crapouillou=2Enet> =E5=86=99=E5=88=B0:
->>=20
->> Yes, the current way is indeed a little problem, it will cause=20
->> num_possible_cpus() =3D=3D NR_CPUS, I will try to find a better way=2E
->
->You can do:
->
->for_each_of_cpu_node(cpu_node) {
->       cpu =3D of_cpu_node_to_id(cpu_node);
->       __cpu_number_map[cpu] =3D cpu;
->       __cpu_logical_map[cpu] =3D cpu;
->       set_cpu_possible(cpu, true);
->}
->
+Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+---
+ .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 -----------
+ .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 133 +++++++++++++++++++++
+ 2 files changed, 133 insertions(+), 67 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
 
-FYI: There is a abandoned DeviceTree[1], parser=2E You can take it=2E
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+deleted file mode 100644
+index 945be7d5b236..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
++++ /dev/null
+@@ -1,67 +0,0 @@
+-* Cadence Quad SPI controller
+-
+-Required properties:
+-- compatible : should be one of the following:
+-	Generic default - "cdns,qspi-nor".
+-	For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
+-	For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+-- reg : Contains two entries, each of which is a tuple consisting of a
+-	physical address and length. The first entry is the address and
+-	length of the controller register set. The second entry is the
+-	address and length of the QSPI Controller data area.
+-- interrupts : Unit interrupt specifier for the controller interrupt.
+-- clocks : phandle to the Quad SPI clock.
+-- cdns,fifo-depth : Size of the data FIFO in words.
+-- cdns,fifo-width : Bus width of the data FIFO in bytes.
+-- cdns,trigger-address : 32-bit indirect AHB trigger address.
+-
+-Optional properties:
+-- cdns,is-decoded-cs : Flag to indicate whether decoder is used or not.
+-- cdns,rclk-en : Flag to indicate that QSPI return clock is used to latch
+-  the read data rather than the QSPI clock. Make sure that QSPI return
+-  clock is populated on the board before using this property.
+-
+-Optional subnodes:
+-Subnodes of the Cadence Quad SPI controller are spi slave nodes with additional
+-custom properties:
+-- cdns,read-delay : Delay for read capture logic, in clock cycles
+-- cdns,tshsl-ns : Delay in nanoseconds for the length that the master
+-                  mode chip select outputs are de-asserted between
+-		  transactions.
+-- cdns,tsd2d-ns : Delay in nanoseconds between one chip select being
+-                  de-activated and the activation of another.
+-- cdns,tchsh-ns : Delay in nanoseconds between last bit of current
+-                  transaction and deasserting the device chip select
+-		  (qspi_n_ss_out).
+-- cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
+-                  and first bit transfer.
+-- resets	: Must contain an entry for each entry in reset-names.
+-		  See ../reset/reset.txt for details.
+-- reset-names	: Must include either "qspi" and/or "qspi-ocp".
+-
+-Example:
+-
+-	qspi: spi@ff705000 {
+-		compatible = "cdns,qspi-nor";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0xff705000 0x1000>,
+-		      <0xffa00000 0x1000>;
+-		interrupts = <0 151 4>;
+-		clocks = <&qspi_clk>;
+-		cdns,is-decoded-cs;
+-		cdns,fifo-depth = <128>;
+-		cdns,fifo-width = <4>;
+-		cdns,trigger-address = <0x00000000>;
+-		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
+-		reset-names = "qspi", "qspi-ocp";
+-
+-		flash0: n25q00@0 {
+-			...
+-			cdns,read-delay = <4>;
+-			cdns,tshsl-ns = <50>;
+-			cdns,tsd2d-ns = <50>;
+-			cdns,tchsh-ns = <4>;
+-			cdns,tslch-ns = <4>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+new file mode 100644
+index 000000000000..1c15acc184b3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -0,0 +1,133 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/spi/cdns,qspi-nor.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Cadence QSPI Flash Controller support
++
++maintainers:
++  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
++
++allOf:
++  - $ref: "spi-controller.yaml#"
++
++description: |
++  Binding Documentation for Cadence QSPI controller,This controller is
++  present in the Intel LGM, Altera SoCFPGA and TI SoCs and this driver
++  has been tested On Intel's LGM SoC.
++
++properties:
++  compatible:
++     enum:
++       - cdns,qspi-nor
++       - ti,k2g-qspi
++       - ti,am654-ospi
++       - intel,lgm-qspi
++
++  reg:
++    items:
++      - description:
++          The first entry is the address and length of
++          the controller register set.
++      - description:
++          The second entry is the address and length of
++          the QSPI Controller data area.
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  cdns,fifo-depth:
++    description:
++     Depth of hardware FIFO in words.
++    allOf:
++      - $ref: "/schemas/types.yaml#/definitions/uint32"
++      - enum: [ 128, 256 ]
++      - default: 128
++
++  cdns,fifo-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    multipleOf: 4
++    description:
++      4 byte bus width of the data FIFO in bytes.
++
++  cdns,trigger-address:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      32-bit indirect AHB trigger address.
++
++  cdns,rclk-en:
++    type: boolean
++    description: |
++      Flag to indicate that QSPI return clock is used to latch the read data
++      rather than the QSPI clock. Make sure that QSPI return clock is populated
++      on the board before using this property.
++
++# subnode's properties
++patternProperties:
++  "@[0-9a-f]+$":
++    type: object
++    description:
++      flash device uses the subnodes below defined properties.
++
++  cdns,read-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Delay for read capture logic, in clock cycles.
++
++  cdns,tshsl-ns:
++    description: |
++      Delay in nanoseconds for the length that the master mode chip select
++      outputs are de-asserted between transactions.
++
++  cdns,tsd2d-ns:
++    description: |
++      Delay in nanoseconds between one chip select being de-activated
++      and the activation of another.
++
++  cdns,tchsh-ns:
++    description: |
++      Delay in nanoseconds between last bit of current transaction and
++      deasserting the device chip select (qspi_n_ss_out).
++
++  cdns,tslch-ns:
++    description: |
++      Delay in nanoseconds between setting qspi_n_ss_out low and
++      first bit transfer.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - cdns,fifo-depth
++  - cdns,fifo-width
++  - cdns,trigger-address
++
++examples:
++  - |
++    spi@ff705000 {
++          compatible = "cdns,qspi-nor";
++          #address-cells = <1>;
++          #size-cells = <0>;
++          reg = <0xff705000 0x1000>,
++                <0xffa00000 0x1000>;
++          interrupts = <0 151 4>;
++          clocks = <&qspi_clk>;
++          cdns,fifo-depth = <128>;
++          cdns,fifo-width = <4>;
++          cdns,trigger-address = <0x00000000>;
++
++          flash@0 {
++              compatible = "jedec,spi-nor";
++              reg = <0x0>;
++              cdns,read-delay = <4>;
++              cdns,tshsl-ns = <50>;
++              cdns,tsd2d-ns = <50>;
++              cdns,tchsh-ns = <4>;
++              cdns,tslch-ns = <4>;
++          };
++    };
++
+-- 
+2.11.0
 
-I'm going to submit this topology clean-up for next release cycle
-but you can pick it for now=2E
-
-[=2E=2E=2E]
-
-[1]: https://lkml=2Eorg/lkml/2020/4/11/1088
---=20
-Jiaxun Yang
