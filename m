@@ -2,51 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B1921DD323
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 18:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08DDC1DD32A
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 18:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728446AbgEUQgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 12:36:07 -0400
-Received: from sonic304-21.consmr.mail.ne1.yahoo.com ([66.163.191.147]:40355
-        "EHLO sonic304-21.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726938AbgEUQgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 12:36:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1590078965; bh=6mffK3RH01pMSJbI3gzRyn/TJ4jPuu2pqeTpPbg3ras=; h=Date:From:Reply-To:Subject:References:From:Subject; b=Y4+GZZKGGClMf6Q8kbESS8/1I9ZOZO8t3oI49jEJAlvUmJ0/ThZcCFo9YB2ptAztHfQ4RxjxMPORfmePkdIWmRJCZOL8lz8imwdLl8vOsX60VgjM6fPzXKKniLBu6RKZ//AxdS/a23VUlgmn578M4FwKswOeMz/K+VdZprtjmSMJY++Xqgir1uZ+gs2KOHcnDOD6sc0Z9CjJKPRmFKfPpCbSs9CxqjJ+1gOjoN/sVRwcBLdj3aISZSpAgFOvAarUcer2xWbcFAoD8mD9zVUovB01IxwiEgvdkXfGGGa4nJK1TWe8dDpv0lr4+CjZGnhbj9VcexP79N+16hLXvg5s8w==
-X-YMail-OSG: 846i7RIVM1lrqFAy24zLj.Nxil7sSdhj2GasAN_Om5TX8FUr0AiSOX8bv1SFnTC
- awd.et.g3xt5AJLquZola.OXwTuEpSleq6ODz1ZXmWHrty_E9Wtbzcc1o002cWSMcdJ_CDdq2KpC
- jDnft19HzgwL0zF7s7PS81gDG6vKeTqDHMpagwGL0J8GYXPwIzs_zu.VhAwF9vqujJ6xe8z5LGcV
- Nevz0_vl.XYuga56Bkl9Esi5xrQOl_yeXtsuugMCJmPp9MiqwnYKIR8lDm4KFr6FrOubD2lCkW9v
- 9zOjF4YpiwDGKD6zsMLmf5TA2Jur7JoL_u4hnBGe3Y2HkAdo7un7WDly4U0SRUocGnf_sQ6MBLRw
- 2j2pxToWXmo.QI66oZKa55CNY9HKErSN1JwmVtZVEHcIUwub9R6_fuCgN_xh3JfeXdz4M_xtEVSM
- r0noLhNmFepodwjlwNdNITYfQO1CmWQCipDwlUQv7mu2fgseuM.iV.z4sbF_9Q954JLjCOLAs9ws
- 5rGpol9nxVk4OCcUysQ8g6KkBk.hFdl5LaGZwvtNlLb7k.58w.gZJsUrKaNJojT6qmYiXRA39utH
- 0uF65RyuL08FflaTx7nPVK4CvNRsG9.0062wDIaw7OYMxEjfldzGsBDN2JPDIuvh27uoFzuQjhTu
- _uhGkME0SUFwzMJ5QZmu5t3EHmEDNm0grVhl6IXlirfaECHJHPNNG4e..JaE6pvtm33MUrdYllHr
- v8AnxD_vaSrImE6bVEF_.9ySv0OnDondvqyc.NQ4m2B18uGA60IXeegxKKxlWzjoFJaaJg.Z2Kg.
- 2gPx27UBdmr._oZrpvz0icXgp6MfC.6zkfq1FLERoOkEIoGMK6KxQLQ90Xtz62iIykgA96uKFt3R
- O_QdYqK5nF7z5D0DmJ6Th.pTsfxDKeYpWi3F66XeEwLYd6Nfr997tw5beuQH2KmgkKP2ECOlBtjD
- 3oX1zmvQuGbQwb5kWKe.Qg_aGent7EY3DbboZxfm3rq07BLzidhbOGM3LNwDyFnJFmprmk7pnqAs
- S5hNbDyxCcACPCaMgC0g_7wleRT3u63__ZMia5jinkduZiM9_8YNG7qjaf55MYaqVntVAQ9DJ_e2
- H.OZT78ToX7A.Gnqg6rfNCvPIL4LU3DfhOxg4Dwd5lzi2AjZnrekoJjd9XT1NX8ekY8kSASaKseY
- GDW55g.YIKvL5L3wslbY2.CHwHQPaDXDKg1GuJ4IsZBL3MoS0xlZmlesf8pzE69Ec7hQVbaySJoB
- nqomCVxiKWqzIv.TqUWDbxdvus8pG6kSuiym7s_MZc8O7lq_L_yLFyKEbsYnJHcV6kpdfXgpCsA-
- -
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.ne1.yahoo.com with HTTP; Thu, 21 May 2020 16:36:05 +0000
-Date:   Thu, 21 May 2020 16:36:03 +0000 (UTC)
-From:   Rose Gordon <rosegordonor@gmail.com>
-Reply-To: rosegordonor@gmail.com
-Message-ID: <1742494710.503033.1590078963457@mail.yahoo.com>
-Subject: Hi there
+        id S1729549AbgEUQjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 12:39:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56958 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726938AbgEUQjI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 May 2020 12:39:08 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AA3982072C;
+        Thu, 21 May 2020 16:39:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590079147;
+        bh=d1LNfflc2xncKAMYKDK3/akbZicrB/VqCYFFRCJWhn0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TE5HNonA6//A6to+71Mf+4I7jptBHdR05iodEwYKCIWVdc0qq3g/x+EOxeXQ8DrEP
+         /mGpITDcHqQPLlUl9rf1vWjb33vXv6GutJWPi92KiOqkbRqT0b67zmpYwWMB9LxTvL
+         /MidcaVFaealb/QkwqNgBOl0W3PpLK1WswNHr/dU=
+Date:   Thu, 21 May 2020 17:39:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Clement Leger <cleger@kalray.eu>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 03/16] spi: dw: Discard static DW DMA slave structures
+Message-ID: <20200521163904.GF4770@sirena.org.uk>
+References: <20200521012206.14472-1-Sergey.Semin@baikalelectronics.ru>
+ <20200521012206.14472-4-Sergey.Semin@baikalelectronics.ru>
+ <CAHp75VcOX-hZSxHqro_W2X=KzSShg1V=jAsxdz8L5TZpW0kBYA@mail.gmail.com>
+ <20200521121228.aqplh6eftylnys3p@mobilestation>
+ <20200521155143.GE4770@sirena.org.uk>
+ <20200521155804.qgaaqc23h2nll7r3@mobilestation>
+ <CAHp75VcY9HG3=wft9VFWKJD9PG6TiSbmOyjgYZyue+z3PW_eCQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-References: <1742494710.503033.1590078963457.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15959 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="TU+u6i6jrDPzmlWF"
+Content-Disposition: inline
+In-Reply-To: <CAHp75VcY9HG3=wft9VFWKJD9PG6TiSbmOyjgYZyue+z3PW_eCQ@mail.gmail.com>
+X-Cookie: Keep your laws off my body!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Best of the day to you I'm Rose by name 32years old single lady, Can we be friends? i was born and raised in london in United Kingdom Take care Rose.
+
+--TU+u6i6jrDPzmlWF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, May 21, 2020 at 07:02:32PM +0300, Andy Shevchenko wrote:
+> On Thu, May 21, 2020 at 6:58 PM Serge Semin
+
+> > Let's leave the patch as is.
+
+> Mark, should I send a partial revert afterwards in this case?
+> I'm not fully satisfied with it.
+
+That might be a suitable way to keep the peace here.  You are clearly
+both much more passionate about this choice than I am.
+
+--TU+u6i6jrDPzmlWF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7GrqcACgkQJNaLcl1U
+h9D6rwf/fACnRPPiV00dxVVND5ILBPJ1KzpV9NsThKr1PvqPTsJn7f0pKyas63Sf
+eoygJfneMKi3kZlj2wQJMKD8bCs4hXF4NeKPlUAMgN+rTHrC++vj509B7sNSLgDR
+r4Knt6+ur9iFTXvYggP7mbmAqFfbsVDTlCHViHgjXmRMoqT4lrPVhC6EcvwlUoaI
+ykrGzD+C6olEFbneErNLY2mIJhTcs8s90YT5VpccRx0oWLkVL0eQo8gBrSrQc+10
+nwQpIJVsIf/XFhvz/SPEank//XrgjOY6E2w+yN5d9AzpywJuqRQ8tILg5Y5KRqOL
+dQU19zRqFgoB6lKbX1KTFzX2GFNoXg==
+=jRLZ
+-----END PGP SIGNATURE-----
+
+--TU+u6i6jrDPzmlWF--
