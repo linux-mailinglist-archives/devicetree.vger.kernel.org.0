@@ -2,213 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A44AD1DC35C
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 02:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A55571DC374
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 02:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgEUAK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 20:10:28 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48446 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726827AbgEUAKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 20:10:24 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04L0AGhP039962;
-        Wed, 20 May 2020 19:10:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1590019816;
-        bh=fyj/A44wMsZ1NeWYNrpqdgs9QWSsqWp9lY0ct4O7634=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qrtnEqSfflYjpW2c8oN2FLWREcAGnEN++eZZnv6g9r4tKfyf0b+v1oB68RcK4bpaO
-         suMGanqz+WY5asH/4KFtxUbHISWSuNInUFmXEui0X6nM9UGJ2vxWKw0SvxcAWUQwJe
-         AwdxzxOF0AtpbHJTnPngx0luk0RuK5xh3UHDuSzE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04L0AGhl034567
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 May 2020 19:10:16 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
- May 2020 19:10:16 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 May 2020 19:10:16 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04L0AGQK003730;
-        Wed, 20 May 2020 19:10:16 -0500
-Received: from localhost ([10.250.48.148])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 04L0AGc6084900;
-        Wed, 20 May 2020 19:10:16 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 4/4] remoteproc/k3-dsp: Add support for L2RAM loading on C66x DSPs
-Date:   Wed, 20 May 2020 19:10:06 -0500
-Message-ID: <20200521001006.2725-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200521001006.2725-1-s-anna@ti.com>
-References: <20200521001006.2725-1-s-anna@ti.com>
+        id S1726748AbgEUAQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 20:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726619AbgEUAQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 20:16:22 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABE0C061A0E
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 17:16:22 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id u22so2047451plq.12
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 17:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CKY4Oy0szHs+SXs3qF7IEEqqnuvplQ8KwCGvnU/bQpo=;
+        b=U0MXHmlAfP5P0MqzM52RDzGO5Mc0i+3XvbBbg9U6S24BmvWfGRenxhKSTnLNNDGuTe
+         FjFq+eNeILeu1kr4TJcES8XpSkxwcMYv+OEVCdySiWlbjhysk9Lj71KOX/jRvj3aHP9U
+         DiA1rTvm8ZKkZE318umsJUVscdZYFN3T7uWBheP3YiX8J6EOhcFotN0Y5Ge2yoiwjTTi
+         TKeYzilmALmWGYD0ij+b2uC2Jp4wwqpcChFGSTwOQ+0J40Fqt/dIkYXetwcOhvICuTgo
+         afbuIdobI5mq2VjloKbonmTdwOLgDYX4BkKtcx+sFAtqmWBwThuGF7f0y8pKPNG3xzhB
+         DG3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CKY4Oy0szHs+SXs3qF7IEEqqnuvplQ8KwCGvnU/bQpo=;
+        b=Rs73bJMvAca8WcXlRmOCJ+Xm1FAW9zrnQl955aM8s2wFFZboweZmYJzoTdIfKoauzk
+         N0Bff00EkGaTlSaWqWBTCVPw+HlCb9dC748wenHckm7sdzSUeRzPS2soQhM7w5ACR+kE
+         iXwapIsK8KEQYT80yweqYS2/hI4nukyiRncJr4hrczOpRkSwz6ZhMJdIg0efEx2vszBf
+         4BZZmHBO9EUuU8b7F0AIKfDtdJZNI18oMlimw6Ubulsc0fe7G4VbCqbG9oy+kLnhfKK7
+         H6EUlhC1yFqLWM4zSZxIT3kjohGllvt5AwGgsbESParYa7v0PlzDWMDw9WWUYr8ElAcI
+         T+6Q==
+X-Gm-Message-State: AOAM530eeyQJuRtt2Ci99Mki7kIMF6Uhujubw8jwTm6ZWYBbvuxsrAUq
+        nsgg5wXHcd7IxB1kAui6oxY=
+X-Google-Smtp-Source: ABdhPJxi36xznhpVJ6XOVpnfYkK6ARWMDgwnxhExFJhhPjgXaNjA9xT+s+E+k1/yoGttFPYrMAhh4w==
+X-Received: by 2002:a17:90a:a401:: with SMTP id y1mr2385842pjp.204.1590020181621;
+        Wed, 20 May 2020 17:16:21 -0700 (PDT)
+Received: from [10.230.188.43] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id l1sm2598255pgj.48.2020.05.20.17.16.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 May 2020 17:16:20 -0700 (PDT)
+Subject: Re: [PATCH] ARM: dts: bcm: HR2: Fix PPI interrupt types
+To:     Hamish Martin <hamish.martin@alliedtelesis.co.nz>,
+        robh+dt@kernel.org, rjui@broadcom.com, sbranden@broadcom.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20200520043042.7281-1-hamish.martin@alliedtelesis.co.nz>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <5ce77bf5-b61c-397d-feaf-29e9f80875bd@gmail.com>
+Date:   Wed, 20 May 2020 17:16:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200520043042.7281-1-hamish.martin@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The resets for the DSP processors on K3 SoCs are managed through the
-Power and Sleep Controller (PSC) module. Each DSP typically has two
-resets - a global module reset for powering on the device, and a local
-reset that affects only the CPU while allowing access to the other
-sub-modules within the DSP processor sub-systems.
 
-The C66x DSPs have two levels of internal RAMs that can be used to
-boot from, and the firmware loading into these RAMs require the
-local reset to be asserted with the device powered on/enabled using
-the module reset. Enhance the K3 DSP remoteproc driver to add support
-for loading into the internal RAMs. The local reset is deasserted on
-SoC power-on-reset, so logic has to be added in probe in remoteproc
-mode to balance the remoteproc state-machine.
 
-Note that the local resets are a no-op on C71x cores, and the hardware
-does not supporting loading into its internal RAMs.
+On 5/19/2020 9:30 PM, Hamish Martin wrote:
+> These error messages are output when booting on a BCM HR2 system:
+>     GIC: PPI11 is secure or misconfigured
+>     GIC: PPI13 is secure or misconfigured
+> 
+> Per ARM documentation these interrupts are triggered on a rising edge.
+> See ARM Cortex A-9 MPCore Technical Reference Manual, Revision r4p1,
+> Section 3.3.8 Interrupt Configuration Registers.
+> 
+> The same issue was resolved for NSP systems in commit 5f1aa51c7a1e
+> ("ARM: dts: NSP: Fix PPI interrupt types").
+> 
+> Signed-off-by: Hamish Martin <hamish.martin@alliedtelesis.co.nz>
+> ---
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2:
- - Dropped the local-reset no-op checks from k3_dsp_rproc_prepare/unprepare()
-   callbacks. The logic will be adjusted back in the C71 patch series.
- - The C71 local reset references are also removed from the comments for the
-   k3_dsp_rproc_prepare() function.
-v1: https://patchwork.kernel.org/patch/11458579/
-
- drivers/remoteproc/ti_k3_dsp_remoteproc.c | 72 +++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
-
-diff --git a/drivers/remoteproc/ti_k3_dsp_remoteproc.c b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-index e4036f5992fe..610fbbf85ee6 100644
---- a/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-@@ -174,6 +174,9 @@ static int k3_dsp_rproc_reset(struct k3_dsp_rproc *kproc)
- 		return ret;
- 	}
- 
-+	if (kproc->data->uses_lreset)
-+		return ret;
-+
- 	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
- 						    kproc->ti_sci_id);
- 	if (ret) {
-@@ -191,6 +194,9 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 	struct device *dev = kproc->dev;
- 	int ret;
- 
-+	if (kproc->data->uses_lreset)
-+		goto lreset;
-+
- 	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
- 						    kproc->ti_sci_id);
- 	if (ret) {
-@@ -198,6 +204,7 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 		return ret;
- 	}
- 
-+lreset:
- 	ret = reset_control_deassert(kproc->reset);
- 	if (ret) {
- 		dev_err(dev, "local-reset deassert failed, ret = %d\n", ret);
-@@ -209,6 +216,53 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 	return ret;
- }
- 
-+/*
-+ * The C66x DSP cores have a local reset that affects only the CPU, and a
-+ * generic module reset that powers on the device and allows the DSP internal
-+ * memories to be accessed while the local reset is asserted. This function is
-+ * used to release the global reset on C66x DSPs to allow loading into the DSP
-+ * internal RAMs. The .prepare() ops is invoked by remoteproc core before any
-+ * firmware loading, and is followed by the .start() ops after loading to
-+ * actually let the C66x DSP cores run.
-+ */
-+static int k3_dsp_rproc_prepare(struct rproc *rproc)
-+{
-+	struct k3_dsp_rproc *kproc = rproc->priv;
-+	struct device *dev = kproc->dev;
-+	int ret;
-+
-+	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
-+						    kproc->ti_sci_id);
-+	if (ret)
-+		dev_err(dev, "module-reset deassert failed, cannot enable internal RAM loading, ret = %d\n",
-+			ret);
-+
-+	return ret;
-+}
-+
-+/*
-+ * This function implements the .unprepare() ops and performs the complimentary
-+ * operations to that of the .prepare() ops. The function is used to assert the
-+ * global reset on applicable C66x cores. This completes the second portion of
-+ * powering down the C66x DSP cores. The cores themselves are only halted in the
-+ * .stop() callback through the local reset, and the .unprepare() ops is invoked
-+ * by the remoteproc core after the remoteproc is stopped to balance the global
-+ * reset.
-+ */
-+static int k3_dsp_rproc_unprepare(struct rproc *rproc)
-+{
-+	struct k3_dsp_rproc *kproc = rproc->priv;
-+	struct device *dev = kproc->dev;
-+	int ret;
-+
-+	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
-+						    kproc->ti_sci_id);
-+	if (ret)
-+		dev_err(dev, "module-reset assert failed, ret = %d\n", ret);
-+
-+	return ret;
-+}
-+
- /*
-  * Power up the DSP remote processor.
-  *
-@@ -352,6 +406,8 @@ static void *k3_dsp_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
- }
- 
- static const struct rproc_ops k3_dsp_rproc_ops = {
-+	.prepare	= k3_dsp_rproc_prepare,
-+	.unprepare	= k3_dsp_rproc_unprepare,
- 	.start		= k3_dsp_rproc_start,
- 	.stop		= k3_dsp_rproc_stop,
- 	.kick		= k3_dsp_rproc_kick,
-@@ -614,6 +670,22 @@ static int k3_dsp_rproc_probe(struct platform_device *pdev)
- 		goto release_tsp;
- 	}
- 
-+	/*
-+	 * ensure the DSP local reset is asserted to ensure the DSP doesn't
-+	 * execute bogus code in .prepare() when the module reset is released.
-+	 */
-+	if (data->uses_lreset) {
-+		ret = reset_control_status(kproc->reset);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to get reset status, status = %d\n",
-+				ret);
-+			goto release_mem;
-+		} else if (ret == 0) {
-+			dev_warn(dev, "local reset is deasserted for device\n");
-+			k3_dsp_rproc_reset(kproc);
-+		}
-+	}
-+
- 	ret = rproc_add(rproc);
- 	if (ret) {
- 		dev_err(dev, "failed to add register device with remoteproc core, status = %d\n",
+Applied to devicetree/fixes, please copy
+bcm-kernel-feedback-list@broadcom.com so we can have our CI pick up this
+patch. Thanks!
 -- 
-2.26.0
-
+Florian
