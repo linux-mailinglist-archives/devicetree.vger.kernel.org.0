@@ -2,95 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC691DCB7D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 12:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AABD51DCBDC
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 13:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728889AbgEUK4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 06:56:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33720 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728348AbgEUK4u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 06:56:50 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1F30206F6;
-        Thu, 21 May 2020 10:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1590058609;
-        bh=seW5V778px/AgzonYSOezyKQVmV3Co7HCNgbinTsjyg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jZbg4vvcLz0BWO3+7f3IRMU9tzhJygn8ioscFP/ZqnGFrF8ie91HV+nRvRe7qZKIL
-         S4NZZiLfJgP7Eo4tw1u7++Vd48k3aP42ktKeKc4oOt/epvOoOm3tlg+XEVahGyWWCX
-         SCivWjO4FdwbrEKnERNBtyqMub/z9gqjdOyvQsgw=
-Date:   Thu, 21 May 2020 11:56:46 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, vigneshr@ti.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v2 1/1] dt-bindings: spi: Add schema for Cadence QSPI
- Controller driver
-Message-ID: <20200521105646.GA4770@sirena.org.uk>
-References: <20200520123612.11797-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20200520124329.GF4823@sirena.org.uk>
- <fd086da7-7e18-83bc-d423-56095b0cff96@linux.intel.com>
+        id S1729184AbgEULKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 07:10:30 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:49307 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729173AbgEULK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 07:10:28 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 04LB9XhP018632;
+        Thu, 21 May 2020 14:09:34 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 20088)
+        id CCCD7639C0; Thu, 21 May 2020 14:09:33 +0300 (IDT)
+From:   Tali Perry <tali.perry1@gmail.com>
+To:     ofery@google.com, brendanhiggins@google.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, kfting@nuvoton.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, wsa@the-dreams.de,
+        andriy.shevchenko@linux.intel.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tali Perry <tali.perry1@gmail.com>,
+        kbuild test robot <lkp@intel.com>
+Subject: [PATCH v12 0/3] i2c: npcm7xx: add NPCM i2c controller driver
+Date:   Thu, 21 May 2020 14:09:07 +0300
+Message-Id: <20200521110910.45518-1-tali.perry1@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
-Content-Disposition: inline
-In-Reply-To: <fd086da7-7e18-83bc-d423-56095b0cff96@linux.intel.com>
-X-Cookie: Keep your laws off my body!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set adds i2c controller support 
+for the Nuvoton NPCM Baseboard Management Controller (BMC).
 
---0OAP2g/MAC+5xKAE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+NPCM7xx includes 16 I2C controllers. This driver operates the controller.
+This module also includes a slave mode.
 
-On Thu, May 21, 2020 at 10:18:26AM +0800, Ramuthevar, Vadivel MuruganX wrote:
-> On 20/5/2020 8:43 pm, Mark Brown wrote:
-> > On Wed, May 20, 2020 at 08:36:12PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+---
+v12 -> v11:
+	- Fix according to maintainer comments.
+	- debugfs simplified (usedebugfs_create_u64).
+	- slave read fifo split from master read fifo.
+v11 -> v10:
+	- Fix according to maintainer comments.
+	- Init clk simplified.
+	- Comments in c99
+	- Split master irq function.
+	- debugfs not mandatory.
+	- yaml file fix.
 
-> > >   .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 -----------
-> > >   .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 133 +++++++++++++++++++++
+v10 -> v9:
+	- Fix according to maintainer comments.
+	- binding file changed to yaml format.
+	- Shorten recovery flow.
+	- Add support for health monitoring counters.
 
-> > The changelog says this is adding a new binding but the actual change is
-> > mostly a conversion to YAML.  Please split the additions out into a
-> > separate change, ideally doing that before the conversion since there is
-> > a backlog on review of YAML conversions.
+v9 -> v8:
+	- Fix according to maintainer comments.
+	- Split lines of iowrite..(ioread..) to separate lines.
+	- Use readx_poll_timeout_atomic
+	- resolve various style issues.
+	 
+v8 -> v7:
+	- Split to two commits, one for master, one for slave.
+	- Rename smb to i2c.
+	- Remove global vars.
 
-> Initially was sending the only YAML file alone, then reviewers suggest to me
-> do this way so I did, next by split the patches like below...
+v7 -> v6:
+	- Rebased on Linux 5.4-rc8  (was Linux 5.4-rc7).
+	- Fix issue found by kbuild test robot (redundant include).
+	- Note: left a warning related to fall through. This fall through is
+	  intentional.
+	
+v6 -> v5:
+	- Update documentation
 
-> 1. remove the cadence-quadspi.txt (patch1)
-> 2. convert txt to YAML (patch2)
+v5 -> v4:
+	- support recovery
+	- master-slave switch support needed for IPMB
 
-That doesn't address either of the issues.  The removal of the old
-bindings and addition of the YAML ones needs to be in a single patch
-doing that conversion.  What I'm suggesting should be done separately is
-whatever changes to the semantics of the bindings you are (according to
-your changelog) doing.
+v4 -> v3:
+	- typo on cover letter.
 
---0OAP2g/MAC+5xKAE
-Content-Type: application/pgp-signature; name="signature.asc"
+v3 -> v2:
+	- fix dt binding: compatible name: omit "bus"
 
------BEGIN PGP SIGNATURE-----
+v2 -> v1:
+	- run check patch in strict mode.
+	- use linux crc.
+	- define regs in constant offset without base.
+	- remove debug prints.
+	- no declarations for local functions.
+	
+v1: initial version
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7GXmsACgkQJNaLcl1U
-h9BdFwgAgFljcWTcMb6Us4MfVHcgy1YEqUmIwGaqY2UIBzMVQryRSOVEhQ4rpXHl
-axvDWQGwewuHB1d0UU8Ec+YKWRJl/MYTCtmTHuE4OYL5ZY1YCM5udJ05u/8FuWB6
-Z1Pqt3iJ/QHc76gNqZ+BXnUMGh222ixJSSci5lTKkznlratWhtyz1wJU8IJ2I+M1
-zRwl78qMsTvBE8abg7NBXHMlQae0yQVcr0ndYjJkx8z/5C6RvFQ+WGCPjf+xTH7E
-IEQxy2zRFVI5EJjofGLCDWitAZSLDULZqh0LObpKRJN6X9aOriK+dQzSVAH2EhvE
-ElA/2sH+NZpcz19Wlp6+U+5xNYTNqw==
-=Xvew
------END PGP SIGNATURE-----
+Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+Reported-by: kbuild test robot <lkp@intel.com>
 
---0OAP2g/MAC+5xKAE--
+---
+Tali Perry (3):
+  dt-bindings: i2c: npcm7xx: add NPCM I2C controller documentation
+  i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver
+  i2c: npcm7xx: Add support for slave mode for Nuvoton NPCM BMC I2C
+    controller driver.
+
+ .../bindings/i2c/nuvoton,npcm7xx-i2c.yaml     |   62 +
+ drivers/i2c/busses/Kconfig                    |    9 +
+ drivers/i2c/busses/Makefile                   |    1 +
+ drivers/i2c/busses/i2c-npcm7xx.c              | 2426 +++++++++++++++++
+ 4 files changed, 2498 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
+ create mode 100644 drivers/i2c/busses/i2c-npcm7xx.c
+
+
+base-commit: b9bbe6ed63b2b9f2c9ee5cbd0f2c946a2723f4ce
+-- 
+2.22.0
+
