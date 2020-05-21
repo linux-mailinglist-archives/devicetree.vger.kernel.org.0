@@ -2,130 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A40E1DCCE2
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 14:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46EC31DCCFC
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 14:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729299AbgEUM3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 08:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729189AbgEUM3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 08:29:03 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FCA1C061A0E;
-        Thu, 21 May 2020 05:29:03 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id a2so8543369ejb.10;
-        Thu, 21 May 2020 05:29:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6GWXUPDNtcqPMbMf+st3rlAt+MWIjWvFAG+evIajo2Q=;
-        b=Dgq2ENGih+H9YOhCve0hYfcTj4H0NHnoqFUNURea3Nkq//rRp/Y7OwrKGo+V56lh7g
-         unHKMmsPtCGSyKki7bPw90RLPuG3B9MQMZEU3Bh41SPPYHZyGhq3tyFAfEcpvjXZcam3
-         rjLqQJw4w1VaH1NQzO8vKnX+RAPU2vO2j4ZZaqF+9dTSJUFjGpEL2Tjt4XMPJu6xSqJd
-         SknvoknV8qSmYree9EawNrQVfTmyG9RrjSbcL4kG787IpHfKpdooYHXGdSBpLXvkvRrp
-         C2Qj6FEFT83LXlKAyrx8SU/cSRmt1JlIFOSixmgW2oCKJUV2U3kEH+tdIc8YLaLjhvfz
-         +4lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6GWXUPDNtcqPMbMf+st3rlAt+MWIjWvFAG+evIajo2Q=;
-        b=NrJInznbND84SiSBUmxOsy8ttJV8ZNKl0/5RqPwAMaZ1z6rkeTC/Xpw41Rf2HGJ/HI
-         YLf/yEmZPdZ/43+/axBhl07L8m5j8TP1GNK8E7Hgz/4rBPlQOlwfWMiGAN5KKpdYISf9
-         3gK29ktL8Yi8FpxQRkrsBReNwJFOuu+heddrJHSUWenNsDlUNeXBB3+W2phqEDNuIZeL
-         gwJSuZRcoVger6Y093kGFynXuhs3sbFA64YBpodKkTnu3v0bUTsgch+d18pfNQKOILfC
-         8NLlwraqv+E63Ltt3KhPp24Zb8kLrObtywU9lXw/JTlHGtbhX4Vca7dvw16YWiU8F7b/
-         SLtQ==
-X-Gm-Message-State: AOAM533n0Rwgk0uzzqSNgpAX7j333PDA6sk89HdYEoKnNdEu+FTd//f7
-        K5fyqQ9POEV1IU0JEVz7a+0=
-X-Google-Smtp-Source: ABdhPJyIuKGqOWjquNroUoWJ3cJmIA0tMeGKZOElZzWNqX8OV/c6qN8Y0YF0wDLkl/gS4HLH53vhxQ==
-X-Received: by 2002:a17:907:9484:: with SMTP id dm4mr3521767ejc.56.1590064142189;
-        Thu, 21 May 2020 05:29:02 -0700 (PDT)
-Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id nj6sm4692805ejb.99.2020.05.21.05.29.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2020 05:29:01 -0700 (PDT)
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: fix dmas dma-names for rk3308
- i2s node
-To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, kever.yang@rock-chips.com,
-        wxt@rock-chips.com
-References: <20200520064816.3954-1-jbx6244@gmail.com>
- <543270ad-dd11-2bd4-8959-e898834c19e5@arm.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <094fa89d-61f7-1eb4-be78-b430502c5d3e@gmail.com>
-Date:   Thu, 21 May 2020 14:28:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+        id S1729285AbgEUMes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 08:34:48 -0400
+Received: from mga01.intel.com ([192.55.52.88]:53299 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728186AbgEUMes (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 May 2020 08:34:48 -0400
+IronPort-SDR: +ybOD1RMM+pnamZpMlQhx5pyKpDsVA4bUjNqGl93EZ25QOh6KO8kEz6RGw3bpz1ozPFcPFTAMe
+ W0yI9yRukN1Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2020 05:34:47 -0700
+IronPort-SDR: Lctipwjy10ADkgk+KPH2ghdvELhfA1XPXfoH87Hxjm7JiX00WoBPlneW7usHOfpG0ZhBXRw/iV
+ xdbRbECBOLwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,417,1583222400"; 
+   d="scan'208";a="268618473"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga006.jf.intel.com with ESMTP; 21 May 2020 05:34:47 -0700
+Received: from [10.215.164.158] (vramuthx-mobl1.gar.corp.intel.com [10.215.164.158])
+        by linux.intel.com (Postfix) with ESMTP id AA28A580101;
+        Thu, 21 May 2020 05:34:44 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v2 1/1] dt-bindings: spi: Add schema for Cadence QSPI
+ Controller driver
+To:     Mark Brown <broonie@kernel.org>
+Cc:     robh@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, vigneshr@ti.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+References: <20200520123612.11797-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200520124329.GF4823@sirena.org.uk>
+ <fd086da7-7e18-83bc-d423-56095b0cff96@linux.intel.com>
+ <20200521105646.GA4770@sirena.org.uk>
+ <24b0297c-5c33-f690-9514-68b76fc2c9ea@linux.intel.com>
+ <20200521122035.GB4770@sirena.org.uk>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <463b24a4-0a6a-9fcf-7eb9-8fde602c0c13@linux.intel.com>
+Date:   Thu, 21 May 2020 20:34:43 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <543270ad-dd11-2bd4-8959-e898834c19e5@arm.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20200521122035.GB4770@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin, Kever, Caesar,
+Hi Mark,
 
-On 5/21/20 1:48 PM, Robin Murphy wrote:
-> On 2020-05-20 07:48, Johan Jonker wrote:
->> One of the current rk3308 'i2s' nodes has a different dma layout
->> with only 1 item. Table 9-2 DMAC1 Request Mapping Table shows that
->> there 2 dma sources available, so fix the dmas and dma-names
->> for the rk3308 'i2s' node.
->>
->> 10 I2S/PCM_2CH_1 tx High level
->> 11 I2S/PCM_2CH_1 rx High level
+On 21/5/2020 8:20 pm, Mark Brown wrote:
+> On Thu, May 21, 2020 at 08:14:04PM +0800, Ramuthevar, Vadivel MuruganX wrote:
+>> On 21/5/2020 6:56 pm, Mark Brown wrote:
 > 
-> ...however table 1-5 in the same manual (at least that I could find)
-> says request 10 is reserved. Does that mean it was intended to be wired
-> up for this, but ended up broken for some reason?
+>>> That doesn't address either of the issues.  The removal of the old
+>>> bindings and addition of the YAML ones needs to be in a single patch
+>>> doing that conversion.  What I'm suggesting should be done separately is
+>>> whatever changes to the semantics of the bindings you are (according to
+>>> your changelog) doing.
 > 
-> Do you have hardware to confirm whether this works reliably or not?
+>> You mean semantics of the binding as a single patch you are suggesting me,
+>> right? , Thanks!
+> 
+> I mean that any changes to the bindings ought to be split out into
+> separate patches, if there's multiple changes it may make sense for
+> there to be multiple patches.
+Got it, we do not have multiple changes since it is new YAML file.
+in case if we feel anything to be added , we add as separate patches.
+Thanks!
 
-No, I don't.
-A description for 3308 was added to rockchip-i2s.yaml with only rx by
-myself.
-It would be nice if someone could test, confirm or give a hint.
-
-Could someone from Rockchip(Kever, Caesar) explain the 'Reserved' in
-Table 1-5 ?
-
-Table 1-5 RK3308 DMAC1 hardware request connection list
-
-10 Reserved     High level
-11 I2S_2CH_1 rx High level
+Regards
+Vadivel
 
 > 
-> Robin.
-> 
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3308.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> index ac7f69407..79c1dd1fe 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> @@ -564,8 +564,8 @@
->>           interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
->>           clocks = <&cru SCLK_I2S1_2CH>, <&cru HCLK_I2S1_2CH>;
->>           clock-names = "i2s_clk", "i2s_hclk";
->> -        dmas = <&dmac1 11>;
->> -        dma-names = "rx";
->> +        dmas = <&dmac1 10>, <&dmac1 11>;
->> +        dma-names = "tx", "rx";
->>           resets = <&cru SRST_I2S1_2CH_M>, <&cru SRST_I2S1_2CH_H>;
->>           reset-names = "reset-m", "reset-h";
->>           status = "disabled";
->>
-
