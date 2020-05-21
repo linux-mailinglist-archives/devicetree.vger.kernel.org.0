@@ -2,214 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFE61DD0D5
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 17:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0171DD0FD
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 17:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729728AbgEUPMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 11:12:07 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:39078 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728136AbgEUPMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 11:12:07 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 604D98030790;
-        Thu, 21 May 2020 15:12:02 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id NIsANa6IA8-3; Thu, 21 May 2020 18:11:59 +0300 (MSK)
-Date:   Thu, 21 May 2020 18:11:58 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        John Garry <john.garry@huawei.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Add Baikal-T1 System Boot SPI
- Controller binding
-Message-ID: <20200521151158.f3izg2svbn5dh6hy@mobilestation>
-References: <20200508093621.31619-1-Sergey.Semin@baikalelectronics.ru>
- <20200508093621.31619-2-Sergey.Semin@baikalelectronics.ru>
- <20200518152659.GA2525@bogus>
- <20200518212703.vju456kd3telctux@mobilestation>
- <CAL_JsqLLMh1LAvVXccyjLc4SqTAaPQ5LC7Nb6Q5ib8_3a0q6Ow@mail.gmail.com>
+        id S1729926AbgEUPQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 11:16:46 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38230 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729896AbgEUPQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 11:16:46 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04LFGdLd106510;
+        Thu, 21 May 2020 10:16:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590074199;
+        bh=xeF3uqjn0PZozN4ybOvKTivNEawwwc9tj9QBVURFGSw=;
+        h=From:To:CC:Subject:Date;
+        b=XXN9tuUgbc6bCXffPyKNSpCBedUG9yoTCQEVzaclhTffN3bjEPpX7bmW7t1+GTQex
+         804iRou6Vpx+S/4WeKgV13HOICQ0TS59efUP3epwyNyOIleV8+EMHt3JInBp9UoDie
+         hpTcSCmnNFHt1D0NwuXAEPS/3HvoP2fm9LqmhvoE=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04LFGd7k036994
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 May 2020 10:16:39 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ May 2020 10:16:39 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 May 2020 10:16:39 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04LFGdTC071695;
+        Thu, 21 May 2020 10:16:39 -0500
+Received: from localhost ([10.250.48.148])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 04LFGciZ076170;
+        Thu, 21 May 2020 10:16:39 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v2 0/2] Update K3 DSP remoteproc driver for C71x DSPs
+Date:   Thu, 21 May 2020 10:16:34 -0500
+Message-ID: <20200521151636.28260-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLLMh1LAvVXccyjLc4SqTAaPQ5LC7Nb6Q5ib8_3a0q6Ow@mail.gmail.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 21, 2020 at 08:57:10AM -0600, Rob Herring wrote:
-> On Mon, May 18, 2020 at 3:27 PM Serge Semin
-> <Sergey.Semin@baikalelectronics.ru> wrote:
-> >
-> > On Mon, May 18, 2020 at 09:26:59AM -0600, Rob Herring wrote:
-> > > On Fri, May 08, 2020 at 12:36:20PM +0300, Serge Semin wrote:
-> > > > Baikal-T1 Boot SPI is a part of the SoC System Controller and is
-> > > > responsible for the system bootup from an external SPI flash. It's a DW
-> > > > APB SSI-based SPI-controller with no interrupts, no DMA, with just one
-> > > > native chip-select available and a single reference clock. Since Baikal-T1
-> > > > SoC is normally booted up from an external SPI flash this SPI controller
-> > > > in most of the cases is supposed to be connected to a single SPI-nor
-> > > > flash. Additionally in order to provide a transparent from CPU point of
-> > > > view initial code execution procedure the system designers created an IP
-> > > > block which physically maps the SPI flash found at CS0 to a memory region.
-> > > >
-> > > > Co-developed-by: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-> > > > Signed-off-by: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > > Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> > > > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > > > Cc: Paul Burton <paulburton@kernel.org>
-> > > > Cc: Ralf Baechle <ralf@linux-mips.org>
-> > > > Cc: John Garry <john.garry@huawei.com>
-> > > > Cc: Chuanhong Guo <gch981213@gmail.com>
-> > > > Cc: Tomer Maimon <tmaimon77@gmail.com>
-> > > > Cc: Lee Jones <lee.jones@linaro.org>
-> > > > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > > Cc: Arnd Bergmann <arnd@arndb.de>
-> > > > Cc: linux-mips@vger.kernel.org
-> > > > Cc: linux-spi@vger.kernel.org
-> > > > ---
-> > > >  .../bindings/spi/baikal,bt1-sys-ssi.yaml      | 100 ++++++++++++++++++
-> > > >  1 file changed, 100 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/spi/baikal,bt1-sys-ssi.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/spi/baikal,bt1-sys-ssi.yaml b/Documentation/devicetree/bindings/spi/baikal,bt1-sys-ssi.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..d9d3257d78f4
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/spi/baikal,bt1-sys-ssi.yaml
-> > > > @@ -0,0 +1,100 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/spi/baikal,bt1-sys-ssi.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Baikal-T1 System Boot SSI Controller
-> > > > +
-> > > > +description: |
-> > > > +  Baikal-T1 System Controller includes a Boot SPI Controller, which is
-> > > > +  responsible for loading chip bootup code from an external SPI flash. In order
-> > > > +  to do this transparently from CPU point of view there is a dedicated IP block
-> > > > +  mapping the 16MB flash to a dedicated MMIO range. The controller is based on
-> > > > +  the DW APB SSI IP-core but equipped with very limited resources: no IRQ,
-> > > > +  no DMA, a single native CS being necessarily connected to a 16MB SPI flash
-> > > > +  (otherwise the system won't bootup from the flash), internal Tx/Rx FIFO of
-> > > > +  just 8 bytes depth. Access to DW APB SSI controller registers is mutually
-> > > > +  exclusive from normal MMIO interface and from physically mapped SPI Flash
-> > > > +  memory. So either one or another way of using the controller functionality
-> > > > +  can be enabled at a time.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Serge Semin <fancer.lancer@gmail.com>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: spi-controller.yaml#
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: baikal,bt1-sys-ssi
-> > > > +
-> > > > +  reg:
-> > > > +    items:
-> > > > +      - description: Baikal-T1 Boot Controller configuration registers
-> > > > +      - description: Physically mapped SPI flash ROM found at CS0
-> > > > +
-> > > > +  reg-names:
-> > > > +    items:
-> > > > +      - const: config
-> > > > +      - const: map
-> > > > +
-> > > > +  clocks:
-> > > > +    description: SPI Controller reference clock source
-> > >
-> > > Can drop this.
-> >
-> > Ok.
-> >
-> > >
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: ssi_clk
-> > > > +
-> > > > +  num-cs:
-> > > > +    const: 1
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^.*@[0-9a-f]+":
-> > > > +    type: object
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        minimum: 0
-> > > > +        maximum: 0
-> > > > +
-> > > > +      spi-rx-bus-width:
-> > > > +        const: 1
-> > > > +
-> > > > +      spi-tx-bus-width:
-> > > > +        const: 1
-> > >
-> > > What's the point of these 2 properties if they aren't required?
-> >
-> > Yes, they are optional, but this is a constraint on the bus-width parameters.
-> > DW APB SSI provides a single laned Tx and Rx.
-> 
-> Are you just trying to keep someone from saying 'spi-tx-bus-width: 2'
-> for example?
+Hi All,
 
-Right.
+This series is an updated version of the enhancements to the K3 DSP
+remoteproc driver to support the 64-bit TI DSP called C71x. The series
+is on top of the K3 DSP remoteproc driver v2 [1], and includes only
+the platform driver portions. Please see the v1 cover-letter [2] for
+a summary of supported features.
 
-> 
-> You could also say 'spi-tx-bus-width: false' here to disallow the
-> property. I guess the above is fine.
+The 64-bit resource type enhancements (patches 2 and 3 from v1 [3][4])
+can be reviewed and discussed separately. I can post the next versions
+just for those based on any review comments on those.
 
-Ok. If it's fine I'll leave them as is then. Right?
+Please see the individual patches for differences in v2.
 
-What about the next question you've asked:
+regards
+Suman
 
-> >
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> >
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> >
-> > These 2 are required by spi-controller.yaml, so you can drop here.
-> 
-> Yes, "#address-cells" is required, but "#size-cells" isn't. Is this supposed to
-> be like that?
+[1] https://patchwork.kernel.org/cover/11561787/
+[2] https://patchwork.kernel.org/cover/11458599/
+[3] https://patchwork.kernel.org/patch/11458593/
+[4] https://patchwork.kernel.org/patch/11458589/
 
-As far as I can see in spi-controller.yaml, "#address-cells" is required, but
-"#size-cells" isn't. Is this intentional?
+Suman Anna (2):
+  dt-bindings: remoteproc: k3-dsp: Update bindings for C71x DSPs
+  remoteproc/k3-dsp: Add support for C71x DSPs
 
--Sergey
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 76 +++++++++++++++++--
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     | 20 ++++-
+ 2 files changed, 86 insertions(+), 10 deletions(-)
 
-> 
-> Rob
+-- 
+2.26.0
+
