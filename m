@@ -2,165 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42E9E1DD757
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 21:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7671DD77D
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 21:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729852AbgEUTf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 15:35:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        id S1729949AbgEUTmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 15:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728692AbgEUTf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 15:35:28 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A71C061A0E
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:35:28 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id c3so3576409wru.12
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:35:28 -0700 (PDT)
+        with ESMTP id S1729845AbgEUTmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 15:42:36 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC7BEC061A0F
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:42:35 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id k7so3652874pjs.5
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:42:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=0PiSvAPliSpHmXCPHW82OGwvgeGu3nV4fisqX0ukMVE=;
-        b=Mn2izAUaruoDbLEVtEGYwGj8L0xkVVzhfObauat4/vcNCP+EPMEoexK54nlo2t3NO0
-         LTIUQPGxAXNwtxA3U2FY3JUp36JClziXCcHERZ6A90YjM36CtMX2opVFVkMQ4L3e/C1r
-         9uUYpJi87nLJ5Do9/kd318Qkzfn2oKXsfkMJQ=
+        bh=BXYPauGkNWtPwKYwGGvUTVu/KGcI14RapTxg+fHwXY4=;
+        b=se3vu6erp2PBFC3GeiZK3pujHsPbv1+Tub7hi+r+f1Cu3Y6qod1+7C7rJZAl2ylOrO
+         xe7x3AdAvBRwQZ+ViBf3KRKqKxm5/pfNZdBUCB+/cZixrse5Nrq3v5eAScYCzQNG0wzd
+         bXws+6xkLfsjR+OPSM1Tezns0jGTj/TOo5PXDTpWjhjk72I2AHEzDy4zLLAQRg0+QW+d
+         mWWYanxQ9LMvTj1CgdOsvNvsfhKpKSWJR4cuW1nWvYDuqsA5AQAaaRqI3ucSL53IB6V+
+         x3ZOhZYpuxq0n4GGBJrYgVWsiorHx0X17eXWKyYOZtnXT4u7BGIxnD5cbxsAHeNBchtF
+         OXqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0PiSvAPliSpHmXCPHW82OGwvgeGu3nV4fisqX0ukMVE=;
-        b=c0yk+U824zVWIizT0Ebqb3b8r9jzVlNxG7G6l1dugTbVxybZVibXys0jJhrCuH1Pni
-         2hcKpBORj0dr8HtsgVeUT4ZNv88jf5on5VqQAa3MTh4r7yrpsS9rlXIxBkRfmjRgbEGm
-         TjscCKSrRBIMcSvJnnLu4Nwcx+Y1iokYsz5FV0TolyU2fjHoXPiJW/IO4K65RvgoYEuZ
-         gr7XxISuu1X+0SH8SmEPHEVh7+iy88hHSUTcEniVZmgvTbO4UEWuQhs9M3akh4zSB5KK
-         Na0Bvh3WE94NZnW0/cYYduaKi3dwqOYkAK8kNHnzDkBhYpv7J5n1TpnpVOqXj4EK/2D9
-         AsKQ==
-X-Gm-Message-State: AOAM530tTsaW8qQtHOrXCPfliU3pofMRyUuOEnrEbk5OP1P5C38f+xpi
-        B/LzSalbozme895xVgu1BqfsIA==
-X-Google-Smtp-Source: ABdhPJwRx3aYOU3qs7IEJXRm00NEpqShHLzsIlN+v+IXDKvfgZ02NPQmcQhc20kurysHzVjxZtUHQg==
-X-Received: by 2002:adf:d0cb:: with SMTP id z11mr182088wrh.116.1590089727185;
-        Thu, 21 May 2020 12:35:27 -0700 (PDT)
-Received: from chromium.org (205.215.190.35.bc.googleusercontent.com. [35.190.215.205])
-        by smtp.gmail.com with ESMTPSA id d126sm7967920wmd.32.2020.05.21.12.35.26
+        bh=BXYPauGkNWtPwKYwGGvUTVu/KGcI14RapTxg+fHwXY4=;
+        b=AzaIj0CkKf6ApyD9z8DVocdT/2HQlxXPo2JchPnYAqKpYfGJBw4hEl5klqEXpwi3aW
+         qvQRT3FpEVQ/mEBy3F30sdt1703qruN5qpvx0Hh5YsrH/rxMc2WPyLULxOD/rU7lGPAT
+         lK9Wo58JOLui66xzsh1rxEp6VaCtIhkhuooNlOJF4ZMyIJpz/cMC2Kpne/QjhIm9crP9
+         zy8va/BxyENaaKlYLQCmyKHojBd1OKSYD1w156GBVBor5aSjvQbZBAGjtj45rcnHWtaW
+         pickqnH5sUOVkCCBlL3XIRXnqfEr/7k3S1ZH3D4rZAZglX3hnSMmpRwD3/zVmwCkBQXJ
+         mw5w==
+X-Gm-Message-State: AOAM530UJjK26liK20bu5DhChYh2DhM3VEv6bPlJddUfmGeP6GGiKx/4
+        swNJCDBDpNc5IwKqHUjay+sXYg==
+X-Google-Smtp-Source: ABdhPJxk6/AaRmSF7oCKZdzRq5JtighkgWW5LdhwQ4PD4zRb+L/JtxeyuIelMKGLsyYWPBn0ErhdvA==
+X-Received: by 2002:a17:90a:248a:: with SMTP id i10mr157777pje.174.1590090155010;
+        Thu, 21 May 2020 12:42:35 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id n21sm5065359pjo.25.2020.05.21.12.42.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2020 12:35:26 -0700 (PDT)
-Date:   Thu, 21 May 2020 19:35:25 +0000
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, mchehab@kernel.org,
-        andriy.shevchenko@linux.intel.com, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V8, 1/2] media: dt-bindings: media: i2c: Document OV02A10
- bindings
-Message-ID: <20200521193525.GB14214@chromium.org>
-References: <20200509080627.23222-1-dongchun.zhu@mediatek.com>
- <20200509080627.23222-2-dongchun.zhu@mediatek.com>
- <20200511160207.GA32476@bogus>
+        Thu, 21 May 2020 12:42:34 -0700 (PDT)
+Date:   Thu, 21 May 2020 12:41:16 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Clement Leger <cleger@kalray.eu>,
+        Loic Pallardy <loic.pallardy@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] remoteproc: introduce version element into resource
+ type field
+Message-ID: <20200521194116.GP408178@builder.lan>
+References: <20200325204701.16862-1-s-anna@ti.com>
+ <20200325204701.16862-3-s-anna@ti.com>
+ <20200521175421.GI408178@builder.lan>
+ <b338480e-c586-f988-f5b6-784551b7beb6@ti.com>
+ <20200521192146.GO408178@builder.lan>
+ <57ae5678-fd0a-07a8-6165-a2cf7ccdef88@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200511160207.GA32476@bogus>
+In-Reply-To: <57ae5678-fd0a-07a8-6165-a2cf7ccdef88@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu 21 May 12:29 PDT 2020, Suman Anna wrote:
 
-On Mon, May 11, 2020 at 11:02:07AM -0500, Rob Herring wrote:
-> On Sat, May 09, 2020 at 04:06:26PM +0800, Dongchun Zhu wrote:
-> > Add DT bindings documentation for Omnivision OV02A10 image sensor.
+> On 5/21/20 2:21 PM, Bjorn Andersson wrote:
+> > On Thu 21 May 12:06 PDT 2020, Suman Anna wrote:
 > > 
-> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > ---
-> >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 184 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   7 +
-> >  2 files changed, 191 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > Hi Bjorn,
+> > > 
+> > > On 5/21/20 12:54 PM, Bjorn Andersson wrote:
+> > > > On Wed 25 Mar 13:46 PDT 2020, Suman Anna wrote:
+> > > > 
+> > > > > The current remoteproc core has supported only 32-bit remote
+> > > > > processors and as such some of the current resource structures
+> > > > > may not scale well for 64-bit remote processors, and would
+> > > > > require new versions of resource types. Each resource is currently
+> > > > > identified by a 32-bit type field. Introduce the concept of version
+> > > > > for these resource types by overloading this 32-bit type field
+> > > > > into two 16-bit version and type fields with the existing resources
+> > > > > behaving as version 0 thereby providing backward compatibility.
+> > > > > 
+> > > > > The version field is passed as an additional argument to each of
+> > > > > the handler functions, and all the existing handlers are updated
+> > > > > accordingly. Each specific handler will be updated on a need basis
+> > > > > when a new version of the resource type is added.
+> > > > > 
+> > > > 
+> > > > I really would prefer that we add additional types for the new
+> > > > structures, neither side will be compatible with new versions without
+> > > > enhancements to their respective implementations anyways.
+> > > 
+> > > OK.
+> > > 
+> > > > 
+> > > > > An alternate way would be to introduce the new types as completely
+> > > > > new resource types which would require additional customization of
+> > > > > the resource handlers based on the 32-bit or 64-bit mode of a remote
+> > > > > processor, and introduction of an additional mode flag to the rproc
+> > > > > structure.
+> > > > > 
+> > > > 
+> > > > What would this "mode" indicate? If it's version 0 or 1?
+> > > 
+> > > No, for indicating if the remoteproc is 32-bit or 64-bit and adjust the
+> > > loading handlers if the resource types need to be segregated accordingly.
+> > > 
 > > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> > new file mode 100644
-> > index 0000000..5468d1b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> > @@ -0,0 +1,184 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright (c) 2020 MediaTek Inc.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov02a10.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Omnivision OV02A10 CMOS Sensor Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > +
-> > +description: |-
-> > +  The Omnivision OV02A10 is a low-cost, high performance, 1/5-inch, 2 megapixel
-> > +  image sensor, which is the latest production derived from Omnivision's CMOS
-> > +  image sensor technology. Ihis chip supports high frame rate speeds up to 30fps
-> > +  @ 1600x1200 (UXGA) resolution transferred over a 1-lane MIPI interface. The
-> > +  sensor output is available via CSI-2 serial data output.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ovti,ov02a10
-> > +
-> > +  reg:
-> > +    description: I2C device address
+> > Sorry, I think I'm misunderstanding something. Wouldn't your 64-bit
+> > remote processor need different firmware from your 32-bit processor
+> > anyways, if you want to support the wider resource? And you would pack
+> > your firmware with the appropriate resource types?
 > 
-> Drop this. Nothing specific to this device.
+> Yes, that's correct.
 > 
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: top mux camtg clock
-> > +      - description: devider clock
+> > 
+> > Afaict the bit width of your remote processor, busses or memory is
+> > unrelated to the choice of number of bits used to express things in the
+> > resource table.
 > 
-> typo
+> I would have to add the new resource type to the loading_handlers right, so
+> it is a question of whether we want to impose any restrictions in remoteproc
+> core or not from supporting a certain resource type (eg: I don't expect
+> RSC_TRACE entries on 64-bit processors).
 > 
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: eclk
-> > +      - const: freq_mux
-> > +
-> > +  clock-frequency:
-> > +    description:
-> > +      Frequency of the eclk clock in Hertz.
-> > +
-> > +  dovdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as interface power supply.
-> > +
-> > +  avdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as analog power supply.
-> > +
-> > +  dvdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as digital power supply.
-> > +
-> > +  powerdown-gpios:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
 
-I asked a question about defining GPIO polarities some time ago, but I
-guess it slipped through.
+Right, but either you add support for new resource types to the
+loading_handlers, or you add the version checks within each handler,
+either way you will have to do some work to be compatible with new
+versions.
 
-The chip documentation calls the reset pin as "RST_PAD (low level
-reset)". Where should the inversion be handled, in the driver or here,
-by having the DT include a necessary flag in the specifier?
+Regarding what resources would be fit for a 64-bit processor probably
+relates to many things, in particular the question of what we actually
+mean when we say that a coprocessor is 64-bit. So I don't really see a
+need for the remoteproc core to prevent someone to design their
+system/firmware to have a 64-bit CPU being passed 32-bit addresses.
 
-Best regards,
-Tomasz
+Regards,
+Bjorn
