@@ -2,141 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B5E1DC3B1
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 02:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 325B91DC415
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 02:40:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727119AbgEUAfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 20:35:39 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:33048 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727798AbgEUAfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 20:35:36 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id E97E38030791;
-        Thu, 21 May 2020 00:35:33 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id w9zTcyg2r2ci; Thu, 21 May 2020 03:35:33 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        afzal mohammed <afzal.mohd.ma@gmail.com>,
-        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 14/14] mips: cevt-r4k: Update the r4k-clockevent frequency in sync with CPU
-Date:   Thu, 21 May 2020 03:34:43 +0300
-Message-ID: <20200521003443.11385-15-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200521003443.11385-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200521003443.11385-1-Sergey.Semin@baikalelectronics.ru>
+        id S1727044AbgEUAjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 20:39:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726933AbgEUAjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 20:39:21 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B93C061A0F
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 17:39:21 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id m7so2082822plt.5
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2020 17:39:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=AuRWVLRxtpPKYDJF4d6J01cX+Jpvtmn7S05Da/vU59I=;
+        b=KDwjANyodnr/KdFhYC8iRTa2ogAw/Bmn9gfyG7mniJvh19F4yz/337R3gj6e+DqHrt
+         rTP7CGc7RgAHP/snyqEed9iILEB3w5F0WvVuYJxW5gHbaUCv6e5g9bLJTRWp2AwKSlG9
+         Dt1FiRtkBMad7nsIlSzTaymvQ/1pSWGanTjQo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=AuRWVLRxtpPKYDJF4d6J01cX+Jpvtmn7S05Da/vU59I=;
+        b=hjZuvVARtSX888dTRq4klhfshyl9v2KmWrpwlYReFKBMhcHofqMi7t8EfLMIeUtrmd
+         jug/HrgTWZ3nG8uo+ERapvzJ2QUFhgyzYsjOA3kLOblNo+hZ0XjEu4UOE3ev8p1V9CBh
+         Jmko+9ni8gFLb+gHg6sb5E6/J7jHeOFweWKKS78aO4NsXU6Al6YuHDJUJUhXgd6l0+xr
+         b+uhuEDRClMClqj3eXde/UqLjBKkChB1x4dow2TosQqSJ6Rwzx/GtiUCWc/06oCOak2m
+         uBe1tCXfLVvUVHSBck/ZUZwQo6KD0b7mYbJ71vMk2e+Etls4YVcc4fqaQ7JNQVgOvcb2
+         nQ4A==
+X-Gm-Message-State: AOAM533ogeqd5rDxXQUKB9Vx3xbX2oZTfxwddRkXv6dSj+raw8m4bfXR
+        3gfBHJiE2MjZip1HQm+ktwp6kg==
+X-Google-Smtp-Source: ABdhPJzRZdcv1ZemD8aJI6y1ci2NNs5bMnvQk6huU94fVngbjOvzaNN5p1vkWzbEoycbfgUl4V3zoQ==
+X-Received: by 2002:a17:90a:dd44:: with SMTP id u4mr7639086pjv.132.1590021560562;
+        Wed, 20 May 2020 17:39:20 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id y5sm3005608pjp.27.2020.05.20.17.39.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2020 17:39:19 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1589804402-27130-1-git-send-email-mkshah@codeaurora.org>
+References: <1589804402-27130-1-git-send-email-mkshah@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Correct the pdc interrupt ranges
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
+        mka@chromium.org, evgreen@chromium.org, dianders@chromium.org,
+        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
+To:     Maulik Shah <mkshah@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Date:   Wed, 20 May 2020 17:39:18 -0700
+Message-ID: <159002155857.215346.7990318931003802964@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to being embedded into the CPU cores MIPS count/compare timer
-frequency is changed together with the CPU clocks alteration.
-In case if frequency really changes the kernel clockevent framework
-must be notified, otherwise the kernel timers won't work correctly.
-Fix this by calling clockevents_update_freq() for each r4k clockevent
-handlers registered per available CPUs.
+Quoting Maulik Shah (2020-05-18 05:20:02)
+> Few PDC interrupts do not map to respective parent GIC interrupt.
+> Fix this by correcting the pdc interrupt map.
+>=20
+> Fixes: 22f185ee81d2 ("arm64: dts: qcom: sc7180: Add pdc interrupt control=
+ler")
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/q=
+com/sc7180.dtsi
+> index f1280e0..f6b4ee8 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -2308,8 +2308,7 @@
+>                 pdc: interrupt-controller@b220000 {
+>                         compatible =3D "qcom,sc7180-pdc", "qcom,pdc";
+>                         reg =3D <0 0x0b220000 0 0x30000>;
+> -                       qcom,pdc-ranges =3D <0 480 15>, <17 497 98>,
+> -                                         <119 634 4>, <124 639 1>;
+> +                       qcom,pdc-ranges =3D <0 480 94>, <94 609 31>, <125=
+ 63 1>;
 
-Traditionally MIPS r4k-clock are clocked with CPU frequency divided by 2.
-But this isn't true for some of the platforms. Due to this we have to save
-the basic CPU frequency, so then use it to scale the initial timer
-frequency (mips_hpt_frequency) and pass the updated value further to the
-clockevent framework.
-
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-
----
-
-Changelog v3:
-- Add r4k_ prefix to the cpufreq change notifier methods.
----
- arch/mips/kernel/cevt-r4k.c | 44 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/arch/mips/kernel/cevt-r4k.c b/arch/mips/kernel/cevt-r4k.c
-index 17a9cbb8b3df..995ad9e69ded 100644
---- a/arch/mips/kernel/cevt-r4k.c
-+++ b/arch/mips/kernel/cevt-r4k.c
-@@ -8,6 +8,7 @@
-  */
- #include <linux/clockchips.h>
- #include <linux/interrupt.h>
-+#include <linux/cpufreq.h>
- #include <linux/percpu.h>
- #include <linux/smp.h>
- #include <linux/irq.h>
-@@ -250,6 +251,49 @@ unsigned int __weak get_c0_compare_int(void)
- 	return MIPS_CPU_IRQ_BASE + cp0_compare_irq;
- }
- 
-+#ifdef CONFIG_CPU_FREQ
-+
-+static unsigned long mips_ref_freq;
-+
-+static int r4k_cpufreq_callback(struct notifier_block *nb,
-+				unsigned long val, void *data)
-+{
-+	struct cpufreq_freqs *freq = data;
-+	struct clock_event_device *cd;
-+	unsigned long rate;
-+	int cpu;
-+
-+	if (!mips_ref_freq)
-+		mips_ref_freq = freq->old;
-+
-+	if (val == CPUFREQ_POSTCHANGE) {
-+		rate = cpufreq_scale(mips_hpt_frequency, mips_ref_freq,
-+				     freq->new);
-+
-+		for_each_cpu(cpu, freq->policy->cpus) {
-+			cd = &per_cpu(mips_clockevent_device, cpu);
-+
-+			clockevents_update_freq(cd, rate);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static struct notifier_block r4k_cpufreq_notifier = {
-+	.notifier_call  = r4k_cpufreq_callback,
-+};
-+
-+static int __init r4k_register_cpufreq_notifier(void)
-+{
-+	return cpufreq_register_notifier(&r4k_cpufreq_notifier,
-+					 CPUFREQ_TRANSITION_NOTIFIER);
-+
-+}
-+core_initcall(r4k_register_cpufreq_notifier);
-+
-+#endif /* !CONFIG_CPU_FREQ */
-+
- int r4k_clockevent_init(void)
- {
- 	unsigned long flags = IRQF_PERCPU | IRQF_TIMER | IRQF_SHARED;
--- 
-2.25.1
-
+This is a sign that we shouldn't put this information in DT. It was
+wrong once so who knows if it will be wrong again. We don't have an
+automated way to check this like we can check other properties. And the
+information isn't something that is changed by firmware or the OS
+loader. It is static data about the internals of the PDC device and how
+it maps PDC pins to GIC SPI lines. We are probably better off just
+setting up these ranges in the driver vs. relying on DT authors to get
+it right.
