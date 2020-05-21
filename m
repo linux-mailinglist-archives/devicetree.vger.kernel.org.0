@@ -2,154 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69DB01DC586
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 05:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498191DC5A7
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 05:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727902AbgEUDPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 23:15:33 -0400
-Received: from mail-vi1eur05on2084.outbound.protection.outlook.com ([40.107.21.84]:42049
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727825AbgEUDPc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 May 2020 23:15:32 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FiVOtAH4GwtOxE4Bu5wapqrZRYRUbZpmiW4Owe/sowBxg1/aEAaByBokZ9it4WnrF2tYRpmGElDRQEVqvRVHIWDpRpX1FZdK9mxOYTFdaye8tPMeldxhdcP35Q0WVyL8JfAFz3YNSecjl164KCsiZJqGCx+0Vr5J60GRiPfGfCfRtJTgfWHFen/zmB7ls28nHcIpFmr09KLMEo0BfqlNsui0DYFNlcWoGvR5PwiYN9eQOW7NZq4x9YaGO/38hrd8j6HHrPjWw9xfHB/6wsmhUbqPaKJz3kZwW3odxi49TJwpoYRAEEGQOChi3IMUXBe+rME7zz28sJDfezih6AVVsA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NOtUJWlJX11pxQ5QRNBfkL8QsrXMq1HqwrpHHAjdgFw=;
- b=Y2L2rMts2ub5RUji9sxSKRXVoNKocSLWGKpoh5auMTp1UX/XzgmAed30BIyNBz9Bi8TuIJhzTpMaj7mwCDFDkJJt4+3eKRsjXouZR88HNQJYNNdYpDMdEVYVLYs8L/hoB/Id4JEpIOmyphX24/7I26vUqeblcFbKCr6JYKg1aFrfmCFBKok6EkH9sXNCEAnL5RdXPPNBgYglWgkii3EEekEJKdz8+eLGZydX14c5Ymmg0buuslQm2j1J8GDJQz8HGkxxQoAqaKe9MLfIiGiTNPKhc6dMmMXbRjKa57Q9sH9/zVvHG+HHIjvAXoMFQaNQ8LQVd7FskjW6ZZSuqPJrmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NOtUJWlJX11pxQ5QRNBfkL8QsrXMq1HqwrpHHAjdgFw=;
- b=a3Pt5HQYThGJxdUmktibj5vFqi7RoTRd6SaL6C0exS3mxtx1/KULj/HdnTVnIgN8Kg56eJPexpxrlKwCF7HJCikOXDN6AzlSKf80X093sTKGedk7mXHjIgz5HsQM7sdlLb12C8BUIj9U1lf9SjiJK4bWGd+4eHueoh+d3iB0OJk=
-Received: from AM6PR0402MB3607.eurprd04.prod.outlook.com
- (2603:10a6:209:12::18) by AM6PR0402MB3431.eurprd04.prod.outlook.com
- (2603:10a6:209:e::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23; Thu, 21 May
- 2020 03:15:28 +0000
-Received: from AM6PR0402MB3607.eurprd04.prod.outlook.com
- ([fe80::35f8:f020:9b47:9aa1]) by AM6PR0402MB3607.eurprd04.prod.outlook.com
- ([fe80::35f8:f020:9b47:9aa1%7]) with mapi id 15.20.3000.034; Thu, 21 May 2020
- 03:15:28 +0000
-From:   Andy Duan <fugang.duan@nxp.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH net 3/4] ARM: dts: imx6: update fec gpr property
- to match new format
-Thread-Topic: [EXT] Re: [PATCH net 3/4] ARM: dts: imx6: update fec gpr
- property to match new format
-Thread-Index: AQHWLoHSZsTKfn2KY0W5vmilgDZ/AqixNB4AgACoEqA=
-Date:   Thu, 21 May 2020 03:15:28 +0000
-Message-ID: <AM6PR0402MB3607541D33B1C61476022D0AFFB70@AM6PR0402MB3607.eurprd04.prod.outlook.com>
-References: <1589963516-26703-1-git-send-email-fugang.duan@nxp.com>
- <1589963516-26703-4-git-send-email-fugang.duan@nxp.com>
- <20200520170322.GJ652285@lunn.ch>
-In-Reply-To: <20200520170322.GJ652285@lunn.ch>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lunn.ch; dkim=none (message not signed)
- header.d=none;lunn.ch; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: a5c45306-47d5-43a5-d331-08d7fd353672
-x-ms-traffictypediagnostic: AM6PR0402MB3431:
-x-microsoft-antispam-prvs: <AM6PR0402MB3431996F8985CE56BE037CB3FFB70@AM6PR0402MB3431.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-forefront-prvs: 041032FF37
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XtYRkWEWPGxUpp4WzP3taUqUwGJOxs5gT+gcCYn9RXH4Cdt9hXnX9PjYdwW4vsQC8HM5Byz0QXnRZduFibS3ILdg4J5/DcwghguesMsJOFDh6GHiq20NUBoU3Yyz0000Yjyj3zfTKXqzot8OV4SghWmDIxiDWOGaRBOMrr36rcnHb99sfVD1jLzFFNXfAogzPhyFWr7uVCHeb0CHz56ssIPYCl6c+Xz4RZKX/ohAXRt/CFkFXEsa3IMNNxrF+K9e0hesYQvzz8i75hQEmUMxY3XVosj0gX1ThY2ANN7c/Qe7s5OaRgAUix+DvRpzdCD8jh4Zd4duVxQ3z635wLetAA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR0402MB3607.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(366004)(39860400002)(346002)(376002)(396003)(76116006)(66476007)(66946007)(66556008)(64756008)(71200400001)(55016002)(15650500001)(66446008)(8676002)(9686003)(86362001)(7696005)(54906003)(186003)(478600001)(316002)(2906002)(26005)(33656002)(6506007)(5660300002)(52536014)(4326008)(6916009)(8936002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 2dPA+oYbKn3hXghtEwy6sRIAD0o5exQqP+QoCLBmZ47HLGoz5YqXjiSZK3qmmzfxBvSVbeQeTE8ByB/Zoiwgyr+qSbWQ3df5jDYvnpQPj7Iwr0XP2k1zm7OHZ3InXVx6WLe/+guAefV/eN6aguI+aT3SL7CqSIMg2G+Ndm2zmszoszftAt7M8dGFg50B1z+4E0zg7nJo1dlvcIo34itO3yDlDZQKwizcRBXV36Rcs2y/JhwB+Y8CC1RaE0+YWWzDIGxJOXNk7obnQR6cEpNOR1OyN1rBKvTPfgbiDOV44njqHrxRqUTDpYA8z9yrtu6zVrCzkdFKwZDKwDdyD91kz+6AK3HbOfsezyx6AW9zDi1mrRX/qBj/H05bXu5ubz9azXrnAU2qnYe2xJrs2Mk3HaF30GUjUyeuJhCOnqpS1RqIkPRBjp36rUZwDb0IiHHtBXJioj8MO4S6WU6cIdOIDR2I8U7tLEm3xdJIM9w6AViviIeUrnX3BmnerenA2sRM
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728097AbgEUDau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 23:30:50 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44024 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726954AbgEUDat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 23:30:49 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04L3UaIk091192;
+        Wed, 20 May 2020 22:30:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590031836;
+        bh=b6oEC2PB2pjw4Mn+qzNvfqJC+/OpQLwrj1RTuLQtQwQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JO3hOK9dmY6s1gbbvAjsW2uFby9AjDV1qyuNfY03uf01UhQ3Yz7ifb9zZorzxAOt4
+         BTYt45eqipApPucs7R1iMcN9WHmjRunRmlrgWtN3kkg2/bJI7GfuLe/VTRI293EhVy
+         +ZjsRrFUJzEtObV7XGG6KLJ0+2xvELfo3wTdlJQA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04L3UaTi053753
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 20 May 2020 22:30:36 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
+ May 2020 22:30:36 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 20 May 2020 22:30:36 -0500
+Received: from [10.250.233.85] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04L3UXwZ121668;
+        Wed, 20 May 2020 22:30:33 -0500
+Subject: Re: [PATCH v3 4/4] PCI: cadence: Use "dma-ranges" instead of
+ "cdns,no-bar-match-nbits" property
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        PCI <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200508130646.23939-1-kishon@ti.com>
+ <20200508130646.23939-5-kishon@ti.com>
+ <CAL_JsqJ1Om2CX5e1y32bzeiuv4fAdyFpZ88a346g4Q+jq_Ldcg@mail.gmail.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <162447e2-ac3b-9523-d404-130b93e0860e@ti.com>
+Date:   Thu, 21 May 2020 09:00:32 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5c45306-47d5-43a5-d331-08d7fd353672
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2020 03:15:28.3753
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J8CPhIlxmQcgdw6rDljly3bWZfYJ0GpT4A52cVYiuguhI/JMiYTrdtH9oR18nc4HVXMELwUIc04UumsOvKycng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3431
+In-Reply-To: <CAL_JsqJ1Om2CX5e1y32bzeiuv4fAdyFpZ88a346g4Q+jq_Ldcg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch> Sent: Thursday, May 21, 2020 1:03 AM
-> On Wed, May 20, 2020 at 04:31:55PM +0800, fugang.duan@nxp.com wrote:
-> > From: Fugang Duan <fugang.duan@nxp.com>
-> >
-> > Update the gpr property to define gpr register offset and bit in DT.
-> >
-> > Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
-> > ---
-> >  arch/arm/boot/dts/imx6qdl.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm/boot/dts/imx6qdl.dtsi
-> > b/arch/arm/boot/dts/imx6qdl.dtsi index 98da446..a4a68b7 100644
-> > --- a/arch/arm/boot/dts/imx6qdl.dtsi
-> > +++ b/arch/arm/boot/dts/imx6qdl.dtsi
-> > @@ -1045,7 +1045,7 @@
-> >                                        <&clks
-> IMX6QDL_CLK_ENET>,
-> >                                        <&clks
-> IMX6QDL_CLK_ENET_REF>;
-> >                               clock-names =3D "ipg", "ahb", "ptp";
-> > -                             gpr =3D <&gpr>;
-> > +                             gpr =3D <&gpr 0x34 27>;
-> >                               status =3D "disabled";
-> >                       };
->=20
-> Hi Andy
->=20
-> This is the same values as hard coded, so no change here.
->=20
-> The next patch does not use grp at all. So it is unclear to me if you act=
-ually
-> make use of what you just added. I don't see anywhere
->=20
-> gpr =3D <&gpr 0x42 24>;
->=20
-> which is the whole point of this change, being able to specify different =
-values.
->=20
->       Andrew
+Hi Rob,
 
-Andrew, patch#1 in the series will parse the property to get register offse=
-t and bit.
-Patch#2 describes the property format as below:
-       <&gpr req_gpr req_bit>.
-        gpr is the phandle to general purpose register node.
-        req_gpr is the gpr register offset for ENET stop request.
-        req_bit is the gpr bit offset for ENET stop request.
+On 5/19/2020 10:41 PM, Rob Herring wrote:
+> On Fri, May 8, 2020 at 7:07 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>
+>> Cadence PCIe core driver (host mode) uses "cdns,no-bar-match-nbits"
+>> property to configure the number of bits passed through from PCIe
+>> address to internal address in Inbound Address Translation register.
+>> This only used the NO MATCH BAR.
+>>
+>> However standard PCI dt-binding already defines "dma-ranges" to
+>> describe the address ranges accessible by PCIe controller. Add support
+>> in Cadence PCIe host driver to parse dma-ranges and configure the
+>> inbound regions for BAR0, BAR1 and NO MATCH BAR. Cadence IP specifies
+>> maximum size for BAR0 as 256GB, maximum size for BAR1 as 2 GB, so if
+>> the dma-ranges specifies a size larger than the maximum allowed, the
+>> driver will split and configure the BARs.
+> 
+> Would be useful to know what your dma-ranges contains now.
+> 
+> 
+>> Legacy device tree binding compatibility is maintained by retaining
+>> support for "cdns,no-bar-match-nbits".
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../controller/cadence/pcie-cadence-host.c    | 141 ++++++++++++++++--
+>>  drivers/pci/controller/cadence/pcie-cadence.h |  17 ++-
+>>  2 files changed, 141 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> index 6ecebb79057a..2485ecd8434d 100644
+>> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> @@ -11,6 +11,12 @@
+>>
+>>  #include "pcie-cadence.h"
+>>
+>> +static u64 cdns_rp_bar_max_size[] = {
+>> +       [RP_BAR0] = _ULL(128 * SZ_2G),
+>> +       [RP_BAR1] = SZ_2G,
+>> +       [RP_NO_BAR] = SZ_64T,
+>> +};
+>> +
+>>  void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
+>>                                int where)
+>>  {
+>> @@ -106,6 +112,117 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>>         return 0;
+>>  }
+>>
+>> +static void cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+>> +                                        enum cdns_pcie_rp_bar bar,
+>> +                                        u64 cpu_addr, u32 aperture)
+>> +{
+>> +       struct cdns_pcie *pcie = &rc->pcie;
+>> +       u32 addr0, addr1;
+>> +
+>> +       addr0 = CDNS_PCIE_AT_IB_RP_BAR_ADDR0_NBITS(aperture) |
+>> +               (lower_32_bits(cpu_addr) & GENMASK(31, 8));
+>> +       addr1 = upper_32_bits(cpu_addr);
+>> +       cdns_pcie_writel(pcie, CDNS_PCIE_AT_IB_RP_BAR_ADDR0(bar), addr0);
+>> +       cdns_pcie_writel(pcie, CDNS_PCIE_AT_IB_RP_BAR_ADDR1(bar), addr1);
+>> +}
+>> +
+>> +static int cdns_pcie_host_bar_config(struct cdns_pcie_rc *rc,
+>> +                                    struct resource_entry *entry,
+>> +                                    enum cdns_pcie_rp_bar *index)
+>> +{
+>> +       u64 cpu_addr, pci_addr, size, winsize;
+>> +       struct cdns_pcie *pcie = &rc->pcie;
+>> +       struct device *dev = pcie->dev;
+>> +       enum cdns_pcie_rp_bar bar;
+>> +       unsigned long flags;
+>> +       u32 aperture;
+>> +       u32 value;
+>> +
+>> +       cpu_addr = entry->res->start;
+>> +       flags = entry->res->flags;
+>> +       pci_addr = entry->res->start - entry->offset;
+>> +       size = resource_size(entry->res);
+>> +       bar = *index;
+>> +
+>> +       if (entry->offset) {
+>> +               dev_err(dev, "Cannot map PCI addr: %llx to CPU addr: %llx\n",
+>> +                       pci_addr, cpu_addr);
+> 
+> Would be a bit more clear to say PCI addr must equal CPU addr.
+> 
+>> +               return -EINVAL;
+>> +       }
+>> +
+>> +       value = cdns_pcie_readl(pcie, CDNS_PCIE_LM_RC_BAR_CFG);
+>> +       while (size > 0) {
+>> +               if (bar > RP_NO_BAR) {
+>> +                       dev_err(dev, "Failed to map inbound regions!\n");
+>> +                       return -EINVAL;
+>> +               }
+>> +
+>> +               winsize = size;
+>> +               if (size > cdns_rp_bar_max_size[bar])
+>> +                       winsize = cdns_rp_bar_max_size[bar];
+>> +
+>> +               aperture = ilog2(winsize);
+>> +
+>> +               cdns_pcie_host_bar_ib_config(rc, bar, cpu_addr, aperture);
+>> +
+>> +               if (bar == RP_NO_BAR)
+>> +                       break;
+>> +
+>> +               if (winsize + cpu_addr >= SZ_4G) {
+>> +                       if (!(flags & IORESOURCE_PREFETCH))
+>> +                               value |= LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar);
+>> +                       value |= LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar);
+>> +               } else {
+>> +                       if (!(flags & IORESOURCE_PREFETCH))
+>> +                               value |= LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar);
+>> +                       value |= LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar);
+>> +               }
+>> +
+>> +               value |= LM_RC_BAR_CFG_APERTURE(bar, aperture);
+>> +
+>> +               size -= winsize;
+>> +               cpu_addr += winsize;
+>> +               bar++;
+>> +       }
+>> +       cdns_pcie_writel(pcie, CDNS_PCIE_LM_RC_BAR_CFG, value);
+>> +       *index = bar;
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int cdns_pcie_host_map_dma_ranges(struct cdns_pcie_rc *rc)
+>> +{
+>> +       enum cdns_pcie_rp_bar bar = RP_BAR0;
+>> +       struct cdns_pcie *pcie = &rc->pcie;
+>> +       struct device *dev = pcie->dev;
+>> +       struct device_node *np = dev->of_node;
+>> +       struct pci_host_bridge *bridge;
+>> +       struct resource_entry *entry;
+>> +       u32 no_bar_nbits = 32;
+>> +       int err;
+>> +
+>> +       bridge = pci_host_bridge_from_priv(rc);
+>> +       if (!bridge)
+>> +               return -ENOMEM;
+>> +
+>> +       if (list_empty(&bridge->dma_ranges)) {
+>> +               of_property_read_u32(np, "cdns,no-bar-match-nbits",
+>> +                                    &no_bar_nbits);
+>> +               cdns_pcie_host_bar_ib_config(rc, RP_NO_BAR, 0x0, no_bar_nbits);
+>> +               return 0;
+>> +       }
+>> +
+>> +       resource_list_for_each_entry(entry, &bridge->dma_ranges) {
+>> +               err = cdns_pcie_host_bar_config(rc, entry, &bar);
+> 
+> Seems like this should have some better logic to pick which BAR to
+> use. Something like find the biggest region and then find the smallest
+> BAR that it fits in. Then get the next biggest...
 
-All i.MX support wake-on-lan, imx6q/dl/qp is the first platforms in upstrea=
-m to support it.
-As you know, most of i.MX chips has two ethernet instances, they have diffe=
-rent gpr bit.
+Okay, I'll change this something like for each region, find the smallest BAR
+that it fits in and if there is no BAR big enough to hold the region, split the
+region to see if can be fitted using multiple BARs. I don't see the purpose of
+finding the biggest region first since at all times we'll only use the smallest
+BAR to fit.
 
-gpr is used to enter/exit stop mode for soc. So it can be defined in dtsi f=
-ile.
-"fsl,magic-packet;" property is define the board wakeup capability.
-
-I am not sure whether above information is clear for you why to add the pat=
-ch set.
-
-Andy
+Thanks
+Kishon
