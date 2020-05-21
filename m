@@ -2,101 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B341DCCE9
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 14:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4646D1DCA21
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 11:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729043AbgEUMaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 08:30:03 -0400
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.66]:52187 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728041AbgEUMaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 08:30:03 -0400
-Received: from [100.112.199.17] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-2.bemta.az-b.eu-west-1.aws.symcld.net id 8C/FC-40649-74476CE5; Thu, 21 May 2020 12:29:59 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRWlGSWpSXmKPExsVy8MN7XV33kmN
-  xBlfvqFrMOd/CYjH/yDlWi8OLXjBaNC9ez2Zx/+tRRoubn76xWlzeNYfNon3jbFaLpdcvMlm8
-  /9TJZNG69wi7xf89O9gtfu6ax2Jxe+JkRgc+jzXz1jB6bFl5k8lj56y77B6bVnWyedy5tofNY
-  //cNewe/X8NPD5vkgvgiGLNzEvKr0hgzejZdICt4D97xbVDb1kaGH+ydjFycQgJrGWUmNj4DM
-  jhAHIqJbasCOpi5OTgFTCVODjpPCuIzSagI/Fo5nomEJtFQFXiQNtrdhBbWMBRonfmAmaQOSI
-  CJ5klOu99ZQFxmAWmMUrs+XiYGWKSoMTJmU9YQGxmAQmJgy9egMWFBLQkzq1ZxTiBkXsWkrJZ
-  SMoWMDKtYrRIKspMzyjJTczM0TU0MNA1NDTSNbQ00zU0NtdLrNJN0kst1S1PLS7RNdRLLC/WK
-  67MTc5J0ctLLdnECAz6lIIjnTsYf695r3eIUZKDSUmU94D/sTghvqT8lMqMxOKM+KLSnNTiQ4
-  wyHBxKErz5xUA5waLU9NSKtMwcYATCpCU4eJREeDcVAaV5iwsSc4sz0yFSpxh1Oa6/37uUWYg
-  lLz8vVUqcVxJkhgBIUUZpHtwIWDK4xCgrJczLyMDAIMRTkFqUm1mCKv+KUZyDUUmYNwNkCk9m
-  XgncpldARzABHSF97BDIESWJCCmpBqa8onVPVqk0eM3+YtMqMy/gzspANt609sIvV60efddMr
-  T7jPEnG4PRsF+YlCf2CWxadF2TNahbpql6QEfy0/+/z99f9S/tvcn49lfv6WZXWD51C3kjJjz
-  v9hPZt3f70f5ulTv/8D93qrZtuPGpzf/cjX3VmcKdcQnZA9gS2+z9FMru3LroeObn0rdijN6d
-  ubOsVzLrkm7KxourDxRnsew68jtZxyqrZu56X30Qk+MXyzN0Rh/ySNUrvnrhoIs55PqFoaljL
-  k677HZUCe/WiXz10Xvxp0QunC7GbDm+7fd/scVkiS9ituVsnup8/omcn3tBnuXSv2nkLl4UzD
-  wrqLn6wk9tM7LBZVmeDVitr7mQlluKMREMt5qLiRABrzc0mgQMAAA==
-X-Env-Sender: roy.im.opensource@diasemi.com
-X-Msg-Ref: server-21.tower-282.messagelabs.com!1590064199!5520835!1
-X-Originating-IP: [193.240.239.45]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 26010 invoked from network); 21 May 2020 12:29:59 -0000
-Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
-  by server-21.tower-282.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 21 May 2020 12:29:59 -0000
-Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Thu, 21 May 2020 14:29:57 +0200
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- 8296D13F671; Thu, 21 May 2020 21:29:55 +0900 (KST)
-Message-ID: <cover.1590053093.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Thu, 21 May 2020 18:24:53 +0900
-Subject: [RESEND PATCH V13 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+        id S1728865AbgEUJfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 05:35:14 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:48810 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728700AbgEUJfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 May 2020 05:35:11 -0400
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 7F2FEE3A1CFA707ED67B;
+        Thu, 21 May 2020 17:35:02 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS406-HUB.china.huawei.com (10.3.19.206) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 21 May 2020 17:34:56 +0800
+From:   Chen Zhou <chenzhou10@huawei.com>
+To:     <tglx@linutronix.de>, <mingo@redhat.com>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <dyoung@redhat.com>,
+        <bhe@redhat.com>, <robh+dt@kernel.org>
+CC:     <arnd@arndb.de>, <John.p.donnelly@oracle.com>,
+        <pkushwaha@marvell.com>, <horms@verge.net.au>,
+        <guohanjun@huawei.com>, <chenzhou10@huawei.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kexec@lists.infradead.org>
+Subject: [PATCH v8 0/5] support reserving crashkernel above 4G on arm64 kdump
+Date:   Thu, 21 May 2020 17:38:00 +0800
+Message-ID: <20200521093805.64398-1-chenzhou10@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
+This patch series enable reserving crashkernel above 4G in arm64.
 
-In this patch set the following is provided:
+There are following issues in arm64 kdump:
+1. We use crashkernel=X to reserve crashkernel below 4G, which will fail
+when there is no enough low memory.
+2. Currently, crashkernel=Y@X can be used to reserve crashkernel above 4G,
+in this case, if swiotlb or DMA buffers are required, crash dump kernel
+will boot failure because there is no low memory available for allocation.
 
-[PATCH V13 1/3] MAINTAINERS file update for DA7280
-[PATCH V13 2/3] DA7280 DT Binding
-[PATCH V13 3/3] DA7280 Driver
+To solve these issues, introduce crashkernel=X,low to reserve specified
+size low memory.
+Crashkernel=X tries to reserve memory for the crash dump kernel under
+4G. If crashkernel=Y,low is specified simultaneously, reserve spcified
+size low memory for crash kdump kernel devices firstly and then reserve
+memory above 4G.
 
-This patch applies against linux-next and v5.7-rc4
+When crashkernel is reserved above 4G in memory, that is, crashkernel=X,low
+is specified simultaneously, kernel should reserve specified size low memory
+for crash dump kernel devices. So there may be two crash kernel regions, one
+is below 4G, the other is above 4G.
+In order to distinct from the high region and make no effect to the use of
+kexec-tools, rename the low region as "Crash kernel (low)", and add DT property
+"linux,low-memory-range" to crash dump kernel's dtb to pass the low region.
 
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
+Besides, we need to modify kexec-tools:
+arm64: kdump: add another DT property to crash dump kernel's dtb(see [1])
 
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
+The previous changes and discussions can be retrieved from:
 
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   13 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1898 ++++++++++++++++++++
- 5 files changed, 2023 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
+Changes since [v7]
+- Move x86 CRASH_ALIGN to 2M
+Suggested by Dave and do some test, move x86 CRASH_ALIGN to 2M.
+- Update Documentation/devicetree/bindings/chosen.txt 
+Add corresponding documentation to Documentation/devicetree/bindings/chosen.txt suggested by Arnd.
+- Add Tested-by from Jhon and pk
+
+Changes since [v6]
+- Fix build errors reported by kbuild test robot.
+
+Changes since [v5]
+- Move reserve_crashkernel_low() into kernel/crash_core.c.
+- Delete crashkernel=X,high.
+- Modify crashkernel=X,low.
+If crashkernel=X,low is specified simultaneously, reserve spcified size low
+memory for crash kdump kernel devices firstly and then reserve memory above 4G.
+In addition, rename crashk_low_res as "Crash kernel (low)" for arm64, and then
+pass to crash dump kernel by DT property "linux,low-memory-range".
+- Update Documentation/admin-guide/kdump/kdump.rst.
+
+Changes since [v4]
+- Reimplement memblock_cap_memory_ranges for multiple ranges by Mike.
+
+Changes since [v3]
+- Add memblock_cap_memory_ranges back for multiple ranges.
+- Fix some compiling warnings.
+
+Changes since [v2]
+- Split patch "arm64: kdump: support reserving crashkernel above 4G" as
+two. Put "move reserve_crashkernel_low() into kexec_core.c" in a separate
+patch.
+
+Changes since [v1]:
+- Move common reserve_crashkernel_low() code into kernel/kexec_core.c.
+- Remove memblock_cap_memory_ranges() i added in v1 and implement that
+in fdt_enforce_memory_region().
+There are at most two crash kernel regions, for two crash kernel regions
+case, we cap the memory range [min(regs[*].start), max(regs[*].end)]
+and then remove the memory range in the middle.
+
+[1]: http://lists.infradead.org/pipermail/kexec/2020-May/025128.html
+[v1]: https://lkml.org/lkml/2019/4/2/1174
+[v2]: https://lkml.org/lkml/2019/4/9/86
+[v3]: https://lkml.org/lkml/2019/4/9/306
+[v4]: https://lkml.org/lkml/2019/4/15/273
+[v5]: https://lkml.org/lkml/2019/5/6/1360
+[v6]: https://lkml.org/lkml/2019/8/30/142
+[v7]: https://lkml.org/lkml/2019/12/23/411
+
+Chen Zhou (5):
+  x86: kdump: move reserve_crashkernel_low() into crash_core.c
+  arm64: kdump: reserve crashkenel above 4G for crash dump kernel
+  arm64: kdump: add memory for devices by DT property, low-memory-range
+  kdump: update Documentation about crashkernel on arm64
+  dt-bindings: chosen: Document linux,low-memory-range for arm64 kdump
+
+ Documentation/admin-guide/kdump/kdump.rst     | 13 ++-
+ .../admin-guide/kernel-parameters.txt         | 12 ++-
+ Documentation/devicetree/bindings/chosen.txt  | 25 ++++++
+ arch/arm64/kernel/setup.c                     |  8 +-
+ arch/arm64/mm/init.c                          | 61 ++++++++++++-
+ arch/x86/kernel/setup.c                       | 66 ++------------
+ include/linux/crash_core.h                    |  3 +
+ include/linux/kexec.h                         |  2 -
+ kernel/crash_core.c                           | 85 +++++++++++++++++++
+ kernel/kexec_core.c                           | 17 ----
+ 10 files changed, 208 insertions(+), 84 deletions(-)
 
 -- 
-end-of-patch for RESEND PATCH V13
+2.20.1
 
