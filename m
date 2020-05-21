@@ -2,80 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C441DC2A4
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 01:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE3A31DC35A
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 02:10:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728616AbgETXHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 May 2020 19:07:00 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:45995 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728019AbgETXHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 19:07:00 -0400
-Received: by mail-il1-f193.google.com with SMTP id b15so5040065ilq.12;
-        Wed, 20 May 2020 16:06:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hpxe6Kf1Y1YKMS1+011D2HXa532cg7CAEDYR3p5RkEw=;
-        b=LdoGNGArJeHLdn8MZq6irDRDbDKJmSU53w3sOyRkH7x6VeV71zRu/B/2DzUVtEUCAi
-         O8Bk/hX4Xgdd6gpMqLXjDfm7sojbJfyAvrhqibcAoQm2AYK+zDYMmjFFQRmHmnESD1IJ
-         9CW/8gkoYh96Moj3ePuRJB+BZl2jwEam+IlL/jvROz5PfUmFnk9ZNI5pOjDE4hthJRQ4
-         5xcwK2eIbyKiwE0YHG0esWp1F6ZhLles/2+dfpbk4iiHjdh0pceR3cz59ufYRUOZnepK
-         E2JXhLVEHHJR5jPEAt5X4C0DOSgSgDmwoSREDSUdU2f3DKo3X+PDAHvhcpWcZeE1chLh
-         ShWg==
-X-Gm-Message-State: AOAM530z2zSnqA2DUuR9iw9avBRTxdGgsoK2I8dncH8Sw70Ah1jz0DYg
-        FgB7Eudq4lNZ+K6nEhb+9A==
-X-Google-Smtp-Source: ABdhPJxjcHECSsdzZdmzcqRS1EuJexuCuPYCn1h85LxDvs0MwMakXDkCfb4HocQNRcy4sUr6NgDWnA==
-X-Received: by 2002:a05:6e02:106d:: with SMTP id q13mr6278919ilj.107.1590016018819;
-        Wed, 20 May 2020 16:06:58 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id q13sm1667155ion.36.2020.05.20.16.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2020 16:06:58 -0700 (PDT)
-Received: (nullmailer pid 788100 invoked by uid 1000);
-        Wed, 20 May 2020 23:06:57 -0000
-Date:   Wed, 20 May 2020 17:06:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        id S1726845AbgEUAKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 May 2020 20:10:24 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54944 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726830AbgEUAKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 May 2020 20:10:23 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04L0ABHw119697;
+        Wed, 20 May 2020 19:10:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590019811;
+        bh=bxxyF39bG20vkcm18FoVVnaFF3ZtcaFk7MRVd2l1kI0=;
+        h=From:To:CC:Subject:Date;
+        b=VSZRfu/3WcDFrXomQ64o4chhGx9XGnBogVSR5I1sND692cEzFxyHbIQyKZYzZQ7y6
+         8It4fxYlyjUiJ6QPsJKU3D5zSBhmtjCRIWToU583rDfVrErApmzQq1D/ZoBo84H+xp
+         7Z2Z4CI+CWx1613nQlcCAVVbPS8lBOq4n6+DgHPo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04L0ABjx023423
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 20 May 2020 19:10:11 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
+ May 2020 19:10:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 20 May 2020 19:10:11 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04L0ABum003652;
+        Wed, 20 May 2020 19:10:11 -0500
+Received: from localhost ([10.250.48.148])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 04L0ABdd084874;
+        Wed, 20 May 2020 19:10:11 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH v4 2/2] PCI: uniphier: Add Socionext UniPhier Pro5 PCIe
- endpoint controller driver
-Message-ID: <20200520230657.GA788030@bogus>
-References: <1589457801-12796-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1589457801-12796-3-git-send-email-hayashi.kunihiko@socionext.com>
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v2 0/4] TI K3 DSP remoteproc driver for C66x DSPs
+Date:   Wed, 20 May 2020 19:10:02 -0500
+Message-ID: <20200521001006.2725-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1589457801-12796-3-git-send-email-hayashi.kunihiko@socionext.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 May 2020 21:03:21 +0900, Kunihiko Hayashi wrote:
-> Add driver for the Socionext UniPhier Pro5 SoC endpoint controller.
-> This controller is based on the DesignWare PCIe core.
-> 
-> And add "host" to existing controller descriontions for the host controller
-> in Kconfig.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  MAINTAINERS                                   |   2 +-
->  drivers/pci/controller/dwc/Kconfig            |  13 +-
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-uniphier-ep.c | 383 ++++++++++++++++++++++++++
->  4 files changed, 396 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/pci/controller/dwc/pcie-uniphier-ep.c
-> 
+Hi All,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The following is v2 of the K3 DSP remoteproc driver supporting the C66x DSPs
+on the TI K3 J721E SoCs. The patches are based on the latest commit on the
+rproc-next branch, 7dcef3988eed ("remoteproc: Fix an error code in
+devm_rproc_alloc()").
+
+v2 includes a new remoteproc core patch (patch 1) that adds an OF helper
+for parsing the firmware-name property. This is refactored out to avoid
+replicating the code in various remoteproc drivers. Please see the
+individual patches for detailed changes. 
+
+The main dependent patches from the previous series are now staged in
+rproc-next branch. The only dependency for this series is the common
+ti-sci-proc helper between R5 and DSP drivers [1]. Please see the initial
+cover-letter [2] for v1 details.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/patch/11456379/
+[2] https://patchwork.kernel.org/cover/11458573/
+
+Suman Anna (4):
+  remoteproc: Introduce rproc_of_parse_firmware() helper
+  dt-bindings: remoteproc: Add bindings for C66x DSPs on TI K3 SoCs
+  remoteproc/k3-dsp: Add a remoteproc driver of K3 C66x DSPs
+  remoteproc/k3-dsp: Add support for L2RAM loading on C66x DSPs
+
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 190 +++++
+ drivers/remoteproc/Kconfig                    |  13 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/remoteproc_core.c          |  23 +
+ drivers/remoteproc/remoteproc_internal.h      |   2 +
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     | 773 ++++++++++++++++++
+ 6 files changed, 1002 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_dsp_remoteproc.c
+
+-- 
+2.26.0
+
