@@ -2,312 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B17FF1DD77A
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 21:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02861DD798
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 21:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729668AbgEUTmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 15:42:24 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:51290 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728635AbgEUTmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 15:42:23 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04LJg7xr047716;
-        Thu, 21 May 2020 14:42:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1590090127;
-        bh=Pg2UkZy+0TdS3g2QD6McuO3ZAESXCUACONtu3MwDDlI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=reedSvxegdhEDsggnwndaTlBRaush6ltHMZSPxO2Rd4h1VIiGY65NH0mXUlq7fylm
-         ejWsejwLusor/vq+cxVA2v6IVEvwFTULZnKK1oaL2N0mi3Yd4B9NJxidGRaiajuqHj
-         xxTDZFj7WmchBUATQ3O3RRS2fkpw5F1Q/53Xqy/Y=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04LJg7GL116554
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 21 May 2020 14:42:07 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
- May 2020 14:42:06 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 21 May 2020 14:42:07 -0500
-Received: from [10.250.48.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04LJg67b097816;
-        Thu, 21 May 2020 14:42:06 -0500
-Subject: Re: [PATCH 3/4] remoteproc: add support for a new 64-bit trace
- version
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Clement Leger <cleger@kalray.eu>,
-        Loic Pallardy <loic.pallardy@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200325204701.16862-1-s-anna@ti.com>
- <20200325204701.16862-4-s-anna@ti.com> <20200521180417.GJ408178@builder.lan>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <997d6f9a-64ba-7a89-e909-9a5a474120b0@ti.com>
-Date:   Thu, 21 May 2020 14:42:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1728273AbgEUTug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 15:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729971AbgEUTue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 15:50:34 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5B1C05BD43
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:50:32 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id c3so3620056wru.12
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 12:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:subject:message-id:mime-version:content-disposition;
+        bh=W0bmmrcfoMMLY53+q+PM9oHmwAiHFiyVtLVqP+FNgI0=;
+        b=pdzOstKGZ1qMN+Pt/TsxJHH8iZB55xatp5okzckH9uMnliXxBzJ9d0Dl9uBJ2qEw9R
+         7PTdcGlnFcOu+873UWzw/00aGEtsuyvlAJ7ZFQpy5TP4vD2NyfcKQKtrD9Ck7iQd2NkI
+         6Ng7TcezZa+S8AV4dIUNdC13V8LwS/Vfi4jGHA+K14GOcFaDrGoZDhHZYKyW2U5fLupK
+         ObdGJ7gdJpQwB7rewEDpX+h3vVGjeepFL58TpAGyAJOf5F8CjhUnRqtwFmi3aEy4lD/M
+         LoC1VKlwtJvVcmWpthwx0VwlfA/PwebI1aTE6ljjX7R7Mk+e6inPHbpSTFiu8/My8QCT
+         voxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition;
+        bh=W0bmmrcfoMMLY53+q+PM9oHmwAiHFiyVtLVqP+FNgI0=;
+        b=VUCE5+5DUhl6kqLgzi/G67RUKwhx3MLtY1hGS+9ouUStpQ5+dhqZdLQ0XLIG9oTm7l
+         Z9TEHtLKXLpc/B6OIdY+U2J9WgAuesfTRONzjNOWJM326JKuPe7YlbSQqyp+z1z0erhj
+         2mj088nsHg8mK4DGQjs6+2Y/S94VJrIULz48pr6oKsdB5X7ZQ7FdGBolIWiG6YSP+6wh
+         guUSjKsT1orpQEygLVdL/PnqaE2ZF4mvnPEPmhezadBSgon2fujBNM8StRavzG9/Yu4z
+         AV7RPq2ayWr66niUFz2lS3RIOqVYeA/HPfOdDGdO9nx88owF2u4vNoLj0KzikNeBmLc9
+         sq0w==
+X-Gm-Message-State: AOAM533ZVxR5bdML6UFJfYdQx3tXjNaMCEaHqVMOzCxwsFElozfXE6aE
+        QSad0jcqlJo8cGXrU2VTJy4Wkw==
+X-Google-Smtp-Source: ABdhPJxI5+4zP6A4maoDpeagfmZeWogan+Aicw3eNBXaIjNm2V8HkzqxiSDUki2DMSG365TA15J5jQ==
+X-Received: by 2002:a5d:6806:: with SMTP id w6mr207199wru.324.1590090631449;
+        Thu, 21 May 2020 12:50:31 -0700 (PDT)
+Received: from x1 (i59F66838.versanet.de. [89.246.104.56])
+        by smtp.gmail.com with ESMTPSA id 18sm7329042wmj.19.2020.05.21.12.50.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2020 12:50:30 -0700 (PDT)
+Date:   Thu, 21 May 2020 21:50:28 +0200
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>
+Subject: [PATCH] arm: dts: am335x-boneblack: add gpio-line-names
+Message-ID: <20200521195028.GB429020@x1>
 MIME-Version: 1.0
-In-Reply-To: <20200521180417.GJ408178@builder.lan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Add gpio-line-names properties to the GPIO controller nodes.
 
-On 5/21/20 1:04 PM, Bjorn Andersson wrote:
-> On Wed 25 Mar 13:47 PDT 2020, Suman Anna wrote:
-> 
->> Introduce a new trace entry resource structure that accommodates
->> a 64-bit device address to support 64-bit processors. This is to
->> be used using an overloaded version value of 1 in the upper 32-bits
->> of the previous resource type field. The new resource still uses
->> 32-bits for the length field (followed by a 32-bit reserved field,
->> so can be updated in the future), which is a sufficiently large
->> trace buffer size. A 32-bit padding field also had to be added
->> to align the device address on a 64-bit boundary, and match the
->> usage on the firmware side.
->>
->> The remoteproc debugfs logic also has been adjusted accordingly.
->>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> ---
->>   drivers/remoteproc/remoteproc_core.c    | 40 ++++++++++++++++++++-----
->>   drivers/remoteproc/remoteproc_debugfs.c | 37 ++++++++++++++++++-----
->>   include/linux/remoteproc.h              | 26 ++++++++++++++++
->>   3 files changed, 87 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
->> index 53bc37c508c6..b9a097990862 100644
->> --- a/drivers/remoteproc/remoteproc_core.c
->> +++ b/drivers/remoteproc/remoteproc_core.c
->> @@ -609,21 +609,45 @@ void rproc_vdev_release(struct kref *ref)
->>    *
->>    * Returns 0 on success, or an appropriate error code otherwise
->>    */
->> -static int rproc_handle_trace(struct rproc *rproc, struct fw_rsc_trace *rsc,
->> +static int rproc_handle_trace(struct rproc *rproc, void *rsc,
->>   			      int offset, int avail, u16 ver)
->>   {
->>   	struct rproc_debug_trace *trace;
->>   	struct device *dev = &rproc->dev;
->> +	struct fw_rsc_trace *rsc1;
->> +	struct fw_rsc_trace2 *rsc2;
->>   	char name[15];
->> +	size_t rsc_size;
->> +	u32 reserved;
->> +	u64 da;
->> +	u32 len;
->> +
->> +	if (!ver) {
-> 
-> This looks like a switch to me, but I also do think this looks rather
-> crude, if you spin off the tail of this function and call it from a
-> rproc_handle_trace() and rproc_handle_trace64() I believe this would be
-> cleaner.
+The BeagleBone Black has P8 and P9 headers [0] which expose many of the
+AM3358 ZCZ SoC balls to stacking expansion boards called "capes", or to
+other external connections like jumper wires connected to a breadboard.
+BeagleBone users will often refer to the "Cape Exanpsion Headers" pin
+diagram [1] as it is in the "Bone101" getting started tutorial. [2]
 
-Yeah, ok. Will refactor for this in v2.
+Most of the P8 and P9 header pins can muxed to a GPIO line.  The
+gpio-line-names describe which P8 or P9 pin that line goes to and the
+default mux for that P8 or P9 pin if it is not GPIO.
 
-> 
->> +		rsc1 = (struct fw_rsc_trace *)rsc;
->> +		rsc_size = sizeof(*rsc1);
->> +		reserved = rsc1->reserved;
->> +		da = rsc1->da;
->> +		len = rsc1->len;
->> +	} else if (ver == 1) {
->> +		rsc2 = (struct fw_rsc_trace2 *)rsc;
->> +		rsc_size = sizeof(*rsc2);
->> +		reserved = rsc2->reserved;
->> +		da = rsc2->da;
->> +		len = rsc2->len;
->> +	} else {
->> +		dev_err(dev, "unsupported trace rsc version %d\n", ver);
-> 
-> If we use "type" to describe your 64-bit-da-trace then this sanity check
-> would have been taken care of by the core.
-> 
->> +		return -EINVAL;
->> +	}
->>   
->> -	if (sizeof(*rsc) > avail) {
->> +	if (rsc_size > avail) {
->>   		dev_err(dev, "trace rsc is truncated\n");
->>   		return -EINVAL;
->>   	}
->>   
->>   	/* make sure reserved bytes are zeroes */
->> -	if (rsc->reserved) {
->> -		dev_err(dev, "trace rsc has non zero reserved bytes\n");
->> +	if (reserved) {
->> +		dev_err(dev, "trace rsc has non zero reserved bytes, value = 0x%x\n",
->> +			reserved);
->>   		return -EINVAL;
->>   	}
->>   
->> @@ -632,8 +656,8 @@ static int rproc_handle_trace(struct rproc *rproc, struct fw_rsc_trace *rsc,
->>   		return -ENOMEM;
->>   
->>   	/* set the trace buffer dma properties */
->> -	trace->trace_mem.len = rsc->len;
->> -	trace->trace_mem.da = rsc->da;
->> +	trace->trace_mem.len = len;
->> +	trace->trace_mem.da = da;
->>   
->>   	/* set pointer on rproc device */
->>   	trace->rproc = rproc;
->> @@ -652,8 +676,8 @@ static int rproc_handle_trace(struct rproc *rproc, struct fw_rsc_trace *rsc,
->>   
->>   	rproc->num_traces++;
->>   
->> -	dev_dbg(dev, "%s added: da 0x%x, len 0x%x\n",
->> -		name, rsc->da, rsc->len);
->> +	dev_dbg(dev, "%s added: da 0x%llx, len 0x%x\n",
->> +		name, da, len);
->>   
->>   	return 0;
->>   }
->> diff --git a/drivers/remoteproc/remoteproc_debugfs.c b/drivers/remoteproc/remoteproc_debugfs.c
->> index 3560eed7a360..ff43736db45a 100644
->> --- a/drivers/remoteproc/remoteproc_debugfs.c
->> +++ b/drivers/remoteproc/remoteproc_debugfs.c
->> @@ -192,7 +192,8 @@ static int rproc_rsc_table_show(struct seq_file *seq, void *p)
->>   	struct resource_table *table = rproc->table_ptr;
->>   	struct fw_rsc_carveout *c;
->>   	struct fw_rsc_devmem *d;
->> -	struct fw_rsc_trace *t;
->> +	struct fw_rsc_trace *t1;
->> +	struct fw_rsc_trace2 *t2;
->>   	struct fw_rsc_vdev *v;
->>   	int i, j;
->>   
->> @@ -205,6 +206,7 @@ static int rproc_rsc_table_show(struct seq_file *seq, void *p)
->>   		int offset = table->offset[i];
->>   		struct fw_rsc_hdr *hdr = (void *)table + offset;
->>   		void *rsc = (void *)hdr + sizeof(*hdr);
->> +		u16 ver = hdr->st.v;
->>   
->>   		switch (hdr->st.t) {
->>   		case RSC_CARVEOUT:
->> @@ -230,13 +232,32 @@ static int rproc_rsc_table_show(struct seq_file *seq, void *p)
->>   			seq_printf(seq, "  Name %s\n\n", d->name);
->>   			break;
->>   		case RSC_TRACE:
->> -			t = rsc;
->> -			seq_printf(seq, "Entry %d is of type %s\n",
->> -				   i, types[hdr->st.t]);
->> -			seq_printf(seq, "  Device Address 0x%x\n", t->da);
->> -			seq_printf(seq, "  Length 0x%x Bytes\n", t->len);
->> -			seq_printf(seq, "  Reserved (should be zero) [%d]\n", t->reserved);
->> -			seq_printf(seq, "  Name %s\n\n", t->name);
->> +			if (ver == 0) {
-> 
-> Again, this is a switch, here in a switch. Just defining a new
-> RSC_TRACE64 type would reduce the amount of code here...
+For example, gpiochip 1 line 0 is connected to P8 header pin 25 (P8_25)
+however the default device tree has the corresponding BGA ball (ZCZ U7)
+muxed to mmc1_dat0 as it is used for the on-board eMMC chip.  For that
+GPIO line to be used, one would need to modify the device tree to
+disable the eMMC and change the pin mux for that ball to GPIO mode.
 
-OK.
+Some of the AM3358 ZCZ balls corresponding to GPIO lines are not routed
+to a P8 or P9 header, but are instead wired to some peripheral device
+like on-board eMMC, HDMI framer IC, or status LEDs.  Those names are in
+brackets to denote those GPIO lines can not be used.
 
-> 
->> +				t1 = rsc;
->> +				seq_printf(seq, "Entry %d is version %d of type %s\n",
->> +					   i, ver, types[hdr->st.t]);
->> +				seq_printf(seq, "  Device Address 0x%x\n",
->> +					   t1->da);
->> +				seq_printf(seq, "  Length 0x%x Bytes\n",
->> +					   t1->len);
->> +				seq_printf(seq, "  Reserved (should be zero) [%d]\n",
->> +					   t1->reserved);
->> +				seq_printf(seq, "  Name %s\n\n", t1->name);
->> +			} else if (ver == 1) {
->> +				t2 = rsc;
->> +				seq_printf(seq, "Entry %d is version %d of type %s\n",
->> +					   i, ver, types[hdr->st.t]);
->> +				seq_printf(seq, "  Device Address 0x%llx\n",
->> +					   t2->da);
->> +				seq_printf(seq, "  Length 0x%x Bytes\n",
->> +					   t2->len);
->> +				seq_printf(seq, "  Reserved (should be zero) [%d]\n",
->> +					   t2->reserved);
->> +				seq_printf(seq, "  Name %s\n\n", t2->name);
->> +			} else {
->> +				seq_printf(seq, "Entry %d is an unsupported version %d of type %s\n",
->> +					   i, ver, types[hdr->st.t]);
->> +			}
->>   			break;
->>   		case RSC_VDEV:
->>   			v = rsc;
->> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
->> index 526d3cb45e37..3b3bea42f8b1 100644
->> --- a/include/linux/remoteproc.h
->> +++ b/include/linux/remoteproc.h
->> @@ -243,6 +243,32 @@ struct fw_rsc_trace {
->>   	u8 name[32];
->>   } __packed;
->>   
->> +/**
->> + * struct fw_rsc_trace2 - trace buffer declaration supporting 64-bits
->> + * @padding: initial padding after type field for aligned 64-bit access
->> + * @da: device address (64-bit)
->> + * @len: length (in bytes)
->> + * @reserved: reserved (must be zero)
->> + * @name: human-readable name of the trace buffer
->> + *
->> + * This resource entry is an enhanced version of the fw_rsc_trace resourec entry
->> + * and the provides equivalent functionality but designed for 64-bit remote
->> + * processors.
->> + *
->> + * @da specifies the device address of the buffer, @len specifies
->> + * its size, and @name may contain a human readable name of the trace buffer.
->> + *
->> + * After booting the remote processor, the trace buffers are exposed to the
->> + * user via debugfs entries (called trace0, trace1, etc..).
->> + */
->> +struct fw_rsc_trace2 {
-> 
-> Sounds more like fw_rsc_trace64 to me - in particular since the version
-> of trace2 is 1...
+Some GPIO lines are named "[NC]" as the corresponding balls are not
+routed to anything on the PCB.
 
-Yeah, will rename this.
+The goal for these names is to make it easier for a user viewing the
+output of gpioinfo to determine which P8 or P9 pin is connected to a
+GPIO line.  The output of gpioinfo on a BeagleBone Black would be:
 
-> 
->> +	u32 padding;
->> +	u64 da;
->> +	u32 len;
->> +	u32 reserved;
-> 
-> What's the purpose of this reserved field?
+[0] https://git.io/JfgOd
+[1] https://beagleboard.org/capes
+[1] https://beagleboard.org/Support/bone101
+[2] https://beagleboard.org/static/images/cape-headers.png
 
-Partly to make sure the entire resource is aligned on an 8-byte, and 
-partly copied over from fw_rsc_trace entry. I guess 32-bits is already 
-large enough of a size for trace entries irrespective of 32-bit or 
-64-bit traces, so I doubt if we want to make the len field also a u64.
+Reviewed-by: Jason Kridner <jason@beagleboard.org>
+Reviewed-by: Robert Nelson <robertcnelson@gmail.com>
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+V1 note:
+I had posted a patch with these line names for am335x-bone-common.dtsi
+but Grygorii Strashko pointed out that the names are not applicable to
+all BeagleBone models.  Thus is have created this patch to add these
+names just for the BeagleBone Black.
 
-regards
-Suman
+ arch/arm/boot/dts/am335x-boneblack.dts | 144 +++++++++++++++++++++++++
+ 1 file changed, 144 insertions(+)
 
-> 
-> Regards,
-> Bjorn
-> 
->> +	u8 name[32];
->> +} __packed;
->> +
->>   /**
->>    * struct fw_rsc_vdev_vring - vring descriptor entry
->>    * @da: device address
->> -- 
->> 2.23.0
->>
+diff --git a/arch/arm/boot/dts/am335x-boneblack.dts b/arch/arm/boot/dts/am335x-boneblack.dts
+index d3928662aed4..5f31e832eb82 100644
+--- a/arch/arm/boot/dts/am335x-boneblack.dts
++++ b/arch/arm/boot/dts/am335x-boneblack.dts
+@@ -23,3 +23,147 @@ oppnitro-1000000000 {
+ 		opp-supported-hw = <0x06 0x0100>;
+ 	};
+ };
++
++&gpio0 {
++	gpio-line-names =
++		"[ethernet]",
++		"[ethernet]",
++		"P9_22 [spi0_sclk]",
++		"P9_21 [spi0_d0]",
++		"P9_18 [spi0_d1]",
++		"P9_17 [spi0_cs0]",
++		"[sd card]",
++		"P9_42A [ecappwm0]",
++		"P8_35 [hdmi]",
++		"P8_33 [hdmi]",
++		"P8_31 [hdmi]",
++		"P8_32 [hdmi]",
++		"P9_20 [i2c2_sda]",
++		"P9_19 [i2c2_scl]",
++		"P9_26 [uart1_rxd]",
++		"P9_24 [uart1_txd]",
++		"[ethernet]",
++		"[ethernet]",
++		"[usb]",
++		"[hdmi]",
++		"P9_41B",
++		"[ethernet]",
++		"P8_19 [ehrpwm2a]",
++		"P8_13 [ehrpwm2b]",
++		"[NC]",
++		"[NC]",
++		"P8_14",
++		"P8_17",
++		"[ethernet]",
++		"[ethernet]",
++		"P9_11 [uart4_rxd]",
++		"P9_13 [uart4_txd]";
++};
++
++&gpio1 {
++	gpio-line-names =
++		"P8_25 [emmc]",
++		"[emmc]",
++		"P8_5 [emmc]",
++		"P8_6 [emmc]",
++		"P8_23 [emmc]",
++		"P8_22 [emmc]",
++		"P8_3 [emmc]",
++		"P8_4 [emmc]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"P8_12",
++		"P8_11",
++		"P8_16",
++		"P8_15",
++		"P9_15A",
++		"P9_23",
++		"P9_14 [ehrpwm1a]",
++		"P9_16 [ehrpwm1b]",
++		"[emmc]",
++		"[usr0 led]",
++		"[usr1 led]",
++		"[usr2 led]",
++		"[usr3 led]",
++		"[hdmi]",
++		"[usb]",
++		"[hdmi audio]",
++		"P9_12",
++		"P8_26",
++		"P8_21 [emmc]",
++		"P8_20 [emmc]";
++};
++
++&gpio2 {
++	gpio-line-names =
++		"P9_15B",
++		"P8_18",
++		"P8_7",
++		"P8_8",
++		"P8_10",
++		"P8_9",
++		"P8_45 [hdmi]",
++		"P8_46 [hdmi]",
++		"P8_43 [hdmi]",
++		"P8_44 [hdmi]",
++		"P8_41 [hdmi]",
++		"P8_42 [hdmi]",
++		"P8_39 [hdmi]",
++		"P8_40 [hdmi]",
++		"P8_37 [hdmi]",
++		"P8_38 [hdmi]",
++		"P8_36 [hdmi]",
++		"P8_34 [hdmi]",
++		"[ethernet]",
++		"[ethernet]",
++		"[ethernet]",
++		"[ethernet]",
++		"P8_27 [hdmi]",
++		"P8_29 [hdmi]",
++		"P8_28 [hdmi]",
++		"P8_30 [hdmi]",
++		"[emmc]",
++		"[emmc]",
++		"[emmc]",
++		"[emmc]",
++		"[emmc]",
++		"[emmc]";
++};
++
++&gpio3 {
++	gpio-line-names =
++		"[ethernet]",
++		"[ethernet]",
++		"[ethernet]",
++		"[ethernet]",
++		"[ethernet]",
++		"[i2c0]",
++		"[i2c0]",
++		"[emu]",
++		"[emu]",
++		"[ethernet]",
++		"[ethernet]",
++		"[NC]",
++		"[NC]",
++		"[usb]",
++		"P9_31 [spi1_sclk]",
++		"P9_29 [spi1_d0]",
++		"P9_30 [spi1_d1]",
++		"P9_28 [spi1_cs0]",
++		"P9_42B [ecappwm0]",
++		"P9_27",
++		"P9_41A",
++		"P9_25",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]",
++		"[NC]";
++};
+-- 
+2.25.1
 
