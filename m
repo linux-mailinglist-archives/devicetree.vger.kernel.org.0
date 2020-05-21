@@ -2,79 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 973061DD301
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 18:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1921DD323
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 18:36:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729561AbgEUQU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 12:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44112 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726938AbgEUQUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 12:20:24 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCA0C061A0E
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 09:20:24 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id k5so8965087lji.11
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 09:20:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KhSteGsD4RiqQuK5YmLBZC6UpLmDwoaKdLBagEsgYl4=;
-        b=UUK/8ULWjMB2mBygCKclhU6LqqpSWv9z30+t+BDLxfb3VTXARp03TokADV8sjD+Rm3
-         OFL0u+IlZG9t7sz8xdVVkBlMtP35b0P9vK22Ys0vOVkK66J0NVlx301AHSdzgwFINPFm
-         A8cTPxfFHhEdOwPW+3RdCzCQfr98gE40Qk7QI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KhSteGsD4RiqQuK5YmLBZC6UpLmDwoaKdLBagEsgYl4=;
-        b=Q6H1bYkCAjOf1alkRG7i+8rjaoENQkS2CtdCStO9LmA/UCLrkfW0GWNC1P5haT/mR2
-         h2D5snp38Pt1SUSobRLduo+1TTz70lx95X28BfSniRmGkkLECm8gacEfm30lk81CEwHd
-         UMd0+Nzs9C0HnJGm1Ve8zdgh1x/I3jARcand6+oXyIEB5ULcV3J5TLl7w8ZwVkwPryW/
-         LnWQO0FOjQ0lYPQyl2Dt0T9kHi5xcLpd+r5ruGBbMfsRJOy6Cl+pmdyLsH0netabreLD
-         4jlNp0LhegU8zzuWpY4nAoq3Vuk6ZjW7Qxh1yeBekSMZ3KXOMNpQaTJ6tD7puVJuIusl
-         a/qQ==
-X-Gm-Message-State: AOAM5322k84vm/i/byNTbipqGmDyNhqik6Gu806FYNvfuXbjvr7800zq
-        I50h9VrIzp1Ede/E1UmEAlXrz/1C4I0=
-X-Google-Smtp-Source: ABdhPJwxUb//b+2Bsakd5Kh+0uPuZae0u/qmBAfJjyu2Gf65BXhFc+oJt/OVbJlh+HuPEcjuLKnvwg==
-X-Received: by 2002:a2e:9248:: with SMTP id v8mr3248636ljg.413.1590078022244;
-        Thu, 21 May 2020 09:20:22 -0700 (PDT)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
-        by smtp.gmail.com with ESMTPSA id m13sm1880706lfk.12.2020.05.21.09.20.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2020 09:20:21 -0700 (PDT)
-Received: by mail-lj1-f170.google.com with SMTP id o14so9032034ljp.4
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 09:20:21 -0700 (PDT)
-X-Received: by 2002:a2e:8018:: with SMTP id j24mr5189945ljg.99.1590078020706;
- Thu, 21 May 2020 09:20:20 -0700 (PDT)
+        id S1728446AbgEUQgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 12:36:07 -0400
+Received: from sonic304-21.consmr.mail.ne1.yahoo.com ([66.163.191.147]:40355
+        "EHLO sonic304-21.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726938AbgEUQgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 May 2020 12:36:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1590078965; bh=6mffK3RH01pMSJbI3gzRyn/TJ4jPuu2pqeTpPbg3ras=; h=Date:From:Reply-To:Subject:References:From:Subject; b=Y4+GZZKGGClMf6Q8kbESS8/1I9ZOZO8t3oI49jEJAlvUmJ0/ThZcCFo9YB2ptAztHfQ4RxjxMPORfmePkdIWmRJCZOL8lz8imwdLl8vOsX60VgjM6fPzXKKniLBu6RKZ//AxdS/a23VUlgmn578M4FwKswOeMz/K+VdZprtjmSMJY++Xqgir1uZ+gs2KOHcnDOD6sc0Z9CjJKPRmFKfPpCbSs9CxqjJ+1gOjoN/sVRwcBLdj3aISZSpAgFOvAarUcer2xWbcFAoD8mD9zVUovB01IxwiEgvdkXfGGGa4nJK1TWe8dDpv0lr4+CjZGnhbj9VcexP79N+16hLXvg5s8w==
+X-YMail-OSG: 846i7RIVM1lrqFAy24zLj.Nxil7sSdhj2GasAN_Om5TX8FUr0AiSOX8bv1SFnTC
+ awd.et.g3xt5AJLquZola.OXwTuEpSleq6ODz1ZXmWHrty_E9Wtbzcc1o002cWSMcdJ_CDdq2KpC
+ jDnft19HzgwL0zF7s7PS81gDG6vKeTqDHMpagwGL0J8GYXPwIzs_zu.VhAwF9vqujJ6xe8z5LGcV
+ Nevz0_vl.XYuga56Bkl9Esi5xrQOl_yeXtsuugMCJmPp9MiqwnYKIR8lDm4KFr6FrOubD2lCkW9v
+ 9zOjF4YpiwDGKD6zsMLmf5TA2Jur7JoL_u4hnBGe3Y2HkAdo7un7WDly4U0SRUocGnf_sQ6MBLRw
+ 2j2pxToWXmo.QI66oZKa55CNY9HKErSN1JwmVtZVEHcIUwub9R6_fuCgN_xh3JfeXdz4M_xtEVSM
+ r0noLhNmFepodwjlwNdNITYfQO1CmWQCipDwlUQv7mu2fgseuM.iV.z4sbF_9Q954JLjCOLAs9ws
+ 5rGpol9nxVk4OCcUysQ8g6KkBk.hFdl5LaGZwvtNlLb7k.58w.gZJsUrKaNJojT6qmYiXRA39utH
+ 0uF65RyuL08FflaTx7nPVK4CvNRsG9.0062wDIaw7OYMxEjfldzGsBDN2JPDIuvh27uoFzuQjhTu
+ _uhGkME0SUFwzMJ5QZmu5t3EHmEDNm0grVhl6IXlirfaECHJHPNNG4e..JaE6pvtm33MUrdYllHr
+ v8AnxD_vaSrImE6bVEF_.9ySv0OnDondvqyc.NQ4m2B18uGA60IXeegxKKxlWzjoFJaaJg.Z2Kg.
+ 2gPx27UBdmr._oZrpvz0icXgp6MfC.6zkfq1FLERoOkEIoGMK6KxQLQ90Xtz62iIykgA96uKFt3R
+ O_QdYqK5nF7z5D0DmJ6Th.pTsfxDKeYpWi3F66XeEwLYd6Nfr997tw5beuQH2KmgkKP2ECOlBtjD
+ 3oX1zmvQuGbQwb5kWKe.Qg_aGent7EY3DbboZxfm3rq07BLzidhbOGM3LNwDyFnJFmprmk7pnqAs
+ S5hNbDyxCcACPCaMgC0g_7wleRT3u63__ZMia5jinkduZiM9_8YNG7qjaf55MYaqVntVAQ9DJ_e2
+ H.OZT78ToX7A.Gnqg6rfNCvPIL4LU3DfhOxg4Dwd5lzi2AjZnrekoJjd9XT1NX8ekY8kSASaKseY
+ GDW55g.YIKvL5L3wslbY2.CHwHQPaDXDKg1GuJ4IsZBL3MoS0xlZmlesf8pzE69Ec7hQVbaySJoB
+ nqomCVxiKWqzIv.TqUWDbxdvus8pG6kSuiym7s_MZc8O7lq_L_yLFyKEbsYnJHcV6kpdfXgpCsA-
+ -
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.ne1.yahoo.com with HTTP; Thu, 21 May 2020 16:36:05 +0000
+Date:   Thu, 21 May 2020 16:36:03 +0000 (UTC)
+From:   Rose Gordon <rosegordonor@gmail.com>
+Reply-To: rosegordonor@gmail.com
+Message-ID: <1742494710.503033.1590078963457@mail.yahoo.com>
+Subject: Hi there
 MIME-Version: 1.0
-References: <1589946996-31264-1-git-send-email-pillair@codeaurora.org>
-In-Reply-To: <1589946996-31264-1-git-send-email-pillair@codeaurora.org>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Thu, 21 May 2020 09:19:43 -0700
-X-Gmail-Original-Message-ID: <CAE=gft5pcHwK8yjObNSSH=U_B6Pz++bDaeUxZhPyJfG2E7LRAg@mail.gmail.com>
-Message-ID: <CAE=gft5pcHwK8yjObNSSH=U_B6Pz++bDaeUxZhPyJfG2E7LRAg@mail.gmail.com>
-Subject: Re: [PATCH v11] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module
- device node
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+References: <1742494710.503033.1590078963457.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.15959 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 19, 2020 at 8:57 PM Rakesh Pillai <pillair@codeaurora.org> wrote:
->
-> Add device node for the ath10k SNOC platform driver probe
-> and add resources required for WCN3990 on sc7180 soc.
->
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-
-Reviewed-by: Evan Green <evgreen@chromium.org>
+Hi Best of the day to you I'm Rose by name 32years old single lady, Can we be friends? i was born and raised in london in United Kingdom Take care Rose.
