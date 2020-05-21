@@ -2,121 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 479441DD23D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 17:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAC01DD236
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2020 17:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728326AbgEUPpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 11:45:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38540 "EHLO
+        id S1728329AbgEUPpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 11:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728316AbgEUPpC (ORCPT
+        with ESMTP id S1727884AbgEUPpC (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 11:45:02 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F67BC08C5C1
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027C8C061A0E
         for <devicetree@vger.kernel.org>; Thu, 21 May 2020 08:45:02 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id z6so8793527ljm.13
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 08:45:02 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id w64so6812780wmg.4
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2020 08:45:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cmJz+Gx7YLDmT8/F9qf3OOQUtF5Sv5dZUkEevMwOpmM=;
-        b=SsroLET2JSHiD8ayuKdihmujwAC67+dgA8oluNDMYpfdBxnArd+BSWFOgdJBz3AUXn
-         Jgr19lkTNEI0fzxu/MAgt0HPLhYToFhkeRxwTirCPS+rmBpUdPWsJQZkQzgnOak6GP/P
-         jQRpA8hNcjjAOc4MpUXyIEyb0/xvM3uM0Ik9MTwOAptQVKMsGOqSvmSGl3OZmLzF6PlT
-         QLQOGo56Agti779dHCpPRDkXKQsEeYXLPM1D62ZYdpTojiTeogdATC6rR22aD/k/GyU5
-         NpjJSJf2PL2iDSYkSQERySBp+NKc6wYBCtxCx+QzjOsfbCz+eewsOJx+Ql5o9V0j7MjE
-         kmCQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=c5TekS/gqJoaBFfkjHpLDvrf7L/QxWIjFGYMdytg2QU=;
+        b=Rgc33QsBa95gR1OJets/mqYh/8ScIm9Z5t7vXdmjSSxh5PLS1/t+6pIlBZO77OLD5J
+         4/SThAZcFF4kRhjq9dnNJoF3MwPPSoaoUQRLMIzRbZ8uhGX2GCoKmgjKxF0R0USd1ST2
+         Hxveu0oCMX2gddjgHaxcRfTayVTyvqoXZapjM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cmJz+Gx7YLDmT8/F9qf3OOQUtF5Sv5dZUkEevMwOpmM=;
-        b=F7NbawdYFKvSNwpV+WCINPPPkKAQFrG8SKZvIm7cyhzU+wPkyg/79z7qC7hUSn8P8d
-         fELOVg+JMKMDl0Z/GIdH/AX0Wtb2wdldu1pri/HSPVsp9+BOWdCd2vsidrquhgUCh1uT
-         ezvFg48a6Oy7Rlz3W6TPd8h+Uskbc2X/9IY/Z4Y/WizZ01k7Cfvh0+PVFgjOxybtEL3c
-         8IyPAB6ZXxpRf5/Je+61zqylTNYhRtIvApvGZn/NG6TtL7At4oLmjVB82dARY1uW2dv5
-         1x0P5lFaXvZ+5ZOw/o3j+v6rcMWlNBcTnpn+UQu3MTHoTuZRQ0Ow5BCk3w4K4jXpW61k
-         paxg==
-X-Gm-Message-State: AOAM530qEo7VrpPoVgZxsJgbu2cSoj32X0sUgOqEiiqYHPfu+/ljExwz
-        dxrW+LMObSJyDCfKJbgcTaWpLA==
-X-Google-Smtp-Source: ABdhPJzF7ksN+o14aJ+SGpc5Githg07FbeQQKCCVP/Xx20hNFOuoDeHcLFuTKLz6iHWPLC6E/tV3rw==
-X-Received: by 2002:a05:651c:1104:: with SMTP id d4mr5227117ljo.193.1590075900931;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=c5TekS/gqJoaBFfkjHpLDvrf7L/QxWIjFGYMdytg2QU=;
+        b=gWLsvg8Cx6KuoOvXHJeMjgl3vtH03lc6uW6wnxtcH+URi3DVSGQN2tzHpuC6tPQP/d
+         bOG2GuhuwqcJQxnVbWm77Eu5QdLz6pslNXrzJBGiGmMwFAiUoCXh77163xj2SConHki7
+         TJlxcpi9tfyg34GAMlM8ZnyjTFoNBIMnmYJ9b4EUV9LxwRnBjXXr0oaH2KfgP8qIurLx
+         bsDwm+osLnqN/EpGOvu7QBHeKRIS9MeDmAuPjrJCRGnypKVIq3RqcPGb3n1uA59lgW3p
+         O53N+rxyaCRaOSnJqGAvz2aC26gaaGwyxZLhSinrVcCWIcdS3q3zscn18YijZV7XBzML
+         srsg==
+X-Gm-Message-State: AOAM532/wG+pv6f41WEoFlJqpxBJYsm14MSzZwyFZiszM2JeC7WJDMwq
+        7X06S49sr/+/xjUN0XBDrtSIcg==
+X-Google-Smtp-Source: ABdhPJwAVu5t0ZqfWJtIhj/nNKgxybzQqBLtV6Ok88bjUrcykbcSSAFQiIz/IgQV0Ib4W3Spc6IFAg==
+X-Received: by 2002:a1c:ed0b:: with SMTP id l11mr10060544wmh.31.1590075900750;
         Thu, 21 May 2020 08:45:00 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:447:6c16:7801:dcb9:693e:53c? ([2a00:1fa0:447:6c16:7801:dcb9:693e:53c])
-        by smtp.gmail.com with ESMTPSA id i8sm2098945lfl.72.2020.05.21.08.44.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+Received: from chromium.org (205.215.190.35.bc.googleusercontent.com. [35.190.215.205])
+        by smtp.gmail.com with ESMTPSA id l11sm7201650wmf.28.2020.05.21.08.45.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 21 May 2020 08:45:00 -0700 (PDT)
-Subject: Re: [PATCH v3 11/14] bus: cdmm: Add MIPS R5 arch support
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        David Lechner <david@lechnology.com>,
-        John Garry <john.garry@huawei.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
-        Sameer Pujar <spujar@nvidia.com>, linux-kernel@vger.kernel.org
-References: <20200521003443.11385-1-Sergey.Semin@baikalelectronics.ru>
- <20200521003443.11385-12-Sergey.Semin@baikalelectronics.ru>
- <9ad8383b-8199-1006-cf91-d760bace705e@cogentembedded.com>
- <20200521125851.5upamjd7ldirj57a@mobilestation>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <73d43b13-c153-cfa0-dbfa-bd0a560a3754@cogentembedded.com>
-Date:   Thu, 21 May 2020 18:44:47 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Date:   Thu, 21 May 2020 15:44:58 +0000
+From:   Tomasz Figa <tfiga@chromium.org>
+To:     Xia Jiang <xia.jiang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        srv_heupstream@mediatek.com, senozhatsky@chromium.org,
+        mojahsu@chromium.org, drinkcat@chromium.org,
+        maoguang.meng@mediatek.com, sj.huang@mediatek.com
+Subject: Re: [PATCH v8 09/14] media: platform: Change MTK_JPEG_COMP_MAX macro
+ definition location
+Message-ID: <20200521154458.GH209565@chromium.org>
+References: <20200403094033.8288-1-xia.jiang@mediatek.com>
+ <20200403094033.8288-10-xia.jiang@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20200521125851.5upamjd7ldirj57a@mobilestation>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200403094033.8288-10-xia.jiang@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.05.2020 15:58, Serge Semin wrote:
+On Fri, Apr 03, 2020 at 05:40:28PM +0800, Xia Jiang wrote:
+> Move MTK_JPEG_COMP_MAX definition to mtk_jpeg_core.h file, because it
+> is used by mtk_jpeg_core.c file.
+> 
+> Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
+> ---
+> v8: no changes
+> ---
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h | 2 ++
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_reg.h  | 1 -
+>  2 files changed, 2 insertions(+), 1 deletion(-)
+> 
 
->>> CDMM may be available not only MIPS R2 architectures, but also in
->>                                  ^ on              -re, it's singular
-> 
-> Thanks, Sergey. Got it. I'll fix it in the next revision.
-> 
->>> newer MIPS R5 chips. For instance our P5600 chip has one. Lets mark
-> Probably also:                                                ^ Let's
-> Right?
+Reviewed-by: Tomasz Figa <tfiga@chromium.org>
 
-    Yes.
-    Thanks for replying. :-)
-
-> 
-> -Sergey
-> 
->>> the CDMM bus being supported for that MIPS arch too.
-> 
->>>
->>> Co-developed-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
->>> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
->>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
->>> Reviewed-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
->>> Cc: Paul Burton <paulburton@kernel.org>
->>> Cc: Ralf Baechle <ralf@linux-mips.org>
->>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>> Cc: Arnd Bergmann <arnd@arndb.de>
->>> Cc: Olof Johansson <olof@lixom.net>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: linux-mips@vger.kernel.org
->>> Cc: devicetree@vger.kernel.org
->> [...]
-
-MBR, Sergei
+Best regards,
+Tomasz
