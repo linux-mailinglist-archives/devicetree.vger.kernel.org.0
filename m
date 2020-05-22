@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A541DE649
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A28F21DE629
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729946AbgEVMIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 May 2020 08:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59754 "EHLO
+        id S1729429AbgEVMHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 May 2020 08:07:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729353AbgEVMH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 May 2020 08:07:27 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4206BC08C5C0
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:27 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id f134so8444949wmf.1
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:27 -0700 (PDT)
+        with ESMTP id S1729053AbgEVMH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 May 2020 08:07:29 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B89B4C08C5C3
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:28 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id u188so9591484wmu.1
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hGk6SHkwZ0/IFFGnE1iOAP01F59WjRCQF/3H+v3exE4=;
-        b=BJ3OIkLmKDJd8mJGXMOAEO0RYtZ+BzOIsHcG2UTpazbPreZ6uDY2fuZCBNsWnHPZjT
-         xuescNUhGBE8SFaTTfNfcabLq8y2VIiMaEMMogTnG1fWAg7mF5jI42aIffPUTPA+iePW
-         H1+GJn6TtGrfuwlTv2N2j+z+8FJe8t5Tkty0XiPLO8fEfBDLOX5xVk8vM2bkcyuYUIiG
-         6s5XAFWCd8aPysT8MuuczJuWiSYnGUnSFXTw1UdujFdRbRa6bEVoWEbUCrd77lm4pXBG
-         BJzOUC0xV1s37znu6SdHGwFgX+Imn6MDlvjRUTS+1uVNKUo0q6QE4VM7f6spU26/iS3X
-         hWww==
+        bh=75HMiSxkO2iGkQyQ4GVIN4XRI1pdsKTRs1XUFo380Tg=;
+        b=I7AimdvAZOh1g/UByPwXTG3z06QWyuPRsDF0Y6Dye4Brq8bAXcTR36UrTTrcFRmV0z
+         ApTCDxKUugYCbGqBd6jh4pdAjVZB5LNOe18if99Ec/1JIe97HNEOCfXfXu10oJmV6OmW
+         9t9TvWm6ZFXkqUfNvBW38GHqf+KiIY4Ck6Bq5FNSeB4KhtkBbVYBv+DU7/Q4cvNK6bT2
+         boLjHlkp7E1pzNHDzgB/i418XwGyHKXG/cG9h7nTX2pmZoouvxti476UwfnpJePKI4ng
+         bURCFe9jqs2O8IdxAxqztdqMugBYRUqdY248cJi+D+VgWvkQ0FT0ORMOETRpJjaJitXR
+         6orA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hGk6SHkwZ0/IFFGnE1iOAP01F59WjRCQF/3H+v3exE4=;
-        b=iubbo8qK4/Ygr26zruoslJbHSBPmTUATjIACCGDRiPlJPZ9dqliEP4jWBC2oeHQKv5
-         FbQvQw4o+bBi628Ei6WmrdNDRj5my8qBRXbNk8ZaKpCrVGinvz7fl52BQ27dYOxfFktw
-         5XElgWuC3Jm5Cgc7oSloeneG6/q5V0liy65bY22ldybnFXIoB1At/3Tzoe5gWd9dufP5
-         NX4RhgUZj4oFbu3LbUo0TN37GdpeQG35meg8vyP95lrUG8rPSQi7emNCxfezkNKFtSa7
-         Ojc/q3Gp06HzoGMbb4ZpXyDRnpbf3UVaS2GPzMyZuNnBQhuXjR1ZfuSv1qnD8TRMNAC9
-         08Tw==
-X-Gm-Message-State: AOAM532+rHI2l2raium077vE3b0MxkcjWKzLi+BdaBCzH4XrlnZnxBN0
-        NCit19aGB582pyZoyIV/gsjxlw==
-X-Google-Smtp-Source: ABdhPJzPM9n4wz+olrOocFVpzas4NvH7xuF1o9DtfGChG8Sh1pIB0aDKJyKMN7cmRko0riD9kvETNg==
-X-Received: by 2002:a05:600c:2146:: with SMTP id v6mr13654376wml.142.1590149246036;
-        Fri, 22 May 2020 05:07:26 -0700 (PDT)
+        bh=75HMiSxkO2iGkQyQ4GVIN4XRI1pdsKTRs1XUFo380Tg=;
+        b=q+ld6/zBIajlNMIqpnzcqNnu8jB1WubSiXPBshbb50mXPQ3MUx9KsHr013iuMlmnU2
+         lZ1vA7ZokLRWwE2vCAuVACeHAHUYtHfqRSrvTLBKUylr9klbUvZSx7PGmE4HcUGq/ZoA
+         05IJw3nDRk4TJHL0zuPT9CjG8xK+YG9SipU0qVNa7OPyQW5NkS2IF/dDhanG30Im8w72
+         xivRoVgCRqb0zKeulnf0rh4XWWtdTog8INO7PCguZoDuFjBnRAf1FfjYztFT4OQOFLDg
+         iduptoq+rtAskPtET8jZc6OBXvqIwuYec8PEqC944uOfx9XioE71BaqDAsXiNVf3lUb5
+         B7Rw==
+X-Gm-Message-State: AOAM531uIFeXM2JIujaurDjHVpiF04x+YFd0ZxSKekymxKm+PF+b43gT
+        kHVAVvZVRszT7fvtKlnS3ix2JQ==
+X-Google-Smtp-Source: ABdhPJwEi7VyHt7K7+omiVssnygbzQxiUSCPmAIEWo/ISCAmaztuxM/ZHSeqf8g+5/jkvW5bZaKWMg==
+X-Received: by 2002:a1c:e188:: with SMTP id y130mr14051662wmg.105.1590149247468;
+        Fri, 22 May 2020 05:07:27 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id f128sm9946233wme.1.2020.05.22.05.07.24
+        by smtp.gmail.com with ESMTPSA id f128sm9946233wme.1.2020.05.22.05.07.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2020 05:07:25 -0700 (PDT)
+        Fri, 22 May 2020 05:07:26 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Rob Herring <robh+dt@kernel.org>,
         "David S . Miller" <davem@davemloft.net>,
@@ -66,9 +66,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v5 04/11] net: ethernet: mediatek: rename Kconfig prompt
-Date:   Fri, 22 May 2020 14:06:53 +0200
-Message-Id: <20200522120700.838-5-brgl@bgdev.pl>
+Subject: [PATCH v5 05/11] net: ethernet: mediatek: remove unnecessary spaces from Makefile
+Date:   Fri, 22 May 2020 14:06:54 +0200
+Message-Id: <20200522120700.838-6-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200522120700.838-1-brgl@bgdev.pl>
 References: <20200522120700.838-1-brgl@bgdev.pl>
@@ -81,26 +81,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-We'll soon by adding a second MediaTek Ethernet driver so modify the
-Kconfig prompt.
+The Makefile formatting in the kernel tree usually doesn't use tabs,
+so remove them before we add a second driver.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- drivers/net/ethernet/mediatek/Kconfig | 2 +-
+ drivers/net/ethernet/mediatek/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/mediatek/Kconfig b/drivers/net/ethernet/mediatek/Kconfig
-index 4968352ba188..5079b8090f16 100644
---- a/drivers/net/ethernet/mediatek/Kconfig
-+++ b/drivers/net/ethernet/mediatek/Kconfig
-@@ -1,6 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config NET_VENDOR_MEDIATEK
--	bool "MediaTek ethernet driver"
-+	bool "MediaTek devices"
- 	depends on ARCH_MEDIATEK || SOC_MT7621 || SOC_MT7620
- 	---help---
- 	  If you have a Mediatek SoC with ethernet, say Y.
+diff --git a/drivers/net/ethernet/mediatek/Makefile b/drivers/net/ethernet/mediatek/Makefile
+index 2d8362f9341b..3362fb7ef859 100644
+--- a/drivers/net/ethernet/mediatek/Makefile
++++ b/drivers/net/ethernet/mediatek/Makefile
+@@ -3,5 +3,5 @@
+ # Makefile for the Mediatek SoCs built-in ethernet macs
+ #
+ 
+-obj-$(CONFIG_NET_MEDIATEK_SOC)                 += mtk_eth.o
++obj-$(CONFIG_NET_MEDIATEK_SOC) += mtk_eth.o
+ mtk_eth-y := mtk_eth_soc.o mtk_sgmii.o mtk_eth_path.o
 -- 
 2.25.0
 
