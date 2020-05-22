@@ -2,106 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9581C1DDDAD
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 05:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0171DDDD2
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 05:24:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbgEVDI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 23:08:26 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:50923 "EHLO
-        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727876AbgEVDI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 23:08:26 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2008003|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.101682-0.00181878-0.8965;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03312;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.HbxBGFJ_1590116882;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.HbxBGFJ_1590116882)
-          by smtp.aliyun-inc.com(10.147.41.178);
-          Fri, 22 May 2020 11:08:22 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linus.walleij@linaro.org, p.zabel@pengutronix.de,
-        frank@allwinnertech.com, huangshuosheng@allwinnertech.com,
-        tiny.windzz@gmail.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH 4/4] arm64: allwinner: A100: add support for Allwinner Perf1 board
-Date:   Fri, 22 May 2020 11:07:43 +0800
-Message-Id: <20200522030743.10204-5-frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200522030743.10204-1-frank@allwinnertech.com>
-References: <20200522030743.10204-1-frank@allwinnertech.com>
+        id S1727080AbgEVDYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 23:24:25 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:5272 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727024AbgEVDYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 May 2020 23:24:24 -0400
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 51717A9057906BA0EFA3;
+        Fri, 22 May 2020 11:24:22 +0800 (CST)
+Received: from [127.0.0.1] (10.166.213.90) by DGGEMS404-HUB.china.huawei.com
+ (10.3.19.204) with Microsoft SMTP Server id 14.3.487.0; Fri, 22 May 2020
+ 11:24:12 +0800
+Subject: Re: [PATCH v8 5/5] dt-bindings: chosen: Document
+ linux,low-memory-range for arm64 kdump
+To:     Rob Herring <robh+dt@kernel.org>
+References: <20200521093805.64398-1-chenzhou10@huawei.com>
+ <20200521093805.64398-6-chenzhou10@huawei.com>
+ <CAL_Jsq+EV02YBqEGoJrsJW8Y+g_GkB_LkTwWCxNCb3F+8MSdyw@mail.gmail.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Arnd Bergmann <arnd@arndb.de>,
+        <John.p.donnelly@oracle.com>, <pkushwaha@marvell.com>,
+        "Simon Horman" <horms@verge.net.au>,
+        Hanjun Guo <guohanjun@huawei.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        "Linux Doc Mailing List" <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <kexec@lists.infradead.org>
+From:   chenzhou <chenzhou10@huawei.com>
+Message-ID: <a419602e-6a85-ca35-39de-b3c26d433199@huawei.com>
+Date:   Fri, 22 May 2020 11:24:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+EV02YBqEGoJrsJW8Y+g_GkB_LkTwWCxNCb3F+8MSdyw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.166.213.90]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A100 perf1 is an Allwinner A100-based SBC, with the following features:
+Hi Rob,
 
-- 1GiB DDR3 DRAM
-- AXP803 PMIC
-- 2 USB 2.0 ports
-- MicroSD slot and on-board eMMC module
-- on-board Nand flash
-- ···
+On 2020/5/21 21:29, Rob Herring wrote:
+> On Thu, May 21, 2020 at 3:35 AM Chen Zhou <chenzhou10@huawei.com> wrote:
+>> Add documentation for DT property used by arm64 kdump:
+>> linux,low-memory-range.
+>> "linux,low-memory-range" is an another memory region used for crash
+>> dump kernel devices.
+>>
+>> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+>> ---
+>>  Documentation/devicetree/bindings/chosen.txt | 25 ++++++++++++++++++++
+>>  1 file changed, 25 insertions(+)
+> chosen is now a schema documented here[1].
+Ok, that is, i don't need to modify the doc in kernel, just create a pull request in github [1]?
 
-Adds initial support for it, including the UART.
+>
+>> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+>> index 45e79172a646..bfe6fb6976e6 100644
+>> --- a/Documentation/devicetree/bindings/chosen.txt
+>> +++ b/Documentation/devicetree/bindings/chosen.txt
+>> @@ -103,6 +103,31 @@ While this property does not represent a real hardware, the address
+>>  and the size are expressed in #address-cells and #size-cells,
+>>  respectively, of the root node.
+>>
+>> +linux,low-memory-range
+>> +----------------------
+>> +This property (arm64 only) holds a base address and size, describing a
+>> +limited region below 4G. Similar to "linux,usable-memory-range", it is
+>> +an another memory range which may be considered available for use by the
+>> +kernel.
+> Why can't you just add a range to "linux,usable-memory-range"? It
+> shouldn't be hard to figure out which part is below 4G.
+I did like this in my previous version, such as v5. After discussed with James, i modified it to the current way.
 
-Signed-off-by: Frank Lee <frank@allwinnertech.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../allwinner/sun50i-a100-allwinner-perf1.dts | 27 +++++++++++++++++++
- 2 files changed, 28 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+We think the existing behavior should be unchanged, which helps with keeping compatibility with existing
+user-space and older kdump kernels.
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index e4d3cd0ac5bb..ab780dbdd17b 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -14,6 +14,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus-v1.2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-emlid-neutis-n5-devboard.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-new file mode 100644
-index 000000000000..32c9986920ed
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (c) 2020 Frank Lee <frank@allwinner.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-a100.dtsi"
-+
-+/{
-+	model = "A100 perf1";
-+	compatible = "allwinner,a100-perf1", "allwinner,sun50i-a100";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
--- 
-2.24.0
+The comments from James:
+> linux,usable-memory-range = <BASE1 SIZE1 [BASE2 SIZE2]>.
+Won't this break if your kdump kernel doesn't know what the extra parameters are?
+Or if it expects two ranges, but only gets one? These DT properties should be treated as
+ABI between kernel versions, we can't really change it like this.
+
+I think the 'low' region is an optional-extra, that is never mapped by the first kernel. I
+think the simplest thing to do is to add an 'linux,low-memory-range' that we
+memblock_add() after memblock_cap_memory_range() has been called.
+If its missing, or the new kernel doesn't know what its for, everything keeps working.
+
+previous discusses:
+https://lkml.org/lkml/2019/6/5/674
+https://lkml.org/lkml/2019/6/13/229
+
+Thanks,
+Chen Zhou
+
+>
+> Rob
+>
+> [1] https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml
+>
+> .
+>
+
 
