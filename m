@@ -2,119 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0171DDDD2
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 05:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0DD51DDDED
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 05:36:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727080AbgEVDYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 23:24:25 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:5272 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727024AbgEVDYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 23:24:24 -0400
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 51717A9057906BA0EFA3;
-        Fri, 22 May 2020 11:24:22 +0800 (CST)
-Received: from [127.0.0.1] (10.166.213.90) by DGGEMS404-HUB.china.huawei.com
- (10.3.19.204) with Microsoft SMTP Server id 14.3.487.0; Fri, 22 May 2020
- 11:24:12 +0800
-Subject: Re: [PATCH v8 5/5] dt-bindings: chosen: Document
- linux,low-memory-range for arm64 kdump
-To:     Rob Herring <robh+dt@kernel.org>
-References: <20200521093805.64398-1-chenzhou10@huawei.com>
- <20200521093805.64398-6-chenzhou10@huawei.com>
- <CAL_Jsq+EV02YBqEGoJrsJW8Y+g_GkB_LkTwWCxNCb3F+8MSdyw@mail.gmail.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Arnd Bergmann <arnd@arndb.de>,
-        <John.p.donnelly@oracle.com>, <pkushwaha@marvell.com>,
-        "Simon Horman" <horms@verge.net.au>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1727942AbgEVDgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 May 2020 23:36:54 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50028 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727024AbgEVDgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 May 2020 23:36:54 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04M3acrN038170;
+        Thu, 21 May 2020 22:36:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590118598;
+        bh=8RzM7i3Rrp8uXl7sKSFGjegEX/Cv2nNjtc1FHktE03I=;
+        h=From:To:CC:Subject:Date;
+        b=nYMOV5Z3PnBeHAFeSZkM48c3Pgb60gCIL3yNP7BnURZqr8EAPcx502W3E4NEwdtfb
+         G8Z62AbmzmeXePIGnRrq30FcAr1KmI689pq2KRQ1KIel+zN3scfgNedDkgRfSmEEtI
+         +utDjA7zVo0OlVAG47drdKVhp+lxyTc9g97yeadg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04M3ac9n028344
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 May 2020 22:36:38 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ May 2020 22:36:38 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 May 2020 22:36:37 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04M3aYbu062596;
+        Thu, 21 May 2020 22:36:34 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        "Linux Doc Mailing List" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        <kexec@lists.infradead.org>
-From:   chenzhou <chenzhou10@huawei.com>
-Message-ID: <a419602e-6a85-ca35-39de-b3c26d433199@huawei.com>
-Date:   Fri, 22 May 2020 11:24:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
- Thunderbird/45.7.1
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: [PATCH v5 00/14] Add PCIe support to TI's J721E SoC
+Date:   Fri, 22 May 2020 09:06:17 +0530
+Message-ID: <20200522033631.32574-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+EV02YBqEGoJrsJW8Y+g_GkB_LkTwWCxNCb3F+8MSdyw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.166.213.90]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+TI's J721E SoC uses Cadence PCIe core to implement both RC mode
+and EP mode.
 
-On 2020/5/21 21:29, Rob Herring wrote:
-> On Thu, May 21, 2020 at 3:35 AM Chen Zhou <chenzhou10@huawei.com> wrote:
->> Add documentation for DT property used by arm64 kdump:
->> linux,low-memory-range.
->> "linux,low-memory-range" is an another memory region used for crash
->> dump kernel devices.
->>
->> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
->> ---
->>  Documentation/devicetree/bindings/chosen.txt | 25 ++++++++++++++++++++
->>  1 file changed, 25 insertions(+)
-> chosen is now a schema documented here[1].
-Ok, that is, i don't need to modify the doc in kernel, just create a pull request in github [1]?
+The high level features are:
+  *) Supports Legacy, MSI and MSI-X interrupt
+  *) Supports upto GEN4 speed mode
+  *) Supports SR-IOV
+  *) Supports multiple physical function
+  *) Ability to route all transactions via SMMU
 
->
->> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
->> index 45e79172a646..bfe6fb6976e6 100644
->> --- a/Documentation/devicetree/bindings/chosen.txt
->> +++ b/Documentation/devicetree/bindings/chosen.txt
->> @@ -103,6 +103,31 @@ While this property does not represent a real hardware, the address
->>  and the size are expressed in #address-cells and #size-cells,
->>  respectively, of the root node.
->>
->> +linux,low-memory-range
->> +----------------------
->> +This property (arm64 only) holds a base address and size, describing a
->> +limited region below 4G. Similar to "linux,usable-memory-range", it is
->> +an another memory range which may be considered available for use by the
->> +kernel.
-> Why can't you just add a range to "linux,usable-memory-range"? It
-> shouldn't be hard to figure out which part is below 4G.
-I did like this in my previous version, such as v5. After discussed with James, i modified it to the current way.
+This patch series
+  *) Add support in Cadence PCIe core to be used for TI's J721E SoC
+  *) Add a driver for J721E PCIe wrapper
 
-We think the existing behavior should be unchanged, which helps with keeping compatibility with existing
-user-space and older kdump kernels.
+v1 of the series can be found @ [1]
+v2 of the series can be found @ [2]
+v3 of the series can be found @ [5]
+v4 of the series can be found @ [6]
 
-The comments from James:
-> linux,usable-memory-range = <BASE1 SIZE1 [BASE2 SIZE2]>.
-Won't this break if your kdump kernel doesn't know what the extra parameters are?
-Or if it expects two ranges, but only gets one? These DT properties should be treated as
-ABI between kernel versions, we can't really change it like this.
+Changes from v4:
+1) Added Reviewed-by: & Acked-by: tags from RobH
+2) Removed un-used accessors for pcie-cadence.h and removed having ops
+   for read/write accessors
+3) Updated cdns,cdns-pcie-host.yaml to remove "mem" from reg
 
-I think the 'low' region is an optional-extra, that is never mapped by the first kernel. I
-think the simplest thing to do is to add an 'linux,low-memory-range' that we
-memblock_add() after memblock_cap_memory_range() has been called.
-If its missing, or the new kernel doesn't know what its for, everything keeps working.
+Changes from v3:
+1) Changed the order of files in MAINTAINTERS file to fix Joe's comments
+2) Fixed indentation and added Reviewed-by: Rob Herring <robh@kernel.org>
+3) Cleaned up computing msix_tbl
+4) Fixed RobH's comment on J721E driver
 
-previous discusses:
-https://lkml.org/lkml/2019/6/5/674
-https://lkml.org/lkml/2019/6/13/229
+Changes from v2:
+1) Converting Cadence binding to YAML schema was done as a
+   separate series [3] & [4]. [3] is merged and [4] is
+   pending.
+2) Included MSI-X support in this series
+3) Added link down interrupt handling (only error message)
+4) Rebased to latest 5.7-rc1
+5) Adapted TI J721E binding to [3] & [4]
 
-Thanks,
-Chen Zhou
+Changes from v1:
+1) Added DT schemas cdns-pcie-host.yaml, cdns-pcie-ep.yaml and
+   cdns-pcie.yaml for Cadence PCIe core and included it in
+   TI's PCIe DT schema.
+2) Added cpu_addr_fixup() for Cadence Platform driver.
+3) Fixed subject/description/renamed functions as commented by
+   Andrew Murray.
 
->
-> Rob
->
-> [1] https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml
->
-> .
->
+[1] -> http://lore.kernel.org/r/20191209092147.22901-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20200106102058.19183-1-kishon@ti.com
+[3] -> http://lore.kernel.org/r/20200305103017.16706-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20200417114322.31111-1-kishon@ti.com
+[5] -> http://lore.kernel.org/r/20200417125753.13021-1-kishon@ti.com
+[6] -> http://lore.kernel.org/r/20200506151429.12255-1-kishon@ti.com
 
+Alan Douglas (1):
+  PCI: cadence: Add MSI-X support to Endpoint driver
+
+Kishon Vijay Abraham I (13):
+  PCI: cadence: Fix cdns_pcie_{host|ep}_setup() error path
+  linux/kernel.h: Add PTR_ALIGN_DOWN macro
+  PCI: cadence: Convert all r/w accessors to perform only 32-bit
+    accesses
+  PCI: cadence: Add support to start link and verify link status
+  PCI: cadence: Allow pci_host_bridge to have custom pci_ops
+  dt-bindings: PCI: cadence: Remove "mem" from reg binding
+  PCI: cadence: Add new *ops* for CPU addr fixup
+  PCI: cadence: Fix updating Vendor ID and Subsystem Vendor ID register
+  dt-bindings: PCI: Add host mode dt-bindings for TI's J721E SoC
+  dt-bindings: PCI: Add EP mode dt-bindings for TI's J721E SoC
+  PCI: j721e: Add TI J721E PCIe driver
+  misc: pci_endpoint_test: Add J721E in pci_device_id table
+  MAINTAINERS: Add Kishon Vijay Abraham I for TI J721E SoC PCIe
+
+ .../bindings/pci/cdns,cdns-pcie-host.yaml     |   8 +-
+ .../bindings/pci/ti,j721e-pci-ep.yaml         |  89 ++++
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 113 ++++
+ MAINTAINERS                                   |   4 +-
+ drivers/misc/pci_endpoint_test.c              |   9 +
+ drivers/pci/controller/cadence/Kconfig        |  23 +
+ drivers/pci/controller/cadence/Makefile       |   1 +
+ drivers/pci/controller/cadence/pci-j721e.c    | 490 ++++++++++++++++++
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 125 ++++-
+ .../controller/cadence/pcie-cadence-host.c    |  59 ++-
+ .../controller/cadence/pcie-cadence-plat.c    |  13 +
+ drivers/pci/controller/cadence/pcie-cadence.c |   8 +-
+ drivers/pci/controller/cadence/pcie-cadence.h | 127 ++++-
+ include/linux/kernel.h                        |   1 +
+ 14 files changed, 1017 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+ create mode 100644 drivers/pci/controller/cadence/pci-j721e.c
+
+-- 
+2.17.1
 
