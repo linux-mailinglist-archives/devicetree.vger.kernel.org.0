@@ -2,221 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 377971DE6CF
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465AF1DE6DA
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728827AbgEVM0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 May 2020 08:26:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46602 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728587AbgEVMZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 May 2020 08:25:45 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04MCPcuW069723;
-        Fri, 22 May 2020 07:25:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1590150338;
-        bh=eXBSMpQf3dYh5WskBCPeXjZB//cH+6CVGFfywycbfVc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=W+W1vlh8rBwFzYozp+8gTg6pAqO+4B6sWPuMR/XOahmKRGfI1KGb7w05ML0ODtXfc
-         Te+L5q0TC2g/4sLXy4QgOvWQX63JyAImM7JNddXjuHLslXPXOEBeE80d+cRSA90NAV
-         i35gp3BKsU39aLmdgjKoAYNuaW6Fva00FyZ24UwE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04MCPbHU119223
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 May 2020 07:25:37 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 22
- May 2020 07:25:37 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 22 May 2020 07:25:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04MCPbSP008000;
-        Fri, 22 May 2020 07:25:37 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>, <robh@kernel.org>
-CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH net-next v2 4/4] net: dp83869: Add RGMII internal delay configuration
-Date:   Fri, 22 May 2020 07:25:34 -0500
-Message-ID: <20200522122534.3353-5-dmurphy@ti.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200522122534.3353-1-dmurphy@ti.com>
-References: <20200522122534.3353-1-dmurphy@ti.com>
+        id S1729035AbgEVM1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 May 2020 08:27:32 -0400
+Received: from mga11.intel.com ([192.55.52.93]:36757 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728987AbgEVM1c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 May 2020 08:27:32 -0400
+IronPort-SDR: B5suJ2e4qlICuhbp2xgbBEasQr73qr3vp6aF9i6r6y230YHFKjkXJoMDHWj1FQRN2wrdCztuca
+ VJvOPoheGMiw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2020 05:27:30 -0700
+IronPort-SDR: NWN5dJDnXUsXQ04oQAKBsYU5gIqJK6FUXRe2aHRdhrhd52IyQKR9HNREhdbx+cfpvDIsKi3bIJ
+ boHtr1ha77rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,421,1583222400"; 
+   d="scan'208";a="265415473"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga003.jf.intel.com with ESMTP; 22 May 2020 05:27:17 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jc6lh-008EFe-DI; Fri, 22 May 2020 15:27:17 +0300
+Date:   Fri, 22 May 2020 15:27:17 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Tali Perry <tali.perry1@gmail.com>
+Cc:     ofery@google.com, brendanhiggins@google.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, kfting@nuvoton.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, wsa@the-dreams.de,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v13 2/3] i2c: npcm7xx: Add Nuvoton NPCM I2C controller
+ driver
+Message-ID: <20200522122717.GB1634618@smile.fi.intel.com>
+References: <20200522113312.181413-1-tali.perry1@gmail.com>
+ <20200522113312.181413-3-tali.perry1@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200522113312.181413-3-tali.perry1@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add RGMII internal delay configuration for Rx and Tx.
+On Fri, May 22, 2020 at 02:33:11PM +0300, Tali Perry wrote:
+> Add Nuvoton NPCM BMC I2C controller driver.
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/net/phy/dp83869.c | 101 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 101 insertions(+)
+I thought we are waiting for Wolfram finishing his review...
 
-diff --git a/drivers/net/phy/dp83869.c b/drivers/net/phy/dp83869.c
-index cfb22a21a2e6..a9008d32e2b6 100644
---- a/drivers/net/phy/dp83869.c
-+++ b/drivers/net/phy/dp83869.c
-@@ -99,6 +99,14 @@
- #define DP83869_OP_MODE_MII			BIT(5)
- #define DP83869_SGMII_RGMII_BRIDGE		BIT(6)
- 
-+/* RGMIIDCTL bits */
-+#define DP83869_RGMII_TX_CLK_DELAY_SHIFT	4
-+#define DP83869_RGMII_CLK_DELAY_INV		0
-+
-+static int dp83869_internal_delay[] = {250, 500, 750, 1000, 1250, 1500, 1750,
-+				       2000, 2250, 2500, 2750, 3000, 3250,
-+				       3500, 3750, 4000};
-+
- enum {
- 	DP83869_PORT_MIRRORING_KEEP,
- 	DP83869_PORT_MIRRORING_EN,
-@@ -108,6 +116,8 @@ enum {
- struct dp83869_private {
- 	int tx_fifo_depth;
- 	int rx_fifo_depth;
-+	u32 rx_id_delay;
-+	u32 tx_id_delay;
- 	int io_impedance;
- 	int port_mirroring;
- 	bool rxctrl_strap_quirk;
-@@ -182,6 +192,7 @@ static int dp83869_of_init(struct phy_device *phydev)
- 	struct dp83869_private *dp83869 = phydev->priv;
- 	struct device *dev = &phydev->mdio.dev;
- 	struct device_node *of_node = dev->of_node;
-+	int delay_size = ARRAY_SIZE(dp83869_internal_delay);
- 	int ret;
- 
- 	if (!of_node)
-@@ -232,6 +243,26 @@ static int dp83869_of_init(struct phy_device *phydev)
- 				 &dp83869->tx_fifo_depth))
- 		dp83869->tx_fifo_depth = DP83869_PHYCR_FIFO_DEPTH_4_B_NIB;
- 
-+	dp83869->rx_id_delay = DP83869_RGMII_CLK_DELAY_INV;
-+	ret = of_property_read_u32(of_node, "rx-internal-delay-ps",
-+				   &dp83869->rx_id_delay);
-+	if (!ret && dp83869->rx_id_delay > dp83869_internal_delay[delay_size]) {
-+		phydev_err(phydev,
-+			   "rx-internal-delay value of %u out of range\n",
-+			   dp83869->rx_id_delay);
-+		return -EINVAL;
-+	}
-+
-+	dp83869->tx_id_delay = DP83869_RGMII_CLK_DELAY_INV;
-+	ret = of_property_read_u32(of_node, "tx-internal-delay-ps",
-+				   &dp83869->tx_id_delay);
-+	if (!ret && dp83869->tx_id_delay > dp83869_internal_delay[delay_size]) {
-+		phydev_err(phydev,
-+			   "tx-internal-delay value of %u out of range\n",
-+			   dp83869->tx_id_delay);
-+		return -EINVAL;
-+	}
-+
- 	return ret;
- }
- #else
-@@ -270,6 +301,29 @@ static int dp83869_configure_rgmii(struct phy_device *phydev,
- 	return ret;
- }
- 
-+static int dp83869_verify_rgmii_cfg(struct phy_device *phydev)
-+{
-+	struct dp83869_private *dp83869 = phydev->priv;
-+
-+	/* RX delay *must* be specified if internal delay of RX is used. */
-+	if ((phydev->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	     phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID) &&
-+	     dp83869->rx_id_delay == DP83869_RGMII_CLK_DELAY_INV) {
-+		phydev_err(phydev, "ti,rx-internal-delay must be specified\n");
-+		return -EINVAL;
-+	}
-+
-+	/* TX delay *must* be specified if internal delay of TX is used. */
-+	if ((phydev->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	     phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID) &&
-+	     dp83869->tx_id_delay == DP83869_RGMII_CLK_DELAY_INV) {
-+		phydev_err(phydev, "ti,tx-internal-delay must be specified\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int dp83869_configure_mode(struct phy_device *phydev,
- 				  struct dp83869_private *dp83869)
- {
-@@ -371,6 +425,12 @@ static int dp83869_config_init(struct phy_device *phydev)
- {
- 	struct dp83869_private *dp83869 = phydev->priv;
- 	int ret, val;
-+	int delay_size = ARRAY_SIZE(dp83869_internal_delay);
-+	int delay = 0;
-+
-+	ret = dp83869_verify_rgmii_cfg(phydev);
-+	if (ret)
-+		return ret;
- 
- 	ret = dp83869_configure_mode(phydev, dp83869);
- 	if (ret)
-@@ -394,6 +454,47 @@ static int dp83869_config_init(struct phy_device *phydev)
- 				     dp83869->clk_output_sel <<
- 				     DP83869_IO_MUX_CFG_CLK_O_SEL_SHIFT);
- 
-+	if (phy_interface_is_rgmii(phydev)) {
-+		val = phy_read_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL);
-+
-+		val &= ~(DP83869_RGMII_TX_CLK_DELAY_EN | DP83869_RGMII_RX_CLK_DELAY_EN);
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_ID)
-+			val |= (DP83869_RGMII_TX_CLK_DELAY_EN | DP83869_RGMII_RX_CLK_DELAY_EN);
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID)
-+			val |= DP83869_RGMII_TX_CLK_DELAY_EN;
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID)
-+			val |= DP83869_RGMII_RX_CLK_DELAY_EN;
-+
-+		phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL, val);
-+
-+		if (dp83869->rx_id_delay) {
-+			val = phy_get_delay_index(phydev,
-+						  &dp83869_internal_delay[0],
-+						  delay_size,
-+						  dp83869->rx_id_delay);
-+			if (val < 0)
-+				return val;
-+
-+			delay |= val;
-+		}
-+
-+		if (dp83869->tx_id_delay) {
-+			val = phy_get_delay_index(phydev,
-+						  &dp83869_internal_delay[0],
-+						  delay_size,
-+						  dp83869->tx_id_delay);
-+			if (val < 0)
-+				return val;
-+
-+			delay |= val << DP83869_RGMII_TX_CLK_DELAY_SHIFT;
-+		}
-+
-+		phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIIDCTL,
-+			      delay);
-+	}
-+
- 	return ret;
- }
- 
+
+In any case see couple of comments below.
+
+...
+
+
+> +#ifdef CONFIG_DEBUG_FS
+
+Now, do we need the rest of DEBUG_FS guards?
+
+> +	if (status) {
+> +		if (bus->rec_fail_cnt == ULLONG_MAX) {
+> +			dev_dbg(bus->dev, "rec_fail_cnt reach max, reset to 0");
+
+> +			bus->rec_fail_cnt = 0;
+
+It's redundant, since we will anyway roll over when incrementing.
+https://stackoverflow.com/q/18195715/2511795
+
+> +		}
+> +		bus->rec_fail_cnt++;
+> +	} else {
+> +		if (bus->rec_succ_cnt == ULLONG_MAX) {
+> +			dev_dbg(bus->dev, "rec_succ_cnt reach max, reset to 0");
+
+> +			bus->rec_succ_cnt = 0;
+
+Ditto.
+
+> +		}
+> +		bus->rec_succ_cnt++;
+> +	}
+> +#endif
+
+...
+
+> +static int npcm_i2c_remove_bus(struct platform_device *pdev)
+> +{
+> +	unsigned long lock_flags;
+> +	struct npcm_i2c *bus = platform_get_drvdata(pdev);
+> +
+> +	spin_lock_irqsave(&bus->lock, lock_flags);
+> +	npcm_i2c_disable(bus);
+> +	spin_unlock_irqrestore(&bus->lock, lock_flags);
+> +	i2c_del_adapter(&bus->adap);
+
+> +	debugfs_remove_recursive(bus->debugfs);
+
+This should be in reversed order, i.e. you inited last in ->probe(), thus
+should remove first in ->remove().
+
+> +	return 0;
+> +}
+
+...
+
+> +static int __init npcm_i2c_init(void)
+> +{
+> +	struct dentry *dir;
+> +
+> +	dir = debugfs_create_dir("i2c", NULL);
+
+> +	if (IS_ERR_OR_NULL(dir))
+
+IS_ERR() is redundant. And NULL already being checked inside i2c_init_debugfs()
+or how do you call it?
+
+> +		return 0;
+> +
+> +	npcm_i2c_debugfs_dir = dir;
+> +	return 0;
+> +}
+> +
+> +static void __exit npcm_i2c_exit(void)
+> +{
+> +	debugfs_remove_recursive(npcm_i2c_debugfs_dir);
+> +}
+
+> +
+> +module_init(npcm_i2c_init);
+> +module_exit(npcm_i2c_exit);
+
+Slightly better to attach to the respective function, like other macros above
+do.
+
 -- 
-2.26.2
+With Best Regards,
+Andy Shevchenko
+
 
