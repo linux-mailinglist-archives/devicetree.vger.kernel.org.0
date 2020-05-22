@@ -2,129 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06E631DDD55
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 04:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB5C1DE4CD
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 12:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726988AbgEVCop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 May 2020 22:44:45 -0400
-Received: from mail-eopbgr40062.outbound.protection.outlook.com ([40.107.4.62]:5797
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        id S1729582AbgEVKrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 May 2020 06:47:31 -0400
+Received: from mail-eopbgr00070.outbound.protection.outlook.com ([40.107.0.70]:19683
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727004AbgEVCop (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 May 2020 22:44:45 -0400
+        id S1728606AbgEVKr2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 May 2020 06:47:28 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EdndsT9aqB18mI1qNEykWuBCpqg5N+RYvy8Ipjuu0WfgbJe7MXfYHRiqmql4jbM2JJWvUkG6r12cQxGPhPvnsgi7kztA+FEun6tXa03bkYkyOhUKbabeXe8e5evG4JHTomo7c9sJXNOYrS3nYTYw8PigTAFcny/Apy+CMoQwnupC7nYk63ZuE7MUz2GnI5/3klbohqTdxfN3qXuvXyss/Zi2pA19NSKNZ3gsVzBzSbav/3qjbWkeu5AYTq69b7Doted0bC17BOZcfD5Rr+qhs9Ny+806zPuyuIIaPH4hm7sdA/9Q+fNYIl8b5F4ZO+7V+ti1e2LSY5krgWJH47jc+A==
+ b=LvAKsiQ9vOQdx0VhJhSCyxBLxc+rq2bdcslgsKz6hZdUP2V4HqBGsjeAEc1NoJ/rUY6ABlNPlV+n0N5DVDYaHkYlku0DOED/gUV04+6wSZxk4VaQ7jWwzetcMw/tnWxOXnPU9rfcAvWV0huZBosSbVceMmZC64Xpcu7Gx8lb33Kt/tKE5ZegEiMOvwn1F5tNnPUliUOc0ShGG7ei86ch7iJea1YQHqKawqx0LLAp2OXGWhl/0Q/W6FLET3HJ+JG1W6aP9A+6HL/e4kiaPmUd3xt9ipHwTNFWTWOHeqXYUjN1YmsYOC9dBug10RKwWiMIDZnMI4U/dsAWapc+lhAIPA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TcueDrUqi1UomUnJUpQM4UwF2jbdiWcHhBDsG6Js25I=;
- b=L/YpDwH4ycX2d9uDyAk8Ra2ho3rj9MwJqhy/5zy3NTMSY09l/YdC0gKH8dk730XcTw/epJwuYTUmq0P0hHQPxWyqCxXLyic5gqwunkJSOggcFpyggFf3huu1EO6ViUdEyRB8dd71mfEu5SShvTDbkoMC3nWJggbQO9eX0F5VSV2rJf2cUEKPbmj8OerrFmfJV6ZU2XIz871tuikrDj9PCtZwx00vJ1ff3BMKvLysIgxDNbF/r7oHN6wTh59HwUU0BDEBpcCCkvMLCPXONyui3C7dELcRkxABqRW29oSjO1wZ+PeTNcA0I7pqHUzdTqeqDkz5btQXMc1Ttv0sL3EeQA==
+ bh=nIKrIR79H5jTjF4DN3LV3BWnpl7fleXw1z9+2+KWFKM=;
+ b=RGVP1bY+sG6MTwj5gfrqV6++yMxvSbNaR9lzRNM1pzEXCzIbxrbKpINQgDJQCk9uF0xAbzFzWdj7uMrmbok6x/zLA3M9p2VNd+yC/Dv9PW6suEmwpYyHiKbGQDmuZXJcEydZzAxp1TT4BMc4UAwLMIEZMAVY1KtO8tPcTYZA1eCDli8B7b1X8k+QtvMTwVqEqcyO2vGCHlnbwzhLd0oTf4/6KRk0RlvwD+/YsxaAB8jtnEFAelSnz5x7Vd9iPch1CLAtWLwzXsBZSyz9SoIgQLEeJNhJQJcFxH2GyBYUP9rKwfo+MPqPx5qN8j9ECqVnXRO//ORJEjX0eJDJzc1MDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TcueDrUqi1UomUnJUpQM4UwF2jbdiWcHhBDsG6Js25I=;
- b=RwpVKEgWAZlFzuHgl7iwOZCYP7JIWzh5+odhvOwpuNyS8E5z9o7n454kMbyDXbMWRwwt0NpZeH1OOX1mSGRKFXSnxOxKiRMcqdaGRPzVkZO7kumnmTKkst1P66FU+YiU1rvq/zuVKL+aCDM6WjR1JfsypCT08ra105Kz8U/wSVg=
+ bh=nIKrIR79H5jTjF4DN3LV3BWnpl7fleXw1z9+2+KWFKM=;
+ b=S2JJ5/8YeXgTxZBSvHmYlt70w3vDW9xVyjs+ad1PTSQO8+BZfp4YaJRFI90e+3S7thJm8MRSYzA5sBBHgBHRojImOk2i7zFJSRgaiJ50IYdaOOypCFZNfbKfNOQONAUHN/yzX8bYE8ysqTJgnQQ+fLLJKQ6WHOSvMx1GXgUGgG0=
 Authentication-Results: kernel.org; dkim=none (message not signed)
  header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VE1PR04MB6365.eurprd04.prod.outlook.com (2603:10a6:803:120::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Fri, 22 May
- 2020 02:44:41 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::5cc4:23a5:ca17:da7d]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::5cc4:23a5:ca17:da7d%6]) with mapi id 15.20.3021.020; Fri, 22 May 2020
- 02:44:41 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, anson.huang@nxp.com, peng.fan@nxp.com,
-        leonard.crestez@nxp.com, aisheng.dong@nxp.com
-Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com
-Subject: [PATCH v3 2/2] arm64: dts: imx8mn-ddr4-evk: correct ldo1/ldo2 voltage range
-Date:   Fri, 22 May 2020 18:44:51 +0800
-Message-Id: <1590144291-18526-2-git-send-email-yibin.gong@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590144291-18526-1-git-send-email-yibin.gong@nxp.com>
-References: <1590144291-18526-1-git-send-email-yibin.gong@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0169.apcprd04.prod.outlook.com (2603:1096:4::31)
- To VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+Received: from VI1PR0401MB2287.eurprd04.prod.outlook.com
+ (2603:10a6:800:2e::19) by VI1PR0401MB2446.eurprd04.prod.outlook.com
+ (2603:10a6:800:4e::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.27; Fri, 22 May
+ 2020 10:47:24 +0000
+Received: from VI1PR0401MB2287.eurprd04.prod.outlook.com
+ ([fe80::9d5c:685e:4b51:fa60]) by VI1PR0401MB2287.eurprd04.prod.outlook.com
+ ([fe80::9d5c:685e:4b51:fa60%3]) with mapi id 15.20.3021.027; Fri, 22 May 2020
+ 10:47:24 +0000
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: imu: bmi160: convert txt format
+ to yaml
+To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        linux-kernel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20200519075111.6356-1-jonathan.albrieux@gmail.com>
+ <20200519075111.6356-2-jonathan.albrieux@gmail.com>
+ <20200519184933.00003f00@Huawei.com>
+ <20200520072423.GF3361@ict14-OptiPlex-980>
+ <20200521192736.4818f17b@archlinux>
+ <20200522082208.GB19742@ict14-OptiPlex-980>
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+Message-ID: <134f419f-de85-f14e-0331-49b8bb72625c@nxp.com>
+Date:   Fri, 22 May 2020 13:47:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+In-Reply-To: <20200522082208.GB19742@ict14-OptiPlex-980>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-ClientProxiedBy: AM4P190CA0008.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:200:56::18) To VI1PR0401MB2287.eurprd04.prod.outlook.com
+ (2603:10a6:800:2e::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR04CA0169.apcprd04.prod.outlook.com (2603:1096:4::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3021.24 via Frontend Transport; Fri, 22 May 2020 02:44:37 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [119.31.174.66]
+Received: from [IPv6:2a02:2f08:5709:2500:15db:c74f:dbc5:65d3] (2a02:2f08:5709:2500:15db:c74f:dbc5:65d3) by AM4P190CA0008.EURP190.PROD.OUTLOOK.COM (2603:10a6:200:56::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.27 via Frontend Transport; Fri, 22 May 2020 10:47:23 +0000
+X-Originating-IP: [2a02:2f08:5709:2500:15db:c74f:dbc5:65d3]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 00d3f00c-e6e1-4c49-6dcd-08d7fdfa13c9
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6365:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VE1PR04MB636593B16F6F8D79F9CF48AC89B40@VE1PR04MB6365.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 98668fdc-7e0f-4ec4-7804-08d7fe3d8306
+X-MS-TrafficTypeDiagnostic: VI1PR0401MB2446:
+X-Microsoft-Antispam-PRVS: <VI1PR0401MB2446428C3771F09A4AE28103F9B40@VI1PR0401MB2446.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-Forefront-PRVS: 04111BAC64
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O2ZutoW7Nii8vbYSyjkCBfyQnSWIXrhw1iHn/e+fVmMw675zprQ8u9TRWhtX+zt2lzdj8Le1Qy1hJdsZfyYNE+90zvLpwkuq7VBSuq1Nkg5d7dDlJkuz7LVN9BVy27GuKYiWvoBmtifCCTSEKFm61V43n3XhSA16szd2ErHh86LyQuZEA36zpKEhxL73to1hUy1cLsjKqOWLzVPoh++5GfbA56a9b1UMeUCEVMZwrKIlReIVNQSQpVHa5gS4vldpMCp6xfQyabDXsIa7dV9xZRp2fHfe2M2RfPh/D/ulsDG/+WGiZIyekslXzAF4NL2m2ernSv0WA9/Shu+zNEGXUA5lf1dBz9iTxTWXa5YMPVrxsWNPTjgBbYJBx2wUpIoycvLwYxkzzcaab0wwOGfMkU0RAiRAzFYRmWNiOf7AFBecfBink2d7KfuJFqtKePRFgZAJFVPPmpLHuFzOfU15YnCVQU7wndItwi6V92DEhqsABXbDWdJY75TvgHLOKyMT
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(39860400002)(136003)(366004)(346002)(396003)(376002)(8676002)(6506007)(4326008)(2906002)(6512007)(52116002)(6636002)(6666004)(186003)(66946007)(6486002)(8936002)(2616005)(36756003)(956004)(16526019)(5660300002)(26005)(316002)(86362001)(66556008)(478600001)(66476007)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: HNetlR84k4kdlxinzqZ/XgyMaDjlTryIzBbCLPDSSOaObkctiqpnqLyk0zyjcjzN/a11qvRozgNFHdA3jE6zuoM2vMgIuHHA8Ui6DX+0aTezb3UD3q01tnimUOKn8NN1IVJ8PociFrxRX+N3PD9Fg0PRy1f91ZoWJHpKK46LQeg57zaBf5G/5SvTi7LkI1X3FHU2D01a6vMYcjDHVI/Q3Ogfs63fdh9638hrVOQawnCJ/knBxDtee9Qa6KltJS05nISMc3gdRuIlD3kcUHnv3geSOP/VWY3HWXgH69aVPS8n7AcIZBd1DfN8lp+Tc2QvFXqZgykN90RqfE5usjyYhHDzYyhqp85tcQZZZ9z8QBCuM0bn2PWBwKsJsVzbzWWe/Zz/+jvuD4bYswZd0DHfFe7nmUFVK0ngGTLIyxs4lPh19Bey8ElDWr8witHZI0q8qpJp5emaMHMIlypL2dGPTuFL974rOAP8W+35XCcylOY=
+X-Microsoft-Antispam-Message-Info: UYpiL7L05BuvpEufSdXSZWoaCA3RsAcvS2BmJN2fgWMUSJh1ObjHkcPc4fnfcvhCf3sEJY+EDdF9Ux0hAoTo4MDsDSgSCNV0VF9a6bW9GfaeVTJRe8iClNvXTy8IrJzY3QM10IRMomvB4rxM+Sex70AoYugaOKeQPqCEBH+oAoi3XiQOs1ElVgeFiZANkvkKhaYc5Yxb7qE7myQRrkAKQ0hvjHS02naB53N4ThJdarUhCj3m3NNyp1Xa+GsWM5VIISUGH58d3iO++ueFG4jZ2tMjbtpscYJGxXuRNZXQ63A7ndyHOFGyYMNeduBLK2zcZOY8mP/mAF741Xy76RwmlZo8nIlJ1Hh4bRdz2nvk92qDLOT4lA5Ooia7o2b8udCV59lkmu6pWyTZ8OHdCsafMk09rJ04SpQ2d4tjLYD8yxLfq813nITYXhue7fThqrGfUp3ST3n6Jwbe1F/iDDQ6X30LO3XWaO0lu3iYSr5sZPkYEd4JXCFuFrkBiCPy16BX
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2287.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(39860400002)(136003)(396003)(376002)(346002)(4326008)(8936002)(8676002)(52116002)(2906002)(31696002)(66946007)(7416002)(66556008)(31686004)(16526019)(44832011)(186003)(2616005)(66476007)(86362001)(5660300002)(4744005)(478600001)(54906003)(6486002)(36756003)(110136005)(316002)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: GlOR20nv9afpXeUopI/ZJG+RgwfIpUNcB71f5Hrr0wDMbWzs9Nem/Vl2CqPTOD1Wppr/xhZBLZKp16gYAInrsFEvxpakMzrfNzkp4AC7JjNW/xtsJG0zFeA6w2BhcsF5UqpDoDP+x0ESdIR4UWlUoDs2dNJgwQpsBUyFySApg8ShQq9YLgmojrjawBykGyNPXL+5pBEit75L8nOVh2nibvO6qnabsdM7aVAVcx3fVuQkJVnajxN0mxk7rVxSpV6jov3BOP6pvkXCMciC4+AwMI6rFUHd/h6xWClUWGFS9kw2m2oAN2GIFLI3zhl4E7Kp9UylV4Xk656LRnADPGErCPDDG2Vw4w0aaNpRqTyFodnYMgq7/67XmwyD2Faij+mWV1SVY+N25LleaBne9DhDhBwW7+kKGpOmau4UOnK5XWjUmEO4qgsnT6d9n+BZOcqj90zZ9Z7mq7WWeUVe+fPla3ESK/ZilTHiPR4Gdy9xM5MD83pLZYGdijK4dFJsFCBzuSNtIwIuVVa01FDm1Z864+fIqmrmNZFNd+leIE+dS6G0pKapzHDjLOcL0BWyfYLt
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00d3f00c-e6e1-4c49-6dcd-08d7fdfa13c9
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2020 02:44:41.4532
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98668fdc-7e0f-4ec4-7804-08d7fe3d8306
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2020 10:47:24.3802
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lOjYPf/h6aUCWFMk4so3EjNLg5ESy+yemDLi3ZleDaj2w/gGywJKKX7iKxDH1pPlH57gTVqEVZJ+CdjUiCw0kg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6365
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y2o3QLcmCHFATW7wFw0bkXQenJ7tEZkuiqaFnfQXRzenOEr6ia7gcQ0StvOYV3lTfocHLVsyYGykLRzARD33/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2446
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct ldo1 voltage range from wrong high group(3.0V~3.3V) to low group
-(1.6V~1.9V) because the ldo1 should be 1.8V. Actually, two voltage groups
-have been supported at bd718x7-regulator driver, hence, just corrrect the
-voltage range to 1.6V~3.3V. For ldo2@0.8V, correct voltage range too.
-Otherwise, ldo1 would be kept @3.0V and ldo2@0.9V which violate i.mx8mn
-datasheet as the below warning log in kernel:
 
-[    0.995524] LDO1: Bringing 1800000uV into 3000000-3000000uV
-[    0.999196] LDO2: Bringing 800000uV into 900000-900000uV
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - can't find a mantainer, author is Daniel Baluta <daniel.baluta@intel.com>
+>>>> Daniel is still active in the kernel, just not at Intel any more. +CC
+>>>>    
+>>> Oh ok thank you! Daniel are you still maintaining this driver?
 
-Fixes: 3e44dd09736d ("arm64: dts: imx8mn-ddr4-evk: Add rohm,bd71847 PMIC support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I can do reviews if requested but I'm not actively maintaining this 
+driver. If anyone wants
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index d07e0e6..a1e5483 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -113,7 +113,7 @@
- 
- 			ldo1_reg: LDO1 {
- 				regulator-name = "LDO1";
--				regulator-min-microvolt = <3000000>;
-+				regulator-min-microvolt = <1600000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-@@ -121,7 +121,7 @@
- 
- 			ldo2_reg: LDO2 {
- 				regulator-name = "LDO2";
--				regulator-min-microvolt = <900000>;
-+				regulator-min-microvolt = <800000>;
- 				regulator-max-microvolt = <900000>;
- 				regulator-boot-on;
- 				regulator-always-on;
--- 
-2.7.4
+to take this over, will be more than happy.
+
+
+Other than that we can add my gmail address: Daniel Baluta 
+<daniel.baluta@gmail.com>
+
+
 
