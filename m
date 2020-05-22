@@ -2,88 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3871DE334
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 11:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9661DE318
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 11:32:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729702AbgEVJgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 May 2020 05:36:14 -0400
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:20154 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728424AbgEVJgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 May 2020 05:36:13 -0400
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 22 May 2020 15:06:09 +0530
-Received: from minint-dvc2thc.qualcomm.com (HELO sartgarg-linux.qualcomm.com) ([10.206.24.245])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 22 May 2020 15:06:09 +0530
-Received: by sartgarg-linux.qualcomm.com (Postfix, from userid 2339771)
-        id B6EBB179E; Fri, 22 May 2020 15:06:07 +0530 (IST)
-From:   Sarthak Garg <sartgarg@codeaurora.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org
-Cc:     vbadigan@codeaurora.org, stummala@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Sarthak Garg <sartgarg@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH V2 2/8] dt-bindings: mmc: Add information for DLL register properties
-Date:   Fri, 22 May 2020 15:02:24 +0530
-Message-Id: <1590139950-7288-3-git-send-email-sartgarg@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590139950-7288-1-git-send-email-sartgarg@codeaurora.org>
-References: <1588838535-6050-1-git-send-email-sartgarg@codeaurora.org>
- <1590139950-7288-1-git-send-email-sartgarg@codeaurora.org>
+        id S1729504AbgEVJcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 May 2020 05:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728068AbgEVJck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 May 2020 05:32:40 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767B8C061A0E
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2020 02:32:40 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jc42d-0004xj-09; Fri, 22 May 2020 11:32:35 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jc42c-0000dW-0u; Fri, 22 May 2020 11:32:34 +0200
+Date:   Fri, 22 May 2020 11:32:33 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        linux-pwm@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v1 2/2] Add PWM driver for LGM
+Message-ID: <20200522093233.yy3tcalveoutxcsj@pengutronix.de>
+References: <cover.1590132733.git.rahul.tanwar@linux.intel.com>
+ <3c1d2343b034325dbc185ccd23a35b40a62a4e7b.1590132733.git.rahul.tanwar@linux.intel.com>
+ <20200522085613.ktb2ruw2virj337v@pengutronix.de>
+ <20200522091824.GR1634618@smile.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200522091824.GR1634618@smile.fi.intel.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add information regarding DLL register properties for getting board
-specific configurations. These DLL register settings may vary from
-board to board.
+Hello Andy,
 
-Signed-off-by: Sarthak Garg <sartgarg@codeaurora.org>
----
- Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On Fri, May 22, 2020 at 12:18:24PM +0300, Andy Shevchenko wrote:
+> On Fri, May 22, 2020 at 10:56:13AM +0200, Uwe Kleine-König wrote:
+> > On Fri, May 22, 2020 at 03:41:59PM +0800, Rahul Tanwar wrote:
+> 
+> > > +	io_base = devm_platform_ioremap_resource(pdev, 0);
+> > > +	if (IS_ERR(io_base))
+> > 
+> > error message here?
+> 
+> platform core provides it. No need to duplicate (esp. taking into consideration
+> that it can issue IIRC three different error messages depending on actual error).
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-index 481f692f..b8e1d2b 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-@@ -47,6 +47,13 @@ Required properties:
- 	"cal"	- reference clock for RCLK delay calibration (optional)
- 	"sleep"	- sleep clock for RCLK delay calibration (optional)
- 
-+- qcom,ddr-config: Certain chipsets and platforms require particular settings
-+	for the DDR_CONFIG register. Use this field to specify the register
-+	value as per the Hardware Programming Guide.
-+
-+- qcom,dll-config: Chipset and Platform specific value. Use this field to
-+	specify the DLL_CONFIG register value as per Hardware Programming Guide.
-+
- Example:
- 
- 	sdhc_1: sdhci@f9824900 {
-@@ -64,6 +71,9 @@ Example:
- 
- 		clocks = <&gcc GCC_SDCC1_APPS_CLK>, <&gcc GCC_SDCC1_AHB_CLK>;
- 		clock-names = "core", "iface";
-+
-+		qcom,dll-config = <0x000f642c>;
-+		qcom,ddr-config = <0x80040868>;
- 	};
- 
- 	sdhc_2: sdhci@f98a4900 {
-@@ -81,4 +91,7 @@ Example:
- 
- 		clocks = <&gcc GCC_SDCC2_APPS_CLK>, <&gcc GCC_SDCC2_AHB_CLK>;
- 		clock-names = "core", "iface";
-+
-+		qcom,dll-config = <0x0007642c>;
-+		qcom,ddr-config = <0x80040868>;
- 	};
+Ah, missed that. Indeed that's fine as is in the patch.
+
+Thanks
+Uwe
+
 -- 
-2.7.4
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
