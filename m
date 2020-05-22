@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1DA1DE63E
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8271DE63B
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2020 14:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728987AbgEVMID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 May 2020 08:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59810 "EHLO
+        id S1729850AbgEVMH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 May 2020 08:07:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729656AbgEVMHf (ORCPT
+        with ESMTP id S1729667AbgEVMHf (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 22 May 2020 08:07:35 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33CC3C08C5C1
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C654CC061A0E
         for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:34 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id n5so9593369wmd.0
+Received: by mail-wr1-x441.google.com with SMTP id s8so9910522wrt.9
         for <devicetree@vger.kernel.org>; Fri, 22 May 2020 05:07:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cLB08H4ZIlTMzvj5hInDPm3tTNq7mk/XtYoMNSk6v2w=;
-        b=Sn/1CrJlRf1gaXAt7BzExoLU8RuOHChRbTQLpaUrzwFYqGsov68ZYpiUu778e1h74U
-         EG8H1AkAkI/Dvmx5QKB9iXaqQh4CeJTf3KZiOAOTno9BIiFgfkjQQ3V4IRkEH4GAPrLA
-         maiOekJ94V3I7H6hUXcjbEOxaDc55leACFe7VuKpdTyg7O80elge/QfPQjJeWku+bhMk
-         /BOFybbSX0X7y3Qvi81k2fAIAzdXkIexmNVingkHUbHWITInUkDyAjfPXgMuJPMXVerx
-         QZT3djIizjK6MVClkQM2eCBMIBdSWPweS9uJyC7sYma38spotFpi6WHBHlfhEvvRmcPV
-         FXNg==
+        bh=1qePp19LiRiOBXtccpgQ+eI6GUOhz0auoBWQ11adkXY=;
+        b=VhVGCTS4grQt6k3HIErrSSbtbGv1Wb2NV++azMsGdLYYMvxxpy9bDLN55ZLzINOV9k
+         FA4B2MGWBaHYAgatvgf2dGYKrGO8xWsZ4QKI9fTkogQYBe2HwRX4p37rG6SYWT43qr9m
+         rzKobBuagWzGznsZIFsj05iy4OgSMBAR8TGedQokwHS8EPC5GmcC3wXUr9VaTZVsqePl
+         FEcg341dLTGcYR88SzS5d1jPHMbs60ufBgTrfl+nqj5vy+SytnzIR3P34AHGt0pyfmvL
+         djl2y9/l9gHpLihRw3dgb1o44HKCoGq741hEmx2t9uXgkpbm6wlqvo9SaJ7s0OIIeCWx
+         mAIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cLB08H4ZIlTMzvj5hInDPm3tTNq7mk/XtYoMNSk6v2w=;
-        b=aUQGtQ+RXoFEmMnqJl2tjYNOMsRzRV8G21hmmA7lo208ucvP0YVMxqj1d16VV/DdOx
-         /JdJhdSQZ2NcUxpkk9httweCZmTwQxaYGXKBYieNP9g7sOh9isjrpmU/5gfcnA+zKmyk
-         Ol9lKB+19jQ1jchEwaad1ZVEpd/6v3U3HjivuACG8o9E7XntXmNQy1L3VX0uj9BfQ01H
-         bzZabMJz0HErGPaqH1Qxq/wm39BXRMGVkfK61KqTz96UzzQ1LHec5BS9O1hnX2uR0NcI
-         r2G2Rdf1NS7pk5gqpMN1XUn5ALi/GntDcJOjOqyGLK3VSyEfibXHoPnFAN1vw8Qd/rh6
-         yFbg==
-X-Gm-Message-State: AOAM530GyafZU7zjejV4eljo6sXVlPk1TGVREbWXXb8R1Jb62z18WTrf
-        hvQpE2U3oNoEMEIUY0R/OWmflQ==
-X-Google-Smtp-Source: ABdhPJy2DwWygp0CZukF1c5MDhWbG3suEHoLEk61djOMVZnj0q+0DRdXHTp94SuAfm6DtS52JEtM4Q==
-X-Received: by 2002:a1c:4857:: with SMTP id v84mr13962835wma.106.1590149252025;
-        Fri, 22 May 2020 05:07:32 -0700 (PDT)
+        bh=1qePp19LiRiOBXtccpgQ+eI6GUOhz0auoBWQ11adkXY=;
+        b=fmyx49qVRTAtpQOj2IRjmrugXEuN/Ql6EmusRWwm7MU0BasU0sjZ8Zwg72HutBh5rq
+         fyFjC2Qq92Qy70xfJtpYMpi7Zy+XtYOeHPSpiS3DLBwssTLYPZbj1MmN8j1LyVFkrLS2
+         r6s6TqQCax8a2WQrPfF0t8IMuzqs9SYe2uz0W40XOZ2Hd1bUtKaDVdR9Pv6dRKs03HE4
+         iI/VNRHF4is33Tjqs/708/dm8OgRUXci628hIAOwci+DcU2TCOtwCOJSBsXYs3Y1LF7l
+         RMhO30Kig9DDdHvhtLUAZu3+7W20TI3JkksiqRmoDLXktfGDkJgLIXhcrC16PKQ/Kysf
+         SGAA==
+X-Gm-Message-State: AOAM530amzmNuW95gthH62ZA2XBSkvxP1IP3lXYe+6XzaxJz/ShTwszH
+        0mCOQSB3crrWQM/jE0Pq7BvS3A==
+X-Google-Smtp-Source: ABdhPJzG2w/6WApFpPLpfPz5eZ2F69IZCZdA6mR68/WmlVPBV46pTlpI4dGghrWp/qiA5FGADLqR8Q==
+X-Received: by 2002:a5d:4f0d:: with SMTP id c13mr3365938wru.357.1590149253506;
+        Fri, 22 May 2020 05:07:33 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id f128sm9946233wme.1.2020.05.22.05.07.30
+        by smtp.gmail.com with ESMTPSA id f128sm9946233wme.1.2020.05.22.05.07.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2020 05:07:31 -0700 (PDT)
+        Fri, 22 May 2020 05:07:33 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Rob Herring <robh+dt@kernel.org>,
         "David S . Miller" <davem@davemloft.net>,
@@ -66,9 +66,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v5 08/11] ARM64: dts: mediatek: add the ethernet node to mt8516.dtsi
-Date:   Fri, 22 May 2020 14:06:57 +0200
-Message-Id: <20200522120700.838-9-brgl@bgdev.pl>
+Subject: [PATCH v5 09/11] ARM64: dts: mediatek: add an alias for ethernet0 for pumpkin boards
+Date:   Fri, 22 May 2020 14:06:58 +0200
+Message-Id: <20200522120700.838-10-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200522120700.838-1-brgl@bgdev.pl>
 References: <20200522120700.838-1-brgl@bgdev.pl>
@@ -81,37 +81,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Add the Ethernet MAC node to mt8516.dtsi. This defines parameters common
-to all the boards based on this SoC.
+Add the ethernet0 alias for ethernet so that u-boot can find this node
+and fill in the MAC address.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index 8cedaf74ae86..89af661e7f63 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -406,6 +406,18 @@ mmc2: mmc@11170000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+index a31093d7142b..97d9b000c37e 100644
+--- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+@@ -9,6 +9,7 @@
+ / {
+ 	aliases {
+ 		serial0 = &uart0;
++		ethernet0 = &ethernet;
+ 	};
  
-+		ethernet: ethernet@11180000 {
-+			compatible = "mediatek,mt8516-eth";
-+			reg = <0 0x11180000 0 0x1000>;
-+			mediatek,pericfg = <&pericfg>;
-+			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_RG_ETH>,
-+				 <&topckgen CLK_TOP_66M_ETH>,
-+				 <&topckgen CLK_TOP_133M_ETH>;
-+			clock-names = "core", "reg", "trans";
-+			status = "disabled";
-+		};
-+
- 		rng: rng@1020c000 {
- 			compatible = "mediatek,mt8516-rng",
- 				     "mediatek,mt7623-rng";
+ 	chosen {
 -- 
 2.25.0
 
