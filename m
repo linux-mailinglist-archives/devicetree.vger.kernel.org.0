@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD711DF794
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2020 15:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F7D1DF78F
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2020 15:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387867AbgEWN10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 May 2020 09:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41372 "EHLO
+        id S2387875AbgEWN11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 May 2020 09:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387836AbgEWN1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 May 2020 09:27:25 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3EFC08C5C0
-        for <devicetree@vger.kernel.org>; Sat, 23 May 2020 06:27:24 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id h17so12950150wrc.8
+        with ESMTP id S2387866AbgEWN10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 May 2020 09:27:26 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039B9C08C5C1
+        for <devicetree@vger.kernel.org>; Sat, 23 May 2020 06:27:25 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id u1so11273971wmn.3
         for <devicetree@vger.kernel.org>; Sat, 23 May 2020 06:27:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=s+yFWYJIlSICmhm10tVUfzLOMvlRQ6VDJMbx/0w2dnM=;
-        b=rp37gfzAHCsfIapPIDnPi7bhKo6b+4zS1qkIx4xs7tAznZqzIdivacCFjDJKCqT6hG
-         1OX9zD5yiWYH4CqkM6qHcEAAGbm1wVPBTh2lWvqqDpdi98elF69xmUr8VREH3Bf2OLjK
-         6yV3qoI0RCu8I5DOcq5Nb+MnauOEWgc1E1hQGs3NdKmTOl4Y/Jlz9OVZARBw8pvX/22+
-         7Cm1u4L8WZQo7PMHtZpGsGWh9TvXKsGW7Dc9Rh/GcaTJTp5l/mRjnaFxrE6C8hONjgIc
-         dTVbBVazQyYYBzO8OZNy/C8jOnDmZrw3gBLCOA1jSBsnsqlLmZjZ8bkqn8UaNgYNkcVk
-         r0Zg==
+        bh=85LArQ1FkfasqQwvTGBUsmFOdZ74xT3FAzPREvSXT3E=;
+        b=mp9fRUIz3f7zzigyw8CU4tWQdJuD/cNnqmRAvK/VRG+g0juXIdGy1ACtv8QzDSAVvX
+         zZTtdlmptVqzrDUoGctCNcVv+sp+kvHHQLKobjmUSABO5WlVbnS7ZjDu5eL8ghHSECVm
+         K66u1sz1Vvr9cojS1puCVm7MHqwqSP+KeNpcs0Ikin3L/OSp6a6ja1mHMqLhXZ7QSF33
+         cmQ40C5Sb89UJ4E1ZZShWVrrBxftRA6RfclHz/BjVeWTuoRi2J+VvqnLv5AlUcR7mc7l
+         F0zaODP7z0PlC5yJ+Y5QhZw5HjxWCqux45s0hgaopOwzgqaGcyNlp2dO1XJ/1y0vfKmZ
+         FmJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=s+yFWYJIlSICmhm10tVUfzLOMvlRQ6VDJMbx/0w2dnM=;
-        b=mNW1/TDCIsuq0vvE4W8K+vuKWqgpBTlxkf9FesgYsmq+NQt8DMXIDJydPUEq+tqd45
-         r5oR8cMZB+D+4YOtG6wi4kl00cE1A33lvmGSimoKV/0XmmWNYYaPV/h12uG3oCK78/4A
-         bf4tDloRfMchL6U3xKZP9qB9QgnHX8kfLivTNnvBAZSwJghkQVJW6JvkUgtpuOuUT2IY
-         BKb8u+XEi3CXWq7I6p7MllVA+K1rDYJqj4LD/KbYJ/QoNi2diDHqzeLzcz/pi7iNWEoC
-         NHx8Fk/kxtiF2ptSTDapg3J3v5E5dubsVHr+TejnXdoutHQJlLZyPgSZ78fh1XdQ3ocS
-         tqbw==
-X-Gm-Message-State: AOAM5335bG5uiWQNZW6xiRa0F0bPerSl3Iy8CdMbxzGpzpioKi+JNUmJ
-        bc9yqfEsEv/9wmUOE6xTFToEZQ==
-X-Google-Smtp-Source: ABdhPJxCZ/C5LkU5FvQk1ZK/F68K0jYwlV3rlUq0UEXtfIpESu0BTugHOfJzFdukxZNlBknHIuZEVQ==
-X-Received: by 2002:adf:eccf:: with SMTP id s15mr7285736wro.70.1590240442325;
-        Sat, 23 May 2020 06:27:22 -0700 (PDT)
+        bh=85LArQ1FkfasqQwvTGBUsmFOdZ74xT3FAzPREvSXT3E=;
+        b=rrDaa4Xgo1LTFjG6gTSlvGEuAyxz/ZLygcI5aTMGQVfi1p5za/YS5C+M+bMcPZTIxG
+         Ewv7ZDwnM54JvnxU5+AQ/0COF53I9EXaCK0Odztbqz3fR/aKB+toKHhVHOoULD3Y9oud
+         RckxC+P0ZYwA5Anry2GsyFXaABiXWNNmluwjUvk1m3RYQqy2vFZyP4x9jWI+QEA6Zel9
+         /Xvr6lqRIxeTRkMhoAn5vVKXxWbaSabtdkyDN8GYDS3HSb4tQujHA5sxaKW8BOBb53XA
+         NNrB29AEKJnWU1ED5Bl4Jah0WpWK5boy+bL0MpfBKijqFiwZqYbk2W4KS0qp9Y4ms+Qa
+         ZUGw==
+X-Gm-Message-State: AOAM532yEyTwpjaRQxM3ZWVTuwfEVeZmFpAOyEgorve1Dp5Dgu4E1luZ
+        pn+LxHCvdNHhQvggDi+KuLLci73tL+A=
+X-Google-Smtp-Source: ABdhPJw0PA+P0HcUXiWXYQRZQG2lReeBtiQJfZFPYkFAcWtI7Dg+DCbBae2YfDUJLHDk1mI3Rm2NpA==
+X-Received: by 2002:a1c:acc8:: with SMTP id v191mr18521019wme.154.1590240443748;
+        Sat, 23 May 2020 06:27:23 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id g69sm8098703wmg.15.2020.05.23.06.27.21
+        by smtp.gmail.com with ESMTPSA id g69sm8098703wmg.15.2020.05.23.06.27.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 May 2020 06:27:21 -0700 (PDT)
+        Sat, 23 May 2020 06:27:23 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Jonathan Corbet <corbet@lwn.net>,
         "David S . Miller" <davem@davemloft.net>,
@@ -66,9 +66,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v2 2/5] net: move devres helpers into a separate source file
-Date:   Sat, 23 May 2020 15:27:08 +0200
-Message-Id: <20200523132711.30617-3-brgl@bgdev.pl>
+Subject: [PATCH v2 3/5] net: devres: define a separate devres structure for devm_alloc_etherdev()
+Date:   Sat, 23 May 2020 15:27:09 +0200
+Message-Id: <20200523132711.30617-4-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200523132711.30617-1-brgl@bgdev.pl>
 References: <20200523132711.30617-1-brgl@bgdev.pl>
@@ -81,115 +81,64 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-There's currently only a single devres helper in net/ - devm variant
-of alloc_etherdev. Let's move it to net/devres.c with the intention of
-assing a second one: devm_register_netdev(). This new routine will need
-to know the address of the release function of devm_alloc_etherdev() so
-that it can verify (using devres_find()) that the struct net_device
-that's being passed to it is also resource managed.
+Not using a proxy structure to store struct net_device doesn't save
+anything in terms of compiled code size or memory usage but significantly
+decreases the readability of the code with all the pointer casting.
+
+Define struct net_device_devres and use it in devm_alloc_etherdev_mqs().
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- net/Makefile       |  2 +-
- net/devres.c       | 36 ++++++++++++++++++++++++++++++++++++
- net/ethernet/eth.c | 28 ----------------------------
- 3 files changed, 37 insertions(+), 29 deletions(-)
- create mode 100644 net/devres.c
+ net/devres.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/net/Makefile b/net/Makefile
-index 07ea48160874..5744bf1997fd 100644
---- a/net/Makefile
-+++ b/net/Makefile
-@@ -6,7 +6,7 @@
- # Rewritten to use lists instead of if-statements.
- #
- 
--obj-$(CONFIG_NET)		:= socket.o core/
-+obj-$(CONFIG_NET)		:= devres.o socket.o core/
- 
- tmp-$(CONFIG_COMPAT) 		:= compat.o
- obj-$(CONFIG_NET)		+= $(tmp-y)
 diff --git a/net/devres.c b/net/devres.c
-new file mode 100644
-index 000000000000..c1465d9f9019
---- /dev/null
+index c1465d9f9019..b97b0c5a8216 100644
+--- a/net/devres.c
 +++ b/net/devres.c
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * This file contains all networking devres helpers.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/etherdevice.h>
-+#include <linux/netdevice.h>
-+
-+static void devm_free_netdev(struct device *dev, void *res)
-+{
-+	free_netdev(*(struct net_device **)res);
-+}
-+
-+struct net_device *devm_alloc_etherdev_mqs(struct device *dev, int sizeof_priv,
-+					   unsigned int txqs, unsigned int rxqs)
-+{
-+	struct net_device **dr;
-+	struct net_device *netdev;
-+
-+	dr = devres_alloc(devm_free_netdev, sizeof(*dr), GFP_KERNEL);
-+	if (!dr)
-+		return NULL;
-+
-+	netdev = alloc_etherdev_mqs(sizeof_priv, txqs, rxqs);
-+	if (!netdev) {
-+		devres_free(dr);
-+		return NULL;
-+	}
-+
-+	*dr = netdev;
-+	devres_add(dev, dr);
-+
-+	return netdev;
-+}
-+EXPORT_SYMBOL(devm_alloc_etherdev_mqs);
-diff --git a/net/ethernet/eth.c b/net/ethernet/eth.c
-index c8b903302ff2..dac65180c4ef 100644
---- a/net/ethernet/eth.c
-+++ b/net/ethernet/eth.c
-@@ -400,34 +400,6 @@ struct net_device *alloc_etherdev_mqs(int sizeof_priv, unsigned int txqs,
- }
- EXPORT_SYMBOL(alloc_etherdev_mqs);
+@@ -7,30 +7,34 @@
+ #include <linux/etherdevice.h>
+ #include <linux/netdevice.h>
  
 -static void devm_free_netdev(struct device *dev, void *res)
--{
++struct net_device_devres {
++	struct net_device *ndev;
++};
++
++static void devm_free_netdev(struct device *dev, void *this)
+ {
 -	free_netdev(*(struct net_device **)res);
--}
--
--struct net_device *devm_alloc_etherdev_mqs(struct device *dev, int sizeof_priv,
--					   unsigned int txqs, unsigned int rxqs)
--{
++	struct net_device_devres *res = this;
++
++	free_netdev(res->ndev);
+ }
+ 
+ struct net_device *devm_alloc_etherdev_mqs(struct device *dev, int sizeof_priv,
+ 					   unsigned int txqs, unsigned int rxqs)
+ {
 -	struct net_device **dr;
 -	struct net_device *netdev;
--
--	dr = devres_alloc(devm_free_netdev, sizeof(*dr), GFP_KERNEL);
--	if (!dr)
--		return NULL;
--
++	struct net_device_devres *dr;
+ 
+ 	dr = devres_alloc(devm_free_netdev, sizeof(*dr), GFP_KERNEL);
+ 	if (!dr)
+ 		return NULL;
+ 
 -	netdev = alloc_etherdev_mqs(sizeof_priv, txqs, rxqs);
 -	if (!netdev) {
--		devres_free(dr);
--		return NULL;
--	}
--
++	dr->ndev = alloc_etherdev_mqs(sizeof_priv, txqs, rxqs);
++	if (!dr->ndev) {
+ 		devres_free(dr);
+ 		return NULL;
+ 	}
+ 
 -	*dr = netdev;
--	devres_add(dev, dr);
--
+ 	devres_add(dev, dr);
+ 
 -	return netdev;
--}
--EXPORT_SYMBOL(devm_alloc_etherdev_mqs);
--
- ssize_t sysfs_format_mac(char *buf, const unsigned char *addr, int len)
- {
- 	return scnprintf(buf, PAGE_SIZE, "%*phC\n", len, addr);
++	return dr->ndev;
+ }
+ EXPORT_SYMBOL(devm_alloc_etherdev_mqs);
 -- 
 2.25.0
 
