@@ -2,165 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CAC91E025E
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 21:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E851E0273
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 21:27:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388367AbgEXT0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 May 2020 15:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388351AbgEXTZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 May 2020 15:25:59 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973F2C061A0E
-        for <devicetree@vger.kernel.org>; Sun, 24 May 2020 12:25:58 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id m18so18543572ljo.5
-        for <devicetree@vger.kernel.org>; Sun, 24 May 2020 12:25:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gOEmyTIXLGf07K4H6sbyOUY42DeO+G/ARk34mfyH9Kc=;
-        b=PQ6va+bBos8A51P/Wj2BBF99a+zevl/gbe2oENYX3N1gUZQyc+SEAF4KQmNBB8Zt/l
-         K5OUnbR74VUvV8nH5Z+GlVFjwKIeGzd1J0hiUMFdkqM3R1O22CGCxzo365512pREm/qf
-         X28f38wZULiPdFMf3318ypK07QQ275PpSiqUWzpKHKmLIlCjwSS2i9+opfMxaGn8Y0e7
-         bt6NDkScz+SyU+LxR/eWNCffvnRNGkW7gy7RDQSzK3ErA1yPI6ZoxmwCZ+G47Onr1LJl
-         +wJzNRQZRGQ9Y4J62UeHaoWDEWiLUDx7Ob11nhwzE8NvaRKqSrM+EatW77eA2zlASbZo
-         ywXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=gOEmyTIXLGf07K4H6sbyOUY42DeO+G/ARk34mfyH9Kc=;
-        b=M74O7oOJhcqbsMwgpINwesWt70vIo+jy1ePn0X13xtc6sRRFZRrbKv+KFY+O4NAkUe
-         pBZSh69yF8MYY+OcFq/UHFcJrS6WwHpcTiG0UsS8iq5AbHRreM7/xoTTIhD4XaZIRbGi
-         7p2dfadv/apE+Iz84UubsCuWDpsm2ETdme35mYr71pNUp+gd8+y6fH/5Kxquy6+y7qyZ
-         pYb/EEyUfOGHqbVn21TS7AT0QPjRo8NdvD5z3+L5D/SnWrLl/CFsC++WoWnfdYCyz/Ft
-         e/HAWyeprLT+exy3PavORa1Zk1qwggq6ynDnihfBJ0uGQC+rjgpB1U9xTzg0D3QHR3sF
-         8ySQ==
-X-Gm-Message-State: AOAM530HBRjzhidIoYhnkRq3fFYSoBBVCY24JM+EUkhlrws4GPcogXY7
-        jNHd7S7xns8EetLO79WkMJJLRA==
-X-Google-Smtp-Source: ABdhPJzTJjWtrQpvchNNsRDE9WSqRA6ghX1gFq3L/OgHr76p50AS89FmNt0BQKK9wQJuovOMHBKI+w==
-X-Received: by 2002:a2e:8e6c:: with SMTP id t12mr10024175ljk.376.1590348356964;
-        Sun, 24 May 2020 12:25:56 -0700 (PDT)
-Received: from localhost.localdomain (37-144-159-139.broadband.corbina.ru. [37.144.159.139])
-        by smtp.googlemail.com with ESMTPSA id v10sm3878137lja.23.2020.05.24.12.25.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 May 2020 12:25:56 -0700 (PDT)
-From:   Andrey Konovalov <andrey.konovalov@linaro.org>
-To:     mchehab@kernel.org, sakari.ailus@iki.fi,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com, peter.griffin@linaro.org,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Subject: [PATCH v3 10/10] media: i2c: imx290: set bus_type before calling v4l2_fwnode_endpoint_alloc_parse()
-Date:   Sun, 24 May 2020 22:25:05 +0300
-Message-Id: <20200524192505.20682-11-andrey.konovalov@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200524192505.20682-1-andrey.konovalov@linaro.org>
-References: <20200524192505.20682-1-andrey.konovalov@linaro.org>
+        id S2388103AbgEXT1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 May 2020 15:27:07 -0400
+Received: from mga17.intel.com ([192.55.52.151]:57044 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388084AbgEXT1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 May 2020 15:27:06 -0400
+IronPort-SDR: By0a9SYhJ4TZ0JTmp34WG8jdU48wtKFiM7XgPJAWNyaaXGepPb8f8+UZ65hsfFwu1lORA67o03
+ fJZ0vrn521Jw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2020 12:27:06 -0700
+IronPort-SDR: Jt1wxSweHy/gcVmjApzJ6eqN4bNznRQXVLnIg1IoO4kg/6e/ivSQzfrpA+9iAoRqDLNMEBs8k6
+ LYbv/QAMX3Jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,430,1583222400"; 
+   d="scan'208";a="413310334"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.157]) ([10.237.72.157])
+  by orsmga004.jf.intel.com with ESMTP; 24 May 2020 12:27:03 -0700
+Subject: Re: [PATCH 2/3] sdhci: sparx5: Add Sparx5 SoC eMMC driver
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>, SoC Team <soc@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+References: <20200513133122.25121-1-lars.povlsen@microchip.com>
+ <20200513133122.25121-3-lars.povlsen@microchip.com>
+ <6398c7a6-ce5e-1df6-d5a6-08664a7fc123@intel.com>
+ <87v9ktoc0h.fsf@soft-dev15.microsemi.net>
+ <87wo56q2o3.fsf@soft-dev15.microsemi.net>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <abbd2306-55ed-014c-4b06-a5cb3f34796f@intel.com>
+Date:   Sun, 24 May 2020 22:26:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <87wo56q2o3.fsf@soft-dev15.microsemi.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The bus_type field of v4l2_fwnode_endpoint structure passed as the argument
-to v4l2_fwnode_endpoint_alloc_parse() function must be initiaized.
-Set it to V4L2_MBUS_CSI2_DPHY, and check for -ENXIO which is returned
-when the requested media bus type doesn't match the fwnode.
+On 20/05/20 2:14 pm, Lars Povlsen wrote:
+> 
+> Lars Povlsen writes:
+> 
+>> Adrian Hunter writes:
+>>
+>>> On 13/05/20 4:31 pm, Lars Povlsen wrote:
+>>>> This adds the eMMC driver for the Sparx5 SoC. It is based upon the
+>>>> designware IP, but requires some extra initialization and quirks.
+>>>>
+>>>> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+>>>> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+>>>> ---
+> {Snip]
+>>>> +};
+>>>> +
+>>>> +static const struct sdhci_pltfm_data sdhci_sparx5_pdata = {
+>>>> +     .quirks  = 0,
+>>>> +     .quirks2 = SDHCI_QUIRK2_HOST_NO_CMD23 | /* Card quirk */
+>>>
+>>> If this is a card quirk then it should be in drivers/mmc/core/quirks.h not here.
+>>
+> 
+> Adrian, I had a go at changing the controller quirk to a card quirk.
+> 
+> Unfortunately, SDHCI_QUIRK2_HOST_NO_CMD23 does not directly translate to
+> MMC_QUIRK_BLK_NO_CMD23, as for 'do_rel_wr' in mmc_blk_rw_rq_prep(), it
+> will *still* use MMC_SET_BLOCK_COUNT (cmd23), causing the issue.
+> 
+> We are using a ISSI "IS004G" device, and so I have gone through the
+> motions of adding it to quirks.h. The comment before the list of devices
+> using MMC_QUIRK_BLK_NO_CMD23 suggest working around a performance issue,
+> which is not exactly the issue I'm seeing. I'm seeing combinations of
+> CMD_TOUT_ERR, DATA_CRC_ERR and DATA_END_BIT_ERR whenever a cmd23 is
+> issued.
+> 
+> I have not been able to test the controller with another eMMC device
+> yet, but I expect its not the controller at fault.
+> 
+> So, I'm a little bit in doubt of how to proceed - either keep the quirk
+> as a controller quirk - or make a *new* card quirk (with
+> SDHCI_QUIRK2_HOST_NO_CMD23 semantics)?
+> 
+> Anybody else have had experience with ISSI eMMC devices?
+> 
+> I have also tried to use DT sdhci-caps-mask, but MMC_CAP_CMD23 is not
+> read from the controller just (unconditionally) set in sdhci.c - so that
+> doesn't fly either.
+> 
+> Any suggestions?
 
-Also remove v4l2_fwnode_endpoint field from struct imx290 as it is only
-needed in the probe function: use the local variable for this purpose.
+It is up to you.  In the future, you may want to distinguish devices that
+have this problem from ones that do not.
 
-Signed-off-by: Andrey Konovalov <andrey.konovalov@linaro.org>
----
- drivers/media/i2c/imx290.c | 27 +++++++++++++--------------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+If you are not sure it is the ISSI eMMC, and maybe not the host controller,
+then might it be the board?  Perhaps make SDHCI_QUIRK2_HOST_NO_CMD23
+conditional on the particular compatibility string?
 
-diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-index ee5c95cf64f3..05a3d897614e 100644
---- a/drivers/media/i2c/imx290.c
-+++ b/drivers/media/i2c/imx290.c
-@@ -74,7 +74,6 @@ struct imx290 {
- 	u8 bpp;
- 
- 	struct v4l2_subdev sd;
--	struct v4l2_fwnode_endpoint ep;
- 	struct media_pad pad;
- 	struct v4l2_mbus_framefmt current_format;
- 	const struct imx290_mode *current_mode;
-@@ -887,6 +886,10 @@ static int imx290_probe(struct i2c_client *client)
- {
- 	struct device *dev = &client->dev;
- 	struct fwnode_handle *endpoint;
-+	/* Only CSI2 is supported for now: */
-+	struct v4l2_fwnode_endpoint ep = {
-+		.bus_type = V4L2_MBUS_CSI2_DPHY
-+	};
- 	struct imx290 *imx290;
- 	u32 xclk_freq;
- 	int ret;
-@@ -908,15 +911,18 @@ static int imx290_probe(struct i2c_client *client)
- 		return -EINVAL;
- 	}
- 
--	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &imx290->ep);
-+	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
- 	fwnode_handle_put(endpoint);
--	if (ret) {
-+	if (ret == -ENXIO) {
-+		dev_err(dev, "Unsupported bus type, should be CSI2\n");
-+		goto free_err;
-+	} else if (ret) {
- 		dev_err(dev, "Parsing endpoint node failed\n");
- 		goto free_err;
- 	}
- 
- 	/* Get number of data lanes */
--	imx290->nlanes = imx290->ep.bus.mipi_csi2.num_data_lanes;
-+	imx290->nlanes = ep.bus.mipi_csi2.num_data_lanes;
- 	if (imx290->nlanes != 2 && imx290->nlanes != 4) {
- 		dev_err(dev, "Invalid data lanes: %d\n", imx290->nlanes);
- 		ret = -EINVAL;
-@@ -925,19 +931,12 @@ static int imx290_probe(struct i2c_client *client)
- 
- 	dev_dbg(dev, "Using %u data lanes\n", imx290->nlanes);
- 
--	if (!imx290->ep.nr_of_link_frequencies) {
-+	if (!ep.nr_of_link_frequencies) {
- 		dev_err(dev, "link-frequency property not found in DT\n");
- 		ret = -EINVAL;
- 		goto free_err;
- 	}
- 
--	/* Only CSI2 is supported for now */
--	if (imx290->ep.bus_type != V4L2_MBUS_CSI2_DPHY) {
--		dev_err(dev, "Unsupported bus type, should be CSI2\n");
--		ret = -EINVAL;
--		goto free_err;
--	}
--
- 	/* get system clock (xclk) */
- 	imx290->xclk = devm_clk_get(dev, "xclk");
- 	if (IS_ERR(imx290->xclk)) {
-@@ -1063,7 +1062,7 @@ static int imx290_probe(struct i2c_client *client)
- 	pm_runtime_enable(dev);
- 	pm_runtime_idle(dev);
- 
--	v4l2_fwnode_endpoint_free(&imx290->ep);
-+	v4l2_fwnode_endpoint_free(&ep);
- 
- 	return 0;
- 
-@@ -1073,7 +1072,7 @@ static int imx290_probe(struct i2c_client *client)
- 	v4l2_ctrl_handler_free(&imx290->ctrls);
- 	mutex_destroy(&imx290->lock);
- free_err:
--	v4l2_fwnode_endpoint_free(&imx290->ep);
-+	v4l2_fwnode_endpoint_free(&ep);
- 
- 	return ret;
- }
--- 
-2.17.1
+At a minimum, change the "/* Card quirk */" comment to a fuller explanation.
+
+> 
+>> Yes, its supposedly a card quirk. I'll see to use the card quirks
+>> methods in place.
+>>
+> 
 
