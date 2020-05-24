@@ -2,102 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22DF21E02C1
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 22:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDAD1E02F1
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 23:07:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388062AbgEXUdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 May 2020 16:33:51 -0400
-Received: from mga09.intel.com ([134.134.136.24]:8056 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388045AbgEXUdu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 24 May 2020 16:33:50 -0400
-IronPort-SDR: DCubHS15rd9IwKKdybv3X9Sleift3gq9agqNrnj4MdfLcY+J96Yk8NUZKjiktPO69TQgvh+Y/y
- oqY8IFhS6RLA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2020 13:33:50 -0700
-IronPort-SDR: hGO7Y3wYazKbBMeBckgS76jnZK8vgx3/d2+Tum7KpIZBE7Os41Bbvt3Qwb/u2VDS+n2UM4fhvq
- Z18P3EudgMLg==
-X-IronPort-AV: E=Sophos;i="5.73,430,1583222400"; 
-   d="scan'208";a="254745249"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2020 13:33:46 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 554C820736; Sun, 24 May 2020 23:33:44 +0300 (EEST)
-Date:   Sun, 24 May 2020 23:33:44 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= 
-        <shengnan.wang@mediatek.com>
-Subject: Re: [V8, 1/2] media: dt-bindings: media: i2c: Document OV02A10
- bindings
-Message-ID: <20200524203344.GB7618@paasikivi.fi.intel.com>
-References: <20200509080627.23222-1-dongchun.zhu@mediatek.com>
- <20200509080627.23222-2-dongchun.zhu@mediatek.com>
- <20200511160207.GA32476@bogus>
- <1589251221.8804.289.camel@mhfsdcap03>
- <CAAFQd5DgrDwPEpdN9ErJWsHbMDpo2s_u3pwsqtpNwVk4g3_CdQ@mail.gmail.com>
+        id S2388402AbgEXVHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 May 2020 17:07:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387925AbgEXVGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 May 2020 17:06:23 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BC6C08C5C0
+        for <devicetree@vger.kernel.org>; Sun, 24 May 2020 14:06:21 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id m44so12543696qtm.8
+        for <devicetree@vger.kernel.org>; Sun, 24 May 2020 14:06:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=33GqBqRR2Gx5o9WCKvD5zP6xFK/J0f9ce+9hLTx+wyU=;
+        b=dYUpyeZ88WeTWem/FswXsS44lrLQiybUFroMePC5CksOBACVAc+AP08HWM0w7Pb7Ac
+         F0NoPLjN8bl8FC/TOlPXgTDCHIwz9ScxlWhB+CCPJnvHPGin2bMTIy4i0dFKet5Uea+I
+         Ftpgtp3RfC4VlgKd07iaGfRxJQlavPnhVAETIyqC3PDPlQa3J/cWM70oWOXfKfWWjQrd
+         8mzF01SO6Lcs9PufgS4krp4OOJtNL/Etl+uokDY8imEP8PtmHaBekkQ6nLyEuIbpSq4u
+         /BM8C6gDx+6Mh7POr+o8fX9mWZ9Z+Hj0udzDuFnmZmicTN8UQx/A2Gy1I2bhd0IlZmk9
+         ZA4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=33GqBqRR2Gx5o9WCKvD5zP6xFK/J0f9ce+9hLTx+wyU=;
+        b=KDa48OQd4NQeL5XFD9un4fdnkI1vT5oqR6JqKey9C8OpfIPkSgWGb/X2eMe5wUhuRR
+         vJp4heru71kAIX5LtDNCgjTJ7NVnpcXHq2wEuN92Mo2hJfM/O5zP6+uebvvzi2zoXzqG
+         Ppuoms5p+Gb/nXzuyEPCExnUORKwRrOOi475GLGMs/NAqV3/Sv35bBdkrh5ZlNkpgRRb
+         g8DKTEzUundeYCAqDrLgizmU4pg59P8dDhveY/FYWpkpqc52ZdSy445FD4/307x4FMHT
+         PldxqAjmw40KD7WmFfgu68vGCIwmXx6yvRNt6CbE6yOagOdNCskPTPAJkOo+t7jehIM7
+         wOjA==
+X-Gm-Message-State: AOAM5325r2Ael2hmkZ8cn2nHY1fBQ02Z0lhy9SX58Cl4GAbiwfTAIwOZ
+        h2cWfBCzt9uHcgAw/al0hcWFvA==
+X-Google-Smtp-Source: ABdhPJwI1QyBwhsjxuoHpJ6tCXkyyAyYdQsPyhYI0RaCc5ILD7mHRyhYvqVq1nEthHB/cp/9qysgug==
+X-Received: by 2002:aed:2452:: with SMTP id s18mr11569062qtc.137.1590354379884;
+        Sun, 24 May 2020 14:06:19 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id g51sm4401769qtb.69.2020.05.24.14.06.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 May 2020 14:06:19 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        linux-kernel@vger.kernel.org (open list),
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH 00/10] Enable GPU for SM8150 and SM8250
+Date:   Sun, 24 May 2020 17:06:01 -0400
+Message-Id: <20200524210615.17035-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAAFQd5DgrDwPEpdN9ErJWsHbMDpo2s_u3pwsqtpNwVk4g3_CdQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 21, 2020 at 08:59:56PM +0200, Tomasz Figa wrote:
-> Hi Dongchun, Rob,
-> 
-> On Tue, May 12, 2020 at 4:41 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > Thanks for the review.
-> >
-> > On Mon, 2020-05-11 at 11:02 -0500, Rob Herring wrote:
-> > > On Sat, May 09, 2020 at 04:06:26PM +0800, Dongchun Zhu wrote:
-> [snip]
-> > > > +            port {
-> > > > +                wcam_out: endpoint {
-> > > > +                    remote-endpoint = <&mipi_in_wcam>;
-> > > > +                    data-lanes = <1>;
-> > >
-> > > This doesn't match the schema which says this should be 4 entries.
-> > >
-> >
-> > Property "data-lanes" shows the number of lanes that sensor supports.
-> > If this property is omitted, four-lane operation is assumed.
-> > For OV02A10, it is one-lane operation, so the property is supposed to be
-> > set to <1>.
-> >
-> 
-> To clarify on this, the ov02a10 sensor supports only 1 lane. It's not
-> a driver limitation.
+This series adds the missing clock drivers and dts nodes to enable
+the GPU on both SM8150 and SM8250.
 
-If there's nothing to configure there, then the property should be omitted.
-I understood the sensor supported one to four lanes...
+Adreno 640/650 support was recently added to drm/msm [1], but an
+extra patch [2] is still required for GPU to actually work on SM8250.
+
+[1] https://patchwork.freedesktop.org/series/76198/
+[2] https://gist.github.com/flto/784f1aca761ebf2fe6c105719a4a04ca
+
+Jonathan Marek (10):
+  clk: qcom: clk-alpha-pll: remove unused/incorrect PLL_CAL_VAL
+  clk: qcom: clk-alpha-pll: same regs and ops for trion and lucid
+  clk: qcom: clk-alpha-pll: use the right PCAL_DONE value for lucid pll
+  clk: qcom: gcc: remove unnecessary vco_table from SM8150
+  dt-bindings: clock: Introduce SM8150 QCOM Graphics clock bindings
+  dt-bindings: clock: Introduce SM8250 QCOM Graphics clock bindings
+  clk: qcom: Add graphics clock controller driver for SM8150
+  clk: qcom: Add graphics clock controller driver for SM8250
+  arm64: dts: qcom: add sm8150 GPU nodes
+  arm64: dts: qcom: add sm8250 GPU nodes
+
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 132 +++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 139 ++++++
+ drivers/clk/qcom/Kconfig                      |  16 +
+ drivers/clk/qcom/Makefile                     |   2 +
+ drivers/clk/qcom/clk-alpha-pll.c              |  70 ++-
+ drivers/clk/qcom/clk-alpha-pll.h              |  15 +-
+ drivers/clk/qcom/gcc-sm8150.c                 |  18 +-
+ drivers/clk/qcom/gpucc-sm8150.c               | 429 ++++++++++++++++
+ drivers/clk/qcom/gpucc-sm8250.c               | 458 ++++++++++++++++++
+ include/dt-bindings/clock/qcom,gpucc-sm8150.h |  40 ++
+ include/dt-bindings/clock/qcom,gpucc-sm8250.h |  40 ++
+ 11 files changed, 1304 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/clk/qcom/gpucc-sm8150.c
+ create mode 100644 drivers/clk/qcom/gpucc-sm8250.c
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8150.h
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8250.h
 
 -- 
-Sakari Ailus
+2.26.1
+
