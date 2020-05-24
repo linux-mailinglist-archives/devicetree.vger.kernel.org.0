@@ -2,79 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 031DB1DFE36
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 12:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5541DFEB0
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2020 13:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387745AbgEXKFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 May 2020 06:05:00 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:53597 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2387730AbgEXKE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 24 May 2020 06:04:59 -0400
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 May 2020 03:04:58 -0700
-Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
-  by ironmsg02-sd.qualcomm.com with ESMTP; 24 May 2020 03:04:55 -0700
-Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
-        id 0275321801; Sun, 24 May 2020 15:34:49 +0530 (IST)
-From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
-Subject: [PATCH V5 8/8] arm64: dts: ipq6018: Add a53 pll and apcs clock
-Date:   Sun, 24 May 2020 15:34:46 +0530
-Message-Id: <1590314686-11749-9-git-send-email-sivaprak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590314686-11749-1-git-send-email-sivaprak@codeaurora.org>
-References: <1590314686-11749-1-git-send-email-sivaprak@codeaurora.org>
+        id S1727842AbgEXLlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 May 2020 07:41:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54004 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727101AbgEXLlU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 May 2020 07:41:20 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D103B2075F;
+        Sun, 24 May 2020 11:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590320479;
+        bh=8ZAPT2spP3nkobeWSQ+7g6/OU1ai1KDStJyS50keCKs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=DPC+Obpx7Oe8ECa/1kOLIOeOrM86DUyuz5pePhMZY9FTz0odbwNGvVztbXgR8oTa0
+         pxozpwFI5iPnOaXB/axSpJzq4uUon2qjEz1Kp7a/GoGNrWEPXycIvm1XTTXyZlNxic
+         Tzg7E2ROzj5fC2fLI1e/ISgHo5l+IR6ULWzRQnNs=
+Date:   Sun, 24 May 2020 12:41:14 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED 
+        DEVICE TREE BINDINGS), Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: iio: imu: bmi160: convert txt
+ format to yaml
+Message-ID: <20200524124114.7f4e785d@archlinux>
+In-Reply-To: <20200520194656.16218-2-jonathan.albrieux@gmail.com>
+References: <20200520194656.16218-1-jonathan.albrieux@gmail.com>
+        <20200520194656.16218-2-jonathan.albrieux@gmail.com>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add support for apps pll and apcs clock.
+On Wed, 20 May 2020 21:46:40 +0200
+Jonathan Albrieux <jonathan.albrieux@gmail.com> wrote:
 
-Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
----
-[V5]
-  * changed compatible to match the bindings
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+> Converts documentation from txt format to yaml.
+> 
+> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 1aa8d85..8d60f6f 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -294,12 +294,22 @@
- 		};
- 
- 		apcs_glb: mailbox@b111000 {
--			compatible = "qcom,ipq8074-apcs-apps-global";
--			reg = <0x0b111000 0xc>;
--
-+			compatible = "qcom,ipq6018-apcs-apps-global";
-+			reg = <0x0b111000 0x1000>;
-+			#clock-cells = <1>;
-+			clocks = <&apsspll>, <&xo>;
-+			clock-names = "pll", "xo";
- 			#mbox-cells = <1>;
- 		};
- 
-+		apsspll: clock@b116000 {
-+			compatible = "qcom,ipq6018-a53pll";
-+			reg = <0x0b116000 0x40>;
-+			#clock-cells = <0>;
-+			clocks = <&xo>;
-+			clock-names = "xo";
-+		};
-+
- 		timer {
- 			compatible = "arm,armv8-timer";
- 			interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--- 
-2.7.4
+A reminder on the maintainer bit as that thread crossed with
+this one.  Also, drop the spi-max-frequency as we don't need
+to mention it explicitly for this device.
+
+Thanks,
+
+Jonathan
+
+
+> ---
+>  .../devicetree/bindings/iio/imu/bmi160.txt    | 37 ---------
+>  .../bindings/iio/imu/bosch,bmi160.yaml        | 76 +++++++++++++++++++
+>  2 files changed, 76 insertions(+), 37 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/imu/bmi160.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/bmi160.txt b/Documentation/devicetree/bindings/iio/imu/bmi160.txt
+> deleted file mode 100644
+> index 900c169de00f..000000000000
+> --- a/Documentation/devicetree/bindings/iio/imu/bmi160.txt
+> +++ /dev/null
+> @@ -1,37 +0,0 @@
+> -Bosch BMI160 - Inertial Measurement Unit with Accelerometer, Gyroscope
+> -and externally connectable Magnetometer
+> -
+> -https://www.bosch-sensortec.com/bst/products/all_products/bmi160
+> -
+> -Required properties:
+> - - compatible : should be "bosch,bmi160"
+> - - reg : the I2C address or SPI chip select number of the sensor
+> - - spi-max-frequency : set maximum clock frequency (only for SPI)
+> -
+> -Optional properties:
+> - - interrupts : interrupt mapping for IRQ
+> - - interrupt-names : set to "INT1" if INT1 pin should be used as interrupt
+> -   input, set to "INT2" if INT2 pin should be used instead
+> - - drive-open-drain : set if the specified interrupt pin should be configured as
+> -   open drain. If not set, defaults to push-pull.
+> -
+> -Examples:
+> -
+> -bmi160@68 {
+> -	compatible = "bosch,bmi160";
+> -	reg = <0x68>;
+> -
+> -	interrupt-parent = <&gpio4>;
+> -	interrupts = <12 IRQ_TYPE_EDGE_RISING>;
+> -	interrupt-names = "INT1";
+> -};
+> -
+> -bmi160@0 {
+> -	compatible = "bosch,bmi160";
+> -	reg = <0>;
+> -	spi-max-frequency = <10000000>;
+> -
+> -	interrupt-parent = <&gpio2>;
+> -	interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
+> -	interrupt-names = "INT2";
+> -};
+> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
+> new file mode 100644
+> index 000000000000..46cb4fde1165
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/bosch,bmi160.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BMI160
+> +
+> +maintainers:
+> +  - Daniel Baluta <daniel.baluta@nxp.com> (?)
+
+Daniel's reply crossed with this.  Given he's moved on to other things
+he's not happy to be listed as maintainer here.
+
+Given other threads, either put yourself here if you are happy to maintain
+the binding, or fall back to me but use my kernel.org address.
+
+Jonathan Cameron <jic23@kernel.org>
+
+I don't mind either way.
+
+
+> +
+> +description: |
+> +  Inertial Measurement Unit with Accelerometer, Gyroscope and externally
+> +  connectable Magnetometer
+> +  https://www.bosch-sensortec.com/bst/products/all_products/bmi160
+> +
+> +properties:
+> +  compatible:
+> +    const: bosch,bmi160
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maxItems: 1
+
+spi-max-frequency doesn't need to be here at all.   We aren't trying to list
+all of the properties that might be present - but rather those that
+are either required or that are part of the description of the device.
+This one is a generic spi binding that may or may not be present.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    enum:
+> +      - INT1
+> +      - INT2
+> +    description: |
+> +      set to "INT1" if INT1 pin should be used as interrupt input, set
+> +      to "INT2" if INT2 pin should be used instead
+> +
+> +  drive-open-drain:
+> +    description: |
+> +      set if the specified interrupt pin should be configured as
+> +      open drain. If not set, defaults to push-pull.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    // Example for I2C
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bmi160@68 {
+> +                compatible = "bosch,bmi160";
+> +                reg = <0x68>;
+> +                interrupt-parent = <&gpio4>;
+> +                interrupts = <12 1>;
+> +                interrupt-names = "INT1";
+> +        };
+> +    };
+> +  - |
+> +    // Example for SPI
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bmi160@0 {
+> +                compatible = "bosch,bmi160";
+> +                reg = <0>;
+> +                spi-max-frequency = <10000000>;
+> +                interrupt-parent = <&gpio2>;
+> +                interrupts = <12 1>;
+> +                interrupt-names = "INT2";
+> +        };
+> +    };
 
