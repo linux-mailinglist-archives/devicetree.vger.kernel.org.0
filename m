@@ -2,131 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51B611E0EFA
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 15:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7393E1E0EA2
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 14:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390698AbgEYNCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 May 2020 09:02:24 -0400
-Received: from gateway24.websitewelcome.com ([192.185.51.36]:32889 "EHLO
-        gateway24.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388757AbgEYNCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 May 2020 09:02:23 -0400
-X-Greylist: delayed 1421 seconds by postgrey-1.27 at vger.kernel.org; Mon, 25 May 2020 09:02:22 EDT
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
-        by gateway24.websitewelcome.com (Postfix) with ESMTP id C70FC1E4D8
-        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 07:38:40 -0500 (CDT)
-Received: from br164.hostgator.com.br ([192.185.176.180])
-        by cmsmtp with SMTP
-        id dCNMjQ290VQh0dCNMjQjTi; Mon, 25 May 2020 07:38:40 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=2TljW7JsW+WCZFc/vJnuFILXikxQwHFnuGlW+UY2ObY=; b=jaAKaoE9zh9aAvTL7GhKDpQNfZ
-        eCkF23JYStQG4EZq2qZzqP49go5dOw9ojs1PsnVGvyLai1KxDT0AnuEHSZvt78SEUFG+kIeKJSNGm
-        AywzfK60JlfYclTVBVEX/O13c507O3NL15Y4kkECBAyR+/rsBt1CgI57jNHVHol3waSbwKkicclDh
-        byKVOqwGT+T5D2Qi2dW56i2rq6Kd1g6EeQeS1wQYX/6LduDjKI08Rzu3w48VIyPCsL2C2on24UlnZ
-        s55pwtE+N4dhLk3lwOZ7O+IOUvl34wTmWtY9SGSZjZpgXHK0NySh8NAyoOr5hA3zZNwtRX/8W6zbv
-        BnZy0WJg==;
-Received: from [191.31.196.240] (port=53056 helo=[192.168.15.5])
-        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <matheus@castello.eng.br>)
-        id 1jdCNM-002LnX-Dr; Mon, 25 May 2020 09:38:40 -0300
-Subject: Re: [PATCH v5 2/3] dt-bindings: arm: actions: Document Caninos Loucos
- Labrador
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, edgar.righi@lsitec.org.br,
-        igor.lima@lsitec.org.br, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-actions@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20200525013008.108750-1-matheus@castello.eng.br>
- <20200525013008.108750-3-matheus@castello.eng.br>
- <8fc7b0d0-6516-ecd4-ce9c-a63a3cba7e9a@suse.de>
-From:   Matheus Castello <matheus@castello.eng.br>
-Message-ID: <752b0710-ba99-ef19-d3c2-78cca5c6bdf2@castello.eng.br>
-Date:   Mon, 25 May 2020 09:38:36 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+        id S2390585AbgEYMnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 May 2020 08:43:43 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:52669 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390556AbgEYMnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 08:43:43 -0400
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id E226720000B;
+        Mon, 25 May 2020 12:43:37 +0000 (UTC)
+Date:   Mon, 25 May 2020 14:46:57 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>, libcamera-devel@lists.libcamera.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>, tfiga@google.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 02/13] dt-bindings: video-interface: Replace
+ 'rotation' description
+Message-ID: <20200525124657.umnvfzpyo7moutp4@uno.localdomain>
+References: <20200509090456.3496481-1-jacopo@jmondi.org>
+ <20200509090456.3496481-3-jacopo@jmondi.org>
+ <20200525111621.GE27989@amd>
 MIME-Version: 1.0
-In-Reply-To: <8fc7b0d0-6516-ecd4-ce9c-a63a3cba7e9a@suse.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: pt-BR
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - castello.eng.br
-X-BWhitelist: no
-X-Source-IP: 191.31.196.240
-X-Source-L: No
-X-Exim-ID: 1jdCNM-002LnX-Dr
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.15.5]) [191.31.196.240]:53056
-X-Source-Auth: matheus@castello.eng.br
-X-Email-Count: 9
-X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
-X-Local-Domain: yes
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cozzvhkmmtid52ks"
+Content-Disposition: inline
+In-Reply-To: <20200525111621.GE27989@amd>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
 
-Em 5/25/20 7:41 AM, Andreas Färber escreveu:
-> Hi,
-> 
-> Am 25.05.20 um 03:30 schrieb Matheus Castello:
->> Update the documentation to add the Caninos Loucos Labrador. Labrador
->> project consists of a computer on module based on the Actions Semi S500
->> processor and the Labrador base board.
->>
->> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>   Documentation/devicetree/bindings/arm/actions.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/actions.yaml 
->> b/Documentation/devicetree/bindings/arm/actions.yaml
->> index ace3fdaa8396..2187e1c5bc73 100644
->> --- a/Documentation/devicetree/bindings/arm/actions.yaml
->> +++ b/Documentation/devicetree/bindings/arm/actions.yaml
->> @@ -19,6 +19,11 @@ properties:
->>                 - allo,sparky # Allo.com Sparky
->>                 - cubietech,cubieboard6 # Cubietech CubieBoard6
->>             - const: actions,s500
->> +      - items:
->> +          - enum:
->> +              - caninos,labrador-v2 # Labrador Core v2
->> +              - caninos,labrador-base-m # Labrador Base Board M v1
-> 
-> This enum still strikes me as wrong, it means either-or. (Was planning 
-> to look into it myself, but no time yet...) caninos,labrador-v2 should 
-> be a const one level down: board, SoM, SoC from most specific to most 
-> generic. Compare Guitar below.
+--cozzvhkmmtid52ks
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-I got it, I agree make sense, I will send the v6.
+Pavel,
 
-> 
->> +          - const: actions,s500
->>         - items:
->>             - enum:
->>                 - lemaker,guitar-bb-rev-b # LeMaker Guitar Base Board 
->> rev. B
-> 
-> Regards,
-> Andreas
-> 
+On Mon, May 25, 2020 at 01:16:21PM +0200, Pavel Machek wrote:
+> On Sat 2020-05-09 11:04:45, Jacopo Mondi wrote:
+> > Replace the 'rotation' property description by providing a definition
+> > relative to the camera sensor pixel array coordinate system and the
+> > captured scene.
+> >
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > ---
+> >  .../bindings/media/video-interfaces.txt       | 359 +++++++++++++++++-
+> >  1 file changed, 356 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > index b1ff492c7da7a..3920f25a91235 100644
+> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > @@ -85,9 +85,362 @@ Optional properties
+> >
+> >  - lens-focus: A phandle to the node of the focus lens controller.
+> >
+> > -- rotation: The device, typically an image sensor, is not mounted upright,
+> > -  but a number of degrees counter clockwise. Typical values are 0 and 180
+> > -  (upside down).
+> > +- rotation: The camera rotation is expressed as the angular difference in
+> > +  degrees between two reference systems, one relative to the camera module, and
+> > +  one defined on the external world scene to be captured when projected on the
+> > +  image sensor pixel array.
+>
+> So.. how is this supposed to work. There's a phone, with its main
+> camera. It is designed to be used in both portrait and landscape
+> modes, internal accelerometr can tell between the two.
+>
+> Plus you have phone with a keyboard. Common usage is portrait with
+> keyboard closed, and landscape with keyboard open...
+>
 
-Best Regards,
-Matheus Castello
+While I agree for 'orientation' we're far from perfection (and that's
+why I've been asked s/location/orientation/ to reserve 'location' for
+the future), 'rotation' is only defined by the camera sensor mounting
+rotation and the external scene. The way you move your phone should
+not impact the pixel read-out sequence.
+
+All phones can be used in portarait or landscape mode, I don't see why
+having a mechanical keyboard is different. You can type in landscape
+mode on a touchscreen keyboard, if you like to.
+
+The property gives you the rotation correction (actually, the control
+gives the correction) for display in the 'intended usage orientation'.
+If your concern is displaying the image,  as you sense the
+accellerometers to rotate the UI, the application that display the
+image will be rotated too, adding to the corrected image (capture image +
+rotation here specified) the required UI rotation.
+
+On the 'intended usage orientation', as there is one for the UI, there
+is one for all other components in the phone, so if your system
+establishes that 'portrait' is the (rotation = 0) point for the UI,
+this applies to the rest of the system.
+
+> And yes, there's linux with v4l2 working on Nokia N900.
+>
+
+How is this and orientation handled there ?
+
+
+> Best regards,
+> 								Pavel
+> --
+> (english) http://www.livejournal.com/~pavelmachek
+> (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+
+
+
+--cozzvhkmmtid52ks
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl7LvkAACgkQcjQGjxah
+Vjxq8hAAljqol8NiaXSAxpR71YqCmW2eWVsGdPZPKCf2WKu/V/d9VlWiTwwS3Vm6
+L3K0ezJnJvxFGJTj7hroP5baKUfxA4SbEWTyNyOmg+3YMVuKPO/SHS4Ht3cILU7R
++3idH4ROYuTzidjQkSHcvzM870PKBwjgzV39o8Z2/zyz1JvJ5AiByRhcMlI+fg/m
+TupKZ/BO/4gl36DUNawXYkhTVOU4EltgDGP2vUqcjlpAmqw3kDng5Mw2sEijhxwI
+hD0r2OCM5UvJok+frt3FXlDo7QG0TNrue6n+tdoCASXdLmXbHsKtHd7KS7ht071l
+qcFhLxlS/koWlnpJp0ydPuWhdQP6aPiAl/fpMlar/rSrnV3KQja7m92cG/ViqB7v
+iWgzt9RZSwDnXQPB3LF87HoFhI6ka+l921HeESNJ6+eWge5zvf29co1A4uLny2Oj
+ATVpVpKtCLuzHlqWqg8fkFbJcYR9wYun76lzQ49R/pIjhvXu/8HoLhAB38ABrEtT
+5+b7mtTGUKANQ7lvMFcXRg0W3VYEBrhduHZl9ADS9bmpJZx62tOlM5h/FDJEd35t
+mqfh/HQY5ATS3TXJ1H5nIK26iDayJfwrXb289bZOYK6VktxiCNShdK6Y+nXzK2M4
+VW63OZ0747WJ8Lpfvl8jBQBiRqk3XGtpbqDdZxVerD3lWh+pY3c=
+=paVC
+-----END PGP SIGNATURE-----
+
+--cozzvhkmmtid52ks--
