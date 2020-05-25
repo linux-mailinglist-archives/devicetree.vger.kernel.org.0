@@ -2,133 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D1A1E05D1
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 06:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E4D1E0676
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 07:43:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726235AbgEYEMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 May 2020 00:12:44 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:53583 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726963AbgEYEMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 May 2020 00:12:43 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id EFF315800A0;
-        Mon, 25 May 2020 00:12:42 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 25 May 2020 00:12:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=wJMeT4ENSLLpB
-        HK49G1o41GE6X/5CEDc5+ipXnujXfI=; b=Yl7IF+bMFu0sswGGRCePp+xZSgLfj
-        sMV0WWj51z/LC6/UNjoQtEY+1hjKalQhIen/pOAPP9XZug070dVpMjgCXXeVW1uB
-        XeD6bpt27McSAv7pZaQeu4yEnOweMaxD9tZyOOtY1vQTgjHhmbz6QGKp73+eqxFs
-        DBmuy7AhonKAAlqPZJ5ErmfW7aGvrLldz4rpafF7nV7te1Oe0Akw3gpesnY4LhiA
-        02rzo8xiW0oeobRCpakFqargfcx4u6OBuY3RRRFv9DwtMkrW9s0Dl8kVxd9DLuLu
-        yNW7f+0PkLMIajHRjVfu1eF7QY1ehrbWKnmbS2cwrGpU88oumETqVJ1Ig==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=wJMeT4ENSLLpBHK49G1o41GE6X/5CEDc5+ipXnujXfI=; b=RoQfArFD
-        3faJa/wAUmmEa3OzGhLFBtgPQXJ4ObqjKPtHVS+FHQdMGLhBfIcDmdhxXQSfpqts
-        LMrID+0/BIqEfSc0MyIeXSdpFmZ7RGmi3CK4aQmpcS8vNSAvxIhbOs5NKCklEUpS
-        KqMIu6Lm479WA4GSwNoa3VgesUyD0ZrFOev8xoYxJeujkpAC0sW6G/HqUjLBaHc4
-        B/rXC10jEzr03nfqgB3K6FD0kb5q5W2EnLgUwEsh3VDpan3OqpdKVjOn/2prbJmd
-        YnNHY2hEcd919Qcfa8MbI/1kNzMZI66qZAK68Z2X8WTlz9+bUbA09WoCG9IdVoTq
-        KQQJDQD0DRR8hw==
-X-ME-Sender: <xms:ukXLXpOw9VlbpmJP4oCcbCmqPuyl_I7HhhsKHFsW7bf1-U_Fc6d6ow>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudduledgjeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgepvdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:ukXLXr9cupOHN4TbEIROb-7gDyrGAdDsjNqv_rg5IOgA-PjJwpvVRg>
-    <xmx:ukXLXoRvIW9L8vkkWQ19XQyNYYU8lYC3bN0v9MvDCz9PFwcT5Mil1g>
-    <xmx:ukXLXlt_AOaYtFJEeh3S-9RNRo4VsCbTTQZls-UWTcWQQtpSTy5cGQ>
-    <xmx:ukXLXiWGjG-FyTIytMikXi3Uwb9JJcj9x-c92HpbaKVyRbymOqD14A>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 490783066544;
-        Mon, 25 May 2020 00:12:42 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2 9/9] arm64: dts: allwinner: h6: Move wakeup-capable IRQs to r_intc
-Date:   Sun, 24 May 2020 23:13:02 -0500
-Message-Id: <20200525041302.51213-10-samuel@sholland.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200525041302.51213-1-samuel@sholland.org>
-References: <20200525041302.51213-1-samuel@sholland.org>
+        id S1729589AbgEYFn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 May 2020 01:43:28 -0400
+Received: from mga04.intel.com ([192.55.52.120]:39674 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725763AbgEYFn2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 May 2020 01:43:28 -0400
+IronPort-SDR: zwmSkPIkLXJmSvn/vkXoF0L/XGqfsrJrjGEYKj+AdIiz73CyIikFQfOS2NMwyGClATdpyj3DAX
+ Oisv7qnPMGOQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2020 22:43:27 -0700
+IronPort-SDR: RgGj6yKfCRpRXq4AIbrpN98WCXvHKkV4whYtLSII4XNB9usli7hIXRWZ8J5TcvrZp1AGq8jDPK
+ vBJd6ZmWFWmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,432,1583222400"; 
+   d="scan'208";a="467862618"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.157]) ([10.237.72.157])
+  by fmsmga005.fm.intel.com with ESMTP; 24 May 2020 22:43:24 -0700
+Subject: Re: [PATCH V2 3/3] mmc: sdhci: Allow platform controlled voltage
+ switching
+To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vijay Viswanath <vviswana@codeaurora.org>
+References: <1589541535-8523-1-git-send-email-vbadigan@codeaurora.org>
+ <1590074615-10787-1-git-send-email-vbadigan@codeaurora.org>
+ <1590074615-10787-4-git-send-email-vbadigan@codeaurora.org>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <cfb229eb-a5e6-a0a9-6590-ef57b621ccb7@intel.com>
+Date:   Mon, 25 May 2020 08:42:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1590074615-10787-4-git-send-email-vbadigan@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All IRQs that can be used to wake up the system must be routed through
-r_intc, so they are visible to firmware while the system is suspended.
+On 21/05/20 6:23 pm, Veerabhadrarao Badiganti wrote:
+> From: Vijay Viswanath <vviswana@codeaurora.org>
+> 
+> If vendor platform drivers are controlling whole logic of voltage
+> switching, then sdhci driver no need control vqmmc regulator.
+> So skip enabling/disable vqmmc from SDHC driver.
+> 
+> Signed-off-by: Vijay Viswanath <vviswana@codeaurora.org>
+> Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
 
-For the H6, r_intc IRQ numbers are offset by 96 from the GIC IRQ
-numbers.
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index d912188dc6ea..188699f47dea 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -844,8 +844,9 @@ tcon_tv_out_tcon_top: endpoint@1 {
- 		rtc: rtc@7000000 {
- 			compatible = "allwinner,sun50i-h6-rtc";
- 			reg = <0x07000000 0x400>;
--			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&r_intc>;
-+			interrupts = <5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <6 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-output-names = "osc32k", "osc32k-out", "iosc";
- 			#clock-cells = <1>;
- 		};
-@@ -880,8 +881,9 @@ r_intc: interrupt-controller@7021000 {
- 		r_pio: pinctrl@7022000 {
- 			compatible = "allwinner,sun50i-h6-r-pinctrl";
- 			reg = <0x07022000 0x400>;
--			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&r_intc>;
-+			interrupts = < 9 IRQ_TYPE_LEVEL_HIGH>,
-+				     <15 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB1>, <&osc24M>, <&rtc 0>;
- 			clock-names = "apb", "hosc", "losc";
- 			gpio-controller;
-@@ -904,7 +906,8 @@ r_ir: ir@7040000 {
- 			compatible = "allwinner,sun50i-h6-ir",
- 				     "allwinner,sun6i-a31-ir";
- 			reg = <0x07040000 0x400>;
--			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&r_intc>;
-+			interrupts = <13 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB1_IR>,
- 				 <&r_ccu CLK_IR>;
- 			clock-names = "apb", "ir";
--- 
-2.24.1
+> ---
+>  drivers/mmc/host/sdhci.c | 32 +++++++++++++++++++-------------
+>  drivers/mmc/host/sdhci.h |  1 +
+>  2 files changed, 20 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci.c b/drivers/mmc/host/sdhci.c
+> index 1bb6b67..88e5312 100644
+> --- a/drivers/mmc/host/sdhci.c
+> +++ b/drivers/mmc/host/sdhci.c
+> @@ -4098,6 +4098,7 @@ int sdhci_setup_host(struct sdhci_host *host)
+>  	unsigned int override_timeout_clk;
+>  	u32 max_clk;
+>  	int ret;
+> +	bool enable_vqmmc = false;
+>  
+>  	WARN_ON(host == NULL);
+>  	if (host == NULL)
+> @@ -4111,9 +4112,12 @@ int sdhci_setup_host(struct sdhci_host *host)
+>  	 * the host can take the appropriate action if regulators are not
+>  	 * available.
+>  	 */
+> -	ret = mmc_regulator_get_supply(mmc);
+> -	if (ret)
+> -		return ret;
+> +	if (!mmc->supply.vqmmc) {
+> +		ret = mmc_regulator_get_supply(mmc);
+> +		if (ret)
+> +			return ret;
+> +		enable_vqmmc  = true;
+> +	}
+>  
+>  	DBG("Version:   0x%08x | Present:  0x%08x\n",
+>  	    sdhci_readw(host, SDHCI_HOST_VERSION),
+> @@ -4373,7 +4377,15 @@ int sdhci_setup_host(struct sdhci_host *host)
+>  		mmc->caps |= MMC_CAP_NEEDS_POLL;
+>  
+>  	if (!IS_ERR(mmc->supply.vqmmc)) {
+> -		ret = regulator_enable(mmc->supply.vqmmc);
+> +		if (enable_vqmmc) {
+> +			ret = regulator_enable(mmc->supply.vqmmc);
+> +			if (ret) {
+> +				pr_warn("%s: Failed to enable vqmmc regulator: %d\n",
+> +					mmc_hostname(mmc), ret);
+> +				mmc->supply.vqmmc = ERR_PTR(-EINVAL);
+> +			}
+> +			host->sdhci_core_to_disable_vqmmc = !ret;
+> +		}
+>  
+>  		/* If vqmmc provides no 1.8V signalling, then there's no UHS */
+>  		if (!regulator_is_supported_voltage(mmc->supply.vqmmc, 1700000,
+> @@ -4386,12 +4398,6 @@ int sdhci_setup_host(struct sdhci_host *host)
+>  		if (!regulator_is_supported_voltage(mmc->supply.vqmmc, 2700000,
+>  						    3600000))
+>  			host->flags &= ~SDHCI_SIGNALING_330;
+> -
+> -		if (ret) {
+> -			pr_warn("%s: Failed to enable vqmmc regulator: %d\n",
+> -				mmc_hostname(mmc), ret);
+> -			mmc->supply.vqmmc = ERR_PTR(-EINVAL);
+> -		}
+>  	}
+>  
+>  	if (host->quirks2 & SDHCI_QUIRK2_NO_1_8_V) {
+> @@ -4625,7 +4631,7 @@ int sdhci_setup_host(struct sdhci_host *host)
+>  	return 0;
+>  
+>  unreg:
+> -	if (!IS_ERR(mmc->supply.vqmmc))
+> +	if (host->sdhci_core_to_disable_vqmmc)
+>  		regulator_disable(mmc->supply.vqmmc);
+>  undma:
+>  	if (host->align_buffer)
+> @@ -4643,7 +4649,7 @@ void sdhci_cleanup_host(struct sdhci_host *host)
+>  {
+>  	struct mmc_host *mmc = host->mmc;
+>  
+> -	if (!IS_ERR(mmc->supply.vqmmc))
+> +	if (host->sdhci_core_to_disable_vqmmc)
+>  		regulator_disable(mmc->supply.vqmmc);
+>  
+>  	if (host->align_buffer)
+> @@ -4780,7 +4786,7 @@ void sdhci_remove_host(struct sdhci_host *host, int dead)
+>  
+>  	destroy_workqueue(host->complete_wq);
+>  
+> -	if (!IS_ERR(mmc->supply.vqmmc))
+> +	if (host->sdhci_core_to_disable_vqmmc)
+>  		regulator_disable(mmc->supply.vqmmc);
+>  
+>  	if (host->align_buffer)
+> diff --git a/drivers/mmc/host/sdhci.h b/drivers/mmc/host/sdhci.h
+> index 8d2a096..c7dbc68 100644
+> --- a/drivers/mmc/host/sdhci.h
+> +++ b/drivers/mmc/host/sdhci.h
+> @@ -570,6 +570,7 @@ struct sdhci_host {
+>  	u32 caps1;		/* CAPABILITY_1 */
+>  	bool read_caps;		/* Capability flags have been read */
+>  
+> +	bool sdhci_core_to_disable_vqmmc;  /* sdhci core can disable vqmmc */
+>  	unsigned int            ocr_avail_sdio;	/* OCR bit masks */
+>  	unsigned int            ocr_avail_sd;
+>  	unsigned int            ocr_avail_mmc;
+> 
 
