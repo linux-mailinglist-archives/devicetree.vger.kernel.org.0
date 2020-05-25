@@ -2,88 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B90101E124F
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 18:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5A01E1274
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 18:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391067AbgEYQEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 May 2020 12:04:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33184 "EHLO
+        id S1729404AbgEYQP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 May 2020 12:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388432AbgEYQEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 12:04:50 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0553C061A0E
-        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 09:04:48 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id c11so19122323ljn.2
-        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 09:04:48 -0700 (PDT)
+        with ESMTP id S1726476AbgEYQP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 12:15:57 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2052C061A0E
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 09:15:56 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id r10so8820354pgv.8
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 09:15:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=WchuIv79nNvnK+tHmT8tL0p7oQxATu8anJ+BAbndLtw=;
-        b=WD5VeCnU43CtLlbT34LQj/sgMEjPUeYeHWVWxGdxevurNrLerYkbb8AkvWPwUQw4C8
-         P+sEvP5K0v5BAUH+Tqf1EF/lNoFyljYx8f2Q3X3T59vxvvGAPG+EKcvceSo7l9RjuoP/
-         A3F/IzlNSVTtAlkLEEg3zpzejJF1VMSxpaz3E/d7YcZzNZaOZKSrJtcg7GAUsgNhH5i6
-         0R9aSbKiY3l72m/bj5fJdk4YzWjIjTgJsftnnmWbN1vgTnn2OvG90h5VE7AH6vB6ONVd
-         2PgXm8zBUDjxBCrXUgK/Ta0Y/YVFp+SBWQRYcUdR2neHBXJt/uuMw8O1EZIKfbHUScXG
-         m+IQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gq7KDxytrwBv3Ee6LFih9/KTjS7vsScQxcda5nNQ+Ms=;
+        b=Ojfn8JqqBQKNdvSd4HpjRqRwRnE62A/rHtJxs74MU9uf7cmH1r7hohAX2tdclJ7BXj
+         xdPhMSF97utN4AWhwYJAIpwX9YaKuJdWNsEv0OirKVrVWS3gPlLxyPMZVHAOm9v+AoJv
+         FBEmR2ClctF/sTe6tSDkzC2LLnoEfpxFHgPPWbNkwE83qPdcPmgPVms84DR+Co1Yw+Wt
+         gvvS1hjOfSjAfWC+s7njQ625zkmNisqy0UZ23ceVy0bH0WJioV8r1Dngn17Kgk7dFX0n
+         fS9b3YYpaHIUB4RxhdPqtfkW6C8kE/aZGNbXl+3A129MLcAtqpUu0H7HMWC2Q0cqFJNN
+         bokQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=WchuIv79nNvnK+tHmT8tL0p7oQxATu8anJ+BAbndLtw=;
-        b=f3K/1lv9WofNX0/oN8OWEXR/0L07PfZJMajy++JKBQ/Zsg5i7+e4Z+uQVHntVUytR2
-         8httcsb0WsuWk58W0PVIHV5WjShhA3Ts8E5AViypqee7aInRNpBE42pUQ0pj5nL0zNO5
-         zOemSqQUYGw40RtE9K0jUIcA1MrCPYHL9uSW6Njcygbn58qyA6Ke56vFRuGi7rsZf8Ls
-         kckM5Xj0u0odcAth8kstivrn+Ivni1G+32sGGo+gJqYorGEOrdPyMngweRC7NfmfcezZ
-         4aDfhN68WV52yg0vHbnr6wfktOu46CAEvlhkHInlPupbhABI6XFAYNg8bsiDbIT3irXu
-         eYfA==
-X-Gm-Message-State: AOAM531XoPwUSFO/vwa+8xUfMIIgU2oYl35gLSOvHDXPyWJGZlUf9NEv
-        EbABk8A+gIACtgcGqQedkd2wjRo0N3ldsL5QPmE=
-X-Google-Smtp-Source: ABdhPJxJJzdUGagxfYFWWQMZtkksUF7v/QOZe6cOCSX7kET21mEO9y4L7ddw6w/D6IMOKvOkzEzmSrnOnJNWP3eDL50=
-X-Received: by 2002:a2e:9d8f:: with SMTP id c15mr5099482ljj.125.1590422687441;
- Mon, 25 May 2020 09:04:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gq7KDxytrwBv3Ee6LFih9/KTjS7vsScQxcda5nNQ+Ms=;
+        b=Eu8J8Jta444x2SXyVOVr7LFEWZQSVXjCp9MJOrwFklsSlRBOdc+NpLEQp1pjiy26Rp
+         TPsF3GHlPAUsQ3MeB8dSxr2Vmy5/CY5H7s8xOykO53VQqW9dEjbMZyQsCZvSdDEF5NcJ
+         5ndoiYMwV0HG24iepTOEUcgYDgkrg0AD1xlVsqSzAny+2Arz3WhxTsv+KvEkVokBhKVn
+         fxEFmpWPAZX+U/3LtoUf/bSzsghGjnYDpOu6OX0WDD9k9aXiq1sqn5LsUzqMFPN44Yws
+         sNhZZ8ANQDdOuRXCkjb8bkb2bIjP4lj51R1m/PzcsHW+uhQQTQUcPz3oEtqfFXOH3CsV
+         or5w==
+X-Gm-Message-State: AOAM531Vx5dRkOjpm70zQ8ZdHnDZ2n6JU4EcgeAj0TyqTyI3Vqh9oJwc
+        gKzPRloQP3nGfpXnuXSeI6pogg==
+X-Google-Smtp-Source: ABdhPJx5O26DBjPbD+W02Sji+TfR+vDgK84YFsKmX7EKqaRnHafICtceif3e2vp0vgA6JP89sQ1Zrg==
+X-Received: by 2002:a63:e549:: with SMTP id z9mr13461127pgj.213.1590423356161;
+        Mon, 25 May 2020 09:15:56 -0700 (PDT)
+Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
+        by smtp.gmail.com with ESMTPSA id i10sm3040188pgq.36.2020.05.25.09.15.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 May 2020 09:15:55 -0700 (PDT)
+Date:   Mon, 25 May 2020 10:15:53 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCHv3 0/2] Add support for replicators which loses context on
+ clock removal
+Message-ID: <20200525161553.GA31527@xps15>
+References: <cover.1590171891.git.saiprakash.ranjan@codeaurora.org>
 MIME-Version: 1.0
-Received: by 2002:a2e:913:0:0:0:0:0 with HTTP; Mon, 25 May 2020 09:04:46 -0700 (PDT)
-Reply-To: alhouttta@gmail.com
-From:   Al Haji Ouattara <mrsjemill@gmail.com>
-Date:   Mon, 25 May 2020 17:04:46 +0100
-Message-ID: <CAOZ3-uUnKLTS99ZC_83+CEk21FSAUk9xAtesABcXxk3MuWj5yg@mail.gmail.com>
-Subject: Assalam alaikum,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1590171891.git.saiprakash.ranjan@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eid Mubarak,
+Hi Sai,
 
-I am an active banker,  I saw your email address while browsing
-through the bank DTC Screen in my office yesterday. now  I am in a
-better position to transfer about $8.3 million US Dollars into a
-foreign account. If you are willing and capable to work with me to
-receive this fund into a personal or company's account, I will give
-you the full detailed information. No risk is involved as it will pass
-through normal banking procedures.
+On Sat, May 23, 2020 at 12:06:50AM +0530, Sai Prakash Ranjan wrote:
+> This series is mainly to add support for replicators
+> which lose context on removing AMBA clock like on SC7180
+> SoC where replicator in AOSS domain loses context.
+> 
 
-Hence, I am inviting you for a business deal where this money can be
-transfer to your account which we will shared between us in the ratio
-of 50% for me,50% for you and both of us will share any expenses that
-will come during the release/transfer from our bank, if you agree to
-my business proposal. Further details of this Fund release and
-transfer will be forwarded to you as soon as I receive your detail
-Mail.
+I am good with this set but need a reviewed-by on the DT binding before I can
+add it to my tree.  The same goes for your other set[1].
 
-1)Your Full Names. (2)Your country. (3)Your Telephone
-(4)Your Occupation .(5)Your Age. (6) Your full Address.
-I will use these detail information=E2=80=99s to fill a release/transfer an=
-d
-arrange some documents on your behalf in our bank here as the
-beneficiary owner of this fund abandoned in our bank
+Thanks,
+Mathieu
 
-Please contact me through my private Email:alhouttta@gmail.com
+[1]. "coresight: etm4x: Add support to skip trace unit power up"
 
-Thanks
-Alh Idriss Akim Outta
+> v2 - https://lore.kernel.org/patchwork/cover/1244340/
+> More discussion is found here - https://lore.kernel.org/patchwork/patch/1231182/
+> 
+> Changes since v2:
+>  * Added DT maintainers which I missed in v2
+>  * Added proper kernel-doc and header as per Mathieu
+> 
+> Sai Prakash Ranjan (2):
+>   coresight: replicator: Reset replicator if context is lost
+>   dt-bindings: arm: coresight: Add optional property to replicators
+> 
+>  .../devicetree/bindings/arm/coresight.txt     |  6 ++
+>  .../coresight/coresight-replicator.c          | 55 +++++++++++++------
+>  2 files changed, 44 insertions(+), 17 deletions(-)
+> 
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
