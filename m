@@ -2,85 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC821E0836
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 09:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E4F1E0822
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 09:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbgEYHxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 May 2020 03:53:37 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:40574 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726393AbgEYHxh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 May 2020 03:53:37 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4D0681A01FA;
-        Mon, 25 May 2020 09:53:35 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7C5A31A01EF;
-        Mon, 25 May 2020 09:53:31 +0200 (CEST)
-Received: from titan.ap.freescale.net (titan.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4150A402BC;
-        Mon, 25 May 2020 15:53:26 +0800 (SGT)
-From:   Yuantian Tang <andy.tang@nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        catalin.marinas@arm.com, will.deacon@arm.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH] arm64: dts: ls1028a: add one more thermal zone support
-Date:   Mon, 25 May 2020 15:38:27 +0800
-Message-Id: <20200525073827.13272-1-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2389121AbgEYHnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 May 2020 03:43:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389105AbgEYHnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 03:43:42 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F222EC061A0E
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 00:43:41 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: rcn)
+        with ESMTPSA id 3BDAC2A0A70
+Date:   Mon, 25 May 2020 09:43:35 +0200
+From:   Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be,
+        robh+dt@kernel.org, xuwei5@hisilicon.com
+Subject: Re: [PATCH v2 6/6] dt-bindings: drm: bridge: adi,adv7511.txt:
+ convert to yaml
+Message-ID: <20200525074335.grnjvdjnipq5g3kf@rcn-XPS-13-9360>
+Mail-Followup-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be,
+        robh+dt@kernel.org, xuwei5@hisilicon.com
+References: <20200511110611.3142-1-ricardo.canuelo@collabora.com>
+ <20200511110611.3142-7-ricardo.canuelo@collabora.com>
+ <20200514015412.GF7425@pendragon.ideasonboard.com>
+ <20200514093617.dwhmqaasc3z5ixy6@rcn-XPS-13-9360>
+ <20200514152239.GG5955@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200514152239.GG5955@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20171215
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 2 thermal zones in ls1028a soc. Current dts only
-includes one. This patch adds the other thermal zone node
-in dts to enable it.
+Hi Laurent,
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+On jue 14-05-2020 18:22:39, Laurent Pinchart wrote:
+> > If we want to be more strict and require the definition of all the
+> > supplies, there will be many more DTs changes in the series, and I'm not
+> > sure I'll be able to do that in a reasonable amount of time. I'm looking
+> > at them and it's not always clear which regulators to use or if they are
+> > even defined.
+> 
+> We can decouple the two though (I think). The bindings should reflect
+> what we consider right, and the dts files could be fixed on top.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 055f114cf848..bc6f0c0f85da 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -129,11 +129,31 @@
- 	};
- 
- 	thermal-zones {
--		core-cluster {
-+		ddr-controller {
- 			polling-delay-passive = <1000>;
- 			polling-delay = <5000>;
- 			thermal-sensors = <&tmu 0>;
- 
-+			trips {
-+				ddr-ctrler-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				ddr-ctrler-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		core-cluster {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 1>;
-+
- 			trips {
- 				core_cluster_alert: core-cluster-alert {
- 					temperature = <85000>;
--- 
-2.17.1
+Do you have a suggestion on how to do this? If we decouple the two
+tasks most of the work would be searching for DTs to fix and finding a
+way to fix each one of them, and unless I do this _before_ the binding
+conversion I'll get a lot of dtbs_check errors.
 
+The binding conversion itself is done, if we go this route the only
+additional change would be to make the supplies required.
+
+Cheers,
+Ricardo
