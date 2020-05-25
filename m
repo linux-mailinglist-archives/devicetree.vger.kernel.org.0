@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C54D1E08F7
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 10:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A30951E090E
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2020 10:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388888AbgEYIiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 May 2020 04:38:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47570 "EHLO
+        id S2389160AbgEYIj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 May 2020 04:39:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387973AbgEYIiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 04:38:15 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD965C061A0E;
-        Mon, 25 May 2020 01:38:14 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id y17so7915868wrn.11;
-        Mon, 25 May 2020 01:38:14 -0700 (PDT)
+        with ESMTP id S2388283AbgEYIj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 May 2020 04:39:57 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3305BC061A0E;
+        Mon, 25 May 2020 01:39:57 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l26so444978wme.3;
+        Mon, 25 May 2020 01:39:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UZc2CH7pYyilAZluOYrqPrd3fThr3CQF2GU6qOuf958=;
-        b=j1x4s/d/vYUHXNDISjfenVtcRXyslFeM/mHGEeqNdM6uFniX82gFWwzpGlLV+trQ+D
-         l9rtwW5h2Ocytd3xMPpKZikPdbU0qu+6rb4G8mxtx9r4uz3S4S6l2VNnw6e43ESSucxl
-         seBdHzwqUdihswjhFFdag3R07LkpjoiRcYe30XUrL4ez/BkPXINC/om7pTikw/Ar+tEs
-         VBU84Gn6ptax/TiJNbuT+kBIrjUHM3fOZg3q6QKIj1hW0taszwIv+j8L22tiTU9rpofv
-         a3GOQ8d1x8DOd2JIn2+moc5ePLWsHCyab7XTji4ZZSnnOesoZ58mgRVrfLmMWqJuKcBH
-         chLA==
+        bh=FgCVbDd/rHUj4UYDvQc/HOrenT5Dxta9RUiD0g0ktS0=;
+        b=q2ulrqsDhdwpio/ci2FTD77FCrElQXRl/p50G+vjeAt4xxu4YTFhB0zxbZHSoh1ymG
+         YzB0GgEIQgiZYw2MhOk1EzAEBJe43sMr6+HuEGqdXhdrFyCpcbkCVMVMIYRajOvANT1T
+         GIgGVVTWbsjYGAutf1Y+5HjFFi3A+PZJ24uAb59L483PrmQuExVXkzWY6tMT4G2yhcQ3
+         JjBgEvG1u/lYzzWG4ZcLz34lXGyMFyThvdxblYQkqKl5npPLSGKBReQ9u+JKd3+UGAZm
+         SnJsqY2sCews9tNbVLvFDckHJdLoSDgDZ19WMrR9jK2qWiqk0uyyHRD5p2CYlsCAjBqG
+         PDVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=UZc2CH7pYyilAZluOYrqPrd3fThr3CQF2GU6qOuf958=;
-        b=TnTb8Ec81fvIvrm4oM9O/qiqip91T4pI9KsOX7zGPTUrk6iA8UM5RHFexPRnRi9nXA
-         6Z4iol7Ze9P9JDakpjMm9ie26nAPVHKgccy8qts6Qykcpc7eYpnbha7BOPKbChdYA4Yg
-         2afUXv0FT/5aTpz0oVvPFFCrPAmktVR03PeaHQh7c4HpTr8MALqcG9ocYAEkeKjEQstU
-         RfIK+YaajfCaJGSN9di7ieZHvrE2yAGaPkikcBbAq+rRoCLHGyeP6CYUXt6JQtapjB3y
-         +DRfAqmteNRpIqw0GiVnPNlkiF7a25XOgIrUbVHuIvfV/BusIeOP/p/XVn1Cchm8+BXm
-         uCOA==
-X-Gm-Message-State: AOAM5316ueA40Z2urwwX1KUTL9AOPMEiVffeheu6S3K7CDYH7+IEb/q3
-        DVc/3erLHJUn/YZHnpeC/iOdyotP
-X-Google-Smtp-Source: ABdhPJyOwGjWDbZt0YJ3qKFaSDOEfMwhQWk2pD5R3+EVszk8SMSf8yYMdX6wwjpCZZNEgNLd9AGxaA==
-X-Received: by 2002:a5d:4b88:: with SMTP id b8mr14340946wrt.341.1590395893420;
-        Mon, 25 May 2020 01:38:13 -0700 (PDT)
+        bh=FgCVbDd/rHUj4UYDvQc/HOrenT5Dxta9RUiD0g0ktS0=;
+        b=eDhUZIdFFJMuSwNYmzkbWW5q3H/q4QcRYqTZJBArwebIWhVxO9H2/ylBi80LqnYmvb
+         QeLeu9GPgK7MzJB94trQeA589iH0j6BNm+9zftHnPwFwuOs5myXdO4LsmKl2w+sB07wK
+         AR60A5VdwecHRLvgemHrqoYHvgPKDwHifnpzTi6TPGqrQdgjyxaT2MX1Dshcf8WFVuVa
+         JtLRq4lnqK0M32Op7XCNOn8F3vJGpudJ1ZIpemyvl9MzPsII2o0yhyIudYu12D9X79oD
+         ZHWwIbw3611M/ailr6gbJ5C4sOIJ/HIa6o9NLCQTROq1NbtL5CQ548edRgA9JjhVjTJN
+         XIjA==
+X-Gm-Message-State: AOAM531COQo0YNTmZ/DQdGYwpqtp/snSPHt1qKKymvRJ1cxlaXPT3y5J
+        2wkVKOGRc43uBJuVvkfWqY4=
+X-Google-Smtp-Source: ABdhPJziZNMsGJHaqi+mGUla1Vkrz+NpPEesiM4d39ge5LQpr0zcMFCCsLjsSQB3yHOh+XZx7sO1Wg==
+X-Received: by 2002:a1c:80d4:: with SMTP id b203mr4017283wmd.138.1590395995882;
+        Mon, 25 May 2020 01:39:55 -0700 (PDT)
 Received: from ziggy.stardust ([213.195.113.243])
-        by smtp.gmail.com with ESMTPSA id f2sm8898785wrg.17.2020.05.25.01.38.11
+        by smtp.gmail.com with ESMTPSA id t129sm19803531wmg.27.2020.05.25.01.39.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 May 2020 01:38:12 -0700 (PDT)
-Subject: Re: [PATCH v5 10/13] soc: mediatek: cmdq: export finalize function
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 25 May 2020 01:39:55 -0700 (PDT)
+Subject: Re: [PATCH v5 09/13] soc: mediatek: cmdq: add write_s value function
+To:     Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Jassi Brar <jassisinghbrar@gmail.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
         David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        wsd_upstream@mediatek.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        HS Liao <hs.liao@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        wsd_upstream@mediatek.com, dri-devel@lists.freedesktop.org,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
         Houlong Wei <houlong.wei@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        linux-arm-kernel@lists.infradead.org,
+        HS Liao <hs.liao@mediatek.com>
 References: <1583664775-19382-1-git-send-email-dennis-yc.hsieh@mediatek.com>
- <1583664775-19382-11-git-send-email-dennis-yc.hsieh@mediatek.com>
- <5d6b61b2-23c9-647f-fa22-73e779010bd8@gmail.com>
- <CAAOTY___HNcRPr8Jq-wNPO_G9pLVjf2D7ezbpPcGbXVNYy1_nA@mail.gmail.com>
+ <1583664775-19382-10-git-send-email-dennis-yc.hsieh@mediatek.com>
+ <f9fd9ea8-f706-ed4a-4c83-c53ad092035c@gmail.com>
+ <1590341462.31286.19.camel@mtkswgap22>
+ <eb604637-28f0-fa8f-ce4b-3e87f6c944ad@gmail.com>
+ <1590373621.31522.7.camel@mtkswgap22>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  mQINBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -144,15 +144,15 @@ Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  jzi+DzD9cvj2K6eD5j5kcKJJQactXqfJvF1Eb+OnxlB1BCLE8D1rNkPO5O742Mq3MgDmq19l
  +abzEL6QDAAxn9md8KwrA3RtucNh87cHlDXfUBKa7SRvBjTczDg+HEPNk2u3hrz1j3l2rliQ
  y1UfYx7Vk/TrdwUIJgKS8QAr8Lw9WuvY2hSqL9vEjx8VAkPWNWPwrQ==
-Message-ID: <e487573a-2252-cd52-3a3d-c271f67fcb9a@gmail.com>
-Date:   Mon, 25 May 2020 10:38:11 +0200
+Message-ID: <68535bf6-9824-5077-4811-374c893cdc03@gmail.com>
+Date:   Mon, 25 May 2020 10:39:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAAOTY___HNcRPr8Jq-wNPO_G9pLVjf2D7ezbpPcGbXVNYy1_nA@mail.gmail.com>
+In-Reply-To: <1590373621.31522.7.camel@mtkswgap22>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -160,113 +160,133 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 25/05/2020 02:23, Chun-Kuang Hu wrote:
-> Hi, Matthias:
+On 25/05/2020 04:27, Dennis-YC Hsieh wrote:
 > 
-> Matthias Brugger <matthias.bgg@gmail.com> 於 2020年5月17日 週日 上午2:22寫道：
+> On Sun, 2020-05-24 at 20:13 +0200, Matthias Brugger wrote:
 >>
->>
->>
->> On 08/03/2020 11:52, Dennis YC Hsieh wrote:
->>> Export finalize function to client which helps append eoc and jump
->>> command to pkt. Let client decide call finalize or not.
+>> On 24/05/2020 19:31, Dennis-YC Hsieh wrote:
+>>> Hi Matthias,
 >>>
->>> Signed-off-by: Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
->>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
->>> ---
->>>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 1 +
->>>  drivers/soc/mediatek/mtk-cmdq-helper.c  | 7 ++-----
->>>  include/linux/soc/mediatek/mtk-cmdq.h   | 8 ++++++++
->>>  3 files changed, 11 insertions(+), 5 deletions(-)
+>>> Thanks for your comment.
 >>>
->>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
->>> index 0dfcd1787e65..7daaabc26eb1 100644
->>> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
->>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
->>> @@ -490,6 +490,7 @@ static void mtk_drm_crtc_hw_config(struct mtk_drm_crtc *mtk_crtc)
->>>               cmdq_pkt_clear_event(cmdq_handle, mtk_crtc->cmdq_event);
->>>               cmdq_pkt_wfe(cmdq_handle, mtk_crtc->cmdq_event);
->>>               mtk_crtc_ddp_config(crtc, cmdq_handle);
->>> +             cmdq_pkt_finalize(cmdq_handle);
->>>               cmdq_pkt_flush_async(cmdq_handle, ddp_cmdq_cb, cmdq_handle);
->>>       }
->>>  #endif
+>>> On Sat, 2020-05-16 at 20:20 +0200, Matthias Brugger wrote:
+>>>>
+>>>> On 08/03/2020 11:52, Dennis YC Hsieh wrote:
+>>>>> add write_s function in cmdq helper functions which
+>>>>> writes a constant value to address with large dma
+>>>>> access support.
+>>>>>
+>>>>> Signed-off-by: Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
+>>>>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+>>>>> ---
+>>>>>  drivers/soc/mediatek/mtk-cmdq-helper.c | 26 ++++++++++++++++++++++++++
+>>>>>  include/linux/soc/mediatek/mtk-cmdq.h  | 14 ++++++++++++++
+>>>>>  2 files changed, 40 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>>>> index 03c129230cd7..a9ebbabb7439 100644
+>>>>> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>>>> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>>>> @@ -269,6 +269,32 @@ int cmdq_pkt_write_s(struct cmdq_pkt *pkt, u16 high_addr_reg_idx,
+>>>>>  }
+>>>>>  EXPORT_SYMBOL(cmdq_pkt_write_s);
+>>>>>  
+>>>>> +int cmdq_pkt_write_s_value(struct cmdq_pkt *pkt, u16 high_addr_reg_idx,
+>>>>> +			   u16 addr_low, u32 value, u32 mask)
+>>>>> +{
+>>>>> +	struct cmdq_instruction inst = { {0} };
+>>>>> +	int err;
+>>>>> +
+>>>>> +	if (mask != U32_MAX) {
+>>>>> +		inst.op = CMDQ_CODE_MASK;
+>>>>> +		inst.mask = ~mask;
+>>>>> +		err = cmdq_pkt_append_command(pkt, inst);
+>>>>> +		if (err < 0)
+>>>>> +			return err;
+>>>>> +
+>>>>> +		inst.op = CMDQ_CODE_WRITE_S_MASK;
+>>>>> +	} else {
+>>>>> +		inst.op = CMDQ_CODE_WRITE_S;
+>>>>> +	}
+>>>>> +
+>>>>> +	inst.sop = high_addr_reg_idx;
+>>>>
+>>>> Writing u16 value in a 5 bit wide variable?
+>>>
+>>> We need only 5 bits in this case. I'll change high_addr_reg_idx
+>>> parameter to u8.
+>>>
 >>
->> This should be a independent patch.
->> Other then that patch looks good.
+>> Ok, please make sure to mask the value, so that it's explicit in the code that
+>> we only use the lowest 5 bits of high_addr_reg_idx.
 > 
-> Apply only drm part or only cmdq helpr part, it would be abnormal.
+> Is it necessary to mask the value?
+> Since sop already defined as "u8 sop:5;", I thought it is explicit that
+> only use 5 bits and compiler should do the rest jobs.
 
-Right it would break DRM driver (if only applied to cmdq) or compilation if only
-applied to DRM.
+Yes but it makes the code more explicit if we have a
+inst.sop = high_addr_reg_idx & 0x1f;
 
-> Shall we seperate this patch?
-
-After thinking twice, I think we can leave it as it is. If you provide your
-Acked-by I can take it thorugh my tree, if that's OK for you.
+What do you think?
 
 Regards,
 Matthias
 
-> Or seperate it but make sure these two patches be in the same tree?
+> 
 > 
 > Regards,
-> Chun-Kuang.
+> Dennis
 > 
 >>
->>> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
->>> index a9ebbabb7439..59bc1164b411 100644
->>> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
->>> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
->>> @@ -372,7 +372,7 @@ int cmdq_pkt_assign(struct cmdq_pkt *pkt, u16 reg_idx, u32 value)
->>>  }
->>>  EXPORT_SYMBOL(cmdq_pkt_assign);
+>> Regards,
+>> Matthias
+>>
+>>>>
+>>>>> +	inst.offset = addr_low;
+>>>>> +	inst.value = value;
+>>>>> +
+>>>>> +	return cmdq_pkt_append_command(pkt, inst);
+>>>>> +}
+>>>>> +EXPORT_SYMBOL(cmdq_pkt_write_s_value);
+>>>>> +
+>>>>>  int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event)
+>>>>>  {
+>>>>>  	struct cmdq_instruction inst = { {0} };
+>>>>> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
+>>>>> index 01b4184af310..fec292aac83c 100644
+>>>>> --- a/include/linux/soc/mediatek/mtk-cmdq.h
+>>>>> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
+>>>>> @@ -135,6 +135,20 @@ int cmdq_pkt_read_s(struct cmdq_pkt *pkt, u16 high_addr_reg_idx, u16 addr_low,
+>>>>>  int cmdq_pkt_write_s(struct cmdq_pkt *pkt, u16 high_addr_reg_idx,
+>>>>>  		     u16 addr_low, u16 src_reg_idx, u32 mask);
+>>>>>  
+>>>>> +/**
+>>>>> + * cmdq_pkt_write_s_value() - append write_s command with mask to the CMDQ
+>>>>> + *			      packet which write value to a physical address
+>>>>> + * @pkt:	the CMDQ packet
+>>>>> + * @high_addr_reg_idx:	internal regisger ID which contains high address of pa
+>>>>
+>>>> register
 >>>
->>> -static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
->>> +int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
->>>  {
->>>       struct cmdq_instruction inst = { {0} };
->>>       int err;
->>> @@ -392,6 +392,7 @@ static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+>>> will fix
 >>>
->>>       return err;
->>>  }
->>> +EXPORT_SYMBOL(cmdq_pkt_finalize);
 >>>
->>>  static void cmdq_pkt_flush_async_cb(struct cmdq_cb_data data)
->>>  {
->>> @@ -426,10 +427,6 @@ int cmdq_pkt_flush_async(struct cmdq_pkt *pkt, cmdq_async_flush_cb cb,
->>>       unsigned long flags = 0;
->>>       struct cmdq_client *client = (struct cmdq_client *)pkt->cl;
+>>> Regards,
+>>> Dennis
 >>>
->>> -     err = cmdq_pkt_finalize(pkt);
->>> -     if (err < 0)
->>> -             return err;
->>> -
->>>       pkt->cb.cb = cb;
->>>       pkt->cb.data = data;
->>>       pkt->async_cb.cb = cmdq_pkt_flush_async_cb;
->>> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
->>> index fec292aac83c..99e77155f967 100644
->>> --- a/include/linux/soc/mediatek/mtk-cmdq.h
->>> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
->>> @@ -213,6 +213,14 @@ int cmdq_pkt_poll_mask(struct cmdq_pkt *pkt, u8 subsys,
->>>   */
->>>  int cmdq_pkt_assign(struct cmdq_pkt *pkt, u16 reg_idx, u32 value);
+>>>>
+>>>>> + * @addr_low:	low address of pa
+>>>>> + * @value:	the specified target value
+>>>>> + * @mask:	the specified target mask
+>>>>> + *
+>>>>> + * Return: 0 for success; else the error code is returned
+>>>>> + */
+>>>>> +int cmdq_pkt_write_s_value(struct cmdq_pkt *pkt, u16 high_addr_reg_idx,
+>>>>> +			   u16 addr_low, u32 value, u32 mask);
+>>>>> +
+>>>>>  /**
+>>>>>   * cmdq_pkt_wfe() - append wait for event command to the CMDQ packet
+>>>>>   * @pkt:	the CMDQ packet
+>>>>>
 >>>
->>> +/**
->>> + * cmdq_pkt_finalize() - Append EOC and jump command to pkt.
->>> + * @pkt:     the CMDQ packet
->>> + *
->>> + * Return: 0 for success; else the error code is returned
->>> + */
->>> +int cmdq_pkt_finalize(struct cmdq_pkt *pkt);
->>> +
->>>  /**
->>>   * cmdq_pkt_flush_async() - trigger CMDQ to asynchronously execute the CMDQ
->>>   *                          packet and call back at the end of done packet
->>>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
