@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79B91E333C
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837CD1E3350
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392104AbgEZWzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 18:55:24 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35232 "EHLO
+        id S2389767AbgEZW7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 18:59:33 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:35288 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392102AbgEZWzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:55:24 -0400
+        with ESMTP id S2390211AbgEZW7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:59:33 -0400
 Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:b93f:9fae:b276:a89a])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id BA6DB2A083B;
-        Tue, 26 May 2020 23:55:22 +0100 (BST)
-Date:   Wed, 27 May 2020 00:55:18 +0200
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B7E642A28CE;
+        Tue, 26 May 2020 23:59:31 +0100 (BST)
+Date:   Wed, 27 May 2020 00:59:28 +0200
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     Richard Weinberger <richard@nod.at>,
@@ -28,7 +28,7 @@ Cc:     Richard Weinberger <richard@nod.at>,
         <devicetree@vger.kernel.org>
 Subject: Re: [RESEND v5 09/21] mtd: rawnand: Create a new enumeration to
  describe properly ECC types
-Message-ID: <20200527005518.2d780ecc@collabora.com>
+Message-ID: <20200527005928.39c549e2@collabora.com>
 In-Reply-To: <20200526195633.11543-10-miquel.raynal@bootlin.com>
 References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
         <20200526195633.11543-10-miquel.raynal@bootlin.com>
@@ -48,10 +48,6 @@ Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 > Now that the misleading mix between ECC engine type and OOB placement
 > has been addressed, add a new enumeration to properly define ECC types
 > (also called provider or mode).
-
-Let's pick a name and stick to it. I think "ECC provider type" or
-"ECC engine type" are good names.
-
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
@@ -70,11 +66,14 @@ Let's pick a name and stick to it. I think "ECC provider type" or
 >  
 > +static const char * const nand_ecc_engine_providers[] = {
 
-I'd rename that one nand_ecc_engine_types or nand_ecc_provider_types.
+This table is not used here, are you sure it should be introduced now?
 
 > +	[NAND_ECC_ENGINE_NONE] = "none",
 > +	[NAND_ECC_ENGINE_SOFT] = "soft",
 > +	[NAND_ECC_ENGINE_CONTROLLER] = "hw",
+
+					^ "on-controller" ?
+
 > +	[NAND_ECC_ENGINE_ON_DIE] = "on-die",
 > +};
 > +
@@ -98,18 +97,8 @@ I'd rename that one nand_ecc_engine_types or nand_ecc_provider_types.
 > + * @NAND_ECC_ENGINE_ON_DIE: On chip hardware ECC correction
 > + */
 > +enum nand_ecc_engine_type {
-
-Looks like you went for ecc_engine_type here, so let's stick to that.
-
 > +	NAND_ECC_ENGINE_INVALID,
-
-NAND_ECC_ENGINE_TYPE_xxx
-
 > +	NAND_ECC_ENGINE_NONE,
-
-Do we really need a value for NONE? I'd expect the engine type to be
-applicable to NAND that have some sort of ECC engine connected to them.
-
 > +	NAND_ECC_ENGINE_SOFT,
 > +	NAND_ECC_ENGINE_CONTROLLER,
 > +	NAND_ECC_ENGINE_ON_DIE,
