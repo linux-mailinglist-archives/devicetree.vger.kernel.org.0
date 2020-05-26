@@ -2,80 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D80C11E298F
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 20:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CF91E299A
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 20:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727112AbgEZSDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 14:03:25 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:36841 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728904AbgEZSDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 14:03:25 -0400
-Received: by mail-il1-f194.google.com with SMTP id 17so21437360ilj.3;
-        Tue, 26 May 2020 11:03:23 -0700 (PDT)
+        id S1728965AbgEZSEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 14:04:23 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:46847 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727016AbgEZSEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 14:04:22 -0400
+Received: by mail-io1-f65.google.com with SMTP id j8so23010308iog.13;
+        Tue, 26 May 2020 11:04:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=udyKIAgzUuMLjrt7p/tKMSuE96YEp3YyGPeKVs0pC30=;
-        b=G4fh4tjyEkg90wkTxzfetT4niAZIojQPhqLJNN2r5FzshHQYPV4SH0hmS0xLFqVwPb
-         hC8jOISXDFVmYv9ciIOwQ3N5lL8m1NcerTV2BptO9MPtOwPAbUXWb+e7ALnSzlSw6qaf
-         MBmMSaV/PRWrU3ZIyUL7okvXsxKTPqSfTYclsDj5uI1033OZuhE1hUZFjAyg1Kgv2HZ7
-         LsZooRx3Fg4b0xOoJkWhHBMRa4H/VzdZMt62kbsRw/HzLBIkjG8ubtgUwALAJdl/Abjt
-         sw2BFdcaF/0sggBzCp2nAqk4ouLVaj4Oz+UiJcBiXtX+jIJF4FSGNZTv22BruN6JaXNM
-         yH8g==
-X-Gm-Message-State: AOAM532g01XFOXoUDpuQ4nxopHlzGsvMpX+19jY9mpakyLM0b4rYARbb
-        jK39+jGIOVCl1ro/zgdjrw==
-X-Google-Smtp-Source: ABdhPJz49fxHgfKUlXk9bT+7PEkcHyxo07cWGJ72t5O8q64FjmH/+SLrhIzcouiT9jARc7MEOifDQA==
-X-Received: by 2002:a92:3d8b:: with SMTP id k11mr785485ilf.122.1590516203049;
-        Tue, 26 May 2020 11:03:23 -0700 (PDT)
+        bh=ClJL8gB+/7Ulq3yj2f4VaDBjcjvT7VkWGg/z9gQ4pgg=;
+        b=YB/7jRzIWHrCjwDKoJ5EU63VfJWnOpZOD8pQU4bu60XdB8cySAq/Z32rSJC/VSM/fr
+         oobRUOr3RS1FxlveCLZ7d4nbHj2V6IhXV94mU53Ir7Kofl3Shu0m6vESU7V8DqYErtuO
+         kNvp0YJQKZ9kHQSoMsFhArQtZuLmm/f1JgERoniCDWwB72eMwkvfunoS2kcniLZBDbb7
+         TtKDIWfyhIg7qX64k/n5WgDE0vz3FYpZN3D0WvUUWX+AfoGvWfyFL7q60LD08uEjZZvF
+         /8d7u0gEhTJLIhFigQZVd2/I4HpMqQt2wL27L8ac9QsdxXbdT0YRg0VlT6LTr10YDc4I
+         MHkw==
+X-Gm-Message-State: AOAM533lxFv5bKmQAglSDCT25ePDxoIdPLFAl4XokSQxdP+qtGVI6byT
+        XXmLFr6ZjUpY42Bwuv3ofg==
+X-Google-Smtp-Source: ABdhPJzcu2nCj6F92lx7P/df1l59GGQNg9IGF9YDymeeq6DRFL67TpPCdRsq+oEeB/mS2xXLEmpasQ==
+X-Received: by 2002:a05:6602:2c8f:: with SMTP id i15mr11103155iow.45.1590516260900;
+        Tue, 26 May 2020 11:04:20 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id 4sm337307ilc.34.2020.05.26.11.03.21
+        by smtp.gmail.com with ESMTPSA id z13sm319397ilh.82.2020.05.26.11.04.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 11:03:22 -0700 (PDT)
-Received: (nullmailer pid 77730 invoked by uid 1000);
-        Tue, 26 May 2020 18:03:21 -0000
-Date:   Tue, 26 May 2020 12:03:21 -0600
+        Tue, 26 May 2020 11:04:19 -0700 (PDT)
+Received: (nullmailer pid 80209 invoked by uid 1000);
+        Tue, 26 May 2020 18:04:18 -0000
+Date:   Tue, 26 May 2020 12:04:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        srv_heupstream@mediatek.com, Fan Chen <fan.chen@mediatek.com>,
-        linux-kernel@vger.kernel.org,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <kernel@pengutronix.de>,
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     devel@driverdev.osuosl.org,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Nicolas Boichat <drinkcat@chromium.org>,
-        devicetree@vger.kernel.org, James Liao <jamesjj.liao@mediatek.com>
-Subject: Re: [PATCH v15 02/11] dt-bindings: soc: Add MT8183 power dt-bindings
-Message-ID: <20200526180321.GA77691@bogus>
-References: <1590051985-29149-1-git-send-email-weiyi.lu@mediatek.com>
- <1590051985-29149-3-git-send-email-weiyi.lu@mediatek.com>
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Pi-Hsun Shih <pihsun@chromium.org>, devicetree@vger.kernel.org,
+        Sheng Pan <span@analogixsemi.com>,
+        David Airlie <airlied@linux.ie>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [PATCH v11 1/2] dt-bindings: drm/bridge: anx7625: MIPI to DP
+ transmitter DT schema
+Message-ID: <20200526180418.GA80145@bogus>
+References: <cover.1589511894.git.xji@analogixsemi.com>
+ <393386c0a18753cb4b3f695348fe506a192ea82a.1589511894.git.xji@analogixsemi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1590051985-29149-3-git-send-email-weiyi.lu@mediatek.com>
+In-Reply-To: <393386c0a18753cb4b3f695348fe506a192ea82a.1589511894.git.xji@analogixsemi.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 May 2020 17:06:15 +0800, Weiyi Lu wrote:
-> Add power dt-bindings of MT8183 and introduces "BASIC" and
-> "SUBSYS" clock types in binding document.
-> The "BASIC" type is compatible to the original power control with
-> clock name [a-z]+[0-9]*, e.g. mm, vpu1.
-> The "SUBSYS" type is used for bus protection control with clock
-> name [a-z]+-[0-9]+, e.g. isp-0, cam-1.
-> And add an optional "mediatek,smi" property for phandle to smi-common
-> node.
+On Fri, 15 May 2020 13:49:20 +0800, Xin Ji wrote:
+> anx7625: MIPI to DP transmitter DT schema
 > 
-> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+> Signed-off-by: Xin Ji <xji@analogixsemi.com>
 > ---
->  .../devicetree/bindings/soc/mediatek/scpsys.txt    | 21 ++++++++++++++---
->  include/dt-bindings/power/mt8183-power.h           | 26 ++++++++++++++++++++++
->  2 files changed, 44 insertions(+), 3 deletions(-)
->  create mode 100644 include/dt-bindings/power/mt8183-power.h
+>  .../bindings/display/bridge/analogix,anx7625.yaml  | 95 ++++++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
