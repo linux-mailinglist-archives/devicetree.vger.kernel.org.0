@@ -2,177 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 854161E2E89
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EEC1E2F3B
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404091AbgEZT3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 15:29:53 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:43207 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403856AbgEZT3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:29:51 -0400
-Received: by mail-io1-f65.google.com with SMTP id h10so23334523iob.10;
-        Tue, 26 May 2020 12:29:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1udivP7wbmjRGQdrVG+bvSIgJ6k6K6sg5R0YTrdV/ZI=;
-        b=t4kC1jI7UiO4MZhJGkDRBUWQHV+9KoeFICr9vrDYhQOaoCuIv1xL9MybaaNyj/hY74
-         slBKtgm+RhZroQTHDrEgfRaJrzlhu0vMeW6j4FT/ld0ZSl3deXO6mHpQT94rXXvJaHt8
-         wG8MSmqWHrl84DeKLkzevdIPtfVfXxON0er/gpV7Zj1RknVLoplOQUx6OWH3h9D6YMYa
-         eMBhdd4JTxUNCdBs5Uxi8yfTVUdjxEGKkV3F0hgusWxPCdqTMuQbeCgf6jgPg/sG0i0k
-         hiR3us/Gq1Gad7DEG+1cQsBeEj+QX6rC+CRANcosBlTmwXthckUewY8Vo0cl4y9It/wR
-         QAKw==
-X-Gm-Message-State: AOAM533VX0b6tEowLTOYYjmVyWNQAgPAEuTdHj0KUOekpDGLMcaOErPq
-        l14RVi5xRDLv7WRbeL3Bs5Z2j3U=
-X-Google-Smtp-Source: ABdhPJyZBBk1sBbHouc7difwqpQlE+8v91JyFKG3/W2+MNks24BN0vbpZp7iptfxgr4ZzF78fd0cYA==
-X-Received: by 2002:a02:dc8:: with SMTP id 191mr2522550jax.95.1590521389948;
-        Tue, 26 May 2020 12:29:49 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id r9sm420424ilm.10.2020.05.26.12.29.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 12:29:49 -0700 (PDT)
-Received: (nullmailer pid 224310 invoked by uid 1000);
-        Tue, 26 May 2020 19:29:47 -0000
-Date:   Tue, 26 May 2020 13:29:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, tsbogend@alpha.franken.de,
-        paulburton@kernel.org, jiaxun.yang@flygoat.com, chenhc@lemote.com,
-        tglx@linutronix.de, daniel.lezcano@linaro.org,
-        keescook@chromium.org, paul@crapouillou.net, krzk@kernel.org,
-        hns@goldelico.com, ebiederm@xmission.com,
-        dongsheng.qiu@ingenic.com, yanfei.li@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: Re: [PATCH v8 4/6] dt-bindings: MIPS: Document Ingenic SoCs binding.
-Message-ID: <20200526192947.GA140311@bogus>
-References: <1589898923-60048-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1589898923-60048-6-git-send-email-zhouyanjie@wanyeetech.com>
+        id S2389385AbgEZTpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 15:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389360AbgEZTpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:45:14 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E085C03E96D
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 12:45:14 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 1D5B82A0390
+Message-ID: <a0a8d9178c4b5c05835115f5d2f4301e44146e8f.camel@collabora.com>
+Subject: Re: [PATCH v2 6/6] dt-bindings: drm: bridge: adi,adv7511.txt:
+ convert to yaml
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Ricardo =?ISO-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
+Date:   Tue, 26 May 2020 16:45:03 -0300
+In-Reply-To: <CAMuHMdUV+qHpfLfbYwQwPXAUsh7HXvonUNWNh-SeTC-RpHwrog@mail.gmail.com>
+References: <20200511110611.3142-1-ricardo.canuelo@collabora.com>
+         <20200511110611.3142-7-ricardo.canuelo@collabora.com>
+         <20200514015412.GF7425@pendragon.ideasonboard.com>
+         <20200514093617.dwhmqaasc3z5ixy6@rcn-XPS-13-9360>
+         <20200514152239.GG5955@pendragon.ideasonboard.com>
+         <20200525074335.grnjvdjnipq5g3kf@rcn-XPS-13-9360>
+         <20200526014444.GB6179@pendragon.ideasonboard.com>
+         <CAMuHMdXinhY13us9rt9h7EvrT_8zhnQg6tmOBtA0nEQ=1G1O7Q@mail.gmail.com>
+         <20200526101158.GA5903@pendragon.ideasonboard.com>
+         <CAMuHMdUV+qHpfLfbYwQwPXAUsh7HXvonUNWNh-SeTC-RpHwrog@mail.gmail.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.0-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1589898923-60048-6-git-send-email-zhouyanjie@wanyeetech.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 19, 2020 at 10:35:21PM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> Document the available properties for the SoC root node and the
-> CPU nodes of the devicetree for the Ingenic XBurst SoCs.
+On Tue, 2020-05-26 at 12:39 +0200, Geert Uytterhoeven wrote:
+> Hi Laurent,
 > 
-> Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Tested-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
+> On Tue, May 26, 2020 at 12:12 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> > On Tue, May 26, 2020 at 09:03:09AM +0200, Geert Uytterhoeven wrote:
+> > > On Tue, May 26, 2020 at 3:44 AM Laurent Pinchart wrote:
+> > > > On Mon, May 25, 2020 at 09:43:35AM +0200, Ricardo Cañuelo wrote:
+> > > > > On jue 14-05-2020 18:22:39, Laurent Pinchart wrote:
+> > > > > > > If we want to be more strict and require the definition of all the
+> > > > > > > supplies, there will be many more DTs changes in the series, and I'm not
+> > > > > > > sure I'll be able to do that in a reasonable amount of time. I'm looking
+> > > > > > > at them and it's not always clear which regulators to use or if they are
+> > > > > > > even defined.
+> > > > > > 
+> > > > > > We can decouple the two though (I think). The bindings should reflect
+> > > > > > what we consider right, and the dts files could be fixed on top.
+> > > > > 
+> > > > > Do you have a suggestion on how to do this? If we decouple the two
+> > > > > tasks most of the work would be searching for DTs to fix and finding a
+> > > > > way to fix each one of them, and unless I do this _before_ the binding
+> > > > > conversion I'll get a lot of dtbs_check errors.
+> > > > 
+> > > > Rob should answer this question as it will be his decision, but I've
+> > > > personally never considered non-compliant DT sources to be an obstacle
+> > > > to bindings conversion to YAML. The DT sources should be fixed, but I
+> > > > don't see it as a prerequisite (although it's a good practice).
+> > > 
+> > > I do my best to avoid introducing regressions when the binding conversions
+> > > go upstream.
+> > 
+> > Please note that we're not talking about runtime regressions, as drivers
+> > are not updated. It's "only" dtbs_check that would produce new errors.
 > 
-> Notes:
->     v1->v2:
->     Change the two Document from txt to yaml.
->     
->     v2->v3:
->     Fix formatting errors.
->     
->     v3->v4:
->     Fix bugs in the two yaml files.
->     
->     v4->v5:
->     No change.
->     
->     v5->v6:
->     Rewrite the two yaml files.
->     
->     v6->v7:
->     1.Update compatible strings in "ingenic,cpu.yaml".
->     2.Fix formatting errors, and enum for compatible strings.
->     3.Remove unnecessary "ingenic,soc.yaml".
->     
->     v7->v8:
->     No change.
+> Exactly.  I was talking about "make dtbs_check" regressions, too.
 > 
->  .../bindings/mips/ingenic/ingenic,cpu.yaml         | 57 ++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml b/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
-> new file mode 100644
-> index 00000000..afb0207
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/ingenic/ingenic,cpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for Ingenic XBurst family CPUs
-> +
-> +maintainers:
-> +  - 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> +
-> +description:
-> +  Ingenic XBurst family CPUs shall have the following properties.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +
-> +      - description: Ingenic XBurst®1 CPU Cores
-> +        items:
 
-This is a single compatible string, right? If so, drop items. 
+A "make dtbs_check" failure, due to some foo.dts that fails the check
+due to a correct YAML conversion, can't be considered a regression.
 
-> +          enum:
-> +            - ingenic,xburst-mxu1.0
-> +            - ingenic,xburst-fpu1.0-mxu1.1
-> +            - ingenic,xburst-fpu2.0-mxu2.0
-> +
-> +      - description: Ingenic XBurst®2 CPU Cores
-> +        items:
-> +          enum:
-> +            - ingenic,xburst2-fpu2.1-mxu2.1-smt
+I strongly agree with Laurent here, we want to convert the bindings
+to YAML and we can't consider non-compliant DT sources to prevent them.
 
-Just: const: ingenic,xburst2-fpu2.1-mxu2.1-smt
+Regards,
+Ezequiel
 
-Continuing to append CPU features isn't going to scale well. Does 
-'xburst2' imply certain features? If so, not really any need to have 
-them be explicit.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - device_type
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +    	#address-cells = <1>;
-> +    	#size-cells = <0>;
-> +
-> +    	cpu0: cpu@0 {
-> +    		device_type = "cpu";
-> +    		compatible = "ingenic,xburst-fpu1.0-mxu1.1";
-> +    		reg = <0>;
-> +    	};
-> +
-> +    	cpu1: cpu@1 {
-> +    		device_type = "cpu";
-> +    		compatible = "ingenic,xburst-fpu1.0-mxu1.1";
-> +    		reg = <1>;
-> +    	};
-> +    };
-> +...
-> -- 
-> 2.7.4
-> 
