@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 886191E3373
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 01:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37E9B1E337C
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 01:09:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390163AbgEZXIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 19:08:14 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:40072 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389565AbgEZXIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 19:08:14 -0400
-Received: by mail-io1-f67.google.com with SMTP id q8so22542453iow.7;
-        Tue, 26 May 2020 16:08:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=goUKTiNTd28aVhlMgReATZt8At7zsBIhXSxmCg39VVM=;
-        b=Q12/AGxlAFb4wwYwjZOYrxxiLAGxJNJf1tyYqH/XvK6VPzXZARS9GVeqw3/k2mUUYL
-         zDi/eQVALye4Ww1Jl3nyFnBLAzsHNzF4mqSM6O3tg4DM++1tPHH+7t+GxhMDOaKiYq9i
-         A9fJ3d/yEnBbzBoTSJYXirdh+iHEneRBatbDEuNgLN4y2gC1Lv/q/CI32PPXpCfZVKTB
-         VKit38RR2HisP9ncmNcHyEL2SBrTEoWNuEdDUC4fr4B61fJe28G9lMXuz8aoZCZ1TvTB
-         6E27hNGQ3bGBSzZ3gO9PpjPT1mJAB5SRqDJNSPADba8ot25Udion8pvGvUBalxSUns3e
-         Ynhw==
-X-Gm-Message-State: AOAM532Yz8HxSpDkTTsUDgrEFTVCty1p7kvM36WfhBW9JikvVjiFS1El
-        KnhaQD8ZNt5sHyogI6vK7A==
-X-Google-Smtp-Source: ABdhPJzgct455rUcPYuwMbVDYtvAPnamONIEjsrICAgjuK34DaesWzcMgvr4zkS1ezNMWXfBqPnHjg==
-X-Received: by 2002:a02:ccb3:: with SMTP id t19mr3326167jap.20.1590534492888;
-        Tue, 26 May 2020 16:08:12 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id r9sm666651ilm.10.2020.05.26.16.08.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 16:08:12 -0700 (PDT)
-Received: (nullmailer pid 562221 invoked by uid 1000);
-        Tue, 26 May 2020 23:08:11 -0000
-Date:   Tue, 26 May 2020 17:08:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V5 2/8] dt-bindings: clock: add ipq6018 a53 pll compatible
-Message-ID: <20200526230811.GA560545@bogus>
-References: <1590314686-11749-1-git-send-email-sivaprak@codeaurora.org>
- <1590314686-11749-3-git-send-email-sivaprak@codeaurora.org>
+        id S2391301AbgEZXJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 19:09:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389565AbgEZXJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 19:09:54 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D86DC061A0F
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 16:09:54 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:b93f:9fae:b276:a89a])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 8A4802A2D74;
+        Wed, 27 May 2020 00:09:52 +0100 (BST)
+Date:   Wed, 27 May 2020 01:09:48 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [RESEND v5 15/21] dt-bindings: mtd: Deprecate hw_syndrome from
+ the ECC modes
+Message-ID: <20200527010948.3ff42094@collabora.com>
+In-Reply-To: <20200526195633.11543-16-miquel.raynal@bootlin.com>
+References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
+        <20200526195633.11543-16-miquel.raynal@bootlin.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1590314686-11749-3-git-send-email-sivaprak@codeaurora.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 24, 2020 at 03:34:40PM +0530, Sivaprakash Murugesan wrote:
-> cpus on ipq6018 are clocked by a53 pll, add device compatible for a53
-> pll found on ipq6018 devices.
-> 
-> Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
-> ---
-> [V5]
->  * Addressed Bjorn's review comment.
->    now the a53 dt-binding represents ipq a53 pll as well.
->  .../devicetree/bindings/clock/qcom,a53pll.yaml         | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+On Tue, 26 May 2020 21:56:27 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> This mode should not be used anymore, it is actually a mix between a
+> mode and a placement.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index 35512f2c66fa..a35ff8227427 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -49,12 +49,14 @@ patternProperties:
+>        nand-ecc-mode:
+>          allOf:
+>            - $ref: /schemas/types.yaml#/definitions/string
+> -          - enum: [ none, soft, hw, hw_syndrome, on-die ]
+> +          - enum: [ none, soft, hw, on-die ]
+>          description:
+>            Desired ECC engine, either hardware (most of the time
+>            embedded in the NAND controller) or software correction
+>            (Linux will handle the calculations). soft_bch is deprecated
+>            and should be replaced by soft and nand-ecc-algo.
+> +	  hw_syndrome is deprecated and should be
+> +          replaced by hw and nand-ecc-placement.
+
+Well, I'd expect the whole property to be deprecated in favor of
+nand-ecc-engine-type.
+
+>  
+>        nand-ecc-placement:
+>          allOf:
+
