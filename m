@@ -2,88 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C9A1E1E57
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 11:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 659DB1E1E67
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 11:23:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388456AbgEZJWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 05:22:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388433AbgEZJWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 05:22:20 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EF2C03E97E
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 02:22:20 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id m18so23602867ljo.5
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 02:22:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VakK3K1bdraH2CNaKAl1HsIOSqvOwW4BrMU1GIVbMHI=;
-        b=MnxWolw9+48E82BoH0W4h0NGW8qNWn6yMAn4GAyxdbSVePnsGeI36UvX1g9L5RRBi8
-         GmM11E2y1xIjISz2igNjVGdMCjBKrM7dGLaLrpPJt/vhSsAhQ32ci4eQ/Joq+sj/zxf+
-         ZdBlienAY0XqjGtuVjQqycVSNEJFq7gk7pteYStezGwHhU3RBvGrWZg6O7UAPFBTZra5
-         jMQ40HcgtLQwdQekePnYsX3Zhvn/0w52mgrC1lbXvcqldPEHypNpf2kG9KIh8jqLkT1i
-         yvd1yL6iKiKNNxyS2HcwW4tOv/FS/YwC/HTfDTNd7pS7xmbG5epLeZYMGoTsofuPO8k6
-         5KzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VakK3K1bdraH2CNaKAl1HsIOSqvOwW4BrMU1GIVbMHI=;
-        b=fDDW8KUVJ+UVz+cC1W2dYESED/GW9pd9BC/GenL5D3aPRnsEnq2hB3xkfVq3Q1lA9t
-         JEvegyT72H7+dnGw0DGYCHMyLAjE8RyB6U8vocpD1kxeqm7NSsnHx3TCbmnl6tDqr6F9
-         8tG2M1jhMOLjopQu0VfIswqTDoAM65h3H2t9OIwbuMa3mAExrFl+5R+Z0KLAqiOpR534
-         dNfYNElCAIdT/wtHZm7y3nFNmDgr7wZF0yfmmmRjJ1o5adJwedKLA8f/8TOcGTZ1N2AQ
-         Flq3znUv51Gu2LQ9m6DWUeuhueNo49xMCKxqAPkuPCG4ZqWdm5Ip9KNz4F8XaYJNFPYx
-         //VA==
-X-Gm-Message-State: AOAM530LiXMfvCYRr9Z3piv2pgyMWOIKx73MsKTP0xApmSXlckbAvLBO
-        iBZ12mPHsxJtT/vYqiVeTaF67eQAIC3ixrBTdOUSdQ==
-X-Google-Smtp-Source: ABdhPJw8pZgJaIXNUkLHn6B/J6FuTQ9hom3jWdzfr1ToPBwixrVD38ffTLrjv381+a2u7Q5Qz7hclK+v3FW2m0rQXNA=
-X-Received: by 2002:a05:651c:32d:: with SMTP id b13mr146695ljp.283.1590484938670;
- Tue, 26 May 2020 02:22:18 -0700 (PDT)
+        id S2388632AbgEZJWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 05:22:53 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:52848 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388425AbgEZJWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 05:22:53 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 6BB7C1C02C5; Tue, 26 May 2020 11:22:51 +0200 (CEST)
+Date:   Tue, 26 May 2020 11:22:50 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Flavio Suligoi <f.suligoi@asem.it>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: fix macro names for pca955x
+Message-ID: <20200526092250.GB12838@amd>
+References: <20200526092052.24172-1-f.suligoi@asem.it>
 MIME-Version: 1.0
-References: <20200525151117.32540-1-jonathan.albrieux@gmail.com> <20200525151117.32540-4-jonathan.albrieux@gmail.com>
-In-Reply-To: <20200525151117.32540-4-jonathan.albrieux@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 May 2020 11:22:07 +0200
-Message-ID: <CACRpkdZo4PsC9Y8seMfS33escA6ZVKWwnbW2BCFOKiX2gY8RDw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/5] dt-bindings: iio: magnetometer: ak8975: add gpio
- reset support
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="oC1+HKm2/end4ao3"
+Content-Disposition: inline
+In-Reply-To: <20200526092052.24172-1-f.suligoi@asem.it>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 25, 2020 at 5:13 PM Jonathan Albrieux
-<jonathan.albrieux@gmail.com> wrote:
 
-> Add reset-gpio support.
->
-> Without reset's deassertion during ak8975_power_on(), driver's probe fails
-> on ak8975_who_i_am() while checking for device identity for AK09911 chip.
->
-> AK09911 has an active low reset gpio to handle register's reset.
-> AK09911 datasheet says that, if not used, reset pin should be connected
-> to VID. This patch emulates this situation.
->
-> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+--oC1+HKm2/end4ao3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On Tue 2020-05-26 11:20:52, Flavio Suligoi wrote:
+> The documentation reports the wrong macro names
+> related to the pca9532 instead of the pca955x
+>=20
+> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
 
-Yours,
-Linus Walleij
+Nothing obviously wrong, but why did you send it twice within half an
+hour?
+								Pavel
+
+>  Documentation/devicetree/bindings/leds/leds-pca955x.txt | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/leds-pca955x.txt b/Do=
+cumentation/devicetree/bindings/leds/leds-pca955x.txt
+> index 7984efb767b4..7a5830f8d5ab 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-pca955x.txt
+> +++ b/Documentation/devicetree/bindings/leds/leds-pca955x.txt
+> @@ -26,9 +26,9 @@ LED sub-node properties:
+>  		from 0 to 15 for the pca9552
+>  		from 0 to  3 for the pca9553
+>  - type: (optional) either
+> -	PCA9532_TYPE_NONE
+> -	PCA9532_TYPE_LED
+> -	PCA9532_TYPE_GPIO
+> +	PCA955X_TYPE_NONE
+> +	PCA955X_TYPE_LED
+> +	PCA955X_TYPE_GPIO
+>  	see dt-bindings/leds/leds-pca955x.h (default to LED)
+>  - label : (optional)
+>  	see Documentation/devicetree/bindings/leds/common.txt
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--oC1+HKm2/end4ao3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl7M3+oACgkQMOfwapXb+vL1iQCgnMFgoyAI93TGZbBPfLRftwVb
+ZD8An2uhQlu0n1Bcfem0zYVqj+KELHWc
+=BxPE
+-----END PGP SIGNATURE-----
+
+--oC1+HKm2/end4ao3--
