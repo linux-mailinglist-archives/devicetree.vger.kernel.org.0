@@ -2,80 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4DD1E3367
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 01:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F581E3377
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 01:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389957AbgEZXG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 19:06:58 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:36399 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389802AbgEZXG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 19:06:57 -0400
-Received: by mail-io1-f65.google.com with SMTP id y18so3502692iow.3;
-        Tue, 26 May 2020 16:06:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qM7yTTkdzgug0yRlfKz1J9d+bTctskYEmlS+YtPQUx0=;
-        b=Hfe5jJZchQp8XxbQ/bQTbhliu6gGjU9T16K2/1rfBMxWlc1TFYxDVXqsWB7prbSc0P
-         CW667+eHmAA1bPwGSgET4mwlM6MQKVGHRbWEkdH1Xn7TEpFDzjIG/nsQMRkXzbeOf01H
-         DOePZ6ZraYCSzJFnEnSYekCFz699D+9H2z+jaQdFfkRPIEIJIbXr1U0QtrNBk58es5mV
-         TzCqT6J13o7i6+1EXuEcxDjFHTZSWzekGQZtcNkcWYbhx9VwANjdLA9MX3Dk5ijTK4id
-         elKzWukPdtuYyqoSzYoqXaMgN3au6gIY9eDtAaBKHicFcSq88FncWr+zhjGo5Fs5G8nF
-         j4qA==
-X-Gm-Message-State: AOAM532STG1SLIspTPazuP7e0u3XUwl5eEHWMtIAqcqbuSRkHnBd4dpg
-        nNnXtVcEG8szv3a0J3hU88NcnM4=
-X-Google-Smtp-Source: ABdhPJyliFM4XLARzE8rOlqfLPrXTbRE98ugFuGjKDNnMdP2uaXdGeeFWhb3mLqV1iWF0F+VV0o1kg==
-X-Received: by 2002:a02:3406:: with SMTP id x6mr32885jae.24.1590534416486;
-        Tue, 26 May 2020 16:06:56 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id l21sm737449ili.8.2020.05.26.16.06.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 16:06:56 -0700 (PDT)
-Received: (nullmailer pid 560264 invoked by uid 1000);
-        Tue, 26 May 2020 23:06:55 -0000
-Date:   Tue, 26 May 2020 17:06:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 12/13] dt-bindings: clock: Add Marvell MMP Audio Clock
- Controller binding
-Message-ID: <20200526230655.GA559890@bogus>
-References: <20200519224151.2074597-1-lkundrak@v3.sk>
- <20200519224151.2074597-13-lkundrak@v3.sk>
+        id S2392299AbgEZXIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 19:08:18 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:35382 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389565AbgEZXIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 19:08:18 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:b93f:9fae:b276:a89a])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 36AA42A2D77;
+        Wed, 27 May 2020 00:08:16 +0100 (BST)
+Date:   Wed, 27 May 2020 01:08:11 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [RESEND v5 14/21] dt-bindings: mtd: Add the nand-ecc-placement
+ property
+Message-ID: <20200527010811.5c080310@collabora.com>
+In-Reply-To: <20200526195633.11543-15-miquel.raynal@bootlin.com>
+References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
+        <20200526195633.11543-15-miquel.raynal@bootlin.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200519224151.2074597-13-lkundrak@v3.sk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 May 2020 00:41:50 +0200, Lubomir Rintel wrote:
-> This describes the bindings for a controller that generates master and bit
-> clocks for the I2S interface.
-> 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> 
-> ---
-> Changes since v1:
-> - Fix commit message wording
-> - Define MMP2_CLK_AUDIO_NR_CLKS
-> - Make clock ids start at 0, not 1
-> - Fix dt-bindings/clock/marvell,mmp2-audio.h file name
-> - Rename node from "clocks" to "clock-controller"
-> 
->  .../clock/marvell,mmp2-audio-clock.yaml       | 74 +++++++++++++++++++
->  .../dt-bindings/clock/marvell,mmp2-audio.h    | 10 +++
->  2 files changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/marvell,mmp2-audio-clock.yaml
->  create mode 100644 include/dt-bindings/clock/marvell,mmp2-audio.h
-> 
+On Tue, 26 May 2020 21:56:26 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Placement is where the ECC bytes are expected.
+> No value means the controller can do whatever it desires (default is
+> to put ECC bytes at the end of the OOB area). Alternative placement is
+> "interleaved" (also sometimes referred as "syndrome") where data and
+> OOB are mixed.
+
+Hm, unless you can figure out what all controllers use, I'd suggest to
+have the default mean "undefined", as in "controller put the ECC bytes
+somewhere, but we don't where that is". Then let the explicit values be
+"oob" or "interleaved".
+
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../devicetree/bindings/mtd/nand-controller.yaml       | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index d529f8587ba6..35512f2c66fa 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -56,6 +56,16 @@ patternProperties:
+>            (Linux will handle the calculations). soft_bch is deprecated
+>            and should be replaced by soft and nand-ecc-algo.
+>  
+> +      nand-ecc-placement:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/string
+> +          - enum: [ free, interleaved ]
+> +        description:
+> +          Location for the ECC bytes. Free is the default and means the
+> +	  controller in charge is free to put them where it wants.
+> +	  Default state is to put ECC bytes at the end of the OOB area.
+> +	  Otherwise, ECC bytes may be interleaved with data.
+> +
+>        nand-ecc-algo:
+>          allOf:
+>            - $ref: /schemas/types.yaml#/definitions/string
+
