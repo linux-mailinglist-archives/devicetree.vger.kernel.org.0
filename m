@@ -2,126 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA221E2606
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 17:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B35EF1E2619
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 17:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729989AbgEZPv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 11:51:27 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:25982 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728301AbgEZPvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 May 2020 11:51:25 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 04QFoWYl020753;
-        Tue, 26 May 2020 17:51:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=+vt4wjn/3vceANeKrjrxUTiqAmA4dZtw1P85a9Xcyh0=;
- b=KK19vmH2WM0rXEUIpXEvfQFH0XT6Z+aqHO5LHrkuXMiLXQm1tp4UmeVf8PKAVJcsbXFD
- JXclkLlr92tANo9hlNYDRliAHRO3eedcELlTA3D6JkVoaGKG6GSrA4oZ5632cYjlVk5x
- G+/vjGAUe03PcNjHUoyFT8WXlWbn5aM08o0/P2yhsFbQ8Xgt3FB9t/5Wbn3wWvq74Qnt
- tH3gJSIi1sOWcHPCsIWA3fk1U6MNGGcQ1oeosEeBHj4XsS8+517pOWF5ACSx5ALPFWTg
- 8MG5oEqm6mxersBmHV2gcj76J0LG2x562pYQ9JMyJqzfJLHo+NSVG5y3qd3W4ZPMOrkR mw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 316skw8px6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 May 2020 17:51:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 263EA10002A;
-        Tue, 26 May 2020 17:51:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0DA712C4B37;
-        Tue, 26 May 2020 17:51:14 +0200 (CEST)
-Received: from localhost (10.75.127.49) by SFHDAG6NODE1.st.com (10.75.127.16)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 May 2020 17:51:13
- +0200
-From:   Ludovic Barre <ludovic.barre@st.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH 2/2] mmc: mmci_sdmmc: fix DMA API warning max segment size
-Date:   Tue, 26 May 2020 17:51:03 +0200
-Message-ID: <20200526155103.12514-3-ludovic.barre@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200526155103.12514-1-ludovic.barre@st.com>
-References: <20200526155103.12514-1-ludovic.barre@st.com>
+        id S1729652AbgEZPyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 11:54:50 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:44023 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727862AbgEZPyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 11:54:49 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 25A9823E2C;
+        Tue, 26 May 2020 17:54:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1590508485;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fea62NxmJK3eV7EnGjkH2PK8+sAxiTRywctVj4jahAw=;
+        b=p/H6CoByMx+/VRkUqo+zYBHQEDnzKf87T6UB5OckeCGd559i5IIHZzp0KffewoWwrz88Ae
+        h4yBFkejNH9BHFDcaRt1kgJ81Y0dFZk9I17TNByb0x/PZd+5Ojh4zOlgnTuQUvHMWc5GBK
+        mSDPNjq9ejnJ/5I3fr34XdPofcyMOs0=
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-05-26_02:2020-05-26,2020-05-26 signatures=0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 26 May 2020 17:54:38 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 03/16] mfd: mfd-core: match device tree node against
+ reg property
+In-Reply-To: <20200526072427.GC3628@dell>
+References: <20200423174543.17161-1-michael@walle.cc>
+ <20200423174543.17161-4-michael@walle.cc>
+ <67e90dafd67c285158c2c6f67f92edb7@walle.cc> <20200515102848.GH271301@dell>
+ <159e68b4ce53630ef906b2fcbca925bd@walle.cc> <20200526072427.GC3628@dell>
+User-Agent: Roundcube Webmail/1.4.4
+Message-ID: <f5704ce5a3e280f63c81fe35efb08234@walle.cc>
+X-Sender: michael@walle.cc
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turning on CONFIG_DMA_API_DEBUG_SG results in the following warning:
-WARNING: CPU: 1 PID: 85 at kernel/dma/debug.c:1302 debug_dma_map_sg+0x2a0/0x3cc
-mmci-pl18x 58005000.sdmmc: DMA-API: mapping sg segment longer than device claims to support [len=126976] [max=65536]
+Am 2020-05-26 09:24, schrieb Lee Jones:
+> On Mon, 25 May 2020, Michael Walle wrote:
+> 
+>> Am 2020-05-15 12:28, schrieb Lee Jones:
+>> > On Thu, 30 Apr 2020, Michael Walle wrote:
+>> >
+>> > > Hi Lee,
+>> > >
+>> > > Am 2020-04-23 19:45, schrieb Michael Walle:
+>> > > > There might be multiple children with the device tree compatible, for
+>> > > > example if a MFD has multiple instances of the same function. In this
+>> > > > case only the first is matched and the other children get a wrong
+>> > > > of_node reference.
+>> > > > Add a new option to match also against the unit address of the child
+>> > > > node. Additonally, a new helper OF_MFD_CELL_REG is added.
+>> > >
+>> > >
+>> > > Do you think this is feasible? I guess this is the biggest uncertainty
+>> > > for me at the moment in this patch series.
+>> >
+>> > I think it sounds fine in principle.  So long as it doesn't change the
+>> > existing behaviour when of_reg isn't set.
+>> >
+>> > > > Signed-off-by: Michael Walle <michael@walle.cc>
+>> > > > ---
+>> > > >  drivers/mfd/mfd-core.c   | 29 ++++++++++++++++++++---------
+>> > > >  include/linux/mfd/core.h | 26 ++++++++++++++++++++------
+>> > > >  2 files changed, 40 insertions(+), 15 deletions(-)
+> 
+> [...]
+> 
+>> > > > diff --git a/include/linux/mfd/core.h b/include/linux/mfd/core.h
+>> > > > index d01d1299e49d..c2c0ad6b14f3 100644
+>> > > > --- a/include/linux/mfd/core.h
+>> > > > +++ b/include/linux/mfd/core.h
+>> > > > @@ -13,8 +13,11 @@
+>> > > >  #include <linux/platform_device.h>
+>> > > >
+>> > > >  #define MFD_RES_SIZE(arr) (sizeof(arr) / sizeof(struct resource))
+>> > > > +#define MFD_OF_REG_VALID	BIT(31)
+>> >
+>> > What about 64bit platforms?
+>> 
+>> The idea was to have this as a logical number. I.e. for now you may 
+>> only
+>> have one subdevice per unique compatible string. In fact, if you have 
+>> a
+>> look at the ab8500.c, there are multiple "stericsson,ab8500-pwm"
+>> subdevices. But there is only one DT node for all three of it. I guess
+>> this works as long as you don't use phandles to reference the pwm node
+>> in the device tree. Or you don't want to use device tree properties
+>> per subdevice (for example the "timeout-sec" of a watchdog device).
+>> 
+>> So to circumvent this, I thought of having the unit-address (and thus
+>> the "reg" property) to differentiate between multiple subdevices. Now
+>> there is one special case for me: this board management controller
+>> might be upgradable and it might change internally. Thus I came up
+>> with that logical numbering of subdevices. Rob doesn't seem to be a
+>> fan of that, though. Therefore, having bit 31 as a valid indicator
+>> leaves you with 2^31 logical devices, which should be enough ;)
+>> 
+>> Rob proposed to have the internal offset as the unit-address. But
+>> in that case I can also use devm_of_platform_populate() and don't
+>> need the OF_MFD_CELL_REG; I'd just parse the reg offset in each
+>> individual subdevice driver. But like I said, I wanted to keep the
+>> internal offsets out of the device tree.
+> 
+> Oh, I see what you're doing.
+> 
+> So you're adding an arbitrary ID to the device's reg property in DT?
 
-dma api debug checks and compares the segment size to
-dma_get_max_seg_size (dev->dma_parms->max_segment_size),
-the sdmmc variant has an internal DMA and should define
-its max_segment_size constraint to avoid this warning.
+Yes.
 
-This Patch defines the dev->dma_parms->max_segment_size
-with the constraint already set for mmc core
-(host->mmc->max_seg_size).
+> How is this not a hack?
 
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
----
- drivers/mmc/host/mmci_stm32_sdmmc.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+Well IMHO this is not more or less a hack as the current of_node
+handling of MFD devices, which happens to work only because there
+is only one device per compatible string (or it doesn't really work,
+like in the stericsson,ab8500-pwm case). The of_node is assigned
+according to the compatible string, just like in my case, only that
+I have two subdevices with the same compatible string.
 
-diff --git a/drivers/mmc/host/mmci_stm32_sdmmc.c b/drivers/mmc/host/mmci_stm32_sdmmc.c
-index 2965b1c062e1..51db30acf4dc 100644
---- a/drivers/mmc/host/mmci_stm32_sdmmc.c
-+++ b/drivers/mmc/host/mmci_stm32_sdmmc.c
-@@ -119,20 +119,19 @@ static void sdmmc_idma_unprep_data(struct mmci_host *host,
- static int sdmmc_idma_setup(struct mmci_host *host)
- {
- 	struct sdmmc_idma *idma;
-+	struct device *dev = mmc_dev(host->mmc);
- 
--	idma = devm_kzalloc(mmc_dev(host->mmc), sizeof(*idma), GFP_KERNEL);
-+	idma = devm_kzalloc(dev, sizeof(*idma), GFP_KERNEL);
- 	if (!idma)
- 		return -ENOMEM;
- 
- 	host->dma_priv = idma;
- 
- 	if (host->variant->dma_lli) {
--		idma->sg_cpu = dmam_alloc_coherent(mmc_dev(host->mmc),
--						   SDMMC_LLI_BUF_LEN,
-+		idma->sg_cpu = dmam_alloc_coherent(dev, SDMMC_LLI_BUF_LEN,
- 						   &idma->sg_dma, GFP_KERNEL);
- 		if (!idma->sg_cpu) {
--			dev_err(mmc_dev(host->mmc),
--				"Failed to alloc IDMA descriptor\n");
-+			dev_err(dev, "Failed to alloc IDMA descriptor\n");
- 			return -ENOMEM;
- 		}
- 		host->mmc->max_segs = SDMMC_LLI_BUF_LEN /
-@@ -143,7 +142,7 @@ static int sdmmc_idma_setup(struct mmci_host *host)
- 		host->mmc->max_seg_size = host->mmc->max_req_size;
- 	}
- 
--	return 0;
-+	return dma_set_max_seg_size(dev, host->mmc->max_seg_size);
- }
- 
- static int sdmmc_idma_start(struct mmci_host *host, unsigned int *datactrl)
--- 
-2.17.1
+> Why don't you use the full address for identification?
 
+Like I said, in the long term I would like to have support for
+different versions of the board management controller without having
+to change the device tree and have device tree bindings for the
+subdevices at the same time. But it seems, that this is not possible
+and I guess I have to bite the bullet and may need to provide another
+device tree if the controller might be updated.
+
+-michael
