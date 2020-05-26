@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB1A1E2F8B
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562011E2F8C
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389501AbgEZT4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 15:56:51 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:35495 "EHLO
+        id S2390312AbgEZT4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 15:56:53 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:51285 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390133AbgEZT4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:56:51 -0400
+        with ESMTP id S2390217AbgEZT4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:56:52 -0400
 X-Originating-IP: 91.224.148.103
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 4E846C000A;
-        Tue, 26 May 2020 19:56:49 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 6FEB9C0003;
+        Tue, 26 May 2020 19:56:50 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -26,9 +26,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         <devicetree@vger.kernel.org>,
         Boris Brezillon <boris.brezillon@collabora.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [RESEND v5 12/21] mtd: rawnand: Deprecate nand-ecc-mode in favor of nand-ecc-provider
-Date:   Tue, 26 May 2020 21:56:24 +0200
-Message-Id: <20200526195633.11543-13-miquel.raynal@bootlin.com>
+Subject: [RESEND v5 13/21] mtd: rawnand: Drop the legacy ECC type enumeration
+Date:   Tue, 26 May 2020 21:56:25 +0200
+Message-Id: <20200526195633.11543-14-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200526195633.11543-1-miquel.raynal@bootlin.com>
 References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
@@ -40,29 +40,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use nand-ecc-provider as the provider DT property. Fallback to
-nand-ecc-mode if the property does not exist.
+Now that all files have been migrated to use the new enumeration, drop
+the old one which is unused.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/mtd/nand/raw/nand_base.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/mtd/nand/raw/nand_base.c |  8 --------
+ include/linux/mtd/rawnand.h      | 12 ------------
+ 2 files changed, 20 deletions(-)
 
 diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
-index 69c1b7ab938e..7d17d52cdd34 100644
+index 7d17d52cdd34..16199c5ab3dc 100644
 --- a/drivers/mtd/nand/raw/nand_base.c
 +++ b/drivers/mtd/nand/raw/nand_base.c
-@@ -5036,7 +5036,9 @@ of_get_nand_ecc_engine_type(struct device_node *np)
- 	const char *pm;
- 	int err;
+@@ -5010,14 +5010,6 @@ static int nand_detect(struct nand_chip *chip, struct nand_flash_dev *type)
+ 	return ret;
+ }
  
--	err = of_property_read_string(np, "nand-ecc-mode", &pm);
-+	err = of_property_read_string(np, "nand-ecc-provider", &pm);
-+	if (err)
-+		err = of_property_read_string(np, "nand-ecc-mode", &pm);
- 	if (err)
- 		return NAND_ECC_ENGINE_INVALID;
+-static const char * const nand_ecc_modes[] = {
+-	[NAND_ECC_NONE]		= "none",
+-	[NAND_ECC_SOFT]		= "soft",
+-	[NAND_ECC_HW]		= "hw",
+-	[NAND_ECC_HW_SYNDROME]	= "hw_syndrome",
+-	[NAND_ECC_ON_DIE]	= "on-die",
+-};
+-
+ static const char * const nand_ecc_engine_providers[] = {
+ 	[NAND_ECC_ENGINE_NONE] = "none",
+ 	[NAND_ECC_ENGINE_SOFT] = "soft",
+diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+index ec15cd0a2deb..bd7053b469e4 100644
+--- a/include/linux/mtd/rawnand.h
++++ b/include/linux/mtd/rawnand.h
+@@ -80,18 +80,6 @@ struct nand_chip;
  
+ #define NAND_DATA_IFACE_CHECK_ONLY	-1
+ 
+-/*
+- * Constants for ECC_MODES
+- */
+-enum nand_ecc_mode {
+-	NAND_ECC_INVALID,
+-	NAND_ECC_NONE,
+-	NAND_ECC_SOFT,
+-	NAND_ECC_HW,
+-	NAND_ECC_HW_SYNDROME,
+-	NAND_ECC_ON_DIE,
+-};
+-
+ /**
+  * enum nand_ecc_engine_type - NAND ECC engine type/provider
+  * @NAND_ECC_ENGINE_INVALID: Invalid value
 -- 
 2.20.1
 
