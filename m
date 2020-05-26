@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE3B71E3324
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 529DA1E3330
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392228AbgEZWwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 18:52:25 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:37378 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404588AbgEZWvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:51:46 -0400
-Received: by mail-io1-f67.google.com with SMTP id r2so13592789ioo.4;
-        Tue, 26 May 2020 15:51:44 -0700 (PDT)
+        id S2391734AbgEZWxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 18:53:06 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:42446 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390428AbgEZWxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:53:06 -0400
+Received: by mail-io1-f65.google.com with SMTP id d5so14404184ios.9;
+        Tue, 26 May 2020 15:53:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=b//O80efuR9XCAH6meLDCFiWRVl9cYjfSg/OL1ItrFE=;
-        b=OdBQb42YKxt3NWEXmElfG0qMEQeo0Kk2f3NM+26BZcvGPDLujn20kLiXEN6+GSljKo
-         fE1g45r3fdtlCH1cnedylXBRRZC4yBiVxk8ROrKA2QIflzNsic4D8UPq6WaNuLYqpfZj
-         t8AJ8slLCw+kFRtkGC7lk80BEfSQqtOi4cyAwJVLnx3f1K61T0u4MqeCewCP/kxqy0ns
-         wfoXYW+m/a0P90HUre+ux4JGOLlRdLrC46xtf1pqwZAhtl02GtAk6FG9yybdnj6b8v0K
-         2+xb17x8+wz6d3Kseg/0kfcH1RljwONckjSbW2r74I+VOSPNYtHbnUbI846Ry2qPhCrm
-         +wkw==
-X-Gm-Message-State: AOAM532PcpZVAKQ5vHzPGyV1bpRXazWjytAeb1Y4bH9ASNqscgdY0ImG
-        9mTgdUrM0VTQb8liIquI7g==
-X-Google-Smtp-Source: ABdhPJyzPZNiAEIXvFn8cBENJZbF+cuL2BgGEDt1Uc90DnYvpmSvolGQ6Om+x4XqHV+RQZDT2HHctg==
-X-Received: by 2002:a05:6638:44e:: with SMTP id r14mr3241032jap.53.1590533503186;
-        Tue, 26 May 2020 15:51:43 -0700 (PDT)
+        bh=kF+vRBfnhOkmQvA5KLQ4cDaPOVZ28rGc0O0qwy5RLx8=;
+        b=P32b7cIs61bWGQKO+vQfRMx78GBXXufAz5+lymJb8v/BLQiAw3GLKhroiWOh7g6vKJ
+         ICdZbXcu62p6ev8/3dXEwFcfmwj9mRoCzBd0+a58xQBN8C7S8vYCPmGHdimDigWb3h9D
+         fM2K38PLu4zAqEJJrmWoDfhzhGwfF8Hv1ZC0tWnoLFRQfgmVyAGY4jIjHR/NluUL80YH
+         IyKjL8lOFZZTkrpdTjzGiBGlfRKhoG4Lb3gTDe1jhC7vk4pn5yYMIJlDws6H2yBUy/sP
+         bmGTrlE/WvCW5ojFM1YX21Yc3WFwPzfMV1j11qwU/L2CfWNyZOscVyks2AmwHkebHWix
+         qdcw==
+X-Gm-Message-State: AOAM530ySfiiCluWycmTP3K8+2WJUnOwNWRAZQB4zlwp0Rpe/qi7cTbJ
+        rOq8Y4/3GdT2/wp7p3rLCw==
+X-Google-Smtp-Source: ABdhPJyeoVtuZCUkjCMNR8Y6ccXH320ipxK5P3DJiUPsweubOQS/CFyKLVhwUqzve4pZavKBpEp3dg==
+X-Received: by 2002:a02:93a1:: with SMTP id z30mr3149527jah.25.1590533583588;
+        Tue, 26 May 2020 15:53:03 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id p75sm524459ilb.23.2020.05.26.15.51.42
+        by smtp.gmail.com with ESMTPSA id p1sm632821ilq.67.2020.05.26.15.53.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 15:51:42 -0700 (PDT)
-Received: (nullmailer pid 536270 invoked by uid 1000);
-        Tue, 26 May 2020 22:51:41 -0000
-Date:   Tue, 26 May 2020 16:51:41 -0600
+        Tue, 26 May 2020 15:53:03 -0700 (PDT)
+Received: (nullmailer pid 538555 invoked by uid 1000);
+        Tue, 26 May 2020 22:53:02 -0000
+Date:   Tue, 26 May 2020 16:53:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Tom Joseph <tjoseph@cadence.com>, linux-pci@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] dt-bindings: counter: microchip-tcb-capture
- counter
-Message-ID: <20200526225141.GA536209@bogus>
-References: <20200519083716.938384-1-kamel.bouhara@bootlin.com>
- <20200519083716.938384-5-kamel.bouhara@bootlin.com>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH v5 06/14] dt-bindings: PCI: cadence: Remove "mem" from
+ reg binding
+Message-ID: <20200526225302.GA538495@bogus>
+References: <20200522033631.32574-1-kishon@ti.com>
+ <20200522033631.32574-7-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200519083716.938384-5-kamel.bouhara@bootlin.com>
+In-Reply-To: <20200522033631.32574-7-kishon@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 May 2020 10:37:15 +0200, Kamel Bouhara wrote:
-> Describe the devicetree binding for the Microchip TCB module.
-> Each counter blocks exposes three independent counters.
+On Fri, 22 May 2020 09:06:23 +0530, Kishon Vijay Abraham I wrote:
+> "mem" is not a memory resource and it overlaps with PCIe config space
+> and memory region. Removve "mem" from reg binding.
 > 
-> However, when configured in quadrature decoder, both channel <0> and <1>
-> are required for speed/position and rotation capture (yet only the
-> position is captured).
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 32 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/pci/cdns,cdns-pcie-host.yaml      | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
