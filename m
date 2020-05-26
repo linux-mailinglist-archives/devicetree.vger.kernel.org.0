@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE9A11E2F97
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4754A1E2FC3
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 22:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390619AbgEZT5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 15:57:02 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:51285 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388967AbgEZT5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:57:02 -0400
-X-Originating-IP: 91.224.148.103
-Received: from localhost.localdomain (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id B77F0C000A;
-        Tue, 26 May 2020 19:56:59 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [RESEND v5 21/21] mtd: nand: Rename a core structure
-Date:   Tue, 26 May 2020 21:56:33 +0200
-Message-Id: <20200526195633.11543-22-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200526195633.11543-1-miquel.raynal@bootlin.com>
-References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
+        id S2390820AbgEZUJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 16:09:35 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42874 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390815AbgEZUJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 16:09:35 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04QK9I4E110594;
+        Tue, 26 May 2020 15:09:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590523758;
+        bh=a3Bn7e1phIBeu9GwEZi9rAuG8EpD69JqfaOzcTdsyh0=;
+        h=From:To:CC:Subject:Date;
+        b=AlZikyLtf+4jLs+qkoxYVYwpjE8XyEx0boIFPzAPeUiyUJiaxthsYumkRFRi1kky8
+         ptn6MIqERIUjs2P1z41byNUKjVw1Q3ayqAsG8mWqybMzKdbzfyL9d/XZ9G6zq7l1Ju
+         rAK3+4OhMIVw4t/Ltqkbw7DJ4FUc80D1ysMGejGE=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04QK9IRm086475
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 26 May 2020 15:09:18 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 26
+ May 2020 15:09:18 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 26 May 2020 15:09:18 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04QK9IAC092862;
+        Tue, 26 May 2020 15:09:18 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/2] dt-bindings: sound: tlv320adcx140: Add GPI config property
+Date:   Tue, 26 May 2020 15:09:16 -0500
+Message-ID: <20200526200917.10385-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Prepare the migration to a generic ECC engine by renaming the
-nand_ecc_req structure into nand_ecc_props. This structure will be the
-base of a wider 'nand_ecc' structure.
+Add an array property that configures the General Purpose Input (GPI)
+register.  The device has 4 GPI pins and each pin can be configured in 1
+of 7 different ways.
 
-In nand_device, these properties are still named "eccreq" even if
-"eccprops" might be more descriptive. This is just a transition step,
-this field is being replaced very soon by a much wider structure. The
-impact of renaming this field would be huge compared to its interest.
-
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
 ---
- include/linux/mtd/nand.h    | 8 ++++----
- include/linux/mtd/spinand.h | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ .../bindings/sound/tlv320adcx140.yaml         | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/include/linux/mtd/nand.h b/include/linux/mtd/nand.h
-index 60d158e183ce..6add464fd18b 100644
---- a/include/linux/mtd/nand.h
-+++ b/include/linux/mtd/nand.h
-@@ -128,11 +128,11 @@ struct nand_page_io_req {
- };
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+index daa6cc0e031b..e8a69b1c7ca9 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+@@ -86,6 +86,32 @@ properties:
+           maximum: 1
+         default: [0, 0, 0, 0]
  
- /**
-- * struct nand_ecc_req - NAND ECC requirements
-+ * struct nand_ecc_props - NAND ECC properties
-  * @strength: ECC strength
-- * @step_size: ECC step/block size
-+ * @step_size: Number of bytes per step
-  */
--struct nand_ecc_req {
-+struct nand_ecc_props {
- 	unsigned int strength;
- 	unsigned int step_size;
- };
-@@ -191,7 +191,7 @@ struct nand_ops {
- struct nand_device {
- 	struct mtd_info mtd;
- 	struct nand_memory_organization memorg;
--	struct nand_ecc_req eccreq;
-+	struct nand_ecc_props eccreq;
- 	struct nand_row_converter rowconv;
- 	struct nand_bbt bbt;
- 	const struct nand_ops *ops;
-diff --git a/include/linux/mtd/spinand.h b/include/linux/mtd/spinand.h
-index 1077c45721ff..7b78c4ba9b3e 100644
---- a/include/linux/mtd/spinand.h
-+++ b/include/linux/mtd/spinand.h
-@@ -309,7 +309,7 @@ struct spinand_info {
- 	struct spinand_devid devid;
- 	u32 flags;
- 	struct nand_memory_organization memorg;
--	struct nand_ecc_req eccreq;
-+	struct nand_ecc_props eccreq;
- 	struct spinand_ecc_info eccinfo;
- 	struct {
- 		const struct spinand_op_variants *read_cache;
++  ti,gpi-config:
++    description: |
++       Defines the configuration for the general purpose input pins (GPI).
++       The array is defined as <GPI1 GPI2 GPI3 GPI4>.
++
++       0 - (default) disabled
++       1 - GPIX is configured as a general-purpose input (GPI)
++       2 - GPIX is configured as a master clock input (MCLK)
++       3 - GPIX is configured as an ASI input for daisy-chain (SDIN)
++       4 - GPIX is configured as a PDM data input for channel 1 and channel
++            (PDMDIN1)
++       5 - GPIX is configured as a PDM data input for channel 3 and channel
++            (PDMDIN2)
++       6 - GPIX is configured as a PDM data input for channel 5 and channel
++            (PDMDIN3)
++       7 - GPIX is configured as a PDM data input for channel 7 and channel
++            (PDMDIN4)
++
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32-array
++      - minItems: 1
++        maxItems: 4
++        items:
++          maximum: 1
++        default: [0, 0, 0, 0]
++
+ required:
+   - compatible
+   - reg
+@@ -101,6 +127,7 @@ examples:
+         reg = <0x4c>;
+         ti,mic-bias-source = <6>;
+         ti,pdm-edge-select = <0 1 0 1>;
++        ti,gpi-config = <4 5 6 7>;
+         reset-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+       };
+     };
 -- 
-2.20.1
+2.26.2
 
