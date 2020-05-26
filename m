@@ -2,163 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E191E2334
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 15:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 957B61E2362
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 15:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727062AbgEZNmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 09:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727864AbgEZNmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 09:42:05 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB64DC03E96D;
-        Tue, 26 May 2020 06:42:05 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id i17so198510pli.13;
-        Tue, 26 May 2020 06:42:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KZK3/SNQt3TrHZpjfApxGGKEtvPPIQXrgwzz3895qfM=;
-        b=j+G5UZ3zNq0MLdgpa6fl0zMrztS8RamkTd/G12R4uGo9gO6gikSiBBWBrHNaPtE1I/
-         xGNyZetYoCrjujqyiXHejdzHY+6R90MnZFlH59TDTGwqLDLT4qPULL8B/zdTo00jmGEm
-         y671dNLbk+AREWEs1i5kin5FgdXEO08XXASMuPppnMkR4kmEe3sn4q5q4zC7dyJIUKTc
-         699QP81+jHswHq+xvb/meVB4wCKzc1xKV/nNQGho8NEtjwCGisPGKJbr4F3lE634Dxoo
-         mAt1XgPXuRlGS5xFrq//gQbs5i+oQOHjxPwY/oxEngwSmgKuSt4iwHYESNHxPYw2o55V
-         wsWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KZK3/SNQt3TrHZpjfApxGGKEtvPPIQXrgwzz3895qfM=;
-        b=r3tVuY0M9ppUlt73pe+dOk61uWaLSWkRwiZ8Jnt86LPunkBSy6LP9cbhVxXJQqU1bk
-         T9PKQZGsqUV1dWWf2jh9J2BRDNzo9wBidrQNH5LuVTs+8A/eoUwmG7HZWdZ/iXdHzLu4
-         ZrEZ96aviyywSAkvLA0jxh6C9usOFKicpW/3LzjroVmidZOGtKncvs7JemriUT5T/p+d
-         UXKqzZB1Gm8RIZppWzdA5cHxu1q+ENLEDzHaK56riz036e+JkjzVxzaD1oM4farlw5Pw
-         BkTrsq3h0M8HfMZ8xeQsed86OVATByF9laAcNTcZ9Xm6ux8bbmjJLM1yukJpPcad1OyU
-         F+Bw==
-X-Gm-Message-State: AOAM531C9ZGlgpII334BLBI4cgcYKyPSX8IJj1eOsRUnG3sxYZprT54H
-        hS1F8zvDxQTa3ETVSNJVXYI=
-X-Google-Smtp-Source: ABdhPJxLTNIM6FAl2B+KrsXvY6EQWED8Nx4JzuJrtGmGp51UH2Du4f798QaJ/xzSY/CJMBWnvV0WEg==
-X-Received: by 2002:a17:902:8e81:: with SMTP id bg1mr1111991plb.314.1590500525352;
-        Tue, 26 May 2020 06:42:05 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s206sm15423492pfc.31.2020.05.26.06.42.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 26 May 2020 06:42:04 -0700 (PDT)
-Date:   Tue, 26 May 2020 06:42:03 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Sandipan Patra <spatra@nvidia.com>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "kamil@wypas.org" <kamil@wypas.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Bibek Basu <bbasu@nvidia.com>,
-        Bitan Biswas <bbiswas@nvidia.com>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] hwmon: pwm-fan: Add profile support and add remove
- module support
-Message-ID: <20200526134203.GA51584@roeck-us.net>
-References: <1590469565-14953-1-git-send-email-spatra@nvidia.com>
- <53619c02-8c0f-3eec-cccc-16e779b8c425@roeck-us.net>
- <BYAPR12MB30145EC4578F64EAD1233357ADB00@BYAPR12MB3014.namprd12.prod.outlook.com>
+        id S1731648AbgEZNvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 09:51:18 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57744 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726930AbgEZNvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 09:51:13 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id A555C803086C;
+        Tue, 26 May 2020 13:51:07 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id SCw7iAFEZl58; Tue, 26 May 2020 16:51:06 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Sebastian Reichel <sre@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH RESEND v3 0/2] syscon: Alter syscon and reboot drivers
+Date:   Tue, 26 May 2020 16:50:59 +0300
+Message-ID: <20200526135102.21236-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR12MB30145EC4578F64EAD1233357ADB00@BYAPR12MB3014.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 26, 2020 at 12:08:14PM +0000, Sandipan Patra wrote:
-> Hi,
-> 
-> 
-> > -----Original Message-----
-> > From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
-> > Sent: Tuesday, May 26, 2020 5:12 PM
-> > To: Sandipan Patra <spatra@nvidia.com>; Thierry Reding
-> > <treding@nvidia.com>; Jonathan Hunter <jonathanh@nvidia.com>; u.kleine-
-> > koenig@pengutronix.de; kamil@wypas.org; jdelvare@suse.com;
-> > robh+dt@kernel.org
-> > Cc: Bibek Basu <bbasu@nvidia.com>; Bitan Biswas <bbiswas@nvidia.com>;
-> > linux-pwm@vger.kernel.org; linux-hwmon@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-tegra@vger.kernel.org; linux-
-> > kernel@vger.kernel.org
-> > Subject: Re: [PATCH 1/2] hwmon: pwm-fan: Add profile support and add remove
-> > module support
-> > 
-> > External email: Use caution opening links or attachments
-> > 
-> > 
-> > On 5/25/20 10:06 PM, Sandipan Patra wrote:
-> > > This change has 2 parts:
-> > > 1. Add support for profiles mode settings.
-> > >     This allows different fan settings for trip point temp/hyst/pwm.
-> > >     T194 has multiple fan-profiles support.
-> > >
-> > > 2. Add pwm-fan remove support. This is essential since the config is
-> > >     tristate capable.
-> > >
-> > > Signed-off-by: Sandipan Patra <spatra@nvidia.com>
-> > > ---
-> > >  drivers/hwmon/pwm-fan.c | 112
-> > > ++++++++++++++++++++++++++++++++++++++++++------
-> > >  1 file changed, 100 insertions(+), 12 deletions(-)
-> > >
-> > > diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c index
-> > > 30b7b3e..26db589 100644
-> > > --- a/drivers/hwmon/pwm-fan.c
-> > > +++ b/drivers/hwmon/pwm-fan.c
-> > 
-> > [ ... ]
-> > 
-> > >
-> > > +static int pwm_fan_remove(struct platform_device *pdev) {
-> > > +     struct pwm_fan_ctx *ctx = platform_get_drvdata(pdev);
-> > > +     struct pwm_args args;
-> > > +
-> > > +     if (!ctx)
-> > > +             return -EINVAL;
-> > > +
-> > > +     if (IS_ENABLED(CONFIG_THERMAL))
-> > > +             thermal_cooling_device_unregister(ctx->cdev);
-> > > +
-> > > +     pwm_get_args(ctx->pwm, &args);
-> > > +     pwm_config(ctx->pwm, 0, args.period);
-> > > +     pwm_disable(ctx->pwm);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > 
-> > I don't think you actually tested this. I would suggest to make yourself familiar
-> > with 'devm' functions and their use, and then resubmit.
-> > 
-> 
-> Thanks Guenter.
-> I missed to mention about devm while unregistering the cooling device.
-> That would definitely cause a mistake in code. I am noting it for further patch.
-> 
-For that part, I am extremely surprised that it is not handled by the
-thermal subsystem. Does each thermal driver need this kind of code ?
+This is a small patchset about tuning the syscon infrastructure a bit.
+As it's going to be general in the framework of the Baikal-T1 SoC support
+integration into the kernel, we suggest to replace the legacy text-based
+syscon-reboot-mode dts-bindings file with yaml-based one. Then seeing a
+syscon reboot block is normally expected to be a part of a system
+controller and based on the discussion
+https://lore.kernel.org/linux-pm/20200306130402.1F4F0803079F@mail.baikalelectronics.ru/
+we decided to alter the syscon reboot driver so one would also try to fetch
+the syscon registers map from a parental DT node. regmap property is left
+supported although it's marked as deprecated from now.
 
-> For a better clarity, I will push next version of this patch to handle only multiple profiles support.
-> "remove fan module" will be supported by a separate patch altogether.
-> 
+This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
 
-I asked you to look into "devm" functionality. I ask you again.
-If you still think that a remove function is needed, I will require
-detailed reasoning. Please be prepared to explain why devm functions
-do not work for this driver.
+Changelog v2:
+- Add Sebastian' Acked-by tag to patch 1.
+- Use a shorter summary describing the bindings modification patches.
+- Our corporate email server doesn't change Message-Id anymore, so the patchset
+  is resubmitted being in the cover-letter-threaded format.
+- Discard patch with syscon "-endian" property support. As Rob said It shall be
+  in the common dt-schema.
+- Replace patches of adding a regmap property support to the syscon-reboot-mode
+  with patches making syscon-reboot a sub-node of a system controller node.
+- Mark regmap property as deprecated from now.
 
-Guenter
+Link: https://lore.kernel.org/linux-pm/20200507233846.11548-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v3:
+- Discard the commit 6acd3ecd88ff ("dt-bindings: power: reset: Convert
+  syscon-reboot-mode to DT schema") since it has been merged in by Sebatian.
+- Add Rob's Reviewed-by tag to the patch "dt-bindings: power: reset: Unrequire
+  regmap property in syscon-reboot node"
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+Cc: Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (2):
+  dt-bindings: power: reset: Unrequire regmap property in syscon-reboot
+    node
+  power: reset: syscon-reboot: Add parental syscon support
+
+ .../bindings/power/reset/syscon-reboot.yaml       | 15 ++++++++++-----
+ drivers/power/reset/syscon-reboot.c               |  7 +++++--
+ 2 files changed, 15 insertions(+), 7 deletions(-)
+
+-- 
+2.26.2
+
