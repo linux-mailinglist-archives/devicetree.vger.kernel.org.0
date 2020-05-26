@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C50E21E295C
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 19:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC5621E2973
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 19:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389151AbgEZRs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 13:48:27 -0400
-Received: from mail26.static.mailgun.info ([104.130.122.26]:57991 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2389147AbgEZRsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 May 2020 13:48:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1590515304; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=7keFiYQqaL3DuPDgQ1CTQxclwRsZANwrQiftoCTSuPc=;
- b=K0zQmhVDAAAf1O3YDOfxu8moQ7BxTA4Y04hMGPQoZ8IMxgCPwDNpdbvRpyg9gO4IadqVZ4QK
- F/P7N1rgDExamqxdol6wpyQiLvfdQcrJxJUA0N8TmmDnvx/9lbC2qZ4//9zn9D1vPkCg+jDX
- rWp7kkOTFKXZOj6eWvV74/le0LI=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 5ecd5665cb04586933a7b974 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 May 2020 17:48:21
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6262DC433AD; Tue, 26 May 2020 17:48:20 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 73091C433C6;
-        Tue, 26 May 2020 17:48:19 +0000 (UTC)
+        id S2388663AbgEZRyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 13:54:08 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:39202 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388586AbgEZRyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 13:54:07 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04QHrFmK035070;
+        Tue, 26 May 2020 12:53:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590515595;
+        bh=mTjyA08DkTl9/UxPwDQR7QnPE9aXKDpzBvfiE5znuqQ=;
+        h=From:To:CC:Subject:Date;
+        b=IPEzv0tCFFDQw7n4vfV24DixgLOT2M28LGIPOQM1DWeJ5vM/AzygY1sRE3XlZsPYY
+         oUHugbWKcJlWoLzBXVYswhts2Ai4LtTYW/NaQzm7d4weVrQutaCcIR2iNGDlzC7AuX
+         y6wwY5SBpSnCdr8XUXM9p2BpFTCU0LZ6M5r4AhA0=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04QHrFKv094636
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 26 May 2020 12:53:15 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 26
+ May 2020 12:52:48 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 26 May 2020 12:52:48 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04QHqmCI095113;
+        Tue, 26 May 2020 12:52:48 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>,
+        kbuild test robot <lkp@intel.com>
+Subject: [PATCH] ASoC: tlv320adcx140: Fix warnings when using W=1
+Date:   Tue, 26 May 2020 12:52:47 -0500
+Message-ID: <20200526175247.15309-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 26 May 2020 23:18:19 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     sboyd@kernel.org, georgi.djakov@linaro.org,
-        bjorn.andersson@linaro.org, saravanak@google.com, mka@chromium.org,
-        nm@ti.com, agross@kernel.org, david.brown@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dianders@chromium.org, vincent.guittot@linaro.org,
-        amit.kucheria@linaro.org, ulf.hansson@linaro.org,
-        lukasz.luba@arm.com, sudeep.holla@arm.com
-Subject: Re: [PATCH v4 06/12] cpufreq: qcom: Update the bandwidth levels on
- frequency change
-In-Reply-To: <8fc5b72c9af6fd6a707a280cfc678677@codeaurora.org>
-References: <20200504202243.5476-1-sibis@codeaurora.org>
- <20200504202243.5476-7-sibis@codeaurora.org>
- <20200505045012.zfx2e6chqo5f3e4n@vireshk-i7>
- <8fc5b72c9af6fd6a707a280cfc678677@codeaurora.org>
-Message-ID: <b7e184b2da5b780a4e7e6ee47963f9b4@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-05-05 12:49, Sibi Sankar wrote:
-> On 2020-05-05 10:20, Viresh Kumar wrote:
->> On 05-05-20, 01:52, Sibi Sankar wrote:
->>> Add support to parse optional OPP table attached to the cpu node when
->>> the OPP bandwidth values are populated. This allows for scaling of
->>> DDR/L3 bandwidth levels with frequency change.
->>> 
->>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> 
->> What about using opp_set_rate instead ?
-> 
-> I can't use opp_set_rate since
-> the cpu dev does not have a
-> clock associated with it and the
-> scaling is done through writing
-> on perf state register.
+Fix the warnings when using the W=1 compiler flag.
 
-Viresh,
+sound/soc/codecs/tlv320adcx140.c: In function ‘adcx140_reset’:
+sound/soc/codecs/tlv320adcx140.c:570:6: warning: variable ‘ret’ set but not used [-Wunused-but-set-variable]
+  570 |  int ret = 0;
+      |      ^~~
 
-https://patchwork.kernel.org/cover/11548479/
-GPU driver uses Georgi's series
-for scaling and will need a way to
-remove the icc votes in the suspend
-path, (this looks like a pattern
-that might be used by other clients
-as well) I could probably update
-opp_set_bw to support removing bw
-when NULL opp is specified. Similarly
-opp_set_rate will need to support
-set bw to 0 when set_rate is passed
-0 as target freq for the same use case.
+This was set but only used in case where the reset GPIO is not defined.
+Have the function return the value of ret.
 
+sound/soc/codecs/tlv320adcx140.c: In function ‘adcx140_codec_probe’:
+sound/soc/codecs/tlv320adcx140.c:778:18: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+  778 |  if (bias_source < ADCX140_MIC_BIAS_VAL_VREF ||
+      |                  ^
+sound/soc/codecs/tlv320adcx140.c:789:18: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+  789 |  if (vref_source < ADCX140_MIC_BIAS_VREF_275V ||
+
+This condition will not occur since if the dt property is not set then
+the *_source variable is set to the default value.  So there is no way
+that *_source can be less then 0.  Which is what each #define is set to.
+The code just needs to make sure that the dt property is not out of the
+upper bounds.
+
+Reported-by: kbuild test robot <lkp@intel.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ sound/soc/codecs/tlv320adcx140.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
+index 472d759ba8a3..2fe0df3b7550 100644
+--- a/sound/soc/codecs/tlv320adcx140.c
++++ b/sound/soc/codecs/tlv320adcx140.c
+@@ -582,7 +582,7 @@ static int adcx140_reset(struct adcx140_priv *adcx140)
+ 	/* 8.4.2: wait >= 10 ms after entering sleep mode. */
+ 	usleep_range(10000, 100000);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int adcx140_hw_params(struct snd_pcm_substream *substream,
+@@ -772,8 +772,7 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
+ 	if (ret)
+ 		bias_source = ADCX140_MIC_BIAS_VAL_VREF;
+ 
+-	if (bias_source < ADCX140_MIC_BIAS_VAL_VREF ||
+-	    bias_source > ADCX140_MIC_BIAS_VAL_AVDD) {
++	if (bias_source > ADCX140_MIC_BIAS_VAL_AVDD) {
+ 		dev_err(adcx140->dev, "Mic Bias source value is invalid\n");
+ 		return -EINVAL;
+ 	}
+@@ -783,8 +782,7 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
+ 	if (ret)
+ 		vref_source = ADCX140_MIC_BIAS_VREF_275V;
+ 
+-	if (vref_source < ADCX140_MIC_BIAS_VREF_275V ||
+-	    vref_source > ADCX140_MIC_BIAS_VREF_1375V) {
++	if (vref_source > ADCX140_MIC_BIAS_VREF_1375V) {
+ 		dev_err(adcx140->dev, "Mic Bias source value is invalid\n");
+ 		return -EINVAL;
+ 	}
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+2.26.2
+
