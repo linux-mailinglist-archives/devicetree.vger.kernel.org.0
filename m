@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 732CB1E2F80
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CAE11E2F82
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 21:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390089AbgEZT4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 15:56:39 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:56949 "EHLO
+        id S2389324AbgEZT4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 15:56:40 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:46351 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389442AbgEZT4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:56:38 -0400
+        with ESMTP id S2390085AbgEZT4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 15:56:40 -0400
 X-Originating-IP: 91.224.148.103
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 49858C0003;
-        Tue, 26 May 2020 19:56:36 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 77F99C0009;
+        Tue, 26 May 2020 19:56:37 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -26,9 +26,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         <devicetree@vger.kernel.org>,
         Boris Brezillon <boris.brezillon@collabora.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [RESEND v5 01/21] mtd: Fix typo in mtd_ooblayout_set_databytes() description
-Date:   Tue, 26 May 2020 21:56:13 +0200
-Message-Id: <20200526195633.11543-2-miquel.raynal@bootlin.com>
+Subject: [RESEND v5 02/21] mtd: rawnand: Avoid a typedef
+Date:   Tue, 26 May 2020 21:56:14 +0200
+Message-Id: <20200526195633.11543-3-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200526195633.11543-1-miquel.raynal@bootlin.com>
 References: <20200526195633.11543-1-miquel.raynal@bootlin.com>
@@ -40,28 +40,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix a probable copy/paste error: the function works like
-mtd_ooblayout_set_bytes(), not *_get_bytes().
+In new code, the use of typedef is discouraged. Turn this one in the
+raw NAND core into a regular enumeration.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 ---
- drivers/mtd/mtdcore.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mtd/nand/raw/nand_base.c               | 4 ++--
+ include/linux/mtd/rawnand.h                    | 6 +++---
+ include/linux/platform_data/mtd-davinci.h      | 2 +-
+ include/linux/platform_data/mtd-nand-s3c2410.h | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 50437b4ffe76..8c4dcfa49e35 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -1800,7 +1800,7 @@ EXPORT_SYMBOL_GPL(mtd_ooblayout_get_databytes);
-  * @start: first ECC byte to set
-  * @nbytes: number of ECC bytes to set
-  *
-- * Works like mtd_ooblayout_get_bytes(), except it acts on free bytes.
-+ * Works like mtd_ooblayout_set_bytes(), except it acts on free bytes.
-  *
-  * Returns zero on success, a negative error code otherwise.
+diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+index 384a9b2d1610..e2cdfbb45923 100644
+--- a/drivers/mtd/nand/raw/nand_base.c
++++ b/drivers/mtd/nand/raw/nand_base.c
+@@ -5104,8 +5104,8 @@ static int of_get_nand_ecc_mode(struct device_node *np)
+ 
+ 	/*
+ 	 * For backward compatibility we support few obsoleted values that don't
+-	 * have their mappings into nand_ecc_modes_t anymore (they were merged
+-	 * with other enums).
++	 * have their mappings into the nand_ecc_mode enum anymore (they were
++	 * merged with other enums).
+ 	 */
+ 	if (!strcasecmp(pm, "soft_bch"))
+ 		return NAND_ECC_SOFT;
+diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+index 2804c13e5662..0911e845cced 100644
+--- a/include/linux/mtd/rawnand.h
++++ b/include/linux/mtd/rawnand.h
+@@ -83,14 +83,14 @@ struct nand_chip;
+ /*
+  * Constants for ECC_MODES
   */
+-typedef enum {
++enum nand_ecc_mode {
+ 	NAND_ECC_NONE,
+ 	NAND_ECC_SOFT,
+ 	NAND_ECC_HW,
+ 	NAND_ECC_HW_SYNDROME,
+ 	NAND_ECC_HW_OOB_FIRST,
+ 	NAND_ECC_ON_DIE,
+-} nand_ecc_modes_t;
++};
+ 
+ enum nand_ecc_algo {
+ 	NAND_ECC_UNKNOWN,
+@@ -362,7 +362,7 @@ static const struct nand_ecc_caps __name = {			\
+  * @write_oob:	function to write chip OOB data
+  */
+ struct nand_ecc_ctrl {
+-	nand_ecc_modes_t mode;
++	enum nand_ecc_mode mode;
+ 	enum nand_ecc_algo algo;
+ 	int steps;
+ 	int size;
+diff --git a/include/linux/platform_data/mtd-davinci.h b/include/linux/platform_data/mtd-davinci.h
+index 08e639e047e5..03e92c71b3fa 100644
+--- a/include/linux/platform_data/mtd-davinci.h
++++ b/include/linux/platform_data/mtd-davinci.h
+@@ -68,7 +68,7 @@ struct davinci_nand_pdata {		/* platform_data */
+ 	 * Newer ones also support 4-bit ECC, but are awkward
+ 	 * using it with large page chips.
+ 	 */
+-	nand_ecc_modes_t	ecc_mode;
++	enum nand_ecc_mode	ecc_mode;
+ 	u8			ecc_bits;
+ 
+ 	/* e.g. NAND_BUSWIDTH_16 */
+diff --git a/include/linux/platform_data/mtd-nand-s3c2410.h b/include/linux/platform_data/mtd-nand-s3c2410.h
+index deb849bcf0ec..08675b16f9e1 100644
+--- a/include/linux/platform_data/mtd-nand-s3c2410.h
++++ b/include/linux/platform_data/mtd-nand-s3c2410.h
+@@ -49,7 +49,7 @@ struct s3c2410_platform_nand {
+ 
+ 	unsigned int	ignore_unset_ecc:1;
+ 
+-	nand_ecc_modes_t	ecc_mode;
++	enum nand_ecc_mode	ecc_mode;
+ 
+ 	int			nr_sets;
+ 	struct s3c2410_nand_set *sets;
 -- 
 2.20.1
 
