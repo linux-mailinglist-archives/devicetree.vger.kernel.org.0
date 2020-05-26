@@ -2,185 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B748E1E25B2
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 17:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF3E1E25F5
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 17:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729309AbgEZPln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 11:41:43 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:58606 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730135AbgEZPlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 11:41:39 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id C3E1E8030878;
-        Tue, 26 May 2020 15:41:34 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 499XuFg3cxQM; Tue, 26 May 2020 18:41:34 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 7/7] watchdog: dw_wdt: Add DebugFS files
-Date:   Tue, 26 May 2020 18:41:23 +0300
-Message-ID: <20200526154123.24402-8-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200526154123.24402-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200526154123.24402-1-Sergey.Semin@baikalelectronics.ru>
+        id S1729356AbgEZPuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 11:50:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41456 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726420AbgEZPuQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 May 2020 11:50:16 -0400
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2A6F220707
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 15:50:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590508215;
+        bh=n9OM2fFSf16C1I2b0d7pMlEO5gt8rUveka5ZBWsVLKg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2FhOafBucGNwl+pSFTBvtxIsVpQx+bpBff0YXT6n7Rma5X8IYNpOt4W+CU4mSBkxu
+         d5GbrmX6AxLQmawQNKLMXk5i/0SDlcuRQdetZ6LkCFfQMjL6HwWViVAyv9N1X/hoiV
+         aw9eXn+xu0fwItal3fevZR9MAfvkNh12Lz2LfpGk=
+Received: by mail-ot1-f41.google.com with SMTP id 63so16676418oto.8
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 08:50:15 -0700 (PDT)
+X-Gm-Message-State: AOAM531EI8SLcyPh8Vr2n77yMaE/SKau2Yd2wxVTT6JeL5euqodc4a2D
+        4n1VTdm2iXalRFpK+XfbnUYsso0KxWYtarBnbw==
+X-Google-Smtp-Source: ABdhPJwAp7On1Gynih3RH+9t/TRqpx2YKtctrng2hJWHE/pPchcJNoyQ8L1Q44zI4Uqfdk/rQ3mZnFPxBrfD02PzMms=
+X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr1361062ots.192.1590508214285;
+ Tue, 26 May 2020 08:50:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <20200513103016.130417-1-andre.przywara@arm.com>
+ <20200513103016.130417-2-andre.przywara@arm.com> <CAMuHMdXkHF3ioOVzDZQARiO2i1z8rVjdN_Q0VggaVD4Ln7J+Dw@mail.gmail.com>
+ <6e2cc3e9-b14f-2b50-0390-addcc82389e0@arm.com>
+In-Reply-To: <6e2cc3e9-b14f-2b50-0390-addcc82389e0@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 26 May 2020 09:49:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJpe_EMC4cqXVtxY9XVrVfqDNU3=-1_47wmirFLtA1Lcg@mail.gmail.com>
+Message-ID: <CAL_JsqJpe_EMC4cqXVtxY9XVrVfqDNU3=-1_47wmirFLtA1Lcg@mail.gmail.com>
+Subject: Re: [PATCH v3 01/20] dt-bindings: arm: gic: Allow combining
+ arm,gic-400 compatible strings
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the sake of the easier device-driver debug procedure, we added a
-DebugFS file with the controller registers state. It's available only if
-kernel is configured with DebugFS support.
+On Tue, May 19, 2020 at 3:20 AM Andr=C3=A9 Przywara <andre.przywara@arm.com=
+> wrote:
+>
+> On 19/05/2020 08:39, Geert Uytterhoeven wrote:
+>
+> Hi Geert,
+>
+>
+> > On Wed, May 13, 2020 at 12:31 PM Andre Przywara <andre.przywara@arm.com=
+> wrote:
+> >> The arm,gic-400 compatible is probably the best matching string for th=
+e
+> >> GIC in most modern SoCs, but was only introduced later into the kernel=
+.
+> >> For historic reasons and to keep compatibility, some SoC DTs were thus
+> >> using a combination of this name and one of the older strings, which
+> >> currently the binding denies.
+> >>
+> >> Add a stanza to the DT binding to allow "arm,gic-400", followed by
+> >> either "arm,cortex-a15-gic" or "arm,cortex-a7-gic". This fixes binding
+> >> compliance for quite some SoC .dtsi files in the kernel tree.
+> >>
+> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >
+> > Thanks for your patch, I was just looking into this issue ;-)
+> >
+> >> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.y=
+aml
+> >> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.y=
+aml
+> >> @@ -39,6 +39,12 @@ properties:
+> >>                - qcom,msm-8660-qgic
+> >>                - qcom,msm-qgic2
+> >>
+> >> +      - items:
+> >> +          - const: arm,gic-400
+> >> +          - enum:
+> >> +             - arm,cortex-a15-gic
+> >> +             - arm,cortex-a7-gic
+> >> +
+> >>        - items:
+> >>            - const: arm,arm1176jzf-devchip-gic
+> >>            - const: arm,arm11mp-gic
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/arch/arm/boot/dts/r9a06g032.dtsi#n177
+> > has them in the other order.
+> >
+> > What do you think is the preferred solution: reverting the order, or dr=
+opping
+> > one or the other?
+>
+> Reverting the order would be the right thing. Theoretically this might
+> change what the drivers match against, but there should be no difference
+> between those strings anyway. And certainly Linux does not care which of
+> the many strings it sees.
+>
+> The proper order is not really obvious here, but the cortex-a{15,7}-gic
+> names serve as the missing "arm,gic-v2" generic fallback string here, I
+> think just for historical reasons.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: devicetree@vger.kernel.org
+Really, they probably should have been mutually exclusive given an
+implementation has one or the other. Since we have both, the order in
+the schema is correct given gic-400 is a superset (multi-cluster) and
+the compatible came later in time.
 
----
-
-Changelog v2:
-- Rearrange SoBs.
-- Discard timeout/pretimeout/ping/enable DebugFS nodes. Registers state
-  dump node is only left.
----
- drivers/watchdog/dw_wdt.c | 68 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
-
-diff --git a/drivers/watchdog/dw_wdt.c b/drivers/watchdog/dw_wdt.c
-index 3cd7c485cd70..012681baaa6d 100644
---- a/drivers/watchdog/dw_wdt.c
-+++ b/drivers/watchdog/dw_wdt.c
-@@ -28,6 +28,7 @@
- #include <linux/platform_device.h>
- #include <linux/reset.h>
- #include <linux/watchdog.h>
-+#include <linux/debugfs.h>
- 
- #define WDOG_CONTROL_REG_OFFSET		    0x00
- #define WDOG_CONTROL_REG_WDT_EN_MASK	    0x01
-@@ -39,8 +40,14 @@
- #define WDOG_COUNTER_RESTART_KICK_VALUE	    0x76
- #define WDOG_INTERRUPT_STATUS_REG_OFFSET    0x10
- #define WDOG_INTERRUPT_CLEAR_REG_OFFSET     0x14
-+#define WDOG_COMP_PARAMS_5_REG_OFFSET       0xe4
-+#define WDOG_COMP_PARAMS_4_REG_OFFSET       0xe8
-+#define WDOG_COMP_PARAMS_3_REG_OFFSET       0xec
-+#define WDOG_COMP_PARAMS_2_REG_OFFSET       0xf0
- #define WDOG_COMP_PARAMS_1_REG_OFFSET       0xf4
- #define WDOG_COMP_PARAMS_1_USE_FIX_TOP      BIT(6)
-+#define WDOG_COMP_VERSION_REG_OFFSET        0xf8
-+#define WDOG_COMP_TYPE_REG_OFFSET           0xfc
- 
- /* There are sixteen TOPs (timeout periods) that can be set in the watchdog. */
- #define DW_WDT_NUM_TOPS		16
-@@ -85,6 +92,10 @@ struct dw_wdt {
- 	/* Save/restore */
- 	u32			control;
- 	u32			timeout;
-+
-+#ifdef CONFIG_DEBUG_FS
-+	struct dentry		*dbgfs_dir;
-+#endif
- };
- 
- #define to_dw_wdt(wdd)	container_of(wdd, struct dw_wdt, wdd)
-@@ -484,6 +495,59 @@ static int dw_wdt_init_timeouts(struct dw_wdt *dw_wdt, struct device *dev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_DEBUG_FS
-+
-+#define DW_WDT_DBGFS_REG(_name, _off) \
-+{				      \
-+	.name = _name,		      \
-+	.offset = _off		      \
-+}
-+
-+static const struct debugfs_reg32 dw_wdt_dbgfs_regs[] = {
-+	DW_WDT_DBGFS_REG("cr", WDOG_CONTROL_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("torr", WDOG_TIMEOUT_RANGE_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("ccvr", WDOG_CURRENT_COUNT_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("crr", WDOG_COUNTER_RESTART_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("stat", WDOG_INTERRUPT_STATUS_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param5", WDOG_COMP_PARAMS_5_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param4", WDOG_COMP_PARAMS_4_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param3", WDOG_COMP_PARAMS_3_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param2", WDOG_COMP_PARAMS_2_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("param1", WDOG_COMP_PARAMS_1_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("version", WDOG_COMP_VERSION_REG_OFFSET),
-+	DW_WDT_DBGFS_REG("type", WDOG_COMP_TYPE_REG_OFFSET)
-+};
-+
-+static void dw_wdt_dbgfs_init(struct dw_wdt *dw_wdt)
-+{
-+	struct device *dev = dw_wdt->wdd.parent;
-+	struct debugfs_regset32 *regset;
-+
-+	regset = devm_kzalloc(dev, sizeof(*regset), GFP_KERNEL);
-+	if (!regset)
-+		return;
-+
-+	regset->regs = dw_wdt_dbgfs_regs;
-+	regset->nregs = ARRAY_SIZE(dw_wdt_dbgfs_regs);
-+	regset->base = dw_wdt->regs;
-+
-+	dw_wdt->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
-+
-+	debugfs_create_regset32("registers", 0444, dw_wdt->dbgfs_dir, regset);
-+}
-+
-+static void dw_wdt_dbgfs_clear(struct dw_wdt *dw_wdt)
-+{
-+	debugfs_remove_recursive(dw_wdt->dbgfs_dir);
-+}
-+
-+#else /* !CONFIG_DEBUG_FS */
-+
-+static void dw_wdt_dbgfs_init(struct dw_wdt *dw_wdt) {}
-+static void dw_wdt_dbgfs_clear(struct dw_wdt *dw_wdt) {}
-+
-+#endif /* !CONFIG_DEBUG_FS */
-+
- static int dw_wdt_drv_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -607,6 +671,8 @@ static int dw_wdt_drv_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto out_disable_pclk;
- 
-+	dw_wdt_dbgfs_init(dw_wdt);
-+
- 	return 0;
- 
- out_disable_pclk:
-@@ -621,6 +687,8 @@ static int dw_wdt_drv_remove(struct platform_device *pdev)
- {
- 	struct dw_wdt *dw_wdt = platform_get_drvdata(pdev);
- 
-+	dw_wdt_dbgfs_clear(dw_wdt);
-+
- 	watchdog_unregister_device(&dw_wdt->wdd);
- 	reset_control_assert(dw_wdt->rst);
- 	clk_disable_unprepare(dw_wdt->pclk);
--- 
-2.26.2
-
+Rob
