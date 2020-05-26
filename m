@@ -2,98 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C241E1A92
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 07:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D4F1E1A9A
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2020 07:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbgEZFGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 01:06:18 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1452 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726181AbgEZFGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 01:06:18 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ecca3770000>; Mon, 25 May 2020 22:04:55 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 25 May 2020 22:06:17 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 25 May 2020 22:06:17 -0700
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 May
- 2020 05:06:17 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 26 May 2020 05:06:17 +0000
-Received: from sandipan-pc.nvidia.com (Not Verified[10.24.42.163]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5ecca3c50001>; Mon, 25 May 2020 22:06:16 -0700
-From:   Sandipan Patra <spatra@nvidia.com>
-To:     <treding@nvidia.com>, <jonathanh@nvidia.com>,
-        <u.kleine-koenig@pengutronix.de>, <kamil@wypas.org>,
-        <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>
-CC:     <bbasu@nvidia.com>, <bbiswas@nvidia.com>,
-        <linux-pwm@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sandipan Patra <spatra@nvidia.com>
-Subject: [PATCH 2/2] arm64: tegra: Add pwm-fan profile settings
-Date:   Tue, 26 May 2020 10:36:05 +0530
-Message-ID: <1590469565-14953-2-git-send-email-spatra@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590469565-14953-1-git-send-email-spatra@nvidia.com>
-References: <1590469565-14953-1-git-send-email-spatra@nvidia.com>
-X-NVConfidentiality: public
+        id S1725773AbgEZFN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 01:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725771AbgEZFN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 01:13:58 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700E6C03E96B
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 22:13:58 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id b12so8174503plz.13
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2020 22:13:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=4VaJbqmoVs3kDuOV3hXkyeC/R0SlSKpA5bywa/qymjU=;
+        b=Pe7iiJlfYaBthFYuPgYlsz4js7ZWiC+r3tQx/ZOWc52ffKkHYtL1RmTwQe4u0aRZmO
+         5w9qjfCF79uHcDBBk/J5R4iOKY5335vnRwjQGdkznOpJIrGKAfMvBPscq/JRLaCZg+wI
+         FZY+wlQPugQ3vm0GMW/omwGEDc5Vk1lRzDDeEjW3AUyGHoFOomfwN9MzPKDWEXUMSdh5
+         zJ0MbD96TNPVOKUcufQqIxX3m85Ml8ED7rYHI4/xmmiTzipoPQlDTOQLE0k0JgR/pubK
+         49dLZjMCMKKR69p6FzrNl1tJ6zHmOxcpQXmplbGxVf+Y0Z8FUT95nVGwCCWDJ9Y+5X0V
+         71gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=4VaJbqmoVs3kDuOV3hXkyeC/R0SlSKpA5bywa/qymjU=;
+        b=dNUDijUCb0DgDjGc6kcHaM8u2b8ZKtkxjt7nmlqtl2RSN/iUn4wA7Sq2Ho3R+UF2AU
+         U1t0/z9Wsxrbl23rtlFFp5xkyRf+goo3A3XHdvY7IFi4l3bqdWhXXDHiAyvjtpm3WIPl
+         BVW+wrQWKBf/5K7bfCOAV7PKEJslNDHGNliAhEBS77Pbhvwg0GdMA4aoITpviY27GdjX
+         QhrSlV6Fqas1e075fiMIdSlyMLpeSfoa0NNb+/O2LyemLl4dHWv1IrhSnE/CbgfrqJ9n
+         c7XDBJX8Pgg/xEUCGNmor54kqDANulCtVihOz/3eJCEhpocBxxtxWBu8MmXS8k6OqVG+
+         DJzg==
+X-Gm-Message-State: AOAM530tS9ES2Hb6oDkVSqRvzw6icCMmHR0fodNTB2GSz+faAJtjeJSQ
+        3VivjHsJ+qqw13g3jFBOYL0j
+X-Google-Smtp-Source: ABdhPJyyMIty4jsOfOOrU0Ey9Jkv8FD2LtJiWhFTz7CiCSeSOhSjti+s/rvDzqQMkSYvVQK/V/usvQ==
+X-Received: by 2002:a17:90b:f0a:: with SMTP id br10mr23781612pjb.145.1590470037786;
+        Mon, 25 May 2020 22:13:57 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:206:d4db:a08d:52b0:cfbb:a01f])
+        by smtp.gmail.com with ESMTPSA id 84sm14041092pfv.157.2020.05.25.22.13.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 25 May 2020 22:13:57 -0700 (PDT)
+Date:   Tue, 26 May 2020 10:43:50 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     jassisinghbrar@gmail.com
+Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v3 0/3] Add Qualcomm IPCC driver support
+Message-ID: <20200526051350.GA8131@Mani-XPS-13-9360>
+References: <20200520084854.19729-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1590469495; bh=XQiGWOGFzg3l+QIfS45QIJAE9J403LC3AAuTqpFbPj4=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=o4Vu2bQNYOmORHo3E4N3VM2YnDjSdCgPiPw+JT6WKKvUWogGR9uX/a4JK4FFCginm
-         6CWpkHmRz4bGTKPJNCOZrwuGReH9xMH0lXc0U+Mn2G5rZ7OB3Sx2N3ZCNb9BxhFGvR
-         c5pCdGGcvjVG6YSyWjtNtCz1LC02QTOSrq14lBSfU3vAv0eSOkJb6hh4zLYXompGPO
-         WulcGOZdMuNW3TO0iELI3PdMgAYaCeu24gSqShSewxs445f5ONx7NWrgioGwMdV+8H
-         vlsDE6RVrgdofNftW6VDCP0WXXXm2gHRUdxVFag8QNf2O+2mabB+H6f7zXfQGO+QIH
-         3JJ/0i9Zog9AQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200520084854.19729-1-manivannan.sadhasivam@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for profiles in device tree to allow
-different fan settings for trip point temp/hyst/pwm.
+Hi Jassi,
 
-Signed-off-by: Sandipan Patra <spatra@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+On Wed, May 20, 2020 at 02:18:51PM +0530, Manivannan Sadhasivam wrote:
+> Hello,
+> 
+> This series adds mailbox driver support for Qualcomm Inter Processor
+> Communications Controller (IPCC) block found in MSM chipsets. This block
+> is used to route interrupts between modems, DSPs and APSS (Application
+> Processor Subsystem).
+> 
+> The driver is modeled as a mailbox+irqchip driver. The irqchip part helps
+> in receiving the interrupts from the IPCC clients such as modems, DSPs,
+> PCI-E etc... and forwards them to respective entities in APSS.
+>     
+> On the other hand, the mailbox part is used to send interrupts to the IPCC
+> clients from the entities of APSS.
+> 
+> This series is tested on SM8250-MTP board.
+> 
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index e15d1ea..ff2b980 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -219,10 +219,19 @@
- 
- 	fan: fan {
- 		compatible = "pwm-fan";
--		pwms = <&pwm4 0 45334>;
--
--		cooling-levels = <0 64 128 255>;
- 		#cooling-cells = <2>;
-+		pwms = <&pwm4 0 45334>;
-+		profiles {
-+			default = "quiet";
-+			quiet {
-+				state_cap = <4>;
-+				cooling-levels = <0 77 120 160 255 255 255 255 255 255>;
-+			};
-+			cool {
-+				state_cap = <4>;
-+				cooling-levels = <0 77 120 160 255 255 255 255 255 255>;
-+			};
-+		};
- 	};
- 
- 	gpio-keys {
--- 
-2.7.4
+Any update on this series?
 
+Thanks,
+Mani
+
+> Thanks,
+> Mani
+> 
+> Changes in v3:
+> 
+> * Added Bjorn's review tags
+> * Few changes to DT binding as suggested by Rob
+> 
+> Changes in v2:
+> 
+> * Moved from soc/ to mailbox/
+> * Switched to static mbox channels
+> * Some misc cleanups
+> 
+> Manivannan Sadhasivam (3):
+>   dt-bindings: mailbox: Add devicetree binding for Qcom IPCC
+>   mailbox: Add support for Qualcomm IPCC
+>   MAINTAINERS: Add entry for Qualcomm IPCC driver
+> 
+>  .../bindings/mailbox/qcom-ipcc.yaml           |  80 +++++
+>  MAINTAINERS                                   |   8 +
+>  drivers/mailbox/Kconfig                       |  10 +
+>  drivers/mailbox/Makefile                      |   2 +
+>  drivers/mailbox/qcom-ipcc.c                   | 286 ++++++++++++++++++
+>  include/dt-bindings/mailbox/qcom-ipcc.h       |  33 ++
+>  6 files changed, 419 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+>  create mode 100644 drivers/mailbox/qcom-ipcc.c
+>  create mode 100644 include/dt-bindings/mailbox/qcom-ipcc.h
+> 
+> -- 
+> 2.26.GIT
+> 
