@@ -2,100 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D85A1E320C
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8151E3257
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 00:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389799AbgEZWIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 May 2020 18:08:13 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35962 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389342AbgEZWIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:08:13 -0400
-Received: by mail-io1-f68.google.com with SMTP id y18so3370683iow.3;
-        Tue, 26 May 2020 15:08:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mXe3eMhOfw8Yi0mzveU2UUdf9WbJiPX68762lf2f3m8=;
-        b=lnGpxnl4Ptsii9Oal3CfKvRrQ6E70G0Es5XwkC6aYwMTShppiSQ48V2buS2xEMJp6n
-         n4foNO7lb0Uc7qLZ0usrc3jicmeTmeeP4PTChZbNlACtK+7zrJiwMYFYL0JaVhRd0yLe
-         R3iA1MagoO3zpwnt2OJrlbNjN0e0Q+9HxnTAN0VCylBabiegqtd7QLTd+zxeAkKByrjE
-         wYmryKC5xRhvPvJBes4T5RW2v2bK9R0hsvC+YNiJR6N88MqISKcW/bWDggbIqV+KXb7Q
-         skAnadg8HoE/Z/iRTVZM+jw1Jqp4vo+7yY5czD10RjY+T9ZXeohDV9kbqS8Bwc0fjGlm
-         52Dg==
-X-Gm-Message-State: AOAM532IsBhhZ2JVWIK7JNQXwfKh0tOtgAKH9tZxtA/80Aacwiz3OXgt
-        zSqSIkDytsg8jsDa/D51nw==
-X-Google-Smtp-Source: ABdhPJxua5/2ASeh+JDi3H6ENvlO5duKzfxD0bd/FxftWvnUVDU7fZZVP6RJWTWfF7tnoEbMyFvyDA==
-X-Received: by 2002:a02:b782:: with SMTP id f2mr3009396jam.91.1590530891856;
-        Tue, 26 May 2020 15:08:11 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id o70sm677282ild.3.2020.05.26.15.08.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 15:08:10 -0700 (PDT)
-Received: (nullmailer pid 467130 invoked by uid 1000);
-        Tue, 26 May 2020 22:08:08 -0000
-Date:   Tue, 26 May 2020 16:08:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     daniel@ffwll.ch, linux-arm-msm@vger.kernel.org, jonas@kwiboo.se,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, a.hajda@samsung.com,
-        narmstrong@baylibre.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-gpio@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        robdclark@chromium.org, jeffrey.l.hugo@gmail.com,
-        jernej.skrabec@siol.net, airlied@linux.ie, spanda@codeaurora.org,
-        Laurent.pinchart@ideasonboard.com, swboyd@chromium.org,
-        bgolaszewski@baylibre.com, bjorn.andersson@linaro.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: drm/bridge: ti-sn65dsi86: Convert to
- yaml
-Message-ID: <20200526220808.GA467074@bogus>
-References: <20200513215902.261547-1-dianders@chromium.org>
- <20200513145807.v6.2.Ifcdc4ecb12742a27862744ee1e8753cb95a38a7f@changeid>
+        id S2391542AbgEZWVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 May 2020 18:21:21 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:60074 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389613AbgEZWVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 May 2020 18:21:20 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 167C2803086E;
+        Tue, 26 May 2020 22:21:17 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id kg_cMxTvKrmA; Wed, 27 May 2020 01:21:15 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/4] clk: Add Baikal-T1 SoC Clock Control Unit support
+Date:   Wed, 27 May 2020 01:20:52 +0300
+Message-ID: <20200526222056.18072-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200513145807.v6.2.Ifcdc4ecb12742a27862744ee1e8753cb95a38a7f@changeid>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 May 2020 14:59:01 -0700, Douglas Anderson wrote:
-> This moves the bindings over, based a lot on toshiba,tc358768.yaml.
-> Unless there's someone known to be better, I've set the maintainer in
-> the yaml as the first person to submit bindings.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> I removed Stephen's review tag on v5 since I squashed in a bunch of
-> other stuff.
-> 
-> Changes in v6: None
-> Changes in v5:
-> - Squash https://lore.kernel.org/r/20200506140208.v2.2.I0a2bca02b09c1fcb6b09479b489736d600b3e57f@changeid/
-> 
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2:
-> - specification => specifier.
-> - power up => power.
-> - Added back missing suspend-gpios.
-> - data-lanes and lane-polarities are are the right place now.
-> - endpoints don't need to be patternProperties.
-> - Specified more details for data-lanes and lane-polarities.
-> - Added old example back in, fixing bugs in it.
-> - Example i2c bus is just called "i2c", not "i2c1" now.
-> 
->  .../bindings/display/bridge/ti,sn65dsi86.txt  |  87 ------
->  .../bindings/display/bridge/ti,sn65dsi86.yaml | 285 ++++++++++++++++++
->  2 files changed, 285 insertions(+), 87 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.txt
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> 
+Stephen, Michael, the merge window is upon us, please review/merge in/whatever
+this patchset.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Clocks Control Unit is the core of Baikal-T1 SoC responsible for the chip
+subsystems clocking and resetting. The CCU is connected with an external
+fixed rate oscillator, which signal is transformed into clocks of various
+frequencies and then propagated to either individual IP-blocks or to groups
+of blocks (clock domains). The transformation is done by means of PLLs and
+gateable/non-gateable, fixed/variable dividers embedded into the CCU. There
+are five PLLs to create a clock for the MIPS P5600 cores, the embedded DDR
+controller, SATA, Ethernet and PCIe domains. The last three PLLs CLKOUT are
+then passed over CCU dividers to create signals required for the target clock
+domains: individual AXI and APB bus clocks, SoC devices reference clocks.
+The CCU divider registers may also provide a way to reset the target devices
+state.
+
+So this patchset introduces the Baikal-T1 clock and reset drivers of CCU
+PLLs, AXI-bus clock dividers and system devices clock dividers.
+
+This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
+
+Changelog v2:
+- Rearrange the SoBs.
+- Discard comments in the binding files headers.
+- Add dual GPL/BSD license to the bindings.
+- Add spaces around the ASCII-graphics in the bindings description.
+- Discard redundant dt objects check against "/schemas/clock/clock.yaml#"
+  schema.
+- Discard redundant descriptions of the "#clock-cells" and "#reset-cells"
+  properties in dt bindings schema.
+- Discard "reg" property since the CCU dividers DT nodes are supposed be
+  children of the syscon-compatible system controller node.
+- Remove "clock-output-names" property support.
+- Replace "additionalProperties: false" with "unevaluatedProperties: false"
+  in the bindings.
+- Lowercase the nodes name in the binding examples.
+- Use "clock-controller" node name suffix in the binding examples.
+- Remove unnecessary comments in the clocks and resets dt-binding header
+  files.
+- Don't enable the CCU clock drivers by default for COMPILE_TEST config.
+- Make sure the CCU drivers depend on OF kernel config only when built for
+  Baikal-T1-based platform.
+- Fix spelling in the CCU PLL and Dividers kernel configs description.
+- Replace lock delay and frequency calculation macros with inline functions.
+- Use 64-bits arithmetics in the CCU PLL frequency calculation function.
+- Use FIELD_{GET,PREP}() macro instead of handwritten field setters and
+  getters.
+- Discard CLK_IGNORE_UNUSED flag setting. It's redundant since CLK_IS_CRITICAL
+  is enough for cases when it's appropriate.
+- Comment out the CLK_IS_CRITICAL flag settings.
+- Discard !pll and !div tests from ccu_pll_hw_unregister() and ccu_div_get_clk_id()
+  methods respectively.
+- Discard alive probe messages.
+- Convert the drivers to using syscon regmap instead of direct IO methods,
+  since now the PLLs DT node is supposed to be a sub-node of the Baikal-T1
+  System Controller node.
+- Add DebugFS nodes in RO-mode by default.
+
+Link: https://lore.kernel.org/linux-clk/20200506222300.30895-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v3:
+- Get the reg property back to the DT bindings even though the driver is
+  using the parental syscon regmap.
+- The DT schema will live separately from the system controller, but the
+  corresponding sub-node of the later DT schema will $ref this one.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+Cc: Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (4):
+  dt-bindings: clk: Add Baikal-T1 CCU PLLs binding
+  dt-bindings: clk: Add Baikal-T1 CCU Dividers binding
+  clk: Add Baikal-T1 CCU PLLs driver
+  clk: Add Baikal-T1 CCU Dividers driver
+
+ .../bindings/clock/baikal,bt1-ccu-div.yaml    | 188 ++++++
+ .../bindings/clock/baikal,bt1-ccu-pll.yaml    | 131 ++++
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/baikal-t1/Kconfig                 |  42 ++
+ drivers/clk/baikal-t1/Makefile                |   3 +
+ drivers/clk/baikal-t1/ccu-div.c               | 602 ++++++++++++++++++
+ drivers/clk/baikal-t1/ccu-div.h               | 110 ++++
+ drivers/clk/baikal-t1/ccu-pll.c               | 558 ++++++++++++++++
+ drivers/clk/baikal-t1/ccu-pll.h               |  64 ++
+ drivers/clk/baikal-t1/clk-ccu-div.c           | 487 ++++++++++++++
+ drivers/clk/baikal-t1/clk-ccu-pll.c           | 204 ++++++
+ include/dt-bindings/clock/bt1-ccu.h           |  48 ++
+ include/dt-bindings/reset/bt1-ccu.h           |  25 +
+ 14 files changed, 2464 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
+ create mode 100644 drivers/clk/baikal-t1/Kconfig
+ create mode 100644 drivers/clk/baikal-t1/Makefile
+ create mode 100644 drivers/clk/baikal-t1/ccu-div.c
+ create mode 100644 drivers/clk/baikal-t1/ccu-div.h
+ create mode 100644 drivers/clk/baikal-t1/ccu-pll.c
+ create mode 100644 drivers/clk/baikal-t1/ccu-pll.h
+ create mode 100644 drivers/clk/baikal-t1/clk-ccu-div.c
+ create mode 100644 drivers/clk/baikal-t1/clk-ccu-pll.c
+ create mode 100644 include/dt-bindings/clock/bt1-ccu.h
+ create mode 100644 include/dt-bindings/reset/bt1-ccu.h
+
+-- 
+2.26.2
+
