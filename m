@@ -2,89 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F41C1E4829
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 17:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 799591E4884
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 17:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728427AbgE0Psz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 11:48:55 -0400
-Received: from mga11.intel.com ([192.55.52.93]:61105 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727772AbgE0Psz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 11:48:55 -0400
-IronPort-SDR: XjWgDcJbBdd84zEbqVX5GtDKCi+419nPwSJi0kjlDMiWkR8XEtX53QCZyJH2HKm3eT3WEZmKzl
- TnGAyzZUagnw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2020 08:48:54 -0700
-IronPort-SDR: yMq0JANO0NTOgaujZjyd6x0sLdGSGLW5UxxZzucb/ttmr+YPkiZ5py6rIygbmfEyXZvihvz5KR
- j2aIU/dAa9uQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,441,1583222400"; 
-   d="scan'208";a="414248082"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga004.jf.intel.com with ESMTP; 27 May 2020 08:48:51 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jdyIY-009FpD-KG; Wed, 27 May 2020 18:48:54 +0300
-Date:   Wed, 27 May 2020 18:48:54 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 07/11] i2c: designware: Discard Cherry Trail model flag
-Message-ID: <20200527154854.GH1634618@smile.fi.intel.com>
-References: <20200527120111.5781-1-Sergey.Semin@baikalelectronics.ru>
- <20200527120111.5781-8-Sergey.Semin@baikalelectronics.ru>
- <20200527134339.GY1634618@smile.fi.intel.com>
- <20200527142902.2xpteguuotsl3z7y@mobilestation>
+        id S2390382AbgE0PwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 11:52:04 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:48267 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2390371AbgE0PwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 11:52:02 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B3F4058212D;
+        Wed, 27 May 2020 11:52:00 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 27 May 2020 11:52:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm2; bh=FzciRgntrUVjR
+        Spnb+QBb61aDq9QNcaXOAvosXqRwQ4=; b=mIYlLEd7sy7VJV8db/xoCvI2p2bBk
+        REsVDEL6TC6u4r5cOL2BiZj6Or6XkUTvtSJJRTZhEOB3Pyy5N/Jok52OMnMzQjvB
+        AyKoyHAf4lDkVHcoCABo6ydiQz0mAWfDdDaLX8hzebwNwcb9lwhKAQoWO33HtKdC
+        0WNh3lsYVBLJjLREIxIfViBGkPcaWNhf7kGz9WyLUgs62lPicrlv2IkoIoJa5jxZ
+        abrSB9xiSt9UPcfXXe5lgXcQbO5ZyLye+xkvSQ3blERXcZS7JDgkJmmtoArDyoTZ
+        2e2g2YvNjnU7Mb53CMCDWunIfav/6o0D/LWxvocGtFp9Z+JKm21Lm+03Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; bh=FzciRgntrUVjRSpnb+QBb61aDq9QNcaXOAvosXqRwQ4=; b=SAUvuF/y
+        Xg5wXZkImh75B2hnJVPCavaBK77fAsyyCUHHqg7Jdejdp3opCE0meiMYyi9MrekN
+        KQc/6+Ohxe/vTTtGFE1JIj4a99kV2wcJzAcQ6VZF9PLJDHD88OgXJA95b9qOBKwi
+        0vyWWk5h1uUrj8jk608tHMufCgMSHYUpY1sReINNJ1cvkyB3qREjNWkuS7D+bRlc
+        fz+fH4q4zj/7r/B+xjxFW08M6ozdfcw44QI6OOSoihfrzjVwG71EihcwJddLCf3e
+        EaogtyHLF3jjKEte5u5NgDtJjtfae4hjDQbG2sASWI9OP8exxWr0PAmAjmeOtajZ
+        oHEBhMP2/XPN+A==
+X-ME-Sender: <xms:oIzOXqFeLtEscS6gJF6gHcKMFN83nJxLinOakM3-E7lecgRXchX63Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedruddvgedgkeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    govehorghsthgrlhdqhfeguddvqddtvdculdduhedtmdenucfjughrpefhvffufffkofgj
+    fhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrg
+    igihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeevjeeijedtvefg
+    fffgjeeugffguedtleetkeegteeufedtuddttdfgfffhgfeuffenucffohhmrghinhepug
+    gvvhhitggvthhrvggvrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhs
+    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvg
+    hrnhhordhtvggthh
+X-ME-Proxy: <xmx:oIzOXrUMJdxC33FOHzrJMVdIyI59E7ByDngkJNp-49FQ_I150FZdCQ>
+    <xmx:oIzOXkJfbalghmFVkNX4xkysfpjDogEpi943EWpPMJyjx7nICzZJQQ>
+    <xmx:oIzOXkFH4rg679U8tgYVXy7rrlfDsPgFN8JJCsncjCjLb5CgrZ0__Q>
+    <xmx:oIzOXkS6i3yABnpeIlsokZO17TSSI6mMMC37DU0Bnk8Jz-k7_5MixQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 512BE3280060;
+        Wed, 27 May 2020 11:52:00 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 104/105] dt-bindings: display: vc4: hdmi: Add BCM2711 HDMI controllers bindings
+Date:   Wed, 27 May 2020 17:49:14 +0200
+Message-Id: <e85e24a494a3ff41177c94673ced0f4280b6a0ee.1590594512.git-series.maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.aaf2100bd7da4609f8bcb8216247d4b4e4379639.1590594512.git-series.maxime@cerno.tech>
+References: <cover.aaf2100bd7da4609f8bcb8216247d4b4e4379639.1590594512.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200527142902.2xpteguuotsl3z7y@mobilestation>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 27, 2020 at 05:29:02PM +0300, Serge Semin wrote:
-> On Wed, May 27, 2020 at 04:43:39PM +0300, Andy Shevchenko wrote:
-> > On Wed, May 27, 2020 at 03:01:07PM +0300, Serge Semin wrote:
-> > > A PM workaround activated by the flag MODEL_CHERRYTRAIL has been removed
-> > > since commit 9cbeeca05049 ("i2c: designware: Remove Cherry Trail PMIC I2C
-> > > bus pm_disabled workaround"), but the flag most likely by mistake has been
-> > > left in the Dw I2C drivers. Let's remove it.
-> > 
-> > ...
-> > 
-> > > -#define MODEL_MSCC_OCELOT	0x00000200
-> > > +#define MODEL_MSCC_OCELOT	0x00000100
-> > 
-> > But why?
-> > 
-> > Does 0x200 work or not? I didn't see this in commit message.
-> 
-> I removed the MODEL_CHERRYTRAIL flag and redefined the only left
-> MODEL_MSCC_OCELOT flag to set the very first bit allocated for the model
-> flags. Isn't that obvious?
+The HDMI controllers found in the BCM2711 SoC need some adjustments to the
+bindings, especially since the registers have been shuffled around in more
+register ranges.
 
-Yes, but how it's related to the MSCC_OCELOT?
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml | 109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 109 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
 
-Can't you simple put your define later to that number if absence of 0x100
-provokes an exception when reading this code.
-
-Again, unneeded churn.
-
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+new file mode 100644
+index 000000000000..6091fe3d315b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/brcm,bcm2711-hdmi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM2711 HDMI Controller Device Tree Bindings
++
++maintainers:
++  - Eric Anholt <eric@anholt.net>
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm2711-hdmi0
++      - brcm,bcm2711-hdmi1
++
++  reg:
++    items:
++      - description: HDMI controller register range
++      - description: DVP register range
++      - description: HDMI PHY register range
++      - description: Rate Manager register range
++      - description: Packet RAM register range
++      - description: Metadata RAM register range
++      - description: CSC register range
++      - description: CEC register range
++      - description: HD register range
++
++  reg-names:
++    items:
++      - const: hdmi
++      - const: dvp
++      - const: phy
++      - const: rm
++      - const: packet
++      - const: metadata
++      - const: csc
++      - const: cec
++      - const: hd
++
++  clocks:
++    description: The HDMI state machine clock
++
++  clock-names:
++    const: hdmi
++
++  ddc:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/phandle
++    description: >
++      Phandle of the I2C controller used for DDC EDID probing
++
++  hpd-gpios:
++    description: >
++      The GPIO pin for the HDMI hotplug detect (if it doesn't appear
++      as an interrupt/status bit in the HDMI controller itself)
++
++  dmas:
++    maxItems: 1
++    description: >
++      Should contain one entry pointing to the DMA channel used to
++      transfer audio data.
++
++  dma-names:
++    const: audio-rx
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - resets
++  - ddc
++
++additionalProperties: false
++
++examples:
++  - |
++    hdmi0: hdmi@7ef00700 {
++        compatible = "brcm,bcm2711-hdmi0";
++        reg = <0x7ef00700 0x300>,
++              <0x7ef00300 0x200>,
++              <0x7ef00f00 0x80>,
++              <0x7ef00f80 0x80>,
++              <0x7ef01b00 0x200>,
++              <0x7ef01f00 0x400>,
++              <0x7ef00200 0x80>,
++              <0x7ef04300 0x100>,
++              <0x7ef20000 0x100>;
++        reg-names = "hdmi",
++                    "dvp",
++                    "phy",
++                    "rm",
++                    "packet",
++                    "metadata",
++                    "csc",
++                    "cec",
++                    "hd";
++        clocks = <&firmware_clocks 13>;
++        clock-names = "hdmi";
++        resets = <&dvp 0>;
++        ddc = <&ddc0>;
++    };
++
++...
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+git-series 0.9.1
