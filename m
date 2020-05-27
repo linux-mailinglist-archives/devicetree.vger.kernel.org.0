@@ -2,67 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 892D81E4276
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 14:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F6D1E42FB
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 15:12:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730095AbgE0MiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 08:38:24 -0400
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:53972 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730085AbgE0MiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 08:38:23 -0400
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 27 May 2020 05:38:22 -0700
-Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP; 27 May 2020 05:38:18 -0700
-Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
-        id 1A58721806; Wed, 27 May 2020 18:08:17 +0530 (IST)
-From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
-Subject: [PATCH 4/4] arm64: dts: ipq6018: Add support for apcs clk
-Date:   Wed, 27 May 2020 18:08:12 +0530
-Message-Id: <1590583092-24290-5-git-send-email-sivaprak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590583092-24290-1-git-send-email-sivaprak@codeaurora.org>
-References: <1590583092-24290-1-git-send-email-sivaprak@codeaurora.org>
+        id S1730242AbgE0NMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 09:12:16 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:51940 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730223AbgE0NMQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 09:12:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=EtYek3xh0NCAHtiuyFEgblF7PX4bt3OdqY2DFTWaqaw=; b=mOe4zXFPx8EdQqXNyqy+g+J1+2
+        HzV/gm6ROLE4vJxTi3s/U8LkSpVRQjjCJZ5b1Oizrqn/syhiECKi+ejysDz+pD/dcmjnxyO6aII1g
+        xJ39C1oNaiF2iXShOWsia4784lr08/fW1bNYSgKN/PWKhD9Aww8D7UKkbIKof4chBKwo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jdvqm-003PCu-Dt; Wed, 27 May 2020 15:12:04 +0200
+Date:   Wed, 27 May 2020 15:12:04 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     f.fainelli@gmail.com, hkallweit1@gmail.com, davem@davemloft.net,
+        robh@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 4/4] net: dp83869: Add RGMII internal delay
+ configuration
+Message-ID: <20200527131204.GB793752@lunn.ch>
+References: <20200526174716.14116-1-dmurphy@ti.com>
+ <20200526174716.14116-5-dmurphy@ti.com>
+ <20200527005224.GF782807@lunn.ch>
+ <c0867d48-6f04-104b-8192-d61d4464a65f@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c0867d48-6f04-104b-8192-d61d4464a65f@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ipq6018 devices has a clock functionality in apcs blcok. Add support
-for the clock found in ipq6018 apcs block.
+> If the dt defines rgmii-rx/tx-id then these values are required not
+> optional.  That was the discussion on the binding.
 
-Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
----
- * This patch has compilation dependency with apss pll
-	https://lkml.org/lkml/2020/5/27/642
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+How many times do i need to say it. They are optional. If not
+specified, default to 2ns.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 3956e44..8d60f6f 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -294,9 +294,11 @@
- 		};
- 
- 		apcs_glb: mailbox@b111000 {
--			compatible = "qcom,ipq8074-apcs-apps-global";
--			reg = <0x0b111000 0xc>;
--
-+			compatible = "qcom,ipq6018-apcs-apps-global";
-+			reg = <0x0b111000 0x1000>;
-+			#clock-cells = <1>;
-+			clocks = <&apsspll>, <&xo>;
-+			clock-names = "pll", "xo";
- 			#mbox-cells = <1>;
- 		};
- 
--- 
-2.7.4
+> > > +	ret = of_property_read_u32(of_node, "tx-internal-delay-ps",
+> > > +				   &dp83869->tx_id_delay);
+> > > +	if (ret) {
+> > > +		dp83869->tx_id_delay = ret;
+> > > +		ret = 0;
+> > > +	}
+> > > +
+> > >   	return ret;
+> > >   }
+> > >   #else
+> > > @@ -367,10 +388,45 @@ static int dp83869_configure_mode(struct phy_device *phydev,
+> > >   	return ret;
+> > >   }
+> > > +static int dp83869_get_delay(struct phy_device *phydev)
+> > > +{
+> > > +	struct dp83869_private *dp83869 = phydev->priv;
+> > > +	int delay_size = ARRAY_SIZE(dp83869_internal_delay);
+> > > +	int tx_delay = 0;
+> > > +	int rx_delay = 0;
+> > > +
+> > > +	if (phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID ||
+> > > +	    phydev->interface == PHY_INTERFACE_MODE_RGMII_ID) {
+> > > +		tx_delay = phy_get_delay_index(phydev,
+> > > +					       &dp83869_internal_delay[0],
+> > > +					       delay_size, dp83869->tx_id_delay,
+> > > +					       false);
+> > > +		if (tx_delay < 0) {
+> > > +			phydev_err(phydev, "Tx internal delay is invalid\n");
+> > > +			return tx_delay;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	if (phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID ||
+> > > +	    phydev->interface == PHY_INTERFACE_MODE_RGMII_ID) {
+> > > +		rx_delay = phy_get_delay_index(phydev,
+> > > +					       &dp83869_internal_delay[0],
+> > > +					       delay_size, dp83869->rx_id_delay,
+> > > +					       false);
+> > > +		if (rx_delay < 0) {
+> > > +			phydev_err(phydev, "Rx internal delay is invalid\n");
+> > > +			return rx_delay;
+> > > +		}
+> > > +	}
+> > So any PHY using these properties is going to pretty much reproduce
+> > this code. Meaning is should all be in a helper.
+> 
+> The issue here is that the phy_mode may only be rgmii-txid so you only want
+> to find the tx_delay and return.
+> 
+> Same with the RXID.  How is the helper supposed to know what delay to return
+> and look for?
 
+How does this code do it? It looks at the value of interface.
+
+    Andrew
