@@ -2,107 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB8B1E43F6
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 15:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9761E4408
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 15:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388082AbgE0Njv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 09:39:51 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:46978 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387682AbgE0Nju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 09:39:50 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 2EB6E1C0300; Wed, 27 May 2020 15:39:49 +0200 (CEST)
-Date:   Wed, 27 May 2020 15:39:48 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dan Murphy <dmurphy@ti.com>, jacek.anaszewski@gmail.com,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        id S2387581AbgE0NmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 09:42:21 -0400
+Received: from mga18.intel.com ([134.134.136.126]:11080 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387771AbgE0NmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 09:42:21 -0400
+IronPort-SDR: VUoUA6ge9QyNZ8FD+D8CgPPlFR6AeYRY2fzHKkm1HDxaNEEN0jHkVk4mNoilXbTdqCno1r/AFD
+ XgU6ONkAtvCg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2020 06:42:20 -0700
+IronPort-SDR: vW6e7s7Gzf/CPGZx6t4D/RIeBm/4YAK4Hjp3JykGkTjQ4CRqBvxRYnXV0wkC/DVCr2S9XXN+QK
+ Mqw3x+haU+5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,441,1583222400"; 
+   d="scan'208";a="442523669"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga005.jf.intel.com with ESMTP; 27 May 2020 06:42:17 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jdwK4-009EjZ-2S; Wed, 27 May 2020 16:42:20 +0300
+Date:   Wed, 27 May 2020 16:42:20 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v25 01/16] dt: bindings: Add multicolor class dt bindings
- documention
-Message-ID: <20200527133948.GA5011@amd>
-References: <20200526164652.2331-1-dmurphy@ti.com>
- <20200526164652.2331-2-dmurphy@ti.com>
- <20200527014902.GA859634@bogus>
+Subject: Re: [PATCH v4 06/11] i2c: designware: Add Baytrail sem config DW I2C
+ platform dependency
+Message-ID: <20200527134220.GX1634618@smile.fi.intel.com>
+References: <20200527120111.5781-1-Sergey.Semin@baikalelectronics.ru>
+ <20200527120111.5781-7-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="liOOAslEiF7prFVr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200527014902.GA859634@bogus>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20200527120111.5781-7-Sergey.Semin@baikalelectronics.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 27, 2020 at 03:01:06PM +0300, Serge Semin wrote:
+> Currently Intel Baytrail I2C semaphore is a feature of the DW APB I2C
+> platform driver. It's a bit confusing to see it's config in the menu at
+> some separated place with no reference to the platform code. Let's move the
+> config definition to be below the I2C_DESIGNWARE_PLATFORM config and mark
+> it with "depends on I2C_DESIGNWARE_PLATFORM" statement. By doing so the
+> config menu will display the feature right below the DW I2C platform
+> driver item and will indent it to the right so signifying its belonging.
 
---liOOAslEiF7prFVr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-Hi!
+>  config I2C_DESIGNWARE_BAYTRAIL
+>  	bool "Intel Baytrail I2C semaphore support"
+>  	depends on ACPI
+> +	depends on I2C_DESIGNWARE_PLATFORM
+>  	depends on (I2C_DESIGNWARE_PLATFORM=m && IOSF_MBI) || \
+>  		   (I2C_DESIGNWARE_PLATFORM=y && IOSF_MBI=y)
 
-Thanks for reviews!
+I didn't get this. What is broken now with existing dependencies?
 
-> > +additionalProperties: false
-> > +...
-> > diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
->=20
-> This isn't a binding file. Belongs in another patch.
+(The move of the PCI part is fine)
 
-These constants are directly related to the binding. It makes sense to
-go in one patch...
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Best regards,
-								Pavel
 
-> > index f1f718dbe0f8..846248a0693d 100644
-> > --- a/drivers/leds/led-core.c
-> > +++ b/drivers/leds/led-core.c
-> > @@ -34,6 +34,7 @@ const char * const led_colors[LED_COLOR_ID_MAX] =3D {
-> >  	[LED_COLOR_ID_VIOLET] =3D "violet",
-> >  	[LED_COLOR_ID_YELLOW] =3D "yellow",
-> >  	[LED_COLOR_ID_IR] =3D "ir",
-> > +	[LED_COLOR_ID_MULTI] =3D "multicolor",
-> >  };
-> >  EXPORT_SYMBOL_GPL(led_colors);
-> > =20
-> > diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/le=
-ds/common.h
-> > index 0ce7dfc00dcb..a463ce6a8794 100644
-> > --- a/include/dt-bindings/leds/common.h
-> > +++ b/include/dt-bindings/leds/common.h
-> > @@ -30,7 +30,8 @@
-> >  #define LED_COLOR_ID_VIOLET	5
-> >  #define LED_COLOR_ID_YELLOW	6
-> >  #define LED_COLOR_ID_IR		7
-> > -#define LED_COLOR_ID_MAX	8
-> > +#define LED_COLOR_ID_MULTI	8
-> > +#define LED_COLOR_ID_MAX	9
-> > =20
-> >  /* Standard LED functions */
-> >  /* Keyboard LEDs, usually it would be input4::capslock etc. */
-> > --=20
-> > 2.25.1
-> >=20
-
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---liOOAslEiF7prFVr
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl7ObaQACgkQMOfwapXb+vKDUQCgvKwSBIpK3Ho7ZIPhCUNgU/kp
-toUAnjGIr5U3J+haA7vXpJm0QHecHNkG
-=Ow+v
------END PGP SIGNATURE-----
-
---liOOAslEiF7prFVr--
