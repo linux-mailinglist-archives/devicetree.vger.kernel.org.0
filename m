@@ -2,76 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A701E3948
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 08:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0200F1E39B2
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 08:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728553AbgE0GbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 02:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
+        id S1728867AbgE0Gxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 02:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728517AbgE0GbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 02:31:12 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 338E5C03E979
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 23:31:11 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id ci23so1073947pjb.5
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 23:31:11 -0700 (PDT)
+        with ESMTP id S1728757AbgE0Gxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 02:53:48 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481D7C03E97A
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 23:53:48 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id n5so1936134wmd.0
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2020 23:53:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=GAeIH2kkVlgfDKNDvExkjEUjr7t+dLIV143r/wZ4ZCs=;
-        b=mgStlcTQb+C7oOeBQLtpopl4rDpEglFL8WNYy4ZKxaew9vLvMRyQeiWwvv4K6diVMw
-         RmJUO9lnsqfQiXz3gPyvtp11yp6ZgilsacHzxopa/QpbhHUWQ54qx+inj9qISvcrMqxl
-         wQCfE4E5kBgBRyzkVnnyXcZ+QUuerB0c1M7WY=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=KaQOkQA7F9aEmTtrQs4AHoVIEVINLPeKbMlE71dR8YI=;
+        b=cPWisZ+A4SR3iQJ6RsEDeDne0OUCVjnfpAGxMjkPrCxzFO71csUJv0xmdBRl7npeZh
+         AeFPi1ZmAv1VwihKmOwSRiZrJsJ1i6kwIn8Nkt2Ls6PrSh4pmaZSr97snzWfE0Tn5x79
+         bn5tQlmvjopqjhhwA+8717mpKH4FIRbM2wsps9Yaybn+1Sbdk7PQ6e6xPJok7tTW3hQT
+         6R8cBzso9tSPzo2k0UZJPVj9XZDBCfP717btD4AxbyDHH0f/x517SgR/trJkcSQlO6BB
+         UekgSoUHoJVz0M2m9h5Iu/ibOmd2JCvlYeh977CW4E0Cm+pKuCkVczG89O4X7pFde+o4
+         gPzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=GAeIH2kkVlgfDKNDvExkjEUjr7t+dLIV143r/wZ4ZCs=;
-        b=c4TbEAnI72DfU83rzHnAXxB716lAqizxtk282F4GdLkHRc2sgDUwKmEUoMNT6f9QlF
-         1ib2t0IA9ynMbBPGyJ0YvUSfEa4x/GgDtyq7KMIQVe+Z6QzJAKtC3qTlACVhIX8Ps2us
-         pBLUvtfXxpcv9jfvCVVj14lmwNBLWHMJiLxnkRcF5+tWLmwhG0TwHXYu2H6ySMDvPVbS
-         KwIXJeaSsjcVmpC7zQSmPzh/O+YUGlERfGE5yg1Aug917ymHwIS2KdGCbPSwwdB+bYrU
-         ug50KoVvdF96ReyB8iiXs9D2a5T2XHklCK660p0s03Cxo9oIaoa/sPh0Jr12y22R6hR7
-         OEHg==
-X-Gm-Message-State: AOAM530burfbvp5VzvBguFYev9kUg3iHli+M/KFYhR+1z4q/IHDS+VvB
-        pVbceI2zaxYnQiPMeE+AiDuiGA==
-X-Google-Smtp-Source: ABdhPJworKi8wu5+vZmXaxlggXWpRcMSuQ5Qj06+Hg0Li/MDDPoRyyIhDaY2PmECBWrcKK3Cd2MvYQ==
-X-Received: by 2002:a17:90a:23e7:: with SMTP id g94mr3424943pje.210.1590561070701;
-        Tue, 26 May 2020 23:31:10 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id a7sm1193700pfa.187.2020.05.26.23.31.09
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=KaQOkQA7F9aEmTtrQs4AHoVIEVINLPeKbMlE71dR8YI=;
+        b=DDebBufLZ7AFHabtAwPs8TN735qpjM2+GnlRhjTxJI3pen4b3H/wL81VrE/uyX6eb8
+         2uHSs4F+AUJkUgMhYTEy8rXijHhCQjy6soes948PfUK4z7obA66b1J3fXt7OB9LRzjCR
+         p+5Ioqv+x9V/3aa7hnPkn//kLDzM6w9YedEPK7w40qVD0aJK+/bB9ryVSzzr5yMPXewn
+         94Evtlo4psXjXtwWZPUxsZpuIA1JAyRbmxGT/BHbgDPjwYJhBZM3OTfgXkpOWpg1+f3A
+         3ljIPKz57QzXlzbxI5j3p/Y47fIHvMpJyFjWjFeWugvxCHYL255TTcceWYvo5rD1IfOU
+         6G8g==
+X-Gm-Message-State: AOAM530h6nHcLS7lA5drsjGqe7besOFfqO7xvfoJWOgHgFhduUXhu9wb
+        W5kjc7Fi4N92w6IkBgBAF2r4Og==
+X-Google-Smtp-Source: ABdhPJzEz2uP3oWCohWVrLCnTYgAhvZIGv77IRU3z+lWX42qdjUmDcj2EC+NMT9wwZk7n/CATpsnBg==
+X-Received: by 2002:a1c:25c3:: with SMTP id l186mr2814857wml.103.1590562426704;
+        Tue, 26 May 2020 23:53:46 -0700 (PDT)
+Received: from dell ([95.149.164.102])
+        by smtp.gmail.com with ESMTPSA id p23sm1900743wma.17.2020.05.26.23.53.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2020 23:31:10 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Tue, 26 May 2020 23:53:46 -0700 (PDT)
+Date:   Wed, 27 May 2020 07:53:44 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 03/16] mfd: mfd-core: match device tree node against
+ reg property
+Message-ID: <20200527065344.GP3628@dell>
+References: <20200423174543.17161-1-michael@walle.cc>
+ <20200423174543.17161-4-michael@walle.cc>
+ <67e90dafd67c285158c2c6f67f92edb7@walle.cc>
+ <20200515102848.GH271301@dell>
+ <159e68b4ce53630ef906b2fcbca925bd@walle.cc>
+ <20200526072427.GC3628@dell>
+ <f5704ce5a3e280f63c81fe35efb08234@walle.cc>
+ <20200526160336.GV1634618@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200527054850.2067032-4-bjorn.andersson@linaro.org>
-References: <20200527054850.2067032-1-bjorn.andersson@linaro.org> <20200527054850.2067032-4-bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v6 3/5] remoteproc: qcom: Update PIL relocation info on load
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>
-Date:   Tue, 26 May 2020 23:31:09 -0700
-Message-ID: <159056106910.88029.925874171202462275@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200526160336.GV1634618@smile.fi.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2020-05-26 22:48:47)
-> Update the PIL relocation information in IMEM with information about
-> where the firmware for various remoteprocs are loaded.
->=20
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
+On Tue, 26 May 2020, Andy Shevchenko wrote:
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> On Tue, May 26, 2020 at 05:54:38PM +0200, Michael Walle wrote:
+> > Am 2020-05-26 09:24, schrieb Lee Jones:
+> 
+> ...
+> 
+> > Like I said, in the long term I would like to have support for
+> > different versions of the board management controller
+> 
+> > without having to change the device tree and have device tree bindings for the
+> > subdevices at the same time.
+> 
+> But isn't device tree to describe *very specific platform* rather than *class
+> of platforms*?
+
+Yes.  Device Tree describes the hardware.
+
+If the hardware changes, so must the Device Tree.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
