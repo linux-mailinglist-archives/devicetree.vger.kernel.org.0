@@ -2,107 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8211E4855
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 17:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F41C1E4829
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 17:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730616AbgE0Puv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 11:50:51 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:43213 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730605AbgE0Puv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 11:50:51 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E600B5820B3;
-        Wed, 27 May 2020 11:50:49 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 27 May 2020 11:50:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=mIo2yTnIciTwR
-        AfqGqPRdeUMoEIyJ/WFBxN68ut8oG8=; b=WIujI7WharlAGicvX2WyOiv3jX+w/
-        sT18coLSjEtk5L6aOGZY5lEKGgnwldzH3cLD8lbkMcVhqvgRz3ICcqIxnBGeRMrw
-        sCG3316RnFnMeU3i7e5daLdaLKRYg7+FjeHtF0AEpaV0IQ7C+1MFLC+CbSpOWUq8
-        Vn3+NbxUHP5RNbgafLj5MOlPPLpXGsan+WRemQ9AKtNZ2fkjRbsrk4Q9CHqW1crt
-        s6Fmu23OKv0wtN4mphn96mVswCajMnF677jS+WpYpaTucREJhPkTggCh8/UYY8FJ
-        1UyDuHxaMWLdKntiSlyOJfz2o7MBprRWdDO6lqtxZMkVGXND67UCYIgTQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=mIo2yTnIciTwRAfqGqPRdeUMoEIyJ/WFBxN68ut8oG8=; b=Wn93fV+R
-        q1M2XVFtqYnkqegBnI2+hcYd65lr3f+m4BIGlxHmdf6Hgre9IShj5JSu7XGCoXz8
-        yE1eZdm5wV5arOOa4w2NiU3YeUN8gw1fXX0yU9Xr9IsJBNuQpRC7Lu/HNUDfddqG
-        0USSPnOFBnuYyRh5hEXkMrmMlWQUGDXpxlYp5yza7lRjsl25J+ZZ5Rqqqyiczz5A
-        6Y+vrG7MRNzE+ptXg9W/IzFwduiWxOZeFqevg0I2owrehgdm2zYHq5DfTMITEczi
-        4H8DDAVfixWaqZKs/4sqtQ3QLwSfPAA3lKzrTRRx7b0vRpBPbHEebDd9YmMP+y7/
-        KAovOHXo2fb26w==
-X-ME-Sender: <xms:WYzOXuaXTafeeH1qBIUAYGWr3X21ebDrB9dOHZ8wFMBc7C6HItNLbg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedruddvgedgkeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepvdekleevfeffkeejhfffueelteelfeduieefheduudfggffhhfffheevveeh
-    hedvnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepgedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:WYzOXhZtgLYNhhexBOTBA6ekPuv5j5tLZn190Cf_lBBfLsUgv6Q65A>
-    <xmx:WYzOXo-OWLJuw1Pf0HRrPKQfBDUL3huWfJqU7z1Qe1pA2PzsrA7jDw>
-    <xmx:WYzOXgqZgDKyETahtm56zYeJtFcIIQQ75t6Ma4356fq1LYgp97pVng>
-    <xmx:WYzOXk0QdgkupH8rqEGRjj03brjLl77Z9AxUQD2EfQ-GxsT29GxhBA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 8671B3280069;
-        Wed, 27 May 2020 11:50:49 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v3 058/105] dt-bindings: display: vc4: pv: Add BCM2711 pixel valves
-Date:   Wed, 27 May 2020 17:48:28 +0200
-Message-Id: <38e915fcfcbc6896344423eb651f60cc04273caa.1590594512.git-series.maxime@cerno.tech>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.aaf2100bd7da4609f8bcb8216247d4b4e4379639.1590594512.git-series.maxime@cerno.tech>
-References: <cover.aaf2100bd7da4609f8bcb8216247d4b4e4379639.1590594512.git-series.maxime@cerno.tech>
+        id S1728427AbgE0Psz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 11:48:55 -0400
+Received: from mga11.intel.com ([192.55.52.93]:61105 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727772AbgE0Psz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 11:48:55 -0400
+IronPort-SDR: XjWgDcJbBdd84zEbqVX5GtDKCi+419nPwSJi0kjlDMiWkR8XEtX53QCZyJH2HKm3eT3WEZmKzl
+ TnGAyzZUagnw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2020 08:48:54 -0700
+IronPort-SDR: yMq0JANO0NTOgaujZjyd6x0sLdGSGLW5UxxZzucb/ttmr+YPkiZ5py6rIygbmfEyXZvihvz5KR
+ j2aIU/dAa9uQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,441,1583222400"; 
+   d="scan'208";a="414248082"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga004.jf.intel.com with ESMTP; 27 May 2020 08:48:51 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jdyIY-009FpD-KG; Wed, 27 May 2020 18:48:54 +0300
+Date:   Wed, 27 May 2020 18:48:54 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 07/11] i2c: designware: Discard Cherry Trail model flag
+Message-ID: <20200527154854.GH1634618@smile.fi.intel.com>
+References: <20200527120111.5781-1-Sergey.Semin@baikalelectronics.ru>
+ <20200527120111.5781-8-Sergey.Semin@baikalelectronics.ru>
+ <20200527134339.GY1634618@smile.fi.intel.com>
+ <20200527142902.2xpteguuotsl3z7y@mobilestation>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200527142902.2xpteguuotsl3z7y@mobilestation>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BCM2711 comes with other pixelvalves that have different requirements
-and capabilities. Let's document their compatible.
+On Wed, May 27, 2020 at 05:29:02PM +0300, Serge Semin wrote:
+> On Wed, May 27, 2020 at 04:43:39PM +0300, Andy Shevchenko wrote:
+> > On Wed, May 27, 2020 at 03:01:07PM +0300, Serge Semin wrote:
+> > > A PM workaround activated by the flag MODEL_CHERRYTRAIL has been removed
+> > > since commit 9cbeeca05049 ("i2c: designware: Remove Cherry Trail PMIC I2C
+> > > bus pm_disabled workaround"), but the flag most likely by mistake has been
+> > > left in the Dw I2C drivers. Let's remove it.
+> > 
+> > ...
+> > 
+> > > -#define MODEL_MSCC_OCELOT	0x00000200
+> > > +#define MODEL_MSCC_OCELOT	0x00000100
+> > 
+> > But why?
+> > 
+> > Does 0x200 work or not? I didn't see this in commit message.
+> 
+> I removed the MODEL_CHERRYTRAIL flag and redefined the only left
+> MODEL_MSCC_OCELOT flag to set the very first bit allocated for the model
+> flags. Isn't that obvious?
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Yes, but how it's related to the MSCC_OCELOT?
 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-index e60791db1fa1..4e1ba03f6477 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-@@ -15,6 +15,11 @@ properties:
-       - brcm,bcm2835-pixelvalve0
-       - brcm,bcm2835-pixelvalve1
-       - brcm,bcm2835-pixelvalve2
-+      - brcm,bcm2711-pixelvalve0
-+      - brcm,bcm2711-pixelvalve1
-+      - brcm,bcm2711-pixelvalve2
-+      - brcm,bcm2711-pixelvalve3
-+      - brcm,bcm2711-pixelvalve4
- 
-   reg:
-     maxItems: 1
+Can't you simple put your define later to that number if absence of 0x100
+provokes an exception when reading this code.
+
+Again, unneeded churn.
+
 -- 
-git-series 0.9.1
+With Best Regards,
+Andy Shevchenko
+
+
