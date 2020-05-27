@@ -2,77 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA211E3D5C
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 11:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51D971E3D84
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2020 11:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725920AbgE0JPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 05:15:24 -0400
-Received: from mga14.intel.com ([192.55.52.115]:2801 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726600AbgE0JPX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 05:15:23 -0400
-IronPort-SDR: cnGDxl3jRMnYfdI4wlawiljsnVz3dHyTTFSnu/srEniJteMbPZfeLdEQpBBE45Hod0Uxx/oz8R
- 6utRS9l7QH1Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2020 02:15:23 -0700
-IronPort-SDR: SF4e9Ud+NzqoSgOtLCWW0thQSwuv/BECHfAnvtDAcpsDAhHpFny/uY/6luXlxGJNppq1NgL8h+
- UvXH7gzK4b+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,440,1583222400"; 
-   d="scan'208";a="284741187"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga002.jf.intel.com with ESMTP; 27 May 2020 02:15:18 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1jds9h-009BXB-AC; Wed, 27 May 2020 12:15:21 +0300
-Date:   Wed, 27 May 2020 12:15:21 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, thierry.reding@gmail.com,
-        p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, songjun.Wu@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v1 2/2] Add PWM driver for LGM
-Message-ID: <20200527091521.GH1634618@smile.fi.intel.com>
-References: <cover.1590132733.git.rahul.tanwar@linux.intel.com>
- <3c1d2343b034325dbc185ccd23a35b40a62a4e7b.1590132733.git.rahul.tanwar@linux.intel.com>
- <20200522085613.ktb2ruw2virj337v@pengutronix.de>
- <3a1f1e83-2d9d-ddbf-e2e6-9c8bab87372b@linux.intel.com>
+        id S1727773AbgE0J0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 05:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726761AbgE0J0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 05:26:22 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89DDC061A0F;
+        Wed, 27 May 2020 02:26:21 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id j21so11518852pgb.7;
+        Wed, 27 May 2020 02:26:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zwFUcEhN8mPdmd4qKMP8OvvgXxtYc/zSajnBBKjCQ8U=;
+        b=q/yTqMxvmPzYAwKJnTLfPpdXJmlZbEDujCWf991UkxTUJq+TPjKX/Nz0yYvCFys0Qj
+         jy5z2eUugCeqLX/CyCVlO78uza4cBJDB5XUQel/0kQApLhStdiH8wtvndqjj3Wv1pX06
+         N7pgqJ66B5HElpnHH+hosVDy2GPEUj/LWKutSmdLNpFhBysmK8beBeB4z9KBH47zUpEB
+         Ozg5HSYiavx6G+l3mvYjabO4lh9dklOXiOrD1ELDr0b+L8+Oo50xTcSzodLJSOiF6Uy6
+         6nW2uIa/I/cxTYPGE7dBJYAQRXGALAUGqqdeRjhh9nIBSQaGXpnf7fSa22ve1z8Ra9ND
+         5Atw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zwFUcEhN8mPdmd4qKMP8OvvgXxtYc/zSajnBBKjCQ8U=;
+        b=WzHGr6rwZd7r6BiCP6juhQjKeY4R6trYZl5zDTkm0rdxzswWb29XD3FoDmroG9Gj8Z
+         mWygKgGD2/Lo135wa66uE8RB4nQiaYQaVH/Tsnfs3W7VGQVFqsg47BouPPOUrqqOq/ty
+         6a60Zf6XsdNAEcRvDbGR6CGFsvXa1oEAtOv7QMZbdc+ippXOCgJ4aS+gmx2rHh8aEtzO
+         AqH4PkT0ey6FsXuq2RbOupc9q4Xsl+9VgxQFLsY5QLvOO8ZYjosq5waVkC4bAH7qTffq
+         ETMCYVkKvwg3u9m0YDfBqFchixGODZk7f5KM/aigI+FCNE8kvCQhzwsoLxt4mOk4ZRJX
+         H2SA==
+X-Gm-Message-State: AOAM532rRD7GGH087XyJqMyuTH40gGDbhSnxywNO2oP3FkxiyjRIXhBO
+        tf24K+rtnVilt3ml0hXRIWbdsoMhitVaQ6ay2eM=
+X-Google-Smtp-Source: ABdhPJwWKCa5FADvRBtyNdT9UK7w/LgCR2Ee8Xg2MpibPyvla/+8hacN0/nfAitHCcafZlTGs5TW0fi/UKcoDoJPiDU=
+X-Received: by 2002:a63:305:: with SMTP id 5mr1361018pgd.74.1590571581281;
+ Wed, 27 May 2020 02:26:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3a1f1e83-2d9d-ddbf-e2e6-9c8bab87372b@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200526215528.16417-1-Sergey.Semin@baikalelectronics.ru> <20200526215528.16417-12-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20200526215528.16417-12-Sergey.Semin@baikalelectronics.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 27 May 2020 12:26:09 +0300
+Message-ID: <CAHp75Veygd2y8Tp28p+ZX8Hm_u975QdqatKbsNOG9tNz6HOCAg@mail.gmail.com>
+Subject: Re: [PATCH v3 11/12] i2c: designware: Move reg-space remapping into a
+ dedicated function
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 27, 2020 at 02:28:53PM +0800, Tanwar, Rahul wrote:
-> On 22/5/2020 4:56 pm, Uwe Kleine-König wrote:
-> > On Fri, May 22, 2020 at 03:41:59PM +0800, Rahul Tanwar wrote:
+On Wed, May 27, 2020 at 4:03 AM Serge Semin
+<Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> This is a preparation patch before adding a quirk with custom registers
+> map creation required for the Baikal-T1 System I2C support. Since we've
+> touched this code anyway let's replace
+> platform_get_resource()-devm_ioremap_resource() tuple with ready-to-use
+> helper devm_platform_get_and_ioremap_resource().
 
 ...
 
-> > I'm a unhappy to have this in the PWM driver. The PWM driver is supposed
-> > to be generic and I think this belongs into a dedicated driver.
-> 
-> Well noted about all other review concerns. I will rework the driver in v2.
-> However, i am not very sure about the above point - of having a separate
-> dedicated driver for tach_work because its logic is tightly coupled with
-> this driver.
+> +static int dw_i2c_plat_request_regs(struct dw_i2c_dev *dev)
+> +{
+> +       struct platform_device *pdev = to_platform_device(dev->dev);
 
-Actually I agree with Uwe.
-Here is layering violation, i.e. provider and consumer in the same pot. It's
-not good from design perspective.
+> +       int ret = 0;
+
+Redundant.
+
+> +       dev->base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+
+What's the point of this API if you don't use resource parameter?
+
+> +       if (IS_ERR(dev->base))
+> +               ret = PTR_ERR(dev->base);
+> +
+> +       return ret;
+
+return PTR_ERR_OR_ZERO(dev->base);
+
+> +}
+
+> -       mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -       dev->base = devm_ioremap_resource(&pdev->dev, mem);
+> -       if (IS_ERR(dev->base))
+> -               return PTR_ERR(dev->base);
+
+Wolfram, did my last series make your tree? I think there was a patch
+that touched this part...
 
 -- 
 With Best Regards,
 Andy Shevchenko
-
-
