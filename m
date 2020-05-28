@@ -2,112 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BACAD1E64A1
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 455DA1E64AB
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391255AbgE1Ow0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 10:52:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391322AbgE1OwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:52:23 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E55C05BD1E
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 07:52:23 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id AC28C2A18D9;
-        Thu, 28 May 2020 15:52:20 +0100 (BST)
-Date:   Thu, 28 May 2020 16:52:17 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Weijie Gao <weijie.gao@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        Julien Su <juliensu@mxic.com.tw>
-Subject: Re: [PATCH v6 16/18] mtd: nand: Convert generic NAND bits to use
- the ECC framework
-Message-ID: <20200528165217.6582f9aa@collabora.com>
-In-Reply-To: <20200528164926.3b99f848@xps13>
-References: <20200528113113.9166-1-miquel.raynal@bootlin.com>
-        <20200528113113.9166-17-miquel.raynal@bootlin.com>
-        <20200528163907.6539e2a1@collabora.com>
-        <20200528164926.3b99f848@xps13>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2403807AbgE1Owi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 10:52:38 -0400
+Received: from mga04.intel.com ([192.55.52.120]:28867 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2403790AbgE1Owh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 May 2020 10:52:37 -0400
+IronPort-SDR: XDyuhNDsdZyK8R38J+MU/TdGAXRYiDZdZ8EeiwDHssxe74w2jX4TJwdsCBXor4Lzqpyvm3Ntt2
+ aCocO/X3WxMA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2020 07:52:24 -0700
+IronPort-SDR: EK3BBD6Ggz6zJo7E4j4JMagsNStfqspwS0XyjaL7vTKp2pfCYtq2YyTk0T4bFU8OmZQfE8C1RU
+ HDOXV+pbBKiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,445,1583222400"; 
+   d="scan'208";a="376393864"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001.fm.intel.com with ESMTP; 28 May 2020 07:52:21 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jeJtQ-009Ram-6Q; Thu, 28 May 2020 17:52:24 +0300
+Date:   Thu, 28 May 2020 17:52:24 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 09/10] dmaengine: dw: Introduce max burst length hw
+ config
+Message-ID: <20200528145224.GT1634618@smile.fi.intel.com>
+References: <20200526225022.20405-1-Sergey.Semin@baikalelectronics.ru>
+ <20200526225022.20405-10-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200526225022.20405-10-Sergey.Semin@baikalelectronics.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 May 2020 16:49:26 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+On Wed, May 27, 2020 at 01:50:20AM +0300, Serge Semin wrote:
+> IP core of the DW DMA controller may be synthesized with different
+> max burst length of the transfers per each channel. According to Synopsis
+> having the fixed maximum burst transactions length may provide some
+> performance gain. At the same time setting up the source and destination
+> multi size exceeding the max burst length limitation may cause a serious
+> problems. In our case the DMA transaction just hangs up. In order to fix
+> this lets introduce the max burst length platform config of the DW DMA
+> controller device and don't let the DMA channels configuration code
+> exceed the burst length hardware limitation.
+> 
+> Note the maximum burst length parameter can be detected either in runtime
+> from the DWC parameter registers or from the dedicated DT property.
+> Depending on the IP core configuration the maximum value can vary from
+> channel to channel so by overriding the channel slave max_burst capability
+> we make sure a DMA consumer will get the channel-specific max burst
+> length.
 
-> Boris Brezillon <boris.brezillon@collabora.com> wrote on Thu, 28 May
-> 2020 16:39:07 +0200:
-> 
-> > On Thu, 28 May 2020 13:31:11 +0200
-> > Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> >   
-> > > Embed a generic NAND ECC high-level object in the nand_device
-> > > structure to carry all the ECC engine configuration/data. Adapt the
-> > > raw NAND and SPI-NAND cores to fit the change.
-> > > 
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  drivers/mtd/nand/Kconfig                     |  1 +
-> > >  drivers/mtd/nand/raw/atmel/nand-controller.c |  9 +++--
-> > >  drivers/mtd/nand/raw/brcmnand/brcmnand.c     |  7 ++--
-> > >  drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c   | 12 +++---
-> > >  drivers/mtd/nand/raw/marvell_nand.c          |  7 ++--
-> > >  drivers/mtd/nand/raw/mtk_nand.c              |  4 +-
-> > >  drivers/mtd/nand/raw/nand_base.c             | 25 ++++++------
-> > >  drivers/mtd/nand/raw/nand_esmt.c             | 11 +++---
-> > >  drivers/mtd/nand/raw/nand_hynix.c            | 41 ++++++++++----------
-> > >  drivers/mtd/nand/raw/nand_jedec.c            |  4 +-
-> > >  drivers/mtd/nand/raw/nand_micron.c           | 14 ++++---
-> > >  drivers/mtd/nand/raw/nand_onfi.c             |  8 ++--
-> > >  drivers/mtd/nand/raw/nand_samsung.c          | 19 ++++-----
-> > >  drivers/mtd/nand/raw/nand_toshiba.c          | 11 +++---
-> > >  drivers/mtd/nand/raw/sunxi_nand.c            |  5 ++-
-> > >  drivers/mtd/nand/raw/tegra_nand.c            |  9 +++--
-> > >  drivers/mtd/nand/spi/core.c                  |  8 ++--
-> > >  drivers/mtd/nand/spi/macronix.c              |  6 +--
-> > >  drivers/mtd/nand/spi/toshiba.c               |  6 +--
-> > >  include/linux/mtd/nand.h                     |  8 ++--
-> > >  20 files changed, 115 insertions(+), 100 deletions(-)
-> > > 
-> > > diff --git a/drivers/mtd/nand/Kconfig b/drivers/mtd/nand/Kconfig
-> > > index a4478ffa279d..3327d8539a73 100644
-> > > --- a/drivers/mtd/nand/Kconfig
-> > > +++ b/drivers/mtd/nand/Kconfig
-> > > @@ -13,6 +13,7 @@ menu "ECC engine support"
-> > >  
-> > >  config MTD_NAND_ECC
-> > >  	bool
-> > > +	select MTD_NAND_CORE    
-> > 
-> > This select looks suspicious. Shouldn't it be a depends on, and more
-> > importantly, I think it should be part of patch 15.  
-> 
-> Wouldn't we break a lot of users by using depends on?
-> 
-> Or maybe we can turn it on by default?
+...
 
-It's a sub-functionality of the NAND core, so it should be a depends on
-in my opinion. Why would that break users. Aren't you selecting
-MTD_NAND_CORE in MTD_RAWNAND now? Those options should really remain
-hidden, and be selected at the SPI/raw NAND framework level.
+>  static void dwc_caps(struct dma_chan *chan, struct dma_slave_caps *caps)
+>  {
+> +	struct dw_dma_chan *dwc = to_dw_dma_chan(chan);
+>  
+
+Perhaps,
+
+	/* DesignWare DMA supports burst value from 0 */
+	caps->min_burst = 0;
+
+> +	caps->max_burst = dwc->max_burst;
+>  }
+
+...
+
+> +	*maxburst = clamp(*maxburst, 0U, dwc->max_burst);
+
+Shouldn't we do the same for iDMA 32-bit? Thus, perhaps do it in the core.c?
+
+>  	*maxburst = *maxburst > 1 ? fls(*maxburst) - 2 : 0;
+
+> +	if (!of_property_read_u32_array(np, "snps,max-burst-len", mb,
+> +					nr_channels)) {
+> +		for (tmp = 0; tmp < nr_channels; tmp++)
+> +			pdata->max_burst[tmp] = mb[tmp];
+
+I think we may read directly to the array. This ugly loops were introduced due
+to type mismatch. (See below)
+
+> +	} else {
+> +		for (tmp = 0; tmp < nr_channels; tmp++)
+> +			pdata->max_burst[tmp] = DW_DMA_MAX_BURST;
+> +	}
+
+And this will be effectively memset32().
+
+>  	unsigned char	nr_masters;
+>  	unsigned char	data_width[DW_DMA_MAX_NR_MASTERS];
+>  	unsigned char	multi_block[DW_DMA_MAX_NR_CHANNELS];
+> +	unsigned int	max_burst[DW_DMA_MAX_NR_CHANNELS];
+
+I think we have to stop with this kind of types and use directly what is in the
+properties, i.e.
+
+	u32 max_burst[...];
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
