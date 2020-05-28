@@ -2,143 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E52C1E5CE7
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 12:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FBF41E5D13
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 12:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387821AbgE1KQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 06:16:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387765AbgE1KPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 06:15:12 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA84AC08C5C9
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 03:15:06 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id z13so2941972vsn.10
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 03:15:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NnFvkEinSu8JNeeiaCqqDDP3KthjxwCRXHN9I0khteE=;
-        b=JKXLgYnRrXprs68FC8fP4Hq7I9VPldQJYeOyc/9tZMIvKGkf3t5OoImS5K4atsMnAN
-         r27FPxAuUszQNOJP2Mc0e0W6PepVkbJr7xfkUcfmu59eRZHeKzQsqFqgPrCLjhZ2QcZm
-         B98a7+5hvdsR4PehdNAbX2Q5Irc8IRfgouLxpRWRu9GLQmRxE+zYRiXyI51m7zoRSkTJ
-         +rswdazaCjsE26eujh5yTeYERp1E0iZsmhEVLg3VEOfm4tqR8fEEMp3c4DUPAf0RW48B
-         6C4TICJ1VGKAY2wPQ1LKT6XGF2yPvJNdhTWDNUDY6Dvh2AZDUdM0GPcSLgQ5yRXyb7ex
-         BfEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NnFvkEinSu8JNeeiaCqqDDP3KthjxwCRXHN9I0khteE=;
-        b=irT2DadGLLxeSgmkiQ/xU5gdPpj2poufje/XqBPNNmoo+lgelA/d5H48FtjBzQG2wg
-         2dgp/OsNjfDx94w+93JHkailcggOYi2npg0znA0FConnQHeVDGX9BePVmZZPuf9visiq
-         cTUcqq0lmmKdZ7jRkXc7f4nE4UgS5CHdx3lQdRXEP5ZTGGi4L1tCldyzP7LXpIk0JC05
-         rQOnk61HxDQAmXlrjTxzvxXCH3chqxQKz9dFlGDuu1PTD3ilz8igQPKykMSnwscjQP+Z
-         h0HXJO+IELuybTVsmlvNF68iZMeEMujdjCmuqDdNNd1r0Ug2yY7HGXMSMtyr3ynY/ahK
-         PvgQ==
-X-Gm-Message-State: AOAM530xD3grNcz2zhyY35cfpbLLqje7Gmzg3ML1UOAuEfWTGHO724lF
-        gwGZ9V52Z+xXGDI2OmxXCvpjG5dlEwDuweRccm5CmA==
-X-Google-Smtp-Source: ABdhPJzVo18IfEZvDNjehMuUK+Er1KC2DxaDvMSbNlAbvNzpRPVY17HtVDdF3JBPl18RRNoiV/BlCC6N4HoAjWTgSlA=
-X-Received: by 2002:a67:ec58:: with SMTP id z24mr1378822vso.200.1590660905952;
- Thu, 28 May 2020 03:15:05 -0700 (PDT)
+        id S2387776AbgE1KYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 06:24:10 -0400
+Received: from mail-am6eur05on2054.outbound.protection.outlook.com ([40.107.22.54]:6069
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387872AbgE1KYD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 May 2020 06:24:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QviM4m5HSXZ4odqs7ftu2sD+dPsI4kdoV51svBJhgDR6gKU4EkKMrxaReRvsyXe3gENaToqMqzrV53Efk7OIWT3AzNMR+KWm57dRG7mdYBkUPBzYciT7qJCyMGku8wOtGl9hEuoCR+mlWJIoCuAZX30rmz3SzjOF29H7Py/kcwdP55uWuw4+X0+ELjZLpBJ2y+9pUhj8nJ2HHyIwKeBRBOOFnzUpN1gaM4ZUGOV094VsEWvpZDVl+F3wivFo+Jlx2DNh45dOTv2zSWG37ZJF/eW72TtvzrCd0kOo7uHu734Y8pF0v6QSZv0mQCu70+Xizxx4IlYfr4UDrAb6t/sIrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GFi/wOtHX56MMEoarjJxi2VPm9qDyNr9C75tR6Jkkdw=;
+ b=EBMewNZdQy/OEDc/5CBEED1VLYL498NcVu2/QrdbUcwvKGpn2xSgWL91fozwrVc42gQ5FOfX/hEs/5k1PXpyuscYLB92cKUaoTEBOh8r+W0gjHBesxCBcX1w5Siwea9Blef1seEcEGlaV/XzIMRE/rFu1TqFVu0bwztbs8tHSAyEeOvhc9nd97Spuzu1EZv/2k5XyBKiwyTfRgqRaq4QU52oDpWZIJvEGMA4gmk5ICJmJA/wQ2tYoIUpJbt85U/ohmw215/fU0jeALoxR6DzJpIx2JZTdHdTplRDGJ7TPHtlutBv0nIQrZwwla410+o+MWZju5D7v9Z9PRZovaOpVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GFi/wOtHX56MMEoarjJxi2VPm9qDyNr9C75tR6Jkkdw=;
+ b=MLmno7ivpsxJtKt/dzDT8ikN0Arjf46pIO1YO7Dg8gUHoUQRwi6FRHiGgwnNz2eI7EnXIIIZtzJrPP9SIGgUDvco6JCuFeAkzozp6+SJXJj7lQYUmqM3gCYEa4M1BubgYgTSfDW1p9vyE9mTJWdOU2saAeeZEat2SYxlDG12a1c=
+Received: from AM6PR0402MB3607.eurprd04.prod.outlook.com
+ (2603:10a6:209:12::18) by AM6PR0402MB3591.eurprd04.prod.outlook.com
+ (2603:10a6:209:8::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.27; Thu, 28 May
+ 2020 10:23:59 +0000
+Received: from AM6PR0402MB3607.eurprd04.prod.outlook.com
+ ([fe80::35f8:f020:9b47:9aa1]) by AM6PR0402MB3607.eurprd04.prod.outlook.com
+ ([fe80::35f8:f020:9b47:9aa1%7]) with mapi id 15.20.3045.018; Thu, 28 May 2020
+ 10:23:59 +0000
+From:   Andy Duan <fugang.duan@nxp.com>
+To:     Anson Huang <anson.huang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        "aford173@gmail.com" <aford173@gmail.com>, Jun Li <jun.li@nxp.com>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Horia Geanta <horia.geanta@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH 0/4] Change i.MX/MXS SoCs ocotp/iim node name to efuse
+Thread-Topic: [PATCH 0/4] Change i.MX/MXS SoCs ocotp/iim node name to efuse
+Thread-Index: AQHWNJ9Qc3eKhmeCkkefYIr7+smDLqi9Sr6A
+Date:   Thu, 28 May 2020 10:23:59 +0000
+Message-ID: <AM6PR0402MB36074774F61793C6D460C7E7FF8E0@AM6PR0402MB3607.eurprd04.prod.outlook.com>
+References: <1590635570-8541-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1590635570-8541-1-git-send-email-Anson.Huang@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: ff032d7c-bd3d-4ae7-f36e-08d802f13c8f
+x-ms-traffictypediagnostic: AM6PR0402MB3591:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR0402MB359109CC71DAFF57ACB39A4AFF8E0@AM6PR0402MB3591.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2089;
+x-forefront-prvs: 0417A3FFD2
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: D8bh+btM5ktNbmQCvBm3TyA7bnOJZVgfAUe2RtqeJphqmAjwGuXwSF4np6c4sRQVpYa2QkEeEms0TEqmULdsL5Y3o80x755EtChIGbLizYFEbBmavE52sj4iALRn22j93K5I1dTY5CQ+qSOUxK9CoJWwH6mq7iOOTvpBE86up0bbCEkCRHR+/qrf9Upe0umy/29pA2CdVfFTWEr926iNr9X8OqWkBsxRf2oH7z9o7zwPr1rlGoc18O4f5yZiSgdZ5snjCYXxCnhqNGN+mkeyFUaNCCmFoAHSon8e2oBdat18061lG0YeA94BclPCLyw5x/CHh2l/uPp12UC5ByRQ3lRyxSBM8MvkkLbFJZsoXgjjYdEhgvEiciwN7MjwSp/N
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR0402MB3607.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(6029001)(4636009)(39860400002)(376002)(396003)(346002)(366004)(136003)(8936002)(64756008)(316002)(26005)(66476007)(8676002)(66446008)(186003)(478600001)(9686003)(55016002)(66946007)(7696005)(2906002)(71200400001)(4326008)(5660300002)(83380400001)(6506007)(76116006)(52536014)(7416002)(66556008)(86362001)(33656002)(110136005)(921003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: ltM0D42e6hEWzx2xif6RTQmgvNDXyRhqytDFjrGSsJy5GFS5cmjLHlGtfLovs/cuNWtpJvRD3rvTUmYdQzDRxxdm6754zC9p3PdCnFVjKuYEvtfRkik2jgOu0LzPEsJoRD8nWxR0105LFNsKihZAH8LbP/oxA+76+gKINzqvqkMoBBnyCe6loLvvIEbewDB47VQ0+AdNl5yIc/RA0NSz0/bQrtcwi53yc/TJg2r0JJipnY5h/tIsQOGNtt0XMMFzZbNvHdGaay1PmsdV+BxQM8JcB1HrmwKsLOaRV/fTlB0Fxp8Bk8stW4BJVMAf65v12izGRrdF4jBjNyGK85n5uD52fdGDnAPz9js7rMYMiayJ4t9nCHo5qrT1hlyoqVFO2VsgzB3dQ55cDGKBSKn3GAruFX9kYNWHsGgGdnQdsB8k4LI+YYolyQji+ljATuMY8Uqmes/RFAfar0ZaE2BZZ0rVHzOrHc5rhkvED0avUYZGPm9jSRo/+rivuq/oYg6O
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20200526155103.12514-1-ludovic.barre@st.com> <20200526155103.12514-3-ludovic.barre@st.com>
-In-Reply-To: <20200526155103.12514-3-ludovic.barre@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 28 May 2020 12:14:28 +0200
-Message-ID: <CAPDyKForRHZFGEzn=5OVY8YP6okFj7G2e6QTJFH5-Q_xP3QLBw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: mmci_sdmmc: fix DMA API warning max segment size
-To:     Ludovic Barre <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff032d7c-bd3d-4ae7-f36e-08d802f13c8f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2020 10:23:59.8023
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gxErtIuS/UW46mjpxAKHGN8UoO/lpc8qD4HHFWHyd2LtbTj0+PJ1ooljPlcU0caE6XuGCkHo/ktbyA+BaUTD0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3591
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 May 2020 at 17:51, Ludovic Barre <ludovic.barre@st.com> wrote:
->
-> Turning on CONFIG_DMA_API_DEBUG_SG results in the following warning:
-> WARNING: CPU: 1 PID: 85 at kernel/dma/debug.c:1302 debug_dma_map_sg+0x2a0/0x3cc
-> mmci-pl18x 58005000.sdmmc: DMA-API: mapping sg segment longer than device claims to support [len=126976] [max=65536]
->
-> dma api debug checks and compares the segment size to
-> dma_get_max_seg_size (dev->dma_parms->max_segment_size),
-> the sdmmc variant has an internal DMA and should define
-> its max_segment_size constraint to avoid this warning.
->
-> This Patch defines the dev->dma_parms->max_segment_size
-> with the constraint already set for mmc core
-> (host->mmc->max_seg_size).
->
-> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+From: Anson Huang <Anson.Huang@nxp.com> Sent: Thursday, May 28, 2020 11:13 =
+AM
+> In the nvmem yaml schema, it requires the nodename to be one of
+> "eeprom|efuse|nvram", so need to change all i.MX/MXS SoCs ocotp/iim node
+> name to efuse:
+>=20
+> MXS platforms: i.MX23/28;
+> i.MX platforms with IIM: i.MX25/27/31/35/51/53.
+> i.MX ARMv7 platforms with OCOTP: i.MX6QDL/6SL/6SX/6SLL/6UL/7S/7ULP.
+> i.MX ARMv8 platforms with OCOTP: i.MX8MQ/8MM/8MN/8MP.
 
-Applied for next, thanks!
-
-Note, a manual backport is needed for stable, as
-dma_set_max_seg_size() will fail for older kernels.
-We needed to revert 9495b7e92f7 ("driver core: platform: Initialize
-dma_parms for platform devices"), for stable kernels [1].
-
-Kind regards
-Uffe
-
-[1]
-https://lkml.org/lkml/2020/5/26/1216
-
-
-> ---
->  drivers/mmc/host/mmci_stm32_sdmmc.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/mmc/host/mmci_stm32_sdmmc.c b/drivers/mmc/host/mmci_stm32_sdmmc.c
-> index 2965b1c062e1..51db30acf4dc 100644
-> --- a/drivers/mmc/host/mmci_stm32_sdmmc.c
-> +++ b/drivers/mmc/host/mmci_stm32_sdmmc.c
-> @@ -119,20 +119,19 @@ static void sdmmc_idma_unprep_data(struct mmci_host *host,
->  static int sdmmc_idma_setup(struct mmci_host *host)
->  {
->         struct sdmmc_idma *idma;
-> +       struct device *dev = mmc_dev(host->mmc);
->
-> -       idma = devm_kzalloc(mmc_dev(host->mmc), sizeof(*idma), GFP_KERNEL);
-> +       idma = devm_kzalloc(dev, sizeof(*idma), GFP_KERNEL);
->         if (!idma)
->                 return -ENOMEM;
->
->         host->dma_priv = idma;
->
->         if (host->variant->dma_lli) {
-> -               idma->sg_cpu = dmam_alloc_coherent(mmc_dev(host->mmc),
-> -                                                  SDMMC_LLI_BUF_LEN,
-> +               idma->sg_cpu = dmam_alloc_coherent(dev, SDMMC_LLI_BUF_LEN,
->                                                    &idma->sg_dma, GFP_KERNEL);
->                 if (!idma->sg_cpu) {
-> -                       dev_err(mmc_dev(host->mmc),
-> -                               "Failed to alloc IDMA descriptor\n");
-> +                       dev_err(dev, "Failed to alloc IDMA descriptor\n");
->                         return -ENOMEM;
->                 }
->                 host->mmc->max_segs = SDMMC_LLI_BUF_LEN /
-> @@ -143,7 +142,7 @@ static int sdmmc_idma_setup(struct mmci_host *host)
->                 host->mmc->max_seg_size = host->mmc->max_req_size;
->         }
->
-> -       return 0;
-> +       return dma_set_max_seg_size(dev, host->mmc->max_seg_size);
->  }
->
->  static int sdmmc_idma_start(struct mmci_host *host, unsigned int *datactrl)
+Reviewed-by: Fugang Duan <fugang.duan@nxp.com>
+>=20
+> Anson Huang (4):
+>   ARM: dts: imx: change ocotp node name on i.MX6/7 SoCs
+>   arm64: dts: imx8m: change ocotp node name on i.MX8M SoCs
+>   ARM: dts: imx: change ocotp node name on MXS SoCs
+>   ARM: dts: imx: change iim node name on i.MX SoCs
+>=20
+>  arch/arm/boot/dts/imx23.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx25.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx27.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx28.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx31.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx35.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx51.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx53.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx6qdl.dtsi            | 2 +-
+>  arch/arm/boot/dts/imx6sl.dtsi             | 2 +-
+>  arch/arm/boot/dts/imx6sll.dtsi            | 2 +-
+>  arch/arm/boot/dts/imx6sx.dtsi             | 2 +-
+>  arch/arm/boot/dts/imx6ul.dtsi             | 2 +-
+>  arch/arm/boot/dts/imx7s.dtsi              | 2 +-
+>  arch/arm/boot/dts/imx7ulp.dtsi            | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
+> arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+> arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+> arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+>  19 files changed, 19 insertions(+), 19 deletions(-)
+>=20
 > --
-> 2.17.1
->
+> 2.7.4
+
