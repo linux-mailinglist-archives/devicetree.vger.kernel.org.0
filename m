@@ -2,171 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54A771E67F4
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 18:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20401E67DA
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 18:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405298AbgE1Q42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 12:56:28 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:26957 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405310AbgE1Q4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 May 2020 12:56:25 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1590684984; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=AIpbCmMCznCXVtiVrbRFoTwG+u7mFH1W+SY+3jGOkts=; b=RmscZzcL2gdWRd4V7tHrqgkl+Ul9y3tJECdQSWpZOWPnhKc0j6vx1hpxjfekeMaV9A+aE7XJ
- jC/ohpFUHMk5eeFzjKSOKvKW6YHrvGDi+gTGxuWXjH3aLLs95cHhEt40gzJOU1qy9YXbK3a3
- nrVudhH0qojfKh9a/Pkl1RLf/ss=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5ecfed382dd9e15ae3105b9e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 May 2020 16:56:24
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CA669C433A0; Thu, 28 May 2020 16:56:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from jprakash-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jprakash)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4E6B3C433AD;
-        Thu, 28 May 2020 16:56:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4E6B3C433AD
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jprakash@codeaurora.org
-From:   Jishnu Prakash <jprakash@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, linus.walleij@linaro.org,
-        Jonathan.Cameron@huawei.com, andy.shevchenko@gmail.com,
-        amit.kucheria@verdurent.com, smohanad@codeaurora.org,
-        kgunda@codeaurora.org, aghayal@codeaurora.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org
-Cc:     linux-arm-msm-owner@vger.kernel.org,
-        Jishnu Prakash <jprakash@codeaurora.org>
-Subject: [PATCH V6 7/7] iio: adc: Add a common read function for PMIC5 and PMIC7
-Date:   Thu, 28 May 2020 22:24:29 +0530
-Message-Id: <1590684869-15400-8-git-send-email-jprakash@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590684869-15400-1-git-send-email-jprakash@codeaurora.org>
-References: <1590684869-15400-1-git-send-email-jprakash@codeaurora.org>
+        id S2405105AbgE1QzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 12:55:07 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46286 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405230AbgE1QzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 12:55:05 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04SGsrDZ048177;
+        Thu, 28 May 2020 11:54:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590684893;
+        bh=unVLwfpdpfsOZpPn3ncbOetWW3k2TEuPArJ3vUQ6OYw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=K075Dd2HjKkm+8V/kGvhPwfqW58Xvi/UBkj/HHDFYV5sRBm5i4w/GFE6l9+R6USMz
+         3VlIFfTvE47rzg7SK/Eb8i27MmOLaYClLacKRTGA+E2/yHiabSeanqs28+K4hOcVKL
+         RZtN/reSLjzhMS2cNgzQRlHplBA9F1hckAxkYCZg=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04SGsrUn111184
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 May 2020 11:54:53 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
+ May 2020 11:54:52 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 28 May 2020 11:54:53 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04SGspGk130355;
+        Thu, 28 May 2020 11:54:51 -0500
+Subject: Re: [PATCH 1/1] dt-bindings: rng: Convert OMAP RNG to schema
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>
+References: <20200514131947.28094-1-t-kristo@ti.com>
+ <20200528152750.GA108124@bogus>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <537a8759-264c-f366-7fb1-398ff21c9a65@ti.com>
+Date:   Thu, 28 May 2020 19:54:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <20200528152750.GA108124@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a common function used for read_raw callback for both PMIC5
-and PMIC7 ADCs.
+On 28/05/2020 18:27, Rob Herring wrote:
+> On Thu, 14 May 2020 16:19:47 +0300, Tero Kristo wrote:
+>> Convert TI OMAP Random number generator bindings to DT schema.
+>>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> ---
+>>   .../devicetree/bindings/rng/omap_rng.txt      | 38 ---------
+>>   .../devicetree/bindings/rng/ti,omap-rng.yaml  | 77 +++++++++++++++++++
+>>   2 files changed, 77 insertions(+), 38 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
+>>   create mode 100644 Documentation/devicetree/bindings/rng/ti,omap-rng.yaml
+>>
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Jishnu Prakash <jprakash@codeaurora.org>
----
- drivers/iio/adc/qcom-spmi-adc5.c | 53 +++++++++++++++++++---------------------
- 1 file changed, 25 insertions(+), 28 deletions(-)
+Thanks Rob. Just a quick question, who is going to merge this seeing it 
+is a standalone dt binding conversion to yaml?
 
-diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-index 0f9af66..fe49741 100644
---- a/drivers/iio/adc/qcom-spmi-adc5.c
-+++ b/drivers/iio/adc/qcom-spmi-adc5.c
-@@ -449,6 +449,13 @@ static int adc7_do_conversion(struct adc5_chip *adc,
- 	return ret;
- }
- 
-+struct adc_do_conversion {
-+	int (*adc_do_conversion)(struct adc5_chip *adc,
-+			struct adc5_channel_prop *prop,
-+			struct iio_chan_spec const *chan,
-+			u16 *data_volt, u16 *data_cur);
-+};
-+
- static irqreturn_t adc5_isr(int irq, void *dev_id)
- {
- 	struct adc5_chip *adc = dev_id;
-@@ -487,9 +494,9 @@ static int adc7_of_xlate(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
--static int adc5_read_raw(struct iio_dev *indio_dev,
-+static int adc_read_raw_common(struct iio_dev *indio_dev,
- 			 struct iio_chan_spec const *chan, int *val, int *val2,
--			 long mask)
-+			 long mask, struct adc_do_conversion do_conv)
- {
- 	struct adc5_chip *adc = iio_priv(indio_dev);
- 	struct adc5_channel_prop *prop;
-@@ -500,8 +507,8 @@ static int adc5_read_raw(struct iio_dev *indio_dev,
- 
- 	switch (mask) {
- 	case IIO_CHAN_INFO_PROCESSED:
--		ret = adc5_do_conversion(adc, prop, chan,
--				&adc_code_volt, &adc_code_cur);
-+		ret = do_conv.adc_do_conversion(adc, prop, chan,
-+					&adc_code_volt, &adc_code_cur);
- 		if (ret)
- 			return ret;
- 
-@@ -518,36 +525,26 @@ static int adc5_read_raw(struct iio_dev *indio_dev,
- 	}
- }
- 
--static int adc7_read_raw(struct iio_dev *indio_dev,
-+static int adc5_read_raw(struct iio_dev *indio_dev,
- 			 struct iio_chan_spec const *chan, int *val, int *val2,
- 			 long mask)
- {
--	struct adc5_chip *adc = iio_priv(indio_dev);
--	struct adc5_channel_prop *prop;
--	u16 adc_code_volt, adc_code_cur;
--	int ret;
--
--	prop = &adc->chan_props[chan->address];
--
--	switch (mask) {
--	case IIO_CHAN_INFO_PROCESSED:
--		ret = adc7_do_conversion(adc, prop, chan,
--					&adc_code_volt, &adc_code_cur);
--		if (ret)
--			return ret;
-+	struct adc_do_conversion do_conv;
- 
--		ret = qcom_adc5_hw_scale(prop->scale_fn_type,
--			&adc5_prescale_ratios[prop->prescale],
--			adc->data,
--			adc_code_volt, val);
-+	do_conv.adc_do_conversion = adc5_do_conversion;
-+	return adc_read_raw_common(indio_dev, chan, val, val2,
-+				mask, do_conv);
-+}
- 
--		if (ret)
--			return ret;
-+static int adc7_read_raw(struct iio_dev *indio_dev,
-+			 struct iio_chan_spec const *chan, int *val, int *val2,
-+			 long mask)
-+{
-+	struct adc_do_conversion do_conv;
- 
--		return IIO_VAL_INT;
--	default:
--		return -EINVAL;
--	}
-+	do_conv.adc_do_conversion = adc7_do_conversion;
-+	return adc_read_raw_common(indio_dev, chan, val, val2,
-+				mask, do_conv);
- }
- 
- static const struct iio_info adc5_info = {
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+-Tero
 
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
