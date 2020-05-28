@@ -2,102 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC31C1E705F
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 01:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB1C1E70FB
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 01:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437520AbgE1XX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 19:23:56 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:38133 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437490AbgE1XXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 19:23:55 -0400
-Received: by mail-io1-f65.google.com with SMTP id d7so392787ioq.5;
-        Thu, 28 May 2020 16:23:54 -0700 (PDT)
+        id S2437786AbgE1X5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 19:57:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437807AbgE1X5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 19:57:39 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D04C08C5C6;
+        Thu, 28 May 2020 16:28:13 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id p20so359268iop.11;
+        Thu, 28 May 2020 16:28:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wFh6apeOWroZzQSAAuWca6xmwOwUJ+/PkpcbSDxg6pY=;
-        b=POf/hVaWAUntvrR/mkiEIymNP57hYG8PeQe7ISM00RbQ79BZ1jrYXlc1sanK9OgGNG
-         k42wkAp4UB5OlaYLPFWFSewkB4WrJFJG8zP2bAi0iaTM0GuPRToNbXT1c/FI/HqbVjeF
-         DKEozwCNsvmhwV7EQDwpMVgURIIoqYzTi9cfCBf4RfTULj3PXjMM6J8OVQNcwsoU8pwl
-         +uU1Fq5sONu73IhZdXWa6aMePWsX8162wEAUqQZCJdkAwPpdt2vEnhBxyIR/12cEUTY+
-         KaduMjC9SRI0mVSAP0k5SFDPcxXejvnZNgw328ybPyFkzk6Cc5M2YiPNOlnHGC7dnUqs
-         2Xmw==
-X-Gm-Message-State: AOAM532iD0J///vtjkKFUsLdGLeX4ZXuG9O3YnAgahUMnI7X5Xgz/rxO
-        DpAzGd1WGXxirexEa7XApw==
-X-Google-Smtp-Source: ABdhPJxIq0/eVNym+owuXNhN5FkDd4KgTqCFb7Oec35W60Xs0FHxkyI1zllKkoJnc6oZpRneU+Pj8g==
-X-Received: by 2002:a05:6602:22d6:: with SMTP id e22mr4376742ioe.128.1590708234096;
-        Thu, 28 May 2020 16:23:54 -0700 (PDT)
+        bh=TyiQfJD3hL2bx61mfoIKfduMebYmrhxlynjYDT9d88c=;
+        b=fRSTGJBTMBF5GN7OzR7s8m65l6lActjAnbcMSKFaXnAo0WZUdBH99yw6nCi60ahaOj
+         KEnNay58BxuIqc5PVm4dsmu47meqO+X+lOvTFl3+3BM4x9oGFLEeapzNSjBTmTd87I9u
+         9jd88QNuNHMeajPIofkd0vutDcWjEIdqnthSZ4XegK6xUXLz+Qxb3z1big4T0nAE99SG
+         12jWitgrlhwLcErp4YPj4ibuRV+o+sL9jp+Yw3Dq06X1Bpc4L53FoJnk086FvLHhIMzi
+         EIATGHwVwgIoRuZi+kVdOrjr9XTcfezxxDvxhzzoCZjNK+wp0swvrO4zGaRovp3rG3fA
+         g1Dg==
+X-Gm-Message-State: AOAM533GHq/bJoetDC8ZxCq6JoS09QQB75RywIlxMZCRhgJBN7dkXmzW
+        L0zEhtDQBasWww6MqGZ0dg==
+X-Google-Smtp-Source: ABdhPJzwZW2EhMkkbIXtdNTMdB0TlTz41GM4zNjP0y8P8k5r4zwMXjiSzqqL6GY48s44vD79gjqgtg==
+X-Received: by 2002:a5e:970a:: with SMTP id w10mr4276081ioj.114.1590708492723;
+        Thu, 28 May 2020 16:28:12 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id x8sm3876714ilo.81.2020.05.28.16.23.52
+        by smtp.gmail.com with ESMTPSA id b26sm1585795ilg.84.2020.05.28.16.28.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2020 16:23:53 -0700 (PDT)
-Received: (nullmailer pid 869665 invoked by uid 1000);
-        Thu, 28 May 2020 23:23:52 -0000
-Date:   Thu, 28 May 2020 17:23:52 -0600
+        Thu, 28 May 2020 16:28:11 -0700 (PDT)
+Received: (nullmailer pid 875402 invoked by uid 1000);
+        Thu, 28 May 2020 23:28:10 -0000
+Date:   Thu, 28 May 2020 17:28:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        bjorn.andersson@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] dt-bindings: mmc: Supply max load for mmc supplies
-Message-ID: <20200528232352.GA864371@bogus>
-References: <1589541535-8523-1-git-send-email-vbadigan@codeaurora.org>
- <1590074615-10787-1-git-send-email-vbadigan@codeaurora.org>
- <1590074615-10787-2-git-send-email-vbadigan@codeaurora.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-spi@vger.kernel.org,
+        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Subject: Re: [PATCH v4 16/16] dt-bindings: spi: Convert DW SPI binding to DT
+ schema
+Message-ID: <20200528232810.GA875356@bogus>
+References: <20200522000806.7381-1-Sergey.Semin@baikalelectronics.ru>
+ <20200522000806.7381-17-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1590074615-10787-2-git-send-email-vbadigan@codeaurora.org>
+In-Reply-To: <20200522000806.7381-17-Sergey.Semin@baikalelectronics.ru>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 21, 2020 at 08:53:33PM +0530, Veerabhadrarao Badiganti wrote:
-> Supply the max load needed for driving the mmc supplies.
+On Fri, 22 May 2020 03:08:05 +0300, Serge Semin wrote:
+> Modern device tree bindings are supposed to be created as YAML-files
+> in accordance with dt-schema. This commit replaces two DW SPI legacy
+> bare text bindings with YAML file. As before the bindings file states
+> that the corresponding dts node is supposed to be compatible either
+> with generic DW APB SSI controller or with Microsemi/Amazon/Renesas/Intel
+> vendors-specific controllers, to have registers, interrupts and clocks
+> properties. Though in case of Microsemi version of the controller
+> there must be two registers resources specified. Properties like
+> clock-names, reg-io-width, cs-gpio, num-cs, DMA and slave device
+> sub-nodes are optional.
 > 
-> Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
+> Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: linux-mips@vger.kernel.org
 > ---
->  .../devicetree/bindings/mmc/mmc-controller.yaml          | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  .../bindings/spi/snps,dw-apb-ssi.txt          |  44 ------
+>  .../bindings/spi/snps,dw-apb-ssi.yaml         | 127 ++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-dw.txt        |  24 ----
+>  3 files changed, 127 insertions(+), 68 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-dw.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index acc9f10..9058b82 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -290,6 +290,22 @@ properties:
->      description:
->        Supply for the bus IO line power
->  
-> +  vmmc-max-load-microamp:
 
-Seems like this should be a common regulator property (it would have to 
-be a suffix to match up with *-supply).
-
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-
-Properties with unit suffix already have a type.
-
-> +      - minimum: 0
-> +      - maximum: 1000000
-> +    description:
-> +      Maximum load for the card power.
-> +
-> +  vqmmc-max-load-microamp:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 0
-> +      - maximum: 1000000
-> +    description:
-> +      Maximum load for the bus IO line power.
-> +
->    mmc-pwrseq:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc., is a member of Code Aurora Forum, a Linux Foundation Collaborative Project
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
