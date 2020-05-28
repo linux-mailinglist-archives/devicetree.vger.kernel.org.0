@@ -2,133 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C98741E665A
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 17:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDCE71E669E
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 17:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404421AbgE1Pka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 11:40:30 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:43184 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404383AbgE1Pk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 11:40:27 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id B52C880307C0;
-        Thu, 28 May 2020 15:40:23 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id YJY955QVHiku; Thu, 28 May 2020 18:40:23 +0300 (MSK)
-Date:   Thu, 28 May 2020 18:40:22 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 09/10] dmaengine: dw: Introduce max burst length hw
- config
-Message-ID: <20200528154022.3reghhjcd4dnsr3g@mobilestation>
-References: <20200526225022.20405-1-Sergey.Semin@baikalelectronics.ru>
- <20200526225022.20405-10-Sergey.Semin@baikalelectronics.ru>
- <20200528145224.GT1634618@smile.fi.intel.com>
+        id S2404670AbgE1PrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 11:47:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404503AbgE1PrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 11:47:00 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4CFC08C5C7
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 08:47:00 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id n15so13723104pfd.0
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 08:47:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8bzFkEpeMiuczNpVrGeVDfJTOaYxKHg+WzWEH40XhWE=;
+        b=HLcs+9vbHgcJOleOjvkmnddOoWOENq1ApNFuKlsvL7Fhqhv+BZzqph1mjN9eSJWnvs
+         D9SThGRtoBtovGAknlmhY5N0KECznIyDjSsgIH1TapbLnIs40D69D6HewwtcKGLDcRJc
+         E6gj14FTp3OUmF8uVng6h30QlcDJtl6e1+qzUlSLtma1s5D/3Qs/fDfOYvH96k2/kJJy
+         5eRkjrMUmRJWuPb7EwTPnrR/tvxjgtNvlir084wxB+aIncgTYgfIeuBT7J94B8ut56JZ
+         32PEY6R6IJhjvOe79CHMLjx/B/soPDWjGp5C+xWPmwpU0VncfaIhreWCoipx7QKZQxXF
+         u80w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8bzFkEpeMiuczNpVrGeVDfJTOaYxKHg+WzWEH40XhWE=;
+        b=DLfi8tA4TomMCig/N7nT62l/4YWOC7kmkD5EbgnokbdbJaLmlRSmh+fWY/0eoCMgoF
+         pgc1kUCW1lRaEsp7uB9Lq7JXifhK1/n4THmkQ4TskBrdo5H/0e3hT57aLmUCUWScKjJR
+         nur4RWZtWmS+TeFoQW7w4dQwtCGPPVq0ykfaGbILWK+RJ67KsQiyk4aILfZ6o61XDYR7
+         hUl5mLi90cQ5PEMunyYLykowphzZ9c4JD9IGmYW6+lox+srd+6nO2eCXpBiSOtj56oUi
+         JeB0E1s+vRjDwnTrxfp/xNkYRG/lOZkCshXHbq2z2CKHMRk0Qwp1OmfheHVtN+HoxSV2
+         dUJw==
+X-Gm-Message-State: AOAM531gNX0SAxwmZa2puIUFdKJYGje0oIqiA6QsT1LUTFUiHa1iIiNa
+        kPSL3NOR/7UTTyhz58Gud6/yyA==
+X-Google-Smtp-Source: ABdhPJzqKkm7zM1Q9nJmBlgmD27dvX4y5zG//O+pRAV+bthX0R54UHNlVgcsDY/Rc/HWan7HktwORw==
+X-Received: by 2002:a63:c846:: with SMTP id l6mr3474336pgi.197.1590680819568;
+        Thu, 28 May 2020 08:46:59 -0700 (PDT)
+Received: from nagraj.local ([49.206.21.239])
+        by smtp.gmail.com with ESMTPSA id y22sm5212551pfc.132.2020.05.28.08.46.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 08:46:58 -0700 (PDT)
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org
+Cc:     nishakumari@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kgunda@codeaurora.org, rnayak@codeaurora.org,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: [PATCH v3 0/5] Qualcomm labibb regulator driver
+Date:   Thu, 28 May 2020 21:16:20 +0530
+Message-Id: <20200528154625.17742-1-sumit.semwal@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200528145224.GT1634618@smile.fi.intel.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 28, 2020 at 05:52:24PM +0300, Andy Shevchenko wrote:
-> On Wed, May 27, 2020 at 01:50:20AM +0300, Serge Semin wrote:
-> > IP core of the DW DMA controller may be synthesized with different
-> > max burst length of the transfers per each channel. According to Synopsis
-> > having the fixed maximum burst transactions length may provide some
-> > performance gain. At the same time setting up the source and destination
-> > multi size exceeding the max burst length limitation may cause a serious
-> > problems. In our case the DMA transaction just hangs up. In order to fix
-> > this lets introduce the max burst length platform config of the DW DMA
-> > controller device and don't let the DMA channels configuration code
-> > exceed the burst length hardware limitation.
-> > 
-> > Note the maximum burst length parameter can be detected either in runtime
-> > from the DWC parameter registers or from the dedicated DT property.
-> > Depending on the IP core configuration the maximum value can vary from
-> > channel to channel so by overriding the channel slave max_burst capability
-> > we make sure a DMA consumer will get the channel-specific max burst
-> > length.
-> 
-> ...
-> 
-> >  static void dwc_caps(struct dma_chan *chan, struct dma_slave_caps *caps)
-> >  {
-> > +	struct dw_dma_chan *dwc = to_dw_dma_chan(chan);
-> >  
-> 
+This series adds a driver for LAB/IBB regulators found on some Qualcomm SoCs.
+These regulators provide positive and/or negative boost power supplies
+for LCD/LED display panels connected to the SoC.
 
-> Perhaps,
-> 
-> 	/* DesignWare DMA supports burst value from 0 */
-> 	caps->min_burst = 0;
+This series adds the support for pmi8998 PMIC found in SDM845 family of SoCs.
 
-Regarding min_burst being zero. I don't fully understand what it means.
-It means no burst or burst with minimum length or what?
-In fact DW DMA burst length starts from 1. Remember the burst-length run-time
-parameter we were arguing about? Anyway the driver makes sure that both
-0 and 1 requested burst length are setup as burst length of 1 in the
-CTLx.SRC_MSIZE, CTLx.DST_MSIZE fields.
+Changes from v2:
+- Review comments from v2
+- Moved the poll-to-check-enabled functionality to regulator core.
+- Used more core features to simplify enable/disable functions.
+- Moved the devicetree binding to yaml.
+- Updated interrupt-names and simplified handling.
 
-I agree with the rest of your comments below.
+Changes from v1:
+- Incorporated review comments from v1
+- Changed from virtual-regulator based handling to individual regulator based
+  handling.
+- Reworked the core to merge most of enable/disable functions, combine the
+  regulator_ops into one and allow for future variations.
+- is_enabled() is now _really_ is_enabled()
+- Simplified the SC interrupt handling - use regmap_read_poll_timeout,
+  REGULATOR_EVENT_OVER_CURRENT handling and notification to clients.
 
--Sergey
+Nisha Kumari (4):
+  dt-bindings: regulator: Add labibb regulator
+  arm64: dts: qcom: pmi8998: Add nodes for LAB and IBB regulators
+  regulator: qcom: Add labibb driver
+  regulator: qcom: labibb: Add SC interrupt handling
 
-> 
-> > +	caps->max_burst = dwc->max_burst;
-> >  }
-> 
-> ...
-> 
-> > +	*maxburst = clamp(*maxburst, 0U, dwc->max_burst);
-> 
-> Shouldn't we do the same for iDMA 32-bit? Thus, perhaps do it in the core.c?
-> 
-> >  	*maxburst = *maxburst > 1 ? fls(*maxburst) - 2 : 0;
-> 
-> > +	if (!of_property_read_u32_array(np, "snps,max-burst-len", mb,
-> > +					nr_channels)) {
-> > +		for (tmp = 0; tmp < nr_channels; tmp++)
-> > +			pdata->max_burst[tmp] = mb[tmp];
-> 
-> I think we may read directly to the array. This ugly loops were introduced due
-> to type mismatch. (See below)
-> 
-> > +	} else {
-> > +		for (tmp = 0; tmp < nr_channels; tmp++)
-> > +			pdata->max_burst[tmp] = DW_DMA_MAX_BURST;
-> > +	}
-> 
-> And this will be effectively memset32().
-> 
-> >  	unsigned char	nr_masters;
-> >  	unsigned char	data_width[DW_DMA_MAX_NR_MASTERS];
-> >  	unsigned char	multi_block[DW_DMA_MAX_NR_CHANNELS];
-> > +	unsigned int	max_burst[DW_DMA_MAX_NR_CHANNELS];
-> 
-> I think we have to stop with this kind of types and use directly what is in the
-> properties, i.e.
-> 
-> 	u32 max_burst[...];
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Sumit Semwal (1):
+  regulator: Allow regulators to verify enabled during enable()
+
+ .../regulator/qcom-labibb-regulator.yaml      |  63 ++++
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  14 +
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/core.c                      |  28 ++
+ drivers/regulator/qcom-labibb-regulator.c     | 316 ++++++++++++++++++
+ include/linux/regulator/driver.h              |   5 +
+ 7 files changed, 437 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+ create mode 100644 drivers/regulator/qcom-labibb-regulator.c
+
+-- 
+2.26.2
+
