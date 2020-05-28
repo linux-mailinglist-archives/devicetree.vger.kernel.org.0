@@ -2,177 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B7C1E6802
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 19:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F491E6847
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 19:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405301AbgE1RCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 13:02:40 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56354 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405222AbgE1RCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 13:02:35 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 9CD2E2A06B2
-Received: by earth.universe (Postfix, from userid 1000)
-        id 060CD3C08C7; Thu, 28 May 2020 19:02:31 +0200 (CEST)
-Date:   Thu, 28 May 2020 19:02:30 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Jonathan Bakker <xc-racer2@live.ca>
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] power: supply: max17040: Set rcomp value
-Message-ID: <20200528170230.62c7jvmyjkhpoykj@earth.universe>
-References: <20200504221300.3153-1-xc-racer2@live.ca>
- <BN6PR04MB066057B881DEFC0C48208589A3A60@BN6PR04MB0660.namprd04.prod.outlook.com>
+        id S2405524AbgE1RHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 13:07:15 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:1918 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2405353AbgE1RFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 13:05:16 -0400
+X-UUID: 31fa0fca628d4d00b4418e2df2009a44-20200529
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=A1yEVTAAPXmkb1voL9ofORATdhhJt+rPBnyZJEjeoIU=;
+        b=MDAFNpR2KN/eJf2va5dQoz7ZD8/SGiPyEA04o51RSPGIXumxcwmOcbYeDzEgFjbgAaSVvrmZ6+NZ3fOEl5iqiRIFFtpclJ9c9V+vXPYWD9cinQEUddtp+9+4UDVMNK1Oum8yOlRJpvkiZAUvttGAy9mCPjozE8LlgBHV4EslGHs=;
+X-UUID: 31fa0fca628d4d00b4418e2df2009a44-20200529
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <dennis-yc.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1634530953; Fri, 29 May 2020 01:05:11 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 29 May 2020 01:05:07 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 May 2020 01:05:07 +0800
+From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        HS Liao <hs.liao@mediatek.com>
+Subject: [PATCH v6] support gce on mt6779 platform
+Date:   Fri, 29 May 2020 01:04:35 +0800
+Message-ID: <1590685491-17107-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nqhtmfaqtt3aelfj"
-Content-Disposition: inline
-In-Reply-To: <BN6PR04MB066057B881DEFC0C48208589A3A60@BN6PR04MB0660.namprd04.prod.outlook.com>
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 0A7A7DAD0F7B2228A38B441CB5B4C08F26FDE1F1C012783C0DCE4A784086282F2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+VGhpcyBwYXRjaCBzdXBwb3J0IGdjZSBvbiBtdDY3NzkgcGxhdGZvcm0uDQoNCkNoYW5nZSBzaW5j
+ZSB2NToNCi0gc3BlYXJhdGUgYWRkcmVzcyBzaGlmdCBjb2RlIGluIGNsaWVudCBoZWxwZXIgYW5k
+IG1haWxib3ggY29udHJvbGxlcg0KLSBzZXBhcmF0ZSB3cml0ZV9zL3dyaXRlX3NfbWFzayBhbmQg
+d3JpdGVfc192YWx1ZS93cml0ZV9zX21hc2tfdmFsdWUgc28gdGhhdA0KICBjbGllbnQgY2FuIGRl
+Y2lkZSB1c2UgbWFzayBvciBub3QNCi0gZml4IHR5cG8gaW4gaGVhZGVyDQoNCkNoYW5nZSBzaW5j
+ZSB2NDoNCi0gZG8gbm90IGNsZWFyIGRpc3AgZXZlbnQgYWdhaW4gaW4gZHJtIGRyaXZlcg0KLSBz
+eW1ib2xpemUgdmFsdWUgMSB0byBqdW1wIHJlbGF0aXZlDQoNClsuLi4gc25pcCAuLi5dDQoNCg0K
+DQpEZW5uaXMgWUMgSHNpZWggKDE2KToNCiAgZHQtYmluZGluZzogZ2NlOiBhZGQgZ2NlIGhlYWRl
+ciBmaWxlIGZvciBtdDY3NzkNCiAgbWFpbGJveDogY21kcTogdmFyaWFibGl6ZSBhZGRyZXNzIHNo
+aWZ0IGluIHBsYXRmb3JtDQogIG1haWxib3g6IGNtZHE6IHN1cHBvcnQgbXQ2Nzc5IGdjZSBwbGF0
+Zm9ybSBkZWZpbml0aW9uDQogIG1haWxib3g6IG1lZGlhdGVrOiBjbWRxOiBjbGVhciB0YXNrIGlu
+IGNoYW5uZWwgYmVmb3JlIHNodXRkb3duDQogIHNvYzogbWVkaWF0ZWs6IGNtZHE6IHJldHVybiBz
+ZW5kIG1zZyBlcnJvciBjb2RlDQogIHNvYzogbWVkaWF0ZWs6IGNtZHE6IGFkZCBhZGRyZXNzIHNo
+aWZ0IGluIGp1bXANCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRkIGFzc2lnbiBmdW5jdGlvbg0K
+ICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgd3JpdGVfcyBmdW5jdGlvbg0KICBzb2M6IG1lZGlh
+dGVrOiBjbWRxOiBhZGQgd3JpdGVfc19tYXNrIGZ1bmN0aW9uDQogIHNvYzogbWVkaWF0ZWs6IGNt
+ZHE6IGFkZCByZWFkX3MgZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRkIHdyaXRl
+X3MgdmFsdWUgZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRkIHdyaXRlX3NfbWFz
+ayB2YWx1ZSBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBleHBvcnQgZmluYWxpemUg
+ZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRkIGp1bXAgZnVuY3Rpb24NCiAgc29j
+OiBtZWRpYXRlazogY21kcTogYWRkIGNsZWFyIG9wdGlvbiBpbiBjbWRxX3BrdF93ZmUgYXBpDQog
+IHNvYzogbWVkaWF0ZWs6IGNtZHE6IGFkZCBzZXQgZXZlbnQgZnVuY3Rpb24NCg0KIC4uLi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL21haWxib3gvbXRrLWdjZS50eHQgICB8ICAgOCArLQ0KIGRyaXZlcnMv
+Z3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2NydGMuYyAgICAgICB8ICAgMyArLQ0KIGRyaXZlcnMv
+bWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgICAgICAgICAgICB8IDEwMSArKysrKystLQ0KIGRy
+aXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jICAgICAgICB8IDE2MyArKysrKysr
+KysrKystDQogaW5jbHVkZS9kdC1iaW5kaW5ncy9nY2UvbXQ2Nzc5LWdjZS5oICAgICAgICAgIHwg
+MjIyICsrKysrKysrKysrKysrKysrKw0KIGluY2x1ZGUvbGludXgvbWFpbGJveC9tdGstY21kcS1t
+YWlsYm94LmggICAgICB8ICAxMCArLQ0KIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1j
+bWRxLmggICAgICAgICB8IDEyNSArKysrKysrKystDQogNyBmaWxlcyBjaGFuZ2VkLCA1OTkgaW5z
+ZXJ0aW9ucygrKSwgMzMgZGVsZXRpb25zKC0pDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUv
+ZHQtYmluZGluZ3MvZ2NlL210Njc3OS1nY2UuaA0KDQotLSANCjIuMTguMA==
 
---nqhtmfaqtt3aelfj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-This patch does not even compile, how did you test it?
-
--- Sebastian
-
-On Mon, May 04, 2020 at 03:13:00PM -0700, Jonathan Bakker wrote:
-> According to the datasheet (1), the rcomp parameter can
-> vary based on the typical operating temperature and the
-> battery chemistry.  If provided, make sure we set it after
-> we reset the chip on boot.
->=20
-> 1) https://datasheets.maximintegrated.com/en/ds/MAX17040-MAX17041.pdf
->=20
-> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-> ---
->  drivers/power/supply/max17040_battery.c | 33 +++++++++++++++++++++----
->  1 file changed, 28 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supp=
-ly/max17040_battery.c
-> index 48aa44665e2f..f66e2fdc0a8a 100644
-> --- a/drivers/power/supply/max17040_battery.c
-> +++ b/drivers/power/supply/max17040_battery.c
-> @@ -10,6 +10,7 @@
->  #include <linux/init.h>
->  #include <linux/platform_device.h>
->  #include <linux/mutex.h>
-> +#include <linux/property.h>
->  #include <linux/err.h>
->  #include <linux/i2c.h>
->  #include <linux/delay.h>
-> @@ -31,6 +32,8 @@
-> =20
->  #define MAX17040_ATHD_MASK		0xFFC0
->  #define MAX17040_ATHD_DEFAULT_POWER_UP	4
-> +#define MAX17040_RCOMP_MASK		0xFF
-> +#define MAX17040_RCOMP_DEFAULT_POWER_UP	0x97
-> =20
->  struct max17040_chip {
->  	struct i2c_client		*client;
-> @@ -48,6 +51,8 @@ struct max17040_chip {
->  	int status;
->  	/* Low alert threshold from 32% to 1% of the State of Charge */
->  	u32 low_soc_alert;
-> +	/* Optimization for specific chemistries */
-> +	u8 rcomp_value;
->  };
-> =20
->  static int max17040_get_property(struct power_supply *psy,
-> @@ -119,6 +124,20 @@ static int max17040_set_low_soc_alert(struct i2c_cli=
-ent *client, u32 level)
->  	return ret;
->  }
-> =20
-> +static int max17040_set_rcomp(struct i2c_client *client, u32 val)
-> +{
-> +	int ret;
-> +	u16 data;
-> +
-> +	data =3D max17040_read_reg(client, MAX17040_RCOMP);
-> +	/* clear the rcomp val and set MSb 8 bits */
-> +	data &=3D MAX17040_RCOMP_MASK;
-> +	data |=3D val << 8;
-> +	ret =3D max17040_write_reg(client, MAX17040_RCOMP, data);
-> +
-> +	return ret;
-> +}
-> +
->  static void max17040_get_vcell(struct i2c_client *client)
->  {
->  	struct max17040_chip *chip =3D i2c_get_clientdata(client);
-> @@ -190,8 +209,14 @@ static int max17040_get_of_data(struct max17040_chip=
- *chip)
->  				 "maxim,alert-low-soc-level",
->  				 &chip->low_soc_alert);
-> =20
-> -	if (chip->low_soc_alert <=3D 0 || chip->low_soc_alert >=3D 33)
-> +	if (chip->low_soc_alert <=3D 0 || chip->low_soc_alert >=3D 33) {
-> +		dev_err(&client->dev,
-> +			"failed: low SOC alert OF data out of bounds\n");
->  		return -EINVAL;
-> +	}
-> +
-> +	chip->rcomp_value =3D MAX17040_RCOMP_DEFAULT_POWER_UP;
-> +	device_property_read_u8(dev, "maxim,rcomp-value", &chip->rcomp_value);
-> =20
->  	return 0;
->  }
-> @@ -289,11 +314,8 @@ static int max17040_probe(struct i2c_client *client,
->  	chip->client =3D client;
->  	chip->pdata =3D client->dev.platform_data;
->  	ret =3D max17040_get_of_data(chip);
-> -	if (ret) {
-> -		dev_err(&client->dev,
-> -			"failed: low SOC alert OF data out of bounds\n");
-> +	if (ret)
->  		return ret;
-> -	}
-> =20
->  	i2c_set_clientdata(client, chip);
->  	psy_cfg.drv_data =3D chip;
-> @@ -307,6 +329,7 @@ static int max17040_probe(struct i2c_client *client,
-> =20
->  	max17040_reset(client);
->  	max17040_get_version(client);
-> +	max17040_set_rcomp(client, chip->rcomp_value);
-> =20
->  	/* check interrupt */
->  	if (client->irq && of_device_is_compatible(client->dev.of_node,
-> --=20
-> 2.20.1
->=20
-
---nqhtmfaqtt3aelfj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl7P7p0ACgkQ2O7X88g7
-+polOw//TbWDyeYt0SVYsvSufjbPELbiro/Mh8PC1zxE5Tr8iAWeqHvmaDk9O1/C
-Hs5NsP7aWv52eE3nq+NlJPyQfpWMEtkBAC14hk8SEYMpgpvKY3pJb4/Q8tu17em9
-hvk26fCX3mYpUgjLcKHwGN36gIdevpDBOgjDtNFKxKepspRWYVHqu4DRWavjeatA
-sYtxO6xtG+aHmwnxSLTfvSjrvFpEZvfWJHQbPJNiMoFo9EuUcOyC8B6gliAbvMOa
-bNh6NyyMoHZbnrhCAq0JbMj4hLop4Mn7CuXMToVHQvz3vrSOx5AEkfGFOitn50S1
-ZudrRBqokCwp2wn6NRkqQ6IIE08uAF5zCIAyldWIC5zDfYnoU5K+i2aWk/4IbSUo
-uP8ur9MTZlT3lDaOPvE253givUmEWtM80LjY9ZPkhggDS1EXwlLdjbCFofI1zKIh
-HPKm+6wGAvyhJ4OrsHbNnacGhbz7nZKi+RGTVh6ncFBq2rqttRK0b5r3BWIIncEO
-VZnlNUpMFg5htTMo2nHx3jitNtjVMYp81ZQsJVU107BOwxc2FpGCOsImtI3VNL4w
-rlWWKgF0rocDC2BuQ+aMTkxDM+HBYsHPp5DIdVo1TPgOvfrFeDTXsIUL8WtBZfUT
-5chE6+Pufz/MP16YOfMA5YKdCEObvtEmpwDBN2aDtSy09qSSsk0=
-=kop8
------END PGP SIGNATURE-----
-
---nqhtmfaqtt3aelfj--
