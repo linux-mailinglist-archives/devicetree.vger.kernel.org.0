@@ -2,124 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4CD1E660B
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 17:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 915FA1E6600
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 17:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404412AbgE1P25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 11:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51380 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404404AbgE1P2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 11:28:52 -0400
-Received: from vultr.net.flygoat.com (vultr.net.flygoat.com [IPv6:2001:19f0:6001:3633:5400:2ff:fe8c:553])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08007C08C5C6;
-        Thu, 28 May 2020 08:28:52 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 2B5E120F11;
-        Thu, 28 May 2020 15:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1590679731; bh=itQq/GtS9SPzJ5vE89BkS0b5jPSUmzZaIbqMNYrziTA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FzuqW0/lo6SZ29zIQXxPXq+Jx+2mIdhpFW1GunOjumykePHwpotGlJgxGzr1Ghc7T
-         nM/VIKG2b7+r5702pMnqbQdw5pe+SlOxgFZHdmQ4ScH6peV2AI+1kCb93w8r2hH+1J
-         ID3AH33I5HVmOu7pW7BRyDMf9Fiku/MxFKrXnhCDGToHOQf97sBdq1Uqt9ygOpKveH
-         GXNApTTpHm7VaewGaaqsplT4/BHfa/KkCU+VEZOOM1Eftn4M/YebKw3qA8FJ4Io6jO
-         YdXe+MEbfpaTW8Gs+AmgYDiWWfQZTGs4Tb3lhfR8Vetqsf1MzuaRJh4XUJdyMts1If
-         jyer7p0uERmag==
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     maz@kernel.org
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v5 2/6] dt-bindings: interrupt-controller: Add Loongson HTVEC
-Date:   Thu, 28 May 2020 23:27:50 +0800
-Message-Id: <20200528152757.1028711-3-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.27.0.rc0
-In-Reply-To: <20200528152757.1028711-1-jiaxun.yang@flygoat.com>
-References: <20200528152757.1028711-1-jiaxun.yang@flygoat.com>
+        id S2404364AbgE1P1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 11:27:54 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:39473 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404080AbgE1P1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 11:27:52 -0400
+Received: by mail-io1-f68.google.com with SMTP id c8so10039880iob.6;
+        Thu, 28 May 2020 08:27:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B9AjAF204kGqafZ8qch9ULXofKx7NjkIMEqK2VlDI5g=;
+        b=MYjj5xLbgy6dECgPz8JNt5yEeLUlHnQ7V0mFoy7ch6yyrkFta5bRACQ4SlLVXFpIIX
+         DJ7xMT01ZdQqvX0/XmMm1w5XwA+y9RJLHgfwI7EWIXXu/osIUjE1iAKtdK8/2A2VA/6G
+         nTKjmHUUvhIPBBVWQTVd4O5rjUmQBzBxsTxA3WVVRImcxizqrjLWYJ0x0JVHJsfqCe8z
+         G5HbOivFUOg2jji3UMFDk/ffUCBrGrBEz/Jk880uOx1eirY4XB/MFlxCTr396agJnpJt
+         pPd2buU/+EKnUJwKtGwh4LUub7U0TTv/oCt72e9IQfj76of/QH1ODYMtSZWA+iFlVqZf
+         yCNQ==
+X-Gm-Message-State: AOAM532h92LTzNC9JKG4vZu21TwYwr6ljcqZBpliwHnYoJgVcdVrELq1
+        Mtgs8ocgEVSxeaewDIk/kQ==
+X-Google-Smtp-Source: ABdhPJy07N+4IrsKSktm0ndsurbG5LTql9W08jU7Y9tQsWYLTpgglW+dKz7oQ4cI8JXhUDU6+gzvPg==
+X-Received: by 2002:a02:6d0a:: with SMTP id m10mr3013911jac.133.1590679672105;
+        Thu, 28 May 2020 08:27:52 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id l3sm2846942iow.55.2020.05.28.08.27.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 08:27:51 -0700 (PDT)
+Received: (nullmailer pid 112685 invoked by uid 1000);
+        Thu, 28 May 2020 15:27:50 -0000
+Date:   Thu, 28 May 2020 09:27:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        mpm@selenic.com, herbert@gondor.apana.org.au, robh+dt@kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: rng: Convert OMAP RNG to schema
+Message-ID: <20200528152750.GA108124@bogus>
+References: <20200514131947.28094-1-t-kristo@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200514131947.28094-1-t-kristo@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for Loongson-3 HyperTransport Interrupt Vector Controller.
+On Thu, 14 May 2020 16:19:47 +0300, Tero Kristo wrote:
+> Convert TI OMAP Random number generator bindings to DT schema.
+> 
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> ---
+>  .../devicetree/bindings/rng/omap_rng.txt      | 38 ---------
+>  .../devicetree/bindings/rng/ti,omap-rng.yaml  | 77 +++++++++++++++++++
+>  2 files changed, 77 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
+>  create mode 100644 Documentation/devicetree/bindings/rng/ti,omap-rng.yaml
+> 
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
---
-v4: Drop ref, '|', add additionalProperties, fix example
----
- .../interrupt-controller/loongson,htvec.yaml  | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,htvec.yaml
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,htvec.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,htvec.yaml
-new file mode 100644
-index 000000000000..e865cd8f96a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,htvec.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/interrupt-controller/loongson,htvec.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Loongson-3 HyperTransport Interrupt Vector Controller
-+
-+maintainers:
-+  - Jiaxun Yang <jiaxun.yang@flygoat.com>
-+
-+description:
-+  This interrupt controller is found in the Loongson-3 family of chips for
-+  receiving vectorized interrupts from PCH's interrupt controller.
-+
-+properties:
-+  compatible:
-+    const: loongson,htvec-1.0
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 4
-+    description: Four parent interrupts that receive chained interrupts.
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    htvec: interrupt-controller@fb000080 {
-+      compatible = "loongson,htvec-1.0";
-+      reg = <0xfb000080 0x40>;
-+      interrupt-controller;
-+      #interrupt-cells = <1>;
-+
-+      interrupt-parent = <&liointc>;
-+      interrupts = <24 IRQ_TYPE_LEVEL_HIGH>,
-+                    <25 IRQ_TYPE_LEVEL_HIGH>,
-+                    <26 IRQ_TYPE_LEVEL_HIGH>,
-+                    <27 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+...
--- 
-2.27.0.rc0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
