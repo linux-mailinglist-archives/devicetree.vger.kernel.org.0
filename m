@@ -2,82 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A20401E67DA
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 18:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B7C1E6802
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 19:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405105AbgE1QzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 12:55:07 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:46286 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405230AbgE1QzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 12:55:05 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04SGsrDZ048177;
-        Thu, 28 May 2020 11:54:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1590684893;
-        bh=unVLwfpdpfsOZpPn3ncbOetWW3k2TEuPArJ3vUQ6OYw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=K075Dd2HjKkm+8V/kGvhPwfqW58Xvi/UBkj/HHDFYV5sRBm5i4w/GFE6l9+R6USMz
-         3VlIFfTvE47rzg7SK/Eb8i27MmOLaYClLacKRTGA+E2/yHiabSeanqs28+K4hOcVKL
-         RZtN/reSLjzhMS2cNgzQRlHplBA9F1hckAxkYCZg=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04SGsrUn111184
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 May 2020 11:54:53 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
- May 2020 11:54:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 28 May 2020 11:54:53 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04SGspGk130355;
-        Thu, 28 May 2020 11:54:51 -0500
-Subject: Re: [PATCH 1/1] dt-bindings: rng: Convert OMAP RNG to schema
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
-        <robh+dt@kernel.org>
-References: <20200514131947.28094-1-t-kristo@ti.com>
- <20200528152750.GA108124@bogus>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <537a8759-264c-f366-7fb1-398ff21c9a65@ti.com>
-Date:   Thu, 28 May 2020 19:54:50 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S2405301AbgE1RCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 13:02:40 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:56354 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405222AbgE1RCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 13:02:35 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 9CD2E2A06B2
+Received: by earth.universe (Postfix, from userid 1000)
+        id 060CD3C08C7; Thu, 28 May 2020 19:02:31 +0200 (CEST)
+Date:   Thu, 28 May 2020 19:02:30 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Jonathan Bakker <xc-racer2@live.ca>
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] power: supply: max17040: Set rcomp value
+Message-ID: <20200528170230.62c7jvmyjkhpoykj@earth.universe>
+References: <20200504221300.3153-1-xc-racer2@live.ca>
+ <BN6PR04MB066057B881DEFC0C48208589A3A60@BN6PR04MB0660.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <20200528152750.GA108124@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nqhtmfaqtt3aelfj"
+Content-Disposition: inline
+In-Reply-To: <BN6PR04MB066057B881DEFC0C48208589A3A60@BN6PR04MB0660.namprd04.prod.outlook.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/05/2020 18:27, Rob Herring wrote:
-> On Thu, 14 May 2020 16:19:47 +0300, Tero Kristo wrote:
->> Convert TI OMAP Random number generator bindings to DT schema.
->>
->> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->> ---
->>   .../devicetree/bindings/rng/omap_rng.txt      | 38 ---------
->>   .../devicetree/bindings/rng/ti,omap-rng.yaml  | 77 +++++++++++++++++++
->>   2 files changed, 77 insertions(+), 38 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
->>   create mode 100644 Documentation/devicetree/bindings/rng/ti,omap-rng.yaml
->>
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Thanks Rob. Just a quick question, who is going to merge this seeing it 
-is a standalone dt binding conversion to yaml?
+--nqhtmfaqtt3aelfj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Tero
+Hi,
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+This patch does not even compile, how did you test it?
+
+-- Sebastian
+
+On Mon, May 04, 2020 at 03:13:00PM -0700, Jonathan Bakker wrote:
+> According to the datasheet (1), the rcomp parameter can
+> vary based on the typical operating temperature and the
+> battery chemistry.  If provided, make sure we set it after
+> we reset the chip on boot.
+>=20
+> 1) https://datasheets.maximintegrated.com/en/ds/MAX17040-MAX17041.pdf
+>=20
+> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+> ---
+>  drivers/power/supply/max17040_battery.c | 33 +++++++++++++++++++++----
+>  1 file changed, 28 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supp=
+ly/max17040_battery.c
+> index 48aa44665e2f..f66e2fdc0a8a 100644
+> --- a/drivers/power/supply/max17040_battery.c
+> +++ b/drivers/power/supply/max17040_battery.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/init.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/mutex.h>
+> +#include <linux/property.h>
+>  #include <linux/err.h>
+>  #include <linux/i2c.h>
+>  #include <linux/delay.h>
+> @@ -31,6 +32,8 @@
+> =20
+>  #define MAX17040_ATHD_MASK		0xFFC0
+>  #define MAX17040_ATHD_DEFAULT_POWER_UP	4
+> +#define MAX17040_RCOMP_MASK		0xFF
+> +#define MAX17040_RCOMP_DEFAULT_POWER_UP	0x97
+> =20
+>  struct max17040_chip {
+>  	struct i2c_client		*client;
+> @@ -48,6 +51,8 @@ struct max17040_chip {
+>  	int status;
+>  	/* Low alert threshold from 32% to 1% of the State of Charge */
+>  	u32 low_soc_alert;
+> +	/* Optimization for specific chemistries */
+> +	u8 rcomp_value;
+>  };
+> =20
+>  static int max17040_get_property(struct power_supply *psy,
+> @@ -119,6 +124,20 @@ static int max17040_set_low_soc_alert(struct i2c_cli=
+ent *client, u32 level)
+>  	return ret;
+>  }
+> =20
+> +static int max17040_set_rcomp(struct i2c_client *client, u32 val)
+> +{
+> +	int ret;
+> +	u16 data;
+> +
+> +	data =3D max17040_read_reg(client, MAX17040_RCOMP);
+> +	/* clear the rcomp val and set MSb 8 bits */
+> +	data &=3D MAX17040_RCOMP_MASK;
+> +	data |=3D val << 8;
+> +	ret =3D max17040_write_reg(client, MAX17040_RCOMP, data);
+> +
+> +	return ret;
+> +}
+> +
+>  static void max17040_get_vcell(struct i2c_client *client)
+>  {
+>  	struct max17040_chip *chip =3D i2c_get_clientdata(client);
+> @@ -190,8 +209,14 @@ static int max17040_get_of_data(struct max17040_chip=
+ *chip)
+>  				 "maxim,alert-low-soc-level",
+>  				 &chip->low_soc_alert);
+> =20
+> -	if (chip->low_soc_alert <=3D 0 || chip->low_soc_alert >=3D 33)
+> +	if (chip->low_soc_alert <=3D 0 || chip->low_soc_alert >=3D 33) {
+> +		dev_err(&client->dev,
+> +			"failed: low SOC alert OF data out of bounds\n");
+>  		return -EINVAL;
+> +	}
+> +
+> +	chip->rcomp_value =3D MAX17040_RCOMP_DEFAULT_POWER_UP;
+> +	device_property_read_u8(dev, "maxim,rcomp-value", &chip->rcomp_value);
+> =20
+>  	return 0;
+>  }
+> @@ -289,11 +314,8 @@ static int max17040_probe(struct i2c_client *client,
+>  	chip->client =3D client;
+>  	chip->pdata =3D client->dev.platform_data;
+>  	ret =3D max17040_get_of_data(chip);
+> -	if (ret) {
+> -		dev_err(&client->dev,
+> -			"failed: low SOC alert OF data out of bounds\n");
+> +	if (ret)
+>  		return ret;
+> -	}
+> =20
+>  	i2c_set_clientdata(client, chip);
+>  	psy_cfg.drv_data =3D chip;
+> @@ -307,6 +329,7 @@ static int max17040_probe(struct i2c_client *client,
+> =20
+>  	max17040_reset(client);
+>  	max17040_get_version(client);
+> +	max17040_set_rcomp(client, chip->rcomp_value);
+> =20
+>  	/* check interrupt */
+>  	if (client->irq && of_device_is_compatible(client->dev.of_node,
+> --=20
+> 2.20.1
+>=20
+
+--nqhtmfaqtt3aelfj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl7P7p0ACgkQ2O7X88g7
++polOw//TbWDyeYt0SVYsvSufjbPELbiro/Mh8PC1zxE5Tr8iAWeqHvmaDk9O1/C
+Hs5NsP7aWv52eE3nq+NlJPyQfpWMEtkBAC14hk8SEYMpgpvKY3pJb4/Q8tu17em9
+hvk26fCX3mYpUgjLcKHwGN36gIdevpDBOgjDtNFKxKepspRWYVHqu4DRWavjeatA
+sYtxO6xtG+aHmwnxSLTfvSjrvFpEZvfWJHQbPJNiMoFo9EuUcOyC8B6gliAbvMOa
+bNh6NyyMoHZbnrhCAq0JbMj4hLop4Mn7CuXMToVHQvz3vrSOx5AEkfGFOitn50S1
+ZudrRBqokCwp2wn6NRkqQ6IIE08uAF5zCIAyldWIC5zDfYnoU5K+i2aWk/4IbSUo
+uP8ur9MTZlT3lDaOPvE253givUmEWtM80LjY9ZPkhggDS1EXwlLdjbCFofI1zKIh
+HPKm+6wGAvyhJ4OrsHbNnacGhbz7nZKi+RGTVh6ncFBq2rqttRK0b5r3BWIIncEO
+VZnlNUpMFg5htTMo2nHx3jitNtjVMYp81ZQsJVU107BOwxc2FpGCOsImtI3VNL4w
+rlWWKgF0rocDC2BuQ+aMTkxDM+HBYsHPp5DIdVo1TPgOvfrFeDTXsIUL8WtBZfUT
+5chE6+Pufz/MP16YOfMA5YKdCEObvtEmpwDBN2aDtSy09qSSsk0=
+=kop8
+-----END PGP SIGNATURE-----
+
+--nqhtmfaqtt3aelfj--
