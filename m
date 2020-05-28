@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 057831E5293
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 03:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E122D1E5278
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 03:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725988AbgE1BBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 21:01:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36238 "EHLO mail.kernel.org"
+        id S1726408AbgE1BBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 21:01:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36330 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725747AbgE1BBO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 21:01:14 -0400
+        id S1726398AbgE1BBR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 21:01:17 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D4A2820888;
-        Thu, 28 May 2020 01:01:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 260C720888;
+        Thu, 28 May 2020 01:01:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1590627673;
-        bh=ktm4pRzhf1NV+YzaN6U4bH9oGe9Z7m0BKz8OebZtXV4=;
+        s=default; t=1590627677;
+        bh=jBVXYZkmmWDlv9o4kqsnN/HfJGhCXkyYlOK0BYqwJg8=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=bGQAVXnrqqYj5PIC4HmEiIEF1X9H/Ia6ZctYMMYMP9cVlqeuH6/pUCSX/x7WaA+z+
-         c6hhnjEfLiycahb1z2jYP9y/P/w0D7ipCE6p/U/rgabHHb2Nk4yQjLScOLI5fenqK9
-         X8eBp9NIH0X6E3BkAPwsqlnIHYnSlRXj4etAmzlE=
+        b=dvB1PfwnC/pD0upEAcY9qqx5epSxMeNZj3ziOAmBlyHhJd4nrHQK0DBRTfV8LzXBu
+         KPL6Xcy0Lpd+GbFgEbXVYSw4TCuaz1ZhBptIWMKqKWkdHjCFkxWbSWUvX+y5EKNrBk
+         cxH1s60bwbhz82qGG6PNxVahQ9AwcyX2QTm+LFD0=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200519224151.2074597-6-lkundrak@v3.sk>
-References: <20200519224151.2074597-1-lkundrak@v3.sk> <20200519224151.2074597-6-lkundrak@v3.sk>
-Subject: Re: [PATCH v3 05/13] clk: mmp2: Move thermal register defines up a bit
+In-Reply-To: <20200519224151.2074597-7-lkundrak@v3.sk>
+References: <20200519224151.2074597-1-lkundrak@v3.sk> <20200519224151.2074597-7-lkundrak@v3.sk>
+Subject: Re: [PATCH v3 06/13] clk: mmp2: Rename mmp2_pll_init() to mmp2_main_clk_init()
 From:   Stephen Boyd <sboyd@kernel.org>
 Cc:     Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
@@ -36,17 +36,17 @@ Cc:     Michael Turquette <mturquette@baylibre.com>,
         linux-arm-kernel@lists.infradead.org,
         Lubomir Rintel <lkundrak@v3.sk>
 To:     Lubomir Rintel <lkundrak@v3.sk>
-Date:   Wed, 27 May 2020 18:01:13 -0700
-Message-ID: <159062767309.69627.11783454941191458083@swboyd.mtv.corp.google.com>
+Date:   Wed, 27 May 2020 18:01:16 -0700
+Message-ID: <159062767630.69627.10455271223525770055@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lubomir Rintel (2020-05-19 15:41:43)
-> A trivial change to keep the sorting sane. The APBC registers are happier
-> when they are grouped together, instead of mixed with the APMU ones.
+Quoting Lubomir Rintel (2020-05-19 15:41:44)
+> This is a trivial rename for a routine that registers more clock sources
+> than the PLLs -- there's also a XO.
 >=20
 > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 > ---
