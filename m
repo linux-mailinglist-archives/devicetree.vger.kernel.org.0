@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E25E1E68CE
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 19:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0FE1E68BF
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 19:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405631AbgE1RpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 13:45:17 -0400
-Received: from mail.manjaro.org ([176.9.38.148]:54658 "EHLO mail.manjaro.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405597AbgE1RpQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 May 2020 13:45:16 -0400
-X-Greylist: delayed 1143 seconds by postgrey-1.27 at vger.kernel.org; Thu, 28 May 2020 13:45:16 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id 62E2937CC722;
-        Thu, 28 May 2020 19:26:14 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at manjaro.org
-Received: from mail.manjaro.org ([127.0.0.1])
-        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Kr2DGfvXLuqX; Thu, 28 May 2020 19:26:08 +0200 (CEST)
-From:   Tobias Schramm <t.schramm@manjaro.org>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Tobias Schramm <t.schramm@manjaro.org>
-Subject: [PATCH 1/1] arm64: dts: rockchip: add fuel gauge to Pinebook Pro dts
-Date:   Thu, 28 May 2020 19:25:50 +0200
-Message-Id: <20200528172550.2324722-2-t.schramm@manjaro.org>
-In-Reply-To: <20200528172550.2324722-1-t.schramm@manjaro.org>
-References: <20200528172550.2324722-1-t.schramm@manjaro.org>
+        id S2405372AbgE1Rh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 13:37:59 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:33006 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405041AbgE1Rh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 13:37:58 -0400
+Received: by mail-il1-f195.google.com with SMTP id y17so1068706ilg.0
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 10:37:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=GiD0oyk/KKQdbg44fIYbxmFQPOLIBFzL4LRBCx2gE2E=;
+        b=pdxnbR2WoGwPjqFH8a5chIdrTtJFnT3leOPE1j9WzbeV4K8dSjCto+HAuBO4UYqcz8
+         FB85DZMevnDmNRA6XyY9+9O9vRygoJPayGSSHUSHHUdqG9cdEu9O3DBEHHuS8Q2fMQCl
+         hvzPxcz4SvJBQ6IlvfFvfVEcQF8qgCyWO2jJrKgExPTyMBq7J7fat6ePjH17ov0oL5gl
+         l5dAWzSK3mFdaBNLx4VE7geaziTx1en+XxdBGwyKcLzPmkqtV6JiSf5CW7uNyO+9N5tw
+         qtV9Un+Q/eLOIx5v60Gzr9uzUfKc3FOgbC5Jv1NqDEVENu69+7qfxqKApUDW2+axY3qw
+         DjFw==
+X-Gm-Message-State: AOAM533JoenwX3nNZOdv2yCCE1P3gcZuRtBpdPJndEtJPjgOMAVfqIEp
+        MPmR96ve0cDvnEqvifc47Q==
+X-Google-Smtp-Source: ABdhPJz6XG8IeR1Wf7SDceVEEvWMzunefbyvqCnZoj/YTWnEQp5dGohnm7sv7KyHZntAzHxF6L2Szw==
+X-Received: by 2002:a92:155b:: with SMTP id v88mr3691249ilk.274.1590687477415;
+        Thu, 28 May 2020 10:37:57 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id d16sm3567690ilg.71.2020.05.28.10.37.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 10:37:56 -0700 (PDT)
+Received: (nullmailer pid 360225 invoked by uid 1000);
+        Thu, 28 May 2020 17:37:55 -0000
+Date:   Thu, 28 May 2020 11:37:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
+Cc:     Laurent.pinchart@ideasonboard.com, kernel@collabora.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
+        tomi.valkeinen@ti.com, airlied@linux.ie, shawnguo@kernel.org
+Subject: Re: [PATCH v2 1/4] ARM: dts: dove: Make the DT compliant with the
+ ti,tfp410 binding
+Message-ID: <20200528173755.GA113289@bogus>
+References: <20200514143612.2094-1-ricardo.canuelo@collabora.com>
+ <20200514143612.2094-2-ricardo.canuelo@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200514143612.2094-2-ricardo.canuelo@collabora.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds cw2015 fuel gauge and battery to the Pinebook Pro dts.
+On Thu, May 14, 2020 at 04:36:09PM +0200, Ricardo Cañuelo wrote:
+> Define a 'ports' node for 'dvi: video@39' and use the proper naming for
+> the powerdown-gpios property to make it compliant with the ti,tfp410
+> binding.
+> 
+> This fills the minimum requirements to meet the binding requirements,
+> port endpoints are not defined.
 
-Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
----
- .../boot/dts/rockchip/rk3399-pinebook-pro.dts | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Just make 'ports' optional. This isn't really any better unless you add 
+endpoints too.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 5ea281b55fe2..28afe89ca283 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -28,6 +28,13 @@ backlight: edp-backlight {
- 		pwms = <&pwm0 0 740740 0>;
- 	};
- 
-+	bat: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <9800000>;
-+		voltage-max-design-microvolt = <4350000>;
-+		voltage-min-design-microvolt = <3000000>;
-+	};
-+
- 	edp_panel: edp-panel {
- 		compatible = "boe,nv140fhmn49";
- 		backlight = <&backlight>;
-@@ -740,6 +747,24 @@ usbc_dp: endpoint {
- 			};
- 		};
- 	};
-+
-+	cw2015@62 {
-+		compatible = "cellwise,cw2015";
-+		reg = <0x62>;
-+		cellwise,battery-profile = /bits/ 8 <
-+			0x17 0x67 0x80 0x73 0x6E 0x6C 0x6B 0x63
-+			0x77 0x51 0x5C 0x58 0x50 0x4C 0x48 0x36
-+			0x15 0x0C 0x0C 0x19 0x5B 0x7D 0x6F 0x69
-+			0x69 0x5B 0x0C 0x29 0x20 0x40 0x52 0x59
-+			0x57 0x56 0x54 0x4F 0x3B 0x1F 0x7F 0x17
-+			0x06 0x1A 0x30 0x5A 0x85 0x93 0x96 0x2D
-+			0x48 0x77 0x9C 0xB3 0x80 0x52 0x94 0xCB
-+			0x2F 0x00 0x64 0xA5 0xB5 0x11 0xF0 0x11
-+		>;
-+		cellwise,monitor-interval-ms = <5000>;
-+		monitored-battery = <&bat>;
-+		power-supplies = <&mains_charger>, <&fusb0>;
-+	};
- };
- 
- &i2s1 {
--- 
-2.26.0
-
+> 
+> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+> ---
+>  arch/arm/boot/dts/dove-sbc-a510.dts | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/dove-sbc-a510.dts b/arch/arm/boot/dts/dove-sbc-a510.dts
+> index 2bb85a9b7614..32804c981625 100644
+> --- a/arch/arm/boot/dts/dove-sbc-a510.dts
+> +++ b/arch/arm/boot/dts/dove-sbc-a510.dts
+> @@ -132,7 +132,18 @@
+>  	dvi: video@39 {
+>  		compatible = "ti,tfp410";
+>  		reg = <0x39>;
+> -		powerdown-gpio = <&gpio_ext 3 GPIO_ACTIVE_LOW>;
+> +		powerdown-gpios = <&gpio_ext 3 GPIO_ACTIVE_LOW>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			port@0 {
+> +				reg = <0>;
+> +			};
+> +			port@1 {
+> +				reg = <1>;
+> +			};
+> +		};
+>  	};
+>  };
+>  
+> -- 
+> 2.18.0
+> 
