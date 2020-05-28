@@ -2,23 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C421E645A
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 911901E645B
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725922AbgE1Opo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 10:45:44 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:50833 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728510AbgE1Opn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:45:43 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 4C0F4C0009;
-        Thu, 28 May 2020 14:45:37 +0000 (UTC)
-Date:   Thu, 28 May 2020 16:45:35 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
+        id S1728522AbgE1Opr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 10:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728510AbgE1Opq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:45:46 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EACDC05BD1E
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 07:45:46 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 620552A3D6A;
+        Thu, 28 May 2020 15:45:44 +0100 (BST)
+Date:   Thu, 28 May 2020 16:45:41 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Tudor Ambarus <Tudor.Ambarus@microchip.com>,
@@ -32,15 +36,14 @@ Cc:     Richard Weinberger <richard@nod.at>,
         <linux-arm-kernel@lists.infradead.org>,
         Mason Yang <masonccyang@mxic.com.tw>,
         Julien Su <juliensu@mxic.com.tw>
-Subject: Re: [PATCH v6 08/18] mtd: rawnand: Use the new ECC engine type
- enumeration
-Message-ID: <20200528164535.3655ffcb@xps13>
-In-Reply-To: <20200528163150.6ad71fcc@collabora.com>
+Subject: Re: [PATCH v6 18/18] mtd: rawnand: Move generic bits to the ECC
+ framework
+Message-ID: <20200528164541.106bbde9@collabora.com>
+In-Reply-To: <20200528113113.9166-19-miquel.raynal@bootlin.com>
 References: <20200528113113.9166-1-miquel.raynal@bootlin.com>
-        <20200528113113.9166-9-miquel.raynal@bootlin.com>
-        <20200528163150.6ad71fcc@collabora.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        <20200528113113.9166-19-miquel.raynal@bootlin.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
@@ -49,50 +52,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 28 May 2020 13:31:13 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Boris Brezillon <boris.brezillon@collabora.com> wrote on Thu, 28 May
-2020 16:31:50 +0200:
+> diff --git a/include/linux/mtd/nand.h b/include/linux/mtd/nand.h
+> index ce936ffb9f42..1cc6d71c2b45 100644
+> --- a/include/linux/mtd/nand.h
+> +++ b/include/linux/mtd/nand.h
+> @@ -127,6 +127,10 @@ struct nand_page_io_req {
+>  	int mode;
+>  };
+>  
+> +extern const struct mtd_ooblayout_ops nand_ooblayout_sp_ops;
+> +extern const struct mtd_ooblayout_ops nand_ooblayout_lp_ops;
+> +extern const struct mtd_ooblayout_ops nand_ooblayout_lp_hamming_ops;
 
-> On Thu, 28 May 2020 13:31:03 +0200
-> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> 
-> > Mechanical switch from the legacy "mode" enumeration to the new
-> > "engine type" enumeration in drivers and board files.
-> > 
-> > The device tree parsing is also updated to return the new enumeration
-> > from the old strings.
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>  
-> 
-> I didn't check all the changes, but I'm fine with the approach
-> 
-> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-> 
-> > diff --git a/include/linux/platform_data/mtd-davinci.h b/include/linux/platform_data/mtd-davinci.h
-> > index 3383101c233b..dd474dd44848 100644
-> > --- a/include/linux/platform_data/mtd-davinci.h
-> > +++ b/include/linux/platform_data/mtd-davinci.h
-> > @@ -60,16 +60,16 @@ struct davinci_nand_pdata {		/* platform_data */
-> >  	struct mtd_partition	*parts;
-> >  	unsigned		nr_parts;
-> >  
-> > -	/* none  == NAND_ECC_NONE (strongly *not* advised!!)
-> > -	 * soft  == NAND_ECC_SOFT
-> > -	 * else  == NAND_ECC_HW, according to ecc_bits
-> > +	/* none  == NAND_ECC_ENGINE_TYPE_NONE (strongly *not* advised!!)
-> > +	 * soft  == NAND_ECC_ENGINE_TYPE_SOFT
-> > +	 * else  == NAND_ECC_ENGINE_TYPE_ON_HOST, according to ecc_bits
-> >  	 *
-> >  	 * All DaVinci-family chips support 1-bit hardware ECC.
-> >  	 * Newer ones also support 4-bit ECC, but are awkward
-> >  	 * using it with large page chips.
-> >  	 */
-> > -	enum nand_ecc_mode	ecc_mode;
-> > -	enum nand_ecc_placement	ecc_placement;
-> > +	enum nand_ecc_engine_type engine_type;
-> > +	enum nand_ecc_placement ecc_placement;  
-> 
-> Nitpick: if you want to use a space instead of tab, it should be done in
-> patch 3.
+While we move that to the generic NAND layer, can we hide that behind
+helpers so we don't have the objects directly exposed?
 
-Right, fixed!
+const struct mtd_ooblayout_ops *nand_get_small_page_layout();
+const struct mtd_ooblayout_ops *nand_get_large_page_layout();
+const struct mtd_ooblayout_ops *nand_get_large_page_hamming_layout();
