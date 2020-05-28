@@ -2,86 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5EFF1E53DA
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 04:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 971C01E53E7
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 04:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726788AbgE1CZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 22:25:08 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:40621 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbgE1CZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 22:25:06 -0400
-Received: by mail-il1-f194.google.com with SMTP id a18so8868463ilp.7;
-        Wed, 27 May 2020 19:25:04 -0700 (PDT)
+        id S1725901AbgE1C3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 22:29:35 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:40640 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725849AbgE1C3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 May 2020 22:29:35 -0400
+Received: by mail-io1-f65.google.com with SMTP id q8so26961079iow.7;
+        Wed, 27 May 2020 19:29:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TWK/yt8wEPtAEh5uiWmORMzf8N+47TheQbGehNEJTNo=;
-        b=WoazSe3cPYQ8opkECLol3Ww/SVmLMfmzcHh7BByCb/MPYtw0uO0s678GQUkSfXui6c
-         ko7f2P1mUze3j+18eTZOozCn9XiDZgV+Ihxhsf4xh3uaamaJK2IulWK9/nL9FAAgRdoM
-         oUkn4nSJjTFVf3yKSX9CNGC6LkCuFIvy+NfCLhPsRqxV/j5c6aXEIgzUQSMwRidxCv9E
-         pqyKq6ntdsl6kVCI4Uqt502RARhWa0avVMqbj8MaeeO+LbM56sx9EBZF4QDaxzKsChmh
-         +8a9qK84nOq2JXxwfEzpTg86pQLMv6Z2uka1eH+bMkTLT9NDLYfp949DSiOSDZ9MTKQ0
-         uuGw==
-X-Gm-Message-State: AOAM532XUbeqMXKA6P0RF5QWNpV632vBGq88LzC+NtCv0PrG+MJvl/Bq
-        Py+zMabOq0ddpDJ9etm8KA==
-X-Google-Smtp-Source: ABdhPJznBK7J4jfTRRptgmH6VfuihabhXQkH6wzIbabFHPxNfhYIn/vanUVmodLM98GWZsQkpBEuAw==
-X-Received: by 2002:a05:6e02:6cd:: with SMTP id p13mr994377ils.188.1590632703884;
-        Wed, 27 May 2020 19:25:03 -0700 (PDT)
+        bh=uKUnnOxF9cpoRDQnA++h7CPfUqtyF29gVMBaKZyv/Y0=;
+        b=kg1LTEZhQxb7HJVJ1IQog3JuWZ7xWR6fI5tmoDcEpTLC+8uxKKOPI1Pa6bdKXI+adX
+         fWAha59YG9+r8Oxtu1l/VdwHbm1YrSOxYn/Vwl/N9LhwR5prt7bx5mUt4mnjm/aXkYEU
+         5/XOr5Rm0gB2P3WF5Mg3n5r/8hiMJbwwK7ai59cyeXMWyc0+c31hp/vvuilDGDczDFsy
+         2ekWgRwUphJ/wZdjqr82jXb+QA4xcpwK0x3CRKgVLwlM2eeQZdPIwlGf8qOCc1gUQDZY
+         ReDxEmHM28aHnnmCBE2NkaCwdte8ybeAutJFJsALwojh9xMgQxLgktpDRSeIe73G1vj4
+         owfA==
+X-Gm-Message-State: AOAM5333u5ngyp7sm4VfOWFNqrI8abOEh1qPw3t8o0yiPDT/cbjXQ1bU
+        aHVLJxgBSyOfabzv/iBOhg==
+X-Google-Smtp-Source: ABdhPJwYED2xCAsIzgBVyE9vczourY10RCn6ClYw2lvBmJb5XU3kxN6F+mP9W19n8mYNqGq07R2dMg==
+X-Received: by 2002:a05:6638:101c:: with SMTP id r28mr815783jab.84.1590632973069;
+        Wed, 27 May 2020 19:29:33 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id y15sm2477235ila.13.2020.05.27.19.25.02
+        by smtp.gmail.com with ESMTPSA id z75sm2638939ilc.50.2020.05.27.19.29.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 May 2020 19:25:03 -0700 (PDT)
-Received: (nullmailer pid 3238161 invoked by uid 1000);
-        Thu, 28 May 2020 02:25:02 -0000
-Date:   Wed, 27 May 2020 20:25:02 -0600
+        Wed, 27 May 2020 19:29:32 -0700 (PDT)
+Received: (nullmailer pid 3243939 invoked by uid 1000);
+        Thu, 28 May 2020 02:29:31 -0000
+Date:   Wed, 27 May 2020 20:29:31 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Sebastian Reichel <sre@kernel.org>, SoC Team <soc@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Cc:     Guenter Roeck <linux@roeck-us.net>, SoC Team <soc@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
         Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/5] dt-bindings: reset: ocelot: Add documentation for
- 'microchip,reset-switch-core' property
-Message-ID: <20200528022502.GA3234572@bogus>
-References: <20200513130842.24847-1-lars.povlsen@microchip.com>
- <20200513130842.24847-4-lars.povlsen@microchip.com>
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 2/3] arm64: dts: sparx5: Add hwmon temperature sensor
+Message-ID: <20200528022931.GA3238321@bogus>
+References: <20200513134140.25357-1-lars.povlsen@microchip.com>
+ <20200513134140.25357-3-lars.povlsen@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200513130842.24847-4-lars.povlsen@microchip.com>
+In-Reply-To: <20200513134140.25357-3-lars.povlsen@microchip.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 13, 2020 at 03:08:40PM +0200, Lars Povlsen wrote:
-> This documents the 'microchip,reset-switch-core' property in the
-> ocelot-reset driver.
+On Wed, May 13, 2020 at 03:41:39PM +0200, Lars Povlsen wrote:
+> This adds a hwmon temperature node sensor to the Sparx5 SoC.
 > 
+> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 > Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
 > ---
->  .../devicetree/bindings/power/reset/ocelot-reset.txt        | 6 ++++++
+>  arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 ++++++
 >  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> index 4d530d8154848..20fff03753ad2 100644
-> --- a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> +++ b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> @@ -9,9 +9,15 @@ microchip Sparx5 armv8 SoC's.
->  Required Properties:
->   - compatible: "mscc,ocelot-chip-reset" or "microchip,sparx5-chip-reset"
-> 
-> +Optional properties:
-> +- microchip,reset-switch-core : Perform a switch core reset at the
-> +  time of driver load. This is may be used to initialize the switch
-> +  core to a known state (before other drivers are loaded).
+> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> index f09a49c41ce19..b5f2d088af30e 100644
+> --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> @@ -233,5 +233,11 @@ i2c1: i2c@600103000 {
+>  			clock-frequency = <100000>;
+>  			clocks = <&ahb_clk>;
+>  		};
+> +
+> +		tmon0: tmon@610508110 {
+> +			compatible = "microchip,sparx5-temp";
+> +			reg = <0x6 0x10508110 0xc>;
 
-How do you know when other drivers are loaded? This could be a module 
-perhaps. Doesn't seem like something that belongs in DT.
+These nodes are all very odd with a couple of registers spread out at 
+randomish addresses. DT nodes should roughly correlate to h/w blocks, 
+not sets of registers for a driver like this seems to be.
 
-Can this behavior be implied with "microchip,sparx5-chip-reset"?
+Please make the dts files one patch. Reviewing a node at a time is not 
+all that effective.
 
 Rob
