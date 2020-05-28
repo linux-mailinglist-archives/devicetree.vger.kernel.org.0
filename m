@@ -2,96 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E42F1E6CBB
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 22:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4821E6CD2
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 22:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407323AbgE1Uir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 16:38:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43336 "EHLO
+        id S2407394AbgE1UtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 16:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407218AbgE1Uip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 16:38:45 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9010CC08C5C6;
-        Thu, 28 May 2020 13:38:45 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id d10so143813pgn.4;
-        Thu, 28 May 2020 13:38:45 -0700 (PDT)
+        with ESMTP id S2407348AbgE1Us7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 16:48:59 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8D8C08C5C6
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 13:48:59 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id l10so716273wrr.10
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 13:48:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uUmAHxoLCci70CIyQKHJVkgQVBujsUNyRL0aI0R0aqo=;
-        b=I1cMDUG4Wbl6ZX/z5HWJTm2du5yh0gMU/JPmyLOA29gjDIaqZCuFlq1Akwl3x2elMt
-         ocKJz6UFSs9RV8uUTGDo6qDUWd3ujnAqcC0wVQzxSf5C4KAdnYFrC2ux/mp9wHzQoU3I
-         8sxF6hLFmWwdrvdGrJQR23vCVeXjvY3uf4ee+i0j7VVO7ldGgG6UHkEwvEs7NSJvucXr
-         u/HX7g9A/JHwTmtNm/pizzgaEFtaHRhTXL/OSQZU6alHCgQkzALi5i6A9EqjaPivx4Ho
-         YuugbZTUH2NeinzeiTFXp2XiO++0eeSonK5SMIVAiaoA3IMaWw/M6AJvPgZqSbvhlFLk
-         lFIQ==
+        d=kynetics-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HUiYoi4oRp58+q5ZwZM3ckxVs2ohb6Fr3EU5Rh4Dl0I=;
+        b=NqgdwDyljpdh0ZqDu6YHewXyVjxlQvyaoDcVNEhKu3GQyB7A9uq+7b/W1cFKNj6Auo
+         mhKwV7wV1isHYxuYqarBvpiX91pHT3Vpg06C2EFiQrntIJzEQyvT2nxTAkGiivbl8QSi
+         bZxMZ2vKBo3uptBm8vIzCGaUTT9IxYkHdAfQW1O58OJaSH7wmU5nxeBdmFcpQjfbRq5U
+         zovuTjw8NTa9epKpX7BNnRmILXOudZyRWmSiDA3suI/YDdXWZN/ZMA8WnelIjLiUQkBK
+         OzJGs/OR7cjo2MG36l32/kvopZ6nlWzQcfHIKXjfOzSmRK590aqWPoi6x17vOUbtFpeH
+         sSBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uUmAHxoLCci70CIyQKHJVkgQVBujsUNyRL0aI0R0aqo=;
-        b=IxfjS8uS3RD4gupLgRT3aQi0J1qxkiIQW8burB1ym+nuF6AbCWIJwtbFL5h1xsBNH+
-         eU7ycey3at/NcmDQMpKsMYM9IRqMz0hdNjD2ZioW6pdWdPIA3I9jWc6o6jDHcJKOjWBS
-         rt53vx1V3BJy53ODlDc/PZI5jwN/5xYVVY4OgnGjTZrceKGGDQr57eVXaUhc7qvxCcll
-         M00oitiocwwMAQo3gs4HvIiLoLzLlBElYDyG0JBOa2tbxZPs2WrJkKYREhUp3yC/s0Zv
-         hLGh0bJwK5Ja+mUXQQCrhqZqCXS1WaIxjKFmYc8VQDwqaXqKGvolOWD4C6BS6uWG1ec1
-         A1nA==
-X-Gm-Message-State: AOAM531wGp0ZtG3xBvNfUpzdu9rBHP+Pd5VibI6KiUHzhzTmvCl5wPr5
-        bgzA1RdRMbH5Iu2FxCh4FvYL6UwO90DnPSm0Qfc=
-X-Google-Smtp-Source: ABdhPJwe8DmfXiHurV89f6av71936kl+HM4lp/ZzAxpMRXlN2Qv/GB4+dYblIxf4soDqHWyWkLuJ27OfLk4KVGGMVXw=
-X-Received: by 2002:aa7:99c8:: with SMTP id v8mr5137217pfi.36.1590698325132;
- Thu, 28 May 2020 13:38:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HUiYoi4oRp58+q5ZwZM3ckxVs2ohb6Fr3EU5Rh4Dl0I=;
+        b=SsTvAVSiZw9vBef6jL20r3Kfj+LRCEi/BQTrAAboJsJsV6yzyvBlRlHTj8ArljgBz1
+         ZsYOC0Xf9+d65aaOM/LNi1tfkm8mAH1zTqjDDEzIK0+QBBgHaOFeFuQkMHLLURv0Jfzy
+         DIy+oXYmU8y1xU+K8rT2lEq2X8Id2Iqq9O119VoJCqCRk+1+bAJpNDIhFuNdOdv0EXKa
+         y4KNc0LGKG+1bEqk/GXsrNZliDPULkZ3eXpiZkdQEtkUDv+lgmr4ybnWo8KM1AYhbU7y
+         Pqoa/weBdUQ6CMeUDlhMF1zHioHsbvQh25d21ySPX5MpNzZ97VziY6Ly/pJP39Z0hV2i
+         Imhg==
+X-Gm-Message-State: AOAM532dzSu7AQj0fIYuBpmjmIRI+zFtnXLeNlnn74Ul3KAdhRjM7qbT
+        mhEqRkm8+sLJKPUv7W1533UHiA==
+X-Google-Smtp-Source: ABdhPJzwOzuB9A1HKWNt34Uu6DxWwtaF4OkTIOet4cseL0Mea2TRDauwS/pcfa5XsGFhl7VbI8VA1w==
+X-Received: by 2002:a5d:4cc4:: with SMTP id c4mr5108720wrt.159.1590698937914;
+        Thu, 28 May 2020 13:48:57 -0700 (PDT)
+Received: from localhost.lan (mob-2-41-210-190.net.vodafone.it. [2.41.210.190])
+        by smtp.gmail.com with ESMTPSA id a15sm7632782wra.86.2020.05.28.13.48.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 13:48:57 -0700 (PDT)
+From:   Diego Rondini <diego.rondini@kynetics.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Diego Rondini <diego.rondini@kynetics.com>
+Subject: [PATCH 1/2] ARM: dts: orange-pi-zero-plus2: enable USB OTG port
+Date:   Thu, 28 May 2020 22:47:11 +0200
+Message-Id: <20200528204712.552964-1-diego.rondini@kynetics.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-References: <20200526225022.20405-1-Sergey.Semin@baikalelectronics.ru>
- <20200526225022.20405-10-Sergey.Semin@baikalelectronics.ru>
- <20200528145224.GT1634618@smile.fi.intel.com> <20200528154022.3reghhjcd4dnsr3g@mobilestation>
-In-Reply-To: <20200528154022.3reghhjcd4dnsr3g@mobilestation>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 28 May 2020 23:38:28 +0300
-Message-ID: <CAHp75VcPVO6yOmyrSBfjVk5eSYhC4J0QXAfOhjRXGd4=FemezA@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] dmaengine: dw: Introduce max burst length hw config
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 28, 2020 at 6:43 PM Serge Semin
-<Sergey.Semin@baikalelectronics.ru> wrote:
-> On Thu, May 28, 2020 at 05:52:24PM +0300, Andy Shevchenko wrote:
-> > On Wed, May 27, 2020 at 01:50:20AM +0300, Serge Semin wrote:
+Enable support for USB OTG port on Orange Pi Zero Plus 2 (both H3 and H5
+variants). As, according to the board schematics, the USB OTG port cannot
+provide power to external devices, we set dr_mode to peripheral.
 
-...
+Signed-off-by: Diego Rondini <diego.rondini@kynetics.com>
+---
+ .../boot/dts/sun8i-h3-orangepi-zero-plus2.dts | 23 +++++++++++++++++++
+ .../sun50i-h5-orangepi-zero-plus2.dts         | 23 +++++++++++++++++++
+ 2 files changed, 46 insertions(+)
 
-> > Perhaps,
-> >
-> >       /* DesignWare DMA supports burst value from 0 */
-> >       caps->min_burst = 0;
->
-> Regarding min_burst being zero. I don't fully understand what it means.
-> It means no burst or burst with minimum length or what?
-> In fact DW DMA burst length starts from 1. Remember the burst-length run-time
-> parameter we were arguing about? Anyway the driver makes sure that both
-> 0 and 1 requested burst length are setup as burst length of 1 in the
-> CTLx.SRC_MSIZE, CTLx.DST_MSIZE fields.
-
-Yeah, I also thought about it after I sent a message. 1 sounds better.
-
+diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-zero-plus2.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-zero-plus2.dts
+index b8f46e2802fd3..4376767699a47 100644
+--- a/arch/arm/boot/dts/sun8i-h3-orangepi-zero-plus2.dts
++++ b/arch/arm/boot/dts/sun8i-h3-orangepi-zero-plus2.dts
+@@ -137,3 +137,26 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_pa_pins>;
+ 	status = "okay";
+ };
++
++&usbphy {
++	status = "okay";
++};
++
++&usb_otg {
++	/*
++	 * According to schematics CN1 MicroUSB port can be used to take
++	 * external 5V to power up the board VBUS. On the contrary CN1 MicroUSB
++	 * port cannot provide power externally even if the board is powered
++	 * via GPIO pins. It thus makes sense to force peripheral mode.
++	 */
++	dr_mode = "peripheral";
++	status = "okay";
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ohci0 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
+index c95a68541309c..d8192a7483e9e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
+@@ -103,3 +103,26 @@ &uart1 {
+ 	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+ 	status = "okay";
+ };
++
++&usbphy {
++	status = "okay";
++};
++
++&usb_otg {
++	/*
++	 * According to schematics CN1 MicroUSB port can be used to take
++	 * external 5V to power up the board VBUS. On the contrary CN1 MicroUSB
++	 * port cannot provide power externally even if the board is powered
++	 * via GPIO pins. It thus makes sense to force peripheral mode.
++	 */
++	dr_mode = "peripheral";
++	status = "okay";
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ohci0 {
++	status = "okay";
++};
 -- 
-With Best Regards,
-Andy Shevchenko
+2.25.4
+
