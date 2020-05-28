@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AD571E5B03
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 10:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A8371E5B4B
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 10:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727869AbgE1Ij2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 04:39:28 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:40208 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726955AbgE1Ij2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 04:39:28 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 6C2CF80307C0;
-        Thu, 28 May 2020 08:39:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ionmEv71tfBL; Thu, 28 May 2020 11:39:24 +0300 (MSK)
-Date:   Thu, 28 May 2020 11:39:23 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        <linux-mips@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 02/11] dt-bindings: i2c: Discard i2c-slave flag from
- the DW I2C example
-Message-ID: <20200528083923.yjlm5ur7cslgxdau@mobilestation>
-References: <20200527120111.5781-1-Sergey.Semin@baikalelectronics.ru>
- <20200527120111.5781-3-Sergey.Semin@baikalelectronics.ru>
- <20200527171204.GA2348490@bogus>
- <20200527171841.am2iaynff243xoep@mobilestation>
- <20200527175624.GT1634618@smile.fi.intel.com>
+        id S1728076AbgE1I6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 04:58:09 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:37281 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728073AbgE1I6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 May 2020 04:58:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1590656288; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=TNqDL40LlCjpsjbz12NhEYJJSkincfYBy8FmVcop5ek=;
+ b=un1Guamk731ECamhPZu6kMW+3kcBi54VyO9lQAUW8ntKcoJa6hwG6iAglrXMUx9A+iFdNd2u
+ QMebZLL/UYrhmBwiJr625vpiG8hArkUOGISnb/DYd9uAwrFyQSMc3aper1Zbb+upjDGw8NqU
+ Bwb0Vw3Ub60o4+LWc5eHd8RX2es=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 5ecf7d1fc6d4683243c5810a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 May 2020 08:58:07
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 86AD7C43391; Thu, 28 May 2020 08:58:07 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0D3E5C433C6;
+        Thu, 28 May 2020 08:58:07 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200527175624.GT1634618@smile.fi.intel.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 28 May 2020 14:28:06 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        kalyan_t@codeaurora.org, nganji@codeaurora.org, mka@chromium.org,
+        devicetree-owner@vger.kernel.org, robin.murphy@arm.com
+Subject: Re: [v1] drm/msm: add shutdown support for display platform_driver
+In-Reply-To: <1590655103-21568-1-git-send-email-mkrishn@codeaurora.org>
+References: <1590655103-21568-1-git-send-email-mkrishn@codeaurora.org>
+Message-ID: <219625b5b2cc0eddb2e975d457a2c40d@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 27, 2020 at 08:56:24PM +0300, Andy Shevchenko wrote:
-> On Wed, May 27, 2020 at 08:18:41PM +0300, Serge Semin wrote:
-> > On Wed, May 27, 2020 at 11:12:04AM -0600, Rob Herring wrote:
-> > > On Wed, May 27, 2020 at 03:01:02PM +0300, Serge Semin wrote:
-> > > > dtc currently doesn't support I2C_OWN_SLAVE_ADDRESS flag set in the
-> > > > i2c "reg" property. If it is the compiler will print a warning:
-> > > > 
-> > > > Warning (i2c_bus_reg): /example-2/i2c@1120000/eeprom@64: I2C bus unit address format error, expected "40000064"
-> > > > Warning (i2c_bus_reg): /example-2/i2c@1120000/eeprom@64:reg: I2C address must be less than 10-bits, got "0x40000064"
-> > > > 
-> > > > In order to silence dtc up let's discard the flag from the DW I2C DT
-> > > > binding example for now. Just revert this commit when dtc is fixed.
-> 
-> > > >        eeprom@64 {
-> > > >          compatible = "linux,slave-24c02";
-> > > > -        reg = <0x40000064>;
-> > > > +        reg = <0x64>;
-> > > 
-> > > But the compatible is a slave, so you need an example with a different 
-> > > device.
-> > 
-> 
-> > Ok. I'll replace the sub-node with just "atmel,24c02" compatible string then.
-> 
-> But how it will be different to the another slave connected to the master?
-> 
-> This example is specifically to show that DesingWare I²C controller may be
-> switched to slave mode.
+Hi Krishna,
 
-Well, dtc doesn't support it and prints warning that the address is invalid.
-Though I do understand you concern and is mostly agree with it. Let's do this in
-the next way. I'll resend the series with eeprom@64 sub-node replaced with just
-a normal eeprom-device. The message log will have an info why this has been
-done. In the non-mergeable section of the patch I'll suggest to Rob reconsider
-the patch acking, since we can leave the slave-marked sub-node and just live
-with the dtc warning until it's fixed in there.
+On 2020-05-28 14:08, Krishna Manikandan wrote:
+> Define shutdown callback for display drm driver,
+> so as to disable all the CRTCS when shutdown
+> notification is received by the driver.
+> 
 
--Sergey
+Would be nice to add some more context for adding this shutdown callback
+something like below:
 
-> 
-> > > >        };
-> > > >      };
-> > > >    - |
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+If the hardware is still accessing memory after SMMU translation is 
+disabled
+as part of smmu shutdown callback,  then the IOVAs(I/O virtual address) 
+which
+it was using will go on the bus as the physical addresses which will 
+result
+in unknown crashes (NoC/interconnect errors on QCOM SoCs).
+
+PS: Credits for description: Robin Murphy
+
+Thanks,
+Sai
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
