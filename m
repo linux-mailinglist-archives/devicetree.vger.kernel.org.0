@@ -2,128 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87CCA1E6339
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A4701E6346
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390665AbgE1OFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 10:05:34 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42301 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390596AbgE1OF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:05:29 -0400
-Received: by mail-io1-f66.google.com with SMTP id d5so20567626ios.9;
-        Thu, 28 May 2020 07:05:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SLMEy6Ytljxjg8a2KXQ/FizRno8giPzwlWNr4nIvO0E=;
-        b=Y1QmPcCNT+4dpmz3ep3znCua571UqhZRq6K2HRWcArhtge1giNZ+gbPZwOExXiDkqY
-         qctOyP9SO9n5kYruKrBy4Zkv1rUvCSluZzSHeM8RyesSp1Lnrtgu83cTa8auVFuCGOJc
-         KxuGkkN3XQ9XBRiTF6UolmKrkXaM1yBQ2ItrCRFa3g3iojQqVZJBdUNEGVcroxx10R9h
-         aHssLK3ZDEBOaFTobfEQiDN0BVC6f2/tFGB74eOLes2ONauX8eToETQIA7xQJ8ntNb+b
-         Z8pvoB+IWLZ/bOJuH+AvVdyuADaoOroCO8t8VtFU2wSJoGZs7tmnPrQIfWCZBIQ5D249
-         vH7w==
-X-Gm-Message-State: AOAM530EuzDKDZD7WotmrwWn2UIvZ1BbbIZH6J0Wawoh5crDG138XEs+
-        9MPH6Pu3dKMukhsCHSODmA==
-X-Google-Smtp-Source: ABdhPJzoX/OrRJgrF0RLFSzW9vlhDIhoXc7lQcsFo+49D/RYaTtv2OthkVdqcft8AlGIdyG+p7PixA==
-X-Received: by 2002:a5d:9dd2:: with SMTP id 18mr2468310ioo.196.1590674728083;
-        Thu, 28 May 2020 07:05:28 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id n27sm3317522ild.76.2020.05.28.07.05.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2020 07:05:26 -0700 (PDT)
-Received: (nullmailer pid 4173461 invoked by uid 1000);
-        Thu, 28 May 2020 14:05:25 -0000
-Date:   Thu, 28 May 2020 08:05:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sound: tlv320adcx140: Add GPI config
- property
-Message-ID: <20200528140525.GA4166160@bogus>
-References: <20200526200917.10385-1-dmurphy@ti.com>
+        id S2390917AbgE1OGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 10:06:25 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:58684 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390812AbgE1OGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:06:23 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04SE6LD5073115;
+        Thu, 28 May 2020 09:06:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590674781;
+        bh=lNhA+E2fd/RxBR6mEdxlKPJRrv3x5UmqnhFIGQavOu4=;
+        h=From:To:CC:Subject:Date;
+        b=rZDaY87PLxQk5fvHXKyQHc93j9CSZk94ao28sb+uG2yQH+5EWukRXF/FRKOccGOwr
+         SHTVSY+niteFp1p5vwZC62rXN80g32dQx/mudsuwfIBrth1Z7NchpKEZ5ayFx7gIBt
+         jkeEGO6Kjv+1Elaxeo3e7F1X7Zc5LLURSbzb7zj0=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04SE6LPm083163
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 May 2020 09:06:21 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
+ May 2020 09:06:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 28 May 2020 09:06:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04SE6Lf3032079;
+        Thu, 28 May 2020 09:06:21 -0500
+From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+To:     <sre@kernel.org>, <pali@kernel.org>, <robh@kernel.org>
+CC:     <afd@ti.com>, <r-rivera-matos@ti.com>, <dmurphy@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <sspatil@android.com>
+Subject: [PATCH v11 0/4] Add JEITA properties and introduce the bq2515x charger
+Date:   Thu, 28 May 2020 09:05:42 -0500
+Message-ID: <20200528140546.25260-1-r-rivera-matos@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200526200917.10385-1-dmurphy@ti.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 26, 2020 at 03:09:16PM -0500, Dan Murphy wrote:
-> Add an array property that configures the General Purpose Input (GPI)
-> register.  The device has 4 GPI pins and each pin can be configured in 1
-> of 7 different ways.
+Hello,
 
-Dan seems to have trouble running get_maintainers.pl and Cc'ing the DT 
-list. Running 'make dt_binding_check' also seems to be a problem. Now 
-linux-next has these warnings:
+This patchset adds additional health properties to the power_supply header.
+These additional properties are taken from the JEITA specification. This
+patchset also introduces the bq2515x family of charging ICs.
 
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/sound/tlv320adcx140.example.dt.yaml: codec@4c: ti,gpi-config:0:0: 4 is greater than the maximum of 1
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/sound/tlv320adcx140.example.dt.yaml: codec@4c: ti,gpi-config:0:1: 5 is greater than the maximum of 1
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/sound/tlv320adcx140.example.dt.yaml: codec@4c: ti,gpi-config:0:2: 6 is greater than the maximum of 1
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/sound/tlv320adcx140.example.dt.yaml: codec@4c: ti,gpi-config:0:3: 7 is greater than the maximum of 1
+Dan Murphy (2):
+  power_supply: Add additional health properties to the header
+  dt-bindings: power: Convert battery.txt to battery.yaml
 
-Please send a fix.
+Ricardo Rivera-Matos (2):
+  dt-bindings: power: Add the bindings for the bq2515x family of
+    chargers.
+  power: supply: bq25150 introduce the bq25150
 
-> 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->  .../bindings/sound/tlv320adcx140.yaml         | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-> index daa6cc0e031b..e8a69b1c7ca9 100644
-> --- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-> +++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-> @@ -86,6 +86,32 @@ properties:
->            maximum: 1
->          default: [0, 0, 0, 0]
->  
-> +  ti,gpi-config:
-> +    description: |
-> +       Defines the configuration for the general purpose input pins (GPI).
-> +       The array is defined as <GPI1 GPI2 GPI3 GPI4>.
-> +
-> +       0 - (default) disabled
-> +       1 - GPIX is configured as a general-purpose input (GPI)
-> +       2 - GPIX is configured as a master clock input (MCLK)
-> +       3 - GPIX is configured as an ASI input for daisy-chain (SDIN)
-> +       4 - GPIX is configured as a PDM data input for channel 1 and channel
-> +            (PDMDIN1)
-> +       5 - GPIX is configured as a PDM data input for channel 3 and channel
-> +            (PDMDIN2)
-> +       6 - GPIX is configured as a PDM data input for channel 5 and channel
-> +            (PDMDIN3)
-> +       7 - GPIX is configured as a PDM data input for channel 7 and channel
-> +            (PDMDIN4)
-> +
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> +      - minItems: 1
-> +        maxItems: 4
-> +        items:
-> +          maximum: 1
+ Documentation/ABI/testing/sysfs-class-power   |    2 +-
+ .../bindings/power/supply/battery.txt         |   82 +-
+ .../bindings/power/supply/battery.yaml        |  143 ++
+ .../bindings/power/supply/bq2515x.yaml        |   91 ++
+ drivers/power/supply/Kconfig                  |   13 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/bq2515x_charger.c        | 1159 +++++++++++++++++
+ drivers/power/supply/power_supply_sysfs.c     |    2 +-
+ include/linux/power_supply.h                  |    3 +
+ 9 files changed, 1413 insertions(+), 83 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/battery.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq2515x.yaml
+ create mode 100644 drivers/power/supply/bq2515x_charger.c
 
-I believe you want '7' here.
+-- 
+2.26.2
 
-> +        default: [0, 0, 0, 0]
-> +
->  required:
->    - compatible
->    - reg
-> @@ -101,6 +127,7 @@ examples:
->          reg = <0x4c>;
->          ti,mic-bias-source = <6>;
->          ti,pdm-edge-select = <0 1 0 1>;
-> +        ti,gpi-config = <4 5 6 7>;
->          reset-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
->        };
->      };
-> -- 
-> 2.26.2
-> 
