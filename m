@@ -2,75 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 246561E6E0D
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 23:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D4FB1E6E10
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 23:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436581AbgE1Vpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 17:45:49 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35023 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436630AbgE1Vpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 17:45:47 -0400
-Received: by mail-io1-f68.google.com with SMTP id s18so166607ioe.2;
-        Thu, 28 May 2020 14:45:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=no6HlcdcFcA/a4l7oGUTR6aVzXC2MXn/zYF87og1wYg=;
-        b=b0L+5vyUKKSUswfhqgDzSwmkFRrCCiLhirsgneks3uahsFjAqTH5fKAxIIo1UR85Gn
-         PYk/2qs+e1f4zOlSMsa5g7Q0EUp1KakHFcCU4DDvlMU6XMESRlZAmQxp+0WQZWSkYbcL
-         Gywn9+0FGdxBlRksFA6Eu/nTlHZFsWLG41sMIyGS6BxWwYhjq94lv5nEI5G4etb3Rs+a
-         oeuAmxNXL7q5PCn0+7ePhHky8AC7nISWoFGpAUkDUiO009Z2XObRzz40C+0/9h4BBj//
-         lqMZoGlDJUtgtPF9z4koL7Ov/3kLleqnyhjG1qDFLgZCbHA0C5oi0VIScE1jvHDmLxhW
-         iyiA==
-X-Gm-Message-State: AOAM532EvxgNlMksy4mH8SueCu4VRHkXwdHnHNzdLoVAmrdi2Zi3qycT
-        ksgMAQkELBEc1vGhELbmQQ==
-X-Google-Smtp-Source: ABdhPJzYXYmo9Aia4JUtPNGct0ALVvFbsn1fqj9BKNroCD9lDsLRuNfCbwzH+Nr0bgOoa2MCjhqxyA==
-X-Received: by 2002:a05:6602:2001:: with SMTP id y1mr3953649iod.94.1590702345570;
-        Thu, 28 May 2020 14:45:45 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id 129sm2877005ioy.0.2020.05.28.14.45.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2020 14:45:45 -0700 (PDT)
-Received: (nullmailer pid 739310 invoked by uid 1000);
-        Thu, 28 May 2020 21:45:44 -0000
-Date:   Thu, 28 May 2020 15:45:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Boris Brezillon <bbrezillon@kernel.org>, od@zcrc.me,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Convert ingenic,jz4780-nand.txt
- to YAML
-Message-ID: <20200528214544.GA739281@bogus>
-References: <20200520002234.418025-1-paul@crapouillou.net>
- <20200520002234.418025-3-paul@crapouillou.net>
+        id S2436659AbgE1VqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 17:46:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436630AbgE1VqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 17:46:23 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69837C08C5C6
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 14:46:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF5BB2A8;
+        Thu, 28 May 2020 23:46:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1590702381;
+        bh=2kQLJ6ihq2PvrAL0aFkV0qdd4HEG8jQjlPEKzcWA4zI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aNNmYmnx/YtiaQVF0zhm6NKUhO6tyxYre9WWwiDlNS9QeKkblOPHKa6HLKEXjG+4j
+         lNUPQzPegoZeRz0wrGN3ySSpAhmrl3OfbCK8+SDVn8I76Sr/WH83NJZ3j3uohoSBvM
+         OYwD8YwyTzk36wLhNTnG1MiavALmhYO0KitlmpBg=
+Date:   Fri, 29 May 2020 00:46:07 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
+        tomi.valkeinen@ti.com, robh+dt@kernel.org, airlied@linux.ie,
+        shawnguo@kernel.org
+Subject: Re: [PATCH v2 4/4] drm/bridge: tfp410: Fix setup and hold time
+ calculation
+Message-ID: <20200528214607.GB14756@pendragon.ideasonboard.com>
+References: <20200514143612.2094-1-ricardo.canuelo@collabora.com>
+ <20200514143612.2094-5-ricardo.canuelo@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200520002234.418025-3-paul@crapouillou.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200514143612.2094-5-ricardo.canuelo@collabora.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 May 2020 02:22:34 +0200, Paul Cercueil wrote:
-> Convert the ingenic,jz4780-nand.txt doc file to ingenic,nand.yaml.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
-> 
-> Notes:
->     v2: - Don't include ingenic,nemc-client.yaml which is gone
->     	- Use 'partitions' property instead of '^partitions$' pattern
-> 
->  .../bindings/mtd/ingenic,jz4780-nand.txt      |  92 ------------
->  .../devicetree/bindings/mtd/ingenic,nand.yaml | 132 ++++++++++++++++++
->  2 files changed, 132 insertions(+), 92 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/ingenic,jz4780-nand.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-> 
+Hi Ricardo,
 
-Applied, thanks!
+Thank you for the patch.
+
+On Thu, May 14, 2020 at 04:36:12PM +0200, Ricardo Cañuelo wrote:
+> The tfp410 has a data de-skew feature that allows the user to compensate
+> the skew between IDCK and the pixel data and control signals.
+> 
+> In the driver, the setup and hold times are calculated from the de-skew
+> value. This retrieves the deskew value from the DT using the proper
+> datatype and range check as described by the binding (u32 from 0 to 7)
+> and fixes the calculation of the setup and hold times.
+
+How about mentioning that the fix results from a change in the DT
+bindings ? Otherwise it sounds it was a bug in the driver.
+
+I would also mention that the patch fixes the min() calculation, which
+was clearly wrong. I think I would have split this in two patches.
+
+With this addressed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+> ---
+>  drivers/gpu/drm/bridge/ti-tfp410.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
+> index e3eb6364c0f7..21d99b4ea0c9 100644
+> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
+> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
+> @@ -220,7 +220,7 @@ static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
+>  	struct device_node *ep;
+>  	u32 pclk_sample = 0;
+>  	u32 bus_width = 24;
+> -	s32 deskew = 0;
+> +	u32 deskew = 0;
+>  
+>  	/* Start with defaults. */
+>  	*timings = tfp410_default_timings;
+> @@ -274,12 +274,12 @@ static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
+>  	}
+>  
+>  	/* Get the setup and hold time from vendor-specific properties. */
+> -	of_property_read_u32(dvi->dev->of_node, "ti,deskew", (u32 *)&deskew);
+> -	if (deskew < -4 || deskew > 3)
+> +	of_property_read_u32(dvi->dev->of_node, "ti,deskew", &deskew);
+> +	if (deskew > 7)
+>  		return -EINVAL;
+>  
+> -	timings->setup_time_ps = min(0, 1200 - 350 * deskew);
+> -	timings->hold_time_ps = min(0, 1300 + 350 * deskew);
+> +	timings->setup_time_ps = 1200 - 350 * ((s32)deskew - 4);
+> +	timings->hold_time_ps = max(0, 1300 + 350 * ((s32)deskew - 4));
+>  
+>  	return 0;
+>  }
+
+-- 
+Regards,
+
+Laurent Pinchart
