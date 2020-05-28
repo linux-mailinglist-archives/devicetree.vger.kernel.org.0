@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C991E6FCF
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 00:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 934C51E6FE5
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 01:03:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437383AbgE1W7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 18:59:52 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45943 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437266AbgE1W7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 18:59:51 -0400
-Received: by mail-io1-f68.google.com with SMTP id y5so288985iob.12;
-        Thu, 28 May 2020 15:59:50 -0700 (PDT)
+        id S2437393AbgE1XDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 19:03:18 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:41260 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437356AbgE1XDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 19:03:14 -0400
+Received: by mail-il1-f196.google.com with SMTP id d1so639821ila.8;
+        Thu, 28 May 2020 16:03:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=63l28Bq5JSYH0thicVgF9zKNB8VO6tRtQmbEf9CALnA=;
-        b=KXWZuvX+CPlDBj8p0KmrUkUl13VBhlmu85oEsHCDMR6iDc6emKFawgKZsy5p7qDDXC
-         LI4NXNmEaR8PVFb+oODjbozX26/pJVBody4JROHflchr87W5XluzXEprU538wPphvd1y
-         dcdJIIkG8+7Ms8EPg24YiCdven/tdp2DFeMrqxu/lKYB1q9G6wTNMknJSvCgFG29UM+L
-         +T/wR5qhjwhKAEgwqvGNdnDIZaMX5GXunRRXzAXvtNM06H9o/301nGH8dOx2TuSWFChi
-         H4U6129GQ2ZLcEqgWy6GOxWtZhd3Zw5ZBnQ1LK1FVjfDXqBVdJZqncZcQy3r0joWbq4y
-         54Vw==
-X-Gm-Message-State: AOAM530c+7ZC6uYyenG8dmcsbgDqwWIl3t6RtPM0+Xzk2RqdlWwQoyov
-        hvQTXd/wmrDPUy/9wdKacQ==
-X-Google-Smtp-Source: ABdhPJznSLTZm7gTnvmBPUHUbK3PFppQV4FL426PY4ENPB3XQD5duLTC7rIvU7IdbR7ApdsFXn89aQ==
-X-Received: by 2002:a6b:fa0b:: with SMTP id p11mr4264202ioh.147.1590706790516;
-        Thu, 28 May 2020 15:59:50 -0700 (PDT)
+        bh=6ctiRhZJqkq9GPLI1qnw2R8C8DD3A/KqAjotWPV/6zk=;
+        b=mmyaaBidu5VMqwjbfN7dNUiTULJGHJKt5gq/hkLEHiPR6ZOX/eAjVIGez3GklQPHd8
+         8l1Lvfp16T78s1yN77FTDsMtfrnyEqgXjjCF243Kc01XiBpNttBJygaMocvYWMFnv1G7
+         Q/JMJrSqkfO8PGoo2MCijtxF/JBtS0gAxGCStv4irRK8jMQvyjBwtvZPC8VytqdpmkWw
+         bwD07ph5wYdB/h2K3AAngoFod4NCTbr0CoTZFuSfwsHGCtuG1p6e+0rRLRx1tKazz5wA
+         f3YUDTzBI1RsAO29n1nnsBxm4dspm6UfZp9T9dI+SLS0+kQMqkA9alGdzU75koz7PDRA
+         vAsQ==
+X-Gm-Message-State: AOAM532Slh3tcC3nzPAf4s/eJ+4/kkil75H0YisOAXCy6ijltm9+4RPq
+        SsHs4ynnCnkezomIDVdZpw==
+X-Google-Smtp-Source: ABdhPJxEsCezKmw3TYs8HpLuM/wSex2W7FhhK1kpR3KO4YDloi5nu/AF+sDdd5riZydKHN5bukUDxQ==
+X-Received: by 2002:a92:5a5d:: with SMTP id o90mr4915661ilb.206.1590706993159;
+        Thu, 28 May 2020 16:03:13 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id y12sm4106437ilk.16.2020.05.28.15.59.49
+        by smtp.gmail.com with ESMTPSA id t22sm3042515iom.49.2020.05.28.16.03.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2020 15:59:50 -0700 (PDT)
-Received: (nullmailer pid 837353 invoked by uid 1000);
-        Thu, 28 May 2020 22:59:48 -0000
-Date:   Thu, 28 May 2020 16:59:48 -0600
+        Thu, 28 May 2020 16:03:12 -0700 (PDT)
+Received: (nullmailer pid 842110 invoked by uid 1000);
+        Thu, 28 May 2020 23:03:11 -0000
+Date:   Thu, 28 May 2020 17:03:11 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Alessandro Zummo <a.zummo@towertech.it>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Jason Cooper <jason@lakedaemon.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/9] dt-bindings: media: Convert marvell,mmp2-ccic to
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 7/9] dt-bindings: spi: Convert spi-pxa2xx to
  json-schema
-Message-ID: <20200528225948.GA837285@bogus>
+Message-ID: <20200528230311.GA842052@bogus>
 References: <20200521091356.2211020-1-lkundrak@v3.sk>
- <20200521091356.2211020-6-lkundrak@v3.sk>
+ <20200521091356.2211020-8-lkundrak@v3.sk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200521091356.2211020-6-lkundrak@v3.sk>
+In-Reply-To: <20200521091356.2211020-8-lkundrak@v3.sk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 May 2020 11:13:52 +0200, Lubomir Rintel wrote:
-> Convert the marvell,mmp2-ccic binding to DT schema format using
-> json-schema. While at that this drops the "func" and "phy" clocks.
-> 
-> The driver consumes clocks with those names, but it's not clear
-> what are they for and they are not used in DT systems. "phy" is
-> probably a clock for the sensor and it would belong in the sensor
-> node.
+On Thu, 21 May 2020 11:13:54 +0200, Lubomir Rintel wrote:
+> A straightforward conversion of the the spi-pxa2xx binding to DT schema
+> format using json-schema.
 > 
 > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 > 
 > ---
 > Changes since v1:
-> - Fix indentation
-> - Drop clocks other than "axi"
+> - Drop #address-cells and #size-cells
 > - s/GPL-2.0-or-later/GPL-2.0-only/
 > 
->  .../bindings/media/marvell,mmp2-ccic.txt      | 50 ----------
->  .../bindings/media/marvell,mmp2-ccic.yaml     | 97 +++++++++++++++++++
->  2 files changed, 97 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/marvell,mmp2-ccic.txt
->  create mode 100644 Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
+>  .../bindings/spi/marvell,mmp2-ssp.yaml        | 56 +++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-pxa2xx.txt    | 27 ---------
+>  2 files changed, 56 insertions(+), 27 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/marvell,mmp2-ssp.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-pxa2xx.txt
 > 
 
 Applied, thanks!
