@@ -2,130 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930061E64E7
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 984491E64F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 16:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403862AbgE1O4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 10:56:32 -0400
-Received: from mga03.intel.com ([134.134.136.65]:22928 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403856AbgE1O4b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 May 2020 10:56:31 -0400
-IronPort-SDR: Z+MLV+sAeMSBjmKCUUIEDqzmEl09hTjz+Z0QZtnqu+YHylte+gzYfQiM+xnTirh7RkZ236gJ7l
- GRSgux8OQoMg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2020 07:56:30 -0700
-IronPort-SDR: 9GMNO2dpZ8QHEws0zoKx0e5A/SnV4klKacWqjY2NfFml2EkkB8oynn2CAv6xDVVdBX+drSM/66
- 3qbgPnlal6tw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,445,1583222400"; 
-   d="scan'208";a="267241338"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003.jf.intel.com with ESMTP; 28 May 2020 07:56:27 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jeJxO-009Rcl-2C; Thu, 28 May 2020 17:56:30 +0300
-Date:   Thu, 28 May 2020 17:56:30 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/10] dmaengine: dw: Initialize max_sg_nents with
- nollp flag
-Message-ID: <20200528145630.GV1634618@smile.fi.intel.com>
-References: <20200526225022.20405-1-Sergey.Semin@baikalelectronics.ru>
- <20200526225022.20405-11-Sergey.Semin@baikalelectronics.ru>
+        id S2403935AbgE1O6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 10:58:04 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:55513 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403926AbgE1O6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 10:58:03 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 98167FF810;
+        Thu, 28 May 2020 14:57:56 +0000 (UTC)
+Date:   Thu, 28 May 2020 16:57:54 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Weijie Gao <weijie.gao@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        Julien Su <juliensu@mxic.com.tw>
+Subject: Re: [PATCH v6 14/18] mtd: nand: Add more parameters to the
+ nand_ecc_props structure
+Message-ID: <20200528165754.35985b62@xps13>
+In-Reply-To: <20200528163424.6677597c@collabora.com>
+References: <20200528113113.9166-1-miquel.raynal@bootlin.com>
+        <20200528113113.9166-15-miquel.raynal@bootlin.com>
+        <20200528163424.6677597c@collabora.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200526225022.20405-11-Sergey.Semin@baikalelectronics.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 27, 2020 at 01:50:21AM +0300, Serge Semin wrote:
-> Multi-block support provides a way to map the kernel-specific SG-table so
-> the DW DMA device would handle it as a whole instead of handling the
-> SG-list items or so called LLP block items one by one. So if true LLP
-> list isn't supported by the DW DMA engine, then soft-LLP mode will be
-> utilized to load and execute each LLP-block one by one. The soft-LLP mode
-> of the DMA transactions execution might not work well for some DMA
-> consumers like SPI due to its Tx and Rx buffers inter-dependency. Let's
-> expose the nollp flag indicating the soft-LLP mode by means of the
-> max_sg_nents capability, so the DMA consumer would be ready to somehow
-> workaround errors caused by such mode being utilized.
+
+Boris Brezillon <boris.brezillon@collabora.com> wrote on Thu, 28 May
+2020 16:34:24 +0200:
+
+> On Thu, 28 May 2020 13:31:09 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> 
+> > Prepare the migration to the generic ECC framework by adding more
+> > fields to the nand_ecc_props structure which will be used widely to
+> > describe different kind of ECC properties.
+> > 
+> > Doing this imposes to move the engine type, ECC placement and
+> > algorithm enumerations in a shared place: nand.h.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  include/linux/mtd/nand.h    | 52 +++++++++++++++++++++++++++++++++++++
+> >  include/linux/mtd/rawnand.h | 44 -------------------------------
+> >  2 files changed, 52 insertions(+), 44 deletions(-)
+> > 
+> > diff --git a/include/linux/mtd/nand.h b/include/linux/mtd/nand.h
+> > index 6add464fd18b..2e9af24936cd 100644
+> > --- a/include/linux/mtd/nand.h
+> > +++ b/include/linux/mtd/nand.h
+> > @@ -127,14 +127,66 @@ struct nand_page_io_req {
+> >  	int mode;
+> >  };
+> >  
+> > +/**
+> > + * enum nand_ecc_engine_type - NAND ECC engine type
+> > + * @NAND_ECC_ENGINE_TYPE_INVALID: Invalid value
+> > + * @NAND_ECC_ENGINE_TYPE_NONE: No ECC correction
+> > + * @NAND_ECC_ENGINE_TYPE_SOFT: Software ECC correction
+> > + * @NAND_ECC_ENGINE_TYPE_ON_HOST: On host hardware ECC correction
+> > + * @NAND_ECC_ENGINE_TYPE_ON_DIE: On chip hardware ECC correction
+> > + */
+> > +enum nand_ecc_engine_type {
+> > +	NAND_ECC_ENGINE_TYPE_INVALID,
+> > +	NAND_ECC_ENGINE_TYPE_NONE,
+> > +	NAND_ECC_ENGINE_TYPE_SOFT,
+> > +	NAND_ECC_ENGINE_TYPE_ON_HOST,
+> > +	NAND_ECC_ENGINE_TYPE_ON_DIE,
+> > +};
+> > +
+> > +/**
+> > + * enum nand_ecc_placement - NAND ECC bytes placement
+> > + * @NAND_ECC_PLACEMENT_UNKNOWN: The actual position of the ECC bytes is unknown
+> > + * @NAND_ECC_PLACEMENT_OOB: The ECC bytes are located in the OOB area
+> > + * @NAND_ECC_PLACEMENT_INTERLEAVED: Syndrome layout, there are ECC bytes
+> > + *                                  interleaved with regular data in the main
+> > + *                                  area
+> > + */
+> > +enum nand_ecc_placement {
+> > +	NAND_ECC_PLACEMENT_UNKNOWN,
+> > +	NAND_ECC_PLACEMENT_OOB,
+> > +	NAND_ECC_PLACEMENT_INTERLEAVED,
+> > +};
+> > +
+> > +/**
+> > + * enum nand_ecc_algo - NAND ECC algorithm
+> > + * @NAND_ECC_ALGO_UNKNOWN: Unknown algorithm
+> > + * @NAND_ECC_ALGO_HAMMING: Hamming algorithm
+> > + * @NAND_ECC_ALGO_BCH: Bose-Chaudhuri-Hocquenghem algorithm
+> > + * @NAND_ECC_ALGO_RS: Reed-Solomon algorithm
+> > + */
+> > +enum nand_ecc_algo {
+> > +	NAND_ECC_ALGO_UNKNOWN,
+> > +	NAND_ECC_ALGO_HAMMING,
+> > +	NAND_ECC_ALGO_BCH,
+> > +	NAND_ECC_ALGO_RS,
+> > +};
+> > +
+> >  /**
+> >   * struct nand_ecc_props - NAND ECC properties
+> > + * @engine_type: ECC engine type
+> > + * @placement: OOB placement (if relevant)
+> > + * @algo: ECC algorithm (if relevant)
+> >   * @strength: ECC strength
+> >   * @step_size: Number of bytes per step
+> > + * @flags: Misc properties  
+> 
+> I'd like to hear more about that one. What is this about? I'd rather
+> not add a field if it's not needed.
 > 
 
-In principal I agree, one nit below.
-If you are okay with it, feel free to add my Rb tag.
-
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux-mips@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> 
-> ---
-> 
-> Changelog v3:
-> - This is a new patch created as a result of the discussion with Vinud and
->   Andy in the framework of DW DMA burst and LLP capabilities.
-> ---
->  drivers/dma/dw/core.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/dma/dw/core.c b/drivers/dma/dw/core.c
-> index 29c4ef08311d..b850eb7fd084 100644
-> --- a/drivers/dma/dw/core.c
-> +++ b/drivers/dma/dw/core.c
-> @@ -1054,6 +1054,15 @@ static void dwc_caps(struct dma_chan *chan, struct dma_slave_caps *caps)
->  	struct dw_dma_chan *dwc = to_dw_dma_chan(chan);
->  
->  	caps->max_burst = dwc->max_burst;
-> +
-> +	/*
-> +	 * It might be crucial for some devices to have the hardware
-> +	 * accelerated multi-block transfers supported, aka LLPs in DW DMAC
-> +	 * notation. So if LLPs are supported then max_sg_nents is set to
-> +	 * zero which means unlimited number of SG entries can be handled in a
-> +	 * single DMA transaction, otherwise it's just one SG entry.
-> +	 */
-
-> +	caps->max_sg_nents = dwc->nollp;
-
-To be on the safer side I would explicitly do it like
-
-	if (dwc->nollp)
-	 /* your nice comment */
-	 = 1;
-	else
-	 /* Unlimited */
-	 = 0;
-
-type or content of nollp theoretically can be changed and this will affect maximum segments.
-
->  }
->  
->  int do_dma_probe(struct dw_dma_chip *chip)
-> -- 
-> 2.26.2
-> 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+It is used in patch 18/18 to store the NAND_ECC_MAXIMIZE flag. And I
+expect others to come later...
