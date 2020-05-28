@@ -2,204 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 220BC1E544B
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 04:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 911191E5493
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 05:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726727AbgE1C6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 May 2020 22:58:41 -0400
-Received: from mga07.intel.com ([134.134.136.100]:12640 "EHLO mga07.intel.com"
+        id S1726837AbgE1DXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 May 2020 23:23:11 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55656 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725896AbgE1C6l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 May 2020 22:58:41 -0400
-IronPort-SDR: rgEgWN27q7Ce3AOwPq8lG45jS6clas3DfmE9mxp4vG0TFuNrCRpUukPZbazpRR4N+nGdJJNXiH
- tbhMd6lCp9SA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2020 19:58:40 -0700
-IronPort-SDR: NV1fIEi7SBqqpWFSyetil7BqpMQvRWv0Sli9g92468c8uiX8Se0i5A3wyNFWKSVJ9zyHmQnumZ
- zGuYmBc3PSyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,443,1583222400"; 
-   d="scan'208";a="468974457"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga006.fm.intel.com with ESMTP; 27 May 2020 19:58:40 -0700
-Received: from [10.214.164.131] (vramuthx-MOBL1.gar.corp.intel.com [10.214.164.131])
-        by linux.intel.com (Postfix) with ESMTP id 9E6925803C1;
-        Wed, 27 May 2020 19:58:35 -0700 (PDT)
-Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
-Subject: Re: [RESENDPATCH v8 1/2] dt-bindings: mtd: Add Nand Flash Controller
- support for Intel LGM SoC
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, arnd@arndb.de,
-        brendanhiggins@google.com, tglx@linutronix.de,
-        boris.brezillon@collabora.com, anders.roxell@linaro.org,
-        masonccyang@mxic.com.tw, linux-mips@vger.kernel.org,
-        hauke.mehrtens@intel.com, andriy.shevchenko@intel.com,
-        qi-ming.wu@intel.com, cheol.yong.kim@intel.com
-References: <20200520000621.49152-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20200520000621.49152-2-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20200526204306.GA224630@bogus>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <b04a6779-233d-ff7f-6eb6-b6393100189e@linux.intel.com>
-Date:   Thu, 28 May 2020 10:58:34 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
-MIME-Version: 1.0
-In-Reply-To: <20200526204306.GA224630@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726530AbgE1DXL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 May 2020 23:23:11 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 15CC51A0B98;
+        Thu, 28 May 2020 05:23:09 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D609B1A0A5E;
+        Thu, 28 May 2020 05:23:00 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id ADB9440280;
+        Thu, 28 May 2020 11:22:50 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, daniel.baluta@nxp.com,
+        leonard.crestez@nxp.com, peng.fan@nxp.com, aford173@gmail.com,
+        jun.li@nxp.com, shengjiu.wang@nxp.com, horia.geanta@nxp.com,
+        aisheng.dong@nxp.com, fugang.duan@nxp.com, agx@sigxcpu.org,
+        l.stach@pengutronix.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 0/4] Change i.MX/MXS SoCs ocotp/iim node name to efuse
+Date:   Thu, 28 May 2020 11:12:46 +0800
+Message-Id: <1590635570-8541-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+In the nvmem yaml schema, it requires the nodename to be one of
+"eeprom|efuse|nvram", so need to change all i.MX/MXS SoCs ocotp/iim node
+name to efuse:
 
-Thank you very much for the review comments...
+MXS platforms: i.MX23/28;
+i.MX platforms with IIM: i.MX25/27/31/35/51/53.
+i.MX ARMv7 platforms with OCOTP: i.MX6QDL/6SL/6SX/6SLL/6UL/7S/7ULP.
+i.MX ARMv8 platforms with OCOTP: i.MX8MQ/8MM/8MN/8MP.
 
-On 27/5/2020 4:43 am, Rob Herring wrote:
-> On Wed, May 20, 2020 at 08:06:20AM +0800, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> Add YAML file for dt-bindings to support NAND Flash Controller
->> on Intel's Lightning Mountain SoC.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   .../devicetree/bindings/mtd/intel,lgm-nand.yaml    | 91 ++++++++++++++++++++++
->>   1 file changed, 91 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml b/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
->> new file mode 100644
->> index 000000000000..cd4e983a449e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
->> @@ -0,0 +1,91 @@
->> +# SPDX-License-Identifier: GPL-2.0
-> 
-> Still not dual licensed.
-oh sorry, will update.
-> 
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mtd/intel,lgm-nand.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Intel LGM SoC NAND Controller Device Tree Bindings
->> +
->> +allOf:
->> +  - $ref: "nand-controller.yaml"
->> +
->> +maintainers:
->> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: intel,lgm-nand-controller
-> 
-> Still doesn't match the example. And the example will fail when it does.
-Noted, will change it.
-> 
->> +
->> +  reg:
->> +    items:
->> +       - description: ebunand registers
->> +       - description: hsnand registers
->> +       - description: nand_cs0 external flash access
->> +       - description: nand_cs1 external flash access
->> +       - description: addr_sel0 memory region enable and access
->> +       - description: addr_sel1 memory region enable and access
-> 
-> reg-names?
-   should be -const: ebunand instead added description with register 
-name , will keep "-const: ebunand ..etc"
-> 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  dmas:
->> +    maxItems: 2
->> +
->> +  dma-names:
->> +    items:
->> +      - const: tx
->> +      - const: rx
->> +
->> +patternProperties:
->> +  "^nand@[a-f0-9]+$":
->> +    type: object
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 7
->> +
->> +      nand-ecc-mode: true
->> +
->> +      nand-ecc-algo:
->> +        const: hw
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
-> 
-> Not documented or should be dropped.
-Yes, will drop it.
-> 
->> +  - dmas
->> +  - dma-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    nand-controller@e0f00000 {
->> +      compatible = "intel,lgm-nand";
->> +      reg = <0xe0f00000 0x100>,
->> +            <0xe1000000 0x300>,
->> +            <0xe1400000 0x8000>,
->> +            <0xe1c00000 0x1000>,
->> +            <0x17400000 0x4>,
->> +            <0x17c00000 0x4>;
->> +      reg-names = "ebunand", "hsnand", "nand_cs0", "nand_cs1",
->> +        "addr_sel0","addr_sel1";
-> 
-> Not documented. And needs a space after the ','.
-Good catch, Thanks
-> 
->> +      clocks = <&cgu0 125>;
->> +      dmas = <&dma0 8>, <&dma0 9>;
->> +      dma-names = "tx", "rx";
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +      #clock-cells = <1>;
-> 
-> Should be removed?
-sure, will remove it
+Anson Huang (4):
+  ARM: dts: imx: change ocotp node name on i.MX6/7 SoCs
+  arm64: dts: imx8m: change ocotp node name on i.MX8M SoCs
+  ARM: dts: imx: change ocotp node name on MXS SoCs
+  ARM: dts: imx: change iim node name on i.MX SoCs
 
-Regards
-Vadivel
-> 
->> +
->> +      nand@0 {
->> +        reg = <0>;
->> +        nand-on-flash-bbt;
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +      };
->> +    };
->> +
->> +...
->> -- 
->> 2.11.0
->>
+ arch/arm/boot/dts/imx23.dtsi              | 2 +-
+ arch/arm/boot/dts/imx25.dtsi              | 2 +-
+ arch/arm/boot/dts/imx27.dtsi              | 2 +-
+ arch/arm/boot/dts/imx28.dtsi              | 2 +-
+ arch/arm/boot/dts/imx31.dtsi              | 2 +-
+ arch/arm/boot/dts/imx35.dtsi              | 2 +-
+ arch/arm/boot/dts/imx51.dtsi              | 2 +-
+ arch/arm/boot/dts/imx53.dtsi              | 2 +-
+ arch/arm/boot/dts/imx6qdl.dtsi            | 2 +-
+ arch/arm/boot/dts/imx6sl.dtsi             | 2 +-
+ arch/arm/boot/dts/imx6sll.dtsi            | 2 +-
+ arch/arm/boot/dts/imx6sx.dtsi             | 2 +-
+ arch/arm/boot/dts/imx6ul.dtsi             | 2 +-
+ arch/arm/boot/dts/imx7s.dtsi              | 2 +-
+ arch/arm/boot/dts/imx7ulp.dtsi            | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 19 files changed, 19 insertions(+), 19 deletions(-)
+
+-- 
+2.7.4
+
