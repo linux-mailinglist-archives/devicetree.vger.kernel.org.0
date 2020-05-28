@@ -2,631 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E42C71E5BE3
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 11:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66D01E5BFF
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2020 11:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728377AbgE1JbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 05:31:17 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:38443 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727981AbgE1JbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 05:31:15 -0400
-Received: by mail-lf1-f68.google.com with SMTP id 202so16183400lfe.5;
-        Thu, 28 May 2020 02:31:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XTTyrF3CcrIgGJTtU6zwtoCIbGfhlQi3k9nYSgzhPP0=;
-        b=fTd0ubmnMbrcXYQLmRHeD1GzBIUoM+T8ZzLrju2iWV0a6q7Akoh8V9tyb1GM8e79FU
-         qajMDNSj6JJpKMdCuT510sR8hQXbMFZfcfCHeqvHq4T4Lchs/ZL6QlsL8/m7jN4PYOzE
-         V/9mzpS6L2SchxttPfc5Ws4OEc2+qJFR6VOe6eiFRd2kNxt8W/QqY4zs7EQ6h9BS5cst
-         BWmWnZXznfoE5jNxLOVsOF7RB2o32YyMXdmhaaFaQnEaL5ViEYSc8cGTIBCEKS2SI1FF
-         hbdd2MZrqe50mtgx12xaugQZQLVAXvQVGs3B+xukO3jAPOvWQN7nl3JUc6tTHavFUCTq
-         Bz6w==
-X-Gm-Message-State: AOAM531xiY1HxSaJYDGJBQT/NAVbYL/oI7XQnbDco7gm9xQ1MWemubng
-        7p6dxH7VgVJw4RopzIDq0Ag=
-X-Google-Smtp-Source: ABdhPJwdVXhqanyWtfv/4b7F9+Ge7OAgKITe2eoLS9DAcFx8GgIXmdNa59nY2ZyywTZgR9QaAS6hng==
-X-Received: by 2002:a05:6512:3a6:: with SMTP id v6mr1239715lfp.136.1590658270393;
-        Thu, 28 May 2020 02:31:10 -0700 (PDT)
-Received: from xi.terra (c-beaee455.07-184-6d6c6d4.bbcust.telenor.se. [85.228.174.190])
-        by smtp.gmail.com with ESMTPSA id l15sm1328898ljc.73.2020.05.28.02.31.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2020 02:31:09 -0700 (PDT)
-Received: from johan by xi.terra with local (Exim 4.93.0.4)
-        (envelope-from <johan@kernel.org>)
-        id 1jeEsQ-0003KF-L5; Thu, 28 May 2020 11:31:02 +0200
-Date:   Thu, 28 May 2020 11:31:02 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
-        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
-        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Peter Hurley <peter@hurleysoftware.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 1/6] tty: n_gsm: Add support for serdev drivers
-Message-ID: <20200528093102.GC10358@localhost>
-References: <20200512214713.40501-1-tony@atomide.com>
- <20200512214713.40501-2-tony@atomide.com>
+        id S2387431AbgE1Jdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 05:33:35 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:40474 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727981AbgE1Jdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 05:33:33 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 4201280307C0;
+        Thu, 28 May 2020 09:33:29 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id nib1yd3dMwgA; Thu, 28 May 2020 12:33:27 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 00/11] i2c: designeware: Add Baikal-T1 System I2C support
+Date:   Thu, 28 May 2020 12:33:10 +0300
+Message-ID: <20200528093322.23553-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200512214713.40501-2-tony@atomide.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 12, 2020 at 02:47:08PM -0700, Tony Lindgren wrote:
-> We can make use of serdev drivers to do simple device drivers for
-> TS 27.010 chanels, and we can handle vendor specific protocols on top
-> of TS 27.010 with serdev drivers.
-> 
-> So far this has been tested with Motorola droid4 where there is a custom
-> packet numbering protocol on top of TS 27.010 for the MDM6600 modem.
-> 
-> I initially though about adding the serdev support into a separate file,
-> but that will take some refactoring of n_gsm.c. And I'd like to have
-> things working first. Then later on we might want to consider splitting
-> n_gsm.c into three pieces for core, tty and serdev parts. And then maybe
-> the serdev related parts can be just moved to live under something like
-> drivers/tty/serdev/protocol/ngsm.c.
+Jarkko, Wolfram, the merge window is upon us, please review/merge in/whatever
+the patchset.
 
-Yeah, perhaps see where this lands first, but it should probably be done
-before merging anything.
+Initially this has been a small patchset which embedded the Baikal-T1
+System I2C support into the DW APB I2C driver as is by using a simplest
+way. After a short discussion with Andy we decided to implement what he
+suggested (introduce regmap-based accessors and create a glue driver) and
+even more than that to provide some cleanups of the code. So here is what
+this patchset consists of.
 
-And it doesn't really make sense exporting these interfaces without the
-actual serdev driver as they are closely tied and cannot be reviewed
-separately anyway.
+First of all we've found out that current implementation of scripts/dtc
+didn't support i2c dt nodes with 10bit and slave flags set in the
+reg property. You'll see an error if you try to dt_binding_check it.
+So the very first patch fixes the problem by adding these flags support
+into the check_i2c_bus_reg() method.
 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/tty/n_gsm.c        | 435 +++++++++++++++++++++++++++++++++++++
->  include/linux/serdev-gsm.h | 154 +++++++++++++
->  2 files changed, 589 insertions(+)
->  create mode 100644 include/linux/serdev-gsm.h
-> 
-> diff --git a/drivers/tty/n_gsm.c b/drivers/tty/n_gsm.c
-> --- a/drivers/tty/n_gsm.c
-> +++ b/drivers/tty/n_gsm.c
-> @@ -39,6 +39,7 @@
->  #include <linux/file.h>
->  #include <linux/uaccess.h>
->  #include <linux/module.h>
-> +#include <linux/serdev.h>
->  #include <linux/timer.h>
->  #include <linux/tty_flip.h>
->  #include <linux/tty_driver.h>
-> @@ -50,6 +51,7 @@
->  #include <linux/netdevice.h>
->  #include <linux/etherdevice.h>
->  #include <linux/gsmmux.h>
-> +#include <linux/serdev-gsm.h>
->  
->  static int debug;
->  module_param(debug, int, 0600);
-> @@ -150,6 +152,7 @@ struct gsm_dlci {
->  	/* Data handling callback */
->  	void (*data)(struct gsm_dlci *dlci, const u8 *data, int len);
->  	void (*prev_data)(struct gsm_dlci *dlci, const u8 *data, int len);
-> +	struct gsm_serdev_dlci *ops; /* serdev dlci ops, if used */
+Traditionally we converted the plain text-based DT binding to the DT schema
+and added Baikal-T1 System I2C device support there. This required to mark
+the reg property redundant for Baikal-T1 I2C since its reg-space is
+indirectly accessed by means of the System Controller cmd/read/write
+registers.
 
-Please rename the struct with a "_operations" suffix as you refer to
-this as "ops" throughout.
+Then as Andy suggested we replaced the Synopsys DW APB I2C common driver
+registers IO accessors into the regmap API methods. This doesn't change
+the code logic much, though in two places we managed to replace some bulky
+peaces of code with a ready-to-use regmap methods.
 
->  	struct net_device *net; /* network interface, if created */
->  };
->  
-> @@ -198,6 +201,7 @@ enum gsm_mux_state {
->   */
->  
->  struct gsm_mux {
-> +	struct gsm_serdev *gsd;		/* Serial device bus data */
->  	struct tty_struct *tty;		/* The tty our ldisc is bound to */
->  	spinlock_t lock;
->  	struct mutex mutex;
-> @@ -2346,6 +2350,437 @@ static int gsm_config(struct gsm_mux *gsm, struct gsm_config *c)
->  	return 0;
->  }
->  
-> +#ifdef CONFIG_SERIAL_DEV_BUS
-> +
-> +/**
-> + * gsm_serdev_get_config - read ts 27.010 config
-> + * @gsd:	serdev-gsm instance
-> + * @c:		ts 27.010 config data
-> + *
-> + * See gsm_copy_config_values() for more information.
+Additionally before adding the glue layer API we initiated a set of cleanups:
+- Define components of the multi-object drivers (like i2c-designware-core.o
+  and i2c-designware-paltform.o) with using `-y` suffixed makefile
+  variables instead of `-objs` suffixed one. This is encouraged by
+  Documentation/kbuild/makefiles.rst text since `-objs` is supposed to be used
+  to build host programs.
+- Make DW I2C slave driver depended on the DW I2C core code instead of the
+  platform one, which it really is.
+- Move Intel Baytrail semaphore feature to the platform if-clause of the
+  kernel config.
 
-Please document this properly since you're exporting these interfaces.
+After this we finally can introduce the glue layer API for the DW APB I2C
+platform driver. So there are three methods exported from the driver:
+i2c_dw_plat_setup(), i2c_dw_plat_clear(), &i2c_dw_plat_dev_pm_ops to
+setup, cleanup and add PM operations to the glue driven I2C device. Before
+setting the platform DW I2C device up the glue probe code is supposed to
+create an instance of DW I2C device generic object and pre-initialize
+its `struct device` pointer together with optional platform-specific
+flags. In addition to that we converted the MSCC Ocelot SoC I2C specific
+code into the glue layer seeing it's really too specific and, which is more
+important, isn't that complicated so we could unpin it without much of
+worrying to break something.
 
-> + */
-> +int gsm_serdev_get_config(struct gsm_serdev *gsd, struct gsm_config *c)
-> +{
-> +	struct gsm_mux *gsm;
-> +
-> +	if (!gsd || !gsd->gsm)
-> +		return -ENODEV;
+Meanwhile we discovered that MODEL_CHERRYTRAIL and MODEL_MASK actually
+were no longer used in the code. MODEL_MSCC flag has been discarded since
+the MSCC Ocelot I2C code conversion to the glue driver. So now we can get
+rid of all the MODEL-specific flags.
 
-Is all this paranoia needed?
+Finally we introduced a glue driver with Baikal-T1 System I2C device
+support. The driver probe tries to find a syscon regmap, creates the DW
+APB I2C regmap based on it and passes it further to the DW I2C device
+descriptor. Then it does normal DW APB I2C platform setup by calling a
+generic setup method. Cleanup is straightforward. It's just calling a
+generic DW APB I2C clean method.
 
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (!c)
-> +		return -EINVAL;
-> +
-> +	gsm_copy_config_values(gsm, c);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_get_config);
-> +
-> +/**
-> + * gsm_serdev_set_config - set ts 27.010 config
-> + * @gsd:	serdev-gsm instance
-> + * @c:		ts 27.010 config data
-> + *
-> + * See gsm_config() for more information.
-> + */
-> +int gsm_serdev_set_config(struct gsm_serdev *gsd, struct gsm_config *c)
-> +{
-> +	struct gsm_mux *gsm;
-> +
-> +	if (!gsd || !gsd->serdev || !gsd->gsm)
-> +		return -ENODEV;
+This patchset is rebased and tested on the i2c/for-next (5.7-rc4):
+base-commit: 2a41d0f91443 Merge branch 'i2c/for-5.8' into i2c/for-next
 
-And why check for serdev here?
+Note new vendor prefix for Baikal-T1 System I2C device is added in the
+framework of the next patchset:
+https://lkml.org/lkml/2020/5/6/1047
 
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (!c)
-> +		return -EINVAL;
-> +
-> +	return gsm_config(gsm, c);
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_set_config);
-> +
-> +static struct gsm_dlci *gsd_dlci_get(struct gsm_serdev *gsd, int line,
-> +				     bool allocate)
-> +{
-> +	struct gsm_mux *gsm;
-> +	struct gsm_dlci *dlci;
-> +
-> +	if (!gsd || !gsd->gsm)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (line < 1 || line >= 63)
+Changelog v2:
+- Fix the SoB tags.
+- Use a shorter summary describing the bindings convertion patch.
+- Patch "i2c: designware: Detect the FIFO size in the common code" has
+  been acked by Jarkko and applied by Wolfram to for-next so drop it from
+  the set.
+- Patch "i2c: designware: Discard i2c_dw_read_comp_param() function" has
+  been acked by Jarkko and applied by Wolfram to for-next so drop it from
+  the set.
+- Make sure that "mscc,ocelot-i2c" compatible node may have up to two
+  registers space defined in the DT node, while normal DW I2C controller
+  will have only one registers space.
+- Add "mscc,ocelot-i2c" DT schema example to test the previous fix.
+- Declare "unevaluatedProperties" property instead of
+  "additionalProperties" one in the DT schema.
+- Due to the previous fix we can now discard the dummy boolean properties
+  declaration, since the proper type evaluation will be performed by the
+  generic i2c-controller.yaml schema.
+- Refactor the DW I2C APB driver related series to address the Andies
+  notes.
+- Convert DW APB I2C driver to using regmap instead of handwritten
+  accessors.
+- Use `-y` to build multi-object DW APB drivers.
+- Fix DW APB I2C slave code dependency. It should depend on
+  I2C_DESIGNWARE_CORE instead I2C_DESIGNWARE_PLATFORM.
+- Move Baytrail semaphore config to the platform if-clause.
+- Introduce a glue-layer platform driver API.
+- Unpin Microsemi Ocelot I2C code into a glue driver.
+- Remove MODEL_CHERRYTRAIL and MODEL_MASK as no longer needed.
+- Add support for custom regmap passed from glue driver.
+- Add Baikal-T1 System I2C support in a dedicated glue layer driver.
 
-Line 62 is reserved as well.
+Link: https://lore.kernel.org/linux-i2c/20200510095019.20981-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v3:
+- Move fixes and less invasive patches to the head of the series.
+- Add patch "dt-bindings: i2c: Discard i2c-slave flag from the DW I2C
+  example" since Rob says the flag can be discarded until dtc is fixed.
+- Add patch "i2c: designware: Retrieve quirk flags as early as possible"
+  as a first preparation before adding Baikal-T1 System I2C support.
+- Add patch "i2c: designware: Move reg-space remapping into a dedicated
+  function" as a second preparation before adding Baikal-T1 System I2C
+  support.
+- Add patch "i2c: designware: Add Baikal-T1 System I2C support", which
+  integrates the Baikal-T1 I2C support into the DW I2C platform driver.
+- Get back the reg property being mandatory even if it's Baikal-T1 System
+  I2C DT node. Rob says it has to be in the DT node if there is a
+  dedicated registers range in the System Controller registers space.
+- Replace if-endif clause around the I2C_DESIGNWARE_BAYTRAIL config
+  with "depends on" operator.
 
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	mutex_lock(&gsm->mutex);
-> +
-> +	if (gsm->dlci[line]) {
-> +		dlci = gsm->dlci[line];
-> +		goto unlock;
-> +	} else if (!allocate) {
-> +		dlci = ERR_PTR(-ENODEV);
-> +		goto unlock;
-> +	}
-> +
-> +	dlci = gsm_dlci_alloc(gsm, line);
-> +	if (!dlci) {
-> +		dlci = ERR_PTR(-ENOMEM);
-> +		goto unlock;
-> +	}
-> +
-> +	gsm->dlci[line] = dlci;
-> +
-> +unlock:
-> +	mutex_unlock(&gsm->mutex);
-> +
-> +	return dlci;
-> +}
-> +
-> +static int gsd_dlci_receive_buf(struct gsm_serdev_dlci *ops,
-> +				const unsigned char *buf,
-> +				size_t len)
-> +{
-> +	struct gsm_serdev *gsd = ops->gsd;
+Link: https://lore.kernel.org/linux-i2c/20200526215528.16417-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v4:
+- Rebase on top of the i2c/for-next branch.
+- Use PTR_ERR_OR_ZERO() helper in the bt1_i2c_request_regs() and
+  in the dw_i2c_plat_request_regs() methods.
+- Discard devm_platform_get_and_ioremap_resource() utilization.
+- Discard patch "scripts/dtc: check: Add 10bit/slave i2c reg flags
+  support" since it must be merged in to the dtc upstream repository.
 
-This looks backwards, why not pass in gsd instead?
+Link: https://lore.kernel.org/linux-i2c/20200527120111.5781-1-Sergey.Semin@baikalelectronics.ru
+Changelog v5:
+- Replace or-assignment with just assignment operator when getting
+  the quirk flags.
+- Keep alphabetical order of the include statements.
+- Discard explicit u16-type cast in the dw_reg_write_word() method.
 
-> +	struct gsm_dlci *dlci;
-> +	struct tty_port *port;
-> +
-> +	dlci = gsd_dlci_get(gsd, ops->line, false);
-> +	if (IS_ERR(dlci))
-> +		return PTR_ERR(dlci);
-> +
-> +	port = &dlci->port;
-> +	tty_insert_flip_string(port, buf, len);
-> +	tty_flip_buffer_push(port);
-> +
-> +	return len;
-> +}
-> +
-> +static void gsd_dlci_data(struct gsm_dlci *dlci, const u8 *buf, int len)
-> +{
-> +	struct gsm_mux *gsm = dlci->gsm;
-> +	struct gsm_serdev *gsd = gsm->gsd;
-> +
-> +	if (!gsd || !dlci->ops)
-> +		return;
-> +
-> +	switch (dlci->adaption) {
-> +	case 0:
+Link: https://lore.kernel.org/linux-i2c/20200527153046.6172-1-Sergey.Semin@baikalelectronics.ru
+Changelog v6:
+- Add commas after the last member of the regmap_config instances
+  initializers.
+- Replace the "linux,slave-24c02" compatible string with "atmel,24c02" one
+  so the DT example would be perceived as a normal DW I2C master mode.
 
-0 isn't valid, right?
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+Cc: Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-> +	case 1:
-> +		if (dlci->ops->receive_buf)
-> +			dlci->ops->receive_buf(dlci->ops, buf, len);
-> +		break;
+Serge Semin (11):
+  dt-bindings: i2c: Convert DW I2C binding to DT schema
+  dt-bindings: i2c: Convert DW I2C slave to the DW I2C master example
+  dt-bindings: i2c: dw: Add Baikal-T1 SoC I2C controller
+  i2c: designware: Use `-y` to build multi-object modules
+  i2c: designware: slave: Set DW I2C core module dependency
+  i2c: designware: Add Baytrail sem config DW I2C platform dependency
+  i2c: designware: Discard Cherry Trail model flag
+  i2c: designware: Convert driver to using regmap API
+  i2c: designware: Retrieve quirk flags as early as possible
+  i2c: designware: Move reg-space remapping into a dedicated function
+  i2c: designware: Add Baikal-T1 System I2C support
 
-What about adaption 2 with modem status? Why are you not reusing
-gsm_dlci_data()?
+ .../bindings/i2c/i2c-designware.txt           |  73 -------
+ .../bindings/i2c/snps,designware-i2c.yaml     | 156 +++++++++++++++
+ drivers/i2c/busses/Kconfig                    |  28 +--
+ drivers/i2c/busses/Makefile                   |  18 +-
+ drivers/i2c/busses/i2c-designware-common.c    | 178 +++++++++++++-----
+ drivers/i2c/busses/i2c-designware-core.h      |  28 +--
+ drivers/i2c/busses/i2c-designware-master.c    | 125 ++++++------
+ drivers/i2c/busses/i2c-designware-pcidrv.c    |   1 -
+ drivers/i2c/busses/i2c-designware-platdrv.c   |  96 +++++++++-
+ drivers/i2c/busses/i2c-designware-slave.c     |  77 ++++----
+ 10 files changed, 520 insertions(+), 260 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-designware.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
 
-> +	default:
-> +		pr_warn("dlci%i adaption %i not yet implemented\n",
-> +			dlci->addr, dlci->adaption);
+-- 
+2.26.2
 
-This needs to be rate limited. Use the dev_ versions when you can.
-
-> +		break;
-> +	}
-> +}
-> +
-> +/**
-> + * gsm_serdev_write - write data to a ts 27.010 channel
-> + * @gsd:	serdev-gsm instance
-> + * @ops:	channel ops
-> + * @buf:	write buffer
-> + * @len:	buffer length
-> + */
-> +int gsm_serdev_write(struct gsm_serdev *gsd, struct gsm_serdev_dlci *ops,
-> +		     const u8 *buf, int len)
-> +{
-> +	struct gsm_mux *gsm;
-> +	struct gsm_dlci *dlci;
-> +	struct gsm_msg *msg;
-> +	int h, size, total_size = 0;
-> +	u8 *dp;
-> +
-> +	if (!gsd || !gsd->gsm)
-> +		return -ENODEV;
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	dlci = gsd_dlci_get(gsd, ops->line, false);
-> +	if (IS_ERR(dlci))
-> +		return PTR_ERR(dlci);
-> +
-> +	h = dlci->adaption - 1;
-> +
-> +	if (len > gsm->mtu)
-> +		len = gsm->mtu;
-> +
-> +	size = len + h;
-> +
-> +	msg = gsm_data_alloc(gsm, dlci->addr, size, gsm->ftype);
-> +	if (!msg)
-> +		return -ENOMEM;
-> +
-> +	dp = msg->data;
-> +	switch (dlci->adaption) {
-> +	case 1:
-> +		break;
-> +	case 2:
-> +		*dp++ = gsm_encode_modem(dlci);
-> +		break;
-> +	}
-> +	memcpy(dp, buf, len);
-> +	gsm_data_queue(dlci, msg);
-> +	total_size += size;
-> +
-> +	return total_size;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_write);
-> +
-> +/**
-> + * gsm_serdev_data_kick - indicate more data can be transmitted
-> + * @gsd:	serdev-gsm instance
-> + *
-> + * See gsm_data_kick() for more information.
-> + */
-> +void gsm_serdev_data_kick(struct gsm_serdev *gsd)
-> +{
-> +	struct gsm_mux *gsm;
-> +	unsigned long flags;
-> +
-> +	if (!gsd || !gsd->gsm)
-> +		return;
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	spin_lock_irqsave(&gsm->tx_lock, flags);
-> +	gsm_data_kick(gsm);
-> +	spin_unlock_irqrestore(&gsm->tx_lock, flags);
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_data_kick);
-> +
-> +/**
-> + * gsm_serdev_register_dlci - register a ts 27.010 channel
-> + * @gsd:	serdev-gsm instance
-> + * @ops:	channel ops
-> + */
-> +int gsm_serdev_register_dlci(struct gsm_serdev *gsd,
-> +			     struct gsm_serdev_dlci *ops)
-> +{
-> +	struct gsm_dlci *dlci;
-> +	struct gsm_mux *gsm;
-> +	int retries;
-> +
-> +	if (!gsd || !gsd->gsm || !gsd->serdev)
-> +		return -ENODEV;
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (!ops || !ops->line)
-> +		return -EINVAL;
-> +
-> +	dlci = gsd_dlci_get(gsd, ops->line, true);
-> +	if (IS_ERR(dlci))
-> +		return PTR_ERR(dlci);
-> +
-> +	if (dlci->state == DLCI_OPENING || dlci->state == DLCI_OPEN ||
-> +	    dlci->state == DLCI_CLOSING)
-> +		return -EBUSY;
-> +
-> +	mutex_lock(&dlci->mutex);
-> +	ops->gsd = gsd;
-> +	dlci->ops = ops;
-> +	dlci->modem_rx = 0;
-> +	dlci->prev_data = dlci->data;
-
-I think this one is only used when bringing up a network interface.
-
-> +	dlci->data = gsd_dlci_data;
-> +	mutex_unlock(&dlci->mutex);
-> +
-> +	gsm_dlci_begin_open(dlci);
-
-Why is this here? This should be handled when opening the serial device
-(i.e. by gsmtty_open()).
-
-> +
-> +	/*
-> +	 * Allow some time for dlci to move to DLCI_OPEN state. Otherwise
-> +	 * the serdev consumer driver can start sending data too early during
-> +	 * the setup, and the response will be missed by gms_queue() if we
-> +	 * still have DLCI_CLOSED state.
-> +	 */
-> +	for (retries = 10; retries > 0; retries--) {
-> +		if (dlci->state == DLCI_OPEN)
-> +			break;
-> +		msleep(100);
-> +	}
-
-What if you time out? This should be handled properly.
-
-> +
-> +	if (!retries)
-> +		dev_dbg(&gsd->serdev->dev, "dlci%i not currently active\n",
-> +			dlci->addr);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_register_dlci);
-> +
-> +/**
-> + * gsm_serdev_unregister_dlci - unregister a ts 27.010 channel
-> + * @gsd:	serdev-gsm instance
-> + * @ops:	channel ops
-> + */
-> +void gsm_serdev_unregister_dlci(struct gsm_serdev *gsd,
-> +				struct gsm_serdev_dlci *ops)
-> +{
-> +	struct gsm_mux *gsm;
-> +	struct gsm_dlci *dlci;
-> +
-> +	if (!gsd || !gsd->gsm || !gsd->serdev)
-> +		return;
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (!ops || !ops->line)
-> +		return;
-> +
-> +	dlci = gsd_dlci_get(gsd, ops->line, false);
-> +	if (IS_ERR(dlci))
-> +		return;
-> +
-> +	mutex_lock(&dlci->mutex);
-> +	gsm_destroy_network(dlci);
-> +	dlci->data = dlci->prev_data;
-> +	dlci->ops->gsd = NULL;
-> +	dlci->ops = NULL;
-> +	mutex_unlock(&dlci->mutex);
-> +
-> +	gsm_dlci_begin_close(dlci);
-
-This should all be handled when closing the serial device, that is, by
-gsmtty_close().
-
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_unregister_dlci);
-> +
-> +static int gsm_serdev_output(struct gsm_mux *gsm, u8 *data, int len)
-> +{
-> +	struct serdev_device *serdev = gsm->gsd->serdev;
-> +
-> +	if (gsm->gsd->output)
-> +		return gsm->gsd->output(gsm->gsd, data, len);
-> +	else
-> +		return serdev_device_write_buf(serdev, data, len);
-> +}
-
-I guess this is needed to handle the motorola framing, but not easy to
-tell currently due to the split.
-
-> +
-> +static int gsd_receive_buf(struct serdev_device *serdev, const u8 *data,
-> +			   size_t count)
-> +{
-> +	struct gsm_serdev *gsd = serdev_device_get_drvdata(serdev);
-> +	struct gsm_mux *gsm;
-> +	const unsigned char *dp;
-> +	int i;
-> +
-> +	if (WARN_ON(!gsd))
-> +		return 0;
-
-Probably better to take the NULL-deref. Can this ever happen?
-
-> +
-> +	gsm = gsd->gsm;
-> +
-> +	if (debug & 4)
-> +		print_hex_dump_bytes("gsd_receive_buf: ",
-> +				     DUMP_PREFIX_OFFSET,
-> +				     data, count);
-> +
-> +	for (i = count, dp = data; i; i--, dp++)
-> +		gsm->receive(gsm, *dp);
-> +
-> +	return count;
-> +}
-> +
-> +static void gsd_write_wakeup(struct serdev_device *serdev)
-> +{
-> +	serdev_device_write_wakeup(serdev);
-> +}
-> +
-> +static struct serdev_device_ops gsd_client_ops = {
-> +	.receive_buf = gsd_receive_buf,
-> +	.write_wakeup = gsd_write_wakeup,
-> +};
-> +
-> +int gsm_serdev_register_tty_port(struct gsm_serdev *gsd, int line)
-> +{
-> +	struct gsm_serdev_dlci *ops;
-> +	unsigned int base;
-> +	int error;
-> +
-> +	if (line < 1)
-> +		return -EINVAL;
-
-Upper limit?
-
-> +
-> +	ops = kzalloc(sizeof(*ops), GFP_KERNEL);
-> +	if (!ops)
-> +		return -ENOMEM;
-> +
-> +	ops->line = line;
-> +	ops->receive_buf = gsd_dlci_receive_buf;
-> +
-> +	error = gsm_serdev_register_dlci(gsd, ops);
-> +	if (error) {
-> +		kfree(ops);
-> +
-> +		return error;
-> +	}
-> +
-> +	base = mux_num_to_base(gsd->gsm);
-> +	tty_register_device(gsm_tty_driver, base + ops->line, NULL);
-
-I would expect this to be tty_port_register_device_serdev() so that
-serdev gets initialised properly for any client devices (e.g. gnss).
-
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_register_tty_port);
-> +
-> +void gsm_serdev_unregister_tty_port(struct gsm_serdev *gsd, int line)
-> +{
-> +	struct gsm_dlci *dlci;
-> +	unsigned int base;
-> +
-> +	if (line < 1)
-> +		return;
-
-As above.
-
-> +
-> +	dlci = gsd_dlci_get(gsd, line, false);
-> +	if (IS_ERR(dlci))
-> +		return;
-> +
-> +	base = mux_num_to_base(gsd->gsm);
-> +	tty_unregister_device(gsm_tty_driver, base + line);
-> +	gsm_serdev_unregister_dlci(gsd, dlci->ops);
-> +	kfree(dlci->ops);
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_unregister_tty_port);
-> +
-> +int gsm_serdev_register_device(struct gsm_serdev *gsd)
-> +{
-> +	struct gsm_mux *gsm;
-> +	int error;
-> +
-> +	if (WARN(!gsd || !gsd->serdev || !gsd->output,
-> +		 "serdev and output must be initialized\n"))
-> +		return -EINVAL;
-
-Just oops if the driver is buggy and fails to set essential fields.
-
-> +
-> +	serdev_device_set_client_ops(gsd->serdev, &gsd_client_ops);
-> +
-> +	gsm = gsm_alloc_mux();
-> +	if (!gsm)
-> +		return -ENOMEM;
-> +
-> +	gsm->encoding = 1;
-> +	gsm->tty = NULL;
-> +	gsm->gsd = gsd;
-> +	gsm->output = gsm_serdev_output;
-> +	gsd->gsm = gsm;
-> +	mux_get(gsd->gsm);
-> +
-> +	error = gsm_activate_mux(gsd->gsm);
-> +	if (error) {
-> +		gsm_cleanup_mux(gsd->gsm);
-> +		mux_put(gsd->gsm);
-> +
-> +		return error;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_register_device);
-> +
-> +void gsm_serdev_unregister_device(struct gsm_serdev *gsd)
-> +{
-> +	gsm_cleanup_mux(gsd->gsm);
-> +	mux_put(gsd->gsm);
-> +	gsd->gsm = NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(gsm_serdev_unregister_device);
-> +
-> +#endif	/* CONFIG_SERIAL_DEV_BUS */
-
-It looks like you may also have a problem with tty hangups, which serdev
-does not support currently. There are multiple paths in n_gsm which can
-trigger a hangup (e.g. based on remote input) and would likely lead to a
-crash.
-
-Johan
