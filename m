@@ -2,117 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F781E6FBA
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 00:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 277161E6FCA
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 00:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437457AbgE1Wz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 18:55:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437456AbgE1WzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 18:55:23 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B8E3C08C5C7
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 15:55:23 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id l67so199299ybl.4
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 15:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=94grXSLlKz8pt9Y0CHgxlWm5jQqtItEcnxP1GZOMo0Y=;
-        b=nZ//AuWi6emFoMvlpgZ2523d/5KVjGEwQU0zLwnXPLqGYbQkyGyGihPS3pEL0kTBOR
-         +7LAvogyO+1aMWyYOH/0CMMeAuN+6TF6HDQj4/FZOsZHR0OugIOemMNUiQhCkj8mONP1
-         z0bkDBFCqQ9m+UQoQjvRBbbdsF79kjdkJaPfw3lILiowMeazXOckTlEax3r9a4AQDDRH
-         IR0PfzU4mxf5+853e3n+ASqudDF1uQ3vcx1AZ/g1mHJHCrnOh6rj2XTy9R2We31zzKH7
-         ROc05j59mxGEMpvrmyLn83UAErvunVxien7bYi68tWe7498ciEMKzxiqIm+YXy4uL/fC
-         Vl1Q==
+        id S2437322AbgE1W5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 18:57:52 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:45727 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437266AbgE1W5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 18:57:51 -0400
+Received: by mail-io1-f65.google.com with SMTP id y5so284533iob.12;
+        Thu, 28 May 2020 15:57:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=94grXSLlKz8pt9Y0CHgxlWm5jQqtItEcnxP1GZOMo0Y=;
-        b=FZ+Td4huowxMhPI8JWO9IBG07YJLMRnjNsrrD2qut0UVO71r8vQ60dg4Em2ocXlkqj
-         /Qb5cRb+A2eXXXfKfJCqSNcYm7XqJMBoTp7/7cAhEIhyeZekTtLBY9mSNvqMxkxSt8Bz
-         DmZeNJAoKFO9J4r/OyRgAfppICgCCkgGx4bcBI1rZbteFHFwB6izKTE3H8mNCGQgqL8G
-         hJQvsTrhe1bmY+b2Kv1+1JFMUo+2kOYxTJ9nsXS3MUrsobMz1xNuzGc11yLegKWXP2fT
-         WvyNcLlnbbdstRD4cL7hHnpUsngAoFFvfREoXAsr05SK2PNRHHSf8Xarnlo5rUBNn7EP
-         klgQ==
-X-Gm-Message-State: AOAM533o3y2OLHGxti/Dd3N2NlP9UDUl3UawqMEkQjMdhQ32z2LkP7vn
-        9e4UqsiXU+QLpur7Sppygk3lV7z+7KnBAdF9QiVyPA==
-X-Google-Smtp-Source: ABdhPJxVczRAAaGyfbjE3IbRMi+VMRiTSvNSq0RMNxiI7vs2fJbAppPLAdzMqbFICxJQrUWEOOeJsyvXMb1DypuA2Dc=
-X-Received: by 2002:a25:38cb:: with SMTP id f194mr8941327yba.250.1590706522197;
- Thu, 28 May 2020 15:55:22 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=j4A67w1UWrqcRvidWlMOv3lJRuAexfTn44t8+Gt+Mvw=;
+        b=QT3GzN3PzhMnUGX0zHXDKnR7H66FB1n4up1Kt3RUgaUkJKa5XUFGWAtpBN4x5wu72p
+         dyGr8796AhOnOgJlROocG+gOxGKHWOeiTn9UZ9pYw0uRluKkipBM1PKIjNeqOYBzTCJ/
+         vim1Hl7d7sI7/5E/jr2rrr3VMC9/7oVpUI8QM1OREEe/tmmkcXqbvDS3WX7N2C5vB62M
+         z2nldpXkE3CFSIZc+Xjvq1eJLQ3b3p8WgprUl96mYa8jKzYS9tMW6C7nINEEKcz7uUEO
+         ZsPsu5HMA/LYv6MgVVbmu0en0GrcucCSo3Z5AXjo/2R9Pd0BGNu6o31L01KXwcFXz+MB
+         HAQQ==
+X-Gm-Message-State: AOAM532lvRUKx20tFftP3HkwjSz1iYi01tOpVz77ZwwM2m16Y0W/Wvex
+        dV3Sb8aXrk6MkGtYDDL02g==
+X-Google-Smtp-Source: ABdhPJx6c5l7FsTPgjtXHegskhHp+62+vfCSYFInsfYA747A6V9kogbZxZQTlFTCLxnSzMDWjHCSPA==
+X-Received: by 2002:a02:a99a:: with SMTP id q26mr4581344jam.61.1590706668793;
+        Thu, 28 May 2020 15:57:48 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id j2sm3060713ioo.8.2020.05.28.15.57.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 15:57:48 -0700 (PDT)
+Received: (nullmailer pid 834510 invoked by uid 1000);
+        Thu, 28 May 2020 22:57:47 -0000
+Date:   Thu, 28 May 2020 16:57:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] dt-bindings: i2c: Convert i2c-pxa to json-schema
+Message-ID: <20200528225747.GA830663@bogus>
+References: <20200521091356.2211020-1-lkundrak@v3.sk>
+ <20200521091356.2211020-4-lkundrak@v3.sk>
 MIME-Version: 1.0
-References: <20200515025159.101081-1-jnchase@google.com> <20200515025159.101081-3-jnchase@google.com>
- <fe268ad4-1a46-b6de-54e1-c9e6731a96d3@xs4all.nl>
-In-Reply-To: <fe268ad4-1a46-b6de-54e1-c9e6731a96d3@xs4all.nl>
-From:   Jeff Chase <jnchase@google.com>
-Date:   Thu, 28 May 2020 18:55:10 -0400
-Message-ID: <CALTkaQ1pyAB1JVtifa75RuyTQCeNDTObZH+BvdFQVhLLhAeosg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: cec: i2c: ch7322: Add ch7322 CEC controller driver
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200521091356.2211020-4-lkundrak@v3.sk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +
-> > +/* This device is always enabled */
-> > +static int ch7322_cec_adap_enable(struct cec_adapter *adap, bool enable)
-> > +{
->
-> I'd disable the interrupt here if enable is false.
+On Thu, May 21, 2020 at 11:13:50AM +0200, Lubomir Rintel wrote:
+> A conversion of the i2c-pxa binding to DT schema format using json-schema.
+> 
+> This also cleans ups some errors in the binding: The compatible string
+> description suggested that "mmp" in "mrvl,mmp-twsi" is to be substituted
+> with a processor model, which wouldn't be a right thing to do and indeed
+> nobody seems to have been doing that. There also was "Recommended
+> properties" section that included optional as well as mandatory
+> properties. Missing mandatory properties were added to the example.
+> 
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> 
+> ---
+> Changes since v1:
+> - Add default GPL-2.0-only license tag
+> - Fill in maintainers from MAINTAINERS file
+> 
+>  .../devicetree/bindings/i2c/i2c-pxa.txt       | 31 --------
+>  .../devicetree/bindings/i2c/i2c-pxa.yaml      | 72 +++++++++++++++++++
+>  2 files changed, 72 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-pxa.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-pxa.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-pxa.txt b/Documentation/devicetree/bindings/i2c/i2c-pxa.txt
+> deleted file mode 100644
+> index c30783c0eca0..000000000000
+> --- a/Documentation/devicetree/bindings/i2c/i2c-pxa.txt
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -* Marvell MMP I2C controller
+> -
+> -Required properties :
+> -
+> - - reg : Offset and length of the register set for the device
+> - - compatible : should be "mrvl,mmp-twsi" where mmp is the name of a
+> -   compatible processor, e.g. pxa168, pxa910, mmp2, mmp3.
+> -   For the pxa2xx/pxa3xx, an additional node "mrvl,pxa-i2c" is required
+> -   as shown in the example below.
+> -   For the Armada 3700, the compatible should be "marvell,armada-3700-i2c".
+> -
+> -Recommended properties :
+> -
+> - - interrupts : the interrupt number
+> - - mrvl,i2c-polling : Disable interrupt of i2c controller. Polling
+> -   status register of i2c controller instead.
+> - - mrvl,i2c-fast-mode : Enable fast mode of i2c controller.
+> -
+> -Examples:
+> -	twsi1: i2c@d4011000 {
+> -		compatible = "mrvl,mmp-twsi";
+> -		reg = <0xd4011000 0x1000>;
+> -		interrupts = <7>;
+> -		mrvl,i2c-fast-mode;
+> -	};
+> -	
+> -	twsi2: i2c@d4025000 {
+> -		compatible = "mrvl,mmp-twsi";
+> -		reg = <0xd4025000 0x1000>;
+> -		interrupts = <58>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-pxa.yaml b/Documentation/devicetree/bindings/i2c/i2c-pxa.yaml
+> new file mode 100644
+> index 000000000000..19c81972243d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-pxa.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/i2c-pxa.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell MMP I2C controller bindings
+> +
+> +maintainers:
+> +  - Rob Herring <robh+dt@kernel.org>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +  - if:
+> +      not:
+> +        required:
+> +          - mrvl,i2c-polling
+> +    then:
+> +        required:
+> +          - interrupts
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mrvl,mmp-twsi
+> +      - mrvl,pxa-i2c
+> +      - marvell,armada-3700-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +  resets:
+> +    minItems: 1
+> +
+> +  mrvl,i2c-polling:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Disable interrupt of i2c controller. Polling status register of i2c
+> +      controller instead.
+> +
+> +  mrvl,i2c-fast-mode:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Enable fast mode of i2c controller.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - '#address-cells'
+> +  - '#size-cells'
 
-Ok I can do that.
+Add: 
 
->
-> There is a power down mode as well, so perhaps that's something that can be
-> done here too.
->
+unevaluatedProperties: false
 
-I think I'd prefer to use power down mode in a potential follow up
-patch that adds PM to the driver.
-
-> > +     return 0;
-> > +}
-> > +
-> > +static int ch7322_cec_adap_log_addr(struct cec_adapter *adap, u8 log_addr)
-> > +{
-> > +     struct ch7322 *ch7322 = cec_get_drvdata(adap);
-> > +     int ret;
-> > +
-> > +     mutex_lock(&ch7322->mutex);
-> > +     ret = regmap_update_bits(ch7322->regmap, CH7322_ADDLW,
-> > +                              CH7322_ADDLW_MASK, log_addr << 4);
-> > +     mutex_unlock(&ch7322->mutex);
->
-> If log_addr is CEC_LOG_ADDR_INVALID, then that means that the current
-> logical address configuration is to be cleared. In this case the logical
-> address is set to 0xf (unregistered/broadcast). That should mean that the
-> CEC device will not Ack any logical addresses, correct?
-
-Correct.
-
->
-> But it does receive broadcast messages and (I think) also messages from
-> other logical addresses, except that those will not be Acked by this
-> CEC adapter.
->
-
-I was wrong about this before. It does not pass on messages from other LAs.
-
-> If it still receives messages from other LAs, then that means that you can
-> add the CEC_CAP_MONITOR_ALL capability. I.e., 'sudo cec-ctl -M' without
-> configuring anything should see all CEC traffic.
->
-> What is the default value of CH7322_ADDLW? It should start with 0xf as
-> the logical address (i.e. no received messages should be Acked).
-
-The default value is 0xf.
-
-Thanks,
-Jeff
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/marvell,mmp2.h>
+> +    i2c@d4011000 {
+> +        compatible = "mrvl,mmp-twsi";
+> +        reg = <0xd4011000 0x1000>;
+> +        interrupts = <7>;
+> +        clocks = <&soc_clocks MMP2_CLK_TWSI1>;
+> +        mrvl,i2c-fast-mode;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+> +
+> +...
+> -- 
+> 2.26.2
+> 
