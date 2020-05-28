@@ -2,228 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E137C1E6EAF
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 00:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2288B1E6EFF
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 00:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436971AbgE1WXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 18:23:31 -0400
-Received: from aserp2120.oracle.com ([141.146.126.78]:45162 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436992AbgE1WX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 18:23:29 -0400
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04SMMCO8077828;
-        Thu, 28 May 2020 22:22:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=pgGnLsM1bSn7Hitbxv/OnsybTse9rQRdmkPsorQ6A70=;
- b=HZLKPY0RlGYg8QG5DpTqwSBVmljIjt4jzyRpaOst39SbYms+6S9VtDBIaX0P1HDNk8rD
- +AYsE1YiSh4T3tZoB9JqlGbu0WIeeGbU0sl+InLeDMZV/bv5gK7NLfcFZpvaEB5syy3h
- I4IxgkqNx13bynn9sos6GcR82P7pdKMbEAS/8VFaUNMV/dB5DHnC14bspIoWiDzrqmsU
- 7FMCxx2brbqH8lFoNkM1+ilWS7sy41RSI5hH/mh8f7eyFLMA0DURe8jE3gl+8a+hNXM6
- tPAOtjiY598J7XNKWpMdmj0pRPPkV9YtSB8KanlB0v0gFlRYtCPax+KenAhV84UE552W IA== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by aserp2120.oracle.com with ESMTP id 318xe1qhca-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 May 2020 22:22:47 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04SMDflD066940;
-        Thu, 28 May 2020 22:20:46 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-        by userp3020.oracle.com with ESMTP id 31a9kt94ry-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 28 May 2020 22:20:46 +0000
-Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
-        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 04SMKa36012836;
-        Thu, 28 May 2020 22:20:36 GMT
-Received: from [192.168.1.106] (/47.220.71.223)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 28 May 2020 15:20:36 -0700
-Subject: Re: [PATCH v8 0/5] support reserving crashkernel above 4G on arm64
- kdump
-To:     Baoquan He <bhe@redhat.com>, Chen Zhou <chenzhou10@huawei.com>
-Cc:     tglx@linutronix.de, mingo@redhat.com, catalin.marinas@arm.com,
-        will@kernel.org, dyoung@redhat.com, robh+dt@kernel.org,
-        arnd@arndb.de, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, kexec@lists.infradead.org,
-        linux-kernel@vger.kernel.org, horms@verge.net.au,
-        guohanjun@huawei.com, pkushwaha@marvell.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20200521093805.64398-1-chenzhou10@huawei.com>
- <20200526014242.GF20045@MiWiFi-R3L-srv>
-From:   John Donnelly <John.P.donnelly@oracle.com>
-Message-ID: <897ea1b9-a68c-8544-6532-a21be135ce01@oracle.com>
-Date:   Thu, 28 May 2020 17:20:34 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S2437067AbgE1W3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 18:29:00 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:44514 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436979AbgE1WYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 18:24:15 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 821DC80307C7;
+        Thu, 28 May 2020 22:24:09 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id uzcmceul0Kpr; Fri, 29 May 2020 01:24:08 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 00/11] dmaengine: dw: Take Baikal-T1 SoC DW DMAC peculiarities into account
+Date:   Fri, 29 May 2020 01:23:50 +0300
+Message-ID: <20200528222401.26941-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-In-Reply-To: <20200526014242.GF20045@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9635 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 spamscore=0 bulkscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2005280142
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9635 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999
- adultscore=0 cotscore=-2147483648 mlxscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0
- clxscore=1011 impostorscore=0 suspectscore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2005280143
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Baikal-T1 SoC has an DW DMAC on-board to provide a Mem-to-Mem, low-speed
+peripherals Dev-to-Mem and Mem-to-Dev functionality. Mostly it's compatible
+with currently implemented in the kernel DW DMAC driver, but there are some
+peculiarities which must be taken into account in order to have the device
+fully supported.
 
-On 5/25/20 8:42 PM, Baoquan He wrote:
-> On 05/21/20 at 05:38pm, Chen Zhou wrote:
->> This patch series enable reserving crashkernel above 4G in arm64.
->>
->> There are following issues in arm64 kdump:
->> 1. We use crashkernel=X to reserve crashkernel below 4G, which will fail
->> when there is no enough low memory.
->> 2. Currently, crashkernel=Y@X can be used to reserve crashkernel above 4G,
->> in this case, if swiotlb or DMA buffers are required, crash dump kernel
->> will boot failure because there is no low memory available for allocation.
->>
->> To solve these issues, introduce crashkernel=X,low to reserve specified
->> size low memory.
->> Crashkernel=X tries to reserve memory for the crash dump kernel under
->> 4G. If crashkernel=Y,low is specified simultaneously, reserve spcified
->> size low memory for crash kdump kernel devices firstly and then reserve
->> memory above 4G.
->>
->> When crashkernel is reserved above 4G in memory, that is, crashkernel=X,low
->> is specified simultaneously, kernel should reserve specified size low memory
->> for crash dump kernel devices. So there may be two crash kernel regions, one
->> is below 4G, the other is above 4G.
->> In order to distinct from the high region and make no effect to the use of
->> kexec-tools, rename the low region as "Crash kernel (low)", and add DT property
->> "linux,low-memory-range" to crash dump kernel's dtb to pass the low region.
->>
->> Besides, we need to modify kexec-tools:
->> arm64: kdump: add another DT property to crash dump kernel's dtb(see [1])
->>
->> The previous changes and discussions can be retrieved from:
->>
->> Changes since [v7]
->> - Move x86 CRASH_ALIGN to 2M
->> Suggested by Dave and do some test, move x86 CRASH_ALIGN to 2M.
-> OK, moving x86 CRASH_ALIGN to 2M is suggested by Dave. Because
-> CONFIG_PHYSICAL_ALIGN can be selected from 2M to 16M. So 2M seems good.
-> But, anyway, we should tell the reason why it need be changed in commit
-> log.
->
->
-> arch/x86/Kconfig:
-> config PHYSICAL_ALIGN
->          hex "Alignment value to which kernel should be aligned"
->          default "0x200000"
->          range 0x2000 0x1000000 if X86_32
->          range 0x200000 0x1000000 if X86_64
->
->> - Update Documentation/devicetree/bindings/chosen.txt
->> Add corresponding documentation to Documentation/devicetree/bindings/chosen.txt suggested by Arnd.
->> - Add Tested-by from Jhon and pk
->>
->> Changes since [v6]
->> - Fix build errors reported by kbuild test robot.
->>
->> Changes since [v5]
->> - Move reserve_crashkernel_low() into kernel/crash_core.c.
->> - Delete crashkernel=X,high.
-> And the crashkernel=X,high being deleted need be told too. Otherwise
-> people reading the commit have to check why themselves. I didn't follow
-> the old version, can't see why ,high can't be specified explicitly.
->
->> - Modify crashkernel=X,low.
->> If crashkernel=X,low is specified simultaneously, reserve spcified size low
->> memory for crash kdump kernel devices firstly and then reserve memory above 4G.
->> In addition, rename crashk_low_res as "Crash kernel (low)" for arm64, and then
->> pass to crash dump kernel by DT property "linux,low-memory-range".
->> - Update Documentation/admin-guide/kdump/kdump.rst.
->>
->> Changes since [v4]
->> - Reimplement memblock_cap_memory_ranges for multiple ranges by Mike.
->>
->> Changes since [v3]
->> - Add memblock_cap_memory_ranges back for multiple ranges.
->> - Fix some compiling warnings.
->>
->> Changes since [v2]
->> - Split patch "arm64: kdump: support reserving crashkernel above 4G" as
->> two. Put "move reserve_crashkernel_low() into kexec_core.c" in a separate
->> patch.
->>
->> Changes since [v1]:
->> - Move common reserve_crashkernel_low() code into kernel/kexec_core.c.
->> - Remove memblock_cap_memory_ranges() i added in v1 and implement that
->> in fdt_enforce_memory_region().
->> There are at most two crash kernel regions, for two crash kernel regions
->> case, we cap the memory range [min(regs[*].start), max(regs[*].end)]
->> and then remove the memory range in the middle.
->>
->> [1]: https://urldefense.com/v3/__http://lists.infradead.org/pipermail/kexec/2020-May/025128.html__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJwQs3C4x$
->> [v1]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/4/2/1174__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJ6e-mIEp$
->> [v2]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/4/9/86__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJyUVjUta$
->> [v3]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/4/9/306__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJ3CXBRdT$
->> [v4]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/4/15/273__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJ7SxW1Vj$
->> [v5]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/5/6/1360__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJ2wyJ9tj$
->> [v6]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/8/30/142__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJzvGhWBh$
->> [v7]: https://urldefense.com/v3/__https://lkml.org/lkml/2019/12/23/411__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJ6pAg6tX$
->>
->> Chen Zhou (5):
->>    x86: kdump: move reserve_crashkernel_low() into crash_core.c
->>    arm64: kdump: reserve crashkenel above 4G for crash dump kernel
->>    arm64: kdump: add memory for devices by DT property, low-memory-range
->>    kdump: update Documentation about crashkernel on arm64
->>    dt-bindings: chosen: Document linux,low-memory-range for arm64 kdump
->>
->>   Documentation/admin-guide/kdump/kdump.rst     | 13 ++-
->>   .../admin-guide/kernel-parameters.txt         | 12 ++-
->>   Documentation/devicetree/bindings/chosen.txt  | 25 ++++++
->>   arch/arm64/kernel/setup.c                     |  8 +-
->>   arch/arm64/mm/init.c                          | 61 ++++++++++++-
->>   arch/x86/kernel/setup.c                       | 66 ++------------
->>   include/linux/crash_core.h                    |  3 +
->>   include/linux/kexec.h                         |  2 -
->>   kernel/crash_core.c                           | 85 +++++++++++++++++++
->>   kernel/kexec_core.c                           | 17 ----
->>   10 files changed, 208 insertions(+), 84 deletions(-)
->>
->> -- 
->> 2.20.1
->>
->>
->> _______________________________________________
->> kexec mailing list
->> kexec@lists.infradead.org
->> https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/kexec__;!!GqivPVa7Brio!NHQIQVbVz5bR1SSP7U7SwT3uHb6OnycPGa6nM0oLTaQdZT4pjRsjrMjn5GqOJwwX8HSl$
->>
+First of all traditionally we replaced the legacy plain text-based dt-binding
+file with yaml-based one. Secondly Baikal-T1 DW DMA Controller provides eight
+channels, which alas have different max burst length configuration.
+In particular first two channels may burst up to 128 bits (16 bytes) at a time
+while the rest of them just up to 32 bits. We must make sure that the DMA
+subsystem doesn't set values exceeding these limitations otherwise the
+controller will hang up. In third currently we discovered the problem in using
+the DW APB SPI driver together with DW DMAC. The problem happens if there is no
+natively implemented multi-block LLP transfers support and the SPI-transfer
+length exceeds the max lock size. In this case due to asynchronous handling of
+Tx- and Rx- SPI transfers interrupt we might end up with Dw APB SSI Rx FIFO
+overflow. So if DW APB SSI (or any other DMAC service consumer) intends to use
+the DMAC to asynchronously execute the transfers we'd have to at least warn
+the user of the possible errors. In forth it's worth to set the DMA device max
+segment size with max block size config specific to the DW DMA controller. It
+shall help the DMA clients to create size-optimized SG-list items for the
+controller. This in turn will cause less dw_desc allocations, less LLP
+reinitializations, better DMA device performance.
 
+Finally there is a bug in the algorithm of the nollp flag detection.
+In particular even if DW DMAC parameters state the multi-block transfers
+support there is still HC_LLP (hardcode LLP) flag, which if set makes expected
+by the driver true multi-block LLP functionality unusable. This happens cause'
+if HC_LLP flag is set the LLP registers will be hardcoded to zero so the
+contiguous multi-block transfers will be only supported. We must take the
+flag into account when detecting the LLP support otherwise the driver just
+won't work correctly.
 
+This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
 
-Hi,
+Changelog v2:
+- Rearrange SoBs.
+- Move $ref to the root level of the properties. So do do with the
+  constraints in the DT binding.
+- Replace "additionalProperties: false" with "unevaluatedProperties: false"
+  property in the DT binding file.
+- Discard default settings defined out of property enum constraint.
+- Set default max-burst-len to 256 TR-WIDTH words in the DT binding.
+- Discard noLLP and block_size accessors.
+- Set max segment size of the DMA device structure with the DW DMA block size
+  config.
+- Print warning if noLLP flag is set.
+- Discard max burst length accessor.
+- Add comment about why hardware accelerated LLP list support depends
+  on both MBLK_EN and HC_LLP configs setting.
+- Use explicit bits state comparison operator in noLLP flag setting.
 
+Link: https://lore.kernel.org/dmaengine/20200508105304.14065-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v3:
+- Use the block_size found for the very first channel instead of looking for
+  the maximum of maximum block sizes.
+- Don't define device-specific device_dma_parameters object, since it has
+  already been defined by the platform device core.
+- Add more details into the property description about what limitations
+  snps,max-burst-len defines.
+- Move commit fb7e3bbfc830 ("dmaengine: dw: Take HC_LLP flag into account for
+  noLLP auto-config") to the head of the series.
+- Add a new patch "dmaengine: Introduce min burst length capability" as a
+  result of the discussion with Vinod and Andy regarding the burst length
+  capability.
+- Add a new patch "dmaengine: Introduce max SG list entries capability"
+  suggested by Andy.
+- Add a new patch "dmaengine: Introduce DMA-device device_caps callback" as
+  a result of the discussion with Vinud and Andy in the framework of DW DMA
+  burst and LLP capabilities.
+- Add a new patch "dmaengine: dw: Add dummy device_caps callback" as a
+  preparation commit before setting the max_burst and max_sg_nents
+  DW DMA capabilities.
+- Override the slave channel max_burst capability instead of calculating
+  the minimum value of max burst lengths and setting the DMA-device
+  generic capability.
+- Add a new patch "dmaengine: dw: Initialize max_sg_nents with nollp flag".
+  This is required to fix the DW APB SSI issue of the Tx and Rx DMA
+  channels de-synchronization.
 
+Link: https://lore.kernel.org/dmaengine/20200526225022.20405-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v4:
+- Use explicit if-else statement when assigning the max_sg_nents field.
+- Clamp the dst and src burst lengths in the generic dwc_config() method
+  instead of doing that in the encode_maxburst() callback.
+- Define max_burst with u32 type in struct dw_dma_platform_data.
+- Perform of_property_read_u32_array() with the platform data
+  max_burst member passed directly.
+- Add a new patch "dmaengine: dw: Initialize min_burst capability",
+  which initializes the min_burst capability with 1.
+- Fix of->if typo. It should be definitely "of" in the max_sg_list
+  capability description.
 
-This proposal to improve vmcore creation on Arm  has been going on for 
-almost a year now.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+Cc: Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: dmaengine@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Who is the  final maintainer that needs to approve and except these ?
+Serge Semin (11):
+  dt-bindings: dma: dw: Convert DW DMAC to DT binding
+  dt-bindings: dma: dw: Add max burst transaction length property
+  dmaengine: Introduce min burst length capability
+  dmaengine: Introduce max SG list entries capability
+  dmaengine: Introduce DMA-device device_caps callback
+  dmaengine: dw: Take HC_LLP flag into account for noLLP auto-config
+  dmaengine: dw: Set DMA device max segment size parameter
+  dmaengine: dw: Add dummy device_caps callback
+  dmaengine: dw: Initialize min_burst capability
+  dmaengine: dw: Introduce max burst length hw config
+  dmaengine: dw: Initialize max_sg_nents capability
 
-What are the lingering issues that are remaining so we get these 
-accepted into a upstream commit ?
+ .../bindings/dma/snps,dma-spear1340.yaml      | 176 ++++++++++++++++++
+ .../devicetree/bindings/dma/snps-dma.txt      |  69 -------
+ drivers/dma/dmaengine.c                       |   5 +
+ drivers/dma/dw/core.c                         |  47 ++++-
+ drivers/dma/dw/of.c                           |   5 +
+ drivers/dma/dw/regs.h                         |   3 +
+ include/linux/dmaengine.h                     |  14 ++
+ include/linux/platform_data/dma-dw.h          |   4 +
+ 8 files changed, 253 insertions(+), 70 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/snps-dma.txt
 
-
-Thank you.
-
-John.
-
-
+-- 
+2.26.2
 
