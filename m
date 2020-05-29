@@ -2,92 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7441E75C5
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 08:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F881E75CD
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 08:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725777AbgE2GKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 May 2020 02:10:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725562AbgE2GKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 May 2020 02:10:23 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CFA9C08C5C6
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 23:10:23 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id y18so608647ybb.3
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2020 23:10:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P2nBGdPlsWRCWwz9C54BrqMhSnzVHF9pPpLpGAMC3UU=;
-        b=O8lfgxkjb5WR31oIufsKmCgR0RXJD0+bBpmHJoOsGxw7evXX1GYYvx6gjpXXq/VVs/
-         zg169dlblh4WbfJVT3QgVQ0BoduCOGUpZu8kBzC0BMDKv2L/NONRMsgkLCgTYrJ6ttbu
-         wBJkHHw6+/hfmz6+UMgrJ19lMQDBVcOZ0oX+lPL9th15Mfn/MUpL3ruNOIi7JDk090In
-         YTNXnLQ62K+wyGB7Nfl9wp8cPXWYf2cVtR976UsVbI/ZJbmqt33kisZ4ouKAiGzcj7Tu
-         ohyiB/c1stAtRiJ+7q+xWoTIiHx6YXowHh/gwV6Ta9Fg6iEavCBgZv9VZPp3k5hT0Zn7
-         c1hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P2nBGdPlsWRCWwz9C54BrqMhSnzVHF9pPpLpGAMC3UU=;
-        b=Pf7+RFZ5FJtxvQjwCVTI4kzJwnU1HPoOt8mSnrTbrcYwYZ36Wr5HgKX9BqRDT5KT5K
-         82B0Z0CQIERUeZNC3PP2BA8XCK3KBMnkLNSjDl6vXQfptQwydsjTA01ijPlrQfUNAfu9
-         9aMKhOJ1TnNgOYwYNQHOmuhLkVZ/DAbs61wPVNuRWZh7BSDuBx3hx6mSObwujU7rv9Ce
-         HPSeABoNn0KZTB7q5dlkBxkcdpOcAKAFGq+t90dY3KOVHiTjHiGnS0dfgqyQQciU53ez
-         glVxzF0lP+woxv26242Gni9eqch/A4av6q1Qwb/66oYacVtHWMFkpYAmOyZBLCqNuhxC
-         aw5A==
-X-Gm-Message-State: AOAM533Z1HBTupB7H/yH8op5UPdeh65QO1JH0j7VgHkZaoV0PEP0ZFqG
-        cdhKt/8cU5hnn6eGkWreCR3jYUDBdUb8ag7qJW/pUg==
-X-Google-Smtp-Source: ABdhPJz2Uo8OrbmMgdMlGpmHGp+6cso/2EXGuVofumuIcendMf7zvOHKG9MNc/X4vCTynXfldSDdgB3Pyi2z5THqJ7I=
-X-Received: by 2002:a25:ba8f:: with SMTP id s15mr10984024ybg.34.1590732622543;
- Thu, 28 May 2020 23:10:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200529030012.254592-1-jnchase@google.com> <20200529030012.254592-3-jnchase@google.com>
- <CALTkaQ2OR+bc2QGeucA5aP3SiM5HLnx5=DoZQ51E_1d99Hb5Uw@mail.gmail.com>
-In-Reply-To: <CALTkaQ2OR+bc2QGeucA5aP3SiM5HLnx5=DoZQ51E_1d99Hb5Uw@mail.gmail.com>
-From:   Jeff Chase <jnchase@google.com>
-Date:   Fri, 29 May 2020 02:10:11 -0400
-Message-ID: <CALTkaQ0NLgjS7H7De=7jy9jRG1xMFSbzdmxrFNerNU+o1rRzpg@mail.gmail.com>
-Subject: Fwd: [PATCH v3 2/2] media: cec: i2c: ch7322: Add ch7322 CEC
- controller driver
-To:     linux-media@vger.kernel.org
-Cc:     mchehab@kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1725906AbgE2GP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 May 2020 02:15:59 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:53154 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725833AbgE2GP5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 May 2020 02:15:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 805D61A0FC1;
+        Fri, 29 May 2020 08:15:54 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 004DE1A00BE;
+        Fri, 29 May 2020 08:15:50 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 6767D402A7;
+        Fri, 29 May 2020 14:15:44 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, Li Biwen <biwen.li@nxp.com>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH 1/2] dt-bindings: rtc: add wakeup-source for FlexTimer
+Date:   Fri, 29 May 2020 14:10:34 +0800
+Message-Id: <20200529061035.18912-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Resending as plain text, sorry)
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+---
+ Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +static int ch7322_cec_adap_enable(struct cec_adapter *adap, bool enable)
-> +{
-> +       struct ch7322 *ch7322 = cec_get_drvdata(adap);
-> +       int ret;
-> +
-> +       if (enable)
-> +               ret = ch7322_unmask_interrupt(ch7322);
-> +       else
-> +               ret = ch7322_mask_interrupt(ch7322);
-> +
-> +       return ret;
-> +}
-> +
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
+index fffac74..d7c482c 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
++++ b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
+@@ -20,6 +20,7 @@ Required properties:
+ Optional properties:
+ - big-endian: If the host controller is big-endian mode, specify this property.
+   The default endian mode is little-endian.
++- wakeup-source: Enable it as a wakeup source
+ 
+ Example:
+ rcpm: rcpm@1e34040 {
+@@ -32,5 +33,6 @@ ftm_alarm0: timer@2800000 {
+ 	compatible = "fsl,ls1088a-ftm-alarm";
+ 	reg = <0x0 0x2800000 0x0 0x10000>;
+ 	fsl,rcpm-wakeup = <&rcpm 0x0 0x0 0x0 0x0 0x4000 0x0>;
++	wakeup-source;
+ 	interrupts = <0 44 4>;
+ };
+-- 
+2.7.4
 
-I just realized that doing this here is broken -- the driver depends
-on the interrupt to detect when the physical address changes. I could
-mask only the tx/rx interrupt here instead but that is starting to
-feel a bit pointless.
-
-I haven't looked into the cec notifier mechanism yet but would it be
-better to try to use that instead if possible and just ignore this
-device's physical address detection? Then I could do more of a proper
-reset in this enable op. But I'm not sure if I can properly associate
-the device with an HDMI port on my platform unless I make some changes
-to coreboot.
-
-Thanks,
-Jeff
