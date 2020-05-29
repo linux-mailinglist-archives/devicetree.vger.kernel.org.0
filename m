@@ -2,428 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A55EE1E7139
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 02:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87FF51E714A
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 02:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438017AbgE2AXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 20:23:33 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:38306 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438014AbgE2AXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 20:23:31 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04T0NMtD029760;
-        Thu, 28 May 2020 19:23:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1590711802;
-        bh=aHNu/nBir3IZGHHHmcRbtuDPSMKgqYMMsI/tOJtCbqk=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=YYxA8WvQWaBwiecc/4Zz6fwql7gDQvB+szY+QZmfvkU7xQycSHi2onjQ7yWS3z5t9
-         dRJEnXnfZ0WdUgaP+njuuTldJf4uMIrrjne/+iFRfAwrr+RhoGqS7XCxswIrs1AX5P
-         RCzmL6M9bLr6YI2+5U0kUV8elZAyUgAwqmcCZl3M=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04T0NM3l071729
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 May 2020 19:23:22 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
- May 2020 19:23:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 28 May 2020 19:23:21 -0500
-Received: from [10.250.48.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04T0NLrA076843;
-        Thu, 28 May 2020 19:23:21 -0500
-Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: Add bindings for C66x
- DSPs on TI K3 SoCs
-From:   Suman Anna <s-anna@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S2437929AbgE2AZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 20:25:27 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:51521 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437659AbgE2AZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 20:25:26 -0400
+Received: from localhost.localdomain (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 60654200002;
+        Fri, 29 May 2020 00:25:18 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>
+Cc:     Boris Brezillon <boris.brezillon@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Weijie Gao <weijie.gao@mediatek.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200521001006.2725-1-s-anna@ti.com>
- <20200521001006.2725-3-s-anna@ti.com> <20200528223228.GA785633@bogus>
- <594b649d-eca6-1cd4-3621-c8297a6a9492@ti.com>
-Message-ID: <12a97fce-9246-18c4-78e9-e25c76b5abdd@ti.com>
-Date:   Thu, 28 May 2020 19:23:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Mason Yang <masonccyang@mxic.com.tw>,
+        Julien Su <juliensu@mxic.com.tw>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v7 00/20] Introduce the generic ECC engine abstraction
+Date:   Fri, 29 May 2020 02:24:57 +0200
+Message-Id: <20200529002517.3546-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <594b649d-eca6-1cd4-3621-c8297a6a9492@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+As of today, only raw NAND controllers used to feature an integrated
+ECC engine and so controller drivers always embedded some code to
+enable/disable the correction.
 
-On 5/28/20 5:47 PM, Suman Anna wrote:
-> Hi Rob,
-> 
-> On 5/28/20 5:32 PM, Rob Herring wrote:
->> On Wed, May 20, 2020 at 07:10:04PM -0500, Suman Anna wrote:
->>> Some Texas Instruments K3 family of SoCs have one of more Digital Signal
->>> Processor (DSP) subsystems that are comprised of either a TMS320C66x
->>> CorePac and/or a next-generation TMS320C71x CorePac processor subsystem.
->>> Add the device tree bindings document for the C66x DSP devices on these
->>> SoCs. The added example illustrates the DT nodes for the first C66x DSP
->>> device present on the K3 J721E family of SoCs.
->>>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> ---
->>> v2:
->>>   - Updated the example to include the root-node to fix the bot 
->>> errors from v1
->>
->> Pretty sure that was not why you had errors.
-> 
-> It is because of the default values used for #address-cells and 
-> #size-cells in the example_template and example_start variables used in 
-> the dt-extract-example script. They are 1 by default, so the generated 
-> template ended up with the root-node using 1, and the actual example 
-> using 2 resulting in the mismatch.
-> 
-> When I updated the script to use 2 for both #address-cells and 
-> #size-cells, then the warnings go away. This is the reason, dtbs_check 
-> on my actual dts files goes through fine.
+This statement is no longer correct as SPI-NAND devices might not
+embed an on-die ECC engine and must make use of an external ECC
+engine. We figured there are three possible situations for (generic)
+NAND devices: either the engine is 'on-die' (most of the SPI-NANDs, a
+few raw NANDs), or the engine is part of the host controller (most raw
+NANDs), or the engine may be external (SPI controllers might feature
+an hardware ECC engine, otherwise software correction can also be
+used).
 
-Just to clarify, the warnings were only because of the mismatched 
-'ranges'. If I limit the example to just the dsp node, eliminating all 
-ranges usage, then it passes fine.
+To solve this situation, I already proposed the creation of an ECC
+engine abstraction (still work in progress) and this is the first step
+for that.
 
-So, you would see this with any example that uses ranges with 
-#address-cells and #size-cells as 2 without explicitly using the 
-appropriate top-level #address-cells and #size-cells.
+The logic in this series is:
+1/ Use the generic NAND core for all NAND devices (raw and SPI).
+2/ Create the ECC engine interface in drivers/mtd/nand/ecc.c
+3/ Move code in driver/mtd/nand/ecc.c
 
-> 
->>
->>>   - Added maxItems to resets, mboxes, memory-region, sram properties
->>>   - Changed the ti,sci-proc-ids $ref to uint-array from uint-matrix
->>>   - Addressed the minor review comments from Mathieu
->>> v1: https://patchwork.kernel.org/patch/11458571/
->>>
->>>   .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 190 ++++++++++++++++++
->>>   1 file changed, 190 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml 
->>> b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
->>> new file mode 100644
->>> index 000000000000..cdf649655838
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
->>> @@ -0,0 +1,190 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: TI K3 DSP devices
->>> +
->>> +maintainers:
->>> +  - Suman Anna <s-anna@ti.com>
->>> +
->>> +description: |
->>> +  The TI K3 family of SoCs usually have one or more TI DSP Core 
->>> sub-systems
->>> +  that are used to offload some of the processor-intensive tasks or 
->>> algorithms,
->>> +  for achieving various system level goals.
->>> +
->>> +  These processor sub-systems usually contain additional sub-modules 
->>> like
->>> +  L1 and/or L2 caches/SRAMs, an Interrupt Controller, an external 
->>> memory
->>> +  controller, a dedicated local power/sleep controller etc. The DSP 
->>> processor
->>> +  cores in the K3 SoCs are usually either a TMS320C66x CorePac 
->>> processor or a
->>> +  TMS320C71x CorePac processor.
->>> +
->>> +  Each DSP Core sub-system is represented as a single DT node. Each 
->>> node has a
->>> +  number of required or optional properties that enable the OS 
->>> running on the
->>> +  host processor (Arm CorePac) to perform the device management of 
->>> the remote
->>> +  processor and to communicate with the remote processor.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ti,j721e-c66-dsp
->>> +    description:
->>> +      Use "ti,j721e-c66-dsp" for C66x DSPs on K3 J721E SoCs
->>
->> What else are you going to use? There's only one compatible string. Drop
->> description.
-> 
-> Is updated in a subsequent binding update where I added the C71 support.
+Later, I will repost:
+4/ Make both software engines (Hamming and BCH) generic, move them in
+   the ecc/ directory, clean them a bit and instantiate ECC
+   engines. Write raw NAND helpers to use these two new engines.
+5/ Isolate SPI-NAND on-die ECC engine in its own driver.
+6/ Make use from the SPI-NAND layer of all the ECC engines listed
+   above (on user request, people can now make use of soft BCH if they
+   don't have an ECC-engine).
+7/ Extend the logic to hardware external engines. A proposal of a
+   driver for Macronix external ECC engine will follow in another
+   series.
 
-See https://patchwork.kernel.org/patch/11563231/.
+This work is now almost ready, the next steps will be:
+1/ Migrate the raw NAND core to make a proper use of these ECC
+   engines.
+2/ Deprecate in the raw NAND subsystem the interfaces used until now
+   (I expect we should get rid of a lot of boilerplate).
 
-Let me know if you prefer that I combine both of them. Any changes to 
-this patch will also affect the other.
+Thanks,
+Miquèl
 
-> 
->>
->>> +
->>> +  reg:
->>> +    description: |
->>> +      Should contain an entry for each value in 'reg-names'.
->>> +      Each entry should have the memory region's start address
->>> +      and the size of the region, the representation matching
->>> +      the parent node's '#address-cells' and '#size-cells' values.
->>
->> Don't need generic descriptions. That's every 'reg'.
->>
->> What you can do is an 'items' list describing what each region is.
-> 
-> OK, I am bit confused here. I have listed the items under the reg-names, 
-> while using just the minItems or maxItems here. What is the convention, 
-> aren't reg and reg-names associative.
-> 
->>
->>> +    minItems: 3
->>> +    maxItems: 3
->>> +
->>> +  reg-names:
->>> +    description: |
->>> +      Should contain strings with the names of the specific internal
->>> +      memory regions, and should be defined in this order
->>
->> Again, drop.
-> 
-> OK
-> 
->>
->>> +    maxItems: 3
->>> +    items:
->>> +      - const: l2sram
->>> +      - const: l1pram
->>> +      - const: l1dram
->>> +
->>> +  ti,sci:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      Should be a phandle to the TI-SCI System Controller node
->>> +
->>> +  ti,sci-dev-id:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: |
->>> +      Should contain the TI-SCI device id corresponding to the DSP 
->>> core.
->>> +      Please refer to the corresponding System Controller documentation
->>> +      for valid values for the DSP cores.
->>> +
->>> +  ti,sci-proc-ids:
->>> +    description: Should contain a single tuple of <proc_id host_id>.
->>> +    allOf:
->>> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +      - maxItems: 1
->>> +        items:
->>> +          items:
->>> +            - description: TI-SCI processor id for the DSP core device
->>> +            - description: TI-SCI host id to which processor control
->>> +                           ownership should be transferred to
->>
->> I assume these properties appear in multiple TI nodes? We don't need
->> them defined multiple times. Create a schema for them that you can
->> include here.
-> 
-> Only the remoteprocs, so they are limited to this binding and one more 
-> R5F remoteproc binding.
+Changes in v7
+=============
+* Collected tags.
+* Fixed subjects s/OOB placement/ECC bytes placement/.
+* Moved a tab change into space to the appropriate patch.
+* Moved the removal of the nand_ecc_mode public enumumeration to the
+  right patch.
+* Created helpers to retrieve the OOB layouts.
+* Moved the "flags" entry of nand_ecc_props to the commit using it.
+* Changed the select MTD_NAND_CORE into a depends on and moved it to
+  the right patch too.
+* Split the patch moving raw NAND bits into the ECC framework.
+* Dropped an extra helper: nanddev_get_flash_node().
+* Updated all the ECC framework introductory comment, following Boris'
+  suggestions.
 
-Can you confirm if these are the properties you want moved - ti,sci, 
-ti,sci-dev-id and ti,sci-proc-ids? Any recommended path I should be 
-using, is remoteproc folder still fine for this?
+Changes in v6
+=============
+* Rebased on top of nand/next.
+* Dropped the new nand-ecc-provider property. Instead, we will use
+  nand-ecc-engine and boolean properties like nand-no-ecc-engine /
+  nand-use-soft-ecc-engine (will be added in another series).
+* Moved most of the bindings to the next series.
+* Used platform_dev_put() instead of of_dev_put() on Rob's advice.
+* Renamed objects: ondie -> on_die_hw.
+* Renamed objects: hw -> on_host_hw.
+* Used engine_type everywhere instead of provider.
+* Created a rawnand compatibility layer to avoid moving deprecated
+  code due to the rawnand core history in the generic (and clean) NAND
+  layer.
+* Enhanced the nand_ecc_algo enumeration.
 
-regards
-Suman
+Changes in v5
+=============
+* Rebased on top of nand/next
+* Avoided a fallthrough situation in commit:
+  mtd: rawnand: Separate the ECC engine type and the OOB placement
+* Fixed an of_dev_put() build issue due to a missing dummy helper.
+* Extracted a patch that deserved to be merged quickly.
+* Fixed a few issues reported by robots.
 
-> 
->>
->>> +
->>> +  resets:
->>> +    description: |
->>> +      Should contain the phandle to the reset controller node
->>> +      managing the local resets for this device, and a reset
->>> +      specifier. Please refer to the following reset bindings
->>> +      for the reset argument specifier,
->>> +      Documentation/devicetree/bindings/reset/ti,sci-reset.txt
->>
->> Drop.
-> 
-> Entire description or just the reference to the reset bindings file?
-> 
->>
->>> +    maxItems: 1
->>> +
->>> +  firmware-name:
->>> +    description: |
->>> +      Should contain the name of the default firmware image
->>> +      file located on the firmware search path
->>> +
->>> +  mboxes:
->>> +    description: |
->>> +      OMAP Mailbox specifier denoting the sub-mailbox, to be used for
->>> +      communication with the remote processor. This property should 
->>> match
->>> +      with the sub-mailbox node used in the firmware image. The 
->>> specifier
->>> +      format is as per the bindings,
->>> +      Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
->>
->> Drop. What mailbox provider is used is outside the scope of this
->> binding.
-> 
-> OK.
-> 
->>
->>> +    maxItems: 1
->>> +
->>> +  memory-region:
->>> +    minItems: 2
->>> +    maxItems: 8
->>> +    description: |
->>> +      phandle to the reserved memory nodes to be associated with the 
->>> remoteproc
->>> +      device. There should be at least two reserved memory nodes 
->>> defined - the
->>> +      first one would be used for dynamic DMA allocations like 
->>> vrings and vring
->>> +      buffers, and the remaining ones used for the firmware image 
->>> sections. The
->>> +      reserved memory nodes should be carveout nodes, and should be 
->>> defined as
->>> +      per the bindings in
->>> +      
->>> Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
->>
->> items:
->>    - description: dynamic DMA allocations like vrings and vring buffers
->>    - description: firmware image section ???
->>    - description: firmware image section ???
-> 
-> Yeah, this is scalable if we will have multiple separate DDR regions. I 
-> had to choose a decent maxItems value, so I chose 8. Wouldn't listing 
-> the individual items override the number of minItems/maxItems?
-> 
->>
->>> +
->>> +# Optional properties:
->>> +# --------------------
->>> +
->>> +  sram:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    minItems: 1
->>> +    maxItems: 4
->>> +    description: |
->>> +      phandles to one or more reserved on-chip SRAM regions. The 
->>> regions
->>> +      should be defined as child nodes of the respective SRAM node, and
->>> +      should be defined as per the generic bindings in,
->>> +      Documentation/devicetree/bindings/sram/sram.yaml
->>> +
->>> +required:
->>> + - compatible
->>> + - reg
->>> + - reg-names
->>> + - ti,sci
->>> + - ti,sci-dev-id
->>> + - ti,sci-proc-ids
->>> + - resets
->>> + - firmware-name
->>> + - mboxes
->>> + - memory-region
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    / {
->>> +        model = "Texas Instruments K3 J721E SoC";
->>> +        compatible = "ti,j721e";
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        /* DSP Carveout reserved memory nodes */
->>> +        reserved-memory {
->>> +            #address-cells = <2>;
->>> +            #size-cells = <2>;
->>> +            ranges;
->>> +
->>> +            c66_0_dma_memory_region: c66-dma-memory@a6000000 {
->>> +                compatible = "shared-dma-pool";
->>> +                reg = <0x00 0xa6000000 0x00 0x100000>;
->>> +                no-map;
->>> +            };
->>> +
->>> +            c66_0_memory_region: c66-memory@a6100000 {
->>> +                compatible = "shared-dma-pool";
->>> +                reg = <0x00 0xa6100000 0x00 0xf00000>;
->>> +                no-map;
->>> +            };
->>> +        };
->>
->> Drop all of this. Outside the scope of this binding. And will likely
->> start failing validation as schemas become more complete.
-> 
-> This is a complete example because of the memory-region references below.
-> 
->>
->>> +
->>> +        cbass_main: bus@100000 {
->>
->> Drop unused labels.
-> 
-> OK.
-> 
-> regards
-> Suman
-> 
->>
->>> +            compatible = "simple-bus";
->>> +            #address-cells = <2>;
->>> +            #size-cells = <2>;
->>> +            ranges = <0x00 0x00100000 0x00 0x00100000 0x00 
->>> 0x00020000>, /* ctrl mmr */
->>> +                     <0x4d 0x80800000 0x4d 0x80800000 0x00 
->>> 0x00800000>, /* C66_0 */
->>> +                     <0x4d 0x81800000 0x4d 0x81800000 0x00 
->>> 0x00800000>; /* C66_1 */
->>> +
->>> +            /* J721E C66_0 DSP node */
->>> +            c66_0: dsp@4d80800000 {
->>> +                compatible = "ti,j721e-c66-dsp";
->>> +                reg = <0x4d 0x80800000 0x00 0x00048000>,
->>> +                      <0x4d 0x80e00000 0x00 0x00008000>,
->>> +                      <0x4d 0x80f00000 0x00 0x00008000>;
->>> +                reg-names = "l2sram", "l1pram", "l1dram";
->>> +                ti,sci = <&dmsc>;
->>> +                ti,sci-dev-id = <142>;
->>> +                ti,sci-proc-ids = <0x03 0xFF>;
->>> +                resets = <&k3_reset 142 1>;
->>> +                firmware-name = "j7-c66_0-fw";
->>> +                memory-region = <&c66_0_dma_memory_region>,
->>> +                                <&c66_0_memory_region>;
->>> +                mboxes = <&mailbox0_cluster3 &mbox_c66_0>;
->>> +            };
->>> +        };
->>> +    };
->>> -- 
->>> 2.26.0
->>>
-> 
+Changes in v4
+=============
+* Rebased on top of a recent kernel version.
+* Added Boris' reviewed-by.
+* Added Maxime's Acked-by tag.
+* Added the missing of_device.h header to ecc.c.
+* Corrected a 'minimum' comparison by using min_t.
+ * Updated the new Macronix raw NAND controller driver by using the new
+  (ECC related) function names.
+* Fixed a function call in ndfc.c.
+* Update brcmnand.c file to fit new enumerations and structures (due
+  to recent Kamal's changes).
+* Force sm_ftl to depends on the Hamming engine, because by just
+  selecting it the ECC code would be embedded in the NAND core and the
+  NAND core might not be compiled in with sm_ftl.
+* Fixed a structure field name that I previously added in davinci
+  platform data.
+* Moved the oob_first placement scheme to Davinci driver. Removed any
+  occurence of it out of the driver (unused).
+* Simplify structure names as proposed by Boris.
+* Change enumeration/string names about ECC engine
+  providers/placements.
+* Change the logic in the of_get_nand_ecc_* helpers to ensure backward
+  compatibility.
+* Use enums intead of unsigned integers in the core when referring to
+  ECC engine type, placement and algorithm.
+* Add nand-ecc-placement DT property.
+* Deprecate hw_syndrome.
+* Deprecate nand-ecc-mode in favor of nand-ecc-provider.
+
+* Fixed a typo in the Macronix ECC driver, where I made a copy/paste
+  error which I haven't spotted because it is located in a macro only
+  compiled when building the driver as a module (name of the of_ids
+  was prefixed marvell_nfc instead of mxic_ecc).
+* Simplified the ECC engine API by dropping the useless oobbuf
+  parameter. Instead, ECC engine drivers are supposed to provide a
+  spare OOB buffer if none is provided. Updated the three existing
+  engines.
+* Fixed BCH software engine with the help of Mason from Macronix.
+* Added a mechanism called "tweaking req" to change the SPI-NAND
+  requests and ensure they always contain the right amount of data/OOB
+  needed for the ECC engine to work properly.
+
+Changes in v3
+=============
+* Added Boris' Reviewed-by tags.
+* Added a kernel doc header on the nand_page_io_req enumeration.
+* Added support for HW engines.
+* Droped the patch clarifying the value of the first entry in
+  enumerations (which is always 0).
+* Rename the nand_ecc_conf structure as nand_ecc_props because the
+  _conf suffix implies that it is possible to edit it, while in some
+  cases (eg. on-die ECC) there is nothing to tweak.
+* Smoother introduction of the ECC engine abstraction.
+* Renamed the ECC engine module nand_ecc_engine.ko.
+* Moved all the ECC files into drivers/mtd/nand/. Forgot the ecc/
+  subdirectory.
+* Added a new series to drop the ECC mode enumeration wich mixes the
+  provider (none, hw, sw, on-die) and the OOB placement (first,
+  syndrome).
+* Various typos fixed.
+* Added a few patches to fix bugs found in SPI-NAND/mtdchar.c.
+* Introduced the external hardware ECC engine boilerplate.
+
+Changes in v2
+=============
+* SPDX license identifiers for soft BCH and Hamming: the license macro
+  was right, "GPL" means "GPLv2 or higher", so do not change this
+  portion. Also update the commit messages to fit the actual change.
+* Do not compile-in the NAND core by default, do it only for raw
+  NAND. Remove the dependencies on CONFIG_MTD in a different
+  patch. Also, keep an extra level of hierarchy in Kconfig for the
+  NAND bits by adding a menu instead of a config.
+* Moved the standard OOB layouts in the ecc/engine.c driver instead of
+  in the NAND core.
+* Used the nand_ecc_ prefix in most of the engines functions instead
+  of just ecc_, which is now reserved for bare helpers. Get rid of the
+  __ecc prefix.
+* In the sunxi NAND controller driver: moved the ECC structure from
+  sunxi_nfc to sunxi_nand_chip as the ECC engine is per-chip and not
+  per controller.
+* Software Hamming ECC engine is only enabled by default if raw NAND
+  is also enabled. NDFC now selects the software Hamming ECC engine
+  (instead of depending on it).
+* Mention in software BCH and Hamming Kconfig entries that booting
+  from NAND is very likely to fail if the user selects these symbols
+  as modules.
+* Added Boris Reviewed-by tag on the SPI-NAND typo fixing patch.
+* Renamed the "mode" into a "provider" entry in the ECC configuration
+  structures.
+* Moved the "total" entry of the ECC configuration directly in the
+  context structure (should probably not be public but let's keep it
+  as is for now).
+* Split the generic ECC engine introduction into smaller patches to do
+  some renaming aside.
+* Drop the "maximize" entry in the ECC engine configuration structure,
+  keep using a flag like before.
+* Canceled the move of the SPI-NAND specific ECC engine out of the
+  core file.
+* Amended the root ECC structures to have three nand_ecc_conf
+  structures: one for the defaults, one for the chip requirements, one
+  for the user desires.
+* Created a *ondie_engine pointer in the nand_ecc structure to save
+  the on-die ECC engine, if any. For instance, saving a reference to
+  this engine is done by the SPI-NAND core.
+* Dropped the SPI-NAND flag that was used to distinguish between NAND
+  flavors from the NAND core, it should not be needed anymore.
+* Added an helper in the NAND core to put a reference on an ECC
+  engine. This will be used by the hardware engines only.
+* Renamed the files ecc/sw-{bch,hamming}.c and their headers
+  include/linux/mtd/nand-ecc-sw-{bch,hamming}-engine.h.
+* Created a MTD_NAND_ECC invisible Kconfig symbol.
+* Added plenty of missing EXPORT_SYMBOL{,_GPL}().
+* Minor modifications so that everything still compiles even when
+  modules and built-in drivers are mixed in Kconfig in the whole NAND
+  directory.
+
+
+Miquel Raynal (20):
+  dt-bindings: mtd: Document nand-ecc-placement
+  mtd: rawnand: Create a new enumeration to describe ECC bytes placement
+  mtd: rawnand: Separate the ECC engine type and the ECC byte placement
+  mtd: rawnand: Create a helper to retrieve the ECC placement
+  mtd: rawnand: Add a kernel doc to the ECC algorithm enumeration
+  mtd: rawnand: Rename the ECC algorithm enumeration items
+  mtd: rawnand: Create a new enumeration to describe properly ECC types
+  mtd: rawnand: Use the new ECC engine type enumeration
+  mtd: nand: Move nand_device forward declaration to the top
+  mtd: nand: Add an extra level in the Kconfig hierarchy
+  mtd: nand: Drop useless 'depends on' in Kconfig
+  mtd: nand: Add a NAND page I/O request type
+  mtd: nand: Rename a core structure
+  mtd: nand: Add more parameters to the nand_ecc_props structure
+  mtd: nand: Introduce the ECC engine abstraction
+  mtd: nand: Convert generic NAND bits to use the ECC framework
+  mtd: rawnand: Hide the generic OOB layout objects behind helpers
+  mtd: rawnand: Write a compatibility layer
+  mtd: rawnand: Move generic OOB layouts to the ECC framework
+  mtd: rawnand: Move the user input parsing bits to the ECC framework
+
+ .../bindings/mtd/nand-controller.yaml         |  10 +
+ arch/arm/mach-davinci/board-da830-evm.c       |   2 +-
+ arch/arm/mach-davinci/board-da850-evm.c       |   2 +-
+ arch/arm/mach-davinci/board-dm355-evm.c       |   2 +-
+ arch/arm/mach-davinci/board-dm355-leopard.c   |   3 +-
+ arch/arm/mach-davinci/board-dm365-evm.c       |   2 +-
+ arch/arm/mach-davinci/board-dm644x-evm.c      |   2 +-
+ arch/arm/mach-davinci/board-dm646x-evm.c      |   2 +-
+ arch/arm/mach-davinci/board-mityomapl138.c    |   2 +-
+ arch/arm/mach-davinci/board-neuros-osd2.c     |   2 +-
+ arch/arm/mach-davinci/board-omapl138-hawk.c   |   2 +-
+ arch/arm/mach-s3c24xx/common-smdk.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-anubis.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-at2440evb.c        |   2 +-
+ arch/arm/mach-s3c24xx/mach-bast.c             |   2 +-
+ arch/arm/mach-s3c24xx/mach-gta02.c            |   2 +-
+ arch/arm/mach-s3c24xx/mach-jive.c             |   2 +-
+ arch/arm/mach-s3c24xx/mach-mini2440.c         |   2 +-
+ arch/arm/mach-s3c24xx/mach-osiris.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-qt2410.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-rx1950.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-rx3715.c           |   2 +-
+ arch/arm/mach-s3c24xx/mach-vstms.c            |   2 +-
+ arch/arm/mach-s3c64xx/mach-hmt.c              |   2 +-
+ arch/arm/mach-s3c64xx/mach-mini6410.c         |   2 +-
+ arch/arm/mach-s3c64xx/mach-real6410.c         |   2 +-
+ drivers/mtd/nand/Kconfig                      |  13 +
+ drivers/mtd/nand/Makefile                     |   2 +
+ drivers/mtd/nand/ecc.c                        | 471 +++++++++++++++
+ drivers/mtd/nand/onenand/Kconfig              |   1 -
+ drivers/mtd/nand/raw/Kconfig                  |   2 +-
+ drivers/mtd/nand/raw/ams-delta.c              |   4 +-
+ drivers/mtd/nand/raw/arasan-nand-controller.c |  16 +-
+ drivers/mtd/nand/raw/atmel/nand-controller.c  |  30 +-
+ drivers/mtd/nand/raw/au1550nd.c               |   4 +-
+ .../mtd/nand/raw/bcm47xxnflash/ops_bcm4706.c  |   3 +-
+ drivers/mtd/nand/raw/brcmnand/brcmnand.c      |  27 +-
+ .../mtd/nand/raw/cadence-nand-controller.c    |   4 +-
+ drivers/mtd/nand/raw/cafe_nand.c              |   3 +-
+ drivers/mtd/nand/raw/cs553x_nand.c            |   2 +-
+ drivers/mtd/nand/raw/davinci_nand.c           |  38 +-
+ drivers/mtd/nand/raw/denali.c                 |   6 +-
+ drivers/mtd/nand/raw/diskonchip.c             |   3 +-
+ drivers/mtd/nand/raw/fsl_elbc_nand.c          |  20 +-
+ drivers/mtd/nand/raw/fsl_ifc_nand.c           |  12 +-
+ drivers/mtd/nand/raw/fsl_upm.c                |   4 +-
+ drivers/mtd/nand/raw/fsmc_nand.c              |  14 +-
+ drivers/mtd/nand/raw/gpio.c                   |   4 +-
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c    |  14 +-
+ drivers/mtd/nand/raw/hisi504_nand.c           |   6 +-
+ .../mtd/nand/raw/ingenic/ingenic_nand_drv.c   |  20 +-
+ drivers/mtd/nand/raw/lpc32xx_mlc.c            |   2 +-
+ drivers/mtd/nand/raw/lpc32xx_slc.c            |   3 +-
+ drivers/mtd/nand/raw/marvell_nand.c           |  34 +-
+ drivers/mtd/nand/raw/meson_nand.c             |   2 +-
+ drivers/mtd/nand/raw/mpc5121_nfc.c            |   4 +-
+ drivers/mtd/nand/raw/mtk_nand.c               |  10 +-
+ drivers/mtd/nand/raw/mxc_nand.c               |  25 +-
+ drivers/mtd/nand/raw/nand_base.c              | 565 +++++++-----------
+ drivers/mtd/nand/raw/nand_esmt.c              |  11 +-
+ drivers/mtd/nand/raw/nand_hynix.c             |  41 +-
+ drivers/mtd/nand/raw/nand_jedec.c             |   4 +-
+ drivers/mtd/nand/raw/nand_micron.c            |  20 +-
+ drivers/mtd/nand/raw/nand_onfi.c              |   8 +-
+ drivers/mtd/nand/raw/nand_samsung.c           |  19 +-
+ drivers/mtd/nand/raw/nand_toshiba.c           |  16 +-
+ drivers/mtd/nand/raw/nandsim.c                |   8 +-
+ drivers/mtd/nand/raw/ndfc.c                   |   2 +-
+ drivers/mtd/nand/raw/omap2.c                  |  22 +-
+ drivers/mtd/nand/raw/orion_nand.c             |   4 +-
+ drivers/mtd/nand/raw/pasemi_nand.c            |   4 +-
+ drivers/mtd/nand/raw/plat_nand.c              |   4 +-
+ drivers/mtd/nand/raw/qcom_nandc.c             |   2 +-
+ drivers/mtd/nand/raw/r852.c                   |   3 +-
+ drivers/mtd/nand/raw/s3c2410.c                |  20 +-
+ drivers/mtd/nand/raw/sh_flctl.c               |   6 +-
+ drivers/mtd/nand/raw/sharpsl.c                |   2 +-
+ drivers/mtd/nand/raw/socrates_nand.c          |   5 +-
+ drivers/mtd/nand/raw/stm32_fmc2_nand.c        |   9 +-
+ drivers/mtd/nand/raw/sunxi_nand.c             |  26 +-
+ drivers/mtd/nand/raw/tango_nand.c             |   4 +-
+ drivers/mtd/nand/raw/tegra_nand.c             |  34 +-
+ drivers/mtd/nand/raw/tmio_nand.c              |   2 +-
+ drivers/mtd/nand/raw/txx9ndfmc.c              |   2 +-
+ drivers/mtd/nand/raw/vf610_nfc.c              |   6 +-
+ drivers/mtd/nand/raw/xway_nand.c              |   4 +-
+ drivers/mtd/nand/spi/core.c                   |  12 +-
+ drivers/mtd/nand/spi/macronix.c               |   6 +-
+ drivers/mtd/nand/spi/toshiba.c                |   6 +-
+ include/linux/mtd/nand.h                      | 164 ++++-
+ include/linux/mtd/rawnand.h                   |  34 +-
+ include/linux/mtd/spinand.h                   |   2 +-
+ include/linux/platform_data/mtd-davinci.h     |   9 +-
+ .../linux/platform_data/mtd-nand-s3c2410.h    |   2 +-
+ 94 files changed, 1221 insertions(+), 731 deletions(-)
+ create mode 100644 drivers/mtd/nand/ecc.c
+
+-- 
+2.20.1
 
