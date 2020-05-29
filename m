@@ -2,106 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CD141E808C
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 16:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7FFA1E825C
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 17:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727882AbgE2OlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 May 2020 10:41:20 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:48900 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727793AbgE2OlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 May 2020 10:41:08 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id A04E380307C7;
-        Fri, 29 May 2020 14:41:06 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id D_okDCmiNr_L; Fri, 29 May 2020 17:41:06 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dan Williams <dan.j.williams@intel.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 11/11] dmaengine: dw: Initialize max_sg_nents capability
-Date:   Fri, 29 May 2020 17:40:54 +0300
-Message-ID: <20200529144054.4251-12-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200529144054.4251-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200529144054.4251-1-Sergey.Semin@baikalelectronics.ru>
+        id S1727779AbgE2Pof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 May 2020 11:44:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727030AbgE2Pof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 May 2020 11:44:35 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD2D9C03E969;
+        Fri, 29 May 2020 08:44:34 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id r15so4080239wmh.5;
+        Fri, 29 May 2020 08:44:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dZl3sOoHlWuzucNXfMp2p0mgDBU/NJ3Y6nLUtAUeFPY=;
+        b=iQh51dnsOVAsZ7p1i/vc+iLPLJedHjqmvk0WT6zqHKt35yhG+mF5N24hr44F71lnt3
+         ziXY8P94diOdcINikFCpltde3xjphLzv2losCnWXGrBRUSkRbJDADPXxoKR1+z2HoXxn
+         CucmmxO3c0lODdzbLNMlwetSvlgp2D2zZdsyoZMftqPCG9wYC5cX7A7ZdKhnlA6NJP2a
+         +2XzsX0j4Zh/jbzuFX0kRcM8YT1N+YSx549FIg2+6cYBjLDJG/3xIacSOB+gVobk4aYz
+         MOvVjaQaDb34rFNJmnfn9zR1VtLZBGJhokEjOlG+uSsMNq2r8djtb/Mk+7GWciVwBRaI
+         Qt0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dZl3sOoHlWuzucNXfMp2p0mgDBU/NJ3Y6nLUtAUeFPY=;
+        b=E81VhYmBrd6p2pZmX/EO/EHo5SVTFfaEaIF6MQpTnsokqtfToa3mktVC60Ht3QfARH
+         wwt3IT/PANoVvWGX30fOYzuTCYK25CDtxvIxoVVmDcsf078uvjEMVonMW0QPM2nKwvS0
+         +tmEpo3e4GQsCcOAqoFn0DxntX1qMf8Q9M4nTSVUJa8flIrpgiUvwkCuqAl4tVolhejz
+         RV01zBpuHpfVBh7z2TdbiFtoxPbY0h3SkKj0Qdpe4TEmBBQeJjwH4Vhnb0JcWjROJrmz
+         rMS2to+8ddrNW7ILbzIGIyKO5oNeWpLWqdLSeVhZbnHaaR8TPOItsjKj+hnpsQmiGEgj
+         K1bQ==
+X-Gm-Message-State: AOAM532/Fi3qLVIN2dd4wno0h3hekHvgD1SkCHHd3aTto2JW4k/Fwwx6
+        Twhwo2MYRQ7m0TrJG95cH1w=
+X-Google-Smtp-Source: ABdhPJyZ8xu3odmGBzMNwbIAqQRzO79AqjDmSy79FzGlVroNcfOqyFP+z+tOoF/poA2GOlef/CwZiQ==
+X-Received: by 2002:a7b:c096:: with SMTP id r22mr9080376wmh.92.1590767073359;
+        Fri, 29 May 2020 08:44:33 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id h20sm11766789wma.6.2020.05.29.08.44.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 May 2020 08:44:32 -0700 (PDT)
+Subject: Re: [PATCH 3/4] pinctrl: bcm2835: Match BCM7211 compatible string
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        "open list:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200528192112.26123-1-f.fainelli@gmail.com>
+ <20200528192112.26123-4-f.fainelli@gmail.com>
+ <291609c0-f1ec-2626-8bfa-cf25a9e45365@i2se.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <7a25489d-e496-d470-b99f-459630b1db44@gmail.com>
+Date:   Fri, 29 May 2020 08:44:27 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <291609c0-f1ec-2626-8bfa-cf25a9e45365@i2se.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Multi-block support provides a way to map the kernel-specific SG-table so
-the DW DMA device would handle it as a whole instead of handling the
-SG-list items or so called LLP block items one by one. So if true LLP
-list isn't supported by the DW DMA engine, then soft-LLP mode will be
-utilized to load and execute each LLP-block one by one. The soft-LLP mode
-of the DMA transactions execution might not work well for some DMA
-consumers like SPI due to its Tx and Rx buffers inter-dependency. Let's
-initialize the max_sg_nents DMA channels capability based on the nollp
-flag state. If it's true, no hardware accelerated LLP is available and
-max_sg_nents should be set with 1, which means that the DMA engine
-can handle only a single SG list entry at a time. If noLLP is set to
-false, then hardware accelerated LLP is supported and the DMA engine
-can handle infinite number of SG entries in a single DMA transaction.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: devicetree@vger.kernel.org
 
----
+On 5/29/2020 6:11 AM, Stefan Wahren wrote:
+> Hi Florian,
+> 
+> Am 28.05.20 um 21:21 schrieb Florian Fainelli:
+>> The BCM7211 SoC uses the same pinconf_ops as the ones defined for the
+>> BCM2711 SoC, match the compatible string and use the correct set of
+>> options.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  drivers/pinctrl/bcm/pinctrl-bcm2835.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/bcm/pinctrl-bcm2835.c b/drivers/pinctrl/bcm/pinctrl-bcm2835.c
+>> index 06bd2b70af3c..e8ad1824c6b3 100644
+>> --- a/drivers/pinctrl/bcm/pinctrl-bcm2835.c
+>> +++ b/drivers/pinctrl/bcm/pinctrl-bcm2835.c
+>> @@ -1137,6 +1137,10 @@ static const struct of_device_id bcm2835_pinctrl_match[] = {
+>>  		.compatible = "brcm,bcm2711-gpio",
+>>  		.data = &bcm2711_plat_data,
+>>  	},
+>> +	{
+>> +		.compatible = "brcm,bcm7211-gpio",
+>> +		.data = &bcm2711_pinconf_ops,
+> 
+> this doesn't look safe. Maybe bcm2711_plat_data?
 
-Changelog v3:
-- This is a new patch created as a result of the discussion with Vinud and
-  Andy in the framework of DW DMA burst and LLP capabilities.
+Whoops you are right, I sent an incorrect version.
 
-Changelog v4:
-- Use explicit if-else statement when assigning the max_sg_nents field.
----
- drivers/dma/dw/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> 
+> Looks like the original patch series based on a older version. Please
+> double check this still applies since the introduction of 58 GPIO
+> support for BCM2711.
 
-diff --git a/drivers/dma/dw/core.c b/drivers/dma/dw/core.c
-index 588b9bae827c..9dee5fa65153 100644
---- a/drivers/dma/dw/core.c
-+++ b/drivers/dma/dw/core.c
-@@ -1059,6 +1059,18 @@ static void dwc_caps(struct dma_chan *chan, struct dma_slave_caps *caps)
- 	struct dw_dma_chan *dwc = to_dw_dma_chan(chan);
- 
- 	caps->max_burst = dwc->max_burst;
-+
-+	/*
-+	 * It might be crucial for some devices to have the hardware
-+	 * accelerated multi-block transfers supported, aka LLPs in DW DMAC
-+	 * notation. So if LLPs are supported then max_sg_nents is set to
-+	 * zero which means unlimited number of SG entries can be handled in a
-+	 * single DMA transaction, otherwise it's just one SG entry.
-+	 */
-+	if (dwc->nollp)
-+		caps->max_sg_nents = 1;
-+	else
-+		caps->max_sg_nents = 0;
- }
- 
- int do_dma_probe(struct dw_dma_chip *chip)
+We can use bcm2711_plat_data, thanks Stefan.
 -- 
-2.26.2
-
+Florian
