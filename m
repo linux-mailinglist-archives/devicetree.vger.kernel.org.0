@@ -2,82 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD661E8C05
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2020 01:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09811E8C17
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2020 01:30:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728687AbgE2X2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 May 2020 19:28:17 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:43755 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728709AbgE2X2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 May 2020 19:28:09 -0400
-X-Originating-IP: 86.202.110.81
-Received: from localhost (lfbn-lyo-1-15-81.w86-202.abo.wanadoo.fr [86.202.110.81])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 9B624C0006;
-        Fri, 29 May 2020 23:28:07 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        kamel.bouhara@bootlin.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v4 9/9] clocksource/drivers/timer-atmel-tcb: add sama5d2 support
-Date:   Sat, 30 May 2020 01:27:49 +0200
-Message-Id: <20200529232749.299627-10-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200529232749.299627-1-alexandre.belloni@bootlin.com>
-References: <20200529232749.299627-1-alexandre.belloni@bootlin.com>
+        id S1728551AbgE2XaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 May 2020 19:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728542AbgE2XaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 May 2020 19:30:15 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E3BC03E969
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2020 16:30:15 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id g18so3374758qtu.13
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2020 16:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VgsftlWzqWmhhm/8U5XEJqAohvGI5fbBITCTIcxvIcQ=;
+        b=lI6r3SdLUTzlpoKU7fvokqbn7cfhcOy0Vt/qzdrnbve8x31HaAh9vi6Ad3RrcOI7uY
+         gWpA4EB4zFsSYUEg8xYKHgSZ+thu1cC3eCp3pqXQDuFFm4JK2ocKHLvfYAKMESdPwKqd
+         4tGY++b8hSQUgSqSAYpBPOWT5QXnyEDzgiyuc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VgsftlWzqWmhhm/8U5XEJqAohvGI5fbBITCTIcxvIcQ=;
+        b=kVUPhB7B0x9iR61RR43GaeST8Z/JiRx2VTkCBgNVlLlZ/V5YCQqjo7QphEpp4Q2Dfi
+         Z14a6U9XCY2IwYX53MWaP1jcXO+S5LRM5zA28maM87gb23bQiqClVQsOFVgigE7JS+tV
+         oIzbQ/N02IGT8xHakj4fDzQ/2bsDCazAg8iZYkz/nyAAm3gPwTNtAaPM1Z6LAPqU2Flx
+         H9NJQ+NWBomDHv2OlBlJblntnMOuQRg4kk8L8SPDRmDsDBbhelS3XGW0liIC1lu4eqeF
+         XCv43W453tkJjacPnEKTuLii3afFJ7W+VEgEy7DKAVnCHreovamwpmFkVxcdJCLOwPkV
+         c/lg==
+X-Gm-Message-State: AOAM530eVViJzbylp3jXH8zg/mEUvioDT6bSPQFbBEknlaGALKfNopgA
+        0UAc8B/YjDwP4afXG/RgCD40Zb6j1Qw1QmppKPtNVA==
+X-Google-Smtp-Source: ABdhPJy+kQ5NDOLgaiwe3Gm6FhWceoGXxb9ggCLnVNtdf7+kU7Jjogq2kjXKOs2U94gSImwqI9R+A1rNUZRuWiN7gcE=
+X-Received: by 2002:ac8:2dc3:: with SMTP id q3mr11234260qta.141.1590795014579;
+ Fri, 29 May 2020 16:30:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200422222242.241699-1-pmalani@chromium.org> <20200511192800.GA28762@bogus>
+ <20200511204635.GC136540@google.com> <20200512134154.GC2085641@kuha.fi.intel.com>
+ <CAL_JsqJ2pbh5BbjGd9eEiD6-sV94=omk6o+mLXjCYiVnUOtO=g@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ2pbh5BbjGd9eEiD6-sV94=omk6o+mLXjCYiVnUOtO=g@mail.gmail.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 29 May 2020 16:30:03 -0700
+Message-ID: <CACeCKadiiokPdPB2Q5WBQFrPuxjpm3TiDgaaerncVR_Z7Z0nvg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: chrome: Add cros-ec-typec mux props
+To:     Rob Herring <robh@kernel.org>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tim Wawrzynczak <twawrzynczak@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The first divisor for the sama5d2 is actually the gclk selector. Because
-the currently remaining divisors are fitting the use case, currently ensure
-it is skipped.
+Hi Rob,
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- drivers/clocksource/timer-atmel-tcb.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Thanks for reviewing the patch! Kindly see inline:
 
-diff --git a/drivers/clocksource/timer-atmel-tcb.c b/drivers/clocksource/timer-atmel-tcb.c
-index ccb77b9cb489..e373b02d509a 100644
---- a/drivers/clocksource/timer-atmel-tcb.c
-+++ b/drivers/clocksource/timer-atmel-tcb.c
-@@ -359,9 +359,15 @@ static struct atmel_tcb_config tcb_sam9x5_config = {
- 	.counter_width = 32,
- };
- 
-+static struct atmel_tcb_config tcb_sama5d2_config = {
-+	.counter_width = 32,
-+	.has_gclk = 1,
-+};
-+
- static const struct of_device_id atmel_tcb_of_match[] = {
- 	{ .compatible = "atmel,at91rm9200-tcb", .data = &tcb_rm9200_config, },
- 	{ .compatible = "atmel,at91sam9x5-tcb", .data = &tcb_sam9x5_config, },
-+	{ .compatible = "atmel,sama5d2-tcb", .data = &tcb_sama5d2_config, },
- 	{ /* sentinel */ }
- };
- 
-@@ -426,7 +432,10 @@ static int __init tcb_clksrc_init(struct device_node *node)
- 
- 	/* How fast will we be counting?  Pick something over 5 MHz.  */
- 	rate = (u32) clk_get_rate(t0_clk);
--	for (i = 0; i < ARRAY_SIZE(atmel_tcb_divisors); i++) {
-+	i = 0;
-+	if (tc.tcb_config->has_gclk)
-+		i = 1;
-+	for (; i < ARRAY_SIZE(atmel_tcb_divisors); i++) {
- 		unsigned divisor = atmel_tcb_divisors[i];
- 		unsigned tmp;
- 
--- 
-2.26.2
+On Fri, May 29, 2020 at 2:55 PM Rob Herring <robh@kernel.org> wrote:
+>
+> > > " Reference to a DT node for the USB Type C Multiplexer controlling the
+> > > data lines routing for this connector. This switch is assumed registered
+> > > with the Type C connector class framework, which requires it to be named
+> > > this way."
+> > > >
+> > > > > +          mode-switch:
+> > > > > +            description: Reference to a DT node for the USB Type C Multiplexer
+> > > > > +              controlling the data lines routing for this connector.
+> > > >
+> > > > This is for alternate mode muxing I presume.
+> > >
+> > > Yes, that's right.
+> > > >
+> > > > We already have a mux-control binding. Why not use that here?
+> > >
+> > > Heikki might be able to offer more insight into why this is the case,
+> > > since the connector class framework seems to expect a phandle and for
+> > > the device driver to implement a "set" command. Heikki, would you happen to know?
+> >
+> > The mode-switch here would actually represent the "consumer" part in
+> > the mux-control bindings. So the mux-controls would describe the
+> > relationship between the "mode-switch" and the mux controller(s),
+> > while the mode-switch property describes the relationship between
+> > something like USB Type-C Port Manager (or this cros_ec function) and
+> > the "mux consumer".
+>
+> The "USB Type-C Port Manager" is not just the parent node in your case?
+>
+> Can you point me to what you expect your DT to look like showing the
+> mode switch node, the connector, the USB host(s), and the DP/HDMI
+> bridge/output?
 
+Caveat: I'm not a DT expert and not well-versed with the mux-control
+bindings, so Heikki may be able to describe these better.
+That said, here is my attempt to show the nodes you requested, cobbled
+together from the Rockchip rk3399 DTSI[1] and
+swboyd's connector binding example [2].
+
+Nodes truncated and unrelated fields omitted in the interest of brevity:
+
+// Chrome OS EC Type C Port Manager.
+typec {
+    compatible = "google,cros-ec-typec";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    connector@0 {
+        compatible = "usb-c-connector";
+        reg = <0>;
+        power-role = "dual";
+        data-role = "dual";
+        try-power-role = "source";
+        mode-switch = <&foo_mux>;
+        // Other switches can point to the same mux.
+        ....
+    };
+};
+
+// Mux switch
+// TODO: Can possibly embed this in the PHY controller node itself?
+foo_mux {
+    compatible = "vendor,typec-mux";
+    mux-gpios = <&gpio_controller 23 GPIO_ACTIVE_HIGH>;
+
+    ports {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        port@0 {
+            reg = <0>;
+            mux_dp_in: endpoint {
+                remote-endpoint = <&dp_phy_out>;
+            };
+        };
+
+        port@1 {
+            reg = <1>;
+            mux_usb_in: endpoint1 {
+                remote-endpoint = <&usb3_phy_out>;
+            };
+        };
+    };
+};
+
+// Type C PHY Controller.
+tcphy0: phy@ff7c0000 {
+    compatible = "rockchip,rk3399-typec-phy";
+    reg = <0x0 0xff7c0000 0x0 0x40000>;
+    ...
+    tcphy0_dp: phy@dc00000 {
+        compatible = "soc,dp-phy";
+        reg = <0xdc00000 0x1000>;
+        ports {
+            port@0 {
+                reg = <0>;
+                dp_phy_out: endpoint {
+                    remote-endpoint = <&mux_dp_in>;
+                };
+            };
+        };
+    };
+
+    tcphy0_usb3: phy@db00000 {
+        compatible = "soc,usb3-phy";
+        reg = <0xdb00000 0x1000>;
+        ports {
+            port@0 {
+                reg = <0>;
+                usb3_phy_out: endpoint {
+                    remote-endpoint = <&mux_usb3_in>;
+                };
+            };
+        };
+    };
+};
+
+
+// USB3 Host controller
+usbdrd3_0: usb@fe800000 {
+    compatible = "rockchip,rk3399-dwc3";
+    #address-cells = <2>;
+    #size-cells = <2>;
+    clocks = ...;
+    clock-names = ...;
+    status = "disabled";
+
+    usbdrd_dwc3_0: usb@fe800000 {
+        compatible = "snps,dwc3";
+        reg = <0x0 0xfe800000 0x0 0x100000>;
+        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH 0>;
+        clocks = ...;
+        clock-names = ...;
+        dr_mode = "otg";
+        phys = <&tcphy0_usb3>;
+        phy-names = "usb3-phy";
+        phy_type = "utmi_wide";
+        power-domains = <&power RK3399_PD_USB3>;
+        status = "disabled";
+    };
+};
+
+// DP controller
+cdn_dp: dp@fec00000 {
+    compatible = "rockchip,rk3399-cdn-dp";
+    reg = <0x0 0xfec00000 0x0 0x100000>;
+    interrupts = ...;
+    clocks = ...;
+    clock-names = ...;
+    phys = <&tcphy0_dp>;
+    ...
+    ports {
+        dp_in: port {
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            dp_in_vopb: endpoint@0 {
+                reg = <0>;
+                remote-endpoint = <&vopb_out_dp>;
+            };
+
+            dp_in_vopl: endpoint@1 {
+                reg = <1>;
+                remote-endpoint = <&vopl_out_dp>;
+            };
+        };
+    };
+};
+
+[1] : https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/heads/chromeos-5.4/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+[2]: https://lkml.org/lkml/2020/2/28/1081
+
+Hope this helps, and my apologies in advance for any errors.
+
+Best regards,
+
+-Prashant
+
+>
+> Rob
