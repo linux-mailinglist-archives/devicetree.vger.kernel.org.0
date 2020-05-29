@@ -2,98 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 129421E73E3
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 05:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B521E73FA
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2020 05:59:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728494AbgE2Dv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 May 2020 23:51:56 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:34716 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726865AbgE2Dvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 23:51:55 -0400
-Received: from halation.net.flygoat.com (unknown [IPv6:240e:390:496:b320::d68])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 64D9720CFA;
-        Fri, 29 May 2020 03:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1590724315; bh=DDDqysOlwHgMjetn7yWcpUbRKAkNduzxV7H6RPIBrpA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=C1qhl16tWLrdKUTZ0YAOv4tgW/9TGoPUNlyyL06Kg2w/ekTL7Uz16tJb4x0Ow64oL
-         YnwBR0Z6EZVeGDk6F3eVLVlz0USwLZQW2KfoNExdU0PSik/0bUDj/0DB1/07T10Oxf
-         lVDgeQ7gaF1Rd3mcBb8thLB+SmGVpVSL+jSHRqBpymYHlB20NcGuXo5qQ/tp78KYjx
-         HiE+tisRb+XE9hDQwUDTjiM/qZsSGldf0KSBSYJ4nvkPqNsMPpcdcRahNzYa2XTApu
-         9oaH7Dtb1m6IpzvBI4lh0AiqD7BBjI+UUZXCLJLW51qlfM6O2xL0sBGl0jwIE/gW5a
-         l0YDLsYvGy/2g==
-Date:   Fri, 29 May 2020 11:51:40 +0800
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Huacai Chen <chenhc@lemote.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] dt-bindings: interrupt-controller: Add Loongson
- HTVEC
-Message-ID: <20200529115140.5eb9f964@halation.net.flygoat.com>
-In-Reply-To: <98643a72747e4896b78cd4d583d2d3f9@kernel.org>
-References: <20200427060551.1372591-1-jiaxun.yang@flygoat.com>
-        <20200516082912.3673033-1-jiaxun.yang@flygoat.com>
-        <20200516082912.3673033-2-jiaxun.yang@flygoat.com>
-        <87v9kkz5kl.wl-maz@kernel.org>
-        <20200526172653.0a19f375@halation.net.flygoat.com>
-        <98643a72747e4896b78cd4d583d2d3f9@kernel.org>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2390278AbgE2D7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 May 2020 23:59:43 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:45418 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388744AbgE2D7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 May 2020 23:59:40 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id EC5DF8030779;
+        Fri, 29 May 2020 03:59:35 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id xT5FdjWP_obT; Fri, 29 May 2020 06:59:35 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 07/16] spi: dw: Use DMA max burst to set the request thresholds
+Date:   Fri, 29 May 2020 06:59:05 +0300
+Message-ID: <20200529035915.20790-8-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20200529035915.20790-1-Sergey.Semin@baikalelectronics.ru>
+References: <20200529035915.20790-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 May 2020 10:53:15 +0100
-Marc Zyngier <maz@kernel.org> wrote:
+Each channel of DMA controller may have a limited length of burst
+transaction (number of IO operations performed at ones in a single
+DMA client request). This parameter can be used to setup the most
+optimal DMA Tx/Rx data level values. In order to avoid the Tx buffer
+overrun we can set the DMA Tx level to be of FIFO depth minus the
+maximum burst transactions length. To prevent the Rx buffer underflow
+the DMA Rx level should be set to the maximum burst transactions length.
+This commit setups the DMA channels and the DW SPI DMA Tx/Rx levels
+in accordance with these rules.
 
-> On 2020-05-26 10:26, Jiaxun Yang wrote:
-> > On Mon, 25 May 2020 11:12:26 +0100
-> > Marc Zyngier <maz@kernel.org> wrote:
-> >   
-> >> On Sat, 16 May 2020 09:29:02 +0100,
-> >> Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:  
-> >> >
-> >> > Add binding for Loongson-3 HyperTransport Interrupt Vector
-> >> > Controller.
-> >> >
-> >> > Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> >> > --
-> >> > v4: Drop ref, '|', add additionalProperties, fix example  
-> >> 
-> >> Rob, do you have any input on this?  
-> > 
-> > Oops, looks like I was in-reply into wrong patch topic for this
-> > patch, should I resend this series into correct thread?  
-> 
-> No, this series is fine as it is. TBH, your practice of sending
-> a series in reply to the previous version is not that useful
-> (I personally find it very annoying).
-> 
-> It would also be a big improvement if you sent a cover letter
-> with your patches (using --cover-letter when generating the patches).
-> 
-> I'll wait for Rob to comment on this patch as well as patch #4.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Feng Tang <feng.tang@intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
-Hi Marc,
+---
 
-I have send out patches for DeviceTree[1] utilizing these drivers.
+Changelog v3:
+- Use min() method to calculate the optimal burst values.
+---
+ drivers/spi/spi-dw-mid.c | 37 +++++++++++++++++++++++++++++++++----
+ drivers/spi/spi-dw.h     |  2 ++
+ 2 files changed, 35 insertions(+), 4 deletions(-)
 
-If this series looks fine for you could you please Ack this series
-so it can all go through MIPS tree together with DeviceTree changes?
-
-Thanks.
-
-[1]: https://patchwork.kernel.org/project/linux-mips/list/?series=295413
-
-> 
-> Thanks,
-> 
->          M.
+diff --git a/drivers/spi/spi-dw-mid.c b/drivers/spi/spi-dw-mid.c
+index 93463bdba0f8..ff79b4239d68 100644
+--- a/drivers/spi/spi-dw-mid.c
++++ b/drivers/spi/spi-dw-mid.c
+@@ -36,6 +36,31 @@ static bool mid_spi_dma_chan_filter(struct dma_chan *chan, void *param)
+ 	return true;
+ }
+ 
++static void mid_spi_maxburst_init(struct dw_spi *dws)
++{
++	struct dma_slave_caps caps;
++	u32 max_burst, def_burst;
++	int ret;
++
++	def_burst = dws->fifo_len / 2;
++
++	ret = dma_get_slave_caps(dws->rxchan, &caps);
++	if (!ret && caps.max_burst)
++		max_burst = caps.max_burst;
++	else
++		max_burst = RX_BURST_LEVEL;
++
++	dws->rxburst = min(max_burst, def_burst);
++
++	ret = dma_get_slave_caps(dws->txchan, &caps);
++	if (!ret && caps.max_burst)
++		max_burst = caps.max_burst;
++	else
++		max_burst = TX_BURST_LEVEL;
++
++	dws->txburst = min(max_burst, def_burst);
++}
++
+ static int mid_spi_dma_init_mfld(struct device *dev, struct dw_spi *dws)
+ {
+ 	struct dw_dma_slave slave = {
+@@ -73,6 +98,8 @@ static int mid_spi_dma_init_mfld(struct device *dev, struct dw_spi *dws)
+ 
+ 	init_completion(&dws->dma_completion);
+ 
++	mid_spi_maxburst_init(dws);
++
+ 	return 0;
+ 
+ free_rxchan:
+@@ -100,6 +127,8 @@ static int mid_spi_dma_init_generic(struct device *dev, struct dw_spi *dws)
+ 
+ 	init_completion(&dws->dma_completion);
+ 
++	mid_spi_maxburst_init(dws);
++
+ 	return 0;
+ }
+ 
+@@ -229,7 +258,7 @@ static struct dma_async_tx_descriptor *dw_spi_dma_prepare_tx(struct dw_spi *dws,
+ 	memset(&txconf, 0, sizeof(txconf));
+ 	txconf.direction = DMA_MEM_TO_DEV;
+ 	txconf.dst_addr = dws->dma_addr;
+-	txconf.dst_maxburst = TX_BURST_LEVEL;
++	txconf.dst_maxburst = dws->txburst;
+ 	txconf.src_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+ 	txconf.dst_addr_width = convert_dma_width(dws->n_bytes);
+ 	txconf.device_fc = false;
+@@ -321,7 +350,7 @@ static struct dma_async_tx_descriptor *dw_spi_dma_prepare_rx(struct dw_spi *dws,
+ 	memset(&rxconf, 0, sizeof(rxconf));
+ 	rxconf.direction = DMA_DEV_TO_MEM;
+ 	rxconf.src_addr = dws->dma_addr;
+-	rxconf.src_maxburst = RX_BURST_LEVEL;
++	rxconf.src_maxburst = dws->rxburst;
+ 	rxconf.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+ 	rxconf.src_addr_width = convert_dma_width(dws->n_bytes);
+ 	rxconf.device_fc = false;
+@@ -346,8 +375,8 @@ static int mid_spi_dma_setup(struct dw_spi *dws, struct spi_transfer *xfer)
+ {
+ 	u16 imr = 0, dma_ctrl = 0;
+ 
+-	dw_writel(dws, DW_SPI_DMARDLR, RX_BURST_LEVEL - 1);
+-	dw_writel(dws, DW_SPI_DMATDLR, TX_BURST_LEVEL);
++	dw_writel(dws, DW_SPI_DMARDLR, dws->rxburst - 1);
++	dw_writel(dws, DW_SPI_DMATDLR, dws->fifo_len - dws->txburst);
+ 
+ 	if (xfer->tx_buf) {
+ 		dma_ctrl |= SPI_DMA_TDMAE;
+diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+index 9585d0c83a6d..9247670fcdfb 100644
+--- a/drivers/spi/spi-dw.h
++++ b/drivers/spi/spi-dw.h
+@@ -142,7 +142,9 @@ struct dw_spi {
+ 
+ 	/* DMA info */
+ 	struct dma_chan		*txchan;
++	u32			txburst;
+ 	struct dma_chan		*rxchan;
++	u32			rxburst;
+ 	unsigned long		dma_chan_busy;
+ 	dma_addr_t		dma_addr; /* phy address of the Data register */
+ 	const struct dw_spi_dma_ops *dma_ops;
+-- 
+2.26.2
 
