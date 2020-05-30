@@ -2,97 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 512381E8ED8
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2020 09:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322ED1E8F02
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2020 09:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728762AbgE3HSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 May 2020 03:18:05 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:34790 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728714AbgE3HSF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 May 2020 03:18:05 -0400
-Received: from halation.net.flygoat.com (unknown [IPv6:240e:390:496:b320::d68])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id 9020420E8D;
-        Sat, 30 May 2020 07:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1590823084; bh=FokPmXVAmxcnVPTY1hKOBLr9DbGlwiipDcqx7CnsyLs=;
-        h=Date:From:To:Cc:Subject:From;
-        b=mhLNh75TUpn2Ry6HuI0nCWnGDcXsCtjZvU9iJwuuP3hwMpgEJgb8m/EmIGLKwHaN7
-         c1bgvQ87OxVojzF80t3wt41pou3sWnoUdc3twFKwGWedF0oBmL1wv8CJ3WwNS0KEze
-         kYILkyIaH9hwcLAsMKpGqCMBuC6EqJJSIT/zeiD3zOG1pw9NqFFMoZC/kEJsP8CNsV
-         REjf+NFhvCr6qHuSxoyVr4uEK1hm+skhNe1Q+nq+YerLF9U1mxGd583VcfDnEW3Jo5
-         b3x4sgysP/pQ6H/hbnMrkopI8QbimuCYbVb1OAxXh1DuTfpFjmYbrFDr4Oz75gssuo
-         X2++150GGBReA==
-Date:   Sat, 30 May 2020 15:17:52 +0800
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     robh@kernel.org
-Cc:     apw@canonical.com, joe@perches.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: checkpatch warnings with PCI DT compatible string
-Message-ID: <20200530151752.2f40fb08@halation.net.flygoat.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728883AbgE3HgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 May 2020 03:36:24 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:52002 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728786AbgE3HgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 May 2020 03:36:23 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 45ACF8030779;
+        Sat, 30 May 2020 07:36:19 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id zaFgTL81LlYt; Sat, 30 May 2020 10:36:18 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
+        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
+        Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/7] watchdog: dw_wdt: Take Baikal-T1 DW WDT peculiarities into account
+Date:   Sat, 30 May 2020 10:35:50 +0300
+Message-ID: <20200530073557.22661-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi there,
+Merge window is upon us. Please review/merge in/whatever the rest of the
+patches.
 
-When I was trying to create dts for my platform that need PCI
-DeviceTree sub node to express interrupt of children devices under the
-bridge, like this:
+There were a few features enabled at the time of the Baikal-T1 SoC DW WDT
+IP synthesis, which weren't taken into account in the DW WDT driver available
+in the kernel. First of all the SoC engineers synthesized the watchdog core
+with WDT_USE_FIX_TOP set to false (don't really know why, but they did).
+Due to this the timer reset values weren't fixed as the driver expected
+but were initialized with a pre-defined values selected by the engineers.
+Secondly the driver expected that the watchdog APB bus and the timer had
+synchronous reference clocks, while Baikal-T1 SoC DW WDT was created with
+asynchronous ones. So the driver should enable two clock devices: APB bus
+clocks and a separate timer reference clock. Finally DW Watchdog Timer is
+capable of generating a pre-timeout interrupt if corresponding config is
+enabled. The problem was that the pre-timeout IRQ happens when the set
+timeout elapses, while the actual WDT expiration and subsequent reboot take
+place in the next timeout. This makes the pre-timeout functionality
+implementation a bit tricky, since in this case we would have to find a
+WDT timeout twice smaller the requested timeout. All of the changes described
+above are provided by the patches in this patchset.
 
-pci@1a000000 {
-    compatible = "loongson,ls7a-pci";
-    device_type = "pci";
-    #address-cells = <3>;
-    #size-cells = <2>;
-    #interrupt-cells = <2>;
-    msi-parent = <&msi>;
+In addition traditionally we replaced the legacy plain text-based dt-binding
+file with yaml-based one and added the controller registers dump DebugFS node
+to ease the driver debug procedure.
 
-    reg = <0 0x1a000000 0 0x02000000>,
-        <0xefe 0x00000000 0 0x20000000>;
+This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
+base-commit: 0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
 
-    ranges = <0x01000000 0x0 0x00020000 0x0 0x00020000 0x0 0x00020000>,
-            <0x02000000 0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>;
+Changelog v2:
+- Rearrange SoBs.
+- Discard BE copyright header from the binding file.
+- Replace "additionalProperties: false" with "unevaluatedProperties: false"
+  property in the binding.
+- Move the APB3 clocks support declared in the dt binding file into a
+  dedicated patch.
+- Move $ref to the root level of the "snps,watchdog-tops" property
+  so does the constraints.
+- Make Pre-timeout IRQs support being optional.
+- Add "ms" suffix to the methods returning msec and convert the methods
+  with no "ms" suffix to return a timeout in sec.
+- Make sure minimum timeout is at least 1 sec.
+- Refactor the timeouts calculation procedure to to retain the timeouts in
+  the ascending order.
+- Make sure there is no integer overflow in milliseconds calculation. It
+  is saved in a dedicated uint field of the timeout structure.
+- Discard timeout/pretimeout/ping/enable DebugFS nodes. Registers state
+  dump node is only left.
 
-    ohci@4,0 {
-        compatible = "pci0014,7a24.0",
-                    "pci0014,7a24",
-                    "pciclass0c0310",
-                    "pciclass0c03";
+Link: https://lore.kernel.org/linux-watchdog/20200510105807.880-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v3:
+- Add Rob's Reviewed-by tag to the DT-related patches.
+- Remove items from the "snps,watchdog-tops" property and move the
+  minItems and maxItems constraints to the root level of it.
 
-        reg = <0x2000 0x0 0x0 0x0 0x0>;
-        interrupts = <49 IRQ_TYPE_LEVEL_HIGH>;
-        interrupt-parent = <&pic>;
-    };
-};
+Link: https://lore.kernel.org/linux-watchdog/20200526154123.24402-1-Sergey.Semin@baikalelectronics.ru
+Changelog v4:
+- Add Guenter's Reviewed-by tags.
+- IRQ > 0 is only valid in Linux so make sure we request IRQ only if valid
+  number is returned from platform_get_irq_optional().
 
-I got such checkpatch warnings:
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>
+Cc: Vadim Vlasov <V.Vlasov@baikalelectronics.ru>
+Cc: Alexey Kolotnikov <Alexey.Kolotnikov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: linux-watchdog@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-WARNING: DT compatible string "pci0014,7a24.0" appears un-documented --
-check ./Documentation/devicetree/bindings/ #206: FILE:
-arch/mips/boot/dts/loongson/ls7a-pch.dtsi:38:
-+                               compatible = "pci0014,7a24.0",
+Serge Semin (7):
+  dt-bindings: watchdog: Convert DW WDT binding to DT schema
+  dt-bindings: watchdog: dw-wdt: Support devices with asynch clocks
+  dt-bindings: watchdog: dw-wdt: Add watchdog TOPs array property
+  watchdog: dw_wdt: Support devices with non-fixed TOP values
+  watchdog: dw_wdt: Support devices with asynch clocks
+  watchdog: dw_wdt: Add pre-timeouts support
+  watchdog: dw_wdt: Add DebugFS files
 
-WARNING: DT compatible string vendor "pci0014" appears un-documented --
-check ./Documentation/devicetree/bindings/vendor-prefixes.yaml #206:
-FILE: arch/mips/boot/dts/loongson/ls7a-pch.dtsi:38:
-+                               compatible = "pci0014,7a24.0",
+ .../devicetree/bindings/watchdog/dw_wdt.txt   |  24 -
+ .../bindings/watchdog/snps,dw-wdt.yaml        |  90 ++++
+ drivers/watchdog/dw_wdt.c                     | 437 ++++++++++++++++--
+ 3 files changed, 494 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/dw_wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
 
-Just wonder if using such compatible string is allowed?
+-- 
+2.26.2
 
-I've saw some some usages like mine in the tree, such as
-arch/x86/platform/ce4100/falconfalls.dts, and
-arch/mips/boot/dts/img/boston.dts.
-
-If that's allowed, should we surpress these warnings in checkpatch
-script?
-
-Thanks.
-
---
-Jiaxun Yang 
