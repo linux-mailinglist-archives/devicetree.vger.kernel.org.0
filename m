@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F046A1E9A3B
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2020 21:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD6B1E9AB6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 00:38:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727789AbgEaTsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 May 2020 15:48:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726882AbgEaTsf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 May 2020 15:48:35 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE752206A1;
-        Sun, 31 May 2020 19:48:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1590954514;
-        bh=oMG31ruizf0PT2eqzYHe3Y//MErsN7jgOSJtM3J6bno=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=TFNEkgeMKZhqg/D78OXoww71gIeIvns30seeelalOwhlj3RnPEGsSfzMS5S3OBQ3q
-         MABGkpcDCLCZ1EkzjZzJyXKfEzpLWBS9VyEyl9+k+3rv697DzRd6GaQdzqqwsnsmcw
-         iVkuW2vUzdoQn8hbIKjhuKkj0kGePPV1HvPxqRPE=
-Content-Type: text/plain; charset="utf-8"
+        id S1728255AbgEaWiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 May 2020 18:38:54 -0400
+Received: from sonic301-32.consmr.mail.ne1.yahoo.com ([66.163.184.201]:33189
+        "EHLO sonic301-32.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726081AbgEaWiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 May 2020 18:38:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1590964733; bh=rrZhNPUEtLToZv3r9Shsqy2lS5fH+Hj0K/ydiNWFtag=; h=Date:From:Reply-To:Subject:References:From:Subject; b=aZ5LeIlFAmajbBHvwv0qbWsQT4nSpDuYdFLqYk6MuO8hwKIVbPgOK3plVVaPkXa/ky8Bg8+jJwz51zs8ViMzIZM4tNpl4Au50qoEd1f8JK9l3zAWQ1uTvq1IqlwTgndC74PWLc88drRPHrggkzTu3ui8LjbbZvPQTDSyIoOeypuLzWbsIV9TQfxJ5rWWAUq3i2nau0PaoNlGVd8qYt7/ciHMdD+GkKzHSJeP9h5gPWaTIgCbWFPDXPH307EIMpvPHPDyg33xzi3HbHlTk07L0ncoP7cnheRISjfDFSdGcFofzskQxV1q6qnQ1ixHnn3ajpWU03TBJng8Y8uxyFYssg==
+X-YMail-OSG: 4uCKIU0VM1lli4rjIJL7hvG2YTEmmNI_KhDagoS09Wf_BeM4.DyGxySTjFwG6DH
+ oz5sUcs0TMUus7HgY2Q1O.fkVMOwTizYUYoMpgPT0PlLpAh40zw71Canq6guWEyaEx83R.p8W0wx
+ gNCQUwAoG8ef1ABJ_GIByUNFI4.5r7_zN58_0VOPyL4b2g9_tw9rXO314obInyybVSMP7YwdKvKy
+ Idooy9vIgZl7m6p._juXh7EiON3.I5m1_1Zo3Rj1L2LZ.T2mX73oucXPf6dmoRqP9w3m_6vVhHq9
+ LEKsjcwlQezxTK3mqf0P81d9Tuot0MYHOc4bS7749JEIriyfhidM83svVGb_a9ySkg_gLdQWVrXv
+ C1ML0.g3fQG6LWUDB3Uh1sor4yrqVv7OMWuXz5ph.7gGkq6xA5hR4KfhygBm4cWlM_hgDY5lpcRB
+ leec4FwNAnA8OdXHKi2WSdTEjJ4SYtg5tt6f7KHiuWqlOJNFqIeO99kXNPYghJJ6MBo1kfU8CXxi
+ n5oOCpaO6HCntiYs5mJ19.TCpR8qjfU8LzfP1MUbX_yaVTNHJnPxylNl.k24VjV25eF93IZhskTO
+ CEXIfvm52H4RbBVJ_5uHirezQOvhg3L_Ffho9JOtZBSlQaM0sXb57crxaVGrmBbDmtwunrVwAwF0
+ izsjEH56VeX5VSdOyKLFVJyNA5.BAMo7J5dOU9Kr1SFD1LbrL8RLVca7j8rw7wcUQClHGIyZxkUR
+ PV9GfIxQymGqnOlTjnjaIBvOm9GQQJcZtwUwPavg23U9rNtz1oS8x3qevfINWTjKJPYbxVbDi1BY
+ liN0AFcDIUVkoxTb52OQo4TUjaeuRestAGg2pYMVmQCDu653QvesUgHtCxIUeu7K3ihRdnu6cWBU
+ 9ni9vPmtu9tf8cHvpCzUthyADDj5v9kxgEjaTyxqNq35bSlKHliCOe1uD9EK93s8rHNZ3rN7WA3e
+ t9l44367NQkigmWn5OO_FJ_6ehIB7boao9Gyo76uuxcIHv6CrTfMw3CMXcoczLz8ZvcHqy6QgCi5
+ 0wVGKg5CNofF8W65gm5jtG7UaVXsMWR6XxiPwoWbVtP.JG4lyIJ1dUiOeAwjBlguLw5Wwt.jsS0I
+ MicOftJzBYbgm7W.ZHhMTJRZfH1.KLjIk2R4Hr1Ht9Y5NWqPCtOFgdFpyzfOkq98I9Bq5OFUcTEq
+ rcL.zu5Gp60zDuVcv9fX.Rvsh76Ua4QpcgCgMRr8jGZk1okgygfjRM1HlkXUwyJESfn7OQf2tjzj
+ wgKB6pgpa2LOolOyG9uH4axRSi2zyHnxXWhbT9Y1muSraJE_pvMop0sq7.ewoKbFk8Bhdca_zLmI
+ Zsp93xJCGHAk4UuQfLu3ujTislwK5fac-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ne1.yahoo.com with HTTP; Sun, 31 May 2020 22:38:53 +0000
+Date:   Sun, 31 May 2020 22:38:52 +0000 (UTC)
+From:   Ibrahim Tasha <ibrahimtasha08@gmail.com>
+Reply-To: IbrahimTasha12@gmail.com
+Message-ID: <1648887787.572041.1590964732805@mail.yahoo.com>
+Subject: Hello
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <d5813ebc-dcb2-afc2-7a7e-71e73113f8fc@infradead.org>
-References: <20200531174612.260113-1-konradybcio@gmail.com> <20200531174612.260113-5-konradybcio@gmail.com> <d5813ebc-dcb2-afc2-7a7e-71e73113f8fc@infradead.org>
-Subject: Re: [PATCH 4/4] driver: clk: Add msm8992 GCC Kconfig and Makefile entries
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Konrad Dybcio <konradybcio@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-Date:   Sun, 31 May 2020 12:48:34 -0700
-Message-ID: <159095451410.69627.2951185163238676732@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+References: <1648887787.572041.1590964732805.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.16037 YMailNodin Mozilla/5.0 (Windows NT 6.1; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Randy Dunlap (2020-05-31 10:50:26)
-> On 5/31/20 10:46 AM, Konrad Dybcio wrote:
-> > Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
-> > ---
-> >  drivers/clk/qcom/Kconfig  | 8 ++++++++
-> >  drivers/clk/qcom/Makefile | 1 +
-> >  2 files changed, 9 insertions(+)
-> >=20
-> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> > index 11ec6f466467..d102b4015289 100644
-> > --- a/drivers/clk/qcom/Kconfig
-> > +++ b/drivers/clk/qcom/Kconfig
-> > @@ -197,6 +197,14 @@ config MSM_MMCC_8974
-> >         Say Y if you want to support multimedia devices such as display,
-> >         graphics, video encode/decode, camera, etc.
-> > =20
-> > +config MSM_GCC_8992
-> > +     tristate "MSM8992 Global Clock Controller"
-> > +     select QCOM_GDSC
-> > +     help
-> > +       Support for the global clock controller on msm8992 devices.
-> > +       Say Y if you want to use peripheral devices such as UART, SPI,
-> > +       i2c, USB, SD/eMMC, PCIe, etc.
->=20
->           I2C
-> please.
 
-Also please put someone in the "To:" field of these emails.
+
+Hello
+I'm "Mrs Tasha Ibrahim" married to Mr. Ibrahim( an
+
+International
+Contractor and Oil Merchant/ jointly in Exposition of
+
+Agro Equipment
+) who died in Burkina Faso attack, i am 64 years old
+
+and diagnosed
+of cancer for about 2 years ago and my husband informed
+
+me that he
+deposited the sum of (6.3Million USD Only) with a
+
+Finance house) in
+UAGADOUGOU BURKINA FASO.
+
+I want you to help me to use this money for a charity
+
+project before
+I die, for the Poor, Less-privileged and ORPHANAGES in
+your country. Please kindly respond
+
+quickly for further details. contact my email [
+
+ibrahimtasha12@gmail.com ]
+
+Yours fairly friend,
+Mrs Tasha Ibrahim
