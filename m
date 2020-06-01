@@ -2,113 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 814F61EA015
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A55F1EA01E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728089AbgFAIas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 04:30:48 -0400
-Received: from mail-db8eur05on2042.outbound.protection.outlook.com ([40.107.20.42]:37811
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725999AbgFAIar (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jun 2020 04:30:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UVjZ6FCfRoyhGZXP9fe0Wwq2RoALRM0dxH8qIm6aOW9S9iUc9QEMbq/UN4SEZz7rChhLXIuRf1BowN6BUHET+8lEnGFaKR6XuNjzQqolcT6ZoAgLKzbMCcJhbg3DAAW+DbQHwKdwZYhOe90FJ2uJiYI6H6T//HvQsKjA35nT6+nVGOA7TCbDz3kL0uBPOwbXCGcdMRxkFA6Iz6lGnZMCiHSDW9ZPWepMvgcPfi1cePotnfG784YWhZu0PMv4wOPRR8wwQXkEWVd0FQRvMbDisSFUEVwSUTf5NgynyL2q2gM2XEo5EthL1ONU3KlIc7uBWr3LhkUieLsDUYzxL8BUwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ruvIzOSMZF3SHzfC80qeNDBWE4NIJ+y4nAukjDkwis=;
- b=aiOddnOXIFvFYmTpetdqlPsPamwm2PBV06azkwTMWBsgqPzr+tNNYTLeIBcCo229LoYuzKTCK/aO6/hEL3m5Oo4CAxrLWJpHWZuAtLvtGhFdemhPCq6h+zaEfAqUcuVbuuRiRMwX7+7EJYp099zdeBzseXfpYp7cbdb2T12m9iaO17gpolXAQggKfszsYOtNXmotFvo/ZM9/gZ5d1UP+VQaONCWVy56tyKePYZisCgk3UBmkVh4gIwLjfgSOOhzjAWKcyfkFC4CbSW8R3u7oBmROSyrliqynhBKXq4z5VWpqwAHewBqqbVVNFl1Pbpc48ijZx0OH9+4E5Jhz1EmnGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ruvIzOSMZF3SHzfC80qeNDBWE4NIJ+y4nAukjDkwis=;
- b=eQXpHVJukbRZ2b2N5VCnraY2dBt9QhkwwaLr+dRrL79ATMM/m6kPKg26EaO2Lz34Izwy8fffxDfEe9fl86OjEI5NsB0AyXzZy/G1o0T5KqFwyjyzs0oX2OKfHR28b8f4vJI9cQTnrVDViajR/RqAUf7AcQeH8PVYnHgG3gVef6g=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB6PR0402MB2728.eurprd04.prod.outlook.com (2603:10a6:4:97::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.22; Mon, 1 Jun
- 2020 08:30:44 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::d17b:d767:19c3:b871]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::d17b:d767:19c3:b871%6]) with mapi id 15.20.3045.022; Mon, 1 Jun 2020
- 08:30:44 +0000
-From:   peng.fan@nxp.com
-To:     shawnguo@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
-        aisheng.dong@nxp.com, robh+dt@kernel.org, sboyd@kernel.org,
-        linux@rempel-privat.de, jaswinder.singh@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        l.stach@pengutronix.de, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V3 3/3] clk: imx8mp: add mu root clk
-Date:   Mon,  1 Jun 2020 16:20:02 +0800
-Message-Id: <1590999602-29482-4-git-send-email-peng.fan@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590999602-29482-1-git-send-email-peng.fan@nxp.com>
-References: <1590999602-29482-1-git-send-email-peng.fan@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0044.apcprd02.prod.outlook.com
- (2603:1096:3:18::32) To DB6PR0402MB2760.eurprd04.prod.outlook.com
- (2603:10a6:4:a1::14)
+        id S1725999AbgFAIdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 04:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726076AbgFAIdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 04:33:20 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454AFC061A0E
+        for <devicetree@vger.kernel.org>; Mon,  1 Jun 2020 01:33:16 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id z13so7066569ljn.7
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2020 01:33:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mpxe8RjpMW5DpayumaX4Kfk6OnL4xAaQL+RDtMaTSdY=;
+        b=aIZ65SfjREaq0XuCaxGf7NARmqZzIJ7gr5rjIHchheeg7vYxAbgZjf9UwM3pJIfJYC
+         Pb/l8xsqOCRSLchWv7zyFZTlPsyTWUdVThjCMNH223JDUR+FbJi6rBQBeL2cjxuQLgvb
+         vd5TDVAmaq6kxPNX9/1eVPEVeRdc5gD7M++AlrPSMBP/xXcUl1RiEZuAmzCjpgunoUCv
+         9fxsbj6xn6E37GWy2rWCaVdcvbD01muRqEfVkvmxPQiPexoy7itKaoAN4okNPgCIwZzB
+         p+ZuKUi//fQ55vVGCryB/TenMCAkF9mF0DipN/drlrAPM89B5N+XjL2tP7r+HHDqMiZJ
+         /4Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=mpxe8RjpMW5DpayumaX4Kfk6OnL4xAaQL+RDtMaTSdY=;
+        b=VHKOqyHTSW9sl/3BmbjQYQ7cs72o7z80IZusMFRvD5kUL6CM/QEE8Xl9ZtQUPcE3WX
+         1yP6IgFJ4K7edB0QrTPVqlqGLkU0qd3G32kl+8Lq2me6bsJbTNubEo/fmaqYoYCfPyd3
+         yHMJUxREqIqLG4RPNL4cG6j6IUMihKefLH/dWLTeZB5+3u6q5sTtyyVvR3mmhR8oFcrO
+         mj9M4uRAJcEQOnjtpS6godDJKFJTAVLNYFwmigGLLnhAaBh5L0LQwZyznD9fSjobIinw
+         wXZzg6KIWNgdP/XiitJ64E8Qp33uZlHHMi/i1RwDkNhLW96vufsd3/oVQbFFQPz5w1W+
+         Licg==
+X-Gm-Message-State: AOAM533KB7DC6CL5wVTCLDVF6H8PAuWTnSlQewcyPJOm6C+qqW3ZJYr4
+        aRnttSJKdwlK/jBD4KaoEY9YBOx42PA=
+X-Google-Smtp-Source: ABdhPJw6taJK49jkCCaMb/dSqpSzU0Cd+iiRUpQY93CUje0Fa2ggawOMOk7cMJdWts8CbJjisKhQDg==
+X-Received: by 2002:a2e:9a05:: with SMTP id o5mr258849lji.60.1591000394587;
+        Mon, 01 Jun 2020 01:33:14 -0700 (PDT)
+Received: from saturn.lan ([2a00:fd00:805f:db00:281d:a604:434c:a58d])
+        by smtp.gmail.com with ESMTPSA id f14sm3871433ljp.118.2020.06.01.01.33.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jun 2020 01:33:13 -0700 (PDT)
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        =?UTF-8?q?S=C3=B8ren=20Andersen?= <san@skov.dk>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= 
+        <ville.syrjala@linux.intel.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v1 0/6] drm: add a few simple panels
+Date:   Mon,  1 Jun 2020 10:33:03 +0200
+Message-Id: <20200601083309.712606-1-sam@ravnborg.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0044.apcprd02.prod.outlook.com (2603:1096:3:18::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3021.27 via Frontend Transport; Mon, 1 Jun 2020 08:30:39 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [119.31.174.66]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 970f4402-ae71-4081-694a-08d806061399
-X-MS-TrafficTypeDiagnostic: DB6PR0402MB2728:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB6PR0402MB27281E6AE59B1361FBF0DB5C888A0@DB6PR0402MB2728.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-Forefront-PRVS: 0421BF7135
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2YmzK/YC/anJp5iGX2l14kss+M0mTXg8JgNVdVi7/3UJh46hA4Ox21fy66YuUnTqB6gAZ5TeLV0awau60nTx1c5YeaaWEape1/dkoKkWXqeiuf0PpGULe3Fb8Hj+J7y6A7ZAkSWM9nWJ3x7KsfjFKm3Vl33XbdU1JDOMl7Ii5IgwGPaRv6gxCTAStgpZ5xozWljKqmLtGZP9ADJzgCXwY/bTTijA9uRORv/nqEGaS73zbCwqkEmj5AXpoRoSpCf1INe89rFvMrviFSkeKP9GFL1oQELhLnqcAmvw6FiBv5kwNUmLqHQgyVbboM5OXB3YvZ5CWdTf0gOXzbl8O3yqFC9gMVtXtigUiatORQq6JqB71VA/t85m/SAGQs0y8IHt1b8vv8lISpnST61zVBy1JnGh01/CLd8fIb+w5VDhEo4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(376002)(366004)(136003)(39860400002)(346002)(396003)(316002)(36756003)(6486002)(6666004)(478600001)(86362001)(8676002)(4326008)(2906002)(83380400001)(69590400007)(66556008)(26005)(2616005)(6512007)(66476007)(8936002)(956004)(16526019)(5660300002)(66946007)(52116002)(9686003)(7416002)(6506007)(186003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: m4PwUTpvzdSzSaRnf1Xg0fn6gimiW2Y6YUQSlfvBjh05Tun4LLh9scaqBeYWzUP+4ilAV5rmHvh0iK32GLfzoT/khg6TN6xOO0OngMhCYjQCbRnn1aGX14xetXZfsQ1LqGwlRUCXz/w+GAXzAoEDk/Y9xTjQPov1XAGIpOntFEJyqu0pSYRqtOb1DWeu28YBVWgPkgm3kZOhmWXAu4fUukLfrUNYTmccxIa1gSly9F5lrFM9HYPC47jt4ZS4FkxQZDu6bfpa1ePTgqXv3hOIAxMstGiJZAGI/Pb4Sdlza13WfAFCmupnGsDYOOt+MdhXDN/O6leDaJAC0COCH3o6vS7jeBk4QOKDnPpNAaXfBHTOy6Y6oAQ+8MicD6W/WNML6BreCoCw2MHmZGEd8HZfgFJOlhlRVFmMC+piHXRmb4aCcKquPeBLtcdh27p+8cuQTcaWvBb89eQACoW7zUIcxlEbGRm9CiTAhFuqukkOK2x09gZPz62POrVqlLbEaSEq
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 970f4402-ae71-4081-694a-08d806061399
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2020 08:30:44.4685
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SFHUashyaBlbvAKo3vNtUqBsQP04sTZlQFxuiesYZSj0RUqadGLt7jrxNI4cCBeeS7/FdlpNfHaz+EKGaFyT8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0402MB2728
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Push a few patches that has been sitting in my tree for
+far too long time.
+Adds a few more panels to panel-simple, including
+documentation of the compatible.
 
-Add mu root clk for mu mailbox usage.
+I have added the last few people that added new
+panels to panel-simple to the cc list,
+in the hope to speed up the review process a little.
 
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/imx/clk-imx8mp.c | 1 +
- 1 file changed, 1 insertion(+)
+	Sam
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index b4d9db9d5bf1..ca747712400f 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -680,6 +680,7 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_I2C2_ROOT] = imx_clk_hw_gate4("i2c2_root_clk", "i2c2", ccm_base + 0x4180, 0);
- 	hws[IMX8MP_CLK_I2C3_ROOT] = imx_clk_hw_gate4("i2c3_root_clk", "i2c3", ccm_base + 0x4190, 0);
- 	hws[IMX8MP_CLK_I2C4_ROOT] = imx_clk_hw_gate4("i2c4_root_clk", "i2c4", ccm_base + 0x41a0, 0);
-+	hws[IMX8MP_CLK_MU_ROOT] = imx_clk_hw_gate4("mu_root_clk", "ipg_root", ccm_base + 0x4210, 0);
- 	hws[IMX8MP_CLK_OCOTP_ROOT] = imx_clk_hw_gate4("ocotp_root_clk", "ipg_root", ccm_base + 0x4220, 0);
- 	hws[IMX8MP_CLK_PCIE_ROOT] = imx_clk_hw_gate4("pcie_root_clk", "pcie_aux", ccm_base + 0x4250, 0);
- 	hws[IMX8MP_CLK_PWM1_ROOT] = imx_clk_hw_gate4("pwm1_root_clk", "pwm1", ccm_base + 0x4280, 0);
--- 
-2.16.4
+Sam Ravnborg (6):
+      dt-bindings: panel: add Seiko 70WVW2T 7" panel
+      drm: panel-simple: add Seiko 70WVW2T 7" simple panel
+      dt-bindings: panel: add Hitachi 3,5" QVGA panel
+      drm: panel-simple: add Hitachi 3.5" QVGA panel
+      dt-bindings: panel: add LOGIC Technologies panels
+      drm: panel-simple: add LOGIC Technologies panels
+
+ .../bindings/display/panel/panel-simple.yaml       |   8 ++
+ drivers/gpu/drm/panel/panel-simple.c               | 127 +++++++++++++++++++++
+ 2 files changed, 135 insertions(+)
+
 
