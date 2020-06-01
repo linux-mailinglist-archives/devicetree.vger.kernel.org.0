@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A55F1EA01E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D103F1EA01D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbgFAIdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727098AbgFAIdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 1 Jun 2020 04:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60430 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726076AbgFAIdU (ORCPT
+        with ESMTP id S1725886AbgFAIdU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 04:33:20 -0400
 Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454AFC061A0E
-        for <devicetree@vger.kernel.org>; Mon,  1 Jun 2020 01:33:16 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id z13so7066569ljn.7
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2020 01:33:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCAFC05BD43
+        for <devicetree@vger.kernel.org>; Mon,  1 Jun 2020 01:33:17 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id 9so5617465ljc.8
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2020 01:33:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mpxe8RjpMW5DpayumaX4Kfk6OnL4xAaQL+RDtMaTSdY=;
-        b=aIZ65SfjREaq0XuCaxGf7NARmqZzIJ7gr5rjIHchheeg7vYxAbgZjf9UwM3pJIfJYC
-         Pb/l8xsqOCRSLchWv7zyFZTlPsyTWUdVThjCMNH223JDUR+FbJi6rBQBeL2cjxuQLgvb
-         vd5TDVAmaq6kxPNX9/1eVPEVeRdc5gD7M++AlrPSMBP/xXcUl1RiEZuAmzCjpgunoUCv
-         9fxsbj6xn6E37GWy2rWCaVdcvbD01muRqEfVkvmxPQiPexoy7itKaoAN4okNPgCIwZzB
-         p+ZuKUi//fQ55vVGCryB/TenMCAkF9mF0DipN/drlrAPM89B5N+XjL2tP7r+HHDqMiZJ
-         /4Tw==
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=8Yer3urQYiOMXfRZ9l+aQabnMndlBrbK8V5JUt5mhHI=;
+        b=Eaxr1G/xdxbYkLuYx88rNIWZHLBEBrWPJTpzxgrV+T71VRLI9TeBmPh8q03bEk5Cr5
+         WKhDUS3LqGw9nK22aPl6TUaeYYl0t54CK/+zFGnQ/SXwP/rAZttgjmuPEtyBEuI64k2H
+         /qMNZzUyeF4I46o9LWfd2SieboteA4/dIipxTqpkoKuy9fiGxxBgTr6H46CVkCsedhst
+         sGrG2BaoTdHIuQtsNzhuS1Km7+ykqmJJequuecJpN1r5LJnpNn/pT19WXKqInVLkMmoP
+         naMYcItKiz5kEQFTWfzk3jkjfgY0I5Yhyf3i0E3UcGNGOtFXfI8pN0uNU9gv8wJ2tywR
+         RWjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=mpxe8RjpMW5DpayumaX4Kfk6OnL4xAaQL+RDtMaTSdY=;
-        b=VHKOqyHTSW9sl/3BmbjQYQ7cs72o7z80IZusMFRvD5kUL6CM/QEE8Xl9ZtQUPcE3WX
-         1yP6IgFJ4K7edB0QrTPVqlqGLkU0qd3G32kl+8Lq2me6bsJbTNubEo/fmaqYoYCfPyd3
-         yHMJUxREqIqLG4RPNL4cG6j6IUMihKefLH/dWLTeZB5+3u6q5sTtyyVvR3mmhR8oFcrO
-         mj9M4uRAJcEQOnjtpS6godDJKFJTAVLNYFwmigGLLnhAaBh5L0LQwZyznD9fSjobIinw
-         wXZzg6KIWNgdP/XiitJ64E8Qp33uZlHHMi/i1RwDkNhLW96vufsd3/oVQbFFQPz5w1W+
-         Licg==
-X-Gm-Message-State: AOAM533KB7DC6CL5wVTCLDVF6H8PAuWTnSlQewcyPJOm6C+qqW3ZJYr4
-        aRnttSJKdwlK/jBD4KaoEY9YBOx42PA=
-X-Google-Smtp-Source: ABdhPJw6taJK49jkCCaMb/dSqpSzU0Cd+iiRUpQY93CUje0Fa2ggawOMOk7cMJdWts8CbJjisKhQDg==
-X-Received: by 2002:a2e:9a05:: with SMTP id o5mr258849lji.60.1591000394587;
-        Mon, 01 Jun 2020 01:33:14 -0700 (PDT)
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=8Yer3urQYiOMXfRZ9l+aQabnMndlBrbK8V5JUt5mhHI=;
+        b=fKYKh0o8QgwUio5zQkvkECyAW5QxT2NNjntjRlF9nIeV84BiQfYHw3zOvxiHH1ofZe
+         7BUzBPe128eGPoEQMa5nPsUw9n3JLTpXZyIwSteD74IB4AG4T9rDnyozqPPkpJV8Zvrx
+         FQTXvuoHuOZnoU669ETSAzDyUXoyUyDJOrzeDNw6vrap1zZEbJmq3CWDRmhogqP+Tsje
+         U7Sv+9E3bza8P072XJX1fLRmOmru+J3+/ottEeP9OME9Se5B2gTaz4HJiecKNXbwLzhL
+         9rxpLmZfhd/5t8w7Gx2QVHcSgUVdcoVQjT9ibNdKHm+618UxNEDmLNB6ZznWTldHwqIx
+         wPBg==
+X-Gm-Message-State: AOAM5321Uy3jHGgAdMTKem8Kbf8UkTdWmv7tk/LaP+f2BIdeZyAAVSMa
+        Cz/EHeKOTDLKa9N11i1h76E=
+X-Google-Smtp-Source: ABdhPJyM06YDjm3IwmPKPeeF0RPISmSSuI3RSxjZq9mwb2e1/wrOilfm6lIy/U+oPxjpnBiQsd54yA==
+X-Received: by 2002:a2e:95c5:: with SMTP id y5mr10278128ljh.229.1591000395626;
+        Mon, 01 Jun 2020 01:33:15 -0700 (PDT)
 Received: from saturn.lan ([2a00:fd00:805f:db00:281d:a604:434c:a58d])
-        by smtp.gmail.com with ESMTPSA id f14sm3871433ljp.118.2020.06.01.01.33.13
+        by smtp.gmail.com with ESMTPSA id f14sm3871433ljp.118.2020.06.01.01.33.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jun 2020 01:33:13 -0700 (PDT)
+        Mon, 01 Jun 2020 01:33:15 -0700 (PDT)
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
 Cc:     Sam Ravnborg <sam@ravnborg.org>,
@@ -57,38 +57,44 @@ Cc:     Sam Ravnborg <sam@ravnborg.org>,
         Douglas Anderson <dianders@chromium.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v1 0/6] drm: add a few simple panels
-Date:   Mon,  1 Jun 2020 10:33:03 +0200
-Message-Id: <20200601083309.712606-1-sam@ravnborg.org>
+Subject: [PATCH v1 1/6] dt-bindings: panel: add Seiko 70WVW2T 7" panel
+Date:   Mon,  1 Jun 2020 10:33:04 +0200
+Message-Id: <20200601083309.712606-2-sam@ravnborg.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200601083309.712606-1-sam@ravnborg.org>
+References: <20200601083309.712606-1-sam@ravnborg.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Push a few patches that has been sitting in my tree for
-far too long time.
-Adds a few more panels to panel-simple, including
-documentation of the compatible.
+Add compatible for Seiko Instruments 7" TFT LCD.
+This panel is a dumb panel that matches the panel-simple binding.
 
-I have added the last few people that added new
-panels to panel-simple to the cc list,
-in the hope to speed up the review process a little.
+Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+Cc: Søren Andersen <san@skov.dk>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-	Sam
-
-Sam Ravnborg (6):
-      dt-bindings: panel: add Seiko 70WVW2T 7" panel
-      drm: panel-simple: add Seiko 70WVW2T 7" simple panel
-      dt-bindings: panel: add Hitachi 3,5" QVGA panel
-      drm: panel-simple: add Hitachi 3.5" QVGA panel
-      dt-bindings: panel: add LOGIC Technologies panels
-      drm: panel-simple: add LOGIC Technologies panels
-
- .../bindings/display/panel/panel-simple.yaml       |   8 ++
- drivers/gpu/drm/panel/panel-simple.c               | 127 +++++++++++++++++++++
- 2 files changed, 135 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index d6cca1479633..60cc093fbd75 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -239,6 +239,8 @@ properties:
+       - sharp,ls020b1dd01d
+         # Shelly SCA07010-BFN-LNN 7.0" WVGA TFT LCD panel
+       - shelly,sca07010-bfn-lnn
++        # Seiko Instruments Inc. 7.0" WVGA (800x480) TFT with Touch-Panel
++      - sii,70wvw2t
+         # Starry KR070PE2T 7" WVGA TFT LCD panel
+       - starry,kr070pe2t
+         # Starry 12.2" (1920x1200 pixels) TFT LCD panel
+-- 
+2.25.1
 
