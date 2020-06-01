@@ -2,82 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD6B1E9AB6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 00:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15DE21E9B23
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 03:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728255AbgEaWiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 May 2020 18:38:54 -0400
-Received: from sonic301-32.consmr.mail.ne1.yahoo.com ([66.163.184.201]:33189
-        "EHLO sonic301-32.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726081AbgEaWiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 May 2020 18:38:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1590964733; bh=rrZhNPUEtLToZv3r9Shsqy2lS5fH+Hj0K/ydiNWFtag=; h=Date:From:Reply-To:Subject:References:From:Subject; b=aZ5LeIlFAmajbBHvwv0qbWsQT4nSpDuYdFLqYk6MuO8hwKIVbPgOK3plVVaPkXa/ky8Bg8+jJwz51zs8ViMzIZM4tNpl4Au50qoEd1f8JK9l3zAWQ1uTvq1IqlwTgndC74PWLc88drRPHrggkzTu3ui8LjbbZvPQTDSyIoOeypuLzWbsIV9TQfxJ5rWWAUq3i2nau0PaoNlGVd8qYt7/ciHMdD+GkKzHSJeP9h5gPWaTIgCbWFPDXPH307EIMpvPHPDyg33xzi3HbHlTk07L0ncoP7cnheRISjfDFSdGcFofzskQxV1q6qnQ1ixHnn3ajpWU03TBJng8Y8uxyFYssg==
-X-YMail-OSG: 4uCKIU0VM1lli4rjIJL7hvG2YTEmmNI_KhDagoS09Wf_BeM4.DyGxySTjFwG6DH
- oz5sUcs0TMUus7HgY2Q1O.fkVMOwTizYUYoMpgPT0PlLpAh40zw71Canq6guWEyaEx83R.p8W0wx
- gNCQUwAoG8ef1ABJ_GIByUNFI4.5r7_zN58_0VOPyL4b2g9_tw9rXO314obInyybVSMP7YwdKvKy
- Idooy9vIgZl7m6p._juXh7EiON3.I5m1_1Zo3Rj1L2LZ.T2mX73oucXPf6dmoRqP9w3m_6vVhHq9
- LEKsjcwlQezxTK3mqf0P81d9Tuot0MYHOc4bS7749JEIriyfhidM83svVGb_a9ySkg_gLdQWVrXv
- C1ML0.g3fQG6LWUDB3Uh1sor4yrqVv7OMWuXz5ph.7gGkq6xA5hR4KfhygBm4cWlM_hgDY5lpcRB
- leec4FwNAnA8OdXHKi2WSdTEjJ4SYtg5tt6f7KHiuWqlOJNFqIeO99kXNPYghJJ6MBo1kfU8CXxi
- n5oOCpaO6HCntiYs5mJ19.TCpR8qjfU8LzfP1MUbX_yaVTNHJnPxylNl.k24VjV25eF93IZhskTO
- CEXIfvm52H4RbBVJ_5uHirezQOvhg3L_Ffho9JOtZBSlQaM0sXb57crxaVGrmBbDmtwunrVwAwF0
- izsjEH56VeX5VSdOyKLFVJyNA5.BAMo7J5dOU9Kr1SFD1LbrL8RLVca7j8rw7wcUQClHGIyZxkUR
- PV9GfIxQymGqnOlTjnjaIBvOm9GQQJcZtwUwPavg23U9rNtz1oS8x3qevfINWTjKJPYbxVbDi1BY
- liN0AFcDIUVkoxTb52OQo4TUjaeuRestAGg2pYMVmQCDu653QvesUgHtCxIUeu7K3ihRdnu6cWBU
- 9ni9vPmtu9tf8cHvpCzUthyADDj5v9kxgEjaTyxqNq35bSlKHliCOe1uD9EK93s8rHNZ3rN7WA3e
- t9l44367NQkigmWn5OO_FJ_6ehIB7boao9Gyo76uuxcIHv6CrTfMw3CMXcoczLz8ZvcHqy6QgCi5
- 0wVGKg5CNofF8W65gm5jtG7UaVXsMWR6XxiPwoWbVtP.JG4lyIJ1dUiOeAwjBlguLw5Wwt.jsS0I
- MicOftJzBYbgm7W.ZHhMTJRZfH1.KLjIk2R4Hr1Ht9Y5NWqPCtOFgdFpyzfOkq98I9Bq5OFUcTEq
- rcL.zu5Gp60zDuVcv9fX.Rvsh76Ua4QpcgCgMRr8jGZk1okgygfjRM1HlkXUwyJESfn7OQf2tjzj
- wgKB6pgpa2LOolOyG9uH4axRSi2zyHnxXWhbT9Y1muSraJE_pvMop0sq7.ewoKbFk8Bhdca_zLmI
- Zsp93xJCGHAk4UuQfLu3ujTislwK5fac-
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ne1.yahoo.com with HTTP; Sun, 31 May 2020 22:38:53 +0000
-Date:   Sun, 31 May 2020 22:38:52 +0000 (UTC)
-From:   Ibrahim Tasha <ibrahimtasha08@gmail.com>
-Reply-To: IbrahimTasha12@gmail.com
-Message-ID: <1648887787.572041.1590964732805@mail.yahoo.com>
-Subject: Hello
+        id S1726860AbgFABQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 May 2020 21:16:34 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:35798 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726555AbgFABQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 May 2020 21:16:34 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0511GFBE077304;
+        Sun, 31 May 2020 20:16:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1590974175;
+        bh=nmBVOGZ6DigGZrEHfDNyY0pzJCmoX4ALlVYIJmH8ruU=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=DhBv92SeT8NUFq0TfpZHoKtzpDOrYomFTV02VZQhPeTmUfo43amF0iyCBmyIZRURA
+         W2J+kffABIadckRvm8g4OasEa+ttkI5E11foTqm9V9+6pNqYHHgXVBtHZLZvDHbGst
+         0QD/BMj29EFcADgh6J7ZLNS4m3+XWbyiUSc3vmBU=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0511GFQN088753
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 31 May 2020 20:16:15 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sun, 31
+ May 2020 20:16:14 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Sun, 31 May 2020 20:16:14 -0500
+Received: from [10.250.233.85] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0511GBQt059820;
+        Sun, 31 May 2020 20:16:12 -0500
+Subject: Re: [PATCH v5 03/14] PCI: cadence: Convert all r/w accessors to
+ perform only 32-bit accesses
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200522033631.32574-1-kishon@ti.com>
+ <20200522033631.32574-4-kishon@ti.com>
+ <CAL_JsqJjXUUgTbSAi83w4Eie-sVTrkLLMGh_PRQsd8k2vuua4Q@mail.gmail.com>
+ <df29309d-8401-4040-eb1e-90bb3af93a82@ti.com>
+ <CAL_JsqLy9T8O81stSW8RHpsUXFFjon80VG9-Jgync1eVR4iTew@mail.gmail.com>
+ <b3663862-44df-867f-0824-28802909f224@ti.com>
+ <CAL_JsqJMZxOFw-kn5_9bNTPzJuwHybJAi6iQyBq=6BrKSvfTqA@mail.gmail.com>
+ <457db3ae-e68a-d2fc-ba5f-5393ad464413@ti.com>
+Message-ID: <e31f1479-ba0e-d599-4cdc-dd1395d02e6c@ti.com>
+Date:   Mon, 1 Jun 2020 06:46:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <457db3ae-e68a-d2fc-ba5f-5393ad464413@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-References: <1648887787.572041.1590964732805.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16037 YMailNodin Mozilla/5.0 (Windows NT 6.1; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+On 5/28/2020 3:36 AM, Kishon Vijay Abraham I wrote:
+> Hi Rob,
+> 
+> On 5/27/2020 10:07 PM, Rob Herring wrote:
+>> On Wed, May 27, 2020 at 4:49 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>
+>>> Hi Rob,
+>>>
+>>> On 5/26/2020 8:42 PM, Rob Herring wrote:
+>>>> On Sun, May 24, 2020 at 9:30 PM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>>>
+>>>>> Hi Rob,
+>>>>>
+>>>>> On 5/22/2020 9:24 PM, Rob Herring wrote:
+>>>>>> On Thu, May 21, 2020 at 9:37 PM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>>>>>
+>>>>>>> Certain platforms like TI's J721E using Cadence PCIe IP can perform only
+>>>>>>> 32-bit accesses for reading or writing to Cadence registers. Convert all
+>>>>>>> read and write accesses to 32-bit in Cadence PCIe driver in preparation
+>>>>>>> for adding PCIe support in TI's J721E SoC.
+>>>>>>
+>>>>>> Looking more closely I don't think cdns_pcie_ep_assert_intx is okay
+>>>>>> with this and never can be given the PCI_COMMAND and PCI_STATUS
+>>>>>> registers are in the same word (IIRC, that's the main reason 32-bit
+>>>>>> config space accesses are broken). So this isn't going to work at
+>>>>>
+>>>>> right, PCI_STATUS has write '1' to clear bits and there's a chance that it
+>>>>> could be reset while raising legacy interrupt. While this cannot be avoided for
+>>>>> TI's J721E, other platforms doesn't have to have this limitation.
+>>>>>> least for EP accesses. And maybe you need a custom .raise_irq() hook
+>>>>>> to minimize any problems (such as making the RMW atomic at least from
+>>>>>> the endpoint's perspective).
+>>>>>
+>>>>> This is to make sure EP doesn't update in-consistent state when RC is updating
+>>>>> the PCI_STATUS register? Since this involves two different systems, how do we
+>>>>> make this atomic?
+>>>>
+>>>> You can't make it atomic WRT both systems, but is there locking around
+>>>> each RMW? Specifically, are preemption and interrupts disabled to
+>>>> ensure time between a read and write are minimized? You wouldn't want
+>>>> interrupts disabled during the delay too though (i.e. around
+>>>> .raise_irq()).
+>>>
+>>> Okay, I'll add spin spin_lock_irqsave() in cdns_pcie_write_sz(). As you also
+>>> pointed below that delay for legacy interrupt is wrong and it has to be fixed
+>>> (with a later series).
+>>
+>> But you don't need a lock everywhere. You need locks in the callers
+>> (and only sometimes).
+> 
+> Okay, the locks should be added only for registers where HOST can also write to
+> the same register? Maybe only raise_irq then..
+> 
+>>
+>>> How do you want to handle cdns_pcie_ep_fn_writew() now? Because now we are
+>>> changing the default implementation to perform only 32-bit access (used for
+>>> legacy interrupt, msi-x interrupt and while writing standard headers) and it's
+>>> not okay only for legacy interrupts for platforms other than TI.
+>>
+>> Now I'm wondering how set_msi is not racy in the current code with the
+>> host setting/clearing PCI_MSI_FLAGS_ENABLE? Maybe that bit is RO from
+>> the EP side?
+> 
+> set_msi/set_msix is a one time configuration that is invoked before the host
+> establishes the link with the endpoint. I don't think we have to consider this
+> as racy.
 
-Hello
-I'm "Mrs Tasha Ibrahim" married to Mr. Ibrahim( an
+Can we try to close on this discussion please?
 
-International
-Contractor and Oil Merchant/ jointly in Exposition of
+Thanks
+Kishon
 
-Agro Equipment
-) who died in Burkina Faso attack, i am 64 years old
-
-and diagnosed
-of cancer for about 2 years ago and my husband informed
-
-me that he
-deposited the sum of (6.3Million USD Only) with a
-
-Finance house) in
-UAGADOUGOU BURKINA FASO.
-
-I want you to help me to use this money for a charity
-
-project before
-I die, for the Poor, Less-privileged and ORPHANAGES in
-your country. Please kindly respond
-
-quickly for further details. contact my email [
-
-ibrahimtasha12@gmail.com ]
-
-Yours fairly friend,
-Mrs Tasha Ibrahim
+> 
+> Thanks
+> Kishon
+> 
+>>
+>> Ultimately I think you're going to have to provide your own endpoint
+>> functions or you need accessors for specific registers like
+>> PCI_MSI_FLAGS. Then for example, you just rely on the 2 bytes before
+>> PCI_MSI_FLAGS being reserved and do a 32-bit access without a RMW.
+>> Trying to abstract this at the register read/write level is going to
+>> be fragile
+>>
+>> Rob
+>>
