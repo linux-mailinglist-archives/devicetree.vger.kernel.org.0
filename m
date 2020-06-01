@@ -2,239 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 149801EA420
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 14:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E331EA4B2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 15:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726073AbgFAMmT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 1 Jun 2020 08:42:19 -0400
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2261 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725847AbgFAMmS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jun 2020 08:42:18 -0400
-Received: from lhreml711-chm.china.huawei.com (unknown [172.18.7.106])
-        by Forcepoint Email with ESMTP id 1CCC664940B15FDD01AC;
-        Mon,  1 Jun 2020 13:42:16 +0100 (IST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- lhreml711-chm.china.huawei.com (10.201.108.62) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Mon, 1 Jun 2020 13:42:15 +0100
-Received: from lhreml710-chm.china.huawei.com ([169.254.81.184]) by
- lhreml710-chm.china.huawei.com ([169.254.81.184]) with mapi id
- 15.01.1913.007; Mon, 1 Jun 2020 13:42:15 +0100
-From:   Shameerali Kolothum Thodi <shameerali.kolothum.thodi@huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-mm@kvack.org" <linux-mm@kvack.org>
-CC:     "fenghua.yu@intel.com" <fenghua.yu@intel.com>,
-        "kevin.tian@intel.com" <kevin.tian@intel.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "hch@infradead.org" <hch@infradead.org>,
-        "zhangfei.gao@linaro.org" <zhangfei.gao@linaro.org>,
-        "felix.kuehling@amd.com" <felix.kuehling@amd.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>
-Subject: RE: [PATCH v7 21/24] iommu/arm-smmu-v3: Add stall support for
- platform devices
-Thread-Topic: [PATCH v7 21/24] iommu/arm-smmu-v3: Add stall support for
- platform devices
-Thread-Index: AQHWLgezl67to0Fq/kugWrIzT8tlbajDuzCQ
-Date:   Mon, 1 Jun 2020 12:42:15 +0000
-Message-ID: <4741b6c45d1a43b69041ecb5ce0be0d5@huawei.com>
-References: <20200519175502.2504091-1-jean-philippe@linaro.org>
- <20200519175502.2504091-22-jean-philippe@linaro.org>
-In-Reply-To: <20200519175502.2504091-22-jean-philippe@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.47.95.102]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S1728394AbgFANNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 09:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbgFANLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 09:11:41 -0400
+Received: from Galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFF8C08C5C0;
+        Mon,  1 Jun 2020 06:11:41 -0700 (PDT)
+Received: from [5.158.153.53] (helo=tip-bot2.lab.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+        (Exim 4.80)
+        (envelope-from <tip-bot2@linutronix.de>)
+        id 1jfkE4-0006yq-FJ; Mon, 01 Jun 2020 15:11:36 +0200
+Received: from [127.0.1.1] (localhost [IPv6:::1])
+        by tip-bot2.lab.linutronix.de (Postfix) with ESMTP id 0BA3F1C0244;
+        Mon,  1 Jun 2020 15:11:36 +0200 (CEST)
+Date:   Mon, 01 Jun 2020 13:11:35 -0000
+From:   "tip-bot2 for Serge Semin" <tip-bot2@linutronix.de>
+Reply-to: linux-kernel@vger.kernel.org
+To:     linux-tip-commits@vger.kernel.org
+Subject: [tip: timers/core] clocksource: mips-gic-timer: Mark GIC timer as
+ unstable if ref clock changes
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        x86 <x86@kernel.org>, LKML <linux-kernel@vger.kernel.org>
+In-Reply-To: <20200521204818.25436-9-Sergey.Semin@baikalelectronics.ru>
+References: <20200521204818.25436-9-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
+Message-ID: <159101709590.17951.10382391604771292137.tip-bot2@tip-bot2>
+X-Mailer: tip-git-log-daemon
+Robot-ID: <tip-bot2.linutronix.de>
+Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from these emails
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
+The following commit has been merged into the timers/core branch of tip:
 
-> -----Original Message-----
-> From: iommu [mailto:iommu-bounces@lists.linux-foundation.org] On Behalf Of
-> Jean-Philippe Brucker
-> Sent: 19 May 2020 18:55
-> To: iommu@lists.linux-foundation.org; devicetree@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; linux-pci@vger.kernel.org;
-> linux-mm@kvack.org
-> Cc: fenghua.yu@intel.com; kevin.tian@intel.com; jgg@ziepe.ca;
-> catalin.marinas@arm.com; robin.murphy@arm.com; hch@infradead.org;
-> zhangfei.gao@linaro.org; Jean-Philippe Brucker <jean-philippe@linaro.org>;
-> felix.kuehling@amd.com; will@kernel.org; christian.koenig@amd.com
-> Subject: [PATCH v7 21/24] iommu/arm-smmu-v3: Add stall support for platform
-> devices
-> 
-> The SMMU provides a Stall model for handling page faults in platform
-> devices. It is similar to PCI PRI, but doesn't require devices to have
-> their own translation cache. Instead, faulting transactions are parked
-> and the OS is given a chance to fix the page tables and retry the
-> transaction.
-> 
-> Enable stall for devices that support it (opt-in by firmware). When an
-> event corresponds to a translation error, call the IOMMU fault handler.
-> If the fault is recoverable, it will call us back to terminate or
-> continue the stall.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> ---
->  drivers/iommu/Kconfig       |   1 +
->  include/linux/iommu.h       |   2 +
->  drivers/iommu/arm-smmu-v3.c | 284
-> ++++++++++++++++++++++++++++++++++--
->  drivers/iommu/of_iommu.c    |   5 +-
->  4 files changed, 281 insertions(+), 11 deletions(-)
-> 
+Commit-ID:     7d7de1a65349811b24971c5e8e040e6aac192dd4
+Gitweb:        https://git.kernel.org/tip/7d7de1a65349811b24971c5e8e040e6aac192dd4
+Author:        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+AuthorDate:    Thu, 21 May 2020 23:48:17 +03:00
+Committer:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CommitterDate: Sat, 23 May 2020 00:03:16 +02:00
 
-[...]
+clocksource: mips-gic-timer: Mark GIC timer as unstable if ref clock changes
+
+Currently clocksource framework doesn't support the clocks with variable
+frequency. Since MIPS GIC timer ticks rate might be unstable on some
+platforms, we must make sure that it justifies the clocksource
+requirements. MIPS GIC timer is incremented with the CPU cluster reference
+clocks rate. So in case if CPU frequency changes, the MIPS GIC tick rate
+changes synchronously. Due to this the clocksource subsystem can't rely on
+the timer to measure system clocks anymore. This commit marks the MIPS GIC
+based clocksource as unstable if reference clock (normally it's a CPU
+reference clocks) rate changes. The clocksource will execute a watchdog
+thread, which lowers the MIPS GIC timer rating to zero and fallbacks to a
+new stable one.
+
+Note we don't need to set the CLOCK_SOURCE_MUST_VERIFY flag to the MIPS
+GIC clocksource since normally the timer is stable. The only reason why
+it gets unstable is due to the ref clock rate change, which event we
+detect here in the driver by means of the clocks event notifier.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Paul Burton <paulburton@kernel.org>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Alessandro Zummo <a.zummo@towertech.it>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: linux-rtc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Link: https://lore.kernel.org/r/20200521204818.25436-9-Sergey.Semin@baikalelectronics.ru
+---
+ drivers/clocksource/Kconfig          |  1 +
+ drivers/clocksource/mips-gic-timer.c | 19 ++++++++++++++++++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+index c824002..9141838 100644
+--- a/drivers/clocksource/Kconfig
++++ b/drivers/clocksource/Kconfig
+@@ -570,6 +570,7 @@ config CLKSRC_VERSATILE
+ config CLKSRC_MIPS_GIC
+ 	bool
+ 	depends on MIPS_GIC
++	select CLOCKSOURCE_WATCHDOG
+ 	select TIMER_OF
  
-> +static int arm_smmu_page_response(struct device *dev,
-> +				  struct iommu_fault_event *unused,
-> +				  struct iommu_page_response *resp)
-> +{
-> +	struct arm_smmu_cmdq_ent cmd = {0};
-> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
-> +	int sid = master->streams[0].id;
-> +
-> +	if (master->stall_enabled) {
-> +		cmd.opcode		= CMDQ_OP_RESUME;
-> +		cmd.resume.sid		= sid;
-> +		cmd.resume.stag		= resp->grpid;
-> +		switch (resp->code) {
-> +		case IOMMU_PAGE_RESP_INVALID:
-> +		case IOMMU_PAGE_RESP_FAILURE:
-> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_ABORT;
-> +			break;
-> +		case IOMMU_PAGE_RESP_SUCCESS:
-> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_RETRY;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		/* TODO: insert PRI response here */
-> +		return -ENODEV;
-> +	}
-> +
-> +	arm_smmu_cmdq_issue_cmd(master->smmu, &cmd);
-> +	/*
-> +	 * Don't send a SYNC, it doesn't do anything for RESUME or PRI_RESP.
-> +	 * RESUME consumption guarantees that the stalled transaction will be
-> +	 * terminated... at some point in the future. PRI_RESP is fire and
-> +	 * forget.
-> +	 */
-> +
-> +	return 0;
-> +}
-> +
->  /* Context descriptor manipulation functions */
->  static void arm_smmu_tlb_inv_asid(struct arm_smmu_device *smmu, u16
-> asid)
->  {
-> @@ -1762,8 +1846,7 @@ static int arm_smmu_write_ctx_desc(struct
-> arm_smmu_domain *smmu_domain,
->  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
->  			CTXDESC_CD_0_V;
-> 
-> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
-> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
-> +		if (smmu_domain->stall_enabled)
->  			val |= CTXDESC_CD_0_S;
->  	}
-> 
-> @@ -2171,7 +2254,7 @@ static void arm_smmu_write_strtab_ent(struct
-> arm_smmu_master *master, u32 sid,
->  			 FIELD_PREP(STRTAB_STE_1_STRW, strw));
-> 
->  		if (smmu->features & ARM_SMMU_FEAT_STALLS &&
-> -		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
-> +		    !master->stall_enabled)
->  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
-> 
->  		val |= (s1_cfg->cdcfg.cdtab_dma & STRTAB_STE_0_S1CTXPTR_MASK)
-> |
-> @@ -2248,7 +2331,6 @@ static int arm_smmu_init_l2_strtab(struct
-> arm_smmu_device *smmu, u32 sid)
->  	return 0;
->  }
-> 
-> -__maybe_unused
->  static struct arm_smmu_master *
->  arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
->  {
-> @@ -2275,23 +2357,123 @@ arm_smmu_find_master(struct
-> arm_smmu_device *smmu, u32 sid)
->  }
-> 
->  /* IRQ and event handlers */
-> +static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
-> +{
-> +	int ret;
-> +	u32 perm = 0;
-> +	struct arm_smmu_master *master;
-> +	bool ssid_valid = evt[0] & EVTQ_0_SSV;
-> +	u8 type = FIELD_GET(EVTQ_0_ID, evt[0]);
-> +	u32 sid = FIELD_GET(EVTQ_0_SID, evt[0]);
-> +	struct iommu_fault_event fault_evt = { };
-> +	struct iommu_fault *flt = &fault_evt.fault;
-> +
-> +	/* Stage-2 is always pinned at the moment */
-> +	if (evt[1] & EVTQ_1_S2)
-> +		return -EFAULT;
-> +
-> +	master = arm_smmu_find_master(smmu, sid);
-> +	if (!master)
-> +		return -EINVAL;
-> +
-> +	if (evt[1] & EVTQ_1_READ)
-> +		perm |= IOMMU_FAULT_PERM_READ;
-> +	else
-> +		perm |= IOMMU_FAULT_PERM_WRITE;
-> +
-> +	if (evt[1] & EVTQ_1_EXEC)
-> +		perm |= IOMMU_FAULT_PERM_EXEC;
-> +
-> +	if (evt[1] & EVTQ_1_PRIV)
-> +		perm |= IOMMU_FAULT_PERM_PRIV;
-> +
-> +	if (evt[1] & EVTQ_1_STALL) {
-> +		flt->type = IOMMU_FAULT_PAGE_REQ;
-> +		flt->prm = (struct iommu_fault_page_request) {
-> +			.flags = IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE,
-> +			.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]),
-> +			.grpid = FIELD_GET(EVTQ_1_STAG, evt[1]),
-> +			.perm = perm,
-> +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
-> +		};
-> +
-
-> +		if (ssid_valid)
-> +			flt->prm.flags |= IOMMU_FAULT_PAGE_REQUEST_PASID_VALID;
-
-Do we need to set this for STALL mode only support? I had an issue with this
-being set on a vSVA POC based on our D06 zip device(which is a "fake " pci dev
-that supports STALL mode but no PRI). The issue is, CMDQ_OP_RESUME doesn't
-have any ssid or SSV params and works on sid and stag only. Hence, it is difficult for
-Qemu SMMUv3 to populate this fields while preparing a page response. I can see
-that this flag is being checked in iopf_handle_single() (patch 04/24) as well. For POC,
-I used a temp fix[1] to work around this. Please let me know your thoughts.
-
-Thanks,
-Shameer
-
-1. https://github.com/hisilicon/kernel-dev/commit/99ff96146e924055f38d97a5897e4becfa378d15
-
+ config CLKSRC_TANGO_XTAL
+diff --git a/drivers/clocksource/mips-gic-timer.c b/drivers/clocksource/mips-gic-timer.c
+index ef12c12..be4175f 100644
+--- a/drivers/clocksource/mips-gic-timer.c
++++ b/drivers/clocksource/mips-gic-timer.c
+@@ -24,6 +24,9 @@
+ static DEFINE_PER_CPU(struct clock_event_device, gic_clockevent_device);
+ static int gic_timer_irq;
+ static unsigned int gic_frequency;
++static bool __read_mostly gic_clock_unstable;
++
++static void gic_clocksource_unstable(char *reason);
+ 
+ static u64 notrace gic_read_count_2x32(void)
+ {
+@@ -125,8 +128,10 @@ static int gic_clk_notifier(struct notifier_block *nb, unsigned long action,
+ {
+ 	struct clk_notifier_data *cnd = data;
+ 
+-	if (action == POST_RATE_CHANGE)
++	if (action == POST_RATE_CHANGE) {
++		gic_clocksource_unstable("ref clock rate change");
+ 		on_each_cpu(gic_update_frequency, (void *)cnd->new_rate, 1);
++	}
+ 
+ 	return NOTIFY_OK;
+ }
+@@ -172,6 +177,18 @@ static struct clocksource gic_clocksource = {
+ 	.vdso_clock_mode	= VDSO_CLOCKMODE_GIC,
+ };
+ 
++static void gic_clocksource_unstable(char *reason)
++{
++	if (gic_clock_unstable)
++		return;
++
++	gic_clock_unstable = true;
++
++	pr_info("GIC timer is unstable due to %s\n", reason);
++
++	clocksource_mark_unstable(&gic_clocksource);
++}
++
+ static int __init __gic_clocksource_init(void)
+ {
+ 	unsigned int count_width;
