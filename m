@@ -2,108 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BBCA1EA1FC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 12:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4EE31EA23A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 12:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725972AbgFAKhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 06:37:48 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35896 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725925AbgFAKhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 06:37:47 -0400
-X-UUID: 394d6998af134c8690c692338d0e4123-20200601
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1ubZI9bQ8AA1BT1/8Z5X+IHX0+39sOSJHMhP1+hac8k=;
-        b=N/SzcJgl397H4uuPS8/+6ws0a1tn3EbRswPKG1jFFR9xj6VlSf44jI6tsyRmMiaKkQdjK0op73bx2IqI1IVXOY2yxJkv0f2pvMvC/jGNt2zGGeWnIfZonzu4XeLN26fKCs9yWfF9N3iw27ZFmpKL8PWjfZIP5zxmAoHVAq5q1qE=;
-X-UUID: 394d6998af134c8690c692338d0e4123-20200601
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <jerry-ch.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 966313528; Mon, 01 Jun 2020 18:37:44 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Jun 2020 18:37:42 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Jun 2020 18:37:41 +0800
-Message-ID: <1591007863.15207.1.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V4 4/4] platform: mtk-isp: Add Mediatek FD driver
-From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Pi-Hsun Shih <pihsun@chromium.org>, <yuzhao@chromium.org>,
-        <zwisler@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg 
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <Sean.Cheng@mediatek.com>, "Sj Huang" <sj.huang@mediatek.com>,
-        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
-        <christie.yu@mediatek.com>,
-        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
-        <frederic.chen@mediatek.com>,
-        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
-        <jungo.lin@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Date:   Mon, 1 Jun 2020 18:37:43 +0800
-In-Reply-To: <CAAFQd5BBfapVv_3cwGte=p=6G8QXZQP=-ciZ8NBZZeSBGrHmCA@mail.gmail.com>
-References: <20191204124732.10932-1-Jerry-Ch.chen@mediatek.com>
-         <20191204124732.10932-5-Jerry-Ch.chen@mediatek.com>
-         <20200521182825.GA249683@chromium.org>
-         <1590156658.27807.84.camel@mtksdccf07>
-         <CAAFQd5DodDfWsHkhQZP-M70k9_2sUwwb4zHtWfTx5EDyEKkwow@mail.gmail.com>
-         <1590755163.23156.24.camel@mtksdccf07>
-         <CAAFQd5BBfapVv_3cwGte=p=6G8QXZQP=-ciZ8NBZZeSBGrHmCA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1727875AbgFAKsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 06:48:09 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:45672 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725886AbgFAKsJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jun 2020 06:48:09 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5EA832006EC;
+        Mon,  1 Jun 2020 12:48:06 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 612AC2006E5;
+        Mon,  1 Jun 2020 12:48:02 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4198340280;
+        Mon,  1 Jun 2020 18:47:57 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, linux@rempel-privat.de, peng.fan@nxp.com,
+        jaswinder.singh@linaro.org, hongxing.zhu@nxp.com,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] dt-bindings: mailbox: Convert imx mu to json-schema
+Date:   Mon,  1 Jun 2020 18:37:44 +0800
+Message-Id: <1591007864-30267-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTA1LTI5IGF0IDE0OjU5ICswMjAwLCBUb21hc3ogRmlnYSB3cm90ZToNCj4g
-T24gRnJpLCBNYXkgMjksIDIwMjAgYXQgMjoyNiBQTSBKZXJyeS1jaCBDaGVuDQo+IDxKZXJyeS1j
-aC5DaGVuQG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBIaSBUb21hc3osDQo+ID4NCj4g
-PiBJIEFwcHJlY2lhdGUgeW91ciByZXZpZXcgY29tbWVudHMsIGhlcmUncyB0aGUgcmVwbHkuDQo+
-ID4NCj4gPiBPbiBNb24sIDIwMjAtMDUtMjUgYXQgMTQ6MjQgKzAyMDAsIFRvbWFzeiBGaWdhIHdy
-b3RlOg0KPiA+ID4gcg0KPiA+ID4NCj4gPiA+IE9uIEZyaSwgTWF5IDIyLCAyMDIwIGF0IDQ6MTEg
-UE0gSmVycnktY2ggQ2hlbg0KPiA+ID4gPEplcnJ5LWNoLkNoZW5AbWVkaWF0ZWsuY29tPiB3cm90
-ZToNCj4gPiA+ID4NCj4gPiA+ID4gSGkgVG9tYXN6LA0KPiA+ID4gPg0KPiA+ID4gPiBPbiBUaHUs
-IDIwMjAtMDUtMjEgYXQgMTg6MjggKzAwMDAsIFRvbWFzeiBGaWdhIHdyb3RlOg0KPiA+ID4gPiA+
-IEhpIEplcnJ5LA0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gT24gV2VkLCBEZWMgMDQsIDIwMTkgYXQg
-MDg6NDc6MzJQTSArMDgwMCwgSmVycnktY2ggQ2hlbiB3cm90ZToNCj4gW3NuaXBdDQo+ID4gPiBJ
-c24ndCBzdGlsbCBhIG5lZWQgdG8gY2xhbXAoKSB3aWR0aCBhbmQgaGVpZ2h0IHRvIG1pbi9tYXgs
-IHRob3VnaD8NCj4gPiBZZXMsIEknbGwgYWRkIHRoZW0gYmFjay4NCj4gPg0KPiA+IFRoaXMgZnVu
-Y3Rpb24gd2lsbCBiZSByZWZpbmVkIGFzIDoNCj4gPg0KPiA+IHN0YXRpYyB2b2lkIG10a19mZF9m
-aWxsX3BpeGZtdF9tcChzdHJ1Y3QgdjRsMl9waXhfZm9ybWF0X21wbGFuZSAqZGZtdCwNCj4gPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTMyIHBpeGZtdCkNCj4gPiB7DQo+ID4g
-ICAgICAgICB2NGwyX2ZpbGxfcGl4Zm10X21wKGRmbXQsIHBpeGZtdCwgZGZtdC0+d2lkdGgsIGRm
-bXQtPmhlaWdodCk7DQo+ID4NCj4gPiAgICAgICAgIGRmbXQtPmZpZWxkID0gVjRMMl9GSUVMRF9O
-T05FOw0KPiA+ICAgICAgICAgZGZtdC0+Y29sb3JzcGFjZSA9IFY0TDJfQ09MT1JTUEFDRV9CVDIw
-MjA7DQo+ID4gICAgICAgICBkZm10LT55Y2Jjcl9lbmMgPSBWNEwyX1lDQkNSX0VOQ19ERUZBVUxU
-Ow0KPiA+ICAgICAgICAgZGZtdC0+cXVhbnRpemF0aW9uID0gVjRMMl9RVUFOVElaQVRJT05fREVG
-QVVMVDsNCj4gPiAgICAgICAgIGRmbXQtPnhmZXJfZnVuYyA9IFY0TDJfTUFQX1hGRVJfRlVOQ19E
-RUZBVUxUKGRmbXQtPmNvbG9yc3BhY2UpOw0KPiA+DQo+ID4gICAgICAgICAvKiBLZWVwIHVzZXIg
-c2V0dGluZyBhcyBwb3NzaWJsZSAqLw0KPiA+ICAgICAgICAgZGZtdC0+d2lkdGggPSBjbGFtcChk
-Zm10LT53aWR0aCwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTVRLX0ZEX09VVFBV
-VF9NSU5fV0lEVEgsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1US19GRF9PVVRQ
-VVRfTUFYX1dJRFRIKTsNCj4gPiAgICAgICAgIGRmbXQtPmhlaWdodCA9IGNsYW1wKGRmbXQtPmhl
-aWdodCwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1US19GRF9PVVRQVVRfTUlO
-X0hFSUdIVCwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1US19GRF9PVVRQVVRf
-TUFYX0hFSUdIVCk7DQo+IA0KPiBOb3RlIHRoYXQgdGhpcyB3b3VsZCBjYXVzZSB0aGUgb3RoZXIg
-ZmllbGRzIG9mIGRmbXQgdG8gYmUgaW5jb25zaXN0ZW50DQo+IHdpdGggd2lkdGggYW5kIGhlaWdo
-dC4gVGhlIGNvcnJlY3Qgd2F5IHRvIGRvIHRoaXMgd291bGQgYmUgdG8gZmlyc3QNCj4gY2xhbXAg
-YW5kIHRoZW4gY2FsbCB2NGwyX2ZpbGxfcGl4Zm10X21wKCkuDQo+IA0KT2ssIEkgd2lsbCBmaXgg
-aXQuDQoNClRoYW5rcyBhbmQgQmVzdCByZWdhcmRzLA0KSmVycnkNCj4gQmVzdCByZWdhcmRzLA0K
-PiBUb21hc3oNCg0K
+Convert the i.MX MU binding to DT schema format using json-schema
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ .../devicetree/bindings/mailbox/fsl,mu.txt         | 58 --------------
+ .../devicetree/bindings/mailbox/fsl,mu.yaml        | 89 ++++++++++++++++++++++
+ 2 files changed, 89 insertions(+), 58 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/fsl,mu.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+
+diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt b/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
+deleted file mode 100644
+index 26b7a88..0000000
+--- a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
++++ /dev/null
+@@ -1,58 +0,0 @@
+-NXP i.MX Messaging Unit (MU)
+---------------------------------------------------------------------
+-
+-The Messaging Unit module enables two processors within the SoC to
+-communicate and coordinate by passing messages (e.g. data, status
+-and control) through the MU interface. The MU also provides the ability
+-for one processor to signal the other processor using interrupts.
+-
+-Because the MU manages the messaging between processors, the MU uses
+-different clocks (from each side of the different peripheral buses).
+-Therefore, the MU must synchronize the accesses from one side to the
+-other. The MU accomplishes synchronization using two sets of matching
+-registers (Processor A-facing, Processor B-facing).
+-
+-Messaging Unit Device Node:
+-=============================
+-
+-Required properties:
+--------------------
+-- compatible :	should be "fsl,<chip>-mu", the supported chips include
+-		imx6sx, imx7s, imx8qxp, imx8qm.
+-		The "fsl,imx6sx-mu" compatible is seen as generic and should
+-		be included together with SoC specific compatible.
+-		There is a version 1.0 MU on imx7ulp, use "fsl,imx7ulp-mu"
+-		compatible to support it.
+-		To communicate with i.MX8 SCU, "fsl,imx8-mu-scu" could be
+-		used for fast IPC
+-- reg :		Should contain the registers location and length
+-- interrupts :	Interrupt number. The interrupt specifier format depends
+-		on the interrupt controller parent.
+-- #mbox-cells:  Must be 2.
+-			  <&phandle type channel>
+-			    phandle   : Label name of controller
+-			    type      : Channel type
+-			    channel   : Channel number
+-
+-		This MU support 4 type of unidirectional channels, each type
+-		has 4 channels. A total of 16 channels. Following types are
+-		supported:
+-		0 - TX channel with 32bit transmit register and IRQ transmit
+-		acknowledgment support.
+-		1 - RX channel with 32bit receive register and IRQ support
+-		2 - TX doorbell channel. Without own register and no ACK support.
+-		3 - RX doorbell channel.
+-
+-Optional properties:
+--------------------
+-- clocks :	phandle to the input clock.
+-- fsl,mu-side-b : Should be set for side B MU.
+-
+-Examples:
+---------
+-lsio_mu0: mailbox@5d1b0000 {
+-	compatible = "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+-	reg = <0x0 0x5d1b0000 0x0 0x10000>;
+-	interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+-	#mbox-cells = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+new file mode 100644
+index 0000000..93db996
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/fsl,mu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX Messaging Unit (MU)
++
++maintainers:
++  - Dong Aisheng <aisheng.dong@nxp.com>
++
++description: |
++  The Messaging Unit module enables two processors within the SoC to
++  communicate and coordinate by passing messages (e.g. data, status
++  and control) through the MU interface. The MU also provides the ability
++  for one processor to signal the other processor using interrupts.
++
++  Because the MU manages the messaging between processors, the MU uses
++  different clocks (from each side of the different peripheral buses).
++  Therefore, the MU must synchronize the accesses from one side to the
++  other. The MU accomplishes synchronization using two sets of matching
++  registers (Processor A-facing, Processor B-facing).
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,imx6sx-mu
++      - const: fsl,imx7ulp-mu
++      - const: fsl,imx8-mu-scu
++      - items:
++          - enum:
++            - fsl,imx7s-mu
++            - fsl,imx8mq-mu
++            - fsl,imx8mm-mu
++            - fsl,imx8mn-mu
++            - fsl,imx8mp-mu
++            - fsl,imx8qxp-mu
++          - const: fsl,imx6sx-mu
++      - description: To communicate with i.MX8 SCU with fast IPC
++        items:
++          - const: fsl,imx8qxp-mu
++          - const: fsl,imx8-mu-scu
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#mbox-cells":
++    description: |
++      <&phandle type channel>
++      phandle   : Label name of controller
++      type      : Channel type
++      channel   : Channel number
++
++      This MU support 4 type of unidirectional channels, each type
++      has 4 channels. A total of 16 channels. Following types are
++      supported:
++      0 - TX channel with 32bit transmit register and IRQ transmit
++          acknowledgment support.
++      1 - RX channel with 32bit receive register and IRQ support
++      2 - TX doorbell channel. Without own register and no ACK support.
++      3 - RX doorbell channel.
++    const: 2
++
++  clocks:
++    maxItems: 1
++
++  fsl,mu-side-b:
++    description: boolean, if present, means it is for side B MU.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#mbox-cells"
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    mailbox@5d1b0000 {
++        compatible = "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
++        reg = <0x0 0x5d1b0000 0x0 0x10000>;
++        interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
++        #mbox-cells = <2>;
++    };
+-- 
+2.7.4
 
