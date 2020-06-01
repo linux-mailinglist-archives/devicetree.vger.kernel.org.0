@@ -2,98 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F65B1E9DFF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 08:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 159881E9EA0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 08:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726943AbgFAGTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 02:19:33 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:15498 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725778AbgFAGTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 02:19:32 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ed49d950000>; Sun, 31 May 2020 23:17:57 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Sun, 31 May 2020 23:19:32 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Sun, 31 May 2020 23:19:32 -0700
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 1 Jun
- 2020 06:19:31 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Mon, 1 Jun 2020 06:19:31 +0000
-Received: from sandipan-pc.nvidia.com (Not Verified[10.24.42.163]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5ed49def0000>; Sun, 31 May 2020 23:19:30 -0700
-From:   Sandipan Patra <spatra@nvidia.com>
-To:     <treding@nvidia.com>, <jonathanh@nvidia.com>, <linux@roeck-us.net>,
-        <kamil@wypas.org>, <jdelvare@suse.com>, <robh+dt@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>
-CC:     <bbasu@nvidia.com>, <bbiswas@nvidia.com>, <kyarlagadda@nvidia.com>,
-        <linux-pwm@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sandipan Patra <spatra@nvidia.com>
-Subject: [PATCH V2 2/2] arm64: tegra: Add pwm-fan profile settings
-Date:   Mon, 1 Jun 2020 11:49:14 +0530
-Message-ID: <1590992354-12623-2-git-send-email-spatra@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590992354-12623-1-git-send-email-spatra@nvidia.com>
-References: <1590992354-12623-1-git-send-email-spatra@nvidia.com>
-X-NVConfidentiality: public
+        id S1727795AbgFAGwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 02:52:50 -0400
+Received: from hs-162.6.buanalintas.co.id ([223.165.6.162]:56518 "EHLO
+        mx.bestprofit-futures.co.id" rhost-flags-OK-FAIL-OK-OK)
+        by vger.kernel.org with ESMTP id S1725831AbgFAGwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 02:52:50 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mx.bestprofit-futures.co.id (Postfix) with ESMTP id 388445257F6;
+        Mon,  1 Jun 2020 07:55:09 +0700 (WIB)
+Received: from mx.bestprofit-futures.co.id ([127.0.0.1])
+        by localhost (mx.bestprofit-futures.co.id [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id BmvMSJptgWfJ; Mon,  1 Jun 2020 07:55:08 +0700 (WIB)
+Received: from localhost (localhost [127.0.0.1])
+        by mx.bestprofit-futures.co.id (Postfix) with ESMTP id C4C1952585E;
+        Mon,  1 Jun 2020 07:55:08 +0700 (WIB)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mx.bestprofit-futures.co.id C4C1952585E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bestprofit-futures.co.id; s=4D3D1390-5211-11EA-8C0C-8C41A122B001;
+        t=1590972908; bh=zLTonXbKn6LYrnOZVETw9C2bepTvRzI70GQOlIiRCC0=;
+        h=MIME-Version:To:From:Date:Message-Id;
+        b=vSPr9RzlJw3ZUgIpQaPv+UMjxn1nJY9/WaCQpvk5aYIrj4hdNIJ10UJdgPdJvrETe
+         G0H9WWhnQCg3aZ2m4Fdgr2zJTerB8IRBoH9tHjpulgKToctrfqNwczjLNyE9i62lca
+         c6bG8iNO2eww45vAmDKt3xQXEfXko50JXWJSwNW7Oyy1lr38ASqDJ23CVbLIQW3sbm
+         OhVUtMHJpDFz2gVJ6M3BCAoNBd9ZUrwpBqjyJPHW9SI/K7usNe3eZIK8QjNkYwjNUW
+         dKBNjJBzOh/duJdjxLoBWfGuNSHZvJ0IP4Snytfb21dZeSxgpn3D1N4XtIZodMMfh9
+         rQUlIArzXbrCw==
+X-Virus-Scanned: amavisd-new at mx.bestprofit-futures.co.id
+Received: from mx.bestprofit-futures.co.id ([127.0.0.1])
+        by localhost (mx.bestprofit-futures.co.id [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id LIRW7yoeStCb; Mon,  1 Jun 2020 07:55:08 +0700 (WIB)
+Received: from [10.81.249.6] (unknown [105.8.6.41])
+        by mx.bestprofit-futures.co.id (Postfix) with ESMTPSA id 43E345257F6;
+        Mon,  1 Jun 2020 07:55:00 +0700 (WIB)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1590992277; bh=XQiGWOGFzg3l+QIfS45QIJAE9J403LC3AAuTqpFbPj4=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=E2H7DwhZ8czbHI8kpSXdx31IRjXsW6J9CtPBiwNCeT65M5QkeJeL9q6ge6Z5olR0W
-         VkOvlOsgrUn7FjD5pvddKUxPvvI8xTfLS+W71crSKiJwrnE6tvz61sH+x43srNooBe
-         qnq2S+yMwjUfoHpQXcOMBetK7AHWaeZdDjps3Iy4iHrh0Zvz0eLDzfyNVN/RUrO37n
-         ZcgeumjtRq8mfhoc9C/lWX5314jvioGVI/2ouX1w/YVTVyJesKO2PniWNi80e0YC7v
-         6ECyRsaL86cRT6UoKELdn+CUOZlIr0MNdj9oqDcKomqold55vhRo7zwmkZ6js9IUj+
-         kyPgFpqoiA3Gg==
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: =?utf-8?q?Wohlt=C3=A4tigkeitsspende_von_2=2E000=2E000_Millionen_Euro?=
+To:     Recipients <yoshi@bestprofit-futures.co.id>
+From:   ''Tayeb Souami'' <yoshi@bestprofit-futures.co.id>
+Date:   Mon, 01 Jun 2020 02:54:53 +0200
+Reply-To: Tayebsouam.spende@gmail.com
+Message-Id: <20200601005501.43E345257F6@mx.bestprofit-futures.co.id>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for profiles in device tree to allow
-different fan settings for trip point temp/hyst/pwm.
+Lieber Freund,
 
-Signed-off-by: Sandipan Patra <spatra@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+Ich bin Herr Tayeb Souami, New Jersey, Vereinigte Staaten von Amerika, der =
+Mega-Gewinner von $ 315million In Mega Millions Jackpot, spende ich an 5 zu=
+f=C3=A4llige Personen, wenn Sie diese E-Mail erhalten, dann wurde Ihre E-Ma=
+il nach einem Spinball ausgew=C3=A4hlt.Ich habe den gr=C3=B6=C3=9Ften Teil =
+meines Verm=C3=B6gens auf eine Reihe von Wohlt=C3=A4tigkeitsorganisationen =
+und Organisationen verteilt.Ich habe mich freiwillig dazu entschieden, die =
+Summe von =E2=82=AC 2.000.000,00 an Sie als eine der ausgew=C3=A4hlten 5 zu=
+ spenden, um meine Gewinne zu =C3=BCberpr=C3=BCfen, sehen Sie bitte meine Y=
+ou Tube Seite unten.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index e15d1ea..ff2b980 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -219,10 +219,19 @@
- 
- 	fan: fan {
- 		compatible = "pwm-fan";
--		pwms = <&pwm4 0 45334>;
--
--		cooling-levels = <0 64 128 255>;
- 		#cooling-cells = <2>;
-+		pwms = <&pwm4 0 45334>;
-+		profiles {
-+			default = "quiet";
-+			quiet {
-+				state_cap = <4>;
-+				cooling-levels = <0 77 120 160 255 255 255 255 255 255>;
-+			};
-+			cool {
-+				state_cap = <4>;
-+				cooling-levels = <0 77 120 160 255 255 255 255 255 255>;
-+			};
-+		};
- 	};
- 
- 	gpio-keys {
--- 
-2.7.4
+UHR MICH HIER: https://www.youtube.com/watch?v=3DZ6ui8ZDQ6Ks
 
+
+Das ist dein Spendencode: [TS530342018]
+
+
+Antworten Sie mit dem SPENDE-CODE an diese
+
+ E-Mail:Tayebsouam.spende@gmail.com
+
+Ich hoffe, Sie und Ihre Familie gl=C3=BCcklich zu machen.
+
+Gr=C3=BC=C3=9Fe
+Herr Tayeb Souami
