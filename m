@@ -2,253 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B80881E9FE7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B7C1E9FCF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 10:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728216AbgFAIRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 04:17:14 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:55116 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726056AbgFAIRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jun 2020 04:17:12 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AC1801A0675;
-        Mon,  1 Jun 2020 10:17:09 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DFAD81A0695;
-        Mon,  1 Jun 2020 10:17:03 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BB747402A7;
-        Mon,  1 Jun 2020 16:16:56 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, ulf.hansson@linaro.org,
-        sboyd@kernel.org, krzk@kernel.org, p.zabel@pengutronix.de,
-        andrew.smirnov@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 2/2] dt-bindings: power: Convert imx gpcv2 to json-schema
-Date:   Mon,  1 Jun 2020 16:06:43 +0800
-Message-Id: <1590998803-29191-2-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1590998803-29191-1-git-send-email-Anson.Huang@nxp.com>
-References: <1590998803-29191-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726322AbgFAIJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 04:09:03 -0400
+Received: from mail-am6eur05on2054.outbound.protection.outlook.com ([40.107.22.54]:45590
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726056AbgFAIJC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jun 2020 04:09:02 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YY1/R9SyFN0ogSIZ1DagZ9bhbohyw1AoeZ53n3S9JS8XlB2tt6NbJnpdKYzUD0sIhJB9E3EIyDsOLbL+2c9P2BY0ZjZCAhJBlIBs+5A2GFvE4WE1CDKf94UJ+AgaPJVkK5S3JBdfUl5ZUETyD92fFp7wbwkGRfUdJ0Bz0nt5Ml1g8G8pzs6M6FjKpFpwdW2Lh8x5muZFhl5QG9XxCzZWedt6nub6W5B+ZvBh6P7OLA+3ENSZyA/LnDgF1wxjWNd4/tLuknnY/vxNFocifImIfv1cTPBUFbXWlxhTC/+AdJsup42wq/BE3hbEq3uf247pi14fsZbbdMfPKuBID5QbAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yLH+A42FS0OPEIPuU6wp0aERKfq2jRKIs7Fn9tBTzrU=;
+ b=L28CkOsY2RWzlFlJpOJHQpeJfwKZ1980mMey0T1qBW3u8liasY5TJv82YKEwERqgXRSLF7TE1BkMGRH+AgE5LhBvujbP/nPSZTaTl2I2qPDuITniSrKmWD+G50OpRaZoNSWM/rqOsI/aRS8zY7w6X2VQkx6HS4rC+qfcYjp57UH5Uviya3r5cRCSPlwJXGDUubC9c9eSA3U/BR655r+bHNCHzjpECrs7TpBRzpx92SOERXZE7QjsiVDB6BugZkDmYlbX1A9yjWDo1FdBGYA2nfYUJQrhC4aSsXMM0mKDtELwP9Cp0MYsMB0BiueyZqCFkALp57nhDi6LQaOQVOWI1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yLH+A42FS0OPEIPuU6wp0aERKfq2jRKIs7Fn9tBTzrU=;
+ b=csXAdiS8OzftaJq79YRVOtQUouZOO9vyQ1JmXmKgE2S3TsZSjYTKRC7R07NUDPbYEEL5AuMjJS9bMqlOd1LvWSbkw6RPENaqWWoBwN87/LljdsnsgJ/xTIX6VLkepZh6Tm4WpQNKAXnnVLnMHdr08XjDg5ejtf1xNTa5Lc5n/hM=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB6PR0402MB2840.eurprd04.prod.outlook.com (2603:10a6:4:97::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.21; Mon, 1 Jun
+ 2020 08:08:57 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d17b:d767:19c3:b871]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d17b:d767:19c3:b871%6]) with mapi id 15.20.3045.022; Mon, 1 Jun 2020
+ 08:08:57 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Aisheng Dong <aisheng.dong@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linux@rempel-privat.de" <linux@rempel-privat.de>,
+        "jaswinder.singh@linaro.org" <jaswinder.singh@linaro.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH V2 2/3] arm64: dts: imx8m: add mu node
+Thread-Topic: [PATCH V2 2/3] arm64: dts: imx8m: add mu node
+Thread-Index: AQHWN8hFGz5776OGQUKrXwfiifS9rqjDYg0AgAAGECA=
+Date:   Mon, 1 Jun 2020 08:08:57 +0000
+Message-ID: <DB6PR0402MB27602E846BCFAA5A427B249E888A0@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <1590982999-7149-1-git-send-email-peng.fan@nxp.com>
+ <1590982999-7149-3-git-send-email-peng.fan@nxp.com>
+ <AM6PR04MB496620ABEA09A0571B42A9B4808A0@AM6PR04MB4966.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB496620ABEA09A0571B42A9B4808A0@AM6PR04MB4966.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [92.121.68.129]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 6d2fddf7-d0e1-45b2-3039-08d80603089a
+x-ms-traffictypediagnostic: DB6PR0402MB2840:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR0402MB2840AACE996748A08463EB0C888A0@DB6PR0402MB2840.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:983;
+x-forefront-prvs: 0421BF7135
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: xNslZA+mAtqxxriXl+yRR5NK6QVDPRLt91sx6QAkTAAxLyqPGtVMJ4z8eEN0bcTRcLPiOkErzJ/5dd2l/vY6rvIiXY717+hn57OX5r1hiJO60cziOij6aW9FvOjEBSk5KNRm4lsbq3+eJjFE5kieE3VLYpHhDv4dzuQ+vKb8sx4cMh9zYrgG+mUEDcA1EAJmh+xj4Gm0r9vjkf2abRMvAEmtbjFPo3+6N0SS4QjVYjcja8uQfE6f32LujynROepwUsY48pDzkVv8c3rUojUFQikfTitOxwlcbJxePwHc7AQloWwpCKVswgAx2xk+pWjZXsGyATES7ZUJo3pXQZ6qQ23SVw+KkLBzZTG+PBUALqCRgg+lP5RIbZH2TZ936Q6LxtqN+55xNSsI3qIn6qbo5FbFmikQ8oaqqeQVpr63v3rmndDSQ2tYOg8dE5Jj8sCf99DGCVz6klxPaGhxbGeTKg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(346002)(396003)(39860400002)(376002)(136003)(366004)(76116006)(66476007)(64756008)(66946007)(66556008)(186003)(110136005)(2906002)(7416002)(66446008)(71200400001)(26005)(54906003)(5660300002)(6506007)(7696005)(8676002)(316002)(44832011)(8936002)(52536014)(9686003)(55016002)(33656002)(83380400001)(4326008)(478600001)(966005)(86362001)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: /CZRTp6iLhNuj5J7LrZVdPjLD9TCuXy5xlB0Zi/OqWQRr0DDhAcsHvhit/4yNt4ItOvzgPrcaNBhuaQsrDjLnr1S8z8RQWTxI7nOLY4nrJckzuulh4VswmYqVb5KfoDUN4n/NjLAx8GNMAD7xShSigPlYAXlZqgvK5BtYF+8CsAua9I0uORccRtRKrW6FAnKH2e+cUjEaC9BxVDhg28w30Bz00Sp+BUkPqfO2+N/Bzxz+Ciwmxw3hEnXJ14+VCJJvL/WUSzVXMHG1205adYr+ZxVxz5+bihQyl7X5RDzHC858d2PipryrwZXHRfVPv9+ruAw2tzsRYYC6qW5ugbSjsxq/vosV5tKgv4H9iKrUQdpL2U2NpL8XIh7BiQ07KCmRGZRMAq4swRknP2l/QrXam8fTcYdmpmAD8Iu/AHYo0acBUNeumYroviPM4J2dw1Uz+2LVVc8M/hOl16duFg98ZN2ZHuQUpPUsZ3Gdi7sWjWtNgEDcMbWEWjWzqXFvUyd
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d2fddf7-d0e1-45b2-3039-08d80603089a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2020 08:08:57.0736
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: u0wEjGKEzZ6HRt+C47krEvHRmLVFetfKeltBML3Dtr6Ie4DECNiTs4oOlqPFLO3/K2D8O3g+Jd4tmCJvnPOiPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0402MB2840
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX GPCv2 binding to DT schema format using json-schema
-
-Example is updated based on latest DT file and consumer's example is
-removed since it is NOT that useful.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- .../devicetree/bindings/power/fsl,imx-gpcv2.txt    |  77 ---------------
- .../devicetree/bindings/power/fsl,imx-gpcv2.yaml   | 108 +++++++++++++++++++++
- 2 files changed, 108 insertions(+), 77 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
- create mode 100644 Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-
-diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
-deleted file mode 100644
-index 6164920..0000000
---- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
-+++ /dev/null
-@@ -1,77 +0,0 @@
--Freescale i.MX General Power Controller v2
--==========================================
--
--The i.MX7S/D General Power Control (GPC) block contains Power Gating
--Control (PGC) for various power domains.
--
--Required properties:
--
--- compatible: Should be one of:
--	- "fsl,imx7d-gpc"
--	- "fsl,imx8mq-gpc"
--
--- reg: should be register base and length as documented in the
--  datasheet
--
--- interrupts: Should contain GPC interrupt request 1
--
--Power domains contained within GPC node are generic power domain
--providers, documented in
--Documentation/devicetree/bindings/power/power-domain.yaml, which are
--described as subnodes of the power gating controller 'pgc' node,
--which, in turn, is expected to contain the following:
--
--Required properties:
--
--- reg: Power domain index. Valid values are defined in
--  include/dt-bindings/power/imx7-power.h for fsl,imx7d-gpc and
--  include/dt-bindings/power/imx8m-power.h for fsl,imx8mq-gpc
--
--- #power-domain-cells: Should be 0
--
--Optional properties:
--
--- power-supply: Power supply used to power the domain
--- clocks: a number of phandles to clocks that need to be enabled during
--  domain power-up sequencing to ensure reset propagation into devices
--  located inside this power domain
--
--Example:
--
--	gpc: gpc@303a0000 {
--		compatible = "fsl,imx7d-gpc";
--		reg = <0x303a0000 0x1000>;
--		interrupt-controller;
--		interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
--		#interrupt-cells = <3>;
--		interrupt-parent = <&intc>;
--
--		pgc {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			pgc_pcie_phy: power-domain@1 {
--				#power-domain-cells = <0>;
--
--				reg = <1>;
--				power-supply = <&reg_1p0d>;
--			};
--		};
--	};
--
--
--Specifying power domain for IP modules
--======================================
--
--IP cores belonging to a power domain should contain a 'power-domains'
--property that is a phandle for PGC node representing the domain.
--
--Example of a device that is part of the PCIE_PHY power domain:
--
--	pcie: pcie@33800000 {
--	      reg = <0x33800000 0x4000>,
--	            <0x4ff00000 0x80000>;
--		/* ... */
--		power-domains = <&pgc_pcie_phy>;
--		/* ... */
--	};
-diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-new file mode 100644
-index 0000000..bde09a0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/fsl,imx-gpcv2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX General Power Controller v2
-+
-+maintainers:
-+  - Andrey Smirnov <andrew.smirnov@gmail.com>
-+
-+description: |
-+  The i.MX7S/D General Power Control (GPC) block contains Power Gating
-+  Control (PGC) for various power domains.
-+
-+  Power domains contained within GPC node are generic power domain
-+  providers, documented in
-+  Documentation/devicetree/bindings/power/power-domain.yaml, which are
-+  described as subnodes of the power gating controller 'pgc' node.
-+
-+  IP cores belonging to a power domain should contain a 'power-domains'
-+  property that is a phandle for PGC node representing the domain.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx7d-gpc
-+      - fsl,imx8mq-gpc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  pgc:
-+    type: object
-+    description: list of power domains provided by this controller.
-+
-+    patternProperties:
-+      "power-domain@[0-9]$":
-+        type: object
-+        properties:
-+
-+          '#power-domain-cells':
-+            const: 0
-+
-+          reg:
-+            description: |
-+              Power domain index. Valid values are defined in
-+              include/dt-bindings/power/imx7-power.h for fsl,imx7d-gpc and
-+              include/dt-bindings/power/imx8m-power.h for fsl,imx8mq-gpc
-+            maxItems: 1
-+
-+          clocks:
-+            description: |
-+              A number of phandles to clocks that need to be enabled during domain
-+              power-up sequencing to ensure reset propagation into devices located
-+              inside this power domain.
-+            minItems: 1
-+            maxItems: 5
-+
-+          power-supply: true
-+
-+        required:
-+          - '#power-domain-cells'
-+          - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - pgc
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpc@303a0000 {
-+        compatible = "fsl,imx7d-gpc";
-+        reg = <0x303a0000 0x1000>;
-+        interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        pgc {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            pgc_mipi_phy: power-domain@0 {
-+                #power-domain-cells = <0>;
-+                reg = <0>;
-+                power-supply = <&reg_1p0d>;
-+            };
-+
-+            pgc_pcie_phy: power-domain@1 {
-+                #power-domain-cells = <0>;
-+                reg = <1>;
-+                power-supply = <&reg_1p0d>;
-+            };
-+
-+            pgc_hsic_phy: power-domain@2 {
-+                #power-domain-cells = <0>;
-+                reg = <2>;
-+                power-supply = <&reg_1p2>;
-+            };
-+        };
-+    };
--- 
-2.7.4
-
+PiBTdWJqZWN0OiBSRTogW1BBVENIIFYyIDIvM10gYXJtNjQ6IGR0czogaW14OG06IGFkZCBtdSBu
+b2RlDQo+IA0KPiA+IEZyb206IFBlbmcgRmFuIDxwZW5nLmZhbkBueHAuY29tPg0KPiA+IFNlbnQ6
+IE1vbmRheSwgSnVuZSAxLCAyMDIwIDExOjQzIEFNDQo+ID4NCj4gPiBBZGQgbXUgbm9kZSB0byBs
+ZXQgQTUzIGNvdWxkIGNvbW11bmljYXRlIHdpdGggTSBDb3JlLg0KPiA+DQo+ID4gU2lnbmVkLW9m
+Zi1ieTogUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpIHwgOSArKysrKysrKysNCj4gPiBhcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW4uZHRzaSB8IDkgKysrKysrKysrDQo+ID4g
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLmR0c2kgfCA5ICsrKysrKysrKw0K
+PiA+IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcS5kdHNpIHwgOSArKysrKysr
+KysNCj4gPiAgNCBmaWxlcyBjaGFuZ2VkLCAzNiBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZm
+IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiBi
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gaW5kZXggYWFm
+NmU3MTEwMWExLi5mYzAwMWZiOTcxZTkgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRz
+L2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IEBAIC03NzUsNiArNzc1LDE1IEBADQo+ID4gIAkJ
+CQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiA+ICAJCQl9Ow0KPiA+DQo+ID4gKwkJCW11OiBtYWls
+Ym94QDMwYWEwMDAwIHsNCj4gPiArCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhtbS1tdSIsICJm
+c2wsaW14NnN4LW11IjsNCj4gPiArCQkJCXJlZyA9IDwweDMwYWEwMDAwIDB4MTAwMDA+Ow0KPiA+
+ICsJCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDg4IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+
+ICsJCQkJY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19NVV9ST09UPjsNCj4gPiArCQkJCWNsb2Nr
+LW5hbWVzID0gIm11IjsNCj4gDQo+IFlvdSBtaXNzZWQgbXkgY29tbWVudHMgYWJvdXQgdGhpcyB1
+bm5lZWRlZCBsaW5lIGluIHRoZSBsYXN0IHJvdW5kIG9mDQo+IHJldmlldy4NCj4gaHR0cHM6Ly9s
+b3JlLmtlcm5lbC5vcmcvcGF0Y2h3b3JrL3BhdGNoLzEyNDQ3NTIvDQoNCm9vcHMsIHdpbGwgdXBk
+YXRlIGluIHYzLg0KDQpUaGFua3MsDQpQZW5nLg0KDQo+IA0KPiBSZWdhcmRzDQo+IEFpc2hlbmcN
+Cj4gDQo+ID4gKwkJCQkjbWJveC1jZWxscyA9IDwyPjsNCj4gPiArCQkJfTsNCj4gPiArDQo+ID4g
+IAkJCXVzZGhjMTogbW1jQDMwYjQwMDAwIHsNCj4gPiAgCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlt
+eDhtbS11c2RoYyIsICJmc2wsaW14N2QtdXNkaGMiOw0KPiA+ICAJCQkJcmVnID0gPDB4MzBiNDAw
+MDAgMHgxMDAwMD47DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDhtbi5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+bW4uZHRzaQ0KPiA+IGluZGV4IDlhNGI2NWEyNjdkNC4uYzgyOTBkMjFjY2M5IDEwMDY0NA0KPiA+
+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbi5kdHNpDQo+ID4gKysr
+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1uLmR0c2kNCj4gPiBAQCAtNjc1
+LDYgKzY3NSwxNSBAQA0KPiA+ICAJCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgCQkJfTsN
+Cj4gPg0KPiA+ICsJCQltdTogbWFpbGJveEAzMGFhMDAwMCB7DQo+ID4gKwkJCQljb21wYXRpYmxl
+ID0gImZzbCxpbXg4bW4tbXUiLCAiZnNsLGlteDZzeC1tdSI7DQo+ID4gKwkJCQlyZWcgPSA8MHgz
+MGFhMDAwMCAweDEwMDAwPjsNCj4gPiArCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA4OCBJUlFf
+VFlQRV9MRVZFTF9ISUdIPjsNCj4gPiArCQkJCWNsb2NrcyA9IDwmY2xrIElNWDhNTl9DTEtfTVVf
+Uk9PVD47DQo+ID4gKwkJCQljbG9jay1uYW1lcyA9ICJtdSI7DQo+ID4gKwkJCQkjbWJveC1jZWxs
+cyA9IDwyPjsNCj4gPiArCQkJfTsNCj4gPiArDQo+ID4gIAkJCXVzZGhjMTogbW1jQDMwYjQwMDAw
+IHsNCj4gPiAgCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhtbi11c2RoYyIsICJmc2wsaW14N2Qt
+dXNkaGMiOw0KPiA+ICAJCQkJcmVnID0gPDB4MzBiNDAwMDAgMHgxMDAwMD47DQo+ID4gZGlmZiAt
+LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC5kdHNpDQo+ID4gYi9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAuZHRzaQ0KPiA+IGluZGV4IDQ1ZTJj
+MGE0ZTg4OS4uYjUzMDgwNGY3NjNlIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL2lteDhtcC5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvaW14OG1wLmR0c2kNCj4gPiBAQCAtNjIxLDYgKzYyMSwxNSBAQA0KPiA+ICAJCQkJ
+c3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgCQkJfTsNCj4gPg0KPiA+ICsJCQltdTogbWFpbGJv
+eEAzMGFhMDAwMCB7DQo+ID4gKwkJCQljb21wYXRpYmxlID0gImZzbCxpbXg4bXAtbXUiLCAiZnNs
+LGlteDZzeC1tdSI7DQo+ID4gKwkJCQlyZWcgPSA8MHgzMGFhMDAwMCAweDEwMDAwPjsNCj4gPiAr
+CQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA4OCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gPiAr
+CQkJCWNsb2NrcyA9IDwmY2xrIElNWDhNUF9DTEtfTVVfUk9PVD47DQo+ID4gKwkJCQljbG9jay1u
+YW1lcyA9ICJtdSI7DQo+ID4gKwkJCQkjbWJveC1jZWxscyA9IDwyPjsNCj4gPiArCQkJfTsNCj4g
+PiArDQo+ID4gIAkJCWkyYzU6IGkyY0AzMGFkMDAwMCB7DQo+ID4gIAkJCQljb21wYXRpYmxlID0g
+ImZzbCxpbXg4bXAtaTJjIiwgImZzbCxpbXgyMS1pMmMiOw0KPiA+ICAJCQkJI2FkZHJlc3MtY2Vs
+bHMgPSA8MT47DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxl
+L2lteDhtcS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXEu
+ZHRzaQ0KPiA+IGluZGV4IDk3OGY4MTIyYzBkMi4uNjZiYThkYTcwNGY2IDEwMDY0NA0KPiA+IC0t
+LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcS5kdHNpDQo+ID4gKysrIGIv
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1xLmR0c2kNCj4gPiBAQCAtOTU5LDYg
+Kzk1OSwxNSBAQA0KPiA+ICAJCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgCQkJfTsNCj4g
+Pg0KPiA+ICsJCQltdTogbWFpbGJveEAzMGFhMDAwMCB7DQo+ID4gKwkJCQljb21wYXRpYmxlID0g
+ImZzbCxpbXg4bXEtbXUiLCAiZnNsLGlteDZzeC1tdSI7DQo+ID4gKwkJCQlyZWcgPSA8MHgzMGFh
+MDAwMCAweDEwMDAwPjsNCj4gPiArCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA4OCBJUlFfVFlQ
+RV9MRVZFTF9ISUdIPjsNCj4gPiArCQkJCWNsb2NrcyA9IDwmY2xrIElNWDhNUV9DTEtfTVVfUk9P
+VD47DQo+ID4gKwkJCQljbG9jay1uYW1lcyA9ICJtdSI7DQo+ID4gKwkJCQkjbWJveC1jZWxscyA9
+IDwyPjsNCj4gPiArCQkJfTsNCj4gPiArDQo+ID4gIAkJCXVzZGhjMTogbW1jQDMwYjQwMDAwIHsN
+Cj4gPiAgCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhtcS11c2RoYyIsDQo+ID4gIAkJCQkgICAg
+ICAgICAgICAgImZzbCxpbXg3ZC11c2RoYyI7DQo+ID4gLS0NCj4gPiAyLjE2LjQNCg0K
