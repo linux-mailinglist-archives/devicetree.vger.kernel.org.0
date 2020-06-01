@@ -2,113 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF8D1EA4A6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 15:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A47871EA511
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 15:35:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726825AbgFANLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 09:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48202 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726287AbgFANLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 09:11:42 -0400
-Received: from Galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39A7C08C5CA;
-        Mon,  1 Jun 2020 06:11:41 -0700 (PDT)
-Received: from [5.158.153.53] (helo=tip-bot2.lab.linutronix.de)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
-        (Exim 4.80)
-        (envelope-from <tip-bot2@linutronix.de>)
-        id 1jfkE5-00070P-V4; Mon, 01 Jun 2020 15:11:38 +0200
-Received: from [127.0.1.1] (localhost [IPv6:::1])
-        by tip-bot2.lab.linutronix.de (Postfix) with ESMTP id 8CC951C0481;
-        Mon,  1 Jun 2020 15:11:37 +0200 (CEST)
-Date:   Mon, 01 Jun 2020 13:11:37 -0000
-From:   "tip-bot2 for Serge Semin" <tip-bot2@linutronix.de>
-Reply-to: linux-kernel@vger.kernel.org
-To:     linux-tip-commits@vger.kernel.org
-Subject: [tip: timers/core] clocksource: dw_apb_timer: Affiliate of-based
- timer with any CPU
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        x86 <x86@kernel.org>, LKML <linux-kernel@vger.kernel.org>
-In-Reply-To: <20200521204818.25436-6-Sergey.Semin@baikalelectronics.ru>
-References: <20200521204818.25436-6-Sergey.Semin@baikalelectronics.ru>
+        id S1726751AbgFANfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 09:35:44 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2263 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726067AbgFANfn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jun 2020 09:35:43 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.108])
+        by Forcepoint Email with ESMTP id 16A8CE2054BA6C7C3EB6;
+        Mon,  1 Jun 2020 14:35:42 +0100 (IST)
+Received: from localhost (10.47.94.81) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 1 Jun 2020
+ 14:35:41 +0100
+Date:   Mon, 1 Jun 2020 14:35:02 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Tomasz Duszynski <tomasz.duszynski@octakon.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <andy.shevchenko@gmail.com>,
+        <pmeerw@pmeerw.net>
+Subject: Re: [PATCH v2 1/4] iio: chemical: scd30: add core driver
+Message-ID: <20200601143502.00005030@Huawei.com>
+In-Reply-To: <20200601121026.GB28560@arch>
+References: <20200530213630.87159-1-tomasz.duszynski@octakon.com>
+        <20200530213630.87159-2-tomasz.duszynski@octakon.com>
+        <20200531105840.27e17f3d@archlinux>
+        <20200531192152.GC27246@arch>
+        <20200601121026.GB28560@arch>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Message-ID: <159101709744.17951.14459644896202609503.tip-bot2@tip-bot2>
-X-Mailer: tip-git-log-daemon
-Robot-ID: <tip-bot2.linutronix.de>
-Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from these emails
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+X-Originating-IP: [10.47.94.81]
+X-ClientProxiedBy: lhreml742-chm.china.huawei.com (10.201.108.192) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following commit has been merged into the timers/core branch of tip:
+...
+> > > > +static const struct iio_chan_spec scd30_channels[] = {
+> > > > +	{
+> > > > +		.type = IIO_PRESSURE,
+> > > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBSCALE),
+> > > > +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_CALIBSCALE),
+> > > > +		.scan_index = -1,
+> > > > +	},
+> > > > +	{
+> > > > +		.type = IIO_CONCENTRATION,
+> > > > +		.channel2 = IIO_MOD_CO2,
+> > > > +		.address = SCD30_CONC,
+> > > > +		.scan_index = SCD30_CONC,
+> > > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> > > > +				      BIT(IIO_CHAN_INFO_SCALE),
+> > > > +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> > > > +		.modified = 1,
+> > > > +
+> > > > +		SCD30_CHAN_SCAN_TYPE('u', 16),
+> > > > +	},
+> > > > +	{
+> > > > +		.type = IIO_TEMP,
+> > > > +		.address = SCD30_TEMP,
+> > > > +		.scan_index = SCD30_TEMP,
+> > > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED) |
+> > > > +				      BIT(IIO_CHAN_INFO_CALIBBIAS) |
+> > > > +				      BIT(IIO_CHAN_INFO_SCALE),  
+> > >
+> > > Combination of processed and scale is unusual.  Normally scale provides
+> > > a conversion factor or a _RAW reading.  
+> >
+> > Right that's pointless. Scales were for raw measurements inside buffer.
+> > Somehow I failed to realize that only co2 concentration is raw.
+> >  
+> 
+> One more thing occurred to me here. I just looked at CONCENTRATION_RAW
+> description and is states that this should return *percentage* reading.
+> Then after scaling what we should be left with?
 
-Commit-ID:     65e0f876405ef4f0ff25eb1c5ff3e9b536d68805
-Gitweb:        https://git.kernel.org/tip/65e0f876405ef4f0ff25eb1c5ff3e9b536d68805
-Author:        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-AuthorDate:    Thu, 21 May 2020 23:48:14 +03:00
-Committer:     Daniel Lezcano <daniel.lezcano@linaro.org>
-CommitterDate: Sat, 23 May 2020 00:02:50 +02:00
+It should say after application of scale and offset.  Patches welcome :)
 
-clocksource: dw_apb_timer: Affiliate of-based timer with any CPU
+> 
+> Or perhaps scale should return just 1.0 for completeness if we want to
+> live with percentages.
+> 
+> Though in case where percentage reading is fractional then passing
+> through buffers will not work. Or am I missing something?
+> 
+> On the other hand if abi said nothing about percentages one would just
+> push whatever raw reading sensor outputs and provide scaling info to
+> userspace.
+> 
 
-Currently any DW APB Timer device detected in OF is bound to CPU #0.
-Doing so is redundant since DW APB Timer isn't CPU-local timer, but as
-having APB interface is normally accessible from any CPU in the system. By
-artificially affiliating the DW timer to the very first CPU we may and in
-our case will make the clockevent subsystem to decline the more performant
-real CPU-local timers selection in favor of in fact non-local and
-accessible over a slow bus - DW APB Timers.
+> > >  
 
-Let's not affiliate the of-detected DW APB Timers to any CPU. By doing so
-the clockevent framework would prefer to select the real CPU-local timer
-instead of DW APB one. Otherwise if there is no other than DW APB device
-for clockevents tracking then it will be selected.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: linux-rtc@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Link: https://lore.kernel.org/r/20200521204818.25436-6-Sergey.Semin@baikalelectronics.ru
----
- drivers/clocksource/dw_apb_timer_of.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/clocksource/dw_apb_timer_of.c b/drivers/clocksource/dw_apb_timer_of.c
-index 8c28b12..2db490f 100644
---- a/drivers/clocksource/dw_apb_timer_of.c
-+++ b/drivers/clocksource/dw_apb_timer_of.c
-@@ -73,7 +73,7 @@ static void __init add_clockevent(struct device_node *event_timer)
- 
- 	timer_get_base_and_rate(event_timer, &iobase, &rate);
- 
--	ced = dw_apb_clockevent_init(0, event_timer->name, 300, iobase, irq,
-+	ced = dw_apb_clockevent_init(-1, event_timer->name, 300, iobase, irq,
- 				     rate);
- 	if (!ced)
- 		panic("Unable to initialise clockevent device");
