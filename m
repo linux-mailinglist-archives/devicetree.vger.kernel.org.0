@@ -2,192 +2,553 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 661C11EA207
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 12:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 599811EA23C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2020 12:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726089AbgFAKkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 06:40:31 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:51404 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726038AbgFAKka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 06:40:30 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200601104028euoutp0253b68944d9a4bab3c9ced8c5db8028f7~UZV9vNRSl1402414024euoutp02a
-        for <devicetree@vger.kernel.org>; Mon,  1 Jun 2020 10:40:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200601104028euoutp0253b68944d9a4bab3c9ced8c5db8028f7~UZV9vNRSl1402414024euoutp02a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1591008028;
-        bh=/Gdbip4R8JUAfQa6cujlq0e0Q4h2fBOUhAoNV4LwAeo=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=VqZYir9kppvdPXw6Bbip7iz3RaeY/1E9izZyW1Mt7WUOnEmQd0XkDyCFXB1iSZsv3
-         VYsvblNFL7er/ORRMEn+5jhtosAixDAm1eE2DIV5jGEMC09BhgtFQ8MJUNRvRa1AsY
-         tsedVhOblA2VPkIB5/hKOYM/josL9F37NM3XmiMc=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200601104028eucas1p18a9b6c867e9c4cb90d5a9a9ad0212728~UZV9f-sJg2526625266eucas1p13;
-        Mon,  1 Jun 2020 10:40:28 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 27.93.60698.C1BD4DE5; Mon,  1
-        Jun 2020 11:40:28 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200601104027eucas1p2b076ee860520d709e8178c41550653f7~UZV8wqHUV1744917449eucas1p2J;
-        Mon,  1 Jun 2020 10:40:27 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200601104027eusmtrp2b227ba4119a30344c41228ead9a83b91~UZV8v9bf90787807878eusmtrp2b;
-        Mon,  1 Jun 2020 10:40:27 +0000 (GMT)
-X-AuditID: cbfec7f5-a29ff7000001ed1a-82-5ed4db1c01cf
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 2E.7A.08375.B1BD4DE5; Mon,  1
-        Jun 2020 11:40:27 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200601104027eusmtip1adaa625ff84700328004b3295bca4bce~UZV8NBDXU0602606026eusmtip1Y;
-        Mon,  1 Jun 2020 10:40:27 +0000 (GMT)
-Subject: Re: [PATCHv1 00/19] Improve SBS battery support
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <15933a91-dd89-1f94-c2f2-79be4395f4c1@samsung.com>
-Date:   Mon, 1 Jun 2020 12:40:27 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.8.1
+        id S1725925AbgFAKtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jun 2020 06:49:43 -0400
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:60777 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725788AbgFAKtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jun 2020 06:49:43 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 73BC0B18;
+        Mon,  1 Jun 2020 06:49:41 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 01 Jun 2020 06:49:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=aG7fDfbT4McyryCzkaFMmjNQU0+
+        CgMrudN7778MmqPs=; b=qXAQ32Kyc13dxduCkRXqP9ce2uXwrs40NqSPUksDq6k
+        gxnlSRBH6Pn21FXettCkJb2wOSPPAVjNm6WaMLDmENMfNQ99isBPjvNAxMnNNVa5
+        Udohvt5YVfjUR+1iWx3k9VAF3vpBWGWHDcxZKx8TKniljm/7dG314UyV+1H5dEpP
+        VFId8qpLWQaT7+Mn/YIu9zSykPWb0n7HYFY+/RgKa4vP5h+D5nH9lQcC8d2Na7+l
+        7LZPy0sVlyBHpejb83xt9CyxJyiWgY1L8+g56rzg9kqArL/w68g3MyOqrXlGt+IO
+        ALaWT0Ptp78wrt0VEcxkd4310CXo8MqvYSwTHQi5B5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=aG7fDf
+        bT4McyryCzkaFMmjNQU0+CgMrudN7778MmqPs=; b=zV2vMJA/js0GYttX6r1zRE
+        gIvcRMz+hIQVCAR2lUx31L8+GNyoMI8RIG6DCkg5dOcELckGZ99RbjcZcZ4qZpxV
+        7xKB06YjWo+6ygjIV/ptFf467V9js5vASOKvqaIC/2oYmNvyoZ/Cew1CswtyX2ZV
+        x/yzcuQs0xFmL5Aio7EohAyzfwgzRAO5uIb0PFkbTs6t1wuuao5ELMW1Nhkhh4fV
+        4KyIKPJbmDeX7p7QjjSe3FPUuZuqtIXrVaOdkZQeJeG57p7B5llHrjnf3UtqspOi
+        ehRyB+TyfLFixr1GoAtLV3IOpTalRjRuI0Xps/q8ftJJIXIavlZDfyETFG9KVbZA
+        ==
+X-ME-Sender: <xms:RN3UXlSUaRe0mpnF4PKa46GI_S7aT7MMNcoOQNmGxfUcPVvmZj3Z_w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudefhedgvdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesghdtre
+    ertddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvgestggv
+    rhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeelkeeghefhuddtleejgfeljeffhe
+    ffgfeijefhgfeufefhtdevteegheeiheegudenucfkphepledtrdekledrieekrdejieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
+    hmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:RN3UXuy7nbDUmvZB-0GkHCD8ztbl0ei9A-a6KO1D9EWKvVyUlnQG1w>
+    <xmx:RN3UXq1j78bUphaEbt2yIWWnFXOrH6JTkg6X-Us8q1Aig9_n6Xl7_A>
+    <xmx:RN3UXtBK2vUGyxFrAAwfj1TAdk9Jc1jdAZrWwbljzG9NkeF04FHE6Q>
+    <xmx:Rd3UXhuB4VVR97kYbuQethhG5W0Bz55o4m0V1BdZSVPhH34EAFehSA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 5F06830618C1;
+        Mon,  1 Jun 2020 06:49:40 -0400 (EDT)
+Date:   Mon, 1 Jun 2020 12:49:39 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     stulluk@gmail.com
+Cc:     robh+dt@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm: allwinner: a20: Add Drejo DS167 initial support
+Message-ID: <20200601104939.ksvizszvchqfabnf@gilmour>
+References: <20200531110538.30153-1-stulluk@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200513185615.508236-1-sebastian.reichel@collabora.com>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKKsWRmVeSWpSXmKPExsWy7djPc7oyt6/EGbz7rGIx/8g5VovmxevZ
-        LDaf62G1uLxrDpvF594jjBYzzu9jspj7ZSqzReveI+wWd1/7WZzeXeLA5bHj7hJGj02rOtk8
-        9s9dw+7xeZNcAEsUl01Kak5mWWqRvl0CV8a3D1OYChqkKp5MPsPUwHhQrIuRk0NCwETi/cMr
-        7F2MXBxCAisYJdYdvcwI4XxhlDh94j5U5jOjxJp3SxhhWj62XmeCSCxnlHj77ycrhPOeUWLl
-        t/1sIFXCAhYSXxb9BmsXEbjDKHHnzCtWkASzwEpGiS/9ISA2m4ChRNfbLrAGXgE7iUW/T4LV
-        sAioSPw9vBJsnahArETP/VfMEDWCEidnPmEBsTkF3CSmTX3ICDFTXqJ562xmCFtc4taT+WDn
-        SQgcYpeYvvA0K8TdLhJXjtyAsoUlXh3fwg5hy0j83wnT0Mwo8fDcWnYIp4dR4nLTDKivrSXu
-        nPsFdCoH0ApNifW79CHCjhITD+9mBglLCPBJ3HgrCHEEn8SkbdOhwrwSHW1CENVqErOOr4Nb
-        e/DCJeYJjEqzkLw2C8k7s5C8Mwth7wJGllWM4qmlxbnpqcXGeanlesWJucWleel6yfm5mxiB
-        ien0v+NfdzDu+5N0iFGAg1GJh1fj0uU4IdbEsuLK3EOMEhzMSiK8TmdPxwnxpiRWVqUW5ccX
-        leakFh9ilOZgURLnNV70MlZIID2xJDU7NbUgtQgmy8TBKdXAKHNzQU379HBWB1WDm3vkF6bc
-        XpRxN5Zt7ad56X8io281v8k40dD58ZCO4wUZt+7c6vUbNvLeqJYukYuaL3behWHC9xdFlqFe
-        5n/jpXuMQ3M3qf+McaiyZVdPimQ59iqbvff14szH/nLPFCY+E8px8F6ekjN/4Z8/eg+cn0+y
-        PCS/gEtAO1JMiaU4I9FQi7moOBEA1jBJh0gDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCIsWRmVeSWpSXmKPExsVy+t/xu7rSt6/EGbzbamwx/8g5VovmxevZ
-        LDaf62G1uLxrDpvF594jjBYzzu9jspj7ZSqzReveI+wWd1/7WZzeXeLA5bHj7hJGj02rOtk8
-        9s9dw+7xeZNcAEuUnk1RfmlJqkJGfnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWRqZK+nU1Kak5m
-        WWqRvl2CXsa3D1OYChqkKp5MPsPUwHhQrIuRk0NCwETiY+t1JhBbSGApo8SrM6EQcRmJk9Ma
-        WCFsYYk/17rYuhi5gGreMkqceLGDESQhLGAh8WXRb3aQhIjAPUaJxVca2UESzAIrGSWO7Qvq
-        YuQA6nCVWLI2CCTMJmAo0fUWZBAnB6+AncSi3yfBFrAIqEj8PbwSbKaoQKxE9+If7BA1ghIn
-        Zz5hAbE5Bdwkpk19yAgx3kxi3uaHzBC2vETz1tlQtrjErSfzmSYwCs1C0j4LScssJC2zkLQs
-        YGRZxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJERiD24793LyD8dLG4EOMAhyMSjy8F85fjhNi
-        TSwrrsw9xCjBwawkwut09nScEG9KYmVValF+fFFpTmrxIUZToOcmMkuJJucD00NeSbyhqaG5
-        haWhubG5sZmFkjhvh8DBGCGB9MSS1OzU1ILUIpg+Jg5OqQZG3zizWy8y5my6oz9LIp/n4TPX
-        r8o/qqcymCh/Xf8iof4m97m+4y777CM23ti2yXHio8YCbhHrAyWFPEvuG007Hpf/5siqZ8pJ
-        fk9f/57y8r3R6ZDr27nyXe6c4jLjkbK4yZxr9qyf4c6a450HZVd+C1t+Z55ymkekcuquyQ9y
-        7UKDzsTJGug4KbEUZyQaajEXFScCAFjiS2TXAgAA
-X-CMS-MailID: 20200601104027eucas1p2b076ee860520d709e8178c41550653f7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200601104027eucas1p2b076ee860520d709e8178c41550653f7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200601104027eucas1p2b076ee860520d709e8178c41550653f7
-References: <20200513185615.508236-1-sebastian.reichel@collabora.com>
-        <CGME20200601104027eucas1p2b076ee860520d709e8178c41550653f7@eucas1p2.samsung.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jw2e7ngd6l5xqz73"
+Content-Disposition: inline
+In-Reply-To: <20200531110538.30153-1-stulluk@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
 
-On 13.05.2020 20:55, Sebastian Reichel wrote:
-> This patchset improves support for SBS compliant batteries. Due to
-> the changes, the battery now exposes 32 power supply properties and
-> (un)plugging it generates a backtrace containing the following message
-> without the first patch in this series:
->
-> ---------------------------
-> WARNING: CPU: 0 PID: 20 at lib/kobject_uevent.c:659 add_uevent_var+0xd4/0x104
-> add_uevent_var: too many keys
-> ---------------------------
->
-> For references this is what an SBS battery status looks like after
-> the patch series has been applied:
->
-> cat /sys/class/power_supply/sbs-0-000b/uevent
-> POWER_SUPPLY_NAME=sbs-0-000b
-> POWER_SUPPLY_TYPE=Battery
-> POWER_SUPPLY_STATUS=Discharging
-> POWER_SUPPLY_CAPACITY_LEVEL=Normal
-> POWER_SUPPLY_HEALTH=Good
-> POWER_SUPPLY_PRESENT=1
-> POWER_SUPPLY_TECHNOLOGY=Li-ion
-> POWER_SUPPLY_CYCLE_COUNT=12
-> POWER_SUPPLY_VOLTAGE_NOW=11441000
-> POWER_SUPPLY_CURRENT_NOW=-26000
-> POWER_SUPPLY_CURRENT_AVG=-24000
-> POWER_SUPPLY_CAPACITY=76
-> POWER_SUPPLY_CAPACITY_ERROR_MARGIN=1
-> POWER_SUPPLY_TEMP=198
-> POWER_SUPPLY_TIME_TO_EMPTY_AVG=438600
-> POWER_SUPPLY_TIME_TO_FULL_AVG=3932100
-> POWER_SUPPLY_SERIAL_NUMBER=0000
-> POWER_SUPPLY_VOLTAGE_MIN_DESIGN=10800000
-> POWER_SUPPLY_VOLTAGE_MAX_DESIGN=10800000
-> POWER_SUPPLY_ENERGY_NOW=31090000
-> POWER_SUPPLY_ENERGY_FULL=42450000
-> POWER_SUPPLY_ENERGY_FULL_DESIGN=41040000
-> POWER_SUPPLY_CHARGE_NOW=2924000
-> POWER_SUPPLY_CHARGE_FULL=3898000
-> POWER_SUPPLY_CHARGE_FULL_DESIGN=3800000
-> POWER_SUPPLY_CONSTANT_CHARGE_CURRENT_MAX=3000000
-> POWER_SUPPLY_CONSTANT_CHARGE_VOLTAGE_MAX=12300000
-> POWER_SUPPLY_MANUFACTURE_YEAR=2017
-> POWER_SUPPLY_MANUFACTURE_MONTH=7
-> POWER_SUPPLY_MANUFACTURE_DAY=3
-> POWER_SUPPLY_MANUFACTURER=UR18650A
-> POWER_SUPPLY_MODEL_NAME=GEHC
+--jw2e7ngd6l5xqz73
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This patch landed in linux-next dated 20200529. Sadly it causes a 
-regression on Samsung Exynos-based Chromebooks (Exynos5250 Snow, 
-Exynos5420 Peach-Pi and Exynos5800 Peach-Pit). System boots to 
-userspace, but then, when udev populates /dev, booting hangs:
+Hi,
 
-[    4.435167] VFS: Mounted root (ext4 filesystem) readonly on device 
-179:51.
-[    4.457477] devtmpfs: mounted
-[    4.460235] Freeing unused kernel memory: 1024K
-[    4.464022] Run /sbin/init as init process
-INIT: version 2.88 booting
-[info] Using makefile-style concurrent boot in runlevel S.
-[    5.102096] random: crng init done
-[....] Starting the hotplug events dispatcher: systemd-udevdstarting 
-version 236
-[ ok .
-[....] Synthesizing the initial hotplug events...[ ok done.
-[....] Waiting for /dev to be fully populated...[   34.409914] 
-TPS65090_RAILSDCDC1: disabling
-[   34.412977] TPS65090_RAILSDCDC2: disabling
-[   34.417021] TPS65090_RAILSDCDC3: disabling
-[   34.423848] TPS65090_RAILSLDO1: disabling
-[   34.429068] TPS65090_RAILSLDO2: disabling
+Please make sure that all the proper recipients are in Cc. The
+linux-arm-kernel ML especially is missing, get_maintainers will give you
+the list.
 
-Bisect between v5.7-rc1 and next-20200529 pointed me to the first bad 
-commit: [c4b12a2f3f3de670f6be5e96092a2cab0b877f1a] power: supply: 
-sbs-battery: simplify read_read_string_data. However reverting it in 
-linux-next doesn't fix the issue, so the next commits are also relevant 
-to this issue.
+Also, the prefix of your commit log is supposed to be
 
-Let me know how can I help debugging it.
+ARM: dts: sunxi: ...
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+On Sun, May 31, 2020 at 02:05:38PM +0300, stulluk@gmail.com wrote:
+> From: Sertac TULLUK <stulluk@gmail.com>
+>=20
+> Drejo DS167 is an Allwinner A20 based IoT device,
+> which support
+> - Allwinner A20 Cortex-A7
+> - Mali-400MP2 GPU
+> - AXP209 PMIC
+> - 1GB DDR3 RAM
+> - 8GB eMMC
+> - 10/100M Ethernet
+> - SATA
+> - HDMI
+> - 10.1inch and 7.0inch LVDS LCD and Touch screens
+> - CSI: OV5640 sensor
+> - USB OTG
+> - 2x USB2.0
+> - built-in KNX Transceiver
+> - 3x Dry Contact Input
+> - 3x Relay output
+> - IR RX/TX
+> - UART3
+> - SPI1
+> - RTC Battery
+> - 8x GPIO
+> - Analogue + Digital Microphone
+> - PAM8620 speaker Amplifier
+> - 12V DC power supply
+> - 3.7V Battery Operable
+>=20
+> Signed-off-by: Sertac TULLUK <stulluk@gmail.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   2 +
+>  .../boot/dts/sun7i-a20-drejo-ds167-emmc.dts   |  69 +++++
+>  arch/arm/boot/dts/sun7i-a20-drejo-ds167.dts   | 288 ++++++++++++++++++
+>  3 files changed, 359 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sun7i-a20-drejo-ds167-emmc.dts
+>  create mode 100644 arch/arm/boot/dts/sun7i-a20-drejo-ds167.dts
+>=20
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 3823090d07e7..d81e685dee38 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1097,6 +1097,8 @@ dtb-$(CONFIG_MACH_SUN7I) +=3D \
+>  	sun7i-a20-bananapro.dtb \
+>  	sun7i-a20-cubieboard2.dtb \
+>  	sun7i-a20-cubietruck.dtb \
+> +	sun7i-a20-drejo-ds167.dtb \
+> +        sun7i-a20-drejo-ds167-emmc.dtb \
 
+You indented with spaces here, instead of a tab.
+
+>  	sun7i-a20-hummingbird.dtb \
+>  	sun7i-a20-itead-ibox.dtb \
+>  	sun7i-a20-i12-tvbox.dtb \
+> diff --git a/arch/arm/boot/dts/sun7i-a20-drejo-ds167-emmc.dts b/arch/arm/=
+boot/dts/sun7i-a20-drejo-ds167-emmc.dts
+> new file mode 100644
+> index 000000000000..b6147eb013b0
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun7i-a20-drejo-ds167-emmc.dts
+> @@ -0,0 +1,69 @@
+> +/*
+> + * Copyright 2020 Sertac TULLUK
+> + *
+> + * Sertac TULLUK <stulluk@gmail.com>
+> + *
+> + * This file is dual-licensed: you can use it either under the terms
+> + * of the GPL or the X11 license, at your option. Note that this dual
+> + * licensing only applies to this file, and not this project as a
+> + * whole.
+> + *
+> + *  a) This file is free software; you can redistribute it and/or
+> + *     modify it under the terms of the GNU General Public License as
+> + *     published by the Free Software Foundation; either version 2 of the
+> + *     License, or (at your option) any later version.
+> + *
+> + *     This file is distributed in the hope that it will be useful,
+> + *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + *     GNU General Public License for more details.
+> + *
+> + * Or, alternatively,
+> + *
+> + *  b) Permission is hereby granted, free of charge, to any person
+> + *     obtaining a copy of this software and associated documentation
+> + *     files (the "Software"), to deal in the Software without
+> + *     restriction, including without limitation the rights to use,
+> + *     copy, modify, merge, publish, distribute, sublicense, and/or
+> + *     sell copies of the Software, and to permit persons to whom the
+> + *     Software is furnished to do so, subject to the following
+> + *     conditions:
+> + *
+> + *     The above copyright notice and this permission notice shall be
+> + *     included in all copies or substantial portions of the Software.
+> + *
+> + *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> + *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> + *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> + *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> + *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> + *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> + *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + *     OTHER DEALINGS IN THE SOFTWARE.
+> + */
+
+You should use an SPDX tag here
+
+> +#include "sun7i-a20-drejo-ds167.dts"
+
+Is there any reason not to have the emmc into the main DTS?
+
+> +/ {
+> +	model =3D "drejo DS167-eMMC";
+
+Drejo should have an uppercase?
+
+> +	compatible =3D "drejo,sun7i-a20-drejo-ds167-emmc", "allwinner,sun7i-a20=
+";
+
+This compatible should be documented.
+
+Also, this can be something like drejo,ds167 (the vendor should be
+documented too )
+
+> +
+> +	mmc2_pwrseq: pwrseq {
+> +		compatible =3D "mmc-pwrseq-emmc";
+> +		reset-gpios =3D <&pio 2 24 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&mmc2 {
+> +	vmmc-supply =3D <&reg_vcc3v3>;
+> +	bus-width =3D <4>;
+> +	non-removable;
+> +	mmc-pwrseq =3D <&mmc2_pwrseq>;
+> +	status =3D "okay";
+> +
+> +	emmc: emmc@0 {
+> +		reg =3D <0>;
+> +		compatible =3D "mmc-card";
+> +		broken-hpi;
+> +	};
+> +};
+> diff --git a/arch/arm/boot/dts/sun7i-a20-drejo-ds167.dts b/arch/arm/boot/=
+dts/sun7i-a20-drejo-ds167.dts
+> new file mode 100644
+> index 000000000000..79db92f88251
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun7i-a20-drejo-ds167.dts
+> @@ -0,0 +1,288 @@
+> +/*
+> + * Copyright 2020 Sertac TULLUK
+> + *
+> + * Sertac TULLUK <stulluk@gmail.com>
+> + *
+> + * This file is dual-licensed: you can use it either under the terms
+> + * of the GPL or the X11 license, at your option. Note that this dual
+> + * licensing only applies to this file, and not this project as a
+> + * whole.
+> + *
+> + *  a) This file is free software; you can redistribute it and/or
+> + *     modify it under the terms of the GNU General Public License as
+> + *     published by the Free Software Foundation; either version 2 of the
+> + *     License, or (at your option) any later version.
+> + *
+> + *     This file is distributed in the hope that it will be useful,
+> + *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + *     GNU General Public License for more details.
+> + *
+> + * Or, alternatively,
+> + *
+> + *  b) Permission is hereby granted, free of charge, to any person
+> + *     obtaining a copy of this software and associated documentation
+> + *     files (the "Software"), to deal in the Software without
+> + *     restriction, including without limitation the rights to use,
+> + *     copy, modify, merge, publish, distribute, sublicense, and/or
+> + *     sell copies of the Software, and to permit persons to whom the
+> + *     Software is furnished to do so, subject to the following
+> + *     conditions:
+> + *
+> + *     The above copyright notice and this permission notice shall be
+> + *     included in all copies or substantial portions of the Software.
+> + *
+> + *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> + *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> + *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> + *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> + *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> + *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> + *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + *     OTHER DEALINGS IN THE SOFTWARE.
+> + */
+> +
+> +/dts-v1/;
+> +#include "sun7i-a20.dtsi"
+> +#include "sunxi-common-regulators.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	model =3D "drejo DS167";
+> +	compatible =3D "drejo,sun7i-a20-drejo-ds167", "allwinner,sun7i-a20";
+> +
+> +	aliases {
+> +		serial0 =3D &uart0;
+> +		serial1 =3D &uart3;
+> +
+> +		spi0 =3D &spi1;
+> +		spi1 =3D &spi2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial0:115200n8";
+> +	};
+> +
+> +	hdmi-connector {
+> +		compatible =3D "hdmi-connector";
+> +		type =3D "a";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint =3D <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible =3D "gpio-leds";
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&led_pins_ds167>;
+
+You don't need a pinctrl node for the GPIOs
+
+> +
+> +		red {
+> +			label =3D "ds167-status";
+
+This isn't the proper red name, it should be something like
+ds167:red:status
+
+> +			gpios =3D <&pio 8 9 GPIO_ACTIVE_LOW>;  /* PI9 STATUS LED NEAR A20 SER=
+TAC */
+> +			default-state =3D "on";
+> +		};
+> +	};
+> +};
+> +
+> +&ahci {
+> +	target-supply =3D <&reg_ahci_5v>;
+> +	status =3D "okay";
+> +};
+> +
+> +&codec {
+> +	status =3D "okay";
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply =3D <&reg_dcdc2>;
+> +};
+> +
+> +&de {
+> +	status =3D "okay";
+> +};
+> +
+> +&ehci0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&ehci1 {
+> +	status =3D "okay";
+> +};
+> +
+> +&gmac {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&gmac_mii_pins>, <&gmac_txerr>;
+> +	phy-handle =3D <&phy1>;
+> +	phy-mode =3D "mii";
+> +	status =3D "okay";
+> +};
+> +
+> +&hdmi {
+> +	status =3D "okay";
+> +};
+> +
+> +&hdmi_out {
+> +	hdmi_out_con: endpoint {
+> +		remote-endpoint =3D <&hdmi_con_in>;
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	status =3D "okay";
+> +
+> +	axp209: pmic@34 {
+> +		reg =3D <0x34>;
+> +		interrupt-parent =3D <&nmi_intc>;
+> +		interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status =3D "okay";
+> +};
+> +
+> +&lradc {
+> +	vref-supply =3D <&reg_vcc3v0>;
+> +	status =3D "okay";
+> +};
+> +
+> +&gmac_mdio {
+> +	phy1: ethernet-phy@1 {
+> +		reg =3D <1>;
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply =3D <&reg_vcc3v3>;
+> +	bus-width =3D <4>;
+> +	cd-gpios =3D <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH1 */
+> +	status =3D "okay";
+> +};
+> +
+> +&ohci0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status =3D "okay";
+> +};
+> +
+> +&otg_sram {
+> +	status =3D "okay";
+> +};
+> +
+> +&pio {
+> +	gmac_txerr: gmac-txerr-pin {
+> +		pins =3D "PA17";
+> +		function =3D "gmac";
+> +	};
+> +
+> +	led_pins_ds167: led-pins { =20
+> +		pins =3D "PI9";   /* Status led, on schematic, this is LED_EN */
+> +		function =3D "gpio_out";
+> +		drive-strength =3D <20>;
+> +	};
+> +};
+> +
+> +&pwm {
+> +      pinctrl-names =3D "default";
+> +      pinctrl-0 =3D <&pwm0_pin>, <&pwm1_pin>;
+> +      status =3D "okay";
+> +};
+> +
+> +#include "axp209.dtsi"
+> +
+> +&ac_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&battery_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_dcdc2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <1000000>;
+> +	regulator-max-microvolt =3D <1400000>;
+> +	regulator-name =3D "vdd-cpu";
+> +};
+> +
+> +&reg_dcdc3 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <1000000>;
+> +	regulator-max-microvolt =3D <1400000>;
+> +	regulator-name =3D "vdd-int-dll";
+> +};
+> +
+> +&reg_ldo2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <3000000>;
+> +	regulator-max-microvolt =3D <3000000>;
+> +	regulator-name =3D "avcc";
+> +};
+> +
+> +&reg_ahci_5v {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_usb0_vbus {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_usb1_vbus {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_usb2_vbus {
+> +	status =3D "okay";
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&spi1_pi_pins>,
+> +		    <&spi1_cs0_pi_pin>;
+> +	status =3D "okay";
+> +};
+> +
+> +&spi2 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&spi2_pc_pins>,
+> +		    <&spi2_cs0_pc_pin>;
+> +	status =3D "okay";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&uart0_pb_pins>;
+> +	status =3D "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&uart3_pg_pins>;
+> +	status =3D "okay";
+> +};
+> +
+> +&usb_otg {
+> +	dr_mode =3D "otg";
+> +	status =3D "okay";
+> +};
+> +
+> +&usb_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&usbphy {
+> +	usb0_id_det-gpios =3D <&pio 7 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* =
+PH4 */
+> +	usb0_vbus_det-gpios =3D <&pio 7 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;=
+ /* PH5 */
+> +	usb0_vbus-supply =3D <&reg_usb0_vbus>;
+> +	usb1_vbus-supply =3D <&reg_usb1_vbus>;
+> +	usb2_vbus-supply =3D <&reg_usb2_vbus>;
+> +	status =3D "okay";
+> +};
+
+Looks good otherwise, thanks!
+Maxime
+
+--jw2e7ngd6l5xqz73
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXtTdQwAKCRDj7w1vZxhR
+xdKiAP92RfMs2+TpxutWSrG7zm63J5ROVyTIxu5gcVHuA4rq4QEAri2u+Ha+pj9a
+q/roVW/xlSjfZO76RwjV0FaY0oSqQw8=
+=vPgB
+-----END PGP SIGNATURE-----
+
+--jw2e7ngd6l5xqz73--
