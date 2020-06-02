@@ -2,212 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 781D01EB8F2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 11:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2D51EB945
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 12:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgFBJ5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 05:57:05 -0400
-Received: from mga12.intel.com ([192.55.52.136]:50609 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725811AbgFBJ5F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jun 2020 05:57:05 -0400
-IronPort-SDR: kgh/cr5DKADTl0fZ6IQClxEltISwO05NjvH5iCqp+Tsflx6YXEv/9sLKP9J6YZR1mP0T02oS35
- 25dLY2vw1PQw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2020 02:57:01 -0700
-IronPort-SDR: f5pjhVT4Hj49CKceAZLTS74rIEdpoYh4/acIP08Zj1vAOUlBP6YhHPZuGdb0XaFyASIKWEl1L2
- T9Kb4uSOJ+2A==
-X-IronPort-AV: E=Sophos;i="5.73,463,1583222400"; 
-   d="scan'208";a="416128886"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2020 02:56:56 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 9497820A25; Tue,  2 Jun 2020 12:56:54 +0300 (EEST)
-Date:   Tue, 2 Jun 2020 12:56:54 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     Tomasz Figa <tfiga@chromium.org>, Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= 
-        <shengnan.wang@mediatek.com>
-Subject: Re: [V9, 1/2] media: dt-bindings: media: i2c: Document OV02A10
- bindings
-Message-ID: <20200602095654.GD29325@paasikivi.fi.intel.com>
-References: <1590569355.8804.448.camel@mhfsdcap03>
- <CAL_Jsq+sN0SVidTrY0ODXEkzkxYFvG1FTnL0oRQBSKf=ynLdyQ@mail.gmail.com>
- <20200527211628.GT7618@paasikivi.fi.intel.com>
- <1590636882.8804.474.camel@mhfsdcap03>
- <20200528072332.GW7618@paasikivi.fi.intel.com>
- <1590653082.8804.517.camel@mhfsdcap03>
- <CAAFQd5AuHDpQN8xZsWgnAt6m2reAYJbs9nBp0+mBo7_FS81LbQ@mail.gmail.com>
- <1590978816.8804.523.camel@mhfsdcap03>
- <CAAFQd5AY9gejoiwxojvvG0FaVfEAf8gCqOddvo-dxemQWFksVw@mail.gmail.com>
- <1591078501.8804.539.camel@mhfsdcap03>
+        id S1728347AbgFBKKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 06:10:43 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:54790 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726217AbgFBKJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 06:09:41 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id C57998030838;
+        Tue,  2 Jun 2020 10:09:38 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id uAvv_XAg1Q8P; Tue,  2 Jun 2020 13:09:37 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paul.burton@imgtec.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        James Hogan <jhogan@kernel.org>, <linux-mips@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/6] mips: Add DT bindings for MIPS CDMM and MIPS GIC
+Date:   Tue, 2 Jun 2020 13:09:15 +0300
+Message-ID: <20200602100921.1155-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1591078501.8804.539.camel@mhfsdcap03>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dongchun,
+Folks, the code and DT-related patches here have been mostly reviewed.
+Please consider merge the series in or at least give me a feedback to
+update the series, since merge window is getting opened and I would
+really appreciate to see the leftover being merged in.
 
-On Tue, Jun 02, 2020 at 02:15:01PM +0800, Dongchun Zhu wrote:
-> Hi Tomasz, Sakari,
-> 
-> On Mon, 2020-06-01 at 20:18 +0200, Tomasz Figa wrote:
-> > On Mon, Jun 1, 2020 at 4:35 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
-> > >
-> > > Hi Tomasz,
-> > >
-> > > On Fri, 2020-05-29 at 15:43 +0200, Tomasz Figa wrote:
-> > > > On Thu, May 28, 2020 at 10:06 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
-> > > > >
-> > > > > Hi Sakari,
-> > > > >
-> > > > > On Thu, 2020-05-28 at 10:23 +0300, Sakari Ailus wrote:
-> > > > > > Hi Dongchun,
-> > > > > >
-> > > > > > On Thu, May 28, 2020 at 11:34:42AM +0800, Dongchun Zhu wrote:
-> > > > > > > Hi Sakari, Rob,
-> > > > > > >
-> > > > > > > On Thu, 2020-05-28 at 00:16 +0300, Sakari Ailus wrote:
-> > > > > > > > Hi Rob, Dongchun,
-> > > > > > > >
-> > > > > > > > On Wed, May 27, 2020 at 09:27:22AM -0600, Rob Herring wrote:
-> > > > > > > > > > > > +    properties:
-> > > > > > > > > > > > +      endpoint:
-> > > > > > > > > > > > +        type: object
-> > > > > > > > > > > > +        additionalProperties: false
-> > > > > > > > > > > > +
-> > > > > > > > > > > > +        properties:
-> > > > > > > > > >
-> > > > > > > > > > Actually I wonder whether we need to declare 'clock-lanes' here?
-> > > > > > > > >
-> > > > > > > > > Yes, if you are using it.
-> > > > > > > >
-> > > > > > > > Dongchun, can you confirm the chip has a single data and a single clock
-> > > > > > > > lane and that it does not support lane reordering?
-> > > > > > > >
-> > > > > > >
-> > > > > > > From the datasheet, 'MIPI inside the OV02A10 provides one single
-> > > > > > > uni-directional clock lane and one bi-directional data lane solution for
-> > > > > > > communication links between components inside a mobile device.
-> > > > > > > The data lane has full support for HS(uni-directional) and
-> > > > > > > LP(bi-directional) data transfer mode.'
-> > > > > > >
-> > > > > > > The sensor doesn't support lane reordering, so 'clock-lanes' property
-> > > > > > > would not be added in next release.
-> > > > > > >
-> > > > > > > > So if there's nothing to convey to the driver, also the data-lanes should
-> > > > > > > > be removed IMO.
-> > > > > > > >
-> > > > > > >
-> > > > > > > However, 'data-lanes' property may still be required.
-> > > > > > > It is known that either data-lanes or clock-lanes is an array of
-> > > > > > > physical data lane indexes. Position of an entry determines the logical
-> > > > > > > lane number, while the value of an entry indicates physical lane, e.g.,
-> > > > > > > for 1-lane MIPI CSI-2 bus we could have "data-lanes = <1>;", assuming
-> > > > > > > the clock lane is on hardware lane 0.
-> > > > > > >
-> > > > > > > As mentioned earlier, the OV02A10 sensor supports only 1C1D and does not
-> > > > > > > support lane reordering, so here we shall use 'data-lanes = <1>' as
-> > > > > > > there is only a clock lane for OV02A10.
-> > > > > > >
-> > > > > > > Reminder:
-> > > > > > > If 'data-lanes' property is not present, the driver would assume
-> > > > > > > four-lane operation. This means for one-lane or two-lane operation, this
-> > > > > > > property must be present and set to the right physical lane indexes.
-> > > > > > > If the hardware does not support lane reordering, monotonically
-> > > > > > > incremented values shall be used from 0 or 1 onwards, depending on
-> > > > > > > whether or not there is also a clock lane.
-> > > > > >
-> > > > > > How can the driver use four lanes, considering the device only supports a
-> > > > > > single lane??
-> > > > > >
-> > > > >
-> > > > > I understood your meaning.
-> > > > > If we omit the property 'data-lanes', the sensor should work still.
-> > > > > But then what's the meaning of the existence of 'data-lanes'?
-> > > > > If this property 'data-lanes' is always optional, then why dt-bindings
-> > > > > provide the interface?
-> > > > >
-> > > > > In the meantime, if omitting 'data-lanes' for one sensor(transmitter)
-> > > > > that has only one physical data lane, MIPI receiver(e.g., MIPI CSI-2)
-> > > > > shall enable four-lane configuration, which may increase consumption of
-> > > > > both power and resource in the process of IIC communication.
-> > > >
-> > > > Wouldn't the receiver still have the data-lanes property under its
-> > > > endpoint node, telling it how many lanes and in which order should be
-> > > > used?
-> > > >
-> > >
-> > > The MIPI receiver(RX) shall use
-> > > v4l2_async_notifier_add_fwnode_remote_subdev() API to parse the property
-> > > "data-lanes" under sensor output port.
-> > 
-> > That's not true. The MIPI receiver driver parses its own port node
-> > corresponding to the sensor. Also quoting the documentation [1]:
-> > 
-> > "An endpoint subnode of a device contains all properties needed for
-> > _configuration of this device_ for data exchange with other device. In most
-> > cases properties at the peer 'endpoint' nodes will be identical, however they
-> > might need to be different when there is any signal modifications on the bus
-> > between two devices, e.g. there are logic signal inverters on the lines."
-> > 
-> > In this case, there is such a signal modification if the sensor has a
-> > 1-lane bus and the receiver more lines, so the data-lanes properties
-> > would be different on both sides.
-> > 
-> > [1] https://elixir.bootlin.com/linux/v5.7/source/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > 
-> 
-> Sorry for the misunderstanding.
-> After doing some experiments about the data-lanes property under sensor
-> i2c node, we found the API
-> v4l2_async_notifier_add_fwnode_remote_subdev() that MIPI receiver driver
-> used indeed parses the data-lanes under its own port node.
-> 
-> Sorry make a mistake for the use case of sensor data-lanes previously.
-> Now We may encounter one new question for this patch.
-> In practice we haven't used the data-lanes under sensor i2c node
-> anywhere, if sensor driver itself doesn't parse that.
-> 
-> But there is still one reason to keep the exactly right data-lanes in
-> DT. That is, the data-lanes under sensor i2c node could be used as a
-> reference for MIPI receiver driver.
-> Just as Tomasz said, 'The MIPI receiver driver parses its own port node
-> corresponding to the sensor'.
-> 
-> Sakari, Tomasz, what's your opinions about the present of data-lanes
-> under sensor node or not?
+Regarding this patchset origin. Recently I've submitted a series of
+patchset's which provided multiple fixes for the MIPS arch subsystem and
+the MIPS GIC and DW APB Timer drivers, which were required for the
+Baikal-T1 SoC correctly working with those drivers. Mostly those patchsets
+have been already merged into the corresponding subsystems, but several
+patches have been left floating since noone really responded for review
+except Rob provided his approval regarding DT bindings. Thus in this
+patchset I've collected all the leftovers so not to loose them in a pale
+of the maintainers email logs.
 
-The receiver driver doesn't parse the properties in the sensor
-(transmitter) device's endpoint. If that property provides no information
-to the receiver, as is the case here, it should be omitted.
+The patchset includes the following updates: MIPS CPC and GIC DT bindings
+legacy text-based file are converted to the DT schema (Rob has already
+reviewed them), add MIPS CDMM DT node support to place the CDMM block at
+the platform-specific MMIO range, make sure MIPS CDMM is available for
+MIPS_R5 CPUs.
+
+Seeing the series concerns the MIPS-related drivers it's better to merge
+it in through the MIPS repository:
+https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/
+
+This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+base-commit: 0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
+
+Suggestion.
+Since Paul isn't looking after the MIPS arch code anymore, Ralf hasn't
+been seen maintaining MIPS for a long time, Thomas is only responsible
+for the next part of it:
+	F:      Documentation/devicetree/bindings/mips/
+	F:      Documentation/mips/
+	F:      arch/mips/
+	F:      drivers/platform/mips/
+the MIPS-specific drivers like:
+	F:	drivers/bus/mips_cdmm.c
+	F:	drivers/irqchip/irq-mips-cpu.c
+	F:	drivers/irqchip/irq-mips-gic.c
+	F:	drivers/clocksource/mips-gic-timer.c
+	F:	drivers/cpuidle/cpuidle-cps.c
+seem to be left for the subsystems maintainers to support. So if you don't
+mind or unless there is a better alternative, I can help with looking
+after them to ease the maintainers review burden and since I'll be working
+on our MIPS-based SoC drivers integrating into the mainline kernel repo
+anyway. If you don't like this idea, please just decline the last
+patch in the series.
+
+Previous patchsets:
+mips: Prepare MIPS-arch code for Baikal-T1 SoC support:
+Link: https://lore.kernel.org/linux-mips/20200306124807.3596F80307C2@mail.baikalelectronics.ru
+Link: https://lore.kernel.org/linux-mips/20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-mips/20200521140725.29571-1-Sergey.Semin@baikalelectronics.ru
+
+clocksource: Fix MIPS GIC and DW APB Timer for Baikal-T1 SoC support:
+Link: https://lore.kernel.org/linux-rtc/20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-rtc/20200506214107.25956-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-rtc/20200521005321.12129-1-Sergey.Semin@baikalelectronics.ru
+
+Changelog prev:
+- Add yaml-based bindings file for MIPS CDMM dt-node.
+- Convert mti,mips-cpc to DT schema.
+- Use a shorter summary describing the bindings modification patches.
+- Rearrange the SoBs with adding Alexey' co-development tag.
+- Lowercase the hex numbers in the dt-bindings.
+
+Changelog v2:
+- Resend.
+
+Link: https://lore.kernel.org/linux-mips/20200601122121.15809-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Keep F: MAINTAINERS section alphabetically ordered.
+- Add Thomas as the co-maintainer of the MIPS CPU and GIC IRQchip, MIPS
+  GIC timer and MIPS CPS CPUidle drivers.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Paul Burton <paul.burton@imgtec.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Jason Cooper <jason@lakedaemon.net>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: James Hogan <jhogan@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (6):
+  dt-bindings: power: Convert mti,mips-cpc to DT schema
+  dt-bindings: interrupt-controller: Convert mti,gic to DT schema
+  dt-bindings: bus: Add MIPS CDMM controller
+  mips: cdmm: Add mti,mips-cdmm dtb node support
+  bus: cdmm: Add MIPS R5 arch support
+  MAINTAINERS: Add maintainers for MIPS core drivers
+
+ .../bindings/bus/mti,mips-cdmm.yaml           |  35 +++++
+ .../interrupt-controller/mips-gic.txt         |  67 --------
+ .../interrupt-controller/mti,gic.yaml         | 148 ++++++++++++++++++
+ .../bindings/power/mti,mips-cpc.txt           |   8 -
+ .../bindings/power/mti,mips-cpc.yaml          |  35 +++++
+ MAINTAINERS                                   |  11 ++
+ drivers/bus/Kconfig                           |   2 +-
+ drivers/bus/mips_cdmm.c                       |  15 ++
+ 8 files changed, 245 insertions(+), 76 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/mti,mips-cdmm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mips-gic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.txt
+ create mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.yaml
 
 -- 
-Regards,
+2.26.2
 
-Sakari Ailus
