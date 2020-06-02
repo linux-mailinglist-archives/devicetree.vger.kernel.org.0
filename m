@@ -2,206 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 913821EC052
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 18:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BEF91EC074
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 18:50:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725989AbgFBQpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 12:45:54 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56480 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726875AbgFBQpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 12:45:51 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 052GjjgF021918;
-        Tue, 2 Jun 2020 11:45:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1591116345;
-        bh=dRys4SyEsTPUvsxrlOxuMVmtB0m1gpns1jd3eGMUcZw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CA8o5Q/+56Q5wAWqB7fCFuBvaGyvZkDck5DDZIylrpoIs4qXsMkyl4g0BfIpAmBFa
-         hr6sNiUOCoj++4DT8LvPVa1elvFoKhQItz2+oJ05aaaL4CLDOXH4YhlgywO9wD1j3+
-         fej6x4G/evwG0hCPeiy8u6wP8e/GMcBo23zZcNA0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 052GjjtZ115511
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Jun 2020 11:45:45 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Jun
- 2020 11:45:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 2 Jun 2020 11:45:44 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 052GjiKe105527;
-        Tue, 2 Jun 2020 11:45:44 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>, <robh@kernel.org>
-CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH net-next v5 4/4] net: dp83869: Add RGMII internal delay configuration
-Date:   Tue, 2 Jun 2020 11:45:22 -0500
-Message-ID: <20200602164522.3276-5-dmurphy@ti.com>
+        id S1726728AbgFBQt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 12:49:56 -0400
+Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:39171 "EHLO
+        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726112AbgFBQt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 12:49:56 -0400
+Received: from pro2.mail.ovh.net (unknown [10.109.156.120])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 27740607D9B2;
+        Tue,  2 Jun 2020 18:49:53 +0200 (CEST)
+Received: from localhost.localdomain (34.103.240.103) by DAG2EX1.emp2.local
+ (172.16.2.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Tue, 2 Jun 2020
+ 18:49:52 +0200
+From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
+To:     <linux-iio@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <jic23@kernel.org>,
+        <andy.shevchenko@gmail.com>, <pmeerw@pmeerw.net>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>
+Subject: [PATCH v3 0/4] Add support for SCD30 sensor
+Date:   Tue, 2 Jun 2020 18:47:19 +0200
+Message-ID: <20200602164723.28858-1-tomasz.duszynski@octakon.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200602164522.3276-1-dmurphy@ti.com>
-References: <20200602164522.3276-1-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [34.103.240.103]
+X-ClientProxiedBy: DAG1EX1.emp2.local (172.16.2.1) To DAG2EX1.emp2.local
+ (172.16.2.11)
+X-Ovh-Tracer-Id: 9453337095702141975
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrudefjedgjeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvffufffkofgggfgtihesthekredtredttdenucfhrhhomhepvfhomhgrshiiucffuhhsiiihnhhskhhiuceothhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehtdeggfekuddvkeehgeeggffhhfetkeeltedvkedvtdevuedtteeufeeuheeiteenucfkpheptddrtddrtddrtddpfeegrddutdefrddvgedtrddutdefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepthhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmpdhrtghpthhtohepphhmvggvrhifsehpmhgvvghrfidrnhgvth
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add RGMII internal delay configuration for Rx and Tx.
+Following series adds support for Sensirion SCD30 sensor module capable of
+measuring carbon dioxide, temperature and relative humidity. CO2 measurements
+base on NDIR principle while temperature and relative humidity are measured by
+the on board SHT31. As for sensor communication, both I2C and serial interfaces
+are supported.
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/net/phy/dp83869.c | 82 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 79 insertions(+), 3 deletions(-)
+v3:
+* simplify code by scaling temperature & humidity in _read_meas()
+* update realbits in scan types
+* s/adjecent/adjacent
+* drop IIO_CHAN_INFO_RAW from _write_raw_get_fmt because there's no raw
+  output channel
+* rework locking in _read_raw
+* fix endianess problem on BE machine
+* align timestamp properly before pushing to buffers
+* explain why interrupt gets disabled after registration
+* add trigger validation
+* drop SCALE for temperature and humidity channel as they are processed
+* register action which stops measuring after starting measurements
+* spit generic calibration attr into two doing specific things
+* add comment explaining why priv in struct scd30_state is for
+* rename node in binding example to co2-sensor
 
-diff --git a/drivers/net/phy/dp83869.c b/drivers/net/phy/dp83869.c
-index cfb22a21a2e6..ba1e3d599888 100644
---- a/drivers/net/phy/dp83869.c
-+++ b/drivers/net/phy/dp83869.c
-@@ -64,6 +64,10 @@
- #define DP83869_RGMII_TX_CLK_DELAY_EN		BIT(1)
- #define DP83869_RGMII_RX_CLK_DELAY_EN		BIT(0)
- 
-+/* RGMIIDCTL */
-+#define DP83869_RGMII_CLK_DELAY_SHIFT		4
-+#define DP83869_CLK_DELAY_DEF			7
-+
- /* STRAP_STS1 bits */
- #define DP83869_STRAP_OP_MODE_MASK		GENMASK(2, 0)
- #define DP83869_STRAP_STS1_RESERVED		BIT(11)
-@@ -78,9 +82,6 @@
- #define DP83869_PHYCR_FIFO_DEPTH_MASK	GENMASK(15, 12)
- #define DP83869_PHYCR_RESERVED_MASK	BIT(11)
- 
--/* RGMIIDCTL bits */
--#define DP83869_RGMII_TX_CLK_DELAY_SHIFT	4
--
- /* IO_MUX_CFG bits */
- #define DP83869_IO_MUX_CFG_IO_IMPEDANCE_CTRL	0x1f
- 
-@@ -99,6 +100,10 @@
- #define DP83869_OP_MODE_MII			BIT(5)
- #define DP83869_SGMII_RGMII_BRIDGE		BIT(6)
- 
-+static const int dp83869_internal_delay[] = {250, 500, 750, 1000, 1250, 1500,
-+					     1750, 2000, 2250, 2500, 2750, 3000,
-+					     3250, 3500, 3750, 4000};
-+
- enum {
- 	DP83869_PORT_MIRRORING_KEEP,
- 	DP83869_PORT_MIRRORING_EN,
-@@ -108,6 +113,8 @@ enum {
- struct dp83869_private {
- 	int tx_fifo_depth;
- 	int rx_fifo_depth;
-+	s32 rx_id_delay;
-+	s32 tx_id_delay;
- 	int io_impedance;
- 	int port_mirroring;
- 	bool rxctrl_strap_quirk;
-@@ -232,6 +239,22 @@ static int dp83869_of_init(struct phy_device *phydev)
- 				 &dp83869->tx_fifo_depth))
- 		dp83869->tx_fifo_depth = DP83869_PHYCR_FIFO_DEPTH_4_B_NIB;
- 
-+	ret = of_property_read_u32(of_node, "rx-internal-delay-ps",
-+				   &dp83869->rx_id_delay);
-+	if (ret) {
-+		dp83869->rx_id_delay =
-+				dp83869_internal_delay[DP83869_CLK_DELAY_DEF];
-+		ret = 0;
-+	}
-+
-+	ret = of_property_read_u32(of_node, "tx-internal-delay-ps",
-+				   &dp83869->tx_id_delay);
-+	if (ret) {
-+		dp83869->tx_id_delay =
-+				dp83869_internal_delay[DP83869_CLK_DELAY_DEF];
-+		ret = 0;
-+	}
-+
- 	return ret;
- }
- #else
-@@ -367,10 +390,35 @@ static int dp83869_configure_mode(struct phy_device *phydev,
- 	return ret;
- }
- 
-+static int dp83869_get_delay(struct phy_device *phydev)
-+{
-+	struct dp83869_private *dp83869 = phydev->priv;
-+	int delay_size = ARRAY_SIZE(dp83869_internal_delay);
-+	int tx_delay;
-+	int rx_delay;
-+
-+	tx_delay = phy_get_delay_index(phydev, &dp83869_internal_delay[0],
-+				       delay_size, dp83869->tx_id_delay);
-+	if (tx_delay < 0) {
-+		phydev_err(phydev, "Tx internal delay is invalid\n");
-+		return tx_delay;
-+	}
-+
-+	rx_delay = phy_get_delay_index(phydev, &dp83869_internal_delay[0],
-+				       delay_size, dp83869->rx_id_delay);
-+	if (rx_delay < 0) {
-+		phydev_err(phydev, "Rx internal delay is invalid\n");
-+		return rx_delay;
-+	}
-+
-+	return rx_delay | tx_delay << DP83869_RGMII_CLK_DELAY_SHIFT;
-+}
-+
- static int dp83869_config_init(struct phy_device *phydev)
- {
- 	struct dp83869_private *dp83869 = phydev->priv;
- 	int ret, val;
-+	int delay;
- 
- 	ret = dp83869_configure_mode(phydev, dp83869);
- 	if (ret)
-@@ -394,6 +442,34 @@ static int dp83869_config_init(struct phy_device *phydev)
- 				     dp83869->clk_output_sel <<
- 				     DP83869_IO_MUX_CFG_CLK_O_SEL_SHIFT);
- 
-+	if (phy_interface_is_rgmii(phydev)) {
-+		delay = dp83869_get_delay(phydev);
-+		if (delay < 0)
-+			return delay;
-+
-+		ret = phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIIDCTL,
-+				    delay);
-+		if (ret)
-+			return ret;
-+
-+		val = phy_read_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL);
-+		val &= ~(DP83869_RGMII_TX_CLK_DELAY_EN |
-+			 DP83869_RGMII_RX_CLK_DELAY_EN);
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_ID)
-+			val |= (DP83869_RGMII_TX_CLK_DELAY_EN |
-+				DP83869_RGMII_RX_CLK_DELAY_EN);
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID)
-+			val |= DP83869_RGMII_TX_CLK_DELAY_EN;
-+
-+		if (phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID)
-+			val |= DP83869_RGMII_RX_CLK_DELAY_EN;
-+
-+		ret = phy_write_mmd(phydev, DP83869_DEVADDR, DP83869_RGMIICTL,
-+				    val);
-+	}
-+
- 	return ret;
- }
- 
--- 
+v2:
+* move asm/byteorder.h towards the bottom of include list
+* make channel address names in enum more specific
+* add postfixes to defines and extra comments
+* drop unneeded i2c include from scd30 header
+* break generic command sending function into specialized options
+* expose automatic calibration and forced calibration via the same attr
+* use SAMP_FREQ to set frequency instead of meas_interval attr
+* use CALISCALE to set pressure compensation instead of pressure_comp attr
+* use CALIBBIAS to set temperature offset instead of temp_offset attr
+* fix order in MAINTAINERS
+* drop attribute allowing one to reset sensor
+* as we have dt probing drop board file based probing (i2c_device_id)
+* merge patches touching related files
+* use fwnode API to retrieve interrupt from dt
+* fix interrupt-parent spelling
+* change binding license
+* drop supply from required property
+
+Tomasz Duszynski (4):
+  iio: chemical: scd30: add core driver
+  iio: chemical: scd30: add I2C interface driver
+  iio: chemical: scd30: add serial interface driver
+  dt-bindings: iio: scd30: add device binding file
+
+ Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 +
+ .../iio/chemical/sensirion,scd30.yaml         |  68 ++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/chemical/Kconfig                  |  33 +
+ drivers/iio/chemical/Makefile                 |   3 +
+ drivers/iio/chemical/scd30.h                  |  80 ++
+ drivers/iio/chemical/scd30_core.c             | 783 ++++++++++++++++++
+ drivers/iio/chemical/scd30_i2c.c              | 134 +++
+ drivers/iio/chemical/scd30_serial.c           | 266 ++++++
+ 9 files changed, 1410 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+ create mode 100644 drivers/iio/chemical/scd30.h
+ create mode 100644 drivers/iio/chemical/scd30_core.c
+ create mode 100644 drivers/iio/chemical/scd30_i2c.c
+ create mode 100644 drivers/iio/chemical/scd30_serial.c
+
+--
 2.26.2
 
