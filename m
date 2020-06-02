@@ -2,263 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1884F1EB92F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 12:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 537A11EB94A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 12:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727872AbgFBKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 06:10:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47210 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727016AbgFBKJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 06:09:58 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ED4C061A0E
-        for <devicetree@vger.kernel.org>; Tue,  2 Jun 2020 03:09:58 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id bg4so1167796plb.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2020 03:09:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wsqa0aiNnjxSKSxZ07dY/8X+UeLS5BJ6SaHqCOj/zLM=;
-        b=lSddc/AvN4z9zX0shlWtxeHp4IJFJCOtqh4MGjrINjiStIZWUQKc3yOAQuFdZJI06k
-         Vgy0UakBX9xert0KE1UF87P6NBRdcXPOptUNsYNpDvrAnNp1csMaFaG6DaxQeLZTBFt1
-         +HoTwMoBRqgd7Kx6DaTJKw9XgING9jXQsWc3DtKEdhn2tKdTbZEB2kkGmk2VBgyPjTh6
-         e9wj6eyF2irxqoUdh51pQk+J/3XrBBgkHPFn5f+2m0+sjSP4g2cq9nT3RbJymdxn+gOv
-         bydoevKbA+rxapu0nSr+tOr1TEEJPW01CMxZe7OMGPr9/LAMY2MvEQy6dcJxQRhCg4AW
-         aGdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wsqa0aiNnjxSKSxZ07dY/8X+UeLS5BJ6SaHqCOj/zLM=;
-        b=MzGQZHQnZFZJgVh7khHjMSi3NSyAfmjJrpuCvBfJABhmvaqn0fY0dgCibQoItQgoPr
-         oFBHwVEk/JAXGHfDHKUbsu3NkTUJBqkitz7zMobbEcAmoDxOg5ymrx/DTwsjjA69NQ+g
-         2stFgNvBIIAgu91vrvJ37Eeet9BMRNdJXpUd42HLOynE/YnlGaFZpfIxbp7vPf0P0JA0
-         OO5XvpOUabNpntWNZwZrWlEon1/IsZVBv7WFOng8+W/EfiOIsmMdHCIBRI9fspIeI256
-         zdkH1J3vXfv941J/hMAf1On50HkB0A0shs0gF/5ONb3AwmdRE6oc24DkhQtJzA/sSBWW
-         kiVQ==
-X-Gm-Message-State: AOAM530OC3SumtuHMgbJ6oKwkmCaNEBwIcRPKAMMTuB6nrPLKAt4ouDy
-        xyKO4u9WAGAoV6IPWRIQpvwQ5Q==
-X-Google-Smtp-Source: ABdhPJxBYq+KqFnjJ1UQ+HHg3VFRhBmTfHQTgVlsT9+2hmQTf2hYbGj9JKW5daP2oYzepPi6Pw4uMg==
-X-Received: by 2002:a17:90a:3669:: with SMTP id s96mr4644955pjb.149.1591092597818;
-        Tue, 02 Jun 2020 03:09:57 -0700 (PDT)
-Received: from nagraj.local ([49.206.21.239])
-        by smtp.gmail.com with ESMTPSA id d8sm1931276pgb.42.2020.06.02.03.09.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jun 2020 03:09:57 -0700 (PDT)
-From:   Sumit Semwal <sumit.semwal@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org
-Cc:     nishakumari@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kgunda@codeaurora.org, rnayak@codeaurora.org,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Subject: [PATCH v4 5/5] regulator: qcom: labibb: Add SC interrupt handling
-Date:   Tue,  2 Jun 2020 15:39:24 +0530
-Message-Id: <20200602100924.26256-6-sumit.semwal@linaro.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200602100924.26256-1-sumit.semwal@linaro.org>
-References: <20200602100924.26256-1-sumit.semwal@linaro.org>
+        id S1726267AbgFBKMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 06:12:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58202 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725958AbgFBKMe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Jun 2020 06:12:34 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5FE93206A4;
+        Tue,  2 Jun 2020 10:12:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591092753;
+        bh=SLLzKcGsTJXQ60yS/kV3falFlkEtJC5sxntPHrVvGSg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=mMic7uphuWI5aqcLn+Nz+tgHFctkAGlSazm8tfzL/4N6Ho+KUOKG7bQ4AtjTdfgxC
+         /GWuU7p0eBlrPQF5wrWpOKAhA1L1i+WFr9D4QjBSU6dFOkN1W+TsuL3hWSWarhiKvY
+         DNUA/FA51c+Mh/xkizq8ehJzV+zZ1NkDiaobG5mc=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1jg3uJ-00H9lr-Hu; Tue, 02 Jun 2020 11:12:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 02 Jun 2020 11:12:31 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paul Burton <paul.burton@imgtec.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        James Hogan <jhogan@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] MAINTAINERS: Add maintainers for MIPS core drivers
+In-Reply-To: <20200602100921.1155-7-Sergey.Semin@baikalelectronics.ru>
+References: <20200602100921.1155-1-Sergey.Semin@baikalelectronics.ru>
+ <20200602100921.1155-7-Sergey.Semin@baikalelectronics.ru>
+User-Agent: Roundcube Webmail/1.4.4
+Message-ID: <61afd4bd10ac644fa623e218f947328e@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: Sergey.Semin@baikalelectronics.ru, tsbogend@alpha.franken.de, tglx@linutronix.de, gregkh@linuxfoundation.org, fancer.lancer@gmail.com, Alexey.Malahov@baikalelectronics.ru, paul.burton@imgtec.com, robh+dt@kernel.org, arnd@arndb.de, jason@lakedaemon.net, rjw@rjwysocki.net, daniel.lezcano@linaro.org, jhogan@kernel.org, linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nisha Kumari <nishakumari@codeaurora.org>
+On 2020-06-02 11:09, Serge Semin wrote:
+> Add Thomas and myself as maintainers of the MIPS CPU and GIC IRQchip, 
+> MIPS
+> GIC timer and MIPS CPS CPUidle drivers.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v3:
+> - Keep the files list alphabetically ordered.
+> - Add Thomas as the co-maintainer of the designated drivers.
+> ---
+>  MAINTAINERS | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2926327e4976..20532e0287d7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11278,6 +11278,17 @@ 
+> F:	arch/mips/configs/generic/board-boston.config
+>  F:	drivers/clk/imgtec/clk-boston.c
+>  F:	include/dt-bindings/clock/boston-clock.h
+> 
+> +MIPS CORE DRIVERS
+> +M:	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> +M:	Serge Semin <fancer.lancer@gmail.com>
+> +L:	linux-mips@vger.kernel.org
+> +S:	Supported
+> +F:	drivers/bus/mips_cdmm.c
+> +F:	drivers/clocksource/mips-gic-timer.c
+> +F:	drivers/cpuidle/cpuidle-cps.c
+> +F:	drivers/irqchip/irq-mips-cpu.c
+> +F:	drivers/irqchip/irq-mips-gic.c
+> +
+>  MIPS GENERIC PLATFORM
+>  M:	Paul Burton <paulburton@kernel.org>
+>  L:	linux-mips@vger.kernel.org
 
-Add Short circuit interrupt handling and recovery for the lab and ibb
-regulators on qcom platforms.
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-The client panel drivers need to register for REGULATOR_EVENT_OVER_CURRENT
-notification which will be triggered on short circuit. They should
-try to enable the regulator once, and if it doesn't get enabled,
-handle shutting down the panel accordingly.
+I assume this will go via the MIPS tree.
 
-Signed-off-by: Nisha Kumari <nishakumari@codeaurora.org>
-Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-    [sumits: updated to rework to use regmap_read_poll_timeout, handle it per
-             regulator, add REGULATOR_EVENT_OVER_CURRENT handling and
-             notification to clients and other cleanup]
---
-v2: sumits: reworked handling to user regmap_read_poll_timeout, and handle it
-     per-regulator instead of clearing both lab and ibb errors on either irq
-     triggering. Also added REGULATOR_EVENT_OVER_CURRENT handling and
-     notification to clients.
-v3: sumits: updated as per review comments of v2: removed spurious check for
-     irq in handler and some unused variables; inlined some of the code,
-     omitted IRQF_TRIGGER_RISING as it's coming from DT.
-v4: sumits: updated 'int vreg_enabled' to 'boot enabled', made sc_irq a local var
-     and other review comments from v3.
----
- drivers/regulator/qcom-labibb-regulator.c | 102 +++++++++++++++++++++-
- 1 file changed, 99 insertions(+), 3 deletions(-)
+Thanks,
 
-diff --git a/drivers/regulator/qcom-labibb-regulator.c b/drivers/regulator/qcom-labibb-regulator.c
-index 33b764ac69d1..bca0308b26dd 100644
---- a/drivers/regulator/qcom-labibb-regulator.c
-+++ b/drivers/regulator/qcom-labibb-regulator.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- // Copyright (c) 2020, The Linux Foundation. All rights reserved.
- 
-+#include <linux/interrupt.h>
- #include <linux/module.h>
- #include <linux/of_irq.h>
- #include <linux/of.h>
-@@ -18,6 +19,7 @@
- #define REG_LABIBB_ENABLE_CTL		0x46
- #define LABIBB_STATUS1_VREG_OK_BIT	BIT(7)
- #define LABIBB_CONTROL_ENABLE		BIT(7)
-+#define LABIBB_STATUS1_SC_DETECT_BIT	BIT(6)
- 
- #define LAB_ENABLE_CTL_MASK		BIT(7)
- #define IBB_ENABLE_CTL_MASK		(BIT(7) | BIT(6))
-@@ -27,12 +29,16 @@
- #define IBB_ENABLE_TIME			(LABIBB_OFF_ON_DELAY * 10)
- #define LABIBB_POLL_ENABLED_TIME	1000
- 
-+#define POLLING_SCP_DONE_INTERVAL_US	5000
-+#define POLLING_SCP_TIMEOUT		16000
-+
- struct labibb_regulator {
- 	struct regulator_desc		desc;
- 	struct device			*dev;
- 	struct regmap			*regmap;
- 	struct regulator_dev		*rdev;
- 	u16				base;
-+	bool				enabled;
- 	u8				type;
- };
- 
-@@ -59,12 +65,26 @@ static int qcom_labibb_regulator_is_enabled(struct regulator_dev *rdev)
- 
- static int qcom_labibb_regulator_enable(struct regulator_dev *rdev)
- {
--	return regulator_enable_regmap(rdev);
-+	int ret;
-+	struct labibb_regulator *reg = rdev_get_drvdata(rdev);
-+
-+	ret = regulator_enable_regmap(rdev);
-+	if (ret >= 0)
-+		reg->enabled = true;
-+
-+	return ret;
- }
- 
- static int qcom_labibb_regulator_disable(struct regulator_dev *rdev)
- {
--	return regulator_disable_regmap(rdev);
-+	int ret = 0;
-+	struct labibb_regulator *reg = rdev_get_drvdata(rdev);
-+
-+	ret = regulator_disable_regmap(rdev);
-+	if (ret >= 0)
-+		reg->enabled = false;
-+
-+	return ret;
- }
- 
- static struct regulator_ops qcom_labibb_ops = {
-@@ -73,12 +93,70 @@ static struct regulator_ops qcom_labibb_ops = {
- 	.is_enabled		= qcom_labibb_regulator_is_enabled,
- };
- 
-+static irqreturn_t labibb_sc_err_handler(int irq, void *_reg)
-+{
-+	int ret;
-+	u16 reg;
-+	unsigned int val;
-+	struct labibb_regulator *labibb_reg = _reg;
-+	bool in_sc_err, scp_done = false;
-+
-+	ret = regmap_read(labibb_reg->regmap,
-+			  labibb_reg->base + REG_LABIBB_STATUS1, &val);
-+	if (ret < 0) {
-+		dev_err(labibb_reg->dev, "sc_err_irq: Read failed, ret=%d\n",
-+			ret);
-+		return IRQ_HANDLED;
-+	}
-+
-+	dev_dbg(labibb_reg->dev, "%s SC error triggered! STATUS1 = %d\n",
-+		labibb_reg->desc.name, val);
-+
-+	in_sc_err = !!(val & LABIBB_STATUS1_SC_DETECT_BIT);
-+
-+	/*
-+	 * The SC(short circuit) fault would trigger PBS(Portable Batch
-+	 * System) to disable regulators for protection. This would
-+	 * cause the SC_DETECT status being cleared so that it's not
-+	 * able to get the SC fault status.
-+	 * Check if the regulator is enabled in the driver but
-+	 * disabled in hardware, this means a SC fault had happened
-+	 * and SCP handling is completed by PBS.
-+	 */
-+	if (!in_sc_err) {
-+
-+		reg = labibb_reg->base + REG_LABIBB_ENABLE_CTL;
-+
-+		ret = regmap_read_poll_timeout(labibb_reg->regmap,
-+					reg, val,
-+					!(val & LABIBB_CONTROL_ENABLE),
-+					POLLING_SCP_DONE_INTERVAL_US,
-+					POLLING_SCP_TIMEOUT);
-+
-+		if (!ret && labibb_reg->enabled) {
-+			dev_dbg(labibb_reg->dev,
-+				"%s has been disabled by SCP\n",
-+				labibb_reg->desc.name);
-+			scp_done = true;
-+		}
-+	}
-+
-+	if (in_sc_err || scp_done) {
-+		regulator_lock(labibb_reg->rdev);
-+		regulator_notifier_call_chain(labibb_reg->rdev,
-+						REGULATOR_EVENT_OVER_CURRENT,
-+						NULL);
-+		regulator_unlock(labibb_reg->rdev);
-+	}
-+	return IRQ_HANDLED;
-+}
-+
- static struct regulator_dev *register_labibb_regulator(struct labibb_regulator *reg,
- 				const struct labibb_regulator_data *reg_data,
- 				struct device_node *of_node)
- {
- 	struct regulator_config cfg = {};
--	int ret;
-+	int ret, sc_irq;
- 
- 	reg->base = reg_data->base;
- 	reg->type = reg_data->type;
-@@ -95,6 +173,24 @@ static struct regulator_dev *register_labibb_regulator(struct labibb_regulator *
- 	reg->desc.poll_enabled_time = LABIBB_POLL_ENABLED_TIME;
- 	reg->desc.off_on_delay = LABIBB_OFF_ON_DELAY;
- 
-+	sc_irq = of_irq_get_byname(of_node, "sc-err");
-+	if (sc_irq < 0) {
-+		dev_err(reg->dev, "Unable to get sc-err, ret = %d\n",
-+			sc_irq);
-+		return ERR_PTR(sc_irq);
-+	} else {
-+		ret = devm_request_threaded_irq(reg->dev,
-+						sc_irq,
-+						NULL, labibb_sc_err_handler,
-+						IRQF_ONESHOT,
-+						"sc-err", reg);
-+		if (ret) {
-+			dev_err(reg->dev, "Failed to register sc-err irq ret=%d\n",
-+				ret);
-+			return ERR_PTR(ret);
-+		}
-+	}
-+
- 	cfg.dev = reg->dev;
- 	cfg.driver_data = reg;
- 	cfg.regmap = reg->regmap;
+         M.
 -- 
-2.26.2
-
+Jazz is not dead. It just smells funny...
