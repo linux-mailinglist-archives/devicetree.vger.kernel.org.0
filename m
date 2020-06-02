@@ -2,148 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B35021EB3EC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 05:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232151EB4FA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 07:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725793AbgFBDsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jun 2020 23:48:22 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:40108 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726110AbgFBDsR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jun 2020 23:48:17 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BB4EA2005FE;
-        Tue,  2 Jun 2020 05:48:15 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CD1EC200601;
-        Tue,  2 Jun 2020 05:48:10 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4EDE8402DF;
-        Tue,  2 Jun 2020 11:48:04 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        mpa@pengutronix.de, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] dt-bindings: mmc: Convert mxs mmc to json-schema
-Date:   Tue,  2 Jun 2020 11:37:46 +0800
-Message-Id: <1591069066-12727-4-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1591069066-12727-1-git-send-email-Anson.Huang@nxp.com>
-References: <1591069066-12727-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725787AbgFBFVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 01:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725781AbgFBFVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 01:21:15 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A734C061A0E;
+        Mon,  1 Jun 2020 22:21:15 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id n24so11472802ejd.0;
+        Mon, 01 Jun 2020 22:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=8MzhGFpvwa3UfXHYcRPsEGkWRSqJ2Iw6pEALuEOQqkE=;
+        b=H7FzDG0JwgG/2pH1MrAAwYpycYFTHKzyMni1BuTKXn8qcaFxMk2NxfmD5v2tN7m0yu
+         06lVhvSbSV3+kCHvfED1hVSLHu6jE54FoQyNYhWoiulZD6wE8kqi/wDaMpB18f54kOGS
+         KCnBjHpbYyt62Id7AKefASLUJWL5z2lZNPRmNnroIAjZeCAWsXFTvWinNir8rTKRx8bs
+         Tf1py3P/zhGrhJwPd0VRvOgRu1JF6BkqVCKyoYtxJuzolDhMRrqF0nVFQS1yra+WMUyC
+         B164aIqxs2fZ9uscg5zpwPcH7WY9Hrsq48rrStfqYtvF6Up5d2GziSpstir/6siZL5cs
+         3bsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8MzhGFpvwa3UfXHYcRPsEGkWRSqJ2Iw6pEALuEOQqkE=;
+        b=EV5LHb33CQGqo2Ajqn3oG+Mg0lbU0aEpXETbW+zH3Ayrt3iOzfbngan8AHOlCwIdvh
+         0jem3Byj1so8lzd0cAdVGBFeJGTwNWC+K+vKspOGzPMMRi4kw/3v8/P8pVl+XKR53GUt
+         2WsvrWQd1DtAnpvRinkrbM63wkPJZAZhFNatIFytt7oGqSoJ8ySgUZRiInA4LQJKgJPu
+         JxJs22mhjI3P1UTEEcWPeE/Dv/rdwMyCnGyLqtIlSGXMupH5+ygoUcmiR7+nLy1qCLPp
+         zs+20RiSbTt6ubfq8yCFaSo/fkRPO6IbaE2FOv8MEOnpIWyEJZLh4zF2fgk4946epWgF
+         /n0Q==
+X-Gm-Message-State: AOAM533YqRcISTpAKI8Hp+q7DbhYojNMm2SL4BP5aNCCWcNVRDgmpfiP
+        WRvJMeGqNoSZXysbAUlrgZE=
+X-Google-Smtp-Source: ABdhPJwEJtJjHtnjQTurvhRnMv4L0axzw7MUv6dHx4TtBwbTsUpo6AqwjzJ1Mia58QfXBAgo7esmmA==
+X-Received: by 2002:a17:906:2e1a:: with SMTP id n26mr21516079eji.425.1591075274098;
+        Mon, 01 Jun 2020 22:21:14 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2df2:5300:959a:b3cc:b169:a3f0])
+        by smtp.gmail.com with ESMTPSA id dh22sm964480edb.94.2020.06.01.22.21.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jun 2020 22:21:13 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-watchdog@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Joe Perches <joe@perches.com>, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: rectify entry in ARM SMC WATCHDOG DRIVER
+Date:   Tue,  2 Jun 2020 07:21:04 +0200
+Message-Id: <20200602052104.7795-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MXS MMC binding to DT schema format using json-schema
+Commit 5c24a28b4eb8 ("dt-bindings: watchdog: Add ARM smc wdt for mt8173
+watchdog") added the new ARM SMC WATCHDOG DRIVER entry in MAINTAINERS, but
+slipped in a minor mistake.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Luckily, ./scripts/get_maintainer.pl --self-test=patterns complains:
+
+  warning: no file matches F: devicetree/bindings/watchdog/arm-smc-wdt.yaml
+
+Update file entry to intended file location.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
- Documentation/devicetree/bindings/mmc/mxs-mmc.txt  | 27 -----------
- Documentation/devicetree/bindings/mmc/mxs-mmc.yaml | 56 ++++++++++++++++++++++
- 2 files changed, 56 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mmc/mxs-mmc.txt
- create mode 100644 Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
+Julius, Evan, please ack.
 
-diff --git a/Documentation/devicetree/bindings/mmc/mxs-mmc.txt b/Documentation/devicetree/bindings/mmc/mxs-mmc.txt
-deleted file mode 100644
-index 515addc..0000000
---- a/Documentation/devicetree/bindings/mmc/mxs-mmc.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--* Freescale MXS MMC controller
--
--The Freescale MXS Synchronous Serial Ports (SSP) can act as a MMC controller
--to support MMC, SD, and SDIO types of memory cards.
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the mxsmmc driver.
--
--Required properties:
--- compatible: Should be "fsl,<chip>-mmc".  The supported chips include
--  imx23 and imx28.
--- interrupts: Should contain ERROR interrupt number
--- dmas: DMA specifier, consisting of a phandle to DMA controller node
--  and SSP DMA channel ID.
--  Refer to dma.txt and fsl-mxs-dma.txt for details.
--- dma-names: Must be "rx-tx".
--
--Examples:
--
--ssp0: ssp@80010000 {
--	compatible = "fsl,imx28-mmc";
--	reg = <0x80010000 2000>;
--	interrupts = <96>;
--	dmas = <&dma_apbh 0>;
--	dma-names = "rx-tx";
--	bus-width = <8>;
--};
-diff --git a/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml b/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
-new file mode 100644
-index 0000000..8fb9e59
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MXS MMC controller
-+
-+maintainers:
-+  - Shawn Guo <shawn.guo@linaro.org>
-+
-+description: |
-+  The Freescale MXS Synchronous Serial Ports (SSP) can act as a MMC controller
-+  to support MMC, SD, and SDIO types of memory cards.
-+
-+  This file documents differences between the core properties in mmc.txt
-+  and the properties used by the mxsmmc driver.
-+
-+allOf:
-+  - $ref: "mmc-controller.yaml"
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx23-mmc
-+      - fsl,imx28-mmc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx-tx
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - dmas
-+  - dma-names
-+
-+examples:
-+  - |
-+    mmc@80010000 {
-+        compatible = "fsl,imx28-mmc";
-+        reg = <0x80010000 2000>;
-+        interrupts = <96>;
-+        dmas = <&dma_apbh 0>;
-+        dma-names = "rx-tx";
-+        bus-width = <8>;
-+    };
+Wim, please pick this minor patch into your -next tree.
+
+applies cleanly on next-20200529
+
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b045b70e54df..dcfb09700b96 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1489,7 +1489,7 @@ ARM SMC WATCHDOG DRIVER
+ M:	Julius Werner <jwerner@chromium.org>
+ R:	Evan Benn <evanbenn@chromium.org>
+ S:	Maintained
+-F:	devicetree/bindings/watchdog/arm-smc-wdt.yaml
++F:	Documentation/devicetree/bindings/watchdog/arm-smc-wdt.yaml
+ F:	drivers/watchdog/arm_smc_wdt.c
+ 
+ ARM SMMU DRIVERS
 -- 
-2.7.4
+2.17.1
 
