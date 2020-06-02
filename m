@@ -2,77 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 083C11EB707
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 10:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C05541EB71C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 10:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726606AbgFBIHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 04:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbgFBIHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 04:07:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387FEC061A0E;
-        Tue,  2 Jun 2020 01:07:22 -0700 (PDT)
-Received: from ni.home (unknown [IPv6:2a01:cb19:8092:cf00:aaa1:59ff:fe08:91d5])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: myjosserand)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 9AADB2A2ADE;
-        Tue,  2 Jun 2020 09:07:18 +0100 (BST)
-From:   =?UTF-8?q?Myl=C3=A8ne=20Josserand?= 
-        <mylene.josserand@collabora.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, heiko@sntech.de,
-        robh+dt@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mylene.josserand@collabora.com,
-        kernel@collabora.com
-Subject: [PATCH v4 2/2] dt-bindings: clocks: rk3288: add rk3288w compatible
-Date:   Tue,  2 Jun 2020 10:06:44 +0200
-Message-Id: <20200602080644.11333-3-mylene.josserand@collabora.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200602080644.11333-1-mylene.josserand@collabora.com>
-References: <20200602080644.11333-1-mylene.josserand@collabora.com>
+        id S1725900AbgFBIOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 04:14:01 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51350 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725811AbgFBIOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 04:14:01 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0528DWxd017543;
+        Tue, 2 Jun 2020 03:13:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591085612;
+        bh=W/u4Gfn8Bq+eBQ50ZyVyRSF3E4LsSNzZM/DU8aita/I=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=doCaxwsbt8NFkstWB1KPdIFMfNjNNLipev6pIncVThGfebFxJlpuA8OL30Yng3UFj
+         6Xe2UD2dJJh6/C1MfVGr3uoMTVjo1fodAEdjUUk3YKDlZW/eOLr4jL1NI1mIx6CbK0
+         kR7YE9RNq8m1Q48wvNO5pRUPz0/9jAUcSJxqHqjc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0528DWEE024193
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 2 Jun 2020 03:13:32 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Jun
+ 2020 03:13:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 2 Jun 2020 03:13:32 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0528DTnO024976;
+        Tue, 2 Jun 2020 03:13:29 -0500
+Subject: Re: [PATCH resend 0/2] dts: keystone-k2g-evm: Display support
+To:     <santosh.shilimkar@oracle.com>, Jyri Sarha <jsarha@ti.com>,
+        <dri-devel@lists.freedesktop.org>, <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC:     <mark.rutland@arm.com>, <praneeth@ti.com>, <robh+dt@kernel.org>,
+        <peter.ujfalusi@ti.com>, <tomi.valkeinen@ti.com>,
+        <laurent.pinchart@ideasonboard.com>
+References: <cover.1581671951.git.jsarha@ti.com>
+ <6749076a-cbc1-d8e2-bc35-2e2a9ad80a6d@oracle.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <973b69f2-bbe1-3c1b-615f-751bb8d5d83e@ti.com>
+Date:   Tue, 2 Jun 2020 11:13:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <6749076a-cbc1-d8e2-bc35-2e2a9ad80a6d@oracle.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the possible compatible "rockchip,rk3288w-cru" that handles
-the difference between the rk3288 and the new revision rk3288w.
+Hi Santosh,
 
-This compatible will be added by bootloaders.
+On 14/02/2020 19:40, santosh.shilimkar@oracle.com wrote:
+> On 2/14/20 1:22 AM, Jyri Sarha wrote:
+>> Resend because the earlier recipient list was wrong.
+>>
+>> Now that drm/tidss is queued for mainline, lets add display support for
+>> k2g-evm. There is no hurry since tidss is out only in v5.7, but it
+>> should not harm to have the dts changes in place before that.
+>>
+>> Jyri Sarha (2):
+>>    ARM: dts: keystone-k2g: Add DSS node
+>>    ARM: dts: keystone-k2g-evm: add HDMI video support
+>>
+>>   arch/arm/boot/dts/keystone-k2g-evm.dts | 101 +++++++++++++++++++++++++
+>>   arch/arm/boot/dts/keystone-k2g.dtsi    |  22 ++++++
+>>   2 files changed, 123 insertions(+)
+>>
+> Ok. Will add this to the next queue.
 
-Signed-off-by: Mylène Josserand <mylene.josserand@collabora.com>
----
- .../devicetree/bindings/clock/rockchip,rk3288-cru.txt     | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+What happened with this one? It used to be in linux-next, but now I don't see it anymore.
 
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt
-index 8cb47c39ba53..bf3a9ec19241 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt
-@@ -4,9 +4,15 @@ The RK3288 clock controller generates and supplies clock to various
- controllers within the SoC and also implements a reset controller for SoC
- peripherals.
- 
-+A revision of this SoC is available: rk3288w. The clock tree is a bit
-+different so another dt-compatible is available. Noticed that it is only
-+setting the difference but there is no automatic revision detection. This
-+should be performed by bootloaders.
-+
- Required Properties:
- 
--- compatible: should be "rockchip,rk3288-cru"
-+- compatible: should be "rockchip,rk3288-cru" or "rockchip,rk3288w-cru" in
-+  case of this revision of Rockchip rk3288.
- - reg: physical base address of the controller and length of memory mapped
-   region.
- - #clock-cells: should be 1.
+  Tomi
+
 -- 
-2.26.2
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
