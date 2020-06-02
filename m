@@ -2,141 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC4C1EBFAC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 18:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 698381EBFB7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 18:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726625AbgFBQKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 12:10:30 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:11551 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726130AbgFBQKa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jun 2020 12:10:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1591114229; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=6WkZkPNZYqHtyoOR3WPRpDqJzCSNDoDiaqF/KoiR35c=;
- b=AQvHjZgvmt5IdIFAkFRgvRhNTRLsFrkI56sUZxVZ9KAr4E59a+w5rr8HiiZrKI6uU6vkYKo9
- FDDVx6DbpOkW9IwlAr/RGgVaJxOfcuDbGzSeEZzBymlLR8BKg/0T9dioYXETQvYA5mMMigGr
- xcS6jr64qfZSr3UlfiP59vG8wWw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 5ed679ee2738686126788cd0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Jun 2020 16:10:22
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5E079C43395; Tue,  2 Jun 2020 16:10:21 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 816A8C433CB;
-        Tue,  2 Jun 2020 16:10:20 +0000 (UTC)
+        id S1726728AbgFBQN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 12:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725940AbgFBQNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 12:13:23 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF3AC05BD1E
+        for <devicetree@vger.kernel.org>; Tue,  2 Jun 2020 09:13:22 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id e1so4002201wrt.5
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2020 09:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JGrW/c/JXuiBk8/1uTLfosohyqGpmE68ngouOkkOVGA=;
+        b=pm/U5M0pUoU2QZjRE5ZUg8u9Le+vvFJOBE2CI/GZlPuz/pVxVtaPhaim03/Xa6a6Ol
+         VkhChYR6KYfZVlApi84hbgeG2f+BKyiT2SYKuuCHOeGjarbgk+YDWrJ9gsFRh1mTQYtZ
+         AuyyvrFrpvl3SHP6tRlsT+fBRddfiSuyH8pgZrKCDtOrKl3MjuxqcNK3mRM/ld4OC+Zf
+         0g1WqcsH6kAK1vLrAiQKv/upYim57IsNvw7evUOmccguGHpmZCTS4prLmqFjf77a3pod
+         76bWfI+FBACglrz62GSgIEx+wrcVUjRW9VVV2xnivP0SOIkXTLKprDlhDj5GavP98VUK
+         SLlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JGrW/c/JXuiBk8/1uTLfosohyqGpmE68ngouOkkOVGA=;
+        b=N/3DhiTeid2irXSSSb7M0smS8DRMgqy45umPF08wPPcJg+bP+AT8/UuskY1e9c4rYN
+         7nYfxhFI1mmIpfXtQb3m6SHXdTJorG6ajCnzUSbKsFUE+JjWPP3nlZUoL9FthjV2fmgl
+         DY1zAXCfekL+6fSf0O/rHgWrKha1JVJ/Cvph6xKP+UkMQ7Mr4pyuqGo3ofGvEkEzfZFN
+         mDb3os44oZCmtDJYxhHYLfTyntRxWPS8KLU+1LB2mJ9nA/MnZJgLMQArJCQ6G0xURZVH
+         kNj17GoxJJUJbwyPwQOKTvsCF4x6fnx3Um+ajDrg91xtX2MRj39OeNKmr3hbjdkn+tkM
+         W+AQ==
+X-Gm-Message-State: AOAM532ImJsuOY9LRjjF/SCfunprdHsf1kIDgpYoetrMxyt8vAbTSH9W
+        zT2V3QVhlg7NhSjpYxQh4JY=
+X-Google-Smtp-Source: ABdhPJxQbm67ylfcRZwHdGK3hvPtk+y7Lzk9LzOh6QAB4Prv4mgYS51Mh8G7rvhrur95PzdYI5CiLw==
+X-Received: by 2002:a5d:690b:: with SMTP id t11mr29377244wru.213.1591114400809;
+        Tue, 02 Jun 2020 09:13:20 -0700 (PDT)
+Received: from cluster5 ([80.76.206.81])
+        by smtp.gmail.com with ESMTPSA id p10sm5159726wra.78.2020.06.02.09.13.20
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Tue, 02 Jun 2020 09:13:20 -0700 (PDT)
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Matthew Hagan <mnhagan88@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] ARM: dts: NSP: Add support for Cisco Meraki NSP devices
+Date:   Tue,  2 Jun 2020 17:11:16 +0100
+Message-Id: <cover.1591114003.git.mnhagan88@gmail.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 02 Jun 2020 21:40:20 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Emil Velikov <emil.l.velikov@gmail.com>
-Cc:     Krishna Manikandan <mkrishn@codeaurora.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno@lists.freedesktop.org,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>, kalyan_t@codeaurora.org,
-        "Kristian H . Kristensen" <hoegsberg@chromium.org>,
-        mka@chromium.org, devicetree-owner@vger.kernel.org
-Subject: Re: [v2] drm/msm: add shutdown support for display platform_driver
-In-Reply-To: <CACvgo50b+m2+onak=AZfgihkBXEP9POjMR52087v==-puLdkQQ@mail.gmail.com>
-References: <1591009402-681-1-git-send-email-mkrishn@codeaurora.org>
- <CACvgo50eb5_jp_6B5tkV9cX_X2_y2Xnavu+wvUUhHN5FsV9hiw@mail.gmail.com>
- <cd61dd742e73b89794fc1b812d9fdcd9@codeaurora.org>
- <CACvgo50b+m2+onak=AZfgihkBXEP9POjMR52087v==-puLdkQQ@mail.gmail.com>
-Message-ID: <8742ac6fbd498fdc22dcd469c3a2d52a@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Emil,
+This patch set adds support for the Meraki MX64(W) and MX65(W) security 
+devices. There are four devices in total, all using the same basic hardware.
 
-On 2020-06-02 21:09, Emil Velikov wrote:
-> On Tue, 2 Jun 2020 at 15:49, Sai Prakash Ranjan
-> <saiprakash.ranjan@codeaurora.org> wrote:
->> 
->> Hi Emil,
->> 
->> On 2020-06-02 19:43, Emil Velikov wrote:
->> > Hi Krishna,
->> >
->> > On Tue, 2 Jun 2020 at 08:17, Krishna Manikandan
->> > <mkrishn@codeaurora.org> wrote:
->> >>
->> >> Define shutdown callback for display drm driver,
->> >> so as to disable all the CRTCS when shutdown
->> >> notification is received by the driver.
->> >>
->> >> This change will turn off the timing engine so
->> >> that no display transactions are requested
->> >> while mmu translations are getting disabled
->> >> during reboot sequence.
->> >>
->> >> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
->> >>
->> > AFAICT atomics is setup in msm_drm_ops::bind and shutdown in
->> > msm_drm_ops::unbind.
->> >
->> > Are you saying that unbind never triggers? If so, then we should
->> > really fix that instead, since this patch seems more like a
->> > workaround.
->> >
->> 
->> Which path do you suppose that the unbind should be called from, 
->> remove
->> callback? Here we are talking about the drivers which are builtin, 
->> where
->> remove callbacks are not called from the driver core during
->> reboot/shutdown,
->> instead shutdown callbacks are called which needs to be defined in 
->> order
->> to
->> trigger unbind. So AFAICS there is nothing to be fixed.
->> 
-> Interesting - in drm effectively only drm panels implement .shutdown.
-> So my naive assumption was that .remove was used implicitly by core,
-> as part of the shutdown process. Yet that's not the case, so it seems
-> that many drivers could use some fixes.
-> 
-> Then again, that's an existing problem which is irrelevant for msm.
-> -Emil
+The MX64 series has five ethernet ports connected to the BCM SRAB. The MX65
+series has two ports conected to the SRAB, and two QCA8337 switches connected 
+by SGMII to SRAB ports 4 and 5, each providing five additional ports.
 
-To give more context, we are actually targeting the clients/consumers
-of SMMU/IOMMU here because we have to make sure that before the supplier
-(SMMU) shuts down, its consumers/clients need to be shutdown properly.
-Now the ordering of this is taken care in the SMMU driver via 
-device_link
-which makes sure that consumer shutdown callbacks are called first, but 
-we
-need to define shutdown callbacks for all its consumers to make sure we
-actually shutdown the clients or else it would invite the crashes during 
-reboot
-which in this case was seen for display.
+The W variants of these devices have two BCM43520s on the PCIe bus. On the
+non-wireless variants PCIe is inactive, hence separate dts files.
+
+1/3 contains common bindings for both Meraki devices.
+2/3 contains MX64 specific bindings.
+3/3 contains MX65 specific bindings.
+
+Note that Chris Packham's "[PATCH 2/2] ARM: dts: NSP: avoid unnecessary probe
+deferrals" is also necessary.
 
 Thanks,
-Sai
+Matthew
+
+Matthew Hagan (3):
+  ARM: dts: NSP: Add common bindings for Meraki MX64/65
+  ARM: dts: NSP: Add support for Cisco Meraki MX64(W)
+  ARM: dts: NSP: Add support for Cisco Meraki MX65(W)
+
+ arch/arm/boot/dts/bcm958625-mx64.dts         |  15 +
+ arch/arm/boot/dts/bcm958625-mx64w.dts        |  23 ++
+ arch/arm/boot/dts/bcm958625-mx64x.dtsi       | 136 ++++++++
+ arch/arm/boot/dts/bcm958625-mx65.dts         |  15 +
+ arch/arm/boot/dts/bcm958625-mx65w.dts        |  23 ++
+ arch/arm/boot/dts/bcm958625-mx65x.dtsi       | 321 +++++++++++++++++++
+ arch/arm/boot/dts/bcm958625-mx6x-common.dtsi | 172 ++++++++++
+ 7 files changed, 705 insertions(+)
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx64.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx64w.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx64x.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65w.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65x.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx6x-common.dtsi
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.25.4
+
