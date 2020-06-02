@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1061EBFB5
+	by mail.lfdr.de (Postfix) with ESMTP id 7502E1EBFB8
 	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2020 18:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726666AbgFBQNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jun 2020 12:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47104 "EHLO
+        id S1725940AbgFBQN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jun 2020 12:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726728AbgFBQNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 12:13:24 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06804C08C5C1
+        with ESMTP id S1726750AbgFBQNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jun 2020 12:13:25 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25F5C05BD1E
         for <devicetree@vger.kernel.org>; Tue,  2 Jun 2020 09:13:24 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id v19so3503937wmj.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2020 09:13:23 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id x14so4012694wrp.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2020 09:13:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=wRxyk7AgJAjBP1wGNSxBpMY9GpEBrSY1kU+d8H0i7g4=;
-        b=Ba7KzQriq4ldTyFY9mdZUjBqtOiBpnQ+CEELdLxzKIXDI/jSv7ozfOxr0ps/Wwu8Bh
-         RDWvmuJDYLZTCjObQdfk92Xh7Ypv30SKo/duZv8uqWABimxepLOb5bOjMuWljT8mg0zX
-         wejpuH8riYTCLR+MDVAZ7M1/Es/8TtUTiCaeXhBi/+D8vJsOSNfKJNQZBYQAbuSdLG8q
-         25uB9MQwMFRglqZg97KtDhVHHEHVWu7qDF88OLYkX+FFbwG0pAsCE1aLq+KfUaEUZduY
-         sD9U7nNMgfuLlwNn86T2qUtYKSVpxJpAU5DvMlmmR5lzp7lDVsCNnCZ8B8VwxyT6Sfz4
-         thWg==
+        bh=2A9hisu7OCmqwJQRNm/eLMXrMSsroMPdlllTVf5Mc88=;
+        b=ah5ZAsYQjmWmYiJC+YPLhMVumSOCWJ74DRWtWELgxxn1T3cXR/F0SKmj3X7ICKGGeW
+         Kt2sO+YZZDqlK0HYjLa/YQyIIkWiUN+hNBsuI3PGjYg4mOyiFb6h8pPinuOqiMdw+I3i
+         LvNTXzBGEC49gS5RTqkVMjy7liUTi6iQZK9RAT5PfZJ9d/07B5FjxCvEin+C4QQES/+8
+         JXKUiZbpD/j5YNfmy+Z40Co2kxNVBAmccNXsIe5yOfS7V4Dwnb3PiyPUyqOEBTutIh6N
+         sPOb9SJ70Fuc6fI9N7tLgrJ6yVDoN1chMxT0w0AtfzoArYi9t8T2k56fM8FDEUfYZrNq
+         fnuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=wRxyk7AgJAjBP1wGNSxBpMY9GpEBrSY1kU+d8H0i7g4=;
-        b=LDnNnsbEFcjrz2E0iGwHAbqItQ56rRtak5URg8hy2YGGzGcfkbfkZAK4eo57U/pb5e
-         kqW2BSUjQmV9GJuLO3yF1Mb90oenEgZzAV5XJWss08SgabXw4m1aCc1PYfSbpPrDEnw0
-         WAsVe92tr3d7CTUNKdhyaBr5doxK4FQUlj7/AhOZ97KYwHXYSNrknslgkfeYU1v8kOMP
-         HRcF2Bhp9aXR30CFQdlv5O5mrhsIa+/YtUHpHN/UFGYBqfaiJcs79PcSZP4GQ9E8WRg3
-         HAA0CoizK5ZBrc5mzxe8JEEb69kD1xfc9/7uUn1dabRa8OZgLlfo9+QOaigazpXuEXvt
-         1vqg==
-X-Gm-Message-State: AOAM530mdQpvz2f4n9ER37h1wriXC6sUiKOHhsc9ukWk+S26PHAp6y7c
-        I+Eu7+u2Z2vEkogFN/WXiv0=
-X-Google-Smtp-Source: ABdhPJyhyXS+zlCY2FEcEC9B+zbR+jwx7JHDxGRXIcKw1wuN3lHDEaJjI9hgdrBfKlWlnVJ4br5dYA==
-X-Received: by 2002:a05:600c:218b:: with SMTP id e11mr4765547wme.162.1591114402656;
-        Tue, 02 Jun 2020 09:13:22 -0700 (PDT)
+        bh=2A9hisu7OCmqwJQRNm/eLMXrMSsroMPdlllTVf5Mc88=;
+        b=rMMhNrpBNgsN8cVeB27SqECJ9dlhU0TDL2ZoMgH3nWuilRY3DIgNjkp9uV7N40+Eok
+         QnL7IAuPOnhs1GJfoBdMiitGxfX2VpNQgMyqDx2bSVugL1icmsFDpNedK5UJbBw31l9X
+         4JkoWHjKLL1ZxhfhtGAVy/vYY/aiJI5CeW9aok2Ts6vAI7X86/Ok8UhiYpt7ULhToVgn
+         nQDz1D564wEbuRE39ec56A+fChlMiylOwAlvgaMy866jP+OvFb1IJhRIYzlA/F9vX3/K
+         0pqpgQmWkdUhQvaiYKqy0j6EVhhy+Av0jcgLZ5cgyaYQgARbyGG8eF4VqYVE4uSGfWLM
+         BaZA==
+X-Gm-Message-State: AOAM533iPSKdYrwWbuGEVXj9KWjZ9I3lNtUxctk59fJtUxJN4XedNnKQ
+        +90f9cF/GcOVXV+1vyeKx8Q=
+X-Google-Smtp-Source: ABdhPJzcrmjBQDGQXTWgzWTFICr9GkG3GW2ikvynC6gMlEGjRXqfuClkZYDY15Jqk+tGlOegPX5Esg==
+X-Received: by 2002:a5d:604b:: with SMTP id j11mr26861530wrt.193.1591114403558;
+        Tue, 02 Jun 2020 09:13:23 -0700 (PDT)
 Received: from cluster5 ([80.76.206.81])
-        by smtp.gmail.com with ESMTPSA id s132sm338062wmf.12.2020.06.02.09.13.22
+        by smtp.gmail.com with ESMTPSA id l17sm273714wmi.3.2020.06.02.09.13.23
         (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Tue, 02 Jun 2020 09:13:22 -0700 (PDT)
+        Tue, 02 Jun 2020 09:13:23 -0700 (PDT)
 From:   Matthew Hagan <mnhagan88@gmail.com>
 Cc:     Matthew Hagan <mnhagan88@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -54,9 +54,9 @@ Cc:     Matthew Hagan <mnhagan88@gmail.com>,
         Scott Branden <sbranden@broadcom.com>,
         bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/3] ARM: dts: NSP: Add support for Cisco Meraki MX64(W)
-Date:   Tue,  2 Jun 2020 17:11:18 +0100
-Message-Id: <dc4c69de81ecc422d0b2895c6020832e28ba8839.1591114003.git.mnhagan88@gmail.com>
+Subject: [PATCH 3/3] ARM: dts: NSP: Add support for Cisco Meraki MX65(W)
+Date:   Tue,  2 Jun 2020 17:11:19 +0100
+Message-Id: <bceec91d0c933cbe1dd365d6d532bb241c8be2af.1591114003.git.mnhagan88@gmail.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <cover.1591114003.git.mnhagan88@gmail.com>
 References: <cover.1591114003.git.mnhagan88@gmail.com>
@@ -74,65 +74,68 @@ Hardware Info
 Processor	- Broadcom BCM58625 dual-core @ 1.2 GHz
 DDR3 RAM	- 2GB (4x SK Hynix H5TC4G83CFR)
 Flash		- 1GB (Micron MT29F8G08ABACA)
-Switch		- Broadcom BCM58625
-Wireless(MX64W)	- Broadcom BCM43520KMLG (2x)
-Ports		- 5 Ports
+Switches	- Broadcom BCM58625, 2x Qualcomm Atheros QCA8337
+Ports		- 12 Ports
+Wireless(MX65W)	- Broadcom BCM43520KMLG (2X)
 Serial Port	- 115200 8n1
 USB		- 1x 2.0
 
-Tested with Kernel 5.4. PCIe is inactive on the non-wireless MX64.
+Tested with Kernel 5.4. PCIe is inactive on non-wireless MX65.
+
+Note: The QCA8337 switches are connected to ports 4 and 5 of the BCM58625
+SRAB, which need be set to SGMII mode.
 
 Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 ---
- arch/arm/boot/dts/bcm958625-mx64.dts   |  15 +++
- arch/arm/boot/dts/bcm958625-mx64w.dts  |  23 +++++
- arch/arm/boot/dts/bcm958625-mx64x.dtsi | 136 +++++++++++++++++++++++++
- 3 files changed, 174 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm958625-mx64.dts
- create mode 100644 arch/arm/boot/dts/bcm958625-mx64w.dts
- create mode 100644 arch/arm/boot/dts/bcm958625-mx64x.dtsi
+ arch/arm/boot/dts/bcm958625-mx65.dts   |  15 ++
+ arch/arm/boot/dts/bcm958625-mx65w.dts  |  23 ++
+ arch/arm/boot/dts/bcm958625-mx65x.dtsi | 321 +++++++++++++++++++++++++
+ 3 files changed, 359 insertions(+)
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65w.dts
+ create mode 100644 arch/arm/boot/dts/bcm958625-mx65x.dtsi
 
-diff --git a/arch/arm/boot/dts/bcm958625-mx64.dts b/arch/arm/boot/dts/bcm958625-mx64.dts
+diff --git a/arch/arm/boot/dts/bcm958625-mx65.dts b/arch/arm/boot/dts/bcm958625-mx65.dts
 new file mode 100644
-index 000000000000..ec1017b8bf68
+index 000000000000..af161d268824
 --- /dev/null
-+++ b/arch/arm/boot/dts/bcm958625-mx64.dts
++++ b/arch/arm/boot/dts/bcm958625-mx65.dts
 @@ -0,0 +1,15 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
-+ * Device Tree Bindings for Cisco Meraki MX64.
++ * Device Tree Bindings for Cisco Meraki MX65.
 + *
 + * Copyright (C) 2020 Matthew Hagan <mnhagan88@gmail.com>
 + */
 +
 +/dts-v1/;
 +
-+#include "bcm958625-mx64x.dtsi"
++#include "bcm958625-mx65x.dtsi"
 +
 +/ {
-+	model = "Cisco Meraki MX64";
-+	compatible = "meraki,mx64", "brcm,bcm58625", "brcm,nsp";
++	model = "Cisco Meraki MX65";
++	compatible = "meraki,mx65", "brcm,bcm58625", "brcm,nsp";
 +};
-diff --git a/arch/arm/boot/dts/bcm958625-mx64w.dts b/arch/arm/boot/dts/bcm958625-mx64w.dts
+diff --git a/arch/arm/boot/dts/bcm958625-mx65w.dts b/arch/arm/boot/dts/bcm958625-mx65w.dts
 new file mode 100644
-index 000000000000..a3fbf0fed218
+index 000000000000..67933ca7b598
 --- /dev/null
-+++ b/arch/arm/boot/dts/bcm958625-mx64w.dts
++++ b/arch/arm/boot/dts/bcm958625-mx65w.dts
 @@ -0,0 +1,23 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
-+ * Device Tree Bindings for Cisco Meraki MX64W.
++ * Device Tree Bindings for Cisco Meraki MX65W.
 + *
 + * Copyright (C) 2020 Matthew Hagan <mnhagan88@gmail.com>
 + */
 +
 +/dts-v1/;
 +
-+#include "bcm958625-mx64x.dtsi"
++#include "bcm958625-mx65x.dtsi"
 +
 +/ {
-+	model = "Cisco Meraki MX64W";
-+	compatible = "meraki,mx64w", "brcm,bcm58625", "brcm,nsp";
++	model = "Cisco Meraki MX65W";
++	compatible = "meraki,mx65w", "brcm,bcm58625", "brcm,nsp";
 +};
 +
 +&pcie0 {
@@ -142,15 +145,15 @@ index 000000000000..a3fbf0fed218
 +&pcie1 {
 +        status = "okay";
 +};
-diff --git a/arch/arm/boot/dts/bcm958625-mx64x.dtsi b/arch/arm/boot/dts/bcm958625-mx64x.dtsi
+diff --git a/arch/arm/boot/dts/bcm958625-mx65x.dtsi b/arch/arm/boot/dts/bcm958625-mx65x.dtsi
 new file mode 100644
-index 000000000000..4be3dd314beb
+index 000000000000..f69949be501e
 --- /dev/null
-+++ b/arch/arm/boot/dts/bcm958625-mx64x.dtsi
-@@ -0,0 +1,136 @@
++++ b/arch/arm/boot/dts/bcm958625-mx65x.dtsi
+@@ -0,0 +1,321 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
-+ * Device Tree Bindings for Cisco Meraki MX64 series (Kingpin).
++ * Device Tree Bindings for Cisco Meraki MX65 series (Alamo).
 + *
 + * Copyright (C) 2020 Matthew Hagan <mnhagan88@gmail.com>
 + */
@@ -162,63 +165,42 @@ index 000000000000..4be3dd314beb
 +#include <dt-bindings/input/input.h>
 +
 +/ {
++	aliases {
++		mdio-mux-mmio = &mdiomux0;
++	};
++
 +	leds {
 +		compatible = "gpio-leds";
 +
 +		power_orange {
 +			label = "power:orange";
-+			gpios = <&gpioa 0 GPIO_ACTIVE_LOW>;
++			gpios = <&gpioa 3 GPIO_ACTIVE_HIGH>;
 +			default-state = "on";
 +		};
 +
-+		lan1_right {
-+			label = "lan1:right";
-+			gpios = <&gpioa 18 GPIO_ACTIVE_LOW>;
++		lan_leds {
++			label = "lan:leds";
++			gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
 +		};
 +
-+		lan1_left {
-+			label = "lan1:left";
-+			gpios = <&gpioa 19 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		lan2_right {
-+			label = "lan2:right";
-+			gpios = <&gpioa 20 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		lan2_left {
-+			label = "lan2:left";
++		wan1_right {
++			label = "wan1:right";
 +			gpios = <&gpioa 24 GPIO_ACTIVE_LOW>;
 +		};
 +
-+		lan3_right {
-+			label = "lan3:right";
++		wan1_left {
++			label = "wan1:left";
 +			gpios = <&gpioa 25 GPIO_ACTIVE_LOW>;
 +		};
 +
-+		lan3_left {
-+			label = "lan3:left";
++		wan2_right {
++			label = "wan2:right";
 +			gpios = <&gpioa 26 GPIO_ACTIVE_LOW>;
 +		};
 +
-+		lan4_right {
-+			label = "lan4:right";
++		wan2_left {
++			label = "wan2:left";
 +			gpios = <&gpioa 27 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		lan4_left {
-+			label = "lan4:left";
-+			gpios = <&gpioa 28 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wan0_right {
-+			label = "wan0:right";
-+			gpios = <&gpioa 29 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wan0_left {
-+			label = "wan0:left";
-+			gpios = <&gpioa 30 GPIO_ACTIVE_LOW>;
 +		};
 +
 +		power_white {
@@ -235,7 +217,202 @@ index 000000000000..4be3dd314beb
 +		reset {
 +			label = "reset";
 +			linux,code = <KEY_RESTART>;
-+			gpios = <&gpioa 6 GPIO_ACTIVE_LOW>;
++			gpios = <&gpioa 8 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	mdio: mdio@18032000 {
++                compatible = "brcm,iproc-mdio";
++                reg = <0x18032000 0x8>;
++                #size-cells = <0>;
++                #address-cells = <1>;
++        };
++
++	mdiomux0: mdio-mux {
++		compatible = "mdio-mux-mmioreg";
++		reg = <0x18032000 0x4>;
++		mux-mask = <0x200>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		mdio-parent-bus = <&mdio>;
++
++		mdio_int: mdio@0 {
++			reg = <0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++	};
++		mdio_ext: mdio@200 {
++			reg = <0x200>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++
++	mdio-mii-mux {
++		compatible = "mdio-mux-mmioreg";
++		reg = <0x1803f1c0 0x4>;
++		mux-mask = <0x2000>;
++		mdio-parent-bus = <&mdio_ext>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		mdio@0 {
++			reg = <0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			phy_port6: phy@0 {
++				reg = <0>;
++			};
++
++			phy_port7: phy@1 {
++				reg = <1>;
++			};
++
++			phy_port8: phy@2 {
++				reg = <2>;
++			};
++
++			phy_port9: phy@3 {
++				reg = <3>;
++			};
++
++			phy_port10: phy@4 {
++				reg = <4>;
++			};
++
++			switch@10 {
++				compatible = "qca,qca8337";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0x10>;
++				dsa,member = <1 0>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					port@0 {
++						reg = <0>;
++						label = "cpu";
++						ethernet = <&sgmii1>;
++						phy-mode = "sgmii";
++						fixed-link {
++							speed = <1000>;
++							full-duplex;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						label = "lan8";
++						phy-handle = <&phy_port6>;
++					};
++
++					port@2 {
++						reg = <2>;
++						label = "lan9";
++						phy-handle = <&phy_port7>;
++					};
++
++					port@3 {
++						reg = <3>;
++						label = "lan10";
++						phy-handle = <&phy_port8>;
++					};
++
++					port@4 {
++						reg = <4>;
++						label = "lan11";
++						phy-handle = <&phy_port9>;
++					};
++
++					port@5 {
++						reg = <5>;
++						label = "lan12";
++						phy-handle = <&phy_port10>;
++					};
++				};
++			};
++		};
++
++		mdio-mii@2000 {
++			reg = <0x2000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			phy_port1: phy@0 {
++				reg = <0>;
++			};
++
++			phy_port2: phy@1 {
++				reg = <1>;
++			};
++
++			phy_port3: phy@2 {
++				reg = <2>;
++			};
++
++			phy_port4: phy@3 {
++				reg = <3>;
++			};
++
++			phy_port5: phy@4 {
++				reg = <4>;
++			};
++
++			switch@10 {
++				compatible = "qca,qca8337";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0x10>;
++				dsa,member = <2 0>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					port@0 {
++						reg = <0>;
++						label = "cpu";
++						ethernet = <&sgmii0>;
++						phy-mode = "sgmii";
++						fixed-link {
++							speed = <1000>;
++							full-duplex;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						label = "lan3";
++						phy-handle = <&phy_port1>;
++					};
++
++					port@2 {
++						reg = <2>;
++						label = "lan4";
++						phy-handle = <&phy_port2>;
++					};
++
++					port@3 {
++						reg = <3>;
++						label = "lan5";
++						phy-handle = <&phy_port3>;
++					};
++
++					port@4 {
++						reg = <4>;
++						label = "lan6";
++						phy-handle = <&phy_port4>;
++					};
++
++					port@5 {
++						reg = <5>;
++						label = "lan7";
++						phy-handle = <&phy_port5>;
++					};
++				};
++			};
 +		};
 +	};
 +};
@@ -243,34 +420,38 @@ index 000000000000..4be3dd314beb
 +&srab {
 +	compatible = "brcm,bcm58625-srab", "brcm,nsp-srab";
 +	status = "okay";
++	dsa,member = <0 0>;
 +
 +	ports {
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +
 +		port@0 {
-+			label = "lan1";
++			label = "wan1";
 +			reg = <0>;
 +		};
 +
 +		port@1 {
-+			label = "lan2";
++			label = "wan2";
 +			reg = <1>;
 +		};
 +
-+		port@2 {
-+			label = "lan3";
-+			reg = <2>;
-+		};
-+
-+		port@3 {
-+			label = "lan4";
-+			reg = <3>;
-+		};
-+
-+		port@4 {
-+			label = "wan0";
++		sgmii0: port@4 {
++			label = "sw0";
 +			reg = <4>;
++			fixed-link {
++			       speed = <1000>;
++			       full-duplex;
++		      };
++		};
++
++		sgmii1: port@5 {
++			label = "sw1";
++			reg = <5>;
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
 +		};
 +
 +		port@8 {
@@ -282,6 +463,13 @@ index 000000000000..4be3dd314beb
 +				full-duplex;
 +			};
 +		};
++	};
++};
++
++&pinctrl {
++	mdio_sel: mdio {
++		function = "mdio";
++		groups = "mdio_grp";
 +	};
 +};
 -- 
