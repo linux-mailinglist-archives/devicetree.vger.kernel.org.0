@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B9B1ED582
+	by mail.lfdr.de (Postfix) with ESMTP id E611F1ED583
 	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 19:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726221AbgFCR6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 13:58:17 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:38033 "EHLO
+        id S1726207AbgFCR6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 13:58:18 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:38187 "EHLO
         relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726207AbgFCR6R (ORCPT
+        with ESMTP id S1726225AbgFCR6R (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 13:58:17 -0400
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 1B778240005;
-        Wed,  3 Jun 2020 17:58:13 +0000 (UTC)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E01F1240004;
+        Wed,  3 Jun 2020 17:58:15 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -28,11 +28,10 @@ Cc:     Boris Brezillon <boris.brezillon@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         <devicetree@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 05/20] dt-bindings: mtd: Document nand-ecc-placement
-Date:   Wed,  3 Jun 2020 19:57:44 +0200
-Message-Id: <20200603175759.19948-6-miquel.raynal@bootlin.com>
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v10 06/20] dt-bindings: mtd: Document nand-ecc-engine
+Date:   Wed,  3 Jun 2020 19:57:45 +0200
+Message-Id: <20200603175759.19948-7-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200603175759.19948-1-miquel.raynal@bootlin.com>
 References: <20200603175759.19948-1-miquel.raynal@bootlin.com>
@@ -44,39 +43,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This optional property defines where the ECC bytes are expected to be
-stored. No value defaults to an unknown location, while these
-locations can be explicitly set to OOB or interleaved depending if
-the ECC bytes are entirely stored in the OOB area or mixed with
-regular data in the main area (also sometimes referred as
-"syndrome").
+This property is needed to precisely point to the hardware ECC engine
+to use when there are several of them available. Here, hardware also
+refers to the on-die possibility.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/mtd/nand-controller.yaml       | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../devicetree/bindings/mtd/nand-controller.yaml     | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-index d261b7096c69..4a0798247d2d 100644
+index 4a0798247d2d..0969d2e6720b 100644
 --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
 +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-@@ -56,6 +56,16 @@ patternProperties:
+@@ -56,6 +56,18 @@ patternProperties:
            (Linux will handle the calculations). soft_bch is deprecated
            and should be replaced by soft and nand-ecc-algo.
  
-+      nand-ecc-placement:
-+        allOf:
-+          - $ref: /schemas/types.yaml#/definitions/string
-+          - enum: [ oob, interleaved ]
++      nand-ecc-engine:
++        maxItems: 1
 +        description:
-+          Location of the ECC bytes. This location is unknown by default
-+          but can be explicitly set to "oob", if all ECC bytes are
-+          known to be stored in the OOB area, or "interleaved" if ECC
-+          bytes will be interleaved with regular data in the main area.
++	  A phandle on the hardware ECC engine if any. There are
++          basically three possibilities:
++          1/ The ECC engine is part of the NAND controller, in this
++          case the phandle should reference the parent node.
++          2/ The ECC engine is part of the NAND part (on-die), in this
++          case the phandle should reference the node itself.
++          3/ The ECC engine is external, in this case the phandle should
++          reference the specific ECC engine node.
 +
-       nand-ecc-algo:
+       nand-ecc-placement:
          allOf:
            - $ref: /schemas/types.yaml#/definitions/string
 -- 
