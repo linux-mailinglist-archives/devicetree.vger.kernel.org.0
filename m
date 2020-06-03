@@ -2,292 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BDA1ED3A7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 17:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BCF41ED40C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 18:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726218AbgFCPnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 11:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726207AbgFCPnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 11:43:45 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EBEBC08C5C0;
-        Wed,  3 Jun 2020 08:43:45 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id b5so2946886iln.5;
-        Wed, 03 Jun 2020 08:43:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tLRrk+5TE7AqBI0mMmOMi48T5DlCW6ljfttlxXJKiYE=;
-        b=IUrQZkJxLQS8vRxDz1Ix+0rHj99xB3GbUzrWZj/JZPNQPvkIJu3B16AggQhDBSagKZ
-         Pf1KVl1wtwQGVZmIdODKBgyzQEyhXXXe9DMnsDBbAdxzlq7tN/XHQrx5QSD9hyvfx8Yq
-         4zspKiKPrPVlC+lrqHYZP306yG7jynMXx96z9NRlWqITDkN4XABIC9Gwk5yAb8mtohsv
-         vyG3Y0JwrmpO2tdQKKFwK0Glt5tx18+kR3WeLqcxI9hhwEIHxluIv3PVSsPo0XA1RlpG
-         eW7S2OGyn9NlAlKNM1UQ3Hwm2SgS+muzoDxTC1Vjodk8bqpgasLPsecs3OjblPcH47l5
-         WhqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tLRrk+5TE7AqBI0mMmOMi48T5DlCW6ljfttlxXJKiYE=;
-        b=gJtRiALzf23Sb/vndPmJxjj2ss7COxBs/aSi9MO1rchzVz4XhkBX5exijxpy/uY+lI
-         SwoJ4QIvSVK9DOsINotBqKJHhZUMEdsadJNSjEnup5XzX5GDRYFJFBf+/Ri+ycxdDmxY
-         FNAC6MMW28cRLoKJhVuayh6WMP5opQNqGedFepWKL7i2oMt5csy+YyoROnNv7lYmINb0
-         E3Lhp7m0t9rKkYBKlYbtjATneCOrBpswgl3CgqNxqM3SFioTwTfbtp1urC8BfJhiDpXW
-         xkYVsqeYSPZB5jo83lQdQOp+WcOSqbiPXEXQJgMxSo5oTmf3cereNzLRP5gJJoLZjDIn
-         UwPA==
-X-Gm-Message-State: AOAM532828iRqd834oMxVAUxSG9T18WJdKed0XxNtEuE14O4kcPaVyQ0
-        Nvf5ksqnF/KskfDtZZ9pcqn5dCxi
-X-Google-Smtp-Source: ABdhPJwy5l9sjRB7900J+AVZRjv/sYrReTt7uHRcax/vKGx9WOIeiCHAJoHdz3889FuO3WgMPS3CDg==
-X-Received: by 2002:a05:6e02:50c:: with SMTP id d12mr170386ils.140.1591199023986;
-        Wed, 03 Jun 2020 08:43:43 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id l26sm1237027ild.59.2020.06.03.08.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2020 08:43:43 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     Adam Ford <aford173@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V3 3/3] clk: vc5: Enable addition output configurations of the Versaclock
-Date:   Wed,  3 Jun 2020 10:43:29 -0500
-Message-Id: <20200603154329.31579-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200603154329.31579-1-aford173@gmail.com>
-References: <20200603154329.31579-1-aford173@gmail.com>
+        id S1726026AbgFCQQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 12:16:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38572 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725939AbgFCQQR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jun 2020 12:16:17 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C2CE0206E6;
+        Wed,  3 Jun 2020 16:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591200976;
+        bh=BoDLkq02THt+WbJVaiCCXtU5luclbfhVMmW4TS/e9Qg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0xIWs3b4/5BAZl5fKQdnqF63gWHhHFrLKLNd3bnlrXtYV3z5O3XIMZKKAeViSvDpj
+         7QtQQmZgy6EEP1w0l1pRehQWLxi2AUoS7PW4Tszk7IMBO1IehQCvOH9ILZ2VVEHWlA
+         elWvPMGVyHjgU46ArmjkTY1B+lAU3xRVTCndgAlI=
+Received: by mail-ot1-f46.google.com with SMTP id h7so2340121otr.3;
+        Wed, 03 Jun 2020 09:16:16 -0700 (PDT)
+X-Gm-Message-State: AOAM531YoKakT/77tl1BZqmjNOs0g9IUw9CHRbb2QjFiODuL7kShC3/2
+        /Mf4a3YtSAsj+NOlVEN1X5Ywuk7JgeGWqHalvA==
+X-Google-Smtp-Source: ABdhPJygRbGJCR00jC843Jp0prKdRc4VE8QO7dAZqmdODfIB/KZwGlghUEPf3SCOdRw3ZaN+HGgzsMSbMQOZ9qnxXPM=
+X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr575554ots.192.1591200976092;
+ Wed, 03 Jun 2020 09:16:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1591184925-13055-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1591184925-13055-1-git-send-email-Anson.Huang@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 3 Jun 2020 10:15:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKGibK00edV5eG8HR1A0ks7ojY5uNssaqtYwiGJWt+GuA@mail.gmail.com>
+Message-ID: <CAL_JsqKGibK00edV5eG8HR1A0ks7ojY5uNssaqtYwiGJWt+GuA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rtc: Convert imxdi rtc to json-schema
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Roland Stigge <stigge@antcom.de>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The existing driver is expecting the Versaclock to be pre-programmed,
-and only sets the output frequency.  Unfortunately, not all devices
-are pre-programmed, and the Versaclock chip has more options beyond
-just the frequency.
+On Wed, Jun 3, 2020 at 5:59 AM Anson Huang <Anson.Huang@nxp.com> wrote:
+>
+> Convert the i.MXDI RTC binding to DT schema format using json-schema
+>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+>  .../devicetree/bindings/rtc/imxdi-rtc.txt          | 20 -----------
+>  .../devicetree/bindings/rtc/imxdi-rtc.yaml         | 42 ++++++++++++++++++++++
+>  2 files changed, 42 insertions(+), 20 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/imxdi-rtc.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/imxdi-rtc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/rtc/imxdi-rtc.txt b/Documentation/devicetree/bindings/rtc/imxdi-rtc.txt
+> deleted file mode 100644
+> index c797bc9..0000000
+> --- a/Documentation/devicetree/bindings/rtc/imxdi-rtc.txt
+> +++ /dev/null
+> @@ -1,20 +0,0 @@
+> -* i.MX25 Real Time Clock controller
+> -
+> -Required properties:
+> -- compatible: should be: "fsl,imx25-rtc"
+> -- reg: physical base address of the controller and length of memory mapped
+> -  region.
+> -- clocks: should contain the phandle for the rtc clock
+> -- interrupts: rtc alarm interrupt
+> -
+> -Optional properties:
+> -- interrupts: dryice security violation interrupt (second entry)
+> -
+> -Example:
+> -
+> -rtc@53ffc000 {
+> -       compatible = "fsl,imx25-rtc";
+> -       reg = <0x53ffc000 0x4000>;
+> -       clocks = <&clks 81>;
+> -       interrupts = <25 56>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/rtc/imxdi-rtc.yaml b/Documentation/devicetree/bindings/rtc/imxdi-rtc.yaml
+> new file mode 100644
+> index 0000000..6e43926
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/imxdi-rtc.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/imxdi-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX25 Real Time Clock controller
+> +
+> +maintainers:
+> +  - Roland Stigge <stigge@antcom.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx25-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: rtc alarm interrupt
+> +      - description: dryice security violation interrupt
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
 
-This patch enables the following additional features:
+Needs:
 
-   - Programmable voltage: 1.8V, 2.5V, or 3.3V​
-   - Slew Percentage of normal: 85%, 90%, or 100%
-   - Output Type: LVPECL, CMOS, HCSL, or LVDS
+additionalProperties: false
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V3:  Make source code change following the binding changes since there
-     is a dependency and move changes to binding header file to the
-     patch with bindings changes.
+(or if you have a top level $ref, 'unevaluatedProperties: false')
 
-diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
-index 41e3a75963b9..9a5fb3834b9a 100644
---- a/drivers/clk/clk-versaclock5.c
-+++ b/drivers/clk/clk-versaclock5.c
-@@ -24,6 +24,8 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
-+#include <dt-bindings/clk/versaclock.h>
-+
- /* VersaClock5 registers */
- #define VC5_OTP_CONTROL				0x00
- 
-@@ -89,6 +91,28 @@
- 
- /* Clock control register for clock 1,2 */
- #define VC5_CLK_OUTPUT_CFG(idx, n)	(0x60 + ((idx) * 0x2) + (n))
-+#define VC5_CLK_OUTPUT_CFG0_CFG_SHIFT	5
-+#define VC5_CLK_OUTPUT_CFG0_CFG_MASK GENMASK(7, VC5_CLK_OUTPUT_CFG0_CFG_SHIFT)
-+
-+#define VC5_CLK_OUTPUT_CFG0_CFG_LVPECL	(VC5_LVPECL)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_CMOS		(VC5_CMOS)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_HCSL33	(VC5_HCSL33)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_LVDS		(VC5_LVDS)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_CMOS2		(VC5_CMOS2)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_CMOSD		(VC5_CMOSD)
-+#define VC5_CLK_OUTPUT_CFG0_CFG_HCSL25	(VC5_HCSL25)
-+
-+#define VC5_CLK_OUTPUT_CFG0_PWR_SHIFT	3
-+#define VC5_CLK_OUTPUT_CFG0_PWR_MASK GENMASK(4, VC5_CLK_OUTPUT_CFG0_PWR_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_PWR_18	(0<<VC5_CLK_OUTPUT_CFG0_PWR_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_PWR_25	(2<<VC5_CLK_OUTPUT_CFG0_PWR_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_PWR_33	(3<<VC5_CLK_OUTPUT_CFG0_PWR_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT	0
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_MASK GENMASK(1, VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_80	(0<<VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_85	(1<<VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_90	(2<<VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT)
-+#define VC5_CLK_OUTPUT_CFG0_SLEW_100	(3<<VC5_CLK_OUTPUT_CFG0_SLEW_SHIFT)
- #define VC5_CLK_OUTPUT_CFG1_EN_CLKBUF	BIT(0)
- 
- #define VC5_CLK_OE_SHDN				0x68
-@@ -143,6 +167,8 @@ struct vc5_hw_data {
- 	u32			div_int;
- 	u32			div_frc;
- 	unsigned int		num;
-+	unsigned int		clk_output_cfg0;
-+	unsigned int		clk_output_cfg0_mask;
- };
- 
- struct vc5_driver_data {
-@@ -567,6 +593,17 @@ static int vc5_clk_out_prepare(struct clk_hw *hw)
- 	regmap_update_bits(vc5->regmap, VC5_CLK_OUTPUT_CFG(hwdata->num, 1),
- 			   VC5_CLK_OUTPUT_CFG1_EN_CLKBUF,
- 			   VC5_CLK_OUTPUT_CFG1_EN_CLKBUF);
-+	if (hwdata->clk_output_cfg0_mask) {
-+		dev_dbg(&vc5->client->dev, "Update output %d mask 0x%0X val 0x%0X\n",
-+			hwdata->num, hwdata->clk_output_cfg0_mask,
-+			hwdata->clk_output_cfg0);
-+
-+		regmap_update_bits(vc5->regmap,
-+			VC5_CLK_OUTPUT_CFG(hwdata->num, 0),
-+			hwdata->clk_output_cfg0_mask,
-+			hwdata->clk_output_cfg0);
-+	}
-+
- 	return 0;
- }
- 
-@@ -666,6 +703,120 @@ static int vc5_map_index_to_output(const enum vc5_model model,
- 	}
- }
- 
-+static int vc5_update_mode(struct device_node *np_output,
-+			   struct vc5_hw_data *clk_out)
-+{
-+	u32 value;
-+
-+	if (!of_property_read_u32(np_output, "idt,mode", &value)) {
-+		clk_out->clk_output_cfg0_mask |= VC5_CLK_OUTPUT_CFG0_CFG_MASK;
-+		switch (value) {
-+		case VC5_CLK_OUTPUT_CFG0_CFG_LVPECL:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_CMOS:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_HCSL33:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_LVDS:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_CMOS2:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_CMOSD:
-+		case VC5_CLK_OUTPUT_CFG0_CFG_HCSL25:
-+			clk_out->clk_output_cfg0 |=
-+			    value << VC5_CLK_OUTPUT_CFG0_CFG_SHIFT;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+	return 0;
-+}
-+
-+static int vc5_update_power(struct device_node *np_output,
-+			    struct vc5_hw_data *clk_out)
-+{
-+	u32 value;
-+
-+	if (!of_property_read_u32(np_output,
-+				  "idt,voltage-microvolts", &value)) {
-+		clk_out->clk_output_cfg0_mask |= VC5_CLK_OUTPUT_CFG0_PWR_MASK;
-+		switch (value) {
-+		case 1800000:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_PWR_18;
-+			break;
-+		case 2500000:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_PWR_25;
-+			break;
-+		case 3300000:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_PWR_33;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+	return 0;
-+}
-+
-+static int vc5_update_slew(struct device_node *np_output,
-+			   struct vc5_hw_data *clk_out)
-+{
-+	u32 value;
-+
-+	if (!of_property_read_u32(np_output, "idt,slew-percent", &value)) {
-+		clk_out->clk_output_cfg0_mask |= VC5_CLK_OUTPUT_CFG0_SLEW_MASK;
-+		switch (value) {
-+		case 80:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_SLEW_80;
-+			break;
-+		case 85:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_SLEW_85;
-+			break;
-+		case 90:
-+			clk_out->clk_output_cfg0 |= VC5_CLK_OUTPUT_CFG0_SLEW_90;
-+			break;
-+		case 100:
-+			clk_out->clk_output_cfg0 |=
-+			    VC5_CLK_OUTPUT_CFG0_SLEW_100;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+	return 0;
-+}
-+
-+static int vc5_get_output_config(struct i2c_client *client,
-+				 struct vc5_hw_data *clk_out)
-+{
-+	struct device_node *np_output;
-+	char *child_name;
-+	int ret = 0;
-+
-+	child_name = kasprintf(GFP_KERNEL, "OUT%d", clk_out->num + 1);
-+	np_output = of_get_child_by_name(client->dev.of_node, child_name);
-+	kfree(child_name);
-+	if (!np_output)
-+		goto output_done;
-+
-+	ret = vc5_update_mode(np_output, clk_out);
-+	if (ret)
-+		goto output_error;
-+
-+	ret = vc5_update_power(np_output, clk_out);
-+	if (ret)
-+		goto output_error;
-+
-+	ret = vc5_update_slew(np_output, clk_out);
-+
-+output_error:
-+	if (ret) {
-+		dev_err(&client->dev,
-+			"Invalid clock output configuration OUT%d\n",
-+			clk_out->num + 1);
-+	}
-+
-+	of_node_put(np_output);
-+
-+output_done:
-+	return ret;
-+}
-+
- static const struct of_device_id clk_vc5_of_match[];
- 
- static int vc5_probe(struct i2c_client *client, const struct i2c_device_id *id)
-@@ -863,6 +1014,11 @@ static int vc5_probe(struct i2c_client *client, const struct i2c_device_id *id)
- 				init.name);
- 			goto err_clk;
- 		}
-+
-+		/* Fetch Clock Output configuration from DT (if specified) */
-+		ret = vc5_get_output_config(client, &vc5->clk_out[n]);
-+		if (ret)
-+			goto err_clk;
- 	}
- 
- 	ret = of_clk_add_hw_provider(client->dev.of_node, vc5_of_clk_get, vc5);
--- 
-2.17.1
+I fixed these up in what I applied already, but please check all of
+yours pending and fix.
 
+Rob
