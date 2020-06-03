@@ -2,102 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B9B1ED0F9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 15:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF711ED15B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 15:50:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725797AbgFCNgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 09:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725810AbgFCNgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 09:36:20 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B853CC08C5C1
-        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 06:36:20 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id 18so2465910iln.9
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 06:36:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=H8rDQEJouwBJIElP/Vpqq+PrvTZxQQy2H7A/MvyMMB0=;
-        b=t5mBSzuQgaR+ZWfhVkb/ko7/F7NEiv+WZzXxM00rkgAJUoS2chMmOtcRcs0ZjJ4of5
-         wf2g9HIpSJCygI5TEFbDi/L2J104RHrNU9DWyWx/NUvscqJR7aZ+p7x1uUIDsL220iPw
-         uxAOdynKu+/ENT1wbNrMsdifgB8OHGCsjUEY9JZy0DuoXEGIA9FCR5Cdd5jDdKcuMT+T
-         3OxkXIW0VuPPhsmJEILBj7xBq+h+qGEXo2S8J+oEO0QeeLMQ53/1RusYu/9hFA7TKM6n
-         sD6+BMU28Q672rJowD9OpheLrKrs1srQz2nQQknYmh9t8SIg8SchYAE+0lXTiECkgQAi
-         G8PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=H8rDQEJouwBJIElP/Vpqq+PrvTZxQQy2H7A/MvyMMB0=;
-        b=ayeVDv4MK2lflAMuX+BSQRT+YQcelxXwPB90FRXP+zO+ZiSzvXFUIylKE37vTG0r8o
-         iHz3yGmj1Lv8UlIx8FRO6NdE9qexGXJSAPauydA/r2mQi7KRuFejtOVhr2JjS6myC9UR
-         v9lXrq2jO+qUmxmQz6pQh/fQ/4zopU2ufE7GChhMQjhmiA/NNsZnX4Auu/VpZWmNJl/W
-         pIyT+ZBQbkgKhkRlDJYdQELICA3KnShhqnMDoOfPscsJwQYK3aVGqpu+yrEiMohVpO9Y
-         IweYwiZuqtI1YoCUEzN1vRxyv36a5gU3LJ5ourKU83g1F/Fy6Fy9kFXIR4XLB+VVemnj
-         BdJA==
-X-Gm-Message-State: AOAM530uluxtdXcDAnzJiAz9Jrwivd4l9+9Xdexnq1G/hBKWL3Ia9lgz
-        ROynCGFTt45WLmDXy0rXl8mGeRKy2ziIEFY2siM=
-X-Google-Smtp-Source: ABdhPJzGkiGcWf7wo+U6sdZRZSt1myvnY08cyqJXmBsREu3XWFQj5ehzxpUJ5RykXda31U32XrQqAGROr5we1HcYIUo=
-X-Received: by 2002:a92:4812:: with SMTP id v18mr3999735ila.78.1591191380035;
- Wed, 03 Jun 2020 06:36:20 -0700 (PDT)
+        id S1725954AbgFCNuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 09:50:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725936AbgFCNuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jun 2020 09:50:07 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3B5320825
+        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 13:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591192207;
+        bh=Fj0iOVs08jiwu5naUApH7MvVszFmEVZ9O5OdKBSK/BQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fyRXV0H8vSIeExulim9o0tksgr7SEAh2+R5VFhBJRxrMdrenEkDT8+DOiaiOOacOp
+         D0vXZ/Nr1DEcduC4H+e2SMYAJmO/GY7jpso+6+yIQ6XSJQLqgwREMDcmVB3dxCTi8p
+         oMs935DFnJWX142nv/Y1NX1kZt0nj0lASNmMt/M8=
+Received: by mail-ot1-f45.google.com with SMTP id b18so1918097oti.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 06:50:06 -0700 (PDT)
+X-Gm-Message-State: AOAM530NNaDBm3CMy/+vpPe6mpu4V7uqcqKKd6HrWbU3wCvuM/dfYwSE
+        /oH0YGkOPMOYi/eNazcaZncdAmSWI6CrcgMCOQ==
+X-Google-Smtp-Source: ABdhPJw+nAaODIOdecGluSxYY7HWI8UQEezTU6nVGm356t+p9EGwagFR+l+QCJoqrQqbzEaag6QgdNSqIXSrvH0MQd0=
+X-Received: by 2002:a9d:c29:: with SMTP id 38mr44862otr.107.1591192206147;
+ Wed, 03 Jun 2020 06:50:06 -0700 (PDT)
 MIME-Version: 1.0
-Reply-To: susanjones.wife@gmail.com
-Received: by 2002:a05:6e02:14d4:0:0:0:0 with HTTP; Wed, 3 Jun 2020 06:36:19
- -0700 (PDT)
-From:   "Mrs.Susan Jones" <sus.wifejones@gmail.com>
-Date:   Wed, 3 Jun 2020 14:36:19 +0100
-X-Google-Sender-Auth: Qf7urAS6hlBlCqM6A1UHI2S03EY
-Message-ID: <CAFU9QzuQJQNpf_3+rFwG=Kjp43Sgf0effVhG43=sEFsrbJgvGg@mail.gmail.com>
-Subject: HELLO: I AM MRS SUSAN JONES
-To:     undisclosed-recipients:;
+References: <20200513103016.130417-1-andre.przywara@arm.com>
+ <20200513103016.130417-5-andre.przywara@arm.com> <20200528024810.GA232303@roeck-us.net>
+ <48afb8bb-a22a-54df-7751-55b7b84c3c88@arm.com> <22687572-becf-7b4e-9759-cfba44677a1d@arm.com>
+ <CAL_JsqLgNDd-+rrYD=Y0Hm=NaV7f0NbBFb9uhhYhzM6LjxnXZg@mail.gmail.com> <1d111f40-1702-7ea0-825f-ab08d77353e9@arm.com>
+In-Reply-To: <1d111f40-1702-7ea0-825f-ab08d77353e9@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 3 Jun 2020 07:49:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKSH1Oy5yAw463dHuCxnBEgEa0DYR8EK-p=y957h5kNCw@mail.gmail.com>
+Message-ID: <CAL_JsqKSH1Oy5yAw463dHuCxnBEgEa0DYR8EK-p=y957h5kNCw@mail.gmail.com>
+Subject: Re: [PATCH v3 04/20] arm64: dts: arm: vexpress: Move fixed devices
+ out of bus node
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-OUR GOLDEN OPPORTUNITY
+On Wed, Jun 3, 2020 at 5:21 AM Andr=C3=A9 Przywara <andre.przywara@arm.com>=
+ wrote:
+>
+> On 02/06/2020 00:12, Rob Herring wrote:
+>
+> Hi,
+>
+> > On Mon, Jun 1, 2020 at 4:15 AM Andr=C3=A9 Przywara <andre.przywara@arm.=
+com> wrote:
+> >>
+> >> On 28/05/2020 14:30, Andr=C3=A9 Przywara wrote:
+> >>
+> >> Hi,
+> >>
+> >>> On 28/05/2020 03:48, Guenter Roeck wrote:
+> >>>
+> >>> Hi Guenter,
+> >>>
+> >>>> On Wed, May 13, 2020 at 11:30:00AM +0100, Andre Przywara wrote:
+> >>>>> The devicetree compiler complains when DT nodes without a reg prope=
+rty
+> >>>>> live inside a (simple) bus node:
+> >>>>> Warning (simple_bus_reg): Node /bus@8000000/motherboard-bus/refclk3=
+2khz
+> >>>>>                           missing or empty reg/ranges property
+> >>>>>
+> >>>>> Move the fixed clocks, the fixed regulator, the leds and the config=
+ bus
+> >>>>> subtree to the root node, since they do not depend on any busses.
+> >>>>>
+> >>>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >>>>
+> >>>> This patch results in tracebacks when booting the vexpress-a15 machi=
+ne
+> >>>> with vexpress-v2p-ca15-tc1 devicetree file in qemu. Reverting it as =
+well
+> >>>> as the subsequent patches affecting the same file (to avoid revert
+> >>>> conflicts) fixes the problem.
+> >>>
+> >>> Many thanks for the heads up! I was able to reproduce it here. On the
+> >>> first glance it looks like the UART is probed before the clocks now,
+> >>> because the traversal of the changed DT leads to a different probe
+> >>> order. I will look into how to fix this.
+> >>
+> >> Turned out to be a bit more complicated:
+> >> The arm,vexpress,config-bus driver walks up the device tree to find a
+> >> arm,vexpress,site property [1]. With this patch the first parent node
+> >> with that property it finds is now the root node, with the wrong site =
+ID
+> >> (0xf instead of 0x0). So it queries the wrong clocks (those IDs are
+> >> actually reserved there), and QEMU reports back "0", consequently [2].
+> >> Finding a clock frequency in the range of [0, 0] won't get very far.
+> >>
+> >> Possible solutions are:
+> >> 1) Just keep the mcc and its children at where it is in mainline right
+> >> now, so *partly* reverting this patch. This has the problem of still
+> >> producing a dtc warning, so kind of defeats the purpose of this patch.
+> >>
+> >> 2) Add a "arm,vexpress,site =3D <0>;" line to the "mcc" node itself.
+> >> Works, but looks somewhat dodgy, as the mcc node should really be a
+> >> child of the motherboard node, and we should not hack around this.
+> >>
+> >> 3) Dig deeper and fix the DT in a way that makes dtc happy. Might
+> >> involve (dummy?) ranges or reg properties. My gut feeling is that
+> >> arm,vexpress-sysreg,func should really have been "reg" in the first
+> >> place, but that's too late to change now, anyway.
+> >>
+> >> I will post 2) as a fix if 3) turns out to be not feasible.
+> >
+> > I would just do 1).
+> >
+> > To some extent, the warnings are for avoiding poor design on new
+> > bindings. We need a way to distinguish between existing boards and new
+> > ones. Maybe dts needs to learn some warning disable annotations or we
+> > need per target warning settings (DTC_FLAGS_foo.dtb ?). Or maybe this
+> > check is just too strict.
+>
+> So I was always wondering about this check, actually. A simple-bus
+> describes a bus which is mapped into the CPU address space (in contrast
+> to say an I2C bus, for instance). So children of this bus node typically
+> have a reg property.
+>
+> Now also those simple-bus nodes seem to be used to logically group
+> hardware in a DT (see this "motherboard" node here). *If* we go with
+> this, we should also allow other subnodes, for instance fixed-clocks:
+> after all there is probably an actual fixed crystal oscillator on the
+> motherboard, so it would also belong in there.
 
-Hello Dear Friend,
+Yes, that's probably right. We'd want things grouped if this was
+something applied as an overlay.
 
-Complement of the day, i hope you are doing great today. However, I am
-Mrs.Susan Jones, an auditor with one of the new generation banks here
-in Burkina Faso.
+> I see that (ab)using simple-bus for *just* grouping nodes is probably
+> not a good design, but I don't see why *every* child must be mapped into
+> the address space.
+>
+> Maybe dtc's simple-bus check should indeed be relaxed, to just require
+> *at least one* child with a reg or ranges property, but also allow other
+> nodes?
 
-I am writing you this letter based on the latest development at my
-Department. i discovered some abandoned huge amount of money, Ten
-Million, Five hundred thousand  United States Dollars.($10.500.000).
-Now I am only contacting you as a foreigner because this money cannot
-be approved to a local bank account here, but can only be approved to
-any foreign account and foreign beneficiary because the money is in US
-dollars
+It's made you think about the proper location, so it's accomplished
+its goal. Maybe this is one that's not without false positives. It
+would be good to distinguish between what's for sure a warning and
+what's maybe a warning as just blindly fixing the warning is not the
+answer.
 
-This will be  a legitimate transaction once you accept to build trust
-with me and follow simple instruction doing the transfer process,
-until the total sum transfer out of the bank here to your own bank
-account any where in the world, and I agreed to share the total money
-50/50 with you once you successful confirmed it in your bank account.
-But any expenses doing the transfer process will be deduct from the
-amount before sharing, If you are interested to work with me and
-provide a good receiving bank account, get back to me as soon as
-possible with the following details below.
-
-Your full name
-Your Profession
-Your direct mobile phone number
-Your Scanned International passport or any of your identity
-
-NOTE: PLEASE IT YOU ARE NOT INTERESTED DON'T BORDER TO RESPOND BACK TO
-AVOID TIME WASTED.
-
-As soon as I receive these data's, I will forward to you the
-application form which you will send to the bank for the claim and
-transfer of the fund into your bank account as the  new beneficial.
-
-I am waiting to hear from you soon
-
-Yours
-Mrs.Susan Jones
+Rob
