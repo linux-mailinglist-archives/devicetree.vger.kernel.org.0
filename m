@@ -2,239 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C481ED65C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 20:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BDFD1ED6C6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 21:22:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725920AbgFCStk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 14:49:40 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:35008 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbgFCStj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 14:49:39 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200603184938euoutp01e5d4447d1cd72ae0398c38f64033847c~VHTn0BsEs1632316323euoutp01K
-        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 18:49:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200603184938euoutp01e5d4447d1cd72ae0398c38f64033847c~VHTn0BsEs1632316323euoutp01K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1591210178;
-        bh=YKIUkBl+i3nWmua71Tqp7CpD5PkjVjfibSNwRGPfGsg=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=LQj5gdjsRROIv657HcLTWwgLyaayR7fmN6EmqCfSxe9WSDRtbrMg//fso2uA/ubIR
-         QJbjipTMcDv0wQOVjFLQ8VZqgz73XvL/DhdO9gbQ6OS57pu5zsSfcwiRqM0cM/GGfL
-         U5CPJidj/oYrSml6nEPVNeBnn1XM37tmJrz1nxAw=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200603184937eucas1p2afab162e8479be72f2e25e827ee5798b~VHTnpgMZU2433624336eucas1p2W;
-        Wed,  3 Jun 2020 18:49:37 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 35.3F.60698.1C0F7DE5; Wed,  3
-        Jun 2020 19:49:37 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200603184937eucas1p20bd459cd754b6ccf28ae318740325e5d~VHTnPCk4E0047300473eucas1p20;
-        Wed,  3 Jun 2020 18:49:37 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200603184937eusmtrp2b93537329eba0628cf79ebfb05c8e63e~VHTnOZsUK0281802818eusmtrp2W;
-        Wed,  3 Jun 2020 18:49:37 +0000 (GMT)
-X-AuditID: cbfec7f5-a29ff7000001ed1a-1e-5ed7f0c137f0
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 96.A2.08375.1C0F7DE5; Wed,  3
-        Jun 2020 19:49:37 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200603184936eusmtip222e2e6b2fa1d5ee11d5d1128bf245253~VHTmm3Ta-0069500695eusmtip2-;
-        Wed,  3 Jun 2020 18:49:36 +0000 (GMT)
-Subject: Re: [PATCHv1 00/19] Improve SBS battery support
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726103AbgFCTVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 15:21:21 -0400
+Received: from rnd-relay.smtp.broadcom.com ([192.19.229.170]:42982 "EHLO
+        rnd-relay.smtp.broadcom.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725922AbgFCTVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 15:21:19 -0400
+Received: from mail-irv-17.broadcom.com (mail-irv-17.lvn.broadcom.net [10.75.242.48])
+        by rnd-relay.smtp.broadcom.com (Postfix) with ESMTP id 840DD30DD7D;
+        Wed,  3 Jun 2020 12:21:15 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 rnd-relay.smtp.broadcom.com 840DD30DD7D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+        s=dkimrelay; t=1591212075;
+        bh=/AQzYy/Wi51ZHDd+ThnXKaeww1EEOqsroMbykkRvvq8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NtJkO7MeFX9UJlK8NUNrIV5R9Mx4cOS08pLbxG4NPk/I+q5/V9FpPpuH5/7NTn4h6
+         oXzIRd7IOw07qiMAAfQWzxBn0ktMI+2Y0HHNBVaAG6rqUobHv9JpcCr/2jYvZ/IP1F
+         NUugsjaWJwj9/B8MokjcNqcee5TK7Khm/EE80QP0=
+Received: from stbsrv-and-01.and.broadcom.net (stbsrv-and-01.and.broadcom.net [10.28.16.211])
+        by mail-irv-17.broadcom.com (Postfix) with ESMTP id 9DA8814008C;
+        Wed,  3 Jun 2020 12:21:11 -0700 (PDT)
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+To:     linux-pci@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>, Corey Minyard <minyard@acm.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        devel@driverdev.osuosl.org (open list:STAGING SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR ALLWINNER
+        A10), Florian Fainelli <f.fainelli@gmail.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com,
-        'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <a210e6e0-32db-98e9-f217-cec538407191@samsung.com>
-Date:   Wed, 3 Jun 2020 20:49:37 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.8.1
-MIME-Version: 1.0
-In-Reply-To: <20200602180119.52izs7kd72u3kmr4@earth.universe>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHKsWRmVeSWpSXmKPExsWy7djPc7oHP1yPM1gzwcRi/pFzrBbNi9ez
-        WWw+18NqcXnXHDaLz71HGC1mnN/HZDH3y1Rmi9a9R9gt7r72c+D02HF3CaPHplWdbB77565h
-        9/i8SS6AJYrLJiU1J7MstUjfLoErY8mqeYwFv3Ur3szzbmBsVe9i5OSQEDCRWNfYzd7FyMUh
-        JLCCUeLA6jPMEM4XRokl096zQjifGSV+LzzHBtNyYkEDE0RiOaPEljmX2UESQgLvGSVW7/cA
-        sYUFLCS+LPoNFhcRMJc4cesmI0gDs8AqJok56/qZQRJsAoYSXW+7wKbyCthJ3F22hwnEZhFQ
-        kfhx6CKYLSoQK9Fz/xUzRI2gxMmZT1i6GDk4OAVsJV5dEAEJMwvISzRvnc0MYYtL3HoyH+w4
-        CYFd7BJ7f61igbjaReLKgy2sELawxKvjW9ghbBmJ/zthGpoZJR6eW8sO4fQwSlxumsEIUWUt
-        cefcLzaQzcwCmhLrd+lDhB0lJh7ezQwSlhDgk7jxVhDiCD6JSdumQ4V5JTrahCCq1SRmHV8H
-        t/bghUvMExiVZiH5bBaSd2YheWcWwt4FjCyrGMVTS4tz01OLjfNSy/WKE3OLS/PS9ZLzczcx
-        AlPR6X/Hv+5g3Pcn6RCjAAejEg8vQ931OCHWxLLiytxDjBIczEoivE5nT8cJ8aYkVlalFuXH
-        F5XmpBYfYpTmYFES5zVe9DJWSCA9sSQ1OzW1ILUIJsvEwSnVwMhjIV+Y/V4xSvfFmRsnijr2
-        /pKz73q6l39O1uTCe6kN678xLppXmuS/YqVNYH9NpvfJBa7KP749LAwOsE6ZcUU8iDe88aOI
-        xqUHdkwy8+a0S03WupPSriP+Lf3BTf48Vy6nmy8r+qS0ni6S1vZQXu6tmalxZ0drdOTxzJk5
-        6zOeV/7QMbAsUmIpzkg01GIuKk4EAOOgsaFBAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsVy+t/xe7oHP1yPM7h9SMJi/pFzrBbNi9ez
-        WWw+18NqcXnXHDaLz71HGC1mnN/HZDH3y1Rmi9a9R9gt7r72c+D02HF3CaPHplWdbB77565h
-        9/i8SS6AJUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjf
-        LkEvY8mqeYwFv3Ur3szzbmBsVe9i5OSQEDCROLGggamLkYtDSGApo0TH3bvMEAkZiZPTGlgh
-        bGGJP9e62CCK3jJK/L72mR0kISxgIfFl0W8wW0TAXOLErZuMIEXMAquYJP4fW8EC0fGSSWJT
-        13qwsWwChhJdb0FGcXLwCthJ3F22hwnEZhFQkfhx6CKYLSoQK9G9+Ac7RI2gxMmZT4AGcXBw
-        CthKvLogAhJmFjCTmLf5ITOELS/RvHU2lC0ucevJfKYJjEKzkHTPQtIyC0nLLCQtCxhZVjGK
-        pJYW56bnFhvqFSfmFpfmpesl5+duYgRG37ZjPzfvYLy0MfgQowAHoxIPL0Pd9Tgh1sSy4src
-        Q4wSHMxKIrxOZ0/HCfGmJFZWpRblxxeV5qQWH2I0BfptIrOUaHI+MDHklcQbmhqaW1gamhub
-        G5tZKInzdggcjBESSE8sSc1OTS1ILYLpY+LglGpgbLy6beIMOYeImM9Xhf8uEiwQy3g/p3bX
-        oifr97vn78h6wrDt1Le9mptcl/WG3MvNW3P50wqOrrYj3npzCqS/hd1u2iKQdmW6XPiiPW2C
-        F+I4Tv7in7T0otCh+u1KvBmux9eJpe5qDOG6p6MxozXF58zph1fuBBxwkLhvuGBuSlmcs2y0
-        a+sBHSWW4oxEQy3mouJEACqcDyvUAgAA
-X-CMS-MailID: 20200603184937eucas1p20bd459cd754b6ccf28ae318740325e5d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200601104027eucas1p2b076ee860520d709e8178c41550653f7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200601104027eucas1p2b076ee860520d709e8178c41550653f7
-References: <20200513185615.508236-1-sebastian.reichel@collabora.com>
-        <CGME20200601104027eucas1p2b076ee860520d709e8178c41550653f7@eucas1p2.samsung.com>
-        <15933a91-dd89-1f94-c2f2-79be4395f4c1@samsung.com>
-        <20200601170528.r5w3aeijny3v5yx3@earth.universe>
-        <b3fd35de-1dd6-1ddc-7e57-2d9ab2860e81@samsung.com>
-        <20200602180119.52izs7kd72u3kmr4@earth.universe>
+        Hans de Goede <hdegoede@redhat.com>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        iommu@lists.linux-foundation.org (open list:IOMMU DRIVERS),
+        Jens Axboe <axboe@kernel.dk>, Joerg Roedel <jroedel@suse.de>,
+        Julien Grall <julien.grall@arm.com>,
+        linux-acpi@vger.kernel.org (open list:ACPI FOR ARM64 (ACPI/arm64)),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM PORT),
+        linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and
+        Parallel ATA drivers)), linux-kernel@vger.kernel.org (open list),
+        linux-media@vger.kernel.org (open list:ALLWINNER A10 CSI DRIVER),
+        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
+        (REMOTEPROC) SUBSYSTEM),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-sh@vger.kernel.org (open list:SUPERH),
+        linux-usb@vger.kernel.org (open list:USB SUBSYSTEM),
+        Mark Brown <broonie@kernel.org>,
+        Oliver Neukum <oneukum@suse.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH v3 00/13] PCI: brcmstb: enable PCIe for STB chips
+Date:   Wed,  3 Jun 2020 15:20:32 -0400
+Message-Id: <20200603192058.35296-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+v3:
+  Commit "device core: Introduce multiple dma pfn offsets"
+  Commit "arm: dma-mapping: Invoke dma offset func if needed"
+  -- The above two commits have been squashed.  More importantly,
+     the code has been modified so that the functionality for
+     multiple pfn offsets subsumes the use of dev->dma_pfn_offset.
+     In fact, dma_pfn_offset is removed and supplanted by
+     dma_pfn_offset_map, which is a pointer to an array.  The
+     more common case of a uniform offset is now handled as
+     a map with a single entry, while cases requiring multiple
+     pfn offsets use a map with multiple entries.  Code paths
+     that used to do this:
 
-On 02.06.2020 20:01, Sebastian Reichel wrote:
-> On Tue, Jun 02, 2020 at 09:17:09AM +0200, Marek Szyprowski wrote:
->> On 01.06.2020 19:05, Sebastian Reichel wrote:
->>> On Mon, Jun 01, 2020 at 12:40:27PM +0200, Marek Szyprowski wrote:
->>>> On 13.05.2020 20:55, Sebastian Reichel wrote:
->>>>> This patchset improves support for SBS compliant batteries. Due to
->>>>> the changes, the battery now exposes 32 power supply properties and
->>>>> (un)plugging it generates a backtrace containing the following message
->>>>> without the first patch in this series:
->>>>>
->>>>> ---------------------------
->>>>> WARNING: CPU: 0 PID: 20 at lib/kobject_uevent.c:659 add_uevent_var+0xd4/0x104
->>>>> add_uevent_var: too many keys
->>>>> ---------------------------
->>>>>
->>>>> For references this is what an SBS battery status looks like after
->>>>> the patch series has been applied:
->>>>>
->>>>> cat /sys/class/power_supply/sbs-0-000b/uevent
->>>>> POWER_SUPPLY_NAME=sbs-0-000b
->>>>> POWER_SUPPLY_TYPE=Battery
->>>>> POWER_SUPPLY_STATUS=Discharging
->>>>> POWER_SUPPLY_CAPACITY_LEVEL=Normal
->>>>> POWER_SUPPLY_HEALTH=Good
->>>>> POWER_SUPPLY_PRESENT=1
->>>>> POWER_SUPPLY_TECHNOLOGY=Li-ion
->>>>> POWER_SUPPLY_CYCLE_COUNT=12
->>>>> POWER_SUPPLY_VOLTAGE_NOW=11441000
->>>>> POWER_SUPPLY_CURRENT_NOW=-26000
->>>>> POWER_SUPPLY_CURRENT_AVG=-24000
->>>>> POWER_SUPPLY_CAPACITY=76
->>>>> POWER_SUPPLY_CAPACITY_ERROR_MARGIN=1
->>>>> POWER_SUPPLY_TEMP=198
->>>>> POWER_SUPPLY_TIME_TO_EMPTY_AVG=438600
->>>>> POWER_SUPPLY_TIME_TO_FULL_AVG=3932100
->>>>> POWER_SUPPLY_SERIAL_NUMBER=0000
->>>>> POWER_SUPPLY_VOLTAGE_MIN_DESIGN=10800000
->>>>> POWER_SUPPLY_VOLTAGE_MAX_DESIGN=10800000
->>>>> POWER_SUPPLY_ENERGY_NOW=31090000
->>>>> POWER_SUPPLY_ENERGY_FULL=42450000
->>>>> POWER_SUPPLY_ENERGY_FULL_DESIGN=41040000
->>>>> POWER_SUPPLY_CHARGE_NOW=2924000
->>>>> POWER_SUPPLY_CHARGE_FULL=3898000
->>>>> POWER_SUPPLY_CHARGE_FULL_DESIGN=3800000
->>>>> POWER_SUPPLY_CONSTANT_CHARGE_CURRENT_MAX=3000000
->>>>> POWER_SUPPLY_CONSTANT_CHARGE_VOLTAGE_MAX=12300000
->>>>> POWER_SUPPLY_MANUFACTURE_YEAR=2017
->>>>> POWER_SUPPLY_MANUFACTURE_MONTH=7
->>>>> POWER_SUPPLY_MANUFACTURE_DAY=3
->>>>> POWER_SUPPLY_MANUFACTURER=UR18650A
->>>>> POWER_SUPPLY_MODEL_NAME=GEHC
->>>> This patch landed in linux-next dated 20200529. Sadly it causes a
->>>> regression on Samsung Exynos-based Chromebooks (Exynos5250 Snow,
->>>> Exynos5420 Peach-Pi and Exynos5800 Peach-Pit). System boots to
->>>> userspace, but then, when udev populates /dev, booting hangs:
->>>>
->>>> [    4.435167] VFS: Mounted root (ext4 filesystem) readonly on device
->>>> 179:51.
->>>> [    4.457477] devtmpfs: mounted
->>>> [    4.460235] Freeing unused kernel memory: 1024K
->>>> [    4.464022] Run /sbin/init as init process
->>>> INIT: version 2.88 booting
->>>> [info] Using makefile-style concurrent boot in runlevel S.
->>>> [    5.102096] random: crng init done
->>>> [....] Starting the hotplug events dispatcher: systemd-udevdstarting
->>>> version 236
->>>> [ ok .
->>>> [....] Synthesizing the initial hotplug events...[ ok done.
->>>> [....] Waiting for /dev to be fully populated...[   34.409914]
->>>> TPS65090_RAILSDCDC1: disabling
->>>> [   34.412977] TPS65090_RAILSDCDC2: disabling
->>>> [   34.417021] TPS65090_RAILSDCDC3: disabling
->>>> [   34.423848] TPS65090_RAILSLDO1: disabling
->>>> [   34.429068] TPS65090_RAILSLDO2: disabling
->>> :(
->>>
->>> log does not look useful either.
->>>
->>>> Bisect between v5.7-rc1 and next-20200529 pointed me to the first bad
->>>> commit: [c4b12a2f3f3de670f6be5e96092a2cab0b877f1a] power: supply:
->>>> sbs-battery: simplify read_read_string_data.
->>> ok. I tested this on an to-be-upstreamed i.MX6 based system
->>> and arch/arm/boot/dts/imx53-ppd.dts. I think the difference
->>> is, that i2c-exynos5 does not expose I2C_FUNC_SMBUS_READ_BLOCK_DATA.
->>> I hoped all systems using SBS battery support this, but now
->>> I see I2C_FUNC_SMBUS_EMUL only supports writing block data.
->>> Looks like I need to add another patch implementing that
->>> using the old code with added PEC support.
->>>
->>> In any case that should only return -ENODEV for the property
->>> (and uevent), but not break boot. So something fishy is going
->>> on.
->>>
->>>> However reverting it in linux-next doesn't fix the issue, so the
->>>> next commits are also relevant to this issue.
->>> The next patch, which adds PEC support depends on the simplification
->>> of sbs_read_string_data. The old, open coded variant will result in
->>> PEC failure for string properties (which should not stop boot either
->>> of course). Can you try reverting both?
->> Indeed, reverting both (and fixing the conflict) restores proper boot.
-> Ok, I pushed out a revert of those two patches. They should land in
-> tomorrows linux-next release. Please test it.
+         dev->dma_pfn_offset = mydrivers_pfn_offset;
 
+     have been changed to do this:
 
-Today's linux-next (20200603) boots fine on the Samsung Exynos-based 
-Chromebooks. Let me know how if you need any help debugging the issues 
-to resurrect those patches.
+         attach_uniform_dma_pfn_offset(dev, pfn_offset);
 
+  Commit "dt-bindings: PCI: Add bindings for more Brcmstb chips"
+  -- Add if/then clause for required props: resets, reset-names (RobH)
+  -- Change compatible list from const to enum (RobH)
+  -- Change list of u32-tuples to u64 (RobH)
 
->>> If that helps I will revert those two instead of dropping the whole
->>> series for this merge window.
->>>
->>>> Let me know how can I help debugging it.
->>> I suspect, that this is userspace endlessly retrying reading the
->>> battery uevent when an error is returned. Could you check this?
->>> Should be easy to see by adding some printfs.
->> I've added some debug messages in sbs_get_property() and it read the
->> same properties many times. However I've noticed that if I wait long
->> enough booting finally continues.
-> So basically userspace slows down itself massively by trying to
-> re-read uevent over and over when an error occurs. Does not seem
-> like a sensible thing to do. I will have a look at this when I find
-> some time.
+  Commit "of: Include a dev param in of_dma_get_range()"
+  -- modify of/unittests.c to add NULL param in of_dma_get_range() call.
 
-Best regards
+  Commit "device core: Add ability to handle multiple dma offsets"
+  -- align comment in device.h (AndyS).
+  -- s/cpu_beg/cpu_start/ and s/dma_beg/dma_start/ in struct
+     dma_pfn_offset_region (AndyS).
+
+v2:
+Commit: "device core: Add ability to handle multiple dma offsets"
+  o Added helper func attach_dma_pfn_offset_map() in address.c (Chistoph)
+  o Helpers funcs added to __phys_to_dma() & __dma_to_phys() (Christoph)
+  o Added warning when multiple offsets are needed and !DMA_PFN_OFFSET_MAP
+  o dev->dma_pfn_map => dev->dma_pfn_offset_map
+  o s/frm/from/ for dma_pfn_offset_frm_{phys,dma}_addr() (Christoph)
+  o In device.h: s/const void */const struct dma_pfn_offset_region */
+  o removed 'unlikely' from unlikely(dev->dma_pfn_offset_map) since
+    guarded by CONFIG_DMA_PFN_OFFSET_MAP (Christoph)
+  o Since dev->dma_pfn_offset is copied in usb/core/{usb,message}.c, now
+    dev->dma_pfn_offset_map is copied as well.
+  o Merged two of the DMA commits into one (Christoph).
+
+Commit "arm: dma-mapping: Invoke dma offset func if needed":
+  o Use helper functions instead of #if CONFIG_DMA_PFN_OFFSET
+
+Other commits' changes:
+  o Removed need for carrying of_id var in priv (Nicolas)
+  o Commit message rewordings (Bjorn)
+  o Commit log messages filled to 75 chars (Bjorn)
+  o devm_reset_control_get_shared())
+    => devm_reset_control_get_optional_shared (Philipp)
+  o Add call to reset_control_assert() in PCIe remove routines (Philipp)
+
+v1:
+This patchset expands the usefulness of the Broadcom Settop Box PCIe
+controller by building upon the PCIe driver used currently by the
+Raspbery Pi.  Other forms of this patchset were submitted by me years
+ago and not accepted; the major sticking point was the code required
+for the DMA remapping needed for the PCIe driver to work [1].
+
+There have been many changes to the DMA and OF subsystems since that
+time, making a cleaner and less intrusive patchset possible.  This
+patchset implements a generalization of "dev->dma_pfn_offset", except
+that instead of a single scalar offset it provides for multiple
+offsets via a function which depends upon the "dma-ranges" property of
+the PCIe host controller.  This is required for proper functionality
+of the BrcmSTB PCIe controller and possibly some other devices.
+
+[1] https://lore.kernel.org/linux-arm-kernel/1516058925-46522-5-git-send-email-jim2101024@gmail.com/
+
+Jim Quinlan (13):
+  PCI: brcmstb: PCIE_BRCMSTB depends on ARCH_BRCMSTB
+  ata: ahci_brcm: Fix use of BCM7216 reset controller
+  dt-bindings: PCI: Add bindings for more Brcmstb chips
+  PCI: brcmstb: Add bcm7278 reigister info
+  PCI: brcmstb: Add suspend and resume pm_ops
+  PCI: brcmstb: Add bcm7278 PERST support
+  PCI: brcmstb: Add control of rescal reset
+  of: Include a dev param in of_dma_get_range()
+  device core: Introduce multiple dma pfn offsets
+  PCI: brcmstb: Set internal memory viewport sizes
+  PCI: brcmstb: Accommodate MSI for older chips
+  PCI: brcmstb: Set bus max burst size by chip type
+  PCI: brcmstb: Add bcm7211, bcm7216, bcm7445, bcm7278 to match list
+
+ .../bindings/pci/brcm,stb-pcie.yaml           |  58 ++-
+ arch/arm/include/asm/dma-mapping.h            |   9 +-
+ arch/arm/mach-keystone/keystone.c             |   9 +-
+ arch/sh/drivers/pci/pcie-sh7786.c             |   3 +-
+ arch/sh/kernel/dma-coherent.c                 |  17 +-
+ arch/x86/pci/sta2x11-fixup.c                  |   7 +-
+ drivers/acpi/arm64/iort.c                     |   5 +-
+ drivers/ata/ahci_brcm.c                       |  14 +-
+ drivers/gpu/drm/sun4i/sun4i_backend.c         |   7 +-
+ drivers/iommu/io-pgtable-arm.c                |   2 +-
+ .../platform/sunxi/sun4i-csi/sun4i_csi.c      |   5 +-
+ .../platform/sunxi/sun6i-csi/sun6i_csi.c      |   5 +-
+ drivers/of/address.c                          |  97 ++++-
+ drivers/of/device.c                           |  10 +-
+ drivers/of/of_private.h                       |   8 +-
+ drivers/of/unittest.c                         |   2 +-
+ drivers/pci/controller/Kconfig                |   3 +-
+ drivers/pci/controller/pcie-brcmstb.c         | 408 +++++++++++++++---
+ drivers/remoteproc/remoteproc_core.c          |   2 +-
+ .../staging/media/sunxi/cedrus/cedrus_hw.c    |   7 +-
+ drivers/usb/core/message.c                    |   4 +-
+ drivers/usb/core/usb.c                        |   2 +-
+ include/linux/device.h                        |   4 +-
+ include/linux/dma-direct.h                    |  16 +-
+ include/linux/dma-mapping.h                   |  45 ++
+ kernel/dma/coherent.c                         |  11 +-
+ 26 files changed, 631 insertions(+), 129 deletions(-)
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.17.1
 
