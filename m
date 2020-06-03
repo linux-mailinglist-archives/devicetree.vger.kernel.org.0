@@ -2,126 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A421EC8EF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 07:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9EC31EC976
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 08:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbgFCFrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 01:47:36 -0400
-Received: from conssluserg-01.nifty.com ([210.131.2.80]:22069 "EHLO
-        conssluserg-01.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725792AbgFCFrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 01:47:36 -0400
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46]) (authenticated)
-        by conssluserg-01.nifty.com with ESMTP id 0535lMin010013;
-        Wed, 3 Jun 2020 14:47:22 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 0535lMin010013
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1591163243;
-        bh=1AYS32C3X7KLeQC7IXtA1bYPOaxXAdUOtphNneA3Mng=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=l+YThKbP4i71CVKFXx++1rr8RpKprqz6eJ2pJLVk/P8Vll7uPgGUsBMzyQ5TKdYVP
-         bMN8ct6flLq1OfD1Sw8fdPLz1JPSATUAeGZQAnsg4x+h9klAYuhxltn0Nhj2Cogy5y
-         tXwBY7/7NeCzCx42Aj8HnyVuBRUcRuKn9lSUqj3pbjyiArls1RgXj2MiTriWZu4Zmj
-         cMdQofmNdl/U5sBHLXTpHjcD+wkUJ06K09ksgf3V80eZExy+MXO7+POzDF03gVzMEU
-         fHh98g/WF8XaksX9bjmOtm03rZcMDRjiVARglI6Kb1jyaCi+WwCs9mqcT5+0DmdOj8
-         G+HJmhSJ/miBg==
-X-Nifty-SrcIP: [209.85.217.46]
-Received: by mail-vs1-f46.google.com with SMTP id t132so424745vst.2;
-        Tue, 02 Jun 2020 22:47:22 -0700 (PDT)
-X-Gm-Message-State: AOAM5314sO2waBPFqnOAthNFZOc4rDtrdgUmrkP+cVkTXyPxzUFrzglC
-        ZBpYfUJTZQccgkDX98PYIrENxRdMHGn+eokVVyQ=
-X-Google-Smtp-Source: ABdhPJw3ZQPVgzhisg7jE9+Mh/ssKPFT64P4ZAuQnK4DGUGQnuZQ9wHxr+7wxPPNzzCQUFb4k1+BM+DQXq0O+BJQUyI=
-X-Received: by 2002:a67:6383:: with SMTP id x125mr110672vsb.54.1591163241712;
- Tue, 02 Jun 2020 22:47:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200325095326.10875-1-geert+renesas@glider.be>
-In-Reply-To: <20200325095326.10875-1-geert+renesas@glider.be>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Wed, 3 Jun 2020 14:46:45 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARm_EdKTeZj6FUtNnL5oZypPw1mZtcNu7Az86fKjMF24A@mail.gmail.com>
-Message-ID: <CAK7LNARm_EdKTeZj6FUtNnL5oZypPw1mZtcNu7Az86fKjMF24A@mail.gmail.com>
-Subject: Re: [PATCH] h8300: dts: Fix /chosen:stdout-path
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
-        DTML <devicetree@vger.kernel.org>,
-        "moderated list:H8/300 ARCHITECTURE" 
-        <uclinux-h8-devel@lists.sourceforge.jp>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725881AbgFCGYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 02:24:00 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:42922 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725855AbgFCGYA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jun 2020 02:24:00 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 640DD20007D;
+        Wed,  3 Jun 2020 08:23:58 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 819F7200089;
+        Wed,  3 Jun 2020 08:23:53 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3B26B402DF;
+        Wed,  3 Jun 2020 14:23:47 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        marex@denx.de, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 0/3] Convert mxs/imx spi/cspi/lpspi binding to json-schema
+Date:   Wed,  3 Jun 2020 14:13:26 +0800
+Message-Id: <1591164809-13964-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 25, 2020 at 6:53 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
->     arch/h8300/boot/dts/h8s_sim.dts:11.3-25: Warning (chosen_node_stdout_path): /chosen:stdout-path: property is not a string
->     arch/h8300/boot/dts/h8300h_sim.dts:11.3-25: Warning (chosen_node_stdout_path): /chosen:stdout-path: property is not a string
->
-> Drop the angle brackets to fix this.
->
-> A similar fix was already applied to arch/h8300/boot/dts/edosk2674.dts
-> in commit 780ffcd51cb28717 ("h8300: register address fix").
->
-> Fixes: 38d6bded13084d50 ("h8300: devicetree source")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This patch series converts mxs/imx spi/cspi/lpspi binding to json-schema.
 
+In fsl-imx-cspi.yaml, also update compatible, remove obsolete properties
+"fsl,spi-num-chipselects" and update the example based on latest DT file;
 
-Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
+In spi-fsl-lpspi.yaml, the original maintainer's email address
+pandy.gao@nxp.com is no longer valid, so I use mine.
 
+Anson Huang (3):
+  dt-bindings: spi: Convert mxs spi to json-schema
+  dt-bindings: spi: Convert imx cspi to json-schema
+  dt-bindings: spi: Convert imx lpspi to json-schema
 
-Unfortunately, h8300 maintainer is not responding...
-
-How to get this in?
-
-Perhaps, Rob can pick this up?
-
-
-Thanks.
-
-
-
-
-
-
-> ---
->  arch/h8300/boot/dts/h8300h_sim.dts | 2 +-
->  arch/h8300/boot/dts/h8s_sim.dts    | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/h8300/boot/dts/h8300h_sim.dts b/arch/h8300/boot/dts/h8300h_sim.dts
-> index 595398b9d0180a80..e1d4d9b7f6b40c04 100644
-> --- a/arch/h8300/boot/dts/h8300h_sim.dts
-> +++ b/arch/h8300/boot/dts/h8300h_sim.dts
-> @@ -8,7 +8,7 @@
->
->         chosen {
->                 bootargs = "earlyprintk=h8300-sim";
-> -               stdout-path = <&sci0>;
-> +               stdout-path = &sci0;
->         };
->         aliases {
->                 serial0 = &sci0;
-> diff --git a/arch/h8300/boot/dts/h8s_sim.dts b/arch/h8300/boot/dts/h8s_sim.dts
-> index 932cc3c5a81bcdd2..4848e40e607ecc1d 100644
-> --- a/arch/h8300/boot/dts/h8s_sim.dts
-> +++ b/arch/h8300/boot/dts/h8s_sim.dts
-> @@ -8,7 +8,7 @@
->
->         chosen {
->                 bootargs = "earlyprintk=h8300-sim";
-> -               stdout-path = <&sci0>;
-> +               stdout-path = &sci0;
->         };
->         aliases {
->                 serial0 = &sci0;
-> --
-> 2.17.1
->
-
+ .../devicetree/bindings/spi/fsl-imx-cspi.txt       | 56 -------------
+ .../devicetree/bindings/spi/fsl-imx-cspi.yaml      | 97 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/spi/mxs-spi.txt  | 26 ------
+ Documentation/devicetree/bindings/spi/mxs-spi.yaml | 55 ++++++++++++
+ .../devicetree/bindings/spi/spi-fsl-lpspi.txt      | 29 -------
+ .../devicetree/bindings/spi/spi-fsl-lpspi.yaml     | 60 +++++++++++++
+ 6 files changed, 212 insertions(+), 111 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/mxs-spi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/mxs-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-lpspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
 
 -- 
-Best Regards
-Masahiro Yamada
+2.7.4
+
