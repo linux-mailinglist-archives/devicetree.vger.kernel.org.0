@@ -2,87 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A5A1ED052
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 14:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912BB1ED03D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 14:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726171AbgFCM4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 08:56:25 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:18200 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726034AbgFCM4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 08:56:07 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 053CqLxO011596;
-        Wed, 3 Jun 2020 14:55:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=AXPGvtsGWLkKS+I+Kb5oNNnn9+C77me7iOpHlW+3zcQ=;
- b=EwNJXCgpwPTH2wp+1MmXoIB2q8Xu/AZZoeu8cbn9XIpZ6YIWUvzjWwAe8mkL+T1PacF5
- BNCjEmb1KJm+k1UkqAt0XTqg4jGKvOyrCBsL9ROH5Tp548+vG6PJ2GvIKys/4AEjeFkS
- iq1vQptuiaVsenD1WuE7Swk1kA1WWrPwawrKo+nXtXXWL1ethVAWKdM0CVzcHVKmP/79
- vqvObc7HtM0fmu8So3hAGzv4/FCdkan3aFZCXIyonSfzz4CvI1llCkmR7nVJTaIDS8ik
- ZFohtxh3Ninl9EZ64oM/8EwpI59rav6nlg3dny2of0f1t3cfudZygfoTxIfeJfS8HXiu nA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 31bcy0mqfs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 03 Jun 2020 14:55:39 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D883010003D;
-        Wed,  3 Jun 2020 14:55:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A642C2CBE90;
-        Wed,  3 Jun 2020 14:55:38 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 3 Jun 2020 14:54:48
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <fabrice.gasnier@st.com>, <lee.jones@linaro.org>,
-        <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <linux@armlinux.org.uk>,
-        <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [RESEND v7 6/6] ARM: mach-stm32: select low power timer for STM32MP157
-Date:   Wed, 3 Jun 2020 14:54:39 +0200
-Message-ID: <20200603125439.23275-7-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200603125439.23275-1-benjamin.gaignard@st.com>
-References: <20200603125439.23275-1-benjamin.gaignard@st.com>
+        id S1725993AbgFCMzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 08:55:20 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:60248 "EHLO fornost.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725833AbgFCMzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jun 2020 08:55:19 -0400
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1jgSun-0004tt-Ka; Wed, 03 Jun 2020 22:54:42 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Wed, 03 Jun 2020 22:54:41 +1000
+Date:   Wed, 3 Jun 2020 22:54:41 +1000
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     Rob Herring <robh@kernel.org>, davem@davemloft.net,
+        Keerthy <j-keerthy@ti.com>, devicetree@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+Subject: Re: [PATCHv3 1/7] dt-bindings: crypto: Add TI SA2UL crypto
+ accelerator documentation
+Message-ID: <20200603125441.GA31953@gondor.apana.org.au>
+References: <20200511215343.GA10123@bogus>
+ <20200514125005.23641-1-t-kristo@ti.com>
+ <20200528152341.GA103581@bogus>
+ <a75b48ad-ecc0-89bc-f6a2-7149bc3fefb0@ti.com>
+ <20200603122726.GB31719@gondor.apana.org.au>
+ <18c28e88-e3a7-2ec4-1d0c-f4d4163aff1c@ti.com>
+ <20200603123914.GA31840@gondor.apana.org.au>
+ <7ab12b04-6cea-38a7-4c0c-56aefaebf3d4@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-06-03_12:2020-06-02,2020-06-03 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7ab12b04-6cea-38a7-4c0c-56aefaebf3d4@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make MACH_STM32MP157 select CLKSRC_STM32_LP to get a broadcast timer.
+On Wed, Jun 03, 2020 at 03:53:03PM +0300, Tero Kristo wrote:
+>
+> Ok np, I will re-post once 5.8-rc1 is out.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- arch/arm/mach-stm32/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+You can post them now if you want.  I'll just apply them after
+rc1 is out.
 
-diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
-index 57699bd8f107..d78f55b7b1d0 100644
---- a/arch/arm/mach-stm32/Kconfig
-+++ b/arch/arm/mach-stm32/Kconfig
-@@ -46,6 +46,7 @@ if ARCH_MULTI_V7
- config MACH_STM32MP157
- 	bool "STMicroelectronics STM32MP157"
- 	select ARM_ERRATA_814220
-+	select CLKSRC_STM32_LP
- 	default y
- 
- endif # ARMv7-A
+Thanks,
 -- 
-2.15.0
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
