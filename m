@@ -2,90 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B921EDC8C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 06:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E851EDCA8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 07:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbgFDEsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 00:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48094 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725950AbgFDEsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 00:48:14 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F3BC05BD43;
-        Wed,  3 Jun 2020 21:48:14 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id u13so3875965wml.1;
-        Wed, 03 Jun 2020 21:48:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=NiqkpM/w+JZs4P0eo38xaVvQUC+7sYCnFp9tM9zgNlA=;
-        b=RJpHUHZJ5rtlH079jZ34c9Ewd/nRRN5UOZHSp+yOrq7oq1X1YRuhV/xC7y/GC99ETN
-         r1z6+NUygzg7z4z1CLlUN9iJJmDnj+BY6uVNX0GnLjF39TbIPRHpOt9NUNfZ78ZATKLl
-         FnXo/Iy+OfVPLILhSPfkm7QIo7ipgGMwRzhPY/DOQ3fvPTW7eYZJy3Q2fKiCxszTLNGB
-         sQqjU2wy9G3k0eEkBMpb1pYgHZtU1XUhHKPFSP4hjPlXj3fX4c8A4XUAx+cqjMUzhyM2
-         eoMKw8uGEDBYEAil1sOLx5tdSMuGeJIJCEQ4WRNMetTUl3HvVEOGycjqNOA70ecj3F85
-         ulMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=NiqkpM/w+JZs4P0eo38xaVvQUC+7sYCnFp9tM9zgNlA=;
-        b=OQvCVCxTNyB+9Tw4r3DUKIm8M/Y02Edq6o1z91/gpz5ySF6tmYCJBTTNt/kwPnscva
-         ZzhX4yFgAdobLcrDnPWWAU3jOPkN4m5E4pE4hsewgSIEMmRcqCk1dyMLLFFZo3KHExAA
-         PgLamNEpAW5sxOJOWYNgPjjR/0VVcCxfvGoUqQOo44renEve6IgpuM1D65jisjLx8LoU
-         yVHuXGMpBat8n4CR74WGNBiRI01skU7gYLZDj451B3s6GeeeEri4IHK5hTJ1zHfOFuT1
-         PL6g89oblaGYw14lZESoxYvotbJWEOGpvznx/k83FCLC/Hz4jBHcGGqSHE8mJJLyYxye
-         w/Ug==
-X-Gm-Message-State: AOAM533vYKFfwSK2IOA+hk75NSW/mJLbosnJ2h2zaqNpcZSkga6YVMq4
-        8S/8j1a+QJY6ih3YxQHlR6s=
-X-Google-Smtp-Source: ABdhPJzYH0zI5Nab6ZoyXhJ1nGO3ZWVm28otZxnBQpZbtdQXXLh9do4Nkd8vrhaCUrRwpae8ziyN0g==
-X-Received: by 2002:a7b:c353:: with SMTP id l19mr2222544wmj.187.1591246092837;
-        Wed, 03 Jun 2020 21:48:12 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a15sm6349708wra.86.2020.06.03.21.48.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2020 21:48:12 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Fix S905X3 ID
-Date:   Thu,  4 Jun 2020 04:48:08 +0000
-Message-Id: <20200604044808.30995-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726120AbgFDFPo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 Jun 2020 01:15:44 -0400
+Received: from enamail.ejercito.mil.uy ([179.27.39.26]:38086 "HELO
+        enamail.ejercito.mil.uy" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1726079AbgFDFPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 01:15:43 -0400
+X-Greylist: delayed 15880 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jun 2020 01:15:33 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by enamail.ejercito.mil.uy (Postfix) with ESMTP id 619654135C94;
+        Wed,  3 Jun 2020 09:43:42 -0300 (-03)
+Received: from enamail.ejercito.mil.uy ([127.0.0.1])
+        by localhost (enamail.ejercito.mil.uy [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id A90otM8Kzal5; Wed,  3 Jun 2020 09:43:42 -0300 (-03)
+Received: from localhost (localhost [127.0.0.1])
+        by enamail.ejercito.mil.uy (Postfix) with ESMTP id 214FB4135C90;
+        Wed,  3 Jun 2020 09:43:42 -0300 (-03)
+X-Virus-Scanned: amavisd-new at ejercito.mil.uy
+Received: from enamail.ejercito.mil.uy ([127.0.0.1])
+        by localhost (enamail.ejercito.mil.uy [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 5NBH8Ph_cVB3; Wed,  3 Jun 2020 09:43:42 -0300 (-03)
+Received: from [192.168.43.155] (unknown [41.190.30.175])
+        by enamail.ejercito.mil.uy (Postfix) with ESMTPSA id 22D8E412403E;
+        Wed,  3 Jun 2020 09:43:15 -0300 (-03)
+Content-Type: text/plain; charset="iso-8859-1"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: re
+To:     Recipients <rc5@ejercito.mil.uy>
+From:   "Ms.Ella Golan" <rc5@ejercito.mil.uy>
+Date:   Wed, 03 Jun 2020 13:42:42 +0100
+Reply-To: msgolaan612@gmail.com
+Message-Id: <20200603124316.22D8E412403E@enamail.ejercito.mil.uy>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current value is taken from Amlogic's 4.9 bsp kernel which appears
-to use the wrong ID. For comparison, here's before/after:
+I am Ms.Ella Golan, I am the Executive Vice President with FIRST INTERNATIONAL BANK OF ISRAEL LTD (FIBI). Am getting in touch with you about an extremely important and urgent issue. If you would give me the opportunity, I will provide you with details
 
-[    0.152237] soc soc0: Amlogic Meson SM1 (Unknown) Revision 2b:c (10:2) Detected
-[    0.152463] soc soc0: Amlogic Meson SM1 (S905X3) Revision 2b:c (10:2) Detected
-
-Fixes c9cc9bec36d0 ("soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- drivers/soc/amlogic/meson-gx-socinfo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 01fc0d20a70d..c38a1e4db28b 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -68,7 +68,7 @@ static const struct meson_gx_package_id {
- 	{ "S905X2", 0x28, 0x40, 0xf0 },
- 	{ "S922X", 0x29, 0x40, 0xf0 },
- 	{ "A311D", 0x29, 0x10, 0xf0 },
--	{ "S905X3", 0x2b, 0x5, 0xf },
-+	{ "S905X3", 0x2b, 0x10, 0xf0 },
- 	{ "S905D3", 0x2b, 0xb0, 0xf0 },
- 	{ "A113L", 0x2c, 0x0, 0xf8 },
- };
--- 
-2.17.1
-
+Faithfully,
+Ms.Ella Golan
