@@ -2,78 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1462C1ED034
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 14:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE1A1ED048
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 14:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726050AbgFCMxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 08:53:12 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:49034 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725833AbgFCMxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 08:53:12 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 053Cr7ir112440;
-        Wed, 3 Jun 2020 07:53:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1591188787;
-        bh=0OGsFADQRIEJ+pAa1MD7cm0xqXOql1SA1/wVh+jJtlU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ZfR6RnHaKN3SQLpqPrPM3JLgo/vKQ7EqBf03kzH1yyUJaVV25jt2dFbWOlnFsMseD
-         kVPZyLr7wXVhXRXqtZb1N3b6XMdae9T7ah+wMA+6xtn0HhOTI+skrf452HWE+MNnQ0
-         ZoKIOCUPAUG4ZwMfQrRBTvMdBFX7sNtYfIeVqjVw=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 053Cr7V3092900;
-        Wed, 3 Jun 2020 07:53:07 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 3 Jun
- 2020 07:53:06 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 3 Jun 2020 07:53:06 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 053Cr4Rp115475;
-        Wed, 3 Jun 2020 07:53:05 -0500
-Subject: Re: [PATCHv3 1/7] dt-bindings: crypto: Add TI SA2UL crypto
- accelerator documentation
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Rob Herring <robh@kernel.org>, <davem@davemloft.net>,
-        Keerthy <j-keerthy@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>
-References: <20200511215343.GA10123@bogus>
- <20200514125005.23641-1-t-kristo@ti.com> <20200528152341.GA103581@bogus>
- <a75b48ad-ecc0-89bc-f6a2-7149bc3fefb0@ti.com>
- <20200603122726.GB31719@gondor.apana.org.au>
- <18c28e88-e3a7-2ec4-1d0c-f4d4163aff1c@ti.com>
- <20200603123914.GA31840@gondor.apana.org.au>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <7ab12b04-6cea-38a7-4c0c-56aefaebf3d4@ti.com>
-Date:   Wed, 3 Jun 2020 15:53:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1725981AbgFCM4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 08:56:08 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:16776 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725930AbgFCM4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 08:56:05 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 053CqDo6021444;
+        Wed, 3 Jun 2020 14:55:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=jdp1plbLpLgjvRgPP9F4ETyWDpfXePaZkpFBRFFIxfE=;
+ b=1NYkV2NcuqmyTEX0bPFHHxq6Ez5NVzma3uoaT3CnOstSPMw5TBxlk2mAWDUUbhjvbCKH
+ upmvzkH8eHnbiPQNRzJubUQKqA9aoLxyB+P23qeSlwlhFrnmoL3J/09juWVn16vlXu4h
+ ZjMED91GB3k3e2O6bMUo/IdFZKn2bTa2wlGSskwQguJyaxGI0xh+nwuTFpLkdVismKSF
+ emqkzHujU1l796UOLEoAoWK0sOkMVf2CApmyk9ZJRimV0trhTGIY1PkAhI1nOZcyNhtN
+ ST4i9KfjyWodQgpy5hRCfwL8s245S00XG66iDoWUKXlSqgKeQTSF/T3O+RNwCUZzoaw5 uQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 31bcm94rpd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 03 Jun 2020 14:55:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AA1A8100034;
+        Wed,  3 Jun 2020 14:55:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 777662CBE8A;
+        Wed,  3 Jun 2020 14:55:38 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 3 Jun 2020 14:54:41
+ +0200
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <fabrice.gasnier@st.com>, <lee.jones@linaro.org>,
+        <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <linux@armlinux.org.uk>,
+        <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [RESEND v7 0/6] clockevent: add low power STM32 timer
+Date:   Wed, 3 Jun 2020 14:54:33 +0200
+Message-ID: <20200603125439.23275-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-In-Reply-To: <20200603123914.GA31840@gondor.apana.org.au>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
+ definitions=2020-06-03_12:2020-06-02,2020-06-03 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2020 15:39, Herbert Xu wrote:
-> On Wed, Jun 03, 2020 at 03:38:03PM +0300, Tero Kristo wrote:
->>
->> Also I guess this should be posted against 5.8-rc1 once it is out, as merge
->> window is already open. Or are you planning to pick it up for 5.8 already?
-> 
-> Sorry this is going to be in the next merge window.
-> 
+This series add low power timer as boadcast clockevent device.
+Low power timer could runs even when CPUs are in idle mode and 
+could wakeup them.
 
-Ok np, I will re-post once 5.8-rc1 is out.
+Lee has acked the MFD part.
+Clocksource driver still need to be reviewed by maintainers.
+Add missing part of the bindings to describe interrupt.
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+version 7 resend:
+- with Daniel ack for driver patch
+- with Rob review for bindings patch
+
+version 7:
+- rebased on top of v5.7-rc2
+
+version 6:
+- simplify binding, DT and code to use only one interrupt
+
+version 5:
+- document interrupts and interrupt-names bindings
+- use a different wake up interrupt
+- add device-tree patch
+- make STM32MP157 select low power timer configuration flag
+- enable fast_io in regmap configuration
+
+version 4:
+- move defines in mfd/stm32-lptimer.h
+- change compatible and subnode names
+- document wakeup-source property
+- reword commit message
+- make driver Kconfig depends of MFD_STM32_LPTIMER
+- remove useless include
+- remove rate and clk fields from the private structure
+- to add comments about the registers sequence in stm32_clkevent_lp_set_timer
+- rework probe function and use devm_request_irq()
+- do not allow module to be removed
+
+version 3:
+- fix timer set sequence
+- don't forget to free irq on remove function
+- use devm_kzalloc to simplify errors handling in probe function
+
+version 2:
+- stm32 clkevent driver is now a child of the stm32 lp timer node
+- add a probe function and adpat the driver to use regmap provide
+  by it parent
+- stop using timer_of helpers
+
+
+Benjamin Gaignard (6):
+  dt-bindings: mfd: Document STM32 low power timer bindings
+  ARM: dts: stm32: Add timer subnodes on stm32mp15 SoCs
+  mfd: stm32: Add defines to be used for clkevent purpose
+  mfd: stm32: enable regmap fast_io for stm32-lptimer
+  clocksource: Add Low Power STM32 timers driver
+  ARM: mach-stm32: select low power timer for STM32MP157
+
+ .../devicetree/bindings/mfd/st,stm32-lptimer.yaml  |   5 +
+ arch/arm/boot/dts/stm32mp151.dtsi                  |  35 ++++
+ arch/arm/mach-stm32/Kconfig                        |   1 +
+ drivers/clocksource/Kconfig                        |   4 +
+ drivers/clocksource/Makefile                       |   1 +
+ drivers/clocksource/timer-stm32-lp.c               | 221 +++++++++++++++++++++
+ drivers/mfd/stm32-lptimer.c                        |   1 +
+ include/linux/mfd/stm32-lptimer.h                  |   5 +
+ 8 files changed, 273 insertions(+)
+ create mode 100644 drivers/clocksource/timer-stm32-lp.c
+
+-- 
+2.15.0
+
