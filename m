@@ -2,128 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79E91ED6AD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 21:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 369DD1ED708
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 21:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726383AbgFCTVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 15:21:32 -0400
-Received: from rnd-relay.smtp.broadcom.com ([192.19.229.170]:43188 "EHLO
-        rnd-relay.smtp.broadcom.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726365AbgFCTVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 15:21:30 -0400
-Received: from mail-irv-17.broadcom.com (mail-irv-17.lvn.broadcom.net [10.75.242.48])
-        by rnd-relay.smtp.broadcom.com (Postfix) with ESMTP id 6EFEB30DED1;
-        Wed,  3 Jun 2020 12:21:28 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 rnd-relay.smtp.broadcom.com 6EFEB30DED1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-        s=dkimrelay; t=1591212088;
-        bh=SQNKzCK4mr62bKG2SrKfDfRn2h9ZIykztTMQ5vnyIw8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RPD7B4cGXC+aKMwmZCs4ZGQx0EzCjQr5l9Kx3NHB2hGVvQcOvqND0S+35gnyHMLTR
-         Yix4RPo5PH7r/XG9Sb35nyRNRB4ZOZJc5nE+UqwjkxOidESznufxsgfh/YNARBGpSt
-         ubJNEQjC2Kw2Lix2moqZK5b/+1rc5vbwEDJZI7Ao=
-Received: from stbsrv-and-01.and.broadcom.net (stbsrv-and-01.and.broadcom.net [10.28.16.211])
-        by mail-irv-17.broadcom.com (Postfix) with ESMTP id 2BEFA140069;
-        Wed,  3 Jun 2020 12:21:27 -0700 (PDT)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 08/13] of: Include a dev param in of_dma_get_range()
-Date:   Wed,  3 Jun 2020 15:20:40 -0400
-Message-Id: <20200603192058.35296-9-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200603192058.35296-1-james.quinlan@broadcom.com>
-References: <20200603192058.35296-1-james.quinlan@broadcom.com>
+        id S1726016AbgFCTqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 15:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725821AbgFCTqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 15:46:17 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CC2C08C5C0
+        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 12:46:16 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id f3so2241887pfd.11
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 12:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=o7dFferafHbA16Hif7YTAGiM27NsDHjPshBN8GtxSpQ=;
+        b=ZBqZJTI/EqMGcNeOmAtpJerj9kuJN7gkWqA4WZKdm+FUPSDPLMxVZQcJBWEfE027o0
+         TgPteJKXrccWIVn2ShcVKXH6cRGPnjNqv0eeZv79dKSI4PxExjQ2XEp9XUmMikZHbRKn
+         bAvB1H9+SylEdfuy855HADDP7uqY5auLg2ks1dsWoQLqreqVF/TcJCU7pIxz7Oi3YlFB
+         OTw6NUxwBj+uwMbm9ZrhIrBrYLSotFmunudN4o1/hi2q5Rz3aGfaKAcdhAWJ4gteE5/l
+         enSy5mHzCHeOTiK1RooBGTc4qQOnrMK54cCY+lRD5Fj3Qfc5DHYTZQtxFNNGWLdeTZKc
+         zmHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :mime-version:content-disposition:user-agent;
+        bh=o7dFferafHbA16Hif7YTAGiM27NsDHjPshBN8GtxSpQ=;
+        b=mepdHFHr2w+TnmXpK9Wowm3UsQcSUEmzkiLLPMeH6YEO+XAxJS52gmxvQmAA2i/sHz
+         pUyExNnkAVPcet2NW8a+x+dEqzvdSol4K74LfNLG4dOP4JDmUDecRparWBt9ew0AzFO9
+         1R8YfsXtEFR1vDkRLoVDcXg7bUG5Shns03rTpha2v2jz5ki1EsG3vWTUtgKGOQ58Kc7e
+         OT9kIKu8rgao5PtckoD2EG9r/S3tUzUHbvwkVSZEvaE/K5pswXaWx7rz5pmfgxVX5P5x
+         ZL37l6O3MbAnHP2OAPsu6EF0LT8Hqv1tyc3WU3Zurygc7CziySxbcYyLzsQsrwFATuBL
+         kuHw==
+X-Gm-Message-State: AOAM530Pd638Nnmidk4U8I+KGt05LFRhL2kCLVmPKSADeqpXZPM05S7d
+        MmOMNPZNS0ArRn/pHEdXAfdSQ4jq
+X-Google-Smtp-Source: ABdhPJxnJr48yRyW/hEf8WxrSjMwGJOdv2pu6rwsKDZMl/pHTB6294/TRP33rd3uXco1ZuY176oG8Q==
+X-Received: by 2002:a62:6487:: with SMTP id y129mr755685pfb.198.1591213576344;
+        Wed, 03 Jun 2020 12:46:16 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r8sm2593429pfq.16.2020.06.03.12.46.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 03 Jun 2020 12:46:15 -0700 (PDT)
+Date:   Wed, 3 Jun 2020 12:46:14 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm: dts: vexpress: Move mcc node back into motherboard
+ node
+Message-ID: <20200603194614.GA187107@roeck-us.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently there is only one caller of of_dma_get_range().  A struct device
-*dev param is needed For implementing multiple dma offsets.  This function
-will still work if dev == NULL.
+On Wed, Jun 03, 2020 at 05:22:37PM +0100, Andre Przywara wrote:
+> Commit 	d9258898ad49 ("arm64: dts: arm: vexpress: Move fixed devices
+> out of bus node") moved the "mcc" DT node into the root node, because
+> it does not have any children using "reg" properties, so does violate
+> some dtc checks about "simple-bus" nodes.
+> However this broke the vexpress config-bus code, which walks up the
+> device tree to find the first node with an "arm,vexpress,site" property.
+> This gave the wrong result (matching the root node instead of the
+> motherboard node), so broke the clocks and some other devices for
+> VExpress boards.
+> 
+> Move the whole node back into its original position. This re-introduces
+> the dtc warning, but is conceptually the right thing to do. The dtc
+> warning seems to be overzealous here, there are discussions on fixing or
+> relaxing this check instead.
+> 
+> Fixes: 	d9258898ad49 ("arm64: dts: arm: vexpress: Move fixed devices out of bus node")
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
----
- drivers/of/address.c    | 4 +++-
- drivers/of/device.c     | 2 +-
- drivers/of/of_private.h | 8 ++++----
- drivers/of/unittest.c   | 2 +-
- 4 files changed, 9 insertions(+), 7 deletions(-)
+Tested-by: Guenter Roeck <linux@roeck-us.net>
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 8eea3f6e29a4..96d8cfb14a60 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -920,6 +920,7 @@ EXPORT_SYMBOL(of_io_request_and_map);
- 
- /**
-  * of_dma_get_range - Get DMA range info
-+ * @dev:	device pointer; only needed for a corner case.
-  * @np:		device node to get DMA range info
-  * @dma_addr:	pointer to store initial DMA address of DMA range
-  * @paddr:	pointer to store initial CPU address of DMA range
-@@ -935,7 +936,8 @@ EXPORT_SYMBOL(of_io_request_and_map);
-  * It returns -ENODEV if "dma-ranges" property was not found
-  * for this device in DT.
-  */
--int of_dma_get_range(struct device_node *np, u64 *dma_addr, u64 *paddr, u64 *size)
-+int of_dma_get_range(struct device *dev, struct device_node *np, u64 *dma_addr,
-+		     u64 *paddr, u64 *size)
- {
- 	struct device_node *node = of_node_get(np);
- 	const __be32 *ranges = NULL;
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 27203bfd0b22..ef6a741f9f0b 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -95,7 +95,7 @@ int of_dma_configure(struct device *dev, struct device_node *np, bool force_dma)
- 	const struct iommu_ops *iommu;
- 	u64 mask, end;
- 
--	ret = of_dma_get_range(np, &dma_addr, &paddr, &size);
-+	ret = of_dma_get_range(dev, np, &dma_addr, &paddr, &size);
- 	if (ret < 0) {
- 		/*
- 		 * For legacy reasons, we have to assume some devices need
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index edc682249c00..7a83d3a81ab6 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -158,11 +158,11 @@ extern int of_bus_n_addr_cells(struct device_node *np);
- extern int of_bus_n_size_cells(struct device_node *np);
- 
- #ifdef CONFIG_OF_ADDRESS
--extern int of_dma_get_range(struct device_node *np, u64 *dma_addr,
--			    u64 *paddr, u64 *size);
-+extern int of_dma_get_range(struct device *dev, struct device_node *np,
-+			    u64 *dma_addr, u64 *paddr, u64 *size);
- #else
--static inline int of_dma_get_range(struct device_node *np, u64 *dma_addr,
--				   u64 *paddr, u64 *size)
-+static inline int of_dma_get_range(struct device *dev, struct device_node *np,
-+				   u64 *dma_addr, u64 *paddr, u64 *size)
- {
- 	return -ENODEV;
- }
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 398de04fd19c..57a22517c428 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -881,7 +881,7 @@ static void __init of_unittest_dma_ranges_one(const char *path,
- 		return;
- 	}
- 
--	rc = of_dma_get_range(np, &dma_addr, &paddr, &size);
-+	rc = of_dma_get_range(NULL, np, &dma_addr, &paddr, &size);
- 
- 	unittest(!rc, "of_dma_get_range failed on node %pOF rc=%i\n", np, rc);
- 	if (!rc) {
--- 
-2.17.1
-
+> ---
+> P.S. The broken commit has not reached mainline yet, but is already in
+> arm-soc/arm/dt.
+> 
+>  arch/arm/boot/dts/vexpress-v2m-rs1.dtsi | 146 ++++++++++++------------
+>  1 file changed, 73 insertions(+), 73 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> index e6308fb76183..a88ee5294d35 100644
+> --- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> +++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> @@ -100,79 +100,6 @@
+>  		};
+>  	};
+>  
+> -	mcc {
+> -		compatible = "arm,vexpress,config-bus";
+> -		arm,vexpress,config-bridge = <&v2m_sysreg>;
+> -
+> -		oscclk0 {
+> -			/* MCC static memory clock */
+> -			compatible = "arm,vexpress-osc";
+> -			arm,vexpress-sysreg,func = <1 0>;
+> -			freq-range = <25000000 60000000>;
+> -			#clock-cells = <0>;
+> -			clock-output-names = "v2m:oscclk0";
+> -		};
+> -
+> -		v2m_oscclk1: oscclk1 {
+> -			/* CLCD clock */
+> -			compatible = "arm,vexpress-osc";
+> -			arm,vexpress-sysreg,func = <1 1>;
+> -			freq-range = <23750000 65000000>;
+> -			#clock-cells = <0>;
+> -			clock-output-names = "v2m:oscclk1";
+> -		};
+> -
+> -		v2m_oscclk2: oscclk2 {
+> -			/* IO FPGA peripheral clock */
+> -			compatible = "arm,vexpress-osc";
+> -			arm,vexpress-sysreg,func = <1 2>;
+> -			freq-range = <24000000 24000000>;
+> -			#clock-cells = <0>;
+> -			clock-output-names = "v2m:oscclk2";
+> -		};
+> -
+> -		volt-vio {
+> -			/* Logic level voltage */
+> -			compatible = "arm,vexpress-volt";
+> -			arm,vexpress-sysreg,func = <2 0>;
+> -			regulator-name = "VIO";
+> -			regulator-always-on;
+> -			label = "VIO";
+> -		};
+> -
+> -		temp-mcc {
+> -			/* MCC internal operating temperature */
+> -			compatible = "arm,vexpress-temp";
+> -			arm,vexpress-sysreg,func = <4 0>;
+> -			label = "MCC";
+> -		};
+> -
+> -		reset {
+> -			compatible = "arm,vexpress-reset";
+> -			arm,vexpress-sysreg,func = <5 0>;
+> -		};
+> -
+> -		muxfpga {
+> -			compatible = "arm,vexpress-muxfpga";
+> -			arm,vexpress-sysreg,func = <7 0>;
+> -		};
+> -
+> -		shutdown {
+> -			compatible = "arm,vexpress-shutdown";
+> -			arm,vexpress-sysreg,func = <8 0>;
+> -		};
+> -
+> -		reboot {
+> -			compatible = "arm,vexpress-reboot";
+> -			arm,vexpress-sysreg,func = <9 0>;
+> -		};
+> -
+> -		dvimode {
+> -			compatible = "arm,vexpress-dvimode";
+> -			arm,vexpress-sysreg,func = <11 0>;
+> -		};
+> -	};
+> -
+>  	bus@8000000 {
+>  		motherboard-bus {
+>  			model = "V2M-P1";
+> @@ -435,6 +362,79 @@
+>  						};
+>  					};
+>  				};
+> +
+> +				mcc {
+> +					compatible = "arm,vexpress,config-bus";
+> +					arm,vexpress,config-bridge = <&v2m_sysreg>;
+> +
+> +					oscclk0 {
+> +						/* MCC static memory clock */
+> +						compatible = "arm,vexpress-osc";
+> +						arm,vexpress-sysreg,func = <1 0>;
+> +						freq-range = <25000000 60000000>;
+> +						#clock-cells = <0>;
+> +						clock-output-names = "v2m:oscclk0";
+> +					};
+> +
+> +					v2m_oscclk1: oscclk1 {
+> +						/* CLCD clock */
+> +						compatible = "arm,vexpress-osc";
+> +						arm,vexpress-sysreg,func = <1 1>;
+> +						freq-range = <23750000 65000000>;
+> +						#clock-cells = <0>;
+> +						clock-output-names = "v2m:oscclk1";
+> +					};
+> +
+> +					v2m_oscclk2: oscclk2 {
+> +						/* IO FPGA peripheral clock */
+> +						compatible = "arm,vexpress-osc";
+> +						arm,vexpress-sysreg,func = <1 2>;
+> +						freq-range = <24000000 24000000>;
+> +						#clock-cells = <0>;
+> +						clock-output-names = "v2m:oscclk2";
+> +					};
+> +
+> +					volt-vio {
+> +						/* Logic level voltage */
+> +						compatible = "arm,vexpress-volt";
+> +						arm,vexpress-sysreg,func = <2 0>;
+> +						regulator-name = "VIO";
+> +						regulator-always-on;
+> +						label = "VIO";
+> +					};
+> +
+> +					temp-mcc {
+> +						/* MCC internal operating temperature */
+> +						compatible = "arm,vexpress-temp";
+> +						arm,vexpress-sysreg,func = <4 0>;
+> +						label = "MCC";
+> +					};
+> +
+> +					reset {
+> +						compatible = "arm,vexpress-reset";
+> +						arm,vexpress-sysreg,func = <5 0>;
+> +					};
+> +
+> +					muxfpga {
+> +						compatible = "arm,vexpress-muxfpga";
+> +						arm,vexpress-sysreg,func = <7 0>;
+> +					};
+> +
+> +					shutdown {
+> +						compatible = "arm,vexpress-shutdown";
+> +						arm,vexpress-sysreg,func = <8 0>;
+> +					};
+> +
+> +					reboot {
+> +						compatible = "arm,vexpress-reboot";
+> +						arm,vexpress-sysreg,func = <9 0>;
+> +					};
+> +
+> +					dvimode {
+> +						compatible = "arm,vexpress-dvimode";
+> +						arm,vexpress-sysreg,func = <11 0>;
+> +					};
+> +				};
+>  			};
+>  		};
+>  	};
+> -- 
+> 2.17.1
+> 
