@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E35CC1ED58C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 19:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 929D41ED58E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 19:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726225AbgFCR6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 13:58:35 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:45681 "EHLO
+        id S1726228AbgFCR6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 13:58:37 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:34217 "EHLO
         relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbgFCR6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 13:58:34 -0400
+        with ESMTP id S1726330AbgFCR6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 13:58:36 -0400
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2A7F624000B;
-        Wed,  3 Jun 2020 17:58:32 +0000 (UTC)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id C946124000A;
+        Wed,  3 Jun 2020 17:58:33 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -29,9 +29,9 @@ Cc:     Boris Brezillon <boris.brezillon@collabora.com>,
         Mark Rutland <mark.rutland@arm.com>,
         <devicetree@vger.kernel.org>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v10 15/20] mtd: nand: Use the new generic ECC object
-Date:   Wed,  3 Jun 2020 19:57:54 +0200
-Message-Id: <20200603175759.19948-16-miquel.raynal@bootlin.com>
+Subject: [PATCH v10 16/20] mtd: rawnand: Make use of the ECC framework
+Date:   Wed,  3 Jun 2020 19:57:55 +0200
+Message-Id: <20200603175759.19948-17-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200603175759.19948-1-miquel.raynal@bootlin.com>
 References: <20200603175759.19948-1-miquel.raynal@bootlin.com>
@@ -43,74 +43,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Embed a generic NAND ECC high-level object in the nand_device
-structure to carry all the ECC engine configuration/data.
+Just enable the ECC framework with raw NAND so that we can drop, one
+by one, all the unnecessary/redundant definitions.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- include/linux/mtd/nand.h | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/mtd/nand/raw/Kconfig     | 1 +
+ drivers/mtd/nand/raw/nand_base.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/include/linux/mtd/nand.h b/include/linux/mtd/nand.h
-index 348fb2ad4d90..697ea2474a7c 100644
---- a/include/linux/mtd/nand.h
-+++ b/include/linux/mtd/nand.h
-@@ -301,7 +301,7 @@ struct nand_ecc {
-  * struct nand_device - NAND device
-  * @mtd: MTD instance attached to the NAND device
-  * @memorg: memory layout
-- * @eccreq: ECC requirements
-+ * @ecc: NAND ECC object attached to the NAND device
-  * @rowconv: position to row address converter
-  * @bbt: bad block table info
-  * @ops: NAND operations attached to the NAND device
-@@ -309,8 +309,8 @@ struct nand_ecc {
-  * Generic NAND object. Specialized NAND layers (raw NAND, SPI NAND, OneNAND)
-  * should declare their own NAND object embedding a nand_device struct (that's
-  * how inheritance is done).
-- * struct_nand_device->memorg and struct_nand_device->eccreq should be filled
-- * at device detection time to reflect the NAND device
-+ * struct_nand_device->memorg and struct_nand_device->ecc.requirements should
-+ * be filled at device detection time to reflect the NAND device
-  * capabilities/requirements. Once this is done nanddev_init() can be called.
-  * It will take care of converting NAND information into MTD ones, which means
-  * the specialized NAND layers should never manually tweak
-@@ -319,7 +319,7 @@ struct nand_ecc {
- struct nand_device {
- 	struct mtd_info mtd;
- 	struct nand_memory_organization memorg;
--	struct nand_ecc_props eccreq;
-+	struct nand_ecc ecc;
- 	struct nand_row_converter rowconv;
- 	struct nand_bbt bbt;
- 	const struct nand_ops *ops;
-@@ -530,7 +530,7 @@ nanddev_get_memorg(struct nand_device *nand)
- static inline const struct nand_ecc_props *
- nanddev_get_ecc_conf(struct nand_device *nand)
- {
--	return &nand->eccreq;
-+	return &nand->ecc.ctx.conf;
- }
- 
- /**
-@@ -541,7 +541,7 @@ nanddev_get_ecc_conf(struct nand_device *nand)
- static inline const struct nand_ecc_props *
- nanddev_get_ecc_requirements(struct nand_device *nand)
- {
--	return &nand->eccreq;
-+	return &nand->ecc.requirements;
- }
- 
- /**
-@@ -554,7 +554,7 @@ static inline void
- nanddev_set_ecc_requirements(struct nand_device *nand,
- 			     const struct nand_ecc_props *reqs)
- {
--	nand->eccreq = *reqs;
-+	nand->ecc.requirements = *reqs;
- }
- 
- int nanddev_init(struct nand_device *nand, const struct nand_ops *ops,
+diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+index 85280e327bfe..6ab3184ca8eb 100644
+--- a/drivers/mtd/nand/raw/Kconfig
++++ b/drivers/mtd/nand/raw/Kconfig
+@@ -13,6 +13,7 @@ config MTD_NAND_ECC_SW_HAMMING_SMC
+ menuconfig MTD_RAW_NAND
+ 	tristate "Raw/Parallel NAND Device Support"
+ 	select MTD_NAND_CORE
++	select MTD_NAND_ECC
+ 	select MTD_NAND_ECC_SW_HAMMING
+ 	help
+ 	  This enables support for accessing all type of raw/parallel
+diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+index d22f4243d715..aea78642d722 100644
+--- a/drivers/mtd/nand/raw/nand_base.c
++++ b/drivers/mtd/nand/raw/nand_base.c
+@@ -34,6 +34,7 @@
+ #include <linux/mm.h>
+ #include <linux/types.h>
+ #include <linux/mtd/mtd.h>
++#include <linux/mtd/nand.h>
+ #include <linux/mtd/nand_ecc.h>
+ #include <linux/mtd/nand_bch.h>
+ #include <linux/interrupt.h>
 -- 
 2.20.1
 
