@@ -2,239 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A54601ED0B5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 15:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50B9B1ED0F9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2020 15:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726044AbgFCNW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 09:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        id S1725797AbgFCNgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 09:36:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726039AbgFCNWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 09:22:54 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8735C08C5C0;
-        Wed,  3 Jun 2020 06:22:53 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id y13so2160308eju.2;
-        Wed, 03 Jun 2020 06:22:53 -0700 (PDT)
+        with ESMTP id S1725810AbgFCNgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 09:36:20 -0400
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B853CC08C5C1
+        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 06:36:20 -0700 (PDT)
+Received: by mail-il1-x142.google.com with SMTP id 18so2465910iln.9
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 06:36:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j7nBUX2AbyeE4VfB2fMjhar+8GJPqk6Hyrot3NHjwPE=;
-        b=oT5JVC7V6e3fRVd7frNu82uXHNq5VwVm9wXoNN2rUv5DZ6SUeBjU808U6R+WOXlaub
-         NyKZmeHiol4ZWVamjzwsfjnv/gmOjr1pGKx6RUW0sx2UaBZgek7QKWconhVLwJxpY+MX
-         RJdRxS+ZIJvcUgK7wi9ej946t2r5DBnGwn4VUUlDaGuaJD8sN7R0+f/FFDgfW3J7b2c0
-         ERnfGLmqUYeSKkyUONaM5B9hhJ9XniJj799MXOVTccxel+PgAjNzW9eIxfentTm/HTSP
-         hsML47LOlSXM6tz9gEcGwdHvYWMe024N6uXPhxXuBZRRjyLx6ANZBWhO9JXSvOw8k+/t
-         riog==
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=H8rDQEJouwBJIElP/Vpqq+PrvTZxQQy2H7A/MvyMMB0=;
+        b=t5mBSzuQgaR+ZWfhVkb/ko7/F7NEiv+WZzXxM00rkgAJUoS2chMmOtcRcs0ZjJ4of5
+         wf2g9HIpSJCygI5TEFbDi/L2J104RHrNU9DWyWx/NUvscqJR7aZ+p7x1uUIDsL220iPw
+         uxAOdynKu+/ENT1wbNrMsdifgB8OHGCsjUEY9JZy0DuoXEGIA9FCR5Cdd5jDdKcuMT+T
+         3OxkXIW0VuPPhsmJEILBj7xBq+h+qGEXo2S8J+oEO0QeeLMQ53/1RusYu/9hFA7TKM6n
+         sD6+BMU28Q672rJowD9OpheLrKrs1srQz2nQQknYmh9t8SIg8SchYAE+0lXTiECkgQAi
+         G8PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j7nBUX2AbyeE4VfB2fMjhar+8GJPqk6Hyrot3NHjwPE=;
-        b=JZkQei71pvDaVgnz7kZuIdreryucP+QPj3bPCUUl0jF8ZkWKFVvPdikOOQHh1CswZ9
-         b7BWHz/TKnKzYX4U/12pbaq1QnValm8NgmjqjIUSPGmUUri1qihlCEL5DOPVDzEcmzY9
-         kmuBTgYSsWgjx53MEa080Vg6woemHLVr2yX661tXyq784bTo76xw6MHy1PSMuOZFkc+r
-         Tg3RwgTHVPTvku61iaVnld+O0yr+YvcZKjcwDdRHge22BX0Zq2XIuNHOUE6/cTOhJS/j
-         L1k3ELUERdJfIbdx2Qxm4xxUbIDAFjyjwEQEtrcI3rcaGBL9Br+YejJ6YJNyLF7AMtwN
-         +/lg==
-X-Gm-Message-State: AOAM532Yn0F61BmoZutyeyEN7NGpjnnuUl2ipMIdj8S4uK+127pCGLiU
-        KaS1r65BpHB0K+9Qg4MlHB0=
-X-Google-Smtp-Source: ABdhPJz4YiYTo05+bsr3d0i5Rns2lGKyW2+pCMdMn6OshcYga7MfowRfhrpOjZOhTy+OAjd8q6TREA==
-X-Received: by 2002:a17:906:924c:: with SMTP id c12mr2882960ejx.457.1591190572383;
-        Wed, 03 Jun 2020 06:22:52 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host189-12-dynamic.45-213-r.retail.telecomitalia.it. [213.45.12.189])
-        by smtp.googlemail.com with ESMTPSA id h9sm1073859ejc.96.2020.06.03.06.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2020 06:22:51 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 2/2] devicetree: bindings: phy: Document ipq806x dwc3 qcom phy
-Date:   Wed,  3 Jun 2020 15:22:35 +0200
-Message-Id: <20200603132237.6036-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200603132237.6036-1-ansuelsmth@gmail.com>
-References: <20200603132237.6036-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=H8rDQEJouwBJIElP/Vpqq+PrvTZxQQy2H7A/MvyMMB0=;
+        b=ayeVDv4MK2lflAMuX+BSQRT+YQcelxXwPB90FRXP+zO+ZiSzvXFUIylKE37vTG0r8o
+         iHz3yGmj1Lv8UlIx8FRO6NdE9qexGXJSAPauydA/r2mQi7KRuFejtOVhr2JjS6myC9UR
+         v9lXrq2jO+qUmxmQz6pQh/fQ/4zopU2ufE7GChhMQjhmiA/NNsZnX4Auu/VpZWmNJl/W
+         pIyT+ZBQbkgKhkRlDJYdQELICA3KnShhqnMDoOfPscsJwQYK3aVGqpu+yrEiMohVpO9Y
+         IweYwiZuqtI1YoCUEzN1vRxyv36a5gU3LJ5ourKU83g1F/Fy6Fy9kFXIR4XLB+VVemnj
+         BdJA==
+X-Gm-Message-State: AOAM530uluxtdXcDAnzJiAz9Jrwivd4l9+9Xdexnq1G/hBKWL3Ia9lgz
+        ROynCGFTt45WLmDXy0rXl8mGeRKy2ziIEFY2siM=
+X-Google-Smtp-Source: ABdhPJzGkiGcWf7wo+U6sdZRZSt1myvnY08cyqJXmBsREu3XWFQj5ehzxpUJ5RykXda31U32XrQqAGROr5we1HcYIUo=
+X-Received: by 2002:a92:4812:: with SMTP id v18mr3999735ila.78.1591191380035;
+ Wed, 03 Jun 2020 06:36:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Reply-To: susanjones.wife@gmail.com
+Received: by 2002:a05:6e02:14d4:0:0:0:0 with HTTP; Wed, 3 Jun 2020 06:36:19
+ -0700 (PDT)
+From:   "Mrs.Susan Jones" <sus.wifejones@gmail.com>
+Date:   Wed, 3 Jun 2020 14:36:19 +0100
+X-Google-Sender-Auth: Qf7urAS6hlBlCqM6A1UHI2S03EY
+Message-ID: <CAFU9QzuQJQNpf_3+rFwG=Kjp43Sgf0effVhG43=sEFsrbJgvGg@mail.gmail.com>
+Subject: HELLO: I AM MRS SUSAN JONES
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document dwc3 qcom phy hs and ss phy bindings needed to correctly
-inizialize and use usb on ipq806x SoC.
-
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
-v6:
-* Add maximum value
-v5:
-* Fix dt_binding_check error
-v4:
-* Add qcom to specific bindings
-v3:
-* Use explicit reg instead of regmap
-
- .../bindings/phy/qcom,ipq806x-usb-phy-hs.yaml | 58 ++++++++++++++
- .../bindings/phy/qcom,ipq806x-usb-phy-ss.yaml | 76 +++++++++++++++++++
- 2 files changed, 134 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-hs.yaml
- create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-ss.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-hs.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-hs.yaml
-new file mode 100644
-index 000000000000..c019de7478e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-hs.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/qcom,ipq806x-usb-phy-hs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm ipq806x usb DWC3 HS PHY CONTROLLER
-+
-+maintainers:
-+  - Ansuel Smith <ansuelsmth@gmail.com>
-+
-+description:
-+  DWC3 PHY nodes are defined to describe on-chip Synopsis Physical layer
-+  controllers used in ipq806x. Each DWC3 PHY controller should have its
-+  own node.
-+
-+properties:
-+  compatible:
-+    const: qcom,ipq806x-usb-phy-hs
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      - "ref" Is required
-+      - "xo"	Optional external reference clock
-+    items:
-+      - const: ref
-+      - const: xo
-+
-+required:
-+  - compatible
-+  - "#phy-cells"
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
-+
-+    hs_phy_0: phy@110f8800 {
-+      compatible = "qcom,ipq806x-usb-phy-hs";
-+      reg = <0x110f8800 0x30>;
-+      clocks = <&gcc USB30_0_UTMI_CLK>;
-+      clock-names = "ref";
-+      #phy-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-ss.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-ss.yaml
-new file mode 100644
-index 000000000000..3696a8d7a5c7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/qcom,ipq806x-usb-phy-ss.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/qcom,ipq806x-usb-phy-ss.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm ipq806x usb DWC3 SS PHY CONTROLLER
-+
-+maintainers:
-+  - Ansuel Smith <ansuelsmth@gmail.com>
-+
-+description:
-+  DWC3 PHY nodes are defined to describe on-chip Synopsis Physical layer
-+  controllers used in ipq806x. Each DWC3 PHY controller should have its
-+  own node.
-+
-+properties:
-+  compatible:
-+    const: qcom,ipq806x-usb-phy-ss
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - const: ref
-+      - const: xo
-+
-+  qcom,rx-eq:
-+    description: Override value for rx_eq.
-+    default: 4
-+    maximum: 7
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  qcom,tx-deamp-3_5db:
-+    description: Override value for transmit preemphasis.
-+    default: 23
-+    maximum: 63
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  qcom,mpll:
-+    description: Override value for mpll.
-+    default: 0
-+    maximum: 7
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+
-+required:
-+  - compatible
-+  - "#phy-cells"
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
-+
-+    ss_phy_0: phy@110f8830 {
-+      compatible = "qcom,ipq806x-usb-phy-ss";
-+      reg = <0x110f8830 0x30>;
-+      clocks = <&gcc USB30_0_MASTER_CLK>;
-+      clock-names = "ref";
-+      #phy-cells = <0>;
-+    };
 -- 
-2.25.1
+OUR GOLDEN OPPORTUNITY
 
+Hello Dear Friend,
+
+Complement of the day, i hope you are doing great today. However, I am
+Mrs.Susan Jones, an auditor with one of the new generation banks here
+in Burkina Faso.
+
+I am writing you this letter based on the latest development at my
+Department. i discovered some abandoned huge amount of money, Ten
+Million, Five hundred thousand  United States Dollars.($10.500.000).
+Now I am only contacting you as a foreigner because this money cannot
+be approved to a local bank account here, but can only be approved to
+any foreign account and foreign beneficiary because the money is in US
+dollars
+
+This will be  a legitimate transaction once you accept to build trust
+with me and follow simple instruction doing the transfer process,
+until the total sum transfer out of the bank here to your own bank
+account any where in the world, and I agreed to share the total money
+50/50 with you once you successful confirmed it in your bank account.
+But any expenses doing the transfer process will be deduct from the
+amount before sharing, If you are interested to work with me and
+provide a good receiving bank account, get back to me as soon as
+possible with the following details below.
+
+Your full name
+Your Profession
+Your direct mobile phone number
+Your Scanned International passport or any of your identity
+
+NOTE: PLEASE IT YOU ARE NOT INTERESTED DON'T BORDER TO RESPOND BACK TO
+AVOID TIME WASTED.
+
+As soon as I receive these data's, I will forward to you the
+application form which you will send to the bank for the claim and
+transfer of the fund into your bank account as the  new beneficial.
+
+I am waiting to hear from you soon
+
+Yours
+Mrs.Susan Jones
