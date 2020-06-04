@@ -2,191 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C2C1EE57A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 15:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 397281EE5B2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 15:49:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728447AbgFDNhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 09:37:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37540 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728323AbgFDNhw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jun 2020 09:37:52 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EC6A5206E6;
-        Thu,  4 Jun 2020 13:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591277871;
-        bh=R78c8kSIeCH+8zefp0d/jSCDkdfqbN44t3yjAp+DSPs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C/7uMmH2K7OUr7TOT6iHWDXXbvzSO7p1Arxd9WcxBnBs4qQgkybJaBpvRrPXvRfaZ
-         Y88ealtNzAIPbze4JCmM9Op4yQFRTtzgiz1TqDhSU6oBtb62XbJ8gZJ2wAQfKXEmS+
-         ieOc45W44uGVW62cmU+GiyvLIzJ1hDQnrBSQd8zk=
-Date:   Thu, 4 Jun 2020 14:37:46 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        tabba@google.com, qwandor@google.com, ardb@kernel.org
-Subject: Re: [RFC PATCH 0/3] firmware: Add support for PSA FF-A interface
-Message-ID: <20200604133746.GA2951@willie-the-truck>
-References: <20200601094512.50509-1-sudeep.holla@arm.com>
+        id S1728787AbgFDNst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 09:48:49 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:50248 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728740AbgFDNss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 09:48:48 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 054DlGeU011514;
+        Thu, 4 Jun 2020 16:47:16 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
+        id 823F1639BF; Thu,  4 Jun 2020 16:47:16 +0300 (IDT)
+From:   amirmizi6@gmail.com
+To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        robh+dt@kernel.org,
+        "benoit.houyere@st.com--to=mark.rutland"@arm.com,
+        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
+        Amir Mizinski <amirmizi6@gmail.com>
+Subject: [PATCH v10 0/8] Add tpm i2c ptp driver
+Date:   Thu,  4 Jun 2020 16:47:05 +0300
+Message-Id: <20200604134713.157951-1-amirmizi6@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200601094512.50509-1-sudeep.holla@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep, [+Fuad, Andrew and Ard]
+From: Amir Mizinski <amirmizi6@gmail.com>
 
-(To other interested readers: if you haven't seen it, the FF-A spec is here:
- https://static.docs.arm.com/den0077/a/DEN0077A_PSA_Firmware_Framework_Arm_v8-A_1.0_EAC.pdf
- since this discussion makes no sense without that, and a tiny bit of sense
- with it. It used to be called "SPCI" but it was recently renamed.)
+This patch set adds support for TPM devices that implement the I2C.
+Interface defined by TCG PTP specification:
+https://trustedcomputinggroup.org/wp-content/uploads/TCG_PC_Client_Platform_TPM_Profile_PTP_2.0_r1.03_v22.pdf
 
-On Mon, Jun 01, 2020 at 10:45:09AM +0100, Sudeep Holla wrote:
-> Sorry for posting in the middle of merge window and I must have done
-> this last week itself. This is not the driver I had thought about posting
-> last week. After I started cleaning up and looking at Will's KVM prototype[1]
-> for PSA FF-A (previously known as SPCI),
+The driver was tested on Raspberry-Pie 3, using Nuvoton NPCT75X TPM.
 
-Yes, I need to do the Big Rename at some point. Joy.
+Interrupts are not implemented yet, preparing it for the next patch.
+This patch is based on initial work by oshri Alkoby, Alexander Steffen and Christophe Ricard
 
-> I got more doubts on alignment and dropped huge chunk of interface APIs in
-> the driver in order to keep it simple, and get aligned more with that
-> prototype and avoid scanning lots of code unnecessary.
+Changes since version 1:
+-"char:tpm:Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        - Fixed and extended commit description.
+        - Fixed an issue regarding handling max retries.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options":
+        -Converted "tpm_tis_i2c.txt" to "tpm-tis-i2c.yaml".
+        - Renamed "tpm_tis-i2c" to "tpm-tis-i2c".
+        - Removed interrupts properties.
+-"char: tpm: add tpm_tis_i2c driver"
+        - Replaced "tpm_tis-i2c" with "tpm-tis-i2c" in "tpm_tis_i2c.c".
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11236257/
+ - Rob Herring: https://patchwork.kernel.org/patch/11236253/
 
-You also dropped most of the code, so this doesn't really do anything in
-its current form ;)
+Changes since version 2:
+- Added 2 new commits with improvements suggested by Benoit Houyere.
+        -"Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -"Handle an exception for TPM Firmware Update mode."
+- Updated patch to latest v5.5
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Added "interrupts" and "crc-checksum" to properties.
+        - Updated binding description and commit info.
+-"char: tpm: add tpm_tis_i2c driver" (suggested by Benoit Houyere)
+        - Added repeat I2C frame after NACK.
+        - Checksum I2C feature activation in DTS file configuration.
+Addressed comments from:
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1161287/
 
-> Here are few things to clarify:
-> 
-> 1. DT bindings
-> ---------------
-> 	I was initially against adding bindings for Tx/Rx buffers for
-> 	partitions. As per the spec, an endpoint could allocate the
-> 	buffer pair and use the FFA_RXTX_MAP interface to map it with the
-> 	Hypervisor(KVM here). However looking at the prototype and also
-> 	I remember you mentioning that it is not possible to manage buffers
-> 	in that way. Please confirm if you plan to add the buffer details
-> 	fetcthing them through ioctls in KVM and adding them to VM DT nodes
-> 	in KVM userspace. I will update the bindings accordingly.
+Changes since version 3:
+- Updated patch to latest v5.6
+- Updated commits headlines and development credit format by Jarkko Sakkinen suggestion
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        - Updated commit description.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Fixed 'make dt_binding_check' errors on YAML file.
+        - Removed interrupts from required and examples since there is no use for them in current patch.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lore.kernel.org/patchwork/patch/1192101/
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1192099/
 
-I think it's useful to have a mode of operation where the hypervisor
-allocates the RX/TX buffers and advertises them in the DT. However, we
-can always add this later, so there's no need to have it in the binding
-from the start. Best start as simple as possible, I reckon.
+Changes since version 4:
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        -Added a "Reviewed-by" tag:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        -Fixed credit typos.
+-"tpm: tpm_tis: rewrite "tpm_tis_req_canceled()""
+        -Added fixes tag and removed changes for STM.
+-"tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Fixed typos, edited description to be clearer, and added a "Suggested-by" tag.
+-"tpm: Handle an exception for TPM Firmware Update mode."
+        -Added a "Suggested-by" tag.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        -Fixed 'make dt_binding_check' errors.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -Added tested-by tag by Eddie James.
+        -Fixed indent in Kconfig file.
+        -Fixed 'MODULE_DESCRIPTION'.
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11467645/
+                https://patchwork.kernel.org/patch/11467655/
+                https://patchwork.kernel.org/patch/11467643/
+                https://patchwork.kernel.org/patch/11467659/
+                https://patchwork.kernel.org/patch/11467651/
+ - Rob Herring: https://patchwork.kernel.org/patch/11467653/
+ - Randy Dunlap: https://patchwork.kernel.org/patch/11467651/
+ - Eddie James: https://lore.kernel.org/patchwork/patch/1192104/
 
-Setting the static RX/TX buffer allocation aside, why is a DT node needed
-at all for the case where Linux is running purely as an FF-A client? I
-thought everything should be discoverable via FFA_VERSION, FFA_FEATURES,
-FFA_PARTITION_INFO_GET and FFA_ID_GET? That should mean we can get away
-without a binding at all for the client case.
+Changes since version 5:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Updated short description and fixed long description to be more clear.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lkml.org/lkml/2020/4/6/748
 
-> 2. Driver
-> ---------
-> a. Support for multiple partitions in a VM
-> ------------------------------------------
-> 	I am not sure if there is need for supporting multiple partitions
-> 	within a VM. It should be possible to do so as I expect to create
-> 	device for each partition entry under arm-psa-ffa devicetree node.
-> 	However, I don't want to assume something that will never be a
-> 	usecase. However I don't think this will change must of the
-> 	abstraction as we need to keep the interface API implementation
-> 	separate to support different partitions on various platforms.
+Changes since version 6:
+-"tpm: tpm_tis: Make implementation of read16, read32 and write32 optional"
+        -Fixed short description.
+        -fixed long description proofreading issues.
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Fixed long description by Jarkko comments and proofreading issues.
+        -Replaced "check_data" with verify_data_integrity".
+        -New line before return statement.
+-"tpm: tpm_tis: rewrite "tpm_tis_req_canceled()"
+        -Fixed line over 80 characters.
+        -fixed long description proofreading issues.
+-" tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot"
+        -fixed long description proofreading issues.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C option"
+        -Replaced "tpm-tis-i2c@2e" with "tpm_tis@2e".
+        -Fixed CRC_Checksum description.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -Replaced "depends on CRC_CCIT" with "select CRC_CCIT".
+        -Added tested-by tag by Joel Stanley.
+        -Fixed checkpatch.pl warnings.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1221336/
+        https://lore.kernel.org/patchwork/patch/1221337/
+        https://lore.kernel.org/patchwork/patch/1221339/
+ - Joel Stanley:
+        https://lore.kernel.org/patchwork/patch/1220543/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1221334/
 
-I think Ard has a case for something like this, where a VM actually consists
-of multiple partitions so that S-EL0 services can be provided from NS-EL0.
-However, he probably wants that for a dynamically created VM, so we'd
-need a way to instantiate an FFA namespace for the VM. Maybe that can be
-done entirely in userspace by the VMM...
 
-> b. SMCCC interface
-> ------------------
-> 	This is something I messed up completely while trying to add
-> 	support for SMCCC v1.2. It now supports x0-x17 as parameter
-> 	registers(input) and return registers(output). I started simple
-> 	with x0-x7 as both input and output as PSA FF-A needs that at
-> 	most. But extending to x0-x17 then became with messy in my
-> 	implementation. That's the reason I dropped it completely
-> 	here and thought of checking it first.
-> 
-> 	Do we need to extend the optimisations that were done to handle
-> 	ARCH_WORKAROUND_{1,2}. Or should be just use a version with x0-x7
-> 	as both input and ouput. Hyper-V guys need full x0-x17 support.
-> 
-> 	I need some guidance as what is the approach preferred ?
+Changes since version 7:
+- Added a new commit with improvements suggested by Benoit Houyere.
+        -"tpm: tpm_tis: verify TPM_STS register is valid after locality request"
+-"tpm: tpm_tis: Rewrite "tpm_tis_req_canceled()""
+        -Fixed Hash for Fixes tag.
+-"tpm: Add YAML schema for TPM TIS I2C options"
+        -Added a compatible string specific to the nuvoton npct75x chip.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -added a compatible string according to yaml file.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1231524/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1231526/
 
-I think we can start off with x0-x7 and extend if later if we need to.
+Changes since version 8:
+- "tpm: tpm_tis: Make implementation of read16, read32 and write32 optional"
+        -Fixed a compile error conflicting CR50
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Moved commit backwards from 4/8 to 2/8 for a better flow with new data integrity check design
+- "tpm: tpm_tis: Add retry in case of protocol failure or data integrity (on I2C only) failure."
+        -Renamed from "tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Redesign and added a retry for additional error cases.
+- "tpm: Add YAML schema for TPM TIS I2C options"
+        -Fixed Dual-license new binding
+        -Removed "oneOf"
+        -Fixed tpm_tis@2e to tpm@2e
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1240728/
+        https://lore.kernel.org/patchwork/patch/1240736/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1240733/
 
-> 3. Partitions
-> -------------
-> 	I am not sure if we have a full define partition that we plan to
-> 	push upstream. Without one, we can have a sample/example partition
-> 	to test all the interface APIs, but is that fine with respect to
-> 	what we want upstream ? Any other thoughts that helps to test the
-> 	driver ?
+Changes since version 9:
+- "tpm: Make read{16, 32}() and write32() in tpm_tis_phy_ops optional"
+	-Fixed short description
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+	-Canceled wait_for_tpm_stat() function renaming.
+	-Fixed long description
+- "tpm: Add YAML schema for TPM TIS I2C options"
+	-Added a reviewed-by tag.
+Addressed comments from:
+ - Jarkko Sakkinen:
+	https://lore.kernel.org/patchwork/patch/1247163/
+	https://lore.kernel.org/patchwork/patch/1247164/
+ - Rob Herring:
+	https://lore.kernel.org/patchwork/patch/1247161/
 
-I think that's the best you can do for now. We can probably help with
-testing as our stuff gets off the ground.
+Amir Mizinski (8):
+  tpm: Make read{16, 32}() and write32() in tpm_tis_phy_ops optional
+  tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot
+    without last byte in exception
+  tpm: tpm_tis: Add retry in case of protocol failure or data integrity
+    (on I2C only) failure.
+  tpm: tpm_tis: Rewrite "tpm_tis_req_canceled()"
+  tpm: Handle an exception for TPM Firmware Update mode.
+  tpm: tpm_tis: verify TPM_STS register is valid after locality request
+  tpm: Add YAML schema for TPM TIS I2C options
+  tpm: tpm_tis: add tpm_tis_i2c driver
 
-> Sorry for long email and too many questions, but I thought it is easier
-> this way to begin with than throwing huge code implementing loads of APIs
-> with no users(expect example partition) especially that I am posting this
-> during merge window.
+ .../bindings/security/tpm/tpm-tis-i2c.yaml         |  50 ++++
+ drivers/char/tpm/Kconfig                           |  12 +
+ drivers/char/tpm/Makefile                          |   1 +
+ drivers/char/tpm/tpm2-cmd.c                        |   4 +
+ drivers/char/tpm/tpm_tis_core.c                    | 182 ++++++-------
+ drivers/char/tpm/tpm_tis_core.h                    |  41 ++-
+ drivers/char/tpm/tpm_tis_i2c.c                     | 292 +++++++++++++++++++++
+ drivers/char/tpm/tpm_tis_spi.h                     |   4 -
+ drivers/char/tpm/tpm_tis_spi_cr50.c                |   3 -
+ drivers/char/tpm/tpm_tis_spi_main.c                |  41 ---
+ include/linux/tpm.h                                |   1 +
+ 11 files changed, 491 insertions(+), 140 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+ create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
 
-No problem. Maybe it would help if I described roughly what we were thinking
-of doing for KVM (this is open for discussion, of course):
+-- 
+2.7.4
 
- 1. Describe KVM-managed partitions in the DT, along the lines of [1]
- 2. Expose each partition as a file to userspace. E.g.:
-
-    /dev/spci/:
-
-	self
-	e3a48fa5-dc54-4a8b-898b-bdc4dfeeb7b8
-	49f65057-d002-4ae2-b4ee-d31c7940a13d
-
-    Here, self would be a symlink to the host uuid. The host uuid file
-    would implement FFA_MEM operations using an ioctl(), so you could,
-    for example, share a user buffer with multiple partitions by issuing
-    a MEM_SHARE ioctl() on self, passing the fds for the borrower partitions
-    as arguments. Messaging would be implemented as ioctl()s on the
-    partition uuid files themselves.
-
- 3. We'll need some (all?) of these patches to unmap memory from the host
-    when necessary:
-
-    https://lwn.net/Articles/821215/
-
-    (for nVHE, we'll have a stage-2 for the host so we can unmap there as
-    well)
-
-For communicating with partitions that are not managed by KVM (e.g. trusted
-applications), it's not clear to me how much of that will be handled in
-kernel or user. I think it would still be worth exposing the partitions as
-files, but perhaps having them root only or just returning -EPERM for the
-ioctl() if a kernel driver has claimed the partition as its own? Ideally,
-FF-A would allow us to transition some of the Trusted OS interfacing code
-out to userspace, but I don't know how realistic that is.
-
-Anyway, to enable this, I think we need a clear separation in the kernel
-between the FF-A code and the users: KVM will want to expose things as
-above, but if drivers need to use this stuff as well then they can plug in
-as additional users and we don't have to worry about tripping over the
-RX/TX buffers etc.
-
-What do you think, and do you reckon you can spin a cut-down driver that
-implements the common part of the logic (since I know you've written much
-of this code already)?
-
-Cheers,
-
-Will
-
-[1] https://android-kvm.googlesource.com/linux/+/8632a5723ef106017c4ab57e95d9ce7630d35522%5E%21/#F0
