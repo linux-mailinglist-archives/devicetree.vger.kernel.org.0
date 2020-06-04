@@ -2,397 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 580DE1EE5B9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 15:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C721EE5E9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 15:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728688AbgFDNs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 09:48:59 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:50225 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728685AbgFDNsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 09:48:24 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 054DlxF1011541;
-        Thu, 4 Jun 2020 16:47:59 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
-        id 43B36639BF; Thu,  4 Jun 2020 16:47:59 +0300 (IDT)
-From:   amirmizi6@gmail.com
-To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
-        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
-        robh+dt@kernel.org,
-        "benoit.houyere@st.com--to=mark.rutland"@arm.com,
-        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
-        Amir Mizinski <amirmizi6@gmail.com>,
-        Eddie James <eajames@linux.ibm.com>,
-        Joel Stanley <joel@jms.id.au>
-Subject: [PATCH v10 8/8] tpm: tpm_tis: add tpm_tis_i2c driver
-Date:   Thu,  4 Jun 2020 16:47:13 +0300
-Message-Id: <20200604134713.157951-9-amirmizi6@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200604134713.157951-1-amirmizi6@gmail.com>
-References: <20200604134713.157951-1-amirmizi6@gmail.com>
+        id S1728822AbgFDNw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 09:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728703AbgFDNw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 09:52:28 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F2DC08C5C1
+        for <devicetree@vger.kernel.org>; Thu,  4 Jun 2020 06:52:28 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id t16so2204405plo.7
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2020 06:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jr8wZhb4pJx8qPThUyDrXbZlabia3tw2g3YFZ6NyZow=;
+        b=jPBIKgZSirOHvo7kMZ0JfAaDehKwnWbELDWidWKWB5maI6NK6rhB2zMh53/7rBREOu
+         s/zaHev2o0vRWlK3IOjAmysDxCqk9E5uFAleswG4QlT9Ue/FYDa1kZYaqMFsl4iMSY0o
+         STdElnXYJmLrmCqd/S7cdFT3vpW5cYGf+/JRB8Ob3TqJ0TMWmU8UnXcQ+CH1C76oHyzG
+         Bbp526YQCO0aen0iL99tdv2LBgB6oK9RALZrPXCSFuFOXzVACHIfFS6vCXAjuepwrTM5
+         4Fci5DqEvzcZCnmBH2bbzzffJkrMjpLJta4pILt5wxPNpwVEKNcRDyPcDd3iIax9lMWS
+         TDOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jr8wZhb4pJx8qPThUyDrXbZlabia3tw2g3YFZ6NyZow=;
+        b=a7AHnNGpnwro6lMTIYFYP4N2ofq6bh61Eby25w3EuvSqWyskanpxdmAyxzVOpN+ETo
+         N1e1tWDToQxbOgXs6gM2v9uSPcdTTNCrszw7UbSKSL8PPkxFxQvJPvsl5+pzUuQBqV7Z
+         ktXK0CQAYBuv3feH0j0Y0KhxJ/SWpJc+2eXEcmPUfgQQC/HqERpzKAItitL3VOkSmTKF
+         udyJwmaJ8oz1uLGrYRfh0RY+JUtl4rTStcec28SGmJH66O1Mdh2Z0tsPbFYY50SWXLPM
+         mdumfIJUebO8HbxUViTuxDZ8CXQX+ItHDZemCgSRjZGCErecFH2hvD729uyvmgvzLi00
+         mWEA==
+X-Gm-Message-State: AOAM530ZVCtTfW7Tbs/Y5Xm/ZGqWdjsMfMjqZluzYJJXuE7KyXMw1OnL
+        kw2mz0JlwGA+8YKxV8qahdJr
+X-Google-Smtp-Source: ABdhPJx5jGzTevHPTJSqrq4bsJ72Yh4odpGq73L+WtB0R5X8do+vglg5O1igVJiUAcqCO9OuAPuPtA==
+X-Received: by 2002:a17:90a:6344:: with SMTP id v4mr5731999pjs.27.1591278747907;
+        Thu, 04 Jun 2020 06:52:27 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6211:4cea:c404:4d38:8396:d1ee])
+        by smtp.gmail.com with ESMTPSA id b29sm4745683pff.176.2020.06.04.06.52.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 04 Jun 2020 06:52:26 -0700 (PDT)
+Date:   Thu, 4 Jun 2020 19:22:21 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Jonathan Marek <jonathan@marek.ca>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/6] arm64: dts: qcom: smmu/USB nodes and HDK855/HDK865
+ dts
+Message-ID: <20200604135221.GH16719@Mani-XPS-13-9360>
+References: <20200524023815.21789-1-jonathan@marek.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200524023815.21789-1-jonathan@marek.ca>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amir Mizinski <amirmizi6@gmail.com>
+Hi,
 
-Implements the functionality needed to communicate with an I2C TPM
-according to the TCG TPM I2C Interface Specification.
+On Sat, May 23, 2020 at 10:38:06PM -0400, Jonathan Marek wrote:
+> Add dts nodes for apps_smmu and USB for both sm8150 and sm8250.
+> 
 
-Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-Tested-by: Eddie James <eajames@linux.ibm.com>
-Tested-by: Joel Stanley <joel@jms.id.au>
----
- drivers/char/tpm/Kconfig       |  12 ++
- drivers/char/tpm/Makefile      |   1 +
- drivers/char/tpm/tpm_tis_i2c.c | 292 +++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
- create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
+I've tested this series on an SM8250 based board and able to get Type C (USB0)
+working. There are also couple of Type A ports (USB1) on that board behind a
+USB hub. It is probing fine but I don't see any activity while connecting a
+USB device. Will continue to debug and once I get them working, I'll add my
+Tested-by tag.
 
-diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
-index aacdeed..2116d94 100644
---- a/drivers/char/tpm/Kconfig
-+++ b/drivers/char/tpm/Kconfig
-@@ -74,6 +74,18 @@ config TCG_TIS_SPI_CR50
- 	  If you have a H1 secure module running Cr50 firmware on SPI bus,
- 	  say Yes and it will be accessible from within Linux.
- 
-+config TCG_TIS_I2C
-+	tristate "TPM I2C Interface Specification"
-+	depends on I2C
-+	select CRC_CCITT
-+	select TCG_TIS_CORE
-+	help
-+	  If you have a TPM security chip which is connected to a regular
-+	  I2C master (i.e. most embedded platforms) that is compliant with the
-+	  TCG TPM I2C Interface Specification say Yes and it will be accessible from
-+	  within Linux. To compile this driver as a module, choose  M here;
-+	  the module will be called tpm_tis_i2c.
-+
- config TCG_TIS_I2C_ATMEL
- 	tristate "TPM Interface Specification 1.2 Interface (I2C - Atmel)"
- 	depends on I2C
-diff --git a/drivers/char/tpm/Makefile b/drivers/char/tpm/Makefile
-index 9567e51..97999cf 100644
---- a/drivers/char/tpm/Makefile
-+++ b/drivers/char/tpm/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_TCG_TIS_SPI) += tpm_tis_spi.o
- tpm_tis_spi-y := tpm_tis_spi_main.o
- tpm_tis_spi-$(CONFIG_TCG_TIS_SPI_CR50) += tpm_tis_spi_cr50.o
- 
-+obj-$(CONFIG_TCG_TIS_I2C) += tpm_tis_i2c.o
- obj-$(CONFIG_TCG_TIS_I2C_ATMEL) += tpm_i2c_atmel.o
- obj-$(CONFIG_TCG_TIS_I2C_INFINEON) += tpm_i2c_infineon.o
- obj-$(CONFIG_TCG_TIS_I2C_NUVOTON) += tpm_i2c_nuvoton.o
-diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-new file mode 100644
-index 0000000..4c9bad0
---- /dev/null
-+++ b/drivers/char/tpm/tpm_tis_i2c.c
-@@ -0,0 +1,292 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2014-2019 Nuvoton Technology corporation
-+ *
-+ * TPM TIS I2C
-+ *
-+ * TPM TIS I2C Device Driver Interface for devices that implement the TPM I2C
-+ * Interface defined by TCG PC Client Platform TPM Profile (PTP) Specification
-+ * Revision 01.03 v22 at www.trustedcomputinggroup.org
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/moduleparam.h>
-+#include <linux/slab.h>
-+#include <linux/interrupt.h>
-+#include <linux/wait.h>
-+#include <linux/acpi.h>
-+#include <linux/freezer.h>
-+#include <linux/crc-ccitt.h>
-+
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/gpio.h>
-+#include <linux/of_irq.h>
-+#include <linux/of_gpio.h>
-+#include <linux/tpm.h>
-+#include "tpm.h"
-+#include "tpm_tis_core.h"
-+
-+#define TPM_LOC_SEL                    0x04
-+#define TPM_I2C_INTERFACE_CAPABILITY   0x30
-+#define TPM_I2C_DEVICE_ADDRESS         0x38
-+#define TPM_DATA_CSUM_ENABLE           0x40
-+#define TPM_DATA_CSUM                  0x44
-+#define TPM_I2C_DID_VID                        0x48
-+#define TPM_I2C_RID                    0x4C
-+
-+//#define I2C_IS_TPM2 1
-+
-+struct tpm_tis_i2c_phy {
-+	struct tpm_tis_data priv;
-+	struct i2c_client *i2c_client;
-+	bool data_csum;
-+	u8 *iobuf;
-+};
-+
-+static inline struct tpm_tis_i2c_phy *to_tpm_tis_i2c_phy(struct tpm_tis_data
-+							 *data)
-+{
-+	return container_of(data, struct tpm_tis_i2c_phy, priv);
-+}
-+
-+static u8 address_to_register(u32 addr)
-+{
-+	addr &= 0xFFF;
-+
-+	switch (addr) {
-+		// adapt register addresses that have changed compared to
-+		// older TIS versions
-+	case TPM_ACCESS(0):
-+		return 0x04;
-+	case TPM_LOC_SEL:
-+		return 0x00;
-+	case TPM_DID_VID(0):
-+		return 0x48;
-+	case TPM_RID(0):
-+		return 0x4C;
-+	default:
-+		return addr;
-+	}
-+}
-+
-+static int tpm_tis_i2c_read_bytes(struct tpm_tis_data *data, u32 addr,
-+				  u16 len, u8 *result)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	int ret = 0;
-+	int i = 0;
-+	u8 reg = address_to_register(addr);
-+	struct i2c_msg msgs[] = {
-+		{
-+			.addr = phy->i2c_client->addr,
-+			.len = sizeof(reg),
-+			.buf = &reg,
-+		},
-+		{
-+			.addr = phy->i2c_client->addr,
-+			.len = len,
-+			.buf = result,
-+			.flags = I2C_M_RD,
-+		},
-+	};
-+
-+	do {
-+		ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-+				   ARRAY_SIZE(msgs));
-+		usleep_range(250, 300); // wait default GUARD_TIME of 250µs
-+
-+	} while (ret < 0 && i++ < TPM_RETRY);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr,
-+				   u16 len, const u8 *value)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	int ret = 0;
-+	int i = 0;
-+
-+	if (phy->iobuf) {
-+		if (len > TPM_BUFSIZE - 1)
-+			return -EIO;
-+
-+		phy->iobuf[0] = address_to_register(addr);
-+		memcpy(phy->iobuf + 1, value, len);
-+
-+		{
-+			struct i2c_msg msgs[] = {
-+				{
-+					.addr = phy->i2c_client->addr,
-+					.len = len + 1,
-+					.buf = phy->iobuf,
-+				},
-+			};
-+
-+			do {
-+				ret = i2c_transfer(phy->i2c_client->adapter,
-+						   msgs, ARRAY_SIZE(msgs));
-+				// wait default GUARD_TIME of 250µs
-+				usleep_range(250, 300);
-+			} while (ret < 0 && i++ < TPM_RETRY);
-+		}
-+	} else {
-+		u8 reg = address_to_register(addr);
-+
-+		struct i2c_msg msgs[] = {
-+			{
-+				.addr = phy->i2c_client->addr,
-+				.len = sizeof(reg),
-+				.buf = &reg,
-+			},
-+			{
-+				.addr = phy->i2c_client->addr,
-+				.len = len,
-+				.buf = (u8 *)value,
-+				.flags = I2C_M_NOSTART,
-+			},
-+		};
-+		do {
-+			ret = i2c_transfer(phy->i2c_client->adapter, msgs,
-+					   ARRAY_SIZE(msgs));
-+			// wait default GUARD_TIME of 250µs
-+			usleep_range(250, 300);
-+		} while (ret < 0 && i++ < TPM_RETRY);
-+	}
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static bool tpm_tis_i2c_verify_data_integrity(struct tpm_tis_data *data,
-+					      const u8 *buf, size_t len)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	u16 crc, crc_tpm;
-+	int rc;
-+
-+	if (phy->data_csum) {
-+		crc = crc_ccitt(0x0000, buf, len);
-+		rc = tpm_tis_read16(data, TPM_DATA_CSUM, &crc_tpm);
-+		if (rc < 0)
-+			return false;
-+
-+		crc_tpm = be16_to_cpu(crc_tpm);
-+		return crc == crc_tpm;
-+	}
-+
-+	return true;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(tpm_tis_pm, tpm_pm_suspend, tpm_tis_resume);
-+
-+static int csum_state_store(struct tpm_tis_data *data, u8 new_state)
-+{
-+	struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
-+	u8 cur_state;
-+	int rc;
-+
-+	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-+				     1, &new_state);
-+	if (rc < 0)
-+		return rc;
-+
-+	rc = tpm_tis_i2c_read_bytes(&phy->priv, TPM_DATA_CSUM_ENABLE,
-+				    1, &cur_state);
-+	if (rc < 0)
-+		return rc;
-+
-+	if (new_state == cur_state)
-+		phy->data_csum = (bool)new_state;
-+
-+	return rc;
-+}
-+
-+static const struct tpm_tis_phy_ops tpm_i2c_phy_ops = {
-+	.read_bytes = tpm_tis_i2c_read_bytes,
-+	.write_bytes = tpm_tis_i2c_write_bytes,
-+	.verify_data_integrity = tpm_tis_i2c_verify_data_integrity,
-+};
-+
-+static int tpm_tis_i2c_probe(struct i2c_client *dev,
-+			     const struct i2c_device_id *id)
-+{
-+	struct tpm_tis_i2c_phy *phy;
-+	int rc;
-+	int crc_checksum = 0;
-+	const u8 loc_init = 0;
-+	struct device_node *np;
-+
-+	phy = devm_kzalloc(&dev->dev, sizeof(struct tpm_tis_i2c_phy),
-+			   GFP_KERNEL);
-+	if (!phy)
-+		return -ENOMEM;
-+
-+	phy->i2c_client = dev;
-+
-+	if (!i2c_check_functionality(dev->adapter, I2C_FUNC_NOSTART)) {
-+		phy->iobuf = devm_kmalloc(&dev->dev, TPM_BUFSIZE, GFP_KERNEL);
-+		if (!phy->iobuf)
-+			return -ENOMEM;
-+	}
-+
-+	// select locality 0 (the driver will access only via locality 0)
-+	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_LOC_SEL, 1, &loc_init);
-+	if (rc < 0)
-+		return rc;
-+
-+	// set CRC checksum calculation enable
-+	np = dev->dev.of_node;
-+	if (of_property_read_bool(np, "crc-checksum"))
-+		crc_checksum = 1;
-+
-+	rc = csum_state_store(&phy->priv, crc_checksum);
-+	if (rc < 0)
-+		return rc;
-+
-+	return tpm_tis_core_init(&dev->dev, &phy->priv, -1, &tpm_i2c_phy_ops,
-+					NULL);
-+}
-+
-+static const struct i2c_device_id tpm_tis_i2c_id[] = {
-+	{"tpm_tis_i2c", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-+
-+static const struct of_device_id of_tis_i2c_match[] = {
-+	{ .compatible = "nuvoton,npct75x", },
-+	{ .compatible = "tcg,tpm-tis-i2c", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
-+
-+static const struct acpi_device_id acpi_tis_i2c_match[] = {
-+	{"SMO0768", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(acpi, acpi_tis_i2c_match);
-+
-+static struct i2c_driver tpm_tis_i2c_driver = {
-+	.driver = {
-+		.owner = THIS_MODULE,
-+		.name = "tpm_tis_i2c",
-+		.pm = &tpm_tis_pm,
-+		.of_match_table = of_match_ptr(of_tis_i2c_match),
-+		.acpi_match_table = ACPI_PTR(acpi_tis_i2c_match),
-+	},
-+	.probe = tpm_tis_i2c_probe,
-+	.id_table = tpm_tis_i2c_id,
-+};
-+
-+module_i2c_driver(tpm_tis_i2c_driver);
-+
-+MODULE_DESCRIPTION("TPM Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+Thanks,
+Mani
 
+> Also add initial dts files for HDK855 and HDK865, based on mtp dts, with a
+> few changes. Notably, the HDK865 dts has regulator config changed a bit based
+> on downstream (I think sm8250-mtp.dts is wrong and copied too much from sm8150).
+> 
+> Jonathan Marek (6):
+>   arm64: dts: qcom: sm8150: add apps_smmu node
+>   arm64: dts: qcom: sm8250: add apps_smmu node
+>   arm64: dts: qcom: sm8150: Add secondary USB and PHY nodes
+>   arm64: dts: qcom: sm8250: Add USB and PHY device nodes
+>   arm64: dts: qcom: add sm8150 hdk dts
+>   arm64: dts: qcom: add sm8250 hdk dts
+> 
+>  arch/arm64/boot/dts/qcom/Makefile       |   2 +
+>  arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 461 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi    | 180 +++++++++
+>  arch/arm64/boot/dts/qcom/sm8250-hdk.dts | 454 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi    | 287 +++++++++++++++
+>  5 files changed, 1384 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+> 
+> -- 
+> 2.26.1
+> 
