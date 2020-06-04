@@ -2,101 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 677481EDADB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 03:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF2F1EDB09
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 04:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728033AbgFDBxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jun 2020 21:53:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726135AbgFDBx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jun 2020 21:53:29 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1823C08C5C9
-        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 18:53:28 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id w90so3942977qtd.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 18:53:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cx1RfItm8P+5zdZthMwhmTFP4jusIpmaSOa4M7MTCuw=;
-        b=PSKnA+A32FTYGNyVZ3JCedIaquwwdMV72TXnPo6jQ5OtwjCTbqy4v+cayuXvcEV+h3
-         zdwZeJ8nrs6vtj5J4AFvYymjLdeGkrP7+DzUYcHY3H5dq429Gd+ioqTgp2GB256edagr
-         sin0Mxjm1Ra82p1Ny8wMEEm/SuvoitD95Xr3cZVdoYK+AVezR0e+1Prav2RMCe6iU/4N
-         j1wM0QWac4RMmJtIRdAVp7wUCmO68mfJzJrebTnWL+k6lvZzFmAdxWU+7SulimOiLd9C
-         Jh18p/7qP8dlgFw5GljRiy5MWLAyuGZylM0Pb46DCNgWAaP4u1VrXQ8eo0cUk++O30yp
-         R+hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cx1RfItm8P+5zdZthMwhmTFP4jusIpmaSOa4M7MTCuw=;
-        b=bGWes21GYezcX1ceUHGw6u7XOAm3HBOXSZe+YY7r+mLSQYn2GagHfvNiOuZZmBMaRY
-         7X/RIA3OYEE4jMirYq7Uen9sVF2ssVA1+B4VUeIPxtJs3B/tJkrOytemyyAh46aKzvvm
-         u3z5XRLk95FO5xQN0eJdgzxE5RKfPBEsVxoUX1vSa+wjjYHjO07lLq4t26nVwwvid2oT
-         80mIf8Un9rX+ROm+e30qK4vfeWF4+ej4yfitIo57MvplwvZJNo6g8l8annq6PYfMj+47
-         PNDuCxh9PCOkwxyJL9iSIo5NaBLae1Wl405dqGE34Umt50B9P2Nwj2a9dstPRap0hq8U
-         ciIg==
-X-Gm-Message-State: AOAM532Adb4dY72Mm1mWq82a+6o0cJqCL4ciuCmChiZpQJHLk/pr9wRo
-        Sv73Co4oFDKl1oynD3wC82yxaA==
-X-Google-Smtp-Source: ABdhPJzFuQ11RGaUFX9ez2ZUYVbvhFKr+5CSf9niClZmUapncKEZa/DruY85eifIRSadG1SF4IIQrg==
-X-Received: by 2002:ac8:450a:: with SMTP id q10mr2274459qtn.328.1591235608210;
-        Wed, 03 Jun 2020 18:53:28 -0700 (PDT)
-Received: from pop-os.fios-router.home (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
-        by smtp.googlemail.com with ESMTPSA id t74sm2986439qka.21.2020.06.03.18.53.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2020 18:53:27 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     rui.zhang@intel.com, ulf.hansson@linaro.org,
-        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, robh@kernel.org
-Cc:     amit.kucheria@verdurent.com, mark.rutland@arm.com,
-        rjw@rjwysocki.net, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        id S1726062AbgFDCGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jun 2020 22:06:04 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55880 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725946AbgFDCGD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jun 2020 22:06:03 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0B9921A01A2;
+        Thu,  4 Jun 2020 04:06:02 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 24A661A011F;
+        Thu,  4 Jun 2020 04:05:57 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id CEBCF40299;
+        Thu,  4 Jun 2020 10:05:50 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        marex@denx.de, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v6 6/6] arm64: dts: qcom: Indicate rpmhpd hosts a power domain that can be used as a warming device.
-Date:   Wed,  3 Jun 2020 21:53:17 -0400
-Message-Id: <20200604015317.31389-7-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200604015317.31389-1-thara.gopinath@linaro.org>
-References: <20200604015317.31389-1-thara.gopinath@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 0/3] Convert mxs/imx spi/cspi/lpspi binding to json-schema
+Date:   Thu,  4 Jun 2020 09:55:28 +0800
+Message-Id: <1591235731-15673-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RPMh hosts mx power domain that can be used to warm up the SoC.  Indicate
-this by using #cooling-cells property.
+This patch series converts mxs/imx spi/cspi/lpspi binding to json-schema.
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+In fsl-imx-cspi.yaml, also update compatible, remove obsolete properties
+"fsl,spi-num-chipselects" and update the example based on latest DT file;
 
-v3->v4:
-	- Removed subnode to indicate that mx power domain is a warming
-	  device. Instead #cooling-cells is used as a power domain
-	  provider property to indicate if the provider hosts a power
-	  domain that can be used as a warming device.
+In spi-fsl-lpspi.yaml, the original maintainer's email address pandy.gao@nxp.com
+is no longer valid, so I use mine.
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Compared to V1, this patch series adds "unevaluatedProperties: false" for
+each binding doc.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 8eb5a31346d2..dcc3bcd16b68 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3854,6 +3854,7 @@
- 			rpmhpd: power-controller {
- 				compatible = "qcom,sdm845-rpmhpd";
- 				#power-domain-cells = <1>;
-+				#cooling-cells = <2>;
- 				operating-points-v2 = <&rpmhpd_opp_table>;
- 
- 				rpmhpd_opp_table: opp-table {
+Anson Huang (3):
+  dt-bindings: spi: Convert mxs spi to json-schema
+  dt-bindings: spi: Convert imx cspi to json-schema
+  dt-bindings: spi: Convert imx lpspi to json-schema
+
+ .../devicetree/bindings/spi/fsl-imx-cspi.txt       | 56 ------------
+ .../devicetree/bindings/spi/fsl-imx-cspi.yaml      | 99 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/spi/mxs-spi.txt  | 26 ------
+ Documentation/devicetree/bindings/spi/mxs-spi.yaml | 57 +++++++++++++
+ .../devicetree/bindings/spi/spi-fsl-lpspi.txt      | 29 -------
+ .../devicetree/bindings/spi/spi-fsl-lpspi.yaml     | 62 ++++++++++++++
+ 6 files changed, 218 insertions(+), 111 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/mxs-spi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/mxs-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-lpspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+
 -- 
-2.20.1
+2.7.4
 
