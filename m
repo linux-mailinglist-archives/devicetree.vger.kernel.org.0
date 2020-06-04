@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 649871EDC2C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 06:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 179FD1EDC6F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 06:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726175AbgFDEXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 00:23:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726146AbgFDEXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 00:23:25 -0400
-X-Greylist: delayed 347 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 03 Jun 2020 21:23:23 PDT
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [IPv6:2a01:4f8:150:2161:1:b009:f23e:0])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A98C03E96D;
-        Wed,  3 Jun 2020 21:23:23 -0700 (PDT)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+        id S1727001AbgFDEks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 00:40:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46176 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725497AbgFDEks (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jun 2020 00:40:48 -0400
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
-        by bmailout3.hostsharing.net (Postfix) with ESMTPS id 41F76100DA1BD;
-        Thu,  4 Jun 2020 06:23:22 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id D74AA211B4E; Thu,  4 Jun 2020 06:23:21 +0200 (CEST)
-Date:   Thu, 4 Jun 2020 06:23:21 +0200
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Martin Sperl <kernel@martin.sperl.org>
-Subject: Re: [PATCH 1/3] dt-bindings: spi: Document bcm2711 and bcm7211 SPI
- compatible
-Message-ID: <20200604042321.vugeex6qgpe3ajvc@wunner.de>
-References: <20200604034655.15930-1-f.fainelli@gmail.com>
- <20200604034655.15930-2-f.fainelli@gmail.com>
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ACF4A2072E;
+        Thu,  4 Jun 2020 04:40:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591245647;
+        bh=13tLzVtmrPoCVWrBPWoOY0F4+WIdkvFKkcoN1yl+MH0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=frhnRWAKp2lW4rQNOfVFrP4rn96xX6cZ26uWHBlxtGm3C90HY2rneICf/wUkhBuMM
+         eZAuEIKKvg2ZG3GZ2GWWot6/CeZQHmF97Bfqmh3z2X6dQjaV7QklQFXIURVesn6QUm
+         sRpytvTHD6Vb65AnaVPe0rkOnrqmaaT1JESSYmXI=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200604034655.15930-2-f.fainelli@gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1591234387-15059-1-git-send-email-Anson.Huang@nxp.com>
+References: <1591234387-15059-1-git-send-email-Anson.Huang@nxp.com>
+Subject: Re: [PATCH V2] dt-bindings: clock: Convert imx7ulp clock to json-schema
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Linux-imx@nxp.com
+To:     Anson Huang <Anson.Huang@nxp.com>, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org
+Date:   Wed, 03 Jun 2020 21:40:47 -0700
+Message-ID: <159124564701.69627.4748922307258479623@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 03, 2020 at 08:46:53PM -0700, Florian Fainelli wrote:
-> The BCM2711 and BCM7211 chips use the BCM2835 SPI controller, but there
-> are severl instances of those in the system and they all share the same
-      ^^^^^^
-Nit: "several"
+Quoting Anson Huang (2020-06-03 18:33:07)
+> Convert the i.MX7ULP clock binding to DT schema format using json-schema,
+> the original binding doc is actually for two clock modules(SCG and PCC),
+> so split it to two binding docs, and the MPLL(mipi PLL) is NOT supposed
+> to be in clock module, so remove it from binding doc as well.
+>=20
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
 
-And apparently they do not *all* share the interrupt, but only
-4 controllers (out of 5, not counting the two bcm2835aux ones)
-do so.
-
-Thanks,
-
-Lukas
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
