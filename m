@@ -2,274 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C4F1EE137
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 11:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB201EE1A6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 11:43:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726860AbgFDJ00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 05:26:26 -0400
-Received: from mga02.intel.com ([134.134.136.20]:29530 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726444AbgFDJ0Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jun 2020 05:26:25 -0400
-IronPort-SDR: 4sZ/FVOfvZ6LGBAKoE00XPVc546n01l/sEZZlbX0KtFjX+BGHHI025QDQg0jJwWVJzWD5RHw0o
- WH9R3ajpBl1g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2020 02:26:23 -0700
-IronPort-SDR: iLMKRTyDd8MVlIqZB/DE1RmSK17qEEbhZRbs5822lFW5LgFqxmRaxZHWG0EQzqEY7MNrRM1Tfr
- irPv5g4QKiTQ==
-X-IronPort-AV: E=Sophos;i="5.73,471,1583222400"; 
-   d="scan'208";a="294269374"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2020 02:26:18 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id C931820859; Thu,  4 Jun 2020 12:26:16 +0300 (EEST)
-Date:   Thu, 4 Jun 2020 12:26:16 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V9, 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
-Message-ID: <20200604092616.GJ16711@paasikivi.fi.intel.com>
-References: <20200523084103.31276-1-dongchun.zhu@mediatek.com>
- <20200523084103.31276-3-dongchun.zhu@mediatek.com>
- <1591236845.8804.547.camel@mhfsdcap03>
+        id S1726299AbgFDJne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 05:43:34 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:37311 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728082AbgFDJnb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 05:43:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1591263810; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=ptxzvOIILTUUiR4YCCWVTeqV1s61jkQ9pE3WHk/M/wg=; b=tYFIaLxOBSNe4Ot4s7298FLqh2HQyNGbOL5/XW4yUa1nOSdjhYZMZRINpGUuG02K0Ni/BpcB
+ moX/uere9J37HP7o3XfYECxo5qAxvFauNAISRcpxJTZ+nPfIcl08gsdctyGGJNrai2Fl1I4u
+ wT6+6FVuPT4JQ6h8FgBENh8J4Rk=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n14.prod.us-east-1.postgun.com with SMTP id
+ 5ed8c23676fccbb4c8c9b654 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 04 Jun 2020 09:43:18
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B7140C43387; Thu,  4 Jun 2020 09:43:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.206.24.160] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sanm)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 87E81C433C6;
+        Thu,  4 Jun 2020 09:43:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 87E81C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sanm@codeaurora.org
+Subject: Re: [PATCH v7 2/4] usb: dwc3: qcom: Add interconnect support in dwc3
+ driver
+To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>
+References: <1585718145-29537-1-git-send-email-sanm@codeaurora.org>
+ <1585718145-29537-3-git-send-email-sanm@codeaurora.org>
+ <159120577830.69627.13288547914742515702@swboyd.mtv.corp.google.com>
+From:   "Sandeep Maheswaram (Temp)" <sanm@codeaurora.org>
+Message-ID: <d9ccf188-4f00-d3ac-ba0f-73f06c087553@codeaurora.org>
+Date:   Thu, 4 Jun 2020 15:13:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1591236845.8804.547.camel@mhfsdcap03>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <159120577830.69627.13288547914742515702@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dongchun,
 
-On Thu, Jun 04, 2020 at 10:14:05AM +0800, Dongchun Zhu wrote:
-> Hi Tomasz, Sakari, and sirs,
-> 
-> Could anyone help to review this patch?
-> 
-> On Sat, 2020-05-23 at 16:41 +0800, Dongchun Zhu wrote:
-> > Add a V4L2 sub-device driver for OV02A10 image sensor.
-> > 
-> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > ---
-> >  MAINTAINERS                 |    1 +
-> >  drivers/media/i2c/Kconfig   |   13 +
-> >  drivers/media/i2c/Makefile  |    1 +
-> >  drivers/media/i2c/ov02a10.c | 1025 +++++++++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 1040 insertions(+)
-> >  create mode 100644 drivers/media/i2c/ov02a10.c
-> > 
-> 
-> [snip]
-> 
-> > +static int ov02a10_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev = &client->dev;
-> > +	struct ov02a10 *ov02a10;
-> > +	unsigned int rotation;
-> > +	unsigned int clock_lane_tx_speed;
-> > +	unsigned int i;
-> > +	int ret;
-> > +
-> > +	ov02a10 = devm_kzalloc(dev, sizeof(*ov02a10), GFP_KERNEL);
-> > +	if (!ov02a10)
-> > +		return -ENOMEM;
-> > +
-> > +	ret = ov02a10_check_hwcfg(dev, ov02a10);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to check HW configuration: %d", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	v4l2_i2c_subdev_init(&ov02a10->subdev, client, &ov02a10_subdev_ops);
-> > +	ov02a10->mipi_clock_tx_speed = OV02A10_MIPI_TX_SPEED_DEFAULT;
-> > +	ov02a10->fmt.code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > +
-> > +	/* Optional indication of physical rotation of sensor */
-> > +	ret = fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
-> > +	if (!ret && rotation == 180) {
-> > +		ov02a10->upside_down = true;
-> > +		ov02a10->fmt.code = MEDIA_BUS_FMT_SRGGB10_1X10;
-> > +	}
-> > +
-> > +	/* Optional indication of mipi TX speed */
-> > +	ret = fwnode_property_read_u32(dev_fwnode(dev), "ovti,mipi-tx-speed",
-> > +				       &clock_lane_tx_speed);
-> > +
-> > +	if (!ret)
-> > +		ov02a10->mipi_clock_tx_speed = clock_lane_tx_speed;
-> > +
-> > +	/* Get system clock (eclk) */
-> > +	ov02a10->eclk = devm_clk_get(dev, "eclk");
-> > +	if (IS_ERR(ov02a10->eclk)) {
-> > +		ret = PTR_ERR(ov02a10->eclk);
-> > +		dev_err(dev, "failed to get eclk %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
-> > +				       &ov02a10->eclk_freq);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to get eclk frequency\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = clk_set_rate(ov02a10->eclk, ov02a10->eclk_freq);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to set eclk frequency (24MHz)\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (clk_get_rate(ov02a10->eclk) != OV02A10_ECLK_FREQ) {
-> > +		dev_warn(dev, "wrong eclk frequency %d Hz, expected: %d Hz\n",
-> > +			 ov02a10->eclk_freq, OV02A10_ECLK_FREQ);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ov02a10->pd_gpio = devm_gpiod_get(dev, "powerdown", GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(ov02a10->pd_gpio)) {
-> > +		ret = PTR_ERR(ov02a10->pd_gpio);
-> > +		dev_err(dev, "failed to get powerdown-gpios %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ov02a10->n_rst_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> > +	if (IS_ERR(ov02a10->n_rst_gpio)) {
-> > +		ret = PTR_ERR(ov02a10->n_rst_gpio);
-> > +		dev_err(dev, "failed to get reset-gpios %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(ov02a10_supply_names); i++)
-> > +		ov02a10->supplies[i].supply = ov02a10_supply_names[i];
-> > +
-> > +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ov02a10_supply_names),
-> > +				      ov02a10->supplies);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to get regulators\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	mutex_init(&ov02a10->mutex);
-> > +	ov02a10->cur_mode = &supported_modes[0];
-> > +	ret = ov02a10_initialize_controls(ov02a10);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to initialize controls\n");
-> > +		goto err_destroy_mutex;
-> > +	}
-> > +
-> > +	ov02a10->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > +	ov02a10->subdev.entity.ops = &ov02a10_subdev_entity_ops;
-> > +	ov02a10->subdev.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> > +	ov02a10->pad.flags = MEDIA_PAD_FL_SOURCE;
-> > +	ret = media_entity_pads_init(&ov02a10->subdev.entity, 1, &ov02a10->pad);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "failed to init entity pads: %d", ret);
-> > +		goto err_free_handler;
-> > +	}
-> > +
-> > +	pm_runtime_enable(dev);
-> > +	if (!pm_runtime_enabled(dev)) {
-> > +		ret = ov02a10_power_on(dev);
-> > +		if (ret < 0) {
-> > +			dev_err(dev, "failed to power on: %d\n", ret);
-> > +			goto err_free_handler;
-> > +		}
-> > +	}
-> > +
-> > +	ret = v4l2_async_register_subdev(&ov02a10->subdev);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to register V4L2 subdev: %d", ret);
-> > +		if (!pm_runtime_enabled(dev))
-> > +			ov02a10_power_off(dev);
+On 6/3/2020 11:06 PM, Stephen Boyd wrote:
+> Quoting Sandeep Maheswaram (2020-03-31 22:15:43)
+>> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+>> index 1dfd024..d33ae86 100644
+>> --- a/drivers/usb/dwc3/dwc3-qcom.c
+>> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+>> @@ -76,8 +85,13 @@ struct dwc3_qcom {
+>>          enum usb_dr_mode        mode;
+>>          bool                    is_suspended;
+>>          bool                    pm_suspended;
+>> +       struct icc_path         *usb_ddr_icc_path;
+>> +       struct icc_path         *apps_usb_icc_path;
+>>   };
+>>   
+>> +static int dwc3_qcom_interconnect_enable(struct dwc3_qcom *qcom);
+>> +static int dwc3_qcom_interconnect_disable(struct dwc3_qcom *qcom);
+> Please get rid of these. We shouldn't need forward declarations.
+Will do in next version.
+>
+>> +
+>>   static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
+>>   {
+>>          u32 reg;
+>> @@ -285,6 +307,101 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom)
+>>          return 0;
+>>   }
+>>   
+>> +
+>> +/**
+>> + * dwc3_qcom_interconnect_init() - Get interconnect path handles
+>> + * @qcom:                      Pointer to the concerned usb core.
+>> + *
+>> + */
+>> +static int dwc3_qcom_interconnect_init(struct dwc3_qcom *qcom)
+>> +{
+>> +       struct device *dev = qcom->dev;
+>> +       int ret;
+>> +
+>> +       if (!device_is_bound(&qcom->dwc3->dev))
+>> +               return -EPROBE_DEFER;
+> How is this supposed to work? I see that this was added in an earlier
+> revision of this patch series but there isn't any mention of why
+> device_is_bound() is used here. It would be great if there was a comment
+> detailing why this is necessary. It sounds like maximum_speed is
+> important?
+>
+> Furthermore, dwc3_qcom_interconnect_init() is called by
+> dwc3_qcom_probe() which is the function that registers the device for
+> qcom->dwc3->dev. If that device doesn't probe between the time it is
+> registered by dwc3_qcom_probe() and this function is called then we'll
+> fail dwc3_qcom_probe() with -EPROBE_DEFER. And that will remove the
+> qcom->dwc3->dev device from the platform bus because we call
+> of_platform_depopulate() on the error path of dwc3_qcom_probe().
+>
+> So isn't this whole thing racy and can potentially lead us to a driver
+> probe loop where the wrapper (dwc3_qcom) and the core (dwc3) are probing
+> and we're trying to time it just right so that driver for dwc3 binds
+> before we setup interconnects? I don't know if dwc3 can communicate to
+> the wrapper but that would be more of a direct way to do this. Or maybe
+> the wrapper should try to read the DT property for maximum speed and
+> fallback to a worst case high bandwidth value if it can't figure it out
+> itself without help from dwc3 core.
+>
+This was added in V4 to address comments from Matthias in V3
 
-This should be moved to error handling section below.
-
-> > +		goto err_clean_entity;
-> > +	}
-> 
-> Tomasz, Sakari, is this ok?
-> or coding like this:
-> 
-> ret = v4l2_async_register_subdev(&ov02a10->subdev);
-> if (!pm_runtime_enabled(dev))
-> 	ov02a10_power_off(dev);
-> if (ret) {
-> 	dev_err(dev, "failed to register V4L2 subdev: %d", ret);
-> 	goto err_clean_entity;
-> }
-> 
-> What's your opinions about the change?
-
-This turns power off if runtime PM is disabled. I'd keep it as-is, as it'd
-require re-implementing what runtime PM is used for now --- and that's not
-a sensor driver's job.
-
-> 
-> > +
-> > +	return 0;
-> > +
-> > +err_clean_entity:
-> > +	media_entity_cleanup(&ov02a10->subdev.entity);
-> > +err_free_handler:
-> > +	v4l2_ctrl_handler_free(ov02a10->subdev.ctrl_handler);
-> > +err_destroy_mutex:
-> > +	mutex_destroy(&ov02a10->mutex);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int ov02a10_remove(struct i2c_client *client)
-> > +{
-> > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > +	struct ov02a10 *ov02a10 = to_ov02a10(sd);
-> > +
-> > +	v4l2_async_unregister_subdev(sd);
-> > +	media_entity_cleanup(&sd->entity);
-> > +	v4l2_ctrl_handler_free(sd->ctrl_handler);
-> > +	pm_runtime_disable(&client->dev);
-> > +	if (!pm_runtime_status_suspended(&client->dev))
-> > +		ov02a10_power_off(&client->dev);
-> > +	pm_runtime_set_suspended(&client->dev);
-> > +	mutex_destroy(&ov02a10->mutex);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct of_device_id ov02a10_of_match[] = {
-> > +	{ .compatible = "ovti,ov02a10" },
-> > +	{}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, ov02a10_of_match);
-> > +
-> > +static struct i2c_driver ov02a10_i2c_driver = {
-> > +	.driver = {
-> > +		.name = "ov02a10",
-> > +		.pm = &ov02a10_pm_ops,
-> > +		.of_match_table = ov02a10_of_match,
-> > +	},
-> > +	.probe_new	= &ov02a10_probe,
-> > +	.remove		= &ov02a10_remove,
-> > +};
-> > +
-> > +module_i2c_driver(ov02a10_i2c_driver);
-> > +
-> > +MODULE_AUTHOR("Dongchun Zhu <dongchun.zhu@mediatek.com>");
-> > +MODULE_DESCRIPTION("OmniVision OV02A10 sensor driver");
-> > +MODULE_LICENSE("GPL v2");
-> > +
-> 
+https://patchwork.kernel.org/patch/11148587/
 
 -- 
-Sakari Ailus
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+
