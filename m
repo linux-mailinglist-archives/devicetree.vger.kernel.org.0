@@ -2,48 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E851EDCA8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 07:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C7A1EDCC3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 07:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726120AbgFDFPo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 Jun 2020 01:15:44 -0400
-Received: from enamail.ejercito.mil.uy ([179.27.39.26]:38086 "HELO
-        enamail.ejercito.mil.uy" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1726079AbgFDFPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 01:15:43 -0400
-X-Greylist: delayed 15880 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jun 2020 01:15:33 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by enamail.ejercito.mil.uy (Postfix) with ESMTP id 619654135C94;
-        Wed,  3 Jun 2020 09:43:42 -0300 (-03)
-Received: from enamail.ejercito.mil.uy ([127.0.0.1])
-        by localhost (enamail.ejercito.mil.uy [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id A90otM8Kzal5; Wed,  3 Jun 2020 09:43:42 -0300 (-03)
-Received: from localhost (localhost [127.0.0.1])
-        by enamail.ejercito.mil.uy (Postfix) with ESMTP id 214FB4135C90;
-        Wed,  3 Jun 2020 09:43:42 -0300 (-03)
-X-Virus-Scanned: amavisd-new at ejercito.mil.uy
-Received: from enamail.ejercito.mil.uy ([127.0.0.1])
-        by localhost (enamail.ejercito.mil.uy [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5NBH8Ph_cVB3; Wed,  3 Jun 2020 09:43:42 -0300 (-03)
-Received: from [192.168.43.155] (unknown [41.190.30.175])
-        by enamail.ejercito.mil.uy (Postfix) with ESMTPSA id 22D8E412403E;
-        Wed,  3 Jun 2020 09:43:15 -0300 (-03)
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1726003AbgFDFvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 01:51:00 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:42181 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725959AbgFDFu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 01:50:59 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 9B06E5C0097;
+        Thu,  4 Jun 2020 01:50:58 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Thu, 04 Jun 2020 01:50:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kdrag0n.dev; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=CTralpIdYxIiZtqvW6bRThjsFf
+        dOktVXY3Izef1+RCc=; b=lauG1FI+bcF0kd6b78sqb0nBEZBBQVqiaFdII3fjW7
+        9eo3eI4HuxfHTXyxs7Ra/OqBNNcMFXoy6D8KI6T+v44yQvQxJMTU5dLSLX3PNVWh
+        hlwge95O7QIYiCcBeYv2nGVzIHSqUM+7+1SHgr4RpypGp8o+DFFcNM6c3wo7cScp
+        rD/fFXzA/4UaiTBoTaBo1rWOIZqWTvWw3/FyVbc7zys+W+gd25xVjDH11VvfrwlD
+        U5tH76RnfX+ZGIohW0E9TxsEC+L0nltdhjFOC75qY3qpVBQUJJFKZs8VLOIPIErl
+        yvpcnCJJQDshUu23nQemyAEi+OEHGASHTW9ExLPFlYGA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=CTralpIdYxIiZtqvW
+        6bRThjsFfdOktVXY3Izef1+RCc=; b=NDjhzTvc7/DuH6HLYp0B1A+dvIIF4WkZK
+        pwFBnXL3YM0kbymaTQIVrM+piiivUSDytZ8pLVDsQJCe3J9PujUgTEoMB3eAm1LG
+        d5OcftRBsPbeokLPuzloseCvClRfKJtbYqWBGH1Dg0Lhv/cWfrOPteQbU2g6iRhw
+        x2LOxPoycpP7LCvhAvRexEhBMKf93W5FtA33X1QYMnqVIFZLAFTBb/CEX+xhzZq/
+        KjHmbfZ04Qn/lsz6X9I1R+889TJZNe6Uhh5iW0X3rLOjabQ6TBI2M7TVzLcF2a8n
+        CCjUVciB4gTKpsESUHHjtirn8vYCOnYGgcr1E9QLbw9AiTWL1eQ2g==
+X-ME-Sender: <xms:wovYXiiuDokiKrqfkFEAgg1hcJRPWfwxfOdb1kJcTy8_CExXPQ48MA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudegtddgkeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomhepffgrnhhnhicunfhinhcuoegurghnnhihsehkughrrghgtdhnrdgu
+    vghvqeenucggtffrrghtthgvrhhnpefhiefhgfelgfdufedvudelvdefvdefgfeiueeufe
+    egteffudekgefhvedtieefteenucfkphepjeefrddvvdehrdegrddufeeknecuvehluhhs
+    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepuggrnhhnhieskhgurh
+    grghdtnhdruggvvh
+X-ME-Proxy: <xmx:wovYXjAzjhDln3rsuUa_99wvYQDqmmcuFSAC_U22KdJVRUVSEAQckw>
+    <xmx:wovYXqFDKZYSsXiB11qCh3zPDdfQeE3ppoyQvfsuXm5duFLJflEApA>
+    <xmx:wovYXrTdoz01oiRKiuZJpNKWEgxbOr6rDTb2a69jLcxvuPy8jFvQPw>
+    <xmx:wovYXoprLaslCBaFLnbntHPxCi_3zVeyQQJSyXzdibZTsN2-3mmwqQ>
+Received: from pinwheel.hsd1.wa.comcast.net (c-73-225-4-138.hsd1.wa.comcast.net [73.225.4.138])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 95CC13060F09;
+        Thu,  4 Jun 2020 01:50:57 -0400 (EDT)
+From:   Danny Lin <danny@kdrag0n.dev>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Danny Lin <danny@kdrag0n.dev>
+Subject: [PATCH 1/1] of: reserved_mem: Fix typo in the too-many-regions message
+Date:   Wed,  3 Jun 2020 22:49:00 -0700
+Message-Id: <20200604054900.200317-1-danny@kdrag0n.dev>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: re
-To:     Recipients <rc5@ejercito.mil.uy>
-From:   "Ms.Ella Golan" <rc5@ejercito.mil.uy>
-Date:   Wed, 03 Jun 2020 13:42:42 +0100
-Reply-To: msgolaan612@gmail.com
-Message-Id: <20200603124316.22D8E412403E@enamail.ejercito.mil.uy>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Ms.Ella Golan, I am the Executive Vice President with FIRST INTERNATIONAL BANK OF ISRAEL LTD (FIBI). Am getting in touch with you about an extremely important and urgent issue. If you would give me the opportunity, I will provide you with details
+Minor fix for a missing preposition in the error message that appears
+when there are too many reserved memory regions for the allocated array
+to store.
 
-Faithfully,
-Ms.Ella Golan
+Signed-off-by: Danny Lin <danny@kdrag0n.dev>
+---
+ drivers/of/of_reserved_mem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 1a84bc0d5fa8..e648904347a0 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -54,7 +54,7 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ 	struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
+ 
+ 	if (reserved_mem_count == ARRAY_SIZE(reserved_mem)) {
+-		pr_err("not enough space all defined regions.\n");
++		pr_err("not enough space for all defined regions.\n");
+ 		return;
+ 	}
+ 
+-- 
+2.26.2
+
