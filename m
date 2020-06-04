@@ -2,100 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 699891EDCF1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 08:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D02E1EDD8F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 08:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726883AbgFDGJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 02:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726802AbgFDGJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 02:09:54 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E69C03E96D
-        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 23:09:53 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id n9so1782249plk.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 23:09:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=caQqv9S8b8cCOYSCHeKAinsXoZMFcS096zEYFbBlNgA=;
-        b=oufxK46SCdMr2NwRRhoFlgS903NCFRlcGP6HCu94kPp3Y8TzL7Gs6xueBEQJP9FWBC
-         RjsEXvENgRz1B47jcl6M1AYyjMKfDn+qtuEwRelzCikbSpQ12fYrdXMJN5Xm0SCPM9xE
-         NckZFul9iPmRNKlYTe1mZpLTM9tChjpbW53Jqp51O1uRF40g1l3rPROHRrKohsSwa3Rd
-         RivOapi1wIMCbnfpqgHEs8j0q5o+u0vmAzCYEDg3Hx/y3sHmmI21m78uALjMnye74ZmE
-         FiSFEnVm1SW1CQWz4A/8EpUXI/y90K4wfBw8INb8os9bSS1bq1XsyNbibC8+kLJeA5Tb
-         ABVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=caQqv9S8b8cCOYSCHeKAinsXoZMFcS096zEYFbBlNgA=;
-        b=s8NgmarZSP0sTJu2O+I71CGpXnlUD7ROskX0dizwO0SDYfihq2LDKua0GaaOiml9F8
-         7hp9Wnmczct59j1YPa6jx15aoUclo3teFAeujlqJ0RCf23li1dZJqckHLdCf1KDgJlBg
-         yfz2oU3f3zc58Tdf5YopgMPBXsK2XtTpURjNNHethC67Ncsf8BW9ehAuILIGE+COOSmq
-         E085oe0GlXa5a8Wtu3EUVTvkjw7xLvS9EEHwnu1boEmbaIyt/PjPyUPzHe2nSeQMQlEy
-         MBzJNPeJh/UF59zjcJWp7omCmFjfB700tPnP6ePaF+ThoeROU7MSKoou/e0eTPXaBET2
-         8Tgw==
-X-Gm-Message-State: AOAM533RByMqeMIr5ea9tFPeEoFun7FfYCc/2XP0SYuWdftHUAOgLeLc
-        ef/0sADOt5em6S6qJi6ph1qTYZ/tvg==
-X-Google-Smtp-Source: ABdhPJxnjnbt2tgWfRunhBGV1HDUgmUd9z0HDkHgXt/Qzbmh7wYmlGEyPaZQXYYUFcnVYb+28/eoXA==
-X-Received: by 2002:a17:90a:20a2:: with SMTP id f31mr4379257pjg.34.1591250992468;
-        Wed, 03 Jun 2020 23:09:52 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6e90:f3d4:c404:4d38:8396:d1ee])
-        by smtp.gmail.com with ESMTPSA id e127sm3469337pfe.45.2020.06.03.23.09.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 03 Jun 2020 23:09:51 -0700 (PDT)
-Date:   Thu, 4 Jun 2020 11:39:44 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        patches@linaro.org, linaro-kernel@lists.linaro.org
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: pm8150: enable rtc device
-Message-ID: <20200604060944.GE16719@Mani-XPS-13-9360>
-References: <20200604004331.669936-1-dmitry.baryshkov@linaro.org>
- <20200604004331.669936-6-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200604004331.669936-6-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726744AbgFDGxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 02:53:55 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51582 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726422AbgFDGxz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jun 2020 02:53:55 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6539620116D;
+        Thu,  4 Jun 2020 08:53:53 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 55FD2200180;
+        Thu,  4 Jun 2020 08:53:48 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AADBD40299;
+        Thu,  4 Jun 2020 14:53:41 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        gnuiyl@gmail.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] dt-bindings: input: Convert imx keypad to json-schema
+Date:   Thu,  4 Jun 2020 14:43:21 +0800
+Message-Id: <1591253001-6497-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 04, 2020 at 03:43:30AM +0300, Dmitry Baryshkov wrote:
-> Enable rtc device provided by the pmic.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Convert the i.MX KEYPAD binding to DT schema format using json-schema
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ .../devicetree/bindings/input/imx-keypad.txt       | 53 -------------
+ .../devicetree/bindings/input/imx-keypad.yaml      | 89 ++++++++++++++++++++++
+ 2 files changed, 89 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/imx-keypad.txt
+ create mode 100644 Documentation/devicetree/bindings/input/imx-keypad.yaml
 
-Thanks,
-Mani
+diff --git a/Documentation/devicetree/bindings/input/imx-keypad.txt b/Documentation/devicetree/bindings/input/imx-keypad.txt
+deleted file mode 100644
+index 2ebaf7d..0000000
+--- a/Documentation/devicetree/bindings/input/imx-keypad.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Freescale i.MX Keypad Port(KPP) device tree bindings
+-
+-The KPP is designed to interface with a keypad matrix with 2-point contact
+-or 3-point contact keys. The KPP is designed to simplify the software task
+-of scanning a keypad matrix. The KPP is capable of detecting, debouncing,
+-and decoding one or multiple keys pressed simultaneously on a keypad.
+-
+-Required SoC Specific Properties:
+-- compatible: Should be "fsl,<soc>-kpp".
+-
+-- reg: Physical base address of the KPP and length of memory mapped
+-  region.
+-
+-- interrupts: The KPP interrupt number to the CPU(s).
+-
+-- clocks: The clock provided by the SoC to the KPP. Some SoCs use dummy
+-clock(The clock for the KPP is provided by the SoCs automatically).
+-
+-Required Board Specific Properties:
+-- pinctrl-names: The definition can be found at
+-pinctrl/pinctrl-bindings.txt.
+-
+-- pinctrl-0: The definition can be found at
+-pinctrl/pinctrl-bindings.txt.
+-
+-- linux,keymap: The definition can be found at
+-bindings/input/matrix-keymap.txt.
+-
+-Example:
+-kpp: kpp@73f94000 {
+-	compatible = "fsl,imx51-kpp", "fsl,imx21-kpp";
+-	reg = <0x73f94000 0x4000>;
+-	interrupts = <60>;
+-	clocks = <&clks 0>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_kpp_1>;
+-	linux,keymap = <0x00000067	/* KEY_UP */
+-			0x0001006c	/* KEY_DOWN */
+-			0x00020072	/* KEY_VOLUMEDOWN */
+-			0x00030066	/* KEY_HOME */
+-			0x0100006a	/* KEY_RIGHT */
+-			0x01010069	/* KEY_LEFT */
+-			0x0102001c	/* KEY_ENTER */
+-			0x01030073	/* KEY_VOLUMEUP */
+-			0x02000040	/* KEY_F6 */
+-			0x02010042	/* KEY_F8 */
+-			0x02020043	/* KEY_F9 */
+-			0x02030044	/* KEY_F10 */
+-			0x0300003b	/* KEY_F1 */
+-			0x0301003c	/* KEY_F2 */
+-			0x0302003d	/* KEY_F3 */
+-			0x03030074>;	/* KEY_POWER */
+-};
+diff --git a/Documentation/devicetree/bindings/input/imx-keypad.yaml b/Documentation/devicetree/bindings/input/imx-keypad.yaml
+new file mode 100644
+index 0000000..a1350cd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/imx-keypad.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/imx-keypad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX Keypad Port(KPP) device tree bindings
++
++maintainers:
++  - Liu Ying <gnuiyl@gmail.com>
++
++description: |
++  The KPP is designed to interface with a keypad matrix with 2-point contact
++  or 3-point contact keys. The KPP is designed to simplify the software task
++  of scanning a keypad matrix. The KPP is capable of detecting, debouncing,
++  and decoding one or multiple keys pressed simultaneously on a keypad.
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,imx21-kpp
++      - items:
++          - enum:
++            - fsl,imx25-kpp
++            - fsl,imx27-kpp
++            - fsl,imx31-kpp
++            - fsl,imx35-kpp
++            - fsl,imx51-kpp
++            - fsl,imx53-kpp
++            - fsl,imx50-kpp
++            - fsl,imx6q-kpp
++            - fsl,imx6sx-kpp
++            - fsl,imx6sl-kpp
++            - fsl,imx6sll-kpp
++            - fsl,imx6ul-kpp
++            - fsl,imx7d-kpp
++          - const: fsl,imx21-kpp
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  linux,keymap:
++    $ref: '/schemas/types.yaml#/definitions/uint32-array'
++    description: |
++      An array of packed 1-cell entries containing the equivalent of row,
++      column and linux key-code. The 32-bit big endian cell is packed as:
++      row << 24 | column << 16 | key-code
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - linux,keymap
++
++additionalProperties: false
++
++examples:
++  - |
++    keypad@73f94000 {
++        compatible = "fsl,imx51-kpp", "fsl,imx21-kpp";
++        reg = <0x73f94000 0x4000>;
++        interrupts = <60>;
++        clocks = <&clks 0>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_kpp_1>;
++        linux,keymap = <0x00000067	/* KEY_UP */
++                        0x0001006c	/* KEY_DOWN */
++                        0x00020072	/* KEY_VOLUMEDOWN */
++                        0x00030066	/* KEY_HOME */
++                        0x0100006a	/* KEY_RIGHT */
++                        0x01010069	/* KEY_LEFT */
++                        0x0102001c	/* KEY_ENTER */
++                        0x01030073	/* KEY_VOLUMEUP */
++                        0x02000040	/* KEY_F6 */
++                        0x02010042	/* KEY_F8 */
++                        0x02020043	/* KEY_F9 */
++                        0x02030044	/* KEY_F10 */
++                        0x0300003b	/* KEY_F1 */
++                        0x0301003c	/* KEY_F2 */
++                        0x0302003d	/* KEY_F3 */
++                        0x03030074>;	/* KEY_POWER */
++    };
+-- 
+2.7.4
 
-> ---
->  arch/arm64/boot/dts/qcom/pm8150.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> index fee2db42f4cb..762fb902db81 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> @@ -71,8 +71,6 @@ rtc@6000 {
->  			reg = <0x6000>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-> -
-> -			status = "disabled";
->  		};
->  
->  		pm8150_gpios: gpio@c000 {
-> -- 
-> 2.26.2
-> 
