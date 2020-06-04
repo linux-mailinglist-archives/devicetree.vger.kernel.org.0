@@ -2,205 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D02E1EDD8F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 08:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 051F61EDD69
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2020 08:44:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbgFDGxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 02:53:55 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:51582 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726422AbgFDGxz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jun 2020 02:53:55 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6539620116D;
-        Thu,  4 Jun 2020 08:53:53 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 55FD2200180;
-        Thu,  4 Jun 2020 08:53:48 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AADBD40299;
-        Thu,  4 Jun 2020 14:53:41 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        gnuiyl@gmail.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH] dt-bindings: input: Convert imx keypad to json-schema
-Date:   Thu,  4 Jun 2020 14:43:21 +0800
-Message-Id: <1591253001-6497-1-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727102AbgFDGol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 02:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbgFDGol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 02:44:41 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDCF9C05BD1E
+        for <devicetree@vger.kernel.org>; Wed,  3 Jun 2020 23:44:40 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id x13so4791891wrv.4
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2020 23:44:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=+gzwZ+GVL/HnJJ2Ggtgyw16DZMXF2l13HXz40MqkfTs=;
+        b=slqjhI4951CeoWRsLAz8FNwjYQV+eB7IDNz0IfLAOTIYqUARCzY5Kn0H/3SdvPkQE2
+         Bagq6mR1TiEEIWO/2JLEnPxpCgMF7iuWBGfZjZipcOyyBRJodUXNOFkiGUAPqn0LS9il
+         O2/kDBMiRrrYkYzibwc/zCpT02Gk0a/52sOH2CDphB4ftmtnAIo7Q6wZYXr3aUCJpDWv
+         VilzyR4CpTym+zjbcIg+uKjGKNxBJgYkVhWcxcvl2Q0pRdhEiudVrP3ndlNEDtstkd+Y
+         TW9Nu7H89gC2NC4Bt4KMCwJ1xLvhXxZ1qIiuV4wkVwcLsb2alQw94nryvv59VEUUQxje
+         V4/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=+gzwZ+GVL/HnJJ2Ggtgyw16DZMXF2l13HXz40MqkfTs=;
+        b=SrhE1p2/ih5nLBjZXWMmNHpsZ6msFMbgmWfH3EmTB7CCFzjX7j12Rx/pceFw3lliIp
+         qMc05VBbhQ78pNGCS3Ae4aMP6+upHigBC7eRAjlr6GcMhnvsD5/r3I/xpdI6SjoJeXfH
+         qy42SvRGHwdLffp4zZoEMPB4Xr0cwnOKwhhuqSgHh8juUbx8szxBba8H2dnIVXgAv+ra
+         aAAG9FQzHeH457hvoem/2HbnCEMcaoVoy5ti1PvKa/Z5ThUxC1ER2Jv3k7svbMDVAbYg
+         D4pQ30KoAYTyf+PfGbf2WKFhcrZf/DGoHq8+uabqSoABjcN/yM9N6Ot6lAVwwaGWRDBI
+         eh1Q==
+X-Gm-Message-State: AOAM531aTuhBsretJ80feKBpVz9CW8Wl9pwUSqvf6yE9WIP5gsyT9BfY
+        rfBMvgwhNQzYPbm/Y0qDDomctw==
+X-Google-Smtp-Source: ABdhPJxvT5tF8Mpqwaj0xczrxZInUWDnMzOZ1fVUBkKbhh8C40jwkuQWYhBfCgps2rMX/rPKvW0BSA==
+X-Received: by 2002:adf:f582:: with SMTP id f2mr3135953wro.204.1591253079333;
+        Wed, 03 Jun 2020 23:44:39 -0700 (PDT)
+Received: from dell ([95.147.198.92])
+        by smtp.gmail.com with ESMTPSA id q13sm6319606wrn.84.2020.06.03.23.44.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2020 23:44:38 -0700 (PDT)
+Date:   Thu, 4 Jun 2020 07:44:35 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Keerthy <j-keerthy@ti.com>, Axel Lin <axel.lin@ingics.com>
+Subject: Re: [RFC 4/4] regulator: lp87565: add LP87524-Q1 variant
+Message-ID: <20200604064435.GR3714@dell>
+References: <20200603200319.16184-1-luca@lucaceresoli.net>
+ <20200603200319.16184-5-luca@lucaceresoli.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200603200319.16184-5-luca@lucaceresoli.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX KEYPAD binding to DT schema format using json-schema
+On Wed, 03 Jun 2020, Luca Ceresoli wrote:
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- .../devicetree/bindings/input/imx-keypad.txt       | 53 -------------
- .../devicetree/bindings/input/imx-keypad.yaml      | 89 ++++++++++++++++++++++
- 2 files changed, 89 insertions(+), 53 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/imx-keypad.txt
- create mode 100644 Documentation/devicetree/bindings/input/imx-keypad.yaml
+> Add support for the LP87524B/J/P-Q1 Four 4-MHz Buck Converter. This is a
+> variant of the LP87565 having 4 single-phase outputs and up to 10 A of
+> total output current.
+> 
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> ---
+>  drivers/mfd/lp87565.c       | 4 ++++
+>  include/linux/mfd/lp87565.h | 1 +
 
-diff --git a/Documentation/devicetree/bindings/input/imx-keypad.txt b/Documentation/devicetree/bindings/input/imx-keypad.txt
-deleted file mode 100644
-index 2ebaf7d..0000000
---- a/Documentation/devicetree/bindings/input/imx-keypad.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--* Freescale i.MX Keypad Port(KPP) device tree bindings
--
--The KPP is designed to interface with a keypad matrix with 2-point contact
--or 3-point contact keys. The KPP is designed to simplify the software task
--of scanning a keypad matrix. The KPP is capable of detecting, debouncing,
--and decoding one or multiple keys pressed simultaneously on a keypad.
--
--Required SoC Specific Properties:
--- compatible: Should be "fsl,<soc>-kpp".
--
--- reg: Physical base address of the KPP and length of memory mapped
--  region.
--
--- interrupts: The KPP interrupt number to the CPU(s).
--
--- clocks: The clock provided by the SoC to the KPP. Some SoCs use dummy
--clock(The clock for the KPP is provided by the SoCs automatically).
--
--Required Board Specific Properties:
--- pinctrl-names: The definition can be found at
--pinctrl/pinctrl-bindings.txt.
--
--- pinctrl-0: The definition can be found at
--pinctrl/pinctrl-bindings.txt.
--
--- linux,keymap: The definition can be found at
--bindings/input/matrix-keymap.txt.
--
--Example:
--kpp: kpp@73f94000 {
--	compatible = "fsl,imx51-kpp", "fsl,imx21-kpp";
--	reg = <0x73f94000 0x4000>;
--	interrupts = <60>;
--	clocks = <&clks 0>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_kpp_1>;
--	linux,keymap = <0x00000067	/* KEY_UP */
--			0x0001006c	/* KEY_DOWN */
--			0x00020072	/* KEY_VOLUMEDOWN */
--			0x00030066	/* KEY_HOME */
--			0x0100006a	/* KEY_RIGHT */
--			0x01010069	/* KEY_LEFT */
--			0x0102001c	/* KEY_ENTER */
--			0x01030073	/* KEY_VOLUMEUP */
--			0x02000040	/* KEY_F6 */
--			0x02010042	/* KEY_F8 */
--			0x02020043	/* KEY_F9 */
--			0x02030044	/* KEY_F10 */
--			0x0300003b	/* KEY_F1 */
--			0x0301003c	/* KEY_F2 */
--			0x0302003d	/* KEY_F3 */
--			0x03030074>;	/* KEY_POWER */
--};
-diff --git a/Documentation/devicetree/bindings/input/imx-keypad.yaml b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-new file mode 100644
-index 0000000..a1350cd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/imx-keypad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX Keypad Port(KPP) device tree bindings
-+
-+maintainers:
-+  - Liu Ying <gnuiyl@gmail.com>
-+
-+description: |
-+  The KPP is designed to interface with a keypad matrix with 2-point contact
-+  or 3-point contact keys. The KPP is designed to simplify the software task
-+  of scanning a keypad matrix. The KPP is capable of detecting, debouncing,
-+  and decoding one or multiple keys pressed simultaneously on a keypad.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: fsl,imx21-kpp
-+      - items:
-+          - enum:
-+            - fsl,imx25-kpp
-+            - fsl,imx27-kpp
-+            - fsl,imx31-kpp
-+            - fsl,imx35-kpp
-+            - fsl,imx51-kpp
-+            - fsl,imx53-kpp
-+            - fsl,imx50-kpp
-+            - fsl,imx6q-kpp
-+            - fsl,imx6sx-kpp
-+            - fsl,imx6sl-kpp
-+            - fsl,imx6sll-kpp
-+            - fsl,imx6ul-kpp
-+            - fsl,imx7d-kpp
-+          - const: fsl,imx21-kpp
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  linux,keymap:
-+    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-+    description: |
-+      An array of packed 1-cell entries containing the equivalent of row,
-+      column and linux key-code. The 32-bit big endian cell is packed as:
-+      row << 24 | column << 16 | key-code
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - linux,keymap
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    keypad@73f94000 {
-+        compatible = "fsl,imx51-kpp", "fsl,imx21-kpp";
-+        reg = <0x73f94000 0x4000>;
-+        interrupts = <60>;
-+        clocks = <&clks 0>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_kpp_1>;
-+        linux,keymap = <0x00000067	/* KEY_UP */
-+                        0x0001006c	/* KEY_DOWN */
-+                        0x00020072	/* KEY_VOLUMEDOWN */
-+                        0x00030066	/* KEY_HOME */
-+                        0x0100006a	/* KEY_RIGHT */
-+                        0x01010069	/* KEY_LEFT */
-+                        0x0102001c	/* KEY_ENTER */
-+                        0x01030073	/* KEY_VOLUMEUP */
-+                        0x02000040	/* KEY_F6 */
-+                        0x02010042	/* KEY_F8 */
-+                        0x02020043	/* KEY_F9 */
-+                        0x02030044	/* KEY_F10 */
-+                        0x0300003b	/* KEY_F1 */
-+                        0x0301003c	/* KEY_F2 */
-+                        0x0302003d	/* KEY_F3 */
-+                        0x03030074>;	/* KEY_POWER */
-+    };
+Again, this is an MFD patch.  Please change the subject line.
+
+>  2 files changed, 5 insertions(+)
+
+Once changed, please re-submit with my:
+
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
 -- 
-2.7.4
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
