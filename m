@@ -2,87 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 739BE1EF72A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 14:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86DE11EF79D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 14:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbgFEMUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jun 2020 08:20:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726314AbgFEMUO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jun 2020 08:20:14 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0929A206E6;
-        Fri,  5 Jun 2020 12:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591359613;
-        bh=KHgU9gQNGmS9ENzYT2OcSwC8jcaAyRj+0szieFBm/MM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S7HiUbfcvb0StZuS2lIwExfDAeA+hHJRiZSidGl9IeepTcJnjlDohww2tCHsRtmUk
-         DjVSbl40pifhG50UOtQP2yXBLfMqWz36ZlTudKsivI9dcQQaT1WNxhGJI/dmqryczN
-         rJWRk69aEXZG13/1PXbHdr5EoseClfWb/YvsOjN8=
-Date:   Fri, 5 Jun 2020 13:20:10 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ray Jui <rjui@broadcom.com>,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        lukas@wunner.de, Rob Herring <robh+dt@kernel.org>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Martin Sperl <kernel@martin.sperl.org>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2] spi: bcm2835: Enable shared interrupt support
-Message-ID: <20200605122010.GA15570@sirena.org.uk>
-References: <20200604212819.715-1-f.fainelli@gmail.com>
- <159135564425.14579.13716287498736798458.b4-ty@kernel.org>
+        id S1726663AbgFEM1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jun 2020 08:27:37 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:44631 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726612AbgFEM1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jun 2020 08:27:36 -0400
+Received: by mail-oi1-f194.google.com with SMTP id x202so8027412oix.11;
+        Fri, 05 Jun 2020 05:27:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HU1RM6XFyALR3u5LYsJyULZbc8RDM1S6If7s7JUVYl0=;
+        b=SbOMpO1ZY5oAqNIcsjVuHIhinDqiSVIvW+2sV41guKniuZBQ/yUrpZYwQEKwnIsOTc
+         TrA8qAuj2fmHI4gTDSXob9LIr8PNQfo4HBJF10vQ0kqemiLMEGf3Gm8ijM1qOSH1BiFr
+         tkBUN1f6jt2FZWYEatueZh92IVlkoJrrEWQ7QFisje5ex5lnzOja86FBEChgbsZ4lkYL
+         sk3h8dPahIQz+n4hDwFTaiKRbT22SH1BG4exbf0dranw0emHgunbBA2afSLMKJa+4Qxg
+         WQY05LAJ2cAhzeWy1fa8eLGzQ//BhdeswbpXHbGkTVkFzqsSy29N5yspC+ZchwpH7/p5
+         sgzA==
+X-Gm-Message-State: AOAM531luX9wQ60VycjZ1iP7w7ecWSMmpTvenuGyOAyzvmlzNOBEdDXx
+        CH9X2+avAIupCOwwEfaKTqFADbRWHu5sb9ZSaX0=
+X-Google-Smtp-Source: ABdhPJyv9eA2nqvV1xxk2+5oDIKvkNs/bzH9H56dHKfSDxeJvNkDGGqadnhS5cy9QvwnES0yc/uWfLn979ls+iXx53g=
+X-Received: by 2002:aca:1a19:: with SMTP id a25mr1759190oia.54.1591360055179;
+ Fri, 05 Jun 2020 05:27:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="x+6KMIRAuhnl3hBn"
-Content-Disposition: inline
-In-Reply-To: <159135564425.14579.13716287498736798458.b4-ty@kernel.org>
-X-Cookie: DYSLEXICS OF THE WORLD, UNTIE!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1590586141-21006-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <1590586141-21006-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 5 Jun 2020 14:27:23 +0200
+Message-ID: <CAMuHMdX+M+k-JRy1Ps=hRZR=mSuexSQbJ0+Cw1337uO6nak_qQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add device tree for
+ camera DB
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
---x+6KMIRAuhnl3hBn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, May 27, 2020 at 3:29 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support for the camera daughter board which is connected to
+> iWave's RZ/G1H Qseven carrier board. Also enable ttySC[0135] and
+> ethernet1 interfaces.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
 
-On Fri, Jun 05, 2020 at 12:14:07PM +0100, Mark Brown wrote:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> [1/1] spi: bcm2835: Enable shared interrupt support
->       commit: ecfbd3cf3b8bb73ac6a80ddf430b5912fd4402a6
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
 
-Eh, sorry - this was me fat fingering another fix.  At the very least
-this needs to wait for the end of the merge window.
+> +&scifb1 {
+> +       pinctrl-0 = <&scifb1_pins>;
+> +       pinctrl-names = "default";
+> +       status = "okay";
 
---x+6KMIRAuhnl3hBn
-Content-Type: application/pgp-signature; name="signature.asc"
+Before I queue this in renesas-devel for v5.9, I have on question:
+As this port carries RTS/CTS signals, perhaps you want to add
 
------BEGIN PGP SIGNATURE-----
+    rts-gpios = <&gpio4 21 GPIO_ACTIVE_LOW>;
+    cts-gpios = <&gpio4 17 GPIO_ACTIVE_LOW>;
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7aOHkACgkQJNaLcl1U
-h9AxvAf/SfJ41hWzufGG1Rj3/WXQjmpYsJIB/fpu3B8+iaiLofTNVVA6VPberNFn
-ANEsddsQQG90zBMoJDC9l+r71xLdWTJn8OonfVC4cz4NRsWcK4A7kC7ity+jn6Bm
-1l8yy8wiGZx9bPX0dDjggJUsBaXymOt5eyCzxh7I95Wa3icM/jyhLWIyVDgneefA
-VvBIkbiaaroVuq0mVWi0SiHZEzo1KGNxpSahl5RrlaU5Koknf50yJtGE5DWF6C6G
-iKy2AtJgDOnQC6vdlXpHaZNGNfX8yMlUbPMtvtyWALzGpKsX/anstISNooENydUA
-UPjFlOOj96lzDD5ZDev5sBr6QVpvQQ==
-=lLik
------END PGP SIGNATURE-----
+?
 
---x+6KMIRAuhnl3hBn--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
