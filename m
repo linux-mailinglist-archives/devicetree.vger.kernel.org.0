@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A3D61EEE23
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 01:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB4B1EEEA4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 02:08:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbgFDXKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jun 2020 19:10:17 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:35359 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbgFDXKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 19:10:17 -0400
-Received: by mail-il1-f195.google.com with SMTP id l6so7802285ilo.2;
-        Thu, 04 Jun 2020 16:10:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q7WJQlBvPEBNqlkXqh4qqiqq6Tsxm/g6xj5WhRd10ss=;
-        b=HTtzHABrPXlLogU9Mq8gYd8QZts2NMuppw7Bvmwzn1jrWs+uBvo3UCspcnrFWU7NKJ
-         vOgcV73Awos+M+xURSla0lMH1VEzN8CUKeZsMj61MqUSWiKvd6Rzn8c/axJfytpiZMul
-         +JJ8goomDcRzDV+AB+zUdD7KD7IKz+0qMg6Dq9D6eX/sGXjChFb06aMOBY/m2rSbkADg
-         VisaJTEcXR54J73Y8Ue9JFCh4gz7cf2y2RO460kTFQlsjSEdFlkMxVle+BIwUjn5iOjk
-         pJZzXV4RcWSwrcTQ2njjmUjwgiV19G25YifzfrGL7P9DwuxLiL89MgeOWcDBBtbeP7yf
-         2YVg==
-X-Gm-Message-State: AOAM533ESvMbmHvP9oSsvMTX0ZoQxjFC8MAMZoPTM1VgCzPwcKY0j1U3
-        TgO7Wt8YzfXiJLV1pp4mdQ==
-X-Google-Smtp-Source: ABdhPJxhRoC5EOIby2CxjIhKZV+cKt0e7Y/t4WAVSnQAJtSBXYT9d9Kfk+hw4tsTbwWNT980FXxeZw==
-X-Received: by 2002:a92:c101:: with SMTP id p1mr6258008ile.239.1591312216303;
-        Thu, 04 Jun 2020 16:10:16 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id 199sm2162773ilb.11.2020.06.04.16.10.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jun 2020 16:10:15 -0700 (PDT)
-Received: (nullmailer pid 20793 invoked by uid 1000);
-        Thu, 04 Jun 2020 23:10:14 -0000
-Date:   Thu, 4 Jun 2020 17:10:14 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Steve Lee <steves.lee@maximintegrated.com>
-Cc:     ryan.lee.maxim@gmail.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, steves.lee.maxim@gmail.com,
-        robh+dt@kernel.org, alsa-devel@alsa-project.org,
-        broonie@kernel.org, ryans.lee@maximintegrated.com,
-        devicetree@vger.kernel.org
-Subject: Re: [V7 PATCH] dt-bindings: Added device tree binding for max98390
-Message-ID: <20200604231014.GA20757@bogus>
-References: <20200602084337.22116-1-steves.lee@maximintegrated.com>
+        id S1726024AbgFEAIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jun 2020 20:08:13 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47892 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725986AbgFEAIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jun 2020 20:08:12 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 055087U2054849;
+        Thu, 4 Jun 2020 19:08:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591315687;
+        bh=++12NsWfNAE1WdHSBzqK4FR7Dn3ydGwcqrGJYz2e2pI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ACbAsT+1VauWyX7TcES5XowHiveifLsXSMcDqCckGEUYvxmW2pjsrqvGLz0ePXL5s
+         Kc3qm4r7syRvoWJ+98LRzfQIK26v7ukfAZp184uSMYt5zULQWJfxyigPN9qxXfImcX
+         LOgN3N9ClRBl8f/BvNBMdQYtTCDfUMFsukqyehy0=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 055087F3015042
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Jun 2020 19:08:07 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Jun
+ 2020 19:08:07 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 4 Jun 2020 19:08:07 -0500
+Received: from [10.250.52.63] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 055086gQ023905;
+        Thu, 4 Jun 2020 19:08:07 -0500
+Subject: Re: [PATCH v26 06/15] dt-bindings: leds: Convert leds-lp55xx to yaml
+To:     Rob Herring <robh@kernel.org>
+CC:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200604120504.32425-1-dmurphy@ti.com>
+ <20200604120504.32425-7-dmurphy@ti.com> <20200604230456.GA6520@bogus>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <f8d648cc-9ff6-33a7-6da9-300a6b5b7d1c@ti.com>
+Date:   Thu, 4 Jun 2020 19:08:06 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200602084337.22116-1-steves.lee@maximintegrated.com>
+In-Reply-To: <20200604230456.GA6520@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Jun 2020 17:43:37 +0900, Steve Lee wrote:
-> Add DT binding of max98390 amplifier driver.
-> 
-> Signed-off-by: Steve Lee <steves.lee@maximintegrated.com>
-> ---
-> 
-> Changed since V6:
-> 	* Re-confirm yaml dt binding check
-> 	* Add minimum and maximum value for each temperature_calib and r0_calib
-> 	* Add maxim prefix for naming.
-> Changed since V5:
-> 	* Change txt to yaml and fix up the examples.
-> Changed since V4:
-> 	* No changes.
-> Changed since V3:
-> 	* No changes.
-> Changed since V2:
-> 	* No changes.
-> Changed since V1:
-> 	* Modified sample text in example
-> 
->  .../bindings/sound/maxim,max98390.yaml        | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98390.yaml
-> 
+Rob
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 6/4/20 6:04 PM, Rob Herring wrote:
+> On Thu, Jun 04, 2020 at 07:04:55AM -0500, Dan Murphy wrote:
+>> Convert the leds-lp55xx.txt to yaml binding.
+
+I will fix all your comments.
+
+But why does your BOT have checkpatch warnings?
+
+https://gitlab.com/robherring/linux-dt-review/-/jobs/581282098/artifacts/file/checkpatch-1303471.log
+
+Is this because checkpatch thinks the .txt file is invalid?
+
+Dan
+
