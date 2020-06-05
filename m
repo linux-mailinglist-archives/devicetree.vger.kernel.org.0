@@ -2,190 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3F681EFFFE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 20:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C081F0043
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2020 21:06:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726928AbgFESo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jun 2020 14:44:56 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:54305 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726077AbgFESo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jun 2020 14:44:56 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id D4F3122FEB;
-        Fri,  5 Jun 2020 20:44:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1591382693;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YRXENm/x2WRLoyAXS0BfjnJoOn+fwaDtXQJ9FoOZsLA=;
-        b=j0Eus+/W8QMEAKZ/SsmQb0kD+m3/XjNNl0Ufda7uFq9odKfuAWBB0W5v8SY60Q1bF9vcpo
-        3dLqeh4xxOffGdO2kS4EOmwn50MCn0MU8NYl8Kzc+MvIKFbpci3tRwsSDkQdqSIrU3phYb
-        jaddnH0/bDjBanv1kCnlJbG0xT/VxY0=
+        id S1728012AbgFETGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jun 2020 15:06:00 -0400
+Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.218]:15639 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726963AbgFETGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jun 2020 15:06:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1591383958;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=uG+xyzcgFcPs8d4qfzghhlZ8ma9xNU5sLA5RgBUV1Kk=;
+        b=HOJquxRkl2HtaGSHiX79zLza50/q3/XLF4SMobsE0dBhyRvD7kwlqlSWth3Y9N5ckn
+        s60ci2uwtyCsZNgA1oGuX8EOpEhvWmFhe0S0Mj/PEeSO7XPqgIaAQCz84jpHg4n9nnwl
+        8cvHvIriuV0TYa5zGIxocJBG+sQEM/pkxLNTxglVidjt3uTqJnr0/OxkG/Tk+40YWc45
+        kKeK2NgWU2I0NLzn9uv+rDFeJ+JWs3xpW8430DPmauhzEJro+Ns7XBEVqSyCovfxxfgP
+        MRkuCRh4duCoCEXThdtEc691YB9ooV79ie9IBnwkbcRvvTqTRjibjqvQ1b0Hh6dMx0nh
+        qzoQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6IlKY="
+X-RZG-CLASS-ID: mo00
+Received: from localhost.localdomain
+        by smtp.strato.de (RZmta 46.9.1 DYNA|AUTH)
+        with ESMTPSA id U0b5f2w55IxqKmE
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 5 Jun 2020 20:59:52 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 1/4] arm64: dts: qcom: msm8916: Set #address-cells for lpass
+Date:   Fri,  5 Jun 2020 20:59:13 +0200
+Message-Id: <20200605185916.318494-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 05 Jun 2020 20:44:52 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v4 06/11] gpio: add support for the sl28cpld GPIO
- controller
-In-Reply-To: <20200605131525.GK2428291@smile.fi.intel.com>
-References: <20200604211039.12689-1-michael@walle.cc>
- <20200604211039.12689-7-michael@walle.cc>
- <CAHp75VfRhL1f-XD=PMbqd3BLeJQzQMFAupSzqAvx0g7-X_2VhQ@mail.gmail.com>
- <216db3154b46bd80202873df055bb3f3@walle.cc>
- <20200605131525.GK2428291@smile.fi.intel.com>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <bf587fc3f907d58609a0ea3d65cd5b37@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2020-06-05 15:15, schrieb Andy Shevchenko:
-> On Fri, Jun 05, 2020 at 02:42:53PM +0200, Michael Walle wrote:
->> Am 2020-06-05 14:00, schrieb Andy Shevchenko:
->> > On Fri, Jun 5, 2020 at 12:14 AM Michael Walle <michael@walle.cc> wrote:
-> 
->> > > +       return devm_regmap_add_irq_chip_np(dev, dev_of_node(dev),
->> > > regmap,
->> >
->> > It seems regmap needs to be converted to use fwnode.
->> 
->> Mhh, this _np functions was actually part of this series in the
->> beginning.
-> 
-> Then, please, make them fwnode aware rather than OF centric.
+As of commit 4ff028f6c108 ("ASoC: qcom: lpass-cpu: Make I2S SD lines
+configurable"), lpass now supports children nodes to configure the
+MI2S SD lines to use for one of the I2S ports. For example:
 
-ok
+lpass@7708000 {
+	dai@3 {
+		reg = <MI2S_QUATERNARY>;
+		qcom,playback-sd-lines = <1>;
+	};
+};
 
-> 
->> > > IRQF_ONESHOT, 0,
->> > > +                                          irq_chip, &gpio->irq_data);
-> 
-> ...
-> 
->> > > +       dev_id = platform_get_device_id(pdev);
->> > > +       if (dev_id)
->> > > +               type = dev_id->driver_data;
->> >
->> > Oh, no. In new code we don't need this. We have facilities to provide
->> > platform data in a form of fwnode.
->> 
->> Ok I'll look into that.
->> 
->> But I already have a question, so there are of_property_read_xx(), 
->> which
->> seems to be the old functions, then there is device_property_read_xx() 
->> and
->> fwnode_property_read_xx(). What is the difference between the latter 
->> two?
-> 
-> It's easy. device_*() requires struct device to be established for 
-> this, so,
-> operates only against devices, while the fwnode_*() operates on pure 
-> data which
-> might or might not be related to any devices. If you understand OF 
-> examples
-> better, consider device node vs. child of such node.
+The "reg" property refers to the DAI number in this case,
+so we need to set #address-cells and #size-cells appropriately
+to avoid DTC warnings.
 
-Ahh thanks, got it.
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> 
-> ...
-> 
->> > > +       if (irq_support &&
->> >
->> > Why do you need this flag? Can't simple IRQ number be sufficient?
->> 
->> I want to make sure, the is no misconfiguration. Eg. only GPIO
->> flavors which has irq_support set, have the additional interrupt
->> registers.
-> 
-> In gpio-dwapb, for example, we simple check two things: a) hardware 
-> limitation
-> (if IRQ is assigned to a proper port) and b) if there is any IRQ comes 
-> from DT,
-> ACPI, etc.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 32bd140ac9fd..b0f9cfaba1ed 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -700,6 +700,9 @@ lpass: lpass@7708000 {
+ 			interrupt-names = "lpass-irq-lpaif";
+ 			reg = <0x07708000 0x10000>;
+ 			reg-names = "lpass-lpaif";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 		};
+ 
+                 lpass_codec: codec{
+-- 
+2.26.2
 
-I can't follow you here. irq_support is like your (a); or the
-"pp->idx == 0" in your example.
-
->> > > +           device_property_read_bool(&pdev->dev,
->> > > "interrupt-controller")) {
->> > > +               irq = platform_get_irq(pdev, 0);
->> > > +               if (irq < 0)
->> > > +                       return irq;
->> > > +
->> > > +               ret = sl28cpld_gpio_irq_init(&pdev->dev, gpio, regmap,
->> > > +                                            base, irq);
->> > > +               if (ret)
->> > > +                       return ret;
->> > > +
->> > > +               config.irq_domain =
->> > > regmap_irq_get_domain(gpio->irq_data);
->> > > +       }
-> 
-> ...
-> 
->> > > +       { .compatible = "kontron,sl28cpld-gpio",
->> > > +         .data = (void *)SL28CPLD_GPIO },
->> > > +       { .compatible = "kontron,sl28cpld-gpi",
->> > > +         .data = (void *)SL28CPLD_GPI },
->> > > +       { .compatible = "kontron,sl28cpld-gpo",
->> > > +         .data = (void *)SL28CPLD_GPO },
->> >
->> > All above can be twice less LOCs.
->> 
->> They are longer than 80 chars. Or do I miss something?
-> 
-> We have 100 :-)
-
-oh come on, since 6 days *g*
-
->> > > +               .name = KBUILD_MODNAME,
->> >
->> > This actually not good idea in long term. File name can change and break
->> > an ABI.
->> 
->> Ahh an explanation, why this is bad. Ok makes sense, although to be 
->> fair,
->> .id_table should be used for the driver name matching. I'm not sure if
->> this is used somewhere else, though.
-> 
-> I saw in my practice chain of renames for a driver. Now, if somebody
-> somewhere would like to instantiate a platform driver by its name...
-> Oops, ABI breakage.
-> 
-> And of course using platform data for such device makes less sense.
-
-i just removed the id_table from all drivers anyways.
-
--michael
