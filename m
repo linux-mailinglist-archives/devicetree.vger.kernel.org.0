@@ -2,95 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BBA1F100A
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2020 23:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC441F106D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 01:33:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727877AbgFGVsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Jun 2020 17:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726093AbgFGVsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jun 2020 17:48:02 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00485C08C5C3;
-        Sun,  7 Jun 2020 14:48:01 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 202so9020321lfe.5;
-        Sun, 07 Jun 2020 14:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ay8EHASwjhU1bjGhoJPlUWvuPWuHbO/3W1nJ49RR5ag=;
-        b=VXUjmROcDERX9tK85WWAf5vfiKHroxFpPZt28aMBYRGZJrksc/ZUrpeM9TsQMSJYhE
-         DCITogpNAOT9Fc+Gi+ICLkihzUbwLylqKb/dcK0HtK1cI+ZK0ifujYEBYE3Zm5T0bI7/
-         ndXyIvGU5qnUYWG7cgegvpLWugs08MGmrb1n9B+z4fvgrsP1ufvxgTT4i+A52SSOcCFI
-         UJcJC7/316SDrGbaTqwo+5Zb5uvFbANULzWL3G0apNvUCEde3IQKRFBLhyodvRGYgU2t
-         6PIVdLaYwdOjQR3mMPlA/+QkUOYQbs2wLgcTNhwK37jZoFCfK29uk5xOHFMGZwPwb5QA
-         iZiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ay8EHASwjhU1bjGhoJPlUWvuPWuHbO/3W1nJ49RR5ag=;
-        b=W5rz3G/l5OYYyFZydriQ8JL9p7Bxh0TUT3GxldvWjcl7/+VlUjBNRAaCef2K/PdnMj
-         /p/QIfZmvF3f/jKTOYL1FkOqZMb3g+HLsCjkO/3I8p4le/Kr8i7nRpVKLPks4OtS14mt
-         W6AgT3PRV8nVpshjP9vW9pJPlhvTQ1dnCynXwIanjHn88yJC5JXHU7QoANi9CFW0TgVK
-         XggJMZ/r7UgDvVQu8/uh538KdPeKS3iZUs0Z1wBU5B04JhHZVbtDTdRDmCrbgf/dYoty
-         fpb6A/2rVY1QDf4zfp0M3XptUMXqeMtdnQ+YamUd6lI4F/zgMq7YGXUAJq+oV98ZXuIo
-         8nvw==
-X-Gm-Message-State: AOAM530l71D3tvMr+lUMOePkVo5latDLWtTxxX/neRMzZH9bP3dPormY
-        UZdRq65B4VHn6GU1w3kXgCtQx/uA
-X-Google-Smtp-Source: ABdhPJz+DegAGZHDYRJIlKVV0XxJ0lW/Q/FEgvkvROG5VVEspAJPGPKSKwJCvEcs43RZ2CG7mC0kdQ==
-X-Received: by 2002:a05:6512:3b6:: with SMTP id v22mr10767583lfp.97.1591566479992;
-        Sun, 07 Jun 2020 14:47:59 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-237-54.dynamic.spd-mgts.ru. [79.139.237.54])
-        by smtp.googlemail.com with ESMTPSA id u30sm3325110ljd.94.2020.06.07.14.47.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jun 2020 14:47:59 -0700 (PDT)
-Subject: Re: [PATCH v3 31/39] memory: tegra20-emc: Register as interconnect
- provider
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@samsung.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20200607185530.18113-1-digetx@gmail.com>
- <20200607185530.18113-32-digetx@gmail.com>
-Message-ID: <89b690be-d2fa-a679-5773-d5906a93ffcc@gmail.com>
-Date:   Mon, 8 Jun 2020 00:47:56 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1727794AbgFGXde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Jun 2020 19:33:34 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:34008 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727786AbgFGXdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jun 2020 19:33:33 -0400
+Received: from prsriva-linux.hsd1.wa.comcast.net (c-24-19-135-168.hsd1.wa.comcast.net [24.19.135.168])
+        by linux.microsoft.com (Postfix) with ESMTPSA id C1D9520B717B;
+        Sun,  7 Jun 2020 16:33:31 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C1D9520B717B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1591572812;
+        bh=DB6Cl6RHr8cekVcsDZkbuYBtSszswuXLUSqvQUhO2ps=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jf58nVlwSpSms4FyBpvdpS5L/b68k74OADgHL6/JRsKRN65DEQGu08m5Y9vgZjXz7
+         UMgDudDCE1Jx4rfifAEkUog31G9m/W1iUpE4SjPKR7or5h81nOg9rOO66POwl4ho6b
+         Q+6FdMlHCNX3RzSGQ7tuKYlzVzkT1RmxfjrADR0Y=
+From:   Prakhar Srivastava <prsriva@linux.microsoft.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org,
+        linux-security-module@vger.kernel.org
+Cc:     catalin.marinas@arm.com, will@kernel.org, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org, robh+dt@kernel.org,
+        frowand.list@gmail.com, zohar@linux.ibm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, masahiroy@kernel.org, james.morse@arm.com,
+        bhsharma@redhat.com, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        gregkh@linuxfoundation.org, nramas@linux.microsoft.com,
+        prsriva@linux.microsoft.com, tusharsu@linux.microsoft.com,
+        balajib@linux.microsoft.com
+Subject: [v1 PATCH 0/2] Adding support to carry IMA measurement logs
+Date:   Sun,  7 Jun 2020 16:33:21 -0700
+Message-Id: <20200607233323.22375-1-prsriva@linux.microsoft.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200607185530.18113-32-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.06.2020 21:55, Dmitry Osipenko пишет:
-...
-> +	if (IS_ENABLED(CONFIG_INTERCONNECT)) {
-> +		err = tegra_emc_interconnect_init(emc);
-> +		if (err)
-> +			dev_err(&pdev->dev, "failed to initialize ICC: %d\n",
-> +				err);
-> +	}
+IMA during kexec(kexec file load) verifies the kernel signature and measures
+the signature of the kernel. The signature in the logs can be used to verfiy the 
+authenticity of the kernel. The logs don not get carried over kexec and thus
+remote attesation cannot verify the signature of the running kernel.
 
-It just occurred to me that I completely forgot to remove the
-IS_ENABLED() and change Kconfig to properly set up the build dependency
-on interconnect. Will correct it in v4.
+Add a new chosen node entry linux,ima-kexec-buffer to hold the address and
+the size of the memory reserved to carry the IMA measurement log.
+
+Tested on:
+  arm64 with Uboot
+
+Changelog:
+
+v1:
+  Refactoring carrying over IMA measuremnet logs over Kexec. This patch
+    moves the non-architecture specific code out of powerpc and adds to
+    security/ima.(Suggested by Thiago)
+  Add Documentation regarding the ima-kexec-buffer node in the chosen
+    node documentation
+
+v0:
+  Add a layer of abstraction to use the memory reserved by device tree
+    for ima buffer pass.
+  Add support for ima buffer pass using reserved memory for arm64 kexec.
+    Update the arch sepcific code path in kexec file load to store the
+    ima buffer in the reserved memory. The same reserved memory is read
+    on kexec or cold boot.
+
+ Documentation/devicetree/bindings/chosen.txt |  17 +++
+ arch/arm64/Kconfig                           |   1 +
+ arch/arm64/include/asm/ima.h                 |  24 +++
+ arch/arm64/include/asm/kexec.h               |   3 +
+ arch/arm64/kernel/machine_kexec_file.c       |  47 +++++-
+ arch/powerpc/include/asm/ima.h               |   9 --
+ arch/powerpc/kexec/ima.c                     | 117 +-------------
+ security/integrity/ima/ima_kexec.c           | 151 +++++++++++++++++++
+ 8 files changed, 236 insertions(+), 133 deletions(-)
+ create mode 100644 arch/arm64/include/asm/ima.h
+
+-- 
+2.25.1
+
