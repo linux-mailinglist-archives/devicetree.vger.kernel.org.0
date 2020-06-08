@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33FB81F1FC5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 21:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A14C1F2005
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 21:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726644AbgFHT1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 15:27:43 -0400
-Received: from mx2.suse.de ([195.135.220.15]:39732 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726628AbgFHT1m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 15:27:42 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 86AA3AFFB;
-        Mon,  8 Jun 2020 19:27:43 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     f.fainelli@gmail.com, gregkh@linuxfoundation.org, wahrenst@gmx.net,
-        robh@kernel.org, mathias.nyman@linux.intel.com,
-        Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-usb@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-kernel@vger.kernel.org, tim.gover@raspberrypi.org,
-        helgaas@kernel.org, Bjorn Helgaas <bhelgaas@google.com>
-Subject: [PATCH 9/9] Revert "PCI: brcmstb: Wait for Raspberry Pi's firmware when present"
-Date:   Mon,  8 Jun 2020 21:27:01 +0200
-Message-Id: <20200608192701.18355-10-nsaenzjulienne@suse.de>
+        id S1726409AbgFHTjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 15:39:32 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:52688 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726406AbgFHTjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 15:39:31 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 058JdOuJ007940;
+        Mon, 8 Jun 2020 14:39:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591645164;
+        bh=p3el6r3iFT6tyZHvcT3VOEaphwFqZKjosskfvLkSjGk=;
+        h=From:To:CC:Subject:Date;
+        b=vEdlapUcZ/2jZ8g4lNgHQ5neWHy2f5C7YvL4i0o2stJLQcNd4EbHCHY8zrSDV3icb
+         mx363Y8nQwi0GgCtLDn8harxtX8o+W0IZscx8lALnmjwTxokRidCOTfdT0xTjtNk62
+         eN34AxThRFxkZXqugNaqLgUlDCqbZpLNnAbaAPhY=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 058JdOkj002245
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 Jun 2020 14:39:24 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 8 Jun
+ 2020 14:39:24 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 8 Jun 2020 14:39:24 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 058JdOZ1061651;
+        Mon, 8 Jun 2020 14:39:24 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v27 00/15] Multicolor Framework v27
+Date:   Mon, 8 Jun 2020 14:39:02 -0500
+Message-ID: <20200608193917.13084-1-dmurphy@ti.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200608192701.18355-1-nsaenzjulienne@suse.de>
-References: <20200608192701.18355-1-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 44331189f9082c7e659697bbac1747db3def73e7.
+Hello
 
-Now that the VL805 init routine is run through a reset controller driver
-the dependencies are being taken care of by the device core. No need to
-do it manually here.
+This is the multi color LED framework.   This framework presents clustered
+colored LEDs into an array and allows the user space to adjust the brightness
+of the cluster using a single file write.  The individual colored LEDs
+intensities are controlled via a single file that is an array of LEDs
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/pci/controller/pcie-brcmstb.c | 17 -----------------
- 1 file changed, 17 deletions(-)
+Dan
 
-diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
-index 7730ea845ff2..752f5b331579 100644
---- a/drivers/pci/controller/pcie-brcmstb.c
-+++ b/drivers/pci/controller/pcie-brcmstb.c
-@@ -28,8 +28,6 @@
- #include <linux/string.h>
- #include <linux/types.h>
- 
--#include <soc/bcm2835/raspberrypi-firmware.h>
--
- #include "../pci.h"
- 
- /* BRCM_PCIE_CAP_REGS - Offset for the mandatory capability config regs */
-@@ -931,26 +929,11 @@ static int brcm_pcie_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node, *msi_np;
- 	struct pci_host_bridge *bridge;
--	struct device_node *fw_np;
- 	struct brcm_pcie *pcie;
- 	struct pci_bus *child;
- 	struct resource *res;
- 	int ret;
- 
--	/*
--	 * We have to wait for Raspberry Pi's firmware interface to be up as a
--	 * PCI fixup, rpi_firmware_init_vl805(), depends on it. This driver's
--	 * probe can race with the firmware interface's (see
--	 * drivers/firmware/raspberrypi.c) and potentially break the PCI fixup.
--	 */
--	fw_np = of_find_compatible_node(NULL, NULL,
--					"raspberrypi,bcm2835-firmware");
--	if (fw_np && !rpi_firmware_get(fw_np)) {
--		of_node_put(fw_np);
--		return -EPROBE_DEFER;
--	}
--	of_node_put(fw_np);
--
- 	bridge = devm_pci_alloc_host_bridge(&pdev->dev, sizeof(*pcie));
- 	if (!bridge)
- 		return -ENOMEM;
+Dan Murphy (15):
+  dt: bindings: Add multicolor class dt bindings documention
+  leds: Add multicolor ID to the color ID list
+  leds: multicolor: Introduce a multicolor class definition
+  dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers
+  leds: lp50xx: Add the LP50XX family of the RGB LED driver
+  dt-bindings: leds: Convert leds-lp55xx to yaml
+  ARM: dts: n900: Add reg property to the LP5523 channel node
+  ARM: dts: imx6dl-yapp4: Add reg property to the lp5562 channel node
+  ARM: dts: ste-href: Add reg property to the LP5521 channel nodes
+  leds: lp55xx: Convert LED class registration to devm_*
+  leds: lp55xx: Add multicolor framework support to lp55xx
+  leds: lp5523: Update the lp5523 code to add multicolor brightness
+    function
+  leds: lp5521: Add multicolor framework multicolor brightness support
+  leds: lp55xx: Fix file permissions to use DEVICE_ATTR macros
+  leds: lp5523: Fix various formatting issues in the code
+
+ .../ABI/testing/sysfs-class-led-multicolor    |  36 +
+ .../bindings/leds/leds-class-multicolor.yaml  |  37 +
+ .../devicetree/bindings/leds/leds-lp50xx.yaml | 130 +++
+ .../devicetree/bindings/leds/leds-lp55xx.txt  | 228 -----
+ .../devicetree/bindings/leds/leds-lp55xx.yaml | 218 +++++
+ Documentation/leds/index.rst                  |   1 +
+ Documentation/leds/leds-class-multicolor.rst  |  88 ++
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi    |  14 +-
+ arch/arm/boot/dts/omap3-n900.dts              |  29 +-
+ arch/arm/boot/dts/ste-href.dtsi               |  22 +-
+ drivers/leds/Kconfig                          |  24 +
+ drivers/leds/Makefile                         |   2 +
+ drivers/leds/led-class-multicolor.c           | 210 +++++
+ drivers/leds/led-core.c                       |   1 +
+ drivers/leds/leds-lp50xx.c                    | 783 ++++++++++++++++++
+ drivers/leds/leds-lp5521.c                    |  43 +-
+ drivers/leds/leds-lp5523.c                    |  62 +-
+ drivers/leds/leds-lp5562.c                    |  22 +-
+ drivers/leds/leds-lp55xx-common.c             | 212 +++--
+ drivers/leds/leds-lp55xx-common.h             |  16 +-
+ drivers/leds/leds-lp8501.c                    |  23 +-
+ include/dt-bindings/leds/common.h             |   3 +-
+ include/linux/led-class-multicolor.h          | 121 +++
+ include/linux/platform_data/leds-lp55xx.h     |   8 +
+ 24 files changed, 1978 insertions(+), 355 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-lp55xx.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+ create mode 100644 Documentation/leds/leds-class-multicolor.rst
+ create mode 100644 drivers/leds/led-class-multicolor.c
+ create mode 100644 drivers/leds/leds-lp50xx.c
+ create mode 100644 include/linux/led-class-multicolor.h
+
 -- 
 2.26.2
 
