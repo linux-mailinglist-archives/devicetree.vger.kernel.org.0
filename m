@@ -2,222 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 526421F1FD1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 21:28:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493541F1FB4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 21:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726595AbgFHT1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 15:27:36 -0400
-Received: from mx2.suse.de ([195.135.220.15]:39610 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726428AbgFHT1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 15:27:35 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 37619AE35;
-        Mon,  8 Jun 2020 19:27:36 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     f.fainelli@gmail.com, gregkh@linuxfoundation.org, wahrenst@gmx.net,
-        robh@kernel.org, mathias.nyman@linux.intel.com,
-        Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-usb@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, tim.gover@raspberrypi.org,
-        helgaas@kernel.org, lorenzo.pieralisi@arm.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [PATCH 2/9] reset: Add Raspberry Pi 4 firmware USB reset controller
-Date:   Mon,  8 Jun 2020 21:26:54 +0200
-Message-Id: <20200608192701.18355-3-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200608192701.18355-1-nsaenzjulienne@suse.de>
-References: <20200608192701.18355-1-nsaenzjulienne@suse.de>
+        id S1726431AbgFHT1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 15:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60114 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgFHT07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 15:26:59 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840E1C08C5C2;
+        Mon,  8 Jun 2020 12:26:59 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id l27so19666331ejc.1;
+        Mon, 08 Jun 2020 12:26:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=D7Eyh5N8pfz8EauteHf9HhIuXtnavNBLFRX9oAYhLG4=;
+        b=Lvo87ggH0byI+EyFYeL9exdQR3LbVzsKH2h6PmUE+rmE+0e3M4YgFFl8VPqazKK0Y5
+         QHLle9/lo+oVZE8TnMD5Rrags132AHtHfLtuR8qSg4uR89DQ0wvk3RkNqFuOiRBp5vdL
+         e24zTkTdY8ypHG+/PdnOZAdS9/Er1utyS6kXgMlX2lczE7rhHQ/c/Dmy/GKmJOGJ/ZH6
+         ka+2UIz6KzumGzc5aVK3hQh1bMyyBLY3ojk/v1k7D4KzA2HQHtwt3KbZTtPKMACg+UJn
+         lD7GCJu+P1FPiMlRDTByodK46ElqiXysoOuqK1baFqbjsnhgWkwGU9Ua1kYaHL/m3rS8
+         AV/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=D7Eyh5N8pfz8EauteHf9HhIuXtnavNBLFRX9oAYhLG4=;
+        b=hHy8ezfIxxKu7xiojpxIRqtO0on1vVduYj3hWIDCvpt+1pUacaMAZab6EZ7qFz+IQm
+         GoACsdiy3fYrbyKuvYdVRrAYc0NxVIuHH+Qv9+UDRbwfbishvtplAbS/5rzYW60Z1MSs
+         Be9+tAwWf+5QcHWziPmOoxuC8h/OF4CG1PDMXq6xEnVGII0VrC606/vvjlqe19xev1uk
+         0pWpV10dzhxjyc6MV3r/S6zuuN3uOHUaiDTk8reu5iO68cPGrzEdnlsPz+JhsNwxA2BM
+         Dy2hWtkTF+bp9X+QQi7kdvFXGVuF9bZPFcuprJ8itimZJHhSpZi1HgZV617XjZd9y82X
+         B1dw==
+X-Gm-Message-State: AOAM530IWkcN40yuo/NFA2KNRMC6244qws8brj4Ii4VCNFWMm6L8xio9
+        J07p14k+FWk92CCKNPYpwsM=
+X-Google-Smtp-Source: ABdhPJzKdGR87+lnaQjbSaNUsM9U4WQQgOWNUnvPSebnC0vCrDe0wbhkME+OG2sOJY0cWuAAYJvXTA==
+X-Received: by 2002:a17:907:42d5:: with SMTP id ng5mr22394995ejb.164.1591644418324;
+        Mon, 08 Jun 2020 12:26:58 -0700 (PDT)
+Received: from ?IPv6:2a01:110f:b59:fd00:3c4b:24e0:3c3a:dc89? ([2a01:110f:b59:fd00:3c4b:24e0:3c3a:dc89])
+        by smtp.gmail.com with ESMTPSA id p13sm13051946edq.50.2020.06.08.12.26.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jun 2020 12:26:57 -0700 (PDT)
+Subject: Re: [PATCH v3 2/3] leds: pwm: add support for default-state device
+ property
+To:     Denis Osterland-Heim <denis.osterland@diehl.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmurphy@ti.com" <dmurphy@ti.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+References: <20200316124851.6303-1-Denis.Osterland@diehl.com>
+ <20200316124851.6303-3-Denis.Osterland@diehl.com>
+ <bee4d31f-1f00-c621-f93c-f49207e406d6@gmail.com>
+ <e2835f58aead3ca85ad47e9769b393addcd19f2a.camel@diehl.com>
+ <13d593fb-053e-c6de-3237-ec3b6d1c82c5@gmail.com>
+ <278a6d81562d4642631fa003c59c4e4876050f54.camel@diehl.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <d1bfbe95-ca09-b1f4-0947-e06a7d29ef79@gmail.com>
+Date:   Mon, 8 Jun 2020 21:26:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <278a6d81562d4642631fa003c59c4e4876050f54.camel@diehl.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Raspberry Pi 4 gets its USB functionality from VL805, a PCIe chip
-that implements the xHCI. After a PCI fundamental reset, VL805's
-firmware may either be loaded directly from an EEPROM or, if not
-present, by the SoC's co-processor, VideoCore. RPi4's VideoCore OS
-contains both the non public firmware load logic and the VL805 firmware
-blob.
+Hi Dennis,
 
-We control this trough a reset controller device that's able to trigger
-the aforementioned process when relevant.
+On 6/8/20 8:32 AM, Denis Osterland-Heim wrote:
+> Hi Jacek,
+> 
+> is your ack still valid for the new versions of the patch-set?
+> Due to the changes I made, I am not sure.
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/reset/Kconfig                 |   9 ++
- drivers/reset/Makefile                |   1 +
- drivers/reset/reset-raspberrypi-usb.c | 122 ++++++++++++++++++++++++++
- 3 files changed, 132 insertions(+)
- create mode 100644 drivers/reset/reset-raspberrypi-usb.c
+Yes, you can keep it.
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index d9efbfd29646..80e07190cd04 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -140,6 +140,15 @@ config RESET_QCOM_PDC
- 	  to control reset signals provided by PDC for Modem, Compute,
- 	  Display, GPU, Debug, AOP, Sensors, Audio, SP and APPS.
- 
-+config RESET_RASPBERRYPI_USB
-+	tristate "Raspberry Pi 4 USB Reset Driver"
-+	depends on RASPBERRYPI_FIRMWARE || (RASPBERRYPI_FIRMWARE=n && COMPILE_TEST)
-+	default USB_XHCI_PCI
-+	help
-+	  This driver provides support for resetting the USB HW available in
-+	  the Raspberry Pi 4. This reset process is controlled by firmware
-+	  through a custom interface (see drivers/firmware/raspberrypi.c).
-+
- config RESET_SCMI
- 	tristate "Reset driver controlled via ARM SCMI interface"
- 	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 249ed357c997..49cd2868c7ab 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -21,6 +21,7 @@ obj-$(CONFIG_RESET_OXNAS) += reset-oxnas.o
- obj-$(CONFIG_RESET_PISTACHIO) += reset-pistachio.o
- obj-$(CONFIG_RESET_QCOM_AOSS) += reset-qcom-aoss.o
- obj-$(CONFIG_RESET_QCOM_PDC) += reset-qcom-pdc.o
-+obj-$(CONFIG_RESET_RASPBERRYPI_USB) += reset-raspberrypi-usb.o
- obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
- obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
- obj-$(CONFIG_RESET_STM32MP157) += reset-stm32mp1.o
-diff --git a/drivers/reset/reset-raspberrypi-usb.c b/drivers/reset/reset-raspberrypi-usb.c
-new file mode 100644
-index 000000000000..e9a6e7018c6d
---- /dev/null
-+++ b/drivers/reset/reset-raspberrypi-usb.c
-@@ -0,0 +1,122 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Raspberry Pi 4 USB reset driver
-+ *
-+ * The Raspberry Pi 4 gets its USB functionality from VL805, a PCIe chip that
-+ * implements xHCI. After a PCI reset, VL805's firmware may either be loaded
-+ * directly from an EEPROM or, if not present, by the SoC's co-processor,
-+ * VideoCore. rpi's VideoCore OS contains both the non public firmware load
-+ * logic and the VL805 firmware blob. This driver triggers the aforementioned
-+ * process.
-+ *
-+ * Copyright (C) 2020 Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-+ */
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <soc/bcm2835/raspberrypi-firmware.h>
-+
-+struct rpi_usb_reset {
-+	struct reset_controller_dev rcdev;
-+	struct rpi_firmware *fw;
-+};
-+
-+static inline
-+struct rpi_usb_reset *to_rpi_usb(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct rpi_usb_reset, rcdev);
-+}
-+
-+static int rpi_usb_reset_reset(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct rpi_usb_reset *priv = to_rpi_usb(rcdev);
-+	u32 dev_addr;
-+	int ret;
-+
-+	/*
-+	 * The pci device address is expected like this:
-+	 *
-+	 * PCI_BUS << 20 | PCI_SLOT << 15 | PCI_FUNC << 12
-+	 *
-+	 * But since rpi's PCIe setup is hardwired, we know the address in
-+	 * advance.
-+	 */
-+	dev_addr = 0x100000;
-+	ret = rpi_firmware_property(priv->fw, RPI_FIRMWARE_NOTIFY_XHCI_RESET,
-+				    &dev_addr, sizeof(dev_addr));
-+	if (ret)
-+		return ret;
-+
-+	/* Wait for vl805 to startup */
-+	usleep_range(200, 1000);
-+
-+	return 0;
-+}
-+
-+static const struct reset_control_ops rpi_usb_reset_ops = {
-+	.reset	= rpi_usb_reset_reset,
-+};
-+
-+static int rpi_usb_reset_xlate(struct reset_controller_dev *rcdev,
-+			       const struct of_phandle_args *reset_spec)
-+{
-+	/* This is needed if #reset-cells == 0. */
-+	return 0;
-+}
-+
-+static int rpi_usb_reset_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *fw_node;
-+	struct rpi_usb_reset *priv;
-+	struct rpi_firmware *fw;
-+
-+	fw_node = of_get_parent(dev->of_node);
-+	if (!fw_node) {
-+		dev_err(dev, "Missing firmware node\n");
-+		return -ENOENT;
-+	}
-+
-+	fw = rpi_firmware_get(fw_node);
-+	of_node_put(fw_node);
-+	if (!fw)
-+		return -EPROBE_DEFER;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, priv);
-+
-+	priv->fw = fw;
-+	priv->rcdev.owner = THIS_MODULE;
-+	priv->rcdev.nr_resets = 1;
-+	priv->rcdev.ops = &rpi_usb_reset_ops;
-+	priv->rcdev.of_node = dev->of_node;
-+	priv->rcdev.of_xlate = rpi_usb_reset_xlate;
-+
-+	return devm_reset_controller_register(dev, &priv->rcdev);
-+}
-+
-+static const struct of_device_id rpi_usb_reset_of_match[] = {
-+	{ .compatible = "raspberrypi,firmware-usb-reset" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rpi_usb_reset_of_match);
-+
-+static struct platform_driver rpi_usb_reset_driver = {
-+	.probe	= rpi_usb_reset_probe,
-+	.driver	= {
-+		.name = "raspberrypi-usb-reset",
-+		.of_match_table = rpi_usb_reset_of_match,
-+	},
-+};
-+module_platform_driver(rpi_usb_reset_driver);
-+
-+MODULE_AUTHOR("Nicolas Saenz Julienne <nsaenzjulienne@suse.de>");
-+MODULE_DESCRIPTION("Raspberry Pi 4 USB reset driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.26.2
-
+Best regards,
+Jacek Anaszewski
