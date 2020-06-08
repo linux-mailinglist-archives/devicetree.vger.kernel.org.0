@@ -2,137 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9E31F20ED
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 22:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EAB01F214B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 23:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726884AbgFHUow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 16:44:52 -0400
-Received: from mx0a-00328301.pphosted.com ([148.163.145.46]:16230 "EHLO
-        mx0a-00328301.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726847AbgFHUoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 16:44:16 -0400
-Received: from pps.filterd (m0156134.ppops.net [127.0.0.1])
-        by mx0a-00328301.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 058KhpKO027834;
-        Mon, 8 Jun 2020 13:44:14 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=invensense.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : content-type :
- mime-version; s=pfpt1; bh=W5thYSFLHQBsEKsgqJfZTnjul6HJtPAMqubvEftwanY=;
- b=LDUtm8mVOo967Bj/80EW/+ZBU5kZYUpbDg0dVxmubCgyeHRGatfYLuXZ7rDXiSQsS+Ic
- OAGysDv/Vc9sVzZLoSV62yvvxH97KxR/ZSlyxl5RtwfP4qQfOTP9msKX0U+wlBz8ggiq
- Z/O79mc+/67qbwJCcArM1yJeJNk75svwV0h/vJk3B1tJg+HtCt4qrhitwVYepEBF+QWy
- n1Cmt60j8jR8WMeThy3PTWDTBbdKhCMb6uX4JwMCUA1PDh3bd0EBpn2G2uTrrNcrrd1m
- eTzw/AM8/F5CZRGKDLIfidcfR5l5zdqV3CJLRfezMLza1ZmYe3PF5M7PILYabqxggNIw tw== 
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2106.outbound.protection.outlook.com [104.47.70.106])
-        by mx0a-00328301.pphosted.com with ESMTP id 31g867h0f7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 08 Jun 2020 13:44:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iPjOfdrAdjUtlF+WZSAbhQYVTvVa+PsJnLpxvEGPrSPBOzAmbTrZ61EG2/AleyVKVogtFJWKtNp8Iz2+EfKCjBXVgWdOpYHo+qlhqNkKAVloSz1yCfCR8pNdUbAcfSANQJ3ik/Jaz9OcGmN3zTLx0wVZPfUMARRpgyQaIE3Dw6lb3bZEu64ASWF8tKdEYrx7i+nzcdor4gnmSqcar8M4yzfnwg/R0uKMWyQuUeVX0tPKzvHT89r1GIbZtkRzRwluzoSvJIgYcSBwIfPz5SC8JVz25fNhoIRv98dnFq2c+x4cGvqWoTlD2TahdmfBHAI/1hWveTaSE2tAJ7Obh+qfww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W5thYSFLHQBsEKsgqJfZTnjul6HJtPAMqubvEftwanY=;
- b=MdkhKKhDLTVesMALJtHq2eAtdkbcj22mY1FExFp6+MI+17deQh+ofg4F0qXz+XEtiYeHjb8gVCZ3vVeda8oZxxsmhyuV260py38KvGSi6SXkW3DK612tU3GjbaFJREdARgp4MPI4kB1rm6Eo9OMVD4No5sdQh6g9yHxtbnx6bxDyUVtpaK97Bs2SZpUo2E4QmKNPnFWJ8vWDi2NoRqiX2qdwlfGIiBykho7VkXl/tKvqGTAzzIv7mBprgeHQfDP4ZpxkaUi/2uimqHsqANA4hfPK0oNZ0tXpeCThT4XEDrP/9EKUVF78VtT9UOBYJbX1YEat5GvGMpOVqshGLDyl8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=invensense.com; dmarc=pass action=none
- header.from=invensense.com; dkim=pass header.d=invensense.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=invensense.onmicrosoft.com; s=selector2-invensense-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W5thYSFLHQBsEKsgqJfZTnjul6HJtPAMqubvEftwanY=;
- b=dSVcraHPMssBwGaud9TTLLcAgb02pjRstEnQhPRMUJVkBJA5NzEa0/xApBWmrQwMeJBz4ahD+wsqfJUFy26TgJ3Qzmj/y87TN2vQWeBHdid87Q9H2sI+8i804YcQgv/hkIKZwqRRinpD+tMSX6uIpuu5IA2CIX3tUwaSrVlv1nw=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=invensense.com;
-Received: from MN2PR12MB4422.namprd12.prod.outlook.com (2603:10b6:208:265::9)
- by MN2PR12MB4205.namprd12.prod.outlook.com (2603:10b6:208:198::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Mon, 8 Jun
- 2020 20:44:11 +0000
-Received: from MN2PR12MB4422.namprd12.prod.outlook.com
- ([fe80::8940:8e95:6996:cc0]) by MN2PR12MB4422.namprd12.prod.outlook.com
- ([fe80::8940:8e95:6996:cc0%8]) with mapi id 15.20.3066.023; Mon, 8 Jun 2020
- 20:44:11 +0000
-From:   Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-To:     jic23@kernel.org, robh+dt@kernel.org, robh@kernel.org,
-        mchehab+huawei@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-Subject: [PATCH v3 13/13] MAINTAINERS: add entry for inv_icm42600 6-axis imu sensor
-Date:   Mon,  8 Jun 2020 22:42:50 +0200
-Message-Id: <20200608204250.3291-14-jmaneyrol@invensense.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200608204250.3291-1-jmaneyrol@invensense.com>
-References: <20200608204250.3291-1-jmaneyrol@invensense.com>
-Content-Type: text/plain
-X-ClientProxiedBy: LNXP265CA0079.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:76::19) To MN2PR12MB4422.namprd12.prod.outlook.com
- (2603:10b6:208:265::9)
+        id S1726749AbgFHVJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 17:09:08 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:44605 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726566AbgFHVJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 17:09:07 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 3DA9322EE4;
+        Mon,  8 Jun 2020 23:09:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1591650543;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2o+gSIhCA0jJNy2hw5k+4oXmbqw0ZtEPZKBPuFUvEFQ=;
+        b=fAUewLH+4d6OiOYXWhfJBtFX0y8jTLo61f7QVJVPY5w3zbVLy6w8N0q47/HwuL6JeT5Cwb
+        jdzU0mv2Z36vbI9tUGCmrDNWaQN67/ZcVBodL1hm/WCnRQBJ5dfS8s6gWbpYPAclh3wi6r
+        +U2nnX3dLFvpKaYmQH72ZqqNv0hmuts=
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from frgnb-buildozer.invcorp.invensense.com (77.157.193.39) by LNXP265CA0079.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:76::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 20:44:09 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [77.157.193.39]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eebb79a0-9e51-4ca6-84dd-08d80becb2bc
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4205:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB420556EF4EBED6E771E2DBACC4850@MN2PR12MB4205.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-Forefront-PRVS: 042857DBB5
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i5IV4b4Rhstbf4pu+2Z7d00518WuLVbaaHFWEsO3hHBlmnFDrybPx8GPU811JBbH/IVnkgwz+9BxqMosQ/hvOuV99YokbBK9H29kGefFKR8FYeSY0B70ZOizp7De8rwwE3mUrqmHOzy1PwQSB4MQ1c9zC39kpCVV65vLv6j7zQ3+tyv61waQXzTXSq0wW+Ng085nkdM4tEYx65oucf2nIYQRgFxZ8/mofUSrmLMXs1J3lA3qrZlGZ6MmZLZ7s6bmMnA/d8Jj2ffZ2OvAxaSmU/gnBz4Fn008GFG2y/502NYGuGiiUa3YqNb4cK6Xxb3/9DQNie06VjqxxqXAynAVT9Cd+vpx5ijvcRurhe259TPsYeZ4R+o9a9/JZskqfB5PvVjFJJxAsI1sDBc5vBU9sA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4422.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(346002)(376002)(396003)(39850400004)(366004)(136003)(316002)(966005)(478600001)(107886003)(8936002)(956004)(2616005)(8676002)(7696005)(52116002)(66556008)(4744005)(6486002)(5660300002)(86362001)(66476007)(66946007)(26005)(2906002)(16526019)(4326008)(186003)(36756003)(1076003)(6666004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: NTMln7q93fB3V2UAjm7p8O9S7b7pyiGU6a6NeXF3kudqqvGcI/oD4CJj3YAqO7OgFAUty2TMUKdk1g4B9Ki0KjVn74FFCfT5tb3MDv8q87PfudB6WG3A1QCS3p8dwamnLQ374Jt6wBm+u+6JGq4d8Uvd82xsUAy9z3O4h4aRN2O+TaO7W3J6Q5TZEF/qfkHHdoAn5DXKtLEnaeSR2Try6/keOjgnx5oYc/1Hcx5nNPY87n+P9UD6PKBIeaxbXp1eo/ZQU4eUp2BTyZZleZV2X0JL+g2ioxcOX8m3AZtoJp1E2EXT2hnGu8g8C0AGlhZRrZuzoX8WNJQiVFP/Dn5limaHbr7hOGxBbeXuouSBJaEcNI0AJAgRljRb2f3AXQZClygPL1/GwLT+OPbb4DB70odC9gmVqgLawGXuNLo1TPuMnoR/V4QavZnQhp8uymEomG+Fbs5Ojl+8C5a/bfIceU9Vl5aMCCdtgW5yX/xZGFU=
-X-OriginatorOrg: invensense.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eebb79a0-9e51-4ca6-84dd-08d80becb2bc
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 20:44:11.4191
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 462b3b3b-e42b-47ea-801a-f1581aac892d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 33MWJDgmmExMZwgeSTV8viyE2nheZrDN9MLDGtX1mukEEcmqEJ2LKAt5gcYiM0QmTG7vzn4zmyfhBrMwMp1Gpg0VsRXsB8zZRxkHOU5ydvk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4205
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-06-08_18:2020-06-08,2020-06-08 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- spamscore=0 phishscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
- malwarescore=0 clxscore=1015 cotscore=-2147483648 adultscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2006080144
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 08 Jun 2020 23:09:01 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        david.m.ertman@intel.com, shiraz.saleem@intel.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K?= =?UTF-8?Q?=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v4 02/11] mfd: Add support for Kontron sl28cpld management
+ controller
+In-Reply-To: <20200608185651.GD4106@dell>
+References: <20200604211039.12689-1-michael@walle.cc>
+ <20200604211039.12689-3-michael@walle.cc> <20200605065709.GD3714@dell>
+ <20200605105026.GC5413@sirena.org.uk>
+ <c5632bfab3956265e90fc2fb6c0b3cae@walle.cc>
+ <20200606114645.GB2055@sirena.org.uk>
+ <dc052a5c77171014ecc465b1da8b7ef8@walle.cc> <20200608082827.GB3567@dell>
+ <CAHp75VdiH=J-ovCdh1RFJDW_bJM8=pbXRaHmB691GLb-5oBmYQ@mail.gmail.com>
+ <7d7feb374cbf5a587dc1ce65fc3ad672@walle.cc> <20200608185651.GD4106@dell>
+User-Agent: Roundcube Webmail/1.4.4
+Message-ID: <32231f26f7028d62aeda8fdb3364faf1@walle.cc>
+X-Sender: michael@walle.cc
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for InvenSense ICM-426xx IMU device.
+Am 2020-06-08 20:56, schrieb Lee Jones:
+> On Mon, 08 Jun 2020, Michael Walle wrote:
+> 
+>> Am 2020-06-08 12:02, schrieb Andy Shevchenko:
+>> > +Cc: some Intel people WRT our internal discussion about similar
+>> > problem and solutions.
+>> >
+>> > On Mon, Jun 8, 2020 at 11:30 AM Lee Jones <lee.jones@linaro.org> wrote:
+>> > > On Sat, 06 Jun 2020, Michael Walle wrote:
+>> > > > Am 2020-06-06 13:46, schrieb Mark Brown:
+>> > > > > On Fri, Jun 05, 2020 at 10:07:36PM +0200, Michael Walle wrote:
+>> > > > > > Am 2020-06-05 12:50, schrieb Mark Brown:
+>> >
+>> > ...
+>> >
+>> > > Right.  I'm suggesting a means to extrapolate complex shared and
+>> > > sometimes intertwined batches of register sets to be consumed by
+>> > > multiple (sub-)devices spanning different subsystems.
+>> > >
+>> > > Actually scrap that.  The most common case I see is a single Regmap
+>> > > covering all child-devices.
+>> >
+>> > Yes, because often we need a synchronization across the entire address
+>> > space of the (parent) device in question.
+>> >
+>> > >  It would be great if there was a way in
+>> > > which we could make an assumption that the entire register address
+>> > > space for a 'tagged' (MFD) device is to be shared (via Regmap) between
+>> > > each of the devices described by its child-nodes.  Probably by picking
+>> > > up on the 'simple-mfd' compatible string in the first instance.
+>> > >
+>> > > Rob, is the above something you would contemplate?
+>> > >
+>> > > Michael, do your register addresses overlap i.e. are they intermingled
+>> > > with one another?  Do multiple child devices need access to the same
+>> > > registers i.e. are they shared?
+>> 
+>> No they don't overlap, expect for maybe the version register, which is
+>> just there once and not per function block.
+> 
+> Then what's stopping you having each device Regmap their own space?
 
-Signed-off-by: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Because its just one I2C device, AFAIK thats not possible, right?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 60ed2963efaa..cd8b5fece94d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8861,6 +8861,14 @@ F:	include/dt-bindings/interconnect/
- F:	include/linux/interconnect-provider.h
- F:	include/linux/interconnect.h
- 
-+INVENSENSE ICM-426xx IMU DRIVER
-+M:	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+W	https://invensense.tdk.com/
-+F:	Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-+F:	drivers/iio/imu/inv_icm42600/
-+
- INVENSENSE MPU-3050 GYROSCOPE DRIVER
- M:	Linus Walleij <linus.walleij@linaro.org>
- L:	linux-iio@vger.kernel.org
--- 
-2.17.1
+> The issues I wish to resolve using 'simple-mfd' are when sub-devices
+> register maps overlap and intertwine.
+> 
+>> > > > > > But, there is more in my driver:
+>> > > > > >  (1) there is a version check
+>> > >
+>> > > If we can rid the Regmap dependency, then creating an entire driver to
+>> > > conduct a version check is unjustifiable.  This could become an inline
+>> > > function which is called by each of the sub-devices instead, for
+>> > > example.
+>> 
+>> sounds good to me. (although there would then be a probe fail per 
+>> sub-device
+>> if the version is not supported)
+> 
+> I don't see an issue with that.  I would put that check inside a
+> shared call though, complete with support for locking.
+> 
+>> > > > > >  (2) there is another function for which there is no suitable linux
+>> > > > > >      subsystem I'm aware of and thus which I'd like to us sysfs
+>> > > > > >      attributes for: This controller supports 16 non-volatile
+>> > > > > >      configuration bits. (this is still TBD)
+>> > >
+>> > > There is a place for everything in Linux.
+>> > >
+>> > > What do these bits configure?
+>> 
+>> - hardware strappings which have to be there before the board powers 
+>> up,
+>>   like clocking mode for different SerDes settings
+>> - "keep-in-reset" bits for onboard peripherals if you want to save 
+>> power
+>> - disable watchdog bits (there is a watchdog which is active right 
+>> from
+>>   the start and supervises the bootloader start and switches to 
+>> failsafe
+>>   mode if it wasn't successfully started)
+>> - special boot modes, like eMMC, etc.
+>> 
+>> Think of it as a 16bit configuration word.
+> 
+> And you wish for users to be able to view these at run-time?
 
+And esp. change them.
+
+> Can they adapt any of them on-the-fly or will the be RO?
+
+They are R/W but only will only affect the board behavior after a reset.
+
+-michael
+
+> 
+>> > > > > TBH I'd also say that the enumeration of the subdevices for this
+>> > > > > device should be in the device rather than the DT, they don't
+>> > > > > seem to be things that exist outside of this one device.
+>> > > >
+>> > > > We're going circles here, formerly they were enumerated in the MFD.
+>> > > > Yes, they are devices which aren't likely be used outside a
+>> > > > "sl28cpld", but there might there might be other versions of the
+>> > > > sl28cpld with other components on different base addresses. I
+>> > > > don't care if they are enumerated in DT or MFD, actually, I'd
+>> > > > prefer the latter. _But_ I would like to have the device tree
+>> > > > properties for its subdevices, e.g. the ones for the watchdog or
+>> > > > whatever components there might be in the future.
+>> > >
+>> > > [...]
+>> > >
+>> > > > MFD core can
+>> > > > match a device tree node today; but only one per unique compatible
+>> > > > string. So what should I use to differentiate the different
+>> > > > subdevices?
+>> > >
+>> > > Right.  I have been aware of this issue.  The only suitable solution
+>> > > to this would be to match on 'reg'.
+>> 
+>> see below (1)
+>> 
+>> > >
+>> > > FYI: I plan to fix this.
+>> > >
+>> > > If your register map needs to change, then I suggest that this is
+>> > > either a new device or at least a different version of the device and
+>> > > would also have to be represented as different (sub-)mfd_cell.
+>> > >
+>> > > > Rob suggested the internal offset, which I did here.
+>> > >
+>> > > FWIW, I don't like this idea.  DTs should not have to be modified
+>> > > (either in the first instance or subsequently) or specifically
+>> > > designed to patch inadequacies in any given OS.
+>> 
+>> How does (1) play together with this? What do you propose the "reg"
+>> property should contain?
+> 
+> Whatever is in the 'reg' property contained in the Device Tree node.
+> Either the full address or an offset would be suitable.
+> 
+> Caveat: All this thinking has been done on-the-fly.  I would need to
+> look at some examples of existing devices and start coding before I
+> could really think the solution through.
+> 
+> Happy to discuss and/or take recommendations though.
