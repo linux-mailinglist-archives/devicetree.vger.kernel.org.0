@@ -2,78 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EF581F1400
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 09:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F2D1F1413
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 10:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729029AbgFHH4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 03:56:04 -0400
-Received: from lucky1.263xmail.com ([211.157.147.134]:35290 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbgFHH4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 03:56:04 -0400
-X-Greylist: delayed 379 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Jun 2020 03:56:02 EDT
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 086B9B9334;
-        Mon,  8 Jun 2020 15:49:41 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P760T139944219621120S1591602577688290_;
-        Mon, 08 Jun 2020 15:49:42 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <8c0c25071f237d33768625deda5c51f0>
-X-RL-SENDER: sugar.zhang@rock-chips.com
-X-SENDER: zxg@rock-chips.com
-X-LOGIN-NAME: sugar.zhang@rock-chips.com
-X-FST-TO: vkoul@kernel.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-From:   Sugar Zhang <sugar.zhang@rock-chips.com>
-To:     Vinod Koul <vkoul@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Sugar Zhang <sugar.zhang@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 04/13] ARM: dts: rk3036: Add 'arm,pl330-periph-burst' for dmac
-Date:   Mon,  8 Jun 2020 15:49:18 +0800
-Message-Id: <1591602567-43788-5-git-send-email-sugar.zhang@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1591602567-43788-1-git-send-email-sugar.zhang@rock-chips.com>
-References: <1591602567-43788-1-git-send-email-sugar.zhang@rock-chips.com>
+        id S1728955AbgFHIC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 04:02:26 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:53930 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725840AbgFHICZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jun 2020 04:02:25 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id ED924634C87;
+        Mon,  8 Jun 2020 11:00:42 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1jiCi3-0004mZ-3R; Mon, 08 Jun 2020 11:00:43 +0300
+Date:   Mon, 8 Jun 2020 11:00:43 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     mchehab@kernel.org, manivannan.sadhasivam@linaro.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com, peter.griffin@linaro.org
+Subject: Re: [PATCH v3 08/10] media: i2c: imx290: Add support to enumerate
+ all frame sizes
+Message-ID: <20200608080043.GN9947@valkosipuli.retiisi.org.uk>
+References: <20200524192505.20682-1-andrey.konovalov@linaro.org>
+ <20200524192505.20682-9-andrey.konovalov@linaro.org>
+ <20200526091716.GJ8214@valkosipuli.retiisi.org.uk>
+ <effee6cc-680f-3234-2e56-2f6b24d107cd@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <effee6cc-680f-3234-2e56-2f6b24d107cd@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch Add the quirk to specify to use burst transfer
-for better compatible and higher performance.
+On Sun, Jun 07, 2020 at 07:28:56PM +0300, Andrey Konovalov wrote:
+> Hi Sakari,
+> 
+> Thank you for the review!
+> 
+> On 26.05.2020 12:17, Sakari Ailus wrote:
+> > Hi Andrey,
+> > 
+> > On Sun, May 24, 2020 at 10:25:03PM +0300, Andrey Konovalov wrote:
+> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > 
+> > > Add support to enumerate all frame sizes supported by IMX290. This is
+> > > required for using with userspace tools such as libcamera.
+> > > 
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > Signed-off-by: Andrey Konovalov <andrey.konovalov@linaro.org>
+> > > ---
+> > >   drivers/media/i2c/imx290.c | 20 ++++++++++++++++++++
+> > >   1 file changed, 20 insertions(+)
+> > > 
+> > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> > > index 6e70ff22bc5f..88850f3b1427 100644
+> > > --- a/drivers/media/i2c/imx290.c
+> > > +++ b/drivers/media/i2c/imx290.c
+> > > @@ -471,6 +471,25 @@ static int imx290_enum_mbus_code(struct v4l2_subdev *sd,
+> > >   	return 0;
+> > >   }
+> > > +static int imx290_enum_frame_size(struct v4l2_subdev *subdev,
+> > > +				  struct v4l2_subdev_pad_config *cfg,
+> > > +				  struct v4l2_subdev_frame_size_enum *fse)
+> > > +{
+> > > +	if ((fse->code != imx290_formats[0].code) &&
+> > > +	    (fse->code != imx290_formats[1].code))
+> > > +		return -EINVAL;
+> > 
+> > Please skip the modes that do not have the code specified by the user. They
+> > should not be enumerated here.
+> 
+> I've double checked this part of the code, and it doesn't seem to need changes.
+> The reason is that for the both codes the set of the modes and the frame sizes is
+> exactly the same. And the fse->code check above just guards against the codes not
+> supported by the driver at all.
 
-Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
----
+Indeed. Please then ignore the comment.
 
- arch/arm/boot/dts/rk3036.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index d9a0c9a2..cfec7d6 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -67,6 +67,7 @@
- 				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
- 			arm,pl330-broken-no-flushp;
-++			arm,pl330-periph-burst;
- 			clocks = <&cru ACLK_DMAC2>;
- 			clock-names = "apb_pclk";
- 		};
 -- 
-2.7.4
-
-
-
+Sakari Ailus
