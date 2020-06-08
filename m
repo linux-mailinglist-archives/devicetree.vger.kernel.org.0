@@ -2,45 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B18A51F2264
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 01:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA1D1F2343
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 01:15:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728041AbgFHXHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 19:07:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52576 "EHLO mail.kernel.org"
+        id S1729337AbgFHXNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 19:13:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33090 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728027AbgFHXHw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 19:07:52 -0400
+        id S1729303AbgFHXNV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jun 2020 19:13:21 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1C4C32087E;
-        Mon,  8 Jun 2020 23:07:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BFB2920B80;
+        Mon,  8 Jun 2020 23:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591657671;
-        bh=3WMrB6CIg3LMf536G7ZwY2EFfDrDAtqAJlC+4oM9Ndw=;
+        s=default; t=1591658001;
+        bh=2tfyawIOeBBGpVSvjt7DJKriTpeiTWyLW3csCNfR08k=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SaRQmJijO2kztoniRC5VahQlY57ih1YxiDOWgKxT6tYnwdmM5oJEP5nn+ua+4K80a
-         bRVtOtL2mtVQEyYxrQCr1xKaNLAx/yjeYpBWiKtiLCrd3uPJwpCgDZ8rh7wdq7s3Kd
-         bqsUb4wxMfzUCToRZn1yD2wGL20LfDY0w0BNLKDw=
+        b=G+eDDXahsUbeWkAN1O7Ky/ww+WY94VvjJZUw2nZOSIjDFe7bKGjS1o2XwzbBBBXNv
+         XDpPSzuRzEqpjGMfDK58mvjNJB43w5TM+B1yel0cSJRKpI/GY6W2RCmyRMkxwBw/Q2
+         adXHvdqBW8QzEUihlyT9o3fDCzKzVQOyP8dfDI+M=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, linux-spi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 080/274] spi: dw: Fix Rx-only DMA transfers
-Date:   Mon,  8 Jun 2020 19:02:53 -0400
-Message-Id: <20200608230607.3361041-80-sashal@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.6 058/606] arm64: dts: qcom: msm8996: Reduce vdd_apc voltage
+Date:   Mon,  8 Jun 2020 19:03:03 -0400
+Message-Id: <20200608231211.3363633-58-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
-References: <20200608230607.3361041-1-sashal@kernel.org>
+In-Reply-To: <20200608231211.3363633-1-sashal@kernel.org>
+References: <20200608231211.3363633-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -50,50 +44,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-[ Upstream commit 46164fde6b7890e7a3982d54549947c8394c0192 ]
+commit 28810eecae08f9458a44831978e36f14ed182c80 upstream.
 
-Tx-only DMA transfers are working perfectly fine since in this case
-the code just ignores the Rx FIFO overflow interrupts. But it turns
-out the SPI Rx-only transfers are broken since nothing pushing any
-data to the shift registers, so the Rx FIFO is left empty and the
-SPI core subsystems just returns a timeout error. Since DW DMAC
-driver doesn't support something like cyclic write operations of
-a single byte to a device register, the only way to support the
-Rx-only SPI transfers is to fake it by using a dummy Tx-buffer.
-This is what we intend to fix in this commit by setting the
-SPI_CONTROLLER_MUST_TX flag for DMA-capable platform.
+Some msm8996 based devices are unstable when run with VDD_APC of 1.23V,
+which is listed as the maximum voltage in "Turbo" mode. Given that the
+CPU cluster is not run in "Turbo" mode, reduce this to 0.98V - the
+maximum voltage for nominal operation.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
-Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Feng Tang <feng.tang@intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Link: https://lore.kernel.org/r/20200529131205.31838-9-Sergey.Semin@baikalelectronics.ru
-Signed-off-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Tested-by: Loic Poulain <loic.poulain@linaro.org>
+Fixes: 7a2a2231ef22 ("arm64: dts: apq8096-db820c: Fix VDD core voltage")
+Cc: Loic Poulain <loic.poulain@linaro.org>
+Link: https://lore.kernel.org/r/20200318054442.3066726-1-bjorn.andersson@linaro.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/spi/spi-dw.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/spi/spi-dw.c b/drivers/spi/spi-dw.c
-index 31e3f866d11a..e8f275c850ce 100644
---- a/drivers/spi/spi-dw.c
-+++ b/drivers/spi/spi-dw.c
-@@ -523,6 +523,7 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
- 			dws->dma_inited = 0;
- 		} else {
- 			master->can_dma = dws->dma_ops->can_dma;
-+			master->flags |= SPI_CONTROLLER_MUST_TX;
- 		}
- 	}
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+index fff6115f2670..a85b85d85a5f 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -658,8 +658,8 @@ s10 {
+ 	s11 {
+ 		qcom,saw-leader;
+ 		regulator-always-on;
+-		regulator-min-microvolt = <1230000>;
+-		regulator-max-microvolt = <1230000>;
++		regulator-min-microvolt = <980000>;
++		regulator-max-microvolt = <980000>;
+ 	};
+ };
  
 -- 
 2.25.1
