@@ -2,149 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB981F1A01
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 15:27:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BBB1F1A3D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 15:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728988AbgFHN1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 09:27:24 -0400
-Received: from mga04.intel.com ([192.55.52.120]:48373 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728799AbgFHN1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 09:27:23 -0400
-IronPort-SDR: VKI/Ei8xGcDohHE7F3NU470by6Z3iwrVW/zqOKL/Jcj9Ve2BhSXkVqEBpEPD+CdBugwN5ImTi0
- edy2mm2kwYJQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2020 06:27:22 -0700
-IronPort-SDR: ungGUpT5j+d5S0pUhJNhA7Nxvt+IsR8LGvkXo/B4aaVix6dyYH7I2UOo7AgOF0aTiTk0zhzdfk
- GmsMBJ1M7v+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; 
-   d="scan'208";a="270507472"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003.jf.intel.com with ESMTP; 08 Jun 2020 06:27:17 -0700
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jiHo8-00Bgmg-5M; Mon, 08 Jun 2020 16:27:20 +0300
-Date:   Mon, 8 Jun 2020 16:27:20 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V7, 2/2] media: i2c: dw9768: Add DW9768 VCM driver
-Message-ID: <20200608132720.GS2428291@smile.fi.intel.com>
-References: <20200605105412.18813-1-dongchun.zhu@mediatek.com>
- <20200605105412.18813-3-dongchun.zhu@mediatek.com>
- <20200605124643.GG2428291@smile.fi.intel.com>
- <1591424358.8804.599.camel@mhfsdcap03>
+        id S1729674AbgFHNmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 09:42:55 -0400
+Received: from mail-vi1eur05on2067.outbound.protection.outlook.com ([40.107.21.67]:60961
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725797AbgFHNmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jun 2020 09:42:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WlN0r0CQapirOWvRQls/GMGzSN0eHBG6YJIfYY5jasQLI5WBdoBk9M+V5VINdAQRt7vzoGaYz2JYA1ckdyoGNPo5Hk+6JK4S2Nn5EujrGj33fA/xr4hHYPXGHFbJSV9V01tJRzVgFNrrYQQL5cVcjZK1KqPHpjI2maD2YuJ9OgEzQq7bpyCMnuhnWsJaCCV2g4i1ZlQfM9stTUrHyuSRVVglh7zKVZSp9SCkX71qdNMG5F405mLaFEsXEFZbcpnbAJMJLe8IyJFjOgd0KNoty5agRYfATc+uJe85IJu1vjVelBWD7OjiIXS7acbnnlJXN+3Wb0A5shOdKg7VPKwtlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uc3X0k9FEt976DOrEo+lcC1YvHUIXRR1b779GNtexdQ=;
+ b=WRENw91DOJ9y7MkeDcm26EvMzjBP0gRRuYshAxEXJzjmgGYiiwFyNX/8JHugYL53rVNPpXUdctpec7US6xRr3AM5sc92IJxblN5eU0B22mUN4pc9L85M03pInB8N37nwNr24AZxgZLy9pTgI0vGjRd9RYbb27d8Yv1B8GkmXFebMHNSDLcz5hgPI4GdjtY2MNOQeJMfNycVPAI0lXPPaiAtBKORCmu4XU4thhRpaPPfCUtJLs3OY5mF0u9RdmSCmOsu6CEId1BUXtDKkBe2ILaRDoO5COShWizkjuhZ+HogAUvZigBIg/lueibWL0DE6xtz/HjsQkiyDKvCh+6hGFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uc3X0k9FEt976DOrEo+lcC1YvHUIXRR1b779GNtexdQ=;
+ b=ib2jXlUzAN6AFJm8xn+z12QyvNGwoDa4KOcdDsdxgBQ2Qyejz6CvWkEmYixLDUuHCkv1Y566xj0UkNzJQ6wBPcPnzUuLrKlZymk5tA4orj8ODZoXDvTIJ6cfMwmVHnzRXqfVHK18Qxy9nXU7BWDgf6YqBm1At4aiC7kF1NC4FCQ=
+Authentication-Results: ti.com; dkim=none (message not signed)
+ header.d=none;ti.com; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VE1PR04MB6415.eurprd04.prod.outlook.com (2603:10a6:803:11b::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.20; Mon, 8 Jun
+ 2020 13:42:51 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::5086:ae9e:6397:6b03]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::5086:ae9e:6397:6b03%7]) with mapi id 15.20.3066.023; Mon, 8 Jun 2020
+ 13:42:51 +0000
+From:   Li Jun <jun.li@nxp.com>
+To:     kishon@ti.com, robh+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, jun.li@nxp.com,
+        devicetree@vger.kernel.org, peter.chen@nxp.com
+Subject: [PATCH 1/2] dt-bindings: phy-imx8mq-usb: add compatible string for imx8mp usb phy
+Date:   Mon,  8 Jun 2020 21:11:32 +0800
+Message-Id: <1591621893-22363-1-git-send-email-jun.li@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0096.apcprd02.prod.outlook.com
+ (2603:1096:4:90::36) To VE1PR04MB6528.eurprd04.prod.outlook.com
+ (2603:10a6:803:127::18)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1591424358.8804.599.camel@mhfsdcap03>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from b47624-OptiPlex-7040.ap.freescale.net (119.31.174.71) by SG2PR02CA0096.apcprd02.prod.outlook.com (2603:1096:4:90::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 13:42:48 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.71]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 88dc800a-012f-4886-b9f4-08d80bb1d68b
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6415:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6415777B3B4AEC016581FD4889850@VE1PR04MB6415.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Forefront-PRVS: 042857DBB5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BikAbJjSrVwsZ4LMLNomdpZpz2Ulu7OEc2ityqLsmQ5sR/1z1ymDHxPBltq4scz7oqeD8taAq/uyvly/co0LiBjUjUqZXO9mALN7D5gE+JiQSTvObFqFMzgFLAr3i/1jwVDEgbnTEiDv2RLY+5TaIxr6Hg4lOe8JrJgSqFlj8zm22+g8pkIHpChfH6kYSXYddLUtQ0xkvF4LxFP2ouMgXL0HoHRPH3fHLBJUs4oTuVU9T0tv7coMfB8telqQbyvVYE2rb7jzsoywIiCJCjUitmAoSKTiNeXqm/n/xjUExAnIkUMkZ4RPrLh19Ub40XzntaoxMzJrqbBln+7gzYmAskLCoT+jIwtWuOX/3tj0VQVj8UJmUg/aQijeN/W9zahS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(366004)(136003)(39860400002)(376002)(346002)(6512007)(66946007)(26005)(66476007)(52116002)(36756003)(83380400001)(4744005)(6506007)(8676002)(66556008)(316002)(16526019)(2906002)(6486002)(5660300002)(478600001)(8936002)(186003)(4326008)(956004)(86362001)(6666004)(2616005)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: gcNBoREG4aDKP3I51SvUIp0e4ATnlAzudmv+LHaTg49jcopB6iDk4ZD5dJr53pLVwbpc8GMeN5DHTBA54uNvy/ve+Kzh44f2j/CmblClK7KJJTOPAYLfUtzjG4LT++/9MnuKp3z+OreFOBb3s4lIA9xqJw3Ww39WctW/UV7NXlgyi0Jjaw2KJ1oGSNzHQq1uqiLMf12Ov5jDJQVsYdnxyWw7oktuW0DH7MFBqX8hscjQlN3RMIEwyMPwDgWQBvouo5AU0cZzZSIeTzh7GOlO6dUOyvxFq4r13snqZSYt69vwqA20/CRR3tAvJza0K8n8WaARBqdlDkmJZRTFabUTqccLJ9QBMAw2aKF9hS6Z6eVu3dm7gKh1jT7eeCiuCod1VgYLpD/nXzmnJpsmtvzculgVD49OHXk6Mc/M1YKi7qI12lP4DNJTHYjv7b3yYCC5F4GgfzzFTyZIxQSHZfqU7QskNQr2YLsydMcxxn69Yks=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88dc800a-012f-4886-b9f4-08d80bb1d68b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 13:42:51.3071
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 65bUZSM4NKxPVQj9MzSNPSCA4eT55H/fVGzP6GpPp28zAX2sHDG2agc/2DTMbYTu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6415
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 06, 2020 at 02:19:18PM +0800, Dongchun Zhu wrote:
-> On Fri, 2020-06-05 at 15:46 +0300, Andy Shevchenko wrote:
-> > On Fri, Jun 05, 2020 at 06:54:12PM +0800, Dongchun Zhu wrote:
+Add "fsl,imx8mp-usb-phy" compatible string for imx8mp usb phy, which is
+similar with imx8mq usb phy but with some different customizations.
 
-...
+Signed-off-by: Li Jun <jun.li@nxp.com>
 
-> > > +	depends on I2C && VIDEO_V4L2
-> > 
-> > No compile test?
-> > 
-> 
-> Sorry?
-> Kconfig here is based on the current media tree master branch.
-> It is also what the other similar drivers from Dongwoon do. 
-
-COMPILE_TEST.
-I dunno if it's established or not practice in media subsystem.
-
-...
-
-> > > +/*
-> > > + * DW9768 requires waiting time (delay time) of t_OPR after power-up,
-> > > + * or in the case of PD reset taking place.
-> > > + */
-> > > +#define DW9768_T_OPR_US				1000
-> > > +#define DW9768_Tvib_MS_BASE10			(64 - 1)
-> > > +#define DW9768_AAC_MODE_DEFAULT			2
-> > 
-> > > +#define DW9768_AAC_TIME_DEFAULT			0x20
-> > 
-> > Hex? Why not decimal?
-> > 
-> 
-> There is one optional property 'dongwoon,aac-timing' defined in DT.
-> I don't know whether you have noticed that.
-> 
-> 'DW9768_AAC_TIME_DEFAULT' is the value set to AACT[5:0] register.
-> I thought the Hex unit should be proper as it is directly written to the
-> Hex register.
-
-I see. I would rather put it like (BIT(6) / 2) to show explicitly that we
-choose half of the resolution.
-
-...
-
-> > > +	val = ((unsigned char)ret & ~mask) | (val & mask);
-> > 
-> > This cast is weird.
-> > 
-> 
-> Thanks for the review, but this cast is using classical pattern from
-> your suggestion on OV02A10 v5:
-> https://patchwork.linuxtv.org/patch/59788/
-> 
-> So I wonder whether it is still required to be refined currently.
-> Or what would it be supposed to do for the cast?
-
-Okay, does it produce a warning w/o cast?
-If yes, replace it at least to be the same type as mask and val.
-
-...
-
-> > > +	for ( ; val >= 0; val -= DW9768_MOVE_STEPS) {
-> > > +		ret = dw9768_set_dac(dw9768, val);
-> > > +		if (ret) {
-> > > +			dev_err(&client->dev, "I2C write fail: %d", ret);
-> > > +			return ret;
-> > > +		}
-> > > +		usleep_range(move_delay_us, move_delay_us + 1000);
-> > > +	}
-> > 
-> > 
-> > It will look more naturally in the multiplier kind of value.
-> > 
-> > 	unsigned int steps = DIV_ROUND_UP(...);
-> > 
-> > 	while (steps--) {
-> > 		...(..., steps * ..._MOVE_STEPS);
-> > 		...
-> > 	}
-> > 
-> > but double check arithmetics.
-> 
-> The current coding style is actually updated with reference to your
-> previous comments on DW9768 v3:
-> https://patchwork.linuxtv.org/patch/61856/
-
-I understand, but can you consider to go further and see if the proposal works?
-
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
+index ed47e5c..7c70f2a 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
+@@ -1,7 +1,7 @@
+ * Freescale i.MX8MQ USB3 PHY binding
+ 
+ Required properties:
+-- compatible:	Should be "fsl,imx8mq-usb-phy"
++- compatible:	Should be "fsl,imx8mq-usb-phy" or "fsl,imx8mp-usb-phy"
+ - #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
+ - reg:		The base address and length of the registers
+ - clocks:	phandles to the clocks for each clock listed in clock-names
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.7.4
 
