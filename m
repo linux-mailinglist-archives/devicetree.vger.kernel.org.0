@@ -2,70 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 128FF1F1907
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 14:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBB981F1A01
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2020 15:27:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729100AbgFHMq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 08:46:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54040 "EHLO mail.kernel.org"
+        id S1728988AbgFHN1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 09:27:24 -0400
+Received: from mga04.intel.com ([192.55.52.120]:48373 "EHLO mga04.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728973AbgFHMqR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 08:46:17 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2FE0F2076A;
-        Mon,  8 Jun 2020 12:46:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591620376;
-        bh=Wq/+Uk6aoGGFVXLgFp6Ufm0w+dLdqZNzS0VJAWWMN3Y=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=WCW74dpurI56Y4x3OmKY7vQ1f3D2C8gnCUyKS/OTbs60t0+NSFYD4cQatOH+NKeBq
-         im94IQRdb2unFosKEp64Fz+drKc/tttF5ukguidxXG9UFyqV5RexGgsiaMRjnhugtE
-         yylDilt/pkIflLMdPPZVQG40Axi7ZLV8TaES3flg=
-Date:   Mon, 08 Jun 2020 13:46:14 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, tiwai@suse.com, Dan Murphy <dmurphy@ti.com>,
-        perex@perex.cz
-Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20200602193524.30309-1-dmurphy@ti.com>
-References: <20200602193524.30309-1-dmurphy@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: ASoc: Fix tdm-slot documentation spelling error
-Message-Id: <159162036934.23368.11280508141452953751.b4-ty@kernel.org>
+        id S1728799AbgFHN1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jun 2020 09:27:23 -0400
+IronPort-SDR: VKI/Ei8xGcDohHE7F3NU470by6Z3iwrVW/zqOKL/Jcj9Ve2BhSXkVqEBpEPD+CdBugwN5ImTi0
+ edy2mm2kwYJQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2020 06:27:22 -0700
+IronPort-SDR: ungGUpT5j+d5S0pUhJNhA7Nxvt+IsR8LGvkXo/B4aaVix6dyYH7I2UOo7AgOF0aTiTk0zhzdfk
+ GmsMBJ1M7v+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; 
+   d="scan'208";a="270507472"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga003.jf.intel.com with ESMTP; 08 Jun 2020 06:27:17 -0700
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1jiHo8-00Bgmg-5M; Mon, 08 Jun 2020 16:27:20 +0300
+Date:   Mon, 8 Jun 2020 16:27:20 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V7, 2/2] media: i2c: dw9768: Add DW9768 VCM driver
+Message-ID: <20200608132720.GS2428291@smile.fi.intel.com>
+References: <20200605105412.18813-1-dongchun.zhu@mediatek.com>
+ <20200605105412.18813-3-dongchun.zhu@mediatek.com>
+ <20200605124643.GG2428291@smile.fi.intel.com>
+ <1591424358.8804.599.camel@mhfsdcap03>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1591424358.8804.599.camel@mhfsdcap03>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Jun 2020 14:35:23 -0500, Dan Murphy wrote:
-> Fix the spelling of 'specified'.  Also fix grammarical issue with the
-> use of 'a' over 'an'
+On Sat, Jun 06, 2020 at 02:19:18PM +0800, Dongchun Zhu wrote:
+> On Fri, 2020-06-05 at 15:46 +0300, Andy Shevchenko wrote:
+> > On Fri, Jun 05, 2020 at 06:54:12PM +0800, Dongchun Zhu wrote:
 
-Applied to
+...
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> > > +	depends on I2C && VIDEO_V4L2
+> > 
+> > No compile test?
+> > 
+> 
+> Sorry?
+> Kconfig here is based on the current media tree master branch.
+> It is also what the other similar drivers from Dongwoon do. 
 
-Thanks!
+COMPILE_TEST.
+I dunno if it's established or not practice in media subsystem.
 
-[1/1] dt-bindings: ASoc: Fix tdm-slot documentation spelling error
-      commit: 8a9144c1cf523221b37dd3393827253c91fcbf54
+...
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> > > +/*
+> > > + * DW9768 requires waiting time (delay time) of t_OPR after power-up,
+> > > + * or in the case of PD reset taking place.
+> > > + */
+> > > +#define DW9768_T_OPR_US				1000
+> > > +#define DW9768_Tvib_MS_BASE10			(64 - 1)
+> > > +#define DW9768_AAC_MODE_DEFAULT			2
+> > 
+> > > +#define DW9768_AAC_TIME_DEFAULT			0x20
+> > 
+> > Hex? Why not decimal?
+> > 
+> 
+> There is one optional property 'dongwoon,aac-timing' defined in DT.
+> I don't know whether you have noticed that.
+> 
+> 'DW9768_AAC_TIME_DEFAULT' is the value set to AACT[5:0] register.
+> I thought the Hex unit should be proper as it is directly written to the
+> Hex register.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I see. I would rather put it like (BIT(6) / 2) to show explicitly that we
+choose half of the resolution.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+...
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> > > +	val = ((unsigned char)ret & ~mask) | (val & mask);
+> > 
+> > This cast is weird.
+> > 
+> 
+> Thanks for the review, but this cast is using classical pattern from
+> your suggestion on OV02A10 v5:
+> https://patchwork.linuxtv.org/patch/59788/
+> 
+> So I wonder whether it is still required to be refined currently.
+> Or what would it be supposed to do for the cast?
 
-Thanks,
-Mark
+Okay, does it produce a warning w/o cast?
+If yes, replace it at least to be the same type as mask and val.
+
+...
+
+> > > +	for ( ; val >= 0; val -= DW9768_MOVE_STEPS) {
+> > > +		ret = dw9768_set_dac(dw9768, val);
+> > > +		if (ret) {
+> > > +			dev_err(&client->dev, "I2C write fail: %d", ret);
+> > > +			return ret;
+> > > +		}
+> > > +		usleep_range(move_delay_us, move_delay_us + 1000);
+> > > +	}
+> > 
+> > 
+> > It will look more naturally in the multiplier kind of value.
+> > 
+> > 	unsigned int steps = DIV_ROUND_UP(...);
+> > 
+> > 	while (steps--) {
+> > 		...(..., steps * ..._MOVE_STEPS);
+> > 		...
+> > 	}
+> > 
+> > but double check arithmetics.
+> 
+> The current coding style is actually updated with reference to your
+> previous comments on DW9768 v3:
+> https://patchwork.linuxtv.org/patch/61856/
+
+I understand, but can you consider to go further and see if the proposal works?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
