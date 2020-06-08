@@ -2,181 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 430321F2203
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 01:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D191D1F231F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 01:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726749AbgFHXBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jun 2020 19:01:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48062 "EHLO mail.kernel.org"
+        id S1728507AbgFHXMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jun 2020 19:12:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60368 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726746AbgFHXBy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jun 2020 19:01:54 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        id S1729188AbgFHXMu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jun 2020 19:12:50 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D666206D5;
-        Mon,  8 Jun 2020 23:01:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A6FE5214F1;
+        Mon,  8 Jun 2020 23:12:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591657313;
-        bh=E2VDSxyTsjme/SDDJYb/Ce8BPIu8k9mIpohu+7Y2fi4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QCmsWHtuUrkP99N9zTwI1IYiExbKn+Evf9ftBvwrf3b5ttojeS+Hyn7Edq402+ZVR
-         Qy7IVlA83KbFqbAghS2O1o9Vfm+cSqA6RtCL0MpFakR/wFQqZ6tZbJBuAzjZoGNeG2
-         9graD5Nhc6mPEcrc7kgBH5k8/4opuDcpntGKKAM4=
-Received: by mail-oi1-f178.google.com with SMTP id k4so15398485oik.2;
-        Mon, 08 Jun 2020 16:01:53 -0700 (PDT)
-X-Gm-Message-State: AOAM5302k/rABPCTx/593gRZMYGMQl2cwuIZFRGWeaYBw7mBzlcjtIaT
-        6XSWpGN70ngCIKTBF5rToMP2bi0ZDjDcLPmCow==
-X-Google-Smtp-Source: ABdhPJxObAvxE+OOnTXcIgh61N2TLSHvj0BypJ4NL+n+aOPoAluENZ8Z4kbXmRaFm6G3U4eAOxdn3BnGxOwTfQQTlPQ=
-X-Received: by 2002:aca:d454:: with SMTP id l81mr1365615oig.152.1591657312818;
- Mon, 08 Jun 2020 16:01:52 -0700 (PDT)
+        s=default; t=1591657970;
+        bh=eCdWYHv8EcvxTFVDZa4tARPB5ii607RoSfNA5U3lK6s=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=DKLy+PXM+4ek5uyjAcDeQJH4L8kdhc1+hxQ8tSvuqqUpApJXfUAwyjBry/r6BtzcJ
+         eEKdeUIwnguAT0aXyXOrWNPS2YF71UE4z102R2VT2Re//dS+xgTp+YqdCj/G2yt57o
+         bK4CcCqiC2sGT3ifsXSe0d57Xi5Zi2lMj4oUADqs=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.6 033/606] ARM: dts: imx27-phytec-phycard-s-rdk: Fix the I2C1 pinctrl entries
+Date:   Mon,  8 Jun 2020 19:02:38 -0400
+Message-Id: <20200608231211.3363633-33-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200608231211.3363633-1-sashal@kernel.org>
+References: <20200608231211.3363633-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <cover.aaf2100bd7da4609f8bcb8216247d4b4e4379639.1590594512.git-series.maxime@cerno.tech>
- <e85e24a494a3ff41177c94673ced0f4280b6a0ee.1590594512.git-series.maxime@cerno.tech>
- <20200529181833.GA2685451@bogus> <20200602150834.6xovwdxpgncq3ybh@gilmour>
-In-Reply-To: <20200602150834.6xovwdxpgncq3ybh@gilmour>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 8 Jun 2020 17:01:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJShNcyUDv1JmdanLKZqFa0TeJGazwmPz6eJ_Rq0GtkpQ@mail.gmail.com>
-Message-ID: <CAL_JsqJShNcyUDv1JmdanLKZqFa0TeJGazwmPz6eJ_Rq0GtkpQ@mail.gmail.com>
-Subject: Re: [PATCH v3 104/105] dt-bindings: display: vc4: hdmi: Add BCM2711
- HDMI controllers bindings
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 2, 2020 at 9:08 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Rob,
->
-> On Fri, May 29, 2020 at 12:18:33PM -0600, Rob Herring wrote:
-> > On Wed, May 27, 2020 at 05:49:14PM +0200, Maxime Ripard wrote:
-> > > The HDMI controllers found in the BCM2711 SoC need some adjustments to the
-> > > bindings, especially since the registers have been shuffled around in more
-> > > register ranges.
-> > >
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > > ---
-> > >  Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml | 109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
-> > >  1 file changed, 109 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > > new file mode 100644
-> > > index 000000000000..6091fe3d315b
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > > @@ -0,0 +1,109 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> >
-> > Dual license...
-> >
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/brcm,bcm2711-hdmi.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Broadcom BCM2711 HDMI Controller Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Eric Anholt <eric@anholt.net>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - brcm,bcm2711-hdmi0
-> > > +      - brcm,bcm2711-hdmi1
-> >
-> > What's the difference between the 2 blocks?
->
-> The register layout and the lane mapping in the PHY change a bit.
->
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: HDMI controller register range
-> > > +      - description: DVP register range
-> > > +      - description: HDMI PHY register range
-> > > +      - description: Rate Manager register range
-> > > +      - description: Packet RAM register range
-> > > +      - description: Metadata RAM register range
-> > > +      - description: CSC register range
-> > > +      - description: CEC register range
-> > > +      - description: HD register range
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: hdmi
-> > > +      - const: dvp
-> > > +      - const: phy
-> > > +      - const: rm
-> > > +      - const: packet
-> > > +      - const: metadata
-> > > +      - const: csc
-> > > +      - const: cec
-> > > +      - const: hd
-> > > +
-> > > +  clocks:
-> > > +    description: The HDMI state machine clock
-> > > +
-> > > +  clock-names:
-> > > +    const: hdmi
-> > > +
-> > > +  ddc:
-> > > +    allOf:
-> > > +      - $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: >
-> > > +      Phandle of the I2C controller used for DDC EDID probing
-> >
-> > Goes in the connector.
-> >
-> > And isn't the standard name ddc-i2c-bus?
-> >
-> > > +
-> > > +  hpd-gpios:
-> > > +    description: >
-> > > +      The GPIO pin for the HDMI hotplug detect (if it doesn't appear
-> > > +      as an interrupt/status bit in the HDMI controller itself)
-> >
-> > Goes in the connector.
->
-> If this was an entirely new binding, I would agree, but this is not
-> really the case here.
->
-> We discussed it already for the v2, and this binding is essentially the
-> same one than the bcm2835 HDMI controller.
->
-> I initially sent a patch adding conditionnals for the clocks and regs
-> differences too, and you asked to split the binding into a separate file
-> to simplify it a bit.
+From: Fabio Estevam <festevam@gmail.com>
 
-Ah... Best to assume I don't remember what happened last week. ;)
+commit 0caf34350a25907515d929a9c77b9b206aac6d1e upstream.
 
-> Supporting both the old binding, and the new one based on the connector
-> is going to make the code significantly more complicated, and I'm not
-> really sure why we would here.
+The I2C2 pins are already used and the following errors are seen:
 
-I'm not really sure I agree on the complexity, but that can be a
-discussion for another day.
+imx27-pinctrl 10015000.iomuxc: pin MX27_PAD_I2C2_SDA already requested by 10012000.i2c; cannot claim for 1001d000.i2c
+imx27-pinctrl 10015000.iomuxc: pin-69 (1001d000.i2c) status -22
+imx27-pinctrl 10015000.iomuxc: could not request pin 69 (MX27_PAD_I2C2_SDA) from group i2c2grp  on device 10015000.iomuxc
+imx-i2c 1001d000.i2c: Error applying setting, reverse things back
+imx-i2c: probe of 1001d000.i2c failed with error -22
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Fix it by adding the correct I2C1 IOMUX entries for the pinctrl_i2c1 group.
 
-Rob
+Cc: <stable@vger.kernel.org>
+Fixes: 61664d0b432a ("ARM: dts: imx27 phyCARD-S pinctrl")
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Reviewed-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ arch/arm/boot/dts/imx27-phytec-phycard-s-rdk.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx27-phytec-phycard-s-rdk.dts b/arch/arm/boot/dts/imx27-phytec-phycard-s-rdk.dts
+index 0cd75dadf292..188639738dc3 100644
+--- a/arch/arm/boot/dts/imx27-phytec-phycard-s-rdk.dts
++++ b/arch/arm/boot/dts/imx27-phytec-phycard-s-rdk.dts
+@@ -75,8 +75,8 @@ &iomuxc {
+ 	imx27-phycard-s-rdk {
+ 		pinctrl_i2c1: i2c1grp {
+ 			fsl,pins = <
+-				MX27_PAD_I2C2_SDA__I2C2_SDA 0x0
+-				MX27_PAD_I2C2_SCL__I2C2_SCL 0x0
++				MX27_PAD_I2C_DATA__I2C_DATA 0x0
++				MX27_PAD_I2C_CLK__I2C_CLK 0x0
+ 			>;
+ 		};
+ 
+-- 
+2.25.1
+
