@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FC41F40AF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 18:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7651F40CC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 18:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729034AbgFIQZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 12:25:48 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:50738 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728865AbgFIQZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 12:25:47 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id 06E6E2A3C09
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Philippe CORNU <philippe.cornu@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jonas Karlman <jonas@kwiboo.se>, linux-imx@nxp.com,
-        kernel@collabora.com, linux-stm32@st-md-mailman.stormreply.com,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH v9 11/11] Documentation: gpu: todo: Add dw-mipi-dsi consolidation plan
-Date:   Tue,  9 Jun 2020 19:27:00 +0300
-Message-Id: <20200609162700.953260-12-adrian.ratiu@collabora.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200609162700.953260-1-adrian.ratiu@collabora.com>
-References: <20200609162700.953260-1-adrian.ratiu@collabora.com>
+        id S1727814AbgFIQ2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 12:28:34 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:36856 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726404AbgFIQ2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 12:28:34 -0400
+Received: by mail-io1-f67.google.com with SMTP id r77so10472969ior.3;
+        Tue, 09 Jun 2020 09:28:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=A6vd48ocHYfhIgGf9VmwdBfWMzr2z9+KHgzkdfZG/Pw=;
+        b=gdc5NQvllc6HFYMiHDxPVFrXN1WzeG6f8xWMyfju/+9W1a/dTIaU/TiTGVumkwsnmk
+         N1rfHuKlDQimxSYMvp91xWBOHVyuT1wOSVDxYlTJYqjTb6IM3kYrdj1QB2gnztgHDVVx
+         T9jeeXvkmkPvPj7RyutsbMgkJ8UxJ/QcJQpHgWazEt0SENDEy1G9OBRhv3XvO19yxEa3
+         vywbsfTsCsQgIgQIhlmAxS/ecYzbEUJlbQ6/5MCJVV5eVhrbkMEp7lAB35SxCelzlRNV
+         ezzpl+DW8XdZHIRw8OxyW6D7XxUMyw3ZDt+Q58/KcjndZ0DjF9+TFCX85SKtXBqvqFch
+         SrcA==
+X-Gm-Message-State: AOAM5321vBUx3YzsRbR/08cBtvMMGXjHs0lmIQkXipXsR38MJDA8fFgp
+        V1gko/kAdGR1ZRfkDt1qZA==
+X-Google-Smtp-Source: ABdhPJxppbDKoA41o6uRyry3FgAKOA+jukh4Ub5WxT2GMgvWiM/pMXyEGjvEw/XePOisx3B4ZJrI5Q==
+X-Received: by 2002:a05:6638:1483:: with SMTP id j3mr27698460jak.65.1591720112867;
+        Tue, 09 Jun 2020 09:28:32 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y13sm7449594iob.51.2020.06.09.09.28.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2020 09:28:32 -0700 (PDT)
+Received: (nullmailer pid 1020807 invoked by uid 1000);
+        Tue, 09 Jun 2020 16:28:30 -0000
+Date:   Tue, 9 Jun 2020 10:28:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Mark Brown <broonie@kernel.org>, linux-watchdog@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        Lee Jones <lee.jones@linaro.org>, Li Yang <leoyang.li@nxp.com>,
+        linux-gpio@vger.kernel.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-kernel@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/11] dt-bindings: mfd: Add bindings for sl28cpld
+Message-ID: <20200609162830.GA1019634@bogus>
+References: <20200604211039.12689-1-michael@walle.cc>
+ <20200604211039.12689-2-michael@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200604211039.12689-2-michael@walle.cc>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This documents the longer-term plan to cleanup the dw-mipi-dsi bridge
-based drivers after the regmap refactor and i.MX6 driver have landed.
+On Thu, 04 Jun 2020 23:10:29 +0200, Michael Walle wrote:
+> Add a device tree bindings for the board management controller found on
+> the Kontron SMARC-sAL28 board.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  .../bindings/gpio/kontron,sl28cpld-gpio.yaml  |  54 +++++++
+>  .../hwmon/kontron,sl28cpld-hwmon.yaml         |  27 ++++
+>  .../kontron,sl28cpld-intc.yaml                |  54 +++++++
+>  .../bindings/mfd/kontron,sl28cpld.yaml        | 153 ++++++++++++++++++
+>  .../bindings/pwm/kontron,sl28cpld-pwm.yaml    |  35 ++++
+>  .../watchdog/kontron,sl28cpld-wdt.yaml        |  35 ++++
+>  6 files changed, 358 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/kontron,sl28cpld-intc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/kontron,sl28cpld-pwm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml
+> 
 
-The goal is to get the entire bridge logic in one place and continue
-the refactorings under the drm/bridge tree.
 
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
----
- Documentation/gpu/todo.rst | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 658b52f7ffc6c..2b142980a4b16 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -548,6 +548,31 @@ See drivers/gpu/drm/amd/display/TODO for tasks.
- 
- Contact: Harry Wentland, Alex Deucher
- 
-+Reorganize dw-mipi-dsi bridge-based host-controller drivers
-+-----------------------------------------------------------
-+
-+The Synopsys DW MIPI DSI bridge is used by a number of SoC platform drivers
-+(STM, Rockchip, i.MX) which don't cleanly encapsulate their bridge logic which
-+gets split between the Synopsys bridge (drm/bridge/synopsys/dw-mipi-dsi.c) and
-+platform drivers like drm/imx/dw_mipi_dsi-imx6.c by passing around the bridge
-+configuration regmap, creating new bridges / daisy chaining in platform drivers,
-+duplicating encoder creation, having too much encoder logic instead of using the
-+simple encoder interface and so on.
-+
-+The goal of this rework is to make the dw-mipi-dsi driver a better encapsulated
-+bridge by moving all bridge-related logic under drm/bridge, including the SoC
-+bindings which chain to the core Synopsys code under drm/bridge/dw-mipi-dsi/
-+from which they can be further consolidated and cleaned up.
-+
-+If this goal proves to be impossible then drm_bridge might not be the correct
-+abstraction for these host controllers and unifying their logic into a helper
-+library encapsulating a drm_encoder might be more desirable, in other words to
-+move away from drm_bridge entirely.
-+
-+Contact: Adrian Ratiu, Daniel Vetter, Laurent Pinchart
-+
-+Level: Intermediate
-+
- Bootsplash
- ==========
- 
--- 
-2.27.0
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.example.dt.yaml: sl28cpld@4a: 'gpio@1a', 'gpio@1b', 'hwmon@b', 'interrupt-controller@1c', 'pwm@c', 'pwm@e' do not match any of the regexes: '^gpio(@[0-9]+)?$', '^hwmon(@[0-9]+)?$', '^interrupt-controller(@[0-9]+)?$', '^pwm(@[0-9]+)?$', '^watchdog(@[0-9]+)?$', 'pinctrl-[0-9]+'
+
+See https://patchwork.ozlabs.org/patch/1303780
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
