@@ -2,193 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4D61F344E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 08:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F34631F34B6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 09:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727858AbgFIGro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 02:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726896AbgFIGrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 02:47:42 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899A4C08C5C5
-        for <devicetree@vger.kernel.org>; Mon,  8 Jun 2020 23:47:40 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id j198so1548583wmj.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2020 23:47:40 -0700 (PDT)
+        id S1726121AbgFIHRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 03:17:16 -0400
+Received: from mail-bn8nam12on2103.outbound.protection.outlook.com ([40.107.237.103]:5345
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725772AbgFIHRP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 03:17:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aISb0tVSTfPMPYy94C6UguRIzus7GNuJze2SwPe9fDpheZViOmmpDG6WCIJkKLzwn27leQfpRsZlkYtXfIginTzUEViKAFqiVM/0ICvh2TA3nU1zE5EYbmMRNEHgcdhG4yiMEjtYtdVRRXJlSrqmHUUGAzZdOUt2tZv7moe2thu0IzNH5yp1S1oI5p+KKL3Qb2GiEXPvLe8tjRM+GWO6yZMBvw76PUm7ITyaFsgYCFEtSoCYblK+KELQHkmT806CC0TuYN+i9suJ0IKzQ7/amnxjluf7VraP9g5H2mjAfCIirsaHTVEs2fqfdg6OIT6porQBZqsGC7lIBwq44QuZtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g2l02bwqOJcFgzvXOM1FKabFhPQkV7mDdw5aOX8Ym6k=;
+ b=SU8o8nfwsAM6hJSb/xWoSNxdPUXcIHLsl0nt7iSofr/oo4dULVk9zakgZoorkgXjX7Jv9UcJk7hUepI6/UI0UzygdVVnYRwhzeAB2EgWGqZ28qKPBHhtIstae1YiCVqho5N5aVRTY8ahTO0U+9yZBqpbAFT+sRjJz0F54KCW5wnasOpduwMobMDIixbeG1ukePV/qzx/QWrJ6iuFcmIAc7EvkfuAfS91QWUYXAqu3yVII5zoSYzt43cUaZn7ldhhzjpQEV4Gnhidvchl1g9tc/y2IRupQhwXmcP2+Zp5lA6iE/grXxjNhkomu+lizKmVB15mYKlr3PoLYvu6u1dIOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AwtDdz17DFDmRBPEGuRAOpx0vtQ2m9UoLoRBSQqsyp0=;
-        b=f0FgM4Vro6vfvlNeSVfc1iBcrhCl+E0gwx58KhDVXNN908yZbqUz+mMshmPtCEnlmR
-         VwW2GNhT56ZYbGOa1IoMFhQ73ta0IpXBTP+UnYFqFIqeYSD8Q+KmHWAe9EUQkVP/Ti54
-         2XsWxtT9M+slp4+imVCL4xcL/NqM/6mxNI8M3B+BWoOxSuhJuafxLu/sZkpSqDM/DOJ/
-         rGB3oVrbVqO7RWvp+yWo1R+iT3pmyikiZZmMzq6MGzQC6rPJSiovGWM2xWLq4hKl1H0Z
-         /bougyij11X7OPIzVjdnCIsdwnbNAwC3aiABpVHKE4o5DP2Fj70XHrncpk+OoU1zAf64
-         asXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AwtDdz17DFDmRBPEGuRAOpx0vtQ2m9UoLoRBSQqsyp0=;
-        b=NW0xEaZFS84skW6uhvUl357da0Gl4c31oYtVDGxnoES6c77FSkb+Q39WPwr0WIQxUH
-         DFV3L/2s3tC4CjXw6GHdy7xKm51gxiOF72tWLSqFB2s/PIei9CiT+kOV9Y2hT27MVna4
-         Rn29ZORrcqWTVX1aM8XlmmRI+8EdjSw4IJuTi9HuWVz81CWqqAJR9raRNpGzxL4RIT3b
-         65Fq5JG+CIrgBnsx7TsSD6MoLNy5l5ufSNNx7vhbrWGPCDJgEdgFBW6tRokojERdLpGy
-         VolSqbjHiyIsast/wVDh8SSKdHO6coQYFIQRZdNDQyvIrqc1VSNy4ivfJL1jlS5bhM5c
-         yOJw==
-X-Gm-Message-State: AOAM530L2yp20EKLDkpVk2GT+cXrTrOW8YrOKcigOlvDGGM5nU/jBSiZ
-        fnhv5m47mcS/Trz9bS5Crv0NYQ==
-X-Google-Smtp-Source: ABdhPJyLJRU7T7hP/+Yp6Xb+G+8dn3OI3DNS03pAkr/nWuDA1Spa9xboardProc7fDE8512XGawIOA==
-X-Received: by 2002:a7b:c7d8:: with SMTP id z24mr2371607wmk.28.1591685258604;
-        Mon, 08 Jun 2020 23:47:38 -0700 (PDT)
-Received: from dell ([2.27.167.101])
-        by smtp.gmail.com with ESMTPSA id x205sm1818570wmx.21.2020.06.08.23.47.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2020 23:47:37 -0700 (PDT)
-Date:   Tue, 9 Jun 2020 07:47:35 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        david.m.ertman@intel.com, shiraz.saleem@intel.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v4 02/11] mfd: Add support for Kontron sl28cpld
- management controller
-Message-ID: <20200609064735.GH4106@dell>
-References: <20200605065709.GD3714@dell>
- <20200605105026.GC5413@sirena.org.uk>
- <c5632bfab3956265e90fc2fb6c0b3cae@walle.cc>
- <20200606114645.GB2055@sirena.org.uk>
- <dc052a5c77171014ecc465b1da8b7ef8@walle.cc>
- <20200608082827.GB3567@dell>
- <CAHp75VdiH=J-ovCdh1RFJDW_bJM8=pbXRaHmB691GLb-5oBmYQ@mail.gmail.com>
- <7d7feb374cbf5a587dc1ce65fc3ad672@walle.cc>
- <20200608185651.GD4106@dell>
- <32231f26f7028d62aeda8fdb3364faf1@walle.cc>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g2l02bwqOJcFgzvXOM1FKabFhPQkV7mDdw5aOX8Ym6k=;
+ b=rYFLbnwp5yLDa/vwM16TfpHncd/6pVZaE3RDcA88lpYlmFO9mBSZdWx2gQxu1Q9+qvpJlgIcYh0VUQyhGVoTBbIyhjgenp5LNRb7Z1xoAQif62ItWMEwmLGEX53LTcUX9RsxWm9AleywT0tth3ZEdLh77g/ups/k4P3E2voEJqM=
+Authentication-Results: analogixsemi.com; dkim=none (message not signed)
+ header.d=none;analogixsemi.com; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BY5PR04MB6641.namprd04.prod.outlook.com (2603:10b6:a03:22b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Tue, 9 Jun
+ 2020 07:17:12 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::844e:398b:2165:631b]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::844e:398b:2165:631b%7]) with mapi id 15.20.3066.023; Tue, 9 Jun 2020
+ 07:17:12 +0000
+Date:   Tue, 9 Jun 2020 15:17:05 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Pi-Hsun Shih <pihsun@chromium.org>,
+        Sheng Pan <span@analogixsemi.com>
+Subject: [PATCH v13 1/2] dt-bindings: drm/bridge: anx7625: MIPI to DP
+ transmitter DT schema
+Message-ID: <eb234492d16805c9b3a1f5a56b161dc50be3ba17.1591345160.git.xji@analogixsemi.com>
+References: <cover.1591345160.git.xji@analogixsemi.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <32231f26f7028d62aeda8fdb3364faf1@walle.cc>
+In-Reply-To: <cover.1591345160.git.xji@analogixsemi.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-ClientProxiedBy: HK2PR03CA0052.apcprd03.prod.outlook.com
+ (2603:1096:202:17::22) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xin-VirtualBox (114.247.245.254) by HK2PR03CA0052.apcprd03.prod.outlook.com (2603:1096:202:17::22) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3088.7 via Frontend Transport; Tue, 9 Jun 2020 07:17:11 +0000
+X-Originating-IP: [114.247.245.254]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d0ca269c-eb0b-4ba1-3dc7-08d80c4520f9
+X-MS-TrafficTypeDiagnostic: BY5PR04MB6641:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR04MB66411D75E73413B7D5E5800EC7820@BY5PR04MB6641.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-Forefront-PRVS: 042957ACD7
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ljvS2lTScWTVe486TOvzMlHj5ggVn10MBefFqsgDblyfKshEf0fVfM8OH/93PPMSOo6uOGEPLeg+v+lv9ty3VUCbALtkuRJNWIePjd8egABkCXlLUZ+E39k607auVzTwip80nq7ZZUiNR2s+1j9E/7ZsVI8WGLHh7Oz8ShIdF73og4A1Zy3qw+TcItgzHDaPgSXdymu+vDWXw5eV3KczAUEdscRmi4HwO3Sr4gRJ4/OhB0SYxbGvNQfgQtYk6Z+2JsAB9TvhlMl13bLQKqoH00wVdo9Qo9KKD9XPTu6ioG2VarlYMMFtgPlB9fnceiXwxB0ZF0fV4etOptE+4zImiTjcY5z260vjDg/4QJkKHQGu6mDKFqeQWjb9C5LlLbdStOkB09DOD+8uY/w+hpoSOw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(396003)(346002)(376002)(39850400004)(136003)(366004)(2616005)(316002)(26005)(86362001)(186003)(478600001)(7416002)(54906003)(6496006)(5660300002)(8936002)(8676002)(110136005)(16526019)(6666004)(52116002)(2906002)(6486002)(66946007)(66556008)(107886003)(956004)(66476007)(36756003)(4326008);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: fguBw40sYRJmrnjXnyAK/lriz1CLStyDqFXd+ti39kJG8uBIgIcw+bly32UjNTRwxkKoYhZdCihzH3e7qjPrgmB7n0TrEEds9cvYjiBP01044pXV1T5h3AWOcuWeLhg6Nl3+ymNQsXm5JgQ+2h/Hp41FuYjLjookHzgogme3AoPRwJV/mMS8lFhcqGPwhbqsFCJdX05PLzORKwV+eR+0KPd0zkJxB43G0mdvfZdWfDOXMvWe/256KI7N9ntCpPk/3+FutwoX2I+8NggkDZl8eAbDdRvLmKCJbbCaYNgg9xKpsnV0h51KS7/5C1/G+YwN0+pcoTeFLwA+a/91Ojwkn2p9Jls5btHNsvGMz3PzXJNzFwcbK+VY4konS7DmSK/79QNtWgM9v7rj/PCybyHkCas7tZStmReCOUe3oDOW0ows6Fd2Oagjly466b+Mf8ESWhC06lBVQvR+3pmgYYMBa7d+RgW0Fk9CgkH2vm9zdWRj+3OutVbkojno0EbMbZFG
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0ca269c-eb0b-4ba1-3dc7-08d80c4520f9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2020 07:17:12.3026
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YnjFKaUN0C7cRf3efjEgppcBQ9iWPezTGzf/dBN354IjfBKD6Nn+9aMU984etNiEwIxfsNeqGIbbyfRSK3SrsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6641
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Jun 2020, Michael Walle wrote:
+anx7625: MIPI to DP transmitter DT schema
 
-> Am 2020-06-08 20:56, schrieb Lee Jones:
-> > On Mon, 08 Jun 2020, Michael Walle wrote:
-> > 
-> > > Am 2020-06-08 12:02, schrieb Andy Shevchenko:
-> > > > +Cc: some Intel people WRT our internal discussion about similar
-> > > > problem and solutions.
-> > > >
-> > > > On Mon, Jun 8, 2020 at 11:30 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > > > > On Sat, 06 Jun 2020, Michael Walle wrote:
-> > > > > > Am 2020-06-06 13:46, schrieb Mark Brown:
-> > > > > > > On Fri, Jun 05, 2020 at 10:07:36PM +0200, Michael Walle wrote:
-> > > > > > > > Am 2020-06-05 12:50, schrieb Mark Brown:
-> > > >
-> > > > ...
-> > > >
-> > > > > Right.  I'm suggesting a means to extrapolate complex shared and
-> > > > > sometimes intertwined batches of register sets to be consumed by
-> > > > > multiple (sub-)devices spanning different subsystems.
-> > > > >
-> > > > > Actually scrap that.  The most common case I see is a single Regmap
-> > > > > covering all child-devices.
-> > > >
-> > > > Yes, because often we need a synchronization across the entire address
-> > > > space of the (parent) device in question.
-> > > >
-> > > > >  It would be great if there was a way in
-> > > > > which we could make an assumption that the entire register address
-> > > > > space for a 'tagged' (MFD) device is to be shared (via Regmap) between
-> > > > > each of the devices described by its child-nodes.  Probably by picking
-> > > > > up on the 'simple-mfd' compatible string in the first instance.
-> > > > >
-> > > > > Rob, is the above something you would contemplate?
-> > > > >
-> > > > > Michael, do your register addresses overlap i.e. are they intermingled
-> > > > > with one another?  Do multiple child devices need access to the same
-> > > > > registers i.e. are they shared?
-> > > 
-> > > No they don't overlap, expect for maybe the version register, which is
-> > > just there once and not per function block.
-> > 
-> > Then what's stopping you having each device Regmap their own space?
-> 
-> Because its just one I2C device, AFAIK thats not possible, right?
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/display/bridge/analogix,anx7625.yaml  | 95 ++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
 
-Not sure what (if any) the restrictions are.
-
-I can't think of any reasons why not, off the top of my head.
-
-Does Regmap only deal with shared accesses from multiple devices
-accessing a single register map, or can it also handle multiple
-devices communicating over a single I2C channel?
-
-One for Mark perhaps.
-
-> > The issues I wish to resolve using 'simple-mfd' are when sub-devices
-> > register maps overlap and intertwine.
-
-[...]
-
-> > > > > What do these bits configure?
-> > > 
-> > > - hardware strappings which have to be there before the board powers
-> > > up,
-> > >   like clocking mode for different SerDes settings
-> > > - "keep-in-reset" bits for onboard peripherals if you want to save
-> > > power
-> > > - disable watchdog bits (there is a watchdog which is active right
-> > > from
-> > >   the start and supervises the bootloader start and switches to
-> > > failsafe
-> > >   mode if it wasn't successfully started)
-> > > - special boot modes, like eMMC, etc.
-> > > 
-> > > Think of it as a 16bit configuration word.
-> > 
-> > And you wish for users to be able to view these at run-time?
-> 
-> And esp. change them.
-> 
-> > Can they adapt any of them on-the-fly or will the be RO?
-> 
-> They are R/W but only will only affect the board behavior after a reset.
-
-I see.  Makes sense.  This is board controller territory.  Perhaps
-suitable for inclusion into drivers/soc or drivers/platform.
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+new file mode 100644
+index 0000000..60585a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 Analogix Semiconductor, Inc.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/display/bridge/analogix,anx7625.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Analogix ANX7625 SlimPort (4K Mobile HD Transmitter)
++
++maintainers:
++  - Xin Ji <xji@analogixsemi.com>
++
++description: |
++  The ANX7625 is an ultra-low power 4K Mobile HD Transmitter
++  designed for portable devices.
++
++properties:
++  compatible:
++    items:
++      - const: analogix,anx7625
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: used for interrupt pin B8.
++    maxItems: 1
++
++  enable-gpios:
++    description: used for power on chip control, POWER_EN pin D2.
++    maxItems: 1
++
++  reset-gpios:
++    description: used for reset chip control, RESET_N pin B7.
++    maxItems: 1
++
++  ports:
++    type: object
++
++    properties:
++      port@0:
++        type: object
++        description:
++          Video port for MIPI DSI input.
++
++      port@1:
++        type: object
++        description:
++          Video port for panel or connector.
++
++    required:
++        - port@0
++        - port@1
++
++required:
++  - compatible
++  - reg
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        encoder@58 {
++            compatible = "analogix,anx7625";
++            reg = <0x58>;
++            enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                mipi2dp_bridge_in: port@0 {
++                    reg = <0>;
++                    anx7625_in: endpoint {
++                        remote-endpoint = <&mipi_dsi>;
++                    };
++                };
++
++                mipi2dp_bridge_out: port@1 {
++                    reg = <1>;
++                    anx7625_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++            };
++        };
++    };
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.7.4
+
