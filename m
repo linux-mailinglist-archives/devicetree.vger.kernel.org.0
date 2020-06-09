@@ -2,84 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D34F51F34D3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 09:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A93361F3562
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 09:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726083AbgFIH2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 03:28:47 -0400
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:17269 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgFIH2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 03:28:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1591687726; x=1623223726;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EdagFqo0zl2QoL9GYL8uhvzMwrGF3eoykcCf0BeB49E=;
-  b=wsrUTjbeJRvqdDEJVTMAiw+O7n9iko8o9zgJInx05SOW030vfEFLmix9
-   nSjQlLZ528iaLwmASHKYhrDx3YUvHyjBhtQnkb6TyIXZ0l1ZxqgZ0Ap6/
-   aw20D3CKE3VqpWmmsdPO5et1E3uZliCLnMbzxu1m9eV9h533sMremas8k
-   VIslCj5r0FxYdwyQn3xGBdPJiHimBPM+53iumZy/jxMbNUwyTP7riV9Wp
-   qG6TPQ9MEGJ5UPk2dlaEoZWXe7qsSyA8+8vJRMNwuJ9vlAWoWEgBAqPAy
-   cl+yIwxmnjDtJ1jhO2wuSz5QUngS6C07oVqwMn8y2T1mnqTDOpuME5A7O
-   Q==;
-IronPort-SDR: QTtMOPx1vuvYZFnLAVvFCMW2enGb9SAeWHRhv5MRLsaXsORetfBEAhhYxQLKXYFkieDoYMYirW
- Amz3wK85+sXhOCAZXaTeWjqzKcDB8Pqcuj3dFlqE9fuvEyMaT3MsW2+6EIY1vRcRCSD3ncVRP/
- ReMmXoqKMzJs5qaiwvpbIly0kc8v+VT2nNnU9vQsFQLQJAdSr0AWBeMPWtWg3HiNBzXKzC/OEt
- 6oi0IyP+9b9L4IlkFTzSS28BQJFeqM7MxQeXyr0Jy5GB6a1yrjtx7awqK8L3I84erhvD73fav1
- Puo=
-X-IronPort-AV: E=Sophos;i="5.73,490,1583218800"; 
-   d="scan'208";a="75941395"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Jun 2020 00:28:46 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Tue, 9 Jun 2020 00:28:45 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1847.3 via Frontend Transport; Tue, 9 Jun 2020 00:28:43 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v2 0/3] hwmon: Adding support for Microchip Sparx5 SoC
-Date:   Tue, 9 Jun 2020 09:28:25 +0200
-Message-ID: <20200609072828.9088-1-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+        id S1727048AbgFIHsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 03:48:06 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:50536 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726813AbgFIHsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 03:48:04 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 094B9AD4DA;
+        Tue,  9 Jun 2020 15:40:30 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from ubuntu18.lan (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P31250T139912844142336S1591688422511107_;
+        Tue, 09 Jun 2020 15:40:28 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <f1bb287535e694da4612b79938bd4beb>
+X-RL-SENDER: yifeng.zhao@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: yifeng.zhao@rock-chips.com
+X-FST-TO: miquel.raynal@bootlin.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+X-System-Flag: 0
+From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: [PATCH v6 0/8] Add Rockchip NFC drivers for RK3308 and others
+Date:   Tue,  9 Jun 2020 15:40:17 +0800
+Message-Id: <20200609074020.23860-1-yifeng.zhao@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an add-on series to the main SoC Sparx5 series
-(Message-ID: <20200608123024.5330-1-lars.povlsen@microchip.com>)
+
+Rockchp's NFC(Nand Flash Controller) has four versions: V600, V622, V800 and V900.
+This series patch can support all four versions.
+
+
+Changes in v6:
+- Fix some wrong define
+- Modified the definition of compatible
+- The mtd->name set by NAND label property.
+- Add some comments.
+- Fix compile error.
+
+Changes in v5:
+- Fix some wrong define
+- Add boot-medium define
+- Remove some compatible define
+- Add boot blocks support  with different ecc for bootrom.
+- Rename rockchip-nand.c to rockchip-nand-controller.c.
+- Unification of other variable names.
+- Remove some compatible define.
+
+Changes in v4:
+- The compatible define with rkxx_nfc
+- Add assigned-clocks
+- Fix some wrong define
+- Define platform data structure for the register offsets.
+- The compatible define with rkxx_nfc.
+- Use SET_SYSTEM_SLEEP_PM_OPS to define PM_OPS.
+- Use exec_op instead of legacy hooks.
+
+Changes in v3:
+- Change the title for the dt-bindings
 
 Changes in v2:
-- Changes in driver as per review comments
+- Fix compile error.
+- Include header files sorted by file name.
 
-Lars Povlsen (3):
-  dt-bindings: hwmon: Add Sparx5 temperature sensor
-  arm64: dts: sparx5: Add hwmon temperature sensor
-  hwmon: sparx5: Add Sparx5 SoC temperature driver
+Yifeng Zhao (8):
+  dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
+  mtd: rawnand: rockchip: NFC drivers for RK3308, RK2928 and others
+  MAINTAINERS: add maintainers to rockchip nfc
+  arm64: dts: rockchip: Add nfc dts for RK3308 SOC
+  arm64: dts: rockchip: Add nfc dts for PX30 SOC
+  arm: dts: rockchip: Add nfc dts for RV1108 SOC
+  arm: dts: rockchip: Add nfc dts for RK2928 and other SOC
+  arm: dts: rockchip: Add nfc dts for RK3036 SOC
 
- .../bindings/hwmon/microchip,sparx5-temp.yaml |  39 +++++
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |   6 +
- drivers/hwmon/Kconfig                         |  10 ++
- drivers/hwmon/Makefile                        |   2 +-
- drivers/hwmon/sparx5-temp.c                   | 152 ++++++++++++++++++
- 5 files changed, 208 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,sparx5-temp.yaml
- create mode 100644 drivers/hwmon/sparx5-temp.c
+ .../mtd/rockchip,nand-controller.yaml         |  154 ++
+ MAINTAINERS                                   |    4 +-
+ arch/arm/boot/dts/rk3036.dtsi                 |   52 +
+ arch/arm/boot/dts/rk3xxx.dtsi                 |    9 +
+ arch/arm/boot/dts/rv1108.dtsi                 |   11 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   15 +
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi      |   15 +
+ drivers/mtd/nand/raw/Kconfig                  |   21 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ .../mtd/nand/raw/rockchip-nand-controller.c   | 1393 +++++++++++++++++
+ 10 files changed, 1673 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+ create mode 100644 drivers/mtd/nand/raw/rockchip-nand-controller.c
 
---
-2.27.0
+-- 
+2.17.1
+
+
+
