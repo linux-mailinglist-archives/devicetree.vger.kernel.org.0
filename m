@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B920F1F343B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 08:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 715261F3437
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 08:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727818AbgFIGpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 02:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
+        id S1727883AbgFIGpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 02:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727076AbgFIGpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 02:45:02 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D69EC03E97C
-        for <devicetree@vger.kernel.org>; Mon,  8 Jun 2020 23:45:02 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id o6so9900011pgh.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2020 23:45:02 -0700 (PDT)
+        with ESMTP id S1727858AbgFIGpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 02:45:08 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D99C03E969
+        for <devicetree@vger.kernel.org>; Mon,  8 Jun 2020 23:45:06 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id r18so3607329pgk.11
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2020 23:45:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=78YJd++6MCBi2czAoFZXzyiyrvV2k69cWVDs4OQn+lo=;
-        b=t/nrsGr8iL1/BoJDB1p1upet1q7RmIROeK7bEKJ9cZ4CZDK9JDA7DrOHHZWQuRlJy9
-         SHLBkPeQgt7/i735xV63sxeSrPW3aDxqIe2qafsUs40YBz+vR1+gFct+f3nhsfeb+FKd
-         9L/vBl28GMgpO9ynJs0BhsnxOCam7/eBpT/N/CFXzk0+p2lxk5oNRydca6mFAnUyx4Bv
-         Z7v+am3PKvBOAeuuOp2aN8STSymwCjhUsQbC4lLTp7S6HhrshxD11sjGZod8ffi3QTEw
-         d6g9XbjM40uNjxg7LsuTUa4vxJHPmPy8vcH0BMkMzKFnmLukun+x2iCFe3YnrIDKmTfr
-         CWhw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wG0+Ch0zEKVHYp36DijWu0KUj1hShzvRRIkz+3ay5qE=;
+        b=eo7EGmCNTTZuRXco4dtjEewlalbihfhWZ92VRyRlC+hp0KEiurSKf8rbQfi35M3dBk
+         og46Fc4s2Zaxy53+xSjIJ3qOqe7rThwMbqWbXpyVVMYCiXGUNXxDyVg650iJMSVrOpnK
+         3VafbWDwORzv44nThFbpJyOSZ2j1QV3aN0tbbI1TKtabsidLs6xGT0kkCNQYZNnNOre4
+         /piRqfuRpNBzpTHBvwBEDFc8QKZPJ88zCqvkK1fcpXB/L3HhStcOj9JLk1lg2cf/TNGm
+         9RgiwJr9ZdL7dkPtxqBLdoNvNyE/KHWf1srG+wPmFsxHFArQB+/A8m5cwnSS5dhRyCHT
+         eTfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=78YJd++6MCBi2czAoFZXzyiyrvV2k69cWVDs4OQn+lo=;
-        b=U4HSPw9qo0pyzA+kpDSHlsE2nFgb2lHZ29vTBHfwNg+5r0NnmENIj5yfpD5imomLjh
-         A4WrJVTprKP+pWhohKdaCye6p2CsRn0NUAozkW8Z05hAptBQBxWyxe5CqmRdYbjB5H7V
-         NtktFIhNJuHRNp1LeDbMtjW7MQkWurRszAH0hshzWaIMxvH8zktkkb5tDwo0YRZKCvGx
-         GRlmQrhppdBjfGgKsaPWu3g/rdCq+OLZONnvDD0YGySIAqVGlAPHuOvY47evFdGvODdw
-         E3zVMu7IaYciszC9bHaTvIkt2sCAWScXdzYruq2/LIZfe7tgFulKbjpOZK5wbShRpMjf
-         kWqA==
-X-Gm-Message-State: AOAM532DsPgotaVweXXWiNxP/xGTZG0a/l66RKiH9T6H8lYQndOiTxAw
-        aTb6AeEm05iOxyYfCvdCXIBb5w==
-X-Google-Smtp-Source: ABdhPJzzHJ2cZxqknv0bUpqxO4eV9Txk0TkcHbipkebWGGkPuiPsGng15YmIaWcMDZ5/YRmsQqJMjA==
-X-Received: by 2002:a62:cd87:: with SMTP id o129mr23636055pfg.74.1591685101324;
-        Mon, 08 Jun 2020 23:45:01 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wG0+Ch0zEKVHYp36DijWu0KUj1hShzvRRIkz+3ay5qE=;
+        b=oHMuZVKmtSqgGF5thd+j38rRDrwgJgUVCdofODxMoi28R24eUwAbGsBvaynPo48H7x
+         DyVLvmiFhhxFyMtYUrbzB3Vjf714Tpr4ynuirvVDHwss3nk2I5ll873KQfExyXqf+k64
+         Q+iuCC7NISh0Bww7Spc+yulGA0oiH+G+sUgFyag8/hV6+DtGVqH9AEXPZPiKdrtWWWPg
+         P2ACVHN6Y0jOR4OUNcNa3/puB7f/l6zk1v84tok2rcEAeOAQ3YdkM73Mb96VYxy0HhSc
+         3ZVI8GwzRnddEgFuMUWVFv3pk6s5kV5qbzjycwMG0meF7vqa334QLh98AbSnICGVsc8h
+         BvcA==
+X-Gm-Message-State: AOAM533j3W0HDYGzNmCihQs+h+BnAMZhgwNXXtlY1I2vWumMqUwJaTQW
+        TWPsWhIX70qSMIN6LcUZ/a6AEg==
+X-Google-Smtp-Source: ABdhPJwz7++0CVF/zOZpvNRCw2+dYOuiyk1fQ4vdbnMmIu9rwwTB/PT4eXeZ1O3doDx7mC8j+9ezAQ==
+X-Received: by 2002:a63:9304:: with SMTP id b4mr22660320pge.229.1591685105957;
+        Mon, 08 Jun 2020 23:45:05 -0700 (PDT)
 Received: from localhost ([45.127.45.147])
-        by smtp.gmail.com with ESMTPSA id b4sm8944451pfg.75.2020.06.08.23.44.59
+        by smtp.gmail.com with ESMTPSA id 4sm8830988pfn.205.2020.06.08.23.45.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2020 23:45:00 -0700 (PDT)
+        Mon, 08 Jun 2020 23:45:05 -0700 (PDT)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, sibis@codeaurora.org,
@@ -55,11 +55,13 @@ To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Zhang Rui <rui.zhang@intel.com>
 Cc:     Amit Kucheria <amit.kucheria@verdurent.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [PATCH 0/3] Add thermal support for SM8150, SM8250
-Date:   Tue,  9 Jun 2020 12:14:53 +0530
-Message-Id: <cover.1591684754.git.amit.kucheria@linaro.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: thermal: qcom-tsens: Add compatible for sm8150, sm8250
+Date:   Tue,  9 Jun 2020 12:14:54 +0530
+Message-Id: <c3361043e66139812bd4cd85b917659d85e1564f.1591684754.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1591684754.git.amit.kucheria@linaro.org>
+References: <cover.1591684754.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -67,21 +69,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Added tsens bindings for sm8150 and sm8250
 
-Add two new compatibles, the devicetree entries for the thermal zones and
-wire it up to the cpufreq cooling device.
+Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+---
+ Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Amit Kucheria (3):
-  dt-bindings: thermal: qcom-tsens: Add compatible for sm8150, sm8250
-  arm64: dts: qcom: sm8150: Add thermal zones and throttling support
-  arm64: dts: qcom: sm8250: Add thermal zones and throttling support
-
- .../bindings/thermal/qcom-tsens.yaml          |   2 +
- arch/arm64/boot/dts/qcom/sm8150.dtsi          | 811 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8250.dtsi          | 766 +++++++++++++++++
- drivers/thermal/qcom/tsens-v2.c               |   2 +-
- 4 files changed, 1580 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index 2ddd39d967662..dee3836a82854 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -40,6 +40,8 @@ properties:
+               - qcom,msm8998-tsens
+               - qcom,sc7180-tsens
+               - qcom,sdm845-tsens
++              - qcom,sm8150-tsens
++              - qcom,sm8250-tsens
+           - const: qcom,tsens-v2
+ 
+   reg:
 -- 
 2.25.1
 
