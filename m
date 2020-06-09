@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 559551F42ED
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433D81F434E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732285AbgFIRsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 13:48:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41180 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732355AbgFIRsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 13:48:39 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BECECC05BD1E;
-        Tue,  9 Jun 2020 10:48:38 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id E4AB62A3B96
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philippe CORNU <philippe.cornu@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jonas Karlman <jonas@kwiboo.se>, linux-imx@nxp.com,
-        kernel@collabora.com, linux-stm32@st-md-mailman.stormreply.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v9 06/11] ARM: dts: imx6qdl: add missing mipi dsi properties
-Date:   Tue,  9 Jun 2020 20:49:54 +0300
-Message-Id: <20200609174959.955926-7-adrian.ratiu@collabora.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200609174959.955926-1-adrian.ratiu@collabora.com>
-References: <20200609174959.955926-1-adrian.ratiu@collabora.com>
+        id S1730988AbgFIRwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 13:52:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42106 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732760AbgFIRwF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 13:52:05 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F3D05207C3;
+        Tue,  9 Jun 2020 17:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591725125;
+        bh=TgO873VK1uWIKP3ppDJ9nGZ4WoqU168LVpBfn9JCTYE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=flY6tw4scXwcHAh5ndeODhVjKU39UiDaLUXkNgJF/VeacAKgTqHUSgyi7yWttmL2C
+         dM9+M9jBx7AUtHP71uzwM8FS45GEfL+rpx7XhyaPu/XscJ137rzdA/NcQT7giIjpj6
+         csJPNwgawxwvmK6IpC14ubbfssZ6sBrSNQmrMXks=
+Date:   Tue, 9 Jun 2020 18:52:03 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        robh@kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 0/2] TAS2563 DSP Firmware Loader
+Message-ID: <20200609175203.GP4583@sirena.org.uk>
+References: <20200609172841.22541-1-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uQ3BaAlxDi9XKvis"
+Content-Disposition: inline
+In-Reply-To: <20200609172841.22541-1-dmurphy@ti.com>
+X-Cookie: Be careful!  Is it classified?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have a proper driver for the imx6 mipi dsi host controller
-we can fill in the missing properties to get it working.
 
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
----
-New in v8.
----
- arch/arm/boot/dts/imx6qdl.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--uQ3BaAlxDi9XKvis
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index 7eec1122e5d74..d2f4fdfe4a252 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -1222,7 +1222,15 @@ mipi_csi: mipi@21dc000 {
- 			};
- 
- 			mipi_dsi: mipi@21e0000 {
-+				compatible = "fsl,imx6-mipi-dsi", "snps,dw-mipi-dsi";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				reg = <0x021e0000 0x4000>;
-+				interrupts = <0 102 IRQ_TYPE_LEVEL_HIGH>;
-+				fsl,gpr = <&gpr>;
-+				clocks = <&clks IMX6QDL_CLK_MIPI_CORE_CFG>,
-+					 <&clks IMX6QDL_CLK_MIPI_IPG>;
-+				clock-names = "ref", "pclk";
- 				status = "disabled";
- 
- 				ports {
--- 
-2.27.0
+On Tue, Jun 09, 2020 at 12:28:39PM -0500, Dan Murphy wrote:
 
+> These programs and configurations are selectable via files under the I2C dev
+> node.  There may be a better way to select this through ALSA controls but I was
+> unable to find a good example of this.  This is why this is an RFC patchset.
+
+I think you can just use enums for most of this - what you want to do I
+think is parse the firmware, build templates for the controls and then
+add them with snd_soc_add_component_controls().  Userspace *should* cope
+with controls being hotplugged.
+
+--uQ3BaAlxDi9XKvis
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7fzEIACgkQJNaLcl1U
+h9Bd3Qf+M45/dHXuPejpoJQrP/PmR/7OYTmNoSJSL7fxpGkoxNV4A5VdPFEM7ZmP
+rfspDqlxdJ9jDVZhCyTaRzlFP9VaklY/9EFupR5qc6ms6ZKdjYrcjWc98Cqlk+d1
+RAN0Y4oxlqfxAZZKlw6ZHFLCMBHdV/vkOBGNZdiiaBqAFprXUVnqlevuGW8Lv7s3
+yDf1Te02bvervNfinPb53nj6QtFoBwixBR8E8zdKINv1ZP8q31YF7c8j/0tvyMkQ
+LZ6OhieBzZeb4YFR7/sieJVpr60qnUKefrtUaPWaJLrFtPb8vuuPmVK+jO4AQ4gF
+5WqFDT0NEUZuTrTzITUHxyZZkRbq9Q==
+=8iWz
+-----END PGP SIGNATURE-----
+
+--uQ3BaAlxDi9XKvis--
