@@ -2,111 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D03801F3683
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 10:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 401C11F368E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 10:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727960AbgFIIyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 04:54:51 -0400
-Received: from mga12.intel.com ([192.55.52.136]:44502 "EHLO mga12.intel.com"
+        id S1728196AbgFII55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 04:57:57 -0400
+Received: from mga07.intel.com ([134.134.136.100]:63575 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727942AbgFIIyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jun 2020 04:54:51 -0400
-IronPort-SDR: IHZxHJjujf618vded86KWVE9FFt8198C9aapRyqsq08P2sEw5Kr5/umc3Alqp89iYOTsMI6RY0
- t5F9HRYBXTqA==
+        id S1727023AbgFII5z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 04:57:55 -0400
+IronPort-SDR: 0Apht4sP8kgflqzjtPyiAoaXc1Mi3vZbnGPt+3TtLidOpeF8AEVO00aDW349tWK38/Mf6KfXDV
+ 6qz2XroOoOzA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2020 01:54:50 -0700
-IronPort-SDR: 4q6rf01iwrE8qQwBCVDCrNHzYVI8NmhkYfmIoRHi8G3XkTSehbzvgZZbnGhSUIo1wtxjt7PoFO
- uXnH68APGqYg==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2020 01:57:54 -0700
+IronPort-SDR: 29e8Ey9G7kNr+oenwBfl0xYeoEgWRj39Uu/pDoiG2r9Lam3mTYwsWYvexTIF9/wgnQEgB2n5Si
+ CQ8aAYqztmWQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.73,491,1583222400"; 
-   d="scan'208";a="270825476"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.170]) ([10.237.72.170])
-  by orsmga003.jf.intel.com with ESMTP; 09 Jun 2020 01:54:48 -0700
-Subject: Re: [PATCH v3 0/4] Add logic to consolidate TRBs for Synopsys xHC
-To:     Tejas Joglekar <Tejas.Joglekar@synopsys.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     John Youn <John.Youn@synopsys.com>
-References: <cover.1590415123.git.joglekar@synopsys.com>
- <ba1eb639-7c58-c2b2-1bd9-dacec5d1092b@synopsys.com>
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mathias.nyman@linux.intel.com; prefer-encrypt=mutual; keydata=
- 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 fiD/
-Message-ID: <0083681d-6f68-918a-8109-75e511ef8bf5@linux.intel.com>
-Date:   Tue, 9 Jun 2020 11:57:49 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+   d="scan'208";a="418340444"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga004.jf.intel.com with ESMTP; 09 Jun 2020 01:57:54 -0700
+Received: from [10.215.166.141] (ekotax-mobl.gar.corp.intel.com [10.215.166.141])
+        by linux.intel.com (Postfix) with ESMTP id 50BC35805B5;
+        Tue,  9 Jun 2020 01:57:51 -0700 (PDT)
+Subject: Re: [PATCH 2/2] watchdog: intel: Watchdog timer support on Lightning
+ Mountain
+To:     Guenter Roeck <linux@roeck-us.net>, wim@linux-watchdog.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        robbh@kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yixin.zhu@intel.com
+References: <cover.1591584255.git.eswara.kota@linux.intel.com>
+ <220609c6aec3dbd06585897ddcfdde277c823cac.1591584255.git.eswara.kota@linux.intel.com>
+ <61d256e7-88ca-ac89-9c80-132c0d2de4a8@roeck-us.net>
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+Message-ID: <af453186-8017-31de-f6b3-f39f0c3704b8@linux.intel.com>
+Date:   Tue, 9 Jun 2020 16:57:50 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <ba1eb639-7c58-c2b2-1bd9-dacec5d1092b@synopsys.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <61d256e7-88ca-ac89-9c80-132c0d2de4a8@roeck-us.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.6.2020 7.32, Tejas Joglekar wrote:
-> Hi Mathias,
->    Will this be added to your next branch ?
 
-There are still some opens Rob Herring pointed out regarding devicetree.
-Adding a compatible string for the synopsys xhci and setting quirk based
-on that sounds good to me.
+On 6/8/2020 9:36 PM, Guenter Roeck wrote:
+> On 6/7/20 10:49 PM, Dilip Kota wrote:
+>> On Intel Lightning Mountain SoC, General Purpose Timer Counter(GPTC)
+>> programmable as clocksource, real time clock or watchdog timer.
+>>
+>> This driver configures GPTC as Watchdog timer and triggers reset signal
+>> to CPU on timeout.
+>>
+>> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+>> ---
+>>   drivers/watchdog/Kconfig              |  13 ++
+>>   drivers/watchdog/Makefile             |   1 +
+>>   drivers/watchdog/intel_lgm_gptc_wdt.c | 420 ++++++++++++++++++++++++++++++++++
+>>   3 files changed, 434 insertions(+)
+>>   create mode 100644 drivers/watchdog/intel_lgm_gptc_wdt.c
+>>
+>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+>> index 0663c604bd642..8009c11e75dda 100644
+>> --- a/drivers/watchdog/Kconfig
+>> +++ b/drivers/watchdog/Kconfig
+>> @@ -1789,6 +1789,19 @@ config IMGPDC_WDT
+>>   	  To compile this driver as a loadable module, choose M here.
+>>   	  The module will be called imgpdc_wdt.
+>>   
+>> +config INTEL_LGM_GPTC_WDT
+>> +	tristate "INTEL LGM SoC Watchdog"
+>> +	depends on X86 || COMPILE_TEST
+>> +	depends on OF && HAS_IOMEM
+>> +	select REGMAP
+>> +	select MFD_SYSCON
+>> +	select WATCHDOG_CORE
+>> +	help
+>> +	  Driver for Watchdog Timer on Intel Lightning Mountain SoC.
+>> +
+>> +	  To compile this driver as a loadable module, choose M here.
+>> +	  The module will be called intel_lgm_gptc_wdt.
+>> +
+>>   config LANTIQ_WDT
+>>   	tristate "Lantiq SoC watchdog"
+>>   	depends on LANTIQ
+>> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+>> index 6de2e4ceef190..92c99e4c46eb7 100644
+>> --- a/drivers/watchdog/Makefile
+>> +++ b/drivers/watchdog/Makefile
+>> @@ -166,6 +166,7 @@ obj-$(CONFIG_TXX9_WDT) += txx9wdt.o
+>>   obj-$(CONFIG_OCTEON_WDT) += octeon-wdt.o
+>>   octeon-wdt-y := octeon-wdt-main.o octeon-wdt-nmi.o
+>>   obj-$(CONFIG_LANTIQ_WDT) += lantiq_wdt.o
+>> +obj-$(CONFIG_INTEL_LGM_GPTC_WDT) += intel_lgm_gptc_wdt.o
+>>   obj-$(CONFIG_LOONGSON1_WDT) += loongson1_wdt.o
+>>   obj-$(CONFIG_RALINK_WDT) += rt2880_wdt.o
+>>   obj-$(CONFIG_IMGPDC_WDT) += imgpdc_wdt.o
+>> diff --git a/drivers/watchdog/intel_lgm_gptc_wdt.c b/drivers/watchdog/intel_lgm_gptc_wdt.c
+>> new file mode 100644
+>> index 0000000000000..52be7cc194f8f
+>> --- /dev/null
+>> +++ b/drivers/watchdog/intel_lgm_gptc_wdt.c
+>> @@ -0,0 +1,420 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2020 Intel Corporation.
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/cpu.h>
+>> +#include <linux/io.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/watchdog.h>
+>> +
+>> +#define GPTC_CLC		0x00
+>> +#define GPTC_CLC_SUSPEND	BIT(4)
+>> +#define GPTC_CLC_RMC		GENMASK(15, 8)
+>> +
+>> +/* divider 10 to produce 200 / 10 = 20 MHz clock */
+>> +#define CLC_RMC_DIV		10
+>> +
+>> +#define GPTC_CON(X)		(0x10 + (X) * 0x20)
+>> +#define GPTC_CON_CNT_UP		BIT(1)
+>> +#define GPTC_CON_ONESHOT	BIT(3)
+>> +#define GPTC_CON_EXT		BIT(4)
+>> +
+>> +#define GPTC_RUN(X)		(0x18 + (X) * 0x20)
+>> +#define GPTC_RUN_EN		BIT(0)
+>> +#define GPTC_RUN_STOP		BIT(1)
+>> +#define GPTC_RUN_RELOAD		BIT(2)
+>> +
+>> +#define GPTC_RLD(X)		(0x20 + (X) * 0x20)
+>> +#define GPTC_CNT(X)		(0x28 + (X) * 0x20)
+>> +
+>> +#define GPTC_IRNENCLR		0xF0
+>> +#define GPTC_IRNEN		0xF4
+>> +#define GPTC_IRNCR		0xFC
+>> +
+>> +/* Watchdog Timeout Reset register offset and bitfeilds */
+>> +#define BIA_WDT_RST_EN		0x1E0
+>> +#define BIA_WDT			BIT(6)
+>> +
+>> +#define MAX_TIMERID		2
+>> +#define MAX_CPUID		3
+>> +#define TIMER_MARGIN_SEC	300
+>> +
+>> +static bool nowayout = WATCHDOG_NOWAYOUT;
+>> +module_param(nowayout, bool, 0);
+>> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started\n"
+>> +	" (default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+>> +
+>> +struct lgm_gptc_timer {
+>> +	struct lgm_gptc_wdt	*wdt_node;
+>> +	struct watchdog_device	wdd;
+>> +	unsigned int		tid;
+>> +	unsigned int		cpuid;
+>> +	unsigned int		frequency;
+>> +	unsigned int		cycles;
+>> +	bool			enable;
+>> +};
+>> +
+>> +struct lgm_gptc_wdt {
+>> +	struct device		*dev;
+>> +	void __iomem		*gptc_base;
+>> +	struct regmap		*rst_hndl;
+>> +	struct clk		*freqclk;
+>> +	struct clk		*gateclk;
+>> +	unsigned int		fpifreq;
+>> +	enum cpuhp_state	state;
+>> +};
+>> +
+>> +DEFINE_PER_CPU(struct lgm_gptc_timer, lgm_timer_per_cpu);
+>> +
+> This is unusual. You'll have to provide a very detailed explanation
+> why this is needed.
+Sure will add it.
+It is required for the hotplug cpu support, and hotplug cpu is added 
+because, the cpus on Lightning Mountain SoC can be online and offline 
+dynamically.
+If CPUs come to online after the watchdog driver probe, hotplug CPU 
+support helps to configure watchdog timer once CPU is online.
 
-Not sure how that works in cases where the xhci device is created by the DWC3 driver.
-Once we have a solution that Felipe and Rob agrees with I can take the whole
-series.  
-
-The xhci parts and PCI case looks good to me.
-
--Mathias
-
-
+Regards,
+-Dilip
+>
+> Guenter
+>
+>
