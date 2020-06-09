@@ -2,277 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D191F3C93
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A926A1F3CA8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:33:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730067AbgFINb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 09:31:59 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:37912 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729000AbgFINb4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jun 2020 09:31:56 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1jieLv-0004rD-6B; Tue, 09 Jun 2020 15:31:43 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, heiko@sntech.de,
-        christoph.muellner@theobroma-systems.com,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH v2 2/2] net: phy: mscc: handle the clkout control on some phy variants
-Date:   Tue,  9 Jun 2020 15:31:40 +0200
-Message-Id: <20200609133140.1421109-2-heiko@sntech.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200609133140.1421109-1-heiko@sntech.de>
-References: <20200609133140.1421109-1-heiko@sntech.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729994AbgFINdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 09:33:38 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:45942 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728819AbgFINdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 09:33:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1591709617; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=GcwBlAhLI0Vg9FQwsJ7T79mX+9+KXvm84ygiu7T6nE8=; b=Htq1TY70xYE2Eme4Zz8Oj4q+e4PrLLvKcYvU15gXU+F3ZXZ7+EOsjY4q7E3C+R1WmMbAWb7f
+ b3x6sFhWBeBtwCGcgZDHpvmfuYUvL00fwTF6b+BQl2rIdEKZgj313xKDCk0WmqJMPN7qrL/O
+ Nc7Eer3fuI2hX8qsGtFmhjYxEdI=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n12.prod.us-west-2.postgun.com with SMTP id
+ 5edf8fa03a8a8b20b8b1c4dd (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Jun 2020 13:33:20
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 15087C43387; Tue,  9 Jun 2020 13:33:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.0
+Received: from vnaralas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3BAC4C433B2;
+        Tue,  9 Jun 2020 13:33:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3BAC4C433B2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akolli@codeaurora.org
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     ath11k@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH v2 0/8] ath11k: Add IPQ6018 support
+Date:   Tue,  9 Jun 2020 19:02:53 +0530
+Message-Id: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+IPQ6018 has a 5G radio and 2G radio with 2x2
+and shares IPQ8074 configuration.
 
-At least VSC8530/8531/8540/8541 contain a clock output that can emit
-a predefined rate of 25, 50 or 125MHz.
+Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
+Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1 
 
-This may then feed back into the network interface as source clock.
-So follow the example the at803x already set and introduce a
-vsc8531,clk-out-frequency property to set that output.
+Anilkumar Kolli (8):
+  dt: bindings: net: update compatible for ath11k
+  ath11k: update firmware files read path
+  ath11k: rename default board file
+  ath11k: add IPQ6018 support
+  ath11k: define max_radios in hw_params
+  ath11k: add hw_ops for pdev id to hw_mac mapping
+  ath11k: add ce services for IPQ6018
+  ath11k: Add bdf-addr in hw_params
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
----
-Hi Andrew,
+ .../bindings/net/wireless/qcom,ath11k.yaml         |   4 +-
+ drivers/net/wireless/ath/ath11k/Makefile           |   3 +-
+ drivers/net/wireless/ath/ath11k/ahb.c              | 151 ++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/core.c             |  78 +++++++----
+ drivers/net/wireless/ath/ath11k/core.h             |   2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c            |   2 +-
+ drivers/net/wireless/ath/ath11k/htc.c              |   2 +-
+ drivers/net/wireless/ath/ath11k/hw.c               |  34 +++++
+ drivers/net/wireless/ath/ath11k/hw.h               |  31 ++++-
+ drivers/net/wireless/ath/ath11k/mac.c              |   2 +-
+ drivers/net/wireless/ath/ath11k/qmi.c              |   6 +-
+ drivers/net/wireless/ath/ath11k/qmi.h              |   1 -
+ drivers/net/wireless/ath/ath11k/reg.c              |   2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c              |   4 +-
+ 14 files changed, 266 insertions(+), 56 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/hw.c
 
-I didn't change the property yet, do you have a suggestion on
-how to name it though? Going by the other examples in the
-ethernet-phy.yamls, something like enet-phy-clock-out-frequency ?
-
-
- .../bindings/net/mscc-phy-vsc8531.txt         |  3 +
- drivers/net/phy/mscc/mscc.h                   |  9 ++
- drivers/net/phy/mscc/mscc_main.c              | 87 +++++++++++++++++--
- 3 files changed, 92 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-index 5ff37c68c941..4a1f50ae48e1 100644
---- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-+++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-@@ -1,6 +1,8 @@
- * Microsemi - vsc8531 Giga bit ethernet phy
- 
- Optional properties:
-+- vsc8531,clk-out-frequency: Clock output frequency in Hertz.
-+			  Should be one of 25000000, 50000000, 125000000
- - vsc8531,vddmac	: The vddmac in mV. Allowed values is listed
- 			  in the first row of Table 1 (below).
- 			  This property is only used in combination
-@@ -63,6 +65,7 @@ Example:
- 
-         vsc8531_0: ethernet-phy@0 {
-                 compatible = "ethernet-phy-id0007.0570";
-+                vsc8531,clk-out-frequency = <125000000>;
-                 vsc8531,vddmac		= <3300>;
-                 vsc8531,edge-slowdown	= <7>;
-                 vsc8531,led-0-mode	= <LINK_1000_ACTIVITY>;
-diff --git a/drivers/net/phy/mscc/mscc.h b/drivers/net/phy/mscc/mscc.h
-index 414e3b31bb1f..c8c395a041c2 100644
---- a/drivers/net/phy/mscc/mscc.h
-+++ b/drivers/net/phy/mscc/mscc.h
-@@ -218,6 +218,13 @@ enum rgmii_clock_delay {
- #define INT_MEM_DATA_M			  0x00ff
- #define INT_MEM_DATA(x)			  (INT_MEM_DATA_M & (x))
- 
-+#define MSCC_CLKOUT_CNTL		  13
-+#define CLKOUT_ENABLE			  BIT(15)
-+#define CLKOUT_FREQ_MASK		  GENMASK(14, 13)
-+#define CLKOUT_FREQ_25M			  (0x0 << 13)
-+#define CLKOUT_FREQ_50M			  (0x1 << 13)
-+#define CLKOUT_FREQ_125M		  (0x2 << 13)
-+
- #define MSCC_PHY_PROC_CMD		  18
- #define PROC_CMD_NCOMPLETED		  0x8000
- #define PROC_CMD_FAILED			  0x4000
-@@ -361,6 +368,8 @@ struct vsc8531_private {
- 	 */
- 	unsigned int base_addr;
- 
-+	u32 clkout_rate;
-+
- #if IS_ENABLED(CONFIG_MACSEC)
- 	/* MACsec fields:
- 	 * - One SecY per device (enforced at the s/w implementation level)
-diff --git a/drivers/net/phy/mscc/mscc_main.c b/drivers/net/phy/mscc/mscc_main.c
-index 54cac9c295ad..012d5019d7c8 100644
---- a/drivers/net/phy/mscc/mscc_main.c
-+++ b/drivers/net/phy/mscc/mscc_main.c
-@@ -432,6 +432,18 @@ static int vsc85xx_dt_led_mode_get(struct phy_device *phydev,
- 	return led_mode;
- }
- 
-+static void vsc8531_dt_clkout_rate_get(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *of_node = dev->of_node;
-+
-+	if (!of_node)
-+		return;
-+
-+	of_property_read_u32(of_node, "vsc8531,clk-out-frequency",
-+			     &priv->clkout_rate);
-+}
- #else
- static int vsc85xx_edge_rate_magic_get(struct phy_device *phydev)
- {
-@@ -444,6 +456,10 @@ static int vsc85xx_dt_led_mode_get(struct phy_device *phydev,
- {
- 	return default_mode;
- }
-+
-+static void vsc8531_dt_clkout_rate_get(struct phy_device *phydev)
-+{
-+}
- #endif /* CONFIG_OF_MDIO */
- 
- static int vsc85xx_dt_led_modes_get(struct phy_device *phydev,
-@@ -1540,6 +1556,37 @@ static int vsc85xx_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int vsc8531_config_init(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *vsc8531 = phydev->priv;
-+	u16 val;
-+	int rc;
-+
-+	rc = vsc85xx_config_init(phydev);
-+	if (rc)
-+		return rc;
-+
-+	switch (vsc8531->clkout_rate) {
-+	case 0:
-+		val = 0;
-+		break;
-+	case 25000000:
-+		val = CLKOUT_FREQ_25M | CLKOUT_ENABLE;
-+		break;
-+	case 50000000:
-+		val = CLKOUT_FREQ_50M | CLKOUT_ENABLE;
-+		break;
-+	case 125000000:
-+		val = CLKOUT_FREQ_125M | CLKOUT_ENABLE;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return phy_write_paged(phydev, MSCC_PHY_PAGE_EXTENDED_GPIO,
-+			       MSCC_CLKOUT_CNTL, val);
-+}
-+
- static int vsc8584_did_interrupt(struct phy_device *phydev)
- {
- 	int rc = 0;
-@@ -2020,6 +2067,32 @@ static int vsc8514_probe(struct phy_device *phydev)
- 				    ARRAY_SIZE(vsc85xx_hw_stats));
- }
- 
-+static int vsc8531_probe(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *vsc8531;
-+	int rate_magic, rc;
-+	u32 default_mode[2] = {VSC8531_LINK_1000_ACTIVITY,
-+	   VSC8531_LINK_100_ACTIVITY};
-+
-+	rate_magic = vsc85xx_edge_rate_magic_get(phydev);
-+	if (rate_magic < 0)
-+		return rate_magic;
-+
-+	rc = vsc85xx_probe_helper(phydev, default_mode,
-+				  ARRAY_SIZE(default_mode),
-+				  VSC85XX_SUPP_LED_MODES,
-+				  vsc85xx_hw_stats,
-+				  ARRAY_SIZE(vsc85xx_hw_stats));
-+	if (rc < 0)
-+		return rc;
-+
-+	vsc8531 = phydev->priv;
-+	vsc8531->rate_magic = rate_magic;
-+	vsc8531_dt_clkout_rate_get(phydev);
-+
-+	return 0;
-+}
-+
- static int vsc8574_probe(struct phy_device *phydev)
- {
- 	u32 default_mode[4] = {VSC8531_LINK_1000_ACTIVITY,
-@@ -2157,14 +2230,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask	= 0xfffffff0,
- 	/* PHY_BASIC_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init	= &vsc85xx_config_init,
-+	.config_init	= &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt	= &vsc85xx_ack_interrupt,
- 	.config_intr	= &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2181,14 +2254,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask    = 0xfffffff0,
- 	/* PHY_GBIT_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init    = &vsc85xx_config_init,
-+	.config_init    = &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt  = &vsc85xx_ack_interrupt,
- 	.config_intr    = &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2205,14 +2278,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask	= 0xfffffff0,
- 	/* PHY_BASIC_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init	= &vsc85xx_config_init,
-+	.config_init	= &vsc8531_config_init,
- 	.config_aneg	= &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt	= &vsc85xx_ack_interrupt,
- 	.config_intr	= &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2229,7 +2302,7 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask    = 0xfffffff0,
- 	/* PHY_GBIT_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init    = &vsc85xx_config_init,
-+	.config_init    = &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt  = &vsc85xx_ack_interrupt,
+V2:
+ - Added devicetree reviewers 
 -- 
-2.26.2
+2.7.4
 
