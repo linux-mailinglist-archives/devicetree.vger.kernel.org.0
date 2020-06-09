@@ -2,140 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF5B11F3C5A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E321F3C6B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729612AbgFIN1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 09:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57178 "EHLO
+        id S1728822AbgFIN3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 09:29:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729584AbgFIN1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 09:27:02 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EB6C03E97C;
-        Tue,  9 Jun 2020 06:27:02 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id x22so10075016pfn.3;
-        Tue, 09 Jun 2020 06:27:02 -0700 (PDT)
+        with ESMTP id S1728601AbgFIN3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 09:29:12 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EC8C05BD1E;
+        Tue,  9 Jun 2020 06:29:12 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id a9so21493930ljn.6;
+        Tue, 09 Jun 2020 06:29:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=kSIhf0lGTJhWcv+DccCkvFsMqMLpno9qIeBkBoJLMSQ=;
-        b=miEUbzjcd4ryUuKvQRtvf6dPM1igWZ99p8Q6FEwRjbx4OnKVBKqoYcgFbYQa5F0CiQ
-         rad6clrM7rHVgJjWaSGo+06n0jk3qugJoFhZ4uC0qWxdyIT7OsuLI2/YDruuF8Z4O1tE
-         3XN5SBV4IyX/VaBuWAY0GE0AqxS6UYPKNE6P36cTd2+X9MqvjpDifrfLKMc7i/xQMqjI
-         0Jpz/z0K3veRZWdMO4osYMwcAjH9FlU16JqTA5cQjsc0gOOqUvfPxAU2tZRhWde0L8Zi
-         TU7lbJxux9j2OvqpbG0zJUIieSCW7zCWuGtwSDwgsR2FLhku1pZlyh+CPVWh2iayMnyj
-         JFHw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PEfZn3c2yRr9PZgqQYrvPOR6TZg49oFLjkzjjmco2CU=;
+        b=gMocHyoKbY8s3KY27r/gPM7ahRjfJrWrlIefv9GwfFiwBgAnkSrD/Y4ClxdrCE400x
+         UHe1t2ukajZYmYdtutOirwXUqI0Rcy7wNeL52GtJ8aHMqKNgv7qyD9Aikh+c1uzdUWxQ
+         MoFkYBej2u+ic66AKCXOMoI/7qKJTLMZROFA/BywCV3Yjpj36B+Y8xgbbMOqYWuRH7hd
+         a7djhOaFRAX51tKSBx7O0fA8gEbxWuG9v+vhg3M72Haxe59+yc6db2Iqhv8FO9A86zyl
+         YxF5j9m91kCnLqw5cfhY6TF/mHQoWpSCS2XxH5laV1g12EuD2cZOIfUADWXWRCMiQPse
+         eY8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=kSIhf0lGTJhWcv+DccCkvFsMqMLpno9qIeBkBoJLMSQ=;
-        b=QlHxvw72+rQXqChrF6J1Rkbftgb0XvH1WCWi/a2IvjEPKBD0wB2OUCWRSbz8la4BqW
-         49HiiS0rJrUyluBXxePnpz2/xUu+5Jp1STYzjg6+nXSpq1U98XwRHwtdLvqb9yQgnyCC
-         DC6L7rcdcVEgJv8qaMN2Arf8KVV1J/kdWNRXwNdcePVEioc6qh92rCenu4whBKG91GpD
-         hw8PF5Ovzdjxlx0dv4ntOe69d2Ql16iIVF5nAr7DihdOwHisL88f27sf2XDPmD449/FQ
-         eyT3cLrgCXqBx33z4ygW5WbR3m/Q6I6umfu3ofrbmk8tP1vs4WfI2fFZNOQB/ZIWoh0g
-         OA/g==
-X-Gm-Message-State: AOAM531wwOMYVSKgmRI6axUdpHB1j79F7UutAqjmDSIT1sZ1v8SFx4SK
-        PfKPSFcvhhIabD+AaJKd670=
-X-Google-Smtp-Source: ABdhPJygotx9ln59z0STkYKtMU1xO9pxH7iXYS1GxlB8u1JiD2/tkQhL5M40gjWnv1oxbN80JE9mRA==
-X-Received: by 2002:a63:a36e:: with SMTP id v46mr23872632pgn.378.1591709222448;
-        Tue, 09 Jun 2020 06:27:02 -0700 (PDT)
-Received: from fmin-OptiPlex-7060.nreal.work ([103.206.191.42])
-        by smtp.gmail.com with ESMTPSA id b5sm2624348pjz.34.2020.06.09.06.26.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Jun 2020 06:27:02 -0700 (PDT)
-From:   dillon.minfei@gmail.com
-To:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@st.com, p.zabel@pengutronix.de,
-        pierre-yves.mordret@st.com, philippe.schenker@toradex.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH v4 4/4] i2c: stm32f4: Fix stmpe811 get xyz data timeout issue
-Date:   Tue,  9 Jun 2020 21:26:43 +0800
-Message-Id: <1591709203-12106-5-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1591709203-12106-1-git-send-email-dillon.minfei@gmail.com>
-References: <1591709203-12106-1-git-send-email-dillon.minfei@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PEfZn3c2yRr9PZgqQYrvPOR6TZg49oFLjkzjjmco2CU=;
+        b=IK6jmI+keQlrg5lCcR6cW2yIcHjqMbepAVk0werY4PDnF4x4OdHfTVK4Tw7rcEB+ng
+         Xau4hUPURaSZFu96chJWaNxMljgIyq83JuaqYZbdYCY08mvWuSnLvOr0oOgU2yCKCGRH
+         WjsA6t0w+JzBgGgZW+ctw0T7L9zrQ6Pk3zz24vb0gE5l4eZGxi7WPfLUFesIQ4UhSxHV
+         glMv4L76RObnFUmlt4EDabkTZIXfz5VPFJS+7J5WdhzNm454Wz5vZ/TxQ0nBllXz2rBz
+         s746010k1VFT68eN4PAQTzcmwNC+ewOOrPOVX8yogwPAagbcDWVUkUkITcUP+vkKh3qo
+         f3Kw==
+X-Gm-Message-State: AOAM5323bkDlz6PyHP+BQiUSr8CvDKF4Wwx3UdS2iazaoE6SVK03sq9k
+        B15IsuMMG50ZXY7C88tmM7Ov9N7k
+X-Google-Smtp-Source: ABdhPJw3wFI4gGl66N5VYIG7NFbTVA2131x8iYMK5UmoPdVFPxobMJSK4oDOHxkg2HOX0YKr7qBWOQ==
+X-Received: by 2002:a2e:9996:: with SMTP id w22mr687084lji.253.1591709350714;
+        Tue, 09 Jun 2020 06:29:10 -0700 (PDT)
+Received: from localhost.localdomain (79-139-237-54.dynamic.spd-mgts.ru. [79.139.237.54])
+        by smtp.gmail.com with ESMTPSA id s8sm5069821lfc.83.2020.06.09.06.29.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2020 06:29:10 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/6] Support DRM bridges on NVIDIA Tegra
+Date:   Tue,  9 Jun 2020 16:28:49 +0300
+Message-Id: <20200609132855.20975-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.26.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+Hello,
 
-as stm32f429's internal flash is 2Mbytes and compiled kernel
-image bigger than 2Mbytes, so we have to load kernel image
-to sdram on stm32f429-disco board which has 8Mbytes sdram space.
+This series adds initial support for the DRM bridges to NVIDIA Tegra DRM
+driver. This is required by newer device-trees where we model the LVDS
+encoder bridge properly.
 
-based on above context, as you knows kernel running on external
-sdram is more slower than internal flash. besides, we need read 4
-bytes to get touch screen xyz(x, y, pressure) coordinate data in
-stmpe811 interrupt.
+Changelog:
 
-so, in stm32f4_i2c_handle_rx_done, as i2c read slower than running
-in xip mode, have to adjust 'STOP/START bit set position' from last
-two bytes to last one bytes. else, will get i2c timeout in reading
-touch screen coordinate.
+v6: - Added r-b and acks from Rob Herring and Sam Ravnborg.
 
-to not take side effect, introduce IIC_LAST_BYTE_POS to support xip
-kernel or has mmu platform.
+    - Rebased on a recent linux-next, patches now apply without fuzz.
 
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
----
+v5: - Added new patches that make drm_of_find_panel_or_bridge() more usable
+      if graph isn't defined in a device-tree:
 
-V4: indroduce 'IIC_LAST_BYTE_POS' to compatible with xipkernel boot
+        of_graph: add of_graph_get_local_port()
+        drm/of: Make drm_of_find_panel_or_bridge() to check graph's presence
 
- drivers/i2c/busses/i2c-stm32f4.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+    - Updated "Support DRM bridges" patch to use drm_of_find_panel_or_bridge()
+      directly and added WARN_ON(output->panel || output->bridge) sanity-check.
 
-diff --git a/drivers/i2c/busses/i2c-stm32f4.c b/drivers/i2c/busses/i2c-stm32f4.c
-index d6a69dfcac3f..97cf42ae7fa0 100644
---- a/drivers/i2c/busses/i2c-stm32f4.c
-+++ b/drivers/i2c/busses/i2c-stm32f4.c
-@@ -93,6 +93,12 @@
- #define STM32F4_I2C_MAX_FREQ		46U
- #define HZ_TO_MHZ			1000000
- 
-+#if !defined(CONFIG_MMU) && !defined(CONFIG_XIP_KERNEL)
-+#define IIC_LAST_BYTE_POS 1
-+#else
-+#define IIC_LAST_BYTE_POS 2
-+#endif
-+
- /**
-  * struct stm32f4_i2c_msg - client specific data
-  * @addr: 8-bit slave addr, including r/w bit
-@@ -439,7 +445,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
- 	int i;
- 
- 	switch (msg->count) {
--	case 2:
-+	case IIC_LAST_BYTE_POS:
- 		/*
- 		 * In order to correctly send the Stop or Repeated Start
- 		 * condition on the I2C bus, the STOP/START bit has to be set
-@@ -454,7 +460,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
- 		else
- 			stm32f4_i2c_set_bits(reg, STM32F4_I2C_CR1_START);
- 
--		for (i = 2; i > 0; i--)
-+		for (i = IIC_LAST_BYTE_POS; i > 0; i--)
- 			stm32f4_i2c_read_msg(i2c_dev);
- 
- 		reg = i2c_dev->base + STM32F4_I2C_CR2;
-@@ -463,7 +469,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
- 
- 		complete(&i2c_dev->complete);
- 		break;
--	case 3:
-+	case (IIC_LAST_BYTE_POS+1):
- 		/*
- 		 * In order to correctly generate the NACK pulse after the last
- 		 * received data byte, we have to enable NACK before reading N-2
+    - Added new "Wrap directly-connected panel into DRM bridge" patch, as
+      was suggested by Laurent Pinchart.
+
+v4: - Following review comments that were made by Laurent Pinchart to the v3,
+      we now create and use the "bridge connector".
+
+v3: - Following recommendation from Sam Ravnborg, the new bridge attachment
+      model is now being used, i.e. we ask bridge to *not* create a connector
+      using the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+
+    - The bridge is now created only for the RGB (LVDS) output, and only
+      when necessary. For now we don't need bridges for HDMI or DSI outputs.
+
+    - I noticed that we're leaking OF node in the panel's error code path,
+      this is fixed now by the new patch "Don't leak OF node on error".
+
+v2: - Added the new "rgb: Don't register connector if bridge is used"
+      patch, which hides the unused connector provided by the Tegra DRM
+      driver when bridge is used, since bridge provides its own connector
+      to us.
+
+Dmitry Osipenko (6):
+  of_graph: add of_graph_get_local_port()
+  drm/of: Make drm_of_find_panel_or_bridge() to check graph's presence
+  drm/tegra: output: Don't leak OF node on error
+  drm/tegra: output: Support DRM bridges
+  drm/tegra: output: rgb: Support LVDS encoder bridge
+  drm/tegra: output: rgb: Wrap directly-connected panel into DRM bridge
+
+ drivers/gpu/drm/drm_of.c       | 13 +++++-
+ drivers/gpu/drm/tegra/drm.h    |  2 +
+ drivers/gpu/drm/tegra/output.c | 21 +++++++--
+ drivers/gpu/drm/tegra/rgb.c    | 85 +++++++++++++++++++++-------------
+ drivers/of/property.c          | 32 +++++++++----
+ include/linux/of_graph.h       |  7 +++
+ 6 files changed, 114 insertions(+), 46 deletions(-)
+
 -- 
-2.7.4
+2.26.0
 
