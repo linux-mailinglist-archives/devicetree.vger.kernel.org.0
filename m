@@ -2,97 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2971F49F3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 01:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF14A1F49F6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 01:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728851AbgFIXEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 19:04:50 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:33705 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728527AbgFIXEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 19:04:50 -0400
-Received: by mail-io1-f45.google.com with SMTP id i25so92285iog.0;
-        Tue, 09 Jun 2020 16:04:49 -0700 (PDT)
+        id S1728906AbgFIXGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 19:06:38 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:41999 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728522AbgFIXGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 19:06:38 -0400
+Received: by mail-il1-f194.google.com with SMTP id 18so100917iln.9;
+        Tue, 09 Jun 2020 16:06:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WM6pC+NaWV8CTga8ZnlVnJ5VfcCeVmRJv2RMndMJd+c=;
-        b=jzXCWG7ox2YX3VCHAFJ1y5JpfNINBSH8K8H4lYwFFHKl2gnvZk5Zb+TrSRQOEQK/8c
-         aOPIr7XRNldkMzYX08mw+OUmP9ibr1oUfExIQJxE+5tMGi17cw0Ywn85oUfhnnCkONbA
-         D5kXXJ1+lsHM5Pm24tZbjM9KUiYYYtiF27YuEym/AFptq5Tk0k5J2ER7l8dXepKtYiJr
-         Wds8F0dULw/acdEb5Ad8FsrYcb6vEL5wR95DndvErvXF2VCKlO3j2bnhxk7fHISDyQJp
-         A2LcGq38TvQJZCGZpFCRVcYHezchUbaXlEu3qceTqzsFMQbOh7025E1eoHoi682gtPos
-         JE2w==
-X-Gm-Message-State: AOAM533ZZ0lnpPVEXvMfltf3cVfVPCG2GerKwKn6JYx8J30D4E5jgX6Q
-        ce2mFyuV3q0pGqvtzsgcOLhkMGs=
-X-Google-Smtp-Source: ABdhPJwOXnWBlPPjiKf9bCvET4uGRf1cCsJ6WSZ4GTiLWLE4BDf6KUE175QXCkWFOpZSmnTCvJL6mA==
-X-Received: by 2002:a05:6638:272:: with SMTP id x18mr495856jaq.122.1591743889297;
-        Tue, 09 Jun 2020 16:04:49 -0700 (PDT)
+        bh=lowGDgqik15FywyulT8g8hjG3BqBie9BHX3NbVdEAb8=;
+        b=NaLAM6GZjNQpV5ukpBJ+mvNTXIDOSxjAVf79+0PLPNhh7pWvPZ7X6Pe6WESubAPJMJ
+         ckbCbP3+ZzaZuLE7+y8yR+t8GTs9MypKKKz981kyh3LDLh/mYfQM9wW9NCs0LjVRObHW
+         D/V4wu7HtzRK/UFcs2W0Q3TTbLKJq+H8G1ilA7J8N7C2TDgrq3VGiYyNkmEcqQLySvC8
+         aDoW9O9kbGuGX3p1cAiTjCKqc8aX7kPGYkC84AoqKUt7n9iUxIQ7TO2L9+vrWrq/mCap
+         /DrfKrs8WYy2Elq+Z55EKBDNAQVUaOAz0hYOUa6xy37W4mgF0/W2V8cBsDziJZHIdKqK
+         WzZw==
+X-Gm-Message-State: AOAM5302IIE0pvG8Bl4t8YEaHqPc1N03EoJBdd/ixKuMXfyFsIt3zRBv
+        OL33Y6QHkyAOXJLzYzlARw==
+X-Google-Smtp-Source: ABdhPJzA471O+zLyrUVgcaJtMiMWHipLZjGeKrxG0e9HUEXXPzjEfeCsCCzLurZKeeKMdsHSRLkaRw==
+X-Received: by 2002:a92:5e59:: with SMTP id s86mr369637ilb.104.1591743996208;
+        Tue, 09 Jun 2020 16:06:36 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g17sm9881885ilc.18.2020.06.09.16.04.48
+        by smtp.gmail.com with ESMTPSA id b29sm7856241ioc.32.2020.06.09.16.06.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2020 16:04:48 -0700 (PDT)
-Received: (nullmailer pid 1674233 invoked by uid 1000);
-        Tue, 09 Jun 2020 23:04:47 -0000
-Date:   Tue, 9 Jun 2020 17:04:47 -0600
+        Tue, 09 Jun 2020 16:06:35 -0700 (PDT)
+Received: (nullmailer pid 1677087 invoked by uid 1000);
+        Tue, 09 Jun 2020 23:06:34 -0000
+Date:   Tue, 9 Jun 2020 17:06:34 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Roger Quadros <rogerq@ti.com>
 Cc:     kishon@ti.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCHv2 1/3] dt-binding: phy: convert ti,omap-usb2 to YAML
-Message-ID: <20200609230447.GA1670701@bogus>
+Subject: Re: [PATCHv2 2/3] dt-binding: phy: ti,omap-usb2: Add quirk to
+ disable charger detection
+Message-ID: <20200609230634.GA1674560@bogus>
 References: <20200602114606.32045-1-rogerq@ti.com>
- <20200602114606.32045-2-rogerq@ti.com>
+ <20200602114606.32045-3-rogerq@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200602114606.32045-2-rogerq@ti.com>
+In-Reply-To: <20200602114606.32045-3-rogerq@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 02, 2020 at 02:46:04PM +0300, Roger Quadros wrote:
-> Move ti,omap-usb2 to its own YAML schema.
+On Tue, Jun 02, 2020 at 02:46:05PM +0300, Roger Quadros wrote:
+> Add "ti,dis-chg-det-quirk" property to disable the USB2_PHY Charger Detect
+> logic.
 > 
 > Signed-off-by: Roger Quadros <rogerq@ti.com>
 > ---
->  .../devicetree/bindings/phy/ti,omap-usb2.yaml | 69 +++++++++++++++++++
->  .../devicetree/bindings/phy/ti-phy.txt        | 37 ----------
->  2 files changed, 69 insertions(+), 37 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
+>  Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml b/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-> new file mode 100644
-> index 000000000000..2bbea8d2bcb1
-> --- /dev/null
+> index 2bbea8d2bcb1..5e8c7a98de1e 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
 > +++ b/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/ti,omap-usb2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OMAP USB2 PHY
-> +
-> +maintainers:
-> + - Kishon Vijay Abraham I <kishon@ti.com>
-> + - Roger Quadros <rogerq@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - "ti,dra7x-usb2"
-> +        - "ti,dra7x-usb2-phy2"
-> +        - "ti,am654-usb2"
-> +      - enum:
-> +        - "ti,omap-usb2"
+> @@ -50,6 +50,11 @@ properties:
+>        (deprecated) phandle of the control module used by PHY driver
+>        to power on the PHY. Use syscon-phy-power instead.
+>  
+> +  ti,dis-chg-det-quirk:
 
-Don't need quotes on all these.
+Bikeshed:
 
-Otherwise,
+ti,disable-charge-det
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +    description:
+> +      if present, driver will disable charger detection logic.
+> +    type: boolean
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
