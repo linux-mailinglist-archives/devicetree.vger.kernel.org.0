@@ -2,153 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A689D1F459F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 20:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 729D81F44BB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 20:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732607AbgFIRuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 13:50:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36974 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732604AbgFIRuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jun 2020 13:50:03 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1500320801;
-        Tue,  9 Jun 2020 17:50:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591725002;
-        bh=GmOf7ufLopIQ4dm5tWeT9BTmDlXoHbRAmXYulRxbARg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qBlCD7TE7EFTt9PmZafc3XGZkCUYr70hyzrVUttbz0QUrhGE+ZKD3ilnm5gavV5aN
-         NShzrd92zAMR12KJn5yRqWK6hNb+kNIOu8EonT++JAT1G7MwZYQUkMalwtLgErwqPA
-         cfTOtJX7xuvIUUh1lI8qFVC5AfvWBZt9lRQe3g0g=
-Date:   Tue, 9 Jun 2020 18:50:00 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        robh@kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 2/2] ASoc: tas2563: DSP Firmware loading support
-Message-ID: <20200609175000.GO4583@sirena.org.uk>
+        id S1733197AbgFISHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 14:07:45 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52288 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388003AbgFISHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 14:07:41 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 059I6rtO068877;
+        Tue, 9 Jun 2020 13:06:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591726013;
+        bh=xSfKR8MnxMrg+HE8ph5OJ1uYPhsGztBaHv6HeUzvjsg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=oRqgEQNf8s6fMmWqKU2Y16ZgyesitluWmLQ1OVFCf20DGT2WvROwStJwzsaZ2vDDZ
+         jJQRnDxMnFlghP6eEhYSAok7gReQhOomhx112hUn+bUb26ft902EQj4bhAtabZZZgT
+         GBdmO1nLkUOpojhglC0AAweIyeBvn7BqJ3WuGx5A=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 059I6r0a034979;
+        Tue, 9 Jun 2020 13:06:53 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 9 Jun
+ 2020 13:06:53 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 9 Jun 2020 13:06:52 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 059I6o70086650;
+        Tue, 9 Jun 2020 13:06:51 -0500
+Subject: Re: [RFC PATCH 1/2] dt-bindings: tas2562: Add firmware support for
+ tas2563
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
+        <robh@kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
 References: <20200609172841.22541-1-dmurphy@ti.com>
- <20200609172841.22541-3-dmurphy@ti.com>
+ <20200609172841.22541-2-dmurphy@ti.com> <20200609173143.GN4583@sirena.org.uk>
+ <bb7cff87-f814-1b37-c9eb-e68919e3c077@ti.com>
+ <20200609175852.GQ4583@sirena.org.uk>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <414a2d73-6d09-1e76-59c8-4943c0e8f720@ti.com>
+Date:   Tue, 9 Jun 2020 13:06:50 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vEfizQhTV1P/vojJ"
-Content-Disposition: inline
-In-Reply-To: <20200609172841.22541-3-dmurphy@ti.com>
-X-Cookie: Be careful!  Is it classified?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200609175852.GQ4583@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mark
 
---vEfizQhTV1P/vojJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/9/20 12:58 PM, Mark Brown wrote:
+> On Tue, Jun 09, 2020 at 12:35:50PM -0500, Dan Murphy wrote:
+>> On 6/9/20 12:31 PM, Mark Brown wrote:
+>>> Why not just use a standard name for the firmware?  If the firmwares
+>>> vary per-board then building it using the machine compatible (or DMI
+>>> info) could handle that, with a fallback to a standard name for a
+>>> default setup.
+>> The number of firmwares can vary per IC on the board itself.  So you may
+>> have X number of firmware files all with different names all targets for
+>> different TAS2563 ICs.
+>> Also TI will not be providing the individual binaries to the customer.
+>> There is a customer tool that the user uses to create the binaries.
+>> So the output names are arbitrary.
+>> I was going to mention this in the cover letter but did not think mentioning
+>> the user tool had any value
+> That's all fairly standard for this sort of device.  You could still
+> cope with this by including the I2C address in the default name
+> requested - do something like tas2562/myboard-addr.fw or whatever.  The
+> concern here is that someone shouldn't have to replace their DT if they
+> decide they want to start using the DSP, and someone making a distro
+> shouldn't be stuck dealing with what happens if multiple vendors decide
+> to just reuse the same name (eg, just calling everything tas2562
+> regardless of plastics).
 
-On Tue, Jun 09, 2020 at 12:28:41PM -0500, Dan Murphy wrote:
+I could make a default as you suggested to include i2c address and bus 
+in the name.  But the TAS2563 does not need the firmware to operate and 
+the 2562 does not have a DSP.
 
->  	.val_bits =3D 8,
-> =20
-> -	.max_register =3D 5 * 128,
-> +	.max_register =3D 255 * 128,
->  	.cache_type =3D REGCACHE_RBTREE,
->  	.reg_defaults =3D tas2562_reg_defaults,
->  	.num_reg_defaults =3D ARRAY_SIZE(tas2562_reg_defaults),
+What if there was an ALSA control instead that passed in the firmware 
+name from the user space instead of using the DT?
 
-Should some or all of the DSP memory be marked as volatile?  I guess if
-we only write program to it then on reload after power off it should be
-fine to just blast everything in again and ignore the fact that some
-will have changed, but it might be helpful for debugging to be able to
-read the live values back and do something more clever for restore.
+Then the control can load and parse the firmware and wait for the user 
+to select the program.
 
->  #define TAS2562_PAGE_CTRL      0x00
-> +#define TAS2562_BOOK_CTRL      0x7f
+This would solve a user from having ot update the DT to use a firmware.
 
-*sigh*  Of course the two levels of paging register are not located
-anywhere near each other so we can't easily pretend they're one double
-width page address.  :/
+Dan
 
-> +static int tas25xx_process_fw_single(struct tas2562_data *tas2562,
-> +				     struct tas25xx_cmd_data *cmd_data,
-> +				     u8 *fw_out)
-> +{
-> +	int num_writes =3D cpu_to_be16(cmd_data->length);
-> +	int i;
-> +	int ret;
-> +	int offset =3D 4;
-> +	int reg_data, write_reg;
-> +
-> +	for (i =3D 0; i < num_writes; i++) {
-> +		/* Reset Page to 0 */
-> +		ret =3D regmap_write(tas2562->regmap, TAS2562_PAGE_CTRL, 0);
-> +		if (ret)
-> +			return ret;
-
-Why?
-
-> +
-> +		cmd_data->book =3D fw_out[offset];
-> +		cmd_data->page =3D fw_out[offset + 1];
-> +		cmd_data->offset =3D fw_out[offset + 2];
-> +		reg_data =3D fw_out[offset + 3];
-> +		offset +=3D 4;
-> +
-> +		ret =3D regmap_write(tas2562->regmap, TAS2562_BOOK_CTRL,
-> +				   cmd_data->book);
-> +		if (ret)
-> +			return ret;
-
-This manual paging doesn't fill me with with joy especially with regard
-to caching and doing the books behind the back of regmap.  I didn't spot
-anything disabling cache or anything in the code.  I think you should
-either bypass the cache while doing this or teach regmap about the
-books (which may require core updates, I can't remember if the range
-code copes with nested levels of paging - I remember thinking about it).
-
-> +static ssize_t write_config_store(struct device *dev,
-> +				struct device_attribute *tas25xx_attr,
-> +				const char *buf, size_t size)
-> +{
-
-This looks like it could just be an enum (it looks like there's names we
-could use) or just a simple numbered control?  Same for all the other
-controls, they're just small integers so don't look hard to handle.  But
-perhaps I'm missing something?
-
-> +	tas2562->fw_data->fw_hdr =3D devm_kzalloc(tas2562->dev, hdr_size,
-> +						GFP_KERNEL);
-> +	if (!tas2562->fw_data->fw_hdr)
-> +		return -ENOMEM;
-> +
-> +	memcpy(tas2562->fw_data->fw_hdr, &fw->data[0], hdr_size);
-
-Should validate that the firmware is actually at least hdr_size big, and
-similarly for all the other lengths we get from the header we should
-check that there's actually enough data in the file.  ATM we just
-blindly copy.
-
-It'd also be good to double check that the number of configs and
-programs is within bounds.
-
---vEfizQhTV1P/vojJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7fy8cACgkQJNaLcl1U
-h9DyjAf/U3fDLekpB9MZStpSggO6T3wCfTbWFhFNd8RAcNjhjzxnoumprzpXP7vS
-0udC8M7ISpLr6EIdhF6WScsoEWCM/1quzrZ8T3TSAz5pfAiuepmWMYgZiLr532vv
-jGtuTYBno7H+Kx4CKOc5+mnd7cFWaSQkxWui3/uwDrWrdQRQRva9oZRW5NdYLFGY
-5H2uzDpRDnRetbs4xJztGJ7d4FcgSutaJFsfhe6xMEaN8Hgk73m5UBAK1Epv2LTz
-kswZnjp6SO8jdJCLyiblXnliDIRn/ftQz5hTY2ZLUmZ1ylwpbtuoTdGwpp4NoYfU
-2Qo3ZYiD2Gd7QnI6Jqb6H6LM/8IMNw==
-=c5qv
------END PGP SIGNATURE-----
-
---vEfizQhTV1P/vojJ--
