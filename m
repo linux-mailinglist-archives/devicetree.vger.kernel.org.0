@@ -2,86 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 548A51F4957
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 00:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57591F495E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 00:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728407AbgFIWYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 18:24:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728191AbgFIWYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 18:24:01 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B229C08C5C2
-        for <devicetree@vger.kernel.org>; Tue,  9 Jun 2020 15:24:00 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id h188so261392lfd.7
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2020 15:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=km6g.us; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dKvNER5A2IjwZIxC0Xlq5AYP9JFJKTf7sG0leVqyGrc=;
-        b=oaOHAz4dKwt88LzJ1VuawMYuOi7CgKdkOWayyJ+QbOEn/DxrkZDPjmgBlPltn0MKCu
-         H1W4u8Epzv5jWO8f2wNpf0//ibtQYtMBEXuxCa9Cx1whHO3lx3FKNskAlnY1hhGrrLx+
-         L2v5EYNNIciwj0dCDP90ZR7ySpvbQ0zGd1MY8N6uHgLgwYasPE1Ljxo6z22bzd2GmFOD
-         NdbfDnAa6G7PZa7oEvWbU3NLQCAE9wQSquwiWJ0TtNP8CfHnWtLTBhnLJB537YVPM8nx
-         xu0v7/5ckE0iUzGP7Ygxs94HQLM+lH+qeeXnGgTJ7f1G6fA3XD2TvHLYYB5qQ0yja6EB
-         3Wnw==
+        id S1728108AbgFIW3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 18:29:46 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:41291 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728088AbgFIW3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 18:29:45 -0400
+Received: by mail-il1-f195.google.com with SMTP id c75so35478ila.8
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2020 15:29:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dKvNER5A2IjwZIxC0Xlq5AYP9JFJKTf7sG0leVqyGrc=;
-        b=lM+Y/WzCyvT6eaxKV6OPRGsjz39t4CznvHraf4zHGQwsE7RIF8IwIi4Ay1MdkjvL+d
-         itRh3R8Se9C6ds/EX+o/GIO8jdNQYuuaEHgEkodQM5Tu+ovbeUmhaiM7FQejCu7qYY/r
-         5DVbv9do2htWuTJjY8xAr58j/EYy1Sc+yzY7ruGXw6GtcysDtuY3EP5w4Mk5AdaDt4DE
-         +ROm/krJv5z6yFCYMrtYYue2U5K676HUr2eroM50k0sCM+qpyWd7szjah2Me4DKE759O
-         o5GNeWIU2mqnUESSsgibVwWQidhlZztGGNNn2rD9bvva1B8+aI91IjVODnfkTA+uoh7W
-         eqsg==
-X-Gm-Message-State: AOAM532WStT3GmqXmTg673IzBN7s846uB1yTJuhMhqLT6Ssrg8qDga4u
-        RI/C+1DPpSTt50UQCLe1IzkxF++Tp5pwfV1ClDHbRApB
-X-Google-Smtp-Source: ABdhPJzPNL8NXYEPrzmlBn0JJ/YPzOMPrtv7DXBfa4e21zWSXb2c2IGQ2jq4fuvlYNhciR3LKtdCTrYMNq+y0ZJLbx8=
-X-Received: by 2002:ac2:5a4c:: with SMTP id r12mr53671lfn.10.1591741439138;
- Tue, 09 Jun 2020 15:23:59 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9eU1Sl59BWMKbsH7yc0Bp/cm9dp+5d5ACrcNSF2dGl8=;
+        b=drRf7GeUwzBk/RL+davIjAnf2E0F1MybXfxyUBhjenqWSTa7ouuTeBK4VcK3hm4ORt
+         2VYFBsGFvUof7lZxAATEb7Y1wRw8579GQYhCfOQgSg2TrBzFZtd/WkDRa34gKWhe219T
+         0t9SIcX1xoryEeSAxfHKCAhE/PFFUD5HrpSXbwdrcPYpngy+72lsfANXOApBUuiO/Rkm
+         O966lCJvqiEjXrDLCnFcv372aXPbcbdcwKMK6dVwHHLvIbMa4JartYRRMnIG6t2Yen0+
+         rWUNbiZX4qQ433NxnLVIzRwZYmMOcpcmLlP+y1zp5HNOB6nuINqX2EqL2NcfKUgz62Al
+         qM2A==
+X-Gm-Message-State: AOAM532LRQThOXUSoN8xygo6FQF8qS+xHlYTW+EzrnL3XKADHpULk7J8
+        BQsrwjbwv1V19fjUhXOpeA==
+X-Google-Smtp-Source: ABdhPJy9gLy7HLB8sb8E6mMuJ54nlVrugw1RL8A1/F9Bo4vWIw8hU0kDTJ/yXcE9XNRyKoowjpueIw==
+X-Received: by 2002:a92:d0cc:: with SMTP id y12mr215972ila.308.1591741783371;
+        Tue, 09 Jun 2020 15:29:43 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id d71sm10210309ill.9.2020.06.09.15.29.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2020 15:29:42 -0700 (PDT)
+Received: (nullmailer pid 1615866 invoked by uid 1000);
+        Tue, 09 Jun 2020 22:29:42 -0000
+Date:   Tue, 9 Jun 2020 16:29:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, linux-imx@nxp.com,
+        dri-devel@lists.freedesktop.org, sam@ravnborg.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: panel-simple: Add koe, tx26d202vm0bwa
+ compatible
+Message-ID: <20200609222942.GA1615808@bogus>
+References: <1590991843-24231-1-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
-References: <20200530123222.361104-1-kevin+linux@km6g.us> <20200609221401.GA1492918@bogus>
-In-Reply-To: <20200609221401.GA1492918@bogus>
-From:   "Kevin P. Fleming" <kevin+linux@km6g.us>
-Date:   Tue, 9 Jun 2020 18:23:48 -0400
-Message-ID: <CAE+UdorjD+2GORj3M6abgqTb8QnRZNFiyCX9PJAJc09xUBACqA@mail.gmail.com>
-Subject: Re: [PATCH] rtc: abx80x: Add support for autocalibration filter capacitor
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Kevin P. Fleming" <kevin+linux@km6g.us>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1590991843-24231-1-git-send-email-victor.liu@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 9, 2020 at 6:14 PM Rob Herring <robh@kernel.org> wrote:
-> > ---
-> >  .../bindings/rtc/abracon,abx80x.txt           |  6 ++++
-> >  drivers/rtc/rtc-abx80x.c                      | 34 +++++++++++++++++++
-> >  2 files changed, 40 insertions(+)
->
-> Binding should be a separate patch?
+On Mon, 01 Jun 2020 14:10:43 +0800, Liu Ying wrote:
+> Add compatible to panel-simple for Kaohsiung Opto-Electronics Inc.
+> 10.1" WUXGA(1920x1200) TX26D202VM0BWA TFT LCD panel with LVDS interface.
+> 
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Indeed, it was re-sent with the patches separated.
-
-> > +All of the devices can have a 47pf capacitor attached to increase the
-> > +autocalibration accuracy of their RC oscillators. To enable usage of the
-> > +capacitor the following property has to be defined:
-> > +
-> > + - "abracon,autocal-filter"
->
-> Can't the standard 'quartz-load-femtofarads' property be used here? You
-> might not need to know the value, but presence of the property can
-> enable the feature.
-
-On these devices the capacitor is connected to the RC oscillator, not
-the crystal oscillator, so this property is controlling a different
-function. I'm certainly open to suggestions for different names for
-the property if that is desired.
+Acked-by: Rob Herring <robh@kernel.org>
