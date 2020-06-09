@@ -2,169 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A18601F3D5F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84E11F3D97
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 16:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730358AbgFINyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 09:54:45 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:55561 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729779AbgFINyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 09:54:44 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1591710883; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=MI3qK4wgmDjHmo1cYjSV72uJg5VksJKTM0Lx81cwbYE=;
- b=FBOVtT/7sdK6LFLBZVmKGv+WR+iAe/NNE6Cz69I8ZHRmS8vsKgmmjTbd0XOtgDuzO7akDCp2
- 0v1H9n0m44eumAn2IcU1d7q0rix3XlnoZZqFuLlKrJ2cHH07CT93AKkgmhi+SAT/HE+IU219
- R3JQomXEzXVo4OM5eAWhPWr78B4=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 5edf949bf3deea03f309cf51 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Jun 2020 13:54:35
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A88EBC433CA; Tue,  9 Jun 2020 13:54:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 326BFC433C6;
-        Tue,  9 Jun 2020 13:54:34 +0000 (UTC)
+        id S1728829AbgFIOHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 10:07:37 -0400
+Received: from foss.arm.com ([217.140.110.172]:42984 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728338AbgFIOHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 10:07:37 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E6E31FB;
+        Tue,  9 Jun 2020 07:07:31 -0700 (PDT)
+Received: from [10.57.49.155] (unknown [10.57.49.155])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 83BD23F66F;
+        Tue,  9 Jun 2020 07:07:28 -0700 (PDT)
+Subject: Re: [PATCH 2/2] arm-nommu: Add use_reserved_mem() to check if device
+ support reserved memory
+To:     dillon.minfei@gmail.com, robh+dt@kernel.org,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        linux@armlinux.org.uk, kstewart@linuxfoundation.org,
+        allison@lohutok.net, info@metux.net, tglx@linutronix.de
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1591605038-8682-1-git-send-email-dillon.minfei@gmail.com>
+ <1591605038-8682-3-git-send-email-dillon.minfei@gmail.com>
+From:   Vladimir Murzin <vladimir.murzin@arm.com>
+Message-ID: <90df5646-e0c4-fcac-d934-4cc922230dd2@arm.com>
+Date:   Tue, 9 Jun 2020 15:08:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <1591605038-8682-3-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Tue, 09 Jun 2020 19:24:34 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7180: Add support to skip
- powering up of ETM
-In-Reply-To: <7599d58142dcefbcb08a2eaff71c7f411a1d52b1.1589539293.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1589539293.git.saiprakash.ranjan@codeaurora.org>
- <7599d58142dcefbcb08a2eaff71c7f411a1d52b1.1589539293.git.saiprakash.ranjan@codeaurora.org>
-Message-ID: <70271f66ad792f7ab16a907ddf73e0f3@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On 2020-05-15 16:21, Sai Prakash Ranjan wrote:
-> Add "qcom,skip-power-up" property to skip powering up ETM
-> on SC7180 SoC to workaround a hardware errata where CPU
-> watchdog counter is stopped when ETM power up bit is set
-> (i.e., when TRCPDCR.PU = 1).
+On 6/8/20 9:30 AM, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
 > 
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> Currently, we use dma direct to request coherent memory for driver on armv7m
+> platform if 'cacheid' is zero, but dma_direct_can_mmap() is return false,
+> dma_direct_mmap() return -ENXIO for CONFIG_MMU undefined platform.
+> 
+> so we have to back to use 'arm_nommu_dma_ops', add use_reserved_mem() to check
+> if device support global or device corherent memory. if yes, then call
+> set_dma_ops()
+> 
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
 > ---
+>  arch/arm/mm/dma-mapping-nommu.c | 28 +++++++++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
 > 
-> Depends on ETM driver change here -
-> https://lore.kernel.org/patchwork/cover/1242100/
+> diff --git a/arch/arm/mm/dma-mapping-nommu.c b/arch/arm/mm/dma-mapping-nommu.c
+> index 287ef898a55e..e1c213fec152 100644
+> --- a/arch/arm/mm/dma-mapping-nommu.c
+> +++ b/arch/arm/mm/dma-mapping-nommu.c
+> @@ -14,6 +14,7 @@
+>  #include <asm/cacheflush.h>
+>  #include <asm/outercache.h>
+>  #include <asm/cp15.h>
+> +#include <linux/of.h>
+>  
+>  #include "dma.h"
+>  
+> @@ -188,6 +189,31 @@ const struct dma_map_ops arm_nommu_dma_ops = {
+>  };
+>  EXPORT_SYMBOL(arm_nommu_dma_ops);
+>  
+> +static bool use_reserved_mem(struct device *dev)
+> +{
+> +	struct device_node *np;
+> +
+> +	np = of_find_node_by_path("/reserved-memory/linux,dma");
+> +
+> +	if (np &&
+> +		of_device_is_compatible(np, "shared-dma-pool") &&
+> +		of_property_read_bool(np, "no-map") &&
+> +		of_property_read_bool(np, "linux,dma-default")) {
+> +		/* has global corherent mem support */
+> +		of_node_put(np);
+> +		return true;
+> +	}
+> +
+> +	np = of_parse_phandle(dev->of_node, "memory-region", 0);
+> +	if (np) {
+> +		/* has dev corherent mem support */
+> +		of_node_put(np);
+> +		return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>  			const struct iommu_ops *iommu, bool coherent)
+>  {
+> @@ -206,6 +232,6 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>  		dev->archdata.dma_coherent = (get_cr() & CR_M) ? coherent : true;
+>  	}
+>  
+> -	if (!dev->archdata.dma_coherent)
+> +	if (!dev->archdata.dma_coherent || use_reserved_mem(dev))
+>  		set_dma_ops(dev, &arm_nommu_dma_ops);
+>  }
 > 
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 8b3707347547..de4bae4ec224 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1657,6 +1657,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1676,6 +1677,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1695,6 +1697,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1714,6 +1717,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1733,6 +1737,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1752,6 +1757,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1771,6 +1777,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
-> @@ -1790,6 +1797,7 @@
->  			clocks = <&aoss_qmp>;
->  			clock-names = "apb_pclk";
->  			arm,coresight-loses-context-with-cpu;
-> +			qcom,skip-power-up;
-> 
->  			out-ports {
->  				port {
 
-I have sent this patch as a part of other coresight changes
-to keep all coresight DT changes together[1], we can drop this
-patch now.
+Sorry I have to NAK this hack :(
 
-[1] - https://lore.kernel.org/patchwork/cover/1253969/
+Digging git history reveled 79964a1c2972 ("ARM: 8633/1: nommu: allow mmap when !CONFIG_MMU")
+which make me wonder if diff below does the trick for you
 
-Thanks,
-Sai
+diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+index 8f4bbda..8623b9e 100644
+--- a/kernel/dma/direct.c
++++ b/kernel/dma/direct.c
+@@ -456,14 +456,14 @@ int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+ #else /* CONFIG_MMU */
+ bool dma_direct_can_mmap(struct device *dev)
+ {
+-	return false;
++	return true;
+ }
+ 
+ int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+ 		void *cpu_addr, dma_addr_t dma_addr, size_t size,
+ 		unsigned long attrs)
+ {
+-	return -ENXIO;
++	return vm_iomap_memory(vma, vma->vm_start, (vma->vm_end - vma->vm_start));;
+ }
+ #endif /* CONFIG_MMU */
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+Cheers
+Vladimir
