@@ -2,55 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB76B1F426A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E18621F4279
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728868AbgFIRfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 13:35:00 -0400
-Received: from verein.lst.de ([213.95.11.211]:43471 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726848AbgFIRfA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jun 2020 13:35:00 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 3460168AFE; Tue,  9 Jun 2020 19:34:56 +0200 (CEST)
-Date:   Tue, 9 Jun 2020 19:34:55 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Vladimir Murzin <vladimir.murzin@arm.com>
-Cc:     Christoph Hellwig <hch@lst.de>,
-        dillon min <dillon.minfei@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux@armlinux.org.uk, Kate Stewart <kstewart@linuxfoundation.org>,
-        allison@lohutok.net, info@metux.net, tglx@linutronix.de,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm-nommu: Add use_reserved_mem() to check if
- device support reserved memory
-Message-ID: <20200609173455.GA25467@lst.de>
-References: <1591605038-8682-1-git-send-email-dillon.minfei@gmail.com> <1591605038-8682-3-git-send-email-dillon.minfei@gmail.com> <90df5646-e0c4-fcac-d934-4cc922230dd2@arm.com> <CAL9mu0+__0Z3R3TcSrj9-kPxsyQHKS9WqK1u58P0dEZ+Jd-wbQ@mail.gmail.com> <20200609153646.GA17969@lst.de> <031034fb-b109-7410-3ff8-e78cd12a5552@arm.com> <b0c85637-4646-614b-d406-49aa72ce52e1@arm.com>
+        id S1731867AbgFIRgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 13:36:33 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:47602 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728848AbgFIRgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 13:36:32 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 059HZot6046157;
+        Tue, 9 Jun 2020 12:35:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591724150;
+        bh=ulNJut/tfEzVpGlFxRW9r3khnz5f2N4uIk9e8tk29mw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=WD1/Wl8ITIn7CjclZy8e17qbQLxWjWCaCvCqb65B93zj5us74qrqpR8T1MnTxMYlY
+         5v0sKw9NGKDOVQ0MTB6pQKAnYkoDUV7U5nNvb3gy+f6wFygEErcdbDyCfIGRlRUC4n
+         i98wZPpburooNob5kL+A/PK4RpcG6WiFOhCnKaoc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 059HZom8051593
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 9 Jun 2020 12:35:50 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 9 Jun
+ 2020 12:35:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 9 Jun 2020 12:35:50 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 059HZo2k032887;
+        Tue, 9 Jun 2020 12:35:50 -0500
+Subject: Re: [RFC PATCH 1/2] dt-bindings: tas2562: Add firmware support for
+ tas2563
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
+        <robh@kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20200609172841.22541-1-dmurphy@ti.com>
+ <20200609172841.22541-2-dmurphy@ti.com> <20200609173143.GN4583@sirena.org.uk>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <bb7cff87-f814-1b37-c9eb-e68919e3c077@ti.com>
+Date:   Tue, 9 Jun 2020 12:35:50 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b0c85637-4646-614b-d406-49aa72ce52e1@arm.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20200609173143.GN4583@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 09, 2020 at 05:25:04PM +0100, Vladimir Murzin wrote:
-> Even though commit mentions ARM, I do not see how mmap would continue
-> to work for NOMMU with dma-direct. ARM NOMMU needs it's own DMA operations
-> only in cases where caches are implemented or active, in other cases it
-> fully relies on dma-direct.
+Mark
 
-> It looks to me that we either should provide NOMMU variant for mmap in
-> dma/direct or (carefully) fix dma/mapping.
+On 6/9/20 12:31 PM, Mark Brown wrote:
+> On Tue, Jun 09, 2020 at 12:28:40PM -0500, Dan Murphy wrote:
+>> Add a property called firmware-name that will be the name of the
+>> firmware that will reside in the file system or built into the kernel.
+> Why not just use a standard name for the firmware?  If the firmwares
+> vary per-board then building it using the machine compatible (or DMI
+> info) could handle that, with a fallback to a standard name for a
+> default setup.
 
-I think dma-direct is the right place, the common helpers in
-dma/mapping.c are basically the red headed stepchilds for misc
-IOMMU drivers not covered by dma-iommu only.
+The number of firmwares can vary per IC on the board itself.  So you may 
+have X number of firmware files all with different names all targets for 
+different TAS2563 ICs.
+
+Also TI will not be providing the individual binaries to the customer.  
+There is a customer tool that the user uses to create the binaries.
+
+So the output names are arbitrary.
+
+I was going to mention this in the cover letter but did not think 
+mentioning the user tool had any value
+
+Dan
+
