@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 520601F4271
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3A31F427F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 19:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731837AbgFIRf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 13:35:58 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:39682 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729986AbgFIRf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 13:35:57 -0400
-Received: by mail-io1-f66.google.com with SMTP id c8so23740036iob.6;
-        Tue, 09 Jun 2020 10:35:57 -0700 (PDT)
+        id S1731880AbgFIRgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 13:36:40 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:37756 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728848AbgFIRgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 13:36:39 -0400
+Received: by mail-io1-f65.google.com with SMTP id r2so23753371ioo.4;
+        Tue, 09 Jun 2020 10:36:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UemfyzL4CDaIbSMWhLIN31hIuc2Yr7jCv1si14uauIA=;
-        b=tmGfN4p1CL8o5qxW8yh+rwztXiV1NjYc9c26Re9MhaiitcRki6mbS1A1HLZqRV1hxv
-         t0t7C3BcrKdbHgYbAFAmeA3crFl6UpE7d7fuGLl2NLxj9JrhHEJh30CUK8jOh2yNKMeG
-         GGd0e4oC/FU5n0rBO+O0XFk0CdScGpR+tgjecVF9ppnf0fIlJ5UaoZNN/GdgY1917x8Q
-         ihKt+utSbm12vcSsyYTvOpYxswFES2Af+Vz/Lk3ab3JJNw5+a+XySKqWR4jUqvri9xJa
-         eA6f9k5UwL1ZNuNSYgT2z1upmTTvfKBmVviSSYY5c113blyeeZAcJ2F4FKVVgnaC46vy
-         zapQ==
-X-Gm-Message-State: AOAM530PO431tyvvHaZn8bv3g4bNFsLr+33ebsx4FzK4diMlmcDqUm80
-        4UCCmRn3XJdLKhKH/01RYA==
-X-Google-Smtp-Source: ABdhPJyHA9bqkWZOLvk/hYOQV0AQki68RB2uY7Ob2Db2LSH4HMdre46KjSCiZoV+zVZ26b+BnZ/s9A==
-X-Received: by 2002:a6b:1745:: with SMTP id 66mr12153914iox.151.1591724156628;
-        Tue, 09 Jun 2020 10:35:56 -0700 (PDT)
+        bh=7dNnoZ1rdnzksidSAoSZhnIgLkiZGWEcPmE8xec0a/I=;
+        b=RNQoZ+05QeNbX1nMCf5ioAf37nvivHz6QAPZ13BV9WOxXOH456+AiD6Ny1a2MuHlcE
+         +mh5FDbbEh3HsC+dTuLQB3crBDaIGRdQsX6ZN9WUhUeE7ZMEwWS+SykkcAdI3nqCQ4tj
+         LuB/yGpozRGI6CmbW3ElUaw3euR48mhWCsmLGgYBu/HCIrQpewmssFNZUhrmJwMy+meQ
+         Q+bc7p0llUhejYpA0K1tg0ScO/dgQKKBxHiYfvvg/Vd/EP/rmpHsO9Yty8bwxE10D8q9
+         ZksT8PVyHMZLcPEp3hKhpKf40b89WYJbZrXCosZB9leI7uxbSkjiqCD0R4ROTrocoHk9
+         XfMw==
+X-Gm-Message-State: AOAM53046Ub2DrsjTnSofjqEFnHgNJajwK8V/xhqL9x/0vZsaV0s0fbG
+        /CmFWO5kGBdKih9bGjYL3g==
+X-Google-Smtp-Source: ABdhPJx/yiiBlNgsHUuSZP9/9xQBsqT57J3LHhF0CAayD6QmiM8GHdAZbeyCcaqsGh0uWxqQeNNQvg==
+X-Received: by 2002:a02:a78e:: with SMTP id e14mr28221151jaj.9.1591724198380;
+        Tue, 09 Jun 2020 10:36:38 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z4sm7599577iot.24.2020.06.09.10.35.55
+        by smtp.gmail.com with ESMTPSA id y5sm8056179iov.3.2020.06.09.10.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2020 10:35:56 -0700 (PDT)
-Received: (nullmailer pid 1125416 invoked by uid 1000);
-        Tue, 09 Jun 2020 17:35:54 -0000
-Date:   Tue, 9 Jun 2020 11:35:54 -0600
+        Tue, 09 Jun 2020 10:36:37 -0700 (PDT)
+Received: (nullmailer pid 1126603 invoked by uid 1000);
+        Tue, 09 Jun 2020 17:36:36 -0000
+Date:   Tue, 9 Jun 2020 11:36:36 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Roger Lu <roger.lu@mediatek.com>
-Cc:     Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
+Cc:     linux-pm@vger.kernel.org, Nicolas Boichat <drinkcat@google.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
         Mark Rutland <mark.rutland@arm.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Fan Chen <fan.chen@mediatek.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        YT Lee <yt.lee@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Angus Lin <Angus.Lin@mediatek.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
+        Rob Herring <robh+dt@kernel.org>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        Nishanth Menon <nm@ti.com>
 Subject: Re: [PATCH v9 1/4] dt-bindings: power: avs: add mtk svs dt-bindings
-Message-ID: <20200609173554.GA1119852@bogus>
+Message-ID: <20200609173636.GA1125574@bogus>
 References: <20200609104534.29314-1-roger.lu@mediatek.com>
  <20200609104534.29314-2-roger.lu@mediatek.com>
 MIME-Version: 1.0
@@ -66,7 +67,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 09, 2020 at 06:45:31PM +0800, Roger Lu wrote:
+On Tue, 09 Jun 2020 18:45:31 +0800, Roger Lu wrote:
 > Document the binding for enabling mtk svs on MediaTek SoC.
 > 
 > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
@@ -75,70 +76,26 @@ On Tue, Jun 09, 2020 at 06:45:31PM +0800, Roger Lu wrote:
 >  1 file changed, 141 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/power/avs/mtk_svs.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/power/avs/mtk_svs.yaml b/Documentation/devicetree/bindings/power/avs/mtk_svs.yaml
-> new file mode 100644
-> index 000000000000..f16f4eb56ee3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/avs/mtk_svs.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/avs/mtk_svs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Introduce SVS engine
-> +
-> +maintainers:
-> +  - Kevin Hilman <khilman@kernel.org>
-> +  - Nishanth Menon <nm@ti.com>
-> +
-> +description: |+
-> +  The Smart Voltage Scaling(SVS) engine is a piece of hardware
-> +  which has several controllers(banks) for calculating suitable
-> +  voltage to different power domains(CPU/GPU/CCI) according to
-> +  chip process corner, temperatures and other factors. Then DVFS
-> +  driver could apply SVS bank voltage to PMIC/Buck.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8183-svs
-> +
-> +  reg:
-> +    description: Address range of the MTK SVS controller.
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: IRQ for the MTK SVS controller.
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: Main clock for svs controller to work.
-> +
-> +  clock-names:
-> +    const: main
-> +
-> +  nvmem-cells:
-> +    maxItems: 2
-> +    description:
-> +      Phandle to the calibration data provided by a nvmem device.
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: svs-calibration-data
-> +      - const: calibration-data
-> +
-> +patternProperties:
-> +  "^svs-(cpu-little|cpu-big|cci|gpu)$":
-> +    type: object
-> +    description:
-> +      Each subnode represents one SVS bank.
-> +        - svs-cpu-little (SVS bank device node of little CPU)
-> +        - svs-cpu-big (SVS bank device node of big CPU)
-> +        - svs-cci (SVS bank device node of CCI)
-> +        - svs-gpu (SVS bank device node of GPU)
 
-As I've said before, I don't think these child nodes make sense. All 
-this data should already be available elsewhere in the DT.
 
-Rob
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Documentation/devicetree/bindings/power/avs/mtk_svs.example.dts:22:18: fatal error: dt-bindings/power/mt8183-power.h: No such file or directory
+         #include <dt-bindings/power/mt8183-power.h>
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+scripts/Makefile.lib:312: recipe for target 'Documentation/devicetree/bindings/power/avs/mtk_svs.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/power/avs/mtk_svs.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1300: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1305800
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
