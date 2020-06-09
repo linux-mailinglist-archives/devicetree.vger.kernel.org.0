@@ -2,160 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0DE1F3BA4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E54161F3C42
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728561AbgFINP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 09:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729403AbgFINPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 09:15:12 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4DCAC08C5C6;
-        Tue,  9 Jun 2020 06:15:11 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id y11so23351536ljm.9;
-        Tue, 09 Jun 2020 06:15:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+LVvE0OiYzwk9TxoGPobpgcZWVTviUfu3oOilcfUerI=;
-        b=LQRbsZc/lMaqJwhwYqlJ++21C0noO4DH8w52LHMyg8AOXQmpf0wPewjYgk7+pfqCWq
-         cxnZj8BMQKkjOHEnugfej595EKqcLsZ28RfOVIvXPbQ4Saj/Ai4RSS+y7S0R1xS+aTcR
-         xtItdWXFNK0hHg6Xzwyo4PPVn88ATldn3Q2uFMNiS2YBEivJL49NPoV5k3izFaj4mfCz
-         2uiwV9OSWKov1f+FR6LhyuiI+O3cNGQVM+NCLUu6a1AUngdci8kE4CXYRT41vR0L3IjS
-         drItWhVYX/T0TC4NqSs8L5S08neBvMw2UY2moJ4wdcCIyS1H/Q3eCu1BjKcM6fMzrXfI
-         P0jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+LVvE0OiYzwk9TxoGPobpgcZWVTviUfu3oOilcfUerI=;
-        b=LwmFfrH8iFVRBhS+bXMdNUZJJXX+RCAW4W/LzvLRdLFwXQ4Zm1ydA6uUiH/CksVIj8
-         CCh1JzGraUqmPz7TwTyrsusbWnGC7DfM2jWajaPEcAW6vmBlTh0i8biDo+x+c07jvdeA
-         3GYl9WNFckp2+0YMG7ufJKHs9jZYF2Ew5EA3HCaSq72ICX1kriNKmNLqPKoTlq+TFLzw
-         zk69b+zDhQpEPTPhbJuXOGKgBz04YGevfTrHsqXXTDOgHL4uNjAjvynk5S0pcl5Rj6lK
-         hNG6CFMHkZYmyFWTA1AWJfAxGhhbCp90aGa6QCl3d2gUKyRsIsBbqsMI0j1kGmOYJ2DS
-         RU2A==
-X-Gm-Message-State: AOAM532tc/GQ9LSdn/FA7vZSvW+mAKAppqoD2rkvvmMYQNZpnBWI9ZxZ
-        nKOzpjZd9rIyy+1n930D5iQ=
-X-Google-Smtp-Source: ABdhPJzK5eWenm7x+U+CQZqleiYsThYNTHWO2Zr34XmtKFRmw3ulwHvfXBQ2k+ypw43VkEhfEYQ8gA==
-X-Received: by 2002:a2e:7011:: with SMTP id l17mr14743726ljc.424.1591708510439;
-        Tue, 09 Jun 2020 06:15:10 -0700 (PDT)
-Received: from localhost.localdomain (79-139-237-54.dynamic.spd-mgts.ru. [79.139.237.54])
-        by smtp.gmail.com with ESMTPSA id l22sm4323522lji.120.2020.06.09.06.15.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2020 06:15:09 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@samsung.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 37/37] drm/tegra: dc: Extend debug stats with total number of events
-Date:   Tue,  9 Jun 2020 16:14:04 +0300
-Message-Id: <20200609131404.17523-38-digetx@gmail.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200609131404.17523-1-digetx@gmail.com>
-References: <20200609131404.17523-1-digetx@gmail.com>
+        id S1728834AbgFIN0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 09:26:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43622 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727787AbgFIN0U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 09:26:20 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7946A2074B;
+        Tue,  9 Jun 2020 13:26:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591709180;
+        bh=PD6ch/MJQc9epSsTqGkjMHuE3Bn2LG6EcC5hHXFGdq8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m64ifHeq25sd9NUSmmUGWjukAom8pausfLbRSSwhrcFU3eCJVbVlg0ILMpKb/Vked
+         cAbbrFQLB4CNUK9xlRfrHUjsjod+WFOu1XpWokyplWBQ/zHrUOBIWmxvht7qCAMuLC
+         RQOC4Mh+5nXlCKj0YAB/Fe3BUxAOyMCTAMvT3N7k=
+Date:   Tue, 9 Jun 2020 14:26:18 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Robin Gong <yibin.gong@nxp.com>
+Subject: Re: (EXT) Re: [PATCH v9 RESEND 01/13] spi: imx: add
+ dma_sync_sg_for_device after fallback from dma
+Message-ID: <20200609132617.GF4583@sirena.org.uk>
+References: <1591485677-20533-1-git-send-email-yibin.gong@nxp.com>
+ <1591485677-20533-2-git-send-email-yibin.gong@nxp.com>
+ <20200608143458.GH4593@sirena.org.uk>
+ <VE1PR04MB66388F89015F774EE3FFF69D89850@VE1PR04MB6638.eurprd04.prod.outlook.com>
+ <20200608153139.GI4593@sirena.org.uk>
+ <59ce3620-00b9-bac1-30e1-011a29583642@arm.com>
+ <VE1PR04MB6638B1EC49D295C64292B7BD89820@VE1PR04MB6638.eurprd04.prod.outlook.com>
+ <bcfc3637-65af-577a-ddbd-890b6c83a6e6@arm.com>
+ <4a663b38fe5c6b2ee37049fb0dcd88b70dbf232e.camel@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="924gEkU1VlJlwnwX"
+Content-Disposition: inline
+In-Reply-To: <4a663b38fe5c6b2ee37049fb0dcd88b70dbf232e.camel@ew.tq-group.com>
+X-Cookie: Be careful!  Is it classified?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's useful to know the total number of underflow events and currently
-the debug stats are getting reset each time CRTC is being disabled. Let's
-account the overall number of events that doesn't get reset.
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/gpu/drm/tegra/dc.c | 10 ++++++++++
- drivers/gpu/drm/tegra/dc.h |  5 +++++
- 2 files changed, 15 insertions(+)
+--924gEkU1VlJlwnwX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-index 48dad375b470..6a5a017e37d5 100644
---- a/drivers/gpu/drm/tegra/dc.c
-+++ b/drivers/gpu/drm/tegra/dc.c
-@@ -1616,6 +1616,11 @@ static int tegra_dc_show_stats(struct seq_file *s, void *data)
- 	seq_printf(s, "underflow: %lu\n", dc->stats.underflow);
- 	seq_printf(s, "overflow: %lu\n", dc->stats.overflow);
- 
-+	seq_printf(s, "frames total: %lu\n", dc->stats.frames_total);
-+	seq_printf(s, "vblank total: %lu\n", dc->stats.vblank_total);
-+	seq_printf(s, "underflow total: %lu\n", dc->stats.underflow_total);
-+	seq_printf(s, "overflow total: %lu\n", dc->stats.overflow_total);
-+
- 	return 0;
- }
- 
-@@ -2178,6 +2183,7 @@ static irqreturn_t tegra_dc_irq(int irq, void *data)
- 		/*
- 		dev_dbg(dc->dev, "%s(): frame end\n", __func__);
- 		*/
-+		dc->stats.frames_total++;
- 		dc->stats.frames++;
- 	}
- 
-@@ -2186,6 +2192,7 @@ static irqreturn_t tegra_dc_irq(int irq, void *data)
- 		dev_dbg(dc->dev, "%s(): vertical blank\n", __func__);
- 		*/
- 		drm_crtc_handle_vblank(&dc->base);
-+		dc->stats.vblank_total++;
- 		dc->stats.vblank++;
- 	}
- 
-@@ -2193,6 +2200,7 @@ static irqreturn_t tegra_dc_irq(int irq, void *data)
- 		/*
- 		dev_dbg(dc->dev, "%s(): underflow\n", __func__);
- 		*/
-+		dc->stats.underflow_total++;
- 		dc->stats.underflow++;
- 	}
- 
-@@ -2200,11 +2208,13 @@ static irqreturn_t tegra_dc_irq(int irq, void *data)
- 		/*
- 		dev_dbg(dc->dev, "%s(): overflow\n", __func__);
- 		*/
-+		dc->stats.overflow_total++;
- 		dc->stats.overflow++;
- 	}
- 
- 	if (status & HEAD_UF_INT) {
- 		dev_dbg_ratelimited(dc->dev, "%s(): head underflow\n", __func__);
-+		dc->stats.underflow_total++;
- 		dc->stats.underflow++;
- 	}
- 
-diff --git a/drivers/gpu/drm/tegra/dc.h b/drivers/gpu/drm/tegra/dc.h
-index 3a0ff57c5169..3eb4eddc2288 100644
---- a/drivers/gpu/drm/tegra/dc.h
-+++ b/drivers/gpu/drm/tegra/dc.h
-@@ -41,6 +41,11 @@ struct tegra_dc_stats {
- 	unsigned long vblank;
- 	unsigned long underflow;
- 	unsigned long overflow;
-+
-+	unsigned long frames_total;
-+	unsigned long vblank_total;
-+	unsigned long underflow_total;
-+	unsigned long overflow_total;
- };
- 
- struct tegra_windowgroup_soc {
--- 
-2.26.0
+On Tue, Jun 09, 2020 at 12:09:09PM +0200, Matthias Schiffer wrote:
 
+> I assume the actual issue is that the SDMA controller is considered
+> registered before the firmware load has finished, but I have no idea
+> how feasible it would be to change that (some comments in the code
+> explain why this currently isn't the case).
+
+Right, this is what's causing trouble (or at least the DMA driver not
+doing PIO behind the driver I guess but that's pretty nasty).
+
+--924gEkU1VlJlwnwX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7fjfkACgkQJNaLcl1U
+h9BfBAf8CV0CLky89IU/mEpL41EP3zYDh1CpOj14T0/q0rrhzJssgAgiQpuqedGZ
++DCbmgd/BwcI8pzX9h8VKeAd+A3aA7VX99WyBCuXC0HlTSpVXfNToMQJbPtTnZ6Z
+kOgDEW/grpy/YDCsJCbShsIhns0ziINTO7tY9uPaPqBXd9oMDgFLdWRT/FprI3Ev
+k7hg5PoMjblnT55/96ZZgOCUp8OsE1U9vI+o0gModN1ksRouto/eMfei4IibQA9s
+foKiP7g14rArPdSbl+JKhnjPvIt6wrxoNdD5TCh1ZH7u/MI7VrSRr5+OGhguRzha
+K7/XCESdTGTHW+s5NU5gyADCheFsvg==
+=iBCT
+-----END PGP SIGNATURE-----
+
+--924gEkU1VlJlwnwX--
