@@ -2,92 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01ED41F4742
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 21:41:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8711F4751
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 21:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389391AbgFITlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 15:41:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58712 "EHLO
+        id S2389290AbgFITmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 15:42:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389384AbgFITlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 15:41:44 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE721C08C5C2
-        for <devicetree@vger.kernel.org>; Tue,  9 Jun 2020 12:41:44 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id h185so26719pfg.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2020 12:41:44 -0700 (PDT)
+        with ESMTP id S1728328AbgFITmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 15:42:13 -0400
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EB5C05BD1E
+        for <devicetree@vger.kernel.org>; Tue,  9 Jun 2020 12:42:13 -0700 (PDT)
+Received: by mail-qk1-x741.google.com with SMTP id f18so22086660qkh.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2020 12:42:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tKjncVZ4QOe9AtcEsOqfdOIJlppfhRTgsX8dqfWz9G0=;
-        b=Afuo/4MCKsk638UL6cRXXyK+mDgOSMyHLpn5vOBhRNoKPQCDgl+M0Uj8XzX0bJWuYJ
-         c/dDLw4BBIXnUu15Zb/cIcm5HDugcu5iHISy7IZqTwmYRFxyOcZQT6BoJrmjcLh5VInZ
-         tj5sOtNvkGdeIqHAMqFiw//ciBmU59qGwtctY=
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PmkfgBREBTZO6Lp2UGSsh4z5MxUsd0nbvKVP/iz3AwU=;
+        b=P1LYPNvMyUWuYnFLslmoaME7fOIbzZ7vLQgZlSN/neUPoucaQ2KOFsChMogb02y8Rd
+         x2gk6UBDLM5J2sRw69zj5ucSIj/r106vHu4lLlzEoAjMD6P2Mdd1isbdnY0u7SgIQmZ1
+         apI0LHIQaBz0M/l5twAWI6FfFEPVLUgRIst+8ImG8Tw4D5ecJOsKg/k/Xs4p7iyo6PM5
+         8z7kIGK2CrX82YlG3xBRdVHUOaj6+Sz1DaY+uilNJmkAy7ijLn8TAAXUO7ND4YI33N4C
+         1O1s/wmoTIvbxBXXN5NFOZlQyACVcrcNbiQ2eg/ZoONzNUCTFPa6j3mzkkjlz0EpJAMr
+         dCpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tKjncVZ4QOe9AtcEsOqfdOIJlppfhRTgsX8dqfWz9G0=;
-        b=ctahEGl249NZzTVWzq4Nwcnm0OKqGgf+Sze32FpmbaT7PZOKXcIFaxDcXL9YsNyj8m
-         pxEjZSleZl63uvOsHSHbpmVAi0DKXjjTtaxVDMlahM6Tl/piuh+FoUHQd5+x/b8u1jGb
-         0YqtbXtPqOj7oyVNjF3O6jntKVTFqIZ3Tos8qGK298uFSvYk7u7TdNBS2LmIvVy57qT7
-         VoEhejPjpFRRn/O5dcPHWfR1aNZDk+g9emahAhr8RnHzoYDYBCAwsYqCxCGDpQI0/naV
-         E4e29pGvECUFBBkY4z7181ZqryjBzAtu58SA2NKMJxBGh2g9KdAflWWIUJBcpM/2mGXj
-         xoLw==
-X-Gm-Message-State: AOAM532EBOipRNNO3ICym1l2NHY+LdF9ksALrQKAp6eu3t+z9RKsQ+RW
-        NWOza7pcgC3N+AZ3WHMi3QSNqv9LwkVYWg==
-X-Google-Smtp-Source: ABdhPJxsY59wlAe7u96jNUc1NqgqgXcXvHG5lQxGtLmG4W1wZtRJWLQrD/JmjZCM1sSUUi23YzvSSg==
-X-Received: by 2002:a62:ee0b:: with SMTP id e11mr8584104pfi.185.1591731704151;
-        Tue, 09 Jun 2020 12:41:44 -0700 (PDT)
-Received: from ubuntu.Home (anon-42-81.vpn.ipredator.se. [46.246.42.81])
-        by smtp.gmail.com with ESMTPSA id z85sm10563627pfc.66.2020.06.09.12.41.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2020 12:41:43 -0700 (PDT)
-From:   Matt Ranostay <matt.ranostay@konsulko.com>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: iio: chemical: add O2 EZO module documentation
-Date:   Tue,  9 Jun 2020 12:41:16 -0700
-Message-Id: <20200609194117.5837-3-matt.ranostay@konsulko.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200609194117.5837-1-matt.ranostay@konsulko.com>
-References: <20200609194117.5837-1-matt.ranostay@konsulko.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PmkfgBREBTZO6Lp2UGSsh4z5MxUsd0nbvKVP/iz3AwU=;
+        b=GOSHAz9PLZRTsl87G/CmoDO5Av7W1iOmcXiZ3aGR2ze9IcWJrSPvvm0A5LPt7RW4l6
+         UFzglygWXtSOhDijzmgYS0f1CdrqnyGzuZSgFzx2kdAJqR9fF7cWqioFhPa2tzZcskWQ
+         rn7J9ufgX4kyhne92n4U59RMicucpf+o+HiTLSM3vqK64KOt5CqBqev7luslScZ8Tl/x
+         +oioNsc35iqZSdYaLdyv8ITJzyktX/6LTJEdReW4jGtog9yx/WzGJjlmEmI2bATS/A8v
+         prS3T+N8CmB92MZDAMbpwfMloRmLiAl4yvB9u4C1GTVTbe/rkPks3csXlsuETULl7UC4
+         ysaw==
+X-Gm-Message-State: AOAM530qXNLF+/6alN/EqfLJw0H/i8hc2g9Mo2dEczu/uAw2QD00O73s
+        yn0VOuDnDeI/HMaD2Io+jAvSew==
+X-Google-Smtp-Source: ABdhPJxPoZa5i7cw6g6j5jFto1S52GzTF6MdnrhHijhBh8WO+6es4ey0iqaL1gWN1g5RBgbK55I9nw==
+X-Received: by 2002:a05:620a:200a:: with SMTP id c10mr28557256qka.218.1591731732437;
+        Tue, 09 Jun 2020 12:42:12 -0700 (PDT)
+Received: from [192.168.0.189] ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id o66sm10662743qka.60.2020.06.09.12.42.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jun 2020 12:42:12 -0700 (PDT)
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: add sm8250 hdk dts
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20200524023815.21789-1-jonathan@marek.ca>
+ <20200524023815.21789-7-jonathan@marek.ca>
+ <20200529030322.GX279327@builder.lan>
+From:   Jonathan Marek <jonathan@marek.ca>
+Message-ID: <9076c2c0-853f-62f9-4e34-a78e865a552e@marek.ca>
+Date:   Tue, 9 Jun 2020 15:42:33 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200529030322.GX279327@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
----
- .../devicetree/bindings/iio/chemical/atlas,sensor.yaml          | 2 ++
- 1 file changed, 2 insertions(+)
+On 5/28/20 11:03 PM, Bjorn Andersson wrote:
+> On Sat 23 May 19:38 PDT 2020, Jonathan Marek wrote:
+> 
+>> Add initial HDK865 dts, based on sm8250-mtp, with a few changes.
+>> Notably, regulator configs are changed a bit.
+>>
+>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile       |   1 +
+>>   arch/arm64/boot/dts/qcom/sm8250-hdk.dts | 454 ++++++++++++++++++++++++
+>>   2 files changed, 455 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index e5dbd8b63951..4649e8bc5034 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -24,6 +24,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+>> new file mode 100644
+>> index 000000000000..d35014bf4f81
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+>> @@ -0,0 +1,454 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include "sm8250.dtsi"
+>> +#include "pm8150.dtsi"
+>> +#include "pm8150b.dtsi"
+>> +#include "pm8150l.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. SM8250 HDK";
+>> +	compatible = "qcom,sm8250-hdk";
+> 
+> 	compatible = "qcom,sm8250-hdk", "qcom,sm8250";
+> 
+> Apart from that this looks good!
+> 
 
-diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
-index 69e8931e0ae8..46496dc250f2 100644
---- a/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
-+++ b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.yaml
-@@ -19,6 +19,7 @@ description: |
-     http://www.atlas-scientific.com/_files/_datasheets/_oem/pH_oem_datasheet.pdf
-     http://www.atlas-scientific.com/_files/_datasheets/_oem/RTD_oem_datasheet.pdf
-     http://www.atlas-scientific.com/_files/_datasheets/_probe/EZO_CO2_Datasheet.pdf
-+    https://www.atlas-scientific.com/files/EZO_O2_datasheet.pdf
- 
- properties:
-   compatible:
-@@ -29,6 +30,7 @@ properties:
-       - atlas,ph-sm
-       - atlas,rtd-sm
-       - atlas,co2-ezo
-+      - atlas,o2-ezo
- 
-   reg:
-      maxItems: 1
--- 
-2.25.1
+Made this change for both HDK dts, but FYI the mtp dts do not have this.
 
+> Thanks,
+> Bjorn
+> 
