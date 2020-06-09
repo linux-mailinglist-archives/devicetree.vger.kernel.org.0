@@ -2,168 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A691F37C9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 12:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9C01F37E5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 12:20:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728754AbgFIKSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 06:18:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728730AbgFIKSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 06:18:25 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96D8C03E97C;
-        Tue,  9 Jun 2020 03:18:23 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id h185so9880826pfg.2;
-        Tue, 09 Jun 2020 03:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/0d16ZSjZXDVB9XnoF7g8/C8LhZpWELESeA2tbYD7eQ=;
-        b=AG/UsiXYoOJYlHtPerABlcHwszE5UoF6nbuNIqAJuXbLtI546Ko7bh9KoLmTyGYjSr
-         tUWIgn1RMafwryN11ejY/TV7c8AX2NUCKaxRRjc57gcUjWf9bBi1WmE0vurTemfnsPas
-         RZcBLC8PDd+sYXmjfuJ/0l/X4tsmNI/3f1U6jst0F/rUg+1dYxaHwem9J1Ik8tTi7CI6
-         fKMrt5lmS7hEVGIdEBwT4i27WGg5sBKfey9EeYkOy4HsMjolaZ+eKmtFFMkYy4E9Ffoc
-         DThy8oQFum0fYYwxYy4WIaqdo20RLLLE2hl3OUyhFYWlL81LTO0YfRq0+v0bvylmIaSi
-         DrVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/0d16ZSjZXDVB9XnoF7g8/C8LhZpWELESeA2tbYD7eQ=;
-        b=WHB3rl8eYUED5Zf5fSJf8kpOcuTA1sjTYtg7R1asY3Coq92QEPzSDRdWfpHvw5NvZJ
-         huxGdAFSVh2H3Zde3/xkY0NHDwg8YTHrxDfWQ8bLzKUSbKknddSzl+yrb+g0kzKAX4yt
-         gK41xMNmAlSR3XwRIrKT9pSS2pwd+bE1705m39Z4590aLYYc+MPUM+8V8pGbKNN8HFuG
-         zeoJmf3aRA7LcM7pxKMmw0dDBNc1Qc59FPodkHFOmZVNvBvXku07P7JMBb1FkksAnTiV
-         WivFVGY3N0XNgzXI++9Ra4QJS9hX71PWcrOeNCeoJLV0vIKQ3/ywVPANspAfYmLzIQJO
-         buww==
-X-Gm-Message-State: AOAM531vtROp1hPmE3aF83ZTXyifAe8PLr+iLY42BDB6UMjjzpyi4xXt
-        ztgFpGiGPMtPSEf+eEUW6BQ=
-X-Google-Smtp-Source: ABdhPJxXx5Nq3IGHo7wWKQw5zUcrDvnpBG2qlLfjMRL4bSyiW6rcHZW18FEGdq1l+goPWwa1qW1StA==
-X-Received: by 2002:a63:af02:: with SMTP id w2mr23067058pge.116.1591697903285;
-        Tue, 09 Jun 2020 03:18:23 -0700 (PDT)
-Received: from localhost.localdomain ([223.190.87.90])
-        by smtp.gmail.com with ESMTPSA id d189sm9637253pfc.51.2020.06.09.03.18.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Jun 2020 03:18:22 -0700 (PDT)
-From:   Amit Singh Tomar <amittomer25@gmail.com>
-To:     andre.przywara@arm.com, afaerber@suse.de,
-        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org
-Cc:     cristian.ciocaltea@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v4 10/10] arm64: dts: actions: Add uSD support for Cubieboard7
-Date:   Tue,  9 Jun 2020 15:47:10 +0530
-Message-Id: <1591697830-16311-11-git-send-email-amittomer25@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1591697830-16311-1-git-send-email-amittomer25@gmail.com>
-References: <1591697830-16311-1-git-send-email-amittomer25@gmail.com>
+        id S1728646AbgFIKUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 06:20:37 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:36372 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726937AbgFIKUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 06:20:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1591698036; x=1623234036;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Jog8U1hg1Jb0yOPntlrXCpHzhFdDi4nx+A8hEzkfpIc=;
+  b=s+wfFT6T4QWxS5bq8yxTT0Co2z5aDLAunK4vm3qRizlZQ4rqyafhZboy
+   cwa+yQ/lu1ZlnEKSlcAR7JYxejO1Q8NlvD6mxABrwjesJnIdwXFfBSM2+
+   IZNX6c0zI7M3ikx3UGLQAWQUIY59PjmlSkPX/f6/dUi86b4D+vebxXjWc
+   CZa6Z+34+AnT9vQGWA8katR00yWcP7TXgYEHLa2keMHF2XLfQikaNYF9f
+   l1g0wab5Kugc2S1TUBKlRAD/ZA0P7sEgEJsBRvxfz4v+ynt8VewMTh9yA
+   r2UmAsgYVcR45HvKw8cejm0VVY88yj2fxs80Uj917Q1S+S9UU147kxgcD
+   Q==;
+IronPort-SDR: GsUomaDlsyMFGql6N5vKCKqggAS8YTeM8rMEysweN7jreEtYgmsUT9SR7LCgT5iWJHn6yq+KBr
+ JcYdSIakI6+vBex31IJhOeiKfHKihHDKm5ZCOwUH9fhXnWy/KxRxYbqgxwXcGeAWeTj3Y+odJK
+ WRJUbXsCdmC398dPnffw8iYmYxC69HKWzjaaP1porxdM6EcDPHCYk+l9UA4wNtGvaF0mszvqg1
+ LF4sySzldi0r2v3DJPvEH+Uwo+SxpKpKRZ/BwGM8uILdf+uSuYToyvvj9qTX+bn1nswG3MFKYk
+ 6/g=
+X-IronPort-AV: E=Sophos;i="5.73,491,1583218800"; 
+   d="scan'208";a="78723000"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Jun 2020 03:20:35 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Tue, 9 Jun 2020 03:20:34 -0700
+Received: from soft-dev15.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1847.3 via Frontend Transport; Tue, 9 Jun 2020 03:20:32 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] mmc: Adding support for Microchip Sparx5 SoC
+Date:   Tue, 9 Jun 2020 12:20:05 +0200
+Message-ID: <20200609102008.10530-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds uSD support for Cubieboard7 board based on Actions Semi
-S700 SoC. SD0 is connected to uSD slot. Since there is no PMIC support
-added yet, fixed regulator has been used as a regulator node.
+This is an add-on series to the main SoC Sparx5 series
+(Message-ID: <20200608123024.5330-1-lars.povlsen@microchip.com>)
 
-Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
----
-Changes since v3:
-	* No change.
-Changes since v2:
-        * No change.
-Changes since v1:
-        * No change.
-Changes since RFC:
-        * No change.
----
- arch/arm64/boot/dts/actions/s700-cubieboard7.dts | 41 ++++++++++++++++++++++++
- arch/arm64/boot/dts/actions/s700.dtsi            |  1 +
- 2 files changed, 42 insertions(+)
+It adds eMMC support for Sparx5, by adding a driver for the SoC SDHCI
+controller, DT configuration and DT binding documentation.
 
-diff --git a/arch/arm64/boot/dts/actions/s700-cubieboard7.dts b/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-index 63e375cd9eb4..ec117eb12f3a 100644
---- a/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-+++ b/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-@@ -13,6 +13,7 @@
- 
- 	aliases {
- 		serial3 = &uart3;
-+		mmc0 = &mmc0;
- 	};
- 
- 	chosen {
-@@ -28,6 +29,23 @@
- 		device_type = "memory";
- 		reg = <0x1 0xe0000000 0x0 0x0>;
- 	};
-+
-+	/* Fixed regulator used in the absence of PMIC */
-+	vcc_3v1: vcc-3v1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.1V";
-+		regulator-min-microvolt = <3100000>;
-+		regulator-max-microvolt = <3100000>;
-+	};
-+
-+	/* Fixed regulator used in the absence of PMIC */
-+	sd_vcc: sd-vcc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.1V";
-+		regulator-min-microvolt = <3100000>;
-+		regulator-max-microvolt = <3100000>;
-+		regulator-always-on;
-+	};
- };
- 
- &i2c0 {
-@@ -81,6 +99,14 @@
- 			bias-pull-up;
- 		};
- 	};
-+
-+	mmc0_default: mmc0_default {
-+		pinmux {
-+			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
-+				 "sd0_cmd_mfp", "sd0_clk_mfp";
-+			function = "sd0";
-+		};
-+	};
- };
- 
- &timer {
-@@ -90,3 +116,18 @@
- &uart3 {
- 	status = "okay";
- };
-+
-+/* uSD */
-+&mmc0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_default>;
-+	cd-gpios = <&pinctrl 120 GPIO_ACTIVE_LOW>;
-+	no-sdio;
-+	no-mmc;
-+	no-1-8-v;
-+	bus-width = <4>;
-+	vmmc-supply = <&sd_vcc>;
-+	vqmmc-supply = <&sd_vcc>;
-+};
-+
-diff --git a/arch/arm64/boot/dts/actions/s700.dtsi b/arch/arm64/boot/dts/actions/s700.dtsi
-index 9ed88aafc2da..ba498cf9217d 100644
---- a/arch/arm64/boot/dts/actions/s700.dtsi
-+++ b/arch/arm64/boot/dts/actions/s700.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/actions,s700-cmu.h>
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/owl-s700-powergate.h>
- #include <dt-bindings/reset/actions,s700-reset.h>
--- 
-2.7.4
+Changes in v2:
+- Changes in driver as per review comments
+ - Drop debug code
+ - Drop sysfs code
+ - Minor cosmetics
 
+Lars Povlsen (3):
+  dt-bindings: mmc: Add Sparx5 SDHCI controller bindings
+  sdhci: sparx5: Add Sparx5 SoC eMMC driver
+  arm64: dts: sparx5: Add Sparx5 eMMC support
+
+ .../mmc/microchip,dw-sparx5-sdhci.yaml        |  57 ++++
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  24 ++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |  23 ++
+ .../boot/dts/microchip/sparx5_pcb134_emmc.dts |  23 ++
+ .../boot/dts/microchip/sparx5_pcb135_emmc.dts |  23 ++
+ drivers/mmc/host/Kconfig                      |  13 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-sparx5.c            | 274 ++++++++++++++++++
+ 8 files changed, 438 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-sparx5.c
+
+--
+Cc: Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
+Cc: linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
