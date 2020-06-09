@@ -2,119 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4DDF1F3B69
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 516671F3B7F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2020 15:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728120AbgFINIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 09:08:09 -0400
-Received: from mx2.suse.de ([195.135.220.15]:42134 "EHLO mx2.suse.de"
+        id S1728609AbgFINMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 09:12:21 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41540 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726937AbgFINIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jun 2020 09:08:09 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id A221CAA6F;
-        Tue,  9 Jun 2020 13:08:10 +0000 (UTC)
-Message-ID: <5c55790c31603aed48fcd6e84ccbc4a6d8c6d1fd.camel@suse.de>
-Subject: Re: [PATCH 5/9] usb: xhci-pci: Add support for reset controllers
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        gregkh@linuxfoundation.org, wahrenst@gmx.net, robh@kernel.org,
-        mathias.nyman@linux.intel.com, Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-usb@vger.kernel.org,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     lorenzo.pieralisi@arm.com, tim.gover@raspberrypi.org,
-        helgaas@kernel.org, linux-kernel@vger.kernel.org
-Date:   Tue, 09 Jun 2020 15:08:04 +0200
-In-Reply-To: <73fdeca7b651252f7907635e97f9f9b31e702868.camel@pengutronix.de>
-References: <20200608192701.18355-1-nsaenzjulienne@suse.de>
-         <20200608192701.18355-6-nsaenzjulienne@suse.de>
-         <5d3200cc-17cc-026f-1dfe-c10ec949f9ad@gmail.com>
-         <382b81937757de570a83ba4ff9276221c0bba547.camel@suse.de>
-         <73fdeca7b651252f7907635e97f9f9b31e702868.camel@pengutronix.de>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-aPyaZQX6Bi+lXKb2F+qi"
-User-Agent: Evolution 3.36.2 
+        id S1728404AbgFINMU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 09:12:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=T5qZZZONjhOyZmzsYwxogqZVynVoTskOeNFAgtVitgc=; b=0kT+i8bG4gJ9YNgZTit0buJYCX
+        2qKIXFpSv1dv/f1KOB1LgmNQD0/+namhgfd9+b1HqSPiPqIfpSYY8G8TA6yoIElSoHuD6Wog52UkJ
+        no6a7ZwRv6rKmWDmE7UTvQKa7kvzgR84SKAA9hSB0PpG340P16NmV+uv64+nvte0hASU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jie36-004Vx2-MB; Tue, 09 Jun 2020 15:12:16 +0200
+Date:   Tue, 9 Jun 2020 15:12:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Russell King <rmk+kernel@armlinux.org.uk>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] net: ethernet: mvneta: add support for 2.5G DRSGMII mode
+Message-ID: <20200609131216.GJ1022955@lunn.ch>
+References: <20200608074716.9975-1-s.hauer@pengutronix.de>
+ <20200608145737.GG1006885@lunn.ch>
+ <20200609125535.GK11869@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200609125535.GK11869@pengutronix.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 09, 2020 at 02:55:35PM +0200, Sascha Hauer wrote:
+> On Mon, Jun 08, 2020 at 04:57:37PM +0200, Andrew Lunn wrote:
+> > On Mon, Jun 08, 2020 at 09:47:16AM +0200, Sascha Hauer wrote:
+> > > The Marvell MVNETA Ethernet controller supports a 2.5 Gbps SGMII mode
+> > > called DRSGMII.
+> > > 
+> > > This patch adds a corresponding phy-mode string 'drsgmii' and parses it
+> > > from DT. The MVNETA then configures the SERDES protocol value
+> > > accordingly.
+> > > 
+> > > It was successfully tested on a MV78460 connected to a FPGA.
+> > 
+> > Hi Sascha
+> > 
+> > Is this really overclocked SGMII, or 2500BaseX? How does it differ
+> > from 2500BaseX, which mvneta already supports?
+> 
+> I think it is overclocked SGMII or 2500BaseX depending on the Port MAC
+> Control Register0 PortType setting bit.
+> As said to Russell we have a fixed link so nobody really cares if it's
+> SGMII or 2500BaseX. This boils down the patch to fixing the Serdes
+> configuration setting for 2500BaseX.
 
---=-aPyaZQX6Bi+lXKb2F+qi
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Sascha
 
-On Tue, 2020-06-09 at 13:59 +0200, Philipp Zabel wrote:
-> Hi Nicolas,
->=20
->=20
->=20
-> On Tue, 2020-06-09 at 13:18 +0200, Nicolas Saenz Julienne wrote:
->=20
-> > Hi Florian, thanks for the reviews!
-> > On Mon, 2020-06-08 at 12:43 -0700, Florian Fainelli wrote:
-> > > On 6/8/2020 12:26 PM, Nicolas Saenz Julienne wrote:
-> > > > Some atypical users of xhci-pci might need to manually reset their =
-xHCI
-> > > > controller before starting the HCD setup. Check if a reset controll=
-er
-> > > > device is available to the PCI bus and trigger a reset.
-> > > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > > > ---
-> > > >   drivers/usb/host/xhci-pci.c | 9 +++++++++
-> > > >   1 file changed, 9 insertions(+)
-> > > > diff --git a/drivers/usb/host/xhci-pci.c b/drivers/usb/host/xhci-pc=
-i.c
-> > > > index ef513c2fb843..45f70facdfcd 100644
-> > > > --- a/drivers/usb/host/xhci-pci.c
-> > > > +++ b/drivers/usb/host/xhci-pci.c
->=20
-> [...]
->=20
-> > > > @@ -347,6 +349,13 @@ static int xhci_pci_probe(struct pci_dev *dev,
-> > > > const
-> > > > struct pci_device_id *id)
-> > > >                    return retval;
-> > > >    }
-> > > >  =20
-> > > > + reset =3D devm_reset_control_get(&dev->bus->dev, NULL);
-> > > Should not this be devm_reset_control_get_optional()?
-> > Yes, you're right.
->=20
->=20
-> Please use devm_reset_control_get_optional_exclusive() while you're at
->=20
-> it.
->=20
+Does 2500BaseX work for your use case? Since this drsmgii mode is not
+well defined, i would prefer to not add it, unless it is really
+needed.
 
-Will do!
-
-Regards,
-Nicolas
-
-
---=-aPyaZQX6Bi+lXKb2F+qi
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl7fibQACgkQlfZmHno8
-x/4nCQf+Pu7jCPf9/NoIlTfRB7FZ4OANYt5inVdJyL5rJD2651r40FKjtZOBZzVA
-WZF5fC3mPhzBuwiOY0BhQNmGczuZW7F3xzfWtitDo1ee7xMbBO6Sb+ppOQ3HD3qa
-dDIcoWpQkUBSy4nF2HegV8Mk3lk1wNp5qWKhlOP9RdpI3TaMPQ6LYdjlHKXGnHfK
-tW56rMzKdearm5rY/UuChAfqZgZnlTDugkE/U0PPUToNmd3HVw4I46wNgCPwxFKV
-99FgNnbLiEAqYzOD32uSd8o8N+v7smGdeG8IgNMxji+01vqUH+ygdqUJt/9V3nfK
-jYUgqXTX6cLyPVX9Km25skKw8UAcMw==
-=bQPH
------END PGP SIGNATURE-----
-
---=-aPyaZQX6Bi+lXKb2F+qi--
-
+	Andrew
