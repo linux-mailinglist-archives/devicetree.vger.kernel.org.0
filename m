@@ -2,108 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 957CF1F4AE4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 03:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC2D31F4B37
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 04:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725944AbgFJBcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jun 2020 21:32:17 -0400
-Received: from conssluserg-02.nifty.com ([210.131.2.81]:50001 "EHLO
-        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725885AbgFJBcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jun 2020 21:32:16 -0400
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51]) (authenticated)
-        by conssluserg-02.nifty.com with ESMTP id 05A1VuWh019158;
-        Wed, 10 Jun 2020 10:31:57 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 05A1VuWh019158
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1591752717;
-        bh=S2EWdblSOOwVEN+VucSLtxUOt416JWBmQq0pLM5fxBM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QUmAu6Ijp6xJjJBHRbB3X6eM4/YR6/nBW7T4EMNh1c15pA91IuduuWkNMFD+YLLsv
-         m+nInATptxjTjWdWF0eaiHm4q6b/y6OjhC1gmCmnKgxp8MkONQ4phjckz7d+sfDnkH
-         ERqm6X6kzWaExk5wGQz4KNmBpW5VIz4Mp1z23y+P/3uIDZgq2vQChN+JIgR7d1MGkq
-         6T08bLyGHiLPnmBFyJmcgQK8bcwJYIUuiPiuKKMKhmi9HLnmzIl398B9eFzRVG6eK7
-         MhhkCDmcyT68dBY7NtZlpJ/KQ+ealeOH6UVrzPT4ODe3LP4SE+F1aGkMXlKp+sBIGA
-         6Eo3NEkrpgKBg==
-X-Nifty-SrcIP: [209.85.222.51]
-Received: by mail-ua1-f51.google.com with SMTP id z47so297710uad.5;
-        Tue, 09 Jun 2020 18:31:57 -0700 (PDT)
-X-Gm-Message-State: AOAM5323t3ovtrjTrRQ0mEFMWY6J2sfGPv+yOL798obK6mNBIniCJJj1
-        t9LkOVaS768fGO7/5sPQrQdbmDBkMfU+N8aiRzc=
-X-Google-Smtp-Source: ABdhPJy0bli/7m5Pe+rVE1l+8VJsyjIWmpq1ORdX2I/8/Dj0gWUTUU2kXTV2+4hH7pdmXatt733/zlN2l3k+sWrNv3o=
-X-Received: by 2002:ab0:7619:: with SMTP id o25mr811983uap.109.1591752715902;
- Tue, 09 Jun 2020 18:31:55 -0700 (PDT)
+        id S1725999AbgFJCLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jun 2020 22:11:50 -0400
+Received: from mga07.intel.com ([134.134.136.100]:22668 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725798AbgFJCLt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jun 2020 22:11:49 -0400
+IronPort-SDR: nM5y7RZK5bSpD8d1TnmNuDiPmasDiGudR0eqGDsHzt49DnL/JLK0NKiRiodpk3vcBAJgztEtHb
+ zzl8MTfp8URg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2020 19:11:48 -0700
+IronPort-SDR: kN1rgZC1ZwioEDqx8NmY1hE7Oa0mb2fQ/dbSTaRX0EQcKxo1ZH94O0RBWNh9pEYYSSnLgTHqiD
+ lzX6Cd9LeO8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,494,1583222400"; 
+   d="scan'208";a="259152355"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga007.fm.intel.com with ESMTP; 09 Jun 2020 19:11:48 -0700
+Received: from [10.255.176.176] (vramuthx-MOBL1.gar.corp.intel.com [10.255.176.176])
+        by linux.intel.com (Postfix) with ESMTP id 2BEAA580698;
+        Tue,  9 Jun 2020 19:11:43 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v1 2/2] usb: phy: Add USB3 PHY support for Intel LGM SoC
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, balbi@kernel.org
+Cc:     gregkh@linuxfoundation.org, robh@kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yin1.li@intel.com,
+        andriy.shevchenko@intel.com
+References: <20200609110850.43469-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200609110850.43469-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <d2f30dbde89050e428b61092a1e5bbcf8d257129.camel@pengutronix.de>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <1ed87ef0-170d-4543-5d90-8c8b223c704c@linux.intel.com>
+Date:   Wed, 10 Jun 2020 10:11:42 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-References: <20200608084117.4563-1-jiping.ma2@windriver.com>
- <CAL_JsqKLfSE5tPEPi1=erqBzCF9fceKKDe4qBkywB4O_JhbjGg@mail.gmail.com>
- <acfc88fc-2a7e-19fe-3dc4-37a03ddabcf9@windriver.com> <CAK7LNAS3xOvkUWZzZcb7Mk2YsWo+A6XTjzTZjxjvkYCjWjQvFg@mail.gmail.com>
- <d76f0e39-e22c-7179-955a-981d42b7bc01@windriver.com> <CAK7LNAQkXiw9cV=Qt5VrpDGd5CPAPS-EBs0AeOhSJd5JbXtkZg@mail.gmail.com>
- <6c5b1422-5b8a-03fe-57ea-567767ed75e2@windriver.com>
-In-Reply-To: <6c5b1422-5b8a-03fe-57ea-567767ed75e2@windriver.com>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Wed, 10 Jun 2020 10:31:19 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASj5nABYN0ukE_V3aK_ys7zuAibn4bzy8x5zGHM59gF1g@mail.gmail.com>
-Message-ID: <CAK7LNASj5nABYN0ukE_V3aK_ys7zuAibn4bzy8x5zGHM59gF1g@mail.gmail.com>
-Subject: Re: [PATCH] dtc: also check <yaml.h> for libyaml
-To:     Jiping Ma <Jiping.Ma2@windriver.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <d2f30dbde89050e428b61092a1e5bbcf8d257129.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 10, 2020 at 10:12 AM Jiping Ma <Jiping.Ma2@windriver.com> wrote:
->
->
->
-> On 06/10/2020 08:28 AM, Masahiro Yamada wrote:
-> > On Tue, Jun 9, 2020 at 12:08 PM Jiping Ma <Jiping.Ma2@windriver.com> wrote:
-> >>
-> >>
-> >> On 06/09/2020 10:52 AM, Masahiro Yamada wrote:
-> >>> On Tue, Jun 9, 2020 at 10:01 AM Jiping Ma <Jiping.Ma2@windriver.com> wrote:
-> >>>>
-> >>>> On 06/09/2020 03:09 AM, Rob Herring wrote:
-> >>>>> On Mon, Jun 8, 2020 at 2:42 AM Jiping Ma <jiping.ma2@windriver.com> wrote:
-> >>>>>> yamltree.c includes <yaml.h>, If /usr/include/yaml.h does not exist,
-> >>>>>> it fails to build.
-> >>>>> Does this patch fix your issue?:
-> >>>>>
-> >>>>> https://lore.kernel.org/linux-devicetree/20200505100319.741454-1-masahiroy@kernel.org/
-> >>>> No, it did not fix the issue.
-> >>>>
-> >>>> $ pkg-config --cflags yaml-0.1
-> >>>>
-> >>>> $ pkg-config yaml-0.1 --libs
-> >>>> -L/buildarea/jma1/wr-19-0518/19.45/sysroots/aarch64-wrs-linux/usr/lib64
-> >>>> -lyaml
-> >> This issue happened in Yocto,  After completing the SDK build and
-> >> installing it, use a new shell to source the environment and try to
-> >> build the helper scripts.
-> >> export
-> >> SDKTARGETSYSROOT=/buildarea/jma1/wr-19-0518/19.45/sysroots/aarch64-wrs-linux
-> >> export
-> >> PKG_CONFIG_PATH=$SDKTARGETSYSROOT/usr/lib64/pkgconfig:$SDKTARGETSYSROOT/usr/share/pkgconfig
-> >>>
-> >
-> > Probably, this commit:
-> >
-> > https://github.com/yaml/libyaml/commit/3c80be99fb18f3ee18af37221a3b0c4760e8df06
-> >
-> >
-> > Use newer libyaml, and that's fine.
-> This commit already was included in our code.
+Hi Philipp,
+
+    Thanks for the review comments...
+
+On 9/6/2020 8:14 pm, Philipp Zabel wrote:
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(CTL_RESETS); i++)
+>> +		reset_control_deassert(resets[i]);
+>> +	/* Need to wait at least 20us before de-assert the PHY */
+>> +	usleep_range(20, 100);
+> This waits 20us after de-asserting the reset, not before. Is this in the
+> correct place?
+This is correct place , but the above mentioned comments are wrong, need 
+to re-write the comments as below...
+
+/* out-of-band reset of the controller after PHY reset
+  * will cause controller malfunctioning, so should use in-bandcontroller
+  * reset only and leave the controller de-asserted here.
+  */
+     for (i = 0; i < ARRAY_SIZE(CTL_RESETS); i++)
+             reset_control_deassert(resets[i]);
+
+/* Need to wait at least 20us after de-assert the PHY */
+     usleep_range(20, 100);
 
 
-Then, I have no idea,
-but this is not a problem in the kernel build.
+Regards
+Vadivel
 
-
-
--- 
-Best Regards
-Masahiro Yamada
+> 
