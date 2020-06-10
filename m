@@ -2,146 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDBF51F67CA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 14:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4171F6816
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 14:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbgFKMTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 08:19:10 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:59330 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726864AbgFKMTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Jun 2020 08:19:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1591877950; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=6vvXLsTpi8eX/TgjYkKkVugmiw4GBm2oRpYR4vVFpmk=; b=pQnSBE/SMKlGKkEKAxDkmwSBah+0vfDeYMSviSuOXffHTZ1JfSD+J4CznKOCAOOCqk0TO/Fw
- d3ovEqejXHCEujjeH/jDDPIEzGHNMChxCoDenXi4JfnM29uTRGAin5aKfH1iiUS96jP8Lkgn
- w9MG5+Qj7cXCMjPn1y2QzM/nwWc=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5ee2213a86de6ccd44cbb236 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Jun 2020 12:19:06
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 79FDEC43387; Thu, 11 Jun 2020 12:19:05 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.0.118] (unknown [49.207.58.25])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D2455C433C8;
-        Thu, 11 Jun 2020 12:19:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D2455C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [RFC v2 1/3] dt-bindings: nvmem: Add devicetree bindings for
- qfprom-efuse
-To:     Ravi Kumar Bokka <rbokka@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        saiprakash.ranjan@codeaurora.org, dhavalp@codeaurora.org,
-        mturney@codeaurora.org, sparate@codeaurora.org,
-        c_rbokka@codeaurora.org, mkurumel@codeaurora.org
-References: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
- <1591868882-16553-2-git-send-email-rbokka@codeaurora.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <8ef8c7c4-3560-274d-3043-ddf5b87e794a@codeaurora.org>
-Date:   Thu, 11 Jun 2020 17:48:58 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+        id S1726292AbgFKMph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 08:45:37 -0400
+Received: from hs2.cadns.ca ([149.56.24.197]:31442 "EHLO hs2.cadns.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726254AbgFKMph (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jun 2020 08:45:37 -0400
+X-Greylist: delayed 462 seconds by postgrey-1.27 at vger.kernel.org; Thu, 11 Jun 2020 08:45:37 EDT
+Received: from [192.168.0.20] (135-23-114-58.cpe.pppoe.ca [135.23.114.58])
+        by hs2.cadns.ca (Postfix) with ESMTPSA id AB4F914931;
+        Wed, 10 Jun 2020 18:29:52 -0400 (EDT)
+Authentication-Results: hs2.cadns.ca;
+        spf=pass (sender IP is 135.23.114.58) smtp.mailfrom=sriram.chadalavada@mindleap.ca smtp.helo=[192.168.0.20]
+Received-SPF: pass (hs2.cadns.ca: connection is authenticated)
+From:   Sriram Chadalavada <sriram.chadalavada@mindleap.ca>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Feedback on Marvell 6176 DSA switch device tree and driver module code
+Message-ID: <ee82e878-3337-c760-bd16-d5bcb9dbfa19@mindleap.ca>
+Date:   Wed, 10 Jun 2020 18:29:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <1591868882-16553-2-git-send-email-rbokka@codeaurora.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-PPP-Message-ID: <20200610222952.4822.29209@hs2.cadns.ca>
+X-PPP-Vhost: mindleap.ca
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Here's a detailed overview of what I have been grappling with:
 
-On 6/11/2020 3:18 PM, Ravi Kumar Bokka wrote:
-> This patch adds dt-bindings document for qfprom-efuse controller.
+https://stackoverflow.com/questions/62311589/feedback-on-marvell-6176-dsa-switch-device-tree-and-driver-module-code
 
-there is an existing bindings doc (in .txt) which you should convert to yaml,
-and then add another patch to extend it.
+I also tried a version of the device tree where the mdio device is in 
+the dts file without being a subnode of the pci node. With that, the 
+kernel doesn't crash but igb based eth0 and ports on the 6176 switch are 
+NOT enumerated.
 
-> 
-> Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
-> ---
->   .../devicetree/bindings/nvmem/qfprom.yaml          | 52 ++++++++++++++++++++++
->   1 file changed, 52 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/nvmem/qfprom.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qfprom.yaml
-> new file mode 100644
-> index 0000000..7c8fc31
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/qfprom.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/qfprom.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies Inc, QFPROM Efuse bindings
-> +
-> +maintainers:
-> +  - Ravi Kumar Bokka <rbokka@codeaurora.org>
-> +
-> +allOf:
-> +  - $ref: "nvmem.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qfprom
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +required:
-> +   - compatible
-> +   - reg
-> +   - reg-names
-> +   - clocks
-> +   - clock-names
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
-> +
-> +    qfprom@780000 {
-> +	compatible = "qcom,qfprom";
-> +	reg = <0 0x00780000 0 0x7a0>,
-> +	      <0 0x00782000 0 0x100>,
-> +	      <0 0x00784000 0 0x8ff>;
-> +	reg-names = "raw", "conf", "corrected";
-> +	clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-> +	clock-names = "secclk";
-> +
-> +	qusb2p_hstx_trim: hstx-trim-primary@25b {
-> +		reg = <0x25b 0x1>;
-> +		bits = <1 3>;
-> +	};
-> +    };
-> +
-> +    &qfprom {
-> +        vcc-supply = <&vreg_l11a_1p8>;
-> +    };
-> +
-> 
+Thanks,
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Sriram
+
