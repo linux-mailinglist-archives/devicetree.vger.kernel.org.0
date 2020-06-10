@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 075901F59E5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 19:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE5C71F5A10
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2020 19:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727990AbgFJRQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jun 2020 13:16:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33126 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729622AbgFJRQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jun 2020 13:16:43 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255EEC03E96F;
-        Wed, 10 Jun 2020 10:16:43 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id y17so3151394wrn.11;
-        Wed, 10 Jun 2020 10:16:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5Z5HmDtV/uFdRn9AN/WhBRbcRr/O4rtkluxMrfIJN0s=;
-        b=fd37f0BFKkT2dMXloiiCDGGxDqQW2UM1Gqs9hsUCTJHrIMsznCmrphGvKwLWSf09OQ
-         FZ/PU8zWotSr3ZdZH7s5eCn52gzfXfr1tjeLXFII3k8ooBcolu00v3pdmXRkZpE/6Eaf
-         f+R5cqW6M2mDLdCgRCgsApoEaHi7nq6Z2Jh0J2fq+wz8lsI5sKHAcmsLlfjBNTbUGFJ8
-         UlFI4Q5hsHzNVI+Wa9bXfTDbQs+8uGOyAubuoeQFhW6MKjVU7RFOCyVXFAlLQGNmrhkr
-         nqOB0STrqyWMkEFMeBGi5OPuxgM7ZMqfgfIfC4BTeaUP3BVZgnMSvkLgiSVs2pOFsU2a
-         FFJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5Z5HmDtV/uFdRn9AN/WhBRbcRr/O4rtkluxMrfIJN0s=;
-        b=QDxEuoGrJFDTpRw1fL43m6ElKy1YOxJUS8IB4IuWxXeQj49QSP18kZE8T3141pEVUr
-         M4Ov++UiLafyf0Ah4XBP7EHgIWIeWzGJMbRCverdx9RfUwJyR199xArJ6NOkYLeGZRLG
-         IFQf9oLfRZXJF0a7GvW8j8cFrZJoiwItsWDXMtCoqdWEKCVwztEs7ari/fWiO63VJ/5m
-         YmFzrMiy+OK8MLLIpmvvIhQgtUiIko3XofqEGPWI2Y0YV5rhZ6q5swMrbJLzbPvqQQqJ
-         QzbRZQtPPK/j/RvVgY4qvjsu71yNd+iikBJokUAjkMPo+IuarXiFOWt1OcCMFaI1s0SE
-         /VIw==
-X-Gm-Message-State: AOAM531aoTVXesQPvS/kIfszkDf6TPLn8l5xabL9G9b1hUQBYGPMqHxH
-        9zC5UvzrYPxA1jAPtUgqeD8=
-X-Google-Smtp-Source: ABdhPJwwhcrMFSDWf49dyge+OJdhoE3YU2B7KXd0sYZzv3guwN9R5Sp6bftxIqpZxmqZXOYSfjIbcQ==
-X-Received: by 2002:adf:cd08:: with SMTP id w8mr4763720wrm.36.1591809401794;
-        Wed, 10 Jun 2020 10:16:41 -0700 (PDT)
-Received: from skynet.lan (28.red-83-49-61.dynamicip.rima-tde.net. [83.49.61.28])
-        by smtp.gmail.com with ESMTPSA id f11sm589048wrm.13.2020.06.10.10.16.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2020 10:16:41 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
-        robh+dt@kernel.org, f.fainelli@gmail.com, jonas.gorski@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH v3 9/9] mips: bmips: dts: add BCM63268 power domain support
-Date:   Wed, 10 Jun 2020 19:16:30 +0200
-Message-Id: <20200610171630.465579-10-noltari@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200610171630.465579-1-noltari@gmail.com>
-References: <20200610163301.461160-1-noltari@gmail.com>
- <20200610171630.465579-1-noltari@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1728528AbgFJRSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jun 2020 13:18:42 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:17008 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726157AbgFJRSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jun 2020 13:18:39 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1591809519; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=nxi/PGUd2Nz7sCq1j6UIB/PKdUyrLOXHbbMcUCzd5kU=; b=Q0JHlkyThQ++BMPyRHr5noUtTOETDdAyr7M9UKQIaSpiRrm72PWc3El7dACaoKwJwQuviqA4
+ NknABJtEtEhNWwld5+qSBVkz/bDoUHdftMOPPdU9rhVkQr22P7fB8j14prg3n9fzyQTEJ4vo
+ +nwhKhO42WE2c7UlFZoKrNjLLsM=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5ee115de5866879c7650cb04 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Jun 2020 17:18:22
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 26DDFC4339C; Wed, 10 Jun 2020 17:18:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8CC2CC433CA;
+        Wed, 10 Jun 2020 17:18:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8CC2CC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v3 0/4] clk: qcom: Support for Low Power Audio Clocks on SC7180
+Date:   Wed, 10 Jun 2020 22:48:03 +0530
+Message-Id: <1591809487-5588-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM63268 SoCs have a power domain controller to enable/disable certain
-components in order to save power.
+[v3]
+ * Update the clock-name to iface instead of gcc_lpass_sway.
+ * Update the documentation with the reg descriptions and use maxItems.
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- v3: Separate dt-bindings definitions from power domain .dtsi support.
- v2: Add dt-bindings header files.
+[v2]
+ * Update retention macro name.
+ * Update the register description in the documentation.
 
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+[v1]
+ * Add support for Retention of GDSCR.
+ * Add YAML schema for LPASS clocks and clock IDs for LPASS.
+ * Add clock driver for LPASS core clocks and GCC LPASS clock.
 
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index beec24145af7..5acb49b61867 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -117,6 +117,12 @@ leds0: led-controller@10001900 {
- 			status = "disabled";
- 		};
- 
-+		periph_pwr: power-controller@1000184c {
-+			compatible = "brcm,bcm6328-power-controller";
-+			reg = <0x1000184c 0x4>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		ehci: usb@10002500 {
- 			compatible = "brcm,bcm63268-ehci", "generic-ehci";
- 			reg = <0x10002500 0x100>;
--- 
-2.26.2
+Taniya Das (4):
+  clk: qcom: gdsc: Add support to enable retention of GSDCR
+  dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7180
+  clk: qcom: gcc: Add support for GCC LPASS clock for SC7180
+  clk: qcom: lpass: Add support for LPASS clock controller for SC7180
+
+ .../bindings/clock/qcom,sc7180-lpasscorecc.yaml    |  98 +++++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/gcc-sc7180.c                      |  14 +
+ drivers/clk/qcom/gdsc.c                            |  12 +
+ drivers/clk/qcom/gdsc.h                            |   1 +
+ drivers/clk/qcom/lpasscorecc-sc7180.c              | 478 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sc7180.h        |   1 +
+ .../dt-bindings/clock/qcom,lpasscorecc-sc7180.h    |  29 ++
+ 9 files changed, 643 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml
+ create mode 100644 drivers/clk/qcom/lpasscorecc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
