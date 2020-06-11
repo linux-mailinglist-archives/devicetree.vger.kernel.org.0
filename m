@@ -2,160 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E851F6F37
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 23:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE831F6F4D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 23:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726380AbgFKVME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 17:12:04 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:58636 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726298AbgFKVMD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Jun 2020 17:12:03 -0400
-Received: from [78.134.85.74] (port=40536 helo=melee.dev.aim)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1jjUUP-000C9m-7w; Thu, 11 Jun 2020 23:11:57 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     linux-fpga@vger.kernel.org
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Moritz Fischer <mdf@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Anatolij Gustschin <agust@denx.de>
-Subject: [PATCH 5/5] fpga manager: xilinx-spi: check INIT_B pin during write_init
-Date:   Thu, 11 Jun 2020 23:11:44 +0200
-Message-Id: <20200611211144.9421-5-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200611211144.9421-1-luca@lucaceresoli.net>
-References: <20200611211144.9421-1-luca@lucaceresoli.net>
+        id S1726279AbgFKVRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 17:17:22 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:58196 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726186AbgFKVRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jun 2020 17:17:20 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05BLH9CF102368;
+        Thu, 11 Jun 2020 16:17:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591910229;
+        bh=SmVf5z+uPxAwVHzHogMC1cxqd7jWMeEM7ZJxKNhZeGA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=DL2kOzOgQWTQgQ9dPHKaKHF6MoqBD27joWzX0lJ0FvnkMdhoAJZgdoWGpFIyJRYnF
+         cux1f2ecvZSvnTOYP71W9m6qdmSaTvg8QgJAOHD2PLYNivH619grsArcBOlNIDtDaC
+         S0Rzs7VQUo3RMPuLfo67cGwi0BPw1MYnMmCibDTs=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05BLH9XL073055
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 Jun 2020 16:17:09 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 11
+ Jun 2020 16:17:08 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 11 Jun 2020 16:17:09 -0500
+Received: from [10.250.48.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05BLH5Up051553;
+        Thu, 11 Jun 2020 16:17:08 -0500
+Subject: Re: [PATCH v7 3/5] remoteproc: Add support for runtime PM
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>
+CC:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        Loic Pallardy <loic.pallardy@st.com>, <od@zcrc.me>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+References: <20200515104340.10473-1-paul@crapouillou.net>
+ <20200515104340.10473-3-paul@crapouillou.net>
+ <035bf8ad-3ef0-8314-ae5c-a94a24c230c8@ti.com>
+ <P2TQAQ.3VDG3B8W2EPF3@crapouillou.net>
+ <daa239fe-afd4-ff2e-3d5c-db09434cac95@ti.com>
+ <9XPMBQ.UM94FDID8MZW@crapouillou.net>
+ <107dc1d3-05c6-61be-b82c-197f0c43cdba@ti.com>
+ <VUEPBQ.GMXO6YRLF7N22@crapouillou.net> <20200611043951.GA3251@builder.lan>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <b877e6cf-b519-0926-01d2-ff5a41f0ef15@ti.com>
+Date:   Thu, 11 Jun 2020 16:17:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
+In-Reply-To: <20200611043951.GA3251@builder.lan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The INIT_B reports the status during startup and after the end of the
-programming process. However the current driver completely ignores it.
+On 6/10/20 11:39 PM, Bjorn Andersson wrote:
+> On Wed 10 Jun 02:40 PDT 2020, Paul Cercueil wrote:
+> 
+>> Hi,
+>>
+>> Le lun. 8 juin 2020 à 18:10, Suman Anna <s-anna@ti.com> a écrit :
+>>> Hi Paul,
+>>>
+>>> On 6/8/20 5:46 PM, Paul Cercueil wrote:
+>>>> Hi Suman,
+>>>>
+>>>>>>> On 5/15/20 5:43 AM, Paul Cercueil wrote:
+>>>>>>>> Call pm_runtime_get_sync() before the firmware is loaded, and
+>>>>>>>> pm_runtime_put() after the remote processor has been stopped.
+>>>>>>>>
+>>>>>>>> Even though the remoteproc device has no PM
+>>>>>>>> callbacks, this allows the
+>>>>>>>> parent device's PM callbacks to be properly called.
+>>>>>>>
+>>>>>>> I see this patch staged now for 5.8, and the latest
+>>>>>>> -next branch has broken the pm-runtime autosuspend
+>>>>>>> feature we have in the OMAP remoteproc driver. See
+>>>>>>> commit 5f31b232c674 ("remoteproc/omap: Add support
+>>>>>>> for runtime auto-suspend/resume").
+>>>>>>>
+>>>>>>> What was the original purpose of this patch, because
+>>>>>>> there can be differing backends across different
+>>>>>>> SoCs.
+>>>>>>
+>>>>>> Did you try pm_suspend_ignore_children()? It looks like it
+>>>>>> was made for your use-case.
+>>>>>
+>>>>> Sorry for the delay in getting back. So, using
+>>>>> pm_suspend_ignore_children() does fix my current issue.
+>>>>>
+>>>>> But I still fail to see the original purpose of this patch in
+>>>>> the remoteproc core especially given that the core itself does
+>>>>> not have any callbacks. If the sole intention was to call the
+>>>>> parent pdev's callbacks, then I feel that state-machine is
+>>>>> better managed within that particular platform driver itself,
+>>>>> as the sequencing/device management can vary with different
+>>>>> platform drivers.
+>>>>
+>>>> The problem is that with Ingenic SoCs some clocks must be enabled in
+>>>> order to load the firmware, and the core doesn't give you an option
+>>>> to register a callback to be called before loading it.
+>>>
+>>> Yep, I have similar usage in one of my remoteproc drivers (see
+>>> keystone_remoteproc.c), and I think this all stems from the need to
+>>> use/support loading into a processor's internal memories. My driver does
+>>> leverage the pm-clks backend plugged into pm_runtime, so you won't see
+>>> explicit calls on the clocks.
+>>>
+>>> I guess the question is what exact PM features you are looking for with
+>>> the Ingenic SoC. I do see you are using pm_runtime autosuspend, and your
+>>> callbacks are managing the clocks, but reset is managed only in
+>>> start/stop.
+>>>
+>>>> The first version of my patchset added .prepare/.unprepare
+>>>> callbacks to the struct rproc_ops, but the feedback from the
+>>>> maintainers was that I should do it via runtime PM. However, it was
+>>>> not possible to keep it contained in the driver, since again the
+>>>> core doesn't provide a "prepare" callback, so no place to call
+>>>> pm_runtime_get_sync().
+>>> FWIW, the .prepare/.unprepare callbacks is actually now part of the
+>>> rproc core. Looks like multiple developers had a need for this, and this
+>>> functionality went in at the same time as your driver :). Not sure if
+>>> you looked up the prior patches, I leveraged the patch that Loic had
+>>> submitted a long-time ago, and a revised version of it is now part of
+>>> 5.8-rc1.
+>>
+>> WTF maintainers, you refuse my patchset for adding a .prepare/.unprepare,
+>> ask me to do it via runtime PM, then merge another patchset that adds these
+>> callback. At least be constant in your decisions.
+>>
+> 
+> Sorry, I missed this when applying the two patches, but you're of course
+> right.
+> 
+>> Anyway, now we have two methods added to linux-next for doing the exact same
+>> thing. What should we do about it?
+>>
+> 
+> I like the pm_runtime approach and as it was Arnaud that asked you to
+> change it, perhaps he and Loic can agree on updating the ST driver so we
+> can drop the prepare/unprepare ops again?
 
-Check the pin status during startup to make sure programming is never
-started too early and also to detect any hardware issues in the FPGA
-connection.
+These callbacks were added primarily in preparation for the TI K3 rproc 
+drivers, not just ST (the patch was resurrected from a very old patch 
+from Loic).
 
-This is optional for backward compatibility. If INIT_B is not passed by
-device tree, just fallback to the old udelays.
+I still think prepare/unprepare is actually better suited to scale well 
+for the long term. This pm_runtime logic will now make the early-boot 
+scenarios complicated, as you would have to match its status, but all 
+actual operations are on the actual parent remoteproc platform device 
+and not the child remoteproc device. I think it serves to mess up the 
+state-machines of different platform drivers due to additional refcounts 
+acquired and maybe performing some operations out of sequence to what a 
+platform driver wants esp. if there is automated backend usage like 
+genpd, pm_clks etc. I am yet to review Mathieu's latest MCU sync series, 
+but the concept of different sync_ops already scales w.r.t the 
+prepare/unprepare.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
----
- drivers/fpga/xilinx-spi.c | 54 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 53 insertions(+), 1 deletion(-)
+As for my K3 drivers, the callbacks are doing more than just turning on 
+clocks, as the R5Fs in general as a complex power-on sequence. I do not 
+have remoteproc auto-suspend atm on the K3 drivers, but that typically 
+means shutting down and restoring the core and would involve all the 
+hardware-specific sequences, so the rpm callback implementations will be 
+more than just clocks.
 
-diff --git a/drivers/fpga/xilinx-spi.c b/drivers/fpga/xilinx-spi.c
-index 799ae04301be..2710a15ed16b 100644
---- a/drivers/fpga/xilinx-spi.c
-+++ b/drivers/fpga/xilinx-spi.c
-@@ -23,6 +23,7 @@
- struct xilinx_spi_conf {
- 	struct spi_device *spi;
- 	struct gpio_desc *prog_b;
-+	struct gpio_desc *init_b;
- 	struct gpio_desc *done;
- };
- 
-@@ -36,11 +37,44 @@ static enum fpga_mgr_states xilinx_spi_state(struct fpga_manager *mgr)
- 	return FPGA_MGR_STATE_UNKNOWN;
- }
- 
-+/**
-+ * wait_for_init_b - wait for the INIT_B pin to have a given state, or wait
-+ * a given delay if the pin is unavailable
-+ *
-+ * @mgr        The FPGA manager object
-+ * @value      Value INIT_B to wait for (1 = asserted = low)
-+ * @act_udelay Delay to wait if the INIT_B pin is not available
-+ *
-+ * Returns 0 when the pin reached the given state or -ETIMEDOUT if too much
-+ * time passed waiting for that. If there is no INIT_B, always return 0.
-+ */
-+static int wait_for_init_b(struct fpga_manager *mgr, int value,
-+			   unsigned long backup_udelay)
-+{
-+	struct xilinx_spi_conf *conf = mgr->priv;
-+	unsigned long timeout = jiffies + msecs_to_jiffies(1000);
-+
-+	if (conf->init_b) {
-+		while (time_before(jiffies, timeout)) {
-+			/* dump_state(conf, "wait for init_d .."); */
-+			if (gpiod_get_value(conf->init_b) == value)
-+				return 0;
-+			usleep_range(100, 400);
-+		}
-+		return -ETIMEDOUT;
-+	}
-+
-+	udelay(backup_udelay);
-+
-+	return 0;
-+}
-+
- static int xilinx_spi_write_init(struct fpga_manager *mgr,
- 				 struct fpga_image_info *info,
- 				 const char *buf, size_t count)
- {
- 	struct xilinx_spi_conf *conf = mgr->priv;
-+	int err;
- 
- 	if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
- 		dev_err(&mgr->dev, "Partial reconfiguration not supported.\n");
-@@ -49,10 +83,21 @@ static int xilinx_spi_write_init(struct fpga_manager *mgr,
- 
- 	gpiod_set_value(conf->prog_b, 1);
- 
--	udelay(1); /* min is 500 ns */
-+	err = wait_for_init_b(mgr, 1, 1); /* min is 500 ns */
-+	if (err) {
-+		dev_err(&mgr->dev, "INIT_B pin did not go low\n");
-+		gpiod_set_value(conf->prog_b, 0);
-+		return err;
-+	}
- 
- 	gpiod_set_value(conf->prog_b, 0);
- 
-+	err = wait_for_init_b(mgr, 0, 0);
-+	if (err) {
-+		dev_err(&mgr->dev, "INIT_B pin did not go high\n");
-+		return err;
-+	}
-+
- 	if (gpiod_get_value(conf->done)) {
- 		dev_err(&mgr->dev, "Unexpected DONE pin state...\n");
- 		return -EIO;
-@@ -154,6 +199,13 @@ static int xilinx_spi_probe(struct spi_device *spi)
- 		return PTR_ERR(conf->prog_b);
- 	}
- 
-+	conf->init_b = devm_gpiod_get_optional(&spi->dev, "init_b", GPIOD_IN);
-+	if (IS_ERR(conf->init_b)) {
-+		dev_err(&spi->dev, "Failed to get INIT_B gpio: %ld\n",
-+			PTR_ERR(conf->init_b));
-+		return PTR_ERR(conf->init_b);
-+	}
-+
- 	conf->done = devm_gpiod_get(&spi->dev, "done", GPIOD_IN);
- 	if (IS_ERR(conf->done)) {
- 		dev_err(&spi->dev, "Failed to get DONE gpio: %ld\n",
--- 
-2.27.0
+I looked through the patch history on the Ingenic remoteproc driver, and 
+the only reason for either of runtime pm usage or prepare/unprepare ops 
+usage is to ensure that clocks do not stay enabled in the case the 
+processor is not loaded/started. The driver is using auto-boot, so when 
+it probes, in general we expect the remoteproc to be running. So, the 
+only failure case is if there is no firmware. Otherwise, Paul could have 
+just used clk_bulk API in probe and remove.
+
+Anyway, I will provide some additional review comments on the pm_runtime 
+usage within the Ingenic rproc driver.
+
+regards
+Suman
 
