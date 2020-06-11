@@ -2,86 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C111F64F2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 11:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4AA71F64FC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 11:53:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727063AbgFKJsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 05:48:47 -0400
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:57411 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727025AbgFKJsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Jun 2020 05:48:38 -0400
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Jun 2020 15:18:26 +0530
-Received: from c-rbokka-linux.qualcomm.com ([10.206.232.238])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Jun 2020 15:18:05 +0530
-Received: by c-rbokka-linux.qualcomm.com (Postfix, from userid 203305)
-        id 0C31F2CBB; Thu, 11 Jun 2020 15:18:04 +0530 (IST)
-From:   Ravi Kumar Bokka <rbokka@codeaurora.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        dhavalp@codeaurora.org, mturney@codeaurora.org,
-        sparate@codeaurora.org, c_rbokka@codeaurora.org,
-        mkurumel@codeaurora.org, Ravi Kumar Bokka <rbokka@codeaurora.org>
-Subject: [RFC v2 3/3] arm64: dts: qcom: sc7180: Add qfprom-efuse
-Date:   Thu, 11 Jun 2020 15:18:02 +0530
-Message-Id: <1591868882-16553-4-git-send-email-rbokka@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
-References: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
+        id S1726960AbgFKJxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 05:53:41 -0400
+Received: from mga18.intel.com ([134.134.136.126]:44837 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726864AbgFKJxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jun 2020 05:53:41 -0400
+IronPort-SDR: Sms9Q2Hm/JkSkW4tVuMabxfb07/On+egWnY/F3NkAylRi2vpBSGDT3POL3CkaaQ0cv523qHVvr
+ SKjr/BcRvl2Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2020 02:53:41 -0700
+IronPort-SDR: dHCsEc4njPF+kHjdOEWILszXP2QQ+HFtapoZFzJIsrkp1puF+YHOe0YdbiUqnorzm8NusR4716
+ 26t59K7DO3yA==
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; 
+   d="scan'208";a="350138738"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2020 02:53:35 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 6E06720680; Thu, 11 Jun 2020 12:53:33 +0300 (EEST)
+Date:   Thu, 11 Jun 2020 12:53:33 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, mchehab@kernel.org,
+        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, drinkcat@chromium.org,
+        matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V9, 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
+Message-ID: <20200611095333.GK16711@paasikivi.fi.intel.com>
+References: <20200523084103.31276-1-dongchun.zhu@mediatek.com>
+ <20200523084103.31276-3-dongchun.zhu@mediatek.com>
+ <20200610194455.GK201868@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200610194455.GK201868@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device tree node for qfprom-efuse controller.
+Hi Tomasz,
 
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  4 ++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 10 ++++++++--
- 2 files changed, 12 insertions(+), 2 deletions(-)
+On Wed, Jun 10, 2020 at 07:44:55PM +0000, Tomasz Figa wrote:
+> Hi Dongchun,
+> 
+> On Sat, May 23, 2020 at 04:41:03PM +0800, Dongchun Zhu wrote:
+> > Add a V4L2 sub-device driver for OV02A10 image sensor.
+> > 
+> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > ---
+> >  MAINTAINERS                 |    1 +
+> >  drivers/media/i2c/Kconfig   |   13 +
+> >  drivers/media/i2c/Makefile  |    1 +
+> >  drivers/media/i2c/ov02a10.c | 1025 +++++++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 1040 insertions(+)
+> >  create mode 100644 drivers/media/i2c/ov02a10.c
+> > 
+> 
+> Thank you for the patch. Please see my comments inline.
+> 
+> [snip]
+> > diff --git a/drivers/media/i2c/ov02a10.c b/drivers/media/i2c/ov02a10.c
+> > new file mode 100644
+> > index 0000000..160a0b5
+> > --- /dev/null
+> > +++ b/drivers/media/i2c/ov02a10.c
+> [snip]
+> > +static const char * const ov02a10_test_pattern_menu[] = {
+> > +	"Disabled",
+> > +	"Color Bar",
+> 
+> nit: We should normalize this to one of the standard names. What is the
+> pattern on this sensor? Is it perhaps "Eight Vertical Colour Bars"?
+> 
+> > +};
+> [snip]
+> > +static int ov02a10_set_fmt(struct v4l2_subdev *sd,
+> > +			   struct v4l2_subdev_pad_config *cfg,
+> > +			   struct v4l2_subdev_format *fmt)
+> > +{
+> > +	struct ov02a10 *ov02a10 = to_ov02a10(sd);
+> > +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+> > +
+> > +	mutex_lock(&ov02a10->mutex);
+> > +
+> 
+> 
+> Don't we need to handle the case when fmt->which is V4L2_SUBDEV_FORMAT_TRY,
+> which is used for trying the format, but not applying it to the hardware?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4e9149d..2a9224e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -287,6 +287,10 @@
- 	};
- };
- 
-+&qfprom {
-+	vcc-supply = <&vreg_l11a_1p8>;
-+};
-+
- &qspi {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 31b9217..20f3480 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -498,9 +498,15 @@
- 			#power-domain-cells = <1>;
- 		};
- 
--		qfprom@784000 {
-+		qfprom: qfprom@780000 {
- 			compatible = "qcom,qfprom";
--			reg = <0 0x00784000 0 0x8ff>;
-+			reg = <0 0x00780000 0 0x7a0>,
-+			      <0 0x00782000 0 0x100>,
-+			      <0 0x00784000 0 0x8ff>;
-+			reg-names = "raw", "conf", "corrected";
-+			
-+			clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-+			clock-names = "secclk";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
+Yes.
+
+> 
+> > +	if (ov02a10->streaming) {
+> > +		mutex_unlock(&ov02a10->mutex);
+> > +		return -EBUSY;
+> > +	}
+> > +
+> > +	/* Only one sensor mode supported */
+> > +	mbus_fmt->code = ov02a10->fmt.code;
+> > +	ov02a10_fill_fmt(ov02a10->cur_mode, mbus_fmt);
+> > +	ov02a10->fmt = fmt->format;
+> > +
+> > +	mutex_unlock(&ov02a10->mutex);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ov02a10_get_fmt(struct v4l2_subdev *sd,
+> > +			   struct v4l2_subdev_pad_config *cfg,
+> > +			   struct v4l2_subdev_format *fmt)
+> > +{
+> > +	struct ov02a10 *ov02a10 = to_ov02a10(sd);
+> > +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+> > +
+> > +	mutex_lock(&ov02a10->mutex);
+> > +
+> > +	fmt->format = ov02a10->fmt;
+> 
+> Ditto.
+> 
+> > +	mbus_fmt->code = ov02a10->fmt.code;
+> > +	ov02a10_fill_fmt(ov02a10->cur_mode, mbus_fmt);
+> > +
+> > +	mutex_unlock(&ov02a10->mutex);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ov02a10_enum_mbus_code(struct v4l2_subdev *sd,
+> > +				  struct v4l2_subdev_pad_config *cfg,
+> > +				  struct v4l2_subdev_mbus_code_enum *code)
+> > +{
+> > +	struct ov02a10 *ov02a10 = to_ov02a10(sd);
+> > +
+> > +	if (code->index >= ARRAY_SIZE(supported_modes))
+> > +		return -EINVAL;
+> 
+> Hmm, supported_modes[] doesn't seem to hold the information about mbus
+> codes. Should this just perhaps be "!= 0"?
+> 
+> > +
+> > +	code->code = ov02a10->fmt.code;
+> > +
+> > +	return 0;
+> > +}
+> [snip]
+> > +static int ov02a10_entity_init_cfg(struct v4l2_subdev *sd,
+> > +				   struct v4l2_subdev_pad_config *cfg)
+> > +{
+> > +	struct v4l2_subdev_format fmt = {
+> > +		.which = cfg ? V4L2_SUBDEV_FORMAT_TRY : V4L2_SUBDEV_FORMAT_ACTIVE,
+> > +		.format = {
+> > +			.width = 1600,
+> > +			.height = 1200,
+> > +		}
+> > +	};
+> > +
+> > +	ov02a10_set_fmt(sd, cfg, &fmt);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> 
+> I'm not familiar with this init_cfg operation and the documentation is very
+> sparse about it. Sakari, is this a correct implementation?
+
+The purpose is to initialise a pad configuration (format and selection
+rectangles) to the device defaults. As there seem to be no selection
+rectangles, this seems fine to me.
+
 -- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
+Regards,
 
+Sakari Ailus
