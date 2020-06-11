@@ -2,94 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3CF1F69F1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 16:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F33981F6A30
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 16:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728233AbgFKO2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 10:28:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
+        id S1728387AbgFKOig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 10:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728129AbgFKO2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jun 2020 10:28:21 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AFEC08C5C3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2020 07:28:20 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id x14so6396756wrp.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2020 07:28:20 -0700 (PDT)
+        with ESMTP id S1728380AbgFKOig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jun 2020 10:38:36 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C17C08C5C2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2020 07:38:35 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l26so5190827wme.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2020 07:38:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+MwiHwTDigrZz/osHSq5jwVMysur4yPnyLBBwzskG3k=;
-        b=hF9rAdqc/Vs5/6fKuks+MMwm5u0HPIk5I3T763FaYv8nJfRnzVmYS6TkZwBkpQEK58
-         OabTcSTw/chyT3nEYjpMZQDEOQc+ToSeZ2/XR3JxMVn51VBleocqPt81rwrJnQrtsfTu
-         fNHm+OBopt1RhC9Zm1Z4ugCbwiZh785kwWvlc=
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=OkSwpbu3nanzuKZFRobLrpEC9ZCDno96sQzcjNj/eXY=;
+        b=cI+OX7XoTGzmSDSsWCBAgUmvoYrhcn7OEtY/zt2TxdrMTXMKh0GXYchPkoZT+khQPD
+         nV8rBtdgwRtq55gdiZYS/FgVPKwGH5TEAiw5PDtJxEU2mA//8hWvWFd+9XHNZIPQqwJt
+         +O1X0H1P7QlKx+hbQ8bZ/P1XCLh3vXtzV68e4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+MwiHwTDigrZz/osHSq5jwVMysur4yPnyLBBwzskG3k=;
-        b=tNP1hrUvPa+CK93bJjEzFjOy2MW7mguCYzp4QwCb3BK4SLiQLCPONA1D7JTKzcy3Ib
-         THNKB2lpqnKAwerfimP7jvDCE5CYNtHIj3CywgKs2Buj32PB8nP23ZasDmoJVxZjjDPt
-         WF2fG+oQB725gJy6zI8egvqDe0GBQ5WVwqT29KcpnS2B/lLWb9bY8EmWWXDlXHdgNEOv
-         /DvGnVUfmvk00brbWSBDry21ssvQdFYBnxgj85JjYXX0/DnswEuDKwubwcuyRKg37SP2
-         V0RSN2zP/VimuqBoPU7JSU7WSsADNx6OxTn23z46CCrxTan+QefbgA/rRlBiAvVtAS5s
-         D8Sw==
-X-Gm-Message-State: AOAM531UJjqf740Gd1ElmmqXw798j8HdwO4t9k6M09e11NPLHA54Wuoq
-        KkyUAI8Ha6ApXwt/iXozpJVyWg==
-X-Google-Smtp-Source: ABdhPJzQ9+KT5Krp0KhPaomhJuRwTmw/IshQSBBRqrbY7XioECHFV8tO/RyEuLgOWZRGG4tI3GvR+g==
-X-Received: by 2002:a5d:4d4d:: with SMTP id a13mr10081847wru.252.1591885698879;
-        Thu, 11 Jun 2020 07:28:18 -0700 (PDT)
-Received: from chromium.org (205.215.190.35.bc.googleusercontent.com. [35.190.215.205])
-        by smtp.gmail.com with ESMTPSA id w17sm5219529wra.71.2020.06.11.07.28.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jun 2020 07:28:18 -0700 (PDT)
-Date:   Thu, 11 Jun 2020 14:28:17 +0000
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     Xia Jiang <xia.jiang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        srv_heupstream@mediatek.com, senozhatsky@chromium.org,
-        mojahsu@chromium.org, drinkcat@chromium.org,
-        maoguang.meng@mediatek.com, sj.huang@mediatek.com
-Subject: Re: [PATCH RESEND v9 10/18] media: platform: Stylistic changes for
- improving code quality
-Message-ID: <20200611142817.GD158633@chromium.org>
-References: <20200604090553.10861-1-xia.jiang@mediatek.com>
- <20200604090553.10861-12-xia.jiang@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=OkSwpbu3nanzuKZFRobLrpEC9ZCDno96sQzcjNj/eXY=;
+        b=FsedYpIhJfo0zDLfqu4y1MjE6Jwm7MXdkubR4khjVHn+N8Ogo8+NgMrWJZ0juTgCgM
+         Oip2/ZFKnD5jnAJ8C9K95j94eQ1pZ20BfcFYR8XlFoa6DdnvUojZ3d4SMK6BMCmBub5r
+         OKx5Oo+yCTWmexjDTuMNIJTbrp6wYHyfOIvAOQbRthEG/fJJKsKV87vFuyA1wvWs3djZ
+         zsKGsH2nJNzOCbF+E5MQUmgi4r8ZRSRW8TVryaIjTLO9CZqB1JemVp5gp/dr+l8DK+vH
+         dM8Z7VnXtcY1LfbFaM1JeGXnECmC/1QFXoh0l45eO9Ho/ZHzUWTpjGrI5vjLeo5+6wqg
+         PYwA==
+X-Gm-Message-State: AOAM5322diH+z8M8xHmZRnq+QPC4+4QC5lxd0ZmyjipfIFkiDY2lutf1
+        Lq6r6r4pbDYKEZxfFy0V9aEBZ7vmp62PCBCgYH3upA==
+X-Google-Smtp-Source: ABdhPJym84e7SJjEkEqSAakLhjhByUtudobqIP49Z3U2O/dZpWA1dZ+0tNVwVesl3Gq55GaV+1O9IkNIEKJMiPotclk=
+X-Received: by 2002:a7b:c3c6:: with SMTP id t6mr8182714wmj.159.1591886314439;
+ Thu, 11 Jun 2020 07:38:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200604090553.10861-12-xia.jiang@mediatek.com>
+References: <20191014061617.10296-2-daniel@0x0f.com> <20200610090421.3428945-6-daniel@0x0f.com>
+ <a626d8a5-16c2-8f0a-b131-c124c06b0317@suse.de>
+In-Reply-To: <a626d8a5-16c2-8f0a-b131-c124c06b0317@suse.de>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Thu, 11 Jun 2020 23:38:18 +0900
+Message-ID: <CAFr9PX=Q+xeQvZD3diV5bTb7+T4oWJiq2kS6cFwv0=no5KxCLg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] ARM: mstar: Add dts for 70mai midrive d08
+To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+Cc:     Krzysztof Adamski <k@japko.eu>, tim.bird@sony.com,
+        devicetree@vger.kernel.org, Daniel Palmer <daniel@thingy.jp>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Doug Anderson <armlinux@m.disordat.com>,
+        Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+        Gregory Fong <gregory.0xf0@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Christian Lamparter <chunkeey@gmail.com>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Nathan Huckleberry <nhuck15@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xia,
+Hi Andreas,
 
-On Thu, Jun 04, 2020 at 05:05:45PM +0800, Xia Jiang wrote:
-> Change register offset hex numerals from uppercase to lowercase.
-> Change data type of max/min width/height from integer to unsigned
-> integer.
-> 
-> Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
-> ---
-> v9: move changing data type of max/min width/height to this patch
-> ---
->  .../media/platform/mtk-jpeg/mtk_jpeg_core.h    |  8 ++++----
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_reg.h | 18 +++++++++---------
->  2 files changed, 13 insertions(+), 13 deletions(-)
-> 
+On Thu, 11 Jun 2020 at 22:54, Andreas F=C3=A4rber <afaerber@suse.de> wrote:
+>
+> BTW I think the subject convention has been "ARM: dts: ...", with "ARM:
+> mstar: ..." more for mach-mstar.
 
-Reviewed-by: Tomasz Figa <tfiga@chromium.org>
+I noticed this after sending out this series. I've fixed up the
+subjects in line with convention for the next try.
 
-Best regards,
-Tomasz
+> > diff --git a/arch/arm/boot/dts/mercury5-ssc8336n-midrive08.dts b/arch/a=
+rm/boot/dts/mercury5-ssc8336n-midrive08.dts
+> > new file mode 100644
+> > index 000000000000..4ee50ecf6ab1
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/mercury5-ssc8336n-midrive08.dts
+> > @@ -0,0 +1,25 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2019 thingy.jp.
+> > + * Author: Daniel Palmer <daniel@thingy.jp>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mercury5-ssc8336n.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "midrive d08";
+>
+> Couldn't find this on their website. Should this be "70mai midrive ..."
+> or is "midrive" a different brand?
+
+I think it should be 70mai Midrive D08 based on your comments on the
+other model names.
+On their site this camera is now called "Dash Cam Lite".
+Midrive D08 is the name I bought it under and the name that was used
+for it's FCC approval (https://fccid.io/2AOK9-MIDRIVED08) so that's
+what I went
+with.
+
+> > +     compatible =3D "70mai,midrived08", "mstar,mercury5";
+>
+> Have you considered naming it "70mai,midrive-d08" for better
+> readability? (affects 1/5)
+
+I went with midrived08 as that's what was used for the FCC and from
+what I remember was written on the casing.
+
+Thanks,
+
+Daniel
