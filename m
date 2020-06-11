@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F051F659B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 12:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6FF1F65E6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2020 12:43:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726693AbgFKKYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 06:24:33 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:47404 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727115AbgFKKYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jun 2020 06:24:19 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 3A2262A4B78
-From:   =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     Laurent.pinchart@ideasonboard.com
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, jason@lakedaemon.net,
-        tomi.valkeinen@ti.com, robh+dt@kernel.org, airlied@linux.ie
-Subject: [PATCH v3 5/5] dt-bindings: display: ti,tfp410.yaml: make the ports node optional
-Date:   Thu, 11 Jun 2020 12:23:56 +0200
-Message-Id: <20200611102356.31563-6-ricardo.canuelo@collabora.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200611102356.31563-1-ricardo.canuelo@collabora.com>
-References: <20200611102356.31563-1-ricardo.canuelo@collabora.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1727787AbgFKKnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 06:43:43 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:48798 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727770AbgFKKnl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jun 2020 06:43:41 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 258262004CB;
+        Thu, 11 Jun 2020 12:43:38 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9B2C02004B4;
+        Thu, 11 Jun 2020 12:43:33 +0200 (CEST)
+Received: from titan.ap.freescale.net (titan.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F40BE402BF;
+        Thu, 11 Jun 2020 18:43:27 +0800 (SGT)
+From:   Hui Song <hui.song_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Song Hui <hui.song_1@nxp.com>
+Subject: [PATCH] gpio: mpc8xxx: change the gpio interrupt flags.
+Date:   Thu, 11 Jun 2020 18:28:09 +0800
+Message-Id: <20200611102809.27829-1-hui.song_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make the ports node optional, since there are some DTs that don't define
-any ports for ti,tfp410.
+From: Song Hui <hui.song_1@nxp.com>
 
-Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+Delete the interrupt IRQF_NO_THREAD flags in order to gpio interrupts
+can be threaded to allow high-priority processes to preempt.
+
+Signed-off-by: Song Hui <hui.song_1@nxp.com>
 ---
- Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpio/gpio-mpc8xxx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-index 605831c1e836..1c9421eb80fa 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-@@ -83,7 +83,6 @@ properties:
+diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+index 604dfec..1e86652 100644
+--- a/drivers/gpio/gpio-mpc8xxx.c
++++ b/drivers/gpio/gpio-mpc8xxx.c
+@@ -417,7 +417,7 @@ static int mpc8xxx_probe(struct platform_device *pdev)
  
- required:
-   - compatible
--  - ports
- 
- if:
-   required:
+ 	ret = devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
+ 			       mpc8xxx_gpio_irq_cascade,
+-			       IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade",
++			       IRQF_SHARED, "gpio-cascade",
+ 			       mpc8xxx_gc);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), ret = %d\n",
 -- 
-2.18.0
+2.9.5
 
