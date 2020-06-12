@@ -2,246 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F3E1F7ACB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 17:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D441F1F7AE1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 17:28:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726739AbgFLPYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jun 2020 11:24:18 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:35428 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726671AbgFLPYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Jun 2020 11:24:08 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 05CFNRn7024867;
-        Fri, 12 Jun 2020 17:23:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=VKuXtI+oKwLUbGWw0bK1JRaRMG7c04L0ar85aWbitOc=;
- b=pA/C8AGDVHHDnA4+i9JL3tWOgrZ5QY/f970LS1wVSI24PDDWLLFvU5VKGwVi5wMY6zi+
- k9lvDwGzI0ZOcL+TpGQTzq5d541qs7NU7hkFDJc9QrHGbGivXGdQlVV61A/wg79ZyDmh
- ja632V8yyTY5ypRh0n9XBuvKNJ9+7tn/IJB1qSMRGrgnTdHnIMUAxlR/IfgDFI9854L7
- P3JnEoMo10HdbFZ8tICb2z+Ntum8mqesLj0aIH4xfMbQHxo4fEsWhmJZ6z9Wj7Q+i3qB
- 2IoWPwX1jQSmRXYpE1qDXFESUQ9OCad4ACXLsnR3PLq2vWliOKlapJeLm5+Q9sib02Js kw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 31jppp6g3g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 12 Jun 2020 17:23:54 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1605C10002A;
-        Fri, 12 Jun 2020 17:23:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 060BC2B9918;
-        Fri, 12 Jun 2020 17:23:54 +0200 (CEST)
-Received: from localhost (10.75.127.48) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 12 Jun 2020 17:23:53
- +0200
-From:   Christophe Kerello <christophe.kerello@st.com>
-To:     <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>, <arnd@linaro.org>,
-        <alexandre.torgue@st.com>
-CC:     <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <marex@denx.de>,
-        Christophe Kerello <christophe.kerello@st.com>
-Subject: [PATCH v5 6/6] mtd: rawnand: stm32_fmc2: get resources from parent node
-Date:   Fri, 12 Jun 2020 17:22:42 +0200
-Message-ID: <1591975362-22009-7-git-send-email-christophe.kerello@st.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1591975362-22009-1-git-send-email-christophe.kerello@st.com>
-References: <1591975362-22009-1-git-send-email-christophe.kerello@st.com>
+        id S1726329AbgFLP2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jun 2020 11:28:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47086 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726085AbgFLP2E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Jun 2020 11:28:04 -0400
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E16FA20835;
+        Fri, 12 Jun 2020 15:28:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591975683;
+        bh=3yHkAwubmunjmiesfM1rpsD37zARlutAh9UqD8QN8/E=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=O3tSNdHzuZcgNHn9HdaY2O6n8HPcJ5t7i/x7C1z0ogjs7cl+G8eflb5siB18LUeNr
+         lTpbIuOtoakfc0L92Ip5SCoTTNhItXU/ubp/8M0qMFxMjiJ7mTT7knjGgYxPtkv0Um
+         VVF90NfntS3ECg8XrwPmZIOK6V5rVL/I2u+a54FM=
+Received: by mail-ed1-f49.google.com with SMTP id m21so6696193eds.13;
+        Fri, 12 Jun 2020 08:28:02 -0700 (PDT)
+X-Gm-Message-State: AOAM533Bwk48EUZtFOLCFu248VDFdI3RWieJ4OvypqFNxil1WciG+k2D
+        IrZGnV2lifTAedrMLZDD3f71FnF1Q5o0r4vGRA==
+X-Google-Smtp-Source: ABdhPJx4hf1qYx8OMecO3zKZjUrgZ6Cu0RNr2WqkSXT6FEmCa+mY/AG8YYudQbNDLiDsLdfpgLvN1G09M+5JXUzk7WA=
+X-Received: by 2002:aa7:c4c7:: with SMTP id p7mr12645730edr.271.1591975681395;
+ Fri, 12 Jun 2020 08:28:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-06-12_11:2020-06-12,2020-06-12 signatures=0
+References: <1591698261-22639-1-git-send-email-neal.liu@mediatek.com>
+ <1591698261-22639-3-git-send-email-neal.liu@mediatek.com> <CAAOTY__g3Fnwsoqx=x_tgdMii5K_L9TmF_9048XbAOSJwb-Cxg@mail.gmail.com>
+ <1591867563.27949.9.camel@mtkswgap22> <CAAOTY_8gOjr9nBUVA6oNu0v+D0Rc0AbhJ41wBCvDpMme+kuHmA@mail.gmail.com>
+ <1591931042.32738.26.camel@mtkswgap22>
+In-Reply-To: <1591931042.32738.26.camel@mtkswgap22>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 12 Jun 2020 23:27:49 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__zXZvv1gcKgxnbpv2RjDLyuQ1NEz8Nr+dtn4GKE1cvMA@mail.gmail.com>
+Message-ID: <CAAOTY__zXZvv1gcKgxnbpv2RjDLyuQ1NEz8Nr+dtn4GKE1cvMA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] soc: mediatek: devapc: add devapc-mt6873 driver
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FMC2 EBI support has been added. Common resources (registers base
-address and clock) can now be shared between the 2 drivers using
-"st,stm32mp1-fmc2-nfc" compatible string. It means that the
-common resources should now be found in the parent device when EBI
-node is available.
+Hi, Neal:
 
-Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
----
-Changes in v5:
- - look at the parent compatible string to match what we expect.
+Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B46=E6=9C=8812=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=8811:04=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi Chun-Kuang,
+>
+> [snip]
+> > > > > +/*
+> > > > > + * devapc_violation_irq - the devapc Interrupt Service Routine (=
+ISR) will dump
+> > > > > + *                       violation information including which m=
+aster violates
+> > > > > + *                       access slave.
+> > > > > + */
+> > > > > +static irqreturn_t devapc_violation_irq(int irq_number, void *de=
+v_id)
+> > > > > +{
+> > > > > +       u32 slave_type_num =3D mtk_devapc_ctx->soc->slave_type_nu=
+m;
+> > > > > +       const struct mtk_device_info **device_info;
+> > > > > +       struct mtk_devapc_vio_info *vio_info;
+> > > > > +       int slave_type, vio_idx, index;
+> > > > > +       const char *vio_master;
+> > > > > +       unsigned long flags;
+> > > > > +       bool normal;
+> > > > > +       u8 perm;
+> > > > > +
+> > > > > +       spin_lock_irqsave(&devapc_lock, flags);
+> > > > > +
+> > > > > +       device_info =3D mtk_devapc_ctx->soc->device_info;
+> > > > > +       vio_info =3D mtk_devapc_ctx->soc->vio_info;
+> > > > > +       normal =3D false;
+> > > > > +       vio_idx =3D -1;
+> > > > > +       index =3D -1;
+> > > > > +
+> > > > > +       /* There are multiple DEVAPC_PD */
+> > > > > +       for (slave_type =3D 0; slave_type < slave_type_num; slave=
+_type++) {
+> > > > > +               if (!check_type2_vio_status(slave_type, &vio_idx,=
+ &index))
+> > > > > +                       if (!mtk_devapc_dump_vio_dbg(slave_type, =
+&vio_idx,
+> > > > > +                                                    &index))
+> > > > > +                               continue;
+> > > > > +
+> > > > > +               /* Ensure that violation info are written before
+> > > > > +                * further operations
+> > > > > +                */
+> > > > > +               smp_mb();
+> > > > > +               normal =3D true;
+> > > > > +
+> > > > > +               mask_module_irq(slave_type, vio_idx, true);
+> > > > > +
+> > > > > +               if (clear_vio_status(slave_type, vio_idx))
+> > > > > +                       pr_warn(PFX "%s, %s:0x%x, %s:0x%x\n",
+> > > > > +                               "clear vio status failed",
+> > > > > +                               "slave_type", slave_type,
+> > > > > +                               "vio_index", vio_idx);
+> > > > > +
+> > > > > +               perm =3D get_permission(slave_type, index, vio_in=
+fo->domain_id);
+> > > > > +
+> > > > > +               vio_master =3D mtk_devapc_ctx->soc->master_get
+> > > > > +                       (vio_info->master_id,
+> > > > > +                        vio_info->vio_addr,
+> > > > > +                        slave_type,
+> > > > > +                        vio_info->shift_sta_bit,
+> > > > > +                        vio_info->domain_id);
+> > > >
+> > > > Call mt6873_bus_id_to_master() directly. For first patch, make thin=
+gs
+> > > > as simple as possible.
+> > >
+> > > In devapc_violation_irq() function, we use common flow to handle each
+> > > devapc violation on different platforms. The master_get() has differe=
+nt
+> > > implementation on different platforms, that why it called indirectly.
+> > >
+> > > Once we have new platform, we only have to update devapc-mtxxxx.c
+> > > instead of common handler flow.
+> >
+> > You just upstream one SoC now, so I have no information of 2nd SoC.
+> > Without the 2nd SoC, how do we know what is common and what is SoC spec=
+ial?
+> > So the first patch should not consider the things which does not exist =
+yet.
+> >
+> > Regards,
+> > Chun-Kuang.
+> >
+>
+> It has lots of refactoring work need to do if you really want make it
+> "simple". Could I explain more details and let you judge it is simple
+> enough?
 
- drivers/mtd/nand/raw/Kconfig           |  3 +-
- drivers/mtd/nand/raw/stm32_fmc2_nand.c | 71 ++++++++++++++++++++++++----------
- 2 files changed, 51 insertions(+), 23 deletions(-)
+Making driver "simple" is very important, so it worth to spend effort
+to make things simple. Everybody could modify this driver, so make
+this driver simple and everybody would join this easily.
 
-diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-index 0a03ebf..8dd0d7c 100644
---- a/drivers/mtd/nand/raw/Kconfig
-+++ b/drivers/mtd/nand/raw/Kconfig
-@@ -415,8 +415,7 @@ config MTD_NAND_TEGRA
- config MTD_NAND_STM32_FMC2
- 	tristate "Support for NAND controller on STM32MP SoCs"
- 	depends on MACH_STM32MP157 || COMPILE_TEST
--	select REGMAP
--	select REGMAP_MMIO
-+	select MFD_SYSCON
- 	help
- 	  Enables support for NAND Flash chips on SoCs containing the FMC2
- 	  NAND controller. This controller is found on STM32MP SoCs.
-diff --git a/drivers/mtd/nand/raw/stm32_fmc2_nand.c b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-index 6aa3695..396b325 100644
---- a/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-+++ b/drivers/mtd/nand/raw/stm32_fmc2_nand.c
-@@ -11,8 +11,10 @@
- #include <linux/errno.h>
- #include <linux/interrupt.h>
- #include <linux/iopoll.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/mtd/rawnand.h>
-+#include <linux/of_address.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-@@ -204,16 +206,6 @@
- #define FMC2_BCHDSR4_EBP7		GENMASK(12, 0)
- #define FMC2_BCHDSR4_EBP8		GENMASK(28, 16)
- 
--/* Regmap registers configuration */
--#define FMC2_MAX_REGISTER		0x3fc
--
--static const struct regmap_config stm32_fmc2_regmap_cfg = {
--	.reg_bits = 32,
--	.val_bits = 32,
--	.reg_stride = sizeof(u32),
--	.max_register = FMC2_MAX_REGISTER,
--};
--
- enum stm32_fmc2_ecc {
- 	FMC2_ECC_HAM = 1,
- 	FMC2_ECC_BCH4 = 4,
-@@ -253,6 +245,7 @@ struct stm32_fmc2_nfc {
- 	struct nand_controller base;
- 	struct stm32_fmc2_nand nand;
- 	struct device *dev;
-+	struct device *cdev;
- 	struct regmap *regmap;
- 	void __iomem *data_base[FMC2_MAX_CE];
- 	void __iomem *cmd_base[FMC2_MAX_CE];
-@@ -1384,8 +1377,9 @@ static void stm32_fmc2_nfc_init(struct stm32_fmc2_nfc *nfc)
- 	pcr |= FIELD_PREP(FMC2_PCR_TAR, FMC2_PCR_TAR_DEFAULT);
- 
- 	/* Enable FMC2 controller */
--	regmap_update_bits(nfc->regmap, FMC2_BCR1,
--			   FMC2_BCR1_FMC2EN, FMC2_BCR1_FMC2EN);
-+	if (nfc->dev == nfc->cdev)
-+		regmap_update_bits(nfc->regmap, FMC2_BCR1,
-+				   FMC2_BCR1_FMC2EN, FMC2_BCR1_FMC2EN);
- 
- 	regmap_write(nfc->regmap, FMC2_PCR, pcr);
- 	regmap_write(nfc->regmap, FMC2_PMEM, FMC2_PMEM_DEFAULT);
-@@ -1815,6 +1809,33 @@ static int stm32_fmc2_nfc_parse_dt(struct stm32_fmc2_nfc *nfc)
- 	return ret;
- }
- 
-+static int stm32_fmc2_nfc_set_cdev(struct stm32_fmc2_nfc *nfc)
-+{
-+	struct device *dev = nfc->dev;
-+	bool ebi_found = false;
-+
-+	if (dev->parent && of_device_is_compatible(dev->parent->of_node,
-+						   "st,stm32mp1-fmc2-ebi"))
-+		ebi_found = true;
-+
-+	if (of_device_is_compatible(dev->of_node, "st,stm32mp1-fmc2-nfc")) {
-+		if (ebi_found) {
-+			nfc->cdev = dev->parent;
-+
-+			return 0;
-+		}
-+
-+		return -EINVAL;
-+	}
-+
-+	if (ebi_found)
-+		return -EINVAL;
-+
-+	nfc->cdev = dev;
-+
-+	return 0;
-+}
-+
- static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -1824,8 +1845,9 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct mtd_info *mtd;
- 	struct nand_chip *chip;
--	void __iomem *mmio;
-+	struct resource cres;
- 	int chip_cs, mem_region, ret, irq;
-+	int start_region = 0;
- 
- 	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
- 	if (!nfc)
-@@ -1835,22 +1857,28 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 	nand_controller_init(&nfc->base);
- 	nfc->base.ops = &stm32_fmc2_nfc_controller_ops;
- 
-+	ret = stm32_fmc2_nfc_set_cdev(nfc);
-+	if (ret)
-+		return ret;
-+
- 	ret = stm32_fmc2_nfc_parse_dt(nfc);
- 	if (ret)
- 		return ret;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mmio = devm_ioremap_resource(dev, res);
--	if (IS_ERR(mmio))
--		return PTR_ERR(mmio);
-+	ret = of_address_to_resource(nfc->cdev->of_node, 0, &cres);
-+	if (ret)
-+		return ret;
-+
-+	nfc->io_phys_addr = cres.start;
- 
--	nfc->regmap = devm_regmap_init_mmio(dev, mmio, &stm32_fmc2_regmap_cfg);
-+	nfc->regmap = device_node_to_regmap(nfc->cdev->of_node);
- 	if (IS_ERR(nfc->regmap))
- 		return PTR_ERR(nfc->regmap);
- 
--	nfc->io_phys_addr = res->start;
-+	if (nfc->dev == nfc->cdev)
-+		start_region = 1;
- 
--	for (chip_cs = 0, mem_region = 1; chip_cs < FMC2_MAX_CE;
-+	for (chip_cs = 0, mem_region = start_region; chip_cs < FMC2_MAX_CE;
- 	     chip_cs++, mem_region += 3) {
- 		if (!(nfc->cs_assigned & BIT(chip_cs)))
- 			continue;
-@@ -1888,7 +1916,7 @@ static int stm32_fmc2_nfc_probe(struct platform_device *pdev)
- 
- 	init_completion(&nfc->complete);
- 
--	nfc->clk = devm_clk_get(dev, NULL);
-+	nfc->clk = devm_clk_get(nfc->cdev, NULL);
- 	if (IS_ERR(nfc->clk))
- 		return PTR_ERR(nfc->clk);
- 
-@@ -2029,6 +2057,7 @@ static SIMPLE_DEV_PM_OPS(stm32_fmc2_nfc_pm_ops, stm32_fmc2_nfc_suspend,
- 
- static const struct of_device_id stm32_fmc2_nfc_match[] = {
- 	{.compatible = "st,stm32mp15-fmc2"},
-+	{.compatible = "st,stm32mp1-fmc2-nfc"},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, stm32_fmc2_nfc_match);
--- 
-1.9.1
+> For most MediaTek DEVAPC hw, the violation interrupt handling sequence
+> is shown below.
+>
+> 1. Domain processor receives a interrupt issued by DEVAPC.
+> 2. Software read the violation status and identify it.
+> 3. Software read the debug information which are stored in hw register.
+>         a. debug information includes master ID, domain ID, violation
+> address, ...
+> 4. Transfer debug information to human readable strings.
+> 5. Extra handler to dispatch owner directly.
 
+I don't know why need extra handler? What does this extra handler could do?
+If indeed need it, separate extra handler part to an independent patch.
+
+>
+> What we really care is which master violates the rules, and which slave
+> had been accessed unexpectedly.
+>
+> Here are platform specific information:
+> 1. Slaves layout (platform devices)
+> 2. hw register layout which are stored violation information
+> 3. Master ID mapping table
+> 4. Domain ID mapping table
+>
+> Hope these steps could help you understand what is common and what is
+> SoC specific. If you want to see the 2nd SoC's driver, I can also send
+> it for you to take a look.
+
+Please upstream 2nd SoC's driver, so I could review common part and
+SoC specific part.
+
+Regards,
+Chun-Kuang.
+
+>
+> Thanks,
+> Neal
+>
+> > >
+> > > >
+> > > > > +
+> > > > > +               if (!vio_master) {
+> > > > > +                       pr_warn(PFX "master_get failed\n");
+> > > > > +                       vio_master =3D "UNKNOWN_MASTER";
+> > > > > +               }
+> > > > > +
+> > > > > +               pr_info(PFX "%s - %s:0x%x, %s:0x%x, %s:0x%x, %s:0=
+x%x\n",
+> > > > > +                       "Violation", "slave_type", slave_type,
+> > > > > +                       "sys_index",
+> > > > > +                       device_info[slave_type][index].sys_index,
+> > > > > +                       "ctrl_index",
+> > > > > +                       device_info[slave_type][index].ctrl_index=
+,
+> > > > > +                       "vio_index",
+> > > > > +                       device_info[slave_type][index].vio_index)=
+;
+> > > > > +
+> > > > > +               pr_info(PFX "%s %s %s %s\n",
+> > > > > +                       "Violation - master:", vio_master,
+> > > > > +                       "access violation slave:",
+> > > > > +                       device_info[slave_type][index].device);
+> > > > > +
+> > > > > +               devapc_vio_reason(perm);
+> > > > > +
+> > > > > +               devapc_extra_handler(slave_type, vio_master, vio_=
+idx,
+> > > > > +                                    vio_info->vio_addr);
+> > > > > +
+> > > > > +               mask_module_irq(slave_type, vio_idx, false);
+> > > > > +       }
+> > > > > +
+> > > > > +       if (normal) {
+> > > > > +               spin_unlock_irqrestore(&devapc_lock, flags);
+> > > > > +               return IRQ_HANDLED;
+> > > > > +       }
+> > > > > +
+> > > > > +       spin_unlock_irqrestore(&devapc_lock, flags);
+> > > > > +       return IRQ_HANDLED;
+> > > > > +}
+> > > > > +
+> > >
+> > > [snip]
+> > >
+> > >
+>
