@@ -2,220 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 787341F71E9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 03:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE7F1F721D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 04:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726519AbgFLBw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jun 2020 21:52:56 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:42603 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726510AbgFLBw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Jun 2020 21:52:56 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1591926775; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=/aZaIYLpDRo9Jmnv3uRBjAFuGehCfPcRUaFTYev5WAs=; b=UduQL+Is5c0vGils5vf/C9AdwwSEQw+ohpWnAGFXeyCZ/uk0VNMm77f5NFbN0LFe11Qwf1td
- iALUulDrp753wl6FvATP9UKbm2ML+uDJeaW7N4e0uRjlkEgL15nu/P81tnVbcd/Y0xcPz7Mn
- V5qOQ945vtKVx4f3QxizR4mMatk=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n14.prod.us-east-1.postgun.com with SMTP id
- 5ee2dfde0206ad41d11e0344 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Jun 2020 01:52:30
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E7E0FC433AD; Fri, 12 Jun 2020 01:52:29 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from linuxdisplay-lab-04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tanmay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 92D23C433CB;
-        Fri, 12 Jun 2020 01:52:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 92D23C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tanmay@codeaurora.org
-From:   Tanmay Shah <tanmay@codeaurora.org>
-To:     sam@ravnborg.org, robh+dt@kernel.org, swboyd@chromium.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, seanpaul@chromium.org,
-        robdclark@gmail.com, aravindh@codeaurora.org,
-        abhinavk@codeaurora.org, Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>
-Subject: [PATCH v6 5/5] drm/msm/dpu: add display port support in DPU
-Date:   Thu, 11 Jun 2020 18:50:30 -0700
-Message-Id: <20200612015030.16072-6-tanmay@codeaurora.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200612015030.16072-1-tanmay@codeaurora.org>
-References: <20200612015030.16072-1-tanmay@codeaurora.org>
+        id S1726349AbgFLCPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jun 2020 22:15:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726332AbgFLCPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jun 2020 22:15:47 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369F6C03E96F;
+        Thu, 11 Jun 2020 19:15:46 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id o5so8650394iow.8;
+        Thu, 11 Jun 2020 19:15:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NBuImNZJUOHAcMdNirnqNdfxcsQ2t26UAs7QUyiyLrA=;
+        b=CSvZe25C2fwv4G8CtuJ5LGADD7XH1+hw3iXV3UPdybI2Wn5uesXsz6c2ZXa8XqBuNu
+         9MUqBYO00T1Dlka13KaqXswvqCfxqtdF14PATYtXoQkymTy4LobTZZujA+y65BQXu6Vt
+         IyFvDgL+E97bi2woUM6AIIy6coqRYOvjJnLFKXvWNREnlN0DiowuGK87YtfmPgB5ibRK
+         /thKJEo3PcrmOyiF6jn3hMYxeLEiAJLnNc2XKn5suQGDqeR7nKzoLqk3Xntbh3ERpFNN
+         7ytP9nTB8B4Q3ZYCpDFA8HEzYAmQ46D6slN1tB+7XqzPPcbzTFrGTDuamjgrj7UG8qCp
+         WMrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NBuImNZJUOHAcMdNirnqNdfxcsQ2t26UAs7QUyiyLrA=;
+        b=NvnR04LFS9ON8vcQa1xIH5Y6EtIp3irB/EppnaNwha9NxD/3G3q2SBvvu2UfxoRtjg
+         juhnT8AEtBsHJUWEEK0Kg6Pf772iw3gn1tAxxWRmSmeC1TgLQFYcv1aDRGAWiw1L4eOy
+         OMSR1+y3fBgGXgRxhwBZ1wfvJwbwPwQiEPOL6sf78CVlvY4WA5i9KRerxIGICBlDW2dA
+         Oc2r61j2lbvP5eqTLs5TxaYKt+zasfJw88RqmBH7NhGXQVXnrPR3yzLgC6SIBCZVruxg
+         J1kjyxJdasPRqBdCpfxulWSQIcTCf/U2F1HRKhQ1K6GO1vtn1s13hkwcY5yqjes7oPUZ
+         ySGA==
+X-Gm-Message-State: AOAM531HimVGrFN8dA6j2piPaBn+4ZQuVR82h6V1PuCLConJYklQ/c/T
+        VnRu3o6uSYNjOelQ573JTHkoR2T6gXFRwLOMS4k=
+X-Google-Smtp-Source: ABdhPJxMBOHc52GKXGY4KZd1zNrgtQTD0ozbXNYiuxbWME1ZaP5hoURzRjxVunisuqPjhbSGemzXmgIgilN6zmmjmP0=
+X-Received: by 2002:a05:6602:2ac9:: with SMTP id m9mr11505755iov.68.1591928145464;
+ Thu, 11 Jun 2020 19:15:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1591605038-8682-1-git-send-email-dillon.minfei@gmail.com>
+ <1591605038-8682-3-git-send-email-dillon.minfei@gmail.com>
+ <90df5646-e0c4-fcac-d934-4cc922230dd2@arm.com> <20200610072444.GA6293@infradead.org>
+ <9c3a7b4e-0190-e9bb-91fe-6d5692559888@arm.com> <27881ee0-dc40-e8c6-34f6-712f9acc3fbc@arm.com>
+In-Reply-To: <27881ee0-dc40-e8c6-34f6-712f9acc3fbc@arm.com>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Fri, 12 Jun 2020 10:15:08 +0800
+Message-ID: <CAL9mu0+ZfW-DoO-DvhvGO-KeGMA+vuHga3FOxN_Ce7uStGPoqg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm-nommu: Add use_reserved_mem() to check if device
+ support reserved memory
+To:     Vladimir Murzin <vladimir.murzin@arm.com>
+Cc:     Christoph Hellwig <hch@infradead.org>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>, info@metux.net,
+        linux@armlinux.org.uk,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        tglx@linutronix.de, linux-stm32@st-md-mailman.stormreply.com,
+        allison@lohutok.net
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jeykumar Sankaran <jsanka@codeaurora.org>
+On Thu, Jun 11, 2020 at 11:45 PM Vladimir Murzin
+<vladimir.murzin@arm.com> wrote:
+>
+> On 6/10/20 9:19 AM, Vladimir Murzin wrote:
+> > On 6/10/20 8:24 AM, Christoph Hellwig wrote:
+> >> Ok, I finally found the original patch from Vladimir.  Comments below:
+> >>
+> >>> +++ b/kernel/dma/direct.c
+> >>> @@ -456,14 +456,14 @@ int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+> >>>  #else /* CONFIG_MMU */
+> >>>  bool dma_direct_can_mmap(struct device *dev)
+> >>>  {
+> >>> -   return false;
+> >>> +   return true;
+> >>>  }
+> >>>
+> >>>  int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+> >>>             void *cpu_addr, dma_addr_t dma_addr, size_t size,
+> >>>             unsigned long attrs)
+> >>>  {
+> >>> -   return -ENXIO;
+> >>> +   return vm_iomap_memory(vma, vma->vm_start, (vma->vm_end - vma->vm_start));;
+> >>
+> >> I think we should try to reuse the mmu dma_direct_mmap implementation,
+> >> which does about the same.  This version has been compile tested on
+> >> arm-nommu only, let me know what you think: (btw, a nommu_defconfig of
+> >> some kind for arm would be nice..)
+> >
+> > Catch-all nommu_defconfig is not easy for ARM, AFAIK folk carry few hacks
+> > for randconfig...
+> >
+> > Meanwhile, known working NOMMU configs
+> >
+> > $ git grep "# CONFIG_MMU is not set" arch/arm/configs/
+> > arch/arm/configs/efm32_defconfig:# CONFIG_MMU is not set
+> > arch/arm/configs/lpc18xx_defconfig:# CONFIG_MMU is not set
+> > arch/arm/configs/mps2_defconfig:# CONFIG_MMU is not set
+> > arch/arm/configs/stm32_defconfig:# CONFIG_MMU is not set
+> > arch/arm/configs/vf610m4_defconfig:# CONFIG_MMU is not set
+> >
+> >>
+> >> diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
+> >> index d006668c0027d2..e0dae570a51530 100644
+> >> --- a/kernel/dma/Kconfig
+> >> +++ b/kernel/dma/Kconfig
+> >> @@ -71,6 +71,7 @@ config SWIOTLB
+> >>  # in the pagetables
+> >>  #
+> >>  config DMA_NONCOHERENT_MMAP
+> >> +    default y if !MMU
+> >>      bool
+> >
+> > Nit: def_bool !MMU
+> >
+> >>
+> >>  config DMA_REMAP
+> >> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+> >> index 0a4881e59aa7d6..9ec6a5c3fc578c 100644
+> >> --- a/kernel/dma/direct.c
+> >> +++ b/kernel/dma/direct.c
+> >> @@ -459,7 +459,6 @@ int dma_direct_get_sgtable(struct device *dev, struct sg_table *sgt,
+> >>      return ret;
+> >>  }
+> >>
+> >> -#ifdef CONFIG_MMU
+> >>  bool dma_direct_can_mmap(struct device *dev)
+> >>  {
+> >>      return dev_is_dma_coherent(dev) ||
+> >> @@ -485,19 +484,6 @@ int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+> >>      return remap_pfn_range(vma, vma->vm_start, pfn + vma->vm_pgoff,
+> >>                      user_count << PAGE_SHIFT, vma->vm_page_prot);
+> >>  }
+> >> -#else /* CONFIG_MMU */
+> >> -bool dma_direct_can_mmap(struct device *dev)
+> >> -{
+> >> -    return false;
+> >> -}
+> >> -
+> >> -int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+> >> -            void *cpu_addr, dma_addr_t dma_addr, size_t size,
+> >> -            unsigned long attrs)
+> >> -{
+> >> -    return -ENXIO;
+> >> -}
+> >> -#endif /* CONFIG_MMU */
+> >>
+> >>  int dma_direct_supported(struct device *dev, u64 mask)
+> >>  {
+> >>
+> >
+> > LGTM. FWIW:
+> >
+> > Reviewed-by: Vladimir Murzin <vladimir.murzin@arm.com>
+> >
+> >
+>
+> @dillon, can you give it a try?
+>
+> I think Christoph would appreciate your Tested-by and that might speed up
+> getting fix mainline.
+>
+sorry for the late response. Yes, it's working
 
-Add display port support in DPU by creating hooks
-for DP encoder enumeration and encoder mode
-initialization.
+Thanks Christoph
 
-This change is based on the Snapdragon Display port
-driver changes[1].
-
-changes in v2:
-	- rebase on [2] (Sean Paul)
-	- remove unwanted error checks and
-	  switch cases (Jordan Crouse)
-
-[1] https://lwn.net/Articles/768265/
-[2] https://lkml.org/lkml/2018/11/17/87
-
-changes in V3:
--- Moved this change as part of the DP driver changes.
--- Addressed compilation issues on the latest code base.
-
-Changes in v6:
--- Fix checkpatch.pl warning
-
-Signed-off-by: Jeykumar Sankaran <jsanka@codeaurora.org>
-Signed-off-by: Chandan Uddaraju <chandanu@codeaurora.org>
-Signed-off-by: Vara Reddy <varar@codeaurora.org>
-Signed-off-by: Tanmay Shah <tanmay@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  8 +--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 65 +++++++++++++++++----
- 2 files changed, 58 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index d796710ff4aa..745d5ce7e821 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -2017,7 +2017,7 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- {
- 	int ret = 0;
- 	int i = 0;
--	enum dpu_intf_type intf_type;
-+	enum dpu_intf_type intf_type = INTF_NONE;
- 	struct dpu_enc_phys_init_params phys_params;
- 
- 	if (!dpu_enc) {
-@@ -2039,9 +2039,9 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- 	case DRM_MODE_ENCODER_DSI:
- 		intf_type = INTF_DSI;
- 		break;
--	default:
--		DPU_ERROR_ENC(dpu_enc, "unsupported display interface type\n");
--		return -EINVAL;
-+	case DRM_MODE_ENCODER_TMDS:
-+		intf_type = INTF_DP;
-+		break;
- 	}
- 
- 	WARN_ON(disp_info->num_of_h_tiles < 1);
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index b8615d4fe8a3..f6c219f875db 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -492,6 +492,33 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
- 	return rc;
+index 8f4bbdaf965e..3e0ecf0b5fb3 100644
+--- a/kernel/dma/direct.c
++++ b/kernel/dma/direct.c
+@@ -427,7 +427,6 @@ int dma_direct_get_sgtable(struct device *dev,
+struct sg_table *sgt,
+        return ret;
  }
- 
-+static int _dpu_kms_initialize_displayport(struct drm_device *dev,
-+					    struct msm_drm_private *priv,
-+					    struct dpu_kms *dpu_kms)
-+{
-+	struct drm_encoder *encoder = NULL;
-+	int rc = 0;
-+
-+	if (!priv->dp)
-+		return rc;
-+
-+	encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_TMDS);
-+	if (IS_ERR(encoder)) {
-+		DPU_ERROR("encoder init failed for dsi display\n");
-+		return PTR_ERR(encoder);
-+	}
-+
-+	rc = msm_dp_modeset_init(priv->dp, dev, encoder);
-+	if (rc) {
-+		DPU_ERROR("modeset_init failed for DP, rc = %d\n", rc);
-+		drm_encoder_cleanup(encoder);
-+		return rc;
-+	}
-+
-+	priv->encoders[priv->num_encoders++] = encoder;
-+	return rc;
-+}
-+
- /**
-  * _dpu_kms_setup_displays - create encoders, bridges and connectors
-  *                           for underlying displays
-@@ -504,12 +531,21 @@ static int _dpu_kms_setup_displays(struct drm_device *dev,
- 				    struct msm_drm_private *priv,
- 				    struct dpu_kms *dpu_kms)
- {
--	/**
--	 * Extend this function to initialize other
--	 * types of displays
--	 */
-+	int rc = 0;
-+
-+	rc = _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_dsi failed, rc = %d\n", rc);
-+		return rc;
-+	}
- 
--	return _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	rc = _dpu_kms_initialize_displayport(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_DP failed, rc = %d\n", rc);
-+		return rc;
-+	}
-+
-+	return rc;
- }
- 
- static void _dpu_kms_drm_obj_destroy(struct dpu_kms *dpu_kms)
-@@ -694,13 +730,20 @@ static void _dpu_kms_set_encoder_mode(struct msm_kms *kms,
- 	info.capabilities = cmd_mode ? MSM_DISPLAY_CAP_CMD_MODE :
- 			MSM_DISPLAY_CAP_VID_MODE;
- 
--	/* TODO: No support for DSI swap */
--	for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
--		if (priv->dsi[i]) {
--			info.h_tile_instance[info.num_of_h_tiles] = i;
--			info.num_of_h_tiles++;
-+	switch (info.intf_type) {
-+	case DRM_MODE_ENCODER_DSI:
-+		/* TODO: No support for DSI swap */
-+		for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
-+			if (priv->dsi[i]) {
-+				info.h_tile_instance[info.num_of_h_tiles] = i;
-+				info.num_of_h_tiles++;
-+			}
- 		}
--	}
-+		break;
-+	case DRM_MODE_ENCODER_TMDS:
-+		info.num_of_h_tiles = 1;
-+		break;
-+	};
- 
- 	rc = dpu_encoder_setup(encoder->dev, encoder, &info);
- 	if (rc)
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
 
+-#ifdef CONFIG_MMU
+ bool dma_direct_can_mmap(struct device *dev)
+ {
+        return dev_is_dma_coherent(dev) ||
+@@ -453,19 +452,6 @@ int dma_direct_mmap(struct device *dev, struct
+vm_area_struct *vma,
+        return remap_pfn_range(vma, vma->vm_start, pfn + vma->vm_pgoff,
+                        user_count << PAGE_SHIFT, vma->vm_page_prot);
+ }
+-#else /* CONFIG_MMU */
+-bool dma_direct_can_mmap(struct device *dev)
+-{
+-       return false;
+-}
+-
+-int dma_direct_mmap(struct device *dev, struct vm_area_struct *vma,
+-               void *cpu_addr, dma_addr_t dma_addr, size_t size,
+-               unsigned long attrs)
+-{
+-       return -ENXIO;
+-}
+-#endif /* CONFIG_MMU */
+
+Tested-by:  dillon min <dillon.minfei@gmail.com>
+
+>
+> Cheers
+> Vladimir
+>
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >
+>
