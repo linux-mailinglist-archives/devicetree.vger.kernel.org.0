@@ -2,85 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C55C1F7B89
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 18:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD081F7B99
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 18:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726085AbgFLQWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jun 2020 12:22:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37442 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726089AbgFLQWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Jun 2020 12:22:03 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 80A7B207ED;
-        Fri, 12 Jun 2020 16:22:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1591978923;
-        bh=iJeNYjBay9kPP4A5LTAR5DZ94856kkb6aQkDg7EUEfM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Sk3O96U4XvJlnvDc10zG5h0qO97oovjIMj5ZHNllLE+H5pV7ownE7rCmPGrVzmnZl
-         bFstBMTBUq9TZO6SypcCDjb3Jm0BbD7umz+5aUPJefTS3FIXcFl9CGtRVjOCGisyj3
-         r++pZU6refOpamxe+bNDxvg1lidFT1r/BWkzpUA8=
-Date:   Fri, 12 Jun 2020 17:22:00 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        robh@kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+        id S1726089AbgFLQ1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jun 2020 12:27:54 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:44424 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726085AbgFLQ1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jun 2020 12:27:53 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05CGRAm3015312;
+        Fri, 12 Jun 2020 11:27:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1591979230;
+        bh=Fkgey716kLKI5iJmQP/27R3X8I0hgKSTact+Z6ZhrrA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=nRvp5ktRa3UD52SFpinmzJWjGxRQgF6w36M+Y5QezRyrFu+O77uOkdTRy5rYRC/9T
+         2HAjkKHhYeD82VhVoUaw0508z3QU8ZX8aATV+IiDjNm0gUjY5LPcdFuseNoUtICQjV
+         J8WiQ/nQSDELSHTB4ouX2r/5ye2r0+hoM8Y/Czk0=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05CGRAOA025356;
+        Fri, 12 Jun 2020 11:27:10 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 12
+ Jun 2020 11:27:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 12 Jun 2020 11:27:09 -0500
+Received: from [10.250.52.63] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05CGR9nZ003371;
+        Fri, 12 Jun 2020 11:27:09 -0500
 Subject: Re: [PATCH v3 2/2] ASoC: tas2562: Update shutdown GPIO property
-Message-ID: <20200612162200.GM5396@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
+        <robh@kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
 References: <20200612160603.2456-1-dmurphy@ti.com>
- <20200612160603.2456-2-dmurphy@ti.com>
- <20200612160922.GL5396@sirena.org.uk>
+ <20200612160603.2456-2-dmurphy@ti.com> <20200612160922.GL5396@sirena.org.uk>
  <0e482167-71c2-a128-b8b4-a054557d30e9@ti.com>
+ <20200612162200.GM5396@sirena.org.uk>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <432c41fe-8afa-2ccb-8917-fd64f4895144@ti.com>
+Date:   Fri, 12 Jun 2020 11:27:04 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XbHSybK3LHOYQtWI"
-Content-Disposition: inline
-In-Reply-To: <0e482167-71c2-a128-b8b4-a054557d30e9@ti.com>
-X-Cookie: As seen on TV.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200612162200.GM5396@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mark
 
---XbHSybK3LHOYQtWI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 6/12/20 11:22 AM, Mark Brown wrote:
+> On Fri, Jun 12, 2020 at 11:18:57AM -0500, Dan Murphy wrote:
+>> On 6/12/20 11:09 AM, Mark Brown wrote:
+>>> On Fri, Jun 12, 2020 at 11:06:03AM -0500, Dan Murphy wrote:
+>>>> -	tas2562->sdz_gpio = devm_gpiod_get_optional(dev, "shut-down-gpio",
+>>>> +	tas2562->sdz_gpio = devm_gpiod_get_optional(dev, "shutdown",
+>>>>    						      GPIOD_OUT_HIGH);
+>>> This also changes the name from shut-down to shutdown which will be
+>>> incompatible (IIRC we do try -gpio as well as -gpios).
+>> Yes the non-standardish name was highlighted by Rob[1].
+> Yes, but we released with it so it's an ABI now and we should still
+> support the old name.
 
-On Fri, Jun 12, 2020 at 11:18:57AM -0500, Dan Murphy wrote:
-> On 6/12/20 11:09 AM, Mark Brown wrote:
-> > On Fri, Jun 12, 2020 at 11:06:03AM -0500, Dan Murphy wrote:
+Well should we then just revert back to the non-standard name and just 
+fix up the code?
 
-> > > -	tas2562->sdz_gpio = devm_gpiod_get_optional(dev, "shut-down-gpio",
-> > > +	tas2562->sdz_gpio = devm_gpiod_get_optional(dev, "shutdown",
-> > >   						      GPIOD_OUT_HIGH);
+Or should we support both properties?
 
-> > This also changes the name from shut-down to shutdown which will be
-> > incompatible (IIRC we do try -gpio as well as -gpios).
+Dan
 
-> Yes the non-standardish name was highlighted by Rob[1].
-
-Yes, but we released with it so it's an ABI now and we should still
-support the old name.
-
---XbHSybK3LHOYQtWI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7jq6gACgkQJNaLcl1U
-h9BzxQf/QiA93xBEhd9/ppWpJGvrGk7h7PnHwz0Sfj31AjXhepYvMgj4suWMGwKA
-Gi3rynuB3Qgx2+7DRRDKCGvTtplJCym0LG8RFDUpHn5vxd2MVAoM1EH9dmt9K38V
-8I365oLxycOvMDytNH5fy2B9W2FBCtTBvixRmiTma1qz4LkkL5AyCZBmnQ00siy2
-uY/JnhaAReVRgfsD+bTnENMhfNnWMxZr7eOxSW2kVZ6Fcwi7NqRL/Sq4JcCJ0oTR
-uL7P8k0/FlL2b90dEMTsnkKgkIYA6WoyRWFhInHHAi6fvARLTCqRnvD6YA0d07H/
-sWYx88BFU626JK4hLyFMJOCZA+d7gw==
-=pT/J
------END PGP SIGNATURE-----
-
---XbHSybK3LHOYQtWI--
