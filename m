@@ -2,36 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F24B21F7C4B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 19:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E7A81F7C41
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 19:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbgFLROi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jun 2020 13:14:38 -0400
-Received: from mx2.suse.de ([195.135.220.15]:50472 "EHLO mx2.suse.de"
+        id S1726365AbgFLRNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jun 2020 13:13:49 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50668 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726302AbgFLRNp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Jun 2020 13:13:45 -0400
+        id S1726327AbgFLRNs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Jun 2020 13:13:48 -0400
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 86277AED8;
-        Fri, 12 Jun 2020 17:13:47 +0000 (UTC)
+        by mx2.suse.de (Postfix) with ESMTP id E04C2AEE5;
+        Fri, 12 Jun 2020 17:13:49 +0000 (UTC)
 From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 To:     f.fainelli@gmail.com, gregkh@linuxfoundation.org, wahrenst@gmx.net,
         p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Cc:     linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, tim.gover@raspberrypi.org,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, tim.gover@raspberrypi.org,
         linux-pci@vger.kernel.org, helgaas@kernel.org,
         andy.shevchenko@gmail.com, mathias.nyman@linux.intel.com,
-        lorenzo.pieralisi@arm.com, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 1/9] dt-bindings: reset: Add a binding for the RPi Firmware reset controller
-Date:   Fri, 12 Jun 2020 19:13:25 +0200
-Message-Id: <20200612171334.26385-2-nsaenzjulienne@suse.de>
+        lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org
+Subject: [PATCH v3 3/9] ARM: dts: bcm2711: Add firmware usb reset node
+Date:   Fri, 12 Jun 2020 19:13:27 +0200
+Message-Id: <20200612171334.26385-4-nsaenzjulienne@suse.de>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200612171334.26385-1-nsaenzjulienne@suse.de>
 References: <20200612171334.26385-1-nsaenzjulienne@suse.de>
@@ -42,82 +39,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The firmware running on the RPi VideoCore can be used to reset and
-initialize HW controlled by the firmware.
+Now that the reset driver exposing Raspberry Pi 4's firmware based USB
+reset routine is available, let's add the device tree node exposing it.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 
 ---
-Changes since v2:
- - Add include file for reset IDs
 
 Changes since v1:
- - Correct cells binding as per Florian's comment
- - Change compatible string to be more generic
+ - Update cell nr to match new bindings
 
- .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 21 +++++++++++++++++++
- .../reset/raspberrypi,firmware-reset.h        | 13 ++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 include/dt-bindings/reset/raspberrypi,firmware-reset.h
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-index b48ed875eb8e..23a885af3a28 100644
---- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-@@ -39,6 +39,22 @@ properties:
-       - compatible
-       - "#clock-cells"
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+index c7f1d97e69bb..0cef95058fb0 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+@@ -83,6 +83,11 @@ expgpio: gpio {
+ 				  "";
+ 		status = "okay";
+ 	};
++
++	reset: reset {
++		compatible = "raspberrypi,firmware-reset";
++		#reset-cells = <1>;
++	};
+ };
  
-+  reset:
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: raspberrypi,firmware-reset
-+
-+      "#reset-cells":
-+        const: 1
-+        description: >
-+          The argument is the ID of the firmware reset line to affect.
-+
-+    required:
-+      - compatible
-+      - "#reset-cells"
-+
-     additionalProperties: false
- 
- required:
-@@ -55,5 +71,10 @@ examples:
-             compatible = "raspberrypi,firmware-clocks";
-             #clock-cells = <1>;
-         };
-+
-+        reset: reset {
-+            compatible = "raspberrypi,firmware-reset";
-+            #reset-cells = <1>;
-+        };
-     };
- ...
-diff --git a/include/dt-bindings/reset/raspberrypi,firmware-reset.h b/include/dt-bindings/reset/raspberrypi,firmware-reset.h
-new file mode 100644
-index 000000000000..1a4f4c792723
---- /dev/null
-+++ b/include/dt-bindings/reset/raspberrypi,firmware-reset.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2020 Nicolas Saenz Julienne
-+ * Author: Nicolas Saenz Julienne <nsaenzjulienne@suse.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_RASPBERRYPI_FIRMWARE_RESET_H
-+#define _DT_BINDINGS_RASPBERRYPI_FIRMWARE_RESET_H
-+
-+#define RASPBERRYPI_FIRMWARE_RESET_ID_USB	0
-+#define RASPBERRYPI_FIRMWARE_RESET_NUM_IDS	1
-+
-+#endif
+ &gpio {
 -- 
 2.26.2
 
