@@ -2,157 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 515DF1F7F51
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2020 00:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE5D1F7F76
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2020 01:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726455AbgFLWyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jun 2020 18:54:09 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:58110 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726432AbgFLWyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jun 2020 18:54:07 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05CMs3dB122149;
-        Fri, 12 Jun 2020 17:54:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1592002443;
-        bh=JsdLc3UrmL6+wRZKSVcyiE2egyVdZb4H4YQxivMTJl8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kBsLp8MvIuNiQE6PXdYWba9tcZ1TVyosIkcvik8haqzlaVQkP2w8e8sbDm2xfICyH
-         0iHRchPUMtEDKfdawMtxqfWkHlKZrEF/jYeMB2Vh4yguUToGoVLDMyI6gls8rjd3r7
-         krY3RHFTKqAhtVM9vySx/TkO4ilNJaIV1q5yov+4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05CMs2aE125996
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 12 Jun 2020 17:54:03 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 12
- Jun 2020 17:54:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 12 Jun 2020 17:54:02 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05CMs2is040959;
-        Fri, 12 Jun 2020 17:54:02 -0500
-Received: from localhost ([10.250.48.148])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 05CMs2YB063955;
-        Fri, 12 Jun 2020 17:54:02 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v3 2/2] remoteproc: k3-dsp: Add support for C71x DSPs
-Date:   Fri, 12 Jun 2020 17:53:57 -0500
-Message-ID: <20200612225357.8251-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200612225357.8251-1-s-anna@ti.com>
-References: <20200612225357.8251-1-s-anna@ti.com>
+        id S1726302AbgFLXPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jun 2020 19:15:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbgFLXPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jun 2020 19:15:45 -0400
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD3BC03E96F
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 16:15:43 -0700 (PDT)
+Received: by mail-ua1-x941.google.com with SMTP id c15so3764687uar.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 16:15:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oq8VMZuaXGbd2S6QZmKfGmJLPLEtlVINersNYu3Hmq0=;
+        b=MiFMCE9QLz1s7wRwKCXByIZ2xd4K1DO67RKgkjq+lAP7DTtPvpc/G2vBsgSkuDtKa4
+         FwuG6iEAswE2oH+ZdM9YAuSFSl8c5HLxdf8lFHa6MAa5hxg4xLBQc2iWcDe8EDJA5S5k
+         RQB+M2lLyrChdz5hHyuTmUQ1NGV/zdHBXAStQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oq8VMZuaXGbd2S6QZmKfGmJLPLEtlVINersNYu3Hmq0=;
+        b=NnnFFy+qf4odNbxB4CFvv9/LLEmzcyeG51qcUx9QqezNgFzfz75GZEY7FoeAHTuZF4
+         hdAe7LKkOaEr9aR2FvuOTOgGUJBMvI9Cx2vQIasp8VCgAOOsdH7YVv5aXDoFKLdG55W6
+         ndL6NRzKy0W2+Iqm4nxBV0Eaux5G83qgnMDf9tUHja6HF7IymIa1rEyTi+H06/loEAdk
+         wtCJtplgBk9hFsOuEAvDQj82z0JFtCC9Pf2PXG3WqNV7s10M/OJFbkMsQTm13y5/C/aj
+         X8zzMQZsOVpCRhjVzSEZ/YL5ecOVgwVdMey5rSL+OUGeEdlLc4Lc1a+csG+msBokKgwj
+         MpAg==
+X-Gm-Message-State: AOAM531TWxk5/2Z+YSBg0iRRLdqfsn2+zK9Y/oy9so2tSv5MdFRurftP
+        Zq4ejY53cVj0D7Raquc13+RNuv3xRSk=
+X-Google-Smtp-Source: ABdhPJwuAo83RrQdMdrSsZPaCUQS15nqkNN/FFl3inPlwYFkBE7Rg/MM0Uy+QorcQGHdKCD3kfCAPg==
+X-Received: by 2002:ab0:29c1:: with SMTP id i1mr12020070uaq.120.1592003742670;
+        Fri, 12 Jun 2020 16:15:42 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id t2sm1192922vka.28.2020.06.12.16.15.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2020 16:15:41 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id y123so6237490vsb.6
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 16:15:41 -0700 (PDT)
+X-Received: by 2002:a67:e445:: with SMTP id n5mr13169309vsm.73.1592003741235;
+ Fri, 12 Jun 2020 16:15:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
+ <1591868882-16553-2-git-send-email-rbokka@codeaurora.org> <CAD=FV=WjvAWVmq3fTh=_f2p1Dv+sXg1RV-CqZr8KRgHe8_wT0w@mail.gmail.com>
+In-Reply-To: <CAD=FV=WjvAWVmq3fTh=_f2p1Dv+sXg1RV-CqZr8KRgHe8_wT0w@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 12 Jun 2020 16:15:29 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W4QqjOOfh_pJgg3P1PCEGOv8cubFKFKeYOBC0VVk2mZg@mail.gmail.com>
+Message-ID: <CAD=FV=W4QqjOOfh_pJgg3P1PCEGOv8cubFKFKeYOBC0VVk2mZg@mail.gmail.com>
+Subject: Re: [RFC v2 1/3] dt-bindings: nvmem: Add devicetree bindings for qfprom-efuse
+To:     Ravi Kumar Bokka <rbokka@codeaurora.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        dhavalp@codeaurora.org, mturney@codeaurora.org,
+        sparate@codeaurora.org, mkurumel@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Texas Instrument's K3 J721E SoCs have a newer next-generation
-C71x DSP Subsystem in the MAIN voltage domain in addition to the
-previous generation C66x DSP subsystems. The C71x DSP subsystem is
-based on the TMS320C71x DSP CorePac module. The C71x CPU is a true
-64-bit machine including 64-bit memory addressing and single-cycle
-64-bit base arithmetic operations and supports vector signal processing
-providing a significant lift in DSP processing power over C66x DSPs.
-J721E SoCs use a C711 (a one-core 512-bit vector width CPU core) DSP
-that is cache coherent with the A72 Arm cores.
+Hi,
 
-Each subsystem has one or more Fixed/Floating-Point DSP CPUs, with 32 KB
-of L1P Cache, 48 KB of L1D SRAM that can be configured and partitioned as
-either RAM and/or Cache, and 512 KB of L2 SRAM configurable as either RAM
-and/or Cache. The CorePac also includes a Matrix Multiplication Accelerator
-(MMA), a Stream Engine (SE) and a C71x Memory Management Unit (CMMU), an
-Interrupt Controller (INTC) and a Powerdown Management Unit (PMU) modules.
+On Fri, Jun 12, 2020 at 2:59 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Thu, Jun 11, 2020 at 2:49 AM Ravi Kumar Bokka <rbokka@codeaurora.org> wrote:
+> >
+> > This patch adds dt-bindings document for qfprom-efuse controller.
+> >
+> > Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
+> > ---
+> >  .../devicetree/bindings/nvmem/qfprom.yaml          | 52 ++++++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+>
+> Overall comment: I reviewed your v1 series and so I'm obviously
+> interested in your series.  Please CC me on future versions.
+>
+> I would also note that, since this is relevant to Qualcomm SoCs that
+> you probably should be CCing "linux-arm-msm@vger.kernel.org" on your
+> series.
+>
+>
+> >  create mode 100644 Documentation/devicetree/bindings/nvmem/qfprom.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/nvmem/qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qfprom.yaml
+> > new file mode 100644
+> > index 0000000..7c8fc31
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/nvmem/qfprom.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/nvmem/qfprom.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies Inc, QFPROM Efuse bindings
+> > +
+> > +maintainers:
+> > +  - Ravi Kumar Bokka <rbokka@codeaurora.org>
+> > +
+> > +allOf:
+> > +  - $ref: "nvmem.yaml#"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,qfprom
+>
+> As per discussion in patch #1, I believe SoC compatible should be here
+> too in case it is ever needed.  This is standard practice for dts
+> files for IP blocks embedded in an SoC.  AKA, this should be:
+>
+>     items:
+>       - enum:
+>           - qcom,apq8064-qfprom
+>           - qcom,apq8084-qfprom
+>           - qcom,msm8974-qfprom
+>           - qcom,msm8916-qfprom
+>           - qcom,msm8996-qfprom
+>           - qcom,msm8998-qfprom
+>           - qcom,qcs404-qfprom
+>           - qcom,sc7180-qfprom
+>           - qcom,sdm845-qfprom
+>       - const: qcom,qfprom
+>
+> NOTE: old SoCs won't have both of these and thus they will get flagged
+> with "dtbs_check", but I believe that's fine (Rob can correct me if
+> I'm wrong).  The code should still work OK if the SoC isn't there but
+> it would be good to fix old dts files to have the SoC specific string
+> too.
+>
+>
+> > +
+> > +  reg:
+> > +    maxItems: 3
+>
+> Please address feedback feedback on v1.  If you disagree with my
+> feedback it's OK to say so (I make no claims of being always right),
+> but silently ignoring my feedback and sending the next version doesn't
+> make me feel like it's a good use of my time to keep reviewing your
+> series.  Specifically I suggested that you actually add descriptions
+> rather than just putting "maxItems: 3".
+>
+> With all that has been discussed, I think the current best thing to
+> put there is:
+>
+>     # If the QFPROM is read-only OS image then only the corrected region
+>     # needs to be provided.  If the QFPROM is writable then all 3 regions
+>     # must be provided.
+>     oneOf:
+>       - items:
+>           - description: The start of the corrected region.
+>       - items:
+>           - description: The start of the raw region.
+>           - description: The start of the config region.
+>           - description: The start of the corrected region.
 
-Update the existing K3 DSP remoteproc driver to add support for this C71x
-DSP subsystem. The firmware loading support is provided by using the newly
-added 64-bit ELF loader support, and is limited to images using only
-external DDR memory at the moment. The L1D and L2 SRAMs are used as scratch
-memory when using as RAMs, and cannot be used for loadable segments. The
-CMMU is also not supported to begin with, and the driver is designed to
-treat the MMU as if it is in bypass mode.
+To address some of Srinivas's comments, I think you should actually
+add the 4th range in here too:
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
-v3:
- - No code changes, rebased patch
- - Picked up review tags
- - Switched from remoteproc/k3-dsp to remoteproc: k3-dsp in patch title
-v2: https://patchwork.kernel.org/patch/11563233/
+- description: The start of the security control region.
 
- drivers/remoteproc/ti_k3_dsp_remoteproc.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+That allows you to read 0x6000 and get the major/minor/step properly.
 
-diff --git a/drivers/remoteproc/ti_k3_dsp_remoteproc.c b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-index 668bb45b3fe8..861cc9126241 100644
---- a/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-@@ -407,8 +407,6 @@ static void *k3_dsp_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
- }
- 
- static const struct rproc_ops k3_dsp_rproc_ops = {
--	.prepare	= k3_dsp_rproc_prepare,
--	.unprepare	= k3_dsp_rproc_unprepare,
- 	.start		= k3_dsp_rproc_start,
- 	.stop		= k3_dsp_rproc_stop,
- 	.kick		= k3_dsp_rproc_kick,
-@@ -618,6 +616,10 @@ static int k3_dsp_rproc_probe(struct platform_device *pdev)
- 
- 	rproc->has_iommu = false;
- 	rproc->recovery_disabled = true;
-+	if (data->uses_lreset) {
-+		rproc->ops->prepare = k3_dsp_rproc_prepare;
-+		rproc->ops->unprepare = k3_dsp_rproc_unprepare;
-+	}
- 	kproc = rproc->priv;
- 	kproc->rproc = rproc;
- 	kproc->dev = dev;
-@@ -745,6 +747,12 @@ static const struct k3_dsp_mem_data c66_mems[] = {
- 	{ .name = "l1dram", .dev_addr = 0xf00000 },
- };
- 
-+/* C71x cores only have a L1P Cache, there are no L1P SRAMs */
-+static const struct k3_dsp_mem_data c71_mems[] = {
-+	{ .name = "l2sram", .dev_addr = 0x800000 },
-+	{ .name = "l1dram", .dev_addr = 0xe00000 },
-+};
-+
- static const struct k3_dsp_dev_data c66_data = {
- 	.mems = c66_mems,
- 	.num_mems = ARRAY_SIZE(c66_mems),
-@@ -752,8 +760,16 @@ static const struct k3_dsp_dev_data c66_data = {
- 	.uses_lreset = true,
- };
- 
-+static const struct k3_dsp_dev_data c71_data = {
-+	.mems = c71_mems,
-+	.num_mems = ARRAY_SIZE(c71_mems),
-+	.boot_align_addr = SZ_2M,
-+	.uses_lreset = false,
-+};
-+
- static const struct of_device_id k3_dsp_of_match[] = {
- 	{ .compatible = "ti,j721e-c66-dsp", .data = &c66_data, },
-+	{ .compatible = "ti,j721e-c71-dsp", .data = &c71_data, },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, k3_dsp_of_match);
--- 
-2.26.0
 
+I will also note that as I've started reviewing the driver code it'll
+probably make everyone's life easiest if you keep the "corrected"
+region first, even if it's not numerically first.
+
+
+I've updated my FIXUP patch again.  I might notice more comments as I
+review the driver more, but we'll see...
+
+-Doug
