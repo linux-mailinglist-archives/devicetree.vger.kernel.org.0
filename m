@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EC421F7855
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 15:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBACA1F785C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2020 15:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726475AbgFLNDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jun 2020 09:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42620 "EHLO
+        id S1726283AbgFLNEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jun 2020 09:04:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726314AbgFLNDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jun 2020 09:03:39 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80545C03E96F
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 06:03:39 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id jz3so3633506pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 06:03:39 -0700 (PDT)
+        with ESMTP id S1726258AbgFLNEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jun 2020 09:04:07 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282A5C03E96F
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 06:04:06 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id x207so4279365pfc.5
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2020 06:04:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XChjBh6npquWu7Gds/Y31/zFut/MusA/6k8uIHJOBp4=;
-        b=UwmU1clazf1waXMz2OfDw/fqAyqKGnXsGLQHKoJk5sAMUGUzsciCh2kAJ0iuEN6Lzb
-         ReioL9yEqg1Ha+7Pr0XfBTJcEkT+oV9ipOE6zPLcBxf7823zdTx1UlbGY2cskpoJb+Kz
-         3Z327x+cdQ1rDGNwnRwxu0/YY5vppwsSsNeq4=
+        bh=XxDkda8O67HgHGJSLFTrtV7JMSfXrWrn5BJlGMpDUew=;
+        b=v5LIkUnUnF2+bxJwj82k5O3Ugtx+V+dOnpssvRtDYX+KsvElv43rxkxrOOUV/zuGnN
+         bm54gsNjWwVP4WCpw5aBqG3GjMIVZH6QB6WYJ5fJk0Ri2vbBVR/ZWwoE775ZJ2mNzs1L
+         Xi9bznFrxDfQwG3cqR4VwmgWt2Y7PJNlj0x6g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XChjBh6npquWu7Gds/Y31/zFut/MusA/6k8uIHJOBp4=;
-        b=QBHJhnCqZgXi6EXNcLJHO3hIdmRBA1mVJbE22ZY8ObNr4mToWWiRR4Wrna8P3D350T
-         fbRgkmpX4AM9Xh6wJ1tmiigjDZ0cP7xfY14o5QBH9d8bqF2qWBRbp/6DGQPd2DDO0j0S
-         lKkepg+I+9XORFzaQ/G0y2SYXwKfvg15SqJ6f1ERytOQZIBwjfbiGMrMsKp+3eJ9RxML
-         9+qUvqacymOJG4dn9rYoRsdHz1p9LCt4k+4HqwuJLOoaD5R3BJW3Xmswj7m6QVLF8pNE
-         lsw8cbtYPnvsUAibpcLrDmtqWwQTG6Gd3jS3Z3/oCJVWUm8lY3YsudRfksdS9Dsq218y
-         rOCA==
-X-Gm-Message-State: AOAM5333mwcOdwm6vXjKCpLxnhRu6do41Zy5ebkeIFj9A7EZm2TaoG4T
-        6mok3l3Zk5lt0emaH6smRkoS0w==
-X-Google-Smtp-Source: ABdhPJxW6okryb1H/Wb2uZlId7rrSe/g6oANSSlhoWqGcCYTWG7bqOaMgoczORRgsCUTAJlZ0SskRQ==
-X-Received: by 2002:a17:902:d889:: with SMTP id b9mr10724178plz.206.1591967018698;
-        Fri, 12 Jun 2020 06:03:38 -0700 (PDT)
+        bh=XxDkda8O67HgHGJSLFTrtV7JMSfXrWrn5BJlGMpDUew=;
+        b=AQ70AikHF1jAPsHNOADtkXPZrRPzCvCWliddq+tnmPU+WF6UtylVbD70VJwn8W7x8/
+         azfg7tJZ2RSzmres1zYdOXwCg6PT2VI1CsJ8t4rqJuJ80nl8roxSMX9NyaqD4Unku12N
+         b7vzoDqZpN51q+1MbxpqJHViiJpta3IEtLWYEEK9fmu7sRalhbQrBEex5+cpYJNG1elv
+         xjOChJzmQlfPYYj6oyUiAHZaUEq7nv7v2RA5qGoxZvaEiqhm+4xp3CKO0j8hPlEOjPnm
+         peaTD2i/BRzezbGAlhgCbY73s4cK0ssgEgw/oLX36226UYAdEw5LVCKKxTq61zkS7swS
+         vM/A==
+X-Gm-Message-State: AOAM531r7LJKcxWk2kEkT9LdfpAvW/jZCIY6jgFCL0ShKvQpwK91eoYD
+        DnNiK0Hnu0uhzlGZtJo7uRXrKQ==
+X-Google-Smtp-Source: ABdhPJytiIJDeVXmChbd5bb89VuMarC4J8a0f2CzkWR4+onp+oE0ehGtriSY+VxWyDm+C4WNZXHdkg==
+X-Received: by 2002:aa7:9f10:: with SMTP id g16mr11840277pfr.47.1591967045681;
+        Fri, 12 Jun 2020 06:04:05 -0700 (PDT)
 Received: from shiro.work (p1285116-ipngn200805sizuokaden.shizuoka.ocn.ne.jp. [114.171.61.116])
-        by smtp.googlemail.com with ESMTPSA id k12sm5481939pgm.11.2020.06.12.06.03.31
+        by smtp.googlemail.com with ESMTPSA id k12sm5481939pgm.11.2020.06.12.06.03.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2020 06:03:37 -0700 (PDT)
+        Fri, 12 Jun 2020 06:04:04 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     daniel@0x0f.com, afaerber@suse.de, devicetree@vger.kernel.org,
@@ -58,8 +58,8 @@ Cc:     daniel@0x0f.com, afaerber@suse.de, devicetree@vger.kernel.org,
         Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
         Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Arnd Bergmann <arnd@arndb.de>,
         Andrew Morton <akpm@linux-foundation.org>,
         Mike Rapoport <rppt@kernel.org>,
@@ -68,16 +68,15 @@ Cc:     daniel@0x0f.com, afaerber@suse.de, devicetree@vger.kernel.org,
         Gregory Fong <gregory.0xf0@gmail.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Nick Desaulniers <ndesaulniers@google.com>,
         Nathan Chancellor <natechancellor@gmail.com>,
-        Christian Lamparter <chunkeey@gmail.com>,
+        Will Deacon <will@kernel.org>,
         Nathan Huckleberry <nhuck15@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
         Marc Zyngier <maz@kernel.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 02/12] dt-bindings: vendor-prefixes: Add sstar vendor prefix
-Date:   Fri, 12 Jun 2020 22:00:02 +0900
-Message-Id: <20200612130032.3905240-3-daniel@0x0f.com>
+Subject: [PATCH v3 03/12] dt-bindings: vendor-prefixes: Add 70mai vendor prefix
+Date:   Fri, 12 Jun 2020 22:00:03 +0900
+Message-Id: <20200612130032.3905240-4-daniel@0x0f.com>
 X-Mailer: git-send-email 2.27.0.rc0
 In-Reply-To: <20200612130032.3905240-1-daniel@0x0f.com>
 References: <20200610090421.3428945-1-daniel@0x0f.com>
@@ -89,7 +88,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add prefix for Xiamen Xingchen Technology Co., Ltd
+Add prefix for 70mai Co., Ltd
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
@@ -97,18 +96,18 @@ Signed-off-by: Daniel Palmer <daniel@0x0f.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 86b569a0c008..314a2ddcb6a0 100644
+index 314a2ddcb6a0..7c45b4c6fe40 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -984,6 +984,8 @@ patternProperties:
-     description: Spreadtrum Communications Inc.
-   "^sst,.*":
-     description: Silicon Storage Technology, Inc.
-+  "^sstar,.*":
-+    description: Xiamen Xingchen(SigmaStar) Technology Co., Ltd. (formerly part of MStar Semiconductor, Inc.)
-   "^st,.*":
-     description: STMicroelectronics
-   "^starry,.*":
+@@ -23,6 +23,8 @@ patternProperties:
+   "^(simple-audio-card|simple-graph-card|st-plgpio|st-spics|ts),.*": true
+ 
+   # Keep list in alphabetical order.
++  "^70mai,.*":
++    description: 70mai Co., Ltd.
+   "^abilis,.*":
+     description: Abilis Systems
+   "^abracon,.*":
 -- 
 2.27.0.rc0
 
