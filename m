@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4E61F81FB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2020 10:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA91F1F8216
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2020 10:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726453AbgFMIif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Jun 2020 04:38:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726488AbgFMIi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Jun 2020 04:38:26 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A7CC08C5C6;
-        Sat, 13 Jun 2020 01:38:26 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id e1so12183901wrt.5;
-        Sat, 13 Jun 2020 01:38:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=apYVJSQOoJKr8S1F9QvI20+pzas9FiQWtNSclf0VUoQ=;
-        b=fmrFdlgyfSMnhLqDRle25xuMZlGWzMOlLlpmgdL2Tesm0amr/j/QqXDvakzHGN3/zg
-         NxQbm3+ZzPS5IByW5CfYG2NmHXH98ol0bRwBuVuOTFJmGUTgFIye+Bdfb3Ingc5ELngC
-         VnTFIPk5rIDofQyGzLzO+skndlmVLb6OGIH9wosd5fumwDxMCeFZm1l6qshPQ3MydTCE
-         azeHtjXyTo77vPdA1r4OuFKreaw0P26ww4fzKXjDfDIndJhB6SRfec/YxvhviBIG8bQ5
-         HQXFw88yz7wkKc1d3Fy+c08pO8Te0uDj3BoYrO5o6XuZv76+CLtPYK/QkwRkXor7yd0h
-         3DcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=apYVJSQOoJKr8S1F9QvI20+pzas9FiQWtNSclf0VUoQ=;
-        b=smnw4vgQchwSf9Gtx/vESqPRSMJ0DjaYu2j6Dd263IEIhVk7ALWeTyVglB6fEz6bNy
-         Xp2OVB7pXXUai4yc0kloib8z5UafeI3f2yzcCz3+IUDO5XSYIGoPVjDFjMx3VV5GH7dF
-         /Z8RUWLaYZAY2Q97Dr3cMbDTEr2OcLf/PtgRbBP6spUtT5yLS+h/MmtlzNITtZAhok2U
-         UsLgLqoh8CRPp/grCKBt0tfK5yfRb7z7dG9DhPTMAnUOLXWWKY3Kut34Y0B0R5RuIESf
-         VESQLRJq8yjaF/HgGGWZXrHtmm2CajRxiyLT/C/pIUTq9lLlNnFTPIMZzFhSDoxmn+zq
-         lbcw==
-X-Gm-Message-State: AOAM53084Ed1njUP0wg06sX4IcWN68Mhj6EXUU3+EaKxiYlqwOIvbf9+
-        j7/ay2ri9CsRoQqJGopM5q4=
-X-Google-Smtp-Source: ABdhPJzKFMTe9TbdDDotFUYRLGdmb4BqnL+vzwjnUVAEX0u5odeK+eW2Dm5Qc/m3kXhxlJFKsVUEXA==
-X-Received: by 2002:adf:fd81:: with SMTP id d1mr19395675wrr.96.1592037504995;
-        Sat, 13 Jun 2020 01:38:24 -0700 (PDT)
-Received: from skynet.lan (168.red-88-20-188.staticip.rima-tde.net. [88.20.188.168])
-        by smtp.gmail.com with ESMTPSA id l17sm11622704wmi.3.2020.06.13.01.38.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jun 2020 01:38:24 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        tsbogend@alpha.franken.de, f.fainelli@gmail.com,
-        jonas.gorski@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH v4 9/9] mips: bmips: add BCM6318 reset controller definitions
-Date:   Sat, 13 Jun 2020 10:38:13 +0200
-Message-Id: <20200613083813.2027186-10-noltari@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200613083813.2027186-1-noltari@gmail.com>
-References: <20200610172859.466334-1-noltari@gmail.com>
- <20200613083813.2027186-1-noltari@gmail.com>
+        id S1726290AbgFMIn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Jun 2020 04:43:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53324 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725783AbgFMIn0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Jun 2020 04:43:26 -0400
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7507F20836;
+        Sat, 13 Jun 2020 08:43:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592037805;
+        bh=SyRgaHUOm/RP8zZ90+MyAGaRN4cSsWrzzNGHyfuBnCk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BgrzEr0T3JoHmKZPf5JHHJjvygSMZGF5NKn+13GG7QHtIS/IBZ7akYkLuc0TbufY0
+         IdI3tEBicGVpmTrhCjhPNSbLdEFx6l03HXU1AMn8ObSGPs2e5kB+GmV2Rt/rdkNQLA
+         gC00pV5XYzyrAQW5/CPir6q3bWaJ154iM+O+UJ14=
+Received: by mail-lj1-f173.google.com with SMTP id z9so13654752ljh.13;
+        Sat, 13 Jun 2020 01:43:25 -0700 (PDT)
+X-Gm-Message-State: AOAM530UMrNSLF4v9bMAv1GquAIAsJZVHEBg2VJ+ce9ilPP2+24WGcJW
+        9BJyo7cAOyU92QRBAJcL7HThNO6/3AQ43YFnCPM=
+X-Google-Smtp-Source: ABdhPJwZ1ylOrBsd6XVZmYSQ3sLMGYqoTKujz2SwyQaUfONmAEP2kaw8s4sWs89ZwT6ZjZ3AWnilqqgnG/azc96C0bc=
+X-Received: by 2002:a2e:2a42:: with SMTP id q63mr9000358ljq.265.1592037803689;
+ Sat, 13 Jun 2020 01:43:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20200611095804.22026-1-f.suligoi@asem.it>
+In-Reply-To: <20200611095804.22026-1-f.suligoi@asem.it>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sat, 13 Jun 2020 16:43:11 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTojGRnshstFwqu4xM_txeBOY=uFiWPTpXZPWv2uS6QqQ@mail.gmail.com>
+Message-ID: <CAJF2gTTojGRnshstFwqu4xM_txeBOY=uFiWPTpXZPWv2uS6QqQ@mail.gmail.com>
+Subject: Re: [PATCH] doc: devicetree: bindings: fix spelling mistake
+To:     Flavio Suligoi <f.suligoi@asem.it>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-csky@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM6318 SoCs have a reset controller for certain components.
+Acked-by: Guo Ren <guoren@kernel.org>
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- v4: no changes.
- v3: add new path with BCM6318 reset controller definitions.
+On Thu, Jun 11, 2020 at 5:58 PM Flavio Suligoi <f.suligoi@asem.it> wrote:
+>
+> Fix typo: "triger" --> "trigger"
+>
+> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+> ---
+>  Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt | 2 +-
+>  .../devicetree/bindings/interrupt-controller/csky,mpintc.txt    | 2 +-
+>  Documentation/devicetree/bindings/timer/csky,mptimer.txt        | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt b/Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt
+> index ba455589f869..e1c49b660d3a 100644
+> --- a/Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt
+> +++ b/Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt
+> @@ -12,7 +12,7 @@ Required properties for the top level node:
+>     Only the GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW flags are supported.
+>  - #interrupt-cells : Specifies the number of cells needed to encode an
+>     interrupt. Should be 2. The first cell defines the interrupt number,
+> -   the second encodes the triger flags encoded as described in
+> +   the second encodes the trigger flags encoded as described in
+>     Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+>  - compatible:
+>    - "mediatek,mt7621-gpio" for Mediatek controllers
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/csky,mpintc.txt b/Documentation/devicetree/bindings/interrupt-controller/csky,mpintc.txt
+> index e13405355166..e6bbcae4d07f 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/csky,mpintc.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/csky,mpintc.txt
+> @@ -10,7 +10,7 @@ Interrupt number definition:
+>   16-31  : private  irq, and we use 16 as the co-processor timer.
+>   31-1024: common irq for soc ip.
+>
+> -Interrupt triger mode: (Defined in dt-bindings/interrupt-controller/irq.h)
+> +Interrupt trigger mode: (Defined in dt-bindings/interrupt-controller/irq.h)
+>   IRQ_TYPE_LEVEL_HIGH (default)
+>   IRQ_TYPE_LEVEL_LOW
+>   IRQ_TYPE_EDGE_RISING
+> diff --git a/Documentation/devicetree/bindings/timer/csky,mptimer.txt b/Documentation/devicetree/bindings/timer/csky,mptimer.txt
+> index 15cfec08fbb8..f5c7e99cf52b 100644
+> --- a/Documentation/devicetree/bindings/timer/csky,mptimer.txt
+> +++ b/Documentation/devicetree/bindings/timer/csky,mptimer.txt
+> @@ -8,7 +8,7 @@ regs is accessed by cpu co-processor 4 registers with mtcr/mfcr.
+>   - PTIM_CTLR "cr<0, 14>" Control reg to start reset timer.
+>   - PTIM_TSR  "cr<1, 14>" Interrupt cleanup status reg.
+>   - PTIM_CCVR "cr<3, 14>" Current counter value reg.
+> - - PTIM_LVR  "cr<6, 14>" Window value reg to triger next event.
+> + - PTIM_LVR  "cr<6, 14>" Window value reg to trigger next event.
+>
+>  ==============================
+>  timer node bindings definition
+> --
+> 2.17.1
+>
 
- include/dt-bindings/reset/bcm6318-reset.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 include/dt-bindings/reset/bcm6318-reset.h
 
-diff --git a/include/dt-bindings/reset/bcm6318-reset.h b/include/dt-bindings/reset/bcm6318-reset.h
-new file mode 100644
-index 000000000000..f4fef7bfb06d
---- /dev/null
-+++ b/include/dt-bindings/reset/bcm6318-reset.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+
-+#ifndef __DT_BINDINGS_RESET_BCM6318_H
-+#define __DT_BINDINGS_RESET_BCM6318_H
-+
-+#define BCM6318_RST_SPI		0
-+#define BCM6318_RST_EPHY	1
-+#define BCM6318_RST_SAR		2
-+#define BCM6318_RST_ENETSW	3
-+#define BCM6318_RST_USBD	4
-+#define BCM6318_RST_USBH	5
-+#define BCM6318_RST_PCIE_CORE	6
-+#define BCM6318_RST_PCIE	7
-+#define BCM6318_RST_PCIE_EXT	8
-+#define BCM6318_RST_PCIE_HARD	9
-+#define BCM6318_RST_ADSL	10
-+#define BCM6318_RST_PHYMIPS	11
-+#define BCM6318_RST_HOSTMIPS	11
-+
-+#endif /* __DT_BINDINGS_RESET_BCM6318_H */
 -- 
-2.27.0
+Best Regards
+ Guo Ren
 
+ML: https://lore.kernel.org/linux-csky/
