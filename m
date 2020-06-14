@@ -2,88 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D941F894E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2020 16:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863B01F8975
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2020 17:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726772AbgFNOhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Jun 2020 10:37:48 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:39502 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726986AbgFNOhr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Jun 2020 10:37:47 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 079BA1A023A;
-        Sun, 14 Jun 2020 16:37:46 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8CC611A133B;
-        Sun, 14 Jun 2020 16:37:42 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E4C54402F3;
-        Sun, 14 Jun 2020 22:37:37 +0800 (SGT)
-From:   Biwen Li <biwen.li@oss.nxp.com>
-To:     shawnguo@kernel.org, ran.wang_1@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
-Subject: [v2 4/4] arm: dts: ls1021a: add ftm_alarm0 DT node
-Date:   Sun, 14 Jun 2020 22:32:06 +0800
-Message-Id: <20200614143206.24993-4-biwen.li@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200614143206.24993-1-biwen.li@oss.nxp.com>
-References: <20200614143206.24993-1-biwen.li@oss.nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726978AbgFNPLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Jun 2020 11:11:08 -0400
+Received: from www381.your-server.de ([78.46.137.84]:41598 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbgFNPLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jun 2020 11:11:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=2DdAg+LgMBd0da3+ETcMF3kF+GgHUd3v2IJF8Z+RehE=; b=WojMRQ/HGD48weFeNClYtL1TYx
+        xS7hBXCEQWorRipPomN2p6KcuCRsXJi8Nc4JnoVU3NpqP6SWN3W6hwVGzs2QgjS+6VV2UjBqrun0r
+        mMulN2/Dl7lQys1FILORLf56YqqP9ZouTuhfgy7OxcGAOWesdzU52giqo1FVH0VIX5q2INuX3Nezs
+        NsF4vbU6C35QYjh1E7yaU/cPTCixz7uenHN0GtHnZ1dO6kp3OjUNoLHQl3ezS8gBxKHJE1NcIflQo
+        0cfhIIAS68MGNx28cMfUuqFwDyXPr5Uixl++4jVmV3XmFvAT/j/8H7ok4K+14RgMnGZDNCZ1otBE6
+        JF/osOWg==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www381.your-server.de with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89_1)
+        (envelope-from <lars@metafoo.de>)
+        id 1jkUHd-0002I6-7W; Sun, 14 Jun 2020 17:10:53 +0200
+Received: from [82.135.70.239] (helo=[192.168.178.20])
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1jkUHc-000Rve-TY; Sun, 14 Jun 2020 17:10:52 +0200
+Subject: Re: [PATCH v3 06/13] iio: imu: inv_icm42600: add temperature sensor
+ support
+To:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        jic23@kernel.org, robh+dt@kernel.org, robh@kernel.org,
+        mchehab+huawei@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200608204250.3291-1-jmaneyrol@invensense.com>
+ <20200608204250.3291-7-jmaneyrol@invensense.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <fd4918b6-a55f-4047-7f18-b796a8ccd020@metafoo.de>
+Date:   Sun, 14 Jun 2020 17:10:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <20200608204250.3291-7-jmaneyrol@invensense.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.3/25843/Sun Jun 14 14:53:02 2020)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
+On 6/8/20 10:42 PM, Jean-Baptiste Maneyrol wrote:
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +		ret = iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +		ret = inv_icm42600_temp_read(st, &temp);
+> +		iio_device_release_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +		*val = temp;
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = 483;
+> +		*val2 = 91787;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		*val = 25000;
+> +		return IIO_VAL_INT;
 
-The patch add ftm_alarm0 DT node
-	- add rcpm node
-	- add ftm_alarm0 node
-	- aliases ftm_alarm0 as rtc1
+If the data is returned processed there is no need to specify scale and 
+offset.
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v2:
-	- use generic name
-
- arch/arm/boot/dts/ls1021a.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 760a68c..5af45ef 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -66,6 +66,7 @@
- 		serial4 = &lpuart4;
- 		serial5 = &lpuart5;
- 		sysclk = &sysclk;
-+		rtc1 = &ftm_alarm0;
- 	};
- 
- 	cpus {
-@@ -1002,5 +1003,19 @@
- 			big-endian;
- 		};
- 
-+		rcpm: power-controller@1ee2140 {
-+			compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
-+			reg = <0x0 0x1ee2140 0x0 0x8>;
-+			#fsl,rcpm-wakeup-cells = <2>;
-+		};
-+
-+		ftm_alarm0: timer0@29d0000 {
-+			compatible = "fsl,ls1021a-ftm-alarm";
-+			reg = <0x0 0x29d0000 0x0 0x10000>;
-+			reg-names = "ftm";
-+			fsl,rcpm-wakeup = <&rcpm 0x20000 0x0>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			big-endian;
-+		};
- 	};
- };
--- 
-2.7.4
+But since the transformation to turn the data into standard units is a 
+simple linear transform the preferred way to handle this is to return 
+RAW data and specify scale and offset.
 
