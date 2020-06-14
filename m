@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 909AE1F87DA
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2020 10:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373761F885C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2020 12:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726977AbgFNI7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Jun 2020 04:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49316 "EHLO
+        id S1726014AbgFNK0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Jun 2020 06:26:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbgFNI7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jun 2020 04:59:05 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D478C03E969;
-        Sun, 14 Jun 2020 01:59:05 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id j10so14039985wrw.8;
-        Sun, 14 Jun 2020 01:59:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bfBfjc13i9oNkQ8+Zqf2QVGnWSdbHs2CT9bleKRk3vM=;
-        b=VmNnphxe/tlqN9qdh0se5AF78dwcs2rEq07gVb2RhQNqK5JMsCM6MAiQW+kxHjYHlF
-         vOZwdz+fItaEVUvu4d1s8W6fPczxu192jJ3I2I3tuLtq6SZc4unUS0RDbreUE3AyDhU9
-         5YzSlLKYYy01fEmhLnQGVfG+wNl+seEaHVxcfuiXjbhxdEHUasPAdXaLUr4gF7zO3PrI
-         6LjEI0ujoYMEWvCtXQu3aZ2TsUzbfQ+x2uIZR21Bm3UqTSQ99ZgNCOtZsY5La9ybr2Jo
-         UDSDV3OQ1tZfC4w/1gS6wS0xfXWTWucPLkx6c6CGQ/AxoDGP7AwcfKwQieDzIZsVsgjJ
-         /h2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bfBfjc13i9oNkQ8+Zqf2QVGnWSdbHs2CT9bleKRk3vM=;
-        b=Kr4LWzB+TRO7UL1ShBKGbScKYnt4zOck1j5pNkib5EpxT+vbY3tKEqG9wGaC4C+HXE
-         0qWAKXclzwGaOViieuGzCF26PhKYPBpKXyerBFXTiakYVi5b3o5jb1LVbE87uWpKQdRk
-         wGS0nV4imuDxK5F0YcsHR86yVkNrhEgNRf+MF+dHtY5KtJ/Be5HZUzHqjdBryRQB+Lsm
-         H38tkwHCOcYxLyw6eRgBdMmnbhUAXDyBF7+tKZ4XE8fEtbe2WrubIMPzfSnQgC3JxHOK
-         gPk+e6Gr3emjd5+t16oxbvIjf4fewY+waKMdwSyN5Aj///Ef4ZFdcA/imZZmqCQnZTAb
-         Km9g==
-X-Gm-Message-State: AOAM530uVgKnktUI34stW4cuyjBM20bMURCNl7782TzzZy7CnFLk8xnN
-        JkIKTWiyRyp6ONr08MSoVkejeJQFCdM=
-X-Google-Smtp-Source: ABdhPJyrWu3tPQCvkEYvTz6K4aMJz2Ts6V/3m25HhZqYVJ+DpP33UqxhQWvnpiWcPJ5qBP9f8czSyg==
-X-Received: by 2002:adf:f812:: with SMTP id s18mr22370339wrp.28.1592125143824;
-        Sun, 14 Jun 2020 01:59:03 -0700 (PDT)
-Received: from skynet.lan (168.red-88-20-188.staticip.rima-tde.net. [88.20.188.168])
-        by smtp.gmail.com with ESMTPSA id u4sm17174043wmb.48.2020.06.14.01.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jun 2020 01:59:03 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        tsbogend@alpha.franken.de, f.fainelli@gmail.com,
-        jonas.gorski@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>, Florian Fainelli <F.fainelli@gmail.com>
-Subject: [PATCH v5 9/9] mips: bmips: add BCM6318 reset controller definitions
-Date:   Sun, 14 Jun 2020 10:58:52 +0200
-Message-Id: <20200614085852.2130147-10-noltari@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200614085852.2130147-1-noltari@gmail.com>
-References: <20200613083813.2027186-1-noltari@gmail.com>
- <20200614085852.2130147-1-noltari@gmail.com>
+        with ESMTP id S1725265AbgFNK0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jun 2020 06:26:41 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76259C05BD43;
+        Sun, 14 Jun 2020 03:26:41 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 0729722F99;
+        Sun, 14 Jun 2020 12:26:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1592130396;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=gJxvGjLG+zCr4pQZGoAns/cjbZC5rD9SgUiVfLcsZLU=;
+        b=BlnySnM1M9f1ZLAY/nIMAW9bAmVM+K1Bf0A3llGF/CTB6QOnLrIBj40JijOMu1qlQSjljA
+        ZtMT+RwKwVKn+uGRrfs5xtJu6Q8SxuYPJCt9FvQTRBheTbAujw+6glWcKcLZOU7A3BmMWG
+        pvRuQ/8ZNiI21iavo62b6Q0nAC/+PSc=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sun, 14 Jun 2020 12:26:30 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        GregKroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [RFC] MFD's relationship with Device Tree (OF)
+In-Reply-To: <CAL_JsqK1BfYa2WfHFUwm9MB+aZVF5zehDSTZj0MhjuhJyYXdTA@mail.gmail.com>
+References: <20200609110136.GJ4106@dell>
+ <CAL_JsqK1BfYa2WfHFUwm9MB+aZVF5zehDSTZj0MhjuhJyYXdTA@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.5
+Message-ID: <0709f20bc61afb6656bc57312eb69f56@walle.cc>
+X-Sender: michael@walle.cc
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM6318 SoCs have a reset controller for certain components.
+Hi Rob,
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-Acked-by: Florian Fainelli <F.fainelli@gmail.com>
----
- v5: no changes.
- v4: no changes.
- v3: add new path with BCM6318 reset controller definitions.
+Am 2020-06-10 00:03, schrieb Rob Herring:
+[..]
+> Yes, we should use 'reg' whenever possible. If we don't have 'reg',
+> then you shouldn't have a unit-address either and you can simply match
+> on the node name (standard DT driver matching is with compatible,
+> device_type, and node name (w/o unit-address)). We've generally been
+> doing 'classname-N' when there's no 'reg' to do 'classname@N'.
+> Matching on 'classname-N' would work with node name matching as only
+> unit-addresses are stripped.
 
- include/dt-bindings/reset/bcm6318-reset.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 include/dt-bindings/reset/bcm6318-reset.h
+This still keeps me thinking. Shouldn't we allow the (MFD!) device
+driver creator to choose between "classname@N" and "classname-N".
+In most cases N might not be made up, but it is arbitrarily chosen;
+for example you've chosen the bank for the ab8500 reg. It is not
+a defined entity, like an I2C address if your parent is an I2C bus,
+or a SPI chip select, or the memory address in case of MMIO. Instead
+the device driver creator just chooses some "random" property from
+the datasheet; another device creator might have chosen another
+property. Wouldn't it make more sense, to just say this MFD provides
+N pwm devices and the subnodes are matching based on pwm-{0,1..N-1}?
+That would also be the logical consequence of the current MFD sub
+device to OF node matching code, which just supports N=1.
 
-diff --git a/include/dt-bindings/reset/bcm6318-reset.h b/include/dt-bindings/reset/bcm6318-reset.h
-new file mode 100644
-index 000000000000..f4fef7bfb06d
---- /dev/null
-+++ b/include/dt-bindings/reset/bcm6318-reset.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+
-+#ifndef __DT_BINDINGS_RESET_BCM6318_H
-+#define __DT_BINDINGS_RESET_BCM6318_H
-+
-+#define BCM6318_RST_SPI		0
-+#define BCM6318_RST_EPHY	1
-+#define BCM6318_RST_SAR		2
-+#define BCM6318_RST_ENETSW	3
-+#define BCM6318_RST_USBD	4
-+#define BCM6318_RST_USBH	5
-+#define BCM6318_RST_PCIE_CORE	6
-+#define BCM6318_RST_PCIE	7
-+#define BCM6318_RST_PCIE_EXT	8
-+#define BCM6318_RST_PCIE_HARD	9
-+#define BCM6318_RST_ADSL	10
-+#define BCM6318_RST_PHYMIPS	11
-+#define BCM6318_RST_HOSTMIPS	11
-+
-+#endif /* __DT_BINDINGS_RESET_BCM6318_H */
--- 
-2.27.0
-
+-michael
