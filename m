@@ -2,499 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 192991F98C4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 15:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA6561F9969
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 15:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730599AbgFONdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 09:33:39 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:62259 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730586AbgFONdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 09:33:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1592228012; x=1623764012;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rRTIXOzrYA0AtMeoJg5RqciWe1e7/mnpkRYykpgr3sA=;
-  b=yyIHAQ1C28Ys7ujDrpEbxWMCU073o53ykWnr9UDhxts2+cvkO0e+4S50
-   KgHxeoetgOfl+nqtDMPZrKwe/9/Z54qpaPIkYsxJ4NA80ay191fk3FGAW
-   Yxx4pbx0iG0TxmcupujoFg5zGdN+hH9Cz94yXuODbG/0OeCm/tbIQuop6
-   iXJxitprD7hpYklpQbWA5zp1LpadXtXgupJFMpgkxA8VB1c26a338r968
-   BP+skCS42D4u/cAKau9jQWknhWfHBRSSUjmqcKu0Wfy7n/NvhRQaCirQG
-   imiY3NPIg8sRQ3R5dqhQvoYIzeULmFGCHA/VE2GPKehhFA+XzmaWt7xNQ
-   w==;
-IronPort-SDR: 5ofjhwF7QOHeq5AcCXwJ+TCUOP6Bt3/KzVZaXS2RqLWGFgxXxu3bnMWA7BEvIaFLyg3OI1Ou9h
- i7b6ZK1wZSveaP9j6QTOp71W32s4P7z/ihAr4gd5uPBycPOOcXwapyFCW8jhag58e+l7tyBMHx
- 4RuAUA8J/QCH3am5KHoZbPPuUX2gjDWwtq0Lr7ngschjtg7quruj8UiVWD+5D12iyh1pHTrCJ8
- WuS1vRm0M+bEBdrPnkvECVGuUDhw+Pbud7FXADyoQOAOD7d7l5mfNTpiROppoQXC39yofNwhQ9
- Ppg=
-X-IronPort-AV: E=Sophos;i="5.73,514,1583218800"; 
-   d="scan'208";a="83619533"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jun 2020 06:33:32 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 15 Jun 2020 06:33:28 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Mon, 15 Jun 2020 06:33:28 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Olof Johansson <olof@lixom.net>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v3 10/10] arm64: dts: sparx5: Add i2c devices, i2c muxes
-Date:   Mon, 15 Jun 2020 15:32:42 +0200
-Message-ID: <20200615133242.24911-11-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200615133242.24911-1-lars.povlsen@microchip.com>
-References: <20200615133242.24911-1-lars.povlsen@microchip.com>
+        id S1730064AbgFON5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 09:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729766AbgFON5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 09:57:15 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B6CC05BD43
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 06:57:14 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id k11so17536516ejr.9
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 06:57:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fastree3d-com.20150623.gappssmtp.com; s=20150623;
+        h=from:subject:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=DJKN9TyNqz9V1M/rNZ31DGsqgtBphbFVhsstZfuoOK8=;
+        b=nUR44RYf7bmwW9D/u8y+AFpRPsRh7gTSykCfKPbFjJiAKGcTeQfYHm3pHFqfDlbZ7m
+         vXtd7WTh19AQvReJ+Nmgcu/6v4LrCDr90v4tOISFYffD1UUkwNMTcSc/L2aQPUeEddoJ
+         zkaMSb5MSLaeA4E+1XzEYMRaw1PgJUP4Xkn7bC5KWwUyG8KJQdsQ9Gn89rp3NFQ0z67u
+         QeABXBW+/98qKzws5ddPk3O5EHaH/q4dU8HAjbZMbHGve7Y05AyUN0u97Y+QEbMyPF/m
+         Bd0au+vN1B9ZAfHAJfQ4itvOLTbaKsf/HPXgXRj7Ta2lfhfF6OMEeBYAK0O9TuSET7i8
+         cItA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=DJKN9TyNqz9V1M/rNZ31DGsqgtBphbFVhsstZfuoOK8=;
+        b=HbO8xxhXM6eCbI6izYtEdrgGtzGjIHZXeGJDw1VJXM7Ji4ALJ24MGkQCDqKSpHPbg2
+         Gxcpsxw36oq3GNI2ylASikrtZYKl+4YhA+TywRDlu2fr+ckupPfs67d7bDBTAc0jZxgE
+         W7i8+Ef+K5gu10A8u7sQqNVb2gsgFxEcdquxUzCYQByUruibyeBr/oqtvRQWSVnsRHY3
+         q26IayOI2LGpOppnYvPR4Rk5mhetfd4HUQz8HHVDH0RI5yOI9zKveG0uKXhrSDIMZ+dR
+         G/qVXO3DfoAkRi0ejoL+jhtL+qaM2/y0Y5m6qaGFr4rsB71QAnOzWJRGS3ltYgiHEppS
+         BjDg==
+X-Gm-Message-State: AOAM531mUPtHDkmUVAsyPK47Vb0hBsCC8QvPQfImJlnmz/a3PK0kbc9w
+        PwFdyEQ/GYEWJv6matu+p5q1xM7CgQ==
+X-Google-Smtp-Source: ABdhPJyIxX/pgNSosZqNZrFYxs8Y290e+/pyevS6y2Iv5Xo5Aq3HK1aLOyCRKgUFIe23raEDR7Kbkg==
+X-Received: by 2002:a17:907:2058:: with SMTP id pg24mr24835815ejb.63.1592229433198;
+        Mon, 15 Jun 2020 06:57:13 -0700 (PDT)
+Received: from [192.168.33.195] (fastree1.epfl.ch. [192.26.37.52])
+        by smtp.gmail.com with ESMTPSA id g20sm8893044ejk.16.2020.06.15.06.57.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2020 06:57:12 -0700 (PDT)
+From:   Adrian Fiergolski <adrian.fiergolski@fastree3d.com>
+X-Google-Original-From: Adrian Fiergolski <Adrian.Fiergolski@fastree3d.com>
+Subject: Re: [cadence-spi] daisy chain
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-spi <linux-spi@vger.kernel.org>,
+        Lukas Wunner <lukas@wunner.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <7cddc1a3-f3a8-37dd-487a-cd2274b7941c@fastree3d.com>
+ <CAMuHMdXzErU5z69=2gks5ySutkGw98O6+f7weiuPUp8uqTx63w@mail.gmail.com>
+ <9bfce379-1878-e8e5-c452-0e24aa263cbb@fastree3d.com>
+ <CAMuHMdWkbVihHqKywxDRW6ucNEySXMa-XEuaVu8Vbx2+kUU-aA@mail.gmail.com>
+Message-ID: <143d0505-33a2-b97f-0088-75def4c1e30d@fastree3d.com>
+Date:   Mon, 15 Jun 2020 15:57:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.8.1
 MIME-Version: 1.0
+In-Reply-To: <CAMuHMdWkbVihHqKywxDRW6ucNEySXMa-XEuaVu8Vbx2+kUU-aA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Language: en-GB
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds i2c devices and muxes to the Sparx5 reference boards.
+Hi Geert,
 
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  38 +++
- .../boot/dts/microchip/sparx5_pcb125.dts      |   4 +
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 237 ++++++++++++++++++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  77 ++++++
- .../boot/dts/microchip/sparx5_pcb_common.dtsi |   4 +
- 5 files changed, 360 insertions(+)
+Thank you for the quick reply.
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 161846caf9c94..cf712e80615da 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -170,6 +170,44 @@ uart2_pins: uart2-pins {
- 				pins = "GPIO_26", "GPIO_27";
- 				function = "uart2";
- 			};
-+
-+			i2c_pins: i2c-pins {
-+				pins = "GPIO_14", "GPIO_15";
-+				function = "twi";
-+			};
-+
-+			i2c2_pins: i2c2-pins {
-+				pins = "GPIO_28", "GPIO_29";
-+				function = "twi2";
-+			};
-+		};
-+
-+		i2c0: i2c@600101000 {
-+			compatible = "snps,designware-i2c";
-+			status = "disabled";
-+			pinctrl-0 = <&i2c_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x00101000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+			i2c-sda-hold-time-ns = <300>;
-+			clock-frequency = <100000>;
-+			clocks = <&ahb_clk>;
-+		};
-+
-+		i2c1: i2c@600103000 {
-+			compatible = "snps,designware-i2c";
-+			status = "disabled";
-+			pinctrl-0 = <&i2c2_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x00103000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+			i2c-sda-hold-time-ns = <300>;
-+			clock-frequency = <100000>;
-+			clocks = <&ahb_clk>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index d7f985f7ee020..91ee5b6cfc37a 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -15,3 +15,7 @@ memory@0 {
- 		reg = <0x00000000 0x00000000 0x10000000>;
- 	};
- };
-+
-+&i2c1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index 9b2aec400101b..18a535a043686 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -7,9 +7,246 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
-+	aliases {
-+	    i2c0   = &i2c0;
-+	    i2c100 = &i2c100;
-+	    i2c101 = &i2c101;
-+	    i2c102 = &i2c102;
-+	    i2c103 = &i2c103;
-+	    i2c104 = &i2c104;
-+	    i2c105 = &i2c105;
-+	    i2c106 = &i2c106;
-+	    i2c107 = &i2c107;
-+	    i2c108 = &i2c108;
-+	    i2c109 = &i2c109;
-+	    i2c110 = &i2c110;
-+	    i2c111 = &i2c111;
-+	    i2c112 = &i2c112;
-+	    i2c113 = &i2c113;
-+	    i2c114 = &i2c114;
-+	    i2c115 = &i2c115;
-+	    i2c116 = &i2c116;
-+	    i2c117 = &i2c117;
-+	    i2c118 = &i2c118;
-+	    i2c119 = &i2c119;
-+	};
-+
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
- };
-+
-+&gpio {
-+	i2cmux_pins_i: i2cmux-pins-i {
-+	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-+		      "GPIO_20", "GPIO_22", "GPIO_36", "GPIO_35",
-+		      "GPIO_50", "GPIO_51", "GPIO_56", "GPIO_57";
-+		function = "twi_scl_m";
-+		output-low;
-+	};
-+	i2cmux_0: i2cmux-0 {
-+		pins = "GPIO_16";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_1: i2cmux-1 {
-+		pins = "GPIO_17";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_2: i2cmux-2 {
-+		pins = "GPIO_18";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_3: i2cmux-3 {
-+		pins = "GPIO_19";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_4: i2cmux-4 {
-+		pins = "GPIO_20";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_5: i2cmux-5 {
-+		pins = "GPIO_22";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_6: i2cmux-6 {
-+		pins = "GPIO_36";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_7: i2cmux-7 {
-+		pins = "GPIO_35";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_8: i2cmux-8 {
-+		pins = "GPIO_50";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_9: i2cmux-9 {
-+		pins = "GPIO_51";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_10: i2cmux-10 {
-+		pins = "GPIO_56";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_11: i2cmux-11 {
-+		pins = "GPIO_57";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+};
-+
-+&axi {
-+	i2c0_imux: i2c0-imux@0 {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+	i2c0_emux: i2c0-emux@0 {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+};
-+
-+&i2c0_imux {
-+	pinctrl-names =
-+		"i2c100", "i2c101", "i2c102", "i2c103",
-+		"i2c104", "i2c105", "i2c106", "i2c107",
-+		"i2c108", "i2c109", "i2c110", "i2c111", "idle";
-+	pinctrl-0 = <&i2cmux_0>;
-+	pinctrl-1 = <&i2cmux_1>;
-+	pinctrl-2 = <&i2cmux_2>;
-+	pinctrl-3 = <&i2cmux_3>;
-+	pinctrl-4 = <&i2cmux_4>;
-+	pinctrl-5 = <&i2cmux_5>;
-+	pinctrl-6 = <&i2cmux_6>;
-+	pinctrl-7 = <&i2cmux_7>;
-+	pinctrl-8 = <&i2cmux_8>;
-+	pinctrl-9 = <&i2cmux_9>;
-+	pinctrl-10 = <&i2cmux_10>;
-+	pinctrl-11 = <&i2cmux_11>;
-+	pinctrl-12 = <&i2cmux_pins_i>;
-+	i2c100: i2c_sfp1 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c101: i2c_sfp2 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c102: i2c_sfp3 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c103: i2c_sfp4 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c104: i2c_sfp5 {
-+		reg = <0x4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c105: i2c_sfp6 {
-+		reg = <0x5>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c106: i2c_sfp7 {
-+		reg = <0x6>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c107: i2c_sfp8 {
-+		reg = <0x7>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c108: i2c_sfp9 {
-+		reg = <0x8>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c109: i2c_sfp10 {
-+		reg = <0x9>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c110: i2c_sfp11 {
-+		reg = <0xa>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c111: i2c_sfp12 {
-+		reg = <0xb>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&i2c0_emux {
-+	mux-gpios = <&gpio 55 GPIO_ACTIVE_HIGH
-+		     &gpio 60 GPIO_ACTIVE_HIGH
-+		     &gpio 61 GPIO_ACTIVE_HIGH
-+		     &gpio 54 GPIO_ACTIVE_HIGH>;
-+	idle-state = <0x8>;
-+	i2c112: i2c_sfp13 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c113: i2c_sfp14 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c114: i2c_sfp15 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c115: i2c_sfp16 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c116: i2c_sfp17 {
-+		reg = <0x4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c117: i2c_sfp18 {
-+		reg = <0x5>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c118: i2c_sfp19 {
-+		reg = <0x6>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c119: i2c_sfp20 {
-+		reg = <0x7>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index 9b2aec400101b..d71f11a10b3d2 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -7,9 +7,86 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
-+	aliases {
-+	    i2c0   = &i2c0;
-+	    i2c152 = &i2c152;
-+	    i2c153 = &i2c153;
-+	    i2c154 = &i2c154;
-+	    i2c155 = &i2c155;
-+	};
-+
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
- };
-+
-+&gpio {
-+	i2cmux_pins_i: i2cmux-pins-i {
-+	       pins = "GPIO_35", "GPIO_36",
-+		      "GPIO_50", "GPIO_51";
-+		function = "twi_scl_m";
-+		output-low;
-+	};
-+	i2cmux_s29: i2cmux-0 {
-+		pins = "GPIO_35";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s30: i2cmux-1 {
-+		pins = "GPIO_36";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s31: i2cmux-2 {
-+		pins = "GPIO_50";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s32: i2cmux-3 {
-+		pins = "GPIO_51";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+};
-+
-+&axi {
-+	i2c0_imux: i2c0-imux@0 {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+};
-+
-+&i2c0_imux {
-+	pinctrl-names =
-+		"i2c152", "i2c153", "i2c154", "i2c155",
-+		"idle";
-+	pinctrl-0 = <&i2cmux_s29>;
-+	pinctrl-1 = <&i2cmux_s30>;
-+	pinctrl-2 = <&i2cmux_s31>;
-+	pinctrl-3 = <&i2cmux_s32>;
-+	pinctrl-4 = <&i2cmux_pins_i>;
-+	i2c152: i2c_sfp1 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c153: i2c_sfp2 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c154: i2c_sfp3 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c155: i2c_sfp4 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-index 1f99d0db1284f..9d1a082de3e29 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-@@ -13,3 +13,7 @@ &uart0 {
- &uart1 {
- 	status = "okay";
- };
-+
-+&i2c0 {
-+	status = "okay";
-+};
--- 
-2.27.0
+On 15.06.2020 15:07, Geert Uytterhoeven wrote:
+> Hi Adrian,
+>
+> CC devicetree
+>
+> On Mon, Jun 15, 2020 at 3:01 PM Adrian Fiergolski
+> <adrian.fiergolski@fastree3d.com> wrote:
+>> On 13.06.2020 09:33, Geert Uytterhoeven wrote:
+>>> On Fri, Jun 12, 2020 at 6:26 PM Adrian Fiergolski
+>>> <adrian.fiergolski@fastree3d.com> wrote:
+>>> I have a daisy chain of three ltc2634 slaves (iio/dac/ltc2632.c)
+>>> connected to a single chip select of the cadence-spi master. I have the
+>>> impression such a configuration is supported by none of those two
+>>> drivers. I could try to extend both, however, I haven't found any other
+>>> SPI driver, where I could find implementation inspiration. Is it
+>>> supported by kernel?
+>>>
+>>> drivers/gpio/gpio-max3191x.c supports "#daisy-chained-devices".
+>>> drivers/gpio/gpio-74x164.c supports multiple shift registers through the
+>>> "registers-number" DT property.
+>>>
+>>> So both drivers handle this in their SPI slave drivers.
+>>>
+>>> Of course this does not handle the mixed case, i.e. daisy-chaining
+>>> different types of devices.
+>>>
+>>> The documentation mentions only about the common 'daisy-chained-devices'
+>>> property (devicetree/bindings/common-properties.txt). However, in order
+>>> to try to implement it in the master driver, IMHO, the spi subsystem
+>>> would need to have a call 'no-operation' to other nodes on the
+>>> daisy-chain, which are not addressed by the given SPI access. Is there
+>>> any recommended approach to address this case?
+>>>
+>>> Supporting this in a generic way would indeed be nice, as it would mean
+>>> individual SPI slave drivers no longer have to care about it.
+>>> However, that may be difficult, as the master needs to known which
+>>> dummy (no-op) data is safe to shift through the non-addresses SPI slaves.
+>> In fact, the ultimate solution would be to have it solved at the level
+>> of the spi subsystem:
+>>
+>>   * /spi_device struct/ would contain extra callback which returns msg
+>>     to be sent for no operation.
+>>   * spi_device struct would contain a pointer to the list describing the
+>>     given daisy chain (list of spi_devices on the chain)
+>>   * /spi_device struct /would contain extra u8 daisy_chain_msg_length
+>>     indicating length of a command of the addressed device if it's on
+>>     the daisy chain
+>>     For example, in case of the ltc2634 device, the regular message
+>>     consists of 24 bits, but when device is a part of a daisy chain, the
+>>     messages are 32 bits. This 32 would be stored in
+>>     /daisy_chain_msg_length./
+>>   * When /spi_write/ was called (include/linux/spi/spi.h), the
+>>     /spi_message_init_with_transfer/ would create a msg of length equal
+>>     to a sum of /daisy_chain_msg_length/ of all devices on the chain.
+>>     Afterwards, in /spi_message_init_with_transfers/, the actual message
+>>     would be filled with the command of the addressed device on the
+>>     chain and no_operation content for all other devices on the chain
+>>     not being addressed
+> Sounds good to me.
+>
+>>   * I think in such a case, the /daisy-chained-devices /property would
+>>     be not used, as chains would be build basing on the assigned
+>>     chipselect (reg property).
+> So you still have to describe the chain in DT in some way.
+> As there can be only a single sub node with the same unit address
+> (= chip select), you probably need a container with that address, which
+> would contain all devices in the chain, in order (unit addresses 0, 1, ...).
+
+Good point. So maybe at the level of the device tree, it could be
+described like that (based on the spi-cadence example):
+
+        spi0: spi@ff040000 {
+            compatible = "cdns,spi-r1p6";
+            status = "disabled";
+            interrupt-parent = <&gic>;
+            interrupts = <0 19 4>;
+            reg = <0x0 0xff040000 0x0 0x1000>;
+            clock-names = "ref_clk", "pclk";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            power-domains = <&zynqmp_firmware PD_SPI_0>;
+            daisy-chain0 : daisy_chain@0 {
+               #address-cells = <1>;
+               #size-cells = <0>;
+               reg = <0>;
+               daisy-chained-devices = 2;
+
+               dac0: ltc2632@0 {
+                   compatible = "lltc,ltc2634-l12";
+                   reg = <0>;
+                   spi-max-frequency = <1000000>;
+               };
+               dac1: ltc2632@1 {
+                   compatible = "lltc,ltc2634-l12";
+                   reg = <1>;
+                   spi-max-frequency = <2000000>;
+               };
+           };
+        };
+
+Once a node has daisy-chanied-devices property defined,
+of_register_spi_device (spi.c) will interpret it as a daisy chain. I
+will assume, that for the given chain the lowest frequency of the whole
+chain should be used. When it comes to the mode, as in case of
+incompatibility no much can be done anyway, the mode of the addressed
+spi device will be used.
+
+>
+>> If you agree with the above description, I could try to implement it. Of
+>> course any suggestion are welcome, however, I would like to have a
+>> working solution until end of this week, so I would appreciate an active
+>> feedback. As my SoC works with kernel v4.19, I would implement it for
+>> it, test it, and move it afterwards to the master version (I hope, there
+>> were no big changes in the SPI subsystem, right?).
+> Having something that works by the end of the week sounds doable to.
+> Getting it in shape for upstreaming is a different thing...
+
+Let's try then. As I wrote earlier, I will try to implement it and test
+it with 4.19. Afterwards, I will share it with you for a general concept
+review. Once no comments, I will try to move it to the master and we can
+start from there the upstreaming process.
+
+Regards,
+
+Adrian
+
 
