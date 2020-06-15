@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 134D31FA02A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 21:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B85A1FA066
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 21:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729861AbgFOT0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 15:26:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49064 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729854AbgFOT0d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jun 2020 15:26:33 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0B9420756;
-        Mon, 15 Jun 2020 19:26:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592249193;
-        bh=AvkDF1W+evs4ACyDeBmJZSphxtaBgYojELjru6qP34U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AL6Ge9s0gex0hxoxM3nzvCoe5DV/SPRIHO8CUoZbbay9M628GxRDagsRytBs1A9hF
-         IsifoHGmtCVGfPlnC3zKNzsG6zYkedW5VzfUXPM9n6gdKYZVYEA+h/q2CB3/L5Qk9H
-         XMKdQOOeOQeTwF6cws0Y/DjmJP/RimvZu81zBaXI=
-Date:   Mon, 15 Jun 2020 20:26:30 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>, lukas@wunner.de,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>, linux-kernel@vger.kernel.org,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Martin Sperl <kernel@martin.sperl.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH v2] spi: bcm2835: Enable shared interrupt support
-Message-ID: <20200615192630.GC4447@sirena.org.uk>
-References: <20200605132037.GF5413@sirena.org.uk>
- <2e371a32-fb52-03a2-82e4-5733d9f139cc@arm.com>
- <06342e88-e130-ad7a-9f97-94f09156f868@arm.com>
- <d3fe8b56-83ef-8ef0-bb05-11c7cb2419f8@gmail.com>
- <a6f158e3-af51-01d9-331c-4bc8b6847abb@arm.com>
- <20200608112840.GC4593@sirena.org.uk>
- <bb9dbf11-9e33-df60-f5ae-f7fdfe8458b4@gmail.com>
- <20200615170031.GA4447@sirena.org.uk>
- <692bc94e-d574-e07a-d834-c0d569e87bba@gmail.com>
- <2f354ed0-9fb7-59ea-ddd1-78703d9c818e@arm.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dOtxUVmLoGkyu1PA"
-Content-Disposition: inline
-In-Reply-To: <2f354ed0-9fb7-59ea-ddd1-78703d9c818e@arm.com>
-X-Cookie: Offer may end without notice.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1729714AbgFOTiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 15:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728571AbgFOTiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 15:38:17 -0400
+Received: from mail-qk1-x74a.google.com (mail-qk1-x74a.google.com [IPv6:2607:f8b0:4864:20::74a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F281C061A0E
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 12:38:17 -0700 (PDT)
+Received: by mail-qk1-x74a.google.com with SMTP id i82so15027452qke.10
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 12:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=5eOZUAynrB54V2IFcB0rduao9pIQ/GV86N0Z7+fYQuk=;
+        b=Rw0geJKsbkTzCx1CNT4BSLxHeMF0uXmJ36DSuJbfRs4jqw4O2fIZranQppKk4Jixi8
+         +PsChKOjN9TYHcZWdBaAfTRyuHu0eLt4X9zTn3llYtSQgkjB/vPmyxyW58sW7ctcVK6m
+         nALDmJNiS4frYolhjIc8TpvVWJciw7bTzbQpxvkOhMMFzHKVk6a/Lyg106MmWoeiSKpl
+         96LPpNnfTvX0aqrd9b1SUmmES1oF/eC0uTR43jb1rdZOyuO1fUM3hZ8SW0QZsPKOKsVa
+         UA4DWhKxW3I484NOmuqfRT1CtZgBpB5VMxHbYuyJjmw62cp0wsilI6EyfpmPpO8G6TTZ
+         MvLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=5eOZUAynrB54V2IFcB0rduao9pIQ/GV86N0Z7+fYQuk=;
+        b=p0t8Xz7VYujpBfALCk/W458c9tpcjae1/JkY+62HfMpGmhwizXXmcOzgYeOdNpw6jD
+         4w5hHiQwcqaayAaTLR2p8v+rb3cV6aONk4UuW/oqnlCaC0fjkeRMKtU4/sqA7XXl/s/C
+         FHFbJfgdTo4ko6dHCL+c7nHbjUY0Lo+FOQD1I7q+7Irdn6k5FisMfLWwVruxV3IEDnrd
+         4UuK1Ow9jq5+rXGLKD8l9p3WjnBL476AS20tF1Kma/gI77HwWuQXxLTpwwG77Tkk/gRf
+         EbreKWnu2qVM+cpwUsgt8Yxeux/cSlWSVE4+zG84YI4rjsNl7BvQxMyW/gZSG++4eeaE
+         Ps0w==
+X-Gm-Message-State: AOAM530ToumiX8tWLI5WoLyQH0Y4rFLswyRU9MEkXyuDTkDrDUruwyC5
+        La5kuPnSJ3I3dv7m4c27M5VciPbgpr2J
+X-Google-Smtp-Source: ABdhPJwRDxMUcF+Z2stea+XUcMYbmNoEZH2WRU4z72FyekNDlYKYCgYKDnS0rsS9L27ixycQv8H4OQs3X1+s
+X-Received: by 2002:a0c:ed26:: with SMTP id u6mr25754393qvq.141.1592249896661;
+ Mon, 15 Jun 2020 12:38:16 -0700 (PDT)
+Date:   Mon, 15 Jun 2020 15:38:09 -0400
+Message-Id: <20200615193811.233737-1-jnchase@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.27.0.290.gba653c62da-goog
+Subject: [PATCH v5 0/2] CH7322 CEC controller driver
+From:   Jeff Chase <jnchase@google.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, Jeff Chase <jnchase@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add device driver and device tree bindings for a Chrontel CEC
+conroller. This is an I2C device that can send and receive CEC
+messages.
 
---dOtxUVmLoGkyu1PA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes from v4:
+- rebase onto master (vendor-prefixes.yaml already updated)
 
-On Mon, Jun 15, 2020 at 06:31:58PM +0100, Robin Murphy wrote:
+Changes from v3:
+- address devicetree comments
+- revert interrupt mask/unmask in cec adapter enable
+  (the driver relies on the interrupt to get the physical address)
 
-> Now that I've been inclined to go and look up the documentation, are we sure
-> this so-very-contentious check is even correct? From my reading of things
-> we're checking whether the RXR interrupt function is *enabled*, which still
-> says nothing about whether either condition for the interrupt being
-> *asserted* is true (RXR = 1 or DONE = 1). Thus if more than one SPI instance
-> is active at once we could still end up trying to service an IRQ on a
-> controller that didn't raise it.
+Changes from v2:
+- fix formatting errors
+- mask and unmask interrupt in cec adapter enable
 
-OK, I've pulled the patch from the queue for now :/
+Changes from v1:
+- fix formatpatch.pl --strict errors
+- additional comments
+- enable and program logical address register
+- add flags to aid interpreting transmit done status
+- move ch7322 out of devicetree trivial devices
 
---dOtxUVmLoGkyu1PA
-Content-Type: application/pgp-signature; name="signature.asc"
+Jeff Chase (2):
+  dt-bindings: Add ch7322 media i2c device
+  media: cec: i2c: ch7322: Add ch7322 CEC controller driver
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/media/i2c/chrontel,ch7322.yaml   |  67 +++
+ MAINTAINERS                                   |   8 +
+ drivers/media/cec/Kconfig                     |   1 +
+ drivers/media/cec/Makefile                    |   2 +-
+ drivers/media/cec/i2c/Kconfig                 |  14 +
+ drivers/media/cec/i2c/Makefile                |   5 +
+ drivers/media/cec/i2c/ch7322.c                | 503 ++++++++++++++++++
+ 7 files changed, 599 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+ create mode 100644 drivers/media/cec/i2c/Kconfig
+ create mode 100644 drivers/media/cec/i2c/Makefile
+ create mode 100644 drivers/media/cec/i2c/ch7322.c
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7ny2YACgkQJNaLcl1U
-h9Dlcwf/TI9wOgBtOFPjlWSb4Y2ZgnY4A2yEniFWHZl5+Z/hDkPg8DQB5gpHbOJB
-aq6nJ/zdl7Ls8/2fAZFBLoKdl1x02xn0g50XxakTsSSVgaumCRRjx/bZkpnWDRMi
-hOv3B7MZ/8QIJaoW4XW9h4Gr+FUmYL7OGkVcE0ZfPkN+raFcKBhRC6J3CZODGONN
-xa7O7JtoQu8TFEnp97ymMxfxpWdiyGRfkz0eCJMiFLjv+1CUcneJEMDJ+RRZzQbZ
-/KAoGLuKCfm0fFD5QlI9XwsSEVpPa0BHmSWbGa+cxxRZMqq0EnmYzL4TT9twKHXi
-QK/ulZP2pSHvw+ZBQfDln2Mm1nPbhQ==
-=3Gjc
------END PGP SIGNATURE-----
+-- 
+2.27.0.290.gba653c62da-goog
 
---dOtxUVmLoGkyu1PA--
