@@ -2,146 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 395CF1FA3B9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 00:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817FF1FA409
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 01:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbgFOWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 18:51:49 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:18838 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726586AbgFOWvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jun 2020 18:51:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1592261508; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ezmSdU6tYLdFTOr1T+ah81x42+90GeQROYmrVSVF2Ys=;
- b=r7tHGJO6MAv47wxpJmg4zH6O1OrZHjtdu2IcpaS43yNmITwHKD7S3xc0eoBjaDeHV+cvMOAd
- nCYwZ0p2D8X4Cv4CTA1bTRdQ+I2MdnAxv0iQpIjC6Eu1uxXzrFzs/u5C7Mbs7pp5txNnGdZf
- sCHa4mSFsA6uXphaOJkxW/Ejpwc=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 5ee7fb83c4bb4f886dc8752f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Jun 2020 22:51:47
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 25C20C43391; Mon, 15 Jun 2020 22:51:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: tanmay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C0D19C433CB;
-        Mon, 15 Jun 2020 22:51:45 +0000 (UTC)
+        id S1726600AbgFOXUc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 15 Jun 2020 19:20:32 -0400
+Received: from mail.bnv.gob.ve ([201.249.200.115]:54478 "EHLO
+        correo.bnv.gob.ve" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726313AbgFOXUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 19:20:32 -0400
+Received: from localhost (localhost.bnv.gob.ve [127.0.0.1])
+        by correo.bnv.gob.ve (Postfix) with ESMTP id C47663633492;
+        Mon, 15 Jun 2020 17:47:14 -0400 (-04)
+Received: from correo.bnv.gob.ve ([127.0.0.1])
+        by localhost (correo.bnv.gob.ve [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id OQltO5yaqU9D; Mon, 15 Jun 2020 17:47:14 -0400 (-04)
+Received: from localhost (localhost.bnv.gob.ve [127.0.0.1])
+        by correo.bnv.gob.ve (Postfix) with ESMTP id 81E8C3633490;
+        Mon, 15 Jun 2020 17:47:14 -0400 (-04)
+X-Virus-Scanned: amavisd-new at bnv.gob.ve
+Received: from correo.bnv.gob.ve ([127.0.0.1])
+        by localhost (correo.bnv.gob.ve [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id FOAbAMMmMDSF; Mon, 15 Jun 2020 17:47:14 -0400 (-04)
+Received: from [10.122.16.20] (unknown [105.12.7.63])
+        by correo.bnv.gob.ve (Postfix) with ESMTPSA id 64AD73633463;
+        Mon, 15 Jun 2020 17:47:04 -0400 (-04)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 15 Jun 2020 15:51:45 -0700
-From:   tanmay@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     robh+dt@kernel.org, sam@ravnborg.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        seanpaul@chromium.org, robdclark@gmail.com,
-        aravindh@codeaurora.org, abhinavk@codeaurora.org
-Subject: Re: [PATCH v6 0/5] Add support for DisplayPort driver on
-In-Reply-To: <159200440578.62212.5195358467251573190@swboyd.mtv.corp.google.com>
-References: <20200612015030.16072-1-tanmay@codeaurora.org>
- <159200440578.62212.5195358467251573190@swboyd.mtv.corp.google.com>
-Message-ID: <1eda01da33b620ddee5162be3326853f@codeaurora.org>
-X-Sender: tanmay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: donation of Euro 2,000,000.00.
+To:     Recipients <manuel@info.com>
+From:   "manuel franco" <manuel@info.com>
+Date:   Mon, 15 Jun 2020 23:46:57 +0200
+Reply-To: manuelfrancospende22@gmail.com
+Message-Id: <20200615214704.64AD73633463@correo.bnv.gob.ve>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-06-12 16:26, Stephen Boyd wrote:
+You have a donation of Euro 2,000,000.00.
 
-Thanks for reviews Stephen.
+My name is Manuel Franco from the United States.
 
-> Quoting Tanmay Shah (2020-06-11 18:50:25)
->> These patches add support for Display-Port driver on SnapDragon
->> hardware. It adds
->> DP driver and DP PLL driver files along with the needed device-tree
->> bindings.
->> 
->> The block diagram of DP driver is shown below:
->> 
->> 
->>                  +-------------+
->>                  |DRM FRAMEWORK|
->>                  +------+------+
->>                         |
->>                    +----v----+
->>                    | DP DRM  |
->>                    +----+----+
->>                         |
->>                    +----v----+
->>      +------------+|   DP    +----------++------+
->>      +        +---+| DISPLAY |+---+      |      |
->>      |        +    +-+-----+-+    |      |      |
->>      |        |      |     |      |      |      |
->>      |        |      |     |      |      |      |
->>      |        |      |     |      |      |      |
->>      v        v      v     v      v      v      v
->>  +------+ +------+ +---+ +----+ +----+ +---+ +-----+
->>  |  DP  | |  DP  | |DP | | DP | | DP | |DP | | DP  |
->>  |PARSER| | HPD  | |AUX| |LINK| |CTRL| |PHY| |POWER|
->>  +--+---+ +---+--+ +---+ +----+ +--+-+ +-+-+ +-----+
->>     |                              |     |
->>  +--v---+                         +v-----v+
->>  |DEVICE|                         |  DP   |
->>  | TREE |                         |CATALOG|
->>  +------+                         +---+---+
->>                                       |
->>                                   +---v----+
->>                                   |CTRL/PHY|
->>                                   |   HW   |
->>                                   +--------+
->> 
-> 
-> I've never seen a block diagram for a driver before...
-> 
-It is here for v5. https://patchwork.freedesktop.org/series/74312/
-
->> 
->> These patches have dependency on clock driver changes mentioned below:
->> https://patchwork.kernel.org/patch/11245895/
->> https://patchwork.kernel.org/cover/11069083/
-> 
-> These are merged right? Don't need to include this if it's already
-> merged.
-> 
-Ok Thanks.
-
-> Can you include a changelog in the cover letter too so we know what has
-> changed between versions of the patchset?
-> 
-Sure.
->> 
->> Chandan Uddaraju (4):
->>   dt-bindings: msm/dp: add bindings of DP/DP-PLL driver for Snapdragon
->>   drm: add constant N value in helper file
->>   drm/msm/dp: add displayPort driver support
->>   drm/msm/dp: add support for DP PLL driver
->> 
->> Jeykumar Sankaran (1):
->>   drm/msm/dpu: add display port support in DPU
->> 
-> [...]
->> 
->> 
->> base-commit: 48f99181fc118d82dc8bf6c7221ad1c654cb8bc2
-> 
-> What is this commit? I don't see it in linux-next.
-Here: 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200603&id=48f99181fc118d82dc8bf6c7221ad1c654cb8bc2
+I won the America lottery worth $768 million and I am donating a portion of it to just 5 lucky people and a few Orphanage homes as a memorandum of goodwill to humanity.email: manuelfrancospende@gmail.com
