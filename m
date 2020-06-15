@@ -2,131 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 455431FA277
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 23:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72AF61FA2B5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 23:24:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731758AbgFOVGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 17:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43108 "EHLO
+        id S1731170AbgFOVYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 17:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731436AbgFOVGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 17:06:45 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81864C08C5C5;
-        Mon, 15 Jun 2020 14:06:43 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id q19so18972308eja.7;
-        Mon, 15 Jun 2020 14:06:43 -0700 (PDT)
+        with ESMTP id S1726207AbgFOVYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 17:24:09 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688A1C061A0E;
+        Mon, 15 Jun 2020 14:24:09 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id k13so10219135vsm.13;
+        Mon, 15 Jun 2020 14:24:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=q1JV3CXtWnCDf52pi6FDmUEpTUr0tLhuu541saxjHEI=;
-        b=Z4pY9opfhhvGea/MOsllxIaNmvyJGxZq48BRu+78lWmOHGt/CRLVSdJBc5pNAjpXHX
-         MTK1X+UC3oq+jADFPxMw3RFixQoVxqGxyEV2myuabTpGQusza9gKTzLR8GaYxtqpobJ/
-         N/Xn/fYAiIP3dh8FrcXpTxpkIYQ3apCrpRjDrpXdCMOjbj5fi5jzIhU7pLr+X2Au9JIX
-         w33lHhOY0nztFZ7cOZvH8xmY8SAvDWz+4j67n4D7xfRoY93MdZd1flfl0X+nCHtM4Hsi
-         0VELaneQkb88GPsN5ruEpfY1Q/3gBdsK4HG5HGXpsw2rf56C8rupaCLjvZMPyFQzVpeo
-         GyUw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mdu8X+Q7CqBtC/GLB2icKvUv+XOLxvfh0ORFA3IvD2U=;
+        b=dhc1djqDcafE5BR0hNJ7YzYzE0xG3+kRVdlEAA7+5Vdy6rvya4U5eD/OBiqQr6yaIb
+         Q69HGbizyWmvOvLLVsjD7Re3mYqiTearF3vcfrmfW60mkafC8zGPiSFbm2j6QCwgecoN
+         Yv523l9WIBb4DlH+/LOsuq0CY06PDtpr21EjhWj5dsNZdlRozNlfoHGBRGrVpWQyUL7R
+         tGoVsWDsKy0v2+7PElbivcnBSfUw4hU4DSQKHdxlJyOxv3oUhzhEOlfK7hUi/iMit4wd
+         xbGhOI9Smc6JZeuoo9kFji/zIJRxSUMMPRGv8JbpHvDmSSEC4LgngYJozCG1cWXR5DXp
+         p4bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=q1JV3CXtWnCDf52pi6FDmUEpTUr0tLhuu541saxjHEI=;
-        b=ucNswi4DtA+0UrdGlBckvTGLZoXptfumHeCCs2lXQZhFO22KmFhJR3IBv/425G9tjO
-         0xDhq2Wmzno19TLvoM+2YbZdkXfatoYKAnEFnHR7a0uVzW+5IlGRHqBTj1VjmssOpQUm
-         JePHlfqBZtBSbh8WXH28BPuGxXTNq9dU6abfFoWD+3EWM0xXXHk+PmUNuO8qsSBk5zXA
-         aft++8/DcyU45IXAsec9drTCmxOR8s5P6rU67raZFzeHT3PyVyIwJA3fBliOa+C9/tIs
-         hKe3YNN8oDBHG4EqcCZvToVF+EzffQlYuoNEGVTJhD22QmmU5Ly7jSmDXy9cmrcRvzHc
-         CuEQ==
-X-Gm-Message-State: AOAM530TUrHR9DwMIx3lED/lAmc8YVrfMuAayLYQHbz0qFAUBACMOJ+P
-        J0/SKYelXq0QjjcnOskHSWE=
-X-Google-Smtp-Source: ABdhPJxlXYUjd15RFk8CBG6UIc9d/yo7kuVUtZIdTWjh+B9ECG73/qaJPjEYy/EXD89DLyDCtK6blQ==
-X-Received: by 2002:a17:906:1184:: with SMTP id n4mr5224874eja.115.1592255202187;
-        Mon, 15 Jun 2020 14:06:42 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host-95-238-254-39.retail.telecomitalia.it. [95.238.254.39])
-        by smtp.googlemail.com with ESMTPSA id d5sm9662226ejr.78.2020.06.15.14.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2020 14:06:41 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v7 12/12] PCI: qcom: Replace define with standard value
-Date:   Mon, 15 Jun 2020 23:06:08 +0200
-Message-Id: <20200615210608.21469-13-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0.rc0
-In-Reply-To: <20200615210608.21469-1-ansuelsmth@gmail.com>
-References: <20200615210608.21469-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mdu8X+Q7CqBtC/GLB2icKvUv+XOLxvfh0ORFA3IvD2U=;
+        b=JZnAgmRcTYbK0Oyh3BkIKbA57bHPPyLf+D0871IL8WQtyo4Ld+PCryczP+YcXn7ptk
+         zyCbSzKw3xf+bfAvw/QzJyex1qinjaLTwAqUck/8R3FgKWzMiZylhYvdaWi8wVTBJgjK
+         Z/KesZbaSfglk4QNlZExei2Jgjr23U5UclQ5shHFQBwBF0y+cjqIuulpsFFj215AEs65
+         KCdFm4EA3NLOe10w+SC1kPFKSFIZqIlnH9y1xaLfym6XFNFUg4RUJFupW8DRZX2fhDA5
+         Zjg0/6/dmOEWARaqTubgW2AV4IV5sjVXDbSoJw2tnFRk9qvpuxi719eilk1xuMC6Yo8p
+         OuiA==
+X-Gm-Message-State: AOAM531AZFrMIgaSE9xrCphg604NrExTNsB5GWja3kYNI2/AxMO4A3nl
+        X8/wSLhDxc2mKSMUvXXJoUq0wkY6wcgurpPphVI=
+X-Google-Smtp-Source: ABdhPJzXrIs+SUF0pylq1xp8/iremWFjDjUX4s9YS4mC3ANMJzk0FVhHmuVLovqwSKQhHNbapA9FF6FCdnfIK5ySESo=
+X-Received: by 2002:a67:b149:: with SMTP id z9mr20148246vsl.85.1592256248206;
+ Mon, 15 Jun 2020 14:24:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200610120131.3069-1-matthias.schiffer@ew.tq-group.com>
+ <20200610120131.3069-4-matthias.schiffer@ew.tq-group.com> <20200610145954.GA135509@ravnborg.org>
+ <44d3b82a11fc292f0aa3f60a8ccebd4e8ce5d3e8.camel@ew.tq-group.com>
+In-Reply-To: <44d3b82a11fc292f0aa3f60a8ccebd4e8ce5d3e8.camel@ew.tq-group.com>
+From:   Emil Velikov <emil.l.velikov@gmail.com>
+Date:   Mon, 15 Jun 2020 22:20:27 +0100
+Message-ID: <CACvgo50UoeCQ7ta0VPCWbskKL+s=C1ADyEz8P9bEtgebYcTZ0Q@mail.gmail.com>
+Subject: Re: (EXT) Re: [PATCH 3/4] drm/panel: simple: add CDTech
+ S070PWS19HP-FC21 and S070SWV29HG-DC44
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lots of define are actually already defined in pci_regs.h, directly use
-the standard defines.
+Hi Matthias,
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 15 +++++----------
- 1 file changed, 5 insertions(+), 10 deletions(-)
+On Thu, 11 Jun 2020 at 08:54, Matthias Schiffer
+<matthias.schiffer@ew.tq-group.com> wrote:
+> On Wed, 2020-06-10 at 16:59 +0200, Sam Ravnborg wrote:
+> > On Wed, Jun 10, 2020 at 02:01:30PM +0200, Matthias Schiffer wrote:
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index c40921589122..a23d3d886479 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -40,11 +40,6 @@
- #define L23_CLK_RMV_DIS				BIT(2)
- #define L1_CLK_RMV_DIS				BIT(1)
- 
--#define PCIE20_COMMAND_STATUS			0x04
--#define CMD_BME_VAL				0x4
--#define PCIE20_DEVICE_CONTROL2_STATUS2		0x98
--#define PCIE_CAP_CPL_TIMEOUT_DISABLE		0x10
--
- #define PCIE20_PARF_PHY_CTRL			0x40
- #define PHY_CTRL_PHY_TX0_TERM_OFFSET_MASK	GENMASK(20, 16)
- #define PHY_CTRL_PHY_TX0_TERM_OFFSET(x)		((x) << 16)
-@@ -73,8 +68,8 @@
- #define CFG_BRIDGE_SB_INIT			BIT(0)
- 
- #define PCIE20_CAP				0x70
--#define PCIE20_CAP_LINK_CAPABILITIES		(PCIE20_CAP + 0xC)
--#define PCIE20_CAP_ACTIVE_STATE_LINK_PM_SUPPORT	(BIT(10) | BIT(11))
-+#define PCIE20_DEVICE_CONTROL2_STATUS2		(PCIE20_CAP + PCI_EXP_DEVCTL2)
-+#define PCIE20_CAP_LINK_CAPABILITIES		(PCIE20_CAP + PCI_EXP_LNKCAP)
- #define PCIE20_CAP_LINK_1			(PCIE20_CAP + 0x14)
- #define PCIE_CAP_LINK1_VAL			0x2FD7F
- 
-@@ -1095,15 +1090,15 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
- 		pcie->parf + PCIE20_PARF_SYS_CTRL);
- 	writel(0, pcie->parf + PCIE20_PARF_Q2A_FLUSH);
- 
--	writel(CMD_BME_VAL, pci->dbi_base + PCIE20_COMMAND_STATUS);
-+	writel(PCI_COMMAND_MASTER, pci->dbi_base + PCI_COMMAND);
- 	writel(DBI_RO_WR_EN, pci->dbi_base + PCIE20_MISC_CONTROL_1_REG);
- 	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + PCIE20_CAP_LINK_1);
- 
- 	val = readl(pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
--	val &= ~PCIE20_CAP_ACTIVE_STATE_LINK_PM_SUPPORT;
-+	val &= ~PCI_EXP_LNKCAP_ASPMS;
- 	writel(val, pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
- 
--	writel(PCIE_CAP_CPL_TIMEOUT_DISABLE, pci->dbi_base +
-+	writel(PCI_EXP_DEVCTL2_COMP_TMOUT_DIS, pci->dbi_base +
- 		PCIE20_DEVICE_CONTROL2_STATUS2);
- 
- 	return 0;
--- 
-2.27.0.rc0
+> > > +   .vrefresh = 60,
+> >
+> > .vrefresh is no longer present, please drop.
+>
+> I based my patches on the branch drm-next of
+> https://cgit.freedesktop.org/drm/drm, should I have used a different
+> branch?
+>
+Small tip for the future:
 
+The best way to find the correct tree is to check with the MAINTAINERS
+file or via ./scripts/get_maintainer --scm ...
+
+-Emil
