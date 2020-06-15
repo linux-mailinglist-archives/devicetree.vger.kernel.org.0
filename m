@@ -2,251 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 314341F957D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 13:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D293E1F959D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 13:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729665AbgFOLnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 07:43:13 -0400
-Received: from mail-eopbgr80051.outbound.protection.outlook.com ([40.107.8.51]:49101
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729642AbgFOLnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jun 2020 07:43:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ma7y0JebvfR2qlgpX/GeMfqA09AcySzvtkwKLoE+LNY=;
- b=MJkmyUMhhPw6gwyBlCg/WnIRxV2tkc5bAglDsPQLyxN593H49AkfXSCp5boc8dSwOIAF9hgzoIU96BQhs+53UJEr9PgdANmzDcwfZmB46iVaoJoxVaLO0tSTkZgfK47AGuomPlPfk6BQE3wPwUGffGUIxgF47piVQs4MbFb5ylA=
-Received: from AM7PR03CA0018.eurprd03.prod.outlook.com (2603:10a6:20b:130::28)
- by AM0PR08MB3666.eurprd08.prod.outlook.com (2603:10a6:208:dd::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3088.22; Mon, 15 Jun
- 2020 11:43:05 +0000
-Received: from AM5EUR03FT018.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:20b:130:cafe::5a) by AM7PR03CA0018.outlook.office365.com
- (2603:10a6:20b:130::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3088.19 via Frontend
- Transport; Mon, 15 Jun 2020 11:43:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; vger.kernel.org; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;vger.kernel.org; dmarc=bestguesspass
- action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AM5EUR03FT018.mail.protection.outlook.com (10.152.16.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3088.18 via Frontend Transport; Mon, 15 Jun 2020 11:43:05 +0000
-Received: ("Tessian outbound 8bb15bb571b3:v59"); Mon, 15 Jun 2020 11:43:05 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 990b144d1fa36f7d
-X-CR-MTA-TID: 64aa7808
-Received: from cf8903235265.2
-        by 64aa7808-outbound-1.mta.getcheckrecipient.com id B5F5F256-C443-4D19-97A6-FEC4B41F19FD.1;
-        Mon, 15 Jun 2020 11:43:00 +0000
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id cf8903235265.2
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Mon, 15 Jun 2020 11:43:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gl8cC8LGgthrucel3KrC44ctbPDhNbIH63Pj5ClunFnADdS7Eiym0Gtjed+262hNMZtWKUFoEoFSVBqVtOGJENcfKdDXuXWmiS+ZgTy23hQJOSfi5JHzKnIYWp2+INHjqGA5Ot7JW4aJn0jlAW3f2wWz+amMnI0LDJvziyi9qrOEj+yZD3eg+48h8sjW+6dEYibbubXnfV76Tw2acs4SEq7MXfO7MR5ZPdbxWlUeLqbE2ZcRpKBwl12tuxBj3WuJhkEYDLG4D/x6zQLA56bsGSm+1BVEApIJmA6cpAOwZXrR4OB87iHCmjpPkAge+JU1s5/EZpGLVxXHpJr18pSrDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ma7y0JebvfR2qlgpX/GeMfqA09AcySzvtkwKLoE+LNY=;
- b=MQPU3ZJkkUxtofxS/3AXQKrQr1dPC+MBNIWYNHlz/9DhcOUdEx7NtSPLUdLGJxxtWevKwprf31SSfjXnRMDARkLA/oVPo19kMOr5NUhb7IvSKrXkgmhPRDNtEgyDndGZO0H/2JbSE8tkMhB0upVTBzioy/26ptisvOdG1TJ2AqNHKfp/gGYLymfSCHLiLLfCpBMIjdXxmjPSnvcrD61r5p9Bqi67WwQW4aNz9ZCn7ixSHKVy1Arkaf7wK4fz/lLGKXnkrEKvmD1b0ZmsDi5GIAEkFtKa1/RLyyAzf/v7m0JRcLciBSo70kfASLLiDy4e2pqRaAWROJ375DNfsG8jmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ma7y0JebvfR2qlgpX/GeMfqA09AcySzvtkwKLoE+LNY=;
- b=MJkmyUMhhPw6gwyBlCg/WnIRxV2tkc5bAglDsPQLyxN593H49AkfXSCp5boc8dSwOIAF9hgzoIU96BQhs+53UJEr9PgdANmzDcwfZmB46iVaoJoxVaLO0tSTkZgfK47AGuomPlPfk6BQE3wPwUGffGUIxgF47piVQs4MbFb5ylA=
-Authentication-Results-Original: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=arm.com;
-Received: from DB6PR0801MB1861.eurprd08.prod.outlook.com (2603:10a6:4:73::21)
- by DB6PR0801MB2087.eurprd08.prod.outlook.com (2603:10a6:4:77::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3088.23; Mon, 15 Jun
- 2020 11:42:59 +0000
-Received: from DB6PR0801MB1861.eurprd08.prod.outlook.com
- ([fe80::ac31:e5b9:8aa0:4a33]) by DB6PR0801MB1861.eurprd08.prod.outlook.com
- ([fe80::ac31:e5b9:8aa0:4a33%8]) with mapi id 15.20.3088.029; Mon, 15 Jun 2020
- 11:42:59 +0000
-Date:   Mon, 15 Jun 2020 12:42:20 +0100
-From:   Achin Gupta <achin.gupta@arm.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Sudeep Holla <Sudeep.Holla@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>, nd <nd@arm.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: Add ARM PSA FF binding for
- non-secure VM partitions
-Message-ID: <20200615114220.GE46361@C02TC1ARHF1T>
-References: <20200601094512.50509-1-sudeep.holla@arm.com>
- <20200601094512.50509-2-sudeep.holla@arm.com>
- <20200609223551.GA1620273@bogus>
- <20200610074346.GB15939@willie-the-truck>
- <5B3F18A4-5DA4-411E-9E26-7D25DEE3D414@arm.com>
- <20200611171222.GB7725@willie-the-truck>
- <20200615091639.GD46361@C02TC1ARHF1T>
- <20200615095133.GA2477@willie-the-truck>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200615095133.GA2477@willie-the-truck>
-X-ClientProxiedBy: LO2P265CA0190.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:a::34) To DB6PR0801MB1861.eurprd08.prod.outlook.com
- (2603:10a6:4:73::21)
+        id S1729685AbgFOLwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 07:52:15 -0400
+Received: from sonic311-30.consmr.mail.ir2.yahoo.com ([77.238.176.162]:39754
+        "EHLO sonic311-30.consmr.mail.ir2.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729653AbgFOLwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jun 2020 07:52:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1592221933; bh=+NKq2YP/4c3bLm2HmGhxa/KCZOXr0NIUKHs/ECuC0yk=; h=Date:From:Reply-To:Subject:References:From:Subject; b=Y1RMoN3QuOjJetFg8e2XZhVRs/dthXMFrTWBjwtxvPb3UDX3y14x1TIzKXvUCNEHXfoIL1mNLqIdAz9O/ANiDTjgfRpBI0l1HdxcxPRwWnBrX3qLOvlUmfDDdghEMx7VGG5AP/uLxqd3ltS3HK1p1kg4Y6bClUFdSfv2xQNGNEIeNlrbmOIcxJWFEvXbv1YuoQQBwChYChHzQiUXnBhC5RbEfvtAtxh7/qHIoYeNcKrJZHe3Npbei+Giei4qDsdxM/Hdqg5r1NT0MolazwfucRaXDas1TKtSX7fRa3ZtfX4s+zrFau8XxRfriDit/lUCNV1ZENRi1ZfGm+YwVOdPXQ==
+X-YMail-OSG: XOuJOXMVM1ncEgNaDnWgApxZCwN07uQ39klrsimz51ZOIzdmpNud_1ux.gytQ_j
+ hLg60McYwG.M.frTFdISibW9aBZ94eE01BDvh4HRluYY64bRbfC.z2mU2DrfgOMDyxnS0bY8NNXH
+ 00_UecU0eJwltraS_ZBakHQrOx_1Gt1aDjrq1kFp9p634RS8fqJXSLX4pmufpEXrpEtltego8xS4
+ tQCT3aKKvHsMKxAp4GawllgDMoMZqZ8HvzVobzeRw0NaVWBDym29ELhNUIDt731W7FBranOWcVlm
+ gSbxQiWE_L7p8Vw5BIC1n5Bd6CiF2a9nHl4vndBCDOkrztsIorifhUiXvdILuAgEgpXTy.A5Ptmx
+ VzfXmLiuyntX55d9K9N_8_DucexQIJYYkixAWgY5Y01lhaVpK_Ik2KHxofmbS8.YlDk9BUFpGkBF
+ Ps7jDbqhfJeZQszU6IUBPIU2FA3SLFcBP2sfSYtwP37CTQS9slhgx6LTucQYA1RjusAvRc44gLTF
+ bHtr77njDPDhv3j1UxNgiQ_LMMtDAivQuTW8FKKuF2rJrvCI.zxP8aTZt56A3hX4OM08JQXwsJkq
+ j8xtt32n5waSPVABl2kZD6P4WxnZEo8Bal3T8SDB9WnuZ2mkMoZmvsxRkf00n6OUZUq1QO50vfck
+ _2WFMTyGC9JgExKCfLxrrY4CV.z5l2cxAqX2goTiGXOqZAGf.Zr6VB4SJC2aMeYTyiZRmnnCCUrU
+ W51y4iezVAA4tN3AYyC7wIeCr.pc4Od9XWSwQNurEhseu41I3C5GRv1SCd4WCshXrBaQKwHHZLyD
+ OFRGkaDWZWs4TOQBJAV9d2jMr1ogilf6PWwNSuzQxteWe.fuTaZKGHFE8EKSufrLMrsePiqCpIxE
+ oRwXn.U5S6k4j_KdvgQlNDkluYi2_Ua7dDEYqg8anGBS40dB8RiK99Tju8O19jDes9bB029DA1xJ
+ hn.e.OgnH5hpTTDA4VhmLazryB_PCvW_AMZTGDaUAGLbsMqvuhqPppi8fTwCUd3itEyWDmx_1tP9
+ PT5gsLNundT_2KId.kPGrnFuqFv.aPwvsNqpFoAGwOHTB_2BDLY5UBqgD_JRAR0n0Pw3V2GYitRS
+ kHqA7o8NUjNuCFE1IFfJLlFN1viY_bSPUFHSRhvRv0hiiNj3QZCS44tRBKWDxoIfyShh8jx_BAio
+ ZO0fcj3mgqtcin8x.3m8ju8tXJcfdRPY5FX2zSE_bV0NM.vnIT_iE_jmf1vbPLZQkwqvXx7.0HjK
+ d1Ps6nUiFijIPVVqBVG2ng5YVBNTjXR_ED6nFvNsA0rwiSy7Y.1eyQq1FCecKMKpF7E6NqJ3TzTh
+ SUiM-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.ir2.yahoo.com with HTTP; Mon, 15 Jun 2020 11:52:13 +0000
+Date:   Mon, 15 Jun 2020 11:52:08 +0000 (UTC)
+From:   "Mrs. Mina A. Brunel" <mrs.minaabrunel209@gmail.com>
+Reply-To: mrsminaaaliyahbrunel344@gmail.com
+Message-ID: <1042728165.1621442.1592221928161@mail.yahoo.com>
+Subject: My Dear in the lord
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from C02TC1ARHF1T (217.140.99.251) by LO2P265CA0190.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:a::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3088.21 via Frontend Transport; Mon, 15 Jun 2020 11:42:58 +0000
-X-Originating-IP: [217.140.99.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 71719c1c-e5d6-4e98-44d7-08d8112144c7
-X-MS-TrafficTypeDiagnostic: DB6PR0801MB2087:|AM0PR08MB3666:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM0PR08MB36668BC80C03BD751296865DFF9C0@AM0PR08MB3666.eurprd08.prod.outlook.com>
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;OLM:10000;
-X-Forefront-PRVS: 04359FAD81
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 5NifFQqv5w0MYM6GIJcUdZbam8T8BzjbqsBzdMD9OgucXbeTkrPeSJ6RzygVpq0k1DhSIpw2mSN25T0HkH67m1ZaGsFtxWWcr2Cl/p2Hgwn/J5Qz6tZbBFFZT0Ak1YJwaAKTfTJMDVA95M1/WkblkyDzHJHtgIDomg6UYhj90Pzov/ok5cJ5Y1H+9rUARZ0t0Z33k/r66+/CdivhznpMFb9zr1ahMx+W83RreahpfcVV6QMLZ5gZ9SSVGGKhK87CMjoLdGvBfzJghpjwxrt6W61fL3OsLCXndBzA1MXAkwSXeEN0PH/bb0RbYE7WdxIsOmos5yOQJ1b4z3k/dA30dg==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0801MB1861.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(366004)(346002)(376002)(136003)(39860400002)(4326008)(16526019)(33656002)(186003)(55016002)(6916009)(8676002)(26005)(66946007)(8936002)(66476007)(5660300002)(1076003)(66556008)(9686003)(2906002)(316002)(52116002)(54906003)(44832011)(956004)(33716001)(6496006)(86362001)(83380400001)(478600001)(6666004)(53546011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: j6YNtTGdp/kYjGKTT7VVqkHCfbMbiazhHDp7gbZqaBcCPQJA17uJ0KtYYcppuI6SbRjH7j3/MHbvMMThavkJ/wSqy1V9ZZvlj/CYOQw3JWP2ETf2UkkAwu2Yer6+I2+9Jj9H6Lbjc0YwfJxZf/lKBwfZD40PdrBPkiZ4DjbegT1w/ZRtjs50Kc9OjTsr5jYcNojz6NVmbISE6rW7VJZ3ESMEnBVz/hL6B9qClODGcvowi6EWQ9Qo2yyPFhykeadFX6tuDgq6o4inMM63v1bUfvxwc4zT0YI1ki4YQuBlwv38DRGtOLKz8hMl1SMNYXhdfgDU2qTcQcbWqzxoxB1Oz/tWniBBmGbsBXwh+CUGK5wDr6o5tID3GgXQVjN2pHgOp9kPIS5jnfmpKvaYRoi2b1vqdI1EcxAmgPsFG2wf+SQyxRgnux+CrntbzUEpkwiuh8uXLXtBGF2uLj1OC4MJDM7PNqDNAldlmQaq60DCK7H7kNxRHZP5S7U/zhvwkrr/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0801MB2087
-Original-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT018.eop-EUR03.prod.protection.outlook.com
-X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFTY:;SFS:(4636009)(39860400002)(376002)(136003)(396003)(346002)(46966005)(478600001)(336012)(956004)(70206006)(33716001)(26005)(55016002)(82740400003)(9686003)(186003)(33656002)(54906003)(47076004)(16526019)(5660300002)(70586007)(81166007)(6862004)(356005)(8936002)(1076003)(82310400002)(450100002)(8676002)(316002)(6496006)(86362001)(4326008)(44832011)(2906002)(6666004)(83380400001)(53546011)(36906005);DIR:OUT;SFP:1101;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 0f4457fa-6c72-40f8-5e21-08d8112140ac
-X-Forefront-PRVS: 04359FAD81
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ALL8Vyz8q/ZRn+CcOMmvwfF/6eEL5LUuQdppv+9ry0TOErI/6rhaZS6n0H08f7lomfPw78+T+QBuaf7IZCRt1NbpWBCkca1qN2QDX+1CYB+JgEbJlGvewtZqc9aMIHXIP/rCc7+c3RQcAwpgBIEvh9+7+EWlB9PUbrRn+cdPJB9Rp0tB1rFtN8lH9HgCy1mxHC+YgLCuC+j5ZcfxLGJrXW5a5P63zViSWo+enVmuzA9T+XDcopKZfRi/19LDvPCuj/QUXJgACGkvbKLpp9xAC9Ta/C60braLhiwBUB+W0hkNr38Znkg4OTkA2dLufnlwVbhO3SEYpuXpAzf/dd6ae/pUAurJz4R2c1jl1o3xJXW5HYvtfagHB/DXtJh7P3fJvOwOLc8hxCDLU0IzQeYVqQ==
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2020 11:43:05.7658
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71719c1c-e5d6-4e98-44d7-08d8112144c7
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB3666
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+References: <1042728165.1621442.1592221928161.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.16119 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 15, 2020 at 10:51:34AM +0100, Will Deacon wrote:
-> On Mon, Jun 15, 2020 at 10:16:39AM +0100, Achin Gupta wrote:
-> > On Thu, Jun 11, 2020 at 06:12:23PM +0100, Will Deacon wrote:
-> > > On Thu, Jun 11, 2020 at 03:46:35PM +0000, Achin Gupta wrote:
-> > > > > On 10 Jun 2020, at 08:43, Will Deacon <will@kernel.org> wrote:
-> > > > > On Tue, Jun 09, 2020 at 04:35:51PM -0600, Rob Herring wrote:
-> > > > >> On Mon, Jun 01, 2020 at 10:45:10AM +0100, Sudeep Holla wrote:
-> > > > >>> Add devicetree bindings for a Arm PSA FF-A compliant non-secure partition
-> > > > >>> at virtual interface(VMs).
-> > > > >>>
-> > > > >>> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > > > >>> ---
-> > > > >>> .../devicetree/bindings/arm/arm,psa-ffa.txt   | 47 +++++++++++++++++++
-> > > > >>> 1 file changed, 47 insertions(+)
-> > > > >>> create mode 100644 Documentation/devicetree/bindings/arm/arm,psa-ffa.txt
-> > > > >>
-> > > > >> I'm hoping this goes away if the firmware is discoverable, but if not DT
-> > > > >> bindings are DT schema now.
-> > > > >
-> > > > > We'll need the binding for the kvm host side, because there are plenty
-> > > > > of partition properties that are not discoverable (e.g. number of vCPUs).
-> > > >
-> > > > Just trying to understand the req. a bit better…
-> > > >
-> > > > The FF-A driver in the host can use FFA_PARTITION_INFO_GET to determine
-> > > > the count of partitions and their vCPUs.
-> > > >
-> > > > Is this about a guest being able to find out how many vCPUs it has?
-> > >
-> > > This is about KVM finding out the information it needs in order to spawn
-> > > non-secure partitions. I don't see how it can do that with
-> > > FFA_PARTITION_INFO_GET -- who would respond?
-> >
-> > Right! FFA_PARTITION_INFO_GET is meant to help the FF-A driver in the kernel to
-> > determine partition properties. It assumes that EL2 SW has already read each
-> > partition's manifest and will reply to this ABI.
-> >
-> > IIUC, with protected KVM, this information will have to be a part of the
-> > manifest that the KVM host consumes.
->
-> The host does not consume the manifest directly -- instead, the bootloader
-> will use the manifest to populate these DT nodes. Again, these are *only*
-> for non-secure virtual partitions which are to be managed by KVM.
 
-Yes. Understand and agree. Manifest is an overloaded term. I was using it to
-describe the DT nodes that the host will consume.
 
->
-> > But then, can this be made discoverable (use a SMC for discovery) at all as Rob
-> > had originally suggested. Firmware (Secure world) has no clue and the bootloader
-> > is long gone.
->
-> Make what discoverable?
+My Dear in the lord
 
-I thought the original question was to make partition properties discoverable
-instead of relying on DT nodes. I might have misunderstood. Looks like we are on
-the same page in any case :o)
 
->
-> > Separate topic, protected KVM does not get dibs on the manifest and it relies on
-> > the KVM host to specify the address ranges for each partition? Does this not
-> > mean that the KVM host can control the physical address space each partition
-> > sees. This seems contrary to the isolation guarantees that protected KVM must
-> > provide?
->
-> The host is trusted during early boot, and gives up this trust after
-> initialising EL2 fully. So roughly speaking, we:
->
-> 	* Boot at EL2 and install a shim
-> 	* Drop down to EL2 and start the host kernel
-> 	* Before some initialisation (DT parsing, SMP bringup, etc)
-> 	* Init KVM by calling back up to EL2 to install the full hypervisor
->
-> At that point, the EL1 host is no longer trusted and the last call
-> effectively "locks it out" from EL2.
+My name is Mrs. Mina A. Brunel I am a Norway Citizen who is living in Burki=
+na Faso, I am married to Mr. Brunel Patrice, a politician who owns a small =
+gold company in Burkina Faso; He died of Leprosy and Radesyge, in the year =
+February 2010, During his lifetime he deposited the sum of =E2=82=AC 8.5 Mi=
+llion Euro) Eight million, Five hundred thousand Euros in a bank in Ouagado=
+ugou the capital city of Burkina Faso in West Africa. The money was from th=
+e sale of his company and death benefits payment and entitlements of my dec=
+eased husband by his company.
 
-Ok. Protected KVM (PKVM) must create S2 tables when asked to setup a partition
-by the Host. My main concern is if PKVM must trust the Host to provide the
-correct physical address space ranges for a partition?
+I am sending you this message with heavy tears in my eyes and great sorrow =
+in my heart, and also praying that it will reach you in good health because=
+ I am not in good health, I sleep every night without knowing if I may be a=
+live to see the next day. I am suffering from long time cancer and presentl=
+y I am partially suffering from Leprosy, which has become difficult for me =
+to move around. I was married to my late husband for more than 6 years with=
+out having a child and my doctor confided that I have less chance to live, =
+having to know when the cup of death will come, I decided to contact you to=
+ claim the fund since I don't have any relation I grew up from an orphanage=
+ home.
 
-I guess your point is this is not a problem since PKVM can lock the Host out of
-those address ranges in any case?
+I have decided to donate this money for the support of helping Motherless b=
+abies/Less privileged/Widows and churches also to build the house of God be=
+cause I am dying and diagnosed with cancer for about 3 years ago. I have de=
+cided to donate from what I have inherited from my late husband to you for =
+the good work of Almighty God; I will be going in for an operation surgery =
+soon.
 
-It is a bit counter intuitive that the Host gets to see and potentially
-manipulate information that was verified and extracted by the bootloader from
-the partition's manifest. This hapens before PKVM sees the same
-information. Can't put my finger on what could go wrong though. Depends upon the
-threat model too!
+Now I want you to stand as my next of kin to claim the funds for charity pu=
+rposes. Because of this money remains unclaimed after my death, the bank ex=
+ecutives or the government will take the money as unclaimed fund and maybe =
+use it for selfishness and worthless ventures, I need a very honest person =
+who can claim this money and use it for Charity works, for orphanages, wido=
+ws and also build schools and churches for less privilege that will be name=
+d after my late husband and my name.
 
->
-> > > But you're right that number of vCPUs was a bad example. We also need
-> > > information such as the entry point.
-> >
-> > Yes. From a spec perspective this should be specified in the partition manifest
-> > unless the base address of the loaded image can be assummed to be the entry
-> > point.
->
-> Right, but the format of the manifest isn't defined by the spec so I really
-> don't think it's something that Linux should be dealing with directly.
+I need your urgent answer to know if you will be able to execute this proje=
+ct, and I will give you more information on how the fund will be transferre=
+d to your bank account or online banking.
 
-Agree.
-
-cheers,
-Achin
->
-> Will
+Thanks
+Mrs. Mina A. Brunel
