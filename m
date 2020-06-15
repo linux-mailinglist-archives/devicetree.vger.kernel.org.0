@@ -2,82 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 965841F9CC5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 18:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279CD1F9CF0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 18:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729966AbgFOQQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 12:16:04 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:34750 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729949AbgFOQQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 12:16:03 -0400
-Received: by mail-il1-f196.google.com with SMTP id x18so15870455ilp.1;
-        Mon, 15 Jun 2020 09:16:02 -0700 (PDT)
+        id S1729966AbgFOQRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 12:17:36 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:35912 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727785AbgFOQRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 12:17:36 -0400
+Received: by mail-io1-f67.google.com with SMTP id r77so18530103ior.3;
+        Mon, 15 Jun 2020 09:17:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LceDJi3HuuWFN2rUgpbq9GLOkPnvp0H8zJIFHXcribA=;
-        b=R8rWbmQQ1Ld2NioytF8AOE6s+UHsz3atLKm5HT9H5Fua52uJILAcgnM0R7v6gOgJ/7
-         Gi1tK+bikXadGd4FQld/WRA8ugGq5y8JERAr3p9mlXT+M7kj8xmdd5mjQi+B1pF4Z90p
-         nEgHFOQNkv9dMqUgSJemQWi6+2DU0eOHAbKJlSdrjbG5Tl02LSsV5uXVQa27O1Lwlxkw
-         lNfFJPJOE+yPr4S6gJX2MnKISJL8HQxPLOqWnmVBZk9NDwzdUsWR0h6BW9vA6a6o0Q/2
-         +7RY5zJnn219rlBr2XgI/ESjKSKVuroYE8k3fZYGfmUL21bdOslgXSPn1tyyMbkk6eMs
-         KvoA==
-X-Gm-Message-State: AOAM530PEcVF4AKFW/OQrNTeYnm+A9HZIVd4Mgw90KuDCEh2XHmHKkJu
-        rlE6ZSH9+7eo9pAt1HyW824Fgng=
-X-Google-Smtp-Source: ABdhPJyZayJnee33cEuYPLpvv8OyZZt5YkVa8FQA9aXv9nTs8vxc6i5A2MxwMGdecxLvtPyRUjxzAQ==
-X-Received: by 2002:a92:c6cb:: with SMTP id v11mr27435851ilm.206.1592237761673;
-        Mon, 15 Jun 2020 09:16:01 -0700 (PDT)
+        bh=6gGkie1VJgyejolWVwkstnKk4jWEjffhAsOsdBf85vU=;
+        b=pzhfpJHa0ofgSO67tNRjW60XahuIAkdogxM8FoFMlsHa3G3d/n+l4dqhnSxF5hILMy
+         YDpAGpCl6zgEnFdgGfPjr9Y3O0m6FZLhVBOsEyylZWfp9Xa7Q1Lzh07D0Taq94Hdhn/l
+         T/++bSCEYkDLNUWlTIKTFUhdgDuhpIPl/hJtIPiwRmQsUPNIh9/PuHEL69wbFOuKNOiY
+         bZpuZhTPz0CmPv8HuSK6JzTXKU09LzsMKyH/7SyIiZVy5AjyhQO9tUrgCNCyp5Xl5ih3
+         QIRpO9GMA5wI5IYOIHohP3dcxwuYIsFFdn+retCJ4F7Z1xFGKSi9k+im8WzbC6ySLH3m
+         t5ZQ==
+X-Gm-Message-State: AOAM53152smY+wV/sNKCwCSMQ195+VEVhOqHxHxZlZXvHmnRZ/cw1IS4
+        IpMvCwGEvLDogxHsKw6jaaVf2ms=
+X-Google-Smtp-Source: ABdhPJw/KDrnSwnnbddf4RcRgxXREh25qGZ48O6ynKO5qh7LxGxzK4wVJUt4len6bxDotbgeYXKrsA==
+X-Received: by 2002:a5e:dd45:: with SMTP id u5mr28250638iop.118.1592237855286;
+        Mon, 15 Jun 2020 09:17:35 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g15sm8158427ilr.5.2020.06.15.09.16.00
+        by smtp.gmail.com with ESMTPSA id n12sm8201702iog.25.2020.06.15.09.17.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2020 09:16:01 -0700 (PDT)
-Received: (nullmailer pid 1876770 invoked by uid 1000);
-        Mon, 15 Jun 2020 16:15:59 -0000
-Date:   Mon, 15 Jun 2020 10:15:59 -0600
+        Mon, 15 Jun 2020 09:17:34 -0700 (PDT)
+Received: (nullmailer pid 1880059 invoked by uid 1000);
+        Mon, 15 Jun 2020 16:17:33 -0000
+Date:   Mon, 15 Jun 2020 10:17:33 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     linux-kernel@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-remoteproc@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: k3-dsp: Update bindings
- for C71x DSPs
-Message-ID: <20200615161559.GA1876521@bogus>
-References: <20200612225357.8251-1-s-anna@ti.com>
- <20200612225357.8251-2-s-anna@ti.com>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH] dt-bindings: property-units: Add picoseconds type
+Message-ID: <20200615161733.GA1879978@bogus>
+References: <20200602164219.3159-1-dmurphy@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200612225357.8251-2-s-anna@ti.com>
+In-Reply-To: <20200602164219.3159-1-dmurphy@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Jun 2020 17:53:56 -0500, Suman Anna wrote:
-> Some Texas Instruments K3 family of SoCs have one of more newer
-> generation TMS320C71x CorePac processor subsystem in addition to
-> the existing TMS320C66x CorePac processor subsystems. Update the
-> device tree bindings document for the C71x DSP devices.
+On Tue, 02 Jun 2020 11:42:19 -0500, Dan Murphy wrote:
+> Add the '-ps' picosecond unit suffix for property names.
 > 
-> The example is also updated to show the single C71 DSP present
-> on J721E SoCs.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
 > ---
-> v3:
->  - Dropped Rob's previous Reviewed-by tag due to decent changes in the
->    patch
->  - Replaced the minItems and maxItems from reg with actual items list
->  - Dropped C71 reserved memory nodes from example
-> v2: https://patchwork.kernel.org/patch/11563231/
-> 
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 68 +++++++++++++++----
->  1 file changed, 55 insertions(+), 13 deletions(-)
+>  Documentation/devicetree/bindings/property-units.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
