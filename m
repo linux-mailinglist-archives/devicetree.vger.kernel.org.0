@@ -2,177 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 474F81F9716
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 14:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD7E31F96E9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 14:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729900AbgFOMvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 08:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50820 "EHLO
+        id S1730019AbgFOMpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 08:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729845AbgFOMvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 08:51:04 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C1FC061A0E
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 05:51:03 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id s28so9337281edw.11
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 05:51:03 -0700 (PDT)
+        with ESMTP id S1730005AbgFOMpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 08:45:12 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF7FC061A0E
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 05:45:11 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id l26so14491950wme.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 05:45:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EAByj1ACF3eG5h2YQoy4Zv57kLAIJMEzK1yr/nWTV5c=;
-        b=FiCQlYLTKWwhipqP9kqvJWv/A/Z+VNCbpv6u711mWSu7hINN75IBeaYV8OZikqRIEQ
-         qS8wSh4Lo0ISen5u8EMoDK0Eplz1KkC3+tJaNOJKXYp2Xr39qDBp85rBkvC5EhiiCv72
-         ZNgtiPOQgUSXebknUjgkXJbDKSR9U86BnGZkc=
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5WfldrA7Ybz/CNtCQsbY2j9hmaVRS/lefK2C8B4/ydo=;
+        b=R5VktszuPwRyfKbFUb+M5pY4vbiXCrk4+CjaMUdUvbr7PL1EAycwk6hGg4WlqYqmSY
+         i46OfPU4CdegDGwNZ89JPs5mBGxAqhTNbEV7Eqxql4wv+MFbyHcmJURiBnibI5m9o+Mz
+         95M+LPZV7RdAvnGdDKofnOZsLb4NljOrjzxghwOXeVYOwW1P3B2O7lly8VxrGBEin/5M
+         634k7g8/GeaLN9NVEhvjgSLc/+Rv/LlOHfmPtwECdnW8JBSagOi3A4sT3GVVXvf0dhaf
+         8WyQqLaEYjxztW7LztMm4qjwAeRjtZoyLIeaw6Fi4uh8tljKNIEpNLRIzQDaD7qBNE/j
+         E3bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EAByj1ACF3eG5h2YQoy4Zv57kLAIJMEzK1yr/nWTV5c=;
-        b=DkJZARx9/nl2NudMbDUQ3PIkUQiIavDAWpCMP9DFE6kSPWEs0+nv5/0SGMm3Tgyjpl
-         rtBNMR4hqStYpa46EUYY4gHUNKys3kyuJZ/jgJ3FVePSXhbCj+Iz6xRSg/llIAUerOPZ
-         fQ5qjeb3w0kU7NegJ5isnAj/Z8Jg55mnumtFSNxrY36MQGdWwS9ahXYmM0A+zw87ChEU
-         YoxoXkX3txU+kTB76CVaoMqZD5lPTeSHQhUUkBMeI9PFF5nWVs0gOti7RsJm8gN18XDJ
-         yAzQLweRHlwF8c18i4SbJtqSK0fSszm8Zk/XQfB/XJh7z/ATWjQTxHj2nJMyvp37WDOZ
-         NHkQ==
-X-Gm-Message-State: AOAM533+n5Gby11cj47zMOdVX/5W+WjKZrjZZ5b4MS2LCavQjVwOX/Wj
-        Ng3ly7VVLAg3CCB21gpHCeJ4+UbL4qL5xQ==
-X-Google-Smtp-Source: ABdhPJwM5V+X3VdcznEGs1vBXRiOeWcL1QK4ZKs86U4tmE2mB3nFUqPshlt8PnNDEHxTmXa9lYUqWg==
-X-Received: by 2002:a50:e08c:: with SMTP id f12mr23563619edl.233.1592225461907;
-        Mon, 15 Jun 2020 05:51:01 -0700 (PDT)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
-        by smtp.gmail.com with ESMTPSA id z10sm8995049ejb.9.2020.06.15.05.51.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jun 2020 05:51:01 -0700 (PDT)
-Received: by mail-wm1-f48.google.com with SMTP id l17so14530675wmj.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 05:51:01 -0700 (PDT)
-X-Received: by 2002:a7b:c2a9:: with SMTP id c9mr13160873wmk.11.1592225097322;
- Mon, 15 Jun 2020 05:44:57 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5WfldrA7Ybz/CNtCQsbY2j9hmaVRS/lefK2C8B4/ydo=;
+        b=mr2PIK9Tr/84e/R2mQRkMamVkzNWsufnn8s2XwgjZlDcYnGUTVO0a0egGk1DPgCRlF
+         jlP1uNsdU6R9UMl2iAm9WcY3KaSIBP6xjVY1ptQZE/xtQt+K76y+yoiWJMjfJa8jDYx4
+         H5p8Vqwm6Ty+t7rJIuK7u3C6DUPcYV1K7AFmuQglCqbFnPLLTHFm8s5x6RBTjjBBLjtS
+         /vLwNN9cCAfviMFTd9lc2hdc30Ztf/XpWTKuTfBwOSOi7R+qQG02l3HpZUwoXkISHDc2
+         k8qUvbbyvxeiD0s2CXf6gc7LuznYGpggUF0jXtkbHxPJTwBSsKIyKNoc/oUbz7UsZHhW
+         758w==
+X-Gm-Message-State: AOAM5314J6BnlNrCw8tDEB0ayv0ka8+H+BspYbrudOtn4WN6RZmc4p7o
+        G0vhXRhq0dbzYv7ouNIhR6GUwQ==
+X-Google-Smtp-Source: ABdhPJyOUgN6W95sji6BAD0z9Le4kY3qbFFlPrhTK7NksEopHHTFOHCgqndp2ELuG3T5LFhG8TYLWQ==
+X-Received: by 2002:a1c:188:: with SMTP id 130mr13072660wmb.93.1592225109747;
+        Mon, 15 Jun 2020 05:45:09 -0700 (PDT)
+Received: from x1 (i59F66838.versanet.de. [89.246.104.56])
+        by smtp.gmail.com with ESMTPSA id c16sm24705585wrx.4.2020.06.15.05.45.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2020 05:45:09 -0700 (PDT)
+Date:   Mon, 15 Jun 2020 14:45:06 +0200
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH] ARM: dts: am5729: beaglebone-ai: fix rgmii phy-mode
+Message-ID: <20200615124506.GA3833448@x1>
+References: <20200611220951.GA3355634@x1>
+ <10637da2-8751-3c6f-cf1e-f0a53cca292d@ti.com>
 MIME-Version: 1.0
-References: <20200523084103.31276-1-dongchun.zhu@mediatek.com>
- <20200523084103.31276-3-dongchun.zhu@mediatek.com> <20200610194455.GK201868@chromium.org>
- <1591958798.8804.660.camel@mhfsdcap03> <CAAFQd5Bcb4A+HAivA-jrczK+OMxwZk3w0GYoh-DU=6gmTZBWnQ@mail.gmail.com>
- <1592200471.8804.681.camel@mhfsdcap03>
-In-Reply-To: <1592200471.8804.681.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 15 Jun 2020 14:44:46 +0200
-X-Gmail-Original-Message-ID: <CAAFQd5DvPcH-1jeeXaQ=qfxVHr82F8FBberF=QzLW4p49PZ2PA@mail.gmail.com>
-Message-ID: <CAAFQd5DvPcH-1jeeXaQ=qfxVHr82F8FBberF=QzLW4p49PZ2PA@mail.gmail.com>
-Subject: Re: [V9, 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10637da2-8751-3c6f-cf1e-f0a53cca292d@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dongchun,
+On Mon, Jun 15, 2020 at 12:34:57PM +0300, Grygorii Strashko wrote:
+> 
+> 
+> On 12/06/2020 01:09, Drew Fustini wrote:
+> > Since commit cd28d1d6e52e ("net: phy: at803x: Disable phy delay for
+> > RGMII mode") the networking is broken on the BeagleBone AI which has
+> > the AR8035 PHY for Gigabit Ethernet [0].  The fix is to switch from
+> > phy-mode = "rgmii" to phy-mode = "rgmii-rxid".
+> > 
+> > Note: Grygorii Strashko made a similar phy-mode fix in 820f8a870f65 for
+> > other AM5729 boards.
+> 
+> commit ref is incorrect
 
-On Mon, Jun 15, 2020 at 7:57 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
->
-> Hi Tomasz,
->
-> On Fri, 2020-06-12 at 20:39 +0200, Tomasz Figa wrote:
-> > On Fri, Jun 12, 2020 at 12:49 PM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
-> > >
-> > > Hi Tomasz,
-> > >
-> > > On Wed, 2020-06-10 at 19:44 +0000, Tomasz Figa wrote:
-> > > > Hi Dongchun,
-> > > >
-> > > > On Sat, May 23, 2020 at 04:41:03PM +0800, Dongchun Zhu wrote:
-> > > > > Add a V4L2 sub-device driver for OV02A10 image sensor.
-> > > > >
-> > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > > ---
-> > > > >  MAINTAINERS                 |    1 +
-> > > > >  drivers/media/i2c/Kconfig   |   13 +
-> > > > >  drivers/media/i2c/Makefile  |    1 +
-> > > > >  drivers/media/i2c/ov02a10.c | 1025 +++++++++++++++++++++++++++++++++++++++++++
-> > > > >  4 files changed, 1040 insertions(+)
-> > > > >  create mode 100644 drivers/media/i2c/ov02a10.c
-> > > > >
-> > > >
-> > > > Thank you for the patch. Please see my comments inline.
-> > > >
-> > > > [snip]
-> > > > > diff --git a/drivers/media/i2c/ov02a10.c b/drivers/media/i2c/ov02a10.c
-> > > > > new file mode 100644
-> > > > > index 0000000..160a0b5
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/media/i2c/ov02a10.c
-> > > > [snip]
-> > > > > +static const char * const ov02a10_test_pattern_menu[] = {
-> > > > > +   "Disabled",
-> > > > > +   "Color Bar",
-> > > >
-> > > > nit: We should normalize this to one of the standard names. What is the
-> > > > pattern on this sensor? Is it perhaps "Eight Vertical Colour Bars"?
-> > > >
-> > >
-> > > Yes. It is one kind of 'Eight Vertical Colour Bars'.
-> > > This pattern is called as 'MIPI color bar' per the datasheet.
-> > > Can we here use 'Vertical Color Bar' or 'MIPI Color Bar'?
-> > >
-> >
-> > We should try to stick to the names as exposed by existing drivers.
-> > There was an attempt to unify the naming of some Sony sensors some
-> > time ago [1]. Perhaps one of the names there matches the pattern of
-> > this sensor?
-> >
-> > [1] https://patchwork.kernel.org/patch/10711777/
-> >
->
-> Sounds great.
-> It is one good idea to summarize test patterns from various sensors.
-> But one question plaguing me is that it seems even for the same "Eight
-> Vertical Colour Bars", different sensors may have different RGB color
-> map.
->
-> Moreover, definition standards of color bar style may differ among
-> different sensor chip vendors.
-> For instance, Sony often uses "Solid Color", "Color Bars With Fade to
-> Grey", "PN9" to abstract test pattern output type; while OmniVision
-> adopts color bar type 1, 2, 3, 4 or "MIPI Color Bar", "ISP Color Bar"
-> instead.
+Do you mean commit ref 820f8a870f65 ? 
+("ARM: dts: am57xx: fix networking on boards with ksz9031 phy")
 
-The test patterns are commonly very similar, just different vendors
-call them with different names. There is actually a specification
-called MIPI CCS [1], which standardizes many aspects of sensor
-programming, including test patterns. Most of the sensors don't really
-follow the entire specification yet, but often some aspects happen to
-match.
+I thought it made sense to point to that commit as you seemed to be
+fixing a very similar issue, just for a different phy.
 
-In the copy of the specification that I have, the test patterns are
-described in section 10 (Test modes), page 203, with pictures on
-following pages. Perhaps we could standardize the names based on that,
-when the pattern matches?
+Or did you mean commit ref cd28d1d6e52e ?
+("net: phy: at803x: Disable phy delay for RGMII mode")
 
-Sakari, what do you think?
+I believe this is the commit that made it necessary to change the
+phy-mode property for the AR8035 PHY.
 
-[1] http://resources.mipi.org/camera-command-set-v1-1-download
+> > 
+> > [0] https://github.com/beagleboard/beaglebone-ai/blob/master/BeagleBone-AI_sch.pdf
+> > 
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: Grygorii Strashko <grygorii.strashko@ti.com>
+> > Fixes: cd28d1d6e52e ("net: phy: at803x: Disable phy delay for RGMII mode")
+> 
+> Pls change fixed tag to
+> 520557d4854b ARM: dts: am5729: beaglebone-ai: adding device tree
+> as this board DTB was merged only in 5.8.
 
-Best regards,
-Tomasz
+Ok, will do.
+
+> 
+> > Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> > Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > ---
+> >   arch/arm/boot/dts/am5729-beagleboneai.dts | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/am5729-beagleboneai.dts b/arch/arm/boot/dts/am5729-beagleboneai.dts
+> > index 9877d7709d41..4c51c6b05e64 100644
+> > --- a/arch/arm/boot/dts/am5729-beagleboneai.dts
+> > +++ b/arch/arm/boot/dts/am5729-beagleboneai.dts
+> > @@ -505,7 +505,7 @@ &mac {
+> >   &cpsw_emac0 {
+> >   	phy-handle = <&phy0>;
+> > -	phy-mode = "rgmii";
+> > +	phy-mode = "rgmii-rxid";
+> >   };
+> >   &ocp {
+> > 
+> 
+> Thanks, pls fix above and you can add my
+> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> 
+> -- 
+> Best regards,
+> grygorii
+
+Thanks for taking the time to review.
+
+-Drew
