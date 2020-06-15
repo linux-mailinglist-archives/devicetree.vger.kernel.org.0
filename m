@@ -2,91 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F80B1F9CA5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 18:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0CBF1F9CD6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 18:16:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730797AbgFOQJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 12:09:59 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:41786 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730426AbgFOQJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 12:09:58 -0400
-Received: by mail-io1-f68.google.com with SMTP id o5so18450944iow.8;
-        Mon, 15 Jun 2020 09:09:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6pcmdJx4HNdfvoURK0pS/uo9gcQBvUR51Fl9F7RD+2g=;
-        b=QDK2cHpHva3SyEo3fgkVwwT0ALXAJ9iq5u8Y7NnLgrjcwS9iu+jqO0kDaAIndbe7aA
-         8JUdqeVbmO2n7MsNMMDoh4CCo3Ef3BbGn7jwwmoRVa6rzKSUCwUg0aJjhMmJkM9m3lOW
-         qlSDTaAXwD6So59MvecYVn93bymrTRqfqhSHVhNGgykVDpqtnULQnFH61ZaGw9ViZ5Nn
-         gSL/TG7ypWrx1VvVXzRManTRq6V6VsBc0+akUh3/fjF/RrnjGscM+tczuJRkoQLfuQrm
-         CTEvew5/+A6MdTANFSnj0Cdc1oh2AQIbm4jaLHtkgN7ZGWJXCO1Xu8/n6dmC8cc69W6c
-         rSVA==
-X-Gm-Message-State: AOAM531b6soeXa36J/A9HDsQCgt1Dgnd2T6kQUju0EXOtxEBffYSjR3D
-        wYtaEUnps0Kbz1tdi4MsdQ==
-X-Google-Smtp-Source: ABdhPJxjLCBX9sKIbflLAfGJFvnKwPQdtJxMytSuki4Cyx5b84o8tX12LEkI1o1hSS+BanuS7tOEZQ==
-X-Received: by 2002:a6b:4413:: with SMTP id r19mr27931825ioa.162.1592237397848;
-        Mon, 15 Jun 2020 09:09:57 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id j63sm8448166ilg.50.2020.06.15.09.09.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2020 09:09:57 -0700 (PDT)
-Received: (nullmailer pid 1861733 invoked by uid 1000);
-        Mon, 15 Jun 2020 16:09:56 -0000
-Date:   Mon, 15 Jun 2020 10:09:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org, cawa.cheng@mediatek.com,
-        dri-devel@lists.freedesktop.org, huijuan.xie@mediatek.com,
-        eddie.huang@mediatek.com, srv_heupstream@mediatek.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        David Airlie <airlied@linux.ie>, yingjoe.chen@mediatek.com,
-        stonea168@163.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v16 1/1] dt-bindings: display: mediatek: convert the dpi
- bindings to yaml
-Message-ID: <20200615160956.GB1861039@bogus>
-References: <20200614073036.63969-1-jitao.shi@mediatek.com>
- <20200614073036.63969-2-jitao.shi@mediatek.com>
+        id S1730912AbgFOQQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 12:16:29 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1598 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730909AbgFOQQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jun 2020 12:16:28 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 05FGErYJ010869;
+        Mon, 15 Jun 2020 18:15:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=bZLdngu1T79B9CrirZEYQHkjEj22wNJY7PUv6kBJrmQ=;
+ b=NQIobxBr+rX5VTLmyc7vPLHNgD3LW8Pb5hHYFgsZU9bIOm3wJ7mtTY7nG0ADsWidmAZz
+ cyOykLhl35Y6R+kzqh3uioxLQTDj3bGvUOMZ+6jh06Wt+RUzCbGUbqCJrhjzveVq8n6H
+ ln5d6knEOJXKn1CyMttgX0LcEL9XA1KvlDJHAWQR7KYk6NJGkNlMEZM7tG3OHz1cGTop
+ bfiYMS+XddAzUl3+NpFXQ7mPsxSePA/ESi3vKt3xhl/yebjNJZlhVX+OKycYVnnzScjY
+ jFJ20LrnH9eHZINBGRZStfoWxBpq+0ZN7CaZm1c4eRUXZ7Qh+JjGxyPKSLwHUmrQrqos 7A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 31mmjvthhr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 15 Jun 2020 18:15:48 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 241B410002A;
+        Mon, 15 Jun 2020 18:15:47 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 02B062C5AD8;
+        Mon, 15 Jun 2020 18:15:47 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 15 Jun 2020 18:15:46
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH 0/6] Add STUSB160x Type-C port controller support
+Date:   Mon, 15 Jun 2020 18:15:06 +0200
+Message-ID: <20200615161512.19150-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200614073036.63969-2-jitao.shi@mediatek.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG5NODE1.st.com (10.75.127.13) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
+ definitions=2020-06-15_06:2020-06-15,2020-06-15 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 14 Jun 2020 15:30:36 +0800, Jitao Shi wrote:
-> Convert display/mediatek/mediatek,dpi.txt to display/mediatek/mediatek,dpi.yaml
-> and remove the old text bindings.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,dpi.txt         | 42 --------
->  .../display/mediatek/mediatek,dpi.yaml        | 97 +++++++++++++++++++
->  2 files changed, 97 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-> 
+This series adds support for STMicroelectronics STUSB160x Type-C port
+controllers [1].
+STUSB160x driver requires to get power operation mode via device tree,
+that's why this series also adds the optional DT property power-opmode
+for usb-c-connector to select the power operation mode capability and
+a function to convert the power operation mode string into power
+operation mode value.
+This driver has been tested on stm32mp157c-dk2 [2], which has a Type-C
+connector managed by STUSB1600, and connected to USB OTG controller. 
 
+[1] https://www.st.com/en/interfaces-and-transceivers/usb-type-c-and-power-delivery-controllers.html
+[2] https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Amelie Delaunay (6):
+  dt-bindings: connector: add power-opmode optional property to
+    usb-connector
+  usb: typec: add typec_find_pwr_opmode
+  dt-bindings: usb: Add DT bindings for STUSB160x Type-C controller
+  usb: typec: add support for STUSB160x Type-C controller family
+  ARM: dts: stm32: add STUSB1600 Type-C using I2C4 on stm32mp15xx-dkx
+  ARM: multi_v7_defconfig: enable STUSB160X Type-C port controller
+    support
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.example.dt.yaml: example-0: dpi@1401d000:reg:0: [0, 335663104, 0, 4096] is too long
+ .../bindings/connector/usb-connector.yaml     |  11 +
+ .../devicetree/bindings/usb/st,stusb160x.yaml |  85 ++
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |   7 +
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  38 +
+ arch/arm/configs/multi_v7_defconfig           |   2 +
+ drivers/usb/typec/Kconfig                     |  12 +
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/class.c                     |  15 +
+ drivers/usb/typec/stusb160x.c                 | 875 ++++++++++++++++++
+ include/linux/usb/typec.h                     |   1 +
+ 10 files changed, 1047 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/st,stusb160x.yaml
+ create mode 100644 drivers/usb/typec/stusb160x.c
 
-
-See https://patchwork.ozlabs.org/patch/1308901
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+-- 
+2.17.1
 
