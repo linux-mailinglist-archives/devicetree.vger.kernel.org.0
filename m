@@ -2,96 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D293E1F959D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 13:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16921F95B0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 13:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729685AbgFOLwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 07:52:15 -0400
-Received: from sonic311-30.consmr.mail.ir2.yahoo.com ([77.238.176.162]:39754
-        "EHLO sonic311-30.consmr.mail.ir2.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729653AbgFOLwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jun 2020 07:52:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1592221933; bh=+NKq2YP/4c3bLm2HmGhxa/KCZOXr0NIUKHs/ECuC0yk=; h=Date:From:Reply-To:Subject:References:From:Subject; b=Y1RMoN3QuOjJetFg8e2XZhVRs/dthXMFrTWBjwtxvPb3UDX3y14x1TIzKXvUCNEHXfoIL1mNLqIdAz9O/ANiDTjgfRpBI0l1HdxcxPRwWnBrX3qLOvlUmfDDdghEMx7VGG5AP/uLxqd3ltS3HK1p1kg4Y6bClUFdSfv2xQNGNEIeNlrbmOIcxJWFEvXbv1YuoQQBwChYChHzQiUXnBhC5RbEfvtAtxh7/qHIoYeNcKrJZHe3Npbei+Giei4qDsdxM/Hdqg5r1NT0MolazwfucRaXDas1TKtSX7fRa3ZtfX4s+zrFau8XxRfriDit/lUCNV1ZENRi1ZfGm+YwVOdPXQ==
-X-YMail-OSG: XOuJOXMVM1ncEgNaDnWgApxZCwN07uQ39klrsimz51ZOIzdmpNud_1ux.gytQ_j
- hLg60McYwG.M.frTFdISibW9aBZ94eE01BDvh4HRluYY64bRbfC.z2mU2DrfgOMDyxnS0bY8NNXH
- 00_UecU0eJwltraS_ZBakHQrOx_1Gt1aDjrq1kFp9p634RS8fqJXSLX4pmufpEXrpEtltego8xS4
- tQCT3aKKvHsMKxAp4GawllgDMoMZqZ8HvzVobzeRw0NaVWBDym29ELhNUIDt731W7FBranOWcVlm
- gSbxQiWE_L7p8Vw5BIC1n5Bd6CiF2a9nHl4vndBCDOkrztsIorifhUiXvdILuAgEgpXTy.A5Ptmx
- VzfXmLiuyntX55d9K9N_8_DucexQIJYYkixAWgY5Y01lhaVpK_Ik2KHxofmbS8.YlDk9BUFpGkBF
- Ps7jDbqhfJeZQszU6IUBPIU2FA3SLFcBP2sfSYtwP37CTQS9slhgx6LTucQYA1RjusAvRc44gLTF
- bHtr77njDPDhv3j1UxNgiQ_LMMtDAivQuTW8FKKuF2rJrvCI.zxP8aTZt56A3hX4OM08JQXwsJkq
- j8xtt32n5waSPVABl2kZD6P4WxnZEo8Bal3T8SDB9WnuZ2mkMoZmvsxRkf00n6OUZUq1QO50vfck
- _2WFMTyGC9JgExKCfLxrrY4CV.z5l2cxAqX2goTiGXOqZAGf.Zr6VB4SJC2aMeYTyiZRmnnCCUrU
- W51y4iezVAA4tN3AYyC7wIeCr.pc4Od9XWSwQNurEhseu41I3C5GRv1SCd4WCshXrBaQKwHHZLyD
- OFRGkaDWZWs4TOQBJAV9d2jMr1ogilf6PWwNSuzQxteWe.fuTaZKGHFE8EKSufrLMrsePiqCpIxE
- oRwXn.U5S6k4j_KdvgQlNDkluYi2_Ua7dDEYqg8anGBS40dB8RiK99Tju8O19jDes9bB029DA1xJ
- hn.e.OgnH5hpTTDA4VhmLazryB_PCvW_AMZTGDaUAGLbsMqvuhqPppi8fTwCUd3itEyWDmx_1tP9
- PT5gsLNundT_2KId.kPGrnFuqFv.aPwvsNqpFoAGwOHTB_2BDLY5UBqgD_JRAR0n0Pw3V2GYitRS
- kHqA7o8NUjNuCFE1IFfJLlFN1viY_bSPUFHSRhvRv0hiiNj3QZCS44tRBKWDxoIfyShh8jx_BAio
- ZO0fcj3mgqtcin8x.3m8ju8tXJcfdRPY5FX2zSE_bV0NM.vnIT_iE_jmf1vbPLZQkwqvXx7.0HjK
- d1Ps6nUiFijIPVVqBVG2ng5YVBNTjXR_ED6nFvNsA0rwiSy7Y.1eyQq1FCecKMKpF7E6NqJ3TzTh
- SUiM-
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.ir2.yahoo.com with HTTP; Mon, 15 Jun 2020 11:52:13 +0000
-Date:   Mon, 15 Jun 2020 11:52:08 +0000 (UTC)
-From:   "Mrs. Mina A. Brunel" <mrs.minaabrunel209@gmail.com>
-Reply-To: mrsminaaaliyahbrunel344@gmail.com
-Message-ID: <1042728165.1621442.1592221928161@mail.yahoo.com>
-Subject: My Dear in the lord
+        id S1729651AbgFOLz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 07:55:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729630AbgFOLzz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jun 2020 07:55:55 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 10F7F20707;
+        Mon, 15 Jun 2020 11:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592222154;
+        bh=AO7AE4H28zPxTT7UHp3OpiQhDU8PH5d+mG1D/8R7SwA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qvzQqPQA3BQ1OLRePjsqrdXDVTmCHirBImXPywATw+TELdMrEIE9m+qbuGqLkMtSI
+         awSxXXgOxwAKHGYVeID31HizncxE8uNnVDdmjVGRdfvDS9FpPav4KTqnzQRK3W2Rbr
+         ufdyXiqS8JkFdaMr+FFK+/vlwf9rTPYhSHlM5AhU=
+Date:   Mon, 15 Jun 2020 12:55:49 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Achin Gupta <achin.gupta@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, Sudeep Holla <Sudeep.Holla@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marc Zyngier <maz@kernel.org>, nd <nd@arm.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: Add ARM PSA FF binding for
+ non-secure VM partitions
+Message-ID: <20200615115549.GB2694@willie-the-truck>
+References: <20200601094512.50509-1-sudeep.holla@arm.com>
+ <20200601094512.50509-2-sudeep.holla@arm.com>
+ <20200609223551.GA1620273@bogus>
+ <20200610074346.GB15939@willie-the-truck>
+ <5B3F18A4-5DA4-411E-9E26-7D25DEE3D414@arm.com>
+ <20200611171222.GB7725@willie-the-truck>
+ <20200615091639.GD46361@C02TC1ARHF1T>
+ <20200615095133.GA2477@willie-the-truck>
+ <20200615114220.GE46361@C02TC1ARHF1T>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-References: <1042728165.1621442.1592221928161.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16119 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200615114220.GE46361@C02TC1ARHF1T>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 15, 2020 at 12:42:20PM +0100, Achin Gupta wrote:
+> On Mon, Jun 15, 2020 at 10:51:34AM +0100, Will Deacon wrote:
+> > On Mon, Jun 15, 2020 at 10:16:39AM +0100, Achin Gupta wrote:
+> > > Right! FFA_PARTITION_INFO_GET is meant to help the FF-A driver in the kernel to
+> > > determine partition properties. It assumes that EL2 SW has already read each
+> > > partition's manifest and will reply to this ABI.
+> > >
+> > > IIUC, with protected KVM, this information will have to be a part of the
+> > > manifest that the KVM host consumes.
+> >
+> > The host does not consume the manifest directly -- instead, the bootloader
+> > will use the manifest to populate these DT nodes. Again, these are *only*
+> > for non-secure virtual partitions which are to be managed by KVM.
+> 
+> Yes. Understand and agree. Manifest is an overloaded term. I was using it to
+> describe the DT nodes that the host will consume.
 
+Hmm, I think that conflates two things though because only the partitions
+managed by KVM will have DT nodes.
 
-My Dear in the lord
+> > > Separate topic, protected KVM does not get dibs on the manifest and it relies on
+> > > the KVM host to specify the address ranges for each partition? Does this not
+> > > mean that the KVM host can control the physical address space each partition
+> > > sees. This seems contrary to the isolation guarantees that protected KVM must
+> > > provide?
+> >
+> > The host is trusted during early boot, and gives up this trust after
+> > initialising EL2 fully. So roughly speaking, we:
+> >
+> > 	* Boot at EL2 and install a shim
+> > 	* Drop down to EL2 and start the host kernel
+> > 	* Before some initialisation (DT parsing, SMP bringup, etc)
+> > 	* Init KVM by calling back up to EL2 to install the full hypervisor
+> >
+> > At that point, the EL1 host is no longer trusted and the last call
+> > effectively "locks it out" from EL2.
+> 
+> Ok. Protected KVM (PKVM) must create S2 tables when asked to setup a partition
+> by the Host. My main concern is if PKVM must trust the Host to provide the
+> correct physical address space ranges for a partition?
 
+Yes, but that all happens as part of KVM initialisation: the host parses
+the DT nodes and memory reservations, and then passes this information
+up to EL2.
 
-My name is Mrs. Mina A. Brunel I am a Norway Citizen who is living in Burki=
-na Faso, I am married to Mr. Brunel Patrice, a politician who owns a small =
-gold company in Burkina Faso; He died of Leprosy and Radesyge, in the year =
-February 2010, During his lifetime he deposited the sum of =E2=82=AC 8.5 Mi=
-llion Euro) Eight million, Five hundred thousand Euros in a bank in Ouagado=
-ugou the capital city of Burkina Faso in West Africa. The money was from th=
-e sale of his company and death benefits payment and entitlements of my dec=
-eased husband by his company.
+> I guess your point is this is not a problem since PKVM can lock the Host out of
+> those address ranges in any case?
 
-I am sending you this message with heavy tears in my eyes and great sorrow =
-in my heart, and also praying that it will reach you in good health because=
- I am not in good health, I sleep every night without knowing if I may be a=
-live to see the next day. I am suffering from long time cancer and presentl=
-y I am partially suffering from Leprosy, which has become difficult for me =
-to move around. I was married to my late husband for more than 6 years with=
-out having a child and my doctor confided that I have less chance to live, =
-having to know when the cup of death will come, I decided to contact you to=
- claim the fund since I don't have any relation I grew up from an orphanage=
- home.
+It has to do this, regardless of how they are probed. Once KVM has
+initialised, the host will have a stage-2 which limits it to the memory that
+it is allowed to access.
 
-I have decided to donate this money for the support of helping Motherless b=
-abies/Less privileged/Widows and churches also to build the house of God be=
-cause I am dying and diagnosed with cancer for about 3 years ago. I have de=
-cided to donate from what I have inherited from my late husband to you for =
-the good work of Almighty God; I will be going in for an operation surgery =
-soon.
+> It is a bit counter intuitive that the Host gets to see and potentially
+> manipulate information that was verified and extracted by the bootloader from
+> the partition's manifest. This hapens before PKVM sees the same
+> information. Can't put my finger on what could go wrong though. Depends upon the
+> threat model too!
 
-Now I want you to stand as my next of kin to claim the funds for charity pu=
-rposes. Because of this money remains unclaimed after my death, the bank ex=
-ecutives or the government will take the money as unclaimed fund and maybe =
-use it for selfishness and worthless ventures, I need a very honest person =
-who can claim this money and use it for Charity works, for orphanages, wido=
-ws and also build schools and churches for less privilege that will be name=
-d after my late husband and my name.
+I think you're trying too hard to separate the host from the EL2 code during
+early boot. Don't forget -- this is all part of the same binary payload that
+is loaded and initially run at EL2. Having the host take care of early boot
+/significantly/ reduces the amount of code at EL2, which has a very
+clear security benefit.
 
-I need your urgent answer to know if you will be able to execute this proje=
-ct, and I will give you more information on how the fund will be transferre=
-d to your bank account or online banking.
-
-Thanks
-Mrs. Mina A. Brunel
+Will
