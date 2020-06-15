@@ -2,95 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E61961F95E4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 14:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2DC1F968E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 14:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729766AbgFOMBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 08:01:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729734AbgFOMBt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jun 2020 08:01:49 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 741A320714;
-        Mon, 15 Jun 2020 12:01:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592222509;
-        bh=CM24pedTnetKRTjlq0H+6fc2bSL16QovoA2odE5GIvY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f4AIuqKc7TIwjfvhv2rmefsUZLRNT8PWkKDYmZzB2Y2K0R+Bim8k0XxWMyEWFRZyx
-         VDtL/EyqDSXpCpLHMs+CRe9zfpzov4HjNszopTxDyVAgdHctUOXZf5VWZX4Arhs8ry
-         Hbaf2QazFrz0l50kvfyfqiWJc0/uBGadeW4ift+Y=
-Date:   Mon, 15 Jun 2020 13:01:46 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Akash Asthana <akashast@codeaurora.org>
-Cc:     linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-serial@vger.kernel.org, mka@chromium.org,
-        dianders@chromium.org, evgreen@chromium.org,
-        msavaliy@codeaurora.org
-Subject: Re: [PATCH V7 RESEND 6/7] spi: spi-qcom-qspi: Add interconnect
- support
-Message-ID: <20200615120146.GK4447@sirena.org.uk>
-References: <1591682194-32388-1-git-send-email-akashast@codeaurora.org>
- <1591682194-32388-7-git-send-email-akashast@codeaurora.org>
- <2e299942-2a51-f023-ea6a-fa7822912d9e@codeaurora.org>
+        id S1729867AbgFOMcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 08:32:13 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39610 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728598AbgFOMcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 08:32:13 -0400
+X-UUID: 32c6cc40a1ec4f3fa397f2de588ad28b-20200615
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=LempUdXCCkO3XMmtbxe09boDlc3IHyauHMUqUrdhizc=;
+        b=j7wAmmAKRJXfgQFfYQ+3SVjF+ALdXZnS6Z5lYLs33HzRB4KTZ0lhtxWevNYtz+Ypt4ezh6W4GeYcnhil34lH5oztHKm0pz0MOdpivdVb4+DWGTzWVd40jrbYBEZRjn+uVYLEXgH+uccEDpkjQrtbRjLQzca5Ul2dzM58f/Yhbx0=;
+X-UUID: 32c6cc40a1ec4f3fa397f2de588ad28b-20200615
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1609515663; Mon, 15 Jun 2020 20:32:09 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 15 Jun 2020 20:32:06 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 15 Jun 2020 20:32:06 +0800
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [PATCH V10 0/2] media: i2c: Add support for OV02A10 sensor
+Date:   Mon, 15 Jun 2020 20:29:35 +0800
+Message-ID: <20200615122937.18965-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fUvfsPTz/SzOZDdw"
-Content-Disposition: inline
-In-Reply-To: <2e299942-2a51-f023-ea6a-fa7822912d9e@codeaurora.org>
-X-Cookie: Offer may end without notice.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+SGVsbG8sDQoNClRoaXMgc2VyaWVzIGFkZHMgRFQgYmluZGluZ3MgaW4gWUFNTCBhbmQgVjRMMiBz
+dWItZGV2aWNlIGRyaXZlciBmb3IgT21uaXZpc2lvbidzDQpPVjAyQTEwIDIgbWVnYXBpeGVsIENN
+T1MgMS81IiBzZW5zb3IsIHdoaWNoIGhhcyBhIHNpbmdsZSBNSVBJIGxhbmUgaW50ZXJmYWNlDQph
+bmQgb3V0cHV0IGZvcm1hdCBvZiAxMC1iaXQgUkFXLg0KDQpUaGUgZHJpdmVyIGlzIGltcGxlbWVu
+dGVkIHdpdGggVjRMMiBmcmFtZXdvcmsuDQogLSBBc3luYyByZWdpc3RlcmVkIGFzIGEgVjRMMiBz
+dWItZGV2aWNlLg0KIC0gQXMgdGhlIGZpcnN0IGNvbXBvbmVudCBvZiBjYW1lcmEgc3lzdGVtIGlu
+Y2x1ZGluZyBTZW5pbmYsIElTUCBwaXBlbGluZS4NCiAtIEEgbWVkaWEgZW50aXR5IHRoYXQgcHJv
+dmlkZXMgb25lIHNvdXJjZSBwYWQgaW4gY29tbW9uIGFuZCB0d28gZm9yIGR1YWwtY2FtLg0KIA0K
+UHJldmlvdXMgdmVyc2lvbnMgb2YgdGhpcyBwYXRjaC1zZXQgY2FuIGJlIGZvdW5kIGhlcmU6DQog
+djk6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMjAwNTIzMDg0MTAzLjMx
+Mjc2LTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2ODogaHR0cHM6Ly9sb3JlLmtlcm5l
+bC5vcmcvbGludXgtbWVkaWEvMjAyMDA1MDkwODA2MjcuMjMyMjItMS1kb25nY2h1bi56aHVAbWVk
+aWF0ZWsuY29tLw0KIHY3OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8yMDIw
+MDQzMDA4MDkyNC4xMTQwLTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2NjogaHR0cHM6
+Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTEyMTExMTI4NDkuMTY3MDUtMS1kb25n
+Y2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHY1OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51
+eC1tZWRpYS8yMDE5MTEwNDEwNTcxMy4yNDMxMS0xLWRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20v
+DQogdjQ6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMTkwOTA3MDkyNzI4
+LjIzODk3LTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MzogaHR0cHM6Ly9sb3JlLmtl
+cm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTA4MTkwMzQzMzEuMTMwOTgtMS1kb25nY2h1bi56aHVA
+bWVkaWF0ZWsuY29tLw0KIHYyOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8y
+MDE5MDcwNDA4NDY1MS4zMTA1LTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MTogaHR0
+cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTA1MjMxMDIyMDQuMjQxMTItMS1k
+b25nY2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KDQpDaGFuZ2VzIG9mIHYxMCBhcmUgYWRkcmVzc2lu
+ZyBjb21tZW50cyBmcm9tIFJvYiwgU2FrYXJpLCBUb21hc3ouDQpDb21wYXJlZCB0byB2OToNCiAt
+IEFkZCBtYXhJdGVtcyBjb25zdHJhaW50IHRvIHBvd2VyZG93bi1ncGlvcyBhbmQgcmVzZXQtZ3Bp
+b3MNCiAtIEFkZCBhIGRlc2NyaXB0aW9uIG9mIHRoZSBkYXRhIHRoYXQgc2Vuc29yIHBvcnQgbm9k
+ZSBzaGFsbCBoYXZlDQogLSBSZW1vdmUgJ2RhdGEtbGFuZXMnIHByb3BlcnR5IGFzIGl0IHByb3Zp
+ZGVzIG5vIGluZm9ybWF0aW9uIHRvIHRoZSByZWNlaXZlcg0KIC0gUmVmaW5lICdlcnJfcG93ZXJf
+b2ZmJyBlcnJvciBoYW5kbGluZyBzZWN0aW9uIGFmdGVyIGFzeW5jIHJlZ2lzdGVyIHN1Yi1kZXZp
+Y2UNCiAtIEhhbmRsZSB0aGUgY2FzZSB3aGVuIGZtdC0+d2hpY2ggaXMgVjRMMl9TVUJERVZfRk9S
+TUFUX1RSWQ0KIC0gUm9sbGJhY2sgdGhlIGNvbnRyb2xzIG9mIEhCTEFOSyBhbmQgVkJMQU5LIGFz
+IHVzZXJzcGFjZSBtYXkgbmVlZCB0aGVtDQogLSBVc2UgJ0VpZ2h0IFZlcnRpY2FsIENvbG9yIEJh
+cnMnIHRvIG5vcm1hbGl6ZSBzdGFuZGFyZCBuYW1lIG9mIHRlc3QgcGF0dGVybg0KIC0gRml4IG90
+aGVyIHJldmlldyBjb21tZW50cyBpbiB2OQ0KDQpQbGVhc2UgcmV2aWV3Lg0KVGhhbmtzLg0KDQpE
+b25nY2h1biBaaHUgKDIpOg0KICBtZWRpYTogZHQtYmluZGluZ3M6IG1lZGlhOiBpMmM6IERvY3Vt
+ZW50IE9WMDJBMTAgYmluZGluZ3MNCiAgbWVkaWE6IGkyYzogb3YwMmExMDogQWRkIE9WMDJBMTAg
+aW1hZ2Ugc2Vuc29yIGRyaXZlcg0KDQogLi4uL2JpbmRpbmdzL21lZGlhL2kyYy9vdnRpLG92MDJh
+MTAueWFtbCAgICAgICAgICAgfCAgMTcxICsrKysNCiBNQUlOVEFJTkVSUyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgIDggKw0KIGRyaXZlcnMvbWVkaWEvaTJjL0tj
+b25maWcgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAxMyArDQogZHJpdmVycy9tZWRpYS9p
+MmMvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAxICsNCiBkcml2ZXJzL21l
+ZGlhL2kyYy9vdjAyYTEwLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDEwNDIgKysrKysrKysr
+KysrKysrKysrKysNCiA1IGZpbGVzIGNoYW5nZWQsIDEyMzUgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvaTJj
+L292dGksb3YwMmExMC55YW1sDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbWVkaWEvaTJj
+L292MDJhMTAuYw0KDQotLSANCjIuOS4yDQo=
 
---fUvfsPTz/SzOZDdw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jun 15, 2020 at 12:57:12PM +0530, Akash Asthana wrote:
-> Hi Mark,
->=20
-> Would you be able to review/ack this QSPI patch, you have already acked "=
-QUP
-> SPI" patch from the series "[Patch V7 RESEND 4/7]"
->=20
-> Putting a gentle reminder in-case this patch is missed.
-
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
-
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
-
---fUvfsPTz/SzOZDdw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl7nYyoACgkQJNaLcl1U
-h9DyOAf/buJgSYiAf2Fl+YYl1CDe6yV/KLmnww9YUYvfvzsGAJLXJZVQthCKq7zr
-j7m+iDZpujyNeT1zSI1hZqy7sXVaPc3zdMOP+LFa0xVHxICQh4oF0qsHbn402vI+
-S7xT0XB1vK526+pHgLJ9FS18jP7z3T2C97M/1E5IvIjpvv4HipVwAsXUuroPZy04
-2ePbyIT5rye/tCgBmh8QoZbrtOEM+NBz5zkphREYpUA0Yhb7bWjtbswguwBR+IpQ
-OW5+r2OlQ7FHxKWSChKMXAuD3zIdagwe6tkXKFr0ZqzZJpzClcNyU9GMA3PDfIYx
-cMoFw4AZrl5MTycVwk4DnifcFo+giQ==
-=sGlf
------END PGP SIGNATURE-----
-
---fUvfsPTz/SzOZDdw--
