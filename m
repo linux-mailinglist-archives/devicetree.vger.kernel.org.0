@@ -2,102 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1835F1F9128
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 10:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3671F9198
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 10:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728603AbgFOIPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jun 2020 04:15:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728162AbgFOIPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jun 2020 04:15:08 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09BEEC061A0E
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 01:15:07 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id g62so11896837qtd.5
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2020 01:15:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PeSKgvXd465F+nZeBzqPtfbPRR02KvmYom1kw5jFHRM=;
-        b=gaolLM3SJibkTPiylW9CVkCvCtGtkxucJIQ+CjQLqcZ1i6V69L5CIm3fo4ZfvxBQ18
-         QTxmHkyBQ94s6V+QynK5T2wiO0+Tp2UpWly1tWGkZ+W6E1gr6meQBPbsnnkYj6b6QMox
-         BhEmWboyPED4vbU5z8o12yd8lkNXdMr6RHHxqIzSr7HZB9HOXndhUw4peAckPJm5a7xC
-         YZHiIxNIlnEcMYDf2fMqw7ZQTfT+sUyrlgso/2CAE3eQWlhM5oKZmsOuinqdjk6+TM1E
-         GciWb3a65LfFuKSKuNA3ArEUQB0jxZ3MApSu1gQGHHMIrfyQmVV6y7RFFeSXHoQQDGxi
-         obxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PeSKgvXd465F+nZeBzqPtfbPRR02KvmYom1kw5jFHRM=;
-        b=nHyP3oVPu4chEuMy6asi57SbyQyiR3Q2XJ8nBWezTwy3m92u6TT0OqZlkD+2ETngLy
-         dbnX+Ej/xkEB4foFfUKonLwqKk9A4ghhhKiD7xxetFQx1TC8mdk3+m+q/hv+7Y+0lZ0l
-         OpCDHcMJG0X8F758sdgyN8mPjFPEpmfK7eU7KQUvQ69foDwVh4QhwbziQi0n1Khvd86g
-         cKFDo/g5ye+v5SzqgMHqMkafWbKVXForvbiP5aABl6rWMedA2CYYsupp4s+cNSe/imfF
-         kiasdU/hHopAeGRCO4iNuRYpxXorXPpHmrQ2hls+0pkWUUdz7uiGfmA+zsvPNs4usKtG
-         uFMA==
-X-Gm-Message-State: AOAM532wGCNTh3KaI4SunG5CtD0tyR3dOKDa9emKK0a1O19j2WpdcHHT
-        Xfa1i/UNf0NN9GHj6qzW+/an3IulSXrSMEZPtEhpy0tb
-X-Google-Smtp-Source: ABdhPJyzaLHGZRBoz244z1QgtZDLkoNy4Y/LUfzCIH8w/SgjyAXy9AFzI588si91fFcHWalj927TbVmmYo2/kiKLK6Q=
-X-Received: by 2002:ac8:1bc1:: with SMTP id m1mr14093638qtk.57.1592208905775;
- Mon, 15 Jun 2020 01:15:05 -0700 (PDT)
+        id S1728813AbgFOIev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jun 2020 04:34:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46580 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728451AbgFOIeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jun 2020 04:34:50 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9F93C2068E;
+        Mon, 15 Jun 2020 08:34:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592210089;
+        bh=QO5I7UdKNZGH1EgSgljjPrTCdDrfliFWuQpe4jpGydg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UO29b4Rs5W+wK46xfgIOrYnjY8HHXx3eOCuvwzLqsrCppZLuQIrFHCKxVoKyCiWmU
+         siEa5/n+5Iw1+n895H2Z5ie0X0gC5b2cj7VoD7O26tmEtBIdEwY391NsMmgcQt0XSj
+         284SqImetYz0+v1qeGqHrBozYkthLyu2/IeqIvH8=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1jkkZr-0031xr-OX; Mon, 15 Jun 2020 09:34:48 +0100
 MIME-Version: 1.0
-References: <20200611102809.27829-1-hui.song_1@nxp.com>
-In-Reply-To: <20200611102809.27829-1-hui.song_1@nxp.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 15 Jun 2020 10:14:55 +0200
-Message-ID: <CAMpxmJUH-3=-r=DRVHP1dccvKQsuKZrng3vp7Ho864CtUMGR1g@mail.gmail.com>
-Subject: Re: [PATCH] gpio: mpc8xxx: change the gpio interrupt flags.
-To:     Hui Song <hui.song_1@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 15 Jun 2020 09:34:47 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Rob Herring <robh@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Tero Kristo <t-kristo@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 04/12] dt-bindings: irqchip: ti, sci-intr: Update bindings
+ to drop the usage of gic as parent
+In-Reply-To: <d586e88c-2907-1771-dee2-32429082aa07@ti.com>
+References: <20200520124454.10532-1-lokeshvutla@ti.com>
+ <20200520124454.10532-5-lokeshvutla@ti.com> <20200528221406.GA769073@bogus>
+ <f803f646-2a55-4f15-9682-1dc616d7c714@ti.com>
+ <4ea8c6110a16900220a65f1d44145146@kernel.org>
+ <3f253e25-2ee7-96f2-3158-7f6be0710a33@ti.com>
+ <d586e88c-2907-1771-dee2-32429082aa07@ti.com>
+User-Agent: Roundcube Webmail/1.4.4
+Message-ID: <9afd8a79d9c9ecfd35b6a4e66c93e298@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: lokeshvutla@ti.com, nm@ti.com, robh@kernel.org, grygorii.strashko@ti.com, devicetree@vger.kernel.org, t-kristo@ti.com, nsekhar@ti.com, peter.ujfalusi@ti.com, ssantosh@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-czw., 11 cze 2020 o 12:43 Hui Song <hui.song_1@nxp.com> napisa=C5=82(a):
->
-> From: Song Hui <hui.song_1@nxp.com>
->
-> Delete the interrupt IRQF_NO_THREAD flags in order to gpio interrupts
-> can be threaded to allow high-priority processes to preempt.
->
-> Signed-off-by: Song Hui <hui.song_1@nxp.com>
-> ---
->  drivers/gpio/gpio-mpc8xxx.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
-> index 604dfec..1e86652 100644
-> --- a/drivers/gpio/gpio-mpc8xxx.c
-> +++ b/drivers/gpio/gpio-mpc8xxx.c
-> @@ -417,7 +417,7 @@ static int mpc8xxx_probe(struct platform_device *pdev=
-)
->
->         ret =3D devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
->                                mpc8xxx_gpio_irq_cascade,
-> -                              IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascad=
-e",
-> +                              IRQF_SHARED, "gpio-cascade",
->                                mpc8xxx_gc);
->         if (ret) {
->                 dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), =
-ret =3D %d\n",
-> --
-> 2.9.5
->
+On 2020-06-15 09:03, Lokesh Vutla wrote:
+> Hi Marc,
+> 
+> On 01/06/20 5:06 pm, Lokesh Vutla wrote:
+>> Hi Marc,
+>> 
+>> On 29/05/20 3:48 pm, Marc Zyngier wrote:
+>>> On 2020-05-29 11:14, Lokesh Vutla wrote:
+>>>> Hi Rob,
+>>>> 
+>>>> On 29/05/20 3:44 am, Rob Herring wrote:
+>>>>> On Wed, May 20, 2020 at 06:14:46PM +0530, Lokesh Vutla wrote:
+>>>>>> Drop the firmware related dt-bindings and use the hardware 
+>>>>>> specified
+>>>>>> interrupt numbers within Interrupt Router. This ensures interrupt 
+>>>>>> router
+>>>>>> DT node need not assume any interrupt parent type.
+>>>>> 
+>>>>> I didn't like this binding to begin with, but now you're breaking
+>>>>> compatibility.
+>>>> 
+>>>> Yes, I do agree that this change is breaking backward compatibility. 
+>>>> But IMHO,
+>>>> this does cleanup of firmware specific properties from DT. Since 
+>>>> this is not
+>>>> deployed out yet in the wild market, I took the leverage of breaking 
+>>>> backward
+>>>> compatibility. Before accepting these changes from firmware team, I 
+>>>> did
+>>>> discuss[0] with Marc on this topic.
+>>> 
+>>> And I assume that should anyone complain about the kernel being 
+>>> broken
+>>> because they have an old firmware, you'll be OK with the patches 
+>>> being
+>>> reverted, right?
+>> 
+>> I am assuming there is no one to complain as there is no product 
+>> available yet
+>> with upstream kernel. Internally everyone is aware of the changes. So, 
+>> yes I
+>> would agree with you to revert the changes if someone really needs it. 
+>> :)
+> 
+> Any chance you can shower your blessings on this series :)
 
-Patch applied, thanks!
+I have purposely ignored it just before and during the merge window. It 
+is now firmly in my review queue.
 
-Bartosz
+         M.
+-- 
+Jazz is not dead. It just smells funny...
