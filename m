@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD1661F8B7D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 02:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387D71F8BE7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2020 02:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728069AbgFOAA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Jun 2020 20:00:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S1728080AbgFOATS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Jun 2020 20:19:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728077AbgFOAA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jun 2020 20:00:26 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373E6C05BD43;
-        Sun, 14 Jun 2020 17:00:26 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id y13so15527234eju.2;
-        Sun, 14 Jun 2020 17:00:26 -0700 (PDT)
+        with ESMTP id S1728071AbgFOATR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jun 2020 20:19:17 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9773C05BD43;
+        Sun, 14 Jun 2020 17:19:14 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id dr13so15511713ejc.3;
+        Sun, 14 Jun 2020 17:19:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cSWUfCMQddejc1c7RRGpjS3rAmuSxlqtUFvza+MSr1g=;
-        b=mhvRKudNMLFCDQx9Bzw0xTPRcKsOGzRgJxmQVtOE/VziN0o5i3SHQdXiMYYbVG1yGE
-         Z9EaouRzlS65nGTsI/K7iq743o+UEfdbkDP1I9et3wYAbJ0B9lRoS8wwmlKO7PaClBIJ
-         8QcWkRspcU65WSyrNsYzD09CfqKI8RgPsM7W9EENrnedL29B4SBAB6n8JDS17Tu/HxNU
-         82BSuwpqcg0wQdh3oIEU2PepD7UD0YvwXDJxpE3T9QtrRmP2FXH6catU6qmEvC0Sn3km
-         LWBmx7S16vSpXhKd19CO7hHSSpGToEMaYNr1feYf6oerc0YopJuLgXWrC6PQg0pFDnz8
-         leeA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=0r9iOjFzMyP9orIqp35ZxhdsurjuUHNXHC7X6YpTCNA=;
+        b=OLHaE0oujambTdR5fUzLPNY+xGy8cNztQ/QRj/xWiARpec8TI8NPIj2rIS7zGYwGMF
+         Oezm8ZEVwxNcqba0U+4OU7heUgeZy8Vu1XIDNutk1izjR/4CVscHdL4+2JNNV/MfTP8w
+         CIpEGnlRwWOur8eWrqfPR62Ydhn7+dkHlWo969GgTgKSRIeg+BGeYymkx9g9ZxGqR+Zi
+         bUnJeUtX47s4gbJ4l3YXhXyHaAzleNLnEpEkCnWKHmHkOl4oMSFx/4hSRHDa+Zy+l2ES
+         TM6/1Sxa+qCD5vPRkUTo92kTXavnQL+ASKdtnRjmSViwirY6SjqpMet4Vuax9xZK1VDX
+         pyPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cSWUfCMQddejc1c7RRGpjS3rAmuSxlqtUFvza+MSr1g=;
-        b=A1aGiBwS/yVoz/KE06V6i6s5HhaghrPIaW9k7N4K2gHyKSdbctiBOG3W3EafOejRff
-         DRAAU/Vq32fPwPNGSL5YDBK2n8+LBWAxxDnp+KZQxiK5n8OlTnWKMyUaCpfnNZp/NJXA
-         OY0/adRNuzkEn7WIqPhl4HEkAwZuvBtukbI7FsSgbv8ByP1GA9z6vJUSZASfU82jM2+a
-         fHnWLPp4qsVxsHSXzQmpsnr/SieI7EvX4HVee/qelZm4Pv8F8Ps1Tk122q74r79UvggS
-         rYeblUrz+CInNW1UK6ldE7Urpt24EO+w3+RboCf1E9mVHwzqECj5K4GzwCv7WAu0VuRh
-         baRw==
-X-Gm-Message-State: AOAM533wWmVlvGWbQ1tyyJBjdybQbt3BR+SPN3UbpdACRM2tLDNihBkf
-        uTO5HlJ2qc4AIYVqo91Jv7Y=
-X-Google-Smtp-Source: ABdhPJywGZTxzuIxI8ihSelPF+55JKwRh2GgpBxACZapKckPFlRs7+S7PDx+CcSttHbbWPBujf5ZWQ==
-X-Received: by 2002:a17:906:9381:: with SMTP id l1mr23895119ejx.380.1592179224942;
-        Sun, 14 Jun 2020 17:00:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=0r9iOjFzMyP9orIqp35ZxhdsurjuUHNXHC7X6YpTCNA=;
+        b=MwRVq27hTu2f9gSBVU+R6v2+CJZmgE1Hb7P+3aY6HHvThUL4SiKl0htearTIC0eJA/
+         CuqHRb+IKGoBUH4ncO5iXH2IYauVdCo0T4QYuDo4DokMeoMRsCZLeIGsHyjiAvFec7/U
+         YpAk+L0iMnABG93YefsCLAoUY3yvDOR5kzr7ARTjhAxLZEq6gouo8xs0TLaGoJLP6b2f
+         NFjwDL11ectgBnILPlrL6P8XYEWmtQOOJpPsNH6iDB2XAbH/AnaOOq/nLqjVgf6kzeYl
+         BpnK3EQz1UQucxmFkcnblyn7/pcmJ2qyaeE5wo9HUDjC7L1zeKJn0cq2Q2KPaMZS0FSw
+         8Ndw==
+X-Gm-Message-State: AOAM532XX/AIt/gW8dgUcFiBAqwWrcNzQe6w6wm0ds+okPmyAY+cW4qi
+        R9yygwz2x47tusRtr3adOiw4v+Ga
+X-Google-Smtp-Source: ABdhPJwy1wndRX/MiUX8uHnTMYW88GE9JUTflT6oiLn8v0zhffnmY+Pw4D1NF/fpJGJ38rgOSoppdg==
+X-Received: by 2002:a17:906:b817:: with SMTP id dv23mr22846154ejb.185.1592180353497;
+        Sun, 14 Jun 2020 17:19:13 -0700 (PDT)
 Received: from localhost.localdomain ([188.24.129.96])
-        by smtp.gmail.com with ESMTPSA id g22sm7825504ejp.0.2020.06.14.17.00.23
+        by smtp.gmail.com with ESMTPSA id m30sm7450666eda.16.2020.06.14.17.19.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jun 2020 17:00:23 -0700 (PDT)
+        Sun, 14 Jun 2020 17:19:13 -0700 (PDT)
 From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] Add initial support for RoseapplePi SBC
-Date:   Mon, 15 Jun 2020 03:00:17 +0300
-Message-Id: <cover.1592123160.git.cristian.ciocaltea@gmail.com>
+Subject: [PATCH 1/4] arm: dts: owl-s500: Fix incorrect PPI interrupt specifiers
+Date:   Mon, 15 Jun 2020 03:19:08 +0300
+Message-Id: <41463413d6b756e9d24f8807cf95ddd98591b990.1592123160.git.cristian.ciocaltea@gmail.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <cover.1592123160.git.cristian.ciocaltea@gmail.com>
+References: <cover.1592123160.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -64,36 +66,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset enables basic support for RoseapplePi, relying exclusively
-on the existing infrastructure for the Actions Semi Sxx SoCs (thank you
-Andreas and Manni for making this possible).
+The PPI interrupts for cortex-a9 were incorrectly specified, fix them.
 
-The SBC is powered by the Actions Semi S500 SoC and comes with 2GB RAM,
-uSD slot and optional eMMC storage. For more details, please check:
-http://roseapplepi.org/index.php/spec/
+Fixes: fdfe7f4f9d85 ("ARM: dts: Add Actions Semi S500 and LeMaker Guitar")
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+---
+ arch/arm/boot/dts/owl-s500.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-The upcoming patches will improve this initial support by adding the
-missing bits and pieces to the S500 clock management unit, which is a
-prerequisite for providing an S500 pinctrl and gpio driver, in order to
-eventually enable access to additional functionality like I2C and MMC.
-
-Thanks and regards,
-Cristian Ciocaltea
-
-Cristian Ciocaltea (4):
-  arm: dts: owl-s500: Fix incorrect PPI interrupt specifiers
-  dt-bindings: Add vendor prefix for RoseapplePi.org
-  dt-bindings: arm: actions: Document RoseapplePi
-  arm: dts: owl-s500: Add RoseapplePi
-
- .../devicetree/bindings/arm/actions.yaml      |  1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/owl-s500-roseapplepi.dts    | 47 +++++++++++++++++++
- arch/arm/boot/dts/owl-s500.dtsi               |  6 +--
- 5 files changed, 54 insertions(+), 3 deletions(-)
- create mode 100644 arch/arm/boot/dts/owl-s500-roseapplepi.dts
-
+diff --git a/arch/arm/boot/dts/owl-s500.dtsi b/arch/arm/boot/dts/owl-s500.dtsi
+index 5ceb6cc4451d..1dbe4e8b38ac 100644
+--- a/arch/arm/boot/dts/owl-s500.dtsi
++++ b/arch/arm/boot/dts/owl-s500.dtsi
+@@ -84,21 +84,21 @@ scu: scu@b0020000 {
+ 		global_timer: timer@b0020200 {
+ 			compatible = "arm,cortex-a9-global-timer";
+ 			reg = <0xb0020200 0x100>;
+-			interrupts = <GIC_PPI 0 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
++			interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
+ 			status = "disabled";
+ 		};
+ 
+ 		twd_timer: timer@b0020600 {
+ 			compatible = "arm,cortex-a9-twd-timer";
+ 			reg = <0xb0020600 0x20>;
+-			interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
++			interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
+ 			status = "disabled";
+ 		};
+ 
+ 		twd_wdt: wdt@b0020620 {
+ 			compatible = "arm,cortex-a9-twd-wdt";
+ 			reg = <0xb0020620 0xe0>;
+-			interrupts = <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
++			interrupts = <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
+ 			status = "disabled";
+ 		};
+ 
 -- 
 2.27.0
 
