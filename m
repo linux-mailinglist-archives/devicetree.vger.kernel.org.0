@@ -2,161 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6BCE1FAFC2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 14:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A371FB020
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 14:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728692AbgFPMBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 08:01:47 -0400
-Received: from mail-bn8nam11on2040.outbound.protection.outlook.com ([40.107.236.40]:44768
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725775AbgFPMBp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jun 2020 08:01:45 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EOIms1hqvUY8V3djHWtAqz8spUKVXf0UMb5zaskre+XFju4QfJr7wdox7vEpK61JS6/R6F4rBNnIHrCWxLNC2J7Ryi/FzIITPp8BGq7gglQuex0l7D0AbjLP579mehiC8+Nz5rhzJRyMTVKLCJ0QFaEKUBJTYPnTsu/NWAGZ6BtuVRRQ4GR2ffZLSo4ecCx2GsRnPLSKqLzz0lkg76EQU3KCw8dns3Ak4xNHoscPvTfhuTN69vDnEmm+sy5VdVRz9AiWXYE0QtMM5dUxFEjM3OQtzgO8pmIavRwnQ/Wmai/eab6s1Ve3ED8nubmOmhc0svu2h+0b0PUs09YrxybMRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kQJzPTJz5Wish6G1MxpojMjQL4F6ZEXBfQCJPjaFESI=;
- b=jakST3/FQiviYJgeA6xjQqAYcoVbtZZR+3qqawdyKNBWDMuj2rcuOBsJM/dWJrjFXUSiIM/FfX0OEFjPowelAVBd+ojPXEfdW1Uk3pKqtkY53a67dn8zvOBV5PF/1H/aQVUr3x/2ilqb3k0dlwCatr3/n5nemg/Fy40WQafWwGEl0BqMNirvlTGRuV1saPPjhijSBDYC8Ch10vfqrSoTMDlDXoNJjdnAEjI7ZeT3Xt6OtTgWXc0udl6RWKzXbBz9Lxopy7RFUXg3I6A/hRid/vmUG0bPlh8Po5uUB3+rqMHIW0dgx/lYwuUdDIDXtFIbbiW74jVEwasjldhv1ryqSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sifive.com; dmarc=pass action=none header.from=sifive.com;
- dkim=pass header.d=sifive.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kQJzPTJz5Wish6G1MxpojMjQL4F6ZEXBfQCJPjaFESI=;
- b=qBGHWg0eBJa3SGW5WQi3SMDVZKtJ6UVlZiFu5jxx72svYiO5o+OQNPerAkj7RrhXU23V5NlLa9Vk7piuJaacOnhXJ/yO4jWeansudtPXRkJQbYjfdH/uNkSL3X5ySzXY4yxvV90hwNjajR2uUFbhVQRD51hc2WQqXNntHNhpNFw=
-Authentication-Results: sifive.com; dkim=none (message not signed)
- header.d=none;sifive.com; dmarc=none action=none header.from=sifive.com;
-Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
- (2603:10b6:405:34::34) by BN7PR13MB2516.namprd13.prod.outlook.com
- (2603:10b6:406:a9::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.11; Tue, 16 Jun
- 2020 12:01:43 +0000
-Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
- ([fe80::68f2:768a:7a8b:e790]) by BN6PR1301MB2020.namprd13.prod.outlook.com
- ([fe80::68f2:768a:7a8b:e790%7]) with mapi id 15.20.3109.018; Tue, 16 Jun 2020
- 12:01:43 +0000
-From:   Yash Shah <yash.shah@sifive.com>
-To:     paul.walmsley@sifive.com, palmer@dabbelt.com, robh+dt@kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sachin.ghadi@sifive.com
-Cc:     aou@eecs.berkeley.edu, bmeng.cn@gmail.com, green.wan@sifive.com,
-        atish.patra@wdc.com, anup@brainfault.org, alistair.francis@wdc.com,
-        lollivier@baylibre.com, deepa.kernel@gmail.com,
-        Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH 3/3] riscv: dts: HiFive Unleashed: define a default set of CPU OPPs
-Date:   Tue, 16 Jun 2020 17:31:04 +0530
-Message-Id: <1592308864-30205-4-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1592308864-30205-1-git-send-email-yash.shah@sifive.com>
-References: <1592308864-30205-1-git-send-email-yash.shah@sifive.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0019.apcprd02.prod.outlook.com
- (2603:1096:3:17::31) To BN6PR1301MB2020.namprd13.prod.outlook.com
- (2603:10b6:405:34::34)
+        id S1728598AbgFPMRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 08:17:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbgFPMRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 08:17:11 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E481C08C5C3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:11 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id x207so9421148pfc.5
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Ec3juquI4rhFjGOCuOnFrl/SFwl2x3S0xqJKp1FvXHk=;
+        b=o7eLERaO4Xamk0yOYrHaIOKvh1GxeOEGq6pNfS5NuJi0zP7sd3jEg2x/kjZAURz1d9
+         wd5Zht/OFOaJ/Ojts7vPstoMQNdmXmsFpixpiCke87sjkGTh9JlNv7Jqc3SBVgu4ClwR
+         0g0ZI2I2TAplj4UsBHeoOBF7uRJCPj3pxCXU4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Ec3juquI4rhFjGOCuOnFrl/SFwl2x3S0xqJKp1FvXHk=;
+        b=i3jrRvbM7fy3ht96v5NIe7ST0PNg1VAXG/xTv/BLx2MVQk8YZHsmDRLO2JkdydVDbe
+         SbPBkMaAbVAuNWTIbi7ik11knpTi7GowjzJzp1OLXHGoN5X15Pdb4fEGjuRmH8a9AE0y
+         FoEVIy65Du1IbwNuKpFha0TRltE15ypgkyE9su4EQcd6AGh8vE5ffWFoxfEee8qv1f1R
+         4Wlse16GInqORZJX2S/XZX0Lj+DpP8eGp3VfpoOFRnqVwuyeQxai+O5R2bjmkfMmZBEe
+         3N+/He67s4zs2s7eKP0HtsfhqNxX1vmKrU2GxuPpRuVoW259N5ZVWbsMnh7LxMfbBm2V
+         UBUA==
+X-Gm-Message-State: AOAM531oOz3WB37E7XnGCZjUqvs+r6XfGlBN9oQhl5sDkV82sW+f+OoS
+        QKy3fxEh5lf4R96TnT2onTlOdCmpvzA=
+X-Google-Smtp-Source: ABdhPJw8jh3rGs+/j9cYByNMvBMKt3opLtcC8xfvAJvhW7BOCCL3NjEHklOfgERVUqetNVNk1VCYug==
+X-Received: by 2002:a62:fc52:: with SMTP id e79mr1861952pfh.5.1592309830081;
+        Tue, 16 Jun 2020 05:17:10 -0700 (PDT)
+Received: from shiro.work (p1285116-ipngn200805sizuokaden.shizuoka.ocn.ne.jp. [114.171.61.116])
+        by smtp.googlemail.com with ESMTPSA id f23sm2360703pja.8.2020.06.16.05.17.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jun 2020 05:17:09 -0700 (PDT)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH v4 00/12] Initial MStar/Sigmastar ARMv7 SoC support
+Date:   Tue, 16 Jun 2020 21:15:13 +0900
+Message-Id: <20200616121525.1409790-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.27.0.rc0
+In-Reply-To: <20200612130032.3905240-2-daniel@0x0f.com>
+References: <20200612130032.3905240-2-daniel@0x0f.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from osubuntu003.open-silicon.com (159.117.144.156) by SG2PR02CA0019.apcprd02.prod.outlook.com (2603:1096:3:17::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3088.25 via Frontend Transport; Tue, 16 Jun 2020 12:01:38 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [159.117.144.156]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 193f3de1-14a9-48c0-9a1e-08d811ed0946
-X-MS-TrafficTypeDiagnostic: BN7PR13MB2516:
-X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BN7PR13MB2516E7A42F0828379498E6368C9D0@BN7PR13MB2516.namprd13.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-Forefront-PRVS: 04362AC73B
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hNcysuIQWUOSQIpiXgTlmx+qBs53kjnJpZE05CGr2sAJyLkZVDKe9BRqFSdPY8xWknBIGBJBgXtlCjhB8wg8rhDMtt8BMopsXtDUSBU9vW+QsOdMgWhr0LwMH+8fqCm5OnbHIoW1wCnvhFJgGt5aib16jvY+peQjQI7JBVZ477rcVhAY+MS6bt8D5igJv0SY4aNdxWQJ+XY+b3EYG+ug9ME7i0ZvDcGNOmsXidOi+/sSTUfd43RRTxj6pw5/A9yRTMgFFGdvc8SLtu5knZ3y1+G+epR1M7AXylFjsPozHwXa8q16BBJ8XzyXFrMs7fdgIh42rsw+vnjA7mRvKApc5A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR1301MB2020.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(6029001)(396003)(366004)(346002)(376002)(136003)(39850400004)(4326008)(316002)(52116002)(6486002)(8676002)(83380400001)(6666004)(6512007)(7416002)(44832011)(8936002)(86362001)(36756003)(107886003)(956004)(186003)(2906002)(2616005)(16526019)(478600001)(66556008)(6506007)(6636002)(66946007)(26005)(5660300002)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: M91XTOtoytIGEm3ctCH7O4hre70q4zTPNkd/m234jCFrtzq1v/M2/l/UrekeSH8xzZJDUyvQ9n/asbSocDLeOSgMUrcFA/QO6RKpX5MTXPcUuCN89sdGuK5LM8JfwoaU3V2uZ89PdMhuqDdsy0vijAOV107nH01faNl/4sQA1a9eUhfRVyBdbCvlExiejffgHH/weJ19UoktDtwbHZeI3ixPwtYxjHFcetV+uNkIUPg9k7K1gYoabbBn26WCfmeWEB45aVXASivpNaMzjVbiDp0FNruJIsjuTKEE2E2I3joylJKWS5x2SrnsuZCPeVtr+cUVwVILH2WgGlzWGzxGyPWYXR2ISwkWeMH0VaRIfbNaqGtZ6iLIwJGcgQl8x23PieP3d8B1KW3j+EhRz6Y01Czeu/iKYMoOwReZxJt76gPYPmk/g2EPqOjADO7WkEaAvZNnhA8yOMlqwesTEFOVboplUa7uyR59jCH+a4/vfx0=
-X-OriginatorOrg: sifive.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 193f3de1-14a9-48c0-9a1e-08d811ed0946
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2020 12:01:43.6606
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WIHIeAl5PIXzona0uiljAqJ2RdUUuIc9ZRv9erZYiIJEgilw85Elgkxr3sqnFOypIgurRU4P3MfpdtRxMkwyQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR13MB2516
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define a default set of CPU OPPs for the HiFive Unleashed with the
-FU540-C000 SoC. This allows CPUFreq to be enabled for this board.
+This patch set adds initial support for MStar/Sigmastar's
+Armv7 based SoCs. There is just enough here to get to a shell
+with an initramfs but support for a lot of the hardware is
+in progress and will follow.
 
-The FU540-C000 SoC PVT corners haven't been characterized separately
-from the HiFive Unleashed board. Thus the OPPs are added to the board
-DT file, rather than the SoC itself.
+MStar also shipped chips with MIPS cores and ARM9 etc which
+are incompatible so I've tried to make the distinction in the
+code that this is strictly for the Armv7 based chips.
 
-The specific selection of OPPs are designed to enable fast switching
-by simply changing the CORE PLL output divider. The exception is the
-1GHz OPP. Since the OPP code apparently requires that, upon kernel
-start, the CPU clock frequency must have been set to an existing OPP
-frequency, the 1GHz rate is present solely because the default HiFive
-Unleashed bootloaders set the CPU to run at 1GHz before starting the
-kernel.
+Sorry for the spamming this. I just really want to make some
+progress on this because I'm worried the other bits that are
+needed for these SoCs (Really old AT91 support in macb and
+the fotg210 usb host) will be lost or stop working in the meantime.
+This already happened in u-boot.
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- .../riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 38 ++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Differences from v3:
+1. Fixed the issue with the mstar binding that Rob Herring's bot
+found.
+2. Fixed the filename for the midrived08 dts.
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 4a2729f..59db9c0 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -46,6 +46,44 @@
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
- 	};
-+
-+	fu540_c000_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-350000000 {
-+			opp-hz = /bits/ 64 <350000000>;
-+		};
-+		opp-700000000 {
-+			opp-hz = /bits/ 64 <700000000>;
-+		};
-+		opp-999999999 {
-+			opp-hz = /bits/ 64 <999999999>;
-+		};
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	operating-points-v2 = <&fu540_c000_opp_table>;
-+};
-+
-+&cpu1 {
-+	operating-points-v2 = <&fu540_c000_opp_table>;
-+};
-+
-+&cpu2 {
-+	operating-points-v2 = <&fu540_c000_opp_table>;
-+};
-+
-+&cpu3 {
-+	operating-points-v2 = <&fu540_c000_opp_table>;
-+};
-+
-+&cpu4 {
-+	operating-points-v2 = <&fu540_c000_opp_table>;
- };
- 
- &uart0 {
+Differences from v2:
+
+1. With Marc Zyngier's help the GIC node has been filled out properly.
+
+2. A comment was added to the arch timer node to explain why the
+clock-frequency is specified. Basically the vendor u-boot is old and
+broken.
+
+3. Based on Arnd Bergmann's feedback the heavy memory barrier is now
+implemented using a DT node to specify where the registers are instead
+of hardcoding their location. A binding description has been added for
+the new node.
+
+4. Expanded comments around the heavy memory barrier code so it's more
+obvious why it looks like it does.
+
+5. The heavy memory barrier init code was folded into the machine init
+function.
+
+6. Updated the device tree bindings and prefixes based on Andreas Färber's
+feedback. They have also been split out into a number of commits
+
+7. Based on Andreas Färber's feedback I've added the "riu" (register interface
+unit) internal bus that contains all of the peripheral registers and the proper
+ranges for the soc node. This bus has clocks, interrupts and some configuration
+register so it might get it's own driver in the future.
+
+8. I've dropped the pmu node for now as it's not needed to boot and I'm not
+sure of the relationship between the single core in most of the chips and
+the 4 documented interrupts.
+
+9. Numerous cosmetic changes based on Andreas Färber's feedback.
+
+Differences from v1:
+
+1. v1 only really supported two specific chips that were known
+at the time of submitting that patch series. Since then it's
+become apparent that there are a few families of SoCs based
+on the same ARMv7 core, clk blocks, interrupt controllers etc
+and this v2 attempts to make support more generic so in the future
+more SoCs from this lineage can be added. Support for some other
+chips is already in progress and will follow.
+
+2. v1 only added support for the BreadBee boards that I have been
+working on. v2 also adds support for a readily available car dash
+camera.
+
+3. Support for the BreadBee board has been split into two top level
+dts to cleanly support if either the msc313 or msc313e is mounted on
+the board. The chips are pin compatible but some of the internal
+hardware is different. The u-boot port for these SoCs can detect
+which chip it is running on and select the right dts so the user
+doesn't have to care which chip is mounted on their board.
+
+
+Daniel Palmer (12):
+  dt-bindings: vendor-prefixes: Add mstar vendor prefix
+  dt-bindings: vendor-prefixes: Add sstar vendor prefix
+  dt-bindings: vendor-prefixes: Add 70mai vendor prefix
+  dt-bindings: vendor-prefixes: Add thingy.jp prefix
+  dt-bindings: arm: Add mstar YAML schema
+  ARM: mstar: Add machine for MStar/Sigmastar Armv7 SoCs
+  ARM: mstar: Add binding details for mstar,l3bridge
+  ARM: mstar: Add Armv7 base dtsi
+  ARM: mstar: Add infinity/infinity3 family dtsis
+  ARM: mstar: Add mercury5 series dtsis
+  ARM: mstar: Add dts for msc313(e) based BreadBee boards
+  ARM: mstar: Add dts for 70mai midrive d08
+
+ .../devicetree/bindings/arm/mstar.yaml        | 34 ++++++++
+ .../bindings/misc/mstar,l3bridge.yaml         | 44 ++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  8 ++
+ MAINTAINERS                                   | 11 +++
+ arch/arm/Kconfig                              |  2 +
+ arch/arm/Makefile                             |  1 +
+ arch/arm/boot/dts/Makefile                    |  4 +
+ .../dts/infinity-msc313-breadbee_crust.dts    | 25 ++++++
+ arch/arm/boot/dts/infinity-msc313.dtsi        | 14 ++++
+ arch/arm/boot/dts/infinity.dtsi               |  7 ++
+ .../boot/dts/infinity3-msc313e-breadbee.dts   | 25 ++++++
+ arch/arm/boot/dts/infinity3-msc313e.dtsi      | 14 ++++
+ arch/arm/boot/dts/infinity3.dtsi              |  7 ++
+ .../boot/dts/mercury5-ssc8336n-midrived08.dts | 25 ++++++
+ arch/arm/boot/dts/mercury5-ssc8336n.dtsi      | 14 ++++
+ arch/arm/boot/dts/mercury5.dtsi               |  7 ++
+ arch/arm/boot/dts/mstar-v7.dtsi               | 83 +++++++++++++++++++
+ arch/arm/mach-mstar/Kconfig                   | 26 ++++++
+ arch/arm/mach-mstar/Makefile                  |  1 +
+ arch/arm/mach-mstar/mstarv7.c                 | 80 ++++++++++++++++++
+ 20 files changed, 432 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/mstar.yaml
+ create mode 100644 Documentation/devicetree/bindings/misc/mstar,l3bridge.yaml
+ create mode 100644 arch/arm/boot/dts/infinity-msc313-breadbee_crust.dts
+ create mode 100644 arch/arm/boot/dts/infinity-msc313.dtsi
+ create mode 100644 arch/arm/boot/dts/infinity.dtsi
+ create mode 100644 arch/arm/boot/dts/infinity3-msc313e-breadbee.dts
+ create mode 100644 arch/arm/boot/dts/infinity3-msc313e.dtsi
+ create mode 100644 arch/arm/boot/dts/infinity3.dtsi
+ create mode 100644 arch/arm/boot/dts/mercury5-ssc8336n-midrived08.dts
+ create mode 100644 arch/arm/boot/dts/mercury5-ssc8336n.dtsi
+ create mode 100644 arch/arm/boot/dts/mercury5.dtsi
+ create mode 100644 arch/arm/boot/dts/mstar-v7.dtsi
+ create mode 100644 arch/arm/mach-mstar/Kconfig
+ create mode 100644 arch/arm/mach-mstar/Makefile
+ create mode 100644 arch/arm/mach-mstar/mstarv7.c
+
 -- 
-2.7.4
+2.27.0.rc0
 
