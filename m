@@ -2,251 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F65A1FC01E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 22:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82ED81FC05A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 22:56:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729804AbgFPUiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 16:38:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725896AbgFPUiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 16:38:51 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79546C06174E
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 13:38:51 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id d8so8924199plo.12
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 13:38:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=wpW7WQOPePDKMe4iZDKX0l11TokFWfmINzOLwuMIeCc=;
-        b=KfKVNYLiedCg1CnE06VLMC/PwK175OV5P5PHufSzCNh0nJ7KEXIUIU4wZkS/KMerT0
-         AbGvvBi0Yh6Yrxp20lOX+VF9h0OFkiXx2H7Xd1XbC6EX2nRfu36kfoVOpqEKG1vXwVl8
-         uKWii7dd1i8zzTsxssgv8F7xVl/wDR61ycV7k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=wpW7WQOPePDKMe4iZDKX0l11TokFWfmINzOLwuMIeCc=;
-        b=L5nLsJIjOyeq4eOz6eA+huPIVQCOHUvNAPUT4gypT+LGQCONFWTQZl+37XomDQMwto
-         bBZiQ0cc951zGB8LUlRW40HoCICFJH1SEyitSRT/zT0e7ooBcy+WzCYDmCl017ewVFWg
-         wND9iyIKyGBbdtaWUttML5jVBS9/rU+c1uGKNUZxbhgIk2U42riye4zsCus0x9PNrilH
-         1hRxmoEcMzxuLIGBRmgljpI/NhkagKZ+cBZo6KXaVwezoQ2ELgJV/J9X3d1yURjA5tPL
-         OtKzXBEHI5eWbtDfy7yBtOFDzMig4M47zYTNYLU9sN9ga29AnArnZ8MletsFRFy2zLa7
-         bMGw==
-X-Gm-Message-State: AOAM532oIacA1czHluHC0ojqvsJQVq7AfRpdHDCQqGQZjcoVSrVP0nRg
-        yWERumMFcGQTnGoQLSJkr9Ybiw==
-X-Google-Smtp-Source: ABdhPJwY/p64B3ltGSHrZiAknPCYjQKtsT/wlseuFxUfBLRtgL2hch0z3uFzCPdDbvEx7sCnip96AQ==
-X-Received: by 2002:a17:902:9f90:: with SMTP id g16mr3672533plq.146.1592339930938;
-        Tue, 16 Jun 2020 13:38:50 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id t22sm3187788pjy.32.2020.06.16.13.38.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jun 2020 13:38:50 -0700 (PDT)
-Date:   Tue, 16 Jun 2020 13:38:49 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     "Sandeep Maheswaram (Temp)" <sanm@codeaurora.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Felipe Balbi <balbi@kernel.org>,
+        id S1729154AbgFPUzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 16:55:49 -0400
+Received: from rnd-relay.smtp.broadcom.com ([192.19.229.170]:33798 "EHLO
+        rnd-relay.smtp.broadcom.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726296AbgFPUzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 16:55:48 -0400
+Received: from mail-irv-17.broadcom.com (mail-irv-17.lvn.broadcom.net [10.75.242.48])
+        by rnd-relay.smtp.broadcom.com (Postfix) with ESMTP id E5B9C30D887;
+        Tue, 16 Jun 2020 13:55:46 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 rnd-relay.smtp.broadcom.com E5B9C30D887
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+        s=dkimrelay; t=1592340946;
+        bh=rfno4F7HiS8LiAdPYLi+a1WYnEQJIb94Ut0WyA5KWcI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PaTfaUqcmDwD6JrrdtOJDGj9AieSbSy5n5dCRm4ofxbYKITAcKCxA9ctasj8YUusH
+         TyjbXiyk+Aq2DTfX53E9ixj4JZKhzXlPbmZxcTqfxrcVqnwhdP8sElx8kNXEY071cq
+         J6KOs/AtEwzC3fMmHmYu+sU+qanIY7yhUFU0Q2Ms=
+Received: from stbsrv-and-01.and.broadcom.net (stbsrv-and-01.and.broadcom.net [10.28.16.211])
+        by mail-irv-17.broadcom.com (Postfix) with ESMTP id 64A55140069;
+        Tue, 16 Jun 2020 13:55:43 -0700 (PDT)
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+To:     linux-pci@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>, Corey Minyard <minyard@acm.org>,
+        devel@driverdev.osuosl.org (open list:STAGING SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR ALLWINNER
+        A10), Florian Fainelli <f.fainelli@gmail.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>
-Subject: Re: [PATCH v7 2/4] usb: dwc3: qcom: Add interconnect support in dwc3
- driver
-Message-ID: <20200616203849.GY4525@google.com>
-References: <1585718145-29537-1-git-send-email-sanm@codeaurora.org>
- <1585718145-29537-3-git-send-email-sanm@codeaurora.org>
- <159120577830.69627.13288547914742515702@swboyd.mtv.corp.google.com>
- <d9ccf188-4f00-d3ac-ba0f-73f06c087553@codeaurora.org>
- <159126939154.69627.13027312816468830595@swboyd.mtv.corp.google.com>
- <20200615194239.GW4525@google.com>
- <3f8fcb0e-387d-e902-9f6b-1fde9d6ae404@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3f8fcb0e-387d-e902-9f6b-1fde9d6ae404@codeaurora.org>
+        Hans de Goede <hdegoede@redhat.com>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        iommu@lists.linux-foundation.org (open list:IOMMU DRIVERS),
+        Jens Axboe <axboe@kernel.dk>,
+        Julien Grall <julien.grall@arm.com>,
+        linux-acpi@vger.kernel.org (open list:ACPI FOR ARM64 (ACPI/arm64)),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM PORT),
+        linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and
+        Parallel ATA drivers)), linux-kernel@vger.kernel.org (open list),
+        linux-media@vger.kernel.org (open list:ALLWINNER A10 CSI DRIVER),
+        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
+        (REMOTEPROC) SUBSYSTEM),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-sh@vger.kernel.org (open list:SUPERH),
+        linux-usb@vger.kernel.org (open list:USB SUBSYSTEM),
+        Oliver Neukum <oneukum@suse.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>
+Subject: [PATCH v5 00/12] PCI: brcmstb: enable PCIe for STB chips
+Date:   Tue, 16 Jun 2020 16:55:07 -0400
+Message-Id: <20200616205533.3513-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 16, 2020 at 10:22:47AM +0530, Sandeep Maheswaram (Temp) wrote:
-> 
-> On 6/16/2020 1:12 AM, Matthias Kaehlcke wrote:
-> > On Thu, Jun 04, 2020 at 04:16:31AM -0700, Stephen Boyd wrote:
-> > > Quoting Sandeep Maheswaram (Temp) (2020-06-04 02:43:09)
-> > > > On 6/3/2020 11:06 PM, Stephen Boyd wrote:
-> > > > > Quoting Sandeep Maheswaram (2020-03-31 22:15:43)
-> > > > > > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> > > > > > index 1dfd024..d33ae86 100644
-> > > > > > --- a/drivers/usb/dwc3/dwc3-qcom.c
-> > > > > > +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> > > > > > @@ -285,6 +307,101 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom)
-> > > > > >           return 0;
-> > > > > >    }
-> > > > > > +
-> > > > > > +/**
-> > > > > > + * dwc3_qcom_interconnect_init() - Get interconnect path handles
-> > > > > > + * @qcom:                      Pointer to the concerned usb core.
-> > > > > > + *
-> > > > > > + */
-> > > > > > +static int dwc3_qcom_interconnect_init(struct dwc3_qcom *qcom)
-> > > > > > +{
-> > > > > > +       struct device *dev = qcom->dev;
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       if (!device_is_bound(&qcom->dwc3->dev))
-> > > > > > +               return -EPROBE_DEFER;
-> > > > > How is this supposed to work? I see that this was added in an earlier
-> > > > > revision of this patch series but there isn't any mention of why
-> > > > > device_is_bound() is used here. It would be great if there was a comment
-> > > > > detailing why this is necessary. It sounds like maximum_speed is
-> > > > > important?
-> > > > > 
-> > > > > Furthermore, dwc3_qcom_interconnect_init() is called by
-> > > > > dwc3_qcom_probe() which is the function that registers the device for
-> > > > > qcom->dwc3->dev. If that device doesn't probe between the time it is
-> > > > > registered by dwc3_qcom_probe() and this function is called then we'll
-> > > > > fail dwc3_qcom_probe() with -EPROBE_DEFER. And that will remove the
-> > > > > qcom->dwc3->dev device from the platform bus because we call
-> > > > > of_platform_depopulate() on the error path of dwc3_qcom_probe().
-> > > > > 
-> > > > > So isn't this whole thing racy and can potentially lead us to a driver
-> > > > > probe loop where the wrapper (dwc3_qcom) and the core (dwc3) are probing
-> > > > > and we're trying to time it just right so that driver for dwc3 binds
-> > > > > before we setup interconnects? I don't know if dwc3 can communicate to
-> > > > > the wrapper but that would be more of a direct way to do this. Or maybe
-> > > > > the wrapper should try to read the DT property for maximum speed and
-> > > > > fallback to a worst case high bandwidth value if it can't figure it out
-> > > > > itself without help from dwc3 core.
-> > > > > 
-> > > > This was added in V4 to address comments from Matthias in V3
-> > > > 
-> > > > https://patchwork.kernel.org/patch/11148587/
-> > > > 
-> > > Yes, that why I said:
-> > > 
-> > > "I see that this was added in an earlier
-> > >   revision of this patch series but there isn't any mention of why
-> > >   device_is_bound() is used here. It would be great if there was a comment
-> > >   detailing why this is necessary. It sounds like maximum_speed is
-> > >   important?"
-> > > 
-> > > Can you please respond to the rest of my email?
-> > I agree with Stephen that using device_is_bound() isn't a good option
-> > in this case, when I suggested it I wasn't looking at the big picture
-> > of how probing the core driver is triggered, sorry about that.
-> > 
-> > Reading the speed from the DT with usb_get_maximum_speed() as Stephen
-> > suggests would be an option, the inconvenient is that we then
-> > essentially require the property to be defined, while the core driver
-> > gets a suitable value from hardware registers. Not sure if the wrapper
-> > driver could read from the same registers.
-> > 
-> > One option could be to poll device_is_bound() for 100 ms (or so), with
-> > sleeps between polls. It's not elegant but would probably work if we
-> > don't find a better solution.
-> if (np)
->         ret = dwc3_qcom_of_register_core(pdev);
->     else
->         ret = dwc3_qcom_acpi_register_core(pdev);
-> 
->     if (ret) {
->         dev_err(dev, "failed to register DWC3 Core, err=%d\n", ret);
->         goto depopulate;
->     }
-> 
->     ret = dwc3_qcom_interconnect_init(qcom);
->     if (ret)
->         goto depopulate;
-> 
->     qcom->mode = usb_get_dr_mode(&qcom->dwc3->dev);
-> 
-> Before calling dwc3_qcom_interconnect_init we are checking
-> 
->     if (ret) {
->         dev_err(dev, "failed to register DWC3 Core, err=%d\n", ret);
->         goto depopulate;
->     }
-> 
-> Doesn't  this condition confirm the core driver is probed?
+Patchset Summary:
+  Enhance a PCIe host controller driver.  Because of its unusual design
+  we are foced to change dev->dma_pfn_offset into a more general role
+  allowing multiple offsets.
 
-Not really:
+v5:
+  Commit "device core: Introduce multiple dma pfn offsets"
+  -- in of/address.c: "map_size = 0" => "*map_size = 0"
+  -- use kcalloc instead of kzalloc (AndyS)
+  -- use PHYS_ADDR_MAX instead of "~(phys_addr_t)0"
+  Commit "PCI: brcmstb: Set internal memory viewport sizes"
+  -- now gives error on missing dma-ranges property.
+  Commit "dt-bindings: PCI: Add bindings for more Brcmstb chips"
+  -- removed "Allof:" from brcm,scb-sizes definition (RobH)
+  All Commits:
+  -- indentation style, use max chars 100 (AndyS)
+  -- rebased to torvalds master
 
-// called under the hood by of_platform_populate()
-static int really_probe(struct device *dev, struct device_driver *drv)
-{
-	...
+v4:
+  Commit "device core: Introduce multiple dma pfn offsets"
+  -- of_dma_get_range() does not take a dev param but instead
+     takes two "out" params: map and map_size.  We do this so
+     that the code that parses dma-ranges is separate from
+     the code that modifies 'dev'.   (Nicolas)
+  -- the separate case of having a single pfn offset has
+     been removed and is now processed by going through the
+     map array. (Nicolas)
+  -- move attach_uniform_dma_pfn_offset() from of/address.c to
+     dma/mapping.c so that it does not depend on CONFIG_OF. (Nicolas)
+  -- devm_kcalloc => devm_kzalloc (DanC)
+  -- add/fix assignment to dev->dma_pfn_offset_map for func
+     attach_uniform_dma_pfn_offset() (DanC, Nicolas)
+  -- s/struct dma_pfn_offset_region/struct bus_dma_region/ (Nicolas)
+  -- s/attach_uniform_dma_pfn_offset/dma_attach_uniform_pfn_offset/
+  -- s/attach_dma_pfn_offset_map/dma_attach_pfn_offset_map/
+  -- More use of PFN_{PHYS,DOWN,UP}. (AndyS)
+  Commit "of: Include a dev param in of_dma_get_range()"
+  -- this commit was sqaushed with "device core: Introduce ..."
 
-	if (dev->bus->probe) {
-		ret = dev->bus->probe(dev);
-		if (ret)
-			goto probe_failed;
-	} else if (drv->probe) {
-		ret = drv->probe(dev);
-	        if (ret)
-	       		goto probe_failed;
-        }
+v3:
+  Commit "device core: Introduce multiple dma pfn offsets"
+  Commit "arm: dma-mapping: Invoke dma offset func if needed"
+  -- The above two commits have been squashed.  More importantly,
+     the code has been modified so that the functionality for
+     multiple pfn offsets subsumes the use of dev->dma_pfn_offset.
+     In fact, dma_pfn_offset is removed and supplanted by
+     dma_pfn_offset_map, which is a pointer to an array.  The
+     more common case of a uniform offset is now handled as
+     a map with a single entry, while cases requiring multiple
+     pfn offsets use a map with multiple entries.  Code paths
+     that used to do this:
 
-	...
+         dev->dma_pfn_offset = mydrivers_pfn_offset;
 
-probe_failed:
-	...
+     have been changed to do this:
 
-	/*
-         * Ignore errors returned by ->probe so that the next driver can try
-         * its luck.
-         */
-        ret = 0;
+         attach_uniform_dma_pfn_offset(dev, pfn_offset);
 
-	...
+  Commit "dt-bindings: PCI: Add bindings for more Brcmstb chips"
+  -- Add if/then clause for required props: resets, reset-names (RobH)
+  -- Change compatible list from const to enum (RobH)
+  -- Change list of u32-tuples to u64 (RobH)
 
-	return ret;
-}
+  Commit "of: Include a dev param in of_dma_get_range()"
+  -- modify of/unittests.c to add NULL param in of_dma_get_range() call.
 
-As a result of_platform_populate() in dwc3_qcom_of_register_core()
-returns 0 even when probing the device failed:
+  Commit "device core: Add ability to handle multiple dma offsets"
+  -- align comment in device.h (AndyS).
+  -- s/cpu_beg/cpu_start/ and s/dma_beg/dma_start/ in struct
+     dma_pfn_offset_region (AndyS).
 
-[    0.244339] dwc3-qcom a6f8800.usb: DBG: populate
-[    0.244772] dwc3 a600000.dwc3: DBG: dwc3_probe
-[    0.245237] dwc3 a600000.dwc3: DBG: dwc3_probe err: -517
-[    0.245264] dwc3-qcom a6f8800.usb: DBG: populate (done)
-[    0.245317] dwc3-qcom a6f8800.usb: DBG: dwc3_qcom_interconnect_init() failed: -517
+v2:
+Commit: "device core: Add ability to handle multiple dma offsets"
+  o Added helper func attach_dma_pfn_offset_map() in address.c (Chistoph)
+  o Helpers funcs added to __phys_to_dma() & __dma_to_phys() (Christoph)
+  o Added warning when multiple offsets are needed and !DMA_PFN_OFFSET_MAP
+  o dev->dma_pfn_map => dev->dma_pfn_offset_map
+  o s/frm/from/ for dma_pfn_offset_frm_{phys,dma}_addr() (Christoph)
+  o In device.h: s/const void */const struct dma_pfn_offset_region */
+  o removed 'unlikely' from unlikely(dev->dma_pfn_offset_map) since
+    guarded by CONFIG_DMA_PFN_OFFSET_MAP (Christoph)
+  o Since dev->dma_pfn_offset is copied in usb/core/{usb,message}.c, now
+    dev->dma_pfn_offset_map is copied as well.
+  o Merged two of the DMA commits into one (Christoph).
 
-Probe fails because the interconnect stuff isn't ready yet, otherwise
-it could access invalid data.
+Commit "arm: dma-mapping: Invoke dma offset func if needed":
+  o Use helper functions instead of #if CONFIG_DMA_PFN_OFFSET
 
-A later _populate() is successful and the probing of the core is done
-synchronously, i.e. after _populate() the core driver is fully
-initialized:
+Other commits' changes:
+  o Removed need for carrying of_id var in priv (Nicolas)
+  o Commit message rewordings (Bjorn)
+  o Commit log messages filled to 75 chars (Bjorn)
+  o devm_reset_control_get_shared())
+    => devm_reset_control_get_optional_shared (Philipp)
+  o Add call to reset_control_assert() in PCIe remove routines (Philipp)
 
-[    3.898106] dwc3-qcom a6f8800.usb: DBG: populate
-[    3.908356] dwc3 a600000.dwc3: DBG: dwc3_probe
-[    4.205104] dwc3 a600000.dwc3: DBG: dwc3_probe (done)
-[    4.210305] dwc3-qcom a6f8800.usb: DBG: populate (done)
+v1:
+This patchset expands the usefulness of the Broadcom Settop Box PCIe
+controller by building upon the PCIe driver used currently by the
+Raspbery Pi.  Other forms of this patchset were submitted by me years
+ago and not accepted; the major sticking point was the code required
+for the DMA remapping needed for the PCIe driver to work [1].
 
-The synchronous probing in _populate() suggests that using device_is_bound()
-would actually be a valid option, either the core device was successfully
-probed or not, there should be no race.
+There have been many changes to the DMA and OF subsystems since that
+time, making a cleaner and less intrusive patchset possible.  This
+patchset implements a generalization of "dev->dma_pfn_offset", except
+that instead of a single scalar offset it provides for multiple
+offsets via a function which depends upon the "dma-ranges" property of
+the PCIe host controller.  This is required for proper functionality
+of the BrcmSTB PCIe controller and possibly some other devices.
 
-I sent a patch that adds this check to dwc3_qcom_of_register_core(), which
-is less confusing and makes clear that the core device is valid unless
-this function returns an error:
+[1] https://lore.kernel.org/linux-arm-kernel/1516058925-46522-5-git-send-email-jim2101024@gmail.com/
 
-  https://lore.kernel.org/patchwork/patch/1257279/
+Jim Quinlan (12):
+  PCI: brcmstb: PCIE_BRCMSTB depends on ARCH_BRCMSTB
+  ata: ahci_brcm: Fix use of BCM7216 reset controller
+  dt-bindings: PCI: Add bindings for more Brcmstb chips
+  PCI: brcmstb: Add bcm7278 register info
+  PCI: brcmstb: Add suspend and resume pm_ops
+  PCI: brcmstb: Add bcm7278 PERST support
+  PCI: brcmstb: Add control of rescal reset
+  device core: Introduce multiple dma pfn offsets
+  PCI: brcmstb: Set internal memory viewport sizes
+  PCI: brcmstb: Accommodate MSI for older chips
+  PCI: brcmstb: Set bus max burst size by chip type
+  PCI: brcmstb: Add bcm7211, bcm7216, bcm7445, bcm7278 to match list
 
-It might make sense to add your "driver core:Export the symbol
-device_is_bound" patch, mine and this one to a single series.
+ .../bindings/pci/brcm,stb-pcie.yaml           |  56 ++-
+ arch/arm/include/asm/dma-mapping.h            |   9 +-
+ arch/arm/mach-keystone/keystone.c             |   8 +-
+ arch/sh/drivers/pci/pcie-sh7786.c             |   3 +-
+ arch/sh/kernel/dma-coherent.c                 |  14 +-
+ arch/x86/pci/sta2x11-fixup.c                  |   7 +-
+ drivers/acpi/arm64/iort.c                     |   4 +-
+ drivers/ata/ahci_brcm.c                       |  11 +-
+ drivers/gpu/drm/sun4i/sun4i_backend.c         |   5 +-
+ drivers/iommu/io-pgtable-arm.c                |   2 +-
+ .../platform/sunxi/sun4i-csi/sun4i_csi.c      |   5 +-
+ .../platform/sunxi/sun6i-csi/sun6i_csi.c      |   4 +-
+ drivers/of/address.c                          |  71 ++-
+ drivers/of/device.c                           |  19 +-
+ drivers/of/of_private.h                       |  11 +-
+ drivers/of/unittest.c                         |   8 +-
+ drivers/pci/controller/Kconfig                |   3 +-
+ drivers/pci/controller/pcie-brcmstb.c         | 403 +++++++++++++++---
+ drivers/remoteproc/remoteproc_core.c          |   2 +-
+ .../staging/media/sunxi/cedrus/cedrus_hw.c    |   7 +-
+ drivers/usb/core/message.c                    |   4 +-
+ drivers/usb/core/usb.c                        |   2 +-
+ include/linux/device.h                        |   4 +-
+ include/linux/dma-direct.h                    |  14 +-
+ include/linux/dma-mapping.h                   |  38 ++
+ kernel/dma/coherent.c                         |  11 +-
+ kernel/dma/mapping.c                          |  39 ++
+ 27 files changed, 632 insertions(+), 132 deletions(-)
 
-Thanks
+-- 
+2.17.1
 
-Matthias
