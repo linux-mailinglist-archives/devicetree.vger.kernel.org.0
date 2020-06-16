@@ -2,116 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFBD31FAC3E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 11:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7444B1FAC58
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 11:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728188AbgFPJWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 05:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43076 "EHLO
+        id S1727837AbgFPJ15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 05:27:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728179AbgFPJWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 05:22:16 -0400
-Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com [IPv6:2607:f8b0:4864:20::944])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE02C03E97C
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 02:22:15 -0700 (PDT)
-Received: by mail-ua1-x944.google.com with SMTP id r1so6656879uam.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 02:22:15 -0700 (PDT)
+        with ESMTP id S1725901AbgFPJ14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 05:27:56 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20A2C05BD43;
+        Tue, 16 Jun 2020 02:27:56 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id x25so6780042edr.8;
+        Tue, 16 Jun 2020 02:27:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5DT2283QGSeLmNfRYosxvl4RnLSyjJEL1/ZqFVdUOJQ=;
-        b=gbiR7iJELkxNmdiFG9i0jMjxFEi2lb7SY5/bBgrWh11d1mz9Ty/etYm5giSxwegNQs
-         MRha2ZX2nS+57DDDxKnsIeqIUAysnFBvEJ9g2NrznEp48uFKw6y317kN/4oI2nbvfoYP
-         MtpvaX3EAU4PXUqz5tyr3CCTvZwrAorztgU7Ynwe/RHsDvnAMl27sI4cq70yGcCN6VLD
-         W1huILgMFI7IjGXsotocJGfn09BwBxuS8F7ihs1sLR4Jo7297v0roOgWxgcXMUY9tD6U
-         qgq0K68V23qnMt+3xvffDoPhJ3oXeEXabuKD5+bEV8SusiKKV0nZK4zXGiCgy5ggNkoE
-         Ozew==
+         :cc:content-transfer-encoding;
+        bh=x3QhgzPYsk4YXww5OnxJ96yfR+po6PyrH4a8GDqlKe8=;
+        b=oP8HT6xPm+Jd8PbfAnJfzBLJDQMtCiW9hmZNAZKWE8HMgB9EPpSEHL71WU9pKn9Arr
+         dPhLjNWwKgbY7muygCZZh2ynHlxcaASViVzRpgRwsBjIPLzx2RP8PvYsx628zblvh9NC
+         REIqD1Q18GODNR+fb5p3kx/zLM5eHsNKw58de5oUaRGQ08AoaHEpeNjPGBMyKk7UMMzu
+         7MGx2LJiJOl5kt/W0jEWbS4UoBYNXsggcskbAd8gr8MNi6Xov/1xHaue5xHFT0hVHzm6
+         ucMrcmix+hcukIsMqqjeGTpl4lLA3EpEm0P7SsV/fGWb8e+JE2c+WgtB/Ax4gh6eRMbO
+         i+SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5DT2283QGSeLmNfRYosxvl4RnLSyjJEL1/ZqFVdUOJQ=;
-        b=e4vyUxo7u35F3/CKFwWAo+DLAVjOeXSSXNvBslVTXjQXvvANd4hqnLKectRQRvZrId
-         OR8FfQjiR1S2THIlCYBn9Cr8TM5P4EBSUR2G2XlUx2cuetRMY14N9YhAASBBBjlZ7QKD
-         aGutMb9OnMyR6/dcrNd9BAjsxDv2TO5d2axUk18DtraUyw7bXctEbeh5y6o0dTW+r+ze
-         yM/rTA0GGuLWFzLUdQXdJjMoR0RKHFeWmd+uvDyrIBqSKcgrG3379IDM4/swDR2+wHTJ
-         ntNbI4c7j92ZMNl1MviN+zKEyekJBM5zlHJB0emPLE/7hH+48gqbaAY6EMSvZeSLfoZt
-         YOvg==
-X-Gm-Message-State: AOAM530XFwc3va23ECrV1l6IgrYqHjO2mXuFkyHjLaJodKrgm04ycyWZ
-        Ym0I1ELBq/MJ5fl5h7Ic2YnlRqXY7aOyicQ1CiSfOA==
-X-Google-Smtp-Source: ABdhPJy0PnwHfzauVDw+Ug2b7tLfbgXqklE/dFIs6uKXZxsoJFcNcg5IvQkTzE3BVQgmfzvG6L2U8lbITGbUSMKo/AA=
-X-Received: by 2002:ab0:186d:: with SMTP id j45mr1143930uag.104.1592299334487;
- Tue, 16 Jun 2020 02:22:14 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=x3QhgzPYsk4YXww5OnxJ96yfR+po6PyrH4a8GDqlKe8=;
+        b=ZA5yR982d1j6RXCnRa4tuQRRbqz8Pf966576fI1OMfz/JIhDPB6tO+VYM/xagD0LDB
+         mFIFBP5mr64wYn5DxwbN6sp8iFtVzX5XVRtSz1BaAHViBo3Tn9gKlyybXAhO2l9dMrqF
+         GT49rnOoFmlU3wzwESs+n8Z6ZPlq7j2AUJ3JsWhFTmaWgY4wdTYbhx61eXqTqs1YXHd8
+         2h3gBGE/n6aBq3H5oQPphaLU/AqGd4xz4oGyjoso+3jTlb0t0BUgtVoaikLwK1+hDcXB
+         lgS6LhXxBK++DfjywEF3hRiu0qO7Lhq6rRu5Y4Vu/XQPQb2AzCCj3FA3/Nec9RITL0Mp
+         BPkA==
+X-Gm-Message-State: AOAM532Y/Q79k+SONReEd4Tj9JuJX+iTfRJXGoLulAfzkSWJsaGQtVOi
+        Ku/nfWI4GwjtILSWlvKIRJzT74z8gDhsN+3VmzGKYlId3AE=
+X-Google-Smtp-Source: ABdhPJxwxI3G8sOMPSW+QeQRyqvQfrtsLAnkaAz9/qX8rA1XrxLcxmluojj/DbY7j4zIshXelrpnqgGrpdDFAceaBH0=
+X-Received: by 2002:a05:6402:1c87:: with SMTP id cy7mr1757571edb.354.1592299675040;
+ Tue, 16 Jun 2020 02:27:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200604015317.31389-1-thara.gopinath@linaro.org> <20200604015317.31389-6-thara.gopinath@linaro.org>
-In-Reply-To: <20200604015317.31389-6-thara.gopinath@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 16 Jun 2020 11:21:38 +0200
-Message-ID: <CAPDyKFrBYx1dDK2UNvaZR1swB-9WiOy4V62hFU2-Ud_xm6gOoA@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: power: Extend RPMh power controller
- binding to describe thermal warming device
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Rob Herring <robh@kernel.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20200522030743.10204-1-frank@allwinnertech.com>
+ <20200522030743.10204-3-frank@allwinnertech.com> <20200522152803.twvfvuhd6ztunvll@gilmour.lan>
+ <8c7a8eeb-f4ea-4df7-b381-5aeab6dd170a.frank@allwinnertech.com> <20200605151306.kqmyj673kux4sbaa@gilmour.lan>
+In-Reply-To: <20200605151306.kqmyj673kux4sbaa@gilmour.lan>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Tue, 16 Jun 2020 17:26:01 +0800
+Message-ID: <CAEExFWutOjweJ_=WYKifebCPohStJdo0UJnHtmzvmhQ+VTb3kg@mail.gmail.com>
+Subject: =?UTF-8?B?UmU6IOWbnuWkje+8mltQQVRDSCAyLzRdIHBpbmN0cmw6IHN1bnhpOiBhZGQgc3VwcG9ydA==?=
+        =?UTF-8?B?IGZvciB0aGUgQWxsd2lubmVyIEExMDAgcGluIGNvbnRyb2xsZXI=?=
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     wens <wens@csie.org>,
+        =?UTF-8?B?5p2O5oms6Z+s?= <frank@allwinnertech.com>,
+        "linus.walleij" <linus.walleij@linaro.org>,
+        "robh+dt" <robh+dt@kernel.org>,
+        mturquette <mturquette@baylibre.com>, sboyd <sboyd@kernel.org>,
+        "p.zabel" <p.zabel@pengutronix.de>,
+        =?UTF-8?B?6buE54OB55Sf?= <huangshuosheng@allwinnertech.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 4 Jun 2020 at 03:53, Thara Gopinath <thara.gopinath@linaro.org> wrote:
->
-> RPMh power controller hosts mx domain that can be used as thermal warming
-> device. Add #cooling-cells property to the power domain provider node to
-> indicate this.
->
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+HI Chen-Yu,  Linus,
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+On Fri, Jun 5, 2020 at 11:13 PM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi Frank,
+>
+> On Wed, Jun 03, 2020 at 05:44:36PM +0800, =E6=9D=8E=E6=89=AC=E9=9F=AC wro=
+te:
+> > >> + SUNXI_PIN(SUNXI_PINCTRL_PIN(F, 0),
+> > >> +  SUNXI_FUNCTION(0x0, "gpio_in"),
+> > >> +  SUNXI_FUNCTION(0x1, "gpio_out"),
+> > >> +  SUNXI_FUNCTION(0x2, "mmc0"),  /* D1 */
+> > >> +  SUNXI_FUNCTION(0x3, "jtag"),  /* MS1 */
+> > >> +  SUNXI_FUNCTION(0x4, "jtag"),  /* MS_GPU */
+> > >
+> > >We should use another name here, since the code will just pick the fir=
+st one and
+> > >ignore the second. What about jtag-gpu?
+> >
+> > The underscores are used in front, so changing it to jtag_gpu may be mo=
+re consistent.
+>
+> Yep, that makes sense
+>
+> > >> + SUNXI_PIN(SUNXI_PINCTRL_PIN(B, 7),
+> > >> +  SUNXI_FUNCTION(0x0, "gpio_in"),
+> > >> +  SUNXI_FUNCTION(0x1, "gpio_out"),
+> > >> +  SUNXI_FUNCTION(0x2, "spdif"),  /* DIN */
+> > >> +  SUNXI_FUNCTION(0x3, "i2s0"),  /* DOUT0 */
+> > >> +  SUNXI_FUNCTION(0x4, "i2s0"),  /* DIN1 */
+> > >
+> > >I guess the second one would be i2s1?
+> >
+> > No, each i2s may have many inputs and outputs.
+> >
+> >  SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 19),
+> >      SUNXI_FUNCTION(0x0, "gpio_in"),
+> >               SUNXI_FUNCTION(0x1, "gpio_out"),
+> >               SUNXI_FUNCTION(0x2, "cir0"),          /* IN */
+> >               SUNXI_FUNCTION(0x3, "i2s3_dout3"),       /* DOUT3 */
+> >               SUNXI_FUNCTION(0x4, "i2s3_din3"),       /* DIN3 */
+> >               SUNXI_FUNCTION(0x5, "ledc"),
+> >               SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 19)),
+> >
+> > Considering that the same pin has multiple same functions,
+> > so add a suffix, like i2s3_dout3 and i2s3_din3?
+> >
+> > Or specify muxsel in the device tree may be another solution.
+>
+> Having muxsel is not really an option. We have two sets of bindings to
+> maintain already, adding a third one would make it fairly hard to
+> maintain. And the second binding we support is the generic pinctrl
+> binding, so I'm not really sure why we would want to move away from
+> that.
+>
+> And I'm not really fond of having a suffix either. It kind of breaks the
+> consistency we had so far, and ideally I'd like to keep that.
+>
+> Chen-Yu, Linus? Any input on that one?
 
-Kind regards
-Uffe
-
-
-> ---
->
-> v3->v4:
->         - Removed subnode to indicate that mx power domain is a warming
->           device. Instead #cooling-cells is used as a power domain
->           provider property to indicate if the provider hosts a power
->           domain that can be used as a warming device.
->
-> v4->v5:
->         Moved the property from .txt format to .yaml format.
->
->  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> index 8058955fb3b9..a4fbbd88ce18 100644
-> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> @@ -28,6 +28,9 @@ properties:
->    '#power-domain-cells':
->      const: 1
->
-> +  '#cooling-cells':
-> +    const: 2
-> +
->    operating-points-v2: true
->
->    opp-table:
-> --
-> 2.20.1
->
+PING......
