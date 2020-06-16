@@ -2,145 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C16F1FC247
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 01:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129B61FC257
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 01:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbgFPX2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 19:28:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725849AbgFPX2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 19:28:30 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0518DC061573;
-        Tue, 16 Jun 2020 16:28:29 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id d8so36882plo.12;
-        Tue, 16 Jun 2020 16:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nokaqO/7ikLY/CaZfj8RUoWXt7iRv0GsTFng8UE3qCw=;
-        b=e6gwvDdVsFAYgNKppHkmPneIamMoxYKb+W8s99Afmhxm/8zE417O3gj6Fzg1PDGboS
-         xWiqlnxIQTI3upPI0UHHS6mWgN7nJBr01/atAzaO7z4KWBo/iZVWgAfrTHDWt03gc88A
-         wmmCNj9DhLunFnQjlyo+OPRItLYaHz/Xn6FWfd5bNfAw6LaYen9/0w0E+B4VY33cLY+8
-         P0R4wMuKjyxOZ7IG1XCcDhfPBbCrW7kcpF9Hw6Y4kkUCxW0ybg885R88J2XovyyCGUS4
-         2CEApyQqeu7SO77ui569hu6N5IyIbbUvNmkx0ZGgZH8aJ1DeUJOuA0crga3hn7rJHQzl
-         Sh9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nokaqO/7ikLY/CaZfj8RUoWXt7iRv0GsTFng8UE3qCw=;
-        b=kzC2Dy4UGn5zl/ren7xWWUqtCNUzFjZSXMQ/4wX5iOEgOJhhH8Oem7UccEBepkSVbN
-         FIwOpYPQhM7dP1+FKfokYTxmV6DJyrev2TedaVlTUz56ncb9kd2HinMNzqgTkyBovkYu
-         LPmgXUGHdHl7AsqEwex4hVcIyOiisUH9QMoTX8b70Xja4+nRzYHfR5QLuzmO5z6mpiho
-         ofU2shenqX37Hv8KsQTnHXMveJZNcwXLwFJ1ip8CpGj7EheCkPVjuTJm6dJne9K1Gxqv
-         IXg1QsLTactDvj3vNryV2/BbYLW1yi6LhWlRR9tV0HpM+bbD2P0iLIPPoDpQlPjROk62
-         GmYg==
-X-Gm-Message-State: AOAM533UdYdO2KKLxA4s0hRaSq9ELH0IEakaNEr7hKySPmtvUQZ1q3bY
-        yO3ZbrNuBrcOZx6KIIZZ1VY=
-X-Google-Smtp-Source: ABdhPJyewwpFThwB7lVfDvCFj438Fo7Ix52QUxyvLW3sT2CUftR5ocnuBGDk+n7WlQXuxAkGZHplNg==
-X-Received: by 2002:a17:902:ed14:: with SMTP id b20mr4118681pld.173.1592350108783;
-        Tue, 16 Jun 2020 16:28:28 -0700 (PDT)
-Received: from Asurada-Nvidia (searspoint.nvidia.com. [216.228.112.21])
-        by smtp.gmail.com with ESMTPSA id b1sm3547523pjc.33.2020.06.16.16.28.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 16 Jun 2020 16:28:28 -0700 (PDT)
-Date:   Tue, 16 Jun 2020 16:28:11 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ASoC: fsl_spdif: Add support for imx6sx platform
-Message-ID: <20200616232810.GA19896@Asurada-Nvidia>
-References: <1592289761-29118-1-git-send-email-shengjiu.wang@nxp.com>
- <1592289761-29118-2-git-send-email-shengjiu.wang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1592289761-29118-2-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726523AbgFPXeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 19:34:46 -0400
+Received: from mga11.intel.com ([192.55.52.93]:5561 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726134AbgFPXen (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 19:34:43 -0400
+IronPort-SDR: gBhqEhejMETHRpP6DaKlCpewzsprfX52T9XwAqc7XsNCMQE0NpPoB5N1oiXH59hKP3YSmFNAqT
+ wyXO0fGa5V+A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2020 16:34:41 -0700
+IronPort-SDR: R5pbt93QtwvAwi2k8gNlUim5YH6uxmGR5y5OApouSsM9hQGLKaoMyx+tK1qdfmG1H84PGiORO9
+ Uapt1LJVqd8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; 
+   d="scan'208";a="263155654"
+Received: from wwanmoha-ilbpg2.png.intel.com ([10.88.227.42])
+  by fmsmga008.fm.intel.com with ESMTP; 16 Jun 2020 16:34:37 -0700
+From:   Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, adrian.hunter@intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com
+Subject: [RESEND v5 0/2] phy: intel: Add Keem Bay eMMC PHY support
+Date:   Wed, 17 Jun 2020 07:32:50 +0800
+Message-Id: <20200616233252.15619-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 16, 2020 at 02:42:41PM +0800, Shengjiu Wang wrote:
-> The one difference on imx6sx platform is that the root clock
-> is shared with ASRC module, so we add a new flags "ind_root_clk"
-> which means the root clock is independent, then we will not
-> do the clk_set_rate and clk_round_rate to avoid impact ASRC
-> module usage.
-> 
-> As add a new flags, we include the soc specific data struct.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  sound/soc/fsl/fsl_spdif.c | 43 +++++++++++++++++++++++++++++++++++----
->  1 file changed, 39 insertions(+), 4 deletions(-)
-> 
-> diff --git a/sound/soc/fsl/fsl_spdif.c b/sound/soc/fsl/fsl_spdif.c
-> index 1b2e516f9162..00e06803d32f 100644
-> --- a/sound/soc/fsl/fsl_spdif.c
-> +++ b/sound/soc/fsl/fsl_spdif.c
-> @@ -42,6 +42,17 @@ static u8 srpc_dpll_locked[] = { 0x0, 0x1, 0x2, 0x3, 0x4, 0xa, 0xb };
->  
->  #define DEFAULT_RXCLK_SRC	1
->  
-> +/**
-> + * struct fsl_spdif_soc_data: soc specific data
-> + *
-> + * @imx: for imx platform
-> + * @ind_root_clk: flag for round clk rate
-> + */
-> +struct fsl_spdif_soc_data {
-> +	bool imx;
-> +	bool ind_root_clk;
+Hi.
 
-"ind" doesn't look very straightforward; maybe "shared_root_clock"?
+The first part is to document DT bindings for Keem Bay eMMC PHY.
 
-And for its comments:
-	* @shared_root_clock: flag of sharing a clock source with others;
-	*		      so the driver shouldn't set root clock rate
+The second is the driver file, loosely based on phy-rockchip-emmc.c
+and phy-intel-emmc.c. The latter is not being reused as there are
+quite a number of differences i.e. registers offset, supported clock
+rates, bitfield to set.
 
-> +};
-> +
->  /*
->   * SPDIF control structure
->   * Defines channel status, subcode and Q sub
-> @@ -93,6 +104,7 @@ struct fsl_spdif_priv {
->  	struct snd_soc_dai_driver cpu_dai_drv;
->  	struct platform_device *pdev;
->  	struct regmap *regmap;
-> +	const struct fsl_spdif_soc_data *soc;
+The patch was tested with Keem Bay evaluation module board.
 
-Looks better if we move it to the top of the list :)
+Thank you.
 
-> @@ -421,7 +448,7 @@ static int spdif_set_sample_rate(struct snd_pcm_substream *substream,
->  	sysclk_df = spdif_priv->sysclk_df[rate];
->  
->  	/* Don't mess up the clocks from other modules */
-> -	if (clk != STC_TXCLK_SPDIF_ROOT)
-> +	if (clk != STC_TXCLK_SPDIF_ROOT || !spdif_priv->soc->ind_root_clk)
->  		goto clk_set_bypass;
->  
->  	/* The S/PDIF block needs a clock of 64 * fs * txclk_df */
-> @@ -1186,7 +1213,8 @@ static int fsl_spdif_probe_txclk(struct fsl_spdif_priv *spdif_priv,
->  			continue;
->  
->  		ret = fsl_spdif_txclk_caldiv(spdif_priv, clk, savesub, index,
-> -					     i == STC_TXCLK_SPDIF_ROOT);
-> +					     i == STC_TXCLK_SPDIF_ROOT &&
-> +					     spdif_priv->soc->ind_root_clk);
+Best regards,
+Zainie
 
-Having more than one place that checks the condition, we can add:
+Resend v5:
+- Include missing changes done for phy-keembay-emmc.c (See Changes since v3)
 
-/* Check if clk is a root clock that does not share clock source with others */
-static inline bool fsl_spdif_can_set_clk_rate(struct fsl_spdif_priv *spdif, int clk)
-{
-	return (clk == STC_TXCLK_SPDIF_ROOT) && !spdif->soc->shared_root_clock;
-}
+Changes since v4:
+- In Kconfig file, add depends on ARM64 || COMPILE_TEST and
+  depends on OF && HAS_IOMEM.
+- In Kconfig file, reword the help section to be more verbose.
+
+Changes since v3:
+- Exit keembay_emmc_phy_power() with return ret;.
+- In keembay_emmc_phy_init(), use PTR_ERR_OR_ZERO(...).
+- In keembay_emmc_phy_probe(), devm_regmap_init_mmio(...) in single
+  line.
+
+Changes since v2:
+- Modify DT example to use single cell for address and size.
+
+Changes since v1:
+- Rework phy-keembay-emmc.c to make it similar to phy-intel-emmc.c.
+- Use regmap_mmio, and remove reference to intel,syscon.
+- Use node name phy@....
+- Update license i.e. use dual license.
+
+
+
+Wan Ahmad Zainie (2):
+  dt-bindings: phy: intel: Add Keem Bay eMMC PHY bindings
+  phy: intel: Add Keem Bay eMMC PHY support
+
+ .../bindings/phy/intel,keembay-emmc-phy.yaml  |  44 +++
+ drivers/phy/intel/Kconfig                     |  12 +
+ drivers/phy/intel/Makefile                    |   1 +
+ drivers/phy/intel/phy-keembay-emmc.c          | 316 ++++++++++++++++++
+ 4 files changed, 373 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml
+ create mode 100644 drivers/phy/intel/phy-keembay-emmc.c
+
+-- 
+2.17.1
+
