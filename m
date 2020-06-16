@@ -2,172 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADDE41FC061
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 22:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D48D1FC076
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 22:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729912AbgFPUzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 16:55:53 -0400
-Received: from rnd-relay.smtp.broadcom.com ([192.19.229.170]:33880 "EHLO
-        rnd-relay.smtp.broadcom.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729843AbgFPUzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jun 2020 16:55:52 -0400
-Received: from mail-irv-17.broadcom.com (mail-irv-17.lvn.broadcom.net [10.75.242.48])
-        by rnd-relay.smtp.broadcom.com (Postfix) with ESMTP id 6495E30D300;
-        Tue, 16 Jun 2020 13:55:51 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 rnd-relay.smtp.broadcom.com 6495E30D300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-        s=dkimrelay; t=1592340951;
-        bh=gdzd4vdx7GUsNTrT6Y/VQe95MNFFHJin6zBEHLZd76c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hgOKprDTxUdp7sSzXwSWkxMCLWrNOR1jWMWTkzMvGUzRBSCULjItXXnJbHqvGIxLE
-         CVIFzw4wyY1iNlFlNmpuNpbv6PbCCwHKIjPegPwRjvuClLibMfMtVbG8BbCSLNrOyO
-         kwH1v6P7xKDD1W7+mBzOTvFei3KsFRXUO2rw6jVk=
-Received: from stbsrv-and-01.and.broadcom.net (stbsrv-and-01.and.broadcom.net [10.28.16.211])
-        by mail-irv-17.broadcom.com (Postfix) with ESMTP id CB13C14008B;
-        Tue, 16 Jun 2020 13:55:49 -0700 (PDT)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v5 03/12] dt-bindings: PCI: Add bindings for more Brcmstb chips
-Date:   Tue, 16 Jun 2020 16:55:10 -0400
-Message-Id: <20200616205533.3513-4-james.quinlan@broadcom.com>
+        id S1728518AbgFPU5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 16:57:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50074 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727085AbgFPU5M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 16:57:12 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C1E92208B3;
+        Tue, 16 Jun 2020 20:57:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592341031;
+        bh=pE6KAEG0FkVf+j0FkRuLIZrJHM/qGhk/wFLAAGhtPi4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=E7/S45QDOeRF87SdbIgGsDB2fcP12jZivSQb6sQnJPfBvSbTAxrKaP55GB1HCqZVy
+         BjlSO8FGt5mDY4RhsHf3oU6tVAV7QNaC0wIdAv8JH8gi58bO51VRhRqZr8ieefiK5m
+         OLjNbsWvDqJ4jVutnFcA2/eyJnAMnJ682cgvfzpY=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     dinguyen@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: agilex: populate clock dts entries for Intel SoCFPGA Agilex
+Date:   Tue, 16 Jun 2020 15:57:06 -0500
+Message-Id: <20200616205706.17266-1-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200616205533.3513-1-james.quinlan@broadcom.com>
-References: <20200616205533.3513-1-james.quinlan@broadcom.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jim Quinlan <jquinlan@broadcom.com>
+From: "Signed-off-by: Dinh Nguyen" <dinguyen@kernel.org>
 
-- Add compatible strings for three more Broadcom STB chips: 7278, 7216,
-  7211 (STB version of RPi4).
-- add new property 'brcm,scb-sizes'
-- add new property 'resets'
-- add new property 'reset-names' for 7216 only
-- allow 'ranges' and 'dma-ranges' to have more than one item and update
-  the example to show this.
+Add clock dts entries to the Intel SoCFPGA Agilex platform.
 
-Signed-off-by: Jim Quinlan <jquinlan@broadcom.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- .../bindings/pci/brcm,stb-pcie.yaml           | 56 ++++++++++++++++---
- 1 file changed, 49 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 73 +++++++++++++++++++
+ .../boot/dts/intel/socfpga_agilex_socdk.dts   |  8 ++
+ 2 files changed, 81 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 8680a0f86c5a..807694b4f41f 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -9,12 +9,15 @@ title: Brcmstb PCIe Host Controller Device Tree Bindings
- maintainers:
-   - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index f52de8f7806a..e300330536b7 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ #include <dt-bindings/reset/altr,rst-mgr-s10.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/clock/agilex-clock.h>
  
--allOf:
--  - $ref: /schemas/pci/pci-bus.yaml#
--
- properties:
-   compatible:
--    const: brcm,bcm2711-pcie # The Raspberry Pi 4
-+    items:
-+      - enum:
-+          - brcm,bcm2711-pcie # The Raspberry Pi 4
-+          - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-+          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-+          - brcm,bcm7216-pcie # Broadcom 7216 Arm
-+          - brcm,bcm7445-pcie # Broadcom 7445 Arm
+ / {
+ 	compatible = "intel,socfpga-agilex";
+@@ -101,6 +102,40 @@
+ 			fpga-mgr = <&fpga_mgr>;
+ 		};
  
-   reg:
-     maxItems: 1
-@@ -34,10 +37,12 @@ properties:
-       - const: msi
- 
-   ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
- 
-   dma-ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 6
- 
-   clocks:
-     maxItems: 1
-@@ -58,8 +63,31 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  resets:
-+    description: for "brcm,bcm7216-pcie", must be a valid reset
-+      phandle pointing to the RESCAL reset controller provider node.
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
++		clkmgr: clock-controller@ffd10000 {
++			compatible = "intel,agilex-clkmgr";
++			reg = <0xffd10000 0x1000>;
++			#clock-cells = <1>;
++		};
 +
-+  reset-names:
-+    items:
-+      - const: rescal
++		clocks {
++			cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
++				#clock-cells = <0>;
++				compatible = "fixed-clock";
++			};
 +
-+  brcm,scb-sizes:
-+    description: u64 giving the 64bit PCIe memory
-+      viewport size of a memory controller.  There may be up to
-+      three controllers, and each size must be a power of two
-+      with a size greater or equal to the amount of memory the
-+      controller supports.  Note that each memory controller
-+      may have two component regions -- base and extended -- so
-+      this information cannot be deduced from the dma-ranges.
-+    $ref: /schemas/types.yaml#/definitions/uint64-array
-+    items:
-+      minItems: 1
-+      maxItems: 3
++			cb_intosc_ls_clk: cb-intosc-ls-clk {
++				#clock-cells = <0>;
++				compatible = "fixed-clock";
++			};
 +
- required:
-   - reg
-+  - ranges
-   - dma-ranges
-   - "#interrupt-cells"
-   - interrupts
-@@ -68,6 +96,18 @@ required:
-   - interrupt-map
-   - msi-controller
++			f2s_free_clk: f2s-free-clk {
++				#clock-cells = <0>;
++				compatible = "fixed-clock";
++			};
++
++			osc1: osc1 {
++				#clock-cells = <0>;
++				compatible = "fixed-clock";
++			};
++
++			qspi_clk: qspi-clk {
++				#clock-cells = <0>;
++				compatible = "fixed-clock";
++				clock-frequency = <200000000>;
++			};
++		};
++
+ 		gmac0: ethernet@ff800000 {
+ 			compatible = "altr,socfpga-stmmac-a10-s10", "snps,dwmac-3.74a", "snps,dwmac";
+ 			reg = <0xff800000 0x2000>;
+@@ -114,6 +149,8 @@
+ 			snps,multicast-filter-bins = <256>;
+ 			iommus = <&smmu 1>;
+ 			altr,sysmgr-syscon = <&sysmgr 0x44 0>;
++			clocks = <&clkmgr AGILEX_EMAC0_CLK>;
++			clock-names = "stmmaceth";
+ 			status = "disabled";
+ 		};
  
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm7216-pcie
-+    then:
-+      required:
-+        - resets
-+        - reset-names
-+
- unevaluatedProperties: false
+@@ -130,6 +167,8 @@
+ 			snps,multicast-filter-bins = <256>;
+ 			iommus = <&smmu 2>;
+ 			altr,sysmgr-syscon = <&sysmgr 0x48 8>;
++			clocks = <&clkmgr AGILEX_EMAC1_CLK>;
++			clock-names = "stmmaceth";
+ 			status = "disabled";
+ 		};
  
- examples:
-@@ -93,7 +133,9 @@ examples:
-                     msi-parent = <&pcie0>;
-                     msi-controller;
-                     ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000 0x0 0x04000000>;
--                    dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-+                    dma-ranges = <0x42000000 0x1 0x00000000 0x0 0x40000000 0x0 0x80000000>,
-+                                 <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-+                    brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-             };
-     };
+@@ -146,6 +185,8 @@
+ 			snps,multicast-filter-bins = <256>;
+ 			iommus = <&smmu 3>;
+ 			altr,sysmgr-syscon = <&sysmgr 0x4c 16>;
++			clocks = <&clkmgr AGILEX_EMAC2_CLK>;
++			clock-names = "stmmaceth";
+ 			status = "disabled";
+ 		};
+ 
+@@ -196,6 +237,7 @@
+ 			reg = <0xffc02800 0x100>;
+ 			interrupts = <0 103 4>;
+ 			resets = <&rst I2C0_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -206,6 +248,7 @@
+ 			reg = <0xffc02900 0x100>;
+ 			interrupts = <0 104 4>;
+ 			resets = <&rst I2C1_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -216,6 +259,7 @@
+ 			reg = <0xffc02a00 0x100>;
+ 			interrupts = <0 105 4>;
+ 			resets = <&rst I2C2_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -226,6 +270,7 @@
+ 			reg = <0xffc02b00 0x100>;
+ 			interrupts = <0 106 4>;
+ 			resets = <&rst I2C3_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -236,6 +281,7 @@
+ 			reg = <0xffc02c00 0x100>;
+ 			interrupts = <0 107 4>;
+ 			resets = <&rst I2C4_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -248,6 +294,9 @@
+ 			fifo-depth = <0x400>;
+ 			resets = <&rst SDMMC_RESET>;
+ 			reset-names = "reset";
++			clocks = <&clkmgr AGILEX_L4_MP_CLK>,
++				 <&clkmgr AGILEX_SDMMC_CLK>;
++			clock-names = "biu", "ciu";
+ 			iommus = <&smmu 5>;
+ 			status = "disabled";
+ 		};
+@@ -286,6 +335,8 @@
+ 			#dma-requests = <32>;
+ 			resets = <&rst DMA_RESET>, <&rst DMA_OCP_RESET>;
+ 			reset-names = "dma", "dma-ocp";
++			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
++			clock-names = "apb_pclk";
+ 		};
+ 
+ 		rst: rstmgr@ffd11000 {
+@@ -312,6 +363,9 @@
+ 				<0 162 4>, <0 163 4>, <0 164 4>, <0 165 4>,
+ 				<0 166 4>, <0 167 4>, <0 168 4>, <0 169 4>;
+ 			stream-match-mask = <0x7ff0>;
++			clocks = <&clkmgr AGILEX_MPU_CCU_CLK>,
++				 <&clkmgr AGILEX_L3_MAIN_FREE_CLK>,
++				 <&clkmgr AGILEX_L4_MAIN_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -324,6 +378,7 @@
+ 			resets = <&rst SPIM0_RESET>;
+ 			reg-io-width = <4>;
+ 			num-cs = <4>;
++			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -336,6 +391,7 @@
+ 			resets = <&rst SPIM1_RESET>;
+ 			reg-io-width = <4>;
+ 			num-cs = <4>;
++			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -357,24 +413,32 @@
+ 			compatible = "snps,dw-apb-timer";
+ 			interrupts = <0 113 4>;
+ 			reg = <0xffc03000 0x100>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
++			clock-names = "timer";
+ 		};
+ 
+ 		timer1: timer1@ffc03100 {
+ 			compatible = "snps,dw-apb-timer";
+ 			interrupts = <0 114 4>;
+ 			reg = <0xffc03100 0x100>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
++			clock-names = "timer";
+ 		};
+ 
+ 		timer2: timer2@ffd00000 {
+ 			compatible = "snps,dw-apb-timer";
+ 			interrupts = <0 115 4>;
+ 			reg = <0xffd00000 0x100>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
++			clock-names = "timer";
+ 		};
+ 
+ 		timer3: timer3@ffd00100 {
+ 			compatible = "snps,dw-apb-timer";
+ 			interrupts = <0 116 4>;
+ 			reg = <0xffd00100 0x100>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
++			clock-names = "timer";
+ 		};
+ 
+ 		uart0: serial0@ffc02000 {
+@@ -385,6 +449,7 @@
+ 			reg-io-width = <4>;
+ 			resets = <&rst UART0_RESET>;
+ 			status = "disabled";
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 		};
+ 
+ 		uart1: serial1@ffc02100 {
+@@ -394,6 +459,7 @@
+ 			reg-shift = <2>;
+ 			reg-io-width = <4>;
+ 			resets = <&rst UART1_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -411,6 +477,7 @@
+ 			phy-names = "usb2-phy";
+ 			resets = <&rst USB0_RESET>, <&rst USB0_OCP_RESET>;
+ 			reset-names = "dwc2", "dwc2-ecc";
++			clocks = <&clkmgr AGILEX_USB_CLK>;
+ 			iommus = <&smmu 6>;
+ 			status = "disabled";
+ 		};
+@@ -424,6 +491,7 @@
+ 			resets = <&rst USB1_RESET>, <&rst USB1_OCP_RESET>;
+ 			reset-names = "dwc2", "dwc2-ecc";
+ 			iommus = <&smmu 7>;
++			clocks = <&clkmgr AGILEX_USB_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -432,6 +500,7 @@
+ 			reg = <0xffd00200 0x100>;
+ 			interrupts = <0 117 4>;
+ 			resets = <&rst WATCHDOG0_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SYS_FREE_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -440,6 +509,7 @@
+ 			reg = <0xffd00300 0x100>;
+ 			interrupts = <0 118 4>;
+ 			resets = <&rst WATCHDOG1_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SYS_FREE_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -448,6 +518,7 @@
+ 			reg = <0xffd00400 0x100>;
+ 			interrupts = <0 125 4>;
+ 			resets = <&rst WATCHDOG2_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SYS_FREE_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -456,6 +527,7 @@
+ 			reg = <0xffd00500 0x100>;
+ 			interrupts = <0 126 4>;
+ 			resets = <&rst WATCHDOG3_RESET>;
++			clocks = <&clkmgr AGILEX_L4_SYS_FREE_CLK>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -533,6 +605,7 @@
+ 			cdns,fifo-depth = <128>;
+ 			cdns,fifo-width = <4>;
+ 			cdns,trigger-address = <0x00000000>;
++			clocks = <&qspi_clk>;
+ 
+ 			status = "disabled";
+ 		};
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+index 51d948323bfd..ac6e51b403d8 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+@@ -41,6 +41,14 @@
+ 		/* We expect the bootloader to fill in the reg */
+ 		reg = <0 0 0 0>;
+ 	};
++
++	soc {
++		clocks {
++			osc1 {
++				clock-frequency = <25000000>;
++			};
++		};
++	};
+ };
+ 
+ &gpio1 {
 -- 
 2.17.1
 
