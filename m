@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB141FB00F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 14:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB07D1FB025
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 14:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728789AbgFPMRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 08:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41934 "EHLO
+        id S1728982AbgFPMST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 08:18:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728763AbgFPMRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 08:17:31 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1113C08C5C4
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:30 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id x11so2914176plo.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:30 -0700 (PDT)
+        with ESMTP id S1728750AbgFPMRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 08:17:33 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE198C08C5C6
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:32 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id k2so1359048pjs.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 05:17:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=znKKGQwm6IauAkWxtciDylTYTkfIPgDD4usrkLNVDVI=;
-        b=ZEqkViqsVRhD2LOIkmkDSuLWDlEUKURWtHouZZ2NWY78G2c7PyV1pLyYkZCjgYfdiL
-         opArXrWfIWidQhYFItO5SxbFGJLnc0xvFxeyOJ+oYBpoojcd6zLvoD93hmFloEYAi5Bd
-         FKOEGKqxQBCf6H33hhdXZBauV6StqVOztoA64=
+        bh=3QNIUikvD5iyxTHk1gYVBrR3ob0+R8+y+UhbZ9LC4HI=;
+        b=sqZtwnwS2+hl5HB/Mtw0ss6MLDu3pD5SAEXhwXuKc6aC9vARfDQdEN0CUoXI/7yvYD
+         Ccb0NnHubg8xNdj0m7nhkSA4x/3EgrgoCWpfekQUS0sNLEMmxLroGM85ztzkKVaNV0TX
+         sV+C8/Ce5iG2ZZOTrWkG5T7/QVFkFT/0xetmc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=znKKGQwm6IauAkWxtciDylTYTkfIPgDD4usrkLNVDVI=;
-        b=Ot5RaoNGwM2TrgLk5YrNYnM96MWg/NEXRVgtkXWxS3XPxen6Ie4FDzX9RZAm78qn9t
-         MyWWfJCHzdUvyzyvJpNdkGwVipjGo4HAmfbj6Q2r1AefY1piCbjcA2TXvo9Q2lxK1tBx
-         WmlRfSODpmq8PaXwjXpQryv/veO/QFqzHsh9NRlfY4GKk4w2siocMCoj4CTD+40worJ6
-         Y5nZXUv7VveuxTqTZGDCeTLWvhdSA20RGNHpmWncRCWiF4fHlO5w7SkILMve2okl8oBZ
-         Cg3V8sgIJC4WmsMtdaBWM+04fKVtBH1s/WcR6D3gTBw5nTRkYYXC8CRDtNzU90gVhmT/
-         2P8A==
-X-Gm-Message-State: AOAM533TfSqws+CnI2tkWTLFAWi8hC+wbejp8oglVt3emCZAxL+YhvsQ
-        eMN0p6AbFc+JAxZEVThUjSLqyNQ29hM=
-X-Google-Smtp-Source: ABdhPJzhc2EDipOuZ62BKG7+4ZgTsdmVJkub1/mq7TclWvZEmlp2KOrL4gAY+h39PIifxUTzCdp4/Q==
-X-Received: by 2002:a17:90a:224a:: with SMTP id c68mr2364987pje.21.1592309850020;
-        Tue, 16 Jun 2020 05:17:30 -0700 (PDT)
+        bh=3QNIUikvD5iyxTHk1gYVBrR3ob0+R8+y+UhbZ9LC4HI=;
+        b=tHbuxlXxE9Ebnr38cNE0RUZ53P2EUkbkklZMGK2HvF8hctvb48jMD8WMs8FF3KsgmP
+         7IxvOHNe7CqeuSmaSLwKWf1PPXOCWEMxUORdfHsiHCneAypNCgpCRaK1E2QJGQmbXdDx
+         ftlUHYvsHQgH+btut17ubrX5v3R/HwgJmMMksR8W9dIpz2uVHq4lC3DDGFnpc6dxkngg
+         2C5g1od7KYyIJr3fPzoFJgwEmhwUsAHBxlZ9CCmb/WQVXeF5c1wChv3nxAMSNevuRLdf
+         9qxcxw8b6khcrIYNLAjaQ1fEg9uzd89ORSVpYksFPSncfPZSXyzMrQCJ4grUWDwQrQD9
+         x9CQ==
+X-Gm-Message-State: AOAM533mpo9XTGuG0M3SuIzcDGy6MJCXqOWz/kME29YEfKdhmekoKdqL
+        NBq3EQ2bzY3SMflSPQUIxBGtMA==
+X-Google-Smtp-Source: ABdhPJxkj1vvamQcbIq+GbZ7IKqORIqDltS0mXIbcsskYSDbh4JsuwGjaXSV6NAfNX1aQkC3UrPE8w==
+X-Received: by 2002:a17:90a:bf14:: with SMTP id c20mr2584276pjs.228.1592309852364;
+        Tue, 16 Jun 2020 05:17:32 -0700 (PDT)
 Received: from shiro.work (p1285116-ipngn200805sizuokaden.shizuoka.ocn.ne.jp. [114.171.61.116])
-        by smtp.googlemail.com with ESMTPSA id f23sm2360703pja.8.2020.06.16.05.17.28
+        by smtp.googlemail.com with ESMTPSA id f23sm2360703pja.8.2020.06.16.05.17.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jun 2020 05:17:29 -0700 (PDT)
+        Tue, 16 Jun 2020 05:17:31 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v4 09/12] ARM: mstar: Add infinity/infinity3 family dtsis
-Date:   Tue, 16 Jun 2020 21:15:22 +0900
-Message-Id: <20200616121525.1409790-10-daniel@0x0f.com>
+Subject: [PATCH v4 10/12] ARM: mstar: Add mercury5 series dtsis
+Date:   Tue, 16 Jun 2020 21:15:23 +0900
+Message-Id: <20200616121525.1409790-11-daniel@0x0f.com>
 X-Mailer: git-send-email 2.27.0.rc0
 In-Reply-To: <20200616121525.1409790-1-daniel@0x0f.com>
 References: <20200612130032.3905240-2-daniel@0x0f.com>
@@ -62,42 +62,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds two family level dtsis for the infinity and infinity3
-and then adds a chip level dtsi each for a chip in those families.
-
-infinity3.dtsi includes infinity.dtsi as these SoCs share most of
-their memory map and we would have a lot of duplication otherwise.
+This adds a family level dtsi for the mercury5 and then a
+chip level dtsi for the ssc8336n chip.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
  MAINTAINERS                              |  1 +
- arch/arm/boot/dts/infinity-msc313.dtsi   | 14 ++++++++++++++
- arch/arm/boot/dts/infinity.dtsi          |  7 +++++++
- arch/arm/boot/dts/infinity3-msc313e.dtsi | 14 ++++++++++++++
- arch/arm/boot/dts/infinity3.dtsi         |  7 +++++++
- 5 files changed, 43 insertions(+)
- create mode 100644 arch/arm/boot/dts/infinity-msc313.dtsi
- create mode 100644 arch/arm/boot/dts/infinity.dtsi
- create mode 100644 arch/arm/boot/dts/infinity3-msc313e.dtsi
- create mode 100644 arch/arm/boot/dts/infinity3.dtsi
+ arch/arm/boot/dts/mercury5-ssc8336n.dtsi | 14 ++++++++++++++
+ arch/arm/boot/dts/mercury5.dtsi          |  7 +++++++
+ 3 files changed, 22 insertions(+)
+ create mode 100644 arch/arm/boot/dts/mercury5-ssc8336n.dtsi
+ create mode 100644 arch/arm/boot/dts/mercury5.dtsi
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 54a2fc60a1d9..8c152e29877d 100644
+index 8c152e29877d..f0a2b7b3c0b6 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -2123,6 +2123,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
+@@ -2124,6 +2124,7 @@ S:	Maintained
  W:	http://linux-chenxing.org/
  F:	Documentation/devicetree/bindings/arm/mstar.yaml
-+F:	arch/arm/boot/dts/infinity*.dtsi
+ F:	arch/arm/boot/dts/infinity*.dtsi
++F:	arch/arm/boot/dts/mercury*.dtsi
  F:	arch/arm/boot/dts/mstar-v7.dtsi
  F:	arch/arm/mach-mstar/
  
-diff --git a/arch/arm/boot/dts/infinity-msc313.dtsi b/arch/arm/boot/dts/infinity-msc313.dtsi
+diff --git a/arch/arm/boot/dts/mercury5-ssc8336n.dtsi b/arch/arm/boot/dts/mercury5-ssc8336n.dtsi
 new file mode 100644
-index 000000000000..42f2b5552c77
+index 000000000000..7d4a4630c25c
 --- /dev/null
-+++ b/arch/arm/boot/dts/infinity-msc313.dtsi
++++ b/arch/arm/boot/dts/mercury5-ssc8336n.dtsi
 @@ -0,0 +1,14 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +/*
@@ -105,7 +98,7 @@ index 000000000000..42f2b5552c77
 + * Author: Daniel Palmer <daniel@thingy.jp>
 + */
 +
-+#include "infinity.dtsi"
++#include "mercury5.dtsi"
 +
 +/ {
 +	memory@20000000 {
@@ -113,11 +106,11 @@ index 000000000000..42f2b5552c77
 +		reg = <0x20000000 0x4000000>;
 +	};
 +};
-diff --git a/arch/arm/boot/dts/infinity.dtsi b/arch/arm/boot/dts/infinity.dtsi
+diff --git a/arch/arm/boot/dts/mercury5.dtsi b/arch/arm/boot/dts/mercury5.dtsi
 new file mode 100644
 index 000000000000..f68e6d59c328
 --- /dev/null
-+++ b/arch/arm/boot/dts/infinity.dtsi
++++ b/arch/arm/boot/dts/mercury5.dtsi
 @@ -0,0 +1,7 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +/*
@@ -126,39 +119,6 @@ index 000000000000..f68e6d59c328
 + */
 +
 +#include "mstar-v7.dtsi"
-diff --git a/arch/arm/boot/dts/infinity3-msc313e.dtsi b/arch/arm/boot/dts/infinity3-msc313e.dtsi
-new file mode 100644
-index 000000000000..4e7239afd823
---- /dev/null
-+++ b/arch/arm/boot/dts/infinity3-msc313e.dtsi
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2020 thingy.jp.
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
-+
-+#include "infinity3.dtsi"
-+
-+/ {
-+	memory@20000000 {
-+		device_type = "memory";
-+		reg = <0x20000000 0x4000000>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/infinity3.dtsi b/arch/arm/boot/dts/infinity3.dtsi
-new file mode 100644
-index 000000000000..2830d064c07d
---- /dev/null
-+++ b/arch/arm/boot/dts/infinity3.dtsi
-@@ -0,0 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2020 thingy.jp.
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
-+
-+#include "infinity.dtsi"
 -- 
 2.27.0.rc0
 
