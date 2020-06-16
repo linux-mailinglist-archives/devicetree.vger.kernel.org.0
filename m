@@ -2,91 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 024091FAE90
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 12:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29D11FAEAA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 12:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728160AbgFPKu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 06:50:57 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:53312 "EHLO
+        id S1728339AbgFPKxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 06:53:38 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:53670 "EHLO
         jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725775AbgFPKu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 06:50:57 -0400
+        with ESMTP id S1726467AbgFPKxi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 06:53:38 -0400
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 1B0FC1C0BD2; Tue, 16 Jun 2020 12:50:56 +0200 (CEST)
-Date:   Tue, 16 Jun 2020 12:50:45 +0200
+        id 9C73E1C0BD2; Tue, 16 Jun 2020 12:53:36 +0200 (CEST)
+Date:   Tue, 16 Jun 2020 12:53:25 +0200
 From:   Pavel Machek <pavel@ucw.cz>
-To:     Merlijn Wajer <merlijn@wizzup.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Beno??t Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Borislav Petkov <bp@suse.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mattias Jacobsson <2pi@mok.nu>,
-        Mark Gross <mgross@linux.intel.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        "open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>,
-        "open list:OMAP DEVICE TREE SUPPORT" <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." 
-        <linux-input@vger.kernel.org>
-Subject: Re: [PATCH 1/2] Input: add `SW_MACHINE_COVER`
-Message-ID: <20200616105045.GB1718@bug>
-References: <20200612125402.18393-1-merlijn@wizzup.org>
- <20200612125402.18393-2-merlijn@wizzup.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     rui.zhang@intel.com, ulf.hansson@linaro.org,
+        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, robh@kernel.org, amit.kucheria@verdurent.com,
+        mark.rutland@arm.com, rjw@rjwysocki.net, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/6] Introduce Power domain based warming device driver
+Message-ID: <20200616105325.GH1718@bug>
+References: <20200604015317.31389-1-thara.gopinath@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200612125402.18393-2-merlijn@wizzup.org>
+In-Reply-To: <20200604015317.31389-1-thara.gopinath@linaro.org>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 2020-06-12 14:53:58, Merlijn Wajer wrote:
-> This event code represents the state of a removable cover of a device.
-> Value 0 means that the cover is open or removed, value 1 means that the
-> cover is closed.
-> 
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com> Acked-by: Tony Lindgren 
-> <tony@atomide.com> Signed-off-by: Merlijn Wajer <merlijn@wizzup.org> ---
+Hi!
 
-Dmitry, can we get some kind of comment here, or better yet can we get you to apply this?
+> Certain resources modeled as a generic power domain in linux kernel can be
+> used to warm up the SoC (mx power domain on sdm845) if the temperature
+> falls below certain threshold. These power domains can be considered as
+> thermal warming devices.  (opposite of thermal cooling devices).
 
-Thanks,
-										Pavel
-> +++ b/include/linux/mod_devicetable.h
-> @@ -318,7 +318,7 @@ struct pcmcia_device_id {
->  #define INPUT_DEVICE_ID_LED_MAX		0x0f
->  #define INPUT_DEVICE_ID_SND_MAX		0x07
->  #define INPUT_DEVICE_ID_FF_MAX		0x7f
-> -#define INPUT_DEVICE_ID_SW_MAX		0x0f
-> +#define INPUT_DEVICE_ID_SW_MAX		0x10
->  #define INPUT_DEVICE_ID_PROP_MAX	0x1f
->  
->  #define INPUT_DEVICE_ID_MATCH_BUS	1
-> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
-> index b6a835d37826..0c2e27d28e0a 100644
-> --- a/include/uapi/linux/input-event-codes.h
-> +++ b/include/uapi/linux/input-event-codes.h
-> @@ -888,7 +888,8 @@
->  #define SW_LINEIN_INSERT	0x0d  /* set = inserted */
->  #define SW_MUTE_DEVICE		0x0e  /* set = device disabled */
->  #define SW_PEN_INSERTED		0x0f  /* set = pen inserted */
-> -#define SW_MAX			0x0f
-> +#define SW_MACHINE_COVER	0x10  /* set = cover closed */
-> +#define SW_MAX			0x10
->  #define SW_CNT			(SW_MAX+1)
->  
->  /*
-> -- 
-> 2.24.1
+Would you explain when this is needed?
 
+I'd normally expect "too low" temperature to be a problem during power-on, but at
+that time Linux is not running so it can not provide the heating...
+
+Best regards,
+
+									Pavel
 -- 
 (english) http://www.livejournal.com/~pavelmachek
 (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
