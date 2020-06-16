@@ -2,183 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8151D1FA7FA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 06:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00A011FA858
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 07:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725710AbgFPExT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 00:53:19 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:52022 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726552AbgFPExP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jun 2020 00:53:15 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1592283194; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=TnM1d+LijmPwv3QcoivuaXlgi9UGoODJljwXJ93Cqh0=; b=mBJsEFW4bUsyq/ohndIBLHDlro/73Qbp+B74VAWFEtUHCyWikaOLn3kUhNs50C8mj15PknwT
- CLJuFydgVKqiDGXa5NSR5DyXp5hh1yVey0J1BsXRYMSSjJ508K66Zq8oVfyCpuYNTh0fxR0C
- e3MIGt+LHoIEg9gmUABc/lQjIDk=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n11.prod.us-west-2.postgun.com with SMTP id
- 5ee8502aad153efa340722a1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Jun 2020 04:52:58
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BE0E2C43387; Tue, 16 Jun 2020 04:52:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.206.24.160] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sanm)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4E765C433C8;
-        Tue, 16 Jun 2020 04:52:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4E765C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sanm@codeaurora.org
-Subject: Re: [PATCH v7 2/4] usb: dwc3: qcom: Add interconnect support in dwc3
- driver
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>
-References: <1585718145-29537-1-git-send-email-sanm@codeaurora.org>
- <1585718145-29537-3-git-send-email-sanm@codeaurora.org>
- <159120577830.69627.13288547914742515702@swboyd.mtv.corp.google.com>
- <d9ccf188-4f00-d3ac-ba0f-73f06c087553@codeaurora.org>
- <159126939154.69627.13027312816468830595@swboyd.mtv.corp.google.com>
- <20200615194239.GW4525@google.com>
-From:   "Sandeep Maheswaram (Temp)" <sanm@codeaurora.org>
-Message-ID: <3f8fcb0e-387d-e902-9f6b-1fde9d6ae404@codeaurora.org>
-Date:   Tue, 16 Jun 2020 10:22:47 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
-MIME-Version: 1.0
-In-Reply-To: <20200615194239.GW4525@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S1726696AbgFPFmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 01:42:18 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:39856 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725710AbgFPFmS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 01:42:18 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 666D41A05D4;
+        Tue, 16 Jun 2020 07:42:15 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EAF3B1A0592;
+        Tue, 16 Jun 2020 07:42:09 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7292740302;
+        Tue, 16 Jun 2020 13:42:02 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        gnuiyl@gmail.com, olof@lixom.net, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/2] dt-bindings: input: Convert matrix-keymap to json-schema
+Date:   Tue, 16 Jun 2020 13:31:06 +0800
+Message-Id: <1592285467-18371-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the matrix-keymap binding to DT schema format using json-schema
 
-On 6/16/2020 1:12 AM, Matthias Kaehlcke wrote:
-> On Thu, Jun 04, 2020 at 04:16:31AM -0700, Stephen Boyd wrote:
->> Quoting Sandeep Maheswaram (Temp) (2020-06-04 02:43:09)
->>> On 6/3/2020 11:06 PM, Stephen Boyd wrote:
->>>> Quoting Sandeep Maheswaram (2020-03-31 22:15:43)
->>>>> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
->>>>> index 1dfd024..d33ae86 100644
->>>>> --- a/drivers/usb/dwc3/dwc3-qcom.c
->>>>> +++ b/drivers/usb/dwc3/dwc3-qcom.c
->>>>> @@ -285,6 +307,101 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom)
->>>>>           return 0;
->>>>>    }
->>>>>    
->>>>> +
->>>>> +/**
->>>>> + * dwc3_qcom_interconnect_init() - Get interconnect path handles
->>>>> + * @qcom:                      Pointer to the concerned usb core.
->>>>> + *
->>>>> + */
->>>>> +static int dwc3_qcom_interconnect_init(struct dwc3_qcom *qcom)
->>>>> +{
->>>>> +       struct device *dev = qcom->dev;
->>>>> +       int ret;
->>>>> +
->>>>> +       if (!device_is_bound(&qcom->dwc3->dev))
->>>>> +               return -EPROBE_DEFER;
->>>> How is this supposed to work? I see that this was added in an earlier
->>>> revision of this patch series but there isn't any mention of why
->>>> device_is_bound() is used here. It would be great if there was a comment
->>>> detailing why this is necessary. It sounds like maximum_speed is
->>>> important?
->>>>
->>>> Furthermore, dwc3_qcom_interconnect_init() is called by
->>>> dwc3_qcom_probe() which is the function that registers the device for
->>>> qcom->dwc3->dev. If that device doesn't probe between the time it is
->>>> registered by dwc3_qcom_probe() and this function is called then we'll
->>>> fail dwc3_qcom_probe() with -EPROBE_DEFER. And that will remove the
->>>> qcom->dwc3->dev device from the platform bus because we call
->>>> of_platform_depopulate() on the error path of dwc3_qcom_probe().
->>>>
->>>> So isn't this whole thing racy and can potentially lead us to a driver
->>>> probe loop where the wrapper (dwc3_qcom) and the core (dwc3) are probing
->>>> and we're trying to time it just right so that driver for dwc3 binds
->>>> before we setup interconnects? I don't know if dwc3 can communicate to
->>>> the wrapper but that would be more of a direct way to do this. Or maybe
->>>> the wrapper should try to read the DT property for maximum speed and
->>>> fallback to a worst case high bandwidth value if it can't figure it out
->>>> itself without help from dwc3 core.
->>>>
->>> This was added in V4 to address comments from Matthias in V3
->>>
->>> https://patchwork.kernel.org/patch/11148587/
->>>
->> Yes, that why I said:
->>
->> "I see that this was added in an earlier
->>   revision of this patch series but there isn't any mention of why
->>   device_is_bound() is used here. It would be great if there was a comment
->>   detailing why this is necessary. It sounds like maximum_speed is
->>   important?"
->>
->> Can you please respond to the rest of my email?
-> I agree with Stephen that using device_is_bound() isn't a good option
-> in this case, when I suggested it I wasn't looking at the big picture
-> of how probing the core driver is triggered, sorry about that.
->
-> Reading the speed from the DT with usb_get_maximum_speed() as Stephen
-> suggests would be an option, the inconvenient is that we then
-> essentially require the property to be defined, while the core driver
-> gets a suitable value from hardware registers. Not sure if the wrapper
-> driver could read from the same registers.
->
-> One option could be to poll device_is_bound() for 100 ms (or so), with
-> sleeps between polls. It's not elegant but would probably work if we
-> don't find a better solution.
-if (np)
-         ret = dwc3_qcom_of_register_core(pdev);
-     else
-         ret = dwc3_qcom_acpi_register_core(pdev);
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+New patch.
+---
+ .../devicetree/bindings/input/matrix-keymap.txt    | 28 +------------
+ .../devicetree/bindings/input/matrix-keymap.yaml   | 46 ++++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/matrix-keymap.yaml
 
-     if (ret) {
-         dev_err(dev, "failed to register DWC3 Core, err=%d\n", ret);
-         goto depopulate;
-     }
-
-     ret = dwc3_qcom_interconnect_init(qcom);
-     if (ret)
-         goto depopulate;
-
-     qcom->mode = usb_get_dr_mode(&qcom->dwc3->dev);
-
-Before calling dwc3_qcom_interconnect_init we are checking
-
-     if (ret) {
-         dev_err(dev, "failed to register DWC3 Core, err=%d\n", ret);
-         goto depopulate;
-     }
-
-Doesn't  this condition confirm the core driver is probed?
-
+diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.txt b/Documentation/devicetree/bindings/input/matrix-keymap.txt
+index c54919f..79f6d01 100644
+--- a/Documentation/devicetree/bindings/input/matrix-keymap.txt
++++ b/Documentation/devicetree/bindings/input/matrix-keymap.txt
+@@ -1,27 +1 @@
+-A simple common binding for matrix-connected key boards. Currently targeted at
+-defining the keys in the scope of linux key codes since that is a stable and
+-standardized interface at this time.
+-
+-Required properties:
+-- linux,keymap: an array of packed 1-cell entries containing the equivalent
+-  of row, column and linux key-code. The 32-bit big endian cell is packed
+-  as:
+-	row << 24 | column << 16 | key-code
+-
+-Optional properties:
+-Properties for the number of rows and columns are optional because some
+-drivers will use fixed values for these.
+-- keypad,num-rows: Number of row lines connected to the keypad controller.
+-- keypad,num-columns: Number of column lines connected to the keypad
+-  controller.
+-
+-Some users of this binding might choose to specify secondary keymaps for
+-cases where there is a modifier key such as a Fn key. Proposed names
+-for said properties are "linux,fn-keymap" or with another descriptive
+-word for the modifier other from "Fn".
+-
+-Example:
+-	linux,keymap = < 0x00030012
+-			 0x0102003a >;
+-	keypad,num-rows = <2>;
+-	keypad,num-columns = <8>;
++This file has been moved to matrix-keymap.yaml
+diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.yaml b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+new file mode 100644
+index 0000000..c3bf091
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/matrix-keymap.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common key matrices binding for matrix-connected key boards
++
++maintainers:
++  - Olof Johansson <olof@lixom.net>
++
++description: |
++  A simple common binding for matrix-connected key boards. Currently targeted at
++  defining the keys in the scope of linux key codes since that is a stable and
++  standardized interface at this time.
++
++  Some users of this binding might choose to specify secondary keymaps for
++  cases where there is a modifier key such as a Fn key. Proposed names
++  for said properties are "linux,fn-keymap" or with another descriptive
++  word for the modifier other from "Fn".
++
++properties:
++  linux,keymap:
++    $ref: '/schemas/types.yaml#/definitions/uint32-array'
++    description: |
++      An array of packed 1-cell entries containing the equivalent of row,
++      column and linux key-code. The 32-bit big endian cell is packed as:
++          row << 24 | column << 16 | key-code
++
++  keypad,num-rows:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of row lines connected to the keypad controller.
++
++  keypad,num-columns:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of column lines connected to the keypad controller.
++
++examples:
++  - |
++    keypad {
++        /* ... */
++        linux,keymap = < 0x00030012
++                         0x0102003a >;
++        keypad,num-rows = <2>;
++        keypad,num-columns = <8>;
++    };
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+2.7.4
 
