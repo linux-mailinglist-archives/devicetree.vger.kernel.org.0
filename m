@@ -2,101 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F901FA741
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 06:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC6B1FA78A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 06:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbgFPEA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 00:00:29 -0400
-Received: from userp2120.oracle.com ([156.151.31.85]:41416 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726476AbgFPEA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 00:00:28 -0400
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05G3vNlR193977;
-        Tue, 16 Jun 2020 04:00:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=corp-2020-01-29;
- bh=9mYnWgmHaH/MeQG/NrcARCrv81ptgulbq0w8SFiNXFQ=;
- b=ahvS33MV2cLeVTuOp5if0A6Ujdk2z2OTVZSWuvtJD1hchox23qMdeucpKP93hKcFafs/
- dAVGcy842hFz7wXKnnXUCoE+fGo5jCSve846yj+IT3GIIrys8jceKflJUuNmehZ71FFX
- mvOTNHTwHBhUqBzp2b1JGyD0ffIGYep15S5Mum9L0ofIfVYzMEq5uPRpaeRpPsJHjyvI
- G+GrokJd3JB2ZwMqekfJd1tdWwW8R1f22mTM22k/L5I6Q5HQEIle7RYlA69mAKy/tS9S
- AaU+NRW4OiJDnJCND3OoYfgrmJyoF9hfuamtv5w5Z3FeXBKGer4PI2KadkV029te/0Qq 2Q== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2120.oracle.com with ESMTP id 31p6e5vd9j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 Jun 2020 04:00:05 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05G3x2Bf181553;
-        Tue, 16 Jun 2020 04:00:04 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3020.oracle.com with ESMTP id 31p6dfarqe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 16 Jun 2020 04:00:04 +0000
-Received: from abhmp0002.oracle.com (abhmp0002.oracle.com [141.146.116.8])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 05G400YL022205;
-        Tue, 16 Jun 2020 04:00:00 GMT
-Received: from ca-mkp.ca.oracle.com (/10.156.108.201)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 15 Jun 2020 21:00:00 -0700
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>, robh@kernel.org
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
-        stanley.chu@mediatek.com, linux-scsi@vger.kernel.org,
-        cang@codeaurora.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kwmad.kim@samsung.com, avri.altman@wdc.com,
-        linux-samsung-soc@vger.kernel.org, krzk@kernel.org, kishon@ti.com
-Subject: Re: [RESEND PATCH v10 00/10] exynos-ufs: Add support for UFS HCI
-Date:   Mon, 15 Jun 2020 23:59:51 -0400
-Message-Id: <159227986421.24883.4622397536612649352.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200613024706.27975-1-alim.akhtar@samsung.com>
-References: <CGME20200613030436epcas5p38137bcaddd80ec5eed746a80a1fe31f5@epcas5p3.samsung.com> <20200613024706.27975-1-alim.akhtar@samsung.com>
+        id S1725913AbgFPEVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 00:21:47 -0400
+Received: from mail27.static.mailgun.info ([104.130.122.27]:13300 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725562AbgFPEVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 00:21:47 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1592281306; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=VBaa9anjVyZuOVcnVhJ3bee8Mi6f3nkfkVONvj0umUQ=; b=flnq0CAxE0SRZLXXBR6AbjpVAOLgYfgtt0BBk9BLKPM2mXoZe1K5iY99zYs/NtmmkXu5dxVc
+ JXG2670I6gniVu1dCEILiPGtbk11ddm93ffrmgG1zIYcs2KcT6lkXvKtwP69ErGnPH/bUBqs
+ VGzxDPuSMPab/SC8mD0B0zB3OuY=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 5ee848c76bebe35debb63551 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Jun 2020 04:21:27
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id F2AEAC433A1; Tue, 16 Jun 2020 04:21:26 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.110.37.174] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62303C433C8;
+        Tue, 16 Jun 2020 04:21:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62303C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v2 4/6] regulator: Add support for QCOM PMIC VBUS booster
+To:     Randy Dunlap <rdunlap@infradead.org>, robh+dt@kernel.org,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        mark.rutland@arm.com, broonie@kernel.org, lgirdwood@gmail.com,
+        agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        lijun.kernel@gmail.com, jackp@codeaurora.org,
+        bryan.odonoghue@linaro.org
+References: <20200612231918.8001-1-wcheng@codeaurora.org>
+ <20200612231918.8001-5-wcheng@codeaurora.org>
+ <6d23c903-abec-e2f8-1e63-c062211748c3@infradead.org>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <b8fe3da7-4494-7d7e-f5f1-f94826ebb831@codeaurora.org>
+Date:   Mon, 15 Jun 2020 21:21:24 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9653 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 adultscore=0 bulkscore=0
- phishscore=0 malwarescore=0 spamscore=0 mlxlogscore=999 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2006160027
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9653 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 adultscore=0
- mlxscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1015
- suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
- cotscore=-2147483648 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2006160027
+In-Reply-To: <6d23c903-abec-e2f8-1e63-c062211748c3@infradead.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Jun 2020 08:16:56 +0530, Alim Akhtar wrote:
 
-> This patch-set introduces UFS (Universal Flash Storage) host controller support
-> for Samsung family SoC. Mostly, it consists of UFS PHY and host specific driver.
+
+On 6/12/2020 8:28 PM, Randy Dunlap wrote:
+> On 6/12/20 4:19 PM, Wesley Cheng wrote:
+>> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+>> index 074a2ef55943..f9165f9f9051 100644
+>> --- a/drivers/regulator/Kconfig
+>> +++ b/drivers/regulator/Kconfig
+>> @@ -797,6 +797,16 @@ config REGULATOR_QCOM_SPMI
+>>  	  Qualcomm SPMI PMICs as a module. The module will be named
+>>  	  "qcom_spmi-regulator".
+>>  
+>> +config REGULATOR_QCOM_USB_VBUS
+>> +	tristate "Qualcomm USB Vbus regulator driver"
+>> +	depends on SPMI || COMPILE_TEST
+>> +	help
+>> +	  If you say yes to this option, support will be included for the
+>> +	  regulator used to enable the VBUS output.
+>> +
+>> +	  Say M here if you want to include support for enabling the VBUS output
+>> +	  as a module. The module will be named "qcom_usb-regulator".
 > 
-> - Changes since v9
-> * fixed the review comments by Rob on ufs dt bindings
-> * Addeded Rob's reviwed-by tag on 08/10 patch
+> Hi,
+> Shouldn't that module name match what is in the Makefile?
 > 
-> [...]
+> 
 
-Applied to 5.9/scsi-queue, thanks!
+Thanks, Randy.  Missed this as I was going back and forth on the file
+name.  Thanks for the catch.
 
-[01/10] scsi: ufs: Add quirk to fix mishandling utrlclr/utmrlclr
-        https://git.kernel.org/mkp/scsi/c/871838412adf
-[02/10] scsi: ufs: Add quirk to disallow reset of interrupt aggregation
-        https://git.kernel.org/mkp/scsi/c/b638b5eb624b
-[03/10] scsi: ufs: add quirk to enable host controller without hce
-        (no commit info)
-[04/10] scsi: ufs: Introduce UFSHCD_QUIRK_PRDT_BYTE_GRAN quirk
-        https://git.kernel.org/mkp/scsi/c/26f968d7de82
-[05/10] scsi: ufs: Add quirk to fix abnormal ocs fatal error
-        https://git.kernel.org/mkp/scsi/c/d779a6e90e18
-[09/10] scsi: ufs: ufs-exynos: Add UFS host support for Exynos SoCs
-        https://git.kernel.org/mkp/scsi/c/55f4b1f73631
+>> +
+>>  config REGULATOR_RC5T583
+>>  	tristate "RICOH RC5T583 Power regulators"
+>>  	depends on MFD_RC5T583
+>> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+>> index c0d6b96ebd78..cbab28aa7b56 100644
+>> --- a/drivers/regulator/Makefile
+>> +++ b/drivers/regulator/Makefile
+>> @@ -89,6 +89,7 @@ obj-$(CONFIG_REGULATOR_QCOM_RPM) += qcom_rpm-regulator.o
+>>  obj-$(CONFIG_REGULATOR_QCOM_RPMH) += qcom-rpmh-regulator.o
+>>  obj-$(CONFIG_REGULATOR_QCOM_SMD_RPM) += qcom_smd-regulator.o
+>>  obj-$(CONFIG_REGULATOR_QCOM_SPMI) += qcom_spmi-regulator.o
+>> +obj-$(CONFIG_REGULATOR_QCOM_USB_VBUS) += qcom_usb_vbus-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PALMAS) += palmas-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PFUZE100) += pfuze100-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PV88060) += pv88060-regulator.o
+> 
+> 
+> thanks.
+> 
 
 -- 
-Martin K. Petersen	Oracle Linux Engineering
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
