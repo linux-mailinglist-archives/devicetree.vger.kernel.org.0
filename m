@@ -2,107 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 072CF1FAF52
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 13:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E990C1FAF76
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 13:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728694AbgFPLeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 07:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35188 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728332AbgFPLdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 07:33:44 -0400
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04008C08C5C4
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 04:33:44 -0700 (PDT)
-Received: by mail-vk1-xa42.google.com with SMTP id p187so4720625vkf.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2020 04:33:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d3xurtsGxG5+pBj/Wd/EiagOHM+i8tFxNIlSk/FHDFA=;
-        b=VK0MaGVKyzGVAsortmOAkqQBfDxQ17xbC+E5ynMMCx+V6YoKoddQvXDG6GVU74fLDE
-         3AOFqiB9yyL/7Bx9YbSZLLalzmmfXNKl6UgP0RgUNX3H7O8go3qlIWEaicPbap/w/fXa
-         4Dhyg/QJIX3D4Sla8YWYe2UxMKRASkzm3vhhJ92d+92UAs26cKGtLdQHKIY+0/lLV17o
-         EXPHDXICY8O7sHOyRdGyfYzx8DP/K2SXD3XSK5Ng/Eqjth22KJy3v6SHvbp8TdknSgHv
-         DfOVaqgwFbXbUHUJLXtQCjdgXitPvvjeBqi3BmhG9GCsQleQY/b0GQ/ZXogtXQe8XA02
-         3SlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d3xurtsGxG5+pBj/Wd/EiagOHM+i8tFxNIlSk/FHDFA=;
-        b=qNweov0pgnZDKRgk6SDgH0yPMwsrwJd8txYYQmfHeJT05q0LnY2uN/mhc1pe1k9t+j
-         oFoLodqftucCqVyZwdSV3ux1g6USuSyUtAVbaR3pBbe8jl7D8qHY7577VAW0ZxeH6Pge
-         o9pnMDpTYaHT3hMH4eCin5GN+R7xsGeEPtAUlZSy1cY8PrEbPY3r1AQe+LfF9N3ZCu1p
-         yYtzVrOW7R7gA0m/p4GQR9gSwsGV8OVZdT4ci41CVXug0WPUQX0wcnUsH/cYjjsijCMe
-         GHvYF3YtZMmiU80XWwl2qX1ysVyj6JSmhAmvIdwnJZRPgk8MVYAIwobyXqoykZ9sqDab
-         tjPg==
-X-Gm-Message-State: AOAM533eh0R0TdJOUd74+gzFjcRBRgYbq65SUYdiCxY5pLRp15Z6HLfY
-        Uqf7RW/LmMM/xra9ATiC/sDsDXMerlcsTiJpV2NyFA==
-X-Google-Smtp-Source: ABdhPJwISf1vfOjyjum1tJCBaNteiqD3S1uRqKWFGycL6f89hwszildCgajIP6J3PoKnXdvffL4CBueNZTWeqBkPb0Y=
-X-Received: by 2002:ac5:cc44:: with SMTP id l4mr1143248vkm.43.1592307223208;
- Tue, 16 Jun 2020 04:33:43 -0700 (PDT)
+        id S1727804AbgFPLoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 07:44:23 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:6688 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725775AbgFPLoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 07:44:23 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 05GBZ0Wk012134;
+        Tue, 16 Jun 2020 13:44:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=NneIqC9y5kxpsEMwdz4kWV76JLL/a0bbk4vzbiTymbc=;
+ b=z43s9fBxwe8u1Z2wLMtNhnb0RgCk2+j4zVOjmfmdqMgo3IwbIS8GbmxYvcj//IJXntWk
+ GdKCcRbNOz5K+anwkSwBrkQNbEzSByLg21e+rUUBJS0/3lFrpqBuQGWjtmL14FqZcwb1
+ MpFcsh3ooNLRGAGLCINvnqiH0ZWA1LfwoJPAnvDdmxOBE+sPV2O1lT/aT7ycVzXDYFMt
+ iWal/IIAk1jW1O1f/0yIOEQo+wZVP6Rz9BvEw9AMvxzfe6wfY/a6Hsl/ioxggnfxjyhS
+ FkOokVv9rz7ncGceHH0TwkE3f0g+bnf5E2haGxSEGKDB3aFb1jryIzuHHaoTby2bQmgH bA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 31mmjvy2ef-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 Jun 2020 13:44:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 13E23100034;
+        Tue, 16 Jun 2020 13:44:02 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 024CB2C198C;
+        Tue, 16 Jun 2020 13:44:02 +0200 (CEST)
+Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE3.st.com
+ (10.75.127.9) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 16 Jun
+ 2020 13:44:01 +0200
+Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
+ SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
+ 15.00.1347.000; Tue, 16 Jun 2020 13:44:01 +0200
+From:   Benjamin GAIGNARD <benjamin.gaignard@st.com>
+To:     Fabrice GASNIER <fabrice.gasnier@st.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND v7 0/6] clockevent: add low power STM32 timer
+Thread-Topic: [RESEND v7 0/6] clockevent: add low power STM32 timer
+Thread-Index: AQHWOaYlv9Zz94A0REiA+Z4Po30KbajbEgYA
+Date:   Tue, 16 Jun 2020 11:44:01 +0000
+Message-ID: <50df6585-d9df-4cb3-5589-aab2c97cad51@st.com>
+References: <20200603125439.23275-1-benjamin.gaignard@st.com>
+In-Reply-To: <20200603125439.23275-1-benjamin.gaignard@st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.50]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A3A9FD8EF4B9F44C864F4556F63E33A2@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20200611132839.4515-1-ludovic.barre@st.com>
-In-Reply-To: <20200611132839.4515-1-ludovic.barre@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 16 Jun 2020 13:33:06 +0200
-Message-ID: <CAPDyKFpeEdvFWj98LRHtckVRzzz1TaHcYR5AFJSMujuRCDoVgw@mail.gmail.com>
-Subject: Re: [PATCH] mmc: mmci: add sdio datactrl mask for sdmmc revisions
-To:     Ludovic Barre <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
+ definitions=2020-06-16_04:2020-06-16,2020-06-16 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Jun 2020 at 15:28, Ludovic Barre <ludovic.barre@st.com> wrote:
->
-> This patch adds datactrl_mask_sdio for sdmmc revisions.
-> sdmmc revisions used same bit of previous ST variant.
->
-> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
->  drivers/mmc/host/mmci.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-> index a69d6a0c2e15..b5a41a7ce165 100644
-> --- a/drivers/mmc/host/mmci.c
-> +++ b/drivers/mmc/host/mmci.c
-> @@ -267,6 +267,7 @@ static struct variant_data variant_stm32_sdmmc = {
->         .datalength_bits        = 25,
->         .datactrl_blocksz       = 14,
->         .datactrl_any_blocksz   = true,
-> +       .datactrl_mask_sdio     = MCI_DPSM_ST_SDIOEN,
->         .stm32_idmabsize_mask   = GENMASK(12, 5),
->         .busy_timeout           = true,
->         .busy_detect            = true,
-> @@ -292,6 +293,7 @@ static struct variant_data variant_stm32_sdmmcv2 = {
->         .datalength_bits        = 25,
->         .datactrl_blocksz       = 14,
->         .datactrl_any_blocksz   = true,
-> +       .datactrl_mask_sdio     = MCI_DPSM_ST_SDIOEN,
->         .stm32_idmabsize_mask   = GENMASK(16, 5),
->         .dma_lli                = true,
->         .busy_timeout           = true,
-> --
-> 2.17.1
->
+DQoNCk9uIDYvMy8yMCAyOjU0IFBNLCBCZW5qYW1pbiBHYWlnbmFyZCB3cm90ZToNCj4gVGhpcyBz
+ZXJpZXMgYWRkIGxvdyBwb3dlciB0aW1lciBhcyBib2FkY2FzdCBjbG9ja2V2ZW50IGRldmljZS4N
+Cj4gTG93IHBvd2VyIHRpbWVyIGNvdWxkIHJ1bnMgZXZlbiB3aGVuIENQVXMgYXJlIGluIGlkbGUg
+bW9kZSBhbmQNCj4gY291bGQgd2FrZXVwIHRoZW0uDQo+DQo+IExlZSBoYXMgYWNrZWQgdGhlIE1G
+RCBwYXJ0Lg0KPiBDbG9ja3NvdXJjZSBkcml2ZXIgc3RpbGwgbmVlZCB0byBiZSByZXZpZXdlZCBi
+eSBtYWludGFpbmVycy4NCj4gQWRkIG1pc3NpbmcgcGFydCBvZiB0aGUgYmluZGluZ3MgdG8gZGVz
+Y3JpYmUgaW50ZXJydXB0Lg0KDQpIaSBMZWUsDQoNCkkgdGhpbmsgZXZlcnl0aGluZyBoYXMgYmVl
+biByZXZpZXdlZCBhbmQgYWNrZWQgaW4gdGhpcyBzZXJpZXMuDQpNYXkgSSBoYXZlIGZvcmdvdCBz
+b21ldGhpbmcgdGhhdCBwcmV2ZW50IGl0IHRvIGJlIG1lcmdlID8NCg0KQmVuamFtaW4NCg0KPg0K
+PiB2ZXJzaW9uIDcgcmVzZW5kOg0KPiAtIHdpdGggRGFuaWVsIGFjayBmb3IgZHJpdmVyIHBhdGNo
+DQo+IC0gd2l0aCBSb2IgcmV2aWV3IGZvciBiaW5kaW5ncyBwYXRjaA0KPg0KPiB2ZXJzaW9uIDc6
+DQo+IC0gcmViYXNlZCBvbiB0b3Agb2YgdjUuNy1yYzINCj4NCj4gdmVyc2lvbiA2Og0KPiAtIHNp
+bXBsaWZ5IGJpbmRpbmcsIERUIGFuZCBjb2RlIHRvIHVzZSBvbmx5IG9uZSBpbnRlcnJ1cHQNCj4N
+Cj4gdmVyc2lvbiA1Og0KPiAtIGRvY3VtZW50IGludGVycnVwdHMgYW5kIGludGVycnVwdC1uYW1l
+cyBiaW5kaW5ncw0KPiAtIHVzZSBhIGRpZmZlcmVudCB3YWtlIHVwIGludGVycnVwdA0KPiAtIGFk
+ZCBkZXZpY2UtdHJlZSBwYXRjaA0KPiAtIG1ha2UgU1RNMzJNUDE1NyBzZWxlY3QgbG93IHBvd2Vy
+IHRpbWVyIGNvbmZpZ3VyYXRpb24gZmxhZw0KPiAtIGVuYWJsZSBmYXN0X2lvIGluIHJlZ21hcCBj
+b25maWd1cmF0aW9uDQo+DQo+IHZlcnNpb24gNDoNCj4gLSBtb3ZlIGRlZmluZXMgaW4gbWZkL3N0
+bTMyLWxwdGltZXIuaA0KPiAtIGNoYW5nZSBjb21wYXRpYmxlIGFuZCBzdWJub2RlIG5hbWVzDQo+
+IC0gZG9jdW1lbnQgd2FrZXVwLXNvdXJjZSBwcm9wZXJ0eQ0KPiAtIHJld29yZCBjb21taXQgbWVz
+c2FnZQ0KPiAtIG1ha2UgZHJpdmVyIEtjb25maWcgZGVwZW5kcyBvZiBNRkRfU1RNMzJfTFBUSU1F
+Ug0KPiAtIHJlbW92ZSB1c2VsZXNzIGluY2x1ZGUNCj4gLSByZW1vdmUgcmF0ZSBhbmQgY2xrIGZp
+ZWxkcyBmcm9tIHRoZSBwcml2YXRlIHN0cnVjdHVyZQ0KPiAtIHRvIGFkZCBjb21tZW50cyBhYm91
+dCB0aGUgcmVnaXN0ZXJzIHNlcXVlbmNlIGluIHN0bTMyX2Nsa2V2ZW50X2xwX3NldF90aW1lcg0K
+PiAtIHJld29yayBwcm9iZSBmdW5jdGlvbiBhbmQgdXNlIGRldm1fcmVxdWVzdF9pcnEoKQ0KPiAt
+IGRvIG5vdCBhbGxvdyBtb2R1bGUgdG8gYmUgcmVtb3ZlZA0KPg0KPiB2ZXJzaW9uIDM6DQo+IC0g
+Zml4IHRpbWVyIHNldCBzZXF1ZW5jZQ0KPiAtIGRvbid0IGZvcmdldCB0byBmcmVlIGlycSBvbiBy
+ZW1vdmUgZnVuY3Rpb24NCj4gLSB1c2UgZGV2bV9remFsbG9jIHRvIHNpbXBsaWZ5IGVycm9ycyBo
+YW5kbGluZyBpbiBwcm9iZSBmdW5jdGlvbg0KPg0KPiB2ZXJzaW9uIDI6DQo+IC0gc3RtMzIgY2xr
+ZXZlbnQgZHJpdmVyIGlzIG5vdyBhIGNoaWxkIG9mIHRoZSBzdG0zMiBscCB0aW1lciBub2RlDQo+
+IC0gYWRkIGEgcHJvYmUgZnVuY3Rpb24gYW5kIGFkcGF0IHRoZSBkcml2ZXIgdG8gdXNlIHJlZ21h
+cCBwcm92aWRlDQo+ICAgIGJ5IGl0IHBhcmVudA0KPiAtIHN0b3AgdXNpbmcgdGltZXJfb2YgaGVs
+cGVycw0KPg0KPg0KPiBCZW5qYW1pbiBHYWlnbmFyZCAoNik6DQo+ICAgIGR0LWJpbmRpbmdzOiBt
+ZmQ6IERvY3VtZW50IFNUTTMyIGxvdyBwb3dlciB0aW1lciBiaW5kaW5ncw0KPiAgICBBUk06IGR0
+czogc3RtMzI6IEFkZCB0aW1lciBzdWJub2RlcyBvbiBzdG0zMm1wMTUgU29Dcw0KPiAgICBtZmQ6
+IHN0bTMyOiBBZGQgZGVmaW5lcyB0byBiZSB1c2VkIGZvciBjbGtldmVudCBwdXJwb3NlDQo+ICAg
+IG1mZDogc3RtMzI6IGVuYWJsZSByZWdtYXAgZmFzdF9pbyBmb3Igc3RtMzItbHB0aW1lcg0KPiAg
+ICBjbG9ja3NvdXJjZTogQWRkIExvdyBQb3dlciBTVE0zMiB0aW1lcnMgZHJpdmVyDQo+ICAgIEFS
+TTogbWFjaC1zdG0zMjogc2VsZWN0IGxvdyBwb3dlciB0aW1lciBmb3IgU1RNMzJNUDE1Nw0KPg0K
+PiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9zdCxzdG0zMi1scHRpbWVyLnlhbWwgIHwg
+ICA1ICsNCj4gICBhcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTUxLmR0c2kgICAgICAgICAgICAg
+ICAgICB8ICAzNSArKysrDQo+ICAgYXJjaC9hcm0vbWFjaC1zdG0zMi9LY29uZmlnICAgICAgICAg
+ICAgICAgICAgICAgICAgfCAgIDEgKw0KPiAgIGRyaXZlcnMvY2xvY2tzb3VyY2UvS2NvbmZpZyAg
+ICAgICAgICAgICAgICAgICAgICAgIHwgICA0ICsNCj4gICBkcml2ZXJzL2Nsb2Nrc291cmNlL01h
+a2VmaWxlICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArDQo+ICAgZHJpdmVycy9jbG9ja3Nv
+dXJjZS90aW1lci1zdG0zMi1scC5jICAgICAgICAgICAgICAgfCAyMjEgKysrKysrKysrKysrKysr
+KysrKysrDQo+ICAgZHJpdmVycy9tZmQvc3RtMzItbHB0aW1lci5jICAgICAgICAgICAgICAgICAg
+ICAgICAgfCAgIDEgKw0KPiAgIGluY2x1ZGUvbGludXgvbWZkL3N0bTMyLWxwdGltZXIuaCAgICAg
+ICAgICAgICAgICAgIHwgICA1ICsNCj4gICA4IGZpbGVzIGNoYW5nZWQsIDI3MyBpbnNlcnRpb25z
+KCspDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItc3Rt
+MzItbHAuYw0KPg0K
