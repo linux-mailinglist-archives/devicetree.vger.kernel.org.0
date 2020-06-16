@@ -2,147 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3BF91FB87E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 17:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5753F1FB960
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2020 18:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732775AbgFPP4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 11:56:51 -0400
-Received: from mga07.intel.com ([134.134.136.100]:36641 "EHLO mga07.intel.com"
+        id S1732571AbgFPPuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 11:50:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45520 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733183AbgFPP4u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jun 2020 11:56:50 -0400
-IronPort-SDR: gL9c6r7VpBrBR2Rhz4BL/VXVnDf3ip/sBw2ohGnmBGVDfqD8IkVt25wDj2OwZi7My6R72nDliM
- N0icwwXLaJCA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2020 08:56:49 -0700
-IronPort-SDR: aqdBPz1alytmC5uJAhIOFCRO1WA9H/qdXQeskpOvCOHmLMBcGqgMk/hig45cAJ90neUJB2nZXX
- D8wny2avyf0g==
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; 
-   d="scan'208";a="449888162"
-Received: from pperycz-mobl.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.213.235.69])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2020 08:56:46 -0700
-From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-To:     linux-arm-kernel@lists.infradead.org,
+        id S1731672AbgFPPuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 11:50:07 -0400
+Received: from localhost (unknown [171.61.66.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 02290214F1;
+        Tue, 16 Jun 2020 15:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592322607;
+        bh=ZA8j5WqRei9ADYlTjOJG9AlPyaO9kaM1e46RYsUIRSA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hv7CDE1f09U9T8Dbm2NdIvxnDyzUKqh38iLINrGJ55qKG9Vyk5n9hxhPIaefZMunF
+         uYU6dQPT9/Iz22twkm217Kxwp6KY+Fr8qZJ7iGwGTxSOilsfjp09LvLxFmnd8YQ2eR
+         yAnek6/UmQfvax8A18Gyv9HwdAVah6vGFFrQOWOE=
+Date:   Tue, 16 Jun 2020 21:20:01 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc:     Paul Murphy <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 7/7] arm64: dts: keembay: Add device tree for Keem Bay EVM board
-Date:   Tue, 16 Jun 2020 16:56:13 +0100
-Message-Id: <20200616155613.121242-8-daniele.alessandrelli@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200616155613.121242-1-daniele.alessandrelli@linux.intel.com>
-References: <20200616155613.121242-1-daniele.alessandrelli@linux.intel.com>
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: Re: [PATCH 4/8] dt-bindings: dmaengine: renesas,usb-dmac: Add
+ binding for r8a7742
+Message-ID: <20200616155001.GH2324254@vkoul-mobl>
+References: <1590356277-19993-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1590356277-19993-5-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1590356277-19993-5-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+On 24-05-20, 22:37, Lad Prabhakar wrote:
+> Document RZ/G1H (R8A7742) SoC bindings.
 
-Add initial device tree for Keem Bay EVM board. With this minimal device
-tree the board boots fine using an initramfs image.
+Applied, thanks
 
-Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
-Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
----
- MAINTAINERS                               |  1 +
- arch/arm64/boot/dts/intel/Makefile        |  1 +
- arch/arm64/boot/dts/intel/keembay-evm.dts | 55 +++++++++++++++++++++++
- 3 files changed, 57 insertions(+)
- create mode 100644 arch/arm64/boot/dts/intel/keembay-evm.dts
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 610907bf391b..d714762e805c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1959,6 +1959,7 @@ M:	Paul J. Murphy <paul.j.murphy@intel.com>
- M:	Daniele Alessandrelli <daniele.alessandrelli@intel.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/keembay.yaml
-+F:	arch/arm64/boot/dts/intel/keembay-evm.dts
- F:	arch/arm64/boot/dts/intel/keembay-soc.dtsi
- F:	include/dt-bindings/clock/keembay-clocks.h
- F:	include/dt-bindings/power/keembay-power.h
-diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-index 40cb16e8c814..296eceec4276 100644
---- a/arch/arm64/boot/dts/intel/Makefile
-+++ b/arch/arm64/boot/dts/intel/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
- dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex_socdk.dtb \
- 			     socfpga_agilex_socdk_nand.dtb
-+dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-diff --git a/arch/arm64/boot/dts/intel/keembay-evm.dts b/arch/arm64/boot/dts/intel/keembay-evm.dts
-new file mode 100644
-index 000000000000..46859763cb03
---- /dev/null
-+++ b/arch/arm64/boot/dts/intel/keembay-evm.dts
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2020, Intel Corporation
-+ *
-+ * Device tree describing Keem Bay EVM board.
-+ */
-+
-+/dts-v1/;
-+
-+#include "keembay-soc.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Keem Bay EVM";
-+	compatible = "intel,keembay-evm";
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2GB of DDR memory. */
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+
-+	sysmem@84000000 {
-+		compatible = "mmio-sram";
-+		reg = <0x0 0x84000000 0x0 0x800000>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0 0x0 0x0 0x84000000 0x0 0x800000>;
-+		/*
-+		 * Allocate 1MB at fixed location for shared memory between
-+		 * non-secure world and BL31 to be used for SCMI.
-+		 */
-+		scmi_sec_shmem: scmi_sec_shmem@0 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x0 0x0 0x100000>;
-+			pool;
-+		};
-+	};
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
 -- 
-2.26.2
-
+~Vinod
