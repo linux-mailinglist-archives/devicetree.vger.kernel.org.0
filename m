@@ -2,103 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65A251FD32F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 19:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F231FD334
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 19:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726341AbgFQRLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 13:11:19 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:45475 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbgFQRLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 13:11:18 -0400
-Received: by mail-io1-f66.google.com with SMTP id y5so3596821iob.12;
-        Wed, 17 Jun 2020 10:11:18 -0700 (PDT)
+        id S1726835AbgFQRMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 13:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726815AbgFQRMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 13:12:49 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986E6C06174E
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id i25so3730761iog.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=VMtiRkfsSE6xR0L4nHaQ7MzNJCewEhNkgPo/jVhozms=;
+        b=n3aC7phMROcr66sPl/gyUMvXdGRaB4Hi6ZnvKHnU/W+x7RzdIHTvEZJQv1lJa2kjoY
+         pbxZrjOSqLBV6PT68lLF4bTH85BBSKp1e28yJmqh07ghxiEBTeQl94UBVlfa6eOI27cu
+         7hNzhS3W0o5DcfE2yzHalmDwQnorXVeGX2CueVLd9/WeBSUVjg3o9bfdKzMptPKeJ3Vj
+         75X04qkwEatTSrDsQczjF1kxTJHhf97QQktMyDqI5RRhCp6339ADQPiprCUovpGoVnTS
+         CUBZGAkYpaZpVED4P/hLzCx0//+wx7xhDvcXWm+WFcnVT4GN2VXchxuDeoDPQre+UvGP
+         Ig1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+jtHmvg50fwj4vKSvDtfXUFXgpMlM97RSYpyPG/P1dQ=;
-        b=VmqbB/GuQG2JxocWhFLbjoVXJtPiQvZLXwOygJhCa0QpxeQQkWbrx5+O53i3bNCvaN
-         M1RDTv/FloGG4gMoNYtkWmWY+GB/tit+2+f4DQ+P2T6DMqszKqhckW3ToUuuthLuur3S
-         eeBsOGraO//N66mFDzNaU5uaT+pizIseNm5XpM78HbP57nQDFNHhxAYx/VrZzJx+oTbD
-         /AYjctSvpaLh4NOmwEvRnkTbfmedQt0wQ/2y9LMO5OXrUcfA6SJ1Bx/fajxgiVc+sQwr
-         so4fBB96wPZjCOMfJb9iDcQ4H5ulNGQoN841g/dhmtjZtUF6YKOTmSmruX62fN6ypEqy
-         VBpw==
-X-Gm-Message-State: AOAM533HWJJO8XljYyQB10DYx51r1NhU0U1Y5xjzo4UhjqhsqGxwNVOt
-        A/hE6qSMKXDFNVZQ7Oo35doAzX+oNA==
-X-Google-Smtp-Source: ABdhPJxRByoDYwCLqBc8/jcxwM6M3+z1NGMwD6icIx5TmL0Xm82gTRE8ovFe98SOJxGWsgwyn5J+pQ==
-X-Received: by 2002:a05:6602:5ce:: with SMTP id w14mr396142iox.178.1592413877663;
-        Wed, 17 Jun 2020 10:11:17 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id l20sm110443ilk.70.2020.06.17.10.11.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 10:11:17 -0700 (PDT)
-Received: (nullmailer pid 2322270 invoked by uid 1000);
-        Wed, 17 Jun 2020 17:11:16 -0000
-Date:   Wed, 17 Jun 2020 11:11:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Keerthy <j-keerthy@ti.com>, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Axel Lin <axel.lin@ingics.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: mfd: lp87565: convert to yaml
-Message-ID: <20200617171116.GA2321816@bogus>
-References: <20200617131145.15696-1-luca@lucaceresoli.net>
- <20200617131145.15696-3-luca@lucaceresoli.net>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=VMtiRkfsSE6xR0L4nHaQ7MzNJCewEhNkgPo/jVhozms=;
+        b=sGOxV0fCBSRzJLYNX7qMJN2t+RQSOoYtzcHobDIJbsfBqPkhs4kSTComvlWgtt0qFH
+         QjUaXe///pbTk7kVge+CAPpjXfER4TEVrIV5pBzA8y+7QsdYPT/FaQEGC4zWYrjUOFLM
+         qIJLFZ7FOz1dJcxIRNAbfQOpP5qz6QT0rAG3ZOqmTp2WnOVm3qcfKSSjqMF40IfBE5H9
+         kheKd33ShlBwU3ElGvZ/thfbfFqiFuuDwrKOfyCnNgLM3QgsxLfYISWGZxf1dkat8D8I
+         8jx7AWODmtIwc55rr4d6ys5bkqmaaE2ZqZfkTHj/+eK/E3XBZd35w4mc8tWffIxvomSx
+         gJxQ==
+X-Gm-Message-State: AOAM532lRX87kikXfuGATTGxbW9aMGDpIAOq7eklV4oUTJqGVKwCmv3r
+        JNYCxiWpvsuN7h6b39s3WE22ox0oF06UQTPHkQ==
+X-Google-Smtp-Source: ABdhPJy0mMkAkVUaA/KK1urZ5gxoWuMdDysfRCRndplU05F9rnFwknvURYumITXDjALIkRelnze2AIbAfmC3AxyTCZw=
+X-Received: by 2002:a6b:4413:: with SMTP id r19mr411937ioa.162.1592413968039;
+ Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200617131145.15696-3-luca@lucaceresoli.net>
+Received: by 2002:a92:5e12:0:0:0:0:0 with HTTP; Wed, 17 Jun 2020 10:12:47
+ -0700 (PDT)
+Reply-To: rev.derrickbowl57@aol.com
+From:   "Rev. Derrick Bowl" <ala439553@gmail.com>
+Date:   Wed, 17 Jun 2020 17:12:47 +0000
+Message-ID: <CA+qUn-VCw5mZedmyQHCcxhbGpW-ARkJMP3v6o=49sP7+J8B1TA@mail.gmail.com>
+Subject: Dear Beloved,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Jun 2020 15:11:43 +0200, Luca Ceresoli wrote:
-> The definition of "xxx-in-supply" was generic, thus define in detail the
-> possible cases for each chip variant.
-> 
-> Also document that the only possible I2C slave address is 0x60 as per the
-> datasheet and fix the second example accordingly.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> 
-> ---
-> 
-> Changes in v2:
->  - this patch replaces patch "regulator: lp87565: dt: remove duplicated
->    section" in RFC,v1 (Rob Herring)
->  - use capital letters consistently (Lee Jones)
->  - replace "regulator" -> "mfd" in subject line (Lee Jones)
->  - replace "dt:" suffix with "dt-bindings:" prefix in subject line
-> ---
->  .../devicetree/bindings/mfd/lp87565.txt       |  79 -----------
->  .../devicetree/bindings/mfd/ti,lp875xx.yaml   | 134 ++++++++++++++++++
->  2 files changed, 134 insertions(+), 79 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/lp87565.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,lp875xx.yaml
-> 
+Dear Beloved,
 
+I'm Reverend Derrick Bowl, I was born in USA, 1945, I was ordained
+into the Catholic Priesthood.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Please take your time to read this message, although we have never met
+before, this is no spam, It's a real message sent to you. I know also
+that you will be amazed at the level of trust that I am willing to
+bestow on a person that I have never seen nor spoken with. If I can
+receive favor from someone I barely know, its not bad entrusting this
+project to unknown person as long as my spirit directed me to you.
 
-Error: Documentation/devicetree/bindings/mfd/ti,lp875xx.example.dts:20.9-14 syntax error
-FATAL ERROR: Unable to parse input tree
-scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/mfd/ti,lp875xx.example.dt.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/mfd/ti,lp875xx.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1347: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+I have been a catholic priest for over 22 years. I spent about 10
+years serving at Africa, Burkina Faso to be precise, I spend most time
+in Ouagadougou Cathedral. Presently, I had a heart surgery on the
+23-11-2018 and the Doctors have informed me that I cannot live longer;
+I had a serious bleeding after the operation. Before I left
+Ouagadougou to my country for the surgery, a priest friend of mine
+visited me from Netherlands with three companion, when they went back,
+one among his companion Transferred 11M$ in my personal account with
+Bank of Africa and advised that I use the money to help the poor,
+handicaps and less privileges because he saw the level hardship then.
 
+Because of my present health condition, I cannot live to proceed with
+the projects, therefore, I have decided to appoint you to reclaim the
+money which total sum of $11,970,000.00 (Eleven million Nine Hundred
+and seventy Thousand US DOLLARS).
 
-See https://patchwork.ozlabs.org/patch/1311194
+I want you to use this sum to make the world a better place for the
+poor and less privileged, help the needy and also help your family
+members.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+I took this decision because I was raised in an Orphanage so I don't
+have relatives and presently, I'm still in the hospital, where I am
+undergoing treatment. That's why I have decided to contact you so that
+you can contact my account manager in Bank of Africa, reclaim the
+money and make good use of it. You have to contact me through my
+private e-mail at {rev.derrickbowl57@aol.com}
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+Regards,
+Reverend Derrick Bowl
