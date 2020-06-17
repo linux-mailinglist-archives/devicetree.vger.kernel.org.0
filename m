@@ -2,111 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE1B1FC464
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 05:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D2F1FC4B8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 05:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726821AbgFQDBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 23:01:36 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:34318 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726753AbgFQDBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 23:01:34 -0400
-X-UUID: 00943bbed05940819ed3809d816f5561-20200617
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/Dw68WkMyThFaez9HaYgW4+YPicvNPWdln8HwgJeo4A=;
-        b=P0v+E15jYQXUTo53mrW4pvJxb/cjlJCN3C1FYLsfPcXWY9LrdFjWSK3kNZjrFDnsHJNkCTDBPwxYVlzs5FRXPhj+bLiJzC1j6vszSuWisguRTMQH8GYlkZyQb3dJUQM99lEBXNux0pULD9R8uijw/ZBK7JodLHtJ1vRRsamJH1E=;
-X-UUID: 00943bbed05940819ed3809d816f5561-20200617
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <chao.hao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1079476507; Wed, 17 Jun 2020 11:01:30 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 17 Jun 2020 11:01:22 +0800
-Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 17 Jun 2020 11:01:10 +0800
-From:   Chao Hao <chao.hao@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, FY Yang <fy.yang@mediatek.com>,
-        Chao Hao <chao.hao@mediatek.com>
-Subject: [PATCH v4 7/7] iommu/mediatek: Add mt6779 basic support
-Date:   Wed, 17 Jun 2020 11:00:29 +0800
-Message-ID: <20200617030029.4082-8-chao.hao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200617030029.4082-1-chao.hao@mediatek.com>
-References: <20200617030029.4082-1-chao.hao@mediatek.com>
+        id S1726836AbgFQDcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 23:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726738AbgFQDcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jun 2020 23:32:11 -0400
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E598C061573;
+        Tue, 16 Jun 2020 20:32:10 -0700 (PDT)
+Received: by mail-qt1-x841.google.com with SMTP id j32so480883qte.10;
+        Tue, 16 Jun 2020 20:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nzA+ElcDbnifqfzX8lfOg2mPfYscDQJ4/Xb5PE+7lMg=;
+        b=ftQAHhnW0hzD4YpGdWc0LllO2OMD/jfP3C4MQqdKOT5C7eeHNFuf4K+O4toru/tGfa
+         M0ivB23w/gyeywiGVuCZ3kCavIsEUJxW2YyS/g0DOG4+iW+DvSMZLCj5gblEB0Co3h93
+         O5KmfqxvIQC+AZFf7dtDsayhkTtx4Gjtpik3xLJbdQ47I/AO2eQqNDg04oYiDPxo4zF5
+         wvphcCLw4AsFpffOfDBt2aD5MeJ8v8EDC6Zz/XhkBL3rvmf7ktHDmE4tH4D8JkXS6fU2
+         qvJz80e1pU8aBXdOeY3q4NtoHG9yuQorBt2J57jYGQumcjXumzorN4FSkwDG8AlEhqBC
+         2MgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nzA+ElcDbnifqfzX8lfOg2mPfYscDQJ4/Xb5PE+7lMg=;
+        b=K3rZp7D3oF961/5OqbgD8F0vDibU7jpB3uGmtQdhcAhY7ouewyKdkGBnomrgv1YN7B
+         fLIJHSGeYGeae42dy7WIDJQEUHp7lCdfnDNis6BNNdbal50w8vHTS09f/aP7igPzSb56
+         9GffNYALEf6JXv/Pkq0bJv8GnrexbPrNPlqupQtM5xiEJM0y2rnxbr/mbDiIKJn+kNIV
+         8x2kxB8UoyZm09IH4PX48ZcDOqlox+Uz1XBVJuzWV6uZ/MO3tB7HA/RhkK8sq0aLg7iZ
+         rd+23ArQk+NxqirUTYpRzbJmAIQ+2Y8nAlMQvsrcMMzNmma3IIU5ixl60EOTyqvDlbLG
+         1zGA==
+X-Gm-Message-State: AOAM5314bcfIY4f8CWaF/UwPxVKWc2e/c5T/ZyWAXDyaFTydLkKCC9qe
+        xtzsu8gXUzKPg18X5veiZEihK9kUQMxZv2T9z1U=
+X-Google-Smtp-Source: ABdhPJyDsNi9Q52RPZTC9rfPswpXtaMmRaUOjgRU4MMGl6dorrqU82mtSiCqR9s3ZZfHZZvEgOKG74qt9+Wv16UivMo=
+X-Received: by 2002:ac8:f47:: with SMTP id l7mr24311236qtk.292.1592364729462;
+ Tue, 16 Jun 2020 20:32:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <1592292637-25734-1-git-send-email-shengjiu.wang@nxp.com>
+ <1592292637-25734-2-git-send-email-shengjiu.wang@nxp.com> <20200617004845.GB19896@Asurada-Nvidia>
+In-Reply-To: <20200617004845.GB19896@Asurada-Nvidia>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Wed, 17 Jun 2020 11:31:58 +0800
+Message-ID: <CAA+D8AN_Djr_OTXBWJbymtUY7pjTV_VKKiqwRBqQ8cxo4USgCg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: fsl-asoc-card: Add MQS support
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MS4gU3RhcnQgZnJvbSBtdDY3NzksIElOVkxEVF9TRUwgbW92ZSB0byBvZmZzZXQ9MHgyYywgc28g
-d2UgYWRkDQogICBSRUdfTU1VX0lOVl9TRUxfR0VOMiBkZWZpbml0aW9uIGFuZCBtdDY3NzkgdXNl
-cyBpdC4NCjIuIENoYW5nZSBQUk9URUNUX1BBX0FMSUdOIGZyb20gMTI4IGJ5dGUgdG8gMjU2IGJ5
-dGUuDQozLiBGb3IgUkVHX01NVV9DVFJMX1JFRyByZWdpc3Rlciwgd2Ugb25seSBuZWVkIHRvIGNo
-YW5nZSBiaXRbMjowXSwNCiAgIG90aGVycyBiaXRzIGtlZXAgZGVmYXVsdCB2YWx1ZSwgZXg6IGVu
-YWJsZSB2aWN0aW0gdGxiLg0KNC4gQWRkIG10Njc3OV9kYXRhIHRvIHN1cHBvcnQgbW1faW9tbXUg
-SFcgaW5pdC4NCg0KQ2hhbmdlIHNpbmNlIHYzOg0KMS4gV2hlbiBzZXR0aW5nIE1NVV9DVFJMX1JF
-Rywgd2UgZG9uJ3QgbmVlZCB0byBpbmNsdWRlIG10ODE3My4NCg0KQ2M6IFlvbmcgV3UgPHlvbmcu
-d3VAbWVkaWF0ZWsuY29tPg0KU2lnbmVkLW9mZi1ieTogQ2hhbyBIYW8gPGNoYW8uaGFvQG1lZGlh
-dGVrLmNvbT4NCi0tLQ0KIGRyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMgfCAyMCArKysrKysrKysr
-KysrKysrKystLQ0KIGRyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmggfCAgMSArDQogMiBmaWxlcyBj
-aGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYyBiL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMNCmlu
-ZGV4IGM3MDZiY2E2NDg3ZS4uZGVmMmU5OTY2ODNmIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9pb21t
-dS9tdGtfaW9tbXUuYw0KKysrIGIvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYw0KQEAgLTM3LDYg
-KzM3LDExIEBADQogI2RlZmluZSBSRUdfTU1VX0lOVkxEX1NUQVJUX0EJCQkweDAyNA0KICNkZWZp
-bmUgUkVHX01NVV9JTlZMRF9FTkRfQQkJCTB4MDI4DQogDQorLyogSW4gbGF0ZXN0IENvZGEsIE1N
-VV9JTlZfU0VMJ3Mgb2Zmc2V0IGlzIGNoYW5nZWQgdG8gMHgwMmMuDQorICogU28gd2UgbmFtZWQg
-b2Zmc2V0ID0gMHgwMmMgdG8gIlJFR19NTVVfSU5WX1NFTF9HRU4yIg0KKyAqIGFuZCBvZmZzZXQg
-PSAweDAzOCB0byAiUkVHX01NVV9JTlZfU0VMX0dFTjEiLg0KKyAqLw0KKyNkZWZpbmUgUkVHX01N
-VV9JTlZfU0VMX0dFTjIJCQkweDAyYw0KICNkZWZpbmUgUkVHX01NVV9JTlZfU0VMX0dFTjEJCQkw
-eDAzOA0KICNkZWZpbmUgRl9JTlZMRF9FTjAJCQkJQklUKDApDQogI2RlZmluZSBGX0lOVkxEX0VO
-MQkJCQlCSVQoMSkNCkBAIC05OCw3ICsxMDMsNyBAQA0KICNkZWZpbmUgRl9NTVVfSU5UX0lEX0xB
-UkJfSUQoYSkJCQkoKChhKSA+PiA3KSAmIDB4NykNCiAjZGVmaW5lIEZfTU1VX0lOVF9JRF9QT1JU
-X0lEKGEpCQkJKCgoYSkgPj4gMikgJiAweDFmKQ0KIA0KLSNkZWZpbmUgTVRLX1BST1RFQ1RfUEFf
-QUxJR04JCQkxMjgNCisjZGVmaW5lIE1US19QUk9URUNUX1BBX0FMSUdOCQkJMjU2DQogDQogLyoN
-CiAgKiBHZXQgdGhlIGxvY2FsIGFyYml0ZXIgSUQgYW5kIHRoZSBwb3J0aWQgd2l0aGluIHRoZSBs
-YXJiIGFyYml0ZXINCkBAIC01NDMsMTEgKzU0OCwxMiBAQCBzdGF0aWMgaW50IG10a19pb21tdV9o
-d19pbml0KGNvbnN0IHN0cnVjdCBtdGtfaW9tbXVfZGF0YSAqZGF0YSkNCiAJCXJldHVybiByZXQ7
-DQogCX0NCiANCisJcmVndmFsID0gcmVhZGxfcmVsYXhlZChkYXRhLT5iYXNlICsgUkVHX01NVV9D
-VFJMX1JFRyk7DQogCWlmIChkYXRhLT5wbGF0X2RhdGEtPm00dV9wbGF0ID09IE00VV9NVDgxNzMp
-DQogCQlyZWd2YWwgPSBGX01NVV9QUkVGRVRDSF9SVF9SRVBMQUNFX01PRCB8DQogCQkJIEZfTU1V
-X1RGX1BST1RfVE9fUFJPR1JBTV9BRERSX01UODE3MzsNCiAJZWxzZQ0KLQkJcmVndmFsID0gRl9N
-TVVfVEZfUFJPVF9UT19QUk9HUkFNX0FERFI7DQorCQlyZWd2YWwgfD0gRl9NTVVfVEZfUFJPVF9U
-T19QUk9HUkFNX0FERFI7DQogCXdyaXRlbF9yZWxheGVkKHJlZ3ZhbCwgZGF0YS0+YmFzZSArIFJF
-R19NTVVfQ1RSTF9SRUcpOw0KIA0KIAlyZWd2YWwgPSBGX0wyX01VTElUX0hJVF9FTiB8DQpAQCAt
-Nzk3LDYgKzgwMywxNSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19pb21tdV9wbGF0X2RhdGEg
-bXQyNzEyX2RhdGEgPSB7DQogCS5sYXJiaWRfcmVtYXAgICA9IHt7MH0sIHsxfSwgezJ9LCB7M30s
-IHs0fSwgezV9LCB7Nn0sIHs3fX0sDQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a19p
-b21tdV9wbGF0X2RhdGEgbXQ2Nzc5X2RhdGEgPSB7DQorCS5tNHVfcGxhdCAgICAgID0gTTRVX01U
-Njc3OSwNCisJLmhhc19zdWJfY29tbSAgPSB0cnVlLA0KKwkuaGFzX3dyX2xlbiAgICA9IHRydWUs
-DQorCS5oYXNfbWlzY19jdHJsID0gdHJ1ZSwNCisJLmludl9zZWxfcmVnICAgPSBSRUdfTU1VX0lO
-Vl9TRUxfR0VOMiwNCisJLmxhcmJpZF9yZW1hcCAgPSB7ezB9LCB7MX0sIHsyfSwgezN9LCB7NX0s
-IHs3LCA4fSwgezEwfSwgezl9fSwNCit9Ow0KKw0KIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbXRrX2lv
-bW11X3BsYXRfZGF0YSBtdDgxNzNfZGF0YSA9IHsNCiAJLm00dV9wbGF0ICAgICA9IE00VV9NVDgx
-NzMsDQogCS5oYXNfNGdiX21vZGUgPSB0cnVlLA0KQEAgLTgxNSw2ICs4MzAsNyBAQCBzdGF0aWMg
-Y29uc3Qgc3RydWN0IG10a19pb21tdV9wbGF0X2RhdGEgbXQ4MTgzX2RhdGEgPSB7DQogDQogc3Rh
-dGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbXRrX2lvbW11X29mX2lkc1tdID0gew0KIAl7
-IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcxMi1tNHUiLCAuZGF0YSA9ICZtdDI3MTJfZGF0
-YX0sDQorCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LW00dSIsIC5kYXRhID0gJm10
-Njc3OV9kYXRhfSwNCiAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtbTR1IiwgLmRh
-dGEgPSAmbXQ4MTczX2RhdGF9LA0KIAl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1t
-NHUiLCAuZGF0YSA9ICZtdDgxODNfZGF0YX0sDQogCXt9DQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9p
-b21tdS9tdGtfaW9tbXUuaCBiL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmgNCmluZGV4IDk5NzFj
-ZWRkNzJlYS4uZmI3OWU3MTBjOGQ5IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9pb21tdS9tdGtfaW9t
-bXUuaA0KKysrIGIvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuaA0KQEAgLTMxLDYgKzMxLDcgQEAg
-c3RydWN0IG10a19pb21tdV9zdXNwZW5kX3JlZyB7DQogZW51bSBtdGtfaW9tbXVfcGxhdCB7DQog
-CU00VV9NVDI3MDEsDQogCU00VV9NVDI3MTIsDQorCU00VV9NVDY3NzksDQogCU00VV9NVDgxNzMs
-DQogCU00VV9NVDgxODMsDQogfTsNCi0tIA0KMi4xOC4wDQo=
+On Wed, Jun 17, 2020 at 8:50 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+>
+> On Tue, Jun 16, 2020 at 03:30:37PM +0800, Shengjiu Wang wrote:
+> > The MQS codec isn't an i2c device, so add a new platform device for it.
+> >
+> > MQS only support playback, so add a new audio map.
+> >
+> > Add there maybe "model" property or no "audio-routing" property insertions
+>
+> "Add" => "And"
+>
+> > devicetree, so add some enhancement for these two property.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  sound/soc/fsl/fsl-asoc-card.c | 70 ++++++++++++++++++++++++++---------
+> >  1 file changed, 52 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/sound/soc/fsl/fsl-asoc-card.c b/sound/soc/fsl/fsl-asoc-card.c
+> > index 00be73900888..2ac8cb9ddd10 100644
+> > --- a/sound/soc/fsl/fsl-asoc-card.c
+> > +++ b/sound/soc/fsl/fsl-asoc-card.c
+>
+> > @@ -482,6 +489,7 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >  {
+> >       struct device_node *cpu_np, *codec_np, *asrc_np;
+> >       struct device_node *np = pdev->dev.of_node;
+> > +     struct platform_device *codec_pdev = NULL; /* used for non i2c device*/
+>
+> Having both codec_pdev and codec_dev duplicates things. Actually
+> only a couple of places really need "codec_dev" -- most of them
+> need codec_dev->dev pointer instead. So we could have a cleanup:
+>
+> -       struct i2c_client *codec_dev;
+> +       struct device *codec_dev = NULL;
+>
+> > @@ -512,10 +520,13 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >       }
+> >
+> >       codec_np = of_parse_phandle(np, "audio-codec", 0);
+> > -     if (codec_np)
+> > +     if (codec_np) {
+> >               codec_dev = of_find_i2c_device_by_node(codec_np);
+> > -     else
+> > +             if (!codec_dev)
+> > +                     codec_pdev = of_find_device_by_node(codec_np);
+> > +     } else {
+> >               codec_dev = NULL;
+> > +     }
+>
+> Here can have something like (feel free to simplify):
+>
+>         if (codec_np) {
+>                 struct platform_device *codec_pdev;
+>                 struct i2c_client *codec_i2c;
+>
+>                 codec_i2c = of_find_i2c_device_by_node(codec_np);
+>                 if (codec_i2c)
+>                         codec_dev = &codec_i2c->dev;
+>
+>                 if (!codec_dev) {
+>                         codec_pdev = of_find_device_by_node(codec_np);
+>                         codec_dev = &codec_pdev->dev;
+>                 }
+>         }
+> >       asrc_np = of_parse_phandle(np, "audio-asrc", 0);
+> >       if (asrc_np)
+> > @@ -525,6 +536,13 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >       if (codec_dev) {
+> >               struct clk *codec_clk = clk_get(&codec_dev->dev, NULL);
+>
+> Then here:
+>
+> -               struct clk *codec_clk = clk_get(&codec_dev->dev, NULL);
+> +               struct clk *codec_clk = clk_get(codec_dev, NULL);
+>
+> > @@ -538,6 +556,11 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >       /* Assign a default DAI format, and allow each card to overwrite it */
+> >       priv->dai_fmt = DAI_FMT_BASE;
+> >
+> > +     memcpy(priv->dai_link, fsl_asoc_card_dai,
+> > +            sizeof(struct snd_soc_dai_link) * ARRAY_SIZE(priv->dai_link));
+>
+> > @@ -573,13 +596,25 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >               codec_dai_name = "ac97-hifi";
+> >               priv->card.set_bias_level = NULL;
+> >               priv->dai_fmt = SND_SOC_DAIFMT_AC97;
+> > +             priv->card.dapm_routes = audio_map_ac97;
+> > +             priv->card.num_dapm_routes = ARRAY_SIZE(audio_map_ac97);
+> > +     } else if (of_device_is_compatible(np, "fsl,imx-audio-mqs")) {
+> > +             codec_dai_name = "fsl-mqs-dai";
+> > +             priv->card.set_bias_level = NULL;
+> > +             priv->dai_fmt = SND_SOC_DAIFMT_LEFT_J |
+> > +                             SND_SOC_DAIFMT_CBS_CFS |
+> > +                             SND_SOC_DAIFMT_NB_NF;
+> > +             priv->dai_link[1].dpcm_playback = 1;
+> > +             priv->dai_link[2].dpcm_playback = 1;
+>
+> dpcm_playback = 1? That's the default value in fsl_asoc_card_dai.
 
+ah,  should be dpcm_capture = 0.
+
+>
+> > @@ -601,19 +636,18 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >               priv->cpu_priv.sysclk_id[0] = FSL_SAI_CLK_MAST1;
+> >       }
+> >
+> > -     snprintf(priv->name, sizeof(priv->name), "%s-audio",
+> > -              fsl_asoc_card_is_ac97(priv) ? "ac97" :
+> > -              codec_dev->name);
+> > -
+> >       /* Initialize sound card */
+> >       priv->pdev = pdev;
+> >       priv->card.dev = &pdev->dev;
+> > -     priv->card.name = priv->name;
+> > +     ret = snd_soc_of_parse_card_name(&priv->card, "model");
+> > +     if (ret) {
+> > +             snprintf(priv->name, sizeof(priv->name), "%s-audio",
+> > +                      fsl_asoc_card_is_ac97(priv) ? "ac97" :
+> > +                      (codec_dev ? codec_dev->name : codec_pdev->name));
+>
+> We can just use dev_name() if codec_dev is struct device *
+> Or having a codec_dev_name to cache codec_pdev/i2c->name.
+>
+> > -     ret = snd_soc_of_parse_audio_routing(&priv->card, "audio-routing");
+> > -     if (ret) {
+> > -             dev_err(&pdev->dev, "failed to parse audio-routing: %d\n", ret);
+> > -             goto asrc_fail;
+> > +     if (of_property_read_bool(np, "audio-routing")) {
+> > +             ret = snd_soc_of_parse_audio_routing(&priv->card, "audio-routing");
+> > +             if (ret) {
+> > +                     dev_err(&pdev->dev, "failed to parse audio-routing: %d\n", ret);
+> > +                     goto asrc_fail;
+>
+> Hmm...audio-routing is a required property in DT binding doc.
+> So you might need to update that too.
+
+will update them in v2.
+
+best regards
+wang shengjiu
