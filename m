@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 300151FCE29
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 15:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294661FCE6B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 15:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbgFQNMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 09:12:08 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:47813 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726303AbgFQNL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 09:11:59 -0400
-Received: from [5.157.120.79] (port=34860 helo=melee.fritz.box)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1jlXrA-000Frj-L0; Wed, 17 Jun 2020 15:11:56 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Axel Lin <axel.lin@ingics.com>
-Subject: [PATCH v2 4/4] mfd: lp87565: add LP87524-Q1 variant
-Date:   Wed, 17 Jun 2020 15:11:45 +0200
-Message-Id: <20200617131145.15696-5-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200617131145.15696-1-luca@lucaceresoli.net>
-References: <20200617131145.15696-1-luca@lucaceresoli.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+        id S1726763AbgFQNaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 09:30:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37362 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725901AbgFQNap (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 09:30:45 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F26DD2080D;
+        Wed, 17 Jun 2020 13:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592400645;
+        bh=yqPhqEFGOGGnf8tKs0A9o2GYo4CEG0qvZht6TK9uQRk=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=xScVLiM4utiA2ijBBxaLGjDzdmBjZPDtyufiTw9HFMGHgIjPQluNDgj2DFGvw+pYo
+         N8nxi/imPtpCa7rZp+UhzFPRJ5WLLYGglf8qZBwDPSj1IApRb4QfEm+xJoHTuAnbRT
+         MQBOSJFe6KPMaImD7l+tKBDnU2IWxM+KrQ1FgZQE=
+Date:   Wed, 17 Jun 2020 14:30:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, tiwai@suse.com,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        devicetree@vger.kernel.org, festevam@gmail.com, timur@kernel.org,
+        perex@perex.cz
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
+References: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v3 1/2] ASoC: bindings: fsl_spdif: Add new compatible string for imx6sx
+Message-Id: <159240063808.19287.10407096002593271687.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the LP87524B/J/P-Q1 Four 4-MHz Buck Converter. This is a
-variant of the LP87565 having 4 single-phase outputs and up to 10 A of
-total output current.
+On Wed, 17 Jun 2020 14:58:00 +0800, Shengjiu Wang wrote:
+> Add new compatible string "fsl,imx6sx-spdif" in the binding document.
+> And add compatible string "fsl,vf610-spdif" which was missed before.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+Applied to
 
----
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Changes in v2:
- - replace "regulator" -> "mfd" in subject line (Lee Jones)
- - add Acked-for-MFD-by: from Lee Jones
----
- drivers/mfd/lp87565.c       | 4 ++++
- include/linux/mfd/lp87565.h | 1 +
- 2 files changed, 5 insertions(+)
+Thanks!
 
-diff --git a/drivers/mfd/lp87565.c b/drivers/mfd/lp87565.c
-index 4a5c8ade4ae0..cc1072927f6d 100644
---- a/drivers/mfd/lp87565.c
-+++ b/drivers/mfd/lp87565.c
-@@ -26,6 +26,10 @@ static const struct mfd_cell lp87565_cells[] = {
- 
- static const struct of_device_id of_lp87565_match_table[] = {
- 	{ .compatible = "ti,lp87565", },
-+	{
-+		.compatible = "ti,lp87524-q1",
-+		.data = (void *)LP87565_DEVICE_TYPE_LP87524_Q1,
-+	},
- 	{
- 		.compatible = "ti,lp87565-q1",
- 		.data = (void *)LP87565_DEVICE_TYPE_LP87565_Q1,
-diff --git a/include/linux/mfd/lp87565.h b/include/linux/mfd/lp87565.h
-index ce965354bbad..ad240f2d0d3f 100644
---- a/include/linux/mfd/lp87565.h
-+++ b/include/linux/mfd/lp87565.h
-@@ -14,6 +14,7 @@
- 
- enum lp87565_device_type {
- 	LP87565_DEVICE_TYPE_UNKNOWN	= 0,
-+	LP87565_DEVICE_TYPE_LP87524_Q1,
- 	LP87565_DEVICE_TYPE_LP87561_Q1,
- 	LP87565_DEVICE_TYPE_LP87565_Q1,
- };
--- 
-2.27.0
+[1/2] ASoC: bindings: fsl_spdif: Add new compatible string for imx6sx
+      commit: 632108afda6aa1d380e05f1eaa25463047fd00b3
+[2/2] ASoC: fsl_spdif: Add support for imx6sx platform
+      commit: f61b9273c347980f570d1f9cecb867a7835c613d
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
