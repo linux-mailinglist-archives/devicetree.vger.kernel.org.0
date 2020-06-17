@@ -2,90 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA411FD015
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 16:55:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D93F1FD066
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 17:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbgFQOzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 10:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726952AbgFQOzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 10:55:08 -0400
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F97C061755
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:08 -0700 (PDT)
-Received: by mail-ua1-x942.google.com with SMTP id z47so856372uad.5
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rwgqDzLlKBlZHgeSExhyQD7IUX0bBrSxqALSEdkys8o=;
-        b=cDnYNZzcuJY2Z8YxBUqI1q7VnRgPH6Ganx1dgOwjPXJnq1jOC75XvUqKB/ppGw0mMm
-         2BR9fAx9ZjOId2omlKrwBFn19wnOwN1Kdne0r/o6xnS+s9XHyuiMegWXFfGW95OPNNaJ
-         S6EczbN4+D9BhHWJ5roupqIvL90ghK7tP7CJc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rwgqDzLlKBlZHgeSExhyQD7IUX0bBrSxqALSEdkys8o=;
-        b=JBduU9L/cWZJzCn9WwXX/XhtG3qgQsLqvggCH8qNqhJGZSjd2NbH7kQ6LS5alHIAyu
-         IxhvLoV6562C5Va3XCqVw5PZqU7MHi9qQk+zuNCt2mt5i7l7hCyzw90fNneEdIlhOOCq
-         ruM1gEHHHWigSmcX1SS4cccgNYP0SmoifkeDDLWrOdWkwm4z7tfHsUms1kigqBSa6cMJ
-         g6aVnH1pe3A6l0VPP+eUtePtYbwXviGwgDZ30Ue9/cIAn8eXEhRsx2H26jj5P7Ib8lfP
-         wL7rcJONNNUcv3yHMkldoS+Irtgn44alSdz9v41ULJl4MH8Pr5+nPL0Ey2h7OIsFbDs/
-         IAyQ==
-X-Gm-Message-State: AOAM533FLuBafp8Sm5IW5lIlV3RI07A3hozMkJY/SrLYNDDMNNr0sMiV
-        4l779gXxRIlDE4Rx9PWPDp06/I+7BUI=
-X-Google-Smtp-Source: ABdhPJz9QpmtqTieSKq+/611UByA9lga+XiOdusYelcyZW98O6Uft1cQrkxIHi7Uc/e1XcV/RgzkwA==
-X-Received: by 2002:ab0:6202:: with SMTP id m2mr6180897uao.51.1592405707040;
-        Wed, 17 Jun 2020 07:55:07 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id m11sm1034183vko.34.2020.06.17.07.55.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2020 07:55:05 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id q2so1561233vsr.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:05 -0700 (PDT)
-X-Received: by 2002:a67:1703:: with SMTP id 3mr6503266vsx.169.1592405704994;
- Wed, 17 Jun 2020 07:55:04 -0700 (PDT)
+        id S1726942AbgFQPJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 11:09:39 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40460 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726867AbgFQPJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 11:09:37 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05HF9VTx004962;
+        Wed, 17 Jun 2020 10:09:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1592406571;
+        bh=O9T9JY2iqiPYluK+I3tef3TRjBhdtQRGfsyZ7iAU/uk=;
+        h=From:To:CC:Subject:Date;
+        b=naB1zYGPEgISptmpKUbEfDoJNZAS19I+/webBY8F59OfUlIdlgeb2Lj1+JKFxmI8r
+         Ip3NM/c1Qvy4j3KgCvbPilHKX9PyL0yHobU9ZNHCR2MZk0aIj7O9hlTi1kR+zWxSO7
+         CYJbaBTW908zzPxhUJ8UugGxpgk/UFaIhJPDQb4g=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05HF9VL7117945
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 17 Jun 2020 10:09:31 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 17
+ Jun 2020 10:09:31 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 17 Jun 2020 10:09:31 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05HF9VLn106021;
+        Wed, 17 Jun 2020 10:09:31 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v28 00/15]  Multicolor Framework v28
+Date:   Wed, 17 Jun 2020 10:09:09 -0500
+Message-ID: <20200617150924.12665-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
- <1591868882-16553-3-git-send-email-rbokka@codeaurora.org> <CAD=FV=XSfMPehyCLB25hct+GE8JtU=5J=04KyU4AoHfg9cs50A@mail.gmail.com>
-In-Reply-To: <CAD=FV=XSfMPehyCLB25hct+GE8JtU=5J=04KyU4AoHfg9cs50A@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 17 Jun 2020 07:54:53 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VAobLWeJvAn3wseNZ4JUJzta0m3wNUhiWiOoC0VcNisA@mail.gmail.com>
-Message-ID: <CAD=FV=VAobLWeJvAn3wseNZ4JUJzta0m3wNUhiWiOoC0VcNisA@mail.gmail.com>
-Subject: Re: [RFC v2 2/3] drivers: nvmem: Add QTI qfprom-efuse support
-To:     Ravi Kumar Bokka <rbokka@codeaurora.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        dhavalp@codeaurora.org, mturney@codeaurora.org,
-        sparate@codeaurora.org, c_rbokka@codeaurora.org,
-        mkurumel@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello
 
-On Sat, Jun 13, 2020 at 1:33 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> In general I'm happy to post my series to the list myself to get
-> review feedback.  For now I'm expecting that you can squash my changes
-> in and send the next version.
+This is the multi color LED framework.   This framework presents clustered
+colored LEDs into an array and allows the user space to adjust the brightness
+of the cluster using a single file write.  The individual colored LEDs
+intensities are controlled via a single file that is an array of LEDs
 
-I talked with Ravi offline and he suggested that I send out the v3, so
-it's been posted.  For the cover letter, see:
+Minor changes to the lp55xx yaml for min and max of led-cur
+Removed if check in the multicolor file in the for loop.
 
-https://lore.kernel.org/r/20200617145116.247432-1-dianders@chromium.org
+Dan
 
--Doug
+Dan Murphy (15):
+  dt: bindings: Add multicolor class dt bindings documention
+  leds: Add multicolor ID to the color ID list
+  leds: multicolor: Introduce a multicolor class definition
+  dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers
+  leds: lp50xx: Add the LP50XX family of the RGB LED driver
+  dt-bindings: leds: Convert leds-lp55xx to yaml
+  ARM: dts: n900: Add reg property to the LP5523 channel node
+  ARM: dts: imx6dl-yapp4: Add reg property to the lp5562 channel node
+  ARM: dts: ste-href: Add reg property to the LP5521 channel nodes
+  leds: lp55xx: Convert LED class registration to devm_*
+  leds: lp55xx: Add multicolor framework support to lp55xx
+  leds: lp5523: Update the lp5523 code to add multicolor brightness
+    function
+  leds: lp5521: Add multicolor framework multicolor brightness support
+  leds: lp55xx: Fix file permissions to use DEVICE_ATTR macros
+  leds: lp5523: Fix various formatting issues in the code
+
+ .../ABI/testing/sysfs-class-led-multicolor    |  36 +
+ .../bindings/leds/leds-class-multicolor.yaml  |  37 +
+ .../devicetree/bindings/leds/leds-lp50xx.yaml | 130 +++
+ .../devicetree/bindings/leds/leds-lp55xx.txt  | 228 -----
+ .../devicetree/bindings/leds/leds-lp55xx.yaml | 220 +++++
+ Documentation/leds/index.rst                  |   1 +
+ Documentation/leds/leds-class-multicolor.rst  |  88 ++
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi    |  14 +-
+ arch/arm/boot/dts/omap3-n900.dts              |  29 +-
+ arch/arm/boot/dts/ste-href.dtsi               |  22 +-
+ drivers/leds/Kconfig                          |  24 +
+ drivers/leds/Makefile                         |   2 +
+ drivers/leds/led-class-multicolor.c           | 208 +++++
+ drivers/leds/led-core.c                       |   1 +
+ drivers/leds/leds-lp50xx.c                    | 783 ++++++++++++++++++
+ drivers/leds/leds-lp5521.c                    |  43 +-
+ drivers/leds/leds-lp5523.c                    |  62 +-
+ drivers/leds/leds-lp5562.c                    |  22 +-
+ drivers/leds/leds-lp55xx-common.c             | 212 +++--
+ drivers/leds/leds-lp55xx-common.h             |  16 +-
+ drivers/leds/leds-lp8501.c                    |  23 +-
+ include/dt-bindings/leds/common.h             |   3 +-
+ include/linux/led-class-multicolor.h          | 121 +++
+ include/linux/platform_data/leds-lp55xx.h     |   8 +
+ 24 files changed, 1978 insertions(+), 355 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-lp55xx.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+ create mode 100644 Documentation/leds/leds-class-multicolor.rst
+ create mode 100644 drivers/leds/led-class-multicolor.c
+ create mode 100644 drivers/leds/leds-lp50xx.c
+ create mode 100644 include/linux/led-class-multicolor.h
+
+-- 
+2.26.2
+
