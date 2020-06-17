@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 551681FD622
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 22:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD111FD61C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 22:31:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726761AbgFQUgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 16:36:20 -0400
-Received: from sv228.xserver.jp ([219.94.203.129]:48484 "EHLO sv228.xserver.jp"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726496AbgFQUgU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 16:36:20 -0400
-X-Greylist: delayed 465 seconds by postgrey-1.27 at vger.kernel.org; Wed, 17 Jun 2020 16:36:20 EDT
-Received: from virusgw2.xserver.jp (virusgw2.xserver.jp [219.94.203.91])
-        by sv228.xserver.jp (Postfix) with ESMTP id 6AB133E3088C32;
-        Thu, 18 Jun 2020 05:28:31 +0900 (JST)
-Received: from sv228.xserver.jp (219.94.203.129)
- by virusgw2.xserver.jp (F-Secure/fsigk_smtp/521/virusgw2.xserver.jp);
- Thu, 18 Jun 2020 05:28:31 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/521/virusgw2.xserver.jp)
-Received: from webmail.xserver.ne.jp (webmail.xserver.ne.jp [210.188.201.183])
-        by sv228.xserver.jp (Postfix) with ESMTPA id 9C1683E090531B;
-        Thu, 18 Jun 2020 05:28:29 +0900 (JST)
+        id S1726833AbgFQUbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 16:31:18 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:47009 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726763AbgFQUbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 16:31:18 -0400
+Received: by mail-io1-f65.google.com with SMTP id t9so4449006ioj.13;
+        Wed, 17 Jun 2020 13:31:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bBXYSk1/ATYeub4n9kMvAH2hmCPII0+QncDRP+7+Htw=;
+        b=bk65cOTNA43Ik1iHnbZlK7AuKOUFauOyqGDG+1JnsCzAFxz9vtZ6ZSbHVd+zS6I7Rm
+         TjpIvAfq/r2CrfriJZpD70WohnQNRLmxx/MePr4z+mL8p9/tX1FKG4NTw/99noHo7+ep
+         kj4I3fJcUFR1p1DH1OJWtY6zIbeezkjdpeLByWmbE5IYcEdJhQiwTM1oHK8SIMeszQNV
+         k1uiW/b2C3MkD8odV32SYqVgXqjCe4m5x9Teg9F6M5RBpqwAPzmg5q/8tQ14eQi4ZJ7G
+         T+ffCEeSX9RHoWkYDrFqh4iRPRrfskq4DVlFcxPH8anOJdQAL8GK//pSXOue0u5PDSJa
+         uZJg==
+X-Gm-Message-State: AOAM532UOxHdLKyYexu2N8UaK/ZdcnLNqn4MZDYF5eYY2td0naIT0gU4
+        0zwCXG0ykFNwM6VESPlxvSx1WY048w==
+X-Google-Smtp-Source: ABdhPJwJ3J48mh8YLrWWaH382tu/CTB8ZZ5/9hfRxSeLhpiWZor9+iKA/OgTvoX4RkqqBCty76mFxw==
+X-Received: by 2002:a6b:1785:: with SMTP id 127mr1302084iox.136.1592425877505;
+        Wed, 17 Jun 2020 13:31:17 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h23sm485548ioj.39.2020.06.17.13.31.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jun 2020 13:31:16 -0700 (PDT)
+Received: (nullmailer pid 2740358 invoked by uid 1000);
+        Wed, 17 Jun 2020 20:31:15 -0000
+Date:   Wed, 17 Jun 2020 14:31:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tomasz Duszynski <tomasz.duszynski@octakon.com>
+Cc:     andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        pmeerw@pmeerw.net, jic23@kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v5 4/4] dt-bindings: iio: scd30: add device binding file
+Message-ID: <20200617203115.GA2740308@bogus>
+References: <20200607175812.95777-5-tomasz.duszynski@octakon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Wed, 17 Jun 2020 21:28:29 +0100
-From:   Chan Leap Phala <phala.leap@gmail.com>
-To:     undisclosed-recipients:;
-Subject: Barrister Chan Leap Phala
-Reply-To: phala.leap@gmail.com
-Mail-Reply-To: phala.leap@gmail.com
-Message-ID: <3049e6252facdb7d8e6b14745428ff8c@creativesuite.tv>
-X-Sender: phala.leap@gmail.com
-User-Agent: Roundcube Webmail/1.2.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200607175812.95777-5-tomasz.duszynski@octakon.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 07 Jun 2020 19:58:12 +0200, Tomasz Duszynski wrote:
+> Add SCD30 sensor binding file.
+> 
+> Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
+> ---
+>  .../iio/chemical/sensirion,scd30.yaml         | 68 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+> 
 
-Gorące pozdrowienia,
-
-Wysłałem ci ten list miesiąc temu, ale nie jestem pewien, czy go 
-otrzymałeś, ponieważ nie otrzymałem od ciebie żadnej odpowiedzi, dlatego 
-ponownie go wysyłam.
-
-Jestem adwokatem Chan Leap Phala, osobistym prawnikiem mojego zmarłego 
-klienta przed jego przedwczesną śmiercią z rodziną. Otrzymałem mandat od 
-jego banku, aby zapewnić / przedstawić bliskich krewnych kwoty jego 
-funduszu o wartości Dwadzieścia Dziewięć Milionów Pięćset Stu 
-Osiemdziesięciu Tysięcy Dolarów Amerykańskich 29 580 000 USD, więc 
-skontaktowałem się z Tobą. Po nieudanej próbie znalezienia krewnego 
-mojego zmarłego klienta postanowiłem się z tobą skontaktować, ponieważ 
-ma on to samo nazwisko i narodowość.
-
-Proszę o kontakt w celu uzyskania dalszych informacji: 
-(phala.leap@gmail.com)
-
-Z poważaniem
-
-Barrister Chan Leap Phala
-
-Prawnik / Adwokaci
-E-mail: phala.leap@gmail.com
+Reviewed-by: Rob Herring <robh@kernel.org>
