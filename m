@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F9901FD000
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 16:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA411FD015
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 16:55:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726883AbgFQOv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 10:51:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34438 "EHLO
+        id S1726953AbgFQOzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 10:55:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726540AbgFQOv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 10:51:57 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A1DC06174E
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:51:56 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id jz3so1122302pjb.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:51:56 -0700 (PDT)
+        with ESMTP id S1726952AbgFQOzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 10:55:08 -0400
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F97C061755
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:08 -0700 (PDT)
+Received: by mail-ua1-x942.google.com with SMTP id z47so856372uad.5
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oHDXTrxrPr/ji5r+gzel+9fUGlLw6TAHPNwGJ7xfdkA=;
-        b=VvUC35sOnZr1p54G45m3VOKy8uZ8e5bmbhcZN9jZnFVgnTDiwJJjn9q1w9joR+fq6+
-         LvIBHOBoTFfEjjTgB2XyZgDwbQMwmAF2q/yvQvrXOVOTPcqSP5y46rr1TpxGi0W40RPU
-         9jf31u38Q01rzuP+kO6uGvxmaReLYGtsWSpAE=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rwgqDzLlKBlZHgeSExhyQD7IUX0bBrSxqALSEdkys8o=;
+        b=cDnYNZzcuJY2Z8YxBUqI1q7VnRgPH6Ganx1dgOwjPXJnq1jOC75XvUqKB/ppGw0mMm
+         2BR9fAx9ZjOId2omlKrwBFn19wnOwN1Kdne0r/o6xnS+s9XHyuiMegWXFfGW95OPNNaJ
+         S6EczbN4+D9BhHWJ5roupqIvL90ghK7tP7CJc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oHDXTrxrPr/ji5r+gzel+9fUGlLw6TAHPNwGJ7xfdkA=;
-        b=tmbzy1XCMGRU/HKS+VTGs6nu3e3vU77pG52srd9Tz1PXk05T11rXWhyc5scJzVATi0
-         qyxLvmEdUs3nK53V+cq/igq1HIHHh24aIkKeOsLtA1nB0MkyQorqPKBqRYwzf6jdS062
-         7w/3a6ZBJ5rFLuLHL7MsBV2gojxYJN6C3tu+AEzNo+/mkP1tvK3pNe/xPih5g6ESptLo
-         4QNkl1PFW9fCG85jdDCwvh+wPophjatHo9HgX6DzhOMNkDW3kpXEU6rTJv24/rwDGyuc
-         0WBaPdtFm4yEBpAjZ2BuPxolAsgWXsuJpx5szJ+JkQRe0mUENj0lXBlQqGUUk8NgzerA
-         FtSQ==
-X-Gm-Message-State: AOAM530cRhCYRXx3sYp82rePHB6ctg+fro/rKuwyrVYIloqmHWelT3Cc
-        +9TldEGqRps5vYV1wFFGchYLCw==
-X-Google-Smtp-Source: ABdhPJyABziZjJ2pLl5VgSZD68qgYBT6lnAEYD6+D8xTs6fWFVqzHs1ul+Kl1aQoJPBpUFqDygFnzg==
-X-Received: by 2002:a17:90b:4911:: with SMTP id kr17mr8174779pjb.40.1592405515652;
-        Wed, 17 Jun 2020 07:51:55 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id k18sm147040pfp.208.2020.06.17.07.51.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 07:51:55 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     dhavalp@codeaurora.org, mturney@codeaurora.org,
-        rnayak@codeaurora.org, Ravi Kumar Bokka <rbokka@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, saiprakash.ranjan@codeaurora.org,
-        sparate@codeaurora.org, mkurumel@codeaurora.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc7180: Add properties to qfprom for fuse blowing
-Date:   Wed, 17 Jun 2020 07:51:16 -0700
-Message-Id: <20200617074930.v3.4.I70c17309f8b433e900656d7c53a2e6b61888bb68@changeid>
-X-Mailer: git-send-email 2.27.0.290.gba653c62da-goog
-In-Reply-To: <20200617145116.247432-1-dianders@chromium.org>
-References: <20200617145116.247432-1-dianders@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rwgqDzLlKBlZHgeSExhyQD7IUX0bBrSxqALSEdkys8o=;
+        b=JBduU9L/cWZJzCn9WwXX/XhtG3qgQsLqvggCH8qNqhJGZSjd2NbH7kQ6LS5alHIAyu
+         IxhvLoV6562C5Va3XCqVw5PZqU7MHi9qQk+zuNCt2mt5i7l7hCyzw90fNneEdIlhOOCq
+         ruM1gEHHHWigSmcX1SS4cccgNYP0SmoifkeDDLWrOdWkwm4z7tfHsUms1kigqBSa6cMJ
+         g6aVnH1pe3A6l0VPP+eUtePtYbwXviGwgDZ30Ue9/cIAn8eXEhRsx2H26jj5P7Ib8lfP
+         wL7rcJONNNUcv3yHMkldoS+Irtgn44alSdz9v41ULJl4MH8Pr5+nPL0Ey2h7OIsFbDs/
+         IAyQ==
+X-Gm-Message-State: AOAM533FLuBafp8Sm5IW5lIlV3RI07A3hozMkJY/SrLYNDDMNNr0sMiV
+        4l779gXxRIlDE4Rx9PWPDp06/I+7BUI=
+X-Google-Smtp-Source: ABdhPJz9QpmtqTieSKq+/611UByA9lga+XiOdusYelcyZW98O6Uft1cQrkxIHi7Uc/e1XcV/RgzkwA==
+X-Received: by 2002:ab0:6202:: with SMTP id m2mr6180897uao.51.1592405707040;
+        Wed, 17 Jun 2020 07:55:07 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id m11sm1034183vko.34.2020.06.17.07.55.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jun 2020 07:55:05 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id q2so1561233vsr.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 07:55:05 -0700 (PDT)
+X-Received: by 2002:a67:1703:: with SMTP id 3mr6503266vsx.169.1592405704994;
+ Wed, 17 Jun 2020 07:55:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1591868882-16553-1-git-send-email-rbokka@codeaurora.org>
+ <1591868882-16553-3-git-send-email-rbokka@codeaurora.org> <CAD=FV=XSfMPehyCLB25hct+GE8JtU=5J=04KyU4AoHfg9cs50A@mail.gmail.com>
+In-Reply-To: <CAD=FV=XSfMPehyCLB25hct+GE8JtU=5J=04KyU4AoHfg9cs50A@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 17 Jun 2020 07:54:53 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VAobLWeJvAn3wseNZ4JUJzta0m3wNUhiWiOoC0VcNisA@mail.gmail.com>
+Message-ID: <CAD=FV=VAobLWeJvAn3wseNZ4JUJzta0m3wNUhiWiOoC0VcNisA@mail.gmail.com>
+Subject: Re: [RFC v2 2/3] drivers: nvmem: Add QTI qfprom-efuse support
+To:     Ravi Kumar Bokka <rbokka@codeaurora.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        dhavalp@codeaurora.org, mturney@codeaurora.org,
+        sparate@codeaurora.org, c_rbokka@codeaurora.org,
+        mkurumel@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ravi Kumar Bokka <rbokka@codeaurora.org>
+Hi,
 
-This patch adds properties to the qfprom node to enable fuse blowing.
+On Sat, Jun 13, 2020 at 1:33 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> In general I'm happy to post my series to the list myself to get
+> review feedback.  For now I'm expecting that you can squash my changes
+> in and send the next version.
 
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+I talked with Ravi offline and he suggested that I send out the v3, so
+it's been posted.  For the cover letter, see:
 
-Changes in v3:
-- Name is now 'efuse' to match what schema checker wants.
-- Reorganized ranges to match driver/bindings changes.
-- Added 4th range as per driver/binding changes.
-- No more reg-names as per driver/binding changes.
-- Clock name is now just "sec" as per driver/binding changes.
+https://lore.kernel.org/r/20200617145116.247432-1-dianders@chromium.org
 
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  4 ++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 10 ++++++++--
- 2 files changed, 12 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4e9149d82d09..2a9224e2083f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -287,6 +287,10 @@ vreg_bob: bob {
- 	};
- };
- 
-+&qfprom {
-+	vcc-supply = <&vreg_l11a_1p8>;
-+};
-+
- &qspi {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 31b9217bb5bf..d7f5e3d64b17 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -498,9 +498,15 @@ gcc: clock-controller@100000 {
- 			#power-domain-cells = <1>;
- 		};
- 
--		qfprom@784000 {
-+		qfprom: efuse@784000 {
- 			compatible = "qcom,qfprom";
--			reg = <0 0x00784000 0 0x8ff>;
-+			reg = <0 0x00784000 0 0x8ff>,
-+			      <0 0x00780000 0 0x7a0>,
-+			      <0 0x00782000 0 0x100>,
-+			      <0 0x00786000 0 0x1fff>;
-+
-+			clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-+			clock-names = "sec";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
--- 
-2.27.0.290.gba653c62da-goog
-
+-Doug
