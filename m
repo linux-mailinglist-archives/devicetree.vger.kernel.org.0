@@ -2,169 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6151FC6BC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 09:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F10E1FC69F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 09:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726510AbgFQHJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 03:09:20 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:60778 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726308AbgFQHJU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 03:09:20 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9812C2008E7;
-        Wed, 17 Jun 2020 09:09:17 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2D74B2008F7;
-        Wed, 17 Jun 2020 09:09:12 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 67105402B1;
-        Wed, 17 Jun 2020 15:09:05 +0800 (SGT)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] ASoC: fsl_spdif: Add support for imx6sx platform
-Date:   Wed, 17 Jun 2020 14:58:01 +0800
-Message-Id: <7a343edd5f8487abad248a0b862f45fd95067751.1592376770.git.shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
-References: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
-In-Reply-To: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
-References: <feda3bb02296455d43aeebb7575918d9b28e1a3f.1592376770.git.shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726628AbgFQHF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 03:05:29 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48341 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725536AbgFQHF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 03:05:28 -0400
+X-UUID: 23b19076638946138ae6580fd018c808-20200617
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gkAfTQ6LXNQUT6avn+z4zRQbIwl9KPfbe41nK8IyoMc=;
+        b=mYGSf1IREzBi5YPYHm4nsq8fMb2Ju3pek1fbAwr4fHOGpkzHaAWrJk2MbdvubyS3+jwG8NYqHvaRWOq8RYaXIQJsdDkvb7b+CyguDhHmON6uJMTL6351OqF0O4leRygHGqWpS3WMltjfM8BEjBkmPkVKrvofGCYCWlJJUi79t3E=;
+X-UUID: 23b19076638946138ae6580fd018c808-20200617
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 844726162; Wed, 17 Jun 2020 15:05:24 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 17 Jun 2020 15:05:22 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 17 Jun 2020 15:05:22 +0800
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>
+CC:     James Liao <jamesjj.liao@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>,
+        Wendell Lin <wendell.lin@mediatek.com>
+Subject: [PATCH v16 00/11] Mediatek MT8183 scpsys support 
+Date:   Wed, 17 Jun 2020 15:05:06 +0800
+Message-ID: <1592377517-14817-1-git-send-email-weiyi.lu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The one difference on imx6sx platform is that the root clock
-is shared with ASRC module, so we add a new flags
-"shared_root_clock" which means the root clock is not independent,
-then we will not do the clk_set_rate and clk_round_rate to avoid
-impact ASRC module usage.
-
-As add a new flags, we include the soc specific data struct.
-
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Nicolin Chen <nicoleotsuka@gmail.com>
----
-changes in v3
-- refine some comments
-- add Reviewed-by: Nicolin Chen
-
-changes in v2
-- use shared_root_clk instead ind_root_clk.
-- add fsl_spdif_can_set_clk_rate function.
-
- sound/soc/fsl/fsl_spdif.c | 50 +++++++++++++++++++++++++++++++++++----
- 1 file changed, 45 insertions(+), 5 deletions(-)
-
-diff --git a/sound/soc/fsl/fsl_spdif.c b/sound/soc/fsl/fsl_spdif.c
-index 1b2e516f9162..5bc0e4729341 100644
---- a/sound/soc/fsl/fsl_spdif.c
-+++ b/sound/soc/fsl/fsl_spdif.c
-@@ -42,6 +42,18 @@ static u8 srpc_dpll_locked[] = { 0x0, 0x1, 0x2, 0x3, 0x4, 0xa, 0xb };
- 
- #define DEFAULT_RXCLK_SRC	1
- 
-+/**
-+ * struct fsl_spdif_soc_data: soc specific data
-+ *
-+ * @imx: for imx platform
-+ * @shared_root_clock: flag of sharing a clock source with others;
-+ *                     so the driver shouldn't set root clock rate
-+ */
-+struct fsl_spdif_soc_data {
-+	bool imx;
-+	bool shared_root_clock;
-+};
-+
- /*
-  * SPDIF control structure
-  * Defines channel status, subcode and Q sub
-@@ -89,6 +101,7 @@ struct spdif_mixer_control {
-  * @dma_params_rx: DMA parameters for receive channel
-  */
- struct fsl_spdif_priv {
-+	const struct fsl_spdif_soc_data *soc;
- 	struct spdif_mixer_control fsl_spdif_control;
- 	struct snd_soc_dai_driver cpu_dai_drv;
- 	struct platform_device *pdev;
-@@ -110,6 +123,27 @@ struct fsl_spdif_priv {
- 	u32 regcache_srpc;
- };
- 
-+static struct fsl_spdif_soc_data fsl_spdif_vf610 = {
-+	.imx = false,
-+	.shared_root_clock = false,
-+};
-+
-+static struct fsl_spdif_soc_data fsl_spdif_imx35 = {
-+	.imx = true,
-+	.shared_root_clock = false,
-+};
-+
-+static struct fsl_spdif_soc_data fsl_spdif_imx6sx = {
-+	.imx = true,
-+	.shared_root_clock = true,
-+};
-+
-+/* Check if clk is a root clock that does not share clock source with others */
-+static inline bool fsl_spdif_can_set_clk_rate(struct fsl_spdif_priv *spdif, int clk)
-+{
-+	return (clk == STC_TXCLK_SPDIF_ROOT) && !spdif->soc->shared_root_clock;
-+}
-+
- /* DPLL locked and lock loss interrupt handler */
- static void spdif_irq_dpll_lock(struct fsl_spdif_priv *spdif_priv)
- {
-@@ -420,8 +454,7 @@ static int spdif_set_sample_rate(struct snd_pcm_substream *substream,
- 
- 	sysclk_df = spdif_priv->sysclk_df[rate];
- 
--	/* Don't mess up the clocks from other modules */
--	if (clk != STC_TXCLK_SPDIF_ROOT)
-+	if (!fsl_spdif_can_set_clk_rate(spdif_priv, clk))
- 		goto clk_set_bypass;
- 
- 	/* The S/PDIF block needs a clock of 64 * fs * txclk_df */
-@@ -1186,7 +1219,7 @@ static int fsl_spdif_probe_txclk(struct fsl_spdif_priv *spdif_priv,
- 			continue;
- 
- 		ret = fsl_spdif_txclk_caldiv(spdif_priv, clk, savesub, index,
--					     i == STC_TXCLK_SPDIF_ROOT);
-+					     fsl_spdif_can_set_clk_rate(spdif_priv, i));
- 		if (savesub == ret)
- 			continue;
- 
-@@ -1230,6 +1263,12 @@ static int fsl_spdif_probe(struct platform_device *pdev)
- 
- 	spdif_priv->pdev = pdev;
- 
-+	spdif_priv->soc = of_device_get_match_data(&pdev->dev);
-+	if (!spdif_priv->soc) {
-+		dev_err(&pdev->dev, "failed to get soc data\n");
-+		return -ENODEV;
-+	}
-+
- 	/* Initialize this copy of the CPU DAI driver structure */
- 	memcpy(&spdif_priv->cpu_dai_drv, &fsl_spdif_dai, sizeof(fsl_spdif_dai));
- 	spdif_priv->cpu_dai_drv.name = dev_name(&pdev->dev);
-@@ -1359,8 +1398,9 @@ static const struct dev_pm_ops fsl_spdif_pm = {
- };
- 
- static const struct of_device_id fsl_spdif_dt_ids[] = {
--	{ .compatible = "fsl,imx35-spdif", },
--	{ .compatible = "fsl,vf610-spdif", },
-+	{ .compatible = "fsl,imx35-spdif", .data = &fsl_spdif_imx35, },
-+	{ .compatible = "fsl,vf610-spdif", .data = &fsl_spdif_vf610, },
-+	{ .compatible = "fsl,imx6sx-spdif", .data = &fsl_spdif_imx6sx, },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, fsl_spdif_dt_ids);
--- 
-2.21.0
+VGhpcyBzZXJpZXMgaXMgYmFzZWQgb24gdjUuOC1yYzENCg0KY2hhbmdlIHNpbmNlIHYxNToNCi0g
+cmVtb3ZlIHVubmVlZGVkIGVycm9yIGxvZyBpbiBbUEFUQ0ggMDYvMTFdDQoNCmNoYW5nZXMgc2lu
+Y2UgdjE0Og0KLSBmaXggY29tbWl0IG1lc3NhZ2UgdHlwbw0KLSB1c2UgcHJvcGVydHkgbmFtZSAi
+bWVkaWF0ZWssc21pIiBmb3Igc21pIHBoYW5kbGUNCg0KY2hhbmdlcyBzaW5jZSB2MTM6DQotIGRv
+Y3VtZW50IG9wdGlvbmFsIHByb3BlcnR5ICJzbWktY29tbSINCi0gbW92ZSBkZWZpbmVzIGluIHNj
+cHN5Yy5oIHRvIG10ay1zY3BzeXMuYyBkaXJlY3RseQ0KLSBtaW5vciBjb2Rpbmcgc3l0bGUgZml4
+ZXMNCg0KY2hhbmdlIHNpbmNlIHYxMjoNCi0gc2VwYXJhdGUgdGhlIGZpeCBvZiBjb21tYSBhdCB0
+aGUgZW5kIGludG8gYSBuZXcgcGF0Y2ggW1BBVENIIDA5LzExXQ0KDQpjaGFuZ2VzIHNpbmNlIHYx
+MToNCi0gcmUtb3JkZXIgcGF0Y2hlcyAiUmVtb3ZlIGluZnJhY2ZnIG1pc2MgZHJpdmVyIHN1cHBv
+cnQiIGFuZCAiQWRkIG11bHRpcGxlIHN0ZXAgYnVzIHByb3RlY3Rpb24iDQotIGFkZCBjYXAgTVRL
+X1NDUERfU1JBTV9JU08gZm9yIGV4dHJhIHNyYW0gY29udHJvbA0KLSBtaW5vciBjb2Rpbmcgc3l0
+bGUgZml4ZXMgYW5kIHJld29yZCBjb21taXQgbWVzc2FnZXMNCg0KY2hhbmdlcyBzaW5jZSB2MTA6
+DQotIHNxdWFzaCBQQVRDSCAwNCBhbmQgUEFUQ0ggMDYgaW4gdjkgaW50byBpdHMgcHJldmlvdXMg
+cGF0Y2gNCi0gYWRkICJpZ25vcmVfY2xyX2FjayIgZm9yIG11bHRpcGxlIHN0ZXAgYnVzIHByb3Rl
+Y3Rpb24gY29udHJvbCB0byBoYXZlIGEgY2xlYW4gZGVmaW5pdGlvbiBvZiBwb3dlciBkb21haW4g
+ZGF0YQ0KLSBrZWVwIHRoZSBtYXNrIHJlZ2lzdGVyIGJpdCBkZWZpbml0aW9ucyBhbmQgZG8gdGhl
+IHNhbWUgZm9yIE1UODE4Mw0KDQpjaGFuZ2VzIHNpbmNlIHY5Og0KLSBhZGQgbmV3IFBBVENIIDA0
+IGFuZCBQQVRDSCAwNiB0byByZXBsYWNlIGJ5IG5ldyBtZXRob2QgZm9yIGFsbCBjb21wYXRpYmxl
+cw0KLSBhZGQgbmV3IFBBVENIIDA3IHRvIHJlbW92ZSBpbmZyYWNmZyBtaXNjIGRyaXZlcg0KLSBt
+aW5vciBjb2Rpbmcgc3l0bGUgZml4DQoNCmNoYW5nZXMgc2luY2Ugdjc6DQotIHJld29yZCBpbiBi
+aW5kaW5nIGRvY3VtZW50IFtQQVRDSCAwMi8xNF0NCi0gZml4IGVycm9yIHJldHVybiBjaGVja2lu
+ZyBidWcgaW4gc3Vic3lzIGNsb2NrIGNvbnRyb2wgW1BBVENIIDEwLzE0XQ0KLSBhZGQgcG93ZXIg
+ZG9tYWlucyBwcm9wZXJpdHkgdG8gbWZnY2ZnIHBhdGNoIFtQQVRDSCAxNC8xNF0gZnJvbQ0KICBo
+dHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExMTI2MTk5Lw0KDQpjaGFuZ2VzIHNp
+bmNlIHY2Og0KLSByZW1vdmUgdGhlIHBhdGNoIG9mIFNQRFggbGljZW5zZSBpZGVudGlmaWVyIGJl
+Y2F1c2UgaXQncyBhbHJlYWR5IGZpeGVkDQoNCmNoYW5nZXMgc2luY2UgdjU6DQotIGZpeCBkb2N1
+bWVudGF0aW9uIGluIFtQQVRDSCAwNC8xNF0NCi0gcmVtb3ZlIHVzZWxlc3MgdmFyaWFibGUgY2hl
+Y2tpbmcgYW5kIHJldXNlIEFQSSBvZiBjbG9jayBjb250cm9sIGluIFtQQVRDSCAwNi8xNF0NCi0g
+Y29kaW5nIHN0eWxlIGZpeCBvZiBidXMgcHJvdGVjdGlvbiBjb250cm9sIGluIFtQQVRDSCAwOC8x
+NF0NCi0gZml4IG5hbWluZyBvZiBuZXcgYWRkZWQgZGF0YSBpbiBbUEFUQ0ggMDkvMTRdDQotIHNt
+YWxsIHJlZmFjdG9yIG9mIG11bHRpcGxlIHN0ZXAgYnVzIHByb3RlY3Rpb24gY29udHJvbCBpbiBb
+UEFUQ0ggMTAvMTRdDQoNCmNoYW5nZXMgc2luY2UgdjQ6DQotIGFkZCBwcm9wZXJ0eSB0byBtdDgx
+ODMgc21pLWNvbW1vbg0KLSBzZXBlcmF0ZSByZWZhY3RvciBwYXRjaGVzIGFuZCBuZXcgYWRkIGZ1
+bmN0aW9uDQotIGFkZCBwb3dlciBjb250cm9sbGVyIGRldmljZSBub2RlDQoNCg0KV2VpeWkgTHUg
+KDExKToNCiAgZHQtYmluZGluZ3M6IG1lZGlhdGVrOiBBZGQgcHJvcGVydHkgdG8gbXQ4MTgzIHNt
+aS1jb21tb24NCiAgZHQtYmluZGluZ3M6IHNvYzogQWRkIE1UODE4MyBwb3dlciBkdC1iaW5kaW5n
+cw0KICBzb2M6IG1lZGlhdGVrOiBBZGQgYmFzaWNfY2xrX25hbWUgdG8gc2NwX3Bvd2VyX2RhdGEN
+CiAgc29jOiBtZWRpYXRlazogUmVtb3ZlIGluZnJhY2ZnIG1pc2MgZHJpdmVyIHN1cHBvcnQNCiAg
+c29jOiBtZWRpYXRlazogQWRkIG11bHRpcGxlIHN0ZXAgYnVzIHByb3RlY3Rpb24gY29udHJvbA0K
+ICBzb2M6IG1lZGlhdGVrOiBBZGQgc3Vic3lzIGNsb2NrIGNvbnRyb2wgZm9yIGJ1cyBwcm90ZWN0
+aW9uDQogIHNvYzogbWVkaWF0ZWs6IEFkZCBleHRyYSBzcmFtIGNvbnRyb2wNCiAgc29jOiBtZWRp
+YXRlazogQWRkIE1UODE4MyBzY3BzeXMgc3VwcG9ydA0KICBzb2M6IG1lZGlhdGVrOiBBZGQgYSBj
+b21tYSBhdCB0aGUgZW5kDQogIGFybTY0OiBkdHM6IEFkZCBwb3dlciBjb250cm9sbGVyIGRldmlj
+ZSBub2RlIG9mIE1UODE4Mw0KICBhcm02NDogZHRzOiBBZGQgcG93ZXItZG9tYWlucyBwcm9wZXJ0
+eSB0byBtZmdjZmcNCg0KIC4uLi9tZWRpYXRlayxzbWktY29tbW9uLnR4dCAgICAgICAgICAgICAg
+ICAgICB8ICAgMiArLQ0KIC4uLi9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsvc2Nwc3lzLnR4dCAgICAg
+ICAgICB8ICAyMSArLQ0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kg
+ICAgICB8ICA2MyArKw0KIGRyaXZlcnMvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAgICAgICAg
+ICAgICB8ICAxMCAtDQogZHJpdmVycy9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUgICAgICAgICAgICAg
+ICAgIHwgICAxIC0NCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstaW5mcmFjZmcuYyAgICAgICAg
+ICAgfCAgNzkgLS0NCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstc2Nwc3lzLmMgICAgICAgICAg
+ICAgfCA3MDQgKysrKysrKysrKysrKystLS0tDQogaW5jbHVkZS9kdC1iaW5kaW5ncy9wb3dlci9t
+dDgxODMtcG93ZXIuaCAgICAgIHwgIDI2ICsNCiBpbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9p
+bmZyYWNmZy5oICAgICAgICAgfCAgMzkgLQ0KIDkgZmlsZXMgY2hhbmdlZCwgNjY5IGluc2VydGlv
+bnMoKyksIDI3NiBkZWxldGlvbnMoLSkNCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zb2Mv
+bWVkaWF0ZWsvbXRrLWluZnJhY2ZnLmMNCiBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9kdC1i
+aW5kaW5ncy9wb3dlci9tdDgxODMtcG93ZXIuaA0KIGRlbGV0ZSBtb2RlIDEwMDY0NCBpbmNsdWRl
+L2xpbnV4L3NvYy9tZWRpYXRlay9pbmZyYWNmZy5oDQo=
 
