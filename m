@@ -2,243 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA261FD8C4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 00:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE761FD8DB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 00:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726920AbgFQW3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 18:29:31 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40836 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbgFQW3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 18:29:30 -0400
-Received: by mail-io1-f65.google.com with SMTP id q8so4846191iow.7;
-        Wed, 17 Jun 2020 15:29:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AGChXhts2aW/iyXH75FdVftrZcq1DsLbUtJIkfwgWko=;
-        b=WmLCHN78H2xlmK64sF0Ccd1STsZkDoPRbOd1Bm522QoOlvXfErb10eQBE25VEY6lxd
-         rcEO05KIrctf8AL+GZABRUlOo/sMR1z9Okyoe0H6WTiAAhLrn0SAlERxe+1wZdGR+Bup
-         Y9AbmV4yIj6q31fYCtClipvimPqTTLcMz0zz1Va282wl8AG9vYaQyqwwN6sOHgNZFq7v
-         buIIqE500mWCV+6MUe7u9GdPGJf6uYAbwL0PXmNzNfK4xS3JZxOoIPCvXRoZ7dPIIuxe
-         ochvMot9LkVsLz3vXumQ24SLSo6mrS7iEZZz+H0C7nvXPij7CB3fzH3jUaGc7BtrJch8
-         L+wQ==
-X-Gm-Message-State: AOAM530MGMp40+dGnWbBuWzg2YxGskq3oSj2cgPom573S1cwui7U0MKZ
-        H2knQ502to660/JQfQ+CKQ==
-X-Google-Smtp-Source: ABdhPJwKxN03OW/ewOZh4vvzk2mvidmmNcr3HwzdbZmDtURo3CcImAGCUrgGgM5Qpk85aBdqc/iGww==
-X-Received: by 2002:a5e:a70b:: with SMTP id b11mr1776499iod.63.1592432968850;
-        Wed, 17 Jun 2020 15:29:28 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id j80sm536647ili.65.2020.06.17.15.29.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 15:29:28 -0700 (PDT)
-Received: (nullmailer pid 2952205 invoked by uid 1000);
-        Wed, 17 Jun 2020 22:29:25 -0000
-Date:   Wed, 17 Jun 2020 16:29:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette =?iso-8859-1?Q?=A0?= 
-        <mturquette@baylibre.com>, David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: clock: Add YAML schemas for LPASS
- clocks on SC7180
-Message-ID: <20200617222925.GA2947130@bogus>
-References: <1591809487-5588-1-git-send-email-tdas@codeaurora.org>
- <1591809487-5588-3-git-send-email-tdas@codeaurora.org>
+        id S1726909AbgFQWc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 18:32:29 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57302 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726758AbgFQWcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 18:32:19 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id A0A028040A69;
+        Wed, 17 Jun 2020 22:32:09 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 1srfJNKUVNnX; Thu, 18 Jun 2020 01:32:07 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, James Hogan <jhogan@kernel.org>,
+        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH RESEND v4 0/6] mips: Add DT bindings for MIPS CDMM and MIPS GIC
+Date:   Thu, 18 Jun 2020 01:31:54 +0300
+Message-ID: <20200617223201.23259-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1591809487-5588-3-git-send-email-tdas@codeaurora.org>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 10, 2020 at 10:48:05PM +0530, Taniya Das wrote:
-> The LPASS(Low Power Audio Subsystem) clock provider have a bunch of generic
-> properties that are needed in a device tree. Also add clock ids for GCC
-> LPASS and LPASS Core clock IDs for LPASS client to request for the clocks.
-> 
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> ---
->  .../bindings/clock/qcom,sc7180-lpasscorecc.yaml    | 98 ++++++++++++++++++++++
->  include/dt-bindings/clock/qcom,gcc-sc7180.h        |  1 +
->  .../dt-bindings/clock/qcom,lpasscorecc-sc7180.h    | 29 +++++++
->  3 files changed, 128 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml
-> new file mode 100644
-> index 0000000..5af4048
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sc7180-lpasscorecc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm LPASS Core Clock Controller Binding for SC7180
-> +
-> +maintainers:
-> +  - Taniya Das <tdas@codeaurora.org>
-> +
-> +description: |
-> +  Qualcomm LPASS core clock control module which supports the clocks and
-> +  power domains on SC7180.
-> +
-> +  See also:
-> +  - dt-bindings/clock/qcom,lpasscorecc-sc7180.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc7180-lpasshm
-> +      - qcom,sc7180-lpasscorecc
-> +
-> +  clocks:
-> +    items:
-> +      - description: gcc_lpass_sway clock from GCC
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 2
+Daniel, Rafael, Thomas (Gleixner), could you specifically take a look at
+the last patch in this series? If you are ok with that, please explicitly
+ack. We need at least one of your blessing to merge the series in, since
+the code and DT-related patches here have been mostly reviewed. We've
+missed the last merge window. It would be pity to miss the next one...
 
-You need a 'minItems: 1' here instead.
+Regarding this patchset origin. Recently I've submitted a series of
+patchset's which provided multiple fixes for the MIPS arch subsystem and
+the MIPS GIC and DW APB Timer drivers, which were required for the
+Baikal-T1 SoC correctly working with those drivers. Mostly those patchsets
+have been already merged into the corresponding subsystems, but several
+patches have been left floating since noone really responded for review
+except Rob provided his approval regarding DT bindings. Thus in this
+patchset I've collected all the leftovers so not to loose them in a pale
+of the maintainers email logs.
 
-> +    items:
-> +      - description: lpass core cc register
-> +      - description: lpass audio cc register
-> +
-> +  reg-names:
-> +    items:
-> +      - const: lpass_core_cc
-> +      - const: lpass_audio_cc
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: qcom,sc7180-lpasshm
-> +then:
-> +  properties:
-> +    reg:
-> +      maxItems: 1
+The patchset includes the following updates: MIPS CPC and GIC DT bindings
+legacy text-based file are converted to the DT schema (Rob has already
+reviewed them), add MIPS CDMM DT node support to place the CDMM block at
+the platform-specific MMIO range, make sure MIPS CDMM is available for
+MIPS_R5 CPUs.
 
-And need an:
+Seeing the series concerns the MIPS-related drivers it's better to merge
+it in through the MIPS repository:
+https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/
 
-else:
-  properties:
-    reg:
-      minItems: 2
+This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+base-commit: 0e698dfa2822 ("Linux 5.7-rc4")
+tag: v5.7-rc4
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
-> +    #include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
-> +    clock-controller@63000000 {
-> +      compatible = "qcom,sc7180-lpasshm";
-> +        reg = <0 0x63000000 0 0x28>;
+Suggestion.
+Since Paul isn't looking after the MIPS arch code anymore, Ralf hasn't
+been seen maintaining MIPS for a long time, Thomas is only responsible
+for the next part of it:
+	F:      Documentation/devicetree/bindings/mips/
+	F:      Documentation/mips/
+	F:      arch/mips/
+	F:      drivers/platform/mips/
+the MIPS-specific drivers like:
+	F:	drivers/bus/mips_cdmm.c
+	F:	drivers/irqchip/irq-mips-cpu.c
+	F:	drivers/irqchip/irq-mips-gic.c
+	F:	drivers/clocksource/mips-gic-timer.c
+	F:	drivers/cpuidle/cpuidle-cps.c
+seem to be left for the subsystems maintainers to support. So if you don't
+mind or unless there is a better alternative, I can help with looking
+after them to ease the maintainers review burden and since I'll be working
+on our MIPS-based SoC drivers integrating into the mainline kernel repo
+anyway. Thomas agreed to join in maintaining that drivers.
 
-Default sizes are 1 cell.
+Previous patchsets:
+mips: Prepare MIPS-arch code for Baikal-T1 SoC support:
+Link: https://lore.kernel.org/linux-mips/20200306124807.3596F80307C2@mail.baikalelectronics.ru
+Link: https://lore.kernel.org/linux-mips/20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-mips/20200521140725.29571-1-Sergey.Semin@baikalelectronics.ru
 
-> +        clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>;
-> +        clock-names = "iface";
-> +        #clock-cells = <1>;
-> +        #power-domain-cells = <1>;
-> +    };
-> +
-> +  - |
-> +    clock-controller@62d00000 {
-> +        compatible = "qcom,sc7180-lpasscorecc";
-> +        reg = <0 0x62d00000 0 0x50000>,
-> +            <0 0x62780000 0 0x30000>;
-> +        reg-names = "lpass_core_cc", "lpass_audio_cc";
-> +        clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>;
-> +        clock-names = "iface";
-> +        power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
-> +        #clock-cells = <1>;
-> +        #power-domain-cells = <1>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,gcc-sc7180.h b/include/dt-bindings/clock/qcom,gcc-sc7180.h
-> index 992b67b..bdf43adc 100644
-> --- a/include/dt-bindings/clock/qcom,gcc-sc7180.h
-> +++ b/include/dt-bindings/clock/qcom,gcc-sc7180.h
-> @@ -138,6 +138,7 @@
->  #define GCC_MSS_Q6_MEMNOC_AXI_CLK				128
->  #define GCC_MSS_SNOC_AXI_CLK					129
->  #define GCC_SEC_CTRL_CLK_SRC					130
-> +#define GCC_LPASS_CFG_NOC_SWAY_CLK				131
->  
->  /* GCC resets */
->  #define GCC_QUSB2PHY_PRIM_BCR					0
-> diff --git a/include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h b/include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h
-> new file mode 100644
-> index 0000000..a55d01d
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_LPASS_CORE_CC_SC7180_H
-> +#define _DT_BINDINGS_CLK_QCOM_LPASS_CORE_CC_SC7180_H
-> +
-> +/* LPASS_CORE_CC clocks */
-> +#define LPASS_LPAAUDIO_DIG_PLL				0
-> +#define LPASS_LPAAUDIO_DIG_PLL_OUT_ODD			1
-> +#define CORE_CLK_SRC					2
-> +#define EXT_MCLK0_CLK_SRC				3
-> +#define LPAIF_PRI_CLK_SRC				4
-> +#define LPAIF_SEC_CLK_SRC				5
-> +#define LPASS_AUDIO_CORE_CORE_CLK			6
-> +#define LPASS_AUDIO_CORE_EXT_MCLK0_CLK			7
-> +#define LPASS_AUDIO_CORE_LPAIF_PRI_IBIT_CLK		8
-> +#define LPASS_AUDIO_CORE_LPAIF_SEC_IBIT_CLK		9
-> +#define LPASS_AUDIO_CORE_SYSNOC_MPORT_CORE_CLK		10
-> +
-> +/* LPASS Core power domains */
-> +#define LPASS_CORE_HM_GDSCR				0
-> +
-> +/* LPASS Audio power domains */
-> +#define LPASS_AUDIO_HM_GDSCR				0
-> +#define LPASS_PDC_HM_GDSCR				1
-> +
-> +#endif
-> -- 
-> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-> of the Code Aurora Forum, hosted by the  Linux Foundation.
-> 
+clocksource: Fix MIPS GIC and DW APB Timer for Baikal-T1 SoC support:
+Link: https://lore.kernel.org/linux-rtc/20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-rtc/20200506214107.25956-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-rtc/20200521005321.12129-1-Sergey.Semin@baikalelectronics.ru
+
+Changelog prev:
+- Add yaml-based bindings file for MIPS CDMM dt-node.
+- Convert mti,mips-cpc to DT schema.
+- Use a shorter summary describing the bindings modification patches.
+- Rearrange the SoBs with adding Alexey' co-development tag.
+- Lowercase the hex numbers in the dt-bindings.
+
+Changelog v2:
+- Resend.
+
+Link: https://lore.kernel.org/linux-mips/20200601122121.15809-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Keep F: MAINTAINERS section alphabetically ordered.
+- Add Thomas as the co-maintainer of the MIPS CPU and GIC IRQchip, MIPS
+  GIC timer and MIPS CPS CPUidle drivers.
+
+Link: https://lore.kernel.org/linux-mips/20200602100921.1155-1-Sergey.Semin@baikalelectronics.ru
+Changelog v4:
+- Resend.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Jason Cooper <jason@lakedaemon.net>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: James Hogan <jhogan@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (6):
+  dt-bindings: power: Convert mti,mips-cpc to DT schema
+  dt-bindings: interrupt-controller: Convert mti,gic to DT schema
+  dt-bindings: bus: Add MIPS CDMM controller
+  mips: cdmm: Add mti,mips-cdmm dtb node support
+  bus: cdmm: Add MIPS R5 arch support
+  MAINTAINERS: Add maintainers for MIPS core drivers
+
+ .../bindings/bus/mti,mips-cdmm.yaml           |  35 +++++
+ .../interrupt-controller/mips-gic.txt         |  67 --------
+ .../interrupt-controller/mti,gic.yaml         | 148 ++++++++++++++++++
+ .../bindings/power/mti,mips-cpc.txt           |   8 -
+ .../bindings/power/mti,mips-cpc.yaml          |  35 +++++
+ MAINTAINERS                                   |  11 ++
+ drivers/bus/Kconfig                           |   2 +-
+ drivers/bus/mips_cdmm.c                       |  15 ++
+ 8 files changed, 245 insertions(+), 76 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/mti,mips-cdmm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mips-gic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.txt
+ create mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.yaml
+
+-- 
+2.26.2
+
