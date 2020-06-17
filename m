@@ -2,99 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56F231FD334
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 19:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9913E1FD359
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 19:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726835AbgFQRMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 13:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
+        id S1726809AbgFQRXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 13:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726815AbgFQRMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 13:12:49 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986E6C06174E
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id i25so3730761iog.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
+        with ESMTP id S1726761AbgFQRXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 13:23:12 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D897BC06174E
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:23:11 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id l10so1834415vsr.10
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:23:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=VMtiRkfsSE6xR0L4nHaQ7MzNJCewEhNkgPo/jVhozms=;
-        b=n3aC7phMROcr66sPl/gyUMvXdGRaB4Hi6ZnvKHnU/W+x7RzdIHTvEZJQv1lJa2kjoY
-         pbxZrjOSqLBV6PT68lLF4bTH85BBSKp1e28yJmqh07ghxiEBTeQl94UBVlfa6eOI27cu
-         7hNzhS3W0o5DcfE2yzHalmDwQnorXVeGX2CueVLd9/WeBSUVjg3o9bfdKzMptPKeJ3Vj
-         75X04qkwEatTSrDsQczjF1kxTJHhf97QQktMyDqI5RRhCp6339ADQPiprCUovpGoVnTS
-         CUBZGAkYpaZpVED4P/hLzCx0//+wx7xhDvcXWm+WFcnVT4GN2VXchxuDeoDPQre+UvGP
-         Ig1w==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OnWnquHlT/ltYTFNOPUHSh/iGSUA1c4DqQQurVsebw8=;
+        b=Xh1zc5cvq0KeGeKe9/EMOtxNnm0G2z0Rf2LfQ7DfSbytlWYqX6TDlwuE81rzzG74qY
+         RbK/RQqrrCu8cQP/sDw3TD37jNJpQRTkRMSPvp7VMoEAnyyE/AQQx7GqQmatJJn3bPup
+         Es06CH2SxxxZMpdKRMBPxDYp7T/H/08kX2iMU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=VMtiRkfsSE6xR0L4nHaQ7MzNJCewEhNkgPo/jVhozms=;
-        b=sGOxV0fCBSRzJLYNX7qMJN2t+RQSOoYtzcHobDIJbsfBqPkhs4kSTComvlWgtt0qFH
-         QjUaXe///pbTk7kVge+CAPpjXfER4TEVrIV5pBzA8y+7QsdYPT/FaQEGC4zWYrjUOFLM
-         qIJLFZ7FOz1dJcxIRNAbfQOpP5qz6QT0rAG3ZOqmTp2WnOVm3qcfKSSjqMF40IfBE5H9
-         kheKd33ShlBwU3ElGvZ/thfbfFqiFuuDwrKOfyCnNgLM3QgsxLfYISWGZxf1dkat8D8I
-         8jx7AWODmtIwc55rr4d6ys5bkqmaaE2ZqZfkTHj/+eK/E3XBZd35w4mc8tWffIxvomSx
-         gJxQ==
-X-Gm-Message-State: AOAM532lRX87kikXfuGATTGxbW9aMGDpIAOq7eklV4oUTJqGVKwCmv3r
-        JNYCxiWpvsuN7h6b39s3WE22ox0oF06UQTPHkQ==
-X-Google-Smtp-Source: ABdhPJy0mMkAkVUaA/KK1urZ5gxoWuMdDysfRCRndplU05F9rnFwknvURYumITXDjALIkRelnze2AIbAfmC3AxyTCZw=
-X-Received: by 2002:a6b:4413:: with SMTP id r19mr411937ioa.162.1592413968039;
- Wed, 17 Jun 2020 10:12:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OnWnquHlT/ltYTFNOPUHSh/iGSUA1c4DqQQurVsebw8=;
+        b=NdlEOM+3b5I6D5kmsLICksW7aARp0rR2IAvt4pyYsKr5rM+7gW8sQYXAiuKN+Z1CSI
+         zIk5Y6x0WPtg5cTU1Z5KAqfNboiXizklfiL4dgLUlLazFvdWWkh3lQ1h1PpsxKMNrj0i
+         AVekFeqkpKXtx6fstozCSDW4rb9oxKV81bvIMzhkcpQtGXtTsR9BQuPg/acXLb4Z/vbl
+         2yQGF1dgey9d/y49v54KXDmvqUCWQdIau/ODOZiohziT8XGgs4Sp+oblZzYbunkMtvQ7
+         lmmzp+dCRXl16uJy+Z2DQVLPg9YZ/e4evOSBUOYPB3JHMyyGAR0YqJJnz2L7W0M29XB+
+         GJsg==
+X-Gm-Message-State: AOAM531Dnrc75Z7PN1Yo9B3ldmM59J/+Ht8sk41pmXEmhPCQX+EIMMw4
+        y9iOFpzzSOnp//ntsyJhc4FtR53mK3M=
+X-Google-Smtp-Source: ABdhPJxIN/M+ohGKcPg3E7MZF/lRnl25gUEonUNj9N37raFyC9x5iiN1kkJv/O17GYuZgR75/GDiJA==
+X-Received: by 2002:a67:2605:: with SMTP id m5mr175011vsm.69.1592414590669;
+        Wed, 17 Jun 2020 10:23:10 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id i2sm38222vkp.22.2020.06.17.10.23.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jun 2020 10:23:09 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id 190so1840617vsr.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 10:23:09 -0700 (PDT)
+X-Received: by 2002:a05:6102:20c8:: with SMTP id i8mr205487vsr.106.1592414588681;
+ Wed, 17 Jun 2020 10:23:08 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a92:5e12:0:0:0:0:0 with HTTP; Wed, 17 Jun 2020 10:12:47
- -0700 (PDT)
-Reply-To: rev.derrickbowl57@aol.com
-From:   "Rev. Derrick Bowl" <ala439553@gmail.com>
-Date:   Wed, 17 Jun 2020 17:12:47 +0000
-Message-ID: <CA+qUn-VCw5mZedmyQHCcxhbGpW-ARkJMP3v6o=49sP7+J8B1TA@mail.gmail.com>
-Subject: Dear Beloved,
-To:     undisclosed-recipients:;
+References: <20200617145116.247432-1-dianders@chromium.org>
+ <20200617074930.v3.2.I3b5c3bfaf5fb2d28d63f1b5ee92980900e3f8251@changeid> <254998b9-c45e-bd6b-bc9a-b5934c0fea8e@linaro.org>
+In-Reply-To: <254998b9-c45e-bd6b-bc9a-b5934c0fea8e@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 17 Jun 2020 10:22:57 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vec5FVrDVkmUQTfa6bP+1d3yOtj_FsgVAFdHLLbZ8VDA@mail.gmail.com>
+Message-ID: <CAD=FV=Vec5FVrDVkmUQTfa6bP+1d3yOtj_FsgVAFdHLLbZ8VDA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: nvmem: Add properties needed for
+ blowing fuses
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, dhavalp@codeaurora.org,
+        mturney@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Ravi Kumar Bokka <rbokka@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        sparate@codeaurora.org, mkurumel@codeaurora.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Beloved,
+Hi,
 
-I'm Reverend Derrick Bowl, I was born in USA, 1945, I was ordained
-into the Catholic Priesthood.
+On Wed, Jun 17, 2020 at 8:19 AM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
+>
+>
+>
+> On 17/06/2020 15:51, Douglas Anderson wrote:
+> > From: Ravi Kumar Bokka <rbokka@codeaurora.org>
+> >
+> > On some systems it's possible to actually blow the fuses in the qfprom
+> > from the kernel.  Add properties to support that.
+> >
+> > NOTE: Whether this is possible depends on the BIOS settings and
+> > whether the kernel has permissions here, so not all boards will be
+> > able to blow fuses in the kernel.
+> >
+> > Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> > Changes in v3:
+> > - Add an extra reg range (at 0x6000 offset for SoCs checked)
+> > - Define two options for reg: 1 item or 4 items.
+> > - No reg-names.
+> > - Add "clocks" and "clock-names" to list of properties.
+> > - Clock is now "sec", not "secclk".
+> > - Add "vcc-supply" to list of properties.
+> > - Fixed up example.
+> >
+> >   .../bindings/nvmem/qcom,qfprom.yaml           | 45 ++++++++++++++++++-
+> >   1 file changed, 43 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> > index 5efa5e7c4d81..b195212c6193 100644
+> > --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> > +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> > @@ -17,8 +17,27 @@ properties:
+> >       const: qcom,qfprom
+> >
+> >     reg:
+> > -    items:
+> > -      - description: The corrected region.
+> > +    # If the QFPROM is read-only OS image then only the corrected region
+> > +    # needs to be provided.  If the QFPROM is writable then all 4 regions
+> > +    # must be provided.
+> > +    oneOf:
+> > +      - items:
+> > +          - description: The corrected region.
+> > +      - items:
+> > +          - description: The corrected region.
+> > +          - description: The raw region.
+> > +          - description: The config region.
+> > +          - description: The security control region.
+> > +
+> > +  # Clock must be provided if QFPROM is writable from the OS image.
+> > +  clocks:
+> > +    maxItems: 1
+>
+>
+> > +  clock-names:
+> > +    const: sec
+>
+> Do we need clock-names for just one clock here?
 
-Please take your time to read this message, although we have never met
-before, this is no spam, It's a real message sent to you. I know also
-that you will be amazed at the level of trust that I am willing to
-bestow on a person that I have never seen nor spoken with. If I can
-receive favor from someone I barely know, its not bad entrusting this
-project to unknown person as long as my spirit directed me to you.
+I think technically you can get by without, but convention is that
+clock-names are always provided for clocks.  It's talked about in the
+same link I sent that talked about reg-names:
 
-I have been a catholic priest for over 22 years. I spent about 10
-years serving at Africa, Burkina Faso to be precise, I spend most time
-in Ouagadougou Cathedral. Presently, I had a heart surgery on the
-23-11-2018 and the Doctors have informed me that I cannot live longer;
-I had a serious bleeding after the operation. Before I left
-Ouagadougou to my country for the surgery, a priest friend of mine
-visited me from Netherlands with three companion, when they went back,
-one among his companion Transferred 11M$ in my personal account with
-Bank of Africa and advised that I use the money to help the poor,
-handicaps and less privileges because he saw the level hardship then.
+https://lore.kernel.org/r/CAL_Jsq+MMunmVWqeW9v2RyzsMKP+=kMzeTHNMG4JDHM7Fy0HBg@mail.gmail.com/
 
-Because of my present health condition, I cannot live to proceed with
-the projects, therefore, I have decided to appoint you to reclaim the
-money which total sum of $11,970,000.00 (Eleven million Nine Hundred
-and seventy Thousand US DOLLARS).
+Specifically, Rob said:
 
-I want you to use this sum to make the world a better place for the
-poor and less privileged, help the needy and also help your family
-members.
+> That probably is because the clock binding has had clock-names from
+> the start (it may have been the first one). That was probably partly
+> due to the clock API also was mainly by name already if we want to
+> admit Linux influence on bindings
 
-I took this decision because I was raised in an Orphanage so I don't
-have relatives and presently, I'm still in the hospital, where I am
-undergoing treatment. That's why I have decided to contact you so that
-you can contact my account manager in Bank of Africa, reclaim the
-money and make good use of it. You have to contact me through my
-private e-mail at {rev.derrickbowl57@aol.com}
+Basically the standard way for getting clocks in Linux is
+clk_get(name).  With just one clock you can call clk_get(NULL) and I
+believe that works, but when you add the 2nd clock then you have to
+switch APIs to one of the less-commonly-used variants.
 
-Regards,
-Reverend Derrick Bowl
+-Doug
