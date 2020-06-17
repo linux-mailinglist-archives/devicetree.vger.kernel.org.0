@@ -2,88 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 812701FC2B4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 02:32:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B98681FC2E7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 02:37:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726628AbgFQAcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jun 2020 20:32:19 -0400
-Received: from vps.xff.cz ([195.181.215.36]:44290 "EHLO vps.xff.cz"
+        id S1726491AbgFQAhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jun 2020 20:37:39 -0400
+Received: from mga01.intel.com ([192.55.52.88]:35560 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726603AbgFQAcS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jun 2020 20:32:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1592353935; bh=b1/7qbKU/Xjmfy3lRGyd7/FtHpXUhaxNH3hyWhF4w/I=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=fzUsKIKzoQ+1OaWhcz+hZ7MIjha/GYJ3SwW1xSWguquo+3lqSLOaIfzBYY7ta0io8
-         rL8DemDnSAwGa1BBkB0+DuxTcVg51GGq/DYZa1aStAcUu9yBwIafghQ+VTlwXqqR0h
-         3THfBi7Z/3isAxxKn49vLTr+lDXdBWz0mMWLDxk4=
-From:   Ondrej Jirman <megous@megous.com>
-To:     linux-sunxi@googlegroups.com,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Icenowy Zheng <icenowy@aosc.io>
-Cc:     Ondrej Jirman <megous@megous.com>, dri-devel@lists.freedesktop.org,
+        id S1725894AbgFQAhi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jun 2020 20:37:38 -0400
+IronPort-SDR: 6btyEopYtcWhQIIfwVIMkuBwT0xT1Xt3erNtWipWo7a+2XBgHYk4xefjBwHFOLrP0gUmqkU/54
+ 5g0L3LU3TqSQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2020 17:37:37 -0700
+IronPort-SDR: lODsoQHi8rVMcS8JBOZM22ZQFpr+o4U38aSiRKsTumXaHJosXss88z+9i8pLOq+lgsd28ULTQN
+ e1b3CvWqFPDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; 
+   d="scan'208";a="351914039"
+Received: from mjlewis-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.33.151])
+  by orsmga001.jf.intel.com with ESMTP; 16 Jun 2020 17:37:27 -0700
+Date:   Wed, 17 Jun 2020 03:37:26 +0300
+From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+To:     amirmizi6@gmail.com
+Cc:     Eyal.Cohen@nuvoton.com, oshrialkoby85@gmail.com,
+        alexander.steffen@infineon.com, robh+dt@kernel.org,
+        peterhuewe@gmx.de, christophe-h.richard@st.com, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>,
-        Martijn Braam <martijn@brixit.nl>, Luca Weiss <luca@z3ntu.xyz>,
-        Bhushan Shah <bshah@kde.org>
-Subject: [PATCH v4 5/5] arm64: dts: sun50i-a64-pinephone: Add touchscreen support
-Date:   Wed, 17 Jun 2020 02:32:09 +0200
-Message-Id: <20200617003209.670819-6-megous@megous.com>
-In-Reply-To: <20200617003209.670819-1-megous@megous.com>
-References: <20200617003209.670819-1-megous@megous.com>
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Subject: Re: [PATCH v10 1/8] tpm: Make read{16, 32}() and write32() in
+ tpm_tis_phy_ops optional
+Message-ID: <20200617003726.GA3646@linux.intel.com>
+References: <20200604134713.157951-1-amirmizi6@gmail.com>
+ <20200604134713.157951-2-amirmizi6@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200604134713.157951-2-amirmizi6@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pinephone has a Goodix GT917S capacitive touchscreen controller on
-I2C0 bus. Add support for it.
+On Thu, Jun 04, 2020 at 04:47:06PM +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+> 
+> Only tpm_tis can use memory-mapped I/O, which is truly mapped into
+> the kernel's memory space. Therefore, using ioread16/ioread32/iowrite32
+> turns into a straightforward pointer dereference.
+> Every other driver requires more complicated operations to read more than
+> one byte at a time and will just fall back to read_bytes/write_bytes.
+> Therefore, move this common code out of tpm_tis_spi and into tpm_tis_core
+> so that it is used automatically when low-level drivers do not implement
+> the specialized methods.
+> 
+> Co-developed-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- .../dts/allwinner/sun50i-a64-pinephone.dtsi   | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Reviewed-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+Tested-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index e60b57f8ac14..6b2ff431cddb 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -123,6 +123,25 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	status = "okay";
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt917s", "goodix,gt911";
-+		reg = <0x5d>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 4 IRQ_TYPE_LEVEL_HIGH>; /* PH4 */
-+		irq-gpios = <&pio 7 4 GPIO_ACTIVE_HIGH>; /* PH4 */
-+		reset-gpios = <&pio 7 11 GPIO_ACTIVE_HIGH>; /* PH11 */
-+		AVDD28-supply = <&reg_ldo_io0>;
-+		VDDIO-supply = <&reg_ldo_io0>;
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1440>;
-+	};
-+};
-+
- &i2c1 {
- 	status = "okay";
- 
--- 
-2.27.0
+I tested this with my T480 ThinkPad, which has Infineon SLB 9670 TPM
+chip according to TPM_PT_VENDOR_STRING_* [*]
 
+[*] tpm2_getcap properties-fixed from tpm2-tools package to fetch this
+    information.
+
+/Jarkko
