@@ -2,95 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A831FD73D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 23:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210B01FD755
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 23:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbgFQV3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 17:29:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbgFQV3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 17:29:21 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA1DC06174E;
-        Wed, 17 Jun 2020 14:29:21 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id b16so1744611pfi.13;
-        Wed, 17 Jun 2020 14:29:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=zv1INp4X/nxFJAvPT53tnYt0FwQawRZpMAzUGoSP1NI=;
-        b=BMDCgbzQYArV+44ej/j29mTlKDViF0acMLXp4NcBjjN7T7whOMUpk3Q8OTMPKvlO87
-         qfqnGIydMsBHtnsznOqjXk28Y010G9ZzC0w6yUfXAUyb38bySvpUzPmSDfE12HBo4QgB
-         2NhqCguOyCxLT5mCcZktAqSlnej6TPpZleRX5WvbyKkZSed/GI/zXyrjkhEQr84CcsG3
-         vDd8Vbo4/KvMRzI7oKY8cT+ewqfkBVUrH0kskbDEZ4qtl849JKzLyy/q6roCNkmMmo0d
-         lEysXeDvxkDXswcE3ajOLx1zOich96vPU3igibDmf+dEVwrM6iIxxFVcjRluA/oNO0BF
-         ym6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zv1INp4X/nxFJAvPT53tnYt0FwQawRZpMAzUGoSP1NI=;
-        b=gx7rWRrWtDSBhjKwG3OmTCUtfc4p1bg0ucGQDyV59+WetfwrpvCsQjVjQmzl/A0ZTy
-         uOMuWKAwChHqrh2phL5kzbzCBGE2qyOlBra91iAPMDR1XchftVHuOfpwCb5YiUSEnbgL
-         goc8e8CCH+mlWuSYMossugHiKV9kbKeEcXG0OAlKjWjreq6a0hgqhpR1lPdURi0i2ZWX
-         ZW1syBUrypDE0m8Ij0kYmJLINlpDTacFBUtfjCScc/pNmiryk/6GGFA7hrEIvUkQXG8i
-         llJkCyhrIS8gO9bG8lEXQdO7G6YxyE/yR63kh7wnoYZccw06BUzuCFH+Rx/Fej21nAz+
-         tTfA==
-X-Gm-Message-State: AOAM5336LtwYDegCoi+CDMUZWNQrgjq3ZVEnjBuQkBwTj6oAUVyj5X5M
-        gA2JgccUx12zuoixfjjrgzE=
-X-Google-Smtp-Source: ABdhPJywKZd86vCKkZ9ihsL3xoKPhBz8XZ3r87sZB8iFEQjuRVnd1JSIUSMgFVRP+At+cRlQhqxuMg==
-X-Received: by 2002:a63:f711:: with SMTP id x17mr675727pgh.79.1592429360392;
-        Wed, 17 Jun 2020 14:29:20 -0700 (PDT)
-Received: from [10.230.188.43] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id e143sm741832pfh.42.2020.06.17.14.29.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2020 14:29:19 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add bcm63xx-usbh bindings
-To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        simon@fire.lp0.eu, jonas.gorski@gmail.com, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
-        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20200616184542.3504965-1-noltari@gmail.com>
- <20200616184542.3504965-2-noltari@gmail.com>
- <7b82a18b-2939-9516-d68d-ddac41014da1@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <e37785fc-8d3e-bc7f-bd03-bb6ec0a6843f@gmail.com>
-Date:   Wed, 17 Jun 2020 14:29:18 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Firefox/68.0 Thunderbird/68.9.0
+        id S1727000AbgFQVdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 17:33:39 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:48422 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726991AbgFQVdj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 17:33:39 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.sntech)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1jlfgW-00063V-J4; Wed, 17 Jun 2020 23:33:28 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, heiko@sntech.de,
+        christoph.muellner@theobroma-systems.com
+Subject: [PATCH v4 0/3] add clkout support to mscc phys
+Date:   Wed, 17 Jun 2020 23:33:23 +0200
+Message-Id: <20200617213326.1532365-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <7b82a18b-2939-9516-d68d-ddac41014da1@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The main part of this series is adding handling of the clkout
+controls some of the mscc phys have and while at it Andrew
+asked for some of the duplicated probe functionality to be
+factored out into a common function.
+
+changes in v4:
+- fix missing variable initialization in one probe function
+changes in v3:
+- adapt to 5.8 merge-window results
+- introduce a more generic enet-phy-property instead of
+  using a vsc8531,* one - suggested by Andrew
+changes in v2:
+- new probe factoring patch as suggested by Andrew
 
 
-On 6/17/2020 2:20 PM, Florian Fainelli wrote:
-> 
-> 
-> On 6/16/2020 11:45 AM, Álvaro Fernández Rojas wrote:
->> Document BCM63xx USBH PHY bindings.
->>
->> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> 
-> 
-> 
-> Since the USB PHY supports both roles (host and device) on a large
-> number of SoCs, I would just remove "H" from the subject/binding/name
-> accordingly. With that:
+Heiko Stuebner (3):
+  net: phy: mscc: move shared probe code into a helper
+  dt-bindings: net: ethernet-phy: add enet-phy-clock-out-frequency
+  net: phy: mscc: handle the clkout control on some phy variants
 
-Well, the register is indeed named USBH, so the name can stay as-is,
-this is fine, thanks!
+ .../devicetree/bindings/net/ethernet-phy.yaml |   5 +
+ drivers/net/phy/mscc/mscc.h                   |   9 +
+ drivers/net/phy/mscc/mscc_main.c              | 211 ++++++++++++------
+ 3 files changed, 155 insertions(+), 70 deletions(-)
+
 -- 
-Florian
+2.26.2
+
