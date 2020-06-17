@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED651FCDCB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 14:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576B11FCE23
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 15:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726211AbgFQMx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 08:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbgFQMxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 08:53:55 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A21C06174E
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 05:53:55 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id r7so2245135wro.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 05:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OUb64193SWqYIql7DIKLMy9V1uabiBdxixXk3fqRnNs=;
-        b=2DziLIZzTZeDGGUTlRaBxWRYbxmn6E+JLiHPzp1Mk53M3nNvoyxiNjIU+bIQV7aFI1
-         rZzChTIg3GCeTEAockNd7uXAD8MYY45FStielAJqB8cueELLXv/Do3yJV6c6YH7/zCbs
-         WPECD0nmen+IaZSwSZshVGFFTpN8AN677eCBYyZ9gZl/VVbsJUJjPbgbVh3K8AobF2Up
-         Lsyj5SefZrKalz21AG0xcpF7mYIwUCXoN/0UJOfBXYdkb/aUoKmKSXIbEoMcHVYVKCr5
-         F4BnAaM6p3OcGPizYpa1CfisBWhwy+3UZShh0O/n/bwEQ0EPAccE9+ZEk2C96/TwLKEc
-         misg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OUb64193SWqYIql7DIKLMy9V1uabiBdxixXk3fqRnNs=;
-        b=R34PuQAUaHRoPZxH0iDGH8QDqq73l+jgEEqXg/PkMm0HShOEPXCv0EMnJkgHnMzqm8
-         tiItHALznn77J3u0M3o/3NH8CnQdzsOsoG4ZuyBvuUtH5KH6DYaBGZlHbeZbBKD1fXC0
-         7DmcL8RML7R9epYq5Eg8gu0jXto8Hq5hbu+aEyPexGtw0TLFv7ITIsWyAkQsIushgBWX
-         hqnMsU1fgwWrXk3jZQRQ+Lfy9sNyMDpqfbdi2Bs2+czRB7b8CpeofYEWcWFYwVZRA2Hw
-         WQxuPfTRZh6WRa28qhveA+0ULT3PAifmTFc6Km/jVT+qHkkJIgAKO17gM06YfhP5nobB
-         hgfA==
-X-Gm-Message-State: AOAM5337zywzetSPTTpFEAwxVOuUWda5agoFzEL81Oj4FXx8eAUaBNRk
-        d/3tOv5RjbsFVPtANkjORq0wKb+i13w=
-X-Google-Smtp-Source: ABdhPJw8wkqbz32oAgpEFT7agRATCW2IXTTcvN5ZJw5GOdwURx9gtNd8s4EpB21kZp+UwN5ZuB65FQ==
-X-Received: by 2002:a5d:6751:: with SMTP id l17mr9020528wrw.179.1592398433677;
-        Wed, 17 Jun 2020 05:53:53 -0700 (PDT)
-Received: from localhost.localdomain (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.googlemail.com with ESMTPSA id h29sm36233697wrc.78.2020.06.17.05.53.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 05:53:52 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: add missing gxl rng clock
-Date:   Wed, 17 Jun 2020 14:53:46 +0200
-Message-Id: <20200617125346.1163527-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
+        id S1726454AbgFQNL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 09:11:58 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:33230 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726044AbgFQNL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 09:11:58 -0400
+Received: from [5.157.120.79] (port=34860 helo=melee.fritz.box)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1jlXr9-000Frj-4Y; Wed, 17 Jun 2020 15:11:55 +0200
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        Axel Lin <axel.lin@ingics.com>
+Subject: [PATCH v2 0/4] mfd: lp87565: convert DT to yaml, ignore ENx pins and add LP87524-Q1
+Date:   Wed, 17 Jun 2020 15:11:41 +0200
+Message-Id: <20200617131145.15696-1-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The peripheral clock of the RNG is missing for gxl while it is present
-for gxbb.
+Hi,
 
-Fixes: 1b3f6d148692 ("ARM64: dts: meson-gx: add clock CLKID_RNG0 to hwrng node")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+the first patch in this series is a small but significant variation in how
+the lp87565 driver enables the output rails, to allow the kernel to always
+know when it is enabling an output. However it can change existing
+behaviour (depending on the hardware setup) and thus it should be carefully
+evaluated.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index fc59c8534c0f..6c8b189884ca 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -337,6 +337,11 @@ clkc: clock-controller {
- 	};
- };
- 
-+&hwrng {
-+	clocks = <&clkc CLKID_RNG0>;
-+	clock-names = "core";
-+};
-+
- &i2c_A {
- 	clocks = <&clkc CLKID_I2C>;
- };
+The following patches are a fairly straightforward addition of a new chip
+variant along DT bindings conversion to yaml.
+
+RFC,v1: https://lkml.org/lkml/2020/6/3/908
+
+Luca
+
+Luca Ceresoli (4):
+  regulator: lp87565: enable voltage regardless of ENx pin
+  dt-bindings: mfd: lp87565: convert to yaml
+  dt-bindings: mfd: lp87565: add LP87524-Q1 variant
+  mfd: lp87565: add LP87524-Q1 variant
+
+ .../devicetree/bindings/mfd/lp87565.txt       |  79 -------
+ .../devicetree/bindings/mfd/ti,lp875xx.yaml   | 213 ++++++++++++++++++
+ drivers/mfd/lp87565.c                         |   4 +
+ drivers/regulator/lp87565-regulator.c         |  21 +-
+ include/linux/mfd/lp87565.h                   |   1 +
+ 5 files changed, 237 insertions(+), 81 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/lp87565.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,lp875xx.yaml
+
 -- 
-2.25.4
+2.27.0
 
