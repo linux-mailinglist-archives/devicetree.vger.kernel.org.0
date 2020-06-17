@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CF931FD6D1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 23:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E8B1FD6DE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 23:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726763AbgFQVOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 17:14:54 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33172 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726758AbgFQVOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 17:14:53 -0400
-Received: by mail-io1-f66.google.com with SMTP id i25so4701932iog.0;
-        Wed, 17 Jun 2020 14:14:52 -0700 (PDT)
+        id S1726987AbgFQVPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 17:15:43 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:45541 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726955AbgFQVPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 17:15:43 -0400
+Received: by mail-io1-f68.google.com with SMTP id y5so4577386iob.12;
+        Wed, 17 Jun 2020 14:15:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VWO5LGmEg8Ig2cq5eIpV/Gm4FJwOWAH3M+GOgTvadrI=;
-        b=gIvt3qwn7jOJ0kjjVOQFPUxPwME1hr18i1gRwCjeFEjOKAFVWc0RIyo/euoQYFkpsA
-         ECFc9ERazE2vsYdEtMe/VTHGAP5ueqSIn+Abpit6f0iFoW1cimcUw3dvyTvtgpQWjkgs
-         bEdGDx3zsbT5CWzXlxMH+xUKC5EwB1MA/O4xTLzubG0fBYlh7W+JYxpbPtLHEUCg3eMM
-         YZhjs+QXSsQKlxAZ/v9L3UBF3ak7rHxGaGyur7m0jtwcbhF1QXPLteK/gKY9vtNSQ/gk
-         M8zsRfYsjQ5nR7sWGGuyOpnYqpIGeoMBRZ+octLM3PUVQ7nGiJth6VKBl1Dhjppv6CKY
-         08rw==
-X-Gm-Message-State: AOAM530Cord29/cSNX3XfNFSqxJ/gjk0BjMj6h6zV9YkPnq8XuxDxD/p
-        I58E4bD9xhOh+7/Z+Ug32hhETC8hXw==
-X-Google-Smtp-Source: ABdhPJy7XP0pSsuCKM5EibaN3mFwRa16qdK+sQARWZ0lMWqklFY1HprY+VlevFhTg9YxT29C3724dQ==
-X-Received: by 2002:a05:6602:809:: with SMTP id z9mr1454740iow.79.1592428491937;
-        Wed, 17 Jun 2020 14:14:51 -0700 (PDT)
+        bh=xI0mlKe2wRYjHDHCCF+79f1gMeJVs47ukTuRHuYoNXw=;
+        b=eo9VmYwsuC/jJIbUh3/iypCmjz09CdD/TssIKYreJkXx3FFH2JN8qgAxkNyL2SW9/c
+         64I7j6xLyiIrmrCB6y65OyIJ/wlW2KgOaXQ2K+simOndCkm4BTUGomG3Goy7iInROW+d
+         MYCv6fmT4zO65i6ru7kHUna1DQAG2ikB3MQ/zDyxCF6/Dkn6zhdqQwz1w+p9UDVVbzzZ
+         Rb9V9T81sNHBBUaULISQCZ437YbYx9Bh3Ib/vNrUcUxGZT2TtO46hwXSGCxHciBAfDLz
+         TjZvnS3sA5SCbJogmGib/KAEzagvk4BeRpljzRoWhhFZEZrp7wQHiiO91Yzea2JpOKYG
+         bn3w==
+X-Gm-Message-State: AOAM5315/9WkYjx5SdlIlIE1+8Yx/JO5Vl/2SNQnY1u6MRkaeD0FFXpj
+        5eO5Fu0ES2cGUpBYMhFFkg==
+X-Google-Smtp-Source: ABdhPJy9jNQ2ywvtsoluzmREgiIioIKxsPjeXA+erf0DpK8C5v435zxINloN/zcGsS3rvsY1j6EOLA==
+X-Received: by 2002:a05:6602:1204:: with SMTP id y4mr1523265iot.44.1592428542398;
+        Wed, 17 Jun 2020 14:15:42 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id w15sm430303ilj.21.2020.06.17.14.14.50
+        by smtp.gmail.com with ESMTPSA id l16sm398139ilm.58.2020.06.17.14.15.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 14:14:51 -0700 (PDT)
-Received: (nullmailer pid 2834025 invoked by uid 1000);
-        Wed, 17 Jun 2020 21:14:50 -0000
-Date:   Wed, 17 Jun 2020 15:14:50 -0600
+        Wed, 17 Jun 2020 14:15:42 -0700 (PDT)
+Received: (nullmailer pid 2835354 invoked by uid 1000);
+        Wed, 17 Jun 2020 21:15:41 -0000
+Date:   Wed, 17 Jun 2020 15:15:41 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
 Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
@@ -44,7 +44,7 @@ Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v6 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND
  flash controller
-Message-ID: <20200617211450.GA2811091@bogus>
+Message-ID: <20200617211541.GB2811091@bogus>
 References: <20200609074020.23860-1-yifeng.zhao@rock-chips.com>
  <20200609074020.23860-2-yifeng.zhao@rock-chips.com>
 MIME-Version: 1.0
@@ -150,22 +150,12 @@ On Tue, Jun 09, 2020 at 03:40:18PM +0800, Yifeng Zhao wrote:
 > +
 > +  pinctrl-names:
 > +    const: default
-
-You can drop pinctrl-*. They are automatically supported.
-
 > +
 > +  power-domains:
 > +     maxItems: 1
 > +
 > +patternProperties:
 > +  "^nand@[a-f0-9]$":
-
-'[0-7]' is correct here.
-
-Out of bounds nodes and other unknown properties should be prevented 
-with 'unevaluatedProperties: false' (though not yet until the tooling 
-supports it).
-
 > +    type: object
 > +    properties:
 > +      reg:
@@ -181,6 +171,9 @@ supports it).
 > +      nand-ecc-strength:
 > +        enum: [16, 24, 40, 60, 70]
 > +        description:
+
+This needs a '|' at the end if you want the below line breaks preserved.
+
 > +          The ECC configurations that can be supported are as follows.
 > +          - NFCv900(PX30 and RK3326) support ecc strength 16, 40, 60 and 70.
 > +          - NFCv600(RK3066 and RK2928) support ecc strength 16, 24, 40 and 60.
@@ -195,9 +188,6 @@ supports it).
 > +        default: 16
 > +        allOf:
 > +        - $ref: /schemas/types.yaml#/definitions/uint32
-
-You can drop 'allOf' now.
-
 > +        description:
 > +          The NFC driver need this information to select ECC
 > +          algorithms supported by the BOOTROM.
