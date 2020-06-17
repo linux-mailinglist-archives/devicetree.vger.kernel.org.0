@@ -2,163 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C3C1FCC06
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 13:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D6E1FCCAE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2020 13:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725554AbgFQLQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 07:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57324 "EHLO
+        id S1726211AbgFQLms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 07:42:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725536AbgFQLQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 07:16:38 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EE2C061573;
-        Wed, 17 Jun 2020 04:16:37 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id r7so1928379wro.1;
-        Wed, 17 Jun 2020 04:16:37 -0700 (PDT)
+        with ESMTP id S1725901AbgFQLms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 07:42:48 -0400
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C080C061755
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 04:42:47 -0700 (PDT)
+Received: by mail-ot1-x341.google.com with SMTP id e5so1327835ote.11
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2020 04:42:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=NwwANDgxX4dH8O6rPRqOhoTERCt3DfmFlNR5UMYf758=;
-        b=BL1hO3Op+QBp8lH71zepc4iX03Z4R7n2mMn8zb5G7QIhV26mJblM+IUm67N01CqEmP
-         CvejAxdKOh3qk6kWgZERySMMqPk0njDkzwa1RRW8ReS39a6tFlYUAfcebKjGBvMkxkWF
-         5GyqEAKxV0UAahM8Fnfpu6mg8hn5yseiH0i1+v1+A1ca7R1UcbWlsqF59bnqnCl49PmV
-         fTr/WPn7Dbf/od2RgCEjFcYQpqLHq1YXKR6IhcSJ+A7PFvR/tDUyt2r69AlqVb19hIfl
-         bOqsrAAJ2FRKeorjbqy5nYsxHC4meOj1/9b5TPL6YJBRi9pYM1tOAqfAWgcTaWeiL/dA
-         VaIg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sKWtFIYfKFOwpbzZCQAzRyePUOEgW5s9rDZzhxjhDfs=;
+        b=HRikB7fKxjKifECDakHvZhGhna07GnY3Vo+B+n4UD42jyVrmgGAEnpY33CQV88Z62X
+         0udVcVTTcJXD3fta2FIoFmWcBlryJUq8A18kNMdYsAS3qdCPCVuXQO1FbijWHQJik08d
+         24RVBLLRVqJb+fwxyGxVmgQ5LRItdP4RDe5Qm0dW/6slkJAONs7YsU9wt5By3TyykOCW
+         jEw5GpBE73V4yFwVtHYdQiZLl39g4lYRBcNYc9p6qovoZe4KINyHYBMt1UwESvsCNtKL
+         +H7LYzsmp7NiURlkLx8i59a/vNsC2shRxVOCuoNlRhKHPzoYaMld8PK+FiIwYvqyGUF7
+         NM5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=NwwANDgxX4dH8O6rPRqOhoTERCt3DfmFlNR5UMYf758=;
-        b=k2elOc85ftJYGSkkGwGdKMG53xILLT4qtOiLcM2DfKEb24BAXBVrdN76qgnPTtAOFM
-         45g/OuO/JzlQQZoZeS1zapBWDnpLLKINqV2Lt1uum3aUURQeURO2p9V5e1/ldn7ilsGL
-         NczaHLG5WY8GP0/x5Aa3uLXBY5Vy5O/aUgvQf43/1Bku2Cjyrrhjdx62PgikvBl6NoqT
-         xn8hmAoUIGICeyVKUu81B35hEVZzJFvS6h810n0hkFh6OBvHt/Y4Zus7a5plo1tmYGnM
-         N3qiRClHuBKeHI3J8y7Azm1Kh9hDf55bZaB4aT3VogBiedvegaQ+P/oNY3AzEAYFu3ko
-         t3ow==
-X-Gm-Message-State: AOAM533msg4uA3tOzQF5HZOBy58AjnsenXm3aIZTGc2HiuvGUJ0SqOBi
-        UUELXrFuvYGI3NDREQpLMDk=
-X-Google-Smtp-Source: ABdhPJwqUA3U4GFIJDkU3eE+1XiMKRoFQ26XkN59MR/FARFOznjy9KoXpCB75Rh2GfTcaObpKKD39Q==
-X-Received: by 2002:adf:aa94:: with SMTP id h20mr7462127wrc.327.1592392596473;
-        Wed, 17 Jun 2020 04:16:36 -0700 (PDT)
-Received: from macbook-pro-alvaro-eth.lan (90.red-88-20-62.staticip.rima-tde.net. [88.20.62.90])
-        by smtp.gmail.com with ESMTPSA id d28sm4242126wrc.50.2020.06.17.04.16.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Jun 2020 04:16:35 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add bcm63xx-usbh bindings
-From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-In-Reply-To: <2cc00ff1-f411-1c2d-d2ce-4cc0bfc2ccb5@gmail.com>
-Date:   Wed, 17 Jun 2020 13:16:34 +0200
-Cc:     simon@fire.lp0.eu, Jonas Gorski <jonas.gorski@gmail.com>,
-        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
-        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F5FC8442-319A-48A7-BEEA-92C0EADE6BDA@gmail.com>
-References: <20200616083408.3426435-1-noltari@gmail.com>
- <20200616083408.3426435-2-noltari@gmail.com>
- <2cc00ff1-f411-1c2d-d2ce-4cc0bfc2ccb5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-X-Mailer: Apple Mail (2.3608.80.23.2.2)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sKWtFIYfKFOwpbzZCQAzRyePUOEgW5s9rDZzhxjhDfs=;
+        b=PRJJUTuVJ+MtlTVGHTwq5hZ7jbI1l2ciceL/+UrYj+X/0rTzVNWDh/VJcH2JpXZKUo
+         LRr+w1QBpEvI7n0hsKzYsah6+2rDjDC/dfvFC5Ji1HzB8rMhPdvNN9UmaD2eM06xae0p
+         O/X28rM2Wm0xOP6jTq1S5FYa3HestJIPLTSGu3EKu33gWhwudddPdR2UKsnfKNEhcvOh
+         nGGJOJlRMNqQPbfMNxKm0OCwkVFNJs0DMzg3bhWKEFAPH0ipd8Wkvye1DxSVR3VE+nOf
+         8AlQd83V+EUKktsZf5n7fkItNMalCooJxsOqvU22+EYYzdN6uiE4qhdyUWv7016L8QnD
+         Hncg==
+X-Gm-Message-State: AOAM533j7mtx513L9ZFIZ3fb/idojY5PAv5Hk8kaUl3ZJDvop/WBP9MS
+        HGjM8wwLEnIjgfz4LhSiLmZaebFo+KpzzbbTtTBC3A==
+X-Google-Smtp-Source: ABdhPJyEbofVby0G8kGXR+vvfNhB4AvAOrnZfTfD8U151zYCvlIkScVjZcclzby9MNu9D+uRKBmz+cSkXmck4VW5ams=
+X-Received: by 2002:a9d:6a85:: with SMTP id l5mr5361623otq.371.1592394167036;
+ Wed, 17 Jun 2020 04:42:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200602100924.26256-1-sumit.semwal@linaro.org>
+ <20200602100924.26256-5-sumit.semwal@linaro.org> <20200602113241.GE5684@sirena.org.uk>
+ <CAO_48GGgNUGosN2PiL=U5JkR3Bh5wNK3N4xYYML1UwmdfDPRww@mail.gmail.com> <20200602122554.GG5684@sirena.org.uk>
+In-Reply-To: <20200602122554.GG5684@sirena.org.uk>
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+Date:   Wed, 17 Jun 2020 17:12:35 +0530
+Message-ID: <CAO_48GFwEHBGmz0QvN+pXFSyHC9+7=0aoJLHF4uupGSx2TcSvA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] regulator: qcom: Add labibb driver
+To:     Mark Brown <broonie@kernel.org>
+Cc:     agross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        Nisha Kumari <nishakumari@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Florian,
+Hello Mark,
 
-> El 16 jun 2020, a las 19:17, Florian Fainelli <f.fainelli@gmail.com> =
-escribi=C3=B3:
->=20
->=20
->=20
-> On 6/16/2020 1:34 AM, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
->> Document BCM63xx USBH PHY bindings.
->>=20
->> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
->> ---
->> .../bindings/phy/brcm,bcm63xx-usbh-phy.yaml   | 72 =
-+++++++++++++++++++
->> 1 file changed, 72 insertions(+)
->> create mode 100644 =
-Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
->>=20
->> diff --git =
-a/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml =
-b/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
->> new file mode 100644
->> index 000000000000..3e7c97799b91
->> --- /dev/null
->> +++ =
-b/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
->> @@ -0,0 +1,72 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/phy/brcm,bcm63xx-usbh-phy.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: BCM63xx USBH PHY
->> +
->> +maintainers:
->> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - brcm,bcm6318-usbh-phy
->> +      - brcm,bcm6328-usbh-phy
->> +      - brcm,bcm6358-usbh-phy
->> +      - brcm,bcm6362-usbh-phy
->> +      - brcm,bcm6368-usbh-phy
->> +      - brcm,bcm63268-usbh-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: usbh
->> +      - const: usb_ref
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  "#phy-cells":
->> +    const: 0
->=20
-> On 6328, the same register space allows the controlling of the USB PHY
-> in either host or device mode, so I believe you would need to add a
-> #phy-cells =3D 1 in order to distinguish the consumer (host versus =
-device)
-> if we get to the point where drivers/usb/gadget/udc/bcm63xx_udc.c
-> becomes DT aware.
+On Tue, 2 Jun 2020 at 17:55, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, Jun 02, 2020 at 05:40:45PM +0530, Sumit Semwal wrote:
+> > On Tue, 2 Jun 2020 at 17:02, Mark Brown <broonie@kernel.org> wrote:
+> > > On Tue, Jun 02, 2020 at 03:39:23PM +0530, Sumit Semwal wrote:
+>
+> > > This should be a get_status() callback...
+>
+> > From my (limited) understanding of downstream code, it seemed like for
+> > this set of regulators, the 'enabled' check is done via the
+> > 'REG_LABIBB_STATUS1 reg; for some reason, not via the same enable_reg
+> > / enable_mask ones.  That's why I used it as is_enabled() callback.
+> > I will try and check with the QC folks to clarify this point about
+> > their hardware.
+>
+> The way this is functioning at the minute the downstream code is just
+> buggy.
 
-I=E2=80=99ve just realized that I have implemented this wrong in v3, =
-because I implemented the SwapControl USB_DEVICE_SEL value, and you =
-meant the UTMIControl1 USB_DEVICE_MODE_SEL value.
-So I have a couple of questions about this, because I haven=E2=80=99t =
-got any bcm63xx with usb device configuration to test:
-- Is USB_DEVICE_SEL also needed in SwapControl or do we only need =
-USB_DEVICE_MODE_SEL in UTMIControl1?
-- Are the rest of the host values needed when configured in device mode? =
-Should I only set the device values when in device mode?
+Apologies for the delay in responding - I pinged the QC folks, and was
+waiting for their reply but haven't got any response so far.
 
->=20
-> Other than that, this looks good to me!
-> --=20
-> Florian
+I tried your suggestion to use the ENABLE_CTL register for checking if
+the regulator is actually enabled. In my limited testing on the Poco,
+it seems like the STATUS1 register updates faster than the ENABLE_CTL
+register, so on the device, I see noticeable lag when I use ENABLE_CTL
+for is_enabled() check. [This is especially true for the IBB, which
+takes longer to become usable than the LAB regulator.]
 
-Best regards,
-=C3=81lvaro.
+I understand from a pure regulators' correctness point of view,
+ENABLE_CTL should be the one checked there, so I can change the patch
+as you suggested, but there seems to be some performance penalty
+there.
 
+>
+> > > ...is_enabled() should just be regulator_is_enabled_regmap() and these
+> > > functions should just be removed entirely, you can use the regmap
+> > > operations directly as the ops without the wrapper.
+>
+> > The 2 wrappers are a precursor to the next patch, where we keep track
+> > of regulator's enable status to check during SC handling.
+>
+> Add the functions when they're useful, not before.  TBH if the register
+> is write only you're probably better off adding a register cache.
+
+Agreed, I will remove the wrappers from here, using the regmap
+functions, and add the wrappers with the SC handling patch.
+>
+> > > > +     match = of_match_device(qcom_labibb_match, &pdev->dev);
+> > > > +     if (!match)
+> > > > +             return -ENODEV;
+> > > > +
+> > > > +     for (reg_data = match->data; reg_data->name; reg_data++) {
+> > > > +             child = of_get_child_by_name(pdev->dev.of_node, reg_data->name);
+> > > > +
+> > > > +             if (WARN_ON(child == NULL))
+> > > > +                     return -EINVAL;
+> > >
+> > > This feels like the DT bindings are confused - why do we need to search
+> > > like this?
+>
+> > The WARN_ON? This was suggested by Bjorn to catch the case where the
+> > DT binding for a PMIC instantiates only one of the regulators.
+>
+> No, this whole loop - why this whole match and get child stuff?
+This loop mechanism is what I saw in the other qcom regulators
+upstream, so thought it was an acceptable way.
+For the two children nodes, do you recommend another mechanism to get
+and validate both nodes?
+
+Best,
+Sumit.
