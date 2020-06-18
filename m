@@ -2,250 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 540121FEAE8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 07:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B121FEAF8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 07:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726919AbgFRF2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 01:28:51 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:28404 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726892AbgFRF2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jun 2020 01:28:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1592458129; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=sUTIwmA18KKFD78sQQkujxdQylj2SVkiaYMf8FOj5wo=; b=bW9in6ML1nx4Sisk2qaegGyDYfApFgvfFb7qdeNBfrf28NRTbYT3Q6K7dFtEzaddsX+se8/o
- tY1YZkXt2sePUsfENXXyToc3wkS/gYOPvzF4VO6GcEbR2QQOlLiaaCPKFMZobT4hpR0UTLQX
- XXblAjHSOoTmvSNEm77m8juwG6w=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n09.prod.us-west-2.postgun.com with SMTP id
- 5eeafb8fe144dd511516f5a4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Jun 2020 05:28:47
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B1F4AC433CB; Thu, 18 Jun 2020 05:28:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from vnaralas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 88ABDC433CA;
-        Thu, 18 Jun 2020 05:28:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 88ABDC433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akolli@codeaurora.org
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     ath11k@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v3 3/3] ath11k: add IPQ6018 support
-Date:   Thu, 18 Jun 2020 10:58:24 +0530
-Message-Id: <1592458104-2961-4-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
-References: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
+        id S1726382AbgFRFdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 01:33:31 -0400
+Received: from mail-bn7nam10on2066.outbound.protection.outlook.com ([40.107.92.66]:6045
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726976AbgFRFd1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jun 2020 01:33:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OdGUY19cAGjNJx1Gv1r8nDP/W9dBhHkQ72537DtKyTVLV6FG4R3Wz2DYjJz257xw/7vL4vmDNeououXNW9aP2ftqMjaUTWGm0qiC7nacLmribDZITqZJxpu8tRvSBOcMBKSwSX5D8JbW5/CkBSGZq7gerIAJqdsPfGNUFmwwV43OUT56dY3BdNED2Np4qLi+5MLEQvgawSS5n3gqANzvq2QwVRKYzPUdBYt1j7frQoAbhFYULXY53VuxtK3GcZqRFqzVgTguQWXNyH8RU80g1B5yU0TDqsLVzF8dMjl+HVJIxeLnvzx124HTZCPN6vLNx5LcEX8mNbPKI/s8Ti7O4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K1JKdLvuFWGbWcDnaSblc3TL3E/EtBWWBWxcYWgYBow=;
+ b=OzL63MDzIM6Si0covgFoFYT/x1Ih1x4DkGXxq2NiRrDhiCZsFjzqsvYJm0C2nP7FQ4NzHBxj+DCba0ec7HDVjFevnGpYIdk8bdB3wJUdXa9gnZOne6Jk7imeeXGqVSQJj3C+4M2kyjP1z26cLl+3i/2br9ZHBLQEfFR+PMw5+v3bzp8Ie+wbSDwEn5Ij3iQj422fnWqcEwxXUa1QGdscUzKTpCUdjFEK5aZLYo8nIr5C5Hzc9jhAC9yKDUJxWcM7VdpFV7SzfcjdVgG7RVQyff0aDSmxuwVP3QL3QkT+gp/qk6WCgiEZRhNWWoG46En2vstGqNdLLH5ZtXGdiANJdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=ideasonboard.com smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K1JKdLvuFWGbWcDnaSblc3TL3E/EtBWWBWxcYWgYBow=;
+ b=MgZvumWWM+lcsshhzy4ZDc6HGKglYc293VzixJkxLPyjCjUzmrNWM8MgmOG3jgaF0HOgaFiYT5dvML2lAvlTXjS5R9I1tXkWVUzWO3TdtQRlrgp5oKOs9oM/h0XSZj9PiKcCOm+u5A7qZBnqjDGrFdpmxUqFoN9Xy2oLJUKv8To=
+Received: from SN4PR0801CA0012.namprd08.prod.outlook.com
+ (2603:10b6:803:29::22) by BN6PR02MB3153.namprd02.prod.outlook.com
+ (2603:10b6:405:67::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3088.29; Thu, 18 Jun
+ 2020 05:33:22 +0000
+Received: from SN1NAM02FT037.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:29:cafe::ad) by SN4PR0801CA0012.outlook.office365.com
+ (2603:10b6:803:29::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22 via Frontend
+ Transport; Thu, 18 Jun 2020 05:33:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; ideasonboard.com; dkim=none (message not signed)
+ header.d=none;ideasonboard.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT037.mail.protection.outlook.com (10.152.72.89) with Microsoft SMTP
+ Server id 15.20.3088.18 via Frontend Transport; Thu, 18 Jun 2020 05:33:22
+ +0000
+Received: from [149.199.38.66] (port=58918 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+        (envelope-from <vishal.sagar@xilinx.com>)
+        id 1jln9s-0006yk-DD; Wed, 17 Jun 2020 22:32:16 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <vishal.sagar@xilinx.com>)
+        id 1jlnAv-0003RZ-Na; Wed, 17 Jun 2020 22:33:21 -0700
+Received: from [10.140.6.6] (helo=xhdappanad40.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <vishal.sagar@xilinx.com>)
+        id 1jlnAl-0003Ok-27; Wed, 17 Jun 2020 22:33:11 -0700
+From:   Vishal Sagar <vishal.sagar@xilinx.com>
+To:     hyunk@xilinx.com, laurent.pinchart@ideasonboard.com,
+        hverkuil@xs4all.nl, mchehab@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, michals@xilinx.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        joe@perches.com
+Cc:     sandipk@xilinx.com, dineshk@xilinx.com,
+        Vishal Sagar <vishal.sagar@xilinx.com>
+Subject: [PATCH v3 0/3] Add support for Xilinx UHD-SDI Receiver subsystem
+Date:   Thu, 18 Jun 2020 11:03:01 +0530
+Message-Id: <20200618053304.14551-1-vishal.sagar@xilinx.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFTY:;SFS:(376002)(136003)(346002)(396003)(39860400002)(46966005)(426003)(2616005)(36756003)(1076003)(336012)(478600001)(44832011)(7696005)(186003)(2906002)(7416002)(26005)(9786002)(5660300002)(8676002)(8936002)(107886003)(70586007)(70206006)(83380400001)(81166007)(4326008)(82310400002)(316002)(47076004)(6666004)(82740400003)(356005)(921003);DIR:OUT;SFP:1101;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ea3f7d86-1fba-40aa-0293-08d813491d76
+X-MS-TrafficTypeDiagnostic: BN6PR02MB3153:
+X-Microsoft-Antispam-PRVS: <BN6PR02MB3153309548A334287D7EB260A79B0@BN6PR02MB3153.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 0438F90F17
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cK8SOUrB0laenpSfnMLesAVf+BMxp9QDTTPBBnh1HK1TAv+NBrI6BQi3vd/5fmss1cwrUPB4AFYHxfuX1s2aIndOIAzwU7cATlDqE3biJXGQCwJRXhJkEO3CADf/9aI4B5xwgXZGHaLjK++ajoiAxCt3HZhNvupAoLOGILQT15hzsPpctzQ0pob5EjpqLsgEF0SoA1E64hSk6SVmc32o3e5KG3OcmFR+qC1m3A3Acmtstr+EHJwSsq7WlTRqLlsJ2Qc4h5pakSqd01HjqZCHBg1g0rOkiy5N0zVs/9b/8/sUbXwQKPBX1+wCtnejO82HfpRZ9KKtkpA2M/WWkhi/W867BiKyEr3qdOh4K43IS4z6AtokVAvSf+8PzC5tnFxHePWjiRB/vGp9Coe08kAT6ohSl88k73XS4X5WPmzAFf0=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2020 05:33:22.0588
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea3f7d86-1fba-40aa-0293-08d813491d76
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB3153
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ6018 has one 5G and one 2G radio with 2x2,
-shares ipq8074 configurations.
+Xilinx SMPTE UHD-SDI Receiver Subsystem
+----------------------------------------
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
-V3:
- - rebased on Kalles patches
+The SMPTE UHD-SDI Receiver (RX) Subsystem allows you to quickly create
+systems based on SMPTE SDI protocols. It receives unaligned native SDI
+streams from the SDI GT PHY and outputs an AXI4-Stream video stream,
+native video, or native SDI using Xilinx transceivers as the physical
+layer.
 
- drivers/net/wireless/ath/ath11k/ahb.c  | 115 ++++++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/core.c |  12 ++++
- drivers/net/wireless/ath/ath11k/core.h |   1 +
- 3 files changed, 126 insertions(+), 2 deletions(-)
+                SMPTE UHD-SDI Rx Subsystem AXI4-Stream Architecture
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index aa74d27e5871..21f23ac75650 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -20,6 +20,9 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq8074-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ8074,
- 	},
-+	{ .compatible = "qcom,ipq6018-wifi",
-+	  .data = (void *)ATH11K_HW_IPQ6018,
-+	},
- 	{ }
- };
- 
-@@ -264,6 +267,108 @@ static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
- 	{ /* terminator entry */ }
- };
- 
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq6018[] = {
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(7),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(4),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_PKT_LOG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(5),
-+	},
-+
-+	/* (Additions here) */
-+
-+	{ /* terminator entry */ }
-+};
-+
- #define ATH11K_IRQ_CE0_OFFSET 4
- 
- static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
-@@ -956,9 +1061,15 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ab->hw_params.svc_to_ce_map_len =
-+	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
-+		ab->hw_params.svc_to_ce_map_len =
- 			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
--	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
-+		ab->hw_params.svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
-+	}
- 
- 	ath11k_ahb_init_qmi_ce_config(ab);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 0bf8bb1674dc..5f794f97d359 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -30,6 +30,18 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.bdf_addr = 0x4B0C0000,
- 		.hw_ops = &ipq8074_ops,
- 	},
-+	{
-+		.hw_rev = ATH11K_HW_IPQ6018,
-+		.name = "ipq6018 hw1.0",
-+		.fw = {
-+			.dir = "IPQ6018/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_size = 256 * 1024,
-+		},
-+		.max_radios = 2,
-+		.bdf_addr = 0x4ABC0000,
-+		.hw_ops = &ipq6018_ops,
-+	},
- };
- 
- static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 98b994984c25..fe11fcd9e914 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -90,6 +90,7 @@ struct ath11k_skb_rxcb {
- 
- enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ8074,
-+	ATH11K_HW_IPQ6018,
- };
- 
- enum ath11k_firmware_mode {
+          +============================================================+
+	  |           Native SDI           Native Video                |
+SDI	  |   +=========+   |   +============+  |   +=============+    |AXI4
+Stream	  |   |  SMPTE  |   V   |   SDI Rx   |  V   | Video In    |    |Stream
+--------->|-->| UHD-SDI |------>|    to      |----->|   to        |--->|------->
+	  |   |   RX    |       |  Native    |      | AXI4-Stream |    |
+	  |   +=========+       |Video Bridge|      +=============+    |
+	  |      |  ^           +============+                         |
+   <------|------+  |                                                  |
+sdi_rx_irq|         |                                                  |
+	  +=====+===+==================================================+
+                    |                            ^              ^
+                    |                            |              |
+                 s_axi_aclk                   sdi_rx_clk   video_out_clk
+
+
+The subsystem consists of the following subcores:
+- SMPTE UHD-SDI (RX)
+- SDI RX to Video Bridge
+- Video In to AXI4-Stream
+
+At design time, this subsystem can be configured in 3Gbps, 6Gbps or
+12Gbps mode. It can also be configured to output
+- SDI Native stream
+- Native Video
+- AXI4-Stream
+
+This driver only supports the AXI4-Stream configuration as there is a
+corresponding media bus format for YUV 422 10/12 bits per component.
+
+Though the core also supports RBG/YUV444/YUV420 10/12 bits per component,
+these are not supported in driver due to lack of corresponding media bus
+format currently.
+
+The SDI core has detection modes where in it can be configured to detect
+one or more modes from SD (Standard Definition), HD (High Definition),
+3GA, 3GB, 6G and 12G modes. When the core has detected the format, it
+generates a video lock. In case the source is removed or there is data
+corruption, the video may unlock. This is intimated to the application
+via a V4L2 event. Other events which application can subscribe are for
+overflow and underflow of the video bridges.
+
+The driver gives out the stream properties like width, height, colorformat,
+frame interval and progressive/interlaced based on the ST352 packet in SDI
+stream. If the ST352 packet is absent, then the values detected by the
+SMPTE UHD-SDI Rx core are used.
+
+The SDI core detection modes and detected mode, errors, etc are all
+accessible via v4l controls. This driver has been tested with Omnitek
+Ultra4K HD, Phabrix Qx and Blackmagic SDI-HDMI convertors.
+
+v2
+1/2
+- Converted to yaml format
+- Removed references to xlnx,video*
+- Fixed as per Sakari Ailus and Rob Herring's comments
+
+2/2
+- Added DV timing support based on Hans Verkuilś feedback
+- More documentation to custom v4l controls and events
+- Fixed Hyunś comments
+- Added macro for masking and shifting as per Joe Perches comments
+- Updated to latest as per Xilinx github repo driver like
+  adding new DV timings not in mainline yet uptill 03/21/20
+
+Vishal Sagar (3):
+  v4l2-dv-timings: Add timings for 1920x1080P48 and 4KP48
+  media: dt-bindings: media: xilinx: Add Xilinx UHD-SDI Receiver
+    Subsystem
+  media: v4l: xilinx: Add Xilinx UHD-SDI Rx Subsystem driver
+
+ .../bindings/media/xilinx/xlnx,sdirxss.yaml   |  132 +
+ drivers/media/platform/xilinx/Kconfig         |   11 +
+ drivers/media/platform/xilinx/Makefile        |    1 +
+ .../media/platform/xilinx/xilinx-sdirxss.c    | 2121 +++++++++++++++++
+ include/dt-bindings/media/xilinx-sdi.h        |   20 +
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/v4l2-dv-timings.h          |   31 +-
+ include/uapi/linux/xilinx-sdirxss.h           |  283 +++
+ 8 files changed, 2604 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.yaml
+ create mode 100644 drivers/media/platform/xilinx/xilinx-sdirxss.c
+ create mode 100644 include/dt-bindings/media/xilinx-sdi.h
+ create mode 100644 include/uapi/linux/xilinx-sdirxss.h
+
 -- 
-2.7.4
+2.21.0
 
