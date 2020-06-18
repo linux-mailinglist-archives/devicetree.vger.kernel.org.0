@@ -2,120 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C6611FEE40
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 11:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF9A1FEEA5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 11:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728615AbgFRJC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 05:02:26 -0400
-Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.221]:15572 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728588AbgFRJCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 05:02:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1592470936;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=1wfLoFw1H/5l6k5HuZySiOqzR5RhC6ugiPkc6U/riKI=;
-        b=aI/qL/vZh+pmcNQJvcaqCWjM0iNlNn/+SkuKEFd4O7WCscM6Wvz7jEVLvspQhkY8W8
-        Z3tj0XaumiP8qwESRl5DwZnTs17yZrxNvFqAbywWiw50BLawcMBYgb4o0FgSolukjCaG
-        0ldpBt98e+tUWwKX68OPUYWwLAn+Rggw6S7tGeXx8gw9331cwTWjMy45H5YWsPwpcv5k
-        h4jQYN86V1Xl4thPP2nLBAKlWQLRMiX0YxGoCnVFTx3tebKZtKJHJtRd7flmDstP5YhZ
-        2WbPUea1JDAU/VXMmPS+7wwyxq6uhYVRbgXBgwWAhQ7DB+wCKjgpnmO+L+wAYcHKbvmB
-        TUKQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j6IcjDBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 46.10.4 DYNA|AUTH)
-        with ESMTPSA id 6005e9w5I92GgLn
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Thu, 18 Jun 2020 11:02:16 +0200 (CEST)
-Date:   Thu, 18 Jun 2020 11:02:10 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: msm8916: Add interconnect provider DT nodes
-Message-ID: <20200618090210.GA48113@gerhold.net>
-References: <20200617134515.25229-1-georgi.djakov@linaro.org>
+        id S1729050AbgFRJ3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 05:29:36 -0400
+Received: from mout.kundenserver.de ([217.72.192.75]:40673 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729014AbgFRJ3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 05:29:36 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]) by
+ mrelayeu.kundenserver.de (mreue109 [212.227.15.145]) with ESMTPSA (Nemesis)
+ id 1Mkpj7-1j22dt0gCV-00mKSt; Thu, 18 Jun 2020 11:29:34 +0200
+Received: by mail-qt1-f181.google.com with SMTP id y1so3848159qtv.12;
+        Thu, 18 Jun 2020 02:29:33 -0700 (PDT)
+X-Gm-Message-State: AOAM532px3Vm8oMcgKXDNs5qMUOQlMUtdsGcLyXBQQq31mCPkMbW+S8d
+        ymjYDs/z/sAxvBWYpZuWeAnJb+BqkVBvP4kfhnA=
+X-Google-Smtp-Source: ABdhPJzgdtQ0e15RU/B+VXyW0HKmnrk4ChsFiunlbGhEA/nSRl5iqi+DLHNRjiUEFWDMgOl/S3Q+Wjj/KNXfigA904g=
+X-Received: by 2002:ac8:1844:: with SMTP id n4mr3356547qtk.142.1592472572907;
+ Thu, 18 Jun 2020 02:29:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200617134515.25229-1-georgi.djakov@linaro.org>
+References: <20200618080223.951737-1-lee.jones@linaro.org>
+In-Reply-To: <20200618080223.951737-1-lee.jones@linaro.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 18 Jun 2020 11:29:16 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3iRmXC2jDj92QHKqyD+x_UJ7rWU_KcGt=MFOD9UW38RA@mail.gmail.com>
+Message-ID: <CAK8P3a3iRmXC2jDj92QHKqyD+x_UJ7rWU_KcGt=MFOD9UW38RA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] mfd: Add I2C based System Configuaration (SYSCON) access
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     michael@walle.cc, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:mJn8YsYvecBQHNzW2F014KvvXMMCXXUSdpntKRjYKP8FlCPGqOE
+ gVc/v9hqPBEvM7gXD94bvAvORSYxC7R32rBSY8tYbSc1Kv45vHgm2yfQzUfwsd1HhtY68vg
+ ZqBW4aH3eCMtOAiS146tG2nY3TBNnc41Np7kyD78KmyS1DzBJua4Bm+/zqQOXJnltf7JE5/
+ SIiIIy6Y6ptBLBoqQ78Zg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:aJNVddY0ieA=:SGaGsC5HsbFxsXW3/fZvfk
+ MgAK6no/aF1IbmEEuXZtshDPqmpwCbVPYgJr4sWqJ0W6us9taTpnDSZd3NCuAlV3J7xK2ZgyZ
+ gZZUr1/M++LWwmMaQUEZfzR9eqYeSlfQ72T5LR5ejGTZM7rvwueA55EsGBASCICw0rTcSwjOi
+ iAZtztev/PJOvbnYwweTiMqXC2cOBuUgSxDNwH5/wqbEvCxIv/BtV8icGfnR66cU4x/fmuIIy
+ yIEozTnqqzn4owr5Jm6dihYjFF0sFNv2mVkDtan/D9eUd91ZoDYkcs2px3IViFO1SyeWf5t+w
+ E+zjFineyeJTSfrdiFfzOnlcBM/RbO6tdTzjD2sc5v6/z7dQ0FYz07DEUjtPQcLciSb6KaYuT
+ NK+f0SoYTJ6twF4YMZxYXtTsDnGSm91v4JwXKdEuiPM2emULTUESrsc6L1OQIr1sBj9N9Y9CZ
+ Zwq5Jw/5mMPWhXQ8AHFoGBvruuBgEriPYq3wW7suL//sCoOB/mUkroDq8r6g2PmLVfGRc7WJ8
+ Od/3rjN7DPdC2xBiVM2+FECUaU+7szCGUAymSLIr6/NASZo/tj4xqyZ4Oxpb2IBHpPDJ03+N+
+ 0K3O2yCyL1rLLBOcqGv9ZD/sorH25rHNLimogocZeAZAvqtJJDZy0DjrcIT2njBl/npUDoWdR
+ ZdBgfHkxK9wxbicr4eJSGSuLStcQrxIj7hU57FgbrI0mRsWJYtF4zu+8+prG9NrvylGI0nXxw
+ D6jOKOUQVO1jf0O7y3iIXOm/DKdhNwfnCqGTmoaIInUCGw6j9dR0pVmsfyapuyLnr3CMPyIb6
+ nzFRQG/pruKhGInthnHS0cT3ewWRfsGMLtuuqmf3KuFX1EsmQA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
+On Thu, Jun 18, 2020 at 10:03 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> The existing SYSCON implementation only supports MMIO (memory mapped)
+> accesses, facilitated by Regmap.  This extends support for registers
+> held behind I2C busses.
+>
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
 
-On Wed, Jun 17, 2020 at 04:45:15PM +0300, Georgi Djakov wrote:
-> Add nodes for the network-on-chip interconnect buses present on
-> MSM8916-based platforms.
-> 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+The implementation looks fine to me, but can you explain how this is going to
+be used, and what the advantage is over open-coding the devm_regmap_init_i2c()
+in each driver that would use this?
 
-Thanks for resending this patch!
+Is this about using proper locking through the regmap framework for
+shared i2c clients, or to reduce memory consumption when lots of drivers
+access the same regmap?
 
-I tested this recently: it seems to probe fine and request the related
-clocks; without interconnect consumers nothing is different otherwise
-(as expected). FWIW:
+My impression of the existing syscon code is that the main value-add over
+other ways of doing the same is the syscon_regmap_lookup_by_phandle()
+interface that gives other drivers a much simpler way of getting the
+regmap just based on the DT node. Are you planning to add something
+like that here as well? An ideal driver interface might allow
+syscon_regmap_lookup_by_phandle() to work for both mmio and i2c
+based syscons, or additional ones as well, but implementing this would
+be rather tricky when the i2c core is a loadable module.
 
-Tested-by: Stephan Gerhold <stephan@gerhold.net>
-
-> ---
->  arch/arm64/boot/dts/qcom/msm8916.dtsi | 28 +++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 32bd140ac9fd..6c57896d9836 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <dt-bindings/arm/coresight-cti-dt.h>
-> +#include <dt-bindings/interconnect/qcom,msm8916.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,gcc-msm8916.h>
->  #include <dt-bindings/reset/qcom,gcc-msm8916.h>
-> @@ -406,11 +407,38 @@ soc: soc {
->  		ranges = <0 0 0 0xffffffff>;
->  		compatible = "simple-bus";
->  
-> +		bimc: interconnect@400000 {
-> +			compatible = "qcom,msm8916-bimc";
-> +			reg = <0x00400000 0x62000>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-> +				 <&rpmcc RPM_SMD_BIMC_A_CLK>;
-> +		};
-> +
->  		restart@4ab000 {
->  			compatible = "qcom,pshold";
->  			reg = <0x4ab000 0x4>;
->  		};
->  
-> +		pcnoc: interconnect@500000 {
-> +			compatible = "qcom,msm8916-pcnoc";
-> +			reg = <0x00500000 0x11000>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_PCNOC_CLK>,
-> +				 <&rpmcc RPM_SMD_PCNOC_A_CLK>;
-> +		};
-> +
-> +		snoc: interconnect@580000 {
-> +			compatible = "qcom,msm8916-snoc";
-> +			reg = <0x00580000 0x14000>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-> +				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
-> +		};
-> +
->  		msmgpio: pinctrl@1000000 {
->  			compatible = "qcom,msm8916-pinctrl";
->  			reg = <0x1000000 0x300000>;
+     Arnd
