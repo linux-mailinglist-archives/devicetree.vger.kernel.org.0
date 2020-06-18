@@ -2,136 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E85931FEB98
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 08:41:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC0E1FEBCA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 08:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727913AbgFRGlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 02:41:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727937AbgFRGkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 02:40:49 -0400
-Received: from Galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C09C06174E;
-        Wed, 17 Jun 2020 23:40:48 -0700 (PDT)
-Received: from p5b06d650.dip0.t-ipconnect.de ([91.6.214.80] helo=localhost.localdomain)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
-        (Exim 4.80)
-        (envelope-from <kurt@linutronix.de>)
-        id 1jloE9-0000xD-Gg; Thu, 18 Jun 2020 08:40:45 +0200
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org, Kurt Kanzenbach <kurt@linutronix.de>
-Subject: [RFC PATCH 9/9] dt-bindings: net: dsa: Add documentation for Hellcreek switches
-Date:   Thu, 18 Jun 2020 08:40:29 +0200
-Message-Id: <20200618064029.32168-10-kurt@linutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200618064029.32168-1-kurt@linutronix.de>
-References: <20200618064029.32168-1-kurt@linutronix.de>
+        id S1727779AbgFRG5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 02:57:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48684 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727109AbgFRG5w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jun 2020 02:57:52 -0400
+Received: from dragon (unknown [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4FBF620773;
+        Thu, 18 Jun 2020 06:57:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592463472;
+        bh=V5h1ejD6zUH6DYDa9BdWTgrkpCRixg6+jUSZc62MYfU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=2DvkZ8wYEHQ6FGF1CS1rNq4FEhJewogILEGXdb75uB0zHeiauhDwqJOny+VjTwS+8
+         OapYJqYyXMSL+Bg4sJ32WuWXu7/k97O/ZzWj4CXKQtkXeeoGSzResmt3ApeWRTSL8A
+         LuQrO4j0vgfhcYXgmToWdLqXrEP4SGkehe/Irp9Y=
+Date:   Thu, 18 Jun 2020 14:57:39 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     peng.fan@nxp.com
+Cc:     fabio.estevam@nxp.com, kernel@pengutronix.de, aisheng.dong@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
+        l.stach@pengutronix.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/4] arm64: dts: imx8m: dtb aliases update
+Message-ID: <20200618065738.GB30139@dragon>
+References: <1589940166-736-1-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1589940166-736-1-git-send-email-peng.fan@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic documentation and example.
+On Wed, May 20, 2020 at 10:02:42AM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Minor patchset to update device tree aliases
+> 
+> Peng Fan (4):
+>   arm64: dts: imx8mq: Add mmc aliases
+>   arm64: dts: imx8mq: Add ethernet alias
+>   arm64: dts: imx8mm: sort the aliases
+>   arm64: dts: imx8mp: add i2c aliases
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
----
- .../devicetree/bindings/net/dsa/hellcreek.txt | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/hellcreek.txt
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/hellcreek.txt b/Documentation/devicetree/bindings/net/dsa/hellcreek.txt
-new file mode 100644
-index 000000000000..9ea6494dc554
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/hellcreek.txt
-@@ -0,0 +1,72 @@
-+Hirschmann hellcreek switch driver
-+==================================
-+
-+Required properties:
-+
-+- compatible:
-+	Must be one of:
-+	- "hirschmann,hellcreek"
-+
-+See Documentation/devicetree/bindings/net/dsa/dsa.txt for the list of standard
-+DSA required and optional properties.
-+
-+Example
-+-------
-+
-+Ethernet switch connected memory mapped to the host, CPU port wired to gmac0:
-+
-+soc {
-+        switch0: switch@0xff240000 {
-+                compatible = "hirschmann,hellcreek";
-+                status = "okay";
-+                reg = <0xff240000 0x1000   /* TSN base */
-+                       0xff250000 0x1000>; /* PTP base */
-+                dsa,member = <0 0>;
-+
-+                ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                                reg = <0>;
-+                                label = "cpu";
-+                                ethernet = <&gmac0>;
-+                        };
-+
-+                        port@2 {
-+                                reg = <2>;
-+                                label = "lan0";
-+                                phy-handle = <&phy1>;
-+                        };
-+
-+                        port@3 {
-+                                reg = <3>;
-+                                label = "lan1";
-+                                phy-handle = <&phy2>;
-+                        };
-+                };
-+        };
-+};
-+
-+&gmac0 {
-+        status = "okay";
-+        phy-mode = "mii";
-+
-+        fixed-link {
-+                speed = <100>;
-+                full-duplex;
-+        };
-+
-+        mdio {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                compatible = "snps,dwmac-mdio";
-+
-+                phy1: ethernet-phy@1 {
-+                        reg = <1>;
-+                };
-+                phy2: ethernet-phy@2 {
-+                        reg = <2>;
-+                };
-+        };
-+};
--- 
-2.20.1
-
+Applied all, thanks.
