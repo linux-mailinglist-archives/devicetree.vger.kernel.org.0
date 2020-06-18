@@ -2,354 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7181FF15F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 14:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC3F1FF17A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 14:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729016AbgFRMLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 08:11:55 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:53388 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725955AbgFRMLv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jun 2020 08:11:51 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1jltOQ-0007op-Ph; Thu, 18 Jun 2020 14:11:42 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, heiko@sntech.de,
-        christoph.muellner@theobroma-systems.com,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH v5 3/3] net: phy: mscc: handle the clkout control on some phy variants
-Date:   Thu, 18 Jun 2020 14:11:39 +0200
-Message-Id: <20200618121139.1703762-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200618121139.1703762-1-heiko@sntech.de>
-References: <20200618121139.1703762-1-heiko@sntech.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726948AbgFRMTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 08:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726928AbgFRMTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 08:19:14 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEB0C06174E;
+        Thu, 18 Jun 2020 05:19:14 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id v14so2848627pgl.1;
+        Thu, 18 Jun 2020 05:19:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=kTOrqhaLSjsiBsLxPoJaXJ3Xn/KAgWNSimnogI9J75E=;
+        b=UgZNo5+oZW4A520lpaemwstKYxXtJNuozGC3SXwzXLPYXlb1L9+4dIM8ObC9jln9Ca
+         D5j7D97mWAUvJzutqTNb7AUN9Jru0e1wYT7b/sHPk6W8HoYupAkAEQbi4Gpv64fTuvXp
+         cKgqy18ZD2xayBVO6uOx15G2t2uqnLVc599/XAPwqE338ekq3+H55W2csypTIXZKMpId
+         FzwjsFt2EG9avXgNmbqA5cbmiqPJUzoxvk/p4dej0ABOj8uR7W9QNEKhIA3OFpiwzQrU
+         4wWl+5u7xE/fuj1L+8wkpUoKO5aGTj6o2cDJ4r8rgyeNIom/L6Qt8YR0hw2WkwINk03I
+         sBJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=kTOrqhaLSjsiBsLxPoJaXJ3Xn/KAgWNSimnogI9J75E=;
+        b=nsT/04K5JvM49lYLdMcinQhTgitIXEm07s0zsZhSV7uuDeWkaqpYqXF58MLQV2v2wD
+         25vKP2/9/IQLpW+8RlNEHrf7fvPiiGA/Ez9MbAH1p7WY/1vU1IPq2YRrTr4Ggf8bP+Hw
+         u0bvcrHszg6+x572vuxJPAJhEm2MUPWqvQkTpa4LbzCey/SVEfbt6x+raBIqio9BoTrg
+         l+uuihxUKERb0D5gaHeEpc9fHqDE5UCdX8YLLGfFTAnCihe+016BBO1zSFzlrsA8KKyF
+         jHErnr7UgjPf7mP0i6J1TfKpWz3A3VgPH9By1bLvUVx+CI9OKpju7ktjg7AdVxREMuyh
+         NpdQ==
+X-Gm-Message-State: AOAM532Je01SfS9vzAveVjVdG2zhqQ580dkqWzqxgtr3YcXG1F+91bhd
+        VFtiRYLTJXHt8S/XSM3HtiI=
+X-Google-Smtp-Source: ABdhPJxN+3BMttqiR1PKkjKSnED6WnbWacJDRO/nGr2x1DjrAiQVZE62o3tDWBIzlZ64jE29zN3vLw==
+X-Received: by 2002:aa7:9513:: with SMTP id b19mr3285653pfp.152.1592482753975;
+        Thu, 18 Jun 2020 05:19:13 -0700 (PDT)
+Received: from in099003062.routereb3c90.com ([106.51.138.45])
+        by smtp.gmail.com with ESMTPSA id v7sm2787269pfn.147.2020.06.18.05.19.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jun 2020 05:19:13 -0700 (PDT)
+From:   Vinay Simha BN <simhavcs@gmail.com>
+Cc:     Vinay Simha BN <simhavcs@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 1/2] dt-binding: Add DSI/LVDS TC358775 bridge bindings
+Date:   Thu, 18 Jun 2020 17:48:56 +0530
+Message-Id: <20200618121902.16841-1-simhavcs@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Signed-off-by: Vinay Simha BN <simhavcs@gmail.com>
 
-At least VSC8530/8531/8540/8541 contain a clock output that can emit
-a predefined rate of 25, 50 or 125MHz.
-
-This may then feed back into the network interface as source clock.
-So expose a clock-provider from the phy using the common clock framework
-to allow setting the rate.
-
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 ---
- drivers/net/phy/mscc/mscc.h      |  13 +++
- drivers/net/phy/mscc/mscc_main.c | 182 +++++++++++++++++++++++++++++--
- 2 files changed, 187 insertions(+), 8 deletions(-)
+v1:
+ Initial version wast .txt file
 
-diff --git a/drivers/net/phy/mscc/mscc.h b/drivers/net/phy/mscc/mscc.h
-index fbcee5fce7b2..94883dab5cc1 100644
---- a/drivers/net/phy/mscc/mscc.h
-+++ b/drivers/net/phy/mscc/mscc.h
-@@ -218,6 +218,13 @@ enum rgmii_clock_delay {
- #define INT_MEM_DATA_M			  0x00ff
- #define INT_MEM_DATA(x)			  (INT_MEM_DATA_M & (x))
- 
-+#define MSCC_CLKOUT_CNTL		  13
-+#define CLKOUT_ENABLE			  BIT(15)
-+#define CLKOUT_FREQ_MASK		  GENMASK(14, 13)
-+#define CLKOUT_FREQ_25M			  (0x0 << 13)
-+#define CLKOUT_FREQ_50M			  (0x1 << 13)
-+#define CLKOUT_FREQ_125M		  (0x2 << 13)
+v2:
+ From txt to yaml file format
+
+v3:
+* Andrzej Hajda review comments incorporated
+  dual port lvds implemented
+
+* Laurent Pinchart review comments incorporated
+  dsi lanes property removed and it is dynamically
+  picked from the dsi ports
+  VESA/JEIDA format picked from panel-lvds dts
+---
+ .../display/bridge/toshiba,tc358775.yaml      | 204 ++++++++++++++++++
+ 1 file changed, 204 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
+new file mode 100644
+index 000000000000..ec53d62d408b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
+@@ -0,0 +1,204 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/toshiba,tc358775.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #define MSCC_PHY_PROC_CMD		  18
- #define PROC_CMD_NCOMPLETED		  0x8000
- #define PROC_CMD_FAILED			  0x4000
-@@ -360,6 +367,12 @@ struct vsc8531_private {
- 	 */
- 	unsigned int base_addr;
- 
-+#ifdef CONFIG_COMMON_CLK
-+	struct clk_hw clkout_hw;
-+#endif
-+	u32 clkout_rate;
-+	int clkout_enabled;
++title: Toshiba TC358775 DSI to LVDS bridge bindings
 +
- #if IS_ENABLED(CONFIG_MACSEC)
- 	/* MACsec fields:
- 	 * - One SecY per device (enforced at the s/w implementation level)
-diff --git a/drivers/net/phy/mscc/mscc_main.c b/drivers/net/phy/mscc/mscc_main.c
-index 5d2777522fb4..727a9dd58403 100644
---- a/drivers/net/phy/mscc/mscc_main.c
-+++ b/drivers/net/phy/mscc/mscc_main.c
-@@ -7,6 +7,7 @@
-  * Copyright (c) 2016 Microsemi Corporation
-  */
- 
-+#include <linux/clk-provider.h>
- #include <linux/firmware.h>
- #include <linux/jiffies.h>
- #include <linux/kernel.h>
-@@ -431,7 +432,6 @@ static int vsc85xx_dt_led_mode_get(struct phy_device *phydev,
- 
- 	return led_mode;
- }
--
- #else
- static int vsc85xx_edge_rate_magic_get(struct phy_device *phydev)
- {
-@@ -1508,6 +1508,43 @@ static int vsc85xx_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int vsc8531_config_init(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *vsc8531 = phydev->priv;
-+	u16 val;
-+	int rc;
++maintainers:
++ - Vinay Simha BN <simhavcs@gmail.com>
 +
-+	rc = vsc85xx_config_init(phydev);
-+	if (rc)
-+		return rc;
++description: |
++ This binding supports DSI to LVDS bridge TC358775
 +
-+#ifdef CONFIG_COMMON_CLK
-+	switch (vsc8531->clkout_rate) {
-+	case 25000000:
-+		val = CLKOUT_FREQ_25M;
-+		break;
-+	case 50000000:
-+		val = CLKOUT_FREQ_50M;
-+		break;
-+	case 125000000:
-+		val = CLKOUT_FREQ_125M;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
++properties:
++  compatible:
++    const: toshiba,tc358775
 +
-+	if (vsc8531->clkout_enabled)
-+		val |= CLKOUT_ENABLE;
++  reg:
++    maxItems: 1
++    description: i2c address of the bridge, 0x0f
 +
-+	rc = phy_write_paged(phydev, MSCC_PHY_PAGE_EXTENDED_GPIO,
-+			     MSCC_CLKOUT_CNTL, val);
-+	if (rc)
-+		return rc;
-+#endif
++  vdd-supply:
++    maxItems: 1
++    description:  1.2V LVDS Power Supply
 +
-+	return 0;
-+}
++  vddio-supply:
++    maxItems: 1
++    description: 1.8V IO Power Supply
 +
- static int vsc8584_did_interrupt(struct phy_device *phydev)
- {
- 	int rc = 0;
-@@ -1935,6 +1972,107 @@ static int vsc85xx_read_status(struct phy_device *phydev)
- 	return genphy_read_status(phydev);
- }
- 
-+#ifdef CONFIG_COMMON_CLK
-+#define clkout_hw_to_vsc8531(_hw) container_of(_hw, struct vsc8531_private, clkout_hw)
++  stby-gpios:
++    maxItems: 1
++    description: Standby pin, Low active
 +
-+static int clkout_rates[] = {
-+	125000000,
-+	50000000,
-+	25000000,
-+};
++  reset-gpios:
++    maxItems: 1
++    description: Hardware reset, Low active
 +
-+static unsigned long vsc8531_clkout_recalc_rate(struct clk_hw *hw,
-+						unsigned long parent_rate)
-+{
-+	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
++  ports:
++    type: object
++    description:
++      A node containing input and output port nodes with endpoint definitions
++      as documented in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++    properties:
++      "#address-cells":
++        const: 1
 +
-+	return vsc8531->clkout_rate;
-+}
++      "#size-cells":
++        const: 0
 +
-+static long vsc8531_clkout_round_rate(struct clk_hw *hw, unsigned long rate,
-+				      unsigned long *prate)
-+{
-+	int i;
++      port@0:
++        type: object
++        description: |
++          DSI Input. The remote endpoint phandle should be a
++          reference to a valid mipi_dsi_host device node.
 +
-+	for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
-+		if (clkout_rates[i] <= rate)
-+			return clkout_rates[i];
-+	return 0;
-+}
++      port@1:
++        type: object
++        description: |
++          Video port for LVDS output (panel or connector).
 +
-+static int vsc8531_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
-+				   unsigned long parent_rate)
-+{
-+	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
++      port@2:
++        type: object
++        description: |
++          Video port for Dual link LVDS output (panel or connector).
 +
-+	vsc8531->clkout_rate = rate;
-+	return 0;
-+}
++    required:
++      - port@0
++      - port@1
 +
-+static int vsc8531_clkout_prepare(struct clk_hw *hw)
-+{
-+	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
++required:
++ - compatible
++ - reg
++ - vdd-supply
++ - vddio-supply
++ - stby-gpios
++ - reset-gpios
++ - ports
 +
-+	vsc8531->clkout_enabled = true;
-+	return 0;
-+}
++examples:
++ - |
++    #include <dt-bindings/gpio/gpio.h>
 +
-+static void vsc8531_clkout_unprepare(struct clk_hw *hw)
-+{
-+	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
++    i2c@78b8000 {
++        /* On High speed expansion */
++        label = "HS-I2C2";
++        reg = <0x078b8000 0x500>;
++        clock-frequency = <400000>; /* fastmode operation */
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+	vsc8531->clkout_enabled = false;
-+}
++        tc_bridge: bridge@f {
++            compatible = "toshiba,tc358775";
++            reg = <0x0f>;
 +
-+static int vsc8531_clkout_is_prepared(struct clk_hw *hw)
-+{
-+	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
++            vdd-supply = <&pm8916_l2>;
++            vddio-supply = <&pm8916_l6>;
 +
-+	return vsc8531->clkout_enabled;
-+}
++            stby-gpios = <&msmgpio 99 GPIO_ACTIVE_LOW>;
++            reset-gpios = <&msmgpio 72 GPIO_ACTIVE_LOW>;
 +
-+static const struct clk_ops vsc8531_clkout_ops = {
-+	.prepare = vsc8531_clkout_prepare,
-+	.unprepare = vsc8531_clkout_unprepare,
-+	.is_prepared = vsc8531_clkout_is_prepared,
-+	.recalc_rate = vsc8531_clkout_recalc_rate,
-+	.round_rate = vsc8531_clkout_round_rate,
-+	.set_rate = vsc8531_clkout_set_rate,
-+};
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
 +
-+static int vsc8531_register_clkout(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *vsc8531 = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *of_node = dev->of_node;
-+	struct clk_init_data init;
-+	int ret;
++                port@0 {
++                    reg = <0>;
++                    d2l_in_test: endpoint {
++                        remote-endpoint = <&dsi0_out>;
++                    };
++                };
 +
-+	init.name = "vsc8531-clkout";
-+	init.ops = &vsc8531_clkout_ops;
-+	init.flags = 0;
-+	init.parent_names = NULL;
-+	init.num_parents = 0;
-+	vsc8531->clkout_hw.init = &init;
++                port@1 {
++                    reg = <1>;
++                    lvds_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++            };
++        };
++    };
 +
-+	/* optional override of the clockname */
-+	of_property_read_string(of_node, "clock-output-names", &init.name);
++    dsi@1a98000 {
++        reg = <0x1a98000 0x25c>;
++        reg-names = "dsi_ctrl";
 +
-+	/* register the clock */
-+	ret = devm_clk_hw_register(dev, &vsc8531->clkout_hw);
-+	if (!ret)
-+		ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+						  &vsc8531->clkout_hw);
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    remote-endpoint = <&d2l_in_test>;
++                        data-lanes = <0 1 2 3>;
++                };
++             };
++         };
++     };
 +
-+	return ret;
-+}
-+#else
-+static int vsc8531_register_clkout(struct phy_device *phydev)
-+{
-+	return 0;
-+}
-+#endif
++ - |
++    i2c@78b8000 {
++        /* On High speed expansion */
++        label = "HS-I2C2";
++        reg = <0x078b8000 0x500>;
++        clock-frequency = <400000>; /* fastmode operation */
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
- static int vsc85xx_probe_helper(struct phy_device *phydev,
- 				u32 *leds, int num_leds, u16 led_modes,
- 				const struct vsc85xx_hw_stat *stats, int nstats)
-@@ -1981,6 +2119,34 @@ static int vsc8514_probe(struct phy_device *phydev)
- 				     vsc8531->base_addr, 0);
- }
- 
-+static int vsc8531_probe(struct phy_device *phydev)
-+{
-+	struct vsc8531_private *vsc8531;
-+	int rate_magic, rc;
-+	u32 default_mode[2] = {VSC8531_LINK_1000_ACTIVITY,
-+	   VSC8531_LINK_100_ACTIVITY};
++        tc_bridge_dual: bridge@f {
++            compatible = "toshiba,tc358775";
++            reg = <0x0f>;
 +
-+	rate_magic = vsc85xx_edge_rate_magic_get(phydev);
-+	if (rate_magic < 0)
-+		return rate_magic;
++            vdd-supply = <&pm8916_l2>;
++            vddio-supply = <&pm8916_l6>;
 +
-+	rc = vsc85xx_probe_helper(phydev, default_mode,
-+				  ARRAY_SIZE(default_mode),
-+				  VSC85XX_SUPP_LED_MODES,
-+				  vsc85xx_hw_stats,
-+				  ARRAY_SIZE(vsc85xx_hw_stats));
-+	if (rc < 0)
-+		return rc;
++            stby-gpios = <&msmgpio 99 GPIO_ACTIVE_LOW>;
++            reset-gpios = <&msmgpio 72 GPIO_ACTIVE_LOW>;
 +
-+	vsc8531 = phydev->priv;
-+	vsc8531->rate_magic = rate_magic;
-+	rc = vsc8531_register_clkout(phydev);
-+	if (rc < 0)
-+		return rc;
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
 +
-+	return 0;
-+}
++                port@0 {
++                    reg = <0>;
++                    d2l_in_dual: endpoint {
++                        remote-endpoint = <&dsi0_out_dual>;
++                    };
++                };
 +
- static int vsc8574_probe(struct phy_device *phydev)
- {
- 	struct vsc8531_private *vsc8531;
-@@ -2136,14 +2302,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask	= 0xfffffff0,
- 	/* PHY_BASIC_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init	= &vsc85xx_config_init,
-+	.config_init	= &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt	= &vsc85xx_ack_interrupt,
- 	.config_intr	= &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2160,14 +2326,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask    = 0xfffffff0,
- 	/* PHY_GBIT_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init    = &vsc85xx_config_init,
-+	.config_init    = &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt  = &vsc85xx_ack_interrupt,
- 	.config_intr    = &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2184,14 +2350,14 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask	= 0xfffffff0,
- 	/* PHY_BASIC_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init	= &vsc85xx_config_init,
-+	.config_init	= &vsc8531_config_init,
- 	.config_aneg	= &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt	= &vsc85xx_ack_interrupt,
- 	.config_intr	= &vsc85xx_config_intr,
- 	.suspend	= &genphy_suspend,
- 	.resume		= &genphy_resume,
--	.probe		= &vsc85xx_probe,
-+	.probe		= &vsc8531_probe,
- 	.set_wol	= &vsc85xx_wol_set,
- 	.get_wol	= &vsc85xx_wol_get,
- 	.get_tunable	= &vsc85xx_get_tunable,
-@@ -2208,7 +2374,7 @@ static struct phy_driver vsc85xx_driver[] = {
- 	.phy_id_mask    = 0xfffffff0,
- 	/* PHY_GBIT_FEATURES */
- 	.soft_reset	= &genphy_soft_reset,
--	.config_init    = &vsc85xx_config_init,
-+	.config_init    = &vsc8531_config_init,
- 	.config_aneg    = &vsc85xx_config_aneg,
- 	.read_status	= &vsc85xx_read_status,
- 	.ack_interrupt  = &vsc85xx_ack_interrupt,
++                port@1 {
++                    reg = <1>;
++                    lvds0_out: endpoint {
++                        remote-endpoint = <&panel_in0>;
++                    };
++                };
++
++                port@2 {
++                    reg = <2>;
++                    lvds1_out: endpoint {
++                        remote-endpoint = <&panel_in1>;
++                    };
++                };
++            };
++        };
++    };
++
++    dsi@1a98000 {
++        reg = <0x1a98000 0x25c>;
++        reg-names = "dsi_ctrl";
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            port@1 {
++                reg = <1>;
++                dsi0_out_dual: endpoint {
++                    remote-endpoint = <&d2l_in_dual>;
++                        data-lanes = <0 1 2 3>;
++                };
++             };
++         };
++     };
++...
 -- 
-2.26.2
+2.17.1
 
