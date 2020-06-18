@@ -2,325 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FE91FF414
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 16:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2A51FF430
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 16:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730394AbgFROAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 10:00:33 -0400
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:52085 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726001AbgFROAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 10:00:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1592488822; x=1624024822;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=QB9wm8Fo6I2/YhcmOTVX/KxCde3ih10btCAG/q4hqX4=;
-  b=L4kosCPCQQTjhL4YoDHKx8mnea7vHmvlvObP5sEoK7jSBc4sYRh+8lLW
-   n3kM+vBACoe0wNX1+RpwY0nq5nFpgi/77KJUif/6Kqi2dS3bunSf/D+r9
-   asKX0TkJ+/Z9XwqvhnGT2KpmDU6cgWdqfwD6F9q9wkoFHgEUJYLUV6rUc
-   D23fSNrYfiTBHQQeTcygpkl/irHiGh4Hbs/UMiy1HuG3O0NPePH4tIgOd
-   Jx7cv/axetRlXc+GJJaIdspP7K8yuXsofnlKkkbS73afGU2ZjYLe9Mp7P
-   73K1tO4nPjPjWfecTTwG8mnpdApsvR72w5YVhD/T1blsH7ANtz9KZNmli
-   A==;
-IronPort-SDR: f0aEsqmIh9JqiIDzUadnFBk2wzwGUZs/QD7/YV6FO8bg0GzRrNg+jDDGlVIWL0RO83y2JPv+eV
- IzAdzuYawhTHRKrus5guwGESAvJdrF1KFmaBPhuYl2tv6zMB78djyuqoEUbDYx99dk45VR2gUY
- brnG5tUri9rEbMY4DKKVGp0RApa4k3w0/5KtPyzD1/sKjV0qhThL205pEg8a28Xv7/LqHKIEcK
- aJ7xbZD0VfWgRKr27K1C5SO4+e8KV58U1+vMK/nQMFJfpOKX0CoM12LnZcefgM0ItAdJcXKxja
- 0cM=
-X-IronPort-AV: E=Sophos;i="5.73,526,1583218800"; 
-   d="scan'208";a="78949088"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jun 2020 07:00:21 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 18 Jun 2020 07:00:14 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 18 Jun 2020 07:00:18 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v4 3/3] hwmon: sparx5: Add Sparx5 SoC temperature driver
-Date:   Thu, 18 Jun 2020 15:59:51 +0200
-Message-ID: <20200618135951.25441-4-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200618135951.25441-1-lars.povlsen@microchip.com>
-References: <20200618135951.25441-1-lars.povlsen@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+        id S1726955AbgFROIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 10:08:02 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:28282 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730360AbgFROIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 10:08:01 -0400
+X-Greylist: delayed 364 seconds by postgrey-1.27 at vger.kernel.org; Thu, 18 Jun 2020 10:07:58 EDT
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 18 Jun 2020 07:01:54 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 18 Jun 2020 07:01:52 -0700
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 18 Jun 2020 19:31:28 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 5292D4A0A; Thu, 18 Jun 2020 19:31:27 +0530 (IST)
+From:   Kalyan Thota <kalyan_t@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        dianders@chromium.org, mkrishn@codeaurora.org,
+        travitej@codeaurora.org, nganji@codeaurora.org
+Subject: [v8] drm/msm/dpu: ensure device suspend happens during PM sleep
+Date:   Thu, 18 Jun 2020 19:31:24 +0530
+Message-Id: <1592488884-21890-1-git-send-email-kalyan_t@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a temperature sensor driver to the Sparx5 SoC.
+"The PM core always increments the runtime usage counter
+before calling the ->suspend() callback and decrements it
+after calling the ->resume() callback"
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+DPU and DSI are managed as runtime devices. When
+suspend is triggered, PM core adds a refcount on all the
+devices and calls device suspend, since usage count is
+already incremented, runtime suspend was not getting called
+and it kept the clocks on which resulted in target not
+entering into XO shutdown.
+
+Add changes to force suspend on runtime devices during pm sleep.
+
+Changes in v1:
+ - Remove unnecessary checks in the function
+    _dpu_kms_disable_dpu (Rob Clark).
+
+Changes in v2:
+ - Avoid using suspend_late to reset the usagecount
+   as suspend_late might not be called during suspend
+   call failures (Doug).
+
+Changes in v3:
+ - Use force suspend instead of managing device usage_count
+   via runtime put and get API's to trigger callbacks (Doug).
+
+Changes in v4:
+ - Check the return values of pm_runtime_force_suspend and
+   pm_runtime_force_resume API's and pass appropriately (Doug).
+
+Changes in v5:
+ - With v4 patch, test cycle has uncovered issues in device resume.
+
+   On bubs: cmd tx failures were seen as SW is sending panel off
+   commands when the dsi resources are turned off.
+
+   Upon suspend, DRM driver will issue a NULL composition to the
+   dpu, followed by turning off all the HW blocks.
+
+   v5 changes will serialize the NULL commit and resource unwinding
+   by handling them under PM prepare and PM complete phases there by
+   ensuring that clks are on when panel off commands are being
+   processed.
+
+Changes in v6:
+- Use drm_mode_config_helper_suspend/resume() instead of legacy API
+  drm_atomic_helper_suspend/resume() (Doug).
+
+  Trigger runtime callbacks from the suspend/resume call to turn
+  off the resources.
+
+Changes in v7:
+- Add "__maybe_unused" to the functions to avoid compilation
+  failures. Cleanup unnecessary configs (Doug).
+
+Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 ---
- Documentation/hwmon/sparx5-temp.rst |  33 ++++++
- drivers/hwmon/Kconfig               |  10 ++
- drivers/hwmon/Makefile              |   1 +
- drivers/hwmon/sparx5-temp.c         | 168 ++++++++++++++++++++++++++++
- 4 files changed, 212 insertions(+)
- create mode 100644 Documentation/hwmon/sparx5-temp.rst
- create mode 100644 drivers/hwmon/sparx5-temp.c
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c |  2 +
+ drivers/gpu/drm/msm/dsi/dsi.c           |  2 +
+ drivers/gpu/drm/msm/msm_drv.c           | 67 +++++++++++++++------------------
+ 3 files changed, 35 insertions(+), 36 deletions(-)
 
-diff --git a/Documentation/hwmon/sparx5-temp.rst b/Documentation/hwmon/sparx5-temp.rst
-new file mode 100644
-index 0000000000000..0140809089542
---- /dev/null
-+++ b/Documentation/hwmon/sparx5-temp.rst
-@@ -0,0 +1,33 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+Microchip SparX-5 SoC
-+=====================
-+
-+Supported chips:
-+
-+  * VSC7546, VSC7549, VSC755, VSC7556, and VSC7558 (Sparx5 series)
-+
-+    Prefix: 'sparx5-temp'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: Provided by Microchip upon request and under NDA
-+
-+Author: Lars Povlsen <lars.povlsen@microchip.com>
-+
-+Description
-+-----------
-+
-+The Sparx5 SoC contains a temperature sensor based on the MR74060
-+Moortec IP.
-+
-+The sensor has a range of -40°C to +125°C and an accuracy of +/-5°C.
-+
-+Sysfs entries
-+-------------
-+
-+The following attributes are supported.
-+
-+======================= ========================================================
-+temp1_input		Die temperature (in millidegree Celsius.)
-+======================= ========================================================
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 288ae9f63588c..7fb5e0c6c6306 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -515,6 +515,16 @@ config SENSORS_I5K_AMB
- 	  This driver can also be built as a module. If so, the module
- 	  will be called i5k_amb.
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index a5da7aa..dcf5b9a 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -1150,6 +1150,8 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
  
-+config SENSORS_SPARX5
-+	tristate "Sparx5 SoC temperature sensor"
-+	depends on ARCH_SPARX5 || COMPILE_TEST
-+	help
-+	  If you say yes here you get support for temperature monitoring
-+	  with the Microchip Sparx5 SoC.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called sparx5-temp.
-+
- config SENSORS_F71805F
- 	tristate "Fintek F71805F/FG, F71806F/FG and F71872F/FG"
- 	depends on !PPC
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 3e32c21f5efe3..857293f650412 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -167,6 +167,7 @@ obj-$(CONFIG_SENSORS_SMM665)	+= smm665.o
- obj-$(CONFIG_SENSORS_SMSC47B397)+= smsc47b397.o
- obj-$(CONFIG_SENSORS_SMSC47M1)	+= smsc47m1.o
- obj-$(CONFIG_SENSORS_SMSC47M192)+= smsc47m192.o
-+obj-$(CONFIG_SENSORS_SPARX5)	+= sparx5-temp.o
- obj-$(CONFIG_SENSORS_STTS751)	+= stts751.o
- obj-$(CONFIG_SENSORS_AMC6821)	+= amc6821.o
- obj-$(CONFIG_SENSORS_TC74)	+= tc74.o
-diff --git a/drivers/hwmon/sparx5-temp.c b/drivers/hwmon/sparx5-temp.c
-new file mode 100644
-index 0000000000000..7d7a060259a80
---- /dev/null
-+++ b/drivers/hwmon/sparx5-temp.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/* Sparx5 SoC temperature sensor driver
-+ *
-+ * Copyright (C) 2020 Lars Povlsen <lars.povlsen@microchip.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/hwmon.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#define TEMP_CTRL		0
-+#define TEMP_CFG		4
-+#define  TEMP_CFG_CYCLES	GENMASK(24, 15)
-+#define  TEMP_CFG_ENA		BIT(0)
-+#define TEMP_STAT		8
-+#define  TEMP_STAT_VALID	BIT(12)
-+#define  TEMP_STAT_TEMP		GENMASK(11, 0)
-+
-+struct s5_hwmon {
-+	void __iomem *base;
-+	struct clk *clk;
-+};
-+
-+static void s5_temp_clk_disable(void *data)
-+{
-+	struct clk *clk = data;
-+
-+	clk_disable_unprepare(clk);
+ static const struct dev_pm_ops dpu_pm_ops = {
+ 	SET_RUNTIME_PM_OPS(dpu_runtime_suspend, dpu_runtime_resume, NULL)
++	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
++				pm_runtime_force_resume)
+ };
+ 
+ static const struct of_device_id dpu_dt_match[] = {
+diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
+index 55ea4bc2..62704885 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi.c
++++ b/drivers/gpu/drm/msm/dsi/dsi.c
+@@ -161,6 +161,8 @@ static int dsi_dev_remove(struct platform_device *pdev)
+ 
+ static const struct dev_pm_ops dsi_pm_ops = {
+ 	SET_RUNTIME_PM_OPS(msm_dsi_runtime_suspend, msm_dsi_runtime_resume, NULL)
++	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
++				pm_runtime_force_resume)
+ };
+ 
+ static struct platform_driver dsi_driver = {
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index f6ce40b..6d294c8 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -1039,75 +1039,70 @@ static int msm_ioctl_submitqueue_close(struct drm_device *dev, void *data,
+ 	.patchlevel         = MSM_VERSION_PATCHLEVEL,
+ };
+ 
+-#ifdef CONFIG_PM_SLEEP
+-static int msm_pm_suspend(struct device *dev)
++static int __maybe_unused msm_runtime_suspend(struct device *dev)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct msm_drm_private *priv = ddev->dev_private;
++	struct msm_mdss *mdss = priv->mdss;
+ 
+-	if (WARN_ON(priv->pm_state))
+-		drm_atomic_state_put(priv->pm_state);
++	DBG("");
+ 
+-	priv->pm_state = drm_atomic_helper_suspend(ddev);
+-	if (IS_ERR(priv->pm_state)) {
+-		int ret = PTR_ERR(priv->pm_state);
+-		DRM_ERROR("Failed to suspend dpu, %d\n", ret);
+-		return ret;
+-	}
++	if (mdss && mdss->funcs)
++		return mdss->funcs->disable(mdss);
+ 
+ 	return 0;
+ }
+ 
+-static int msm_pm_resume(struct device *dev)
++static int __maybe_unused msm_runtime_resume(struct device *dev)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct msm_drm_private *priv = ddev->dev_private;
+-	int ret;
++	struct msm_mdss *mdss = priv->mdss;
+ 
+-	if (WARN_ON(!priv->pm_state))
+-		return -ENOENT;
++	DBG("");
+ 
+-	ret = drm_atomic_helper_resume(ddev, priv->pm_state);
+-	if (!ret)
+-		priv->pm_state = NULL;
++	if (mdss && mdss->funcs)
++		return mdss->funcs->enable(mdss);
+ 
+-	return ret;
++	return 0;
+ }
+-#endif
+ 
+-#ifdef CONFIG_PM
+-static int msm_runtime_suspend(struct device *dev)
++static int __maybe_unused msm_pm_suspend(struct device *dev)
+ {
+-	struct drm_device *ddev = dev_get_drvdata(dev);
+-	struct msm_drm_private *priv = ddev->dev_private;
+-	struct msm_mdss *mdss = priv->mdss;
+ 
+-	DBG("");
++	if (pm_runtime_suspended(dev))
++		return 0;
+ 
+-	if (mdss && mdss->funcs)
+-		return mdss->funcs->disable(mdss);
++	return msm_runtime_suspend(dev);
 +}
-+
-+static void s5_temp_enable(struct s5_hwmon *hwmon)
+ 
+-	return 0;
++static int __maybe_unused msm_pm_resume(struct device *dev)
 +{
-+	u32 val = readl(hwmon->base + TEMP_CFG);
-+	u32 clk = clk_get_rate(hwmon->clk) / USEC_PER_SEC;
-+
-+	val &= ~TEMP_CFG_CYCLES;
-+	val |= FIELD_PREP(TEMP_CFG_CYCLES, clk);
-+	val |= TEMP_CFG_ENA;
-+
-+	writel(val, hwmon->base + TEMP_CFG);
-+}
-+
-+static int s5_read(struct device *dev, enum hwmon_sensor_types type,
-+		   u32 attr, int channel, long *temp)
-+{
-+	struct s5_hwmon *hwmon = dev_get_drvdata(dev);
-+	int rc = 0, value;
-+	u32 stat;
-+
-+	switch (attr) {
-+	case hwmon_temp_input:
-+		stat = readl_relaxed(hwmon->base + TEMP_STAT);
-+		if (!(stat & TEMP_STAT_VALID))
-+			return -EIO;
-+		value = stat & TEMP_STAT_TEMP;
-+		/*
-+		 * From register documentation:
-+		 * Temp(C) = TEMP_SENSOR_STAT.TEMP / 4096 * 352.2 - 109.4
-+		 */
-+		value = DIV_ROUND_CLOSEST(value * 3522, 4096) - 1094;
-+		/*
-+		 * Scale down by 10 from above and multiply by 1000 to
-+		 * have millidegrees as specified by the hwmon sysfs
-+		 * interface.
-+		 */
-+		value *= 100;
-+		*temp = value;
-+		break;
-+	default:
-+		rc = -EOPNOTSUPP;
-+		break;
-+	}
-+
-+	return rc;
-+}
-+
-+static umode_t s5_is_visible(const void *_data, enum hwmon_sensor_types type,
-+			     u32 attr, int channel)
-+{
-+	if (type != hwmon_temp)
++	if (pm_runtime_suspended(dev))
 +		return 0;
 +
-+	switch (attr) {
-+	case hwmon_temp_input:
-+		return 0444;
-+	default:
-+		return 0;
-+	}
++	return msm_runtime_resume(dev);
+ }
+ 
+-static int msm_runtime_resume(struct device *dev)
++static int __maybe_unused msm_pm_prepare(struct device *dev)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+-	struct msm_drm_private *priv = ddev->dev_private;
+-	struct msm_mdss *mdss = priv->mdss;
+ 
+-	DBG("");
++	return drm_mode_config_helper_suspend(ddev);
 +}
-+
-+static const struct hwmon_channel_info *s5_info[] = {
-+	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops s5_hwmon_ops = {
-+	.is_visible = s5_is_visible,
-+	.read = s5_read,
-+};
-+
-+static const struct hwmon_chip_info s5_chip_info = {
-+	.ops = &s5_hwmon_ops,
-+	.info = s5_info,
-+};
-+
-+static int s5_temp_probe(struct platform_device *pdev)
+ 
+-	if (mdss && mdss->funcs)
+-		return mdss->funcs->enable(mdss);
++static void __maybe_unused msm_pm_complete(struct device *dev)
 +{
-+	struct device *hwmon_dev;
-+	struct s5_hwmon *hwmon;
-+	int ret;
-+
-+	hwmon = devm_kzalloc(&pdev->dev, sizeof(*hwmon), GFP_KERNEL);
-+	if (!hwmon)
-+		return -ENOMEM;
-+
-+	hwmon->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(hwmon->base))
-+		return PTR_ERR(hwmon->base);
-+
-+	hwmon->clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(hwmon->clk))
-+		return PTR_ERR(hwmon->clk);
-+
-+	ret = clk_prepare_enable(hwmon->clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(&pdev->dev, s5_temp_clk_disable,
-+				       hwmon->clk);
-+	if (ret)
-+		return ret;
-+
-+	s5_temp_enable(hwmon);
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev,
-+							 "s5_temp",
-+							 hwmon,
-+							 &s5_chip_info,
-+							 NULL);
-+
-+	return PTR_ERR_OR_ZERO(hwmon_dev);
-+}
-+
-+const struct of_device_id s5_temp_match[] = {
-+	{ .compatible = "microchip,sparx5-temp" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, s5_temp_match);
-+
-+static struct platform_driver s5_temp_driver = {
-+	.probe = s5_temp_probe,
-+	.driver = {
-+		.name = "sparx5-temp",
-+		.of_match_table = s5_temp_match,
-+	},
-+};
-+
-+module_platform_driver(s5_temp_driver);
-+
-+MODULE_AUTHOR("Lars Povlsen <lars.povlsen@microchip.com>");
-+MODULE_DESCRIPTION("Sparx5 SoC temperature sensor driver");
-+MODULE_LICENSE("GPL");
++	struct drm_device *ddev = dev_get_drvdata(dev);
+ 
+-	return 0;
++	drm_mode_config_helper_resume(ddev);
+ }
+-#endif
+ 
+ static const struct dev_pm_ops msm_pm_ops = {
+ 	SET_SYSTEM_SLEEP_PM_OPS(msm_pm_suspend, msm_pm_resume)
+ 	SET_RUNTIME_PM_OPS(msm_runtime_suspend, msm_runtime_resume, NULL)
++	.prepare = msm_pm_prepare,
++	.complete = msm_pm_complete,
+ };
+ 
+ /*
 -- 
-2.27.0
+1.9.1
 
