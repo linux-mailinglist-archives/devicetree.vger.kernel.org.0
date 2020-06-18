@@ -2,177 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 164661FF307
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 15:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A601FF352
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 15:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730150AbgFRN23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 09:28:29 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46684 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726940AbgFRN22 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jun 2020 09:28:28 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jluac-0017L3-KI; Thu, 18 Jun 2020 15:28:22 +0200
-Date:   Thu, 18 Jun 2020 15:28:22 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        christoph.muellner@theobroma-systems.com,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: Re: [PATCH v5 3/3] net: phy: mscc: handle the clkout control on some
- phy variants
-Message-ID: <20200618132822.GN249144@lunn.ch>
-References: <20200618121139.1703762-1-heiko@sntech.de>
- <20200618121139.1703762-4-heiko@sntech.de>
+        id S1728677AbgFRNjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 09:39:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726940AbgFRNjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 09:39:53 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E2BC06174E
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 06:39:53 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id g10so5237190wmh.4
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 06:39:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H6ws5AN2gH/ZiOdspNX8JAYcJN9c0/VZx4zNXLUq8GI=;
+        b=FHHrWn8i0/uhA5RE5+7c1j1C39NVsVwwsgck4hphIPZLqfYTq29tsj11tR6f9cBaAt
+         6TmEuJlHllVL/8vLKk6l/pVrBd0N9GLj9CAwAHk3yLBjZDI0X2y/Yt/qF/Z42DnlrM9Y
+         4vCQd42mvljCAqEEMnRcSvsltYzC+cr9RszzuzV54RMVurR6A3ufE669rBzgFSxVUBG3
+         0hPqMsPU3mbJQpGG3CTffcxdg7lWEaqsT6T1XS04wMyktJGVe7vJMXss+4cj5ZeaC1X3
+         X6hpRA0q+kQrkzc9Ta/DqCRmvmcNphhJSQ0wxI3CWUyGbD/ldx5bttqb+7L+Gtq96XmN
+         QHTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=H6ws5AN2gH/ZiOdspNX8JAYcJN9c0/VZx4zNXLUq8GI=;
+        b=rKxtv8fAnlT3jUGkEdmqVJcMIogmEcEM4/3/nCK3d1A0cfJWwPfj1Nu/Czl2mEQmm1
+         6+zO75euqZ63C6aSHFzkxMIZcNdi4Xfy9BQtQe49ummAskZ5DCJWwQZUkHTyvDpUZD5K
+         xDd4lDua/xJ3urBfGeFlbyLeFWw1HEPeQNBLGPs9Yb9Fo3OG5hsr7TMZpZqtd1EfyvV4
+         gAQ5JGZBp4mflDP+RczTgMB0RgjWahmMLIYDrbewu65FeN0WqckqvsDFFwoZ+BGKCZTB
+         DJTPC9Dl+9plzGzT8dx461SHUZ6vJVxpjJB/6lE/fC9xsIg74D0fgowkQvYCoNtrCH9e
+         cXhw==
+X-Gm-Message-State: AOAM531JoUqqcDa2vGFEQUZM+YW6OYJaIeJ4pCO+DEu03LLIkzBPgOOm
+        P99zlaimMNr9YSmGaHneedR3Vg==
+X-Google-Smtp-Source: ABdhPJyrG7bH+O0VHvWdkBe0MqobzzwyutO1gMaXD9rzuHT+ROTcJD8jawgBy5bTDLthiZjKhkoxcQ==
+X-Received: by 2002:a7b:cf35:: with SMTP id m21mr4301732wmg.181.1592487591671;
+        Thu, 18 Jun 2020 06:39:51 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc? ([2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc])
+        by smtp.gmail.com with ESMTPSA id o1sm3789513wrw.20.2020.06.18.06.39.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jun 2020 06:39:50 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: add missing gxl rng clock
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200617125346.1163527-1-jbrunet@baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <df1d9338-ac3a-7887-451a-03c0f7df1b00@baylibre.com>
+Date:   Thu, 18 Jun 2020 15:39:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200618121139.1703762-4-heiko@sntech.de>
+In-Reply-To: <20200617125346.1163527-1-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 18, 2020 at 02:11:39PM +0200, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+On 17/06/2020 14:53, Jerome Brunet wrote:
+> The peripheral clock of the RNG is missing for gxl while it is present
+> for gxbb.
 > 
-> At least VSC8530/8531/8540/8541 contain a clock output that can emit
-> a predefined rate of 25, 50 or 125MHz.
-> 
-> This may then feed back into the network interface as source clock.
-> So expose a clock-provider from the phy using the common clock framework
-> to allow setting the rate.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> Fixes: 1b3f6d148692 ("ARM64: dts: meson-gx: add clock CLKID_RNG0 to hwrng node")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/net/phy/mscc/mscc.h      |  13 +++
->  drivers/net/phy/mscc/mscc_main.c | 182 +++++++++++++++++++++++++++++--
->  2 files changed, 187 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/net/phy/mscc/mscc.h b/drivers/net/phy/mscc/mscc.h
-> index fbcee5fce7b2..94883dab5cc1 100644
-> --- a/drivers/net/phy/mscc/mscc.h
-> +++ b/drivers/net/phy/mscc/mscc.h
-> @@ -218,6 +218,13 @@ enum rgmii_clock_delay {
->  #define INT_MEM_DATA_M			  0x00ff
->  #define INT_MEM_DATA(x)			  (INT_MEM_DATA_M & (x))
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> index fc59c8534c0f..6c8b189884ca 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> @@ -337,6 +337,11 @@ clkc: clock-controller {
+>  	};
+>  };
 >  
-> +#define MSCC_CLKOUT_CNTL		  13
-> +#define CLKOUT_ENABLE			  BIT(15)
-> +#define CLKOUT_FREQ_MASK		  GENMASK(14, 13)
-> +#define CLKOUT_FREQ_25M			  (0x0 << 13)
-> +#define CLKOUT_FREQ_50M			  (0x1 << 13)
-> +#define CLKOUT_FREQ_125M		  (0x2 << 13)
+> +&hwrng {
+> +	clocks = <&clkc CLKID_RNG0>;
+> +	clock-names = "core";
+> +};
 > +
->  #define MSCC_PHY_PROC_CMD		  18
->  #define PROC_CMD_NCOMPLETED		  0x8000
->  #define PROC_CMD_FAILED			  0x4000
-> @@ -360,6 +367,12 @@ struct vsc8531_private {
->  	 */
->  	unsigned int base_addr;
->  
-> +#ifdef CONFIG_COMMON_CLK
-> +	struct clk_hw clkout_hw;
-> +#endif
-> +	u32 clkout_rate;
-> +	int clkout_enabled;
-> +
->  #if IS_ENABLED(CONFIG_MACSEC)
->  	/* MACsec fields:
->  	 * - One SecY per device (enforced at the s/w implementation level)
-> diff --git a/drivers/net/phy/mscc/mscc_main.c b/drivers/net/phy/mscc/mscc_main.c
-> index 5d2777522fb4..727a9dd58403 100644
-> --- a/drivers/net/phy/mscc/mscc_main.c
-> +++ b/drivers/net/phy/mscc/mscc_main.c
-> @@ -7,6 +7,7 @@
->   * Copyright (c) 2016 Microsemi Corporation
->   */
->  
-> +#include <linux/clk-provider.h>
->  #include <linux/firmware.h>
->  #include <linux/jiffies.h>
->  #include <linux/kernel.h>
-> @@ -431,7 +432,6 @@ static int vsc85xx_dt_led_mode_get(struct phy_device *phydev,
->  
->  	return led_mode;
->  }
-> -
->  #else
->  static int vsc85xx_edge_rate_magic_get(struct phy_device *phydev)
->  {
-> @@ -1508,6 +1508,43 @@ static int vsc85xx_config_init(struct phy_device *phydev)
->  	return 0;
->  }
->  
-> +static int vsc8531_config_init(struct phy_device *phydev)
-> +{
-> +	struct vsc8531_private *vsc8531 = phydev->priv;
-> +	u16 val;
-> +	int rc;
-> +
-> +	rc = vsc85xx_config_init(phydev);
-> +	if (rc)
-> +		return rc;
-> +
-> +#ifdef CONFIG_COMMON_CLK
-> +	switch (vsc8531->clkout_rate) {
-> +	case 25000000:
-> +		val = CLKOUT_FREQ_25M;
-> +		break;
-> +	case 50000000:
-> +		val = CLKOUT_FREQ_50M;
-> +		break;
-> +	case 125000000:
-> +		val = CLKOUT_FREQ_125M;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (vsc8531->clkout_enabled)
-> +		val |= CLKOUT_ENABLE;
-> +
-> +	rc = phy_write_paged(phydev, MSCC_PHY_PAGE_EXTENDED_GPIO,
-> +			     MSCC_CLKOUT_CNTL, val);
-> +	if (rc)
-> +		return rc;
-> +#endif
-> +
-> +	return 0;
-> +}
-> +
+>  &i2c_A {
+>  	clocks = <&clkc CLKID_I2C>;
+>  };
+> 
 
-> +static int vsc8531_clkout_prepare(struct clk_hw *hw)
-> +{
-> +	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
-> +
-> +	vsc8531->clkout_enabled = true;
-> +	return 0;
-> +}
-> +
-> +static void vsc8531_clkout_unprepare(struct clk_hw *hw)
-> +{
-> +	struct vsc8531_private *vsc8531 = clkout_hw_to_vsc8531(hw);
-> +
-> +	vsc8531->clkout_enabled = false;
-> +}
-> +
-
-> +static const struct clk_ops vsc8531_clkout_ops = {
-> +	.prepare = vsc8531_clkout_prepare,
-> +	.unprepare = vsc8531_clkout_unprepare,
-> +	.is_prepared = vsc8531_clkout_is_prepared,
-> +	.recalc_rate = vsc8531_clkout_recalc_rate,
-> +	.round_rate = vsc8531_clkout_round_rate,
-> +	.set_rate = vsc8531_clkout_set_rate,
-
-I'm not sure this is the expected behaviour. The clk itself should
-only start ticking when the enable callback is called. But this code
-will enable the clock when config_init() is called. I think you should
-implement the enable and disable methods.
-
-	  Andrew
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
