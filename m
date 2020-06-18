@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 981F61FE7DA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754CC1FE7DE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727809AbgFRBLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 21:11:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38830 "EHLO mail.kernel.org"
+        id S1731651AbgFRCn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 22:43:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39190 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728709AbgFRBLF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 21:11:05 -0400
+        id S1728729AbgFRBLW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:11:22 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7B88021D7E;
-        Thu, 18 Jun 2020 01:11:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2328120CC7;
+        Thu, 18 Jun 2020 01:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592442665;
-        bh=nXySQYyZR7XIC8RhMQ6BDal9RFYXQkjxarwlV7ejjg4=;
+        s=default; t=1592442681;
+        bh=FHh/Lq9YZNROzvpJtdQYpz4bIgDSQXre0exYLtvbXsI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oksSqBSdFUTFZz76Fsp50PfymeOiMY2wCJZwx2v9zo35ieaYH06yuo9Rr76QsKmL6
-         cQLKQlMMllPbiDHtxW6KACXZExLJx4LOaz/b1ZAIAI16MWrl34np9uQLmTaIFrveCl
-         uo30EKvIei+psEhg3Egn6c750jIBfYhT16KkOL8c=
+        b=QNwnLXJtfsBVJ5KNChqS+rxrGQRZn64ikAZSSHT7DWzyfCc++yfGapbr2KOilfeks
+         KmFtX6kbp7J3C0sKgoicvs8llEYgONLGDmSy2aTzw+pRtGsJY0C6mdlNLf2FOKC6vR
+         qUSduY6ds25UkjefFwVIT5MeBwa6F486C02C9wpM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 135/388] arm64: dts: qcom: sm8250: Fix PDC compatible and reg
-Date:   Wed, 17 Jun 2020 21:03:52 -0400
-Message-Id: <20200618010805.600873-135-sashal@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 149/388] of: property: Fix create device links for all child-supplier dependencies
+Date:   Wed, 17 Jun 2020 21:04:06 -0400
+Message-Id: <20200618010805.600873-149-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
 References: <20200618010805.600873-1-sashal@kernel.org>
@@ -43,38 +44,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-[ Upstream commit 240031967ac4c63713c6e0c3249d734e23c913aa ]
+[ Upstream commit ed3655729182a59b9bef1b564c6fc2dcbbbe954e ]
 
-The pdc node suffers from both too narrow compatible and insufficient
-cells in the reg, fix these.
+Upon adding a new device from a DT node, we scan its properties and its
+children's properties in order to create a consumer/supplier
+relationship between the device and the property provider.
 
-Fixes: 60378f1a171e ("arm64: dts: qcom: sm8250: Add sm8250 dts file")
-Tested-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Link: https://lore.kernel.org/r/20200415054703.739507-1-bjorn.andersson@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+That said, it's possible for some of the node's children to be disabled,
+which will create links that'll never be fulfilled.
+
+To get around this, use the for_each_available_child_of_node() function
+instead of for_each_available_node() when iterating over the node's
+children.
+
+Fixes: d4387cd11741 ("of: property: Create device links for all child-supplier depencencies")
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Reviewed-by: Saravana Kannan <saravanak@google.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/of/property.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 891d83b2afea..2a7eaefd221d 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -314,8 +314,8 @@ intc: interrupt-controller@17a00000 {
- 		};
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index b4916dcc9e72..a8c2b13521b2 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1296,7 +1296,7 @@ static int of_link_to_suppliers(struct device *dev,
+ 		if (of_link_property(dev, con_np, p->name))
+ 			ret = -ENODEV;
  
- 		pdc: interrupt-controller@b220000 {
--			compatible = "qcom,sm8250-pdc";
--			reg = <0x0b220000 0x30000>, <0x17c000f0 0x60>;
-+			compatible = "qcom,sm8250-pdc", "qcom,pdc";
-+			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
- 			qcom,pdc-ranges = <0 480 94>, <94 609 31>,
- 					  <125 63 1>, <126 716 12>;
- 			#interrupt-cells = <2>;
+-	for_each_child_of_node(con_np, child)
++	for_each_available_child_of_node(con_np, child)
+ 		if (of_link_to_suppliers(dev, child) && !ret)
+ 			ret = -EAGAIN;
+ 
 -- 
 2.25.1
 
