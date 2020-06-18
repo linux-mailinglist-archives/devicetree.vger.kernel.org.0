@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8266C1FE58E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FB01FE552
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730263AbgFRC0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 22:26:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48000 "EHLO mail.kernel.org"
+        id S1729786AbgFRBRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 21:17:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48502 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729337AbgFRBQ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 21:16:57 -0400
+        id S1729782AbgFRBRV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:17:21 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8CF30221F1;
-        Thu, 18 Jun 2020 01:16:55 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8EE9721D7E;
+        Thu, 18 Jun 2020 01:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592443016;
-        bh=ejk+EJeYRWoeW8FoFfjEIL1i0K7Nwb2TypozSGEzoCY=;
+        s=default; t=1592443040;
+        bh=f+TFBHjvg1aZ9AskKDipNue4l9sLDewX4dGhaH9jGPo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NpzjMFI5RjgI7IXJ5IOdgjj+h+G/yY08Kl2wsTS4hvOW0FhD4TESIzU2W/qZZY/kq
-         X1LZlGnEWqL7LFSXEM3hXPuW8RcRlz6rp/0mcypFd0Lwt2tOgpVl2X1hadDIT4LEkL
-         MZvAP6ps821+nCHeo7KTGCMYQbvhePWnd3ZVAaR8=
+        b=gAmS7WcNueaAWUxEeCEEQuLOx1iDVqai7VQeLzaDWN+v/OS9ZAI23GI09T1nEZ51F
+         YJCfPDeCdnI+RDqvjuSkMjR1gHXEF/RR+sVW+DLWUmeasdVXcTpBHoHvGdRrGQVuIT
+         HDrg0QWPzcVQwSsfqvnD22ALluzn+Kwe3RQlTd+E=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 018/266] arm64: dts: meson: fixup SCP sram nodes
-Date:   Wed, 17 Jun 2020 21:12:23 -0400
-Message-Id: <20200618011631.604574-18-sashal@kernel.org>
+Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 036/266] arm64: dts: armada-3720-turris-mox: forbid SDR104 on SDIO for FCC purposes
+Date:   Wed, 17 Jun 2020 21:12:41 -0400
+Message-Id: <20200618011631.604574-36-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618011631.604574-1-sashal@kernel.org>
 References: <20200618011631.604574-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -45,83 +45,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+From: Marek Behún <marek.behun@nic.cz>
 
-[ Upstream commit 9ecded10b4b6af238da0c86197b0418912e7513e ]
+[ Upstream commit 7a2c36b039d2343cc29fec6102da839477b8dc60 ]
 
-The GX and AXG SCP sram nodes were using invalid compatible and
-node names for the sram entries.
+Use sdhci-caps-mask to forbid SDR104 mode on the SDIO capable SDHCI
+controller. Without this the device cannot pass electromagnetic
+interference certifications.
 
-Fixup the sram entries node names, and use proper compatible for them.
-
-It notably fixes:
-sram@c8000000: 'scp-shmem@0', 'scp-shmem@200' do not match any of the regexes: '^([a-z]*-)?sram(-section)?@[a-f0-9]+$', 'pinctrl-[0-9]+'
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Link: https://lore.kernel.org/r/20200326165958.19274-3-narmstrong@baylibre.com
+Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+Signed-off-by: Marek Behún <marek.behun@nic.cz>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  6 +++---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 10 +++++-----
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index bb4a2acb9970..502c4ac45c29 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1728,18 +1728,18 @@ sd_emmc_c: mmc@7000 {
- 		};
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+index 5f350cc71a2f..01f66056d7d5 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+@@ -171,6 +171,8 @@ &sdhci1 {
+ 	marvell,pad-type = "sd";
+ 	vqmmc-supply = <&vsdio_reg>;
+ 	mmc-pwrseq = <&sdhci1_pwrseq>;
++	/* forbid SDR104 for FCC purposes */
++	sdhci-caps-mask = <0x2 0x0>;
+ 	status = "okay";
+ };
  
- 		sram: sram@fffc0000 {
--			compatible = "amlogic,meson-axg-sram", "mmio-sram";
-+			compatible = "mmio-sram";
- 			reg = <0x0 0xfffc0000 0x0 0x20000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0xfffc0000 0x20000>;
- 
--			cpu_scp_lpri: scp-shmem@13000 {
-+			cpu_scp_lpri: scp-sram@13000 {
- 				compatible = "amlogic,meson-axg-scp-shmem";
- 				reg = <0x13000 0x400>;
- 			};
- 
--			cpu_scp_hpri: scp-shmem@13400 {
-+			cpu_scp_hpri: scp-sram@13400 {
- 				compatible = "amlogic,meson-axg-scp-shmem";
- 				reg = <0x13400 0x400>;
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 6733050d735f..ce230d6ac35c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -345,20 +345,20 @@ gic: interrupt-controller@c4301000 {
- 		};
- 
- 		sram: sram@c8000000 {
--			compatible = "amlogic,meson-gx-sram", "amlogic,meson-gxbb-sram", "mmio-sram";
-+			compatible = "mmio-sram";
- 			reg = <0x0 0xc8000000 0x0 0x14000>;
- 
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0xc8000000 0x14000>;
- 
--			cpu_scp_lpri: scp-shmem@0 {
--				compatible = "amlogic,meson-gx-scp-shmem", "amlogic,meson-gxbb-scp-shmem";
-+			cpu_scp_lpri: scp-sram@0 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
- 				reg = <0x13000 0x400>;
- 			};
- 
--			cpu_scp_hpri: scp-shmem@200 {
--				compatible = "amlogic,meson-gx-scp-shmem", "amlogic,meson-gxbb-scp-shmem";
-+			cpu_scp_hpri: scp-sram@200 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
- 				reg = <0x13400 0x400>;
- 			};
- 		};
 -- 
 2.25.1
 
