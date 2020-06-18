@@ -2,60 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF6161FFE15
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 00:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4E571FFE45
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 00:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732345AbgFRW1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 18:27:50 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:48894 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732332AbgFRW1u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jun 2020 18:27:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1592519268; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=roXsRUrgLrTLCItljCLLC5qAULtMMnn5xkIYb7xgpU8=; b=OOh7Pxf7ayaHag+GSRdp7Fq/1SKGyC5KjnzP3HjZLO8dIFufyRyZggTBAxuqewcOg1FMC9Xd
- xDSN1U0pbGulKgEbjs0u7UbX6f802WLcj+Uku4lC1Id4Lri6jZ5zqIQjvvRPOZZI/IfM4g+y
- tL3RA/bB7ORuS6H/q5XFzMgqxvA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 5eebea566bebe35debbade57 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Jun 2020 22:27:34
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 18C5FC4344E; Thu, 18 Jun 2020 22:27:33 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from linuxdisplay-lab-04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tanmay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B93E5C43387;
-        Thu, 18 Jun 2020 22:27:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B93E5C43387
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tanmay@codeaurora.org
-From:   Tanmay Shah <tanmay@codeaurora.org>
-To:     robh+dt@kernel.org, swboyd@chromium.org, sam@ravnborg.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, seanpaul@chromium.org,
-        robdclark@gmail.com, daniel@ffwll.ch, airlied@linux.ie,
-        aravindh@codeaurora.org, abhinavk@codeaurora.org,
-        chandanu@codeaurora.org, varar@codeaurora.org,
-        Tanmay Shah <tanmay@codeaurora.org>
-Subject: [PATCH v7 6/6] drm/msm/dp: Add Display Port HPD feature
-Date:   Thu, 18 Jun 2020 15:26:14 -0700
-Message-Id: <20200618222614.14061-7-tanmay@codeaurora.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200618222614.14061-1-tanmay@codeaurora.org>
-References: <20200618222614.14061-1-tanmay@codeaurora.org>
+        id S1728814AbgFRWoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 18:44:17 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:38619 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728244AbgFRWoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 18:44:17 -0400
+Received: by mail-il1-f195.google.com with SMTP id b5so7598690iln.5;
+        Thu, 18 Jun 2020 15:44:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rfITGv97c7cMb+WeohbiFTmlyExW7qDVisN2PWuDKZk=;
+        b=ULKQxxEpq2nRNL8BrwEvNUEVBcOND6DE4rytLj4gO8kFQMqjqrCjwm8zFpgghvwncj
+         gKnn4SZ9ZBeIzohVjOG+gEvvM013pCR1mXvmsN2s03xvIi0h7FhcwkH0Khej2BMFHZjS
+         2kKwJjhxQ/URAt2TizgKP9e1S/zdMB2mGgXJSNMOhYd+XNZj7WIssbIxVEwxXwP2xW5V
+         ov+r/4g+jgHTWG6njJ+4+rwP45pf7iPZJN7cYjxYKAEppuOC1+R1/BDGZkgv8ktNyl9s
+         F/pnUl7aRJLn9cFxTnypKSB1sAioldZlfx5GCLwDL3blFFMi5mSX79hOVdyIcL1pYzx9
+         Q9yw==
+X-Gm-Message-State: AOAM533qsxSEm0UOAxwjxYW5f01Bv3tGOHCp3RE6k6AFMu04bUNCVFjs
+        kP8rJwKQ7f9ZMEdbj8sBOEL7r0szcA==
+X-Google-Smtp-Source: ABdhPJzXW1Usk/qCclIYZ6LdMhqIbqVz2/F7Pljcz/cri28c7oKoRvdShQh0MP/2pgasCfzcmmEB4Q==
+X-Received: by 2002:a92:5e59:: with SMTP id s86mr819176ilb.104.1592520255062;
+        Thu, 18 Jun 2020 15:44:15 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.253])
+        by smtp.googlemail.com with ESMTPSA id z4sm2333784iot.24.2020.06.18.15.44.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jun 2020 15:44:14 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>
+Subject: [PATCH] dt-bindings: backlight: Convert common backlight bindings to DT schema
+Date:   Thu, 18 Jun 2020 16:44:13 -0600
+Message-Id: <20200618224413.1115849-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,411 +49,369 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure HPD registers in DP controller and
-enable HPD interrupt.
+Convert the common GPIO, LED, and PWM backlight bindings to DT schema
+format.
 
-Add interrupt to handle HPD connect and disconnect events.
+Given there's only 2 common properties and the descriptions are slightly
+different, I opted to not create a common backlight schema.
 
-Signed-off-by: Tanmay Shah <tanmay@codeaurora.org>
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: Daniel Thompson <daniel.thompson@linaro.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c |  18 ++++
- drivers/gpu/drm/msm/dp/dp_catalog.c     |  67 +++++++++------
- drivers/gpu/drm/msm/dp/dp_catalog.h     |   5 +-
- drivers/gpu/drm/msm/dp/dp_ctrl.c        |   1 -
- drivers/gpu/drm/msm/dp/dp_display.c     | 110 ++++++++++++++++++++++--
- drivers/gpu/drm/msm/dp/dp_reg.h         |  12 +++
- drivers/gpu/drm/msm/msm_drv.h           |   6 ++
- 7 files changed, 183 insertions(+), 36 deletions(-)
+ .../leds/backlight/gpio-backlight.txt         | 16 ---
+ .../leds/backlight/gpio-backlight.yaml        | 41 ++++++++
+ .../bindings/leds/backlight/led-backlight.txt | 28 ------
+ .../leds/backlight/led-backlight.yaml         | 58 +++++++++++
+ .../bindings/leds/backlight/pwm-backlight.txt | 61 ------------
+ .../leds/backlight/pwm-backlight.yaml         | 98 +++++++++++++++++++
+ 6 files changed, 197 insertions(+), 105 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/backlight/pwm-backlight.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 1295221d7341..ef17c64dd6e3 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -765,6 +765,23 @@ static void dpu_irq_preinstall(struct msm_kms *kms)
- 	dpu_core_irq_preinstall(dpu_kms);
- }
- 
-+static int dpu_irq_postinstall(struct msm_kms *kms)
-+{
-+	struct msm_drm_private *priv;
-+	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
-+
-+	if (!dpu_kms || !dpu_kms->dev)
-+		return -EINVAL;
-+
-+	priv = dpu_kms->dev->dev_private;
-+	if (!priv)
-+		return -EINVAL;
-+
-+	msm_dp_irq_postinstall(priv->dp);
-+
-+	return 0;
-+}
-+
- static void dpu_irq_uninstall(struct msm_kms *kms)
- {
- 	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
-@@ -775,6 +792,7 @@ static void dpu_irq_uninstall(struct msm_kms *kms)
- static const struct msm_kms_funcs kms_funcs = {
- 	.hw_init         = dpu_kms_hw_init,
- 	.irq_preinstall  = dpu_irq_preinstall,
-+	.irq_postinstall = dpu_irq_postinstall,
- 	.irq_uninstall   = dpu_irq_uninstall,
- 	.irq             = dpu_irq,
- 	.enable_commit   = dpu_kms_enable_commit,
-diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-index 84e7a57f41d0..1b197eebdc5d 100644
---- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-+++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-@@ -17,7 +17,6 @@
- #define POLLING_SLEEP_US			1000
- #define POLLING_TIMEOUT_US			10000
- 
--#define REFTIMER_DEFAULT_VALUE			0x20000
- #define SCRAMBLER_RESET_COUNT_VALUE		0xFC
- 
- #define DP_INTERRUPT_STATUS_ACK_SHIFT	1
-@@ -766,35 +765,51 @@ void dp_catalog_ctrl_enable_irq(struct dp_catalog *dp_catalog,
- 	}
- }
- 
--void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog, bool en)
-+void dp_catalog_hpd_config_intr(struct dp_catalog *dp_catalog,
-+			u32 intr_mask, bool en)
- {
- 	struct dp_catalog_private *catalog = container_of(dp_catalog,
- 				struct dp_catalog_private, dp_catalog);
- 
--	if (en) {
--		u32 reftimer = dp_read_aux(catalog, REG_DP_DP_HPD_REFTIMER);
+diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
+deleted file mode 100644
+index 321be6640533..000000000000
+--- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-gpio-backlight bindings
 -
--		dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
--				DP_DP_HPD_PLUG_INT_ACK |
--				DP_DP_IRQ_HPD_INT_ACK |
--				DP_DP_HPD_REPLUG_INT_ACK |
--				DP_DP_HPD_UNPLUG_INT_ACK);
--		dp_write_aux(catalog, REG_DP_DP_HPD_INT_MASK,
--				DP_DP_HPD_PLUG_INT_MASK |
--				DP_DP_IRQ_HPD_INT_MASK |
--				DP_DP_HPD_REPLUG_INT_MASK |
--				DP_DP_HPD_UNPLUG_INT_MASK);
+-Required properties:
+-  - compatible: "gpio-backlight"
+-  - gpios: describes the gpio that is used for enabling/disabling the backlight.
+-    refer to bindings/gpio/gpio.txt for more details.
 -
--		/* Configure REFTIMER */
--		reftimer |= REFTIMER_DEFAULT_VALUE;
--		dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
--		/* Enable HPD */
--		dp_write_aux(catalog, REG_DP_DP_HPD_CTRL,
--				DP_DP_HPD_CTRL_HPD_EN);
--	} else {
--		/* Disable HPD */
--		dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, 0x0);
--	}
-+	u32 config = dp_read_aux(catalog, REG_DP_DP_HPD_INT_MASK);
-+
-+	config = (en ? config | intr_mask : config & ~intr_mask);
-+
-+	dp_write_aux(catalog, REG_DP_DP_HPD_INT_MASK,
-+				config & DP_DP_HPD_INT_MASK);
-+}
-+
-+void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog)
-+{
-+	struct dp_catalog_private *catalog = container_of(dp_catalog,
-+				struct dp_catalog_private, dp_catalog);
-+
-+	u32 reftimer = dp_read_aux(catalog, REG_DP_DP_HPD_REFTIMER);
-+
-+	/* enable HPD interrupts */
-+	dp_catalog_hpd_config_intr(dp_catalog,
-+		DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK
-+		| DP_DP_HPD_UNPLUG_INT_MASK, true);
-+
-+	/* Configure REFTIMER and enable it */
-+	reftimer |= DP_DP_HPD_REFTIMER_ENABLE;
-+	dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
-+
-+	/* Enable HPD */
-+	dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, DP_DP_HPD_CTRL_HPD_EN);
-+}
-+
-+u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog)
-+{
-+	struct dp_catalog_private *catalog = container_of(dp_catalog,
-+				struct dp_catalog_private, dp_catalog);
-+	int isr = 0;
-+
-+	isr = dp_read_aux(catalog, REG_DP_DP_HPD_INT_STATUS);
-+	dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
-+				 (isr & DP_DP_HPD_INT_MASK));
-+
-+	return isr;
- }
- 
- int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog)
-diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.h b/drivers/gpu/drm/msm/dp/dp_catalog.h
-index 86b82d4fcb42..23d1cec7a517 100644
---- a/drivers/gpu/drm/msm/dp/dp_catalog.h
-+++ b/drivers/gpu/drm/msm/dp/dp_catalog.h
-@@ -60,7 +60,10 @@ void dp_catalog_ctrl_reset(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_usb_reset(struct dp_catalog *dp_catalog, bool flip);
- bool dp_catalog_ctrl_mainlink_ready(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_enable_irq(struct dp_catalog *dp_catalog, bool enable);
--void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog, bool enable);
-+void dp_catalog_hpd_config_intr(struct dp_catalog *dp_catalog,
-+			u32 intr_mask, bool en);
-+void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog);
-+u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_phy_reset(struct dp_catalog *dp_catalog);
- void dp_catalog_ctrl_phy_lane_cfg(struct dp_catalog *dp_catalog, bool flipped,
- 				u8 lane_cnt);
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-index ef08e8bbd476..98407e1d09e4 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-@@ -1569,7 +1569,6 @@ int dp_ctrl_on(struct dp_ctrl *dp_ctrl)
- 	rate = ctrl->panel->link_info.rate;
- 
- 	dp_power_clk_enable(ctrl->power, DP_CORE_PM, true);
--	dp_catalog_ctrl_hpd_config(ctrl->catalog, true);
- 
- 	if (ctrl->link->sink_request & DP_TEST_LINK_PHY_TEST_PATTERN) {
- 		DRM_DEBUG_DP("using phy test link parameters\n");
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index cc9b5294762d..192d2a405253 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -17,6 +17,7 @@
- #include "dp_power.h"
- #include "dp_catalog.h"
- #include "dp_aux.h"
-+#include "dp_reg.h"
- #include "dp_link.h"
- #include "dp_panel.h"
- #include "dp_ctrl.h"
-@@ -36,6 +37,7 @@ struct dp_display_private {
- 	bool power_on;
- 	bool hpd_irq_on;
- 	bool audio_supported;
-+	atomic_t hpd_isr_status;
- 
- 	struct platform_device *pdev;
- 	struct dentry *root;
-@@ -54,6 +56,8 @@ struct dp_display_private {
- 	struct dp_usbpd_cb usbpd_cb;
- 	struct dp_display_mode dp_mode;
- 	struct msm_dp dp_display;
-+
-+	struct delayed_work config_hpd_work;
- };
- 
- static const struct of_device_id dp_dt_match[] = {
-@@ -64,6 +68,20 @@ static const struct of_device_id dp_dt_match[] = {
- static irqreturn_t dp_display_irq(int irq, void *dev_id)
- {
- 	struct dp_display_private *dp = dev_id;
-+	irqreturn_t ret = IRQ_HANDLED;
-+	u32 hpd_isr_status;
-+
-+	if (!dp) {
-+		DRM_ERROR("invalid data\n");
-+		return IRQ_NONE;
-+	}
-+
-+	hpd_isr_status = dp_catalog_hpd_get_intr_status(dp->catalog);
-+
-+	if (hpd_isr_status & DP_DP_HPD_INT_MASK) {
-+		atomic_set(&dp->hpd_isr_status, hpd_isr_status);
-+		ret = IRQ_WAKE_THREAD;
-+	}
- 
- 	/* DP controller isr */
- 	dp_ctrl_isr(dp->ctrl);
-@@ -71,6 +89,54 @@ static irqreturn_t dp_display_irq(int irq, void *dev_id)
- 	/* DP aux isr */
- 	dp_aux_isr(dp->aux);
- 
-+	return ret;
-+}
-+
-+static irqreturn_t dp_display_hpd_isr_work(int irq, void *data)
-+{
-+	struct dp_display_private *dp;
-+	struct dp_usbpd *hpd;
-+	u32 isr = 0;
-+
-+	dp = (struct dp_display_private *)data;
-+	if (!dp)
-+		return IRQ_NONE;
-+
-+	isr = atomic_read(&dp->hpd_isr_status);
-+
-+	/* reset to default */
-+	atomic_set(&dp->hpd_isr_status, 0);
-+
-+	hpd = dp->usbpd;
-+	if (!hpd)
-+		return IRQ_NONE;
-+
-+	if (isr & DP_DP_HPD_PLUG_INT_MASK &&
-+		isr & DP_DP_HPD_STATE_STATUS_CONNECTED) {
-+		hpd->hpd_high = 1;
-+		dp->usbpd_cb.configure(&dp->pdev->dev);
-+	} else if (isr & DP_DP_HPD_UNPLUG_INT_MASK &&
-+		(isr & DP_DP_HPD_STATE_STATUS_MASK) ==
-+			 DP_DP_HPD_STATE_STATUS_DISCONNECTED) {
-+
-+		/* disable HPD plug interrupt until disconnect is done
-+		 */
-+		dp_catalog_hpd_config_intr(dp->catalog,
-+			DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK,
-+			false);
-+
-+		hpd->hpd_high = 0;
-+
-+		/* We don't need separate work for disconnect as
-+		 * connect/attention interrupts are disabled
-+		 */
-+		dp->usbpd_cb.disconnect(&dp->pdev->dev);
-+
-+		dp_catalog_hpd_config_intr(dp->catalog,
-+			DP_DP_HPD_PLUG_INT_MASK | DP_DP_IRQ_HPD_INT_MASK,
-+			true);
-+	}
-+
- 	return IRQ_HANDLED;
- }
- 
-@@ -203,8 +269,6 @@ static int dp_display_process_hpd_high(struct dp_display_private *dp)
- 	int rc = 0;
- 	struct edid *edid;
- 
--	dp_aux_init(dp->aux, dp->parser->aux_cfg);
+-Optional properties:
+-  - default-on: enable the backlight at boot.
 -
- 	if (dp->link->psm_enabled)
- 		goto notify;
- 
-@@ -250,7 +314,7 @@ static void dp_display_host_init(struct dp_display_private *dp)
- 
- 	dp_power_init(dp->power, flip);
- 	dp_ctrl_host_init(dp->ctrl, flip);
--	enable_irq(dp->irq);
-+	dp_aux_init(dp->aux, dp->parser->aux_cfg);
- 	dp->core_initialized = true;
- }
- 
-@@ -261,10 +325,6 @@ static void dp_display_host_deinit(struct dp_display_private *dp)
- 		return;
- 	}
- 
--	dp_ctrl_host_deinit(dp->ctrl);
--	dp_aux_deinit(dp->aux);
--	dp_power_deinit(dp->power);
--	disable_irq(dp->irq);
- 	dp->core_initialized = false;
- }
- 
-@@ -620,7 +680,8 @@ int dp_display_request_irq(struct msm_dp *dp_display)
- 		return rc;
- 	}
- 
--	rc = devm_request_irq(&dp->pdev->dev, dp->irq, dp_display_irq,
-+	rc = devm_request_threaded_irq(&dp->pdev->dev, dp->irq,
-+		dp_display_irq, dp_display_hpd_isr_work,
- 		IRQF_TRIGGER_HIGH, "dp_display_isr", dp);
- 	if (rc < 0) {
- 		DRM_ERROR("failed to request IRQ%u: %d\n",
-@@ -789,6 +850,39 @@ void __exit msm_dp_unregister(void)
- 	platform_driver_unregister(&dp_display_driver);
- }
- 
-+static void dp_display_config_hpd_work(struct work_struct *work)
-+{
-+	struct dp_display_private *dp;
-+	struct delayed_work *dw = to_delayed_work(work);
+-Example:
+-	backlight {
+-		compatible = "gpio-backlight";
+-		gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
+-		default-on;
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+new file mode 100644
+index 000000000000..75cc569b9c55
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/gpio-backlight.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	dp = container_of(dw, struct dp_display_private, config_hpd_work);
++title: gpio-backlight bindings
 +
-+	dp_display_host_init(dp);
-+	dp_catalog_ctrl_hpd_config(dp->catalog);
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++  - Daniel Thompson <daniel.thompson@linaro.org>
++  - Jingoo Han <jingoohan1@gmail.com>
 +
-+	/* set default to 0 */
-+	atomic_set(&dp->hpd_isr_status, 0);
++properties:
++  compatible:
++    const: gpio-backlight
 +
-+	/* Enable interrupt first time
-+	 * we are leaving dp clocks on during disconnect
-+	 * and never disable interrupt
-+	 */
-+	enable_irq(dp->irq);
-+}
++  gpios:
++    description: The gpio that is used for enabling/disabling the backlight.
++    maxItems: 1
 +
-+void msm_dp_irq_postinstall(struct msm_dp *dp_display)
-+{
-+	struct dp_display_private *dp;
++  default-on:
++    description: enable the backlight at boot.
++    type: boolean
 +
-+	if (!dp_display)
-+		return;
++required:
++  - compatible
++  - gpios
 +
-+	dp = container_of(dp_display, struct dp_display_private, dp_display);
++additionalProperties: false
 +
-+	INIT_DELAYED_WORK(&dp->config_hpd_work, dp_display_config_hpd_work);
-+	queue_delayed_work(system_wq, &dp->config_hpd_work, HZ * 10);
-+}
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    backlight {
++        compatible = "gpio-backlight";
++        gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
++        default-on;
++    };
 +
- int msm_dp_modeset_init(struct msm_dp *dp_display, struct drm_device *dev,
- 			struct drm_encoder *encoder)
- {
-diff --git a/drivers/gpu/drm/msm/dp/dp_reg.h b/drivers/gpu/drm/msm/dp/dp_reg.h
-index ad6f1760f893..6b3e297e4e04 100644
---- a/drivers/gpu/drm/msm/dp/dp_reg.h
-+++ b/drivers/gpu/drm/msm/dp/dp_reg.h
-@@ -54,10 +54,22 @@
- #define DP_DP_IRQ_HPD_INT_MASK			(0x00000002)
- #define DP_DP_HPD_REPLUG_INT_MASK		(0x00000004)
- #define DP_DP_HPD_UNPLUG_INT_MASK		(0x00000008)
-+#define DP_DP_HPD_INT_MASK			(DP_DP_HPD_PLUG_INT_MASK | \
-+						DP_DP_IRQ_HPD_INT_MASK | \
-+						DP_DP_HPD_REPLUG_INT_MASK | \
-+						DP_DP_HPD_UNPLUG_INT_MASK)
-+#define DP_DP_HPD_STATE_STATUS_CONNECTED	(0x40000000)
-+#define DP_DP_HPD_STATE_STATUS_PENDING		(0x20000000)
-+#define DP_DP_HPD_STATE_STATUS_DISCONNECTED	(0x00000000)
-+#define DP_DP_HPD_STATE_STATUS_MASK		(0xE0000000)
- 
- #define REG_DP_DP_HPD_REFTIMER			(0x00000018)
-+#define DP_DP_HPD_REFTIMER_ENABLE		(1 << 16)
++...
+diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
+deleted file mode 100644
+index 4c7dfbe7f67a..000000000000
+--- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-led-backlight bindings
+-
+-This binding is used to describe a basic backlight device made of LEDs.
+-It can also be used to describe a backlight device controlled by the output of
+-a LED driver.
+-
+-Required properties:
+-  - compatible: "led-backlight"
+-  - leds: a list of LEDs
+-
+-Optional properties:
+-  - brightness-levels: Array of distinct brightness levels. The levels must be
+-                       in the range accepted by the underlying LED devices.
+-                       This is used to translate a backlight brightness level
+-                       into a LED brightness level. If it is not provided, the
+-                       identity mapping is used.
+-
+-  - default-brightness-level: The default brightness level.
+-
+-Example:
+-
+-	backlight {
+-		compatible = "led-backlight";
+-
+-		leds = <&led1>, <&led2>;
+-		brightness-levels = <0 4 8 16 32 64 128 255>;
+-		default-brightness-level = <6>;
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+new file mode 100644
+index 000000000000..ae50945d2798
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/led-backlight.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #define REG_DP_DP_HPD_EVENT_TIME_0		(0x0000001C)
- #define REG_DP_DP_HPD_EVENT_TIME_1		(0x00000020)
-+#define DP_DP_HPD_EVENT_TIME_0_VAL		(0x3E800FA)
-+#define DP_DP_HPD_EVENT_TIME_1_VAL		(0x1F407D0)
- 
- #define REG_DP_AUX_CTRL				(0x00000030)
- #define DP_AUX_CTRL_ENABLE			(0x00000001)
-diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-index 5e3219be65a1..58e5fe5f35f3 100644
---- a/drivers/gpu/drm/msm/msm_drv.h
-+++ b/drivers/gpu/drm/msm/msm_drv.h
-@@ -390,6 +390,7 @@ int msm_dp_display_disable(struct msm_dp *dp, struct drm_encoder *encoder);
- void msm_dp_display_mode_set(struct msm_dp *dp, struct drm_encoder *encoder,
- 				struct drm_display_mode *mode,
- 				struct drm_display_mode *adjusted_mode);
-+void msm_dp_irq_postinstall(struct msm_dp *dp_display);
- 
- #else
- static inline int __init msm_dp_register(void)
-@@ -421,6 +422,11 @@ static inline void msm_dp_display_mode_set(struct msm_dp *dp,
- 				struct drm_display_mode *adjusted_mode)
- {
- }
++title: led-backlight bindings
 +
-+static inline void msm_dp_irq_postinstall(struct msm_dp *dp_display)
-+{
-+}
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++  - Daniel Thompson <daniel.thompson@linaro.org>
++  - Jingoo Han <jingoohan1@gmail.com>
 +
- #endif
- 
- void __init msm_mdp_register(void);
++description:
++  This binding is used to describe a basic backlight device made of LEDs. It
++  can also be used to describe a backlight device controlled by the output of
++  a LED driver.
++
++properties:
++  compatible:
++    const: led-backlight
++
++  leds:
++    description: A list of LED nodes
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  brightness-levels:
++    description: Array of distinct brightness levels. The levels must be
++      in the range accepted by the underlying LED devices. This is used
++      to translate a backlight brightness level into a LED brightness level.
++      If it is not provided, the identity mapping is used.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  default-brightness-level:
++    description: The default brightness level (index into the array defined
++      by the "brightness-levels" property).
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++dependencies:
++  default-brightness-level: [brightness-levels]
++
++required:
++  - compatible
++  - leds
++
++additionalProperties: false
++
++examples:
++  - |
++    backlight {
++        compatible = "led-backlight";
++
++        leds = <&led1>, <&led2>;
++        brightness-levels = <0 4 8 16 32 64 128 255>;
++        default-brightness-level = <6>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.txt
+deleted file mode 100644
+index 64fa2fbd98c9..000000000000
+--- a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-pwm-backlight bindings
+-
+-Required properties:
+-  - compatible: "pwm-backlight"
+-  - pwms: OF device-tree PWM specification (see PWM binding[0])
+-  - power-supply: regulator for supply voltage
+-
+-Optional properties:
+-  - pwm-names: a list of names for the PWM devices specified in the
+-               "pwms" property (see PWM binding[0])
+-  - enable-gpios: contains a single GPIO specifier for the GPIO which enables
+-                  and disables the backlight (see GPIO binding[1])
+-  - post-pwm-on-delay-ms: Delay in ms between setting an initial (non-zero) PWM
+-                          and enabling the backlight using GPIO.
+-  - pwm-off-delay-ms: Delay in ms between disabling the backlight using GPIO
+-                      and setting PWM value to 0.
+-  - brightness-levels: Array of distinct brightness levels. Typically these
+-                       are in the range from 0 to 255, but any range starting at
+-                       0 will do. The actual brightness level (PWM duty cycle)
+-                       will be interpolated from these values. 0 means a 0% duty
+-                       cycle (darkest/off), while the last value in the array
+-                       represents a 100% duty cycle (brightest).
+-  - default-brightness-level: The default brightness level (index into the
+-                              array defined by the "brightness-levels" property).
+-  - num-interpolated-steps: Number of interpolated steps between each value
+-                            of brightness-levels table. This way a high
+-                            resolution pwm duty cycle can be used without
+-                            having to list out every possible value in the
+-                            brightness-level array.
+-
+-[0]: Documentation/devicetree/bindings/pwm/pwm.txt
+-[1]: Documentation/devicetree/bindings/gpio/gpio.txt
+-
+-Example:
+-
+-	backlight {
+-		compatible = "pwm-backlight";
+-		pwms = <&pwm 0 5000000>;
+-
+-		brightness-levels = <0 4 8 16 32 64 128 255>;
+-		default-brightness-level = <6>;
+-
+-		power-supply = <&vdd_bl_reg>;
+-		enable-gpios = <&gpio 58 0>;
+-		post-pwm-on-delay-ms = <10>;
+-		pwm-off-delay-ms = <10>;
+-	};
+-
+-Example using num-interpolation-steps:
+-
+-	backlight {
+-		compatible = "pwm-backlight";
+-		pwms = <&pwm 0 5000000>;
+-
+-		brightness-levels = <0 2048 4096 8192 16384 65535>;
+-		num-interpolated-steps = <2048>;
+-		default-brightness-level = <4096>;
+-
+-		power-supply = <&vdd_bl_reg>;
+-		enable-gpios = <&gpio 58 0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+new file mode 100644
+index 000000000000..7e1f109a38a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/pwm-backlight.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: pwm-backlight bindings
++
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++  - Daniel Thompson <daniel.thompson@linaro.org>
++  - Jingoo Han <jingoohan1@gmail.com>
++
++properties:
++  compatible:
++    const: pwm-backlight
++
++  pwms:
++    maxItems: 1
++
++  pwm-names: true
++
++  power-supply:
++    description: regulator for supply voltage
++
++  enable-gpios:
++    description: Contains a single GPIO specifier for the GPIO which enables
++      and disables the backlight
++    maxItems: 1
++
++  post-pwm-on-delay-ms:
++    description: Delay in ms between setting an initial (non-zero) PWM and
++      enabling the backlight using GPIO.
++
++  pwm-off-delay-ms:
++    description: Delay in ms between disabling the backlight using GPIO
++      and setting PWM value to 0.
++
++  brightness-levels:
++    description: Array of distinct brightness levels. Typically these are
++      in the range from 0 to 255, but any range starting at 0 will do. The
++      actual brightness level (PWM duty cycle) will be interpolated from
++      these values. 0 means a 0% duty cycle (darkest/off), while the last
++      value in the array represents a 100% duty cycle (brightest).
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  default-brightness-level:
++    description: The default brightness level (index into the array defined
++      by the "brightness-levels" property).
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  num-interpolated-steps:
++    description: Number of interpolated steps between each value of brightness-levels
++      table. This way a high resolution pwm duty cycle can be used without
++      having to list out every possible value in the brightness-level array.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++dependencies:
++  default-brightness-level: [brightness-levels]
++  num-interpolated-steps: [brightness-levels]
++
++required:
++  - compatible
++  - pwms
++  - power-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    backlight {
++        compatible = "pwm-backlight";
++        pwms = <&pwm 0 5000000>;
++
++        brightness-levels = <0 4 8 16 32 64 128 255>;
++        default-brightness-level = <6>;
++
++        power-supply = <&vdd_bl_reg>;
++        enable-gpios = <&gpio 58 0>;
++        post-pwm-on-delay-ms = <10>;
++        pwm-off-delay-ms = <10>;
++    };
++
++  - |
++    // Example using num-interpolation-steps:
++    backlight {
++        compatible = "pwm-backlight";
++        pwms = <&pwm 0 5000000>;
++
++        brightness-levels = <0 2048 4096 8192 16384 65535>;
++        num-interpolated-steps = <2048>;
++        default-brightness-level = <4096>;
++
++        power-supply = <&vdd_bl_reg>;
++        enable-gpios = <&gpio 58 0>;
++    };
++
++...
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.25.1
 
