@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A931FE6FD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9175D1FE688
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729139AbgFRBNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 21:13:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42744 "EHLO mail.kernel.org"
+        id S1728998AbgFRCeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 22:34:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44232 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728892AbgFRBN3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 21:13:29 -0400
+        id S1729329AbgFRBOd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:14:33 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 32BBB21924;
-        Thu, 18 Jun 2020 01:13:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 872EE20EDD;
+        Thu, 18 Jun 2020 01:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592442809;
-        bh=J2w+gquTMvhqzqlR0tLvqdneEX5xmKscX23mghhpHwU=;
+        s=default; t=1592442873;
+        bh=Z41N+cIfPZq6+16FIiby5DDwyV51obckIwKxYJuq+4g=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oJJvqkPe1ud1HW6xC4HoaXI0TJ95S8rxMD9tE9jzwJ/uiR6KCkVdFKqKGecF4VrPY
-         4IYPXTRqHeZe+c+tDtFnCXU2/kaCAZIggUcscMNBzAgBtB2/ElTt5FtumZ75P1mTim
-         q/Ea9arF3g8bRtW/tdcT6ncU7MMpTGHbZGH0D9Pw=
+        b=tePwMyqINCA6zamFCgWt+2sl7ncvaVjG++NwDuDkPTxgpOfGwz/J/rEHW3mqmV8GK
+         wvUXtxeItw8PH6f5gvpuYCvEJ1ZYim3lIXBX881/hRhxns6jIQLOgIVlV68+69rnex
+         2VSh6Nghmk4NwBnvK5j3hhzOPOApBv2itlWz+ghY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vidya Sagar <vidyas@nvidia.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 248/388] arm64: tegra: Fix flag for 64-bit resources in 'ranges' property
-Date:   Wed, 17 Jun 2020 21:05:45 -0400
-Message-Id: <20200618010805.600873-248-sashal@kernel.org>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 299/388] of: Fix a refcounting bug in __of_attach_node_sysfs()
+Date:   Wed, 17 Jun 2020 21:06:36 -0400
+Message-Id: <20200618010805.600873-299-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
 References: <20200618010805.600873-1-sashal@kernel.org>
@@ -44,78 +43,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vidya Sagar <vidyas@nvidia.com>
+From: Dan Carpenter <dan.carpenter@oracle.com>
 
-[ Upstream commit 3482a7afb261e2de9269a7f9ad0f4a3a82a83a53 ]
+[ Upstream commit 8a325dd06f2358ea0888e4ff1c9ca4bc23bd53f3 ]
 
-Fix flag in PCIe controllers device-tree nodes 'ranges' property to correctly
-represent 64-bit resources.
+The problem in this code is that if kobject_add() fails, then it should
+call of_node_put(np) to drop the reference count.  I've actually moved
+the of_node_get(np) later in the function to avoid needing to do clean
+up.
 
-Fixes: 2602c32f15e7 ("arm64: tegra: Add P2U and PCIe controller nodes to Tegra194 DT")
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Fixes: 5b2c2f5a0ea3 ("of: overlay: add missing of_node_get() in __of_attach_node_sysfs")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/of/kobj.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index f4ede86e32b4..3c928360f4ed 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -1387,7 +1387,7 @@ pcie@14100000 {
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index c72eef988041..a32e60b024b8 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -134,8 +134,6 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	if (!name)
+ 		return -ENOMEM;
  
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x30100000 0x0  0x30100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x12 0x00000000 0x12 0x00000000 0x0 0x30000000   /* prefetchable memory (768MB) */
-+			  0xc3000000 0x12 0x00000000 0x12 0x00000000 0x0 0x30000000   /* prefetchable memory (768MB) */
- 			  0x82000000 0x0  0x40000000 0x12 0x30000000 0x0 0x10000000>; /* non-prefetchable memory (256MB) */
- 	};
+-	of_node_get(np);
+-
+ 	rc = kobject_add(&np->kobj, parent, "%s", name);
+ 	kfree(name);
+ 	if (rc)
+@@ -144,6 +142,7 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	for_each_property_of_node(np, pp)
+ 		__of_add_property_sysfs(np, pp);
  
-@@ -1432,7 +1432,7 @@ pcie@14120000 {
- 
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x32100000 0x0  0x32100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x12 0x40000000 0x12 0x40000000 0x0 0x30000000   /* prefetchable memory (768MB) */
-+			  0xc3000000 0x12 0x40000000 0x12 0x40000000 0x0 0x30000000   /* prefetchable memory (768MB) */
- 			  0x82000000 0x0  0x40000000 0x12 0x70000000 0x0 0x10000000>; /* non-prefetchable memory (256MB) */
- 	};
- 
-@@ -1477,7 +1477,7 @@ pcie@14140000 {
- 
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x34100000 0x0  0x34100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x12 0x80000000 0x12 0x80000000 0x0 0x30000000   /* prefetchable memory (768MB) */
-+			  0xc3000000 0x12 0x80000000 0x12 0x80000000 0x0 0x30000000   /* prefetchable memory (768MB) */
- 			  0x82000000 0x0  0x40000000 0x12 0xb0000000 0x0 0x10000000>; /* non-prefetchable memory (256MB) */
- 	};
- 
-@@ -1522,7 +1522,7 @@ pcie@14160000 {
- 
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x36100000 0x0  0x36100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x14 0x00000000 0x14 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
-+			  0xc3000000 0x14 0x00000000 0x14 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
- 			  0x82000000 0x0  0x40000000 0x17 0x40000000 0x0 0xc0000000>; /* non-prefetchable memory (3GB) */
- 	};
- 
-@@ -1567,7 +1567,7 @@ pcie@14180000 {
- 
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x38100000 0x0  0x38100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x18 0x00000000 0x18 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
-+			  0xc3000000 0x18 0x00000000 0x18 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
- 			  0x82000000 0x0  0x40000000 0x1b 0x40000000 0x0 0xc0000000>; /* non-prefetchable memory (3GB) */
- 	};
- 
-@@ -1616,7 +1616,7 @@ pcie@141a0000 {
- 
- 		bus-range = <0x0 0xff>;
- 		ranges = <0x81000000 0x0  0x3a100000 0x0  0x3a100000 0x0 0x00100000   /* downstream I/O (1MB) */
--			  0xc2000000 0x1c 0x00000000 0x1c 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
-+			  0xc3000000 0x1c 0x00000000 0x1c 0x00000000 0x3 0x40000000   /* prefetchable memory (13GB) */
- 			  0x82000000 0x0  0x40000000 0x1f 0x40000000 0x0 0xc0000000>; /* non-prefetchable memory (3GB) */
- 	};
++	of_node_get(np);
+ 	return 0;
+ }
  
 -- 
 2.25.1
