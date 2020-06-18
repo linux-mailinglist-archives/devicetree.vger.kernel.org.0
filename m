@@ -2,280 +2,503 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF81B1FE5F4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:29:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C89A1FE902
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:53:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729845AbgFRC3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 22:29:50 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:44199 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728582AbgFRC3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jun 2020 22:29:41 -0400
-Received: by mail-il1-f194.google.com with SMTP id i1so4298337ils.11;
-        Wed, 17 Jun 2020 19:29:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZCBQcBw8kdOpNWXzPJKGBx0MRsMpwr5qi1B/q8rYLmQ=;
-        b=sN/CGXXnUvfh+zNRHmNgjKIQNk4tOSyFQePA73hcy4avXMsJkhSLVOpaUpHHDMGOI8
-         fz0qK++l2IUFmkMNu6N0mDj7kJL9Ey4imVf6lEiYyv2swrrblqhi3H7HK7h+d5fyQbr/
-         HJ6vbNc202LqNzuSDt0l96HvVXvgxJ4xQzdD67pcDDr5A4WpVJyGDD6vGcGFjPclbkrR
-         htYd6Hc5MT5zQbJvbg105DBHaIrR3iL4RaYElF/672sYINfQ+kdZvINvLvjhEKD0Gkjw
-         Td6cEEX7x3YuJdKaPHrTqiGwWIeBBuWMKri22cmFTFo8f17lRe9t8cxjxMjrtLGBarJy
-         7VFA==
-X-Gm-Message-State: AOAM531XlA0mRAyKJkCinYSV1vA3RejMfKSLkmMlcP1+bFgL1/WgNBsV
-        p0hcwJpLdhGNzhrXxEvHpw==
-X-Google-Smtp-Source: ABdhPJwA2PH0XSJtNxsqwZvDt/8xctPTcytV7u+9Nk0sLiz7V5s2yYDRwNPfaTvYT7rBZMh1g+BEcg==
-X-Received: by 2002:a92:280b:: with SMTP id l11mr1894740ilf.179.1592447380108;
-        Wed, 17 Jun 2020 19:29:40 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id p11sm930798ioo.26.2020.06.17.19.29.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2020 19:29:39 -0700 (PDT)
-Received: (nullmailer pid 3343731 invoked by uid 1000);
-        Thu, 18 Jun 2020 02:29:38 -0000
-Date:   Wed, 17 Jun 2020 20:29:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 09/38] dt-bindings: gpu: tegra: Convert to json-schema
-Message-ID: <20200618022938.GA3333151@bogus>
-References: <20200612141903.2391044-1-thierry.reding@gmail.com>
- <20200612141903.2391044-10-thierry.reding@gmail.com>
+        id S1727818AbgFRBId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 21:08:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34084 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727782AbgFRBI1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:08:27 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 72C9A21974;
+        Thu, 18 Jun 2020 01:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592442506;
+        bh=IeWIS46IeaHcbE+ILKyGGVA02wS6QtLXW2LFlM4IIxc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=MiojPmtzZIMhYQGByqvIbbZJkMvnuZ8y6rdfFw3WmJACIxhPk+WDi45ajzALwIQET
+         /U7XL6Kesi+D0kdIHgHP2Iik02sR2K8yqywt8feJRV8tUiWpu8P5vuAMDqQl5mDBbD
+         naosnkJA3lIAw+211G0F3xSI0lWrDKJL3HJH2PCQ=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 015/388] ARM: dts: renesas: Fix IOMMU device node names
+Date:   Wed, 17 Jun 2020 21:01:52 -0400
+Message-Id: <20200618010805.600873-15-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
+References: <20200618010805.600873-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200612141903.2391044-10-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 12, 2020 at 04:18:34PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Convert the NVIDIA Tegra GPU bindings from the previous free-form text
-> format to json-schema.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../devicetree/bindings/gpu/nvidia,gk20a.txt  |  90 ---------
->  .../devicetree/bindings/gpu/nvidia,gk20a.yaml | 189 ++++++++++++++++++
->  2 files changed, 189 insertions(+), 90 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
+[ Upstream commit ae990a1de014396ffc8d0fcc31b6888c9b0ce59a ]
 
-> diff --git a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
-> new file mode 100644
-> index 000000000000..726ef39b2221
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
-> @@ -0,0 +1,189 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/nvidia,gk20a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra Graphics Processing Units
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - nvidia,gk20a
-> +          - nvidia,gm20b
-> +          - nvidia,gp10b
-> +
-> +  reg:
-> +    items:
-> +      - description: base address and size for BAR0
-> +      - description: base address and size for BAR1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: stalling interrupt
-> +      - description: non-stalling interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: stall
-> +      - const: nonstall
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 3
-> +    items:
-> +      - description: GPU clock
-> +      - description: PWR clock
-> +      - description: REF clock
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 3
-> +    items:
-> +      - const: gpu
-> +      - const: pwr
-> +      - const: ref
-> +
-> +  resets:
-> +    items:
-> +      - description: GPU reset
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    maxItems: 1
+Fix IOMMU device node names as "iommu@".
 
-You can drop minItems/maxItems. The tooling will add them based on 
-'items' length if not specified.
+Fixes: bbb44da0b595 ("ARM: dts: r8a7743: Add IPMMU DT nodes")
+Fixes: 0dcba3de5835 ("ARM: dts: r8a7745: Add IPMMU DT nodes")
+Fixes: 350ae49b97c4 ("ARM: dts: r8a7744: Add IPMMU DT nodes")
+Fixes: 70496727c082 ("ARM: shmobile: r8a7790: Add IPMMU DT nodes")
+Fixes: f1951852ed17 ("ARM: shmobile: r8a7791: Add IPMMU DT nodes")
+Fixes: 098cb3a601e6 ("ARM: shmobile: r8a7793: Add IPMMU nodes")
+Fixes: 1cb2794f6082 ("ARM: shmobile: r8a7794: Add IPMMU DT nodes")
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Link: https://lore.kernel.org/r/1587461756-13317-1-git-send-email-yoshihiro.shimoda.uh@renesas.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/r8a7743.dtsi | 12 ++++++------
+ arch/arm/boot/dts/r8a7744.dtsi | 12 ++++++------
+ arch/arm/boot/dts/r8a7745.dtsi | 12 ++++++------
+ arch/arm/boot/dts/r8a7790.dtsi | 12 ++++++------
+ arch/arm/boot/dts/r8a7791.dtsi | 14 +++++++-------
+ arch/arm/boot/dts/r8a7793.dtsi | 14 +++++++-------
+ arch/arm/boot/dts/r8a7794.dtsi | 12 ++++++------
+ 7 files changed, 44 insertions(+), 44 deletions(-)
 
-> +    items:
-> +      - const: gpu
-> +
-> +  power-domains:
-> +    description: GPUs that make use of power domains can define this property
-> +      instead of vdd-supply. Currently "nvidia,gp10b" makes use of this.
+diff --git a/arch/arm/boot/dts/r8a7743.dtsi b/arch/arm/boot/dts/r8a7743.dtsi
+index e8b340bb99bc..fff123753b85 100644
+--- a/arch/arm/boot/dts/r8a7743.dtsi
++++ b/arch/arm/boot/dts/r8a7743.dtsi
+@@ -338,7 +338,7 @@ thermal: thermal@e61f0000 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -348,7 +348,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -357,7 +357,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -367,7 +367,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -376,7 +376,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -386,7 +386,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7743",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7744.dtsi b/arch/arm/boot/dts/r8a7744.dtsi
+index def840b8b2d3..5050ac19041d 100644
+--- a/arch/arm/boot/dts/r8a7744.dtsi
++++ b/arch/arm/boot/dts/r8a7744.dtsi
+@@ -338,7 +338,7 @@ thermal: thermal@e61f0000 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -348,7 +348,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -357,7 +357,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -367,7 +367,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -376,7 +376,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -386,7 +386,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7744",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7745.dtsi b/arch/arm/boot/dts/r8a7745.dtsi
+index 7ab58d8bb740..b0d1fc24e97e 100644
+--- a/arch/arm/boot/dts/r8a7745.dtsi
++++ b/arch/arm/boot/dts/r8a7745.dtsi
+@@ -302,7 +302,7 @@ irqc: interrupt-controller@e61c0000 {
+ 			resets = <&cpg 407>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -312,7 +312,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -321,7 +321,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -331,7 +331,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -340,7 +340,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -350,7 +350,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7745",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7790.dtsi b/arch/arm/boot/dts/r8a7790.dtsi
+index e5ef9fd4284a..166d5566229d 100644
+--- a/arch/arm/boot/dts/r8a7790.dtsi
++++ b/arch/arm/boot/dts/r8a7790.dtsi
+@@ -427,7 +427,7 @@ thermal: thermal@e61f0000 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -437,7 +437,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -446,7 +446,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -456,7 +456,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -465,7 +465,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -475,7 +475,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_rt: mmu@ffc80000 {
++		ipmmu_rt: iommu@ffc80000 {
+ 			compatible = "renesas,ipmmu-r8a7790",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xffc80000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7791.dtsi b/arch/arm/boot/dts/r8a7791.dtsi
+index 6e5bd86731cd..09e47cc17765 100644
+--- a/arch/arm/boot/dts/r8a7791.dtsi
++++ b/arch/arm/boot/dts/r8a7791.dtsi
+@@ -350,7 +350,7 @@ thermal: thermal@e61f0000 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -360,7 +360,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -369,7 +369,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -379,7 +379,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -388,7 +388,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -398,7 +398,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_rt: mmu@ffc80000 {
++		ipmmu_rt: iommu@ffc80000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xffc80000 0 0x1000>;
+@@ -407,7 +407,7 @@ ipmmu_rt: mmu@ffc80000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7791",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7793.dtsi b/arch/arm/boot/dts/r8a7793.dtsi
+index dadbda16161b..1b62a7e06b42 100644
+--- a/arch/arm/boot/dts/r8a7793.dtsi
++++ b/arch/arm/boot/dts/r8a7793.dtsi
+@@ -336,7 +336,7 @@ thermal: thermal@e61f0000 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -346,7 +346,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -355,7 +355,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -365,7 +365,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -374,7 +374,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -384,7 +384,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_rt: mmu@ffc80000 {
++		ipmmu_rt: iommu@ffc80000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xffc80000 0 0x1000>;
+@@ -393,7 +393,7 @@ ipmmu_rt: mmu@ffc80000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7793",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+diff --git a/arch/arm/boot/dts/r8a7794.dtsi b/arch/arm/boot/dts/r8a7794.dtsi
+index 2c9e7a1ebfec..8d7f8798628a 100644
+--- a/arch/arm/boot/dts/r8a7794.dtsi
++++ b/arch/arm/boot/dts/r8a7794.dtsi
+@@ -290,7 +290,7 @@ irqc0: interrupt-controller@e61c0000 {
+ 			resets = <&cpg 407>;
+ 		};
+ 
+-		ipmmu_sy0: mmu@e6280000 {
++		ipmmu_sy0: iommu@e6280000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6280000 0 0x1000>;
+@@ -300,7 +300,7 @@ ipmmu_sy0: mmu@e6280000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_sy1: mmu@e6290000 {
++		ipmmu_sy1: iommu@e6290000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6290000 0 0x1000>;
+@@ -309,7 +309,7 @@ ipmmu_sy1: mmu@e6290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_ds: mmu@e6740000 {
++		ipmmu_ds: iommu@e6740000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe6740000 0 0x1000>;
+@@ -319,7 +319,7 @@ ipmmu_ds: mmu@e6740000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mp: mmu@ec680000 {
++		ipmmu_mp: iommu@ec680000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xec680000 0 0x1000>;
+@@ -328,7 +328,7 @@ ipmmu_mp: mmu@ec680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_mx: mmu@fe951000 {
++		ipmmu_mx: iommu@fe951000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xfe951000 0 0x1000>;
+@@ -338,7 +338,7 @@ ipmmu_mx: mmu@fe951000 {
+ 			status = "disabled";
+ 		};
+ 
+-		ipmmu_gp: mmu@e62a0000 {
++		ipmmu_gp: iommu@e62a0000 {
+ 			compatible = "renesas,ipmmu-r8a7794",
+ 				     "renesas,ipmmu-vmsa";
+ 			reg = <0 0xe62a0000 0 0x1000>;
+-- 
+2.25.1
 
-How many?
-
-> +
-> +  vdd-supply:
-> +    description: GPU power supply.
-> +
-> +  iommus:
-> +    description: The phandle of the IOMMU and the IOMMU specifier. See
-> +      ../iommu/iommu.txt for details.
-> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-
-Again, just need to define how many.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,gm20b
-> +    then:
-> +      required:
-> +        - vdd-supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,gm20b
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          minItems: 3
-> +
-> +      required:
-> +        - vdd-supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,gp10b
-> +    then:
-> +      required:
-> +        - power-domains
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra124-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/tegra124-mc.h>
-> +
-> +    gpu@57000000 {
-> +        compatible = "nvidia,gk20a";
-> +        reg = <0x0 0x57000000 0x0 0x01000000>,
-> +              <0x0 0x58000000 0x0 0x01000000>;
-
-The default size is 1 cell each for examples. So either use that or add 
-a parent node defining 2 cells.
-
-> +        interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "stall", "nonstall";
-> +        vdd-supply = <&vdd_gpu>;
-> +        clocks = <&tegra_car TEGRA124_CLK_GPU>,
-> +                 <&tegra_car TEGRA124_CLK_PLL_P_OUT5>;
-> +        clock-names = "gpu", "pwr";
-> +        resets = <&tegra_car 184>;
-> +        reset-names = "gpu";
-> +        iommus = <&mc TEGRA_SWGROUP_GPU>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    /*
-> +     * XXX can't include this because it conflicts with the tegra124-mc.h
-> +     * include from the Tegra124 example above.
-> +     */
-> +    /*
-> +    #include <dt-bindings/memory/tegra210-mc.h>
-> +    */
-> +
-> +    gpu@57000000 {
-> +        compatible = "nvidia,gm20b";
-> +        reg = <0x0 0x57000000 0x0 0x01000000>,
-> +              <0x0 0x58000000 0x0 0x01000000>;
-> +        interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "stall", "nonstall";
-> +        vdd-supply = <&vdd_gpu>;
-> +        clocks = <&tegra_car TEGRA210_CLK_GPU>,
-> +                 <&tegra_car TEGRA210_CLK_PLL_P_OUT5>,
-> +                 <&tegra_car TEGRA210_CLK_PLL_G_REF>;
-> +        clock-names = "gpu", "pwr", "ref";
-> +        resets = <&tegra_car 184>;
-> +        reset-names = "gpu";
-> +        iommus = <&mc TEGRA_SWGROUP_GPU>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/clock/tegra186-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/tegra186-mc.h>
-> +    #include <dt-bindings/power/tegra186-powergate.h>
-> +    #include <dt-bindings/reset/tegra186-reset.h>
-> +
-> +    gpu@17000000 {
-> +        compatible = "nvidia,gp10b";
-> +        reg = <0x0 0x17000000 0x0 0x1000000>,
-> +              <0x0 0x18000000 0x0 0x1000000>;
-> +        interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "stall", "nonstall";
-> +        clocks = <&bpmp TEGRA186_CLK_GPCCLK>,
-> +                 <&bpmp TEGRA186_CLK_GPU>;
-> +        clock-names = "gpu", "pwr";
-> +        resets = <&bpmp TEGRA186_RESET_GPU>;
-> +        reset-names = "gpu";
-> +        power-domains = <&bpmp TEGRA186_POWER_DOMAIN_GPU>;
-> +        iommus = <&smmu TEGRA186_SID_GPU>;
-> +    };
-> -- 
-> 2.24.1
-> 
