@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7961FE227
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D161FE1E3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 03:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733203AbgFRB7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 21:59:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59156 "EHLO mail.kernel.org"
+        id S1730775AbgFRB5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 21:57:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60060 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731250AbgFRBYf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 21:24:35 -0400
+        id S1731349AbgFRBZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:25:05 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E9A8214DB;
-        Thu, 18 Jun 2020 01:24:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 86387221EB;
+        Thu, 18 Jun 2020 01:25:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592443474;
-        bh=na/pAxqUC7L09hQD/XGENYwhJUyVwCDzlO8hLUN7kEg=;
+        s=default; t=1592443505;
+        bh=Z41N+cIfPZq6+16FIiby5DDwyV51obckIwKxYJuq+4g=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fktY6yBY9s1vvpaaKL4wy7z0yfJAJZ4VcX4VfLvLqwR5JpFlaqXWl1995pdrHM7JT
-         l4JIbYVf1Qoe6DV5VxwN4jzzWcdHYM6iKWbi8MYy9gtrzuqN/PY08rajq3/8hFiWvj
-         jOI+Fmtb4zs4UVh/uXWI6Yrknls1cYyS6TiYnCTw=
+        b=Uu94Fvic27skO+Ng7LieYt2IWXloXekIPgJSFkYwQnwc68/LHUdscKWi5fYMdwFOj
+         qWltOfH74NChIOWP9mLmxV1CS18vu7Am9ezesV5ekyGlwb7BmHyBUgV6drZPC3ZOnB
+         kGKbDBbyXAWLL7nw/SmPbQbQL3YqEs3xHlK+UHaI=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 105/172] arm64: tegra: Fix ethernet phy-mode for Jetson Xavier
-Date:   Wed, 17 Jun 2020 21:21:11 -0400
-Message-Id: <20200618012218.607130-105-sashal@kernel.org>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 130/172] of: Fix a refcounting bug in __of_attach_node_sysfs()
+Date:   Wed, 17 Jun 2020 21:21:36 -0400
+Message-Id: <20200618012218.607130-130-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618012218.607130-1-sashal@kernel.org>
 References: <20200618012218.607130-1-sashal@kernel.org>
@@ -44,42 +43,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jon Hunter <jonathanh@nvidia.com>
+From: Dan Carpenter <dan.carpenter@oracle.com>
 
-[ Upstream commit bba25915b172c72f6fa635f091624d799e3c9cae ]
+[ Upstream commit 8a325dd06f2358ea0888e4ff1c9ca4bc23bd53f3 ]
 
-The 'phy-mode' property is currently defined as 'rgmii' for Jetson
-Xavier. This indicates that the RGMII RX and TX delays are set by the
-MAC and the internal delays set by the PHY are not used.
+The problem in this code is that if kobject_add() fails, then it should
+call of_node_put(np) to drop the reference count.  I've actually moved
+the of_node_get(np) later in the function to avoid needing to do clean
+up.
 
-If the Marvell PHY driver is enabled, such that it is used and not the
-generic PHY, ethernet failures are seen (DHCP is failing to obtain an
-IP address) and this is caused because the Marvell PHY driver is
-disabling the internal RX and TX delays. For Jetson Xavier the internal
-PHY RX and TX delay should be used and so fix this by setting the
-'phy-mode' to 'rgmii-id' and not 'rgmii'.
-
-Fixes: f89b58ce71a9 ("arm64: tegra: Add ethernet controller on Tegra194")
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Fixes: 5b2c2f5a0ea3 ("of: overlay: add missing of_node_get() in __of_attach_node_sysfs")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/of/kobj.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-index 57d3f00464ce..7352954e12be 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-@@ -32,7 +32,7 @@ ethernet@2490000 {
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index c72eef988041..a32e60b024b8 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -134,8 +134,6 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	if (!name)
+ 		return -ENOMEM;
  
- 			phy-reset-gpios = <&gpio TEGRA194_MAIN_GPIO(G, 5) GPIO_ACTIVE_LOW>;
- 			phy-handle = <&phy>;
--			phy-mode = "rgmii";
-+			phy-mode = "rgmii-id";
+-	of_node_get(np);
+-
+ 	rc = kobject_add(&np->kobj, parent, "%s", name);
+ 	kfree(name);
+ 	if (rc)
+@@ -144,6 +142,7 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	for_each_property_of_node(np, pp)
+ 		__of_add_property_sysfs(np, pp);
  
- 			mdio {
- 				#address-cells = <1>;
++	of_node_get(np);
+ 	return 0;
+ }
+ 
 -- 
 2.25.1
 
