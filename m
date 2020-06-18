@@ -2,115 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FF011FFBB5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 21:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2CA1FFC4C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 22:09:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728291AbgFRTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 15:22:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726925AbgFRTWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 15:22:14 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944C1C06174E
-        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:22:14 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id r2so8474759ioo.4
-        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:22:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=ldZEk6GZkwUuy2Js9SWtf3nbeJAEXnm6tR2ZTKBqXvg=;
-        b=X5wCS8iWPXScZ7voWidP3rCOPp/TzZH7Jc5nnhVynvAaIB6a1lVTDMcP3xAdMYRpHi
-         C/FAUyJ2C2yCd12+dkIqCyf+DuBPzlvxbTSDNQ3FO/5U01n13oVbeLRXrtUeMoV1I/RH
-         cK0ibb5GZLzsrOzU/fHqPq5fpUBFNVHXa2HoHcUP0Dxtnh0VfV45Cm/t+OAEln6HMnik
-         czgdB8/ftbdb5xtvRzLqovpk41IpRnvv/o9sFfPy0tgbhn9ZmXxdv6bSSlT7m6kvpjCQ
-         Cu7cG/2pLPF0C0VXXVwsoMQ57oG2Ds7YqKIB0rATalvnD3P6Odx5UcGlsTIshJBe5Pyq
-         c7LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=ldZEk6GZkwUuy2Js9SWtf3nbeJAEXnm6tR2ZTKBqXvg=;
-        b=Sf1IUJIw2rVuCu+uViutPT2t/WB5RrzJnb1cVKf69T4rWpsmmjTQstvCMfsUvLFLs3
-         0eTD6JJ5+P7Tpm5ZntfugMY+1CB7JY17Yjf7BLW2K4UrhZUJAy5kM6RvsDVA6vD0WNYk
-         l1CFa21KGXlUZ0r2syFakKxKKSjwivTZhBdfeROPPt7HooybgW2nc3Kp/X1Uxy8XXbVV
-         TqRU0qDLHPTvYGkq4Kiu6YcD5cUtmKOGd6vJqP4egHuAIoEI0xY3aJtv+YjyLOB+78sj
-         xwpWu5QxQSF8vOxY+jMCPifDvwPZm33zCkLW+ewB22KbR4/KmUDjh4n4e+GpSi4MCSh4
-         XH0A==
-X-Gm-Message-State: AOAM533A2CjoaUfhXH9P23oLT1LMMBRH41f+uIo+b0ICAlg40/gFjwq7
-        UW9iA+9FgrFoMx0RIU62NN6X2kwrTwhShdH+wiA=
-X-Google-Smtp-Source: ABdhPJxdlfSQVSi84luEC+cTVqJ8OTZ2FQN1EQAduuzMqO21n2IKlzb2rkzqPa9PF4aXNR48uzaU3DeIbus3gQhJmFg=
-X-Received: by 2002:a05:6638:975:: with SMTP id o21mr97711jaj.99.1592508133920;
- Thu, 18 Jun 2020 12:22:13 -0700 (PDT)
+        id S1730454AbgFRUJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 16:09:18 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:48657 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730006AbgFRUJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jun 2020 16:09:18 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1592510957; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=NTUeymUReKpdIsjMtCi8NYeyBb1gfEMgmYaNDWEKN9I=; b=R19OomXEobZ8SHqdm9yaIu1VMxxaxtQ00fjDkU/gyjdfNjawBmxc926cWOum/eJW8zFuLhTE
+ e0xQKqg8l6/BKRoeOC7woyn301W3g0wZS2X5j9DxKu8K6CC4ofEOE4NXfvJza14rQX45Kfv6
+ 9bo+6wsYvYHog9ZaUbyhzDRCqiI=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5eebc9eb6f2ee827da204a1e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Jun 2020 20:09:15
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7733BC433A1; Thu, 18 Jun 2020 20:09:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.110.38.129] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B30D0C433CA;
+        Thu, 18 Jun 2020 20:09:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B30D0C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: usb: Add Qualcomm PMIC type C
+ controller dt-binding
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jack Pham <jackp@codeaurora.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Jun Li <lijun.kernel@gmail.com>
+References: <20200617180209.5636-1-wcheng@codeaurora.org>
+ <20200617180209.5636-3-wcheng@codeaurora.org>
+ <CAL_Jsq+fhXWGJvYxUDygd6hKs3dc8GKxKCz_Q+_C1AjK0J0N+w@mail.gmail.com>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <fb448691-2bda-ada6-799f-ee389e647710@codeaurora.org>
+Date:   Thu, 18 Jun 2020 13:09:12 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Received: by 2002:a02:44f:0:0:0:0:0 with HTTP; Thu, 18 Jun 2020 12:22:13 -0700 (PDT)
-From:   Mrs Kim Hong Yeoh <mrs.kimhongyeoh55@gmail.com>
-Date:   Thu, 18 Jun 2020 19:22:13 +0000
-X-Google-Sender-Auth: M_i0_pYZRdcSGI-tA8fLz0vJacU
-Message-ID: <CAPAVGmyfKEffQbcG2FGzspO3_eCb02k6pH-p3GLYwQBecVGP0w@mail.gmail.com>
-Subject: MAY THE PEACE OF GOD BE UPON YOU
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_Jsq+fhXWGJvYxUDygd6hKs3dc8GKxKCz_Q+_C1AjK0J0N+w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings Beloved in Christ,
 
-I had previously sent you an email with no feedback from you.I suppose
-it went to your junk folder.I anticipate that you read this mail
-quickly and let me know your opinion or willingness on this classified
-information that I will release to you.  therefore I would not want to
-jeopardize this opportunity to Save lives of Less Privileged ones and
-also change our financial status and give Less Privileged a secured
-future.
+On 6/18/2020 11:33 AM, Rob Herring wrote:
+> On Wed, Jun 17, 2020 at 12:02 PM Wesley Cheng <wcheng@codeaurora.org> wrote:
+> 
+> You are duplicating everything in usb-connector.yaml. You should have
+> a $ref to it.
+> 
 
-I am Mrs. Kim Hong Yeoh, Working at MAYBANK (Malaysia) as the
-Non-Independent Non-Executive Director and Chairman of Maybank. During
-our last banking Audits we discovered an abandoned account belongs to
-one of our Foreign Deceased Customer, Late Mr. Wang Jian, The
-Co-founder and Co-chairman of HNA Group, a Chinese conglomerate with
-significant real estate ownerships across the U.S., died in an
-accident while on a business trip in France on Tuesday.
+Hi Rob,
 
-Please go through this link:
-https://observer.com/2018/07/wang-jian-hna-founder-dies-tragic-fall/
+Sure, I will add a reference to that doc.
 
-I am writing to request your assistance in transferring the sum of
-$17.000.000.00 (Seventeen Million United States Dollars) into your
-account as the Late Mr. Wang Jian Foreign Business Partner, which I am
-planning to use the fund to invest for public benefit as follows;
+> 
+> This is wrong. The connector binding says port 0 is the connection the
+> USB HS controller.
+> 
+> What's a type C mux node? Is there a binding for that? There's an
+> ongoing discussion with the CrOS folks on how to describe Alt mode
+> mux/switches.
 
-1. Establish An Orphanage Home To Help The Orphanages Children.
-2. Build A Hospital To Help The Poor.
-3. Build A Nursing Home For Elderly People Need Care & Meal.
+I reviewed the connector binding previously, and couldn't seem to come
+up with a model which fit a design where the type C controller (ie the
+entity which does the CC orientation and role detection) does not have
+the SS lane mux included.  The SS lane mux is the HW which handles the
+selection of the SS lanes to utilize based on cable orientation.
 
-Meanwhile, before I contacted you I have done personal investigation
-in locating any of Late Mr. Wang Jian relatives who knows about the
-account, but I came out unsuccessful. However, I took this decision to
-use this fund in supporting the Orphanages Children, Less Privileged
-and Elderly People Need Care & Meal Support, because i don't want this
-fund to be transfer into our Government Treasury Account as unclaimed
-fund as the law of my country abiding.
+I looked at the FUSB302 TCPM driver, which doesn't have an integrated SS
+lane mux, and relies on an external FUSB340 switch to handle the
+polarity, but seems that in the fusb302.c driver it doesn't implement
+the polarity handler.  They might possibly have a HW output signal which
+controls the mux directly, but I'm not sure on that.
 
-As an officer of the Bank I cannot be directly connected to this
-money, so this is why I have to contact you for us to work so that you
-can assist to claim/receive this money into your bank account for us
-start a charity project, Meanwhile you will have 40% of the total fund
-and 60% for charity project, Note there are practically no risk
-involved, it will be bank to bank transfer, all I need from you is to
-stand and claim $17. Million without any problem with the information
-am going to provide to you.
+Anyway, if someone wanted to take a SW approach and program an external
+mux, this model doesn't seem to allow that.  This is somewhat unrelated
+to the DP AUX mode switching, as that probably will only come into the
+picture after the policy engine has detected there is a DP adapter
+connected, whereas this is applicable to non DP/alt mode situations.
 
+Thanks!
 
-Please for the sake of god accept this offer to work with me and let
-us save lives of those Orphanages Children, Less Privileged and
-Elderly People Need Care, I will appreciate it very much. As soon as I
-receive your kind response, I will give you details on how we can
-achieve it successfully i will explain more on how the fund will be
-transfer to you.
+>> +            type: object
+>> +
+>> +            properties:
+>> +              remote-endpoint:
+>> +                maxItems: 1
+>> +                description: Node reference to the type C mux
+>> +
+>> +          endpoint@1:
+>> +            description: Connection to role switch node
+> 
+> Again, what's this?
+> 
 
-Waiting for your urgent response now.
-best regards
-Mrs. Kim Hong Yeoh.
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
