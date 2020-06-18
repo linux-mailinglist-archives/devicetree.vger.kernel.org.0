@@ -2,167 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE101FFB9A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 21:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF011FFBB5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 21:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727037AbgFRTNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jun 2020 15:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42642 "EHLO
+        id S1728291AbgFRTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jun 2020 15:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726928AbgFRTNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 15:13:36 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352F2C06174E
-        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:13:35 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id x6so7225275wrm.13
-        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:13:35 -0700 (PDT)
+        with ESMTP id S1726925AbgFRTWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jun 2020 15:22:14 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944C1C06174E
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:22:14 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id r2so8474759ioo.4
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2020 12:22:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=w7ZzXm/x+S62UOvstcWj82fQZcaPM3JUhZPhHBThmZ4=;
-        b=NOqFUseguuK/Se1yoTOh2UdWZ9pNBrt038Sywj2oS41eFLmh/U6q43aGTEoQP5jOql
-         sC+rNNPymdYDagtcgW8Y/+zDQGn6GPvI4pz7is5d9yhUOPzoyTqL6h6Jd2iwePLK07fO
-         vORkEN6nVqoAZC94xtTGOWGd4shaO6h7XUJ/U=
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=ldZEk6GZkwUuy2Js9SWtf3nbeJAEXnm6tR2ZTKBqXvg=;
+        b=X5wCS8iWPXScZ7voWidP3rCOPp/TzZH7Jc5nnhVynvAaIB6a1lVTDMcP3xAdMYRpHi
+         C/FAUyJ2C2yCd12+dkIqCyf+DuBPzlvxbTSDNQ3FO/5U01n13oVbeLRXrtUeMoV1I/RH
+         cK0ibb5GZLzsrOzU/fHqPq5fpUBFNVHXa2HoHcUP0Dxtnh0VfV45Cm/t+OAEln6HMnik
+         czgdB8/ftbdb5xtvRzLqovpk41IpRnvv/o9sFfPy0tgbhn9ZmXxdv6bSSlT7m6kvpjCQ
+         Cu7cG/2pLPF0C0VXXVwsoMQ57oG2Ds7YqKIB0rATalvnD3P6Odx5UcGlsTIshJBe5Pyq
+         c7LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=w7ZzXm/x+S62UOvstcWj82fQZcaPM3JUhZPhHBThmZ4=;
-        b=IsHdYLTcyNlHF3su99pWLB4u/Rtd7Cmielk0YPqysjSkaVmF1aFfMIz1CwOiD8YMGy
-         kx6wf9PPNPKqbIMHBoQl5cbtoQXjMfj+rK03CNANdJB7NsXho08L/J/YqSVSvixrkEmW
-         jdgDD3Yx+1kR4ajg8Iu78iiG0NqVi3v2Vykk5zJE7d102mgAq1EsOXAdgPI2dYZYW+6O
-         C7NnZcg7gQx65AySLzYE0G72mGbttP3FNxOqVZSohYkKQ6oq2KSbEnMz/Vk3wWdKC23F
-         htOx34qbDi9PS7pavjwOU8y3M05QefrJdUkjGr8Lb85r5uHGZ6fRGAFmr/LMRHxmf/pZ
-         nUQQ==
-X-Gm-Message-State: AOAM532cJVmzHE/F8NBWIVuv04it030SOSiTUBURjRUpKWsBVABzhd/n
-        3R6R1LnvamBUaDhZScRJZekRBQ==
-X-Google-Smtp-Source: ABdhPJxtePe8jNlcaDRZzkkWVLDnXp0YbUZHYQvnIoze3BeG8wHZ2ELCeZY2CEokFez7hj9uD7wdOA==
-X-Received: by 2002:a5d:4dc2:: with SMTP id f2mr2615574wru.399.1592507613955;
-        Thu, 18 Jun 2020 12:13:33 -0700 (PDT)
-Received: from chromium.org (205.215.190.35.bc.googleusercontent.com. [35.190.215.205])
-        by smtp.gmail.com with ESMTPSA id s2sm4333182wmh.15.2020.06.18.12.13.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Jun 2020 12:13:33 -0700 (PDT)
-Date:   Thu, 18 Jun 2020 19:13:32 +0000
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [PATCH V10 1/2] media: dt-bindings: media: i2c: Document OV02A10
- bindings
-Message-ID: <20200618191332.GB73379@chromium.org>
-References: <20200615122937.18965-1-dongchun.zhu@mediatek.com>
- <20200615122937.18965-2-dongchun.zhu@mediatek.com>
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=ldZEk6GZkwUuy2Js9SWtf3nbeJAEXnm6tR2ZTKBqXvg=;
+        b=Sf1IUJIw2rVuCu+uViutPT2t/WB5RrzJnb1cVKf69T4rWpsmmjTQstvCMfsUvLFLs3
+         0eTD6JJ5+P7Tpm5ZntfugMY+1CB7JY17Yjf7BLW2K4UrhZUJAy5kM6RvsDVA6vD0WNYk
+         l1CFa21KGXlUZ0r2syFakKxKKSjwivTZhBdfeROPPt7HooybgW2nc3Kp/X1Uxy8XXbVV
+         TqRU0qDLHPTvYGkq4Kiu6YcD5cUtmKOGd6vJqP4egHuAIoEI0xY3aJtv+YjyLOB+78sj
+         xwpWu5QxQSF8vOxY+jMCPifDvwPZm33zCkLW+ewB22KbR4/KmUDjh4n4e+GpSi4MCSh4
+         XH0A==
+X-Gm-Message-State: AOAM533A2CjoaUfhXH9P23oLT1LMMBRH41f+uIo+b0ICAlg40/gFjwq7
+        UW9iA+9FgrFoMx0RIU62NN6X2kwrTwhShdH+wiA=
+X-Google-Smtp-Source: ABdhPJxdlfSQVSi84luEC+cTVqJ8OTZ2FQN1EQAduuzMqO21n2IKlzb2rkzqPa9PF4aXNR48uzaU3DeIbus3gQhJmFg=
+X-Received: by 2002:a05:6638:975:: with SMTP id o21mr97711jaj.99.1592508133920;
+ Thu, 18 Jun 2020 12:22:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200615122937.18965-2-dongchun.zhu@mediatek.com>
+Received: by 2002:a02:44f:0:0:0:0:0 with HTTP; Thu, 18 Jun 2020 12:22:13 -0700 (PDT)
+From:   Mrs Kim Hong Yeoh <mrs.kimhongyeoh55@gmail.com>
+Date:   Thu, 18 Jun 2020 19:22:13 +0000
+X-Google-Sender-Auth: M_i0_pYZRdcSGI-tA8fLz0vJacU
+Message-ID: <CAPAVGmyfKEffQbcG2FGzspO3_eCb02k6pH-p3GLYwQBecVGP0w@mail.gmail.com>
+Subject: MAY THE PEACE OF GOD BE UPON YOU
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dongchun,
+Greetings Beloved in Christ,
 
-On Mon, Jun 15, 2020 at 08:29:36PM +0800, Dongchun Zhu wrote:
-> Add DT bindings documentation for Omnivision OV02A10 image sensor.
-> 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> ---
->  .../bindings/media/i2c/ovti,ov02a10.yaml           | 171 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 +
->  2 files changed, 178 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> 
+I had previously sent you an email with no feedback from you.I suppose
+it went to your junk folder.I anticipate that you read this mail
+quickly and let me know your opinion or willingness on this classified
+information that I will release to you.  therefore I would not want to
+jeopardize this opportunity to Save lives of Less Privileged ones and
+also change our financial status and give Less Privileged a secured
+future.
 
-Thank you for the patch. Please see my comments inline.
+I am Mrs. Kim Hong Yeoh, Working at MAYBANK (Malaysia) as the
+Non-Independent Non-Executive Director and Chairman of Maybank. During
+our last banking Audits we discovered an abandoned account belongs to
+one of our Foreign Deceased Customer, Late Mr. Wang Jian, The
+Co-founder and Co-chairman of HNA Group, a Chinese conglomerate with
+significant real estate ownerships across the U.S., died in an
+accident while on a business trip in France on Tuesday.
 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> new file mode 100644
-> index 0000000..f84be1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> @@ -0,0 +1,171 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2020 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov02a10.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision OV02A10 CMOS Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +
-> +description: |-
-> +  The Omnivision OV02A10 is a low-cost, high performance, 1/5-inch, 2 megapixel
-> +  image sensor, which is the latest production derived from Omnivision's CMOS
-> +  image sensor technology. Ihis chip supports high frame rate speeds up to 30fps
-> +  @ 1600x1200 (UXGA) resolution transferred over a 1-lane MIPI interface. The
-> +  sensor output is available via CSI-2 serial data output.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov02a10
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: top mux camtg clock
-> +      - description: divider clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: eclk
-> +      - const: freq_mux
-> +
-> +  clock-frequency:
-> +    description:
-> +      Frequency of the eclk clock in Hertz.
-> +
-> +  dovdd-supply:
-> +    description:
-> +      Definition of the regulator used as Digital I/O voltage supply.
-> +
-> +  avdd-supply:
-> +    description:
-> +      Definition of the regulator used as Analog voltage supply.
-> +
-> +  dvdd-supply:
-> +    description:
-> +      Definition of the regulator used as Digital core voltage supply.
-> +
-> +  powerdown-gpios:
-> +    description:
-> +      Must be the device tree identifier of the GPIO connected to the
-> +      PD_PAD pin. This pin is used to place the OV02A10 into Standby mode
-> +      or Shutdown mode. As the line is active low, it should be
-> +      marked GPIO_ACTIVE_LOW.
+Please go through this link:
+https://observer.com/2018/07/wang-jian-hna-founder-dies-tragic-fall/
 
-This line is not active low. It needs to be high for the powerdown mode
-to be active.
+I am writing to request your assistance in transferring the sum of
+$17.000.000.00 (Seventeen Million United States Dollars) into your
+account as the Late Mr. Wang Jian Foreign Business Partner, which I am
+planning to use the fund to invest for public benefit as follows;
 
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description:
-> +      Must be the device tree identifier of the GPIO connected to the
-> +      RST_PD pin. If specified, it will be asserted during driver probe.
-> +      As the line is active high, it should be marked GPIO_ACTIVE_HIGH.
+1. Establish An Orphanage Home To Help The Orphanages Children.
+2. Build A Hospital To Help The Poor.
+3. Build A Nursing Home For Elderly People Need Care & Meal.
 
-This line is not active high. It needs to be low for the reset to be
-active.
+Meanwhile, before I contacted you I have done personal investigation
+in locating any of Late Mr. Wang Jian relatives who knows about the
+account, but I came out unsuccessful. However, I took this decision to
+use this fund in supporting the Orphanages Children, Less Privileged
+and Elderly People Need Care & Meal Support, because i don't want this
+fund to be transfer into our Government Treasury Account as unclaimed
+fund as the law of my country abiding.
 
-Best regards,
-Tomasz
+As an officer of the Bank I cannot be directly connected to this
+money, so this is why I have to contact you for us to work so that you
+can assist to claim/receive this money into your bank account for us
+start a charity project, Meanwhile you will have 40% of the total fund
+and 60% for charity project, Note there are practically no risk
+involved, it will be bank to bank transfer, all I need from you is to
+stand and claim $17. Million without any problem with the information
+am going to provide to you.
+
+
+Please for the sake of god accept this offer to work with me and let
+us save lives of those Orphanages Children, Less Privileged and
+Elderly People Need Care, I will appreciate it very much. As soon as I
+receive your kind response, I will give you details on how we can
+achieve it successfully i will explain more on how the fund will be
+transfer to you.
+
+Waiting for your urgent response now.
+best regards
+Mrs. Kim Hong Yeoh.
