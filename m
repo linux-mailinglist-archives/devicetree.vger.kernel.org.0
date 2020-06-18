@@ -2,85 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D161FE1E3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 03:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 540DB1FDFF6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 03:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730775AbgFRB5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 21:57:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60060 "EHLO mail.kernel.org"
+        id S1732196AbgFRBoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 21:44:04 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45614 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731349AbgFRBZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jun 2020 21:25:05 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 86387221EB;
-        Thu, 18 Jun 2020 01:25:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592443505;
-        bh=Z41N+cIfPZq6+16FIiby5DDwyV51obckIwKxYJuq+4g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Uu94Fvic27skO+Ng7LieYt2IWXloXekIPgJSFkYwQnwc68/LHUdscKWi5fYMdwFOj
-         qWltOfH74NChIOWP9mLmxV1CS18vu7Am9ezesV5ekyGlwb7BmHyBUgV6drZPC3ZOnB
-         kGKbDBbyXAWLL7nw/SmPbQbQL3YqEs3xHlK+UHaI=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 130/172] of: Fix a refcounting bug in __of_attach_node_sysfs()
-Date:   Wed, 17 Jun 2020 21:21:36 -0400
-Message-Id: <20200618012218.607130-130-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200618012218.607130-1-sashal@kernel.org>
-References: <20200618012218.607130-1-sashal@kernel.org>
+        id S1730521AbgFRBoC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jun 2020 21:44:02 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jljav-0013GB-1Z; Thu, 18 Jun 2020 03:43:57 +0200
+Date:   Thu, 18 Jun 2020 03:43:57 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     f.fainelli@gmail.com, hkallweit1@gmail.com, davem@davemloft.net,
+        robh@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v7 1/6] dt-bindings: net: Add tx and rx internal
+ delays
+Message-ID: <20200618014357.GG249144@lunn.ch>
+References: <20200617182019.6790-1-dmurphy@ti.com>
+ <20200617182019.6790-2-dmurphy@ti.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200617182019.6790-2-dmurphy@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dan Carpenter <dan.carpenter@oracle.com>
+On Wed, Jun 17, 2020 at 01:20:14PM -0500, Dan Murphy wrote:
+> tx-internal-delays and rx-internal-delays are a common setting for RGMII
+> capable devices.
+> 
+> These properties are used when the phy-mode or phy-controller is set to
+> rgmii-id, rgmii-rxid or rgmii-txid.  These modes indicate to the
+> controller that the PHY will add the internal delay for the connection.
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
 
-[ Upstream commit 8a325dd06f2358ea0888e4ff1c9ca4bc23bd53f3 ]
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-The problem in this code is that if kobject_add() fails, then it should
-call of_node_put(np) to drop the reference count.  I've actually moved
-the of_node_get(np) later in the function to avoid needing to do clean
-up.
-
-Fixes: 5b2c2f5a0ea3 ("of: overlay: add missing of_node_get() in __of_attach_node_sysfs")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/kobj.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
-index c72eef988041..a32e60b024b8 100644
---- a/drivers/of/kobj.c
-+++ b/drivers/of/kobj.c
-@@ -134,8 +134,6 @@ int __of_attach_node_sysfs(struct device_node *np)
- 	if (!name)
- 		return -ENOMEM;
- 
--	of_node_get(np);
--
- 	rc = kobject_add(&np->kobj, parent, "%s", name);
- 	kfree(name);
- 	if (rc)
-@@ -144,6 +142,7 @@ int __of_attach_node_sysfs(struct device_node *np)
- 	for_each_property_of_node(np, pp)
- 		__of_add_property_sysfs(np, pp);
- 
-+	of_node_get(np);
- 	return 0;
- }
- 
--- 
-2.25.1
-
+    Andrew
