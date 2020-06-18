@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FB01FE552
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC1CC1FE551
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2020 04:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729786AbgFRBRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jun 2020 21:17:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48502 "EHLO mail.kernel.org"
+        id S1729380AbgFRBRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jun 2020 21:17:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48524 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729782AbgFRBRV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1728922AbgFRBRV (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Wed, 17 Jun 2020 21:17:21 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8EE9721D7E;
-        Thu, 18 Jun 2020 01:17:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DDA9121D94;
+        Thu, 18 Jun 2020 01:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592443040;
-        bh=f+TFBHjvg1aZ9AskKDipNue4l9sLDewX4dGhaH9jGPo=;
+        s=default; t=1592443041;
+        bh=q78LKt9Cfe6/uaSsagZYml9M60O3MnAm1lHpgXtjmjY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gAmS7WcNueaAWUxEeCEEQuLOx1iDVqai7VQeLzaDWN+v/OS9ZAI23GI09T1nEZ51F
-         YJCfPDeCdnI+RDqvjuSkMjR1gHXEF/RR+sVW+DLWUmeasdVXcTpBHoHvGdRrGQVuIT
-         HDrg0QWPzcVQwSsfqvnD22ALluzn+Kwe3RQlTd+E=
+        b=1CET2wYHOSIcl8/blH2MLGwTSdR2m0bVBSOEZG0rSOQcBwCWDv+wE3JKx6c9tFS8m
+         O0XEasc2qJ+6vP+ZcQkGAg/ZbbZ0TVrBRvYsABIzNC7XzOiN1hGwA9I6PtTh6TwLKK
+         SWkpOp8IYwmG45PbVz9XSvgl67x8C6YmSlJL9YmA=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
         Gregory CLEMENT <gregory.clement@bootlin.com>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 036/266] arm64: dts: armada-3720-turris-mox: forbid SDR104 on SDIO for FCC purposes
-Date:   Wed, 17 Jun 2020 21:12:41 -0400
-Message-Id: <20200618011631.604574-36-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 037/266] arm64: dts: armada-3720-turris-mox: fix SFP binding
+Date:   Wed, 17 Jun 2020 21:12:42 -0400
+Message-Id: <20200618011631.604574-37-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618011631.604574-1-sashal@kernel.org>
 References: <20200618011631.604574-1-sashal@kernel.org>
@@ -47,11 +47,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Marek Behún <marek.behun@nic.cz>
 
-[ Upstream commit 7a2c36b039d2343cc29fec6102da839477b8dc60 ]
+[ Upstream commit c2671acbbbd822ef077cc168991e0a7dbe2172c9 ]
 
-Use sdhci-caps-mask to forbid SDR104 mode on the SDIO capable SDHCI
-controller. Without this the device cannot pass electromagnetic
-interference certifications.
+The sfp compatible should be 'sff,sfp', not 'sff,sfp+'. We used patched
+kernel where the latter was working.
 
 Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
 Signed-off-by: Marek Behún <marek.behun@nic.cz>
@@ -59,22 +58,22 @@ Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 5f350cc71a2f..01f66056d7d5 100644
+index 01f66056d7d5..c3668187b844 100644
 --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -171,6 +171,8 @@ &sdhci1 {
- 	marvell,pad-type = "sd";
- 	vqmmc-supply = <&vsdio_reg>;
- 	mmc-pwrseq = <&sdhci1_pwrseq>;
-+	/* forbid SDR104 for FCC purposes */
-+	sdhci-caps-mask = <0x2 0x0>;
- 	status = "okay";
- };
+@@ -95,7 +95,7 @@ sdhci1_pwrseq: sdhci1-pwrseq {
+ 	};
  
+ 	sfp: sfp {
+-		compatible = "sff,sfp+";
++		compatible = "sff,sfp";
+ 		i2c-bus = <&i2c0>;
+ 		los-gpio = <&moxtet_sfp 0 GPIO_ACTIVE_HIGH>;
+ 		tx-fault-gpio = <&moxtet_sfp 1 GPIO_ACTIVE_HIGH>;
 -- 
 2.25.1
 
