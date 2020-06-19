@@ -2,224 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 245E42004A5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 11:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2770B2004B3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 11:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731131AbgFSJHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 05:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57646 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731801AbgFSJHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 05:07:01 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D9CC06174E
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:07:01 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id v3so1430337wrc.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=An0/1Yz6hizQTR4fj1ifS1TO4fEjpitZbgWOcyK/IZY=;
-        b=xoWK/3kNajghFrZozDbLkZ+9+1h4rMZRk4i/g1WFQfGERECbt04srXH5UJiGrrbyKu
-         h9LnBp9ynJIbsmyXcVy6mZmjnjmoawF0OI4WWZTtX7qllMcrF1Q82TpgA9Ldf0b9TY54
-         PCEtzLpxZsJSzyvXo5nZIzHAW+IT0av9VSakipBADy4JSffgRW7dlODsp4Ipw9fSjPHz
-         Zlft2GrVjOwhXt3+if3NEAqx/2zfC8NPd2shaYvo5p8c3MRL/WQH9t9UBCHdNshXkpsm
-         IBMT/ylXZAGudAqfbOO7vXR6sQBQ49XrgUHCZ/r3uZ+Dx3iBfk8YDVKK97nveHNxpcUo
-         iw8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=An0/1Yz6hizQTR4fj1ifS1TO4fEjpitZbgWOcyK/IZY=;
-        b=SCon1XgOZv+BKQ+eXrMoJbKKVXeHVnDUtkapOnQfBYNXQPQFZO9R9YtnIeObr/XxDn
-         02Q5+7lpGpo9In3ounBb0foeIlg7sxFT7CKJhLCO0oBWHzN8CFep4JaNWD9+vb7zu78V
-         5Rg9h/dDIgwQh9Pp6pVVHpWUjS85bWFCll4zIItLbuA+O+0sqoWIHHmzP4Sabl0f7SBB
-         NJIqY+IQoRwWeqy7VX7xQWY+qG7Lha62j4we+i3Gcn3jbqblRmeubsa0rrMEhlGFjSAy
-         pvV7thmQj43MaifBhzhfmRMMsb1BGM83aUgISpExGAnzPla7Uy0yl6YSBSWCdTcJKSm6
-         U+dw==
-X-Gm-Message-State: AOAM533jmKdKReMZHKpINWHk60OA02oFrEp0AUCFdTCBPxojldjyyTj1
-        rboyvLfdSbj5Qji41yPiRkelHg==
-X-Google-Smtp-Source: ABdhPJya5CT4h4LEpPiFHKoiDP1NdZBtAKWO81GUFvApmmIdbuZgnssYXSgixGojtFmF7wmOkDbpXA==
-X-Received: by 2002:a5d:4a8a:: with SMTP id o10mr2934774wrq.222.1592557620112;
-        Fri, 19 Jun 2020 02:07:00 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id b18sm6376150wrn.88.2020.06.19.02.06.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2020 02:06:59 -0700 (PDT)
-Date:   Fri, 19 Jun 2020 10:06:57 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, DTML <devicetree@vger.kernel.org>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        michael@walle.cc, Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/1] mfd: Add I2C based System Configuaration (SYSCON)
- access
-Message-ID: <20200619090657.GL954398@dell>
-References: <20200618080223.951737-1-lee.jones@linaro.org>
- <CAK8P3a3iRmXC2jDj92QHKqyD+x_UJ7rWU_KcGt=MFOD9UW38RA@mail.gmail.com>
- <20200618100704.GC954398@dell>
- <CAGb2v67GJUzomptOzzvafcQ-wAqrJvNNeEZsY7gVQ_kByqBT8w@mail.gmail.com>
- <20200619064141.GK954398@dell>
- <CAGb2v65aAAegOCdMYF=VkTT8pWwuT9d=mhVKCSwztecMJa-ung@mail.gmail.com>
+        id S1727909AbgFSJLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 05:11:11 -0400
+Received: from mout.kundenserver.de ([212.227.17.24]:55845 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725290AbgFSJLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 05:11:10 -0400
+Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
+ mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MXYEr-1jNs2M3G9f-00Z3DM; Fri, 19 Jun 2020 11:10:53 +0200
+Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
+        by mail.cetitecgmbh.com (Postfix) with ESMTP id 8E2596518E2;
+        Fri, 19 Jun 2020 09:10:52 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at cetitec.com
+Received: from mail.cetitecgmbh.com ([127.0.0.1])
+        by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id E5kOhP1Rq5qJ; Fri, 19 Jun 2020 11:10:52 +0200 (CEST)
+Received: from pflmari.corp.cetitec.com (unknown [10.10.5.94])
+        by mail.cetitecgmbh.com (Postfix) with ESMTPSA id 3CF6D650C2F;
+        Fri, 19 Jun 2020 11:10:52 +0200 (CEST)
+Received: by pflmari.corp.cetitec.com (Postfix, from userid 1000)
+        id 15BCA804FB; Fri, 19 Jun 2020 11:10:52 +0200 (CEST)
+Date:   Fri, 19 Jun 2020 11:10:52 +0200
+From:   Alex Riesen <alexander.riesen@cetitec.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devel@driverdev.osuosl.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 7/9] media: adv748x: only activate DAI if it is
+ described in device tree
+Message-ID: <20200619091052.GB7780@pflmari>
+Mail-Followup-To: Alex Riesen <alexander.riesen@cetitec.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devel@driverdev.osuosl.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1585852001.git.alexander.riesen@cetitec.com>
+ <c3c8ece14c0fbc987dc201c9b61dd22d98f83056.1585852001.git.alexander.riesen@cetitec.com>
+ <c752ea76-c8da-c77a-104f-9163230cc08a@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGb2v65aAAegOCdMYF=VkTT8pWwuT9d=mhVKCSwztecMJa-ung@mail.gmail.com>
+In-Reply-To: <c752ea76-c8da-c77a-104f-9163230cc08a@ideasonboard.com>
+X-Provags-ID: V03:K1:rbl/SW6nDhOvVZnU3VniVHKkESyDd8Y5zwjO7GuJtU+r0jMpPem
+ ZxlIay/v5RD2OgtYAGDJbcTrtjfwviHE1cp2Dw3QJ3aHSAgvXOWARIeiSai/t3JcW5M43/g
+ LoteXF9oTuMYUT0DPcEahQFieByYGPXlRz6MUdfC/kAvs8kB8wByGJE8zaAugjnqdsQbIW5
+ V8WPgVfjFVhd0HYoO9bHw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:d5tnjAyihLc=:GQv3a49z6BNFOKGlDseJQx
+ JHhmPglGY+xmSFCCqp/Y1J0xuavrn6sjGxeJcFEBTFUDqPtAog/dRaEe5c480YGUVfFXb0p66
+ OdKYEYxNSZ3nv/r9tWELjjjhja9qa7v8QIDt+5lq47izvs+zF3WlHqs1c9qk49cTLYHtUf3m4
+ gLZ84bJ4P+yo4YUYHPoAo8VWabo186PMwBu25gO6Y0I+3/5OIfXdeAifVLyLwsFRtWuRrh34B
+ mqqjY+KSKwzrcmJx19QBCxtuBUwWGaBK8A/Br/JG18l9iala6Y+h9aOW7lH3SzJUwJm/CvXj0
+ 5y+3stpCeH08AR1bWS+kr7Lgkpjfg4Yp+e2ZXkj0MNrDaU0EWA+pulNaKhbc3e/yM7IFuQeuB
+ MG2KGmuB9qYRym5Ki4EnrrWdTtuHeHJapxY1BFoWCcEV79rudRDaKrMOPPY9kjZCmDdvq+KPN
+ INu0YKoX2/IDsSr+A9D4d6aPyx4263mV8Ow5us4JxyRRGPUMVtN/6MmO9rPD8TgFD2d8kaN/P
+ 9WfoB4213DYQhZx5ld9CRN8VZ08em2iWhcJcd3o4U2HFddqvXO2nyIjpYb8rzxLjxO1DszUPk
+ mY+5jd0cjN1GM04Lno/HKod/Oz0VNxaquMf/0zSvgHOG4pGFwW9bC2PrHxNdL2XU7CnweMbcg
+ UDmvY7KzZ/w2A2hCWK8gRcSdrgzttiRj1LXtRz96K5L+9OKzt5zcNszK39FklNnuNyfWtt2Tw
+ 4kfznpLi9oJktk1MBplEsHXXgUY/trNTP3F4wBtZLHze/2fblXNiro/lPL0QMGgR8pLSfAeTJ
+ mthzJyMZgWb17zLdvztJtUHXH4c7rJamygh4fT0F5jV80SekE2ZTIZbkeJ0h/xYWLeKA/Vx
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Jun 2020, Chen-Yu Tsai wrote:
+Kieran Bingham, Thu, Jun 18, 2020 18:17:04 +0200:
+> On 02/04/2020 19:34, Alex Riesen wrote:
+> > To avoid setting it up even if the hardware is not actually connected
+> > to anything physically.
+> > 
+> > Besides, the bindings explicitly notes that port definitions are
+> > "optional if they are not connected to anything at the hardware level".
+> > 
+> > Signed-off-by: Alexander Riesen <alexander.riesen@cetitec.com>
+> > ---
+> >  drivers/media/i2c/adv748x/adv748x-dai.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/drivers/media/i2c/adv748x/adv748x-dai.c b/drivers/media/i2c/adv748x/adv748x-dai.c
+> > index 185f78023e91..f9cc47fa9ad1 100644
+> > --- a/drivers/media/i2c/adv748x/adv748x-dai.c
+> > +++ b/drivers/media/i2c/adv748x/adv748x-dai.c
+> > @@ -216,6 +216,11 @@ int adv748x_dai_init(struct adv748x_dai *dai)
+> >  	int ret;
+> >  	struct adv748x_state *state = adv748x_dai_to_state(dai);
+> >  
+> > +	if (!state->endpoints[ADV748X_PORT_I2S]) {
+> > +		adv_info(state, "no I2S port, DAI disabled\n");
+> > +		ret = 0;
+> > +		goto fail;
+> 
+> How about just 'return 0'?
 
-> On Fri, Jun 19, 2020 at 2:41 PM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Fri, 19 Jun 2020, Chen-Yu Tsai wrote:
-> >
-> > > On Thu, Jun 18, 2020 at 6:07 PM Lee Jones <lee.jones@linaro.org> wrote:
-> > > >
-> > > > On Thu, 18 Jun 2020, Arnd Bergmann wrote:
-> > > >
-> > > > > On Thu, Jun 18, 2020 at 10:03 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > > > > >
-> > > > > > The existing SYSCON implementation only supports MMIO (memory mapped)
-> > > > > > accesses, facilitated by Regmap.  This extends support for registers
-> > > > > > held behind I2C busses.
-> > > > > >
-> > > > > > Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> > > > >
-> > > > > The implementation looks fine to me, but can you explain how this is going to
-> > > > > be used, and what the advantage is over open-coding the devm_regmap_init_i2c()
-> > > > > in each driver that would use this?
-> > > >
-> > > > Does Regmap let you register/initialise an I2C address more than once?
-> > > >
-> > > > When I attempt it, I get:
-> > > >
-> > > > [    0.522988] i2c i2c-0: Failed to register i2c client tmp105 at 0x32 (-16)
-> > > > [    0.523341] i2c i2c-0: of_i2c: Failure registering /bus@4000000/motherboard/iofpga@7,00000000/i2c@16000/temp@32
-> > > > [    0.523691] i2c i2c-0: Failed to create I2C device for /bus@4000000/motherboard/iofpga@7,00000000/i2c@16000/temp@32
-> > > >
-> > > > > Is this about using proper locking through the regmap framework for
-> > > > > shared i2c clients, or to reduce memory consumption when lots of drivers
-> > > > > access the same regmap?
-> > > >
-> > > > All of those things are valid.
-> > > >
-> > > > My use-case is regarding MFDs sharing an I2C interfaced address space
-> > > > with their children.
-> > >
-> > > Is that an issue with the standard mfd + regmap pattern?
-> >
-> > There is no relationship between MFD and Regmap.  It is not more
-> > closely related to Regmap than it is any other public API provided
-> > within the kernel.  *Some* parent drivers initialise one large,
-> > encompassing Regmap address space and pass it to their children, but
-> > this isn't suitable in all cases.
-> >
-> > > For the AXP20x PMICs, we register the regmap in the parent mfd driver [1],
-> > > and store that in dev_data for child drivers to fetch [2]. You could
-> > > easily just fetch the regmap with dev_get_regmap() and a pointer to the
-> > > parent device.
-> >
-> > Remember, not all use-cases are the same.  Just because your H/W fits
-> > well within the current framework, doesn't mean all will.
-> >
-> > Initialising in the parent is no problem if the driver is meaningful
-> > in other ways, but what if that's all the parent driver does?  In
-> > these cases Syscon can be used instead, rendering the driver
-> > superfluous. Meaning it can (and *should*) then be omitted.
-> 
-> I'm guessing in your use case there isn't a need for a parent driver,
-> and you are looking for something like "simple-mfd", but for listing
-> sub-devices within an I2C slave device? In that case I understand.
+Indeed. In the retrospect, the whole event of loading the DAI driver does not
+feel that important anymore to warrant logging on info prio.
 
-Bingo!
+> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> 
+> This could also be folded into 5/9 too I guess?, though it is easier to
+> review the sequential additions, rather than the one-big-feature
+> addition ;-)
 
-Actually this will be used *with* "simple-mfd".  "simple-mfd" will
-ensure the sub-devices are probed and "syscon" will allow them to
-share an address space.  This is currently possible for MMIO, but not
-so for register maps located behind an I2C interface.
+I would prefer to have it separately, if you don't mind: maybe not a big one,
+but loading a driver without hardware for it *is* an event.
 
-> > > > > My impression of the existing syscon code is that the main value-add over
-> > > > > other ways of doing the same is the syscon_regmap_lookup_by_phandle()
-> > > > > interface that gives other drivers a much simpler way of getting the
-> > > > > regmap just based on the DT node. Are you planning to add something
-> > > > > like that here as well? An ideal driver interface might allow
-> > > > > syscon_regmap_lookup_by_phandle() to work for both mmio and i2c
-> > > > > based syscons, or additional ones as well, but implementing this would
-> > > > > be rather tricky when the i2c core is a loadable module.
-> > >
-> > > The current MMIO syscon is decoupled from the DM, and there is no way
-> > > for drivers to export or register a syscon, meaning I have to open code
-> > > syscon_regmap_lookup_by_phandle() [3] if I want to only expose certain
-> > > registers and not the full address range, or if I want to share the
-> > > regmap with the existing driver (for locking purposes), or both [4].
-> >
-> > Not sure I understand the problem.
-> >
-> > Could you explain why the current implementation doesn't work for you?
-> >
-> > Open coding your own implementation of Syscon is non-optimal.
-> 
-> For the DWMAC Ethernet controllers, the platform glue almost always has
-> a register for tuning the delays of the TX and RX clocks. In almost all
-> later Allwinner chips, this is in a separate area, which we use a syscon
-> for. However in one hybrid chip, this is located in the clock controller.
-> We deemed it risky to also have the whole clock controller address range
-> mapped as a syscon, and so we export a custom regmap.
-> 
-> The Ethernet driver has to deal with both cases.
-> 
-> Looking at it again, since syscon still has a platform driver, maybe I
-> should just use the dev_get_regmap() route for both cases.
-> 
-> > > Maybe there's room for improvement here? The same applies to the new
-> > > I2C case, and likely any other future syscon variants.
-> > >
-> > > IMHO people are getting it wrong if they have both a syscon and a driver
-> > > for the same device.
-> >
-> > Syscon is just a means to obtain a group of registers either a)
-> > without a dedicated driver OR b) to share amongst more than 1,
-> > potentially unrelated, user.  So in the case of a) which appears to
-> > sit well with-in your use-case and expectations, you are correct.
-> > Whereas in the case of b) you are not.
-> >
-> > I hope that helps clarity the situation somewhat.
-> 
-> The concern was mostly due to the commit message of
-> 
->     bdb0066df96e mfd: syscon: Decouple syscon interface from platform devices
-> 
-> which mentions
-> 
->    there is a need to have a dedicated driver for such system controller
->    but also share registers with other drivers. The latter is where the
->    syscon interface is helpful.
-> 
-> But does not provide any sort of coordination between the dedicated driver
-> and the syscon. I suppose the intention might have been that the driver
-> would get a syscon using its own device node. We avoided that but I wonder
-> if the extra code is worth it or not. Other platforms seem to do ok.
-
-What sort of co-ordination do you require beyond what is offered?
-
-> Thank you for helping me clear things up.
-
-Never a problem.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks,
+Alex
