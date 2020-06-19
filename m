@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 436C720027E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 09:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E68C4200277
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 09:06:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728109AbgFSHGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 03:06:11 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:19511 "EHLO m43-7.mailgun.net"
+        id S1730359AbgFSHFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 03:05:53 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:26534 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730191AbgFSHFq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jun 2020 03:05:46 -0400
+        id S1728348AbgFSHFt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jun 2020 03:05:49 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1592550346; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1592550349; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=c1jBqrEjx0f/maHC7z0uj1cMEE9NJ2biA7pv5Q5ED+A=; b=A+I8uiY5IajfGrYYYYTPoOSql+iWMtvXXy2m207C9bRcH7cFhL14BgVKDJ5bpkRHWUtZyaid
- BgaCvZ3wHTHmaE8mD8BRKok3KBidcm20XhLocudyE6ZH/PhcWbTI5U2pDrquou52XH8i7eaq
- QBWTsKmr5TU+ajfT8roakr5v1Nw=
+ bh=3IGSqQn8wPmBUvFPUqXdomMb9/avgVjdyjhP5K9XSGg=; b=tPk2CBURHqEmOFEWSb1EQrxIDiF8OtsBvYXahqbWYhPTHa6/UTcHvRMTaD1CDK9kjlsxLVcR
+ 7fIyf8kN6vZWKzKcLBRLi5FoZvqrHxIJEwf/6dYYwdN0CdEZKdGDEYFwG/j/24zl/Haix+e1
+ gyvTa2+0GcOETFZIuHWUBJWRgmk=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n11.prod.us-west-2.postgun.com with SMTP id
- 5eec63c7e144dd5115d5ecf4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Jun 2020 07:05:43
+ smtp-out-n14.prod.us-west-2.postgun.com with SMTP id
+ 5eec63ca6bebe35deb5418b3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Jun 2020 07:05:46
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A4B3FC433CB; Fri, 19 Jun 2020 07:05:43 +0000 (UTC)
+        id AF227C433A0; Fri, 19 Jun 2020 07:05:46 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -36,9 +36,9 @@ Received: from kathirav-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-O
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: kathirav)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5C23EC433CA;
-        Fri, 19 Jun 2020 07:05:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5C23EC433CA
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7154C43395;
+        Fri, 19 Jun 2020 07:05:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C7154C43395
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kathirav@codeaurora.org
 From:   Kathiravan T <kathirav@codeaurora.org>
@@ -47,9 +47,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     sivaprak@codeaurora.org
-Subject: [PATCH 5/6] dt-bindings: add MP5496 regulator compatible
-Date:   Fri, 19 Jun 2020 12:35:06 +0530
-Message-Id: <1592550307-11040-6-git-send-email-kathirav@codeaurora.org>
+Subject: [PATCH 6/6] regulator: qcom_smd: Add MP5496 regulators
+Date:   Fri, 19 Jun 2020 12:35:07 +0530
+Message-Id: <1592550307-11040-7-git-send-email-kathirav@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1592550307-11040-1-git-send-email-kathirav@codeaurora.org>
 References: <1592550307-11040-1-git-send-email-kathirav@codeaurora.org>
@@ -58,25 +58,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ6018 uses the PMIC MP5496. Add the binding for the same.
+IPQ6018 SoC uses the PMIC MP5496. SMPA2 and LDOA2 regulator controls the
+APSS and SDCC voltage scaling respectively. Add support for the same.
 
 Signed-off-by: Kathiravan T <kathirav@codeaurora.org>
 ---
- Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/regulator/qcom_smd-regulator.c | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-index cb0bd7b..8d212bd 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-@@ -56,6 +56,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - qcom,rpm-mp5496-regulators
-       - qcom,rpm-pm8841-regulators
-       - qcom,rpm-pm8916-regulators
-       - qcom,rpm-pm8941-regulators
+diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+index 53a64d8..e6d137a 100644
+--- a/drivers/regulator/qcom_smd-regulator.c
++++ b/drivers/regulator/qcom_smd-regulator.c
+@@ -198,6 +198,15 @@ static const struct regulator_ops rpm_bob_ops = {
+ 	.set_voltage = rpm_reg_set_voltage,
+ };
+ 
++static const struct regulator_ops rpm_mp5496_ops = {
++	.enable = rpm_reg_enable,
++	.disable = rpm_reg_disable,
++	.is_enabled = rpm_reg_is_enabled,
++	.list_voltage = regulator_list_voltage_linear_range,
++
++	.set_voltage = rpm_reg_set_voltage,
++};
++
+ static const struct regulator_desc pma8084_hfsmps = {
+ 	.linear_ranges = (struct linear_range[]) {
+ 		REGULATOR_LINEAR_RANGE(375000,  0,  95, 12500),
+@@ -595,6 +604,24 @@ static const struct regulator_desc pms405_pldo600 = {
+ 	.ops = &rpm_smps_ldo_ops,
+ };
+ 
++static const struct regulator_desc mp5496_smpa2 = {
++	.linear_ranges = (struct linear_range[]) {
++		REGULATOR_LINEAR_RANGE(725000, 0, 27, 12500),
++	},
++	.n_linear_ranges = 1,
++	.n_voltages = 28,
++	.ops = &rpm_mp5496_ops,
++};
++
++static const struct regulator_desc mp5496_ldoa2 = {
++	.linear_ranges = (struct linear_range[]) {
++		REGULATOR_LINEAR_RANGE(1800000, 0, 60, 25000),
++	},
++	.n_linear_ranges = 1,
++	.n_voltages = 61,
++	.ops = &rpm_mp5496_ops,
++};
++
+ struct rpm_regulator_data {
+ 	const char *name;
+ 	u32 type;
+@@ -603,6 +630,12 @@ struct rpm_regulator_data {
+ 	const char *supply;
+ };
+ 
++static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
++	{ "s2", QCOM_SMD_RPM_SMPA, 2, &mp5496_smpa2, "s2" },
++	{ "l2", QCOM_SMD_RPM_LDOA, 2, &mp5496_ldoa2, "l2" },
++	{}
++};
++
+ static const struct rpm_regulator_data rpm_pm8841_regulators[] = {
+ 	{ "s1", QCOM_SMD_RPM_SMPB, 1, &pm8x41_hfsmps, "vdd_s1" },
+ 	{ "s2", QCOM_SMD_RPM_SMPB, 2, &pm8841_ftsmps, "vdd_s2" },
+@@ -901,6 +934,7 @@ static const struct rpm_regulator_data rpm_pms405_regulators[] = {
+ };
+ 
+ static const struct of_device_id rpm_of_match[] = {
++	{ .compatible = "qcom,rpm-mp5496-regulators", .data = &rpm_mp5496_regulators },
+ 	{ .compatible = "qcom,rpm-pm8841-regulators", .data = &rpm_pm8841_regulators },
+ 	{ .compatible = "qcom,rpm-pm8916-regulators", .data = &rpm_pm8916_regulators },
+ 	{ .compatible = "qcom,rpm-pm8941-regulators", .data = &rpm_pm8941_regulators },
 -- 
 QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
 
