@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 130D220138F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 18:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A26C72014C8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 18:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392086AbgFSPLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 11:11:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41416 "EHLO mail.kernel.org"
+        id S2390675AbgFSPA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 11:00:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57378 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392083AbgFSPLM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jun 2020 11:11:12 -0400
+        id S2390671AbgFSPA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jun 2020 11:00:58 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3510B206FA;
-        Fri, 19 Jun 2020 15:11:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 84DE020734;
+        Fri, 19 Jun 2020 15:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592579470;
-        bh=0pNQvEnZeHTLkLmgiu/A9qoxqPszAW5orX1nIHkQqZk=;
+        s=default; t=1592578858;
+        bh=Pg7o7hR6OuF3WqB28s1pOE/hk0d383YdOIRcUIRuGsg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=W8A6cLragt46Zv05LCweZ+9hzMfzzrc47swDG0H0SbeP6GPhdsuzDXg+bOQmppfVH
-         5UUQJ7jNxg5FtBmnvI1gmXUbwIT2fwhsr6odHueWojx5Rm1sC5gwniju7OKiW8/i1X
-         PDMXPPDOejL+bFDdjDLEzTjmND0aHz+ULNky+iPI=
+        b=f2LVDoNa45YBAG9lbXrTibHbHAkGdI/umi2h6DPNOabQa3Lw2QibgDUI5Ptt6uteL
+         4kbUZ3cqzhtCQ9D/rFeK1b8SOxX61+jDjZkcDDtP0BIk8pyiNxEiwgQsnHH3bGJL7I
+         rZSQdmQTuglTjCzF6/yb6L8yzsUzJ2vvnhHwvteU=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -38,12 +38,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
         devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.4 147/261] spi: dw: Return any value retrieved from the dma_transfer callback
-Date:   Fri, 19 Jun 2020 16:32:38 +0200
-Message-Id: <20200619141656.912935525@linuxfoundation.org>
+Subject: [PATCH 4.19 182/267] spi: dw: Return any value retrieved from the dma_transfer callback
+Date:   Fri, 19 Jun 2020 16:32:47 +0200
+Message-Id: <20200619141657.498868116@linuxfoundation.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200619141649.878808811@linuxfoundation.org>
-References: <20200619141649.878808811@linuxfoundation.org>
+In-Reply-To: <20200619141648.840376470@linuxfoundation.org>
+References: <20200619141648.840376470@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -86,10 +86,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 3 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/spi/spi-dw-mid.c b/drivers/spi/spi-dw-mid.c
-index b044d4071690..b07710c76fc9 100644
+index e1b34ef9a31c..10f328558d55 100644
 --- a/drivers/spi/spi-dw-mid.c
 +++ b/drivers/spi/spi-dw-mid.c
-@@ -266,7 +266,7 @@ static int mid_spi_dma_transfer(struct dw_spi *dws, struct spi_transfer *xfer)
+@@ -274,7 +274,7 @@ static int mid_spi_dma_transfer(struct dw_spi *dws, struct spi_transfer *xfer)
  		dma_async_issue_pending(dws->txchan);
  	}
  
@@ -99,10 +99,10 @@ index b044d4071690..b07710c76fc9 100644
  
  static void mid_spi_dma_stop(struct dw_spi *dws)
 diff --git a/drivers/spi/spi-dw.c b/drivers/spi/spi-dw.c
-index 07d1c170c657..c2f96941ad04 100644
+index 3fbd6f01fb10..b1c137261d0f 100644
 --- a/drivers/spi/spi-dw.c
 +++ b/drivers/spi/spi-dw.c
-@@ -381,11 +381,8 @@ static int dw_spi_transfer_one(struct spi_controller *master,
+@@ -383,11 +383,8 @@ static int dw_spi_transfer_one(struct spi_controller *master,
  
  	spi_enable_chip(dws, 1);
  
