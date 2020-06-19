@@ -2,123 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2067201892
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 19:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF42201900
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 19:02:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387983AbgFSQtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 12:49:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387986AbgFSOjJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jun 2020 10:39:09 -0400
-Received: from earth.universe (dyndsl-037-138-190-043.ewe-ip-backbone.de [37.138.190.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 673B320DD4;
-        Fri, 19 Jun 2020 14:39:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592577548;
-        bh=GhmndpCx0NtSvR5PEsSvK9su8y7F9B9W/85J59fhrTc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b6Q4n+E5Dk+L+BUYxW++OziNU6+ncxzIZSDlPwNkoW0CxkAggKh8nfcXgFXLzxuDx
-         EJ/7nNdgDgcw81Mjo+PHn4VfVxOsxOopZmTnRo56r2nc44BOoraHqojrIopiFOUiUt
-         vAjcvxaaljitJIN4Mfu9h37y+E93LduiyX1ThH3Q=
-Received: by earth.universe (Postfix, from userid 1000)
-        id C348B3C08CD; Fri, 19 Jun 2020 16:39:06 +0200 (CEST)
-Date:   Fri, 19 Jun 2020 16:39:06 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@intel.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: power: supply: bq25890: Document
- required interrupt
-Message-ID: <20200619143906.33twapu6mgyay4yr@earth.universe>
-References: <20200617102305.14241-1-krzk@kernel.org>
- <20200617102305.14241-2-krzk@kernel.org>
+        id S2387509AbgFSRBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 13:01:38 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:37424 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733192AbgFSRBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 13:01:37 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 45B9480045E5;
+        Fri, 19 Jun 2020 17:01:28 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 2LmcmqX_SRgV; Fri, 19 Jun 2020 20:01:26 +0300 (MSK)
+Date:   Fri, 19 Jun 2020 20:01:25 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-mips@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/9] dt-bindings: dma: dw: Convert DW DMAC to DT
+ binding
+Message-ID: <20200619170125.7ww5ornsqctscine@mobilestation>
+References: <20200617234028.25808-1-Sergey.Semin@baikalelectronics.ru>
+ <20200617234028.25808-2-Sergey.Semin@baikalelectronics.ru>
+ <CAHp75Vd+3ZN51geXg+KiQYVpBZN7F+kgt-2Snw7VDiKiYVqX=A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gyqjsa47ulgkpkl2"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200617102305.14241-2-krzk@kernel.org>
+In-Reply-To: <CAHp75Vd+3ZN51geXg+KiQYVpBZN7F+kgt-2Snw7VDiKiYVqX=A@mail.gmail.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 18, 2020 at 11:21:53AM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 18, 2020 at 2:43 AM Serge Semin
+> <Sergey.Semin@baikalelectronics.ru> wrote:
+> >
+> > Modern device tree bindings are supposed to be created as YAML-files
+> > in accordance with dt-schema. This commit replaces the Synopsis
+> > Designware DMA controller legacy bare text bindings with YAML file.
+> > The only required prorties are "compatible", "reg", "#dma-cells" and
+> > "interrupts", which will be used by the driver to correctly find the
+> > controller memory region and handle its events. The rest of the properties
+> > are optional, since in case if either "dma-channels" or "dma-masters" isn't
+> > specified, the driver will attempt to auto-detect the IP core
+> > configuration.
+> >
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> > Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Cc: linux-mips@vger.kernel.org
+> 
+> 
 
---gyqjsa47ulgkpkl2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Rob, here are questions to you.
 
-Hi,
+Rob normally is very busy. So I hope you won't mind me answering in his stead.
 
-On Wed, Jun 17, 2020 at 12:23:05PM +0200, Krzysztof Kozlowski wrote:
-> The driver requires interrupts (fails probe if it is not provided) so
-> document this requirement in bindings.
->=20
-> Fixes: 4aeae9cb0dad ("power_supply: Add support for TI BQ25890 charger ch=
-ip")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
+> 
+> > +  dma-channels:
+> > +    description: |
+> > +      Number of DMA channels supported by the controller. In case if
+> > +      not specified the driver will try to auto-detect this and
+> > +      the rest of the optional parameters.
+> > +    minimum: 1
+> > +    maximum: 8
+> 
+> ...
+> 
+> > +  multi-block:
+> 
+> > +      maxItems: 8
+> 
 
-Thanks, queued.
+> This maximum is defined by above dma-channels property. Is there any
+> way to put it in the schema?
 
--- Sebastian
+Neither Json nor Yaml schema support inter-properties values dependencies
+out of box. If it's required, then a back-end must be properly tuned up.
+In other words the dt-schema framework should be altered to parse the
+"dma-channels" property and to apply the constraint to another property
+in accordance with its value.
 
->  Documentation/devicetree/bindings/power/supply/bq25890.txt | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/bq25890.txt b=
-/Documentation/devicetree/bindings/power/supply/bq25890.txt
-> index 51ecc756521f..3b4c69a7fa70 100644
-> --- a/Documentation/devicetree/bindings/power/supply/bq25890.txt
-> +++ b/Documentation/devicetree/bindings/power/supply/bq25890.txt
-> @@ -10,6 +10,7 @@ Required properties:
->      * "ti,bq25895"
->      * "ti,bq25896"
->  - reg: integer, i2c address of the device.
-> +- interrupts: interrupt line;
->  - ti,battery-regulation-voltage: integer, maximum charging voltage (in u=
-V);
->  - ti,charge-current: integer, maximum charging current (in uA);
->  - ti,termination-current: integer, charge will be terminated when curren=
-t in
-> @@ -39,6 +40,9 @@ bq25890 {
->  	compatible =3D "ti,bq25890";
->  	reg =3D <0x6a>;
-> =20
-> +	interrupt-parent =3D <&gpio1>;
-> +	interrupts =3D <16 IRQ_TYPE_EDGE_FALLING>;
-> +
->  	ti,battery-regulation-voltage =3D <4200000>;
->  	ti,charge-current =3D <1000000>;
->  	ti,termination-current =3D <50000>;
-> --=20
-> 2.17.1
->=20
+> 
+> ...
+> 
+> > +  snps,dma-protection-control:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    description: |
+> > +      Bits one-to-one passed to the AHB HPROT[3:1] bus. Each bit setting
+> > +      indicates the following features: bit 0 - privileged mode,
+> > +      bit 1 - DMA is bufferable, bit 2 - DMA is cacheable.
+> > +    default: 0
+> > +    minimum: 0
+> > +    maximum: 7
+> 
 
---gyqjsa47ulgkpkl2
-Content-Type: application/pgp-signature; name="signature.asc"
+> AFAIR this is defined by bit flags, does schema have a mechanism to
+> define flags-like entries?
 
------BEGIN PGP SIGNATURE-----
+Normally a thing like that could be done by means of enum constraints.
+But it only works for cases with non-combinable bit-fields, for
+instance if there were only either privileged or bufferable or cacheable
+modes. Otherwise we would have to describe each combination of the bits
+setting, which as you understand would be very clumsy. Seeing there might
+be any combination of the HPROT bits setting here we have no choice but
+to use the range constraint.
 
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl7szgoACgkQ2O7X88g7
-+pobjw/8Cpw1OzyHiGjyxlvzVKNvp4LndLYSD4J8cdqGPeSNEAHae4sCqmae3G89
-ZCd2Zohd2LwXXire9sQtIXJb96o+1ocWQIzR3wMIypCO8dy83IZqqy+SfZW4ivGW
-K2KmQChB/8os3O74Jw9DSPc4UfK0ISy+7HR4Ot8kyfhg1Dvm9z4NVnId2dHohXoL
-EOn4KYAvjSrevUfXSRwIadCxLxLW7dA1IV1+AS13p0XHdjq4OGQ5dsxNoqYd/X1Q
-MyF3f01Dfic0PDQE3StBTYKW8sYaXI73IftAxZ3gPTcPjS7AzFj+3wpXVEKjfxqR
-e7G40IJYwKtXiyIBg0aQhXOvC3/32LQV4c7suPNmNez4tSn6BkrnFvBOPiVeNZRq
-PLrFNdtatoX3otvbuJEoULD7jLIgSg3Oi8Fkbxu3zmpeCO8yNDPGTmZdhHyxfk7s
-xxUTNlOr7f5rbxYGVe2q0Vz7o5H6s5ukgjSsiqCSMZrNkJd2DYfnvPsSL6Ymd+jP
-SCdfiauLIwrXOzoX/lJXHj/fGzmJGUnU7ogW7OWqclWIGoTxAjIuen+lEWXNIjOH
-L/sAxLp/Sp1gS4rTRFJSite5x8A6h4QGxmsCN1mxuiKgeu9Lyrw4JmKEo40hYa8S
-Ayr385VFbX//luhm435eFe27tMPikUC1GdQwu/tFJk+mkoq5XVs=
-=XIWY
------END PGP SIGNATURE-----
+-Sergey
 
---gyqjsa47ulgkpkl2--
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
