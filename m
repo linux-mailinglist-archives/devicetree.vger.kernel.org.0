@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FEC200637
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 12:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D9120064A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 12:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732378AbgFSK2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 06:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S1732456AbgFSK3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 06:29:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732283AbgFSK2H (ORCPT
+        with ESMTP id S1732320AbgFSK2H (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 06:28:07 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019C1C0613EE;
-        Fri, 19 Jun 2020 03:28:05 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EDCC0613EF;
+        Fri, 19 Jun 2020 03:28:06 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: eballetbo)
-        with ESMTPSA id 23DE72A51F7
+        with ESMTPSA id 425E12A51F9
 From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Collabora Kernel ML <kernel@collabora.com>, erwanaliasr1@gmail.com,
@@ -26,10 +26,12 @@ Cc:     Collabora Kernel ML <kernel@collabora.com>, erwanaliasr1@gmail.com,
         Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH 0/7] arm64: dts: mediatek: Add support for Lenovo IdeaPad Duet Chromebook
-Date:   Fri, 19 Jun 2020 12:27:50 +0200
-Message-Id: <20200619102757.1358675-1-enric.balletbo@collabora.com>
+Subject: [PATCH 1/7] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-krane-sku176
+Date:   Fri, 19 Jun 2020 12:27:51 +0200
+Message-Id: <20200619102757.1358675-2-enric.balletbo@collabora.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200619102757.1358675-1-enric.balletbo@collabora.com>
+References: <20200619102757.1358675-1-enric.balletbo@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -37,43 +39,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These series adds basic support for the Lenovo IdeaPad Duet Chromebook, a
-2-in-1 detachable devices using the MediaTek MT8183 SoC. The first patch
-only adds the new compatible names in the mediatek binding. The second
-patch, adds the missing compatible to instantiate the PMIC regulators.
-The next patch adds missing devices to support better the board and fixes
-some warnings found running dtbs_check. And finally, the latest
-introduces support for the board itself.
+The krane-sku176 is the Lenovo IdeaPad Duet Chromebook. A 2-in-1
+detachable device using the MediaTek MT8183 SoC.
 
-All the patches has been tested on Lenovo IdeaPad Duet Chromebook with
-the patches applied on top of 5.8-rc1 and with serial console, booting
-without problems and being able to go to the login prompt.
+Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
 
-Best regards,
-  Enric
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Enric Balletbo i Serra (7):
-  dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-krane-sku176
-  arm64: dts: mt6358: Add the compatible for the regulators
-  arm64: dts: mt8183: Add MediaTek's peripheral configuration controller
-  arm64: dts: mt8183: Fix unit name warnings
-  arm64: dts: mt8183-evb: Fix unit name warnings
-  arm64: dts: mt8183: Add USB3.0 support
-  arm64: dts: mt8183: Add krane-sku176 board
-
- .../devicetree/bindings/arm/mediatek.yaml     |   5 +
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- arch/arm64/boot/dts/mediatek/mt6358.dtsi      |   2 +
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   4 +-
- .../mediatek/mt8183-kukui-krane-sku176.dts    |  18 +
- .../boot/dts/mediatek/mt8183-kukui-krane.dtsi | 343 ++++++++
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 788 ++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  68 +-
- 8 files changed, 1225 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index abc544dde6920..30908963ae261 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -114,4 +114,9 @@ properties:
+           - enum:
+               - mediatek,mt8183-evb
+           - const: mediatek,mt8183
++      - description: Google Krane (Lenovo IdeaPad Duet, 10e,...)
++        items:
++          - const: google,krane-sku176
++          - const: google,krane
++          - const: mediatek,mt8183
+ ...
 -- 
 2.27.0
 
