@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B97C6200CD7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 16:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A2F6200BE7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 16:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389316AbgFSOub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 10:50:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43434 "EHLO mail.kernel.org"
+        id S2387976AbgFSOjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 10:39:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56660 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388693AbgFSOu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jun 2020 10:50:28 -0400
+        id S2388011AbgFSOjR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jun 2020 10:39:17 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 70CDB20DD4;
-        Fri, 19 Jun 2020 14:50:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CD99020CC7;
+        Fri, 19 Jun 2020 14:39:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592578228;
-        bh=SqVHw7je2X5s8JwVsx+Av0VwbuYw1mf97YZ/CeNZ7SQ=;
+        s=default; t=1592577556;
+        bh=K/Qd2BVjoGnjBRAXKcRbdqs6eY78ZjkmNsEPRpMD6Og=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PpNTz1wEdrDOoJV2JegSKsns3PwhCNdI3SZq2qsRYq39fgJZnx64dhgBlrVwA8V5I
-         tE4b6C15692aRGATSnhysUhbKPsVhsa4DcUQl40A00mXSkxr4jB1NyN733YZHNgl0R
-         9ua1HxIpH6mX8wpflY2xFJQW+o73PIbLQTL42bp4=
+        b=rcRk6DWImowc6uUn85HCUTlIlOPEepd8KkcApatzBajB+hDXZ+JIYVEeWDBIgqbLf
+         0SIZSqfnHKg26ukFRd32X3Pnu3SeN/QK+7YcukToHeNXbks6FsO2UWthUcDEuqvRhL
+         DOngQTMWBYKozrG3b2Cj2Mjc3edesuxZUaJAtNLg=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -36,12 +36,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.14 125/190] mips: Add udelay lpj numbers adjustment
-Date:   Fri, 19 Jun 2020 16:32:50 +0200
-Message-Id: <20200619141639.868789638@linuxfoundation.org>
+Subject: [PATCH 4.4 067/101] mips: Add udelay lpj numbers adjustment
+Date:   Fri, 19 Jun 2020 16:32:56 +0200
+Message-Id: <20200619141617.561080912@linuxfoundation.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200619141633.446429600@linuxfoundation.org>
-References: <20200619141633.446429600@linuxfoundation.org>
+In-Reply-To: <20200619141614.001544111@linuxfoundation.org>
+References: <20200619141614.001544111@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -84,7 +84,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 70 insertions(+)
 
 diff --git a/arch/mips/kernel/time.c b/arch/mips/kernel/time.c
-index a6ebc8135112..df18f386d457 100644
+index 8d0170969e22..345978cc105b 100644
 --- a/arch/mips/kernel/time.c
 +++ b/arch/mips/kernel/time.c
 @@ -22,12 +22,82 @@
