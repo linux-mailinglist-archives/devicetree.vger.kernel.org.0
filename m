@@ -2,138 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EFB3201B04
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 21:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49452201B16
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 21:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733170AbgFSTQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 15:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38824 "EHLO
+        id S1733115AbgFSTQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 15:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733115AbgFSTQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 15:16:07 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A91DC06174E
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 12:16:06 -0700 (PDT)
-Received: from ramsan ([IPv6:2a02:1810:ac12:ed20:e0be:48f2:cba4:1407])
-        by albert.telenet-ops.be with bizsmtp
-        id t7Fx220084UASYb067Fx5g; Fri, 19 Jun 2020 21:16:04 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jmMUX-0002Jb-5e; Fri, 19 Jun 2020 21:15:57 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jmMUX-0006VK-4G; Fri, 19 Jun 2020 21:15:57 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Kazuya Mizuguchi <kazuya.mizuguchi.ks@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/RFC 5/5] arm64: dts: renesas: rzg2: Convert EtherAVB to explicit delay handling
-Date:   Fri, 19 Jun 2020 21:15:54 +0200
-Message-Id: <20200619191554.24942-6-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200619191554.24942-1-geert+renesas@glider.be>
-References: <20200619191554.24942-1-geert+renesas@glider.be>
+        with ESMTP id S1733272AbgFSTQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 15:16:32 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43BA5C06174E
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 12:16:31 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id y18so4288424plr.4
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 12:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=QpjsOQ81m2+7Vf1tKhbI0NPMb57wPuYHIHejUZfeOx0=;
+        b=W+x4CClX3BaHnLSt/1xtF5HA5oIJlM8A+EGmUOOouefvbHiG6YC0Wsg8b7CB6Pp8f5
+         pEyFrNb9aZk1QdlliapBCUCIem9PZnRIF1pNDG541eEWKTNagxIBWk/a5ThEjdUHubXI
+         O2fstgpGQQrTlufuHR2nutPWOwG7k0KKO0UPw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QpjsOQ81m2+7Vf1tKhbI0NPMb57wPuYHIHejUZfeOx0=;
+        b=OZOV5odt9nI2BLrH8tdpL5eRP1n1IvQC5a1RVOX6hvAzZla/E2Hb/kcSDSPu+macNZ
+         O8ILBRJKs2ik7Xb1ODrefhGgAPc+DCMvVH/HutiuWeOBYsEVainJtLVDx3yh8JX/Rhmt
+         sQDUwMnhtDsag9g8PxfIUnaR15M/9ONLMgvvauOmS5mvAlr6WU/yT3hp2JnK9WBRcB7z
+         PboUCpvKz7rkIra38+RI8AEIbNj1P7fmEHzJR9eU7j41fqLcxuY0ZODxSMvNsSqQOlTO
+         8Z20Kd6JJLEoAWBbE+/wPnFRbv7KYc++wZSbDHeebD+93lYdUrMXiw3NfflQbfEi+Rcv
+         wMNA==
+X-Gm-Message-State: AOAM531HFY+ZTjknYmLoyo5zqjdbzjDurbkb491e8/pAmEDtjKvO6CiY
+        8+MOKPHeNKubrAMbV563eFaMCw==
+X-Google-Smtp-Source: ABdhPJwNurzM+LygEC0YiX0wuysnxgJPszpw0mtEo9Y7176XsIpQNBKYeTFSdYlDE/YRvgnE/WhMHg==
+X-Received: by 2002:a17:90b:50d:: with SMTP id r13mr4895894pjz.94.1592594190698;
+        Fri, 19 Jun 2020 12:16:30 -0700 (PDT)
+Received: from localhost.localdomain ([42.111.138.30])
+        by smtp.gmail.com with ESMTPSA id 12sm6482743pfj.149.2020.06.19.12.16.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 19 Jun 2020 12:16:30 -0700 (PDT)
+From:   Suniel Mahesh <sunil@amarulasolutions.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        gregkh@linuxfoundation.org, sashal@kernel.org
+Cc:     jagan@amarulasolutions.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        stable@vger.kernel.org
+Subject: [PATCH] arch: arm: imx6qdl-icore: Fix OTG_ID pin and sdcard detect
+Date:   Sat, 20 Jun 2020 00:46:13 +0530
+Message-Id: <1592594173-13497-1-git-send-email-sunil@amarulasolutions.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some EtherAVB variants support internal clock delay configuration, which
-can add larger delays than the delays that are typically supported by
-the PHY (using an "rgmii-*id" PHY mode, and/or "[rt]xc-skew-ps"
-properties).
+From: Michael Trimarchi <michael@amarulasolutions.com>
 
-Historically, the EtherAVB driver configured these delays based on the
-"rgmii-*id" PHY mode.  This was wrong, as these are meant solely for the
-PHY, not for the MAC.  Hence properties were introduced for explicit
-configuration of these delays.
+The current pin muxing scheme muxes GPIO_1 pad for USB_OTG_ID
+but the TRM mentions GPIO_1 pad is muxed for card detetcion,
+because of which when card is inserted, usb otg is enumerated
+and the card is never detected.
 
-Convert the RZ/G2 DTS files from the old to the new scheme:
-  - Add default "renesas,rxc-delay-ps" and "renesas,txc-delay-ps"
-    properties to the SoC .dtsi files, to be overridden by board files
-    where needed,
-  - Convert board files from "rgmii-*id" PHY modes to "rgmii", adding
-    the appropriate "renesas,rxc-delay-ps" and/or "renesas,txc-delay-ps"
-    overrides.
+[   64.492645] cfg80211: failed to load regulatory.db
+[   64.492657] imx-sdma 20ec000.sdma: external firmware not found, using ROM firmware
+[   76.343711] ci_hdrc ci_hdrc.0: EHCI Host Controller
+[   76.349742] ci_hdrc ci_hdrc.0: new USB bus registered, assigned bus number 2
+[   76.388862] ci_hdrc ci_hdrc.0: USB 2.0 started, EHCI 1.00
+[   76.396650] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.08
+[   76.405412] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   76.412763] usb usb2: Product: EHCI Host Controller
+[   76.417666] usb usb2: Manufacturer: Linux 5.8.0-rc1-next-20200618 ehci_hcd
+[   76.424623] usb usb2: SerialNumber: ci_hdrc.0
+[   76.431755] hub 2-0:1.0: USB hub found
+[   76.435862] hub 2-0:1.0: 1 port detected
 
-Notes:
-  - RZ/G2E does not support TX internal delay handling.
+Fix the pin muxing as per TRM by muxing ENET_RX_ER pad for USB_OTG_ID
+and GPIO_1 pad for card detect.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+[   22.449165] mmc0: host does not support reading read-only switch, assuming write-enable
+[   22.459992] mmc0: new high speed SDHC card at address 0001
+[   22.469725] mmcblk0: mmc0:0001 EB1QT 29.8 GiB
+[   22.478856]  mmcblk0: p1 p2
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
 ---
-This depends on "[PATCH/RFC 3/5] ravb: Add support for explicit internal
-clock delay configuration" and must not be applied before that
-dependency has hit upstream.
+NOTE:
+- patch tested on i.Core 1.5 MX6 DL
 ---
- arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r8a774a1.dtsi       | 2 ++
- arch/arm64/boot/dts/renesas/r8a774b1.dtsi       | 2 ++
- arch/arm64/boot/dts/renesas/r8a774c0.dtsi       | 1 +
- 4 files changed, 6 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/imx6qdl-icore.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-index acfcfd050a6cb2d5..c2ce2aaea6e6d64b 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-@@ -19,7 +19,7 @@
- 	pinctrl-0 = <&avb_pins>;
- 	pinctrl-names = "default";
- 	phy-handle = <&phy0>;
--	phy-mode = "rgmii-txid";
-+	renesas,txc-delay-ps = <2000>;
- 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx6qdl-icore.dtsi b/arch/arm/boot/dts/imx6qdl-icore.dtsi
+index 756f3a9..12997da 100644
+--- a/arch/arm/boot/dts/imx6qdl-icore.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-icore.dtsi
+@@ -397,7 +397,7 @@
  
- 	phy0: ethernet-phy@0 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-index 51a572898fd68a7d..192900c716990860 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-@@ -1115,6 +1115,8 @@
- 			power-domains = <&sysc R8A774A1_PD_ALWAYS_ON>;
- 			resets = <&cpg 812>;
- 			phy-mode = "rgmii";
-+			renesas,rxc-delay-ps = <0>;
-+			renesas,txc-delay-ps = <0>;
- 			iommus = <&ipmmu_ds0 16>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-index b221f2575e6328f9..3e50541750e93f88 100644
---- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-@@ -989,6 +989,8 @@
- 			power-domains = <&sysc R8A774B1_PD_ALWAYS_ON>;
- 			resets = <&cpg 812>;
- 			phy-mode = "rgmii";
-+			renesas,rxc-delay-ps = <0>;
-+			renesas,txc-delay-ps = <0>;
- 			iommus = <&ipmmu_ds0 16>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-index 5c72a7efbb035d02..a478450090f20e0b 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-@@ -960,6 +960,7 @@
- 			power-domains = <&sysc R8A774C0_PD_ALWAYS_ON>;
- 			resets = <&cpg 812>;
- 			phy-mode = "rgmii";
-+			renesas,rxc-delay-ps = <0>;
- 			iommus = <&ipmmu_ds0 16>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+ 	pinctrl_usbotg: usbotggrp {
+ 		fsl,pins = <
+-			MX6QDL_PAD_GPIO_1__USB_OTG_ID 0x17059
++			MX6QDL_PAD_ENET_RX_ER__USB_OTG_ID 0x17059
+ 		>;
+ 	};
+ 
+@@ -409,6 +409,7 @@
+ 			MX6QDL_PAD_SD1_DAT1__SD1_DATA1 0x17070
+ 			MX6QDL_PAD_SD1_DAT2__SD1_DATA2 0x17070
+ 			MX6QDL_PAD_SD1_DAT3__SD1_DATA3 0x17070
++			MX6QDL_PAD_GPIO_1__GPIO1_IO01  0x1b0b0
+ 		>;
+ 	};
+ 
 -- 
-2.17.1
+2.7.4
 
