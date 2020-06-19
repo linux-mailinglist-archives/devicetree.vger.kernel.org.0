@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA472004A1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 11:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9175D2004A6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 11:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731895AbgFSJHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 05:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        id S1731816AbgFSJHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 05:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731776AbgFSJGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 05:06:54 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7637EC0613EE
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:06:53 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id y13so9420046eju.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:06:53 -0700 (PDT)
+        with ESMTP id S1731865AbgFSJG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 05:06:57 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D6AC0617B9
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:06:55 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id p18so7010825eds.7
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2020 02:06:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=EF3uQr3RQED1YKYkNKEVE2Xoq5JyRRd7hiTR6pRsTG4=;
-        b=hbsAZmXNE2TaOrADyfhZ4LncxAlKOcWNbKLbDeF2rsahruJQCNzLprdZsGdbsUDjbq
-         qrzTvHV7mlFcoGs5wRL1DmgYNtpfTYJn4yUmv3wLcxZn6ifXoTmBYaKDalxxjprE4H75
-         OFcrYnlQQb3DyBgekcLt/QElT7wo5S4Fx2JoOrZuAHEe640Rad0m9k1WfJvRz++zkTS7
-         c4Xc2hdrnjqNTUCgQk4kqi9gGZAT/y0MHgN+y3t734xefMs29v8NjuC/JpsypOd6R2t4
-         Si6ZesNDYvk6F49qAjkeO/QV73MqqosehLo+mhVjGQDVaAiRozB3VWBJFDg8zbopksMe
-         ClXw==
+        bh=+0u89dpmgvQy4plYwwslEmSBiru+bR25mmVExT9ZnYw=;
+        b=UB/REUZqGhSab2IhwMetGxClUkd/oH91Eb1YMtnqkqAxIYIsM5YWJ4a17MUa8/08et
+         0KoPGo9oOwe1emR2wQSQNrT5mDdb5rPGbQPYSjM7oAM0AmVr3nITPyO5xBU0y99uSaYS
+         GceF0JPmFhlA4OqkmdjhyRfE1guxkExlPCp0DWWvNnsOZnKJIUT+xfTjyP1zTVLFmjP2
+         dMylqWecptZAOuQnxr4pfUQnYY3XKand3fm9DpP1DYG41QiDNvEzeMJVk82vaFfE2K9D
+         qtb13ihfkOU5g1JKWZXaspFlc8GMvyr56s1ipcyGwqqbQPiOZwcx/nYfvYwyMjpAPLcZ
+         I8Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=EF3uQr3RQED1YKYkNKEVE2Xoq5JyRRd7hiTR6pRsTG4=;
-        b=sAiB8ShZHdWZ0dcjqm3cWJSe0paN1UR05ygwfC9TQSgcQPf+3dsOXyIuLt1Db16k9j
-         qo/TMCz7Y4AjhPIob/AyUiFBg6Qj396h6QjmBNrJr4d3laMq+Ho6Q7JEMsLmtn3RXsXM
-         lw0E2kBRdi5vTKyIz8bcwOd/pLdxrIg9V4nW1bP9Gx+8DzcXRaORqasfzIvgp0nb6U1M
-         4C1seP+yC9vzg4sCTN02FEz3qzprTwNUYJWazqF8MgcA7kPEkcm0aOnulfcpamOdyu3O
-         WfJtQKBjzVn7/UQsW218fgqQgDKcjvorGK6Swum56vBRUc5xG2vCQ7ZWhsGCzkr3X1Hu
-         Pa5A==
-X-Gm-Message-State: AOAM531ItXuIWQn0/ZpbqBrTj2ujYJNi3vjymJWt7s3azcjomgrDsoeR
-        ypvBEpo3b3HfYwr0+jSA05JQmg==
-X-Google-Smtp-Source: ABdhPJwcHprUUq00PuchIFIQbAmYwvW8uI0PLiIJTeBXZedE5iHqZtnO5Gza2w34X9TiFWfp14Ftgg==
-X-Received: by 2002:a17:906:2615:: with SMTP id h21mr2624881ejc.84.1592557612232;
-        Fri, 19 Jun 2020 02:06:52 -0700 (PDT)
+        bh=+0u89dpmgvQy4plYwwslEmSBiru+bR25mmVExT9ZnYw=;
+        b=j10VGZSYSsaq9+M59YXjUBoyBL16siLVkOtYRxb3VmXWLBnNgF9f8ngDiPlSDb01Wx
+         PSJrAPWwLTTrbAzWiwpF3VgSrpcUmrar42s9hY6BN+XfoUNjmUGSIw3vG0LCnVS2JTKj
+         4/fDLFcrrFD6PZ3ksRp8DwFP1NzaNJGSjnn4OVqLz64mc/ykjX0Iz5ltU95Z4UWv7saI
+         kB3O2+2+IBwXx4VDe3vW/fB9kHIkh5uPyluQk7I3amC8ACAlHkTVJpqNRsiZcBoz5Xgy
+         y3XanJatR2MJ8b7LtsjsRBmUQxHKs0M6MjmDEl/S10IeD8sX2jRg9CbfTrq/WIapEvT8
+         50vw==
+X-Gm-Message-State: AOAM532//a2c33TUaS4RvyLfCzNoqt99rRFFgI4qHHt6oR0ag057E0Tw
+        yQotHfWpK0Rj3EwVKWAt4xQupQ==
+X-Google-Smtp-Source: ABdhPJy/3Bg56TEDS6v87nEXxy3icDzdDUs8cujpuQA8aXHR5JzzlkpBgh63TY4ie6qdHZydvU1qVg==
+X-Received: by 2002:aa7:d7ca:: with SMTP id e10mr2271039eds.45.1592557613971;
+        Fri, 19 Jun 2020 02:06:53 -0700 (PDT)
 Received: from localhost.localdomain ([2001:16b8:5c68:7901:5c06:6064:338b:4004])
-        by smtp.gmail.com with ESMTPSA id dm1sm4653650ejc.99.2020.06.19.02.06.49
+        by smtp.gmail.com with ESMTPSA id dm1sm4653650ejc.99.2020.06.19.02.06.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2020 02:06:51 -0700 (PDT)
+        Fri, 19 Jun 2020 02:06:53 -0700 (PDT)
 From:   Drew Fustini <drew@beagleboard.org>
 To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
         linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -58,9 +58,9 @@ To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
         Jason Kridner <jkridner@beagleboard.org>,
         Robert Nelson <robertcnelson@gmail.com>
 Cc:     Drew Fustini <drew@beagleboard.org>
-Subject: [PATCH v2 2/3] ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2
-Date:   Fri, 19 Jun 2020 11:06:07 +0200
-Message-Id: <20200619090608.94948-3-drew@beagleboard.org>
+Subject: [PATCH v2 3/3] pinctrl: single: parse #pinctrl-cells = 2
+Date:   Fri, 19 Jun 2020 11:06:08 +0200
+Message-Id: <20200619090608.94948-4-drew@beagleboard.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200619090608.94948-1-drew@beagleboard.org>
 References: <20200619090608.94948-1-drew@beagleboard.org>
@@ -71,30 +71,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This requires AM33XX_PADCONF macro in omap.h to be modified to keep pin
-conf and pin mux values separate.
-
-pinctrl-single.c must also be changed to support "pinctrl-single,pins"
-with 3 arguments (offset, conf, mux).
+If "pinctrl-single,pins" has 3 arguments (offset, conf, mux) then
+pcs_parse_one_pinctrl_entry() does an OR operation on to get the
+value to store in the register.
 
 Signed-off-by: Drew Fustini <drew@beagleboard.org>
 ---
- arch/arm/boot/dts/am33xx-l4.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pinctrl/pinctrl-single.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-index 340ea331e54d..f9b99cfa93b6 100644
---- a/arch/arm/boot/dts/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-@@ -290,7 +290,7 @@ scm: scm@0 {
- 				am33xx_pinmux: pinmux@800 {
- 					compatible = "pinctrl-single";
- 					reg = <0x800 0x238>;
--					#pinctrl-cells = <1>;
-+					#pinctrl-cells = <2>;
- 					pinctrl-single,register-width = <32>;
- 					pinctrl-single,function-mask = <0x7f>;
- 				};
+diff --git a/drivers/pinctrl/pinctrl-single.c b/drivers/pinctrl/pinctrl-single.c
+index 02f677eb1d53..e6d1cf25782c 100644
+--- a/drivers/pinctrl/pinctrl-single.c
++++ b/drivers/pinctrl/pinctrl-single.c
+@@ -1017,10 +1017,17 @@ static int pcs_parse_one_pinctrl_entry(struct pcs_device *pcs,
+ 			break;
+ 		}
+ 
+-		/* Index plus one value cell */
+ 		offset = pinctrl_spec.args[0];
+ 		vals[found].reg = pcs->base + offset;
+-		vals[found].val = pinctrl_spec.args[1];
++
++		switch (pinctrl_spec.args_count) {
++		case 2:
++			vals[found].val = pinctrl_spec.args[1];
++			break;
++		case 3:
++			vals[found].val = (pinctrl_spec.args[1] | pinctrl_spec.args[2]);
++			break;
++		}
+ 
+ 		dev_dbg(pcs->dev, "%pOFn index: 0x%x value: 0x%x\n",
+ 			pinctrl_spec.np, offset, pinctrl_spec.args[1]);
 -- 
 2.25.1
 
