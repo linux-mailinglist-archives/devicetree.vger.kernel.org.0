@@ -2,122 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC472016D3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 18:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4BDD2015FE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 18:32:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388591AbgFSOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 10:44:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35896 "EHLO mail.kernel.org"
+        id S2394732AbgFSQY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 12:24:58 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:11064 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388586AbgFSOog (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jun 2020 10:44:36 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2394808AbgFSQYz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jun 2020 12:24:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1592583893; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=mXJdDC2hfvuYe5kBaaVL6RFz62vgkC1W/BsD+CIz5dM=;
+ b=e81kJ2zI+SgxBruoglyz+obkeE8npO/JYtF57jqdPuEY4dt/Lsolm6tZ6S494CLQYR9rSLxC
+ aIh3waVDfs094Xhy42bpEItQl8rczEgg4fcNcY4GSRvyv8uUZ3XIbf/ZwuoFjCnKQfxPqxkZ
+ u5MKBw5z9THusPXnZRvarVPf1r0=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 5eece6cd567385e8e7000d89 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Jun 2020 16:24:45
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2511BC433C8; Fri, 19 Jun 2020 16:24:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9C66921707;
-        Fri, 19 Jun 2020 14:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592577876;
-        bh=lvQ+bcB6cEpRPiSbA/wKi1GRebdzeNiwC254qZjqBME=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PG4Dl7Jv7XF7Ku1vQEp1Byhm4RsCyYOLcS9hiZ95fd0hO4ZTqRqQvE3ykNXrUYruT
-         B2UVRFHgmw+1B3j1+/RuQ/3sZBFuuDDCPwG46Rz9WV2fEbzIgXQbmiXeuposI/g9Qg
-         DPT/fCeNDdpcoy7HFVtDZRfam1kWKXVUbnlcplgA=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.9 095/128] spi: dw: Return any value retrieved from the dma_transfer callback
-Date:   Fri, 19 Jun 2020 16:33:09 +0200
-Message-Id: <20200619141625.159284957@linuxfoundation.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200619141620.148019466@linuxfoundation.org>
-References: <20200619141620.148019466@linuxfoundation.org>
-User-Agent: quilt/0.66
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 40995C433A0;
+        Fri, 19 Jun 2020 16:24:43 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 19 Jun 2020 21:54:42 +0530
+From:   akolli@codeaurora.org
+To:     Julian Calaby <julian.calaby@gmail.com>
+Cc:     ath11k@lists.infradead.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] ath11k: copy ce service configs to hw_params
+In-Reply-To: <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
+References: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
+ <1592458104-2961-3-git-send-email-akolli@codeaurora.org>
+ <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
+Message-ID: <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
+X-Sender: akolli@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On 2020-06-19 04:40, Julian Calaby wrote:
+> Hi Anilkumar,
+> 
+> On Thu, Jun 18, 2020 at 3:31 PM Anilkumar Kolli <akolli@codeaurora.org> 
+> wrote:
+>> 
+>> No functional changes, added target ce service configurations
+>> to hw_params.
+>> 
+>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+>> ---
+>> V3:
+>>  - added ce svc configs in hw_params
+>> 
+>>  drivers/net/wireless/ath/ath11k/ahb.c  | 20 +++++++++++++++-----
+>>  drivers/net/wireless/ath/ath11k/core.c |  8 +-------
+>>  drivers/net/wireless/ath/ath11k/core.h |  1 +
+>>  drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
+>>  4 files changed, 19 insertions(+), 12 deletions(-)
+>> 
+>> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c 
+>> b/drivers/net/wireless/ath/ath11k/ahb.c
+>> index 7e9bfeaaf4d2..aa74d27e5871 100644
+>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+>> @@ -152,7 +152,7 @@ static const struct ce_pipe_config 
+>> target_ce_config_wlan[] = {
+>>   * This table is derived from the CE_PCI TABLE, above.
+>>   * It is passed to the Target at startup for use by firmware.
+>>   */
+>> -static const struct service_to_pipe target_service_to_ce_map_wlan[] = 
+>> {
+>> +static const struct service_to_pipe 
+>> target_service_to_ce_map_wlan_ipq8074[] = {
+>>         {
+>>                 .service_id = 
+>> __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
+>>                 .pipedir = __cpu_to_le32(PIPEDIR_OUT),  /* out = UL = 
+>> host -> target */
+>> @@ -644,8 +644,8 @@ static void ath11k_ahb_init_qmi_ce_config(struct 
+>> ath11k_base *ab)
+>> 
+>>         cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
+>>         cfg->tgt_ce = target_ce_config_wlan;
+>> -       cfg->svc_to_ce_map_len = 
+>> ARRAY_SIZE(target_service_to_ce_map_wlan);
+>> -       cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
+>> +       cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
+>> +       cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
+>>  }
+>> 
+>>  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+>> @@ -853,8 +853,8 @@ static int ath11k_ahb_map_service_to_pipe(struct 
+>> ath11k_base *ab, u16 service_id
+>>         bool ul_set = false, dl_set = false;
+>>         int i;
+>> 
+>> -       for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); 
+>> i++) {
+>> -               entry = &target_service_to_ce_map_wlan[i];
+>> +       for (i = 0; i < ab->hw_params.svc_to_ce_map_len; i++) {
+>> +               entry = &ab->hw_params.svc_to_ce_map[i];
+>> 
+>>                 if (__le32_to_cpu(entry->service_id) != service_id)
+>>                         continue;
+>> @@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct 
+>> platform_device *pdev)
+>>                 goto err_hal_srng_deinit;
+>>         }
+>> 
+>> +       ret = ath11k_init_hw_params(ab);
+>> +       if (ret) {
+>> +               ath11k_err(ab, "failed to get hw params %d\n", ret);
+>> +               return ret;
+>> +       }
+>> +
+>> +       ab->hw_params.svc_to_ce_map_len =
+>> +                       
+>> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
+>> +       ab->hw_params.svc_to_ce_map = 
+>> target_service_to_ce_map_wlan_ipq8074;
+> 
+> I think you misunderstood my point about this, the point wasn't to
+> copy the svc map to hw_params, but define it in hw_params:
+> 
+> +       {
+> +               .hw_rev = ATH11K_HW_IPQ6018,
+> +               .name = "ipq6018 hw1.0",
+> +               .fw = {
+> +                       .dir = "IPQ6018/hw1.0",
+> +                       .board_size = 256 * 1024,
+> +                       .cal_size = 256 * 1024,
+> +               },
+> +               .max_radios = 2,
+> +               .bdf_addr = 0x4ABC0000,
+> +               .hw_ops = &ipq6018_ops,
+> +               .svc_to_ce_map_len =
+> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018,
+> +               .svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018,
+> +       },
+> 
+> That completely eliminates special case code based on the hardware ID
+> in the driver.
+> 
+The static array of structures target_service_to_ce_map_wlan_ipq6018[] 
+is defined in ahb.c and hw_params are initialised in core.c, this will 
+not work. no?
 
-[ Upstream commit f0410bbf7d0fb80149e3b17d11d31f5b5197873e ]
-
-DW APB SSI DMA-part of the driver may need to perform the requested
-SPI-transfer synchronously. In that case the dma_transfer() callback
-will return 0 as a marker of the SPI transfer being finished so the
-SPI core doesn't need to wait and may proceed with the SPI message
-trasnfers pumping procedure. This will be needed to fix the problem
-when DMA transactions are finished, but there is still data left in
-the SPI Tx/Rx FIFOs being sent/received. But for now make dma_transfer
-to return 1 as the normal dw_spi_transfer_one() method.
-
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
-Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Feng Tang <feng.tang@intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Link: https://lore.kernel.org/r/20200529131205.31838-3-Sergey.Semin@baikalelectronics.ru
-Signed-off-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/spi/spi-dw-mid.c | 2 +-
- drivers/spi/spi-dw.c     | 7 ++-----
- 2 files changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/spi/spi-dw-mid.c b/drivers/spi/spi-dw-mid.c
-index fe0ca3848d35..c079ab36275f 100644
---- a/drivers/spi/spi-dw-mid.c
-+++ b/drivers/spi/spi-dw-mid.c
-@@ -274,7 +274,7 @@ static int mid_spi_dma_transfer(struct dw_spi *dws, struct spi_transfer *xfer)
- 		dma_async_issue_pending(dws->txchan);
- 	}
- 
--	return 0;
-+	return 1;
- }
- 
- static void mid_spi_dma_stop(struct dw_spi *dws)
-diff --git a/drivers/spi/spi-dw.c b/drivers/spi/spi-dw.c
-index c5a2f369941c..91f44e3e1930 100644
---- a/drivers/spi/spi-dw.c
-+++ b/drivers/spi/spi-dw.c
-@@ -384,11 +384,8 @@ static int dw_spi_transfer_one(struct spi_master *master,
- 
- 	spi_enable_chip(dws, 1);
- 
--	if (dws->dma_mapped) {
--		ret = dws->dma_ops->dma_transfer(dws, transfer);
--		if (ret < 0)
--			return ret;
--	}
-+	if (dws->dma_mapped)
-+		return dws->dma_ops->dma_transfer(dws, transfer);
- 
- 	if (chip->poll_mode)
- 		return poll_transfer(dws);
--- 
-2.25.1
-
-
-
+Thanks
+Anil
