@@ -2,177 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E0A5200B48
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 16:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6D2200CB1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2020 16:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726471AbgFSOWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jun 2020 10:22:00 -0400
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:61286 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725974AbgFSOV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jun 2020 10:21:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1592576518; x=1624112518;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PKnFoxqQrAiroEcrPnCd5Y5Np27cClJYN9tqUhIZ/Xg=;
-  b=g6pABK2bTmeUGYQioMYvtnpOcijPerN1f9fQS0CZ0AWHb9V8iw2W64Rl
-   1kStikK+l9a9Xpc8c/MI3sm1BDafqYOiwMlmkIN1Wqr0x8JeUkriXoSLD
-   NrIwVHCoYBWG4fZ7Q2a+DMZFzTO3/FTKnFJ85LkfEOQCRNeGtvjTYmWXh
-   KatlAU7H7dKWjDL4xt579gTGWQkPCF8qW0zOSfj+recB1Z2CmppsZ+9Ve
-   Ps5hn1bYqBY361cT4+AaRXVgFaSfoq8LE+XHNB00ivRbswMG8PVEDwhNM
-   loYdEYsXufcLKy9D3DPGmpxhPhCcGlTCU4IZGOLXcTpwI5bjDFYE03vWU
-   w==;
-IronPort-SDR: llHCWxN4hggFAoPTbkYOKYaHtktya/T9B2Ag/hDD9VvHmE45igm4SL5Wkay8pEygalATBbfRia
- cf9ZVVjlfNqm6T9xsjEM6csv7gMMK3cLgdWRHvNYw2n1b4t9yJYUZbPywym4Kj5KaiO0E9R2Sz
- FI40TCihRLFDN/PABW8XPZl+VFigcLrEq7H/mg7aG/obRlcV8Uly+sucLK/hw/r7sv23kyD3NL
- pJXrrO4tvsORWA9PBkLW+VHxXwnL6VqasUQF90ysINxOvLi0f50qsEkDy3cLUN9FzHvO5WdVmW
- iMg=
-X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; 
-   d="scan'208";a="79101137"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jun 2020 07:21:58 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 19 Jun 2020 07:21:49 -0700
-Received: from rob-ult-m19940.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Fri, 19 Jun 2020 07:21:24 -0700
-From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-To:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <wsa@kernel.org>, <robh+dt@kernel.org>,
-        <ludovic.desroches@microchip.com>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <linux@armlinux.org.uk>,
-        <kamel.bouhara@bootlin.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-Subject: [RFC PATCH 4/4] i2c: at91: Move to generic GPIO bus recovery
-Date:   Fri, 19 Jun 2020 17:19:04 +0300
-Message-ID: <20200619141904.910889-5-codrin.ciubotariu@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200619141904.910889-1-codrin.ciubotariu@microchip.com>
-References: <20200619141904.910889-1-codrin.ciubotariu@microchip.com>
+        id S2389095AbgFSOsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jun 2020 10:48:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40914 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389058AbgFSOse (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jun 2020 10:48:34 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C30432083B;
+        Fri, 19 Jun 2020 14:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592578113;
+        bh=U2ApDPJj7HqXeaaoWwL68rF6gEYm+1YdSFa/hATOdHg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=cy1kj9B20HupGqEU98mfCYLkM3VOwsB41AnStBHLF0qiMfsAL3QPOlCbErZh/JE4I
+         CQfYXxtvYbaI4kBcRhgGZGtPNo/OansU65fGZ32wJ0d+88IR1QVdccrRJyMqiV2ZKU
+         7e5LLYsI0GZpRY2IDm5yjlrXR/OldyP+juhzWyZc=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org,
+        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 4.14 087/190] spi: dw: Enable interrupts in accordance with DMA xfer mode
+Date:   Fri, 19 Jun 2020 16:32:12 +0200
+Message-Id: <20200619141637.934344550@linuxfoundation.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200619141633.446429600@linuxfoundation.org>
+References: <20200619141633.446429600@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make the Microchip at91 driver the first to use the generic GPIO bus
-recovery support from the I2C core and discard the driver implementation.
+From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 
-Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+[ Upstream commit 43dba9f3f98c2b184a19f856f06fe22817bfd9e0 ]
+
+It's pointless to track the Tx overrun interrupts if Rx-only SPI
+transfer is issued. Similarly there is no need in handling the Rx
+overrun/underrun interrupts if Tx-only SPI transfer is executed.
+So lets unmask the interrupts only if corresponding SPI
+transactions are implied.
+
+Co-developed-by: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
+Signed-off-by: Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Paul Burton <paulburton@kernel.org>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Link: https://lore.kernel.org/r/20200522000806.7381-3-Sergey.Semin@baikalelectronics.ru
+Signed-off-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/i2c/busses/i2c-at91-master.c | 69 ++--------------------------
- drivers/i2c/busses/i2c-at91.h        |  3 --
- 2 files changed, 3 insertions(+), 69 deletions(-)
+ drivers/spi/spi-dw-mid.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-at91-master.c b/drivers/i2c/busses/i2c-at91-master.c
-index 363d540a8345..66864f9cf7ac 100644
---- a/drivers/i2c/busses/i2c-at91-master.c
-+++ b/drivers/i2c/busses/i2c-at91-master.c
-@@ -816,79 +816,16 @@ static int at91_twi_configure_dma(struct at91_twi_dev *dev, u32 phy_addr)
- 	return ret;
- }
+diff --git a/drivers/spi/spi-dw-mid.c b/drivers/spi/spi-dw-mid.c
+index 4f41d44e8b4c..c4244d2f1ee3 100644
+--- a/drivers/spi/spi-dw-mid.c
++++ b/drivers/spi/spi-dw-mid.c
+@@ -228,19 +228,23 @@ static struct dma_async_tx_descriptor *dw_spi_dma_prepare_rx(struct dw_spi *dws,
  
--static void at91_prepare_twi_recovery(struct i2c_adapter *adap)
--{
--	struct at91_twi_dev *dev = i2c_get_adapdata(adap);
--
--	pinctrl_select_state(dev->pinctrl, dev->pinctrl_pins_gpio);
--}
--
--static void at91_unprepare_twi_recovery(struct i2c_adapter *adap)
--{
--	struct at91_twi_dev *dev = i2c_get_adapdata(adap);
--
--	pinctrl_select_state(dev->pinctrl, dev->pinctrl_pins_default);
--}
--
- static int at91_init_twi_recovery_gpio(struct platform_device *pdev,
- 				       struct at91_twi_dev *dev)
+ static int mid_spi_dma_setup(struct dw_spi *dws, struct spi_transfer *xfer)
  {
- 	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+-	u16 dma_ctrl = 0;
++	u16 imr = 0, dma_ctrl = 0;
  
--	dev->pinctrl = devm_pinctrl_get(&pdev->dev);
--	if (!dev->pinctrl || IS_ERR(dev->pinctrl)) {
-+	rinfo->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (!rinfo->pinctrl || IS_ERR(rinfo->pinctrl)) {
- 		dev_info(dev->dev, "can't get pinctrl, bus recovery not supported\n");
--		return PTR_ERR(dev->pinctrl);
-+		return PTR_ERR(rinfo->pinctrl);
- 	}
--
--	dev->pinctrl_pins_default = pinctrl_lookup_state(dev->pinctrl,
--							 PINCTRL_STATE_DEFAULT);
--	dev->pinctrl_pins_gpio = pinctrl_lookup_state(dev->pinctrl,
--						      "gpio");
--	if (IS_ERR(dev->pinctrl_pins_default) ||
--	    IS_ERR(dev->pinctrl_pins_gpio)) {
--		dev_info(&pdev->dev, "pinctrl states incomplete for recovery\n");
--		return -EINVAL;
--	}
--
--	/*
--	 * pins will be taken as GPIO, so we might as well inform pinctrl about
--	 * this and move the state to GPIO
--	 */
--	pinctrl_select_state(dev->pinctrl, dev->pinctrl_pins_gpio);
--
--	rinfo->sda_gpiod = devm_gpiod_get(&pdev->dev, "sda", GPIOD_IN);
--	if (PTR_ERR(rinfo->sda_gpiod) == -EPROBE_DEFER)
--		return -EPROBE_DEFER;
--
--	rinfo->scl_gpiod = devm_gpiod_get(&pdev->dev, "scl",
--					  GPIOD_OUT_HIGH_OPEN_DRAIN);
--	if (PTR_ERR(rinfo->scl_gpiod) == -EPROBE_DEFER)
--		return -EPROBE_DEFER;
--
--	if (IS_ERR(rinfo->sda_gpiod) ||
--	    IS_ERR(rinfo->scl_gpiod)) {
--		dev_info(&pdev->dev, "recovery information incomplete\n");
--		if (!IS_ERR(rinfo->sda_gpiod)) {
--			gpiod_put(rinfo->sda_gpiod);
--			rinfo->sda_gpiod = NULL;
--		}
--		if (!IS_ERR(rinfo->scl_gpiod)) {
--			gpiod_put(rinfo->scl_gpiod);
--			rinfo->scl_gpiod = NULL;
--		}
--		pinctrl_select_state(dev->pinctrl, dev->pinctrl_pins_default);
--		return -EINVAL;
--	}
--
--	/* change the state of the pins back to their default state */
--	pinctrl_select_state(dev->pinctrl, dev->pinctrl_pins_default);
--
--	dev_info(&pdev->dev, "using scl, sda for recovery\n");
--
--	rinfo->prepare_recovery = at91_prepare_twi_recovery;
--	rinfo->unprepare_recovery = at91_unprepare_twi_recovery;
--	rinfo->recover_bus = i2c_generic_scl_recovery;
- 	dev->adapter.bus_recovery_info = rinfo;
+ 	dw_writel(dws, DW_SPI_DMARDLR, 0xf);
+ 	dw_writel(dws, DW_SPI_DMATDLR, 0x10);
  
- 	return 0;
-diff --git a/drivers/i2c/busses/i2c-at91.h b/drivers/i2c/busses/i2c-at91.h
-index 7e7b4955ca7f..eae673ae786c 100644
---- a/drivers/i2c/busses/i2c-at91.h
-+++ b/drivers/i2c/busses/i2c-at91.h
-@@ -157,9 +157,6 @@ struct at91_twi_dev {
- 	struct at91_twi_dma dma;
- 	bool slave_detected;
- 	struct i2c_bus_recovery_info rinfo;
--	struct pinctrl *pinctrl;
--	struct pinctrl_state *pinctrl_pins_default;
--	struct pinctrl_state *pinctrl_pins_gpio;
- #ifdef CONFIG_I2C_AT91_SLAVE_EXPERIMENTAL
- 	unsigned smr;
- 	struct i2c_client *slave;
+-	if (xfer->tx_buf)
++	if (xfer->tx_buf) {
+ 		dma_ctrl |= SPI_DMA_TDMAE;
+-	if (xfer->rx_buf)
++		imr |= SPI_INT_TXOI;
++	}
++	if (xfer->rx_buf) {
+ 		dma_ctrl |= SPI_DMA_RDMAE;
++		imr |= SPI_INT_RXUI | SPI_INT_RXOI;
++	}
+ 	dw_writel(dws, DW_SPI_DMACR, dma_ctrl);
+ 
+ 	/* Set the interrupt mask */
+-	spi_umask_intr(dws, SPI_INT_TXOI | SPI_INT_RXUI | SPI_INT_RXOI);
++	spi_umask_intr(dws, imr);
+ 
+ 	dws->transfer_handler = dma_transfer;
+ 
 -- 
 2.25.1
+
+
 
