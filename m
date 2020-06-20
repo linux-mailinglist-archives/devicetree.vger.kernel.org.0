@@ -2,51 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E651720388E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 15:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D847320397E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 16:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728626AbgFVN73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 09:59:29 -0400
-Received: from comms.puri.sm ([159.203.221.185]:55288 "EHLO comms.puri.sm"
+        id S1729314AbgFVO0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 10:26:18 -0400
+Received: from mx2.suse.de ([195.135.220.15]:44836 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728293AbgFVN73 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 09:59:29 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 5067EE0318;
-        Mon, 22 Jun 2020 06:59:28 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id pf4VA7pwlJcG; Mon, 22 Jun 2020 06:59:27 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     leonard.crestez@nxp.com
-Cc:     Anson.Huang@nxp.com, a.swigon@partner.samsung.com,
-        abailon@baylibre.com, abel.vesa@nxp.com, aisheng.dong@nxp.com,
-        angus@akkea.ca, cw00.choi@samsung.com, devicetree@vger.kernel.org,
-        fabio.estevam@nxp.com, georgi.djakov@linaro.org,
-        kernel@pengutronix.de, krzk@kernel.org, kyungmin.park@samsung.com,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-imx@nxp.com, linux-pm@vger.kernel.org, mark.rutland@arm.com,
-        martink@posteo.de, mka@chromium.org, mturquette@baylibre.com,
-        myungjoo.ham@samsung.com, ping.bai@nxp.com, rjw@rjwysocki.net,
-        robh@kernel.org, saravanak@google.com, sboyd@kernel.org,
-        shawnguo@kernel.org, viresh.kumar@linaro.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: Re: [PATCH v4 0/6] PM / devfreq: Add dynamic scaling for imx8m ddr controller
-Date:   Mon, 22 Jun 2020 15:58:58 +0200
-Message-Id: <20200622135858.15891-1-martin.kepplinger@puri.sm>
-In-Reply-To: <cover.1573252696.git.leonard.crestez@nxp.com>
-References: <cover.1573252696.git.leonard.crestez@nxp.com>
+        id S1729296AbgFVO0R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jun 2020 10:26:17 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 7EEB9C1C6;
+        Mon, 22 Jun 2020 14:26:13 +0000 (UTC)
+From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+To:     linux-realtek-soc@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        James Tai <james.tai@realtek.com>
+Subject: [PATCH v4 0/3] arm64: dts: realtek: Initial RTD1319 and Pym Particles support
+Date:   Sun, 21 Jun 2020 01:32:24 +0200
+Message-Id: <20200620233227.31585-1-afaerber@suse.de>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Leondard,
+Hello,
 
-before using this patchset I'd like to ask: Do you have plans to create
-an update and push this forward? It is useful.
+This patch series adds initial Device Trees for Realtek RTD1319 SoC and
+Realtek Pym Particles EVB.
 
-thanks a lot,
+This v4 is an update of James' v3, incorporating pending review comments.
 
-                               martin
+Upstreaming progress being tracked at:
+https://en.opensuse.org/HCL:Realtek_DHC
+
+Latest experimental patches at:
+https://github.com/afaerber/linux/commits/rtd1295-next
+
+Have a lot of fun!
+
+Cheers,
+Andreas
+
+v3 -> v4:
+* Updated Realtek copyright for files changed in v3
+* Updated PMU compatible (Robin)
+* Changed compatible, renamed .dts
+* Updated bindings schema and prepended refactoring
+
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: James Tai <james.tai@realtek.com>
+
+Andreas Färber (1):
+  dt-bindings: arm: realtek: Convert comments to descriptions
+
+James Tai (2):
+  dt-bindings: arm: realtek: Document RTD1319 and Realtek Pym Particles
+    EVB
+  arm64: dts: realtek: Add RTD1319 SoC and Realtek Pym Particles EVB
+
+ .../devicetree/bindings/arm/realtek.yaml      |  30 ++-
+ arch/arm64/boot/dts/realtek/Makefile          |   2 +
+ .../boot/dts/realtek/rtd1319-pymparticles.dts |  43 ++++
+ arch/arm64/boot/dts/realtek/rtd1319.dtsi      |  12 +
+ arch/arm64/boot/dts/realtek/rtd13xx.dtsi      | 213 ++++++++++++++++++
+ 5 files changed, 288 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1319.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+
+-- 
+2.26.2
+
