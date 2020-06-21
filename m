@@ -2,93 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C01202B38
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 16:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33114202B60
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 17:35:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730318AbgFUO5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 10:57:22 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:49210 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730257AbgFUO5W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Jun 2020 10:57:22 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E0F642015E5;
-        Sun, 21 Jun 2020 16:57:19 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D340E2004E6;
-        Sun, 21 Jun 2020 16:57:19 +0200 (CEST)
-Received: from fsr-ub1864-014.ea.freescale.net (fsr-ub1864-014.ea.freescale.net [10.171.95.219])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 2B35F203C2;
-        Sun, 21 Jun 2020 16:57:19 +0200 (CEST)
-From:   =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Martin Kaiser <martin@kaiser.cx>,
-        Franck Lenormand <franck.lenormand@nxp.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] hwrng: imx-rngc: enable driver for i.MX6
-Date:   Sun, 21 Jun 2020 17:56:58 +0300
-Message-Id: <20200621145658.12528-6-horia.geanta@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200621145658.12528-1-horia.geanta@nxp.com>
-References: <20200621145658.12528-1-horia.geanta@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1730357AbgFUPfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 11:35:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730349AbgFUPfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 11:35:17 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A61A0C061794;
+        Sun, 21 Jun 2020 08:35:16 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id n2so6364951pld.13;
+        Sun, 21 Jun 2020 08:35:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=y6egePbuV5QUD1Pss3WsUczRgm6WZZV/FMaa+s3w21Q=;
+        b=vGypfE9yre3g5v6JR0SjT1UIA+95xNwC8yWk2m+s7DiVhc09oUZtZO1v8brPNsj2dh
+         be7JVZbZ+9jqcRfrTot7/Gi85kyn6mjmENav+HcsTfYlBD/wCTk6qBpMVFdL1mniepG/
+         gnfFmXjNcr3EY6/v/0Ne5b+ylLoXJWNQvgzP/qcGNg6WarvvA9SpeFXB5fWEj8rhO4Pz
+         yCBtyNlA5vDW2tZQvycjnhYmhAMfBQVtb5J3ioUtfhbxUTefzFqggAEc4bh/up+3++R6
+         /ycvabV5Rrq1MD2yarA9vwXjtMZTyNrs4xkj2obhZsIbrwveYLDgKWWgMYJucN5suLpM
+         MeOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=y6egePbuV5QUD1Pss3WsUczRgm6WZZV/FMaa+s3w21Q=;
+        b=ILETFGuBZ9pHCj6MsDXkHWtYtmT4lbnkw1BJLszEcl1fAIk8V8bB/UgT4s4bOytAyA
+         IXmJ/65ehAbrYGXyckwIEWQli0gCBzAiw5vnUN4+Jia4adWKBfY9wlyys65+RjpkaYrK
+         ptVzMDS1618YbFQ28eYxuUpm97TUaEpEjkKKxcTMcOKBDW215GTLxvV+KO4wKseiK+Ty
+         ebIenXgeIYZ9oBZrrnppjy6wqEFI9ReMaUJrTtsrQMdh3qwZUfCS3hckBUEuqF5GCCQo
+         fJm39dgN8PoA5Mdq1Qh3c/dlgpLC0GCtilOrYfsnsmAJo8BN0wuxS16ZGlj95FHAQTva
+         O4WQ==
+X-Gm-Message-State: AOAM53277g/Zx3gzbPRZbcUFRpAUpDT7CWDIkY4qKoHCrmDpgWLrmKUZ
+        QHkNR6g9QTlM232Ae4xGjU6AvaR2TSnL4g==
+X-Google-Smtp-Source: ABdhPJz2VauVz2AkzBzAirGeS4Osm8F8gssFc5fRLWQPfBn8fc/pWUzdxvC69QmwxppHzD7ne6iIEw==
+X-Received: by 2002:a17:902:bd0b:: with SMTP id p11mr16020194pls.91.1592753716171;
+        Sun, 21 Jun 2020 08:35:16 -0700 (PDT)
+Received: from localhost.localdomain ([106.121.157.185])
+        by smtp.gmail.com with ESMTPSA id e124sm11127129pfh.140.2020.06.21.08.35.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 21 Jun 2020 08:35:15 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dillon min <dillon.minfei@gmail.com>
+Subject: [PATCH] Configure osc clock for d_can on am437x
+Date:   Sun, 21 Jun 2020 23:34:00 +0800
+Message-Id: <1592753641-5205-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX6 SL, SLL, ULL, ULZ SoCs have an RNGB block.
+From: dillon min <dillon.minfei@gmail.com>
 
-Since imx-rngc driver supports also rngb,
-let's enable it for these SoCs too.
+Got following d_can probe errors with kernel 5.8-rc1 on am437x
 
-Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
----
- drivers/char/hw_random/Kconfig    | 2 +-
- drivers/char/hw_random/imx-rngc.c | 3 +++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+[   10.730822] CAN device driver interface
+Starting Wait for Network to be Configured...
+[  OK  ] Reached target Network.
+[   10.787363] c_can_platform 481cc000.can: probe failed
+[   10.792484] c_can_platform: probe of 481cc000.can failed with
+error -2
+[   10.799457] c_can_platform 481d0000.can: probe failed
+[   10.804617] c_can_platform: probe of 481d0000.can failed with
+error -2
 
-diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-index 0ad17efc96df..53f6a7e4392f 100644
---- a/drivers/char/hw_random/Kconfig
-+++ b/drivers/char/hw_random/Kconfig
-@@ -245,7 +245,7 @@ config HW_RANDOM_MXC_RNGA
- config HW_RANDOM_IMX_RNGC
- 	tristate "Freescale i.MX RNGC Random Number Generator"
- 	depends on HAS_IOMEM && HAVE_CLK
--	depends on SOC_IMX25 || COMPILE_TEST
-+	depends on SOC_IMX25 || SOC_IMX6SL || SOC_IMX6SLL || SOC_IMX6UL || COMPILE_TEST
- 	default HW_RANDOM
- 	help
- 	  This driver provides kernel-side support for the Random Number
-diff --git a/drivers/char/hw_random/imx-rngc.c b/drivers/char/hw_random/imx-rngc.c
-index 9c47e431ce90..84576d2fbf8c 100644
---- a/drivers/char/hw_random/imx-rngc.c
-+++ b/drivers/char/hw_random/imx-rngc.c
-@@ -350,6 +350,9 @@ static SIMPLE_DEV_PM_OPS(imx_rngc_pm_ops, imx_rngc_suspend, imx_rngc_resume);
- 
- static const struct of_device_id imx_rngc_dt_ids[] = {
- 	{ .compatible = "fsl,imx25-rngb", .data = NULL, },
-+	{ .compatible = "fsl,imx6sl-rngb", .data = NULL, },
-+	{ .compatible = "fsl,imx6sll-rngb", .data = NULL, },
-+	{ .compatible = "fsl,imx6ull-rngb", .data = NULL, },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, imx_rngc_dt_ids);
+actually, Tony has fixed this issue on am335x, the patch [3]
+commit messages:
+"
+The reason why the issue happens is because we now attempt to read the
+interconnect target module revision register by first manually enabling
+all the device clocks in sysc_probe(). And looks like d_can also needs
+the osc clock in addition to the module clock, and it may or may not be
+enabled depending on the bootloader version and if other devices have
+already requested osc clock.
+
+Let's fix the issue by adding osc clock as an optional clock for the
+module for am335x. Note that am437x does not seem to list the osc clock
+at all, so presumably it is not needed for am437x.
+"
+
+from TRM of am335x/am437x [1][2], they have the same clock structure,
+so, we can just reuse [3] for am437x platform.
+
+Tested on custom am4372 board.
+
+[1]: https://www.ti.com/lit/pdf/spruh73 Chapter-23, Figure 23-1. DCAN
+Integration
+[2]: https://www.ti.com/lit/pdf/spruhl7 Chapter-25, Figure 25-1. DCAN
+Integration
+[3]: commit 516f1117d0fb ("ARM: dts: Configure osc clock for d_can on am335x")
+
+dillon min (1):
+  ARM: dts: Configure osc clock for d_can on am437x
+
+ arch/arm/boot/dts/am437x-l4.dtsi | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
 -- 
-2.17.1
+1.9.1
 
