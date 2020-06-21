@@ -2,132 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBFE202B63
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 17:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FF2202B6F
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 17:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730353AbgFUPfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 11:35:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730349AbgFUPfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 11:35:30 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE953C061794;
-        Sun, 21 Jun 2020 08:35:29 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id u8so6791257pje.4;
-        Sun, 21 Jun 2020 08:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=pCHSO+WWOM+ps87QztUyed218HlARFnSKn3UarLknuw=;
-        b=PY9WTGS698AWPNlIZ2ydJOC3WIkKx4mq7mzBsm6rl5svXf+ctQikUYz4OhhmjGFpMH
-         mG2tDzkzHlrI4cqrRGuyAC8ySLq0X6RGcEVZLsMQBUpZNYTeeYbLieSEcZ5+2ttnD0/2
-         4Uy6Ct/XxIkrg5hWjFWqdQ4SvjTvwi1sOzXidhSf2GAtIpswYdUIbl8EuX/xQUdy0V88
-         GdhF/DLCdZ77nhe3C2FyR3kKon1Oc6vgMCqQNPebB7qN/8oObPiMmyYVxyUyeKTZwg/a
-         nvWJx5w5+Gj93i8EZvr7Bz8d8Zr0x3KJPQ50P5tj1td12xR1a9f59MPOzj/7GZC1Su7q
-         0weg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=pCHSO+WWOM+ps87QztUyed218HlARFnSKn3UarLknuw=;
-        b=SmU0AkIAHorpZxnP5zPSHYIo9d//BfBEkoKGHywcTpqXklM9t1iR+HpMMJ5/zuXpCS
-         ayRaFpIavRNrq1t+6xLDipp4iIBCMzLScA1vQaoRKRIbEGIE4qIaAhZWt8xF28BXSzRB
-         YJCmjBWvh+MSRmBx6alhsWXl3dKRnZXDHhrssU4ubGNAZ4yFaxngiT6G6KhGFlrG9XCu
-         LDtJ/QcNb0xkUta2OQog3gRGwf54fmB3ORqI4lhf9cd9kQDnsiWUTfTyl1R/ZnavTzAr
-         uZcDeg4ONDvE+ze7aDHpGjpf2bU46Hhnm0tYkkAjLL+J80OFeifon46zCTXa7VRoYm47
-         337w==
-X-Gm-Message-State: AOAM530rK9dVL42wu9ZrTKixqvQHasRvu/wmDrWCClyd3EiYEAcj483R
-        SlKZprtngn3QllVCeiwHnuI=
-X-Google-Smtp-Source: ABdhPJwP3w252XfkHZtP9jnyeQFmLzdXW60LQUWzwN0iUW0Gkv9zjiw6q3NtX/4O58pAviVvTQ+X2g==
-X-Received: by 2002:a17:902:aa0c:: with SMTP id be12mr16373566plb.45.1592753729397;
-        Sun, 21 Jun 2020 08:35:29 -0700 (PDT)
-Received: from localhost.localdomain ([106.121.157.185])
-        by smtp.gmail.com with ESMTPSA id e124sm11127129pfh.140.2020.06.21.08.35.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 21 Jun 2020 08:35:29 -0700 (PDT)
-From:   dillon.minfei@gmail.com
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH] ARM: dts: Configure osc clock for d_can on am437x
-Date:   Sun, 21 Jun 2020 23:34:01 +0800
-Message-Id: <1592753641-5205-2-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1592753641-5205-1-git-send-email-dillon.minfei@gmail.com>
-References: <1592753641-5205-1-git-send-email-dillon.minfei@gmail.com>
+        id S1730366AbgFUPnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 11:43:05 -0400
+Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:56875 "EHLO
+        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730356AbgFUPnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Jun 2020 11:43:05 -0400
+Received: from pro2.mail.ovh.net (unknown [10.109.143.237])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 0C88D63E478B;
+        Sun, 21 Jun 2020 17:43:02 +0200 (CEST)
+Received: from localhost (89.70.180.118) by DAG2EX1.emp2.local (172.16.2.11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Sun, 21 Jun
+ 2020 17:43:01 +0200
+Date:   Sun, 21 Jun 2020 17:40:37 +0200
+From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <andy.shevchenko@gmail.com>, <pmeerw@pmeerw.net>
+Subject: Re: [PATCH v5 1/4] iio: chemical: scd30: add core driver
+Message-ID: <20200621154037.GA13809@arch>
+References: <20200607175812.95777-2-tomasz.duszynski@octakon.com>
+ <20200620172502.0d532081@archlinux>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20200620172502.0d532081@archlinux>
+X-Originating-IP: [89.70.180.118]
+X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG2EX1.emp2.local
+ (172.16.2.11)
+X-Ovh-Tracer-Id: 9225060887347813458
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrudektddgleefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpeffhffvuffkfhggtggujghisehttdertddttdejnecuhfhrohhmpefvohhmrghsiicuffhushiihihnshhkihcuoehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomheqnecuggftrfgrthhtvghrnheptdehveethfffudetjeeftdekueehjeegjedvteffgfevkefffeegffeugeehgfejnecukfhppedtrddtrddtrddtpdekledrjedtrddukedtrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepthhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmpdhrtghpthhtohepphhmvggvrhifsehpmhgvvghrfidrnhgvth
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+On Sat, Jun 20, 2020 at 05:25:02PM +0100, Jonathan Cameron wrote:
+> On Sun, 7 Jun 2020 19:58:09 +0200
+> Tomasz Duszynski <tomasz.duszynski@octakon.com> wrote:
+>
+> > Add Sensirion SCD30 carbon dioxide core driver.
+> >
+> > Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
+>
+> A few things I'd missed showed up in warnings when I applied this and
+> ran a sparse check.  Please fix up and send a v6.
+> Also sanity check the rest with sparse. Note if I'd missed this 0-day
+> would have sent use these warnings.
+>
 
-Since am437x have the same clock structure with am335x [1][2],
-reuse the code from Tony Lindgren's patch [3] to fix dcan probe
-failed on am437x platform.
+Ah, forgot to add C=2 to prior building. Thanks for catching this.
 
-[1]: https://www.ti.com/lit/pdf/spruh73 Chapter-23, Figure 23-1. DCAN
-Integration
-[2]: https://www.ti.com/lit/pdf/spruhl7 Chapter-25, Figure 25-1. DCAN
-Integration
-[3]: commit 516f1117d0fb ("ARM: dts: Configure osc clock for d_can on
-am335x")
+> Thanks,
+>
+> Jonathan
+>
+> > +
+> > +static int scd30_read_meas(struct scd30_state *state)
+> > +{
+> > +	int i, ret;
+> > +
+> > +	ret = state->command(state, CMD_READ_MEAS, 0, state->meas, sizeof(state->meas));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	be32_to_cpu_array(state->meas, state->meas, ARRAY_SIZE(state->meas));
+>
+> The type of the input to the above has the wrong endian markings.
+>
+> CHECK   drivers/iio/chemical/scd30_core.c
+> drivers/iio/chemical/scd30_core.c:123:40: warning: incorrect type in argument 2 (different base types)
+> drivers/iio/chemical/scd30_core.c:123:40:    expected restricted __be32 const [usertype] *src
+> drivers/iio/chemical/scd30_core.c:123:40:    got int *
+>
+> Whilst you could use a cast, it would be tidier to use an array of __be32.
+>
 
-Fixes: 1a5cd7c23cc5 ("bus: ti-sysc: Enable all clocks directly during init to
-read revision")
+Here's the only place where it's a __be32. All other places assume
+cpu endianess which means changing array type generates a few other warnings
+here and there. So I'd prefer to be lazy here and use a cast :).
 
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
----
- arch/arm/boot/dts/am437x-l4.dtsi | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(state->meas); i++)
+> > +		state->meas[i] = scd30_float_to_fp(state->meas[i]);
+> > +
+> > +	/*
+> > +	 * co2 is left unprocessed while temperature and humidity are scaled
+> > +	 * to milli deg C and milli percent respectively.
+> > +	 */
+> > +	state->meas[SCD30_TEMP] *= 10;
+> > +	state->meas[SCD30_HR] *= 10;
+> > +
+> > +	return 0;
+> > +}
+> > +
+>
+> ...
+>
+> > +
+> > +static irqreturn_t scd30_trigger_handler(int irq, void *p)
+> > +{
+> > +	struct iio_poll_func *pf = p;
+> > +	struct iio_dev *indio_dev = pf->indio_dev;
+> > +	struct scd30_state *state = iio_priv(indio_dev);
+> > +	struct {
+> > +		int data[SCD30_MEAS_COUNT];
+> > +		s64 ts __aligned(8);
+> > +	} scan = { 0, };
+> should be scan = { {0, }, }; or something like that
+> as first element happens to be an array.
+>
+> Actually there is padding in here you need to zero I think.
+> So memset is a better bet.
+>
 
-diff --git a/arch/arm/boot/dts/am437x-l4.dtsi b/arch/arm/boot/dts/am437x-l4.dtsi
-index 0d0f9fe4a882..4129affde54e 100644
---- a/arch/arm/boot/dts/am437x-l4.dtsi
-+++ b/arch/arm/boot/dts/am437x-l4.dtsi
-@@ -1541,8 +1541,9 @@
- 			reg = <0xcc020 0x4>;
- 			reg-names = "rev";
- 			/* Domains (P, C): per_pwrdm, l4ls_clkdm */
--			clocks = <&l4ls_clkctrl AM4_L4LS_D_CAN0_CLKCTRL 0>;
--			clock-names = "fck";
-+			clocks = <&l4ls_clkctrl AM4_L4LS_D_CAN0_CLKCTRL 0>,
-+			<&dcan0_fck>;
-+			clock-names = "fck", "osc";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0x0 0xcc000 0x2000>;
-@@ -1550,6 +1551,8 @@
- 			dcan0: can@0 {
- 				compatible = "ti,am4372-d_can", "ti,am3352-d_can";
- 				reg = <0x0 0x2000>;
-+				clocks = <&dcan0_fck>;
-+				clock-names = "fck";
- 				syscon-raminit = <&scm_conf 0x644 0>;
- 				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
-@@ -1561,8 +1564,9 @@
- 			reg = <0xd0020 0x4>;
- 			reg-names = "rev";
- 			/* Domains (P, C): per_pwrdm, l4ls_clkdm */
--			clocks = <&l4ls_clkctrl AM4_L4LS_D_CAN1_CLKCTRL 0>;
--			clock-names = "fck";
-+			clocks = <&l4ls_clkctrl AM4_L4LS_D_CAN1_CLKCTRL 0>,
-+			<&dcan1_fck>;
-+			clock-names = "fck", "osc";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0x0 0xd0000 0x2000>;
-@@ -1570,6 +1574,8 @@
- 			dcan1: can@0 {
- 				compatible = "ti,am4372-d_can", "ti,am3352-d_can";
- 				reg = <0x0 0x2000>;
-+				clocks = <&dcan1_fck>;
-+				clock-name = "fck";
- 				syscon-raminit = <&scm_conf 0x644 1>;
- 				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
--- 
-1.9.1
+Sure.
 
+> > +	int ret;
+> > +
+> > +	mutex_lock(&state->lock);
+> > +	if (!iio_trigger_using_own(indio_dev))
+> > +		ret = scd30_read_poll(state);
+> > +	else
+> > +		ret = scd30_read_meas(state);
+> > +	memcpy(scan.data, state->meas, sizeof(state->meas));
+> > +	mutex_unlock(&state->lock);
+> > +	if (ret)
+> > +		goto out;
+> > +
+> > +	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
+> > +out:
+> > +	iio_trigger_notify_done(indio_dev->trig);
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> ...
