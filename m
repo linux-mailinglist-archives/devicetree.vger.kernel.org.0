@@ -2,341 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0BC7202C6A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DCE9202C72
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730535AbgFUTgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 15:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51936 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730510AbgFUTgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 15:36:03 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149BFC061795
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:36:03 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id k15so1379800lfc.4
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:36:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1ErXkZf7BLCpg6GnDRfFbSB9VliQZ1SaYRDHnOq2XmQ=;
-        b=FxDenOYF/A25j1VglXtu1i1YXkjt6BN1uw/1Pl65aRzdJTSHJot639NR/ARSNVJ+F6
-         xNRewo7x5sOg0i0gK1tOpUELDEI7C5+GzmFYMk5uzfLJjkLNGTYH17XazC6i2t+IE2s9
-         RjHP5Acy/RY/JUnqyX6CcrvKUZoteZ/917pdCH9Yfc0tfYvTuCe0/madFMzUBJwHieKB
-         4/OKykeF4H9qhdGcSPpGjuhzBpRDFQoPsA2hZ6MxmYBnctHwrURyAJD0l1cDWv6377HY
-         0cQs5sjr9/M25+lNQ9jUFGBTutwEDU6L4Xipu/Clqz6X0vCh/s+dppWmDHLsz+zr50Ke
-         LoTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1ErXkZf7BLCpg6GnDRfFbSB9VliQZ1SaYRDHnOq2XmQ=;
-        b=ECUqkSp+ojzR2abxGTKBV2Xt0gRaCAXmsgAK+rP+Smvq3sR8oSEJWKv4d6gaU3iZg6
-         OK0zYcVNfST2zDvGl71q2Zezlc8EIX9XVBC0P2Exz7BuWLlC2GpWeOMtgrwlyhsmM8tj
-         nFu7H1xQ8QUIlwfnD9p9CDODblSJwwDNYwbR+k7kRuS+W9uVcyFyJxq3Eq7Jwtg3x1WJ
-         iTppBHHo66bBx1P6nnNQjkZLOxI31gGJv/SzDkLeiXVLZwazmLpDLraTEd9x9UmN0MY+
-         PoFtqQqd46V8QY3wa5O35jJh7LjlDFPjbJz2Bdr8/MCHhHz12wBiuhFyLGcbdxHkw9P5
-         Ce3g==
-X-Gm-Message-State: AOAM531oPcvu+a5DXkxbQfDlXW/gxdHEyznpAhyLv+qjXey4eUM5AAnq
-        RKrIu+pi89OzEUBEnLKgueY1lw==
-X-Google-Smtp-Source: ABdhPJyHy+F4nl+WPicpa+P4vCnIRV8pPlgwelwB2C6R7uS7V56PUmE76u46+okaWvQiuchI0SfYgQ==
-X-Received: by 2002:ac2:5e6c:: with SMTP id a12mr7842921lfr.35.1592768161337;
-        Sun, 21 Jun 2020 12:36:01 -0700 (PDT)
-Received: from eriador.lan ([188.162.65.109])
-        by smtp.gmail.com with ESMTPSA id r13sm2917854lfp.80.2020.06.21.12.35.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jun 2020 12:36:00 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1730070AbgFUTki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 15:40:38 -0400
+Received: from mout.web.de ([212.227.15.3]:39119 "EHLO mout.web.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730170AbgFUTkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Jun 2020 15:40:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+        s=dbaedf251592; t=1592768429;
+        bh=cUH/lxbu1fDaoPxE38bxOH+KGOlEgJnXQgjvrcxT/uA=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=AjoO0/RdHCDO/Vym1em35nW2F3J0HbBPyQgDgZBTEFQRM0jq3ZVwlr6tI6Myw5Vnp
+         PM/LHKKaZDCw69NLYjrrlRVNrqq1RtbQD0sdkmouq61LhF91lBFqf5UtcWJxkEgpBX
+         6M2I8W3VGrxGh2eyxF/jupodQA1eueiqsJxK8BS4=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from LaptopNick.fritz.box ([79.227.109.96]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N2BI2-1ijXtr0Hi2-013cJK; Sun, 21
+ Jun 2020 21:40:29 +0200
+From:   Nick Reitemeyer <nick.reitemeyer@web.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, linux-iio@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: sm8250-dts: add thermal zones using pmic's adc-tm5
-Date:   Sun, 21 Jun 2020 22:35:49 +0300
-Message-Id: <20200621193549.2070434-6-dmitry.baryshkov@linaro.org>
+        Nick Reitemeyer <nick.reitemeyer@web.de>
+Subject: [PATCH 1/2] ARM: defconfig: u8500: Enable CONFIG_KEYBOARD_TM2_TOUCHKEY
+Date:   Sun, 21 Jun 2020 21:38:22 +0200
+Message-Id: <20200621193822.133683-1-nick.reitemeyer@web.de>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200621193549.2070434-1-dmitry.baryshkov@linaro.org>
-References: <20200621193549.2070434-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DyZiYPMqoGw8YEI0qM3yC3WNyGI7BEBQYd5iDRdmlUuzABPAeLs
+ M9EpxDT3nveEpsqTy2ZVLl26OST0WENzbaskw/yo1XflVinz//I41TAQcPEA7QMOidaazqP
+ KPFO3IbzAVgcIvjMiZa76ftAyixPs9UTGoZrczDHkmBaEnXlB7ihxN+s56avLYx1GY270nw
+ uyPxukCrpvAhFOv7wWzEw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:i2D3AhZIRJo=:6O38u/UKDaD2I0lxJBHm6a
+ PRYX1r/BL9JzjPmqTeiRhVDK8mXpiOjCvgjne+Ze04epEexrz0JYZF/bZtpQtEtuXc2VyIPfS
+ 1C8jGNfIaSY49K3BfzEHTnQy8HV17qj68mbzQgBrMKgX5D0cr2884uuLdIdNQWLkTNZ8a1UaE
+ MrA5mXHxPBpTS8xb8VS5RQWIzL73SNFIrdjOGGRxMRqd439masWZpfiOty/bV7jFdy4DKmMWE
+ SmYfL3sshxnUd2ZzsLHOY2bYIXkVRU+aZp0JYJjDT5UGMrsP45oqg4Hlkij9CJmzS2E6Nf60E
+ 0+URUnGbqO44ZN1C1hJZ+c4v3xM5oUyZ0J2AUEZJnAg+RsMTH+TquEglMDOVfMyv000udmPLZ
+ 2bJ2eWtLTNGIjQE/0YrjkoxjPYDQJKir8H9hZefBM26L0dYscbs88cntbjK43Pn5QdlNUTEfY
+ 6WJwzuhpKc2pe/57Bdtq9kZ946QP/6UTfpTRKUQYVS3wXZJ2HgO6tWHhXPWCzJe/P1+oYmh93
+ AgdUM8aR0SpvQzoOgoUR2vKcuVAPtKx+Y3IGw8ZsKn9IzVmzbjBnA2UO3J0kA0+FP28TCcRLz
+ ILYietK6gGyH/6kgMZdzserYc4ck0QYJy2nQnH+/B6uMtRQeOFR8f2q1rqLXD67RcA2QIPFNu
+ n4XJhlvVReGi+HwaLyKhZOL2E239mMMd38GdB8uq7MeYwSrZyig26G5QMk9gjsPFhk6IaOKAI
+ /dfS5z+A6+EW2HMn2L0t3SpqlaabTvPpFjWqpTjLX8I0xtFEzJI0UW7csE1twBB2q/KuBqmpJ
+ UkjXIGdBWboY250B5UWOktKV06KI0jd+fq1xVBgm+d0sulP57plhXgRLKBHsGcDK6JpNO2f/f
+ 9ANTN3PQIKJ3NUe1cIVSKhWe3cVPHI8RklAxo4/tUwvhLn+Cpr+twoaONipiqCOScaJWxMbco
+ mcFMqZtZVv4TL8q75ZDgKH/GytZaXl5gfA3wbgNkYxwDsQZz1jhiHo5M40OXq2kjsxsw07V2+
+ 7LDpF2PRXfRB1oZ7x6XUOjaWUrjcbTfuYhZ+uBIUHo0r/xK7uWoJ7yKLxV1Ca720KZJGs6Qv6
+ ie6nkX32z9ec3NFOaEOat+fqdEYvgEuTv5ub4qzuQYxRv1MEvUGvrBM9+NbT3uXvOkkMITlxG
+ +c/uSxErYONux+2+cjVR0GgZvDw1VfwhutzosY1Slr4VDGcOLVsHaL8MLCEwM7feHO5SHfpZQ
+ x5N2I1E7wLWTG46WU
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Port thermal zones definitions from msm-4.19 tree. Enable and add
-channel configuration to PMIC's ADC-TM definitions. Declare thermal
-zones and respective trip points.
+Required for touchkey support on samsung-golden.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 237 ++++++++++++++++++++++++
- 1 file changed, 237 insertions(+)
+Signed-off-by: Nick Reitemeyer <nick.reitemeyer@web.de>
+=2D--
+ arch/arm/configs/u8500_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index aa37eb112d85..78f0cf582a9a 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -24,6 +24,104 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	thermal-zones {
-+		xo-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		mmw-pa1 {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 2>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		conn-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		camera-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-msm-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		mmw-pa2 {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 2>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -355,6 +453,145 @@ vreg_l7f_1p8: ldo7 {
- 	};
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin_therm@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa_therm1@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-therm@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm1@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc {
-+	camera_flash_therm@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin_msm_therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa_therm2@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>,
-+			<&pm8150_adc ADC5_AMUX_THM1_100K_PU>,
-+			<&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+	io-channel-names = "xo-therm", "skin-therm", "pa-therm1";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-therm@1 {
-+		reg = <1>;
-+		qcom,adc-channel = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm1@2 {
-+		reg = <2>;
-+		qcom,adc-channel = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+	io-channel-names = "conn-therm";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150l_adc ADC5_AMUX_THM1_100K_PU>,
-+			<&pm8150l_adc ADC5_AMUX_THM2_100K_PU>,
-+			<&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+	io-channel-names = "camera-flash-therm", "skin-msm-therm", "pa-therm2";
-+
-+	camera-flash-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-msm-therm@1 {
-+		reg = <1>;
-+		qcom,adc-channel = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm2@2 {
-+		reg = <2>;
-+		qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
--- 
+diff --git a/arch/arm/configs/u8500_defconfig b/arch/arm/configs/u8500_def=
+config
+index 28dd7cf56048..dba57fd7da52 100644
+=2D-- a/arch/arm/configs/u8500_defconfig
++++ b/arch/arm/configs/u8500_defconfig
+@@ -56,6 +56,7 @@ CONFIG_KEYBOARD_GPIO=3Dy
+ CONFIG_KEYBOARD_NOMADIK=3Dy
+ CONFIG_KEYBOARD_STMPE=3Dy
+ CONFIG_KEYBOARD_TC3589X=3Dy
++CONFIG_KEYBOARD_TM2_TOUCHKEY=3Dy
+ # CONFIG_INPUT_MOUSE is not set
+ CONFIG_INPUT_TOUCHSCREEN=3Dy
+ CONFIG_TOUCHSCREEN_ATMEL_MXT=3Dy
+=2D-
 2.27.0
 
