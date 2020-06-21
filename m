@@ -2,122 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEE7202C14
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 20:56:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E4F202C29
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730290AbgFUS4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 14:56:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45704 "EHLO
+        id S1730014AbgFUTXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 15:23:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729783AbgFUS4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 14:56:17 -0400
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E798CC061794
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 11:56:15 -0700 (PDT)
-Received: by mail-oi1-x243.google.com with SMTP id i74so13665158oib.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 11:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2r26ZQAdN4GoklsV0xP0YFMPJK7NXM2OoxqIwBxLXXY=;
-        b=gcJLlUlDkgfAiQ/+U9NJZYMVurjS7cq2M6Xvu50NY4nRFAfTXaZH69BBNPaFdW9pC6
-         YTFCjDkHCGdPe7aBgsdXwfxDLlv/kX2WjBwkMWnaXxxK4tbwAsa7wozF/j14dhtIxnVA
-         sJmS/JhJcnf9p1c+6uESIm9VNVdmlXlMTWUR86Fc4mAJkpXyn1+8HEVRUDIhVoLB0hfH
-         8CJ1z8eXMrakjBAZqoaLFuD/A0nl8sOVpILVyFMO/1j5Y9VikIZyuywcT/OxmGgY6LFW
-         Wx9c+Sh/A73cGUMMUGSTIFY4+Y6s8cEKQ8Cl9DjfVNp/3Qb5z+mvhinmNLyaJKknR5vW
-         IpkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2r26ZQAdN4GoklsV0xP0YFMPJK7NXM2OoxqIwBxLXXY=;
-        b=aW7OsYeHkQsNQrznC57VWE+O31qpbl+eXUysu6t8aVX74xjDn09v5OBLGATHrX020Z
-         S2TstMKAuCzT3eitu+GzF2fOO8mCZXvtONZlNsQKBHxa+02jTIUNQjqBatmXRhOk51/o
-         IkZrZu2IXZXeSVVOucw3Yt5KiaM6fIi8nFtYcepmhIbZ+bISUiftS/vtgAARzS8aAE3O
-         FHACCD/kCoI+XktcEdnDpnnReYhp0WwqLYIQ6lW5zMlFuYiyGPX1iEUgPWoyO/dFEpyz
-         Y2jW3T1n+Nui1eT5p7EJTohFPo6vpCK5JoaFTrEeFamR8J41PSBfgFdnw65m93FJADNE
-         RoZg==
-X-Gm-Message-State: AOAM533uYKUlHvMA4HqOW3280Xo+KfDigq8MiUPGXS/otWjVhG/rhy0r
-        gkWJutNtyL53CuYBDaVLZ5unInl2vhJoha3ogEDtJQ==
-X-Google-Smtp-Source: ABdhPJyyjnHIxIz912lNk3b1yarc1xc9PkqtEyaXn3fCVH8+hjOgMIgybWwGJuyKC3uNZhkgm5f3A3RrFB6xEuoHrxQ=
-X-Received: by 2002:a54:4399:: with SMTP id u25mr10581982oiv.177.1592765775327;
- Sun, 21 Jun 2020 11:56:15 -0700 (PDT)
+        with ESMTP id S1728016AbgFUTXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 15:23:06 -0400
+X-Greylist: delayed 2470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 21 Jun 2020 12:23:06 PDT
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D9B3C061794;
+        Sun, 21 Jun 2020 12:23:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Ns6TK6QQGIUXKq5NhpLUGhsR1TGNDvMg6IvOys7w/qs=; b=h/Fo7f0pwt72AbNBRZXzFo+jTh
+        FSWOCnRYQgyo+QUPZmQKMQbVgVyczZHFrTrcWq9rb/MdRwp/TB31GiT0TGfbvCd0bIIRWgmzZbDpw
+        0Mddw5tuVugxKoBKx64zPt3dp59a77yYJsB7Cfmo2EZmu3jZaVPjq9yQMdSEAM/Bbvc0=;
+Received: from p200300ccff4ba5001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff4b:a500:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1jn4uD-0002ay-Fk; Sun, 21 Jun 2020 20:41:25 +0200
+Date:   Sun, 21 Jun 2020 20:41:23 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>
+Subject: Re: [RFC PATCH 05/10] dt-bindings: pwm: Add bindings for PWM
+ function in Netronix EC
+Message-ID: <20200621204123.6c761d98@aktux>
+In-Reply-To: <20200620224222.1312520-4-j.neuschaefer@gmx.net>
+References: <20200620224222.1312520-1-j.neuschaefer@gmx.net>
+        <20200620224222.1312520-4-j.neuschaefer@gmx.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200604004331.669936-1-dmitry.baryshkov@linaro.org> <20200621064214.GA128451@builder.lan>
-In-Reply-To: <20200621064214.GA128451@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 21 Jun 2020 21:56:04 +0300
-Message-ID: <CAA8EJprbWntcJ_9sKy3veNeEds8nR4cC6sbEcXbhtrsf5Q9O1w@mail.gmail.com>
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: pm8009: Add base dts file
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, devicetree@vger.kernel.org,
-        Patch Tracking <patches@linaro.org>,
-        linaro-kernel@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 21 Jun 2020 at 09:45, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 03 Jun 17:43 PDT 2020, Dmitry Baryshkov wrote:
->
-> > Add base DTS file for pm8009 along with GPIOs and power-on nodes.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pm8009.dtsi | 40 ++++++++++++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/pm8009.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/pm8009.dtsi b/arch/arm64/boot/dts/qcom/pm8009.dtsi
-> > new file mode 100644
-> > index 000000000000..9f3e19b5bd00
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/pm8009.dtsi
-> > @@ -0,0 +1,40 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2019, Linaro Limited
-> > + */
-> > +
-> > +#include <dt-bindings/input/input.h>
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/spmi/spmi.h>
-> > +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> > +
-> > +&spmi_bus {
-> > +     pmic@a {
-> > +             compatible = "qcom,pm8009", "qcom,spmi-pmic";
-> > +             reg = <0xa SPMI_USID>;
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
-> > +
-> > +             power-on@800 {
->
-> Please name this "pon", just for consistency.
->
-> > +                     compatible = "qcom,pm8916-pon";
->
-> Can you confirm that pm8009 is subtype 1, and hence the reboot reason
-> going into RB_SPARE should be shifted 2 steps, rather than 1 as in the
-> newer PMICs?
+On Sun, 21 Jun 2020 00:42:16 +0200
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
 
-For pm8009 the subtype reads as 0x07, while according to msm-4.19 gen2
-handling is only enabled for subtypes 0x04 and 0x05.
+> The Netronix embedded controller as found in Kobo Aura and Tolino Shine
+> supports one PWM channel, which is used to control the frontlight
+> brightness on these devices.
+>=20
+> Known problems:
+> - `make dt_binding_check` shows the following warnings:
+>   Documentation/devicetree/bindings/mfd/netronix,ntxec.example.dts:49.17-=
+42:
+>   Warning (pwms_property): /example-0/backlight:pwms: cell 2 is not a
+>   phandle reference
+>   Documentation/devicetree/bindings/mfd/netronix,ntxec.example.dts:49.17-=
+42:
+>   Warning (pwms_property): /example-0/backlight:pwms: Could not get
+>   phandle node for (cell 2)
+>=20
+In the tolino sources in ./drivers/misc/ntx-misc.c I find this line
 
-> Would be nice if we had a generic compatible that read the subtype,
-> rather than having to add new compatibles for each pmic (or use the old
-> ones)...
+        if(4=3D=3DgptHWCFG->m_val.bFL_PWM) {
 
-Will do it in a separate patch.
+No idea what it does but I would expect to have a kind of translation to
+a dt property?
 
--- 
-With best wishes
-Dmitry
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> ---
+>  .../bindings/mfd/netronix,ntxec.yaml          | 13 ++++++++
+>  .../bindings/pwm/netronix,ntxec-pwm.yaml      | 33 +++++++++++++++++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/netronix,ntxec-=
+pwm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml b/=
+Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> index 596df460f98eb..6562c41c5a9a9 100644
+> --- a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> @@ -31,6 +31,9 @@ properties:
+>      description:
+>        The EC can signal interrupts via a GPIO line
+>=20
+> +  pwm:
+> +    $ref: ../pwm/netronix,ntxec-pwm.yaml
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -53,5 +56,15 @@ examples:
+>                      interrupts =3D <11 IRQ_TYPE_EDGE_FALLING>;
+>                      interrupt-controller;
+>                      #interrupt-cells =3D <1>;
+> +
+> +                    ec_pwm: pwm {
+> +                            compatible =3D "netronix,ntxec-pwm";
+> +                            #pwm-cells =3D <1>;
+shouldn't that be 2?
+> +                    };
+>              };
+>      };
+> +
+> +    backlight {
+> +            compatible =3D "pwm-backlight";
+> +            pwms =3D <&ec_pwm 0 50000>;
+since you have 2 values after the &ec_pwm=20
+
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yam=
+l b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> new file mode 100644
+> index 0000000000000..1dc1b1aba081c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/netronix,ntxec-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM functionality in Netronix embedded controller
+> +
+> +maintainers:
+> +  - Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> +
+> +description: |
+> +  See also Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> +
+> +  The Netronix EC contains PWM functionality, which is usually used to d=
+rive
+> +  the backlight LED.
+> +
+> +  The following PWM channels are supported:
+> +    - 0: The PWM channel controlled by registers 0xa1-0xa7
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: netronix,ntxec-pwm
+> +
+> +  "#pwm-cells":
+> +    const: 1
+
+shouln't that be 2?
+> +
+> +required:
+> +  - compatible
+> +  - "#pwm-cells"
+> --
+> 2.27.0
+>=20
+>=20
+
+Regards,
+Andreas
