@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7057202C55
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A07202C6D
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730672AbgFUTdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 15:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
+        id S1730085AbgFUTgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 15:36:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730669AbgFUTdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 15:33:10 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3324FC061795
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:33:10 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id h22so7398142pjf.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:33:10 -0700 (PDT)
+        with ESMTP id S1730170AbgFUTgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 15:36:52 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E837CC061795
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:36:50 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id jz3so7009589pjb.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:36:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=8V6HFmLfGm9H0h60UuqXdO7H0Hr/Mksem7jzlgy8U7w=;
-        b=uZ3XMOQ4CZBG1jROGxZneTOAF/aHCdQeyVlB3ZvRPBwfRRELY87Zy/FrPPzIzbtjeh
-         ZSWzeilRJ+ltWjl6Wf8XjC9YNwgPUsO+ASAyoEpi37Hdt+3QAoXCC++PIZTbJa+8GGpT
-         ztxtBduTxsquEyTofbr7TcgqSWVtLd7onuIkpBAvohocO81okO6x/h7Iv1zDYrwdr0Z2
-         kJ0J4Pqwssy9Ok05g+TqqC9JqKfzAcE1Dj26Qt1C8YWblqqz3/BxVrgLkk6V9ppyP0Tm
-         U1HmZNDGhHKG9qiukpFLS4kOR8UXxsshrJCRpDGH0Gvo4YSruUMZxSH4zyFR1N0DauXC
-         3IPA==
+         :content-disposition:in-reply-to;
+        bh=GiPGL0KixKUZEggpcuvnQ2W4jyDXzf9YcPGFlK/W3KA=;
+        b=mbLfBZteetG2m1x8jSaFUqIQpyGg40cM84u39l8cX7hR6xz2ZSWD2GpPkk3gy7uvVs
+         Y0HCiz068zxERkQJmb7t18S4KBxpXmwna2UOlB8WJjRvsU99Vp7M10S7zoR9AksTKUEX
+         tdXQDMHvGjuXWS1iWrMvhh7vZT+XODAt5Zm0OQQOU0aLrlp4yKYvHEVG79+2PXBaJKKo
+         Zj+fA7hoE98lWfC0mOnfH6l76yeS2FhlGJFzcZzLDxsKrdR/6Cpd1KX747xN00QlwtUb
+         oNF+2wvCAFb2+UpVuWqWoQX0Eu/UIYKB+wBlFbTcqT396qta9irbWLdheQp9QQ2m07yi
+         QaTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=8V6HFmLfGm9H0h60UuqXdO7H0Hr/Mksem7jzlgy8U7w=;
-        b=O0O7FqmA0tCy4zji/l5zlg4CIvesv9vxRMXRe9wdO6WjNvRxm8IJ5wc2e+NOYkhur/
-         5SrLavJN+w7rvPTZ4mr1DbealpegNHfdbdo1e7XGmOXnuDnq5813FhYZsA2vYOU6nXas
-         503XO1HzMTGfdDyCtkwkpIO/2IvYyKUlRpqXLW6z3q6F52NuXvtNih9V+lgug4h3dDxS
-         gxLsbLXWnZEJNwB5EnY6Ys+Tx3QU8YLO90QFAwusP/BrZv4MVDRmKJ9Rt4MuQovJjOH2
-         v6F1ONCsFaNNTkpKgN1j7C2iM4KEwzsM/1fW3CgkP/uBqXR4W9i1YO56sdy5SCtTUd5M
-         zB2w==
-X-Gm-Message-State: AOAM530cmTCphvcXeNJUFpdTDUmEXLeXYKiFkclDeZdtV3SRTmhJO01Q
-        vbOUpMMFkFaBGlvYncAaMuRlhw==
-X-Google-Smtp-Source: ABdhPJx/yccrdZJLJQ925LbLp9rVL/mKCFCY/9xVs/BHknKusK+X01L1pvGaa2hA8nHDDt3N08i1SQ==
-X-Received: by 2002:a17:90a:c250:: with SMTP id d16mr14494880pjx.60.1592767989562;
-        Sun, 21 Jun 2020 12:33:09 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=GiPGL0KixKUZEggpcuvnQ2W4jyDXzf9YcPGFlK/W3KA=;
+        b=e/TKxDV4Aslu00iZHsUk7qmbOc18tIZP7ia6gWrfOveasJk8qVsZ/tMZyHtxJ2lo/3
+         QGV9FwHAPy+EA4OK2MnGM4tYnPIMTbrEGqI6jAWPw9xoxqwCOvX/FiEHjb4KHeTiUOot
+         uQdqUr5LxUTLFnn9gVzDkTpmm9J2yM0x741DwJvH8+n/tMTuEXX3D3sfar3aMzW7IQDV
+         7sZan2S2dbaH6oEWxMEZFUPZNm9S0G8YW03Ahirf2T81QpICLEBesiTrGdbllq5ZXBiu
+         qfYCJ9FvEBPmlXrjIVRNMeaHRIraGVZHTuk2Do7WCMQd6lGaXMVHpy9Lo8mbB4e17rPR
+         4f1w==
+X-Gm-Message-State: AOAM5330TTeeBsHKcDs+30M3HoURKmPcDAWJfXxGpeU3zwOrSohTvrvh
+        U+88f3IHd3zgQkiWHKEEEKuIinyRC5w=
+X-Google-Smtp-Source: ABdhPJw1I8d+Aq3dTSSP13wu3UUzyuDeXX60UifmfZwWlP0no7eMkGik08Na+mB+kLZIJwFQz5LNaw==
+X-Received: by 2002:a17:90a:4d09:: with SMTP id c9mr14957628pjg.137.1592768210427;
+        Sun, 21 Jun 2020 12:36:50 -0700 (PDT)
 Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id q68sm11641137pjc.30.2020.06.21.12.33.08
+        by smtp.gmail.com with ESMTPSA id k126sm11807514pfd.129.2020.06.21.12.36.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jun 2020 12:33:08 -0700 (PDT)
-Date:   Sun, 21 Jun 2020 12:30:22 -0700
+        Sun, 21 Jun 2020 12:36:49 -0700 (PDT)
+Date:   Sun, 21 Jun 2020 12:34:03 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Suman Anna <s-anna@ti.com>, Ohad Ben-Cohen <ohad@wizery.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>, od@zcrc.me,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Subject: Re: [PATCH v7 4/5] remoteproc: ingenic: Added remoteproc driver
-Message-ID: <20200621193022.GA149351@builder.lan>
-References: <20200515104340.10473-1-paul@crapouillou.net>
- <20200515104340.10473-4-paul@crapouillou.net>
- <8cdcf5ef-1268-89f6-b229-ac711a80b790@ti.com>
- <FR8SBQ.5WXNHNH8P2P7@crapouillou.net>
- <fc1e14e7-4551-48c3-2820-f5889c50becb@ti.com>
- <G3ATBQ.KJYAFROKKWDP1@crapouillou.net>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: pm8009: Add base dts file
+Message-ID: <20200621193403.GM128451@builder.lan>
+References: <20200621192824.2069145-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <G3ATBQ.KJYAFROKKWDP1@crapouillou.net>
+In-Reply-To: <20200621192824.2069145-1-dmitry.baryshkov@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 12 Jun 04:47 PDT 2020, Paul Cercueil wrote:
-> Le jeu. 11 juin 2020 =E0 19:21, Suman Anna <s-anna@ti.com> a =E9crit :
-> > On 6/11/20 5:21 PM, Paul Cercueil wrote:
-> > > Le jeu. 11 juin 2020 =E0 16:47, Suman Anna <s-anna@ti.com> a =E9crit :
-> > > > On 5/15/20 5:43 AM, Paul Cercueil wrote:
-[..]
-> > > > > diff --git a/drivers/remoteproc/ingenic_rproc.c
-> > > > > =7F=7F=7Fb/drivers/remoteproc/ingenic_rproc.c
-[..]
-> > > > > +    /* The clocks must be enabled for the firmware to be
-> > > > > loaded in =7F=7F=7FTCSM */
-> > > > > +    ret =3D clk_bulk_prepare_enable(ARRAY_SIZE(vpu->clks),
-> > > > > vpu->clks);
-> > > > > +    if (ret) {
-> > > > > +        dev_err(dev, "Unable to start clocks\n");
-> > > > > +        return ret;
-> > > > > +    }
-> > > >=20
-> > > > You are enabling the clocks directly here and also trying to
-> > > > manage =7F=7Fthem through pm_runtime callbacks again.
-> > >=20
-> > > Yes. The clocks need to be enabled in the probe.
-> >=20
-> > For the preferred non CONFIG_PM case now and lack of
-> > prepare/unprepare().
->=20
-> I want to make it clear that I'm not against having .prepare/.unprepare, =
-but
-> I want to see what maintainers have to say.
->=20
+On Sun 21 Jun 12:28 PDT 2020, Dmitry Baryshkov wrote:
 
-I think it's perfectly reasonable to enable all the resources here and
-then if CONFIG_PM isn't set you just leave them enabled throughout.
+> Add base DTS file for pm8009 along with GPIOs and power-on nodes.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Regards,
+I took the liberty of adding a pm8009_pon label to the pon node, then
+applied the three patches.
+
+Thanks,
 Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/pm8009.dtsi | 37 ++++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8009.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8009.dtsi b/arch/arm64/boot/dts/qcom/pm8009.dtsi
+> new file mode 100644
+> index 000000000000..cb1a10e72474
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm8009.dtsi
+> @@ -0,0 +1,37 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2020, Linaro Limited
+> + */
+> +
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pmic@a {
+> +		compatible = "qcom,pm8009", "qcom,spmi-pmic";
+> +		reg = <0xa SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pon@800 {
+> +			compatible = "qcom,pm8916-pon";
+> +			reg = <0x0800>;
+> +		};
+> +
+> +		pm8009_gpios: gpio@c000 {
+> +			compatible = "qcom,pm8005-gpio";
+> +			reg = <0xc000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pmic@b {
+> +		compatible = "qcom,pm8009", "qcom,spmi-pmic";
+> +		reg = <0xb SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +	};
+> +};
+> -- 
+> 2.27.0
+> 
