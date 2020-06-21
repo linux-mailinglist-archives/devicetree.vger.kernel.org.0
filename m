@@ -2,147 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4ECF202C71
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F9F202C74
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2020 21:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730516AbgFUTkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jun 2020 15:40:37 -0400
-Received: from mout.web.de ([212.227.15.3]:37319 "EHLO mout.web.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730070AbgFUTkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Jun 2020 15:40:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1592768429;
-        bh=Xzttkjxbn6tRm7PPzTn23RfXNlqY8vkHctwxUl7NGfo=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ONmNfyZPmlUPKJHOXTML8DibZ/LkYPR1RAhczYVEV2QmRM4m0yiUAtzQslGIuSFmc
-         ZNjiFK+rOh8SV35HcPq47mqTqTRrp9LPF4NcZUkR9XYQtewBipcvXrJEMpDaOIofxw
-         mRz3MrXgKppNkiaW9Dx4Gc8o5SAb6L8D5Xwxy13g=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from LaptopNick.fritz.box ([79.227.109.96]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MRk0k-1jJzBH1fBa-00TBd4; Sun, 21
- Jun 2020 21:40:29 +0200
-From:   Nick Reitemeyer <nick.reitemeyer@web.de>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nick Reitemeyer <nick.reitemeyer@web.de>
-Subject: [PATCH 2/2] ARM: dts: ux500: samsung-golden: Add touchkey
-Date:   Sun, 21 Jun 2020 21:38:23 +0200
-Message-Id: <20200621193822.133683-2-nick.reitemeyer@web.de>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200621193822.133683-1-nick.reitemeyer@web.de>
-References: <20200621193822.133683-1-nick.reitemeyer@web.de>
+        id S1730220AbgFUTmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jun 2020 15:42:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730170AbgFUTmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jun 2020 15:42:13 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87B8C061795
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:42:12 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id d6so7396656pjs.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2020 12:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=edDlfwxS4JG2joqhxuZATnt//vrApPWYWnopz3fBI3E=;
+        b=ezrq2yWqYPsw3ZpVM1xyVihsUx8cDb4/foRHKIqz1sPMPQ40Lz6XNPg1SFZo6nfRoB
+         glWcvqDrxmrVCSlavgsWO/NHZIlci/FJdzR7Xcvj0ILPEK+Fkx6sV+QiFxtVtfFetKBy
+         A4jP/jSmNUnQJlIxTVdHRWU1QzD54OLXgX8bcSEu9f8JzSrBtWSkTedHSOfLgIR6/USJ
+         x7d5vhd0sTE7YhBrisw11bYdWq0CCSIgWi04aGKUKEl2gltCTQT1jHJHpoPm90EOD8V4
+         vxsL1PPqIC3ZN2Qz+4FQg7HtoMz2tw3yOnYZopzK065xTjV1SJkcUCEb3iFosvPRoALM
+         nAYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=edDlfwxS4JG2joqhxuZATnt//vrApPWYWnopz3fBI3E=;
+        b=nm955NMuvScBIdom7iym8gNP+Z96brP6pXqrOaW9Btvq5EnGS+IuFASe22jS/GXIwO
+         uZ3Mw8NCEohl8/po0mPpjTatVmBQzt2hGMIEAUe8DjVkXLL7qOo1lCeR2j2Na5sN4xKS
+         9UFRCzZ2ZXoDasopH/SO/rZMzXw0XOG5KiscvIMvRvzJryGVJ1KDBaxu/roA02AhAibq
+         lKeOSUGa198XW/zHQxBvPR9lo8oYGMJkRm4M0JY94hnJPe8/sLfAYuXM3cmtBrfAGFcr
+         qRLvYF/s6Mmkbc/VR2MyRtJ4OcI/gA6VYi+cx8YwhBlKyiV+rZJruo+NFevauFpPAJNL
+         x4xg==
+X-Gm-Message-State: AOAM533LZRsTQZ8OdYi6TGFwItIzhhGaMD2edrm02wMbLt8aQOaLeNcv
+        GHcYbTNBJRTeFXKeff93Q6qdVg==
+X-Google-Smtp-Source: ABdhPJwnw8fsGrWvq0AXgc6Qqqiw/3R12/3C+LSjSsBVR+N4dN1XxcFxGXTGEs4sNLcYmTxlLftMHA==
+X-Received: by 2002:a17:90a:c797:: with SMTP id gn23mr14220135pjb.165.1592768531995;
+        Sun, 21 Jun 2020 12:42:11 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id b29sm11986557pfr.159.2020.06.21.12.42.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Jun 2020 12:42:11 -0700 (PDT)
+Date:   Sun, 21 Jun 2020 12:39:25 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, devicetree@vger.kernel.org,
+        Patch Tracking <patches@linaro.org>,
+        linaro-kernel@lists.linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: add I2C and SPI nodes
+Message-ID: <20200621193925.GN128451@builder.lan>
+References: <20200606131300.3874987-1-dmitry.baryshkov@linaro.org>
+ <20200621072655.GH128451@builder.lan>
+ <CAA8EJprHke0=OhpP2WwPtJ-ttzOvx63j5BjHhZL0N1JO6uJZEQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:F+gf9Pksrfga9CGGdCdBb+Q+Lyh3AAgB1bsqHaNBaxsx3RPY0i+
- eOZazJGKrXUcZaHAjYWCmE11fWLWs2nvwMEW5RV6vdcaAOCold1DxlmBeACb0hJRiOktao6
- fE+t7JVkC0ATjpRlbQexA27EBrNiJwViBS6+5fhL/cGOMkfL4atjKKrVAHXahYWiUTmKG5X
- TBYAHcXSO2adlyIuFa5Rg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:6hX209b3+s8=:ygA26r6qSE7/Pc0s7D6x7G
- YUz40QwrBi5DIKA6Hajf16+G14gaEVy2dFaVdROEt8mRn+x1QiJCAXu6bQtv/Cinv+v/z2zir
- OljeuflNMow026g8WxILb+E3IU65MJUjisJ0vbL/lzi3kRytjoMQ+Ks1bH6gZoDeooNnDTiJJ
- Hev5AwCSjaaly616cW/Oa9/APhXKiAAWs8lmgv26QG/8b8o2KTiYXPT3iLt/rdPy8HQDHaEuk
- NTel32JLI7E8Vmfi/2LH9NEaoOLppf7K1pzBTv08cePKAP5KTwD65FqYNUa9IPEW9FiR6ZDLe
- FPLeErinrKkTezCF2eQrICYU13Ewm+ED+bKuByyYtPh4A5YJ6U6savy0o1wxjmkMaUGrwcTi0
- oTk4Uk39u/TJwAVVrPYcH7Yw5tt2T0k748uERtxLWz2J2SFGYMxDkL3HVmaXA2b3P4sLLhZdj
- dQJM/BJrC7vBv1NED+FvACFzbdkQBq91+aJS0iMXdarQtypfoCgOkiuWOhsTRUjjTYlMcLSap
- E6mNLCcoi5R6XXtJWJ1v+u5978zYEJdYKHEtApTCV85gH8HnI2NyByyj1jyWvFMWFg86bG4rA
- kSOufG8DUxzdYSzoVhCDQG51vlAv7qtlZaO+EcwQJ792wlG4oODX50tC/m9mfrRXlHtQ1ZSyj
- EelDl3GAUhYABNNzhI6AaCAeG77ea7w4ABSBxdCNIqDzuy0/mmx460yDYe6Uvj6Cb8QMsoTjs
- 9XMwDzZPiQeReeR+vHz5FoYGSlF2HWOSzUPmVJ7Amhs9Y+HDIl1nDipdvl6zf6/2+4PoyvsuI
- /KloOe8uqGqaaQEWUqEokxeJ5ptKPkuE6B8LSChbOqa5dzY3Kw32WulTiFjclo7VRWqr3G6Sr
- OYz1geoefQxzuvecQqCMH/7/5+Kf6wrmQUn9pVqLOrw9J7pfirFzSbqxZfX5+J1XvpKv7+mD9
- 5Gw4EZ58U76kLy7Tdnv+eN+HbkRX4Zgg4+wlcgFlHKV1NH+7jQWgk7Pyia0iyGUzYciInUYRs
- 82PHWPF81SIRt/bM3s1+g1yO++bCCzF2Iydub6BMYjAL2AV7L039nmoynIDmw4dcZiVVmUx96
- m52CSzGdTogs3AKQRM9lPjSP+5ONB5eMhYRoQpkZikwOdIlhfCNoOSeemsSw9LEoCw5hp6iEM
- V/lapICu3YRhiTE/f568FqXE3tQCsX+FfcrvW8BTOrWHJ+8GgPtFLaxDeVN/IBao92XkHq31y
- 072ngHUZY8Dtc0fXI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprHke0=OhpP2WwPtJ-ttzOvx63j5BjHhZL0N1JO6uJZEQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds support for the back and menu keys on golden.
+On Sun 21 Jun 12:05 PDT 2020, Dmitry Baryshkov wrote:
 
-Signed-off-by: Nick Reitemeyer <nick.reitemeyer@web.de>
-=2D--
- .../arm/boot/dts/ste-ux500-samsung-golden.dts | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
+> Hello,
+> 
+> On Sun, 21 Jun 2020 at 10:29, Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Sat 06 Jun 06:13 PDT 2020, Dmitry Baryshkov wrote:
+> >
+> > > Much like SDM845 each serial engine has 4 pins attached. Add all
+> > > possible I2C and SPI nodes for all 20 serial engines.
+> > >
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >
+> > This looks good, can you please give me a r-b or a-b on the patch adding
+> > the TLMM node so that I can merge the two.
+> 
+> I don't have it in my mbox, sorry. But anyway for TLMM patch:
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
 
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts b/arch/arm/boo=
-t/dts/ste-ux500-samsung-golden.dts
-index 5b499c0b2745..1e26b711d43d 100644
-=2D-- a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-@@ -24,6 +24,32 @@ chosen {
- 		stdout-path =3D &serial2;
- 	};
+That works :)
 
-+	i2c-gpio-0 {
-+		compatible =3D "i2c-gpio";
-+		sda-gpios =3D <&gpio2 14 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+		scl-gpios =3D <&gpio2 13 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&i2c_gpio_0_default>;
-+
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		touchkey@20 {
-+			compatible =3D "coreriver,tc360-touchkey";
-+			reg =3D <0x20>;
-+			vdd-supply =3D <&ab8500_ldo_aux4_reg>;
-+			vcc-supply =3D <&ab8500_ldo_aux6_reg>;
-+
-+			interrupt-parent =3D <&gpio2>;
-+			interrupts =3D <15 IRQ_TYPE_EDGE_FALLING>;
-+
-+			pinctrl-names =3D "default";
-+			pinctrl-0 =3D <&touchkey_default>;
-+			linux,keycodes =3D <KEY_MENU KEY_BACK>;
-+		};
-+	};
-+
- 	i2c-gpio-1 {
- 		compatible =3D "i2c-gpio";
- 		sda-gpios =3D <&gpio4 24 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-@@ -403,6 +429,16 @@ golden_cfg1 {
- 		};
- 	};
+Applied this and the TLMM patch.
 
-+	i2c-gpio-0 {
-+		i2c_gpio_0_default: i2c_gpio_0 {
-+			golden_cfg1 {
-+				pins =3D "GPIO77",	/* TOUCHKEY_SCL */
-+				       "GPIO78";	/* TOUCHKEY_SDA */
-+				ste,config =3D <&gpio_in_nopull>;
-+			};
-+		};
-+	};
-+
- 	i2c-gpio-1 {
- 		i2c_gpio_1_default: i2c_gpio_1 {
- 			golden_cfg1 {
-@@ -413,6 +449,15 @@ golden_cfg1 {
- 		};
- 	};
+Thank you,
+Bjorn
 
-+	touchkey {
-+		touchkey_default: touchkey_default {
-+			golden_cfg1 {
-+				pins =3D "GPIO79";	/* TOUCHKEY_INT */
-+				ste,config =3D <&gpio_in_nopull>;
-+			};
-+		};
-+	};
-+
- 	sdi0 {
- 		sd_level_translator_default: sd_level_translator_default {
- 			golden_cfg1 {
-=2D-
-2.27.0
-
+> -- 
+> With best wishes
+> Dmitry
