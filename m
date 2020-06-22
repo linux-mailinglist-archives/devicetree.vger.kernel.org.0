@@ -2,93 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D74420439C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 00:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 071B12043C1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 00:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730880AbgFVW2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 18:28:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47002 "EHLO
+        id S1730878AbgFVWkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 18:40:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731080AbgFVW1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 18:27:47 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9ED6C0617BA
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 15:27:45 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id d4so14597693otk.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 15:27:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+juBxJkHGKzzKKvIVu7gHfkhqodYtvY6iJYcZHkOhCc=;
-        b=y41so2TCCnlvbDE+KJrDyfB6UPI6hcbuYXAEZjoDONYl/f7tF2Y3Tc0KHevx/97i+/
-         XnVL449Msiltwz4Mcp9I6pdCo6O7w4RyxH54lz1DoZzm9SREMfG1x4ub1BinKJ4kGJa1
-         ijQFzPzDF77aN+rfnft5wLoDXEiZ15dVBt/NBcn6CzQoC77yPsQHXdm5l5ALG1hr27SX
-         UUQd25MVCtOnc1HawsKpPIA9ntV6xWoIS+/gbFOuKC55dJA8DJ+xZQEylm7jq3jfJFXx
-         fjk3/bq9z91ALoqLA7HYwYCIicA60bw+WsK2rqTEHuptB87nrJFiWqUFvo4SieH66Ux0
-         bgNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+juBxJkHGKzzKKvIVu7gHfkhqodYtvY6iJYcZHkOhCc=;
-        b=TjWXxGDj2I5B9DT2N8RQAzjoZaniIypqK6Eondm0BpfBOLRfdw31eJvGwXu9KquNLe
-         ff4+IBwXzADa6pg4mY5JZqlgP/tATy64Z8MvIYx0C+VcQYQN8+5qIM8u93zUs4XpRgys
-         4lAwXPYO4kkRe9i+Ges4DZzSstY6NbTAJR4cjD9L1P63VrdhpQgGH+eObxvoBs37KsEb
-         b+2ASlcA1qHr+MNfEWSJ/Ue0UGgONuyTUUfCp72zy1szAiCCuPhAyLFtPnLdemZCNya3
-         LZlJT/UHe9WMy/cxjH7ae7mQd7aZxG4HlxMRCsulzrKWJXVa4uZ9Mk63FfTZayKvY8YE
-         x1ug==
-X-Gm-Message-State: AOAM531aVwFFgb8ukybDEcLVZwBzJbpN+Ujr/Vl8+j07zGi2II9phK83
-        dAm7fTi/10xLgs2zpDxzSSeYaQ==
-X-Google-Smtp-Source: ABdhPJzGgP62muNTyA44IB7D3xkRwJUqX16W9zjWiUZgOSB7gVom5EmeKYmkBce9IQOufHUmRXJ9xg==
-X-Received: by 2002:a9d:664e:: with SMTP id q14mr16811881otm.49.1592864865002;
-        Mon, 22 Jun 2020 15:27:45 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h36sm3589304oth.37.2020.06.22.15.27.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 15:27:44 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 6/6] arm64: defconfig: Enable Qualcomm IPCC driver
-Date:   Mon, 22 Jun 2020 15:27:47 -0700
-Message-Id: <20200622222747.717306-7-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200622222747.717306-1-bjorn.andersson@linaro.org>
-References: <20200622222747.717306-1-bjorn.andersson@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S1730785AbgFVWkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 18:40:31 -0400
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3A0C061573;
+        Mon, 22 Jun 2020 15:40:31 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 205A61296A2B7;
+        Mon, 22 Jun 2020 15:40:31 -0700 (PDT)
+Date:   Mon, 22 Jun 2020 15:40:30 -0700 (PDT)
+Message-Id: <20200622.154030.984476700483302206.davem@davemloft.net>
+To:     dmurphy@ti.com
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        robh@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v9 1/5] dt-bindings: net: Add tx and rx
+ internal delays
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20200619161813.2716-2-dmurphy@ti.com>
+References: <20200619161813.2716-1-dmurphy@ti.com>
+        <20200619161813.2716-2-dmurphy@ti.com>
+X-Mailer: Mew version 6.8 on Emacs 26.3
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 22 Jun 2020 15:40:31 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IPCC hardware block provides a mechanism for triggering interrupts
-between co-processors in recent Qualcomm SoCs. This is used as basis for
-most form of communication between co-processors, so enable this
-support.
+From: Dan Murphy <dmurphy@ti.com>
+Date: Fri, 19 Jun 2020 11:18:09 -0500
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> @@ -162,6 +162,19 @@ properties:
+>      description:
+>        Specifies a reference to a node representing a SFP cage.
+>  
+> +
+> +  rx-internal-delay-ps:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5848799dcad0..b3d13e1a052a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -834,6 +834,7 @@ CONFIG_IMX_MBOX=y
- CONFIG_PLATFORM_MHU=y
- CONFIG_BCM2835_MBOX=y
- CONFIG_QCOM_APCS_IPC=y
-+CONFIG_QCOM_IPCC=y
- CONFIG_ROCKCHIP_IOMMU=y
- CONFIG_TEGRA_IOMMU_SMMU=y
- CONFIG_ARM_SMMU=y
--- 
-2.26.2
-
+Do you really want two empty lines between these two sections?
