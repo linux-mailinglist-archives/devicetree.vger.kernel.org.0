@@ -2,141 +2,365 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3E4203242
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 535BC20328B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbgFVIkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 04:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbgFVIkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 04:40:25 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F94AC061794
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 01:40:24 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id n23so18279070ljh.7
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 01:40:24 -0700 (PDT)
+        id S1726871AbgFVIvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 04:51:45 -0400
+Received: from mail-dm6nam10on2089.outbound.protection.outlook.com ([40.107.93.89]:6149
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725952AbgFVIvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jun 2020 04:51:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bJVl4z6rYfyZ8dLiMraF3Q98dUrpPReJLsyNs9C+PblIMN16v875ygKydZ1LxOgh/9BJ/buLpFMm1b+DM1M5Iqi2+pZwR3SHEvHzmmx7t7MfTfOZju0pNtEUXJVKu19MwCI62iUxByOT2hY1kznTl+GQO8mLUZezoCZteqUvCBT4NMEW6mx3dDe51KpCCeWDa3bLUSPm/Y2dSp+qDk6bSWtwYo7B6sx55avTOUyKJ4G/ot5Pm1f+X757niB4INlBV4qKkNZt+ZhYuvrjnU5DQeJNsCjVMYwSGqrbgv0mU/h3E+KEiSiDRd9z1OUPN+Hm3FKWLqk7mg/DoUDNvv/41g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D7v39zB2rBdGcrL7S9IqrMJx5TMhZ5Py1bSPh2IYiHA=;
+ b=RT4O//vQ0IcR/o9/mZOAADy27P/nJqSaKp4oTyvEpbYdxGDjfS1YcvYiwDTDKg/Kl+qebypMaImhBODEtr7iBgzMTvQ8t+MjrSzlRCFGPmCws+KlaiM0sU/t+puvvfwWfl4LAeYIkHqfp8BbkWaUOrjPlURai6G1VhVXn+fYFOhW9gHy58mAqrOiQlKTTabBy5lKJKiPvhu5EKYvVV2gw8djLMfAdYTd10fWXKNryvptZ0z3uPyIZWj6BDiX9O0Q9FMVNSpHXumBNzfQAjaGVGlmQAv1yne/84XX/lEAEPb9eVzcyZ5dXNWlDoFIobKFhMvY0lmJMuTvycaZDwsG6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hFeVIaukde5cEJYosI/nKt2dPH3w8UvOLbWUnlXHsBU=;
-        b=iEGUuJhLh3+NwbCNxjkkRe9EVuTa6QWYy1pemvrk9YZZt2QLagctJEfbVbcJm3GNqL
-         XdU1vFbZpQJ9MY0yMrL+JM4jrBltzKfZAMow7TO4U8iz6WgaI8qShnkMrXigDZZFvxFD
-         RBeIyRDTs+ycv/eO6kZtT1jPgvH7GJzZTAARh2+PpD0kHr0BSQrlEMwIN/jE38mW6Pmo
-         YWEGWjwW5DsbhEW7jBaTCQuGWx+25ofFPoeJ2n7vJPcWvNpCNABDJHi4v2Mken1RB6r6
-         C9kML6zezbYAd/Hnqn1IPXNudHg0e+N4TYUl/2iU8PsJJWpYOTULbYAMymthaJOFfY7R
-         idaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hFeVIaukde5cEJYosI/nKt2dPH3w8UvOLbWUnlXHsBU=;
-        b=mu1cQwO9tOTBekB+IIKEq3Ou7+NEnGl1OS8SlGYNcp+BsFcYp6lH3gJVFFjsRn8Cvu
-         aLYHA+roeA/9I3jc65OorY9y3eBtYrpAvE7SqCQF4CFVU0+DIPRTOSzBW2BO9Q1YfZos
-         33FhBX5g7JHNY3wHMzwJBFKvwhDa3NxbuVtrn8a99FmH06X/lf9/MM7E2MHL+vWwazfw
-         JHT7J4/CGK4x6JG1mWP8nyH0yZaQWEJ9/ZrAxelP951j/T5wvjb3Q0UOlV3wnSQmCJJl
-         XZc43RDB8b2peGt2MSQ4HoLYJfwqDFk5uX9Y1cytpqtp8zt2MX6Pv/9vX78+ugWc48ly
-         Cc0w==
-X-Gm-Message-State: AOAM533yvwYK/GfQcSsDlrBPLcNUCx+BBHXpKn8E0Wv2FhQHefWrik41
-        RLIIAQx16htA0wgX/FrAsSPtPoodYEA6Lb+kGFwV/Q==
-X-Google-Smtp-Source: ABdhPJwBhI+o3WaB0VdNYziKJq6W2qVP2mYiDJ3QR8uHR3AWB7nuaFJazUewFMpxfNUCL74ZyOyKvTbpGiVkpD6bBkQ=
-X-Received: by 2002:a2e:9786:: with SMTP id y6mr7668442lji.398.1592815222900;
- Mon, 22 Jun 2020 01:40:22 -0700 (PDT)
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D7v39zB2rBdGcrL7S9IqrMJx5TMhZ5Py1bSPh2IYiHA=;
+ b=J7jaHAebK/EDyVel79IGd52BhYzBNFUS8kJ+XqChNd4PLYJH6cPBFNxu/wpdqDC9jpGyMiMYeqwNhmcdt0KMCKSStMNNskOxbYsiElV4BBWTOYKUWI5VA/4xPXJR9zUQXvqrSisyxCbnoduYjwnWcF2F4ZS40hhufijSBO/M5yU=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=synaptics.com;
+Received: from BYAPR03MB3573.namprd03.prod.outlook.com (2603:10b6:a02:ae::15)
+ by BYAPR03MB3509.namprd03.prod.outlook.com (2603:10b6:a02:aa::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Mon, 22 Jun
+ 2020 08:51:40 +0000
+Received: from BYAPR03MB3573.namprd03.prod.outlook.com
+ ([fe80::d1ae:8ea7:ea:8998]) by BYAPR03MB3573.namprd03.prod.outlook.com
+ ([fe80::d1ae:8ea7:ea:8998%7]) with mapi id 15.20.3109.027; Mon, 22 Jun 2020
+ 08:51:40 +0000
+Date:   Mon, 22 Jun 2020 16:44:31 +0800
+From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mmc: Convert pwrseq to json-schema
+Message-ID: <20200622164431.3dbc8c5a@xhacker.debian>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TY2PR06CA0048.apcprd06.prod.outlook.com
+ (2603:1096:404:2e::36) To BYAPR03MB3573.namprd03.prod.outlook.com
+ (2603:10b6:a02:ae::15)
 MIME-Version: 1.0
-References: <cover.1591684754.git.amit.kucheria@linaro.org>
- <bf5ca7777fbb6f5e2d374a9a72d1e17d485bd8ea.1591684754.git.amit.kucheria@linaro.org>
- <20200621071841.GF128451@builder.lan>
-In-Reply-To: <20200621071841.GF128451@builder.lan>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 22 Jun 2020 14:10:11 +0530
-Message-ID: <CAP245DWL0zRuV1LXq-FqMPX3BUFqLWwMFZpGrtr+Tg7SccQctw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8250: Add thermal zones and
- throttling support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xhacker.debian (124.74.246.114) by TY2PR06CA0048.apcprd06.prod.outlook.com (2603:1096:404:2e::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22 via Frontend Transport; Mon, 22 Jun 2020 08:51:38 +0000
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-Originating-IP: [124.74.246.114]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8e0ff31a-69b9-4015-83cf-08d816897ad7
+X-MS-TrafficTypeDiagnostic: BYAPR03MB3509:
+X-Microsoft-Antispam-PRVS: <BYAPR03MB35099A8856215875E3BD1C91ED970@BYAPR03MB3509.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 0442E569BC
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HVzpMQVvUNHHNVztAyuitzQNF9x2BbTGQ9b1G66GyNayJ9Wg2GYEh3C+FwoTreTPXgMAXcK60agJ5FADPq6Zht/tslB8m77dTPM+2jJ7UKeii1mNTRLvrJtIOmerS6WY4cnppgnV0uQGdbiYQOuiINVzfjBAepGv7VH1sHlv/PpRXHjq8DCzbh9qqx/9P7tfWfEgM+ZlpbLK3VP9KO8zDgHhiC7Q6YgZNRIAso2BpxI/Va2xb9t2rIpqJsWcOijvOCpaZa7kwFOWDdB65WOKE5p/Y0itY6mZH5TfX+XQaY51Wd1yTLBm8vr5gc/GAIcx1ZsnB1/uQZ8JyzOJcreosl6G4jxJiYV+uSN2MK3ydHYc9zHF+annvzW6JlYxKGnVNryxhQc7c4yX67yRFxjrtg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3573.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(136003)(366004)(346002)(39860400002)(396003)(376002)(2906002)(966005)(66556008)(110136005)(1076003)(5660300002)(66476007)(9686003)(66946007)(6666004)(83380400001)(86362001)(8676002)(956004)(4326008)(55016002)(316002)(26005)(16526019)(186003)(52116002)(6506007)(478600001)(7696005)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: W7kvPQK80O5auJqwBSw82erluW3ygWFVZYC2pdAEEISErOI2sWVifb+/3fXDTlBcnrfEO5ZAe8VAAnNQVwAashS9AFI9k3MI/6ow7G+xvVOitbHYJBfHCj3EwBrjxGGsFHTFP/PEW0OuvYj5acr3kWPy9KQEkXInTFgzYC+fHiNzbxLWQ+8O682j1UnWPV7Vmw02+eipSmg7OJIVHALd607RFFfnZy4icK0oCOaoDViBdjhwP4uHZqh3PVXsUr2YuF6OA3KP+JBJsYcE+CS+n7PEl1v4DgB6GAEYTgVXsI06YOEKbdTr/vwBHXQpsJD1slW76FyazSvUuwGeGtAT0AgMtEvyG2rIfHG8TPs/pd5CtcwLB4VB9OHl10lyV+1I8dDVBPSJrikl3eI8zPNJ+nX7C1sc7g4Lch711+YSEXrbMEuUnMKCWO8b1o+Yrt+UAlLM+C1UoDdo2uc7RQzbtnaNJuCktvbekgtvLEDEkpOUJ47u0MudTsK/pSScMifl
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e0ff31a-69b9-4015-83cf-08d816897ad7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2020 08:51:40.2948
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +AxNhsRMLHdY50QZa471sxw5UrsjvGFfJ115Jf9/kY9V2BdDn7jBAzLulgbPQK1of+t8Ak2xff9C0GXGZxBYuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3509
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 21, 2020 at 12:51 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Mon 08 Jun 23:44 PDT 2020, Amit Kucheria wrote:
->
-> > sm8250 has 24 thermal sensors split across two tsens controllers. Add
-> > the thermal zones to expose them and wireup the cpus to throttle on
-> > crossing passive temperature thresholds.
-> >
-> > Update the comment in the drivers to list the SoCs it supports.
-> >
-> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 766 +++++++++++++++++++++++++++
-> >  drivers/thermal/qcom/tsens-v2.c      |   2 +-
-> >  2 files changed, 767 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > index deaa8415c7b72..5cd18cd8a675b 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > @@ -8,6 +8,7 @@
-> >  #include <dt-bindings/clock/qcom,rpmh.h>
-> >  #include <dt-bindings/power/qcom-rpmpd.h>
-> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> > +#include <dt-bindings/thermal/thermal.h>
-> >
-> >  / {
-> >       interrupt-parent = <&intc>;
-> > @@ -86,6 +87,7 @@ CPU0: cpu@0 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_0>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> > +                     #cooling-cells = <2>;
->
-> This doesn't apply to linux-next.
->
-> The problem seems to be that, as pointed out when I submitted that
-> patch, the previously anonymous "cpufreq hardware" is now replaced by
-> the "EPSS" hardware block.
+Convert the pwrseq binding to DT schema format using json-schema.
 
-I'll take a look.
+At the same time, fix a couple of issues with the examples discovered by
+the validation tool -- missing ";"
 
-> So we need a new driver (or update the existing one) to support this new
-> hardware block.
->
-> Presumably though, without this there's not much cooling anyways - which
-> is sad, as your patch looks good.
->
-> >                       L2_0: l2-cache {
-> >                             compatible = "cache";
-> >                             next-level-cache = <&L3_0>;
-> [..]
-> > diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens-v2.c
-> > index b293ed32174b5..58cac8f2a358c 100644
-> > --- a/drivers/thermal/qcom/tsens-v2.c
-> > +++ b/drivers/thermal/qcom/tsens-v2.c
-> > @@ -26,7 +26,7 @@
-> >  #define TM_TRDY_OFF                  0x00e4
-> >  #define TM_WDOG_LOG_OFF              0x013c
-> >
-> > -/* v2.x: 8996, 8998, sdm845 */
-> > +/* v2.x: 8996, 8998, sc7180, sdm845, sm8150, sm8250 */
->
-> Even though it's trivial, can you please send this through the tsens
-> tree instead, so we don't end up having unnecessary merge conflicts.
->
+Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+---
+since v1:
+ - conver pwrseq to yaml format rather than fixing old docs
 
-Will do. Thanks for the review.
+ .../bindings/mmc/mmc-pwrseq-emmc.txt          | 25 --------
+ .../bindings/mmc/mmc-pwrseq-emmc.yaml         | 46 ++++++++++++++
+ .../bindings/mmc/mmc-pwrseq-sd8787.txt        | 16 -----
+ .../bindings/mmc/mmc-pwrseq-sd8787.yaml       | 39 ++++++++++++
+ .../bindings/mmc/mmc-pwrseq-simple.txt        | 31 ----------
+ .../bindings/mmc/mmc-pwrseq-simple.yaml       | 62 +++++++++++++++++++
+ 6 files changed, 147 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.txt b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.txt
+deleted file mode 100644
+index 3d965d57e00b..000000000000
+--- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-* The simple eMMC hardware reset provider
+-
+-The purpose of this driver is to perform standard eMMC hw reset
+-procedure, as described by Jedec 4.4 specification. This procedure is
+-performed just after MMC core enabled power to the given mmc host (to
+-fix possible issues if bootloader has left eMMC card in initialized or
+-unknown state), and before performing complete system reboot (also in
+-case of emergency reboot call). The latter is needed on boards, which
+-doesn't have hardware reset logic connected to emmc card and (limited or
+-broken) ROM bootloaders are unable to read second stage from the emmc
+-card if the card is left in unknown or already initialized state.
+-
+-Required properties:
+-- compatible : contains "mmc-pwrseq-emmc".
+-- reset-gpios : contains a GPIO specifier. The reset GPIO is asserted
+-	and then deasserted to perform eMMC card reset. To perform
+-	reset procedure as described in Jedec 4.4 specification, the
+-	gpio line should be defined as GPIO_ACTIVE_LOW.
+-
+-Example:
+-
+-	sdhci0_pwrseq {
+-		compatible = "mmc-pwrseq-emmc";
+-		reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+new file mode 100644
+index 000000000000..77f746f57284
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/mmc-pwrseq-emmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Simple eMMC hardware reset provider binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description:
++  The purpose of this driver is to perform standard eMMC hw reset
++  procedure, as described by Jedec 4.4 specification. This procedure is
++  performed just after MMC core enabled power to the given mmc host (to
++  fix possible issues if bootloader has left eMMC card in initialized or
++  unknown state), and before performing complete system reboot (also in
++  case of emergency reboot call). The latter is needed on boards, which
++  doesn't have hardware reset logic connected to emmc card and (limited or
++  broken) ROM bootloaders are unable to read second stage from the emmc
++  card if the card is left in unknown or already initialized state.
++
++properties:
++  compatible:
++    const: mmc-pwrseq-emmc
++
++  reset-gpios:
++    minItems: 1
++    description:
++      contains a GPIO specifier. The reset GPIO is asserted
++      and then deasserted to perform eMMC card reset. To perform
++      reset procedure as described in Jedec 4.4 specification, the
++      gpio line should be defined as GPIO_ACTIVE_LOW.
++
++required:
++  - compatible
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    sdhci0_pwrseq {
++      compatible = "mmc-pwrseq-emmc";
++      reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.txt b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.txt
+deleted file mode 100644
+index 22e9340e4ba2..000000000000
+--- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-* Marvell SD8787 power sequence provider
+-
+-Required properties:
+-- compatible: must be "mmc-pwrseq-sd8787".
+-- powerdown-gpios: contains a power down GPIO specifier with the
+-		   default active state
+-- reset-gpios: contains a reset GPIO specifier with the default
+-		   active state
+-
+-Example:
+-
+-	wifi_pwrseq: wifi_pwrseq {
+-		compatible = "mmc-pwrseq-sd8787";
+-		powerdown-gpios = <&twl_gpio 0 GPIO_ACTIVE_LOW>;
+-		reset-gpios = <&twl_gpio 1 GPIO_ACTIVE_LOW>;
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+new file mode 100644
+index 000000000000..a68820d31d50
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/mmc-pwrseq-sd8787.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell SD8787 power sequence provider binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++properties:
++  compatible:
++    const: mmc-pwrseq-sd8787
++
++  powerdown-gpios:
++    minItems: 1
++    description:
++      contains a power down GPIO specifier with the default active state
++
++  reset-gpios:
++    minItems: 1
++    description:
++      contains a reset GPIO specifier with the default active state
++
++required:
++  - compatible
++  - powerdown-gpios
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    wifi_pwrseq: wifi_pwrseq {
++      compatible = "mmc-pwrseq-sd8787";
++      powerdown-gpios = <&twl_gpio 0 GPIO_ACTIVE_LOW>;
++      reset-gpios = <&twl_gpio 1 GPIO_ACTIVE_LOW>;
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt
+deleted file mode 100644
+index 9029b45b8a22..000000000000
+--- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-* The simple MMC power sequence provider
+-
+-The purpose of the simple MMC power sequence provider is to supports a set of
+-common properties between various SOC designs. It thus enables us to use the
+-same provider for several SOC designs.
+-
+-Required properties:
+-- compatible : contains "mmc-pwrseq-simple".
+-
+-Optional properties:
+-- reset-gpios : contains a list of GPIO specifiers. The reset GPIOs are asserted
+-	at initialization and prior we start the power up procedure of the card.
+-	They will be de-asserted right after the power has been provided to the
+-	card.
+-- clocks : Must contain an entry for the entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names : Must include the following entry:
+-  "ext_clock" (External clock provided to the card).
+-- post-power-on-delay-ms : Delay in ms after powering the card and
+-	de-asserting the reset-gpios (if any)
+-- power-off-delay-us : Delay in us after asserting the reset-gpios (if any)
+-	during power off of the card.
+-
+-Example:
+-
+-	sdhci0_pwrseq {
+-		compatible = "mmc-pwrseq-simple";
+-		reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+-		clocks = <&clk_32768_ck>;
+-		clock-names = "ext_clock";
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+new file mode 100644
+index 000000000000..449215444723
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/mmc-pwrseq-simple.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Simple MMC power sequence provider binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description:
++  The purpose of the simple MMC power sequence provider is to supports a set
++  of common properties between various SOC designs. It thus enables us to use
++  the same provider for several SOC designs.
++
++properties:
++  compatible:
++    const: mmc-pwrseq-simple
++
++  reset-gpios:
++    minItems: 1
++    description:
++      contains a list of GPIO specifiers. The reset GPIOs are asserted
++      at initialization and prior we start the power up procedure of the card.
++      They will be de-asserted right after the power has been provided to the
++      card.
++
++  clocks:
++    minItems: 1
++    description: Handle for the entry in clock-names.
++
++  clock-names:
++    items:
++      - const: ext_clock
++    description: External clock provided to the card.
++
++  post-power-on-delay-ms:
++    description:
++      Delay in ms after powering the card and de-asserting the
++      reset-gpios (if any).
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  power-off-delay-us:
++    description:
++      Delay in us after asserting the reset-gpios (if any)
++      during power off of the card.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    sdhci0_pwrseq {
++      compatible = "mmc-pwrseq-simple";
++      reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
++      clocks = <&clk_32768_ck>;
++      clock-names = "ext_clock";
++    };
++...
+-- 
+2.27.0
+
