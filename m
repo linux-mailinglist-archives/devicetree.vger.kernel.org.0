@@ -2,31 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12347203206
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7E0203229
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726416AbgFVIZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 04:25:09 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:47880 "EHLO inva021.nxp.com"
+        id S1725823AbgFVIgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 04:36:22 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:49954 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726080AbgFVIZJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 04:25:09 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5950F200903;
-        Mon, 22 Jun 2020 10:25:07 +0200 (CEST)
+        id S1725793AbgFVIgW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jun 2020 04:36:22 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 626D31A0B68;
+        Mon, 22 Jun 2020 10:36:20 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id F07332008F6;
-        Mon, 22 Jun 2020 10:25:04 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A2F841A0B50;
+        Mon, 22 Jun 2020 10:36:17 +0200 (CEST)
 Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8F729402CA;
-        Mon, 22 Jun 2020 16:25:01 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D2C4D402CA;
+        Mon, 22 Jun 2020 16:36:13 +0800 (SGT)
 From:   Qiang Zhao <qiang.zhao@nxp.com>
 To:     shawnguo@kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        leoyang.li@nxp.com, Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: [PATCH] arm64: dts: ls1028a: Add DSPI nodes
-Date:   Mon, 22 Jun 2020 16:19:20 +0800
-Message-Id: <20200622081920.22269-1-qiang.zhao@nxp.com>
+        leoyang.li@nxp.com, qiang.zhao@nxp.com,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: [RESEND PATCH] arm64: dts: ls1028a: Add DSPI nodes
+Date:   Mon, 22 Jun 2020 16:29:09 +0800
+Message-Id: <20200622082909.42254-1-qiang.zhao@nxp.com>
 X-Mailer: git-send-email 2.17.1
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
