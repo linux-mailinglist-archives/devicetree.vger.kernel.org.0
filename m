@@ -2,223 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F146D203107
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 09:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BDA620311C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 09:58:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727870AbgFVH61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 03:58:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52928 "EHLO
+        id S1728157AbgFVH6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 03:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727769AbgFVH6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 03:58:23 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33FEC061794;
-        Mon, 22 Jun 2020 00:58:22 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id z17so919193edr.9;
-        Mon, 22 Jun 2020 00:58:22 -0700 (PDT)
+        with ESMTP id S1726954AbgFVH6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 03:58:48 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 556ECC061794
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 00:58:48 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id v3so8127925wrc.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 00:58:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WBZuUHUmNAJyQJ0TZGyLculNA255/tziYvFb0kPpSto=;
-        b=jPOIKQ18ZUyOpB9JY4EhGf8gMpXTp20uWD1PGXKv/AlBLPvsvJ827/6CBP/NZfPVGq
-         JZCjPBiXg4YsG3X+dbM94qXwbhA5XHdlbPzGLd0yVBsMGACyLdC1kgzoEBbA3/w2Xfjw
-         r2N8lHW3Y5u9laa/sBYPp26WoF93IemSlTIjQygP1zh3EQHpDCj5lKU+/T4HYPfdZD7s
-         IQHsQ01FYdrA7ECXwZd7SZ1qmoANbMElM4vmrNImpBEpw+aezh3SPjlOnqB3MP0eXRhp
-         Ll6XxzrtdknIoHNrCCyIXFe5MClyvgnFYqTisOHDe6x12BVFCf9YB/q7e9ErVuQJiKfo
-         6SDA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RnzS9Psse9ulhOjd5cJJfFYSBWvJN3BYxrA41zp+nj0=;
+        b=QOX8nsO8Phfz0d521oNL0WXfr55SOmcu2B7BVirXReZCfMgCS5XQIC5MMWH6UW0E9/
+         kr9QyAqsVP1q50cG7HX8v6JsDEI+nPnfURWpKcP0lRJhsUdXZO+znoMsbr9lJSrCUkrA
+         PLsGUoMTu38RoC9rGzRiXMGk8ntEbyfeN4kWJzejmxGwJ2r7w8IcXEGk3xdrfkJhmo+r
+         bWqD1xrEnK0D6Woe37E7EKSViVwxS6G4Ky1ZSWbUfV4GisC7VNATbaNiMBEKESKCyuNO
+         htDPJ6fQbFHP55sXCpyjIdkVYaDZQiu5NJoJEgH9YtcrHkzAH6GNEnKLINh9qG8sh57E
+         NZJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WBZuUHUmNAJyQJ0TZGyLculNA255/tziYvFb0kPpSto=;
-        b=UAi/2TBGJI94NHm4GA5JVg+W+JAlYcCTHTIZoN5S36+0R5w4D9d2hknMUkCdh3nzZ8
-         o/svocDuHfZ3rWZNDkkbbIP8P225eNRWjpjjrvVGeOEjAUnh4ByjJnebNaJiVN5OSZi5
-         Gs09LqM8ntCa/6CXpqj2u5a23zU+gqCazfoDSi/5CjBTBASYLVuJIKJtxAwVeuzGEp5n
-         p5AQDircz/XAdVT08auSHDwMixyNIxWfD77IieCuK/9h+WxtuUDlWN66jNx6w/6Y6q6d
-         AGP+aO8rxI95SR3JIqojfdXndHCZX8G6bttH4o8YAiNSxBg7JV5sMeKxSFEp1YAb+wrk
-         r5aw==
-X-Gm-Message-State: AOAM533VgOWpZsYHitMyimsC70o15IjPDLp2f4fX+p+/uHhYX/i3fLal
-        NSQ5f/fqTojIb5jQAB5QsOQ=
-X-Google-Smtp-Source: ABdhPJx2ZT0XalvkbwuHx5OW7iVtdcQEnpB5ecmMuTwktzJcPlCzVXTmCb1qDfW/gRB4V+Ukr/8o8g==
-X-Received: by 2002:a50:e387:: with SMTP id b7mr15252439edm.190.1592812701722;
-        Mon, 22 Jun 2020 00:58:21 -0700 (PDT)
-Received: from localhost.localdomain (abag196.neoplus.adsl.tpnet.pl. [83.6.170.196])
-        by smtp.googlemail.com with ESMTPSA id b4sm10511606ejp.40.2020.06.22.00.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 00:58:21 -0700 (PDT)
-From:   Konrad Dybcio <konradybcio@gmail.com>
-To:     skrzynka@konradybcio.pl
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=x-gm-message-state:subject:to:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=RnzS9Psse9ulhOjd5cJJfFYSBWvJN3BYxrA41zp+nj0=;
+        b=QKt5AWheuTIpnj/E8cK1P3cU06ExY+wNDZAIxFPrEUl3G+3+mdtKUw0rn2lHA/La/y
+         PgdlGOg8JulbOPLbNAtZBXp8sBN9LZw+eonh6LCuaOHfPpIYKqxG6ZYJNEgeoPeGmsg6
+         dtTxc7yrnp9G9kpITab748rDvjOBeJwa8nnj1rUh4LtuE5oXhaFZsvspOz8t7+RBq4mn
+         so9jvvp6S9433XIS8i3pgGnvS7+xGmOR7BnhlsMxOJ3tvigAPATQCi9xu+bFKFND4oOw
+         B+0vjqZ8NHocHpN2FhoAyeHO0KB9ONGjaEpK5bXVEzKU087uTQhv1THNPcWw1godfj+W
+         EBMw==
+X-Gm-Message-State: AOAM530eR2pdMGgLkQ2a6gjxFVmseFlozqeaXLbQGzNllolvNClpqnn6
+        hQaAwkVYJQHnotk+yef6YM5tLQ==
+X-Google-Smtp-Source: ABdhPJy3U2wK4+JdJX4gut5BkGA3c3/jfHgcznW8Hklmr+1Ep19p5B+lNyN4fQPG/fEp1c1zSXbMyg==
+X-Received: by 2002:adf:df03:: with SMTP id y3mr16809629wrl.376.1592812726975;
+        Mon, 22 Jun 2020 00:58:46 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc? ([2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc])
+        by smtp.gmail.com with ESMTPSA id d63sm16560122wmc.22.2020.06.22.00.58.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jun 2020 00:58:46 -0700 (PDT)
+Subject: Re: [PATCH v2] soc: amlogic: meson-gx-socinfo: Fix S905X3 and S905D3
+ ID's
+To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Martin Botka <martin.botka1@gmail.com>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: Add support for Sony Xperia 10/10 Plus (Ganges platform)
-Date:   Mon, 22 Jun 2020 09:57:46 +0200
-Message-Id: <20200622075749.21925-9-konradybcio@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200622075749.21925-1-konradybcio@gmail.com>
-References: <20200622075749.21925-1-konradybcio@gmail.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20200609081318.28023-1-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <8757c066-2590-ff24-ebcc-2a9508fd9968@baylibre.com>
+Date:   Mon, 22 Jun 2020 09:58:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200609081318.28023-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martin Botka <martin.botka1@gmail.com>
+On 09/06/2020 10:13, Christian Hewitt wrote:
+> Correct the SoC revision and package bits/mask values for S905D3/X3 to detect
+> a wider range of observed SoC IDs, and tweak sort order for A311D/S922X.
+> 
+> S905X3 05 0000 0101  (SEI610 initial devices)
+> S905X3 10 0001 0000  (ODROID-C4 and recent Android boxes)
+> S905X3 50 0101 0000  (SEI610 later revisions)
+> S905D3 04 0000 0100  (VIM3L devices in kernelci)
+> S905D3 b0 1011 0000  (VIM3L initial production)
+> 
+> Fixes commit c9cc9bec36d0 ("soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs")
+> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  drivers/soc/amlogic/meson-gx-socinfo.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+> index 01fc0d20a70d..6f54bd832c8b 100644
+> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+> @@ -66,10 +66,12 @@ static const struct meson_gx_package_id {
+>  	{ "A113D", 0x25, 0x22, 0xff },
+>  	{ "S905D2", 0x28, 0x10, 0xf0 },
+>  	{ "S905X2", 0x28, 0x40, 0xf0 },
+> -	{ "S922X", 0x29, 0x40, 0xf0 },
+>  	{ "A311D", 0x29, 0x10, 0xf0 },
+> -	{ "S905X3", 0x2b, 0x5, 0xf },
+> -	{ "S905D3", 0x2b, 0xb0, 0xf0 },
+> +	{ "S922X", 0x29, 0x40, 0xf0 },
+> +	{ "S905D3", 0x2b, 0x4, 0xf5 },
+> +	{ "S905X3", 0x2b, 0x5, 0xf5 },
+> +	{ "S905X3", 0x2b, 0x10, 0x3f },
+> +	{ "S905D3", 0x2b, 0x30, 0x3f },
+>  	{ "A113L", 0x2c, 0x0, 0xf8 },
+>  };
+>  
+> 
 
-Add device tree support for the Sony Xperia 10 and 10
-Plus smartphones. They are all based on the Sony Ganges
-platform (sdm630/636) and share a lot of common code.
-The differences are really minor, so a Ganges-common DTSI
-has been created to reduce clutter.
-
-10 - Kirin
-10 Plus - Mermaid
-
-This platform is based on SoMC Nile, but there are some
-major differences when it comes to pin configuration and
-panel setup (among others).
-
-The boards currently support:
-* Screen console
-* SDHCI
-* I2C
-* pstore log dump
-* GPIO keys
-* PSCI idle states
-
-Signed-off-by: Martin Botka <martin.botka1@gmail.com>
-Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
-Tested-by: Martin Botka <martin.botka1@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |  2 +
- .../qcom/sdm630-sony-xperia-ganges-kirin.dts  | 13 ++++++
- .../dts/qcom/sdm630-sony-xperia-ganges.dtsi   | 40 +++++++++++++++++++
- .../sdm636-sony-xperia-ganges-mermaid.dts     | 20 ++++++++++
- 4 files changed, 75 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 1cad7cb07574..c98bafe03a96 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -16,9 +16,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-hp-envy-x2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-lenovo-miix-630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dts b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dts
-new file mode 100644
-index 000000000000..246710a01046
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dts
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Martin Botka
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdm630-sony-xperia-ganges.dtsi"
-+
-+/ {
-+	model = "SoMC Kirin-RoW";
-+	compatible = "sony,kirin-row", "qcom,sdm630", "qcom,sdm630-mtp";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges.dtsi
-new file mode 100644
-index 000000000000..ea051b3d14b8
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges.dtsi
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Martin Botka
-+ */
-+
-+/dts-v1/;
-+
-+/* Ganges is very similar to Nile, but
-+ * there are some differences that will need
-+ * to be addresed when more peripherals are
-+ * enabled upstream. Hence the separate DTSI.
-+ */
-+#include "sdm630-sony-xperia-nile.dtsi"
-+
-+/ {
-+	chosen {
-+		framebuffer@9d400000 {
-+			reg = <0 0x9d400000 0 (2520 * 1080 * 4)>;
-+			height = <2520>;
-+		};
-+	};
-+
-+	soc {
-+
-+		i2c@c175000 {
-+			status = "okay";
-+
-+			/* Novatek touchscreen */
-+		};
-+
-+		/* Yes, this is intentional.
-+		 * Ganges devices only use gpio-keys for
-+		 * Volume Down, but currently there's an
-+		 * issue with it that has to be resolved.
-+		 * Until then, let's not make the kernel panic
-+		 */
-+		/delete-node/ gpio-keys;
-+	};
-+
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dts b/arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dts
-new file mode 100644
-index 000000000000..96b7782d58de
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Martin Botka
-+ */
-+
-+/dts-v1/;
-+
-+/* Mermaid uses sdm636, but it's different ever so slightly
-+ * that we can ignore it for the time being. Sony also commonizes
-+ * the Ganges platform as a whole in downstream kernels.
-+ */
-+#include "sdm630-sony-xperia-ganges.dtsi"
-+
-+/ {
-+	model = "SoMC Mermaid-RoW";
-+	compatible = "sony,mermaid-row", "qcom,sdm636", "qcom,sdm636-mtp";
-+
-+	qcom,msm-id = <345 0>;
-+	qcom,pmic-id = <0x1001b 0x101011a 0x00 0x00 0x1001b 0x201011a 0x00 0x00 0x1001b 0x102001a 0x00 0x00>;
-+};
--- 
-2.27.0
-
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
