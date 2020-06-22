@@ -2,66 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B50B203BAE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 17:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854D8203C3F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 18:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729321AbgFVP6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 11:58:37 -0400
-Received: from sonic302-21.consmr.mail.ne1.yahoo.com ([66.163.186.147]:37434
-        "EHLO sonic302-21.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729298AbgFVP6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 11:58:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1592841515; bh=ac0sCjJUI93cXt8Ne4UV+BUmdTO8c8UeaDLEdPti3zY=; h=Date:From:Reply-To:Subject:References:From:Subject; b=scCB+Q6Gjf0KzflGkUiiHnirxZPhUadIbQy4yqWUwgd55dcbqJHRgQGLKmTmzqJRp9B2jypnIKM0+UPee5Qdin17acYTeNSrZNUWc6b8oFHl1JV6YKexGdFVS+/g68rZoDDx9kHpElPAxiEVNlQC8DiI6l9b0bVmEziivC8tnStES7wQyJe+E5PdVac/SOi9fBmvp+eAJtQBd8y/Fgr2PCNau4wnbAY64iunL4XaQjLCqJ139Y7RY8FW2N+MyDAiVOai0ceUcO2kUiFo4FiBwCBNMJq9ytN3HTe7p8faMG9+6vDMjF/bPQnwGRC3YsYHGGXB+LMYsdqWdmJRLW/Axw==
-X-YMail-OSG: Dx4DwhEVM1nMKsfl753AL1pa_1MAl8PfB8S1hTI6fa0HXgcVGSu063xlTclFjGM
- Tws5nt5YK7rscRG_1mkppPcX.Erbobn8VyUscr9DzjmOdR1UzLYgvXUvwhaZ7ryd1WNLUxbzGTWZ
- KbS4DctdPNI3mv1hwwM_UZnyBQvKFBybprZU35c3IxT4Lyw41JmhXjAi784Nn2ypycxtE8eKgoW1
- L41NbW6aZHZvtjCd5OZ1YuuIsrybZOWnlx2YD9JufWql.U0.H4v8oIuuL5ePMzn8ubBi49QDnv.k
- YWliC2QYR8SeTaHA1giR.cczaM4SDsn.6AG2OqP38l4y.ANQ3RhADP6n3fsDMIgVAqwC4lQFXuH4
- 8mslR4RB8TxntYo8eTAVJj_yMmLP7hEkTBa.ovdicFbV00z4EfmVLkHPi971cPA59HIf1fTiu5EY
- hkoJhl2Ss1sDmzehldZhUO_zbjfWoO0J_ar5mrHAdQrZl8XBanSCqVUAUj13U88AjW3UthilWyZB
- gdhHlDgfsV6hdx51ZsdEgrNGnND41QNriAPwC2X4LADhjlssDD0ll2zrYI8xS0_uRi3rgaNXa_qx
- .qhLlOqvP5BlTMHWYE_A6aka2RWQ9Ge6dfqtZfecpiBoI684jYmkMa4s7SIJ6Xie.RCfp4s82uJa
- a7ah.2fuCxJnxTVL8g9.uCLWZjhj_l7sZzzc99TTa0_U5r5Iu_MIK7midAJA27doj1Mh3gECuy_u
- EUwWWBkn6PsZMHiFM9DtKhLHunaHNxtIJYqynw6_V8nJOMKaFJc6lUxXPbGZzolNX3R5My4wimNw
- 3zCYTc1boqkUzSaUoKws_OgOHDPCd7p_T0pME_PS.gkwTdScv.ZvvUviqwp4ZXwW8Gv8HvdzK_3T
- RgctJIfLBUlvQd94oTCmBfbQjgtMK8iDI2fG0tGIqt54fchCYNZWvsjm2p1_zsqIoCzVCuIhQRxP
- IPUIc45AD_PHDPYsVAf2WbjRu2z4bM_yPsp3z28AcqdCSGZZg0bCPVWWyRdwnyymN9GJFlBarMeC
- bimltNJ2B5bQG36hI9AyJDXtfqoK89rSiGL_HdR.kfXEb88dpSQ3tA8rrw5mnWKH6l_UR8kZcYav
- N1lVsOwcwlkyi4sjcUs9P4AYeu.TBh1WZuj89heu5qvwpFQSOsjpoKN5u.y0QEpabN9EnLs_kiaL
- OUVmoS1GwABBJSEmGcKs0iRrnpw55fDV1OvEmMwWjEz6pkcOoxSaAtsUPwlpKW9KohCdEOZqTedT
- 3mLuj4Wab9.aQVB8jP_uJLcIpaZbaGBDIKk9ZuTtW8zpp9lm8y5PcigeF3iSLLUJXXixKbJDhRw-
- -
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic302.consmr.mail.ne1.yahoo.com with HTTP; Mon, 22 Jun 2020 15:58:35 +0000
-Date:   Mon, 22 Jun 2020 15:58:31 +0000 (UTC)
-From:   Karim Zakari <kariim1960z@gmail.com>
-Reply-To: kzakari04@gmail.com
-Message-ID: <823920628.1857692.1592841511779@mail.yahoo.com>
-Subject: URGENT REPLY.
+        id S1729803AbgFVQJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 12:09:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729390AbgFVQJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 12:09:15 -0400
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75DD6C061573;
+        Mon, 22 Jun 2020 09:09:14 -0700 (PDT)
+Received: by mail-qk1-x741.google.com with SMTP id 80so4140978qko.7;
+        Mon, 22 Jun 2020 09:09:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XMziTAReggV8cPAuUjcDsW9X5b6xE1JpK9TNborUBOU=;
+        b=MJhG8orPav1AYK2ETOPNu4cBBY4tMHZVI/mufHGSHxANJrEwJoAsNA/0nDzK50VJ0m
+         nOGHG5uR1AL7PAILE3fBokX3QWxK5USDt+PNZrSMkGOqrDSHfdP7D7nqX21BeBq/X+vJ
+         09OTdcMJ6FGLISfTaCz3OamgoCWCJ+f2Euc0Fb78/qKRUeQKKPospZhPMTjPM4h3yJ7L
+         EdyObI4OScXAjCD9h8FAl59zF8wqnZkND516f9tZ24+NfWkvDgF/0vTb7Qev2hDtXN0j
+         Q4wJQmWjhy1GulrO6+ZBVy+muwvq1dJIJpclDQLTLthByeVR5CESWm/IUk+uyg+Bs8eQ
+         w7hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XMziTAReggV8cPAuUjcDsW9X5b6xE1JpK9TNborUBOU=;
+        b=lJJir9p4AKxUToA1FSKy65bfaPMdop61y5lkgXpWarAT5Rbg+dEup6qw5g6Eahch7R
+         2MbaJ9ww7wpJvIfmNDxpYFi/SlowKPgpKzXvrSG6ivVWCBAh5Qhm78YdKGnTEZ0NwiBy
+         GUtm4OwOtyvyFBEkzYGd2lDWepxPNwdYbEAoiOKsqCFdpx9bdOajfIBcEJ62N5V+2DbW
+         YePYl+9iuNY/dsSpO+KxlX4Riv8OSslia92LfsAy6+s6YKR7Cbmhp05TAsJjrr2IUmd2
+         SRPu7o7GAytECJ+ewiwUKMBo9er4lMQ9hE4wTHWE90H0N9mYlP8NZAoo3IO4I5gG6C5/
+         wlyg==
+X-Gm-Message-State: AOAM533zqWVIeIB03HA+RByYgYR8s3KUOvul7kOpL/DtiqPsiDcX0azy
+        /soCm1GuK97Ui7/xQBCWkS0dkmMkRXU=
+X-Google-Smtp-Source: ABdhPJw8IGp1XM6bglkDUhuZK0Gi9PEqdX+50SW/65k6xMxLuOOWrKHawZTz1THzehYG4YmYCvywrg==
+X-Received: by 2002:a05:620a:810:: with SMTP id s16mr16003595qks.360.1592842153712;
+        Mon, 22 Jun 2020 09:09:13 -0700 (PDT)
+Received: from [192.168.1.46] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id s42sm15774713qtk.14.2020.06.22.09.09.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jun 2020 09:09:12 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] mfd: core: Make a best effort attempt to match
+ devices with the correct of_nodes
+To:     Lee Jones <lee.jones@linaro.org>, andy.shevchenko@gmail.com,
+        michael@walle.cc, robh+dt@kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        linux@roeck-us.net, andriy.shevchenko@linux.intel.com,
+        robin.murphy@arm.com, gregkh@linuxfoundation.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20200611191002.2256570-1-lee.jones@linaro.org>
+ <20200622080913.GO954398@dell>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <3aa3c8ad-4e6a-9b9b-be58-bd9da5a0fb0a@gmail.com>
+Date:   Mon, 22 Jun 2020 11:09:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-References: <823920628.1857692.1592841511779.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16138 YMailNodin Mozilla/5.0 (Windows NT 6.1; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <20200622080913.GO954398@dell>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2020-06-22 03:09, Lee Jones wrote:
+> On Thu, 11 Jun 2020, Lee Jones wrote:
+> 
+>> Currently, when a child platform device (sometimes referred to as a
+>> sub-device) is registered via the Multi-Functional Device (MFD) API,
+>> the framework attempts to match the newly registered platform device
+>> with its associated Device Tree (OF) node.  Until now, the device has
+>> been allocated the first node found with an identical OF compatible
+>> string.  Unfortunately, if there are, say for example '3' devices
+>> which are to be handled by the same driver and therefore have the same
+>> compatible string, each of them will be allocated a pointer to the
+>> *first* node.
+> 
+> Any more reviews/comments before I apply this?
+> 
 
+Yes, outstanding issues, so please do not apply.
 
-Good-Day=C2=A0Friend,
+Shortly after you sent this email, you sent a reply to one of my
+earlier emails in this thread.  I have replied to that email,
+so we still have an ongoing conversation where we are trying
+to resolve my understanding of the problem and whether the
+solution is appropriate.
 
-=C2=A0Hope=C2=A0you=C2=A0are=C2=A0doing=C2=A0great=C2=A0Today.=C2=A0I=C2=A0=
-have=C2=A0a=C2=A0proposed=C2=A0business=C2=A0deal=C2=A0worthy=C2=A0(US$16.5=
-=C2=A0Million=C2=A0Dollars)=C2=A0that=C2=A0will=C2=A0benefit=C2=A0both=C2=
-=A0parties.=C2=A0This=C2=A0is=C2=A0legitimate'=C2=A0legal=C2=A0and=C2=A0you=
-r=C2=A0personality=C2=A0will=C2=A0not=C2=A0be=C2=A0compromised.
-
-Waiting=C2=A0for=C2=A0your=C2=A0response=C2=A0for=C2=A0more=C2=A0details,=
-=C2=A0As=C2=A0you=C2=A0are=C2=A0willing=C2=A0to=C2=A0execute=C2=A0this=C2=
-=A0business=C2=A0opportunity=C2=A0with=C2=A0me.
-
-Sincerely=C2=A0Yours,
-Mr.=C2=A0Karim=C2=A0Zakari.
+-Frank
