@@ -2,376 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772CF20396A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 16:28:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F2E2038B9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 16:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729845AbgFVO2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 10:28:13 -0400
-Received: from mx2.suse.de ([195.135.220.15]:45454 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729296AbgFVO0W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 10:26:22 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 7DB44C1B1;
-        Mon, 22 Jun 2020 14:26:18 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To:     linux-realtek-soc@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        James Tai <james.tai@realtek.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: realtek: Add RTD1319 SoC and Realtek Pym Particles EVB
-Date:   Mon, 22 Jun 2020 14:55:26 +0200
-Message-Id: <20200622125527.24207-4-afaerber@suse.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200622125527.24207-1-afaerber@suse.de>
-References: <20200622125527.24207-1-afaerber@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1729156AbgFVOEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 10:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53142 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729065AbgFVOEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 10:04:20 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12BDC061795
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 07:04:19 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id q19so18138019eja.7
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 07:04:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=AkXgQz4f6Jb/SfgaY94+eCp/+t+YH9GzfLxXy17qw1I=;
+        b=miQD36o/JVjj5qBA3N2E8kQsw3fyaP5shHvUmpQxO/WwB1W6F7TkFAu7FqDbqJycGX
+         ZbeQWR2lKhtbYP//aapUtjeRUXbixUHgYN49PT749c4rJMWYqQ94jitfnK2fNizM3qLV
+         JfGYxFe2V7sES1ZDIN5R6a4kRzHwxusjH/P6ealaz9HEjzYsgvKtQT1HXe/komoioEHB
+         7igQ6Lz1LBp1TXvdZnfydpnd6UVM0Gp/eqiTwXd/jzlbfJ7eAjrHAeMlcHXavgR5Zcud
+         QWPbD6neGomrMu2L3fqSTWi3FZbTIgBxcBKIlQwBPnzekCnOuCr4f3M/TppY18mdfq9x
+         lTgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=AkXgQz4f6Jb/SfgaY94+eCp/+t+YH9GzfLxXy17qw1I=;
+        b=nYaXW8EufHt6KHhglVN0XKz30uynLGhTn/F0udX7Gcuw7UtPiRoqtsmlnbUm+TLqnZ
+         Mn+m5aEMA8Ri/FPdbiBUSRUpL1/gUMyLdx94dlJEorKj04IQPMeGnliAh9Wf9+GfH5mA
+         g1HPDOAfCgYFWE84dYrQxuLid8GhLHO4NSGkfh74Smj+6nXMwnQlBrfjlWHdryh2tOq+
+         EHQtCuxF0KStwzHBcQ7n5GQFJ29Z3DXStPaXFoaxvPDAZKlfaMNjzR2HvDeCR9F9cMBZ
+         wVm8aIKqLEJpZ04BOdY09PMWQHB6vCCyopXZLliApl/qbdm6xgLwzjR/xQ5YSw2vMKdz
+         N01A==
+X-Gm-Message-State: AOAM530mhez9XE21+mpWW4gRCvov/lSZ3gNSXK0ApqVOpO0k7fIPzO/a
+        AF2KWUeE0z619lwt95QtwEwrHA==
+X-Google-Smtp-Source: ABdhPJx13jRteSsX752kFTZR7wYlw7AZQfoFikTlKm6sVUt89ZqX2jnk7bahtoLDO7GiSW+vMYhcyA==
+X-Received: by 2002:a17:906:5e08:: with SMTP id n8mr15834673eju.132.1592834658428;
+        Mon, 22 Jun 2020 07:04:18 -0700 (PDT)
+Received: from [192.168.2.2] (ppp089210109128.access.hol.gr. [89.210.109.128])
+        by smtp.gmail.com with ESMTPSA id w18sm1217980edv.11.2020.06.22.07.04.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 22 Jun 2020 07:04:17 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
+Subject: Re: [PATCH 1/2] dt-bindings: sound: Device tree bindings for the
+ apq8039 sound complex
+From:   Pantelis Antoniou <pantelis.antoniou@linaro.org>
+In-Reply-To: <20200622134145.GJ4560@sirena.org.uk>
+Date:   Mon, 22 Jun 2020 17:04:16 +0300
+Cc:     Stephan Gerhold <stephan@gerhold.net>, alsa-devel@alsa-project.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthew Porter <mporter@konsulko.com>,
+        Shawn Guo <shawn.guo@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <8C9C4D5E-D92B-426D-A597-C784D1611967@linaro.org>
+References: <20200619193831.12528-1-pantelis.antoniou@linaro.org>
+ <20200619193831.12528-2-pantelis.antoniou@linaro.org>
+ <20200619214126.GA1251@gerhold.net>
+ <2070B433-83E0-4ACE-A470-36401934FC5A@linaro.org>
+ <20200622120409.GD4560@sirena.org.uk>
+ <519B5FAC-4DB8-4968-B9D4-96E376D74F1E@linaro.org>
+ <20200622134145.GJ4560@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Mailer: Apple Mail (2.3608.80.23.2.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: James Tai <james.tai@realtek.com>
 
-Add Device Trees for Realtek RTD1319 SoC family, RTD1319 SoC and
-Realtek Pym Particles EVB.
 
-Signed-off-by: James Tai <james.tai@realtek.com>
-Signed-off-by: Andreas Färber <afaerber@suse.de>
----
- v3 -> v4:
- * Updated Realtek copyright for 2 out of 3 files from v3
- * Renamed from rtd1319-pymparticle.dts to rtd1319-pymparticles.dts
- * Updated compatible from pymparticle to pym-particles
- * Updated PMU compatible from armv8-pmuv3 to cortex-a55-pmu (Robin)
- 
- v2 -> v3:
- * Add virtual maintenance interrupt for architecture timer
- * Correct the GIC redistributor address range
- 
- v1 -> v2:
- * Reserve the boot ROM address
- * Reserve boot loader address
- * Reserve audio/video FW address
- * Reserve RPC and ring buffer address
- * Reserve TEE address
- * Support 1 GiB RAM by default
- * Reduce rbus range to 2 MiB
- * Apply the syscon for ISO,MISC,CRT,SB2,SCPU_WRAPPER
- * Adjust compatible strings order in document
- 
- arch/arm64/boot/dts/realtek/Makefile          |   2 +
- .../boot/dts/realtek/rtd1319-pymparticles.dts |  43 ++++
- arch/arm64/boot/dts/realtek/rtd1319.dtsi      |  12 +
- arch/arm64/boot/dts/realtek/rtd13xx.dtsi      | 213 ++++++++++++++++++
- 4 files changed, 270 insertions(+)
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1319.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> On Jun 22, 2020, at 16:41 , Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Mon, Jun 22, 2020 at 04:32:46PM +0300, Pantelis Antoniou wrote:
+>>> On Jun 22, 2020, at 15:04 , Mark Brown <broonie@kernel.org> wrote:
+>=20
+>>> No, you're encoding use case decisions into the DT here - for =
+example
+>>> your example will break use cases like ring tones and shutter sounds
+>>> which should play through both speaker and headphones.  It's also
+>>> setting volumes which may be inappropriate or may be not and =
+interferes
+>>> with userspace using those same physical volume controls.
+>=20
+>> It is completely optional whether you use this functionality or not.
+>=20
+> It's optional for whoever writes the DT and flashes it, it is not
+> optional for whoever's doing the OS configuration - these may not be =
+the
+> same people.
+>=20
+>> In that case you don=E2=80=99t use the automatic routing you merely =
+set it to off
+>> and everything works as before. Or you merely use the route setup for
+>> the function from userspace.
+>=20
+> Userspace shouldn't have to be fighting with the kernel for control of
+> the device.
+>=20
+>> The device in question is not a mobile phone so there is no =
+requirement
+>> to have speaker and headphone active at the same time. It is possible =
+to
+>> create a function that would be headphone+speaker active at the same =
+time
+>> for that case.
+>=20
+> That may be true for your OS configuration but that doesn't mean that
+> some other user of the same hardware won't want to do something that
+> needs both simultaneously.
 
-diff --git a/arch/arm64/boot/dts/realtek/Makefile b/arch/arm64/boot/dts/realtek/Makefile
-index ef8d8fcbaa05..83708596726d 100644
---- a/arch/arm64/boot/dts/realtek/Makefile
-+++ b/arch/arm64/boot/dts/realtek/Makefile
-@@ -9,6 +9,8 @@ dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-zidoo-x9s.dtb
- 
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1296-ds418.dtb
- 
-+dtb-$(CONFIG_ARCH_REALTEK) += rtd1319-pymparticles.dtb
-+
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-bpi-m4.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-lionskin.dtb
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts b/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
-new file mode 100644
-index 000000000000..e0b3c3707a85
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Copyright (c) 2019-2020 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1319.dtsi"
-+
-+/ {
-+	compatible = "realtek,pym-particles", "realtek,rtd1319";
-+	model = "Realtek Pym Particles EVB";
-+
-+	memory@2e000 {
-+		device_type = "memory";
-+		reg = <0x2e000 0x3ffd2000>; /* boot ROM to 1 GiB or 2 GiB */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:460800n8";
-+	};
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+	};
-+};
-+
-+/* debug console (J1) */
-+&uart0 {
-+	status = "okay";
-+};
-+
-+/* M.2 slots (CON2, CON8) and J14 */
-+&uart1 {
-+	status = "disabled";
-+};
-+
-+/* GPIO connector (T1) */
-+&uart2 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1319.dtsi b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-new file mode 100644
-index 000000000000..1dcee00009cd
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Realtek RTD1319 SoC
-+ *
-+ * Copyright (c) 2019 Realtek Semiconductor Corp.
-+ */
-+
-+#include "rtd13xx.dtsi"
-+
-+/ {
-+	compatible = "realtek,rtd1319";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd13xx.dtsi b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-new file mode 100644
-index 000000000000..8c5b6fc7b8eb
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-@@ -0,0 +1,213 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Realtek RTD13xx SoC family
-+ *
-+ * Copyright (c) 2019-2020 Realtek Semiconductor Corp.
-+ */
-+
-+/memreserve/	0x0000000000000000 0x000000000002e000; /* Boot ROM */
-+/memreserve/	0x000000000002e000 0x0000000000100000; /* Boot loader */
-+/memreserve/	0x000000000f400000 0x0000000000500000; /* Video FW */
-+/memreserve/	0x000000000f900000 0x0000000000500000; /* Audio FW */
-+/memreserve/	0x0000000010000000 0x0000000000014000; /* Audio FW RAM */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		rpc_comm: rpc@3f000 {
-+			reg = <0x3f000 0x1000>;
-+		};
-+
-+		rpc_ringbuf: rpc@1ffe000 {
-+			reg = <0x1ffe000 0x4000>;
-+		};
-+
-+		tee: tee@10100000 {
-+			reg = <0x10100000 0xf00000>;
-+			no-map;
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	arm_pmu: pmu {
-+		compatible = "arm,cortex-a55-pmu";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	osc27M: osc {
-+		compatible = "fixed-clock";
-+		clock-frequency = <27000000>;
-+		clock-output-names = "osc27M";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x00000000 0x00000000 0x0002e000>, /* boot ROM */
-+			 <0xff100000 0xff100000 0x00200000>, /* GIC */
-+			 <0x98000000 0x98000000 0x00200000>; /* rbus */
-+
-+		rbus: bus@98000000 {
-+			compatible = "simple-bus";
-+			reg = <0x98000000 0x200000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x98000000 0x200000>;
-+
-+			crt: syscon@0 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x0 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x0 0x1000>;
-+			};
-+
-+			iso: syscon@7000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x7000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x7000 0x1000>;
-+			};
-+
-+			sb2: syscon@1a000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1a000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1a000 0x1000>;
-+			};
-+
-+			misc: syscon@1b000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1b000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1b000 0x1000>;
-+			};
-+
-+			scpu_wrapper: syscon@1d000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1d000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1d000 0x1000>;
-+			};
-+		};
-+
-+		gic: interrupt-controller@ff100000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0xff100000 0x10000>,
-+			      <0xff140000 0x80000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+		};
-+	};
-+};
-+
-+&iso {
-+	uart0: serial0@800 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x800 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+};
-+
-+&misc {
-+	uart1: serial1@200 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x200 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+
-+	uart2: serial2@400 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x400 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+};
--- 
-2.26.2
+Let=E2=80=99s step back a bit and let me present the problem and what =
+this is about.
+Disregard the automatic function selection using external state inputs.
+
+The problem is that for sound card that is composed of a number of =
+component
+like this one a pretty non trivial setting of controls must be done.
+
+Tt is not atypical for a card like this the set of control being a dozen
+or so, with some requiring even more.
+
+Someone has to do them, be it the kernel or userspace.
+
+Instead of having userspace do it, bundle everything in DT so that =
+everything
+can be set in one go, and without having the user-space engineer read =
+the
+a few 10-100 pages of reference manuals.
+
+This is arguably a hardware setting (eg. the set of configuration =
+parameters
+that enables routing sound to speaker).
+
+Now this is not going to perfect for all cases; some cases are very =
+complicated
+and indeed user-space has to be engaged and perform the configuration.
+This mechanism does not preclude it.
+
 
