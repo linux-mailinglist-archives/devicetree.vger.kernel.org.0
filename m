@@ -2,91 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FBB2033AD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 11:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B1E420342F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 12:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727818AbgFVJlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 05:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
+        id S1727071AbgFVKBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 06:01:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727810AbgFVJlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 05:41:51 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6165CC061796
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 02:41:50 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id f18so2481618wml.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 02:41:50 -0700 (PDT)
+        with ESMTP id S1727054AbgFVKBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 06:01:08 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F5CC061794
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:06 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id g75so6170813wme.5
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hWTSazz+MH8fIE1pxN8/udTqpqfFld3u9PzBFouqA2o=;
-        b=t16Wut0yPJpepbHcpqARVKDpzBMGDxgc7F1z6nRGLUey6JiRiIkb9NbOTM45ahU623
-         AC7aMzDns4FT3n4nUTZGvVzerkg/ZvATWL2ugj0j1n43aWrHWCoJGMpHWAiSVhrlaDqe
-         opttE6VqLvuNr7qLM6l6kbpsm7ZUKZUNO7MvE/EUsi7ztdZgkj7icEOUHoe0nL++ursA
-         EkiCVMSE2m5SFwOcdT37fnP2nHjMC7+/7892TlqZrNOEkiyZP6OLCqA7u08kQYXOC1kP
-         PVs4I3n+JcIFdm5UdFuB4ua1UvQ/mcbIuxlzt1q5Zybg3U4LsuPSY3nV25bLhmQ9qanr
-         +rYw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0a5wnHY7CslRA6Iynsfhb3yG1izm8FY/pWdetFoi42c=;
+        b=rxCKkG6SfwCZOTa1iL5Lojz3NDEQwyb2IxWpdYBFS7nvwaSmH3nUs6LKzmpIqO9fmz
+         T0E4/NHNhWS1FxOj6Knq7vaDIfED18iz4zDTKFADfGdZ87o9VBNoHn9xKkFZ5ABiLuMo
+         spikJGn8iabnLkYyJ4CKFueyLxhkCPXnn+tT0IIM62ri0cxtQBzPXWPE2OKAi+/WB4Hb
+         Zm7iXcDn1Km9OIDru3YUscj0Ip3rFJhgBzUhsF68MWUFQB29eaTMLMdCy2o5sHrQdX4O
+         +4gvt10n83RfLFmg67wO7WMqC6KCkbs7hPXvMxFl4ifmIlhRhWH6of7y0Q6ilwx8joXN
+         aa9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hWTSazz+MH8fIE1pxN8/udTqpqfFld3u9PzBFouqA2o=;
-        b=eTA0M4QpP8Iw95A1efh/mtJs/KhTeoMh1Y/TiEbzloQ+zHcpwCXbCuIzGjEpZa8wAp
-         ACHDJFHE5YBbR/5i8WOgsR8IifyMadNpk2h+kOOxO4kxFEjNNHReoUCip6ec+DIEl2Kr
-         l1BhoA6F91e1a13/TarNI3bw6ji61UT0T8OrskCiyE1ynhvW/IkISnccS8/OnSQeb9Py
-         Eg1wXovIZxiXOKZPRW7N9qdaYKhp49/gKx412ANLFE/sVjMm3/H/6nszBuoS2jn7KyaH
-         BK+EV02b5VDLo4iYg/WHlFncKQKtRREz9Ou9UH4LPM3qzw8U2q2gZnnRgCKKz0qnsV9Z
-         b4zQ==
-X-Gm-Message-State: AOAM531zz+GfrMqbGljLO5YzV6X8B6cLWLZZkma2k2+zHAsjqPtIb12W
-        59NdHA7K/u7h9lU7CO0AiDFGog==
-X-Google-Smtp-Source: ABdhPJy9sIiwuZldm3Z2QGhtksB0AjdTqLAwTXV+hFjc1BN1cQmzZ22mvJNgWLCUXRVjCMY3/bgKMw==
-X-Received: by 2002:a1c:9942:: with SMTP id b63mr17312428wme.34.1592818909166;
-        Mon, 22 Jun 2020 02:41:49 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0a5wnHY7CslRA6Iynsfhb3yG1izm8FY/pWdetFoi42c=;
+        b=eQhGEDAUWgBO44R7DXmjptmNtyjSIwnTGFIWEd3++9upqxDAZ13KyzaZNcoqU9QEQ8
+         Azl3cw6yzcx91ZC/0Xs9sAZ0aTCAH8bJLWVNE9ABsDzUfEMjgtvhgK/0DBeXu8c8k8G8
+         DRa8TRDv64sv2t1xHTAGEqb1ms8cxEb6sKWmrvCn/9Oa3GE6PB5MNp5J8VArZ2frQ2zl
+         VQ4L8IJuU+hl/bPV6AXt/BeyU8t7c0TuXicqj/huiXS1F6mPJVs0vYDvM107+caiB48E
+         lHJVhoB6qI+OzYJVkkIans0E4ZtkhdFiJvx1V773JeXkjUjJcP5wG/zJgOe0+a5qlu58
+         Af3g==
+X-Gm-Message-State: AOAM533szqXBXDlXj7BdnJCdclG0zPVkstVOVsAJb4p/GZ3qxrdtNME4
+        xjMXCLxqVAJn2tmjvdsjDnFfmA==
+X-Google-Smtp-Source: ABdhPJwltFZXM/3VYa9tIy2MbCHj//CBC2paauuUY5AwGyYeKiWa1AZvShK5hzeRuXlvCn791GVruA==
+X-Received: by 2002:a1c:c1:: with SMTP id 184mr17443220wma.74.1592820065387;
+        Mon, 22 Jun 2020 03:01:05 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id j24sm14392652wrd.43.2020.06.22.02.41.47
+        by smtp.gmail.com with ESMTPSA id x205sm16822187wmx.21.2020.06.22.03.01.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 02:41:48 -0700 (PDT)
+        Mon, 22 Jun 2020 03:01:04 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
+To:     Jonathan Corbet <corbet@lwn.net>,
+        Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
         "David S . Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-        Keyur Chudgar <keyur@os.amperecomputing.com>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
+        Realtek linux nic maintainers <nic_swsd@realtek.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         Fabien Parent <fparent@baylibre.com>,
         Stephane Le Provost <stephane.leprovost@mediatek.com>,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH 15/15] ARM64: dts: mediatek: add a phy regulator to pumpkin-common.dtsi
-Date:   Mon, 22 Jun 2020 11:37:44 +0200
-Message-Id: <20200622093744.13685-16-brgl@bgdev.pl>
+Subject: [PATCH 00/11] net: improve devres helpers
+Date:   Mon, 22 Jun 2020 12:00:45 +0200
+Message-Id: <20200622100056.10151-1-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200622093744.13685-1-brgl@bgdev.pl>
-References: <20200622093744.13685-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -96,25 +85,70 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Add the appropriate supply to the PHY child-node on the MDIO bus.
+When I first submitted the series adding devm_register_netdev() I was
+told during review that it should check if the underlying struct net_device
+is managed too before proceeding. I initially accepted this as the right
+approach but in the back of my head something seemed wrong about this.
+I started looking around and noticed how devm_mdiobus_register()
+is implemented.
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+It turned out that struct mii_bus contains information about whether it's
+managed or not and the release callback of devm_mdiobus_alloc() is responsible
+for calling mdiobus_unregister(). This seems wrong to me as managed structures
+shouldn't care about who manages them. It's devres' code task to correctly undo
+whatever it registers/allocates.
 
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 1a6998570db2..0f5fdc5d390b 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -206,6 +206,7 @@ mdio {
- 
- 		eth_phy: ethernet-phy@0 {
- 			reg = <0>;
-+			phy-supply = <&mt6392_vmch_reg>;
- 		};
- 	};
- };
+With this series I propose to make the release callbacks of mdiobus devm
+helpers only release the resources they actually allocate themselves as it the
+standard in devm routines. I also propose to not check whether the structures
+passed to devm_mdiobus_register() and devm_register_netdev() are already
+managed as they could have been allocated over devres as part of bigger
+memory chunk. I see this as an unnecessary limitation.
+
+First two patches aim at removing the only use of devm_mdiobus_free(). It
+modifies the ixgbe driver. I only compile tested it as I don't have the
+relevant hw.
+
+Next two patches relax devm_register_netdev() - we stop checking whether
+struct net_device was registered using devm_etherdev_alloc().
+
+We then document the mdio devres helper that's missing in devres.rst list
+and un-inline the current implementation of devm_mdiobus_register().
+
+Patch 8 re-implements the devres helpers for mdio conforming to common
+devres patterns.
+
+Patches 9 and 10 provide devm_of_mdiobus_register() and the last patch
+adds its first user.
+
+Bartosz Golaszewski (11):
+  net: ethernet: ixgbe: check the return value of ixgbe_mii_bus_init()
+  net: ethernet: ixgbe: don't call devm_mdiobus_free()
+  net: devres: relax devm_register_netdev()
+  net: devres: rename the release callback of devm_register_netdev()
+  Documentation: devres: add missing mdio helper
+  phy: un-inline devm_mdiobus_register()
+  phy: mdio: add kerneldoc for __devm_mdiobus_register()
+  net: phy: don't abuse devres in devm_mdiobus_register()
+  of: mdio: remove the 'extern' keyword from function declarations
+  of: mdio: provide devm_of_mdiobus_register()
+  net: ethernet: mtk-star-emac: use devm_of_mdiobus_register()
+
+ .../driver-api/driver-model/devres.rst        |  3 +-
+ drivers/net/ethernet/intel/ixgbe/ixgbe_main.c |  6 +-
+ drivers/net/ethernet/intel/ixgbe/ixgbe_phy.c  | 14 +---
+ drivers/net/ethernet/mediatek/mtk_star_emac.c | 13 +--
+ drivers/net/ethernet/realtek/r8169_main.c     |  2 +-
+ drivers/net/phy/Makefile                      |  2 +-
+ drivers/net/phy/mdio_bus.c                    | 73 ----------------
+ drivers/net/phy/mdio_devres.c                 | 83 +++++++++++++++++++
+ drivers/of/of_mdio.c                          | 43 ++++++++++
+ include/linux/of_mdio.h                       | 40 ++++-----
+ include/linux/phy.h                           | 21 +----
+ net/devres.c                                  | 23 +----
+ 12 files changed, 167 insertions(+), 156 deletions(-)
+ create mode 100644 drivers/net/phy/mdio_devres.c
+
 -- 
 2.26.1
 
