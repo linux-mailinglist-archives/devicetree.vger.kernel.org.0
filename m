@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC7B2203223
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA63203235
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 10:38:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725852AbgFVIeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 04:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58582 "EHLO
+        id S1725951AbgFVIi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 04:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725616AbgFVIeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 04:34:37 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA291C061795
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 01:34:36 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id a6so3982900wmm.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 01:34:36 -0700 (PDT)
+        with ESMTP id S1725883AbgFVIi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 04:38:28 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1149C061794;
+        Mon, 22 Jun 2020 01:38:27 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id e22so2278994edq.8;
+        Mon, 22 Jun 2020 01:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iumTCPIQ5JgGRCUXbn3oWrglqPPjaXK37FVM57bSflI=;
-        b=v+QT9yYRCkBvviTFtqwMM6R1p8xJCXCmU5EzRl2/Msz9xNSQiynSP58ZJxKiHqdLBl
-         jy01IszLE6KSujR5GrL121LclHi8zO/zEVfqMJ3dimS8VV0ImQUrb4VlTL26KGyGoYHp
-         SM3xUp0XJft9toVfWgGSrhZ83Kw1rGyFkY5DrWdEj/rEXGOeiJr/kdQb3bB79X8+jqCO
-         0lR/imQOAg8a75RJrLck4HJ5aumvhzFaxouUV/VKBjYBjUj7c0nPg6o2TI7jRQmXNpeI
-         BKXcPcUqfhcby73EdiXz1pX1DXxPU0qrYY1c9uyxMpnj3LU8lqZgl+Aj3DIHJUKti5nX
-         SKmg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cUFbNHgo6IB5Sy3bImSkiGN8kcxHOUvCTIjR4hYNmSs=;
+        b=bfWp2zi+iSVUaRV5UZNbccpk4TXYBNwDZiBOkKQ6/Dc+VtX1X+9Gs5ceoLzrXq/PZ9
+         vXaYBUjdU16fUvGvH7DbVVvuUJmvD7Ir0nCACqiMv0Rxj+i+sxU2NStf4EtixbkFlOKy
+         QytxIaPtV/BZMpCFLSoO8YESWhVSKs0LgUsjH68AGN5fjOsvqNDd6cdj+em6FuyBw7fK
+         R/OfsV6tCgIXwW0sjEGfTlXo82vaUwPu2gcM6g28cM4z8vWVksdp8wg+VX/MeN11ejjL
+         xYB9q3o3AMQI45ocSeuP0niuxAkeWPNtbZ9pnjPp+PDfBBgjjP83pPPZ4wgeWhBfQDtR
+         oHFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iumTCPIQ5JgGRCUXbn3oWrglqPPjaXK37FVM57bSflI=;
-        b=rHkCETP8+kcSGuqLZqlFN/bt2bPEtNCQZFnk+VQxd+7A1pxxo5lcwtKNeiR47PX/iB
-         F8oUDGdagrciusn0twFxMc8ehRCvcROqgaId3tefYO4yUrCEiUwcYM0Vtyg0nl1lbH32
-         7Wlnd9cQKicmy54XHScpbSBxrLXH0k0VNqq0CEZRkf+swxwJHT/13gL7B4jbW5Wy2zCC
-         gy5iYJ7MrEn5jLGPyA3ZEyiMchWVTVbO1d6B/JJlsluo4kHR0J1hJBuXv1e33h7LWcRb
-         KiwtoXLCn8lQTFXdx1Ik8uKK5Q3WEDLhO8to283YWCg/UNMb9IgAYgRscUti/6k+VVn6
-         89/Q==
-X-Gm-Message-State: AOAM531vGOAflLuH80Tt/rxWZ1HF2YQ4zzlc1dwc90pH3W3MfKLeZBPp
-        dLqgEum8KNGLtx5i2pgucRKGPw==
-X-Google-Smtp-Source: ABdhPJy8EF0FGsP5udLRcNjPlqG9OY1hIfHKLNuaRTjiy8Jh4ufHvnQFqnkLAt+MaeylObvSEY79jw==
-X-Received: by 2002:a1c:f714:: with SMTP id v20mr16932709wmh.81.1592814875416;
-        Mon, 22 Jun 2020 01:34:35 -0700 (PDT)
-Received: from localhost.localdomain ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id w17sm17477224wra.42.2020.06.22.01.34.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 01:34:34 -0700 (PDT)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 1/1] ARM: dts: ux500: Supply nodes for the other 2 AB8500 PWM devices
-Date:   Mon, 22 Jun 2020 09:34:32 +0100
-Message-Id: <20200622083432.1491715-1-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cUFbNHgo6IB5Sy3bImSkiGN8kcxHOUvCTIjR4hYNmSs=;
+        b=ksqzriVrNrdsx9UZwov79LDOg5/c1SM5qxL4EzFOJNI+xUM+jdCgyV1O7VMVh2aTVJ
+         J5h8DKhZKMTFKVPAmiTnEeRbRSlBljSwAMdmeDpJtpfwNMAVQP4suKO3nJGHyiqzGLIR
+         MzvW1yVthjsxVti2O5+U42VB2P2QCfmc/J3rl0tHCk2WJN1h5KyhYxSU21PeYvoLo5Dq
+         EpDkHVa3TGlV8xUOYyNDaM5/zAcbA38cqDxe6sOsL9iEwWw8N9FVnSTFLPsX4AyTYqwf
+         Bxa8QUAYzUrmzdIyP3dITf98/IjfaIiVcBSsqkWU4goSS45Z2ScGqkuzhJLmVbKbGbW8
+         ultQ==
+X-Gm-Message-State: AOAM530yxiqhB+3MWEH4FV93TnL7utBXdBZkAZbr9gY+no/zl5pKySpp
+        G7QlZWUxaUGRrORjwa7hgP9UnPX7le7jtrNgL6A=
+X-Google-Smtp-Source: ABdhPJwPApeAEn5hum2A9icysOaHVQpVvzup0Zr3/5gcyJTD1N5sRC7gkUmnieQOj9zEqFa6NauS3YRK5ZO9HhRy3/c=
+X-Received: by 2002:a50:ec8f:: with SMTP id e15mr6447759edr.70.1592815106098;
+ Mon, 22 Jun 2020 01:38:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200622075749.21925-1-konradybcio@gmail.com> <20200622075749.21925-4-konradybcio@gmail.com>
+ <20200622080503.GQ128451@builder.lan>
+In-Reply-To: <20200622080503.GQ128451@builder.lan>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Date:   Mon, 22 Jun 2020 10:37:50 +0200
+Message-ID: <CAMS8qEWrnHc3CWrW-vzwxu+PR8FL9hcvCtBpS4oK9ZYXgGfLJg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] soc: qcom: socinfo: Add socinfo entry for SDM630
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     skrzynka@konradybcio.pl, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per 'struct mfd_cell ab8500_devs[]' there are not 1, but 3 PWM
-devices on the AB8500.  Until now, each of them have referenced
-the same Device Tree node.  This change ensures each device has
-their own.
+Hi Bjorn,
 
-Due to recent `dtc` checks [0], nodes cannot share the same node
-name, so we are forced to rename the affected nodes by appending
-their associated numeric 'bank ID'.
+you said "Applied" - so should I omit this patch when sending a v3 of
+the series or keep it in there?
 
-[0] ste-ab8500.dtsi:210.16-214.7: ERROR (duplicate_node_names):
-      /soc/prcmu@80157000/ab8500/ab8500-pwm: Duplicate node name
-
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- arch/arm/boot/dts/ste-ab8500.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/ste-ab8500.dtsi b/arch/arm/boot/dts/ste-ab8500.dtsi
-index 3cd6ee6d50e0e..aab5719cc1a93 100644
---- a/arch/arm/boot/dts/ste-ab8500.dtsi
-+++ b/arch/arm/boot/dts/ste-ab8500.dtsi
-@@ -201,7 +201,19 @@ ab8500-sysctrl {
- 					compatible = "stericsson,ab8500-sysctrl";
- 				};
- 
--				ab8500-pwm {
-+				ab8500-pwm-1 {
-+					compatible = "stericsson,ab8500-pwm";
-+					clocks = <&ab8500_clock AB8500_SYSCLK_INT>;
-+					clock-names = "intclk";
-+				};
-+
-+				ab8500-pwm-2 {
-+					compatible = "stericsson,ab8500-pwm";
-+					clocks = <&ab8500_clock AB8500_SYSCLK_INT>;
-+					clock-names = "intclk";
-+				};
-+
-+				ab8500-pwm-3 {
- 					compatible = "stericsson,ab8500-pwm";
- 					clocks = <&ab8500_clock AB8500_SYSCLK_INT>;
- 					clock-names = "intclk";
--- 
-2.25.1
-
+Regards
+Konrad
