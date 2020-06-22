@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC7320343F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 12:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4FE203432
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 12:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727817AbgFVKBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 06:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43826 "EHLO
+        id S1727784AbgFVKBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 06:01:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727784AbgFVKBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 06:01:17 -0400
+        with ESMTP id S1727805AbgFVKBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 06:01:19 -0400
 Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0795C061794
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:16 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id j18so716390wmi.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F870C0617BB
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:18 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l17so14277916wmj.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 03:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SA+ksrlspcBtk66ickfbWi5/X69plQETLqM+T7sqDOM=;
-        b=hPCSBYPijk+oW7o3W3ojF3NAaYsD4JrRPsGlfOOBzQ4ThECSIaaifu8iSYPR7zbUAx
-         giQ4sowH3znExtSO3S964zh5IyteuZGXmP9B2ZvExrbuG0lv3RnqMa0dbDx7oKT3Cruf
-         ntFtCt/KtwVdleh2QZcz+vD9bEurGJjeVbuXPkyeyA87kxRvFoIssYR99lkRq25sp0Dy
-         8ME3z0/l/PLLTultbtzKIRLt1ie8TS/eRQs7WOUniJkv9YG+Ya35j/vswWIOOkBzSz+Z
-         KPipplT5rhQD8Nb/E1vu5Mffd1y2DmSUKnz0Ux1Df2rzIAqZgpQCiOI37E2WBb24Fa9I
-         KUIw==
+        bh=rcgV1UNGKm4K4QD82m2Udcr1uoHRVa+LAuPxtdS553M=;
+        b=RkGI6towfSCgupn14twIBaRcPBpM6kTZkAyARWvNzlnwP2dFp8mTrnv4XT4CqOTAtt
+         IZZIzKyBSsI3/vkakwGdPxh4YtWTjHfNDgdbQoZiEHDRdqwaJzeBZU2n3pe3Hl1JIPX3
+         j5b+wJ80RHNzlW79fmuSMN+irizFshjUfl7KHbTO/28J+86JZlFjPu2oxnw1xDlP9U+o
+         Tz/qaKPx5+I3TcQfOgtfVc5nagMQ1oAW9Ofb8YpEYwg0Zu2KW4gsBJQW7Tl/PL353xVB
+         MT3qUFDfoJzdv7OI5y+BMBaG6gcer8a9lZAr62OJTJz3NDwnsNdQyvR6wevtOPQ6vWAU
+         9aMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SA+ksrlspcBtk66ickfbWi5/X69plQETLqM+T7sqDOM=;
-        b=StwgX/uZsBIt9gYMAkQKxRsu/KCKpgdc5QQkRQ5kqXUt324Nqpw+sioUaPCqqKW6yC
-         Wy+1CyqWYCPjw38H9ydOyAiBZLvORGvKueOP38jr/IQ57RkS/8LV2GJINez12LoyfnqP
-         5r0zly9mxhhImBI61IPQO3BxmKeE4iIK9M+vz6x5QqGR3zAjIJRdPI9KBrX7b/xJwdRH
-         96NcD7IwEYeGvPLS+0NCrd68Px6iQSciDYX8igvmCXQRVoBK0GR9mYHaQH+Rlhn1v9Db
-         OzO5Tm156SSgYQhcI34FmD+/6t5XM4g+971HaTedtqc0E0ennIqSr0nHLlnRGz5Ubnp2
-         BkNA==
-X-Gm-Message-State: AOAM533TLczog+Bf/gn5B6i+8093GmA3ezv7uRE67inZcONQ7atVjPNe
-        Kmc34JxoeF+KA5Wqj3GchKA0Hg==
-X-Google-Smtp-Source: ABdhPJwWuhZqPJe1EH2uJKbIx2fxGg7cPQA+kFKd21eTb++TacoGNccIXkK+VSOvahqdHB0+R/2MHw==
-X-Received: by 2002:a1c:bc55:: with SMTP id m82mr10040949wmf.92.1592820075474;
-        Mon, 22 Jun 2020 03:01:15 -0700 (PDT)
+        bh=rcgV1UNGKm4K4QD82m2Udcr1uoHRVa+LAuPxtdS553M=;
+        b=AKX++BMHAEn0rIXiQShLUWLSHGhSZHpTQccZoF7TiGl66b8/CwrLTy63XgPFhpcLMc
+         s9AbrxzKEEZwAMfEYU2lh5uLyD2WNutB5uB83vH4fdc2A8dZ6Y56a/nngqP3/OmlUFrd
+         5oxtH5wPxYvsET3Zv8jdLo1rH1atcmdjiG33bk2N033ah9CJookS4j+KcUcK3OAKzK4+
+         uT5ngbr459vkdyXh4TIscBa95lLsKV7CsTCPDmntvdx1YbaTRvinYm8J3BS/hDY6pyjM
+         VbkaFx20pIcNalrfoIZbF+2xsFuI3dqvGi5jtH7mzLxzk4j6qYC4q26NYBOK77mfOPR8
+         1hlg==
+X-Gm-Message-State: AOAM533VrFM3tTP34hXJLuEh4Z1u+Jix+zDPXIbkCH4ljRIaIK9ppgM1
+        db/FgPGxP1DpU71Hoc14o1i1dA==
+X-Google-Smtp-Source: ABdhPJy6HpyoKYwmL67X7W6b1kvbkakGECdClzNJkWp/hMLI6DOqKfaBEc4Vc9FAS3rR166Apmbchw==
+X-Received: by 2002:a1c:f616:: with SMTP id w22mr9844980wmc.155.1592820077095;
+        Mon, 22 Jun 2020 03:01:17 -0700 (PDT)
 Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id x205sm16822187wmx.21.2020.06.22.03.01.14
+        by smtp.gmail.com with ESMTPSA id x205sm16822187wmx.21.2020.06.22.03.01.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 03:01:14 -0700 (PDT)
+        Mon, 22 Jun 2020 03:01:16 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Jonathan Corbet <corbet@lwn.net>,
         Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
@@ -72,9 +72,9 @@ Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
         Pedro Tsai <pedro.tsai@mediatek.com>,
         Andrew Perepech <andrew.perepech@mediatek.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH 06/11] phy: un-inline devm_mdiobus_register()
-Date:   Mon, 22 Jun 2020 12:00:51 +0200
-Message-Id: <20200622100056.10151-7-brgl@bgdev.pl>
+Subject: [PATCH 07/11] phy: mdio: add kerneldoc for __devm_mdiobus_register()
+Date:   Mon, 22 Jun 2020 12:00:52 +0200
+Message-Id: <20200622100056.10151-8-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.26.1
 In-Reply-To: <20200622100056.10151-1-brgl@bgdev.pl>
 References: <20200622100056.10151-1-brgl@bgdev.pl>
@@ -87,82 +87,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Functions should only be static inline if they're very short. This
-devres helper is already over 10 lines and it will grow soon as we'll
-be improving upon its approach. Pull it into mdio_devres.c.
+This function is not documented. Add a short kerneldoc description.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- drivers/net/phy/Makefile      |  2 +-
- drivers/net/phy/mdio_devres.c | 18 ++++++++++++++++++
- include/linux/phy.h           | 15 ++-------------
- 3 files changed, 21 insertions(+), 14 deletions(-)
- create mode 100644 drivers/net/phy/mdio_devres.c
+ drivers/net/phy/mdio_devres.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-index dc9e53b511d6..896afdcac437 100644
---- a/drivers/net/phy/Makefile
-+++ b/drivers/net/phy/Makefile
-@@ -3,7 +3,7 @@
- 
- libphy-y			:= phy.o phy-c45.o phy-core.o phy_device.o \
- 				   linkmode.o
--mdio-bus-y			+= mdio_bus.o mdio_device.o
-+mdio-bus-y			+= mdio_bus.o mdio_device.o mdio_devres.o
- 
- ifdef CONFIG_MDIO_DEVICE
- obj-y				+= mdio-boardinfo.o
 diff --git a/drivers/net/phy/mdio_devres.c b/drivers/net/phy/mdio_devres.c
-new file mode 100644
-index 000000000000..f0b4b6cfe5e3
---- /dev/null
+index f0b4b6cfe5e3..3ee887733d4a 100644
+--- a/drivers/net/phy/mdio_devres.c
 +++ b/drivers/net/phy/mdio_devres.c
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/phy.h>
-+
-+int __devm_mdiobus_register(struct mii_bus *bus, struct module *owner)
-+{
-+	int ret;
-+
-+	if (!bus->is_managed)
-+		return -EPERM;
-+
-+	ret = __mdiobus_register(bus, owner);
-+	if (!ret)
-+		bus->is_managed_registered = 1;
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL(__devm_mdiobus_register);
-diff --git a/include/linux/phy.h b/include/linux/phy.h
-index 8c05d0fb5c00..62149945c5b3 100644
---- a/include/linux/phy.h
-+++ b/include/linux/phy.h
-@@ -313,20 +313,9 @@ static inline struct mii_bus *mdiobus_alloc(void)
- }
+@@ -2,6 +2,13 @@
  
- int __mdiobus_register(struct mii_bus *bus, struct module *owner);
-+int __devm_mdiobus_register(struct mii_bus *bus, struct module *owner);
- #define mdiobus_register(bus) __mdiobus_register(bus, THIS_MODULE)
--static inline int devm_mdiobus_register(struct mii_bus *bus)
--{
--	int ret;
--
--	if (!bus->is_managed)
--		return -EPERM;
--
--	ret = mdiobus_register(bus);
--	if (!ret)
--		bus->is_managed_registered = 1;
--
--	return ret;
--}
-+#define devm_mdiobus_register(bus) __devm_mdiobus_register(bus, THIS_MODULE)
+ #include <linux/phy.h>
  
- void mdiobus_unregister(struct mii_bus *bus);
- void mdiobus_free(struct mii_bus *bus);
++/**
++ * __devm_mdiobus_register - Resource-managed variant of mdiobus_register()
++ * @bus:	MII bus structure to register
++ * @owner:	Owning module
++ *
++ * Returns 0 on success, negative error number on failure.
++ */
+ int __devm_mdiobus_register(struct mii_bus *bus, struct module *owner)
+ {
+ 	int ret;
 -- 
 2.26.1
 
