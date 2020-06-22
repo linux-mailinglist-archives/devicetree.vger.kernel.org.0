@@ -2,138 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE66203B1C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 17:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18845203B78
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2020 17:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729705AbgFVPiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 11:38:24 -0400
-Received: from mx0a-00328301.pphosted.com ([148.163.145.46]:8204 "EHLO
-        mx0a-00328301.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729776AbgFVPiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 11:38:19 -0400
-Received: from pps.filterd (m0156134.ppops.net [127.0.0.1])
-        by mx0a-00328301.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 05MFaLZl021513;
-        Mon, 22 Jun 2020 08:38:17 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=invensense.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : content-type :
- mime-version; s=pfpt1; bh=MHpK3KpBI5HFazc9yGkFuEHR+MVVUd+m8NSjI6iqEgY=;
- b=afeZuzGoKQl+PxcO1u0VtpPy3Mbtvaa4YnqytXsbSokET/P2PYlNl8M+uxrMn092MLOH
- iU9OlQtKoD7OQweZK7vciLAHyNG1FO8L+lr/i1fTGWdpxQ1ZwelQHXwIv/mz1qFgJTmR
- JcUHXJFvT8GehV4grD+8Zu+ajl6hELXJgifrWL/QsG2s/QRPp6FBBCvK+00hX3pNTnEX
- wRi8qfo6DDtq+Warlyv2HwdRSdY56dC9/Us2AmclVLGB5VnXi/aswdx4AB2Ak+KMXeI+
- H+6VrsF2wq4aS36J5o4lfs3RT8nkSswWoo3TvnzUtIF8qkxWL3UaUFtUc5WrnLiUylg7 CQ== 
-Received: from nam04-co1-obe.outbound.protection.outlook.com (mail-co1nam04lp2055.outbound.protection.outlook.com [104.47.45.55])
-        by mx0a-00328301.pphosted.com with ESMTP id 31sdxnrty6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 Jun 2020 08:38:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JODoiyzfAD2I5eB4t3mRjV+CnwP1VyFdxi+kGkP7V+GY112owdm9w18BeN8g9YfeLZXWLsKHsLWfPW3vhWerMOZf4SU0klt0lx5OXwL48bhEv+KiVUUIaOF5P/Xx7hNrTIwTczUzqaagZC8mkhKXoKa3RQwQTIoLkuIujhlpuAXGMR+Hd46RD6gw1U8iJQsj5WcEAfDiphNupeItJgZ1gmD/6kdPme1jImmAip/rKdqUDGxoyhFMAdYdrYtc7JaHLgMJzXVPHDHPHxpq05wfm0aiJebdVw5CZcWpStEKDtaQwd+9f1sUDpEDYIc1itqvoYPrRjdjH05dzYNoCFG7UQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MHpK3KpBI5HFazc9yGkFuEHR+MVVUd+m8NSjI6iqEgY=;
- b=ektfnJ/XeDBhevFETYhAR5HtKdudEaCf90wyZp8RRft7+4ykL7oa5hVtNW5ZcOPhTDIiTYKGyXK51WGwr6VMQ7pn/VIgGOZBdFOYGVA3vMhhBoZZ3tRgkB7uz/xlbyP0sstWiPSfaL9kPoK/B7BWSuCFKmU1NxVBDqFXngqRGTiMxIh6PGopeNEPsbEXBtKOWW5f9O3s7zzIMaSUVPkzpStSLQFozm17lN99BfIiofnhy0W3oUibGbpZ7MuZpMWGVkfanFT4PugiHUqsNthZFn7t/j1WEkdnP/oomMby4qSnPRvDYfQKv7pFXje8oME53TzD48HuwrUf8ZUKbccvyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=invensense.com; dmarc=pass action=none
- header.from=invensense.com; dkim=pass header.d=invensense.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=invensense.onmicrosoft.com; s=selector2-invensense-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MHpK3KpBI5HFazc9yGkFuEHR+MVVUd+m8NSjI6iqEgY=;
- b=lvvTpdpydaFST0CyadwDOIDDXTiGW6kv0uLG3suIo9u5auD83HLk8Alwsf6fCc+ZG7EnJpHW9dE79SXWfEGNOrxuWWMuhRClp8SHju+gMf2XwRjv/KktnndrG/s4kQXwQtd/OZsyBZlhpyQ5BhoqA3KU/GSITt4GYmyP71CS9+Y=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=invensense.com;
-Received: from MN2PR12MB4422.namprd12.prod.outlook.com (2603:10b6:208:265::9)
- by BL0PR12MB2338.namprd12.prod.outlook.com (2603:10b6:207:4c::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Mon, 22 Jun
- 2020 15:38:16 +0000
-Received: from MN2PR12MB4422.namprd12.prod.outlook.com
- ([fe80::8940:8e95:6996:cc0]) by MN2PR12MB4422.namprd12.prod.outlook.com
- ([fe80::8940:8e95:6996:cc0%7]) with mapi id 15.20.3109.027; Mon, 22 Jun 2020
- 15:38:16 +0000
-From:   Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-To:     jic23@kernel.org, robh+dt@kernel.org, robh@kernel.org,
-        mchehab+huawei@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-Subject: [PATCH v4 13/13] MAINTAINERS: add entry for inv_icm42600 6-axis imu sensor
-Date:   Mon, 22 Jun 2020 17:37:29 +0200
-Message-Id: <20200622153729.12702-14-jmaneyrol@invensense.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200622153729.12702-1-jmaneyrol@invensense.com>
-References: <20200622153729.12702-1-jmaneyrol@invensense.com>
-Content-Type: text/plain
-X-ClientProxiedBy: LO2P265CA0054.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:60::18) To MN2PR12MB4422.namprd12.prod.outlook.com
- (2603:10b6:208:265::9)
+        id S1729222AbgFVPtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 11:49:25 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:42264 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728293AbgFVPtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 11:49:25 -0400
+Received: by mail-ot1-f67.google.com with SMTP id t6so13408054otk.9;
+        Mon, 22 Jun 2020 08:49:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ukHKRXuBbPQ+hCHp8ZkdpCwZxoKqRm4bkB6SlAMSyts=;
+        b=INgfEx/Ox65qHBF2f2NKQt1uc/q5M9MQyJEXraXilxZsnR2p63v95aQDFUg2lt4BOe
+         wsVUgsYQihmF5uVltxwEpzEX7kmV12CrsxaVatYko5nZk+g1WRhfF/kBycqXDhEYB1gw
+         XhPdnD6a6mXHZOQdbXbG7rMpkj2edullhoN0KdWB4T0DcxXfT5feK8GtvW6u+yzHROtF
+         cTk0q1zyt9mLiuHgkubaajG16nftVdM4gqhC9lj/WU+Tx/OfvBlieZX6NilOlDIKgw6q
+         Wv9ASm+62Iw2FcRFVvfRBy8tHLh7yn9W8EMvZh6W+uegbMglLVFAFOPpua2faISK0HRP
+         UiVg==
+X-Gm-Message-State: AOAM5302uTANwsXB1tjuT+A7/FS3CtcSetVQO3zxZAshistlTalWjFRs
+        +U9GHRwMeWIu6iHr0k7r2g1ctvpNS6v8oezAp/E=
+X-Google-Smtp-Source: ABdhPJyVUFz/In4cnlLRHIolL4alEhLcXovuLEA210Edp2UfV5x+qTGIiJivAxU9OTkdQkDrFPDlwe46o1wzUgjWtl4=
+X-Received: by 2002:a9d:62c2:: with SMTP id z2mr14189823otk.145.1592840964455;
+ Mon, 22 Jun 2020 08:49:24 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from frgnb-buildozer.invcorp.invensense.com (77.157.193.39) by LO2P265CA0054.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:60::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.21 via Frontend Transport; Mon, 22 Jun 2020 15:38:14 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [77.157.193.39]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c67dde2a-ea1a-4b78-1c94-08d816c247c4
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2338:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL0PR12MB233873633C9136FEC60DD023C4970@BL0PR12MB2338.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-Forefront-PRVS: 0442E569BC
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0gyr68mGUANOQ5Grm3iRx/MKfXVb1VGAebiBoG8nyJQ391pJxiAF9ANVzTpkziEN6NUBMCvXHIjlRowubdaFhNnOPMHpHbU1pwrrpNg1Twm6ig0pXIiP83gdx94O8qU+//vhkstLtKFfJhkw0ao9vURNZUTDGsEjN7cOhp9eeBmG0sr8riYPmZrEx8H0n/kCvbCsc7K6yFY6o2v5ny1xQJMi6ZVe1+A06pI5KMYPBaPLkVt2kfOALO9FzWAKME+QdAjtF9XEB7+BqzOaV7aqUe7yWZr4t9K20Q4tFWAstnGEd5YwTAnYRXwkDPmyZfX68UvWG7F4DReh7faQ+XEzxRBLcZWHdP/eg64xXXj1vNWiTPhGiwQsz3toTTfq/JpO4NQiK+0Qfuaq68DFB7jVvQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4422.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(396003)(346002)(366004)(136003)(376002)(39850400004)(6486002)(36756003)(2906002)(107886003)(16526019)(4744005)(186003)(8936002)(956004)(2616005)(26005)(8676002)(6666004)(478600001)(86362001)(1076003)(66556008)(966005)(52116002)(7696005)(66476007)(5660300002)(4326008)(316002)(66946007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: Jyvil5/gNHUksUUNHWZdOwo8VG3vq2TB3xrV5fpubShEEfZRjJOO6dow7HpV/dJXUpPkJjOiuoVNxb+rvSUqOLChvDA5xEFijb4Qsqn7+hLi4ukoFUO/R1OBn/VjKfUVafMtd6M+rgt57/e2gXC9n1y5VEWtZWDgsU61Fcl9SG2fVRZ2M0l9OlYIdOfIcB1/3q/qMasWOm484jxwUcL8MBMKj6VE53Oth46GUtJwiD4NkKAWudD7FNJiHhue5q9VMbQtvFLRCeKhx6aDHsCo1N9TW2pw6Im/f7OYRPk6juqCbHmyPQbdtXhlAyU2/vZ0+W2QojHlY5X1pA/z46vOsqGsAS91apIHXtzErBhqm9PoUqO1XWvWXmHWBcdZg52hUwjKgjlgScUzQaxzcaoqsCjkCqPhDJ8eGnku905HZitoiGoQaZ7g2/STaLQtm6W9sL1n2rPoT8aydg5usPUmmGtoH98MQFHVXXDVs7/h92Q=
-X-OriginatorOrg: invensense.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c67dde2a-ea1a-4b78-1c94-08d816c247c4
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2020 15:38:15.9283
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 462b3b3b-e42b-47ea-801a-f1581aac892d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uPpHXpph1k3x2NZX4oLjHyfqTPhAOQpDQQ+ysOUf2uYadShW9s0GMHiiCkTnAI/8gdmx+q23qVuQO6JG5u4cbeGDAsywscRUpBwVAo7qsWU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2338
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-06-22_09:2020-06-22,2020-06-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- phishscore=0 clxscore=1015 bulkscore=0 cotscore=-2147483648 suspectscore=0
- impostorscore=0 spamscore=0 mlxlogscore=999 malwarescore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2006220116
+References: <20200515053500.215929-1-saravanak@google.com> <20200515053500.215929-5-saravanak@google.com>
+ <CAMuHMdUnbDvn6GdK51MN-+5iRp6zYRf-yzKY+OwcQOGrYqOZPA@mail.gmail.com>
+ <CAGETcx9JKbNQWQwNah7pO5ppVSAe86R-OmMujZPYNkuTCLwKnQ@mail.gmail.com>
+ <CAMuHMdU2gF=aTeVxRvtzAMLGY=GyBDfBwrYZxoRkL1tV7dL56g@mail.gmail.com>
+ <CAGETcx-rHFthf-aLb_S-ST6Evozvgis5XX5u0LNxyvfMoJOLKQ@mail.gmail.com>
+ <CAMuHMdXW0jM-A5cvYtFVcgc1Gm3tKkvr0+kWpeJqpJDzNOuYeA@mail.gmail.com>
+ <CAGETcx8W96KAw-d_siTX4qHB_-7ddk0miYRDQeHE6E0_8qx-6Q@mail.gmail.com> <CAGETcx87JNfKEu4brQ3S-9wObv=OwXkAoDBSREQH5dAD68TPsA@mail.gmail.com>
+In-Reply-To: <CAGETcx87JNfKEu4brQ3S-9wObv=OwXkAoDBSREQH5dAD68TPsA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 22 Jun 2020 17:49:13 +0200
+Message-ID: <CAMuHMdUsWAQ3XUGh1Jg_Y3LWz4G5aaZfHqL8JjNZv3DrW3TjvQ@mail.gmail.com>
+Subject: Re: [PATCH v1 4/4] of: platform: Batch fwnode parsing when adding all
+ top level devices
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Ji Luo <ji.luo@nxp.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for InvenSense ICM-426xx IMU device.
+Hi Saravana,
 
-Signed-off-by: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sat, Jun 20, 2020 at 4:33 AM Saravana Kannan <saravanak@google.com> wrote:
+> On Fri, Jun 19, 2020 at 1:07 PM Saravana Kannan <saravanak@google.com> wrote:
+> > I think instead of deferred_probe_work_func() moving the device to the
+> > end of the dpm_list, I think the device probing successfully is what
+> > should move it to the end of the dpm_list. That way, the dpm_list is
+> > actually ordered by when the devices become functional and not the
+> > random order in DT or random probe order which can get pretty
+> > convoluted with multiple deferred probes. This feels right and will
+> > make suspend/resume more robust against DT ordering -- but I'm not
+> > sure what other wide ranging impact this has for other platforms.
+>
+> If you want to play around with a potential fix to test my hypothesis,
+> I think it's just adding this one line to driver_bound():
+> ============
+> klist_add_tail(&dev->p->knode_driver, &dev->driver->p->klist_devices);
+> device_links_driver_bound(dev);
+> +device_pm_move_to_tail(dev);
+>
+> device_pm_check_callbacks(dev);
+> ============
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 510fa7f7c756..a65771cfc506 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8979,6 +8979,14 @@ F:	include/dt-bindings/interconnect/
- F:	include/linux/interconnect-provider.h
- F:	include/linux/interconnect.h
- 
-+INVENSENSE ICM-426xx IMU DRIVER
-+M:	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+W	https://invensense.tdk.com/
-+F:	Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-+F:	drivers/iio/imu/inv_icm42600/
-+
- INVENSENSE MPU-3050 GYROSCOPE DRIVER
- M:	Linus Walleij <linus.walleij@linaro.org>
- L:	linux-iio@vger.kernel.org
+Thanks, that seems to fix the issue for me, on both affected systems!
+Note that this has quite some impact on the order devices are suspended,
+but this seems harmless.
+
+Will try on more systems later...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
