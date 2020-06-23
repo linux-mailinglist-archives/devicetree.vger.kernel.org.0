@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CFE6205046
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 13:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D34472050C8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 13:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732261AbgFWLPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 07:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52468 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732447AbgFWLPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 07:15:18 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC7CC061755
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 04:15:17 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id f139so1370072wmf.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 04:15:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
-        b=ZxmeZSlTKrBE7SIwCgUr5+IQXg0VboTRBMAPFefZfO9Y0QFQt27pNiz9D343jyqCUK
-         iaukbTFgnP7KKKusIyTazti58H93KSxj5LxKpIJd73ae/UrIM+D2EydiZsgEHWrBVUHY
-         A49p4eYwxffCDetzsfxQQ5f2VIoHaS415E/jSLFd+D1X1bKNgiZ98vBg9LdIQ7Zjx+BS
-         wClobk34EJhAFFoD4AFbiZv4S8CawNY7AMsJ0JPyNPDbdARs8NuXUDeVFTvfTpqMkwxw
-         u6E/ZhJKOYRnmbknRM2i4voRN+Bd5YK+CQapxhy1jB12K4/pkPKclZ+p4G7ceGTNd0Hh
-         pBMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
-        b=mMSi5oNLOtlsy0wD4t8+1l80X3/Cv65moqFXP6DcuTnYwfyPlKS32cwyL+W3hCE1cs
-         GvFP94rr7S3zX44dE0rTZrkbK4OPCAkilL7q5kVXaJTRS+wMeqNYHcvA37FbrXyfAlf7
-         yfelPfHjmcT8mwhdPW7WSXe0hj9u8z39xJhD2VYtpd09NFd9ZN2y4bkvB3ItVygVwoVj
-         uFVgtr8gEy1UXC4xWA1txHD2GoEluS2AQlYHFagtH3UIVcb7t7HOnH/PlMB2xKteGoEj
-         EWHCKtbU2ZXpII0WsAK0xwDaPoWSvh6xUNz7vb0aOFcNIOaURs42aoV4TrqIKunmHTbX
-         /vtw==
-X-Gm-Message-State: AOAM530AbXed1gybEx0fD9mIOXpdyhGCJrCmihxFWenTggbIFmSqV09l
-        Zdd16nzbuvEAOLIQmGNFwkXpyi0fc6EOuezII+A=
-X-Google-Smtp-Source: ABdhPJzAyLvva5MDt9FtQlBzIToXQYgdJw2LiJAYqbGSCL3ZKk62C2z69LEYyraGzIlr1C9AOifE6eGCp9CB5XxUKNE=
-X-Received: by 2002:a05:600c:2317:: with SMTP id 23mr2028887wmo.72.1592910915898;
- Tue, 23 Jun 2020 04:15:15 -0700 (PDT)
+        id S1732353AbgFWLc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 07:32:57 -0400
+Received: from conssluserg-06.nifty.com ([210.131.2.91]:49940 "EHLO
+        conssluserg-06.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732328AbgFWLc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 07:32:56 -0400
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52]) (authenticated)
+        by conssluserg-06.nifty.com with ESMTP id 05NBWUe9027207;
+        Tue, 23 Jun 2020 20:32:30 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-06.nifty.com 05NBWUe9027207
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1592911951;
+        bh=/bby6eiaoafnsKasvD+44XkuZDUwzMZIHd9Yc7kyG3A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=yk9h8fxKWFn7hj6Cdl7Mx7QH4Jd6HPEDhWjMtLtp7s2NVOXrE+8yc7f3ZwqnfCbCa
+         ac/Op0VEg3quw+stSY22mCenxyJJbH1wgYKMdpdMRiH6tta2ptiX6hGsgQ2OQyPZxO
+         zXoNB19h7+sMP2F0k/hlWYdEiU8+9PH4aKrgNWbWDE3uRtMdRKBVSeBbRgidfBqFCj
+         7FbrCGYtkBgepwzBFLlACjhU2gbVWtX/gMc3NnnQ/wB+Ix+5Goy2iv8F+CuksLqt5q
+         9P82b/F8y/D10unfy6larAuWM0AVqIgNWjDLSSR6NpnfokMEqZAqHycUD+oXTwKdmH
+         9U7F9BKa38tpQ==
+X-Nifty-SrcIP: [209.85.222.52]
+Received: by mail-ua1-f52.google.com with SMTP id i8so6671588uak.9;
+        Tue, 23 Jun 2020 04:32:30 -0700 (PDT)
+X-Gm-Message-State: AOAM53066gMLIGwx09WvtMb++Cv+IJ2gyiiQTXC8U+P2K12RwUTas1Pl
+        knkTPtNRCrinuDDYP1nPXy9dmV7IE8PnwJr3lOY=
+X-Google-Smtp-Source: ABdhPJycnTrfA31vybeM0h39X3HSjsSRYxa5A9nDB0CSrKvTSk51+WjWwDYWqRwDacxbVagUuPP34EDE+eseNUUiHV0=
+X-Received: by 2002:ab0:156d:: with SMTP id p42mr14817199uae.121.1592911949417;
+ Tue, 23 Jun 2020 04:32:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a1c:f002:0:0:0:0:0 with HTTP; Tue, 23 Jun 2020 04:15:15
- -0700 (PDT)
-Reply-To: sarahkoffi389@yahoo.co.jp
-From:   Sarah Koffi <paulwiliam782@gmail.com>
-Date:   Tue, 23 Jun 2020 12:15:15 +0100
-Message-ID: <CAHqcnY1KD3hKmPHEgt8yiB2mN+LLiSnOh+cvFm_AesZ7xtOqUQ@mail.gmail.com>
-Subject: Greetings From Mrs. Sarah Koffi
-To:     sarahkoffi389@yahoo.co.jp
+References: <20200623062812.705264-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20200623062812.705264-1-yamada.masahiro@socionext.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 23 Jun 2020 20:31:52 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAS0GAUT-CYijWCetRgSXAaiHzwb_JE5RY0ECr68BDBk4Q@mail.gmail.com>
+Message-ID: <CAK7LNAS0GAUT-CYijWCetRgSXAaiHzwb_JE5RY0ECr68BDBk4Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: bus: uniphier-system-bus: fix warning in example
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        DTML <devicetree@vger.kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings From Mrs. Sarah Koffi
+On Tue, Jun 23, 2020 at 3:29 PM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+>
+> Since commit e69f5dc623f9 ("dt-bindings: serial: Convert 8250 to
+> json-schema"), the schema for "ns16550a" is checked.
+>
+> 'make dt_binding_check' emits the following warning:
+>
+>   uart@5,00200000: $nodename:0: 'uart@5,00200000' does not match '^serial(@[0-9a-f,]+)*$'
+>
+> Rename the node to follow the pattern defined in
+> Documentation/devicetree/bindings/serial/serial.yaml
+>
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
+>
+>  .../devicetree/bindings/bus/socionext,uniphier-system-bus.yaml  | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml b/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
+> index c4c9119e4a20..9fa4f891fa00 100644
+> --- a/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
+> +++ b/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
+> @@ -87,7 +87,7 @@ examples:
+>              phy-mode = "mii";
+>          };
+>
+> -        uart@5,00200000 {
+> +        serial@5,00200000 {
 
-I'm contacting you based on your good profiles I read and for a good
-reasons, I am in search of a property to buy in your country as I
-intended to come over to your
-country for investment, Though I have not meet with you before but I
-believe that one has to risk confiding in someone to succeed sometimes
-in life.
 
-My name is Mrs. Sarah Koffi. My late husband deals on Crude Oil with
-Federal Government of Sudan and he has a personal Oil firm in Bentiu
-Oil zone town and Upper
-Nile city. What I have experience physically, I don't wish to
-experience it again in my life due to the recent civil Ethnic war
-cause by our President Mr. Salva Kiir
-and the rebel leader Mr Riek Machar, I have been Under United Nation
-refuge camp in chad to save my life and that of my little daughter.
+I think '5,200000' is a better unit name.
 
-Though, I do not know how you will feel to my proposal, but the truth
-is that I sneaked into Chad our neighboring country where I am living
-now as a refugee.
-I escaped with my little daughter when the rebels bust into our house
-and killed my husband as one of the big oil dealers in the country,
-ever since then, I have being on the run.
+Will send v2.
 
-I left my country and move to Chad our neighboring country with the
-little ceasefire we had, due to the face to face peace meeting accord
-coordinated by the US Secretary of State, Mr John Kerry and United
-Nations in Ethiopia (Addis Ababa) between our President Mr Salva Kiir
-and the rebel leader Mr Riek Machar to stop this war.
 
-I want to solicit for your partnership with trust to invest the $8
-million dollars deposited by my late husband in Bank because my life
-is no longer safe in our country, since the rebels are looking for the
-families of all the oil business men in the country to kill, saying
-that they are they one that is milking the country dry.
 
-I will offer you 20% of the total fund for your help while I will
-partner with you for the investment in your country.
-If I get your reply.
+>              compatible = "ns16550a";
+>              reg = <5 0x00200000 0x20>;
+>              interrupts = <0 49 4>;
+> --
+> 2.25.1
+>
 
-I will wait to hear from you so as to give you details.With love from
 
- i need you to contact me here sarahkoffi389@yahoo.co.jp
-
-Mrs. Sarah Koffi
+-- 
+Best Regards
+Masahiro Yamada
