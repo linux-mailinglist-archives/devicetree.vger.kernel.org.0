@@ -2,88 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C4E2067E8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 01:07:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 435E520681A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 01:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388221AbgFWXHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 19:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49910 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387634AbgFWXHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 19:07:33 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561A8C061573
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 16:07:32 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id ne5so149559pjb.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 16:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=H5tzGK8Ul6tfg3isVDLVBRlbu5v0xvfY4n3qpqbH1NI=;
-        b=S1bCy5X06OFaFFNIdeDnS6CSjZ0Kdws9KkQcI1YuKKPPow3kSalVMW4MVN0P19JhbB
-         AwyXcbyYpdsEM0IJwO0xPhelwzn2W7jASJZYkOexxveaAuXUaOQ7uOYC3epePjn9jltI
-         lQOHuHv2T0gtLYpuYpMD6zRC+9vwL20ElP5Wzq6u7sgW+9JZYRzA8J0252oDhAIqlTQV
-         YGRG+RAWmh862PZuA9ECrmEd/GEZgSIvuOXjdL/U4x/3CEVNmrgL4lE7cP9xCS4wPU+4
-         l/3Gd7jY+5Jwg2evxhfuSRirITpsFdi1WghwcFzvGhDy3v8kxAQYLm5j4qYs3m/BeTlR
-         POJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=H5tzGK8Ul6tfg3isVDLVBRlbu5v0xvfY4n3qpqbH1NI=;
-        b=YTw9G944JqDAmc8vzKFAezrflYAXUBH/FwZjbZ2OwmcqF7hDTxO7LsF/l/+xB/ph+p
-         DK9bHpvmC72f5BAo5+Q6LRCXjOQ7whkXJsNgo43RW19IIhsD8jnANPZLbpT7utBcm/vS
-         DDutjxY9aUi5jeBSMN1Ke8J3NxxZYli+G4G0hXv29AhSby0N8wc2iwuOOOWSsZqkd3Q+
-         P+BV4rU1BXC69MisIRrdM6rB39tB/D5gCow2Y/r6k5+3V4wpWzDt5ZvReEdyT5T76sm4
-         e3w78PSNT1OMwIqZQ9CWhFqndwuNxpOrN5r025he/DoqvnCRQFT4NpBh6FEeQaOy+OYD
-         MIcA==
-X-Gm-Message-State: AOAM532RadITjI6iN0+b5kTTwMDUdH54iLrMavWuY/0QfpfoU5kth0M7
-        JN4UUMlILDMAr3PF9tYPiC7vAQ==
-X-Google-Smtp-Source: ABdhPJyJrZ0h4pT6D7zRuXMtMqWbxZWmhLKSGmNzOwnfxEQyboY/eJWM4/LcweJZjH+HF/v0xL4zQw==
-X-Received: by 2002:a17:902:ac94:: with SMTP id h20mr2016739plr.197.1592953651691;
-        Tue, 23 Jun 2020 16:07:31 -0700 (PDT)
-Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id b5sm3307716pjz.34.2020.06.23.16.07.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2020 16:07:31 -0700 (PDT)
-Date:   Tue, 23 Jun 2020 16:04:48 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konradybcio@gmail.com>
-Cc:     skrzynka@konradybcio.pl, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/12] arm64: dts: qcom: msm8994: Modernize the DTS
- style
-Message-ID: <20200623230448.GG128451@builder.lan>
-References: <20200623224813.297077-1-konradybcio@gmail.com>
- <20200623224813.297077-2-konradybcio@gmail.com>
+        id S2388108AbgFWXMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 19:12:23 -0400
+Received: from mail-db8eur05on2087.outbound.protection.outlook.com ([40.107.20.87]:20255
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387709AbgFWXMW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jun 2020 19:12:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jQ+VzPdjJ3GlWzrwbfruS0XLJtcW28BN0rWzTLKAnJFKFSYLyZkOFEZYGdNiA95jXMI+pAV2fe+gzjuPc3/R7kgR7JuOWzSXdoeMaFJ8bQETs8Vj15jStTAGt4n59gNaBR0zRnZfiLKNP3l4GxurE86NMBIntJRSswdi2ZV/COzW7PrRXREf5IY4bCioObVHyNgFFQQpW9PxRTTjCXuziCG+K7a7sVAGnJaIJUBLFsBQdqJ+IEkJFkzXaWfwg95NLD+O+2efKNuIhQxZt9Qasv529IfCVFZKkE7Qi9P8d08igXn+plyYeIYwLXbssqxIsHO45vYBxYjzAg2oQ5pMfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a/ij0VBzE27tiqbwtB48wRdFAG/6lQKkNgzshQcxCYE=;
+ b=ZxfCSdpcIkGt3bW6nBm6hEy/Vgfla53fDTX1IkcldIt6DdhicOsGHggAOwJF8C5jvTDXb67N1LEmERQ6wfDfSe3hBSpNiYExs4nM/Ii415rII+T+BCn/oeafpbEGbdpXrub1Gb7OEhgBw5dLOGm7VjmSaeK9S1vvBj/g2KUzzB9tHUzgbf29wvf6o0HWgk6TOzRSdXe3rdZ2MDhCZa1X/4SzcIi9UxghLzUZyXt+BR//eD6HQ21B48DB7y0XQ5JHge4sHJz4wHg3rTjKgPZBNcYDXU6Tgn0VX6uvOFFbxedsHWWuBiCvwePFCpeD1GgFxKYNKj2Jd1PNjfg7Cpxiww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a/ij0VBzE27tiqbwtB48wRdFAG/6lQKkNgzshQcxCYE=;
+ b=R//Xv1j2qCjSDrosYtrIVujiWCpMFP87WKwkVzC6K48rwWcWChPP/2n7klysg0Ds6bw64vse7kzCg0Rf7S3Fa0bFtg2Wv2UZscCmDYb2JgGn8gcWDFFTWZwpxDDp0TzdMIB3GEwm9tEkKpCvP0QV4xwCko3bPQMkEv9/JCLUUyQ=
+Received: from AM0PR04MB6676.eurprd04.prod.outlook.com (2603:10a6:208:177::33)
+ by AM0PR04MB5284.eurprd04.prod.outlook.com (2603:10a6:208:cb::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.21; Tue, 23 Jun
+ 2020 23:12:05 +0000
+Received: from AM0PR04MB6676.eurprd04.prod.outlook.com
+ ([fe80::1d94:409a:2958:316d]) by AM0PR04MB6676.eurprd04.prod.outlook.com
+ ([fe80::1d94:409a:2958:316d%4]) with mapi id 15.20.3109.027; Tue, 23 Jun 2020
+ 23:12:05 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Qiang Zhao <qiang.zhao@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: RE: [RESEND PATCH] arm64: dts: ls1028a: Add DSPI nodes
+Thread-Topic: [RESEND PATCH] arm64: dts: ls1028a: Add DSPI nodes
+Thread-Index: AQHWSHA0vQ9gRlWUdkSHMdyW1ZGEcKjm1SYQ
+Date:   Tue, 23 Jun 2020 23:12:05 +0000
+Message-ID: <AM0PR04MB667637011B99FCC3883AC5A78F940@AM0PR04MB6676.eurprd04.prod.outlook.com>
+References: <20200622082909.42254-1-qiang.zhao@nxp.com>
+In-Reply-To: <20200622082909.42254-1-qiang.zhao@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [136.49.234.194]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 5d364d98-4de2-443d-fc8f-08d817cad836
+x-ms-traffictypediagnostic: AM0PR04MB5284:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB5284E2CABBE50749CEC5713F8F940@AM0PR04MB5284.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1002;
+x-forefront-prvs: 04433051BF
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0VoTbmccy8T8zhYAJ2n85B3Zt2Pl2HXfLrwlKSPGkx5C+JEEO8xPsze87CfiWQNJRbfqVeTEgp7z42jyKAzcFYQ5i9hE1jnki03inqRUmplFYzvBY/IuDSCaOrhrFILDgwC4yzOmmJxOiO2eQLQIXsKDsY7Ky571XbJmT9sVG9H3wpGLKlcLeK3DCgZXcATBNGmv9WSJYTfOtDxdwtIcFs5Yz23IlsmMXSJ2Aoy5vWmjNaB6HcQgyi0fXzvBPk8v0/e9HrAuAsvUgu+evcDcL1RdU+jqD+vpmT9i4wYV/aGE1E/o4FFMDQmB7BHHxbE7
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(376002)(346002)(396003)(39860400002)(366004)(5660300002)(86362001)(8676002)(8936002)(52536014)(66446008)(66476007)(66556008)(66946007)(33656002)(64756008)(76116006)(83380400001)(71200400001)(26005)(4326008)(6506007)(186003)(53546011)(9686003)(55016002)(2906002)(478600001)(110136005)(7696005)(54906003)(316002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: yzWxORnk81ac8qfwqKGttb6WY4x30+CCNO8B6PNB8Hw4Kg4R23Tn2yPEFkWE76IBKm++vdHGjrN7bmUu1n9HPq4KGj5H1p/flYXqOEhaAyHS2R5eA8qHruLus8CmEZlfJWwHYyOtf9fSqR9op5FcMXROi28/jgff/Rm8VDGuU8ORg4FlBddQbLLdiyrjo3wdWDZFH7jPbVi6tYlVi1NCPKmt9aiIay3/BNyPvhFKDeZa5OQpFOjq2ZWjS3pZbSN0sp1LAN+uHuR+x7+pftyseVEut0rOUMZzFsS5Iym2FcoTOlIYCRrVZG5YRBX2LYM/iq9Z1piL7VwsrbdC/TV6ku69gJZK6t9Uiomta43B5QGInaAs+daV8OSmPJV9YFuMTWnEZG9uVSMUFHWtM6iw9aBHGiwyd7jU+0+wlsZ2+2wOXPbDw5EjQPXO0FU/ISAb71IcKq9dprnLrjF9O/6y5n+il9nd5yK8zV17Y6JkJHeylDKl3+ech2sTPaqNXl7s
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200623224813.297077-2-konradybcio@gmail.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d364d98-4de2-443d-fc8f-08d817cad836
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2020 23:12:05.0300
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H+wEEysQz+ViSLxSJlZ2i5lI/YR1ANcHOIgcLNDYJTDCdt7HSdtTqr2ArCbFM1zg6F2emZGDWhR7khiX+Wta+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5284
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 23 Jun 15:48 PDT 2020, Konrad Dybcio wrote:
-[..]
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-[..]
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <1 2 0xff08>,
-> +					<1 3 0xff08>,
-> +					<1 4 0xff08>,
-> +					<1 1 0xff08>;
 
-Indentation is off here and these are supposed to be GIC_PPI. So I fixed
-this and applied the patch.
 
-Thanks,
-Bjorn
+> -----Original Message-----
+> From: Qiang Zhao <qiang.zhao@nxp.com>
+> Sent: Monday, June 22, 2020 3:29 AM
+> To: shawnguo@kernel.org
+> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Leo Li
+> <leoyang.li@nxp.com>; Qiang Zhao <qiang.zhao@nxp.com>; Xiaowei Bao
+> <xiaowei.bao@nxp.com>
+> Subject: [RESEND PATCH] arm64: dts: ls1028a: Add DSPI nodes
+
+This patch is actually defining dspi flash nodes for LS1028a-qds board inst=
+ead of adding dspi nodes for the soc.
+
+>=20
+> From: Xiaowei Bao <xiaowei.bao@nxp.com>
+>=20
+> Add the DSPI nodes for ls1028a.
+>=20
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 85
+> +++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index dd69c5b..e4f00c2 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -107,6 +107,91 @@
+>  	};
+>  };
+>=20
+> +&dspi0 {
+> +	bus-num =3D <0>;
+> +	status =3D "okay";
+> +
+> +	flash@0 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +
+> +	flash@1 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <1>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +
+> +	flash@2 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <2>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +};
+> +
+> +&dspi1 {
+> +	bus-num =3D <1>;
+> +	status =3D "okay";
+> +
+> +	flash@0 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+
+These probably are not needed when no sub nodes are defined.
+
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +
+> +	flash@1 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <1>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +
+> +	flash@2 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <2>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +};
+> +
+> +&dspi2 {
+> +	bus-num =3D <2>;
+> +	status =3D "okay";
+> +
+> +	flash@0 {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		compatible =3D "jedec,spi-nor";
+> +		spi-cpol;
+> +		spi-cpha;
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <10000000>;
+> +	};
+> +};
+> +
+>  &duart0 {
+>  	status =3D "okay";
+>  };
+> --
+> 2.7.4
+
