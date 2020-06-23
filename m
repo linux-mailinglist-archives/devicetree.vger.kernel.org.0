@@ -2,139 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6B32058B8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 19:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754C0205949
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 19:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732408AbgFWRfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 13:35:16 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:13814 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733078AbgFWRfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jun 2020 13:35:15 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 05NHNRAN031405;
-        Tue, 23 Jun 2020 13:35:13 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 31uk3grq2x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 Jun 2020 13:35:13 -0400
-Received: from ASHBMBX8.ad.analog.com (ashbmbx8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 05NHZCa6031594
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 23 Jun 2020 13:35:12 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 23 Jun 2020 13:35:11 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 23 Jun 2020 13:35:11 -0400
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Tue, 23 Jun 2020 13:35:11 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 05NHYxMW017521;
-        Tue, 23 Jun 2020 13:35:08 -0400
-From:   <alexandru.tachici@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-Subject: [PATCH v4 7/7] dt-bindings: hwmon: Add bindings for ADM1266
-Date:   Tue, 23 Jun 2020 20:36:59 +0300
-Message-ID: <20200623173659.41358-8-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200623173659.41358-1-alexandru.tachici@analog.com>
-References: <20200623173659.41358-1-alexandru.tachici@analog.com>
+        id S2387570AbgFWRjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 13:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55634 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387730AbgFWRjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 13:39:18 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899ECC061573
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 10:39:17 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id dg28so1389648edb.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 10:39:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=0tE0KQXb3HqFZFsRsiZoN4FKUqFqSS32MQiSckmwzbo=;
+        b=c5J0mIO0x9027IV1djENIoO8BFnwQtRSZ7Vxwl1l6f9TcgunNYwJzOi3/AzFiKso93
+         XepuB6f6RU7iknn4K1sp7VLd9tbABb2B8hhhUH6iX4E+xGnOBSHV6mNzt3s0C0flSxGE
+         V8PQ8AK3GqtoqmIiVFhNWOQWNpIkAC8bmfA5JAyIyvMPNTdP1VaBljNrgKdykmJhsc13
+         0BltFu6CBcKaVqKCZubIkKFLaY2kiwt+eM+NoVjrO+fTatnvTDmZRA6GzUyxYpiIYby+
+         ZoPVrMqZAUw2dKAkMfL/Kbkm2qgKXg971hbNXo7k1/3iLs4iM8NVaBVWKSRrmReof/T2
+         z+jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=0tE0KQXb3HqFZFsRsiZoN4FKUqFqSS32MQiSckmwzbo=;
+        b=l1RbB7yoQk4VG6Bw3X8h6Z+RHLoJavFsHNnQ5Wyr3nnkgzeGS+ebLu+GYS1w2ajp6N
+         PTNakZkuZQxKEN06aRZCrIyLCTq+roDPYeUGnB5HoG2JteeSKKtNAH6mizzm98MAZ/v3
+         iqsb/hdiuMJqGn3BuPGzDRgXvC1d8f3VjpEIaHJHrg1R8eLd1uRUUgpY9GlzPnW0yfDA
+         au3glh6MqGZoCXg1b57jkSWLwaIqfG1BZe9XOf4OSFh43MvoYfoIwOa45ba0QI8MkSUN
+         Q+oLJFe3P8pC2U8xhSZuYhm6muzgJBtisKyKbGbtfGdGIV89YAq9o7fFyPYRvgqVvxoM
+         xx0Q==
+X-Gm-Message-State: AOAM531SryM5KsaUIqRQokfyVb+rZktbSXEEDZsn/9qecYF0uog+z8A9
+        sIkrD7w9yBU5TUe/3WXz5iiyytAxH0YO3Mauxas=
+X-Google-Smtp-Source: ABdhPJz2XMIQUZIAa79e1EZ9BE8vaYze0+QNIzGFnV1W/5hBEPdGpMigEbfiaQCmJrGtLMgp6Mh6wvryphQJaHnB/Io=
+X-Received: by 2002:a50:fb14:: with SMTP id d20mr23086682edq.209.1592933956084;
+ Tue, 23 Jun 2020 10:39:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216,18.0.687
- definitions=2020-06-23_11:2020-06-23,2020-06-23 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 impostorscore=0
- bulkscore=0 spamscore=0 mlxscore=0 phishscore=0 malwarescore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006120000 definitions=main-2006230123
+Received: by 2002:aa7:dd07:0:0:0:0:0 with HTTP; Tue, 23 Jun 2020 10:39:15
+ -0700 (PDT)
+Reply-To: katehalima39@gmail.com
+From:   hellen brute <hellenbrute27@gmail.com>
+Date:   Tue, 23 Jun 2020 17:39:15 +0000
+Message-ID: <CAPK7+hpDXEz73d2TR8E80cfrAXO90aydj9RKG0LtCpwe6uY+Qw@mail.gmail.com>
+Subject: Good day
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Tachici <alexandru.tachici@analog.com>
+Dear beneficiary,
 
-Add bindings for the Analog Devices ADM1266 sequencer.
+Continuation of payment instructions we received from organization
+regarding your Two million five hundred thousand united states dollars
+($2,500,000.00) unclaimed funds.
 
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- .../bindings/hwmon/adi,adm1266.yaml           | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
+This is to notify you that your approved $2,500,000.00 funds have been
+scheduled to be paid with a VISA CARD.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
-new file mode 100644
-index 000000000000..76b62be48d56
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/adi,adm1266.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADM1266 Cascadable Super Sequencer with Margin
-+  Control and Fault Recording
-+
-+maintainers:
-+  - Alexandru Tachici <alexandru.tachici@analog.com>
-+
-+description: |
-+  Analog Devices ADM1266 Cascadable Super Sequencer with Margin
-+  Control and Fault Recording.
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADM1266.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adm1266
-+
-+  reg:
-+    description: |
-+      I2C address of slave device.
-+    items:
-+      minimum: 0x40
-+      maximum: 0x4F
-+
-+  avcc-supply:
-+    description: |
-+      Phandle to the Avcc power supply.
-+
-+  adi,master-adm1266:
-+    description: |
-+      Represents phandle of a master ADM1266 device cascaded through the IDB.
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adm1266@40 {
-+                compatible = "adi,adm1266";
-+                reg = <0x40>;
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+        };
-+    };
-+...
--- 
-2.20.1
+This is the best way to get your $2,500,000.00 compensation money
+without any problems.
 
+The VISA CARD will be delivered to your home address and when you
+receive the VISA CARD you can go to any ATM in your country and
+withdraw money very easy.
+
+Your visa card will be programmed to allow you to successfully
+transfer $2,500,000.00 to your personal bank account in your country.
+
+However, please note that before bank can process your total
+$2,500,000.00 for VISA CARD payment, you must provide the following
+information to the bank to avoid processing errors in your payment.
+
+(a) Your full name: ............................
+(b) Your residence address: .............................
+(c) Your mobile telephone number: ..........................
+(d) Your identity card or international passport: .............
+
+We recommend that you contact your paying agent, Mrs. Kate Halima,
+with the email address below and send her your information as
+described above for urgent attention and processing of your visa card.
+
+Contact person: (Kate Halima).
+Contact e-mail: (katehalima39@gmail.com)
+
+Please note that Mrs. Kate Halima is a special agent from the United
+Nations who has been in charge of monitoring your payment and ensuring
+that you receive your VISA CARD.
+
+After receiving your VISA CARD of $2,500,000.00, you can then go to
+any ATM and withdraw money or transfer money to your bank account.
+
+Yours Sincerely
+Mr. Kay Scheller
