@@ -2,117 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04837205B03
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 20:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E737205B24
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 20:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733181AbgFWSoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 14:44:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
+        id S1733125AbgFWSw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 14:52:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733152AbgFWSoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 14:44:24 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26499C061573
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 11:44:24 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id d15so17112501edm.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 11:44:24 -0700 (PDT)
+        with ESMTP id S1733075AbgFWSw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 14:52:29 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A61C061795
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 11:52:29 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id 18so3056460otv.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 11:52:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=YHRfY/482pH60fZPQJikxqae/P0Z6lDDbQXNlIRp7tc=;
-        b=O84lAlQtan6g3BHHHf7sIEL60Tt8VsrCeEVE8CQeBdNfZtWiEkIBf5EnEBTSnOIYhV
-         EPdW4t8kcLvZ9LhfuTnNxdMsJ721WftZAm2YfItBlw7ZCfjOPOaCPgEhEUNc/LV9MpMT
-         UfTabuopH1KekbGurNoL/s3jNY+zFWjIe+weZsQUyV611kaMJC6SyKOGCy0LGyPBBocU
-         I6eEwuTw3L5JxgW9yX5wsfKT5IEMwvCDD1gcvJX0Dzz/DeyHX3FjI/lPlo2zl6EOxPbC
-         oaCdMzn5EhGGffrjqZGBaLeDIrHSd1fkpJvfsTmFDUL3W1alvsulTjb0gLAndKmgvLhD
-         JFYg==
+        bh=o0ZyZBP3R+xTsYbXudhPpeqGQTx9+AtNXicoVw+deco=;
+        b=gdKqYos2nRamqmG/sd35v1EqNpbtG3PgDZ2E/tKpeKaJVjd4jrL/oqg/dsC2xdGuAe
+         Qkmdffu9YfXVdVYSddOShypUzRWjTKVlWLxPdP9yqsTz7molW/pzEeuAUYju9xxAAcgq
+         K9PUEARzddqf1oxlK1zqzhgkwo5t3CaCemnRymg8KwkEqU7p7N3RD7ihuegY7ql0WoV3
+         wjKEEeyegTPJ83s8obqhz7P1ZUyNxmBRgaipBT18usGwYxJmZsAdpWUD/5X6ZIeQl2Hj
+         08RzZPNIT6yNJJQoLxFURJfHOBxXMLf5g6IcnutbZvEmXa7QXH5+blWDmvXQB3xaOTrw
+         xWbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=YHRfY/482pH60fZPQJikxqae/P0Z6lDDbQXNlIRp7tc=;
-        b=ERSXCtgUtSdkFOCVFtez/P40vo4MrdkSM8eMaXtKylji9C21qU9sSFgt43qzqpDfuF
-         U5Uhy2gbZYcNvg2K2uXlx8I30e+LOjrm8AFeyWLAVLweg4eemzmmdM4CDolF79LUYmiN
-         n+nZlO4PGfHkSeEiVPL/Io7PrDVxwNBGK6xgfjWJotYylbDM/BpALBduNaGURJ8T50Q2
-         EfEQUYmBLoiEb4kJD8/heErVh4XU7Jbew0NGMhhxMNDT6SaCRRkBMScupUd/Yx3vt7K3
-         Qb+HRGZJaiuCYGcQwW0IR63k0KOIFeiiZIKBMFSrVyzZGuT5s5Mk8/MEtuP084CpIwVN
-         UnRQ==
-X-Gm-Message-State: AOAM532Mpcabcftxpl0XkcGcQGLT2fp+ePD4mxB7CoBFGKLDW4ogv6ab
-        rG9tDJOAjVQHtHt0RQJFtrIGYu01AsLVlvlVDnrxag==
-X-Google-Smtp-Source: ABdhPJyPUIlDVH1n7pGFYZ5aO9aLZJphcDUMccOXmcIiaLZUxDvA5Dpv5o3A65C6wRy4Z9PcnkaV9feKOmD03dYG9P4=
-X-Received: by 2002:a05:6402:1247:: with SMTP id l7mr22177355edw.61.1592937862811;
- Tue, 23 Jun 2020 11:44:22 -0700 (PDT)
+        bh=o0ZyZBP3R+xTsYbXudhPpeqGQTx9+AtNXicoVw+deco=;
+        b=L1nhDJKMcUch0D7mrhBhiQ+pNUpSUhrCknWlNckEjTWhE2c55Q1dsmEFnn6AJCuJEo
+         vR0W0rpttqL++FJABM5Xq75ChSInTCFqID5lgWEK9mZBkUYB24tIHPzcK6zO19YO6+Qn
+         JPO9FntRQRho/W6iy+ZvgXXMBB5Hc1y4TPxhI84b7J4W3ioVh+QTPUcNZWcw6ekQwz/t
+         iErOlqjacfm4rUwp49eQ1Rb62RhBb+kWzb8U8KrctmDPAUoOxI6XVdPbp00cj0nHxAhw
+         5ygjHNux/V6TsJREOMmOvQYCqN/hwDFjpADM4AgyAQCffwknulqRl5jCWLqC5PZG4mg/
+         cHyQ==
+X-Gm-Message-State: AOAM532AzVFRSDk2doc7nwWsGFCRdJ4yr0Sk6Zu9L1idkm+bn8kzIs26
+        0aS910Ppyia2KZtcmOT8R0X7uR0mMBsJIDtyS/RaHg==
+X-Google-Smtp-Source: ABdhPJzp+aM0LlFXFQjN4tMW0nFimdEGTUlw1nniLZRr8VJRCoJV2HqfPjDySP2P6IFuViQjezhymY70H2D/O0Ud/6Y=
+X-Received: by 2002:a05:6830:210d:: with SMTP id i13mr18314198otc.252.1592938348318;
+ Tue, 23 Jun 2020 11:52:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200622015227.24134-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20200622015227.24134-1-yunfei.dong@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Tue, 23 Jun 2020 15:43:47 -0300
-Message-ID: <CAAEAJfBtuZUn-LxiwCZ75rwT_oEuM-_QEXCH4-vFhV6X+8=4SA@mail.gmail.com>
-Subject: Re: [PATCH v2, 0/2] This patchset add Read-only(Ro) request for
- capture queue
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Tomasz Figa <tfiga@chromium.org>
+References: <1592937087-8885-1-git-send-email-tharvey@gateworks.com> <CAOMZO5CbLvf_iV5K1zXZdYqgpBqrOZmTGR=NYyL+j73ojTGOnw@mail.gmail.com>
+In-Reply-To: <CAOMZO5CbLvf_iV5K1zXZdYqgpBqrOZmTGR=NYyL+j73ojTGOnw@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 23 Jun 2020 11:52:16 -0700
+Message-ID: <CAJ+vNU19ebj3xpOKxeHMzdMQjVdZoJCTFJ5DSYat7U4tpZTWvQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2] ARM: dts: imx6qdl-gw551x: fix audio SSI
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
+On Tue, Jun 23, 2020 at 11:41 AM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> Hi Tim,
+>
+> On Tue, Jun 23, 2020 at 3:31 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> >
+> > The audio codec on the GW551x routes to ssi1
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+>
+> Shouldn't this have a Fixes tag, so that it could be backported to
+> older stable kernels?
 
-Thanks for the patch.
+Fabio,
 
-On Sun, 21 Jun 2020 at 22:55, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> User driver need to get HDR10+ information for each capture buffer;
-> For some encoder cases, user driver need to get encoded message for
-> each frame. So add support read-only(Ro) request for capture queue.
->
-> Ro request mean that user driver just can get ext ctrls, set ext ctrls
-> is not not allowed. Ro Request also can be used in output queue.
->
-> There is not upstream driver to use this feature at now, but we are
-> developing internal driver to use it. If it is ready, we will try to
-> upstream vdec/venc driver based on this feature.
->
+Yes, it likely should as it fixes audio capture from 3117e851cef1b4e1.
+I didn't think it would apply cleanly to stable but it looks like it
+does.
 
-An upstream driver using the feature would be important, but it would
-be nice to also have: an open-source userspace application,
-and a proper explanation in the stateless decoder interface specification.
+I cc'd stable@vger.kernel.org. Should I submit a new revision with the
+following?
+
+Cc: stable@vger.kernel.org
+Fixes: 3117e851cef1b4e1 ("ARM: dts: imx: Add TDA19971 HDMI Receiver to GW551x")
 
 Thanks,
-Ezequiel
 
-> Change compared to v1:
-> -change commit message of patch 01/02
-> -change commit message of patch 02/02
->
-> Yunfei Dong (2):
->   media: v4l UAPI: add V4L2_BUF_CAP_SUPPORTS_RO_REQUESTS
->   media: v4l: Add Ro request api for capture queue
->
->  .../media/v4l/vidioc-reqbufs.rst              |   4 +
->  .../media/common/videobuf2/videobuf2-v4l2.c   |   7 ++
->  drivers/media/mc/mc-request.c                 |  10 +-
->  drivers/media/v4l2-core/v4l2-ctrls.c          | 107 +++++++++++++++---
->  drivers/media/v4l2-core/v4l2-ioctl.c          |  22 ++++
->  drivers/media/v4l2-core/v4l2-mem2mem.c        |  19 ++--
->  include/media/v4l2-ctrls.h                    |  22 +++-
->  include/media/v4l2-fh.h                       |   2 +
->  include/media/videobuf2-core.h                |   2 +
->  include/uapi/linux/videodev2.h                |   1 +
->  10 files changed, 158 insertions(+), 38 deletions(-)
->
+Tim
