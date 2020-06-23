@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A90CD2047AC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 04:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 968ED2047AE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 04:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731848AbgFWCvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 22:51:32 -0400
-Received: from mx2.suse.de ([195.135.220.15]:32924 "EHLO mx2.suse.de"
+        id S1731869AbgFWCve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 22:51:34 -0400
+Received: from mx2.suse.de ([195.135.220.15]:32972 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731842AbgFWCvc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 22:51:32 -0400
+        id S1731843AbgFWCvd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jun 2020 22:51:33 -0400
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 6AA9FAE35;
-        Tue, 23 Jun 2020 02:51:29 +0000 (UTC)
+        by mx2.suse.de (Postfix) with ESMTP id DADD2AE7B;
+        Tue, 23 Jun 2020 02:51:30 +0000 (UTC)
 From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
 To:     linux-realtek-soc@lists.infradead.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -24,9 +24,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         <stanley_chang@realtek.com>, Edgar Lee <cylee12@realtek.com>,
         =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 01/29] dt-bindings: soc: Add Realtek RTD1195 chip info binding
-Date:   Tue, 23 Jun 2020 04:50:38 +0200
-Message-Id: <20200623025106.31273-2-afaerber@suse.de>
+Subject: [PATCH v2 03/29] arm64: dts: realtek: rtd129x: Add chip info node
+Date:   Tue, 23 Jun 2020 04:50:40 +0200
+Message-Id: <20200623025106.31273-4-afaerber@suse.de>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200623025106.31273-1-afaerber@suse.de>
 References: <20200623025106.31273-1-afaerber@suse.de>
@@ -38,75 +38,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define a binding for RTD1195 and later DHC SoCs' chip info registers.
-Add the new directory to MAINTAINERS.
+Add a DT node for chip identification.
 
+Acked-by: James Tai <james.tai@realtek.com>
 Signed-off-by: Andreas Färber <afaerber@suse.de>
 ---
- Note: The binding gets extended compatibly twice with additional properties.
- Could be squashed later if approved.
- 
  v1 -> v2:
- * Dropped quotes for compatible (Rob)
- * Added additionalProperties: false (Rob)
+ * Rebased onto SB2 syscon
  
- .../soc/realtek/realtek,rtd1195-chip.yaml     | 34 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 35 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/realtek/realtek,rtd1195-chip.yaml
+ arch/arm64/boot/dts/realtek/rtd129x.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1195-chip.yaml b/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1195-chip.yaml
-new file mode 100644
-index 000000000000..86a1de214782
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1195-chip.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/realtek/realtek,rtd1195-chip.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/arch/arm64/boot/dts/realtek/rtd129x.dtsi b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
+index 93ab6fdd03d4..b5be9df80dae 100644
+--- a/arch/arm64/boot/dts/realtek/rtd129x.dtsi
++++ b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
+@@ -201,6 +201,11 @@ sb2_hd_sem: hwspinlock@0 {
+ 		#hwlock-cells = <0>;
+ 	};
+ 
++	chip-info@200 {
++		compatible = "realtek,rtd1195-chip";
++		reg = <0x200 0x8>;
++	};
 +
-+title: Realtek Digital Home Center chip identification
-+
-+maintainers:
-+  - Andreas Färber <afaerber@suse.de>
-+
-+description: |
-+  The Realtek DHC SoCs have some registers to identify the chip and revision.
-+
-+properties:
-+  compatible:
-+    const: realtek,rtd1195-chip
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    chip-info@1801a200 {
-+        compatible = "realtek,rtd1195-chip";
-+        reg = <0x1801a200 0x8>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d282ee3492e0..78adbc3cc101 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2307,6 +2307,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-realtek-soc@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/realtek.yaml
-+F:	Documentation/devicetree/bindings/soc/realtek/
- F:	arch/arm/boot/dts/rtd*
- F:	arch/arm/mach-realtek/
- F:	arch/arm64/boot/dts/realtek/
+ 	sb2_hd_sem_new: hwspinlock@620 {
+ 		compatible = "realtek,rtd1195-sb2-sem";
+ 		reg = <0x620 0x20>;
 -- 
 2.26.2
 
