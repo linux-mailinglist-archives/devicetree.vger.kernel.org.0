@@ -2,58 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD04B205000
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 13:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CFE6205046
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 13:15:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732269AbgFWLH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 07:07:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732189AbgFWLH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jun 2020 07:07:26 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8059D2072E;
-        Tue, 23 Jun 2020 11:07:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1592910446;
-        bh=zsfKB1wuRE9SSXUBbFLTHKmSLXW6nA+V2ztTFC7lHs4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PY2qDnfEkRWh64fvJQJyDv79ltuupggMNAkE7iNBNsaD+7RGnhEkx1cYdXSH5F06H
-         uZdZqJ8knVOiE20AX92B+EGOEmmP2bNOmgUtDJ0l3UyezYAgoFVvCk1mjBI8PPeioy
-         09TfWUJ/d5RJW5ngA/MMsrpbsKOnex4ffkufF9a8=
-Date:   Tue, 23 Jun 2020 19:07:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     peng.fan@nxp.com
-Cc:     fabio.estevam@nxp.com, kernel@pengutronix.de, aisheng.dong@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        l.stach@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 0/3] arm64: dts: imx8qxp: dtb aliases fix/update
-Message-ID: <20200623110720.GY30139@dragon>
-References: <1592894994-30015-1-git-send-email-peng.fan@nxp.com>
+        id S1732261AbgFWLPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 07:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732447AbgFWLPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 07:15:18 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC7CC061755
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 04:15:17 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id f139so1370072wmf.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 04:15:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
+        b=ZxmeZSlTKrBE7SIwCgUr5+IQXg0VboTRBMAPFefZfO9Y0QFQt27pNiz9D343jyqCUK
+         iaukbTFgnP7KKKusIyTazti58H93KSxj5LxKpIJd73ae/UrIM+D2EydiZsgEHWrBVUHY
+         A49p4eYwxffCDetzsfxQQ5f2VIoHaS415E/jSLFd+D1X1bKNgiZ98vBg9LdIQ7Zjx+BS
+         wClobk34EJhAFFoD4AFbiZv4S8CawNY7AMsJ0JPyNPDbdARs8NuXUDeVFTvfTpqMkwxw
+         u6E/ZhJKOYRnmbknRM2i4voRN+Bd5YK+CQapxhy1jB12K4/pkPKclZ+p4G7ceGTNd0Hh
+         pBMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
+        b=mMSi5oNLOtlsy0wD4t8+1l80X3/Cv65moqFXP6DcuTnYwfyPlKS32cwyL+W3hCE1cs
+         GvFP94rr7S3zX44dE0rTZrkbK4OPCAkilL7q5kVXaJTRS+wMeqNYHcvA37FbrXyfAlf7
+         yfelPfHjmcT8mwhdPW7WSXe0hj9u8z39xJhD2VYtpd09NFd9ZN2y4bkvB3ItVygVwoVj
+         uFVgtr8gEy1UXC4xWA1txHD2GoEluS2AQlYHFagtH3UIVcb7t7HOnH/PlMB2xKteGoEj
+         EWHCKtbU2ZXpII0WsAK0xwDaPoWSvh6xUNz7vb0aOFcNIOaURs42aoV4TrqIKunmHTbX
+         /vtw==
+X-Gm-Message-State: AOAM530AbXed1gybEx0fD9mIOXpdyhGCJrCmihxFWenTggbIFmSqV09l
+        Zdd16nzbuvEAOLIQmGNFwkXpyi0fc6EOuezII+A=
+X-Google-Smtp-Source: ABdhPJzAyLvva5MDt9FtQlBzIToXQYgdJw2LiJAYqbGSCL3ZKk62C2z69LEYyraGzIlr1C9AOifE6eGCp9CB5XxUKNE=
+X-Received: by 2002:a05:600c:2317:: with SMTP id 23mr2028887wmo.72.1592910915898;
+ Tue, 23 Jun 2020 04:15:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1592894994-30015-1-git-send-email-peng.fan@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Received: by 2002:a1c:f002:0:0:0:0:0 with HTTP; Tue, 23 Jun 2020 04:15:15
+ -0700 (PDT)
+Reply-To: sarahkoffi389@yahoo.co.jp
+From:   Sarah Koffi <paulwiliam782@gmail.com>
+Date:   Tue, 23 Jun 2020 12:15:15 +0100
+Message-ID: <CAHqcnY1KD3hKmPHEgt8yiB2mN+LLiSnOh+cvFm_AesZ7xtOqUQ@mail.gmail.com>
+Subject: Greetings From Mrs. Sarah Koffi
+To:     sarahkoffi389@yahoo.co.jp
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 23, 2020 at 02:49:51PM +0800, peng.fan@nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> V2:
->  Fix order in patch 2/3, no other changes
-> 
-> Minor patchset to fix and update alias for i.MX8QXP
-> 
-> Peng Fan (3):
->   arm64: dts: imx8qxp: add alias for lsio MU
->   arm64: dts: imx8qxp: add i2c aliases
->   arm64: dts: imx8qxp: Add ethernet alias
+Greetings From Mrs. Sarah Koffi
 
-Applied, thanks.
+I'm contacting you based on your good profiles I read and for a good
+reasons, I am in search of a property to buy in your country as I
+intended to come over to your
+country for investment, Though I have not meet with you before but I
+believe that one has to risk confiding in someone to succeed sometimes
+in life.
+
+My name is Mrs. Sarah Koffi. My late husband deals on Crude Oil with
+Federal Government of Sudan and he has a personal Oil firm in Bentiu
+Oil zone town and Upper
+Nile city. What I have experience physically, I don't wish to
+experience it again in my life due to the recent civil Ethnic war
+cause by our President Mr. Salva Kiir
+and the rebel leader Mr Riek Machar, I have been Under United Nation
+refuge camp in chad to save my life and that of my little daughter.
+
+Though, I do not know how you will feel to my proposal, but the truth
+is that I sneaked into Chad our neighboring country where I am living
+now as a refugee.
+I escaped with my little daughter when the rebels bust into our house
+and killed my husband as one of the big oil dealers in the country,
+ever since then, I have being on the run.
+
+I left my country and move to Chad our neighboring country with the
+little ceasefire we had, due to the face to face peace meeting accord
+coordinated by the US Secretary of State, Mr John Kerry and United
+Nations in Ethiopia (Addis Ababa) between our President Mr Salva Kiir
+and the rebel leader Mr Riek Machar to stop this war.
+
+I want to solicit for your partnership with trust to invest the $8
+million dollars deposited by my late husband in Bank because my life
+is no longer safe in our country, since the rebels are looking for the
+families of all the oil business men in the country to kill, saying
+that they are they one that is milking the country dry.
+
+I will offer you 20% of the total fund for your help while I will
+partner with you for the investment in your country.
+If I get your reply.
+
+I will wait to hear from you so as to give you details.With love from
+
+ i need you to contact me here sarahkoffi389@yahoo.co.jp
+
+Mrs. Sarah Koffi
