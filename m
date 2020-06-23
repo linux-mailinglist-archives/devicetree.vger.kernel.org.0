@@ -2,94 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E35E204784
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 04:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8D32047B1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 04:54:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731988AbgFWCvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jun 2020 22:51:44 -0400
-Received: from mx2.suse.de ([195.135.220.15]:33040 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731972AbgFWCvn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jun 2020 22:51:43 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 54B1AB1A4;
-        Tue, 23 Jun 2020 02:51:41 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To:     linux-realtek-soc@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?James=20Tai=20=5B=E6=88=B4=E5=BF=97=E5=B3=B0=5D?= 
-        <james.tai@realtek.com>,
-        =?UTF-8?q?Stanley=20Chang=20=5B=E6=98=8C=E8=82=B2=E5=BE=B7=5D?= 
-        <stanley_chang@realtek.com>, Edgar Lee <cylee12@realtek.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 25/29] arm64: dts: realtek: rtd129x: Add eFuse package_id to chip-info
-Date:   Tue, 23 Jun 2020 04:51:02 +0200
-Message-Id: <20200623025106.31273-26-afaerber@suse.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200623025106.31273-1-afaerber@suse.de>
-References: <20200623025106.31273-1-afaerber@suse.de>
+        id S1731989AbgFWCyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jun 2020 22:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731863AbgFWCyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jun 2020 22:54:17 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC4DC061796
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 19:54:16 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id e9so9181296pgo.9
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2020 19:54:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=cQ3SCOG8CEWcdo/tXLcomxA+Sv9DPM6c0TLHTvFTydo=;
+        b=pGl6N2G5ObJ6Flfwwb/LTlhcADw8HqeYPMPuDoiqlKFA00zySbJ+jVN0WUI2oK/9wp
+         i0U3Hw9lPj95YKs2ZnSpnLyiVg4XcJHZtNF+C4BzXk+2rBH9UPPu0ZjDxBW5s5Crz/IE
+         vjFgJxJMtUOD6xJh/+3PFbOW+LGi+N9lnp4yBRxMCJ7Nn2JZ3IT3f1gmjv3axxe6CqCe
+         EUJDaYHufbOYowmLLdm7QgQbw9RVN7Vg+mtxIGO8vLAyiK+ht8FyK3TwN2IT3IWAF640
+         3hYrR7VxT+gII/F6wHtBK6GhbJuCFg6NnNEMfI2IeL6/VzfOmNPVATRTS4RNSgP8q8H6
+         /4pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=cQ3SCOG8CEWcdo/tXLcomxA+Sv9DPM6c0TLHTvFTydo=;
+        b=e7N4qV5NYNPmO1QwZRjbKwgb5meZhiQr7jVMwsbExUCIwA7+K8BAqAIqKocShsbnNA
+         6iJs+e+KH6ukJZWR7xDUVTcfq4v9eTdZpXQWMNJKWSaopr76n4Sqfk5IEHG/3HruMQEM
+         u2ffAsHPwRN2bGlbWqEymm/6/gtUUSiL7iX0PoPYE5YOqgJjKl41iV9hO/3LnyeXs/Jz
+         +L5zvrfft7b22FbKs5cghfHRilUZfuIdTgjSkkkpi664SGtayA1WDqkWtRIWUWP2/c4H
+         aDsdfuao3d9E8/QSo6R4LX+oq1mgjKbvw50vawX3t0dC5pzrF+Gx0Bvbh1rslFaTCggO
+         ydsw==
+X-Gm-Message-State: AOAM5325EOWZR3K8fKERIO2yuUkru8aR9HU3/jdyUDOZkEJn85j6897M
+        WHAkLMqjBt8BEt+fTHGmXefA
+X-Google-Smtp-Source: ABdhPJxohB33RWsPvmL6Y1OqwR64gc0rQ3g/GBld84r8b4FKj1LxmOejpV4ZoFtUuLS26GdmYNvhIw==
+X-Received: by 2002:a62:1c46:: with SMTP id c67mr22439884pfc.170.1592880856068;
+        Mon, 22 Jun 2020 19:54:16 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:609d:7d26:e4ff:f0b0:edd6:2484])
+        by smtp.gmail.com with ESMTPSA id i20sm15589173pfd.81.2020.06.22.19.54.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 22 Jun 2020 19:54:15 -0700 (PDT)
+Date:   Tue, 23 Jun 2020 08:24:07 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8250: Add remoteprocs
+Message-ID: <20200623025407.GE11093@Mani-XPS-13-9360>
+References: <20200622222747.717306-1-bjorn.andersson@linaro.org>
+ <20200622222747.717306-6-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200622222747.717306-6-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the package_id field as sub-node to eFuse and reference it for
-chip identification.
+On Mon, Jun 22, 2020 at 03:27:46PM -0700, Bjorn Andersson wrote:
+> Add remoteproc nodes for the audio, compute and sensor cores, define
+> glink for each one and enable them on the MTP with appropriate firmware
+> defined.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Signed-off-by: Andreas Färber <afaerber@suse.de>
----
- v1 -> v2:
- * Instead of extending reg, use nvmem-cells reference for eFuse
- 
- arch/arm64/boot/dts/realtek/rtd129x.dtsi | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/realtek/rtd129x.dtsi b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-index 8f96d4e4c46b..c35955e915f4 100644
---- a/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-@@ -156,6 +156,13 @@ reset4: reset-controller@50 {
- 	};
- };
- 
-+&efuse {
-+	efuse_package_id: package-id@1d8 {
-+		reg = <0x1d8 0x1>;
-+		bits = <0 2>;
-+	};
-+};
-+
- &iso {
- 	iso_reset: reset-controller@88 {
- 		compatible = "snps,dw-low-reset";
-@@ -202,13 +209,6 @@ uart2: serial@400 {
- 	};
- };
- 
--&otp {
--	otp_package_id: package-id@1d8 {
--		reg = <0x1d8 0x1>;
--		bits = <0 2>;
--	};
--};
--
- &sb2 {
- 	sb2_hd_sem: hwspinlock@0 {
- 		compatible = "realtek,rtd1195-sb2-sem";
-@@ -220,6 +220,8 @@ chip-info@200 {
- 		compatible = "realtek,rtd1195-chip";
- 		reg = <0x200 0x8>;
- 		iso-syscon = <&iso>;
-+		nvmem-cells = <&efuse_package_id>;
-+		nvmem-cell-names = "efuse_package_id";
- 	};
- 
- 	sb2_hd_sem_new: hwspinlock@620 {
--- 
-2.26.2
+Thanks,
+Mani
 
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250-mtp.dts |  15 +++
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi    | 116 ++++++++++++++++++++++++
+>  2 files changed, 131 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> index 63d259931c4d..6894f8490dae 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> @@ -55,6 +55,11 @@ vreg_s6c_0p88: smpc6-regulator {
+>  	};
+>  };
+>  
+> +&adsp {
+> +	status = "okay";
+> +	firmware-name = "qcom/sm8250/adsp.mbn";
+> +};
+> +
+>  &apps_rsc {
+>  	pm8150-rpmh-regulators {
+>  		compatible = "qcom,pm8150-rpmh-regulators";
+> @@ -348,10 +353,20 @@ vreg_l7f_1p8: ldo7 {
+>  	};
+>  };
+>  
+> +&cdsp {
+> +	status = "okay";
+> +	firmware-name = "qcom/sm8250/cdsp.mbn";
+> +};
+> +
+>  &qupv3_id_1 {
+>  	status = "okay";
+>  };
+>  
+> +&slpi {
+> +	status = "okay";
+> +	firmware-name = "qcom/sm8250/slpi.mbn";
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges = <28 4>, <40 4>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 364d9a798673..a21299b9c62f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -1052,6 +1052,83 @@ tcsr_mutex_regs: syscon@1f40000 {
+>  			reg = <0x0 0x01f40000 0x0 0x40000>;
+>  		};
+>  
+> +		slpi: remoteproc@5c00000 {
+> +			compatible = "qcom,sm8250-slpi-pas";
+> +			reg = <0 0x05c00000 0 0x4000>;
+> +
+> +			interrupts-extended = <&pdc 9 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "xo";
+> +
+> +			power-domains = <&aoss_qmp AOSS_QMP_LS_SLPI>,
+> +					<&rpmhpd SM8250_LCX>,
+> +					<&rpmhpd SM8250_LMX>;
+> +			power-domain-names = "load_state", "lcx", "lmx";
+> +
+> +			memory-region = <&slpi_mem>;
+> +
+> +			qcom,smem-states = <&smp2p_slpi_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_SLPI
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_SLPI
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "lpass";
+> +				qcom,remote-pid = <3>;
+> +			};
+> +		};
+> +
+> +		cdsp: remoteproc@8300000 {
+> +			compatible = "qcom,sm8250-cdsp-pas";
+> +			reg = <0 0x08300000 0 0x10000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_cdsp_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "xo";
+> +
+> +			power-domains = <&aoss_qmp AOSS_QMP_LS_CDSP>,
+> +					<&rpmhpd SM8250_CX>;
+> +			power-domain-names = "load_state", "cx";
+> +
+> +			memory-region = <&cdsp_mem>;
+> +
+> +			qcom,smem-states = <&smp2p_cdsp_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_CDSP
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "lpass";
+> +				qcom,remote-pid = <5>;
+> +			};
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sm8250-pdc", "qcom,pdc";
+>  			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
+> @@ -1668,6 +1745,45 @@ config {
+>  			};
+>  		};
+>  
+> +		adsp: remoteproc@17300000 {
+> +			compatible = "qcom,sm8250-adsp-pas";
+> +			reg = <0 0x17300000 0 0x100>;
+> +
+> +			interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "xo";
+> +
+> +			power-domains = <&aoss_qmp AOSS_QMP_LS_LPASS>,
+> +					<&rpmhpd SM8250_LCX>,
+> +					<&rpmhpd SM8250_LMX>;
+> +			power-domain-names = "load_state", "lcx", "lmx";
+> +
+> +			memory-region = <&adsp_mem>;
+> +
+> +			qcom,smem-states = <&smp2p_adsp_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_LPASS
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "lpass";
+> +				qcom,remote-pid = <2>;
+> +			};
+> +		};
+> +
+>  		intc: interrupt-controller@17a00000 {
+>  			compatible = "arm,gic-v3";
+>  			#interrupt-cells = <3>;
+> -- 
+> 2.26.2
+> 
