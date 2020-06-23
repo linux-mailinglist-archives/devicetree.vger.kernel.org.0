@@ -2,172 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A70FE204C7D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 10:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE02A204D15
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 10:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731724AbgFWIfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 04:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731567AbgFWIfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 04:35:11 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1935CC061573;
-        Tue, 23 Jun 2020 01:35:11 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id 18so1104434otv.6;
-        Tue, 23 Jun 2020 01:35:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=goSzzxDsgzxsQuY6F1h0SsNpCeO6nw7HQJbzXsVCZxo=;
-        b=ij3LAsP9p1irjc88wp1/WWNHRrwz3UZn4dmSUurQcPXlkh41m+MnezeltpEXliOxCt
-         3kxSCX/4mPnFXq4aU057VjYSGpTGZrzzbJh5hHQi7dNdKWoa+CeUDBGmwvYnMD0T0e7g
-         Zf3DMSrWTgKKz2RUHr6MjNXLPC7iat4GzmFDvoGBlMzY8c1YInfnPOGF2SOjDI/FkzUB
-         jGgTDY0j5xpx3tobTOPpKWUnG8uoy3BLAWFeis2vjxDOhRP25kXrtnKqd/ZB1ALr1kuQ
-         xX+XKpRAYJioif5IWq6jAiewZ4Oky2moCN/xQsOeuFpvjGUzrMMsAoCqh4Elq8QWcRD6
-         ZuXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=goSzzxDsgzxsQuY6F1h0SsNpCeO6nw7HQJbzXsVCZxo=;
-        b=PpfK3U8zyxd2buZJtox4W0jSmc1M1wMSeixVekqgfcqTyaH2ge/bkb2W0aQ2S2utaQ
-         nhaQoFsNlmorw8nKC3EWA0CLs7ZhZ1w4U9/4UB7kR+NXvjuTkaQBbp7dQ8+monyn1wr8
-         zmX+JhBejofPrLP7XMG7QAwzzVNWEqTY17mbLUL/neBdRyxTWkcMw8errylzRr38iv0M
-         rICWE9WP0FkNgP8i2W73otecrkzNAoDv3nc7rjg14nC3URZp9g8RNBM3LqV6zvdn9yNC
-         YIQ8c1lyX4tCxn6vYFTL+hzIhFdkWvWDIQl+n3f+AbcL1ezvqwctLKTg2nr+40gcSMOK
-         bmRw==
-X-Gm-Message-State: AOAM5317u/5teCkY10D2Q8VVweDdmDysQogfDgUzLTDFpMPSPfeMHzdE
-        70Qb1tzR9egnVvtZ0ze4TBRL9YPChizRtpePSvo=
-X-Google-Smtp-Source: ABdhPJwffdh0M4nKESM3uobBBa2UiPZNyiH0quaHQH7SdqqFBJmq9vJwUIlp8hKAj1M9RkRbx/6mjjn2BU9Qv+N0dQQ=
-X-Received: by 2002:a9d:6546:: with SMTP id q6mr16850481otl.365.1592901310350;
- Tue, 23 Jun 2020 01:35:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <1591555267-21822-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1591555267-21822-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWKhq63yT9XbbV4Nmr0EJZcGQ396pVCqkrzMTmgunznaQ@mail.gmail.com>
- <CA+V-a8ueb-3VD-=Bcg6dJqZhLRoCBxu-Zo+key_oEFchNc_APA@mail.gmail.com>
- <CA+V-a8vAfoQGpv-sXvJ11i9QC=EvKg750yusHBhLp8C17KmJbA@mail.gmail.com> <CAMuHMdWp6dL3g56EGDGnDBs+GNHeaO7ejy1k_4EaM_RY+dV=Cg@mail.gmail.com>
-In-Reply-To: <CAMuHMdWp6dL3g56EGDGnDBs+GNHeaO7ejy1k_4EaM_RY+dV=Cg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 23 Jun 2020 09:34:44 +0100
-Message-ID: <CA+V-a8tUvT1Q+nhsk1Te5CrYSSTbEqvO1=8QyRHY4q2VYNzoKQ@mail.gmail.com>
-Subject: Re: [PATCH 03/11] arm64: dts: renesas: hihope-common: Separate out
- Rev.2.0 specific into hihope-common-rev2.dtsi file
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1731978AbgFWIwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 04:52:35 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:41238 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731811AbgFWIwW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jun 2020 04:52:22 -0400
+Received: from linux.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxv2uFwvFecLBIAA--.12S2;
+        Tue, 23 Jun 2020 16:51:19 +0800 (CST)
+From:   Tiezhu Yang <yangtiezhu@loongson.cn>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Guo Ren <guoren@kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+        Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-csky@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mips@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+        Xuefeng Li <lixuefeng@loongson.cn>
+Subject: [PATCH 0/7] Fix potential resource leaks and do some code cleanups about irqchip
+Date:   Tue, 23 Jun 2020 16:51:09 +0800
+Message-Id: <1592902276-3969-1-git-send-email-yangtiezhu@loongson.cn>
+X-Mailer: git-send-email 2.1.0
+X-CM-TRANSID: AQAAf9Dxv2uFwvFecLBIAA--.12S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7AFy5GF48uFy7WrWfGr1Utrb_yoW8CrWDpF
+        47A39Ivr1fCay3Zr1fAr40yry3A3Z5Kay7K3yxt3sxXr95G34DWF1UAa4kXr97JrWxG3Wj
+        9F1rWFWUG3WUCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUvF14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+        6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+        CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+        2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
+        W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+        Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
+        xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5
+        MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
+        0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AK
+        xVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvj
+        fUeApeUUUUU
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+When I test the irqchip code of Loongson, I read the related code of other
+chips in drivers/irqchip and I find some potential resource leaks in the
+error path, I think it is better to fix them. Additionally, do some code
+cleanups about Loongson to make it more clean and readable.
 
-On Tue, Jun 23, 2020 at 9:14 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Jun 23, 2020 at 9:51 AM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Mon, Jun 8, 2020 at 3:59 PM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Mon, Jun 8, 2020 at 3:47 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Sun, Jun 7, 2020 at 8:41 PM Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > > Separate out Rev.2.0 specific hardware changes into
-> > > > > hihope-common-rev2.dtsi file so that hihope-common.dtsi can be used
-> > > > > by all the variants for RZ/G2M[N] boards.
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
->
-> > > > > @@ -0,0 +1,101 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > > +/*
-> > > > > + * Device Tree Source for the HiHope RZ/G2[MN] main board Rev.2.0 common
-> > > > > + * parts
-> > > > > + *
-> > > > > + * Copyright (C) 2020 Renesas Electronics Corp.
-> > > > > + */
-> > > > > +
-> > > > > +#include <dt-bindings/gpio/gpio.h>
-> > > > > +
-> > > > > +/ {
-> > > > > +       leds {
-> > > > > +               compatible = "gpio-leds";
-> > > > > +
-> > > > > +               bt_active_led {
-> > > > > +                       label = "blue:bt";
-> > > > > +                       gpios = <&gpio7  0 GPIO_ACTIVE_HIGH>;
-> > > > > +                       linux,default-trigger = "hci0-power";
-> > > > > +                       default-state = "off";
-> > > > > +               };
-> > > > > +
-> > > > > +               led0 {
-> > > > > +                       gpios = <&gpio6 11 GPIO_ACTIVE_HIGH>;
-> > > > > +               };
-> > > > > +
-> > > > > +               led1 {
-> > > > > +                       gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
-> > > > > +               };
-> > > > > +
-> > > > > +               led2 {
-> > > > > +                       gpios = <&gpio6 13 GPIO_ACTIVE_HIGH>;
-> > > > > +               };
-> > > > > +
-> > > > > +               led3 {
-> > > > > +                       gpios = <&gpio0  0 GPIO_ACTIVE_HIGH>;
-> > > > > +               };
-> > > >
-> > > > led1, led2, and led3 are present on both, so I'd keep them in
-> > > > hihope-common.dtsi.
-> > > >
-> > > The leds defined in hihope-common-rev4.dtsi are as per the label names
-> > > on the schematics/board so that it's easier to identify the LED's by
-> > > name.
-> > >
-> > I was waiting on the above to be confirmed.
->
-> I can confirm the naming of the LEDs on the rev4 board.
-> However, following the same reasoning, the rev2 LEDs should be renamed
-> led2201, led2202, led2203, and led2402 ;-)
+Tiezhu Yang (7):
+  irqchip: Fix potential resource leaks
+  irqchip/loongson-htpic: Remove redundant kfree operation
+  irqchip/loongson-htvec: Check return value of
+    irq_domain_translate_onecell()
+  irqchip/loongson-pch-pic: Check return value of
+    irq_domain_translate_twocell()
+  irqchip/loongson-pch-msi: Remove unneeded variable
+  irqchip/loongson-htpic: Remove unneeded select of I8259
+  dt-bindings: interrupt-controller: Fix typos in loongson,liointc.yaml
 
-I didn't want to change any behaviour if some was using the LED's with names.
+ .../interrupt-controller/loongson,liointc.yaml     |  4 ++--
+ drivers/irqchip/Kconfig                            |  1 -
+ drivers/irqchip/irq-ath79-misc.c                   |  3 +++
+ drivers/irqchip/irq-csky-apb-intc.c                |  3 +++
+ drivers/irqchip/irq-csky-mpintc.c                  | 26 +++++++++++++++++-----
+ drivers/irqchip/irq-davinci-aintc.c                | 17 ++++++++++----
+ drivers/irqchip/irq-davinci-cp-intc.c              | 17 +++++++++++---
+ drivers/irqchip/irq-digicolor.c                    |  4 ++++
+ drivers/irqchip/irq-dw-apb-ictl.c                  | 11 ++++++---
+ drivers/irqchip/irq-loongson-htpic.c               |  6 ++---
+ drivers/irqchip/irq-loongson-htvec.c               | 10 +++++++--
+ drivers/irqchip/irq-loongson-pch-msi.c             |  7 +-----
+ drivers/irqchip/irq-loongson-pch-pic.c             | 15 ++++++++-----
+ drivers/irqchip/irq-ls1x.c                         |  4 +++-
+ drivers/irqchip/irq-mscc-ocelot.c                  |  6 +++--
+ drivers/irqchip/irq-nvic.c                         |  2 ++
+ drivers/irqchip/irq-omap-intc.c                    |  4 +++-
+ drivers/irqchip/irq-riscv-intc.c                   |  1 +
+ drivers/irqchip/irq-s3c24xx.c                      | 20 ++++++++++++-----
+ drivers/irqchip/irq-xilinx-intc.c                  |  1 +
+ 20 files changed, 116 insertions(+), 46 deletions(-)
 
-> Does anyone rely on the names?  If not, it may make sense to use the
-> rev4 names for both, in the common file?
->
-Not sure, but I'll take your suggestion and just name them as per rev4 naming.
+-- 
+2.1.0
 
-> Not even considering the switches...
-> Seems they forgot to rename switches SW220[123] when renaming LED220[123].
-> Worse, on rev2, you have SW220_2_/LED220_1_ sharing a GPIO, and
-> SW220_1_/LED220_2_ sharing another one.
->
-> And on rev4, GP6_11/GP_LED/TSW_0_ is driving LED_4_ and SW220_2_?
->
-> Conclusion: I don't care how you name them ;-)
->
- :)
-
-Cheers,
---Prabhakar
-
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
