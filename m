@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD4F204D6A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 11:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09860204D96
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2020 11:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732051AbgFWJG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 05:06:59 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:44764 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732110AbgFWJGx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jun 2020 05:06:53 -0400
-Received: from linux.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxf2oexvFeJ7JIAA--.33S9;
-        Tue, 23 Jun 2020 17:06:45 +0800 (CST)
-From:   Tiezhu Yang <yangtiezhu@loongson.cn>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, Xuefeng Li <lixuefeng@loongson.cn>
-Subject: [PATCH 7/7 RESEND] dt-bindings: interrupt-controller: Fix typos in loongson,liointc.yaml
-Date:   Tue, 23 Jun 2020 17:06:38 +0800
-Message-Id: <1592903198-5505-8-git-send-email-yangtiezhu@loongson.cn>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1592903198-5505-1-git-send-email-yangtiezhu@loongson.cn>
-References: <1592903198-5505-1-git-send-email-yangtiezhu@loongson.cn>
-X-CM-TRANSID: AQAAf9Dxf2oexvFeJ7JIAA--.33S9
-X-Coremail-Antispam: 1UD129KBjvJXoWruw45tw4fGw4kCF18AF1xGrg_yoW8JF48pa
-        yDC3ZFgF4jqr13C3yDta4vk3W3Zr98AwnrGFZ5ZrWxJFsxuw1jqr4agFn5A3W5GrWxJFWU
-        XryrKa10gayjyaUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUmF14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-        kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-        z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-        4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE
-        3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
-        x0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8
-        JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
-        ka0xkIwI1lc2xSY4AK67AK6r4fMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-        6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-        AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj6F1UMIIF0xvE
-        2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42
-        IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2
-        KfnxnUUI43ZEXa7VUj7KsUUUUUU==
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+        id S1731941AbgFWJLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 05:11:37 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:53753 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731945AbgFWJLh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jun 2020 05:11:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1592903496; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=URJMAy2kMHYmo7L30NLkdmxA75Vd5batIlRwsEao3Ks=; b=GDazfbBA3fqR4mmQd5QFATWJVzZWqRZcV9FLj9U91lucYBkBzdVziOoq/BZSXTzIAzUORNVl
+ Dnyu+K6ML+HxddiVJk3GKtKkbgYRjk3VdhQl2To3+DoqcDrk1kpRoKlQ1ScYShrTENRoDD1k
+ PonOYuEMFFUpbsCbicrfacBsybU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5ef1c7426f2ee827dae3aab2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 23 Jun 2020 09:11:30
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EC6C9C433CB; Tue, 23 Jun 2020 09:11:29 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from tynnyri.adurom.net (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E8C42C433C8;
+        Tue, 23 Jun 2020 09:11:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E8C42C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     linux-wireless@vger.kernel.org, shayne.chen@mediatek.com,
+        evelyn.tsai@mediatek.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: wireless: mt76: add power-limits node
+References: <20200616192544.97938-1-nbd@nbd.name>
+Date:   Tue, 23 Jun 2020 12:11:25 +0300
+In-Reply-To: <20200616192544.97938-1-nbd@nbd.name> (Felix Fietkau's message of
+        "Tue, 16 Jun 2020 21:25:41 +0200")
+Message-ID: <87o8padu4i.fsf@tynnyri.adurom.net>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the following two typos in loongson,liointc.yaml:
-fron -> from
-it's -> its
+Felix Fietkau <nbd@nbd.name> writes:
 
-Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
----
- .../devicetree/bindings/interrupt-controller/loongson,liointc.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> This subnode can be used to set per-rate tx power limits either per
+> country code / regdomain or globally.
+> These limits are typically provided by the device manufacturers and are
+> used to limit sideband emissions and stay within regulatory limits
+>
+> Co-developed-by: Shayne Chen <shayne.chen@mediatek.com>
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> Signed-off-by: Shayne Chen <shayne.chen@mediatek.com>
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-index b1db21e..13908ca 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-@@ -51,8 +51,8 @@ properties:
-     description: |
-       This property points how the children interrupts will be mapped into CPU
-       interrupt lines. Each cell refers to a parent interrupt line from 0 to 3
--      and each bit in the cell refers to a children interrupt fron 0 to 31.
--      If a CPU interrupt line didn't connected with liointc, then keep it's
-+      and each bit in the cell refers to a children interrupt from 0 to 31.
-+      If a CPU interrupt line didn't connected with liointc, then keep its
-       cell with zero.
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     minItems: 4
+I think Shayne's s-o-b should follow the Co-developed-by line.
+
 -- 
-2.1.0
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
