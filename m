@@ -2,188 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694D7234450
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 12:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A818223445F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 13:03:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732485AbgGaKxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 06:53:12 -0400
-Received: from mailout07.rmx.de ([94.199.90.95]:55415 "EHLO mailout07.rmx.de"
+        id S1732437AbgGaLDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jul 2020 07:03:33 -0400
+Received: from mga17.intel.com ([192.55.52.151]:31640 "EHLO mga17.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729141AbgGaKxM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Jul 2020 06:53:12 -0400
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S1732293AbgGaLDd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 Jul 2020 07:03:33 -0400
+IronPort-SDR: 7sXxuCg7ULnFkDntTqFQaGwFRb4RHaJ/8064F/7AxjIRTUgdp4vn3o5H3eYjjFRfS+ZuW4f3vj
+ vfNOK1qOMlrw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="131830368"
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; 
+   d="scan'208";a="131830368"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2020 04:03:31 -0700
+IronPort-SDR: 7Q/eTgsF6UWajqc4+Szdc4pPoNYzCB3Ivcqe8wLHcDBNyfMdJz40ninEd6Nerj0lYhxlBj0tFE
+ 1YUbG4MYcx1Q==
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; 
+   d="scan'208";a="329215246"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2020 04:03:30 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 1249C20722; Fri, 31 Jul 2020 14:03:29 +0300 (EEST)
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        paasikivi.fi.intel.com
+X-Spam-Level: 
+X-Spam-Status: No, hits=-1.1 required=7.0 tests=BAYES_00=-1.9,
+        RCVD_IN_MSPIKE_H2=-0.001,RDNS_NONE=0.793 autolearn=no
+        autolearn_force=no version=3.4.2
+X-Original-To: sailus@localhost
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id 1998B202F2
+        for <sailus@localhost>; Tue, 23 Jun 2020 13:05:22 +0300 (EEST)
+X-Original-To: sakari.ailus@linux.intel.com
+Received: from linux.intel.com [10.54.29.200]
+        by paasikivi.fi.intel.com with IMAP (fetchmail-6.4.0.beta4)
+        for <sailus@localhost> (single-drop); Tue, 23 Jun 2020 13:05:22 +0300 (EEST)
+Received: from fmsmga004.fm.intel.com (fmsmga004.fm.intel.com [10.253.24.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mailout07.rmx.de (Postfix) with ESMTPS id 4BJ3z72b6fzBwbd;
-        Fri, 31 Jul 2020 12:53:07 +0200 (CEST)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4BJ3yk4dddz2xFV;
-        Fri, 31 Jul 2020 12:52:46 +0200 (CEST)
-Received: from n95hx1g2.localnet (192.168.54.39) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Fri, 31 Jul
- 2020 12:52:23 +0200
-From:   Christian Eggers <ceggers@arri.de>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "Hartmut Knaack" <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] iio: light: as73211: New driver
-Date:   Fri, 31 Jul 2020 12:52:22 +0200
-Message-ID: <2706267.JtmGt7LAV2@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <CAHp75VdDCnQLh0Qts8hsgLBy5TqibOKAYSeFxuV69XLroRBOEg@mail.gmail.com>
-References: <20200731070114.40471-1-ceggers@arri.de> <20200731070114.40471-3-ceggers@arri.de> <CAHp75VdDCnQLh0Qts8hsgLBy5TqibOKAYSeFxuV69XLroRBOEg@mail.gmail.com>
+        by linux.intel.com (Postfix) with ESMTPS id 356E558066D
+        for <sakari.ailus@linux.intel.com>; Tue, 23 Jun 2020 03:05:20 -0700 (PDT)
+IronPort-SDR: 2OF8D8qcvVo9sSR7UneAScL59XxYdk5yh5aLgfhIIyDh++PXrDKhA+/hL/dtAo+y4D9u7sutm7
+ Z2fElZiaUlWSlWeOflunBV4jDDTB/obCQ=
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="301198778"
+X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; 
+   d="scan'208";a="301198778"
+Received: from fmsmga101.fm.intel.com ([10.1.193.65])
+  by fmsmga004-1.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2020 03:05:19 -0700
+IronPort-SDR: HfsKNpB0TPy0K8z/MiJ41VAcJ9OjWkpvfGlw6wL/0S70KWmhEFcdCR3YZ6sa3PXTbJEOC6Lv9Q
+ i9iOOqr5LEnmM0Nh4tv0pqY52DxKjG9lg=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0G0AACe0/Feh8a3RtlmHQEBAQEJARI?=
+ =?us-ascii?q?BBQUBgXkFAQsBg24xLAqNG6QJCwEBAQEBAQEBAQgtAgQBAYRHAoIUAiQ3Bg4?=
+ =?us-ascii?q?CAwEBCwEBAQQBAQECAQYEAgIQAQEBCA0JCBsOhW6GSAMDMgFGEFE9GgcSgya?=
+ =?us-ascii?q?DAQG4RIkTgUCBOAGHdYRtGj+BQYERg06KDyIEkWuicYJkgQuYEQ8ggQmdcpE?=
+ =?us-ascii?q?xnnGBaYF6MxoIKAiDJFAXAg2OOI4vQDI3AgYIAQEDCVgkjlgBgRABAQ?=
+X-IPAS-Result: =?us-ascii?q?A0G0AACe0/Feh8a3RtlmHQEBAQEJARIBBQUBgXkFAQsBg?=
+ =?us-ascii?q?24xLAqNG6QJCwEBAQEBAQEBAQgtAgQBAYRHAoIUAiQ3Bg4CAwEBCwEBAQQBA?=
+ =?us-ascii?q?QECAQYEAgIQAQEBCA0JCBsOhW6GSAMDMgFGEFE9GgcSgyaDAQG4RIkTgUCBO?=
+ =?us-ascii?q?AGHdYRtGj+BQYERg06KDyIEkWuicYJkgQuYEQ8ggQmdcpExnnGBaYF6MxoIK?=
+ =?us-ascii?q?AiDJFAXAg2OOI4vQDI3AgYIAQEDCVgkjlgBgRABAQ?=
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="162105205"
+X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; 
+   d="scan'208";a="162105205"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+  by mga01b.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2020 03:05:14 -0700
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id A8BE4C000A;
+        Tue, 23 Jun 2020 10:05:08 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com,
+        roman.kovalivskyi@globallogic.com, dave.stevenson@raspberrypi.org,
+        naush@raspberrypi.com
+Cc:     Jacopo Mondi <jacopo@jmondi.org>, mrodin@de.adit-jv.com,
+        hugues.fruchet@st.com, mripard@kernel.org, aford173@gmail.com,
+        sudipi@jp.adit-jv.com, andrew_gabbasov@mentor.com,
+        erosca@de.adit-jv.com, linux-media@vger.kernel.org,
+        libcamera-devel@lists.libcamera.org
+Subject: [PATCH 01/25] dt-bindings: media: ov5647: Document pwdn-gpios
+Date:   Tue, 23 Jun 2020 12:07:51 +0200
+Message-Id: <20200623100815.10674-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200623100815.10674-1-jacopo@jmondi.org>
+References: <20200623100815.10674-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.39]
-X-RMX-ID: 20200731-125248-4BJ3yk4dddz2xFV-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Document in dt-schema bindings for the ov5647 sensor the optional
+'pwdn-gpios' property.
 
-thanks for further review. If nobody else sends comments, I'll
-publish the next version tonight. Maybe we could clarify the questions
-below in time.
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ Documentation/devicetree/bindings/media/i2c/ov5647.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Best regards
-Christian
-
-
-> W=1 (not V=1) runs kernel doc validation script.
-without V=1, I get nothing. Neither excess nor missing members
-are reported on my system.
-
-
-On Friday, 31 July 2020, 09:34:02 CEST, Andy Shevchenko wrote:
-> On Fri, Jul 31, 2020 at 10:03 AM Christian Eggers <ceggers@arri.de> wrote:
-> > +static const int as73211_samp_freq_avail[] = { 1024000, 2048000, 4096000,
-> > 8192000 };
-> This looks related to the below mentioned 1.024MHz.
-> 
-> Perhaps add a definition above and comment here?
-> 
-> #define AS73211_BASE_FREQ_1024KHZ   1024000
-added similar define in v5. The array looks like the following now
-
-static const int as73211_samp_freq_avail[] = {
-	AS73211_SAMPLE_FREQ_BASE,
-	AS73211_SAMPLE_FREQ_BASE * 2,
-	AS73211_SAMPLE_FREQ_BASE * 4,
-	AS73211_SAMPLE_FREQ_BASE * 8
-};
-
-
-> > +/* integration time in units of 1024 clock cycles */
-> 
-> Unify this with below one. Or the other way around, i.o.w. join one of
-> them into the other.
-> 
-> > +static unsigned int as73211_integration_time_1024cyc(struct as73211_data
-> > *data) +{
-> > +       /* integration time in CREG1 is in powers of 2 (x 1024 cycles) */
-> > +       return BIT(FIELD_GET(AS73211_CREG1_TIME_MASK, data->creg1));
-> > +}
-I'm not sure, whether this is possible. as73211_integration_time_1024cyc()
-returns the current setting from hardware. as73211_integration_time_us()
-calculates the resulting time. But as73211_integration_time_us() is also
-called in as73211_integration_time_calc_avail() inside the loop.
-
-> > +       unsigned int time_us = as73211_integration_time_us(data,
-> > +                                                          as73211_integration_time_1024cyc(data));
-> One line?
-checkpatch complains... ignore?
-
-
-> > +               int reg_bits, freq_kHz = val / 1000 /* HZ_PER_KHZ */;  /*
-> > 1024, 2048, ... */ +
-> > +               /* val must be 1024 * 2^x */
-> > +               if (val < 0 || (freq_kHz * 1000 /* HZ_PER_KHZ */) != val
-> > ||
-> > +                               !is_power_of_2(freq_kHz) || val2)
-> > +                       return -EINVAL;
-> 
-> Please, define HZ_PER_KHZ locally. It will really help when we move
-> these definitions to a global level.
-ok
-
-> 
-> ...
-> 
-> > +               /* gain can be calculated from CREG1 as 2^(13 -
-> > CREG1_GAIN) */ +               reg_bits = 13 - ilog2(val);
-> 
-> 13 is the second time in the code. Deserves a descriptive definition.
-I'm unsure how to solve this. Possible values for gain:
-
-CREG1[7:4]  | gain
------------------------------
-0           | 2048x
-1           | 1024x
-2           |  512x
-...         |  ...
-13          |    1x
-
-#define AS73211_CREG1_GAIN_1_NON_SHIFTED 13  // this define is CREG1 related, but not shifted to the right position
-
-static unsigned int as73211_gain(struct as73211_data *data)
-{
-	/* gain can be calculated from CREG1 as 2^(13 - CREG1_GAIN) */
-	return BIT(AS73211_CREG1_GAIN_1_NON_SHIFTED - FIELD_GET(AS73211_CREG1_GAIN_MASK, data->creg1));
-}
-
----- or ----
-
-#define AS73211_CREG1_GAIN_1 FIELD_PREP(AS73211_CREG1_GAIN_MASK, 13)
-
-static unsigned int as73211_gain(struct as73211_data *data)
-{
-	/* gain can be calculated from CREG1 as 2^(13 - CREG1_GAIN) */
-	return BIT(FIELD_GET(AS73211_CREG1_GAIN_MASK, AS73211_CREG1_GAIN_1) - FIELD_GET(AS73211_CREG1_GAIN_MASK, data->creg1));
-}
-
-
-> > +       indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> > +       if (indio_dev == NULL)
-> 
-> if (!indio_dev)
-> 
-> > +               return -ENOMEM;
-> 
-> ...
-> 
-> > +       indio_dev->dev.parent = dev;
-> 
-> Doesn't IIO core do this for you?
-devm_iio_device_alloc() doesn't pass 'dev' to iio_device_alloc().
-I already looked around, but I didn't find. And after debugging
-v5.4, devm_iio_device_alloc() definitely doesn't do it.
-
-> > +       ret = devm_iio_device_register(dev, indio_dev);
-> > +       if (ret < 0)
-> > +               goto powerdown;
-> > +
-> > +       return 0;
-> > 
-> > +powerdown:
-> > +       as73211_power(indio_dev, false);
-> > +       return ret;
-> 
-> devm_*() is tricky. Here you broke ordering heavily. So, consider to
-> add this under devm_add_action_or_reset().
-Sorry, my mistake! I already felt that something may be wrong here...
-
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
+index 067e222e0c7c3..58d64a69e9640 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
+@@ -25,6 +25,10 @@ properties:
+     description: Reference to the xclk clock
+     maxItems: 1
+ 
++  pwdn-gpios:
++    description: Reference to the GPIO connected to the pwdn pin. Active high.
++    maxItems: 1
++
+   port:
+     type: object
+     description: |-
+@@ -61,6 +65,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+ 
+     i2c {
+         #address-cells = <1>;
+@@ -70,6 +75,7 @@ examples:
+             compatible = "ovti,ov5647";
+             reg = <0x36>;
+             clocks = <&camera_clk>;
++            pwdn-gpios = <&pioE 29 GPIO_ACTIVE_HIGH>;
+ 
+             port {
+                 camera_out: endpoint {
+-- 
+2.27.0
 
