@@ -2,102 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7C9207F25
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2020 00:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A5B208A5D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2020 00:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388749AbgFXWJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 18:09:30 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39380 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387853AbgFXWJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 18:09:29 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05OM8bQG066351;
-        Wed, 24 Jun 2020 17:08:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593036517;
-        bh=8pxGcSuDGHL5/biPmNuRMj2l3xMNTG6V1WBrzq8DbV8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dew2+X+xSol3YYZIrkXvLmNttcwE1ukDAiVHz+Vo+ZzGEQpzssCP2gBtVQcMplq3b
-         ky9x5liGGAsvAOJtzc+3uop7JlYH0bsBpkeOe/thg+jtwRzT9POJVMmKAj/HQsf+M0
-         5l06R3bRbEpFuvwwt1xYrGfe4dKfkyKAgFpWJWkY=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05OM8bUj052317
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 24 Jun 2020 17:08:37 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 24
- Jun 2020 17:08:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 24 Jun 2020 17:08:37 -0500
-Received: from [10.250.52.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05OM8bgi092136;
-        Wed, 24 Jun 2020 17:08:37 -0500
-Subject: Re: [PATCH v6 4/7] ASoC: tas2562: Add rx and tx slot programming
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <devicetree@vger.kernel.org>
-References: <20200624174932.9604-1-dmurphy@ti.com>
- <20200624174932.9604-5-dmurphy@ti.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <c3c86e7f-de5e-dea1-98de-045bdd564fbc@ti.com>
-Date:   Wed, 24 Jun 2020 17:08:32 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S2388994AbgFXWc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 18:32:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732806AbgFXWc5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jun 2020 18:32:57 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0BCCC207E8;
+        Wed, 24 Jun 2020 22:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593037977;
+        bh=re+23lEtejlBL2hZKAV3cnX/dPCJsdHfzCswGg4aOxM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=1t14PuOEhWUKiu8KZmKGnna5WDSKG3rdX2orLMxchl2Cl4eaNr1NeP05Cp+dQd/Nc
+         rdlkErZ3YS6jsWYtZNDjj+vGMiWu4ka7lCAEO3IZDGbQwWftkcvi5Y1CvhqwQwsO3/
+         6of0YcmCokfaN9zNY9k0UAh1oLasgN8yzYgiQqjM=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20200624174932.9604-5-dmurphy@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMS8qEVHxnAwC9fK69Pb4MEMWVEa9N7ZdkQCkXwvqC-JfQEfRA@mail.gmail.com>
+References: <20200623230018.303776-1-konradybcio@gmail.com> <CAMS8qEVHxnAwC9fK69Pb4MEMWVEa9N7ZdkQCkXwvqC-JfQEfRA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] clk: qcom: smd: Add support for MSM8992/4 rpm clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+To:     Konrad Dybcio <konradybcio@gmail.com>, skrzynka@konradybcio.pl
+Date:   Wed, 24 Jun 2020 15:32:56 -0700
+Message-ID: <159303797640.62212.15039388585433005717@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
+Quoting Konrad Dybcio (2020-06-24 08:09:18)
+> I should also note that for quite some time a hack [1]
+> has been needed on some platforms for the RPMCC to register.
+>=20
+> This includes 8992/94, 8956/76 and possibly many more.
+>=20
+> With that commit, RPMCC registers fine.
+>=20
 
-On 6/24/20 12:49 PM, Dan Murphy wrote:
-> Add programming for the tdm slots for both tx and rx offsets.
->
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->   sound/soc/codecs/tas2562.c | 17 ++++++++++++++++-
->   sound/soc/codecs/tas2562.h |  4 ++++
->   2 files changed, 20 insertions(+), 1 deletion(-)
->
-> diff --git a/sound/soc/codecs/tas2562.c b/sound/soc/codecs/tas2562.c
-> index d26e30a2948c..2f1d4b697f01 100644
-> --- a/sound/soc/codecs/tas2562.c
-> +++ b/sound/soc/codecs/tas2562.c
-> @@ -208,6 +208,22 @@ static int tas2562_set_dai_tdm_slot(struct snd_soc_dai *dai,
->   	if (ret < 0)
->   		return ret;
->   
-> +	if (tx_mask > TAS2562_TX_OFF_MAX) {
-> +		dev_err(tas2562->dev, "TX slot is larger then %d",
-> +			TAS2562_TX_OFF_MAX);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG1,
-> +					    TAS2562_RX_OFF_MASK, rx_mask << 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG4,
-> +					    TAS2562_TX_OFF_MASK, tx_mask << 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-
-I need to fix this patch to remove the slot programming during dai_fmt 
-as the code is not correct and resets the slots
-
-Dan
-
-
+What happens if that patch isn't applied? Does the system crash? Because
+I'd rather not merge a patch in clk tree that causes the system to fail
+to boot.
