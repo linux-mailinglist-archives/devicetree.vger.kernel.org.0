@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1203B206A4F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 04:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD00206AC5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 05:51:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388475AbgFXCu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jun 2020 22:50:59 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:43706 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388404AbgFXCu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jun 2020 22:50:58 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1454D1A012B;
-        Wed, 24 Jun 2020 04:50:57 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9988C1A0171;
-        Wed, 24 Jun 2020 04:50:53 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D77FB402A6;
-        Wed, 24 Jun 2020 10:50:48 +0800 (SGT)
-From:   Biwen Li <biwen.li@oss.nxp.com>
-To:     shawnguo@kernel.org, ran.wang_1@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
-Subject: [v3 4/4] arm: dts: ls1021a: add ftm_alarm0 DT node
-Date:   Wed, 24 Jun 2020 10:45:01 +0800
-Message-Id: <20200624024501.15974-4-biwen.li@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200624024501.15974-1-biwen.li@oss.nxp.com>
-References: <20200624024501.15974-1-biwen.li@oss.nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2388666AbgFXDvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jun 2020 23:51:33 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:31285 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2388665AbgFXDvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jun 2020 23:51:33 -0400
+X-UUID: ab9f33d4d1164f7d944f2ceff272d664-20200624
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=2Dog3+Nae8JVLbPa7qMUki8StCUSkZ7vDzgUmgL8nCI=;
+        b=LHkJg7YgjU04Nt6u/wwESrQfe1U61/PUIjrTRHJUv06I7DJZjtziIHvpHoLxkWhAx9lvbfpTF4Keg1+3VJdyWy6SBG469XasDS1heAPhFAWVwlxSqWZa06uP/h/DawRL9PPvA4KV2jmqmvNuLtO8kUBkKLyvWcG3M1jVwF7zGgw=;
+X-UUID: ab9f33d4d1164f7d944f2ceff272d664-20200624
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1208736638; Wed, 24 Jun 2020 11:51:30 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 24 Jun 2020 11:51:20 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 24 Jun 2020 11:51:20 +0800
+Message-ID: <1592970682.14160.6.camel@mtkswgap22>
+Subject: Re: Add MediaTek MT6873 devapc driver
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Neal Liu <neal.liu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Date:   Wed, 24 Jun 2020 11:51:22 +0800
+In-Reply-To: <20200609173204.GB1107294@bogus>
+References: <1591698261-22639-1-git-send-email-neal.liu@mediatek.com>
+         <20200609173204.GB1107294@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 94B690576371ABB4BE2991BDACDFB8DE814464701461FFE7D00C600E775A57D32000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
-
-The patch add ftm_alarm0 DT node
-	- add rcpm node
-	- add ftm_alarm0 node
-	- aliases ftm_alarm0 as rtc1
-
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v3:
-	- sort alphabetically
-
-Change in v2:
-	- use generic name
-
- arch/arm/boot/dts/ls1021a.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 760a68c..f7b19c4 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -59,6 +59,7 @@
- 		ethernet0 = &enet0;
- 		ethernet1 = &enet1;
- 		ethernet2 = &enet2;
-+		rtc1 = &ftm_alarm0;
- 		serial0 = &lpuart0;
- 		serial1 = &lpuart1;
- 		serial2 = &lpuart2;
-@@ -1002,5 +1003,19 @@
- 			big-endian;
- 		};
- 
-+		rcpm: power-controller@1ee2140 {
-+			compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
-+			reg = <0x0 0x1ee2140 0x0 0x8>;
-+			#fsl,rcpm-wakeup-cells = <2>;
-+		};
-+
-+		ftm_alarm0: timer0@29d0000 {
-+			compatible = "fsl,ls1021a-ftm-alarm";
-+			reg = <0x0 0x29d0000 0x0 0x10000>;
-+			reg-names = "ftm";
-+			fsl,rcpm-wakeup = <&rcpm 0x20000 0x0>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			big-endian;
-+		};
- 	};
- };
--- 
-2.7.4
+T24gVHVlLCAyMDIwLTA2LTA5IGF0IDExOjMyIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVHVlLCBKdW4gMDksIDIwMjAgYXQgMDY6MjQ6MTlQTSArMDgwMCwgTmVhbCBMaXUgd3JvdGU6
+DQo+ID4gVGhlc2UgcGF0Y2ggc2VyaWVzIGludHJvZHVjZSBhIE1lZGlhVGVrIE1UNjg3MyBkZXZh
+cGMgZHJpdmVyLg0KPiA+IA0KPiA+IE1UNjg3MyBidXMgZnJhYnJpYyBwcm92aWRlcyBUcnVzdFpv
+bmUgc2VjdXJpdHkgc3VwcG9ydCBhbmQgZGF0YQ0KPiA+IHByb3RlY3Rpb24gdG8gcHJldmVudCBz
+bGF2ZXMgZnJvbSBiZWluZyBhY2Nlc3NlZCBieSB1bmV4cGVjdGVkDQo+ID4gbWFzdGVycy4NCj4g
+PiBUaGUgc2VjdXJpdHkgdmlvbGF0aW9ucyBhcmUgbG9nZ2VkIGFuZCBzZW50IHRvIHRoZSBwcm9j
+ZXNzb3IgZm9yDQo+ID4gZnVydGhlciBhbmFseXNpcyBvciBjb3VudGVybWVhc3VyZXMuDQo+ID4g
+DQo+ID4gQW55IG9jY3VycmVuY2Ugb2Ygc2VjdXJpdHkgdmlvbGF0aW9uIHdvdWxkIHJhaXNlIGFu
+IGludGVycnVwdCwgYW5kDQo+ID4gaXQgd2lsbCBiZSBoYW5kbGVkIGJ5IGRldmFwYy1tdDY4NzMg
+ZHJpdmVyLiBUaGUgdmlvbGF0aW9uDQo+ID4gaW5mb3JtYXRpb24gaXMgcHJpbnRlZCBpbiBvcmRl
+ciB0byBmaW5kIHRoZSBtdXJkZXJlci4NCj4gDQo+IFRoZXJlJ3MgYWxzbyBhIHByb3Bvc2VkIGRy
+aXZlciB3aXRoIHNpbWlsYXIgZnVuY3Rpb25hbGl0eVsxXS4gQ29tZSB1cCANCj4gd2l0aCBhIGNv
+bW1vbiBzb2x1dGlvbi4NCj4gDQo+IFJvYg0KPiANCj4gWzFdIGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2xpbnV4LWFybS1rZXJuZWwvMjAyMDAxMjgxNTM4MDYuNzc4MC0xLWJlbmphbWluLmdhaWdu
+YXJkQHN0LmNvbS8NCg0KQWN0dWFsbHksIE1lZGlhdGVrIGRldmFwYyBIVyBkbyB0aGUgc2ltaWxh
+ciB0aGluZ3MuIEJ1dCB0aGUgcmVhbA0KImZpcmV3YWxsIiBmdW5jdGlvbmFsaXR5IGlzIGltcGxl
+bWVudGVkIGluIFRydXN0Wm9uZSBpbnN0cmVhZCBvZiBSRUUuDQpUaGlzIGRldmFwYy1tdDY4NzMg
+ZHJpdmVyIGlzIG1haW5seSBoYW5kbGVkIHRoZSB2aW9sYXRpb24uDQoNCkJ1cyBmaXJld2FsbCBm
+cmFtZXdvcmsgc2VlbXMgbm90IGNvdmVyIHRoaXMgcGFydHMuDQo=
 
