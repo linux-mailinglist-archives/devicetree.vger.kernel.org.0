@@ -2,92 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC85C206CC0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136F8206CBC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389163AbgFXGm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 02:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S2388668AbgFXGlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 02:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388360AbgFXGmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:42:55 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CBBC0613ED
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id d66so708082pfd.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
+        with ESMTP id S2388262AbgFXGlt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:41:49 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107EFC061573
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:41:49 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id 17so1375036wmo.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:41:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Tj0+81OU8cxNaHayJ+mmXmO7Wvd4r9c8QxGXifG1n9Y=;
-        b=UTruSnbrMSy7HPcjG2EqSPJ5bg9XDfYYee9/v77xhD9Fu66HCiLBkfJy63S+lBc99T
-         54/cezpIKfy3s6gyjrJDYFaKrKnwlQQEzl/1TZz+JQjKsJyAngBK6l681EaVDerSExFt
-         88c2BaKe5pRRfG1wcqldTriuqGqRYKVC10oS25CXVi46Q0ZcMJx/FtgsBPReiCWBAOZ2
-         9DCu5vWuZT0vMQwDOHRRvCWu9FjgrzpXVl/9qC+hUex9JDm0xqsu6fzS+gw5ejrfMQN8
-         0fiAKZJz8ytUOriMX+O48kLvFLHwc727rYM2QzuCRpSXeSlSObAFzwDU0+qM9oVe5NNa
-         fTHA==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=w1X7TJT+/NZGp2t1UBcnbW7TryORo1uDGLtiSLF2dX0=;
+        b=F4Y63FKJ0cwNYtuBYuYFD1B6IQvmC0jQveupwHMhBrEzsAnXu0x/XQF0xp02M5Kb/R
+         CAvgMujEExgWFUbK/o0mkv3Umjwp+GunX+r3ArbVP9whHFM6+F352dVdcqcGGFPD9W6x
+         3zcNl8gc0XQ0obe0wywYkBtMgZlt+oDQ0PQkNzqHUby4hIXM4JkzWFINsYObXDlmblzH
+         d1IlV+fJArOOwHCcrgSlePJru0KeizSTypNVzd5JZEMNmfbjlZWx6Dl8gRNLFq9HDc9I
+         SlMcxJnFQvkiRKGOd/+G/3D3mNNXbUC96HfOk4HdarpWLIhRu4OTSIky/PO0jZxi7J+j
+         dKUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Tj0+81OU8cxNaHayJ+mmXmO7Wvd4r9c8QxGXifG1n9Y=;
-        b=jaaaQqXqrmE7zcFNJCEyhetzE6uezNqWr1E5omUTfhfn9XAhNP6QVTGqIVdrRgLRz+
-         a6r/lHsfLRd/0U2KHS+v3rSa6lwOBVmgCKXkPVubkVs83mqbgmCGHI2dwTyUipkSJbo3
-         L22aaGjnPT8xl+us71jI/GgCeJQA2Jnccm1EYZ6lfaD8THi1IjNBw20Ea77trjXpWdrh
-         lEOJRITbSSwRCq1O05E6Y/bmz7YZU95OoU8ZRecrKnXuTIRfjKw0JABBEQUSItBa3NqK
-         P7PmFcyjQRvSGVYcjOPekfz+3HKM4ChgVinD1jOQXYgdJGy9OxMzhDBvnWJD+akUkFlr
-         VREA==
-X-Gm-Message-State: AOAM531E+82jJy+895jzQWrnfpuHwyLwEDMtvb5HIzfee1LwYqmZwIf+
-        /IkZgjHsTaycXD0OzTdCzMjBow==
-X-Google-Smtp-Source: ABdhPJyLAa86tYAyEj6sHwS099W3IjsyooK7AqBRLX7K4JauXP05JDgN7rvIqaPNaU/8hbO/PkifOg==
-X-Received: by 2002:a05:6a00:2b4:: with SMTP id q20mr2225873pfs.74.1592980974097;
-        Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
-Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id o22sm18800222pfd.114.2020.06.23.23.42.52
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=w1X7TJT+/NZGp2t1UBcnbW7TryORo1uDGLtiSLF2dX0=;
+        b=fbRKH61Dkk1tJReeXTmtSEG7BKrpbuBMJjW4JC1DBhRMSg359QdzA5FWW4R6D4c58I
+         z48LJE+0H+bJGYdaCrjKw1sw6/8LwPOrIy+ST0Bmlox9RzfXYBCf8Oj9lkU2GloQLfor
+         j44sxeBfMWRjHWdiWZLKTor9lPUvQlVziyhdxvDTErA10N9sj/iUwzZVBKojcmzDz6L2
+         Dg97NXDKest5YiLl5xskBO6zZ47jXUeNsc6M56vioGNEQTzAS9aZwpsboyqS539AuWjW
+         PNmvZGgQOrfFH3NknkLV1+QSPkgIhix5bx60YEo7HeUDjX3zbS1lDbrqY3TsqgRFC7MI
+         eLUA==
+X-Gm-Message-State: AOAM532vvpwcXGjPcuUrQCa3brEvcEinWiWfvYmw6ej525OuKG41TODU
+        DQG7A5pR9ppsvmb030LYSIXoFzWYO5M=
+X-Google-Smtp-Source: ABdhPJxxesv3DV42KX9DFPvWgoXognYEeA7BPVgHrFM5XpvKgLlqY6E6cmhuf8i1uDbBZ3dy3VUIng==
+X-Received: by 2002:a1c:cc03:: with SMTP id h3mr27931892wmb.87.1592980907725;
+        Tue, 23 Jun 2020 23:41:47 -0700 (PDT)
+Received: from dell ([2.27.35.144])
+        by smtp.gmail.com with ESMTPSA id b18sm25196379wrn.88.2020.06.23.23.41.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2020 23:42:53 -0700 (PDT)
-Date:   Tue, 23 Jun 2020 23:40:11 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konradybcio@gmail.com>
-Cc:     skrzynka@konradybcio.pl, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 04/12] arm64: dts: qcom: msm8994: Add support for SMD
- RPM
-Message-ID: <20200624064011.GS128451@builder.lan>
-References: <20200623224813.297077-1-konradybcio@gmail.com>
- <20200623224813.297077-5-konradybcio@gmail.com>
- <20200623231541.GH128451@builder.lan>
- <CAMS8qEV9hwL1MpEHzVC+w2rkQhdZ1aH3Dy8Mn1X_2Eu7W2naWA@mail.gmail.com>
+        Tue, 23 Jun 2020 23:41:46 -0700 (PDT)
+Date:   Wed, 24 Jun 2020 07:41:45 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     andy.shevchenko@gmail.com, michael@walle.cc, robh+dt@kernel.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org, linux@roeck-us.net,
+        andriy.shevchenko@linux.intel.com, robin.murphy@arm.com,
+        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] mfd: core: Make a best effort attempt to match
+ devices with the correct of_nodes
+Message-ID: <20200624064145.GC954398@dell>
+References: <20200611191002.2256570-1-lee.jones@linaro.org>
+ <30f03734-61fd-1b6b-bf11-21b6423a7c50@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMS8qEV9hwL1MpEHzVC+w2rkQhdZ1aH3Dy8Mn1X_2Eu7W2naWA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <30f03734-61fd-1b6b-bf11-21b6423a7c50@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 23 Jun 16:34 PDT 2020, Konrad Dybcio wrote:
+On Tue, 23 Jun 2020, Frank Rowand wrote:
 
-> Thanks for your review.
+> On 2020-06-11 14:10, Lee Jones wrote:
+> > Currently, when a child platform device (sometimes referred to as a
+> > sub-device) is registered via the Multi-Functional Device (MFD) API,
+> > the framework attempts to match the newly registered platform device
+> > with its associated Device Tree (OF) node.  Until now, the device has
+> > been allocated the first node found with an identical OF compatible
+> > string.  Unfortunately, if there are, say for example '3' devices
+> > which are to be handled by the same driver and therefore have the same
+> > compatible string, each of them will be allocated a pointer to the
+> > *first* node.
 > 
-> I will send the regulators/rpm patch very soon.
+> As you mentioned elsewhere in this thread, this series "fixes" the
+> problem related to the "stericsson,ab8500-pwm" compatible.
 > 
-> Regarding the mbox, do you know whether it should include any clocks
-> on 8992/4? What comes to my head is a53/57pll, but that's not there yet..
-> So perhaps I should just add it with .clk_name = NULL?
+> I know, I said I would drop discussion of that compatible, but bear
+> with me for a second.  :-)
 > 
+> The "problem" is that the devices for multiple mfd child nodes with
+> the same compatible value of "stericsson,ab8500-pwm" will all have
+> a pointer to the first child node.  At the moment the same child
+> of_node being used by more than one device does not cause any
+> incorrect behavior.
+> 
+> Just in case the driver for "stericsson,ab8500-pwm" is modified
+> in a way that the child of_node needs to be distinct for each
+> device, and that changes gets back ported, it would be useful
+> to have Fixes: tags for this patch series.
+> 
+> So, at your discretion (and I'll let you worry about the correct
+> Fixes: tag format), this series fixes:
+> 
+> bad76991d7847b7877ae797cc79745d82ffd9120 mfd: Register ab8500 devices using the newly DT:ed MFD API
 
-I don't remember how the clocks are controlled on this platform, so my
-suggestion is that you just skip that for now.
+This patch isn't actually broken.
 
-Regards,
-Bjorn
+The issue is the DTB, which [0] addresses.
+
+[0]
+https://lkml.kernel.org/lkml/20200622083432.1491715-1-lee.jones@linaro.org/
+
+> c94bb233a9fee3314dc5d9c7de9fa702e91283f2 mfd: Make MFD core code Device Tree and IRQ domain aware
+
+It sounds reasonable to list this one, thanks.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
