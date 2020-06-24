@@ -2,124 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 136F8206CBC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F160206CDC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388668AbgFXGlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 02:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388262AbgFXGlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:41:49 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107EFC061573
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:41:49 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id 17so1375036wmo.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:41:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=w1X7TJT+/NZGp2t1UBcnbW7TryORo1uDGLtiSLF2dX0=;
-        b=F4Y63FKJ0cwNYtuBYuYFD1B6IQvmC0jQveupwHMhBrEzsAnXu0x/XQF0xp02M5Kb/R
-         CAvgMujEExgWFUbK/o0mkv3Umjwp+GunX+r3ArbVP9whHFM6+F352dVdcqcGGFPD9W6x
-         3zcNl8gc0XQ0obe0wywYkBtMgZlt+oDQ0PQkNzqHUby4hIXM4JkzWFINsYObXDlmblzH
-         d1IlV+fJArOOwHCcrgSlePJru0KeizSTypNVzd5JZEMNmfbjlZWx6Dl8gRNLFq9HDc9I
-         SlMcxJnFQvkiRKGOd/+G/3D3mNNXbUC96HfOk4HdarpWLIhRu4OTSIky/PO0jZxi7J+j
-         dKUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=w1X7TJT+/NZGp2t1UBcnbW7TryORo1uDGLtiSLF2dX0=;
-        b=fbRKH61Dkk1tJReeXTmtSEG7BKrpbuBMJjW4JC1DBhRMSg359QdzA5FWW4R6D4c58I
-         z48LJE+0H+bJGYdaCrjKw1sw6/8LwPOrIy+ST0Bmlox9RzfXYBCf8Oj9lkU2GloQLfor
-         j44sxeBfMWRjHWdiWZLKTor9lPUvQlVziyhdxvDTErA10N9sj/iUwzZVBKojcmzDz6L2
-         Dg97NXDKest5YiLl5xskBO6zZ47jXUeNsc6M56vioGNEQTzAS9aZwpsboyqS539AuWjW
-         PNmvZGgQOrfFH3NknkLV1+QSPkgIhix5bx60YEo7HeUDjX3zbS1lDbrqY3TsqgRFC7MI
-         eLUA==
-X-Gm-Message-State: AOAM532vvpwcXGjPcuUrQCa3brEvcEinWiWfvYmw6ej525OuKG41TODU
-        DQG7A5pR9ppsvmb030LYSIXoFzWYO5M=
-X-Google-Smtp-Source: ABdhPJxxesv3DV42KX9DFPvWgoXognYEeA7BPVgHrFM5XpvKgLlqY6E6cmhuf8i1uDbBZ3dy3VUIng==
-X-Received: by 2002:a1c:cc03:: with SMTP id h3mr27931892wmb.87.1592980907725;
-        Tue, 23 Jun 2020 23:41:47 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id b18sm25196379wrn.88.2020.06.23.23.41.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2020 23:41:46 -0700 (PDT)
-Date:   Wed, 24 Jun 2020 07:41:45 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     andy.shevchenko@gmail.com, michael@walle.cc, robh+dt@kernel.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, linux@roeck-us.net,
-        andriy.shevchenko@linux.intel.com, robin.murphy@arm.com,
-        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] mfd: core: Make a best effort attempt to match
- devices with the correct of_nodes
-Message-ID: <20200624064145.GC954398@dell>
-References: <20200611191002.2256570-1-lee.jones@linaro.org>
- <30f03734-61fd-1b6b-bf11-21b6423a7c50@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <30f03734-61fd-1b6b-bf11-21b6423a7c50@gmail.com>
+        id S2389420AbgFXGpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 02:45:51 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:48436 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2389380AbgFXGpu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jun 2020 02:45:50 -0400
+Received: from linux.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxXeuQ9vJebSBJAA--.397S2;
+        Wed, 24 Jun 2020 14:45:37 +0800 (CST)
+From:   Tiezhu Yang <yangtiezhu@loongson.cn>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, Xuefeng Li <lixuefeng@loongson.cn>
+Subject: [PATCH v2 0/7 RESEND] irqchip: Fix some issues and do some code cleanups about Loongson
+Date:   Wed, 24 Jun 2020 14:45:29 +0800
+Message-Id: <1592981136-3572-1-git-send-email-yangtiezhu@loongson.cn>
+X-Mailer: git-send-email 2.1.0
+X-CM-TRANSID: AQAAf9DxXeuQ9vJebSBJAA--.397S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7JF13GF1xurykJr43JFW8Zwb_yoW8JF1fpF
+        43C3yagr4UCrW7ZrWfAry8AryayryrKa9rtay7twnxXF98J34DuF15JFykurZ7ArWxWF1j
+        9rWFgFW8u3WDCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+        JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26r
+        xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+        6xIIjxv20xvE14v26r126r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr
+        0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+        8cxan2IY04v7MxkIecxEwVAFwVW8AwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
+        WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
+        67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVW5JVW7JwCI42
+        IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Gr0_Zr1l
+        IxAIcVC2z280aVAFwI0_Gr1j6F4UJwCI42IY6I8E87Iv6xkF7I0E14v26F4UJVW0obIYCT
+        nIWIevJa73UjIFyTuYvjfU82NtDUUUU
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jun 2020, Frank Rowand wrote:
+[git send-email failed, so resend, sorry for that]
 
-> On 2020-06-11 14:10, Lee Jones wrote:
-> > Currently, when a child platform device (sometimes referred to as a
-> > sub-device) is registered via the Multi-Functional Device (MFD) API,
-> > the framework attempts to match the newly registered platform device
-> > with its associated Device Tree (OF) node.  Until now, the device has
-> > been allocated the first node found with an identical OF compatible
-> > string.  Unfortunately, if there are, say for example '3' devices
-> > which are to be handled by the same driver and therefore have the same
-> > compatible string, each of them will be allocated a pointer to the
-> > *first* node.
-> 
-> As you mentioned elsewhere in this thread, this series "fixes" the
-> problem related to the "stericsson,ab8500-pwm" compatible.
-> 
-> I know, I said I would drop discussion of that compatible, but bear
-> with me for a second.  :-)
-> 
-> The "problem" is that the devices for multiple mfd child nodes with
-> the same compatible value of "stericsson,ab8500-pwm" will all have
-> a pointer to the first child node.  At the moment the same child
-> of_node being used by more than one device does not cause any
-> incorrect behavior.
-> 
-> Just in case the driver for "stericsson,ab8500-pwm" is modified
-> in a way that the child of_node needs to be distinct for each
-> device, and that changes gets back ported, it would be useful
-> to have Fixes: tags for this patch series.
-> 
-> So, at your discretion (and I'll let you worry about the correct
-> Fixes: tag format), this series fixes:
-> 
-> bad76991d7847b7877ae797cc79745d82ffd9120 mfd: Register ab8500 devices using the newly DT:ed MFD API
+Check the return value of irq_domain_translate_onecell() and
+irq_domain_translate_twocell(), do some code cleanups about
+Loongson to make it more clean and readable.
 
-This patch isn't actually broken.
+v2:
+  - In order to avoid git send-email failed, make the related patches
+    about Loongson into a new patch series and add "Fixes" tag
 
-The issue is the DTB, which [0] addresses.
+Tiezhu Yang (7):
+  irqchip/loongson-htpic: Remove redundant kfree operation
+  irqchip/loongson-htpic: Remove unneeded select of I8259
+  irqchip/loongson-htvec: Fix potential resource leak
+  irqchip/loongson-htvec: Check return value of
+    irq_domain_translate_onecell()
+  irqchip/loongson-pch-pic: Check return value of
+    irq_domain_translate_twocell()
+  irqchip/loongson-pch-msi: Remove unneeded variable
+  dt-bindings: interrupt-controller: Fix typos in loongson,liointc.yaml
 
-[0]
-https://lkml.kernel.org/lkml/20200622083432.1491715-1-lee.jones@linaro.org/
-
-> c94bb233a9fee3314dc5d9c7de9fa702e91283f2 mfd: Make MFD core code Device Tree and IRQ domain aware
-
-It sounds reasonable to list this one, thanks.
+ .../bindings/interrupt-controller/loongson,liointc.yaml   |  4 ++--
+ drivers/irqchip/Kconfig                                   |  1 -
+ drivers/irqchip/irq-loongson-htpic.c                      |  6 ++----
+ drivers/irqchip/irq-loongson-htvec.c                      | 10 ++++++++--
+ drivers/irqchip/irq-loongson-pch-msi.c                    |  7 +------
+ drivers/irqchip/irq-loongson-pch-pic.c                    | 15 +++++++++------
+ 6 files changed, 22 insertions(+), 21 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.1.0
+
