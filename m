@@ -2,197 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C1C2078DB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 18:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D802E2078F5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 18:22:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405084AbgFXQQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 12:16:21 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:35822 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405074AbgFXQQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 12:16:15 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05OGFW5F021330;
-        Wed, 24 Jun 2020 11:15:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593015332;
-        bh=k5QXD9rLVHVE83qsFkalFRHulnjUdzuUDG+p/Omjzzg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=RIagQGGt7kB2dLcAIt0rL3HQ4uV8JCJ1aDhsTVvC4ZNmr48zQlA0UFfvnqew1ngHo
-         TZRSyiOjOMEjK0+1P794MgJAnBSxAQYYkl+jDHGrb42ulOI1ZrhWvWN/stu2eH3xv7
-         Lu0ZGsMJq9jzWoVOL+QM4ryZs9p1mWZMcy5MHTV0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05OGFWtJ058925
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 24 Jun 2020 11:15:32 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 24
- Jun 2020 11:15:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 24 Jun 2020 11:15:32 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05OGFWjE114276;
-        Wed, 24 Jun 2020 11:15:32 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH v5 7/7] dt-bindings: tas2562: Convert the tas2562 binding to yaml
-Date:   Wed, 24 Jun 2020 11:14:59 -0500
-Message-ID: <20200624161459.19248-8-dmurphy@ti.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200624161459.19248-1-dmurphy@ti.com>
-References: <20200624161459.19248-1-dmurphy@ti.com>
+        id S2404552AbgFXQWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 12:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404350AbgFXQWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 12:22:20 -0400
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4996C0613ED
+        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2020 09:22:19 -0700 (PDT)
+Received: by mail-il1-x141.google.com with SMTP id w9so2567346ilk.13
+        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2020 09:22:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=STD7qLvWtpSzAtO1gXjXJztLXOvVuvn065ZWjIwBzm8=;
+        b=GDbX4i4/9sFa2QnOyFKV3sAmgpvbd4H9sf69kAM0V93uCHV4aw7EViw8WQGFnmGhGL
+         RCC+okJfghc3Wz2bz8HZeO7YwxG7/oL/0OfQHSSw8KaxqyDX+3pN+o3xIH3aODH5BQjK
+         vTgBiV68m+YydOFw1YZbI/IzAxH09eBSYoeOnD2WwMhuNy5dRivxMDq8sxhdaJcPIFVE
+         xpNn8lwne15R7K3Ux72CJTplglE9cuR4bjD2TZvXf3CiAqo230jAdvO8oHmtF2Psgl2p
+         YadWLDh4Bl411uJHkly3hQX/7NFaklwQk0TAShizwVTPmjXzGeqZOsMfxFNXOJwnROdt
+         D35Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=STD7qLvWtpSzAtO1gXjXJztLXOvVuvn065ZWjIwBzm8=;
+        b=JthL4z7hTUyIEJ8CPSVR67uhG6L5i86EKEdShjCPGwT6kQat3p8ajIACToioOsnfiW
+         HT/zuvzL8WQhVWawx5cBgu5twoRgSt+EBqcv0u/URfpIuZB7n9og3hH9UptD/msktFAW
+         TJ7mXNva5eBsWQn/DKJs5ESx6yVIyX7NOxZujupK4IDKpAfKyNyomb1xTlqiqGofSA+4
+         2x+kNsTK0/0YACBpAh0TQ5/wCYzyyjEy9BHk+EOObt2BVSspGIpL5yN3FIbDAp6BJEjo
+         6icH0y/ktO/tzwk0fWD3povymi+g0uHK8OyN2rHoU/KdUmuCi5+QeQZOe8GopbeLjWa5
+         i6yw==
+X-Gm-Message-State: AOAM533hS9tIJxmzW98dHifYhrI7vf5/1eXnN6FdMa5xsIFQvmbiLqbI
+        KiXsnipVPY8u5Tb/r/cC1FEdaA/2Vz8GG1nKcfojCw==
+X-Google-Smtp-Source: ABdhPJyCu6OdPyGuzSe1OJNhDF0LoYbiaX834HuGofRmFkCh2g6eAXaOlNsVAMtygwLHq1VOlmz7okN+XaK4lvMSMqk=
+X-Received: by 2002:a92:c509:: with SMTP id r9mr28062372ilg.189.1593015739191;
+ Wed, 24 Jun 2020 09:22:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200622093744.13685-1-brgl@bgdev.pl> <20200622093744.13685-6-brgl@bgdev.pl>
+ <1da91144-076d-bf1e-f12a-2b4fe242febc@gmail.com>
+In-Reply-To: <1da91144-076d-bf1e-f12a-2b4fe242febc@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 24 Jun 2020 18:22:08 +0200
+Message-ID: <CAMRc=MeCTNuwY4-h=OhVVT1RHWYfi-VwEZMvm0RNrS_qNu_EPw@mail.gmail.com>
+Subject: Re: [PATCH 05/15] net: phy: reset the PHY even if probe() is not implemented
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Yisen Zhuang <yisen.zhuang@huawei.com>,
+        Salil Mehta <salil.mehta@huawei.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+        Keyur Chudgar <keyur@os.amperecomputing.com>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Stephane Le Provost <stephane.leprovost@mediatek.com>,
+        Pedro Tsai <pedro.tsai@mediatek.com>,
+        Andrew Perepech <andrew.perepech@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the TAS2562 text file to yaml format.
+wt., 23 cze 2020 o 21:14 Florian Fainelli <f.fainelli@gmail.com> napisa=C5=
+=82(a):
+>
+> On 6/22/20 2:37 AM, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> >
+> > Currently we only call phy_device_reset() if the PHY driver implements
+> > the probe() callback. This is not mandatory and many drivers (e.g.
+> > realtek) don't need probe() for most devices but still can have reset
+> > GPIOs defined. There's no reason to depend on the presence of probe()
+> > here so pull the reset code out of the if clause.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+>
+> OK, but now let's imagine that a PHY device has two or more reset lines,
+> one of them is going to be managed by the core PHY library and the rest
+> is going to be under the responsibility of the PHY driver, that does not
+> sound intuitive or convenient at all. This is a hypothetical case, but
+> it could conceivable happen, so how about adding a flag to the driver
+> that says "let me manage it a all"?
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- .../devicetree/bindings/sound/tas2562.txt     | 37 ---------
- .../devicetree/bindings/sound/tas2562.yaml    | 77 +++++++++++++++++++
- 2 files changed, 77 insertions(+), 37 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/tas2562.txt
- create mode 100644 Documentation/devicetree/bindings/sound/tas2562.yaml
+This sounds good as a new feature idea but doesn't seem to be related
+to what this patch is trying to do. The only thing it does is improve
+the current behavior. I'll note your point for the future work on the
+pre-probe stage.
 
-diff --git a/Documentation/devicetree/bindings/sound/tas2562.txt b/Documentation/devicetree/bindings/sound/tas2562.txt
-deleted file mode 100644
-index dc6d7362ded7..000000000000
---- a/Documentation/devicetree/bindings/sound/tas2562.txt
-+++ /dev/null
-@@ -1,37 +0,0 @@
--Texas Instruments TAS2562 Smart PA
--
--The TAS2562 is a mono, digital input Class-D audio amplifier optimized for
--efficiently driving high peak power into small loudspeakers.
--Integrated speaker voltage and current sense provides for
--real time monitoring of loudspeaker behavior.
--
--Required properties:
-- - #address-cells  - Should be <1>.
-- - #size-cells     - Should be <0>.
-- - compatible:	   - Should contain "ti,tas2562", "ti,tas2563".
-- - reg:		   - The i2c address. Should be 0x4c, 0x4d, 0x4e or 0x4f.
-- - ti,imon-slot-no:- TDM TX current sense time slot.
-- - ti,vmon-slot-no:- TDM TX voltage sense time slot. This slot must always be
--		     greater then ti,imon-slot-no.
--
--Optional properties:
--- interrupt-parent: phandle to the interrupt controller which provides
--                    the interrupt.
--- interrupts: (GPIO) interrupt to which the chip is connected.
--- shut-down-gpio: GPIO used to control the state of the device.
--
--Examples:
--tas2562@4c {
--        #address-cells = <1>;
--        #size-cells = <0>;
--        compatible = "ti,tas2562";
--        reg = <0x4c>;
--
--        interrupt-parent = <&gpio1>;
--        interrupts = <14>;
--
--	shut-down-gpio = <&gpio1 15 0>;
--        ti,imon-slot-no = <0>;
--        ti,vmon-slot-no = <1>;
--};
--
-diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml b/Documentation/devicetree/bindings/sound/tas2562.yaml
-new file mode 100644
-index 000000000000..1fb467e14d4c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/tas2562.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+# Copyright (C) 2019 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/sound/tas2562.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Texas Instruments TAS2562 Smart PA
-+
-+maintainers:
-+  - Dan Murphy <dmurphy@ti.com>
-+
-+description: |
-+  The TAS2562 is a mono, digital input Class-D audio amplifier optimized for
-+  efficiently driving high peak power into small loudspeakers.
-+  Integrated speaker voltage and current sense provides for
-+  real time monitoring of loudspeaker behavior.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tas2562
-+      - ti,tas2563
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+       I2C address of the device can be one of these 0x4c, 0x4d, 0x4e or 0x4f
-+
-+  shut-down-gpio:
-+    description: GPIO used to control the state of the device.
-+    deprecated: true
-+
-+  shutdown-gpio:
-+    description: GPIO used to control the state of the device.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,imon-slot-no:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: TDM TX current sense time slot.
-+
-+  ti,vmon-slot-no:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      TDM TX voltage sense time slot.  This slot must always be greater then
-+      ti,imon-slot-no.
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c0 {
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     codec: codec@4c {
-+       compatible = "ti,tas2562";
-+       reg = <0x4c>;
-+       #sound-dai-cells = <1>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <14>;
-+       shutdown-gpio = <&gpio1 15 0>;
-+       ti,imon-slot-no = <0>;
-+       ti,vmon-slot-no = <2>;
-+     };
-+   };
-+
-+...
--- 
-2.26.2
-
+Bartosz
