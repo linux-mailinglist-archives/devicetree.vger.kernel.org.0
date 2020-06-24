@@ -2,111 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F09206CBA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC85C206CC0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389284AbgFXGkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 02:40:43 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:28546 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2388582AbgFXGkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:40:43 -0400
-X-UUID: 4480b2ca7b054f65b6670c72e877b5e1-20200624
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=C01wP7O41EMQ3vJzTY+vMBOf3dw7xo6jocNHUFkcK60=;
-        b=pYOAFoAuAPMKJOUpuxG+ASLryj8g+nVmFgn2Rg/9Mfvm7FwXtiScWEMX4Aeh062CDT4daPemOheV2tCJ7IcreiAbc3WpayoYeQxw+r3sFQ5318KBye2ride6ZpeZLVvqYTpP2lQcoXZ98ZiwioXD01Rx7/K13LjTrsZVOfp4o3w=;
-X-UUID: 4480b2ca7b054f65b6670c72e877b5e1-20200624
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
-        (envelope-from <chao.hao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 32306068; Wed, 24 Jun 2020 14:40:39 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 24 Jun 2020 14:40:35 +0800
-Received: from [10.15.20.246] (10.15.20.246) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 24 Jun 2020 14:40:34 +0800
-Message-ID: <1592980794.24677.4.camel@mbjsdccf07>
-Subject: Re: [PATCH v4 3/7] iommu/mediatek: Set MISC_CTRL register
-From:   chao hao <Chao.Hao@mediatek.com>
-To:     Yong Wu <yong.wu@mediatek.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        id S2389163AbgFXGm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 02:42:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388360AbgFXGmz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:42:55 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CBBC0613ED
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id d66so708082pfd.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Tj0+81OU8cxNaHayJ+mmXmO7Wvd4r9c8QxGXifG1n9Y=;
+        b=UTruSnbrMSy7HPcjG2EqSPJ5bg9XDfYYee9/v77xhD9Fu66HCiLBkfJy63S+lBc99T
+         54/cezpIKfy3s6gyjrJDYFaKrKnwlQQEzl/1TZz+JQjKsJyAngBK6l681EaVDerSExFt
+         88c2BaKe5pRRfG1wcqldTriuqGqRYKVC10oS25CXVi46Q0ZcMJx/FtgsBPReiCWBAOZ2
+         9DCu5vWuZT0vMQwDOHRRvCWu9FjgrzpXVl/9qC+hUex9JDm0xqsu6fzS+gw5ejrfMQN8
+         0fiAKZJz8ytUOriMX+O48kLvFLHwc727rYM2QzuCRpSXeSlSObAFzwDU0+qM9oVe5NNa
+         fTHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Tj0+81OU8cxNaHayJ+mmXmO7Wvd4r9c8QxGXifG1n9Y=;
+        b=jaaaQqXqrmE7zcFNJCEyhetzE6uezNqWr1E5omUTfhfn9XAhNP6QVTGqIVdrRgLRz+
+         a6r/lHsfLRd/0U2KHS+v3rSa6lwOBVmgCKXkPVubkVs83mqbgmCGHI2dwTyUipkSJbo3
+         L22aaGjnPT8xl+us71jI/GgCeJQA2Jnccm1EYZ6lfaD8THi1IjNBw20Ea77trjXpWdrh
+         lEOJRITbSSwRCq1O05E6Y/bmz7YZU95OoU8ZRecrKnXuTIRfjKw0JABBEQUSItBa3NqK
+         P7PmFcyjQRvSGVYcjOPekfz+3HKM4ChgVinD1jOQXYgdJGy9OxMzhDBvnWJD+akUkFlr
+         VREA==
+X-Gm-Message-State: AOAM531E+82jJy+895jzQWrnfpuHwyLwEDMtvb5HIzfee1LwYqmZwIf+
+        /IkZgjHsTaycXD0OzTdCzMjBow==
+X-Google-Smtp-Source: ABdhPJyLAa86tYAyEj6sHwS099W3IjsyooK7AqBRLX7K4JauXP05JDgN7rvIqaPNaU/8hbO/PkifOg==
+X-Received: by 2002:a05:6a00:2b4:: with SMTP id q20mr2225873pfs.74.1592980974097;
+        Tue, 23 Jun 2020 23:42:54 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id o22sm18800222pfd.114.2020.06.23.23.42.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jun 2020 23:42:53 -0700 (PDT)
+Date:   Tue, 23 Jun 2020 23:40:11 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konradybcio@gmail.com>
+Cc:     skrzynka@konradybcio.pl, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
-        FY Yang <fy.yang@mediatek.com>,
-        Chao Hao <chao.hao@mediatek.com>
-Date:   Wed, 24 Jun 2020 14:39:54 +0800
-In-Reply-To: <1592618616.3951.12.camel@mhfsdcap03>
-References: <20200617030029.4082-1-chao.hao@mediatek.com>
-         <20200617030029.4082-4-chao.hao@mediatek.com>
-         <aaf422f5-2ac8-252d-a064-0c1246e09acc@gmail.com>
-         <1592480963.12647.5.camel@mbjsdccf07> <1592618616.3951.12.camel@mhfsdcap03>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 04/12] arm64: dts: qcom: msm8994: Add support for SMD
+ RPM
+Message-ID: <20200624064011.GS128451@builder.lan>
+References: <20200623224813.297077-1-konradybcio@gmail.com>
+ <20200623224813.297077-5-konradybcio@gmail.com>
+ <20200623231541.GH128451@builder.lan>
+ <CAMS8qEV9hwL1MpEHzVC+w2rkQhdZ1aH3Dy8Mn1X_2Eu7W2naWA@mail.gmail.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: F70B4854FFD7F8C1D58622D9F607A9A3ED68DABFF7765DD65D58A3DE4CB487062000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMS8qEV9hwL1MpEHzVC+w2rkQhdZ1aH3Dy8Mn1X_2Eu7W2naWA@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU2F0LCAyMDIwLTA2LTIwIGF0IDEwOjAzICswODAwLCBZb25nIFd1IHdyb3RlOg0KPiBIaSBD
-aGFvLA0KPiANCj4gT24gVGh1LCAyMDIwLTA2LTE4IGF0IDE5OjQ5ICswODAwLCBjaGFvIGhhbyB3
-cm90ZTogDQo+ID4gT24gV2VkLCAyMDIwLTA2LTE3IGF0IDExOjM0ICswMjAwLCBNYXR0aGlhcyBC
-cnVnZ2VyIHdyb3RlOg0KPiANCj4gW3NuaXBdDQo+IA0KPiA+ID4gPiAgDQo+ID4gPiA+ICAjZGVm
-aW5lIFJFR19NTVVfTUlTQ19DVFJMCQkJMHgwNDgNCj4gPiA+ID4gKyNkZWZpbmUgRl9NTVVfSU5f
-T1JERVJfV1JfRU4JCQkoQklUKDEpIHwgQklUKDE3KSkNCj4gPiA+ID4gKyNkZWZpbmUgRl9NTVVf
-U1RBTkRBUkRfQVhJX01PREVfQklUCQkoQklUKDMpIHwgQklUKDE5KSkNCj4gPiA+ID4gKw0KPiA+
-ID4gPiAgI2RlZmluZSBSRUdfTU1VX0RDTV9ESVMJCQkJMHgwNTANCj4gPiA+ID4gIA0KPiA+ID4g
-PiAgI2RlZmluZSBSRUdfTU1VX0NUUkxfUkVHCQkJMHgxMTANCj4gPiA+ID4gQEAgLTU3OCw2ICs1
-ODEsMTQgQEAgc3RhdGljIGludCBtdGtfaW9tbXVfaHdfaW5pdChjb25zdCBzdHJ1Y3QgbXRrX2lv
-bW11X2RhdGEgKmRhdGEpDQo+ID4gPiA+ICAJCXdyaXRlbF9yZWxheGVkKDAsIGRhdGEtPmJhc2Ug
-KyBSRUdfTU1VX01JU0NfQ1RSTCk7DQo+ID4gPiA+ICAJfQ0KPiA+ID4gPiAgDQo+ID4gPiA+ICsJ
-aWYgKGRhdGEtPnBsYXRfZGF0YS0+aGFzX21pc2NfY3RybCkgew0KPiA+ID4gDQo+ID4gPiBUaGF0
-J3MgY29uZnVzaW5nLiBXZSByZW5hbWVkIHRoZSByZWdpc3RlciB0byBtaXNjX2N0cmwsIGJ1dCBp
-dCdzIHByZXNlbnQgaW4gYWxsDQo+ID4gPiBTb0NzLiBXZSBzaG91bGQgZmluZCBhIGJldHRlciBu
-YW1lIGZvciB0aGlzIGZsYWcgdG8gZGVzY3JpYmUgd2hhdCB0aGUgaGFyZHdhcmUNCj4gPiA+IHN1
-cHBvcnRzLg0KPiA+ID4gDQo+ID4gDQo+ID4gb2ssIHRoYW5rcyBmb3IgeW91IGFkdmljZSwgSSB3
-aWxsIHJlbmFtZSBpdCBpbiBuZXh0IHZlcnNpb24uDQo+ID4gZXg6aGFzX3BlcmZfcmVxKGhhcyBw
-ZXJmb3JtYW5jZSByZXF1aXJlbWVudCkNCj4gPiANCj4gPiANCj4gPiA+IFJlZ2FyZHMsDQo+ID4g
-PiBNYXR0aGlhcw0KPiA+ID4gDQo+ID4gPiA+ICsJCS8qIEZvciBtbV9pb21tdSwgaXQgY2FuIGlt
-cHJvdmUgcGVyZm9ybWFuY2UgYnkgdGhlIHNldHRpbmcgKi8NCj4gPiA+ID4gKwkJcmVndmFsID0g
-cmVhZGxfcmVsYXhlZChkYXRhLT5iYXNlICsgUkVHX01NVV9NSVNDX0NUUkwpOw0KPiA+ID4gPiAr
-CQlyZWd2YWwgJj0gfkZfTU1VX1NUQU5EQVJEX0FYSV9NT0RFX0JJVDsNCj4gPiA+ID4gKwkJcmVn
-dmFsICY9IH5GX01NVV9JTl9PUkRFUl9XUl9FTjsNCj4gDQo+IE5vdGU6IG10MjcxMiBhbHNvIGlz
-IE1JU0NfQ1RSTCByZWdpc3RlciwgYnV0IGl0IGRvbid0IHVzZSB0aGlzDQo+IGluX29yZGVyIHNl
-dHRpbmcuDQo+IA0KPiBBcyBjb21tZW50ZWQgaW4gdjMuIDB4NDggaXMgZWl0aGVyIFNUQU5EQVJE
-X0FYSV9NT0RFIG9yIE1JU0NfQ1RSTA0KPiByZWdpc3Rlci4gTm8gbmVlZCB0d28gZmxhZ3MocmVz
-ZXRfYXhpL2hhc194eCkgZm9yIGl0Lg0KPiANCj4gc29tZXRoaW5nIGxpa2U6DQo+IA0KPiByZWd2
-YWwgPSByZWFkbF9yZWxheGVkKGRhdGEtPmJhc2UgKyBSRUdfTU1VX01JU0NfQ1RSTCk7DQo+IGlm
-IChyZXNldF9heGkpIHsNCj4gcmVndmFsID0gMDsNCj4gfSBlbHNlIHsgICAvKiBNSVNDX0NUUkwg
-Ki8NCj4gaWYgKCFhcHVbMV0pDQo+IHJlZ3ZhbCAmPSB+Rl9NTVVfU1RBTkRBUkRfQVhJX01PREVf
-QklUOw0KPiBpZiAob3V0X29yZGVyX2VuKQ0KPiByZWd2YWwgJj0gfkZfTU1VX0lOX09SREVSX1dS
-X0VOOw0KPiB9DQo+IHdyaXRlbF9yZWxheGVkKHJlZ3ZhbCwgZGF0YS0+YmFzZSArIFJFR19NTVVf
-TUlTQ19DVFJMKTsNCj4gDQo+IA0KPiBbMV0gWW91ciBjdXJyZW50IHBhdGNoIGRvZXNuJ3Qgc3Vw
-cG9ydCBhcHUtaW9tbXUsIHRodXMsIGFkZCBpdCB3aGVuDQo+IG5lY2Vzc2FyeS4NCg0Kb2ssIHRo
-ZSBwYXRjaHNldCBkb24ndCBuZWVkIHRvICJpZiAoIWFwdVsxXSkiLCBJIHdpbGwgZml4IGl0IGlu
-IG5leHQNCnZlcnNpb24uIHRoYW5rcw0KDQoNCj4gPiA+ID4gKwkJd3JpdGVsX3JlbGF4ZWQocmVn
-dmFsLCBkYXRhLT5iYXNlICsgUkVHX01NVV9NSVNDX0NUUkwpOw0KPiA+ID4gPiArCX0NCj4gPiA+
-ID4gKw0KPiA+ID4gPiAgCWlmIChkZXZtX3JlcXVlc3RfaXJxKGRhdGEtPmRldiwgZGF0YS0+aXJx
-LCBtdGtfaW9tbXVfaXNyLCAwLA0KPiA+ID4gPiAgCQkJICAgICBkZXZfbmFtZShkYXRhLT5kZXYp
-LCAodm9pZCAqKWRhdGEpKSB7DQo+ID4gPiA+ICAJCXdyaXRlbF9yZWxheGVkKDAsIGRhdGEtPmJh
-c2UgKyBSRUdfTU1VX1BUX0JBU0VfQUREUik7DQo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2lvbW11L210a19pb21tdS5oIGIvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuaA0KPiA+ID4gPiBp
-bmRleCAxYjZlYTgzOWI5MmMuLmQ3MTFhYzYzMDAzNyAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJp
-dmVycy9pb21tdS9tdGtfaW9tbXUuaA0KPiA+ID4gPiArKysgYi9kcml2ZXJzL2lvbW11L210a19p
-b21tdS5oDQo+ID4gPiA+IEBAIC00MCw2ICs0MCw3IEBAIHN0cnVjdCBtdGtfaW9tbXVfcGxhdF9k
-YXRhIHsNCj4gPiA+ID4gIA0KPiA+ID4gPiAgCS8qIEhXIHdpbGwgdXNlIHRoZSBFTUkgY2xvY2sg
-aWYgdGhlcmUgaXNuJ3QgdGhlICJiY2xrIi4gKi8NCj4gPiA+ID4gIAlib29sICAgICAgICAgICAg
-ICAgIGhhc19iY2xrOw0KPiA+ID4gPiArCWJvb2wJCSAgICBoYXNfbWlzY19jdHJsOw0KPiA+ID4g
-PiAgCWJvb2wgICAgICAgICAgICAgICAgaGFzX3ZsZF9wYV9ybmc7DQo+ID4gPiA+ICAJYm9vbCAg
-ICAgICAgICAgICAgICByZXNldF9heGk7DQo+ID4gPiA+ICAJdW5zaWduZWQgY2hhciAgICAgICBs
-YXJiaWRfcmVtYXBbTVRLX0xBUkJfTlJfTUFYXTsNCj4gPiA+ID4gDQo+ID4gDQo+ID4gDQo+IA0K
-DQo=
+On Tue 23 Jun 16:34 PDT 2020, Konrad Dybcio wrote:
 
+> Thanks for your review.
+> 
+> I will send the regulators/rpm patch very soon.
+> 
+> Regarding the mbox, do you know whether it should include any clocks
+> on 8992/4? What comes to my head is a53/57pll, but that's not there yet..
+> So perhaps I should just add it with .clk_name = NULL?
+> 
+
+I don't remember how the clocks are controlled on this platform, so my
+suggestion is that you just skip that for now.
+
+Regards,
+Bjorn
