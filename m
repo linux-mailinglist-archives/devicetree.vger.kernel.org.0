@@ -2,246 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E05B206CD2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F073206D16
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 08:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389172AbgFXGpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 02:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389251AbgFXGpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 02:45:42 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E13C061755
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:45:42 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id q15so1223946wmj.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2020 23:45:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=92ct+kIyuYCkffCnaII7e190oKIVCgMIRLBRHDA+hrQ=;
-        b=vMBeoFBR6gWv1XCSeTiSfq4tCcSz6ogFdWuTufhhEEp+YjMHBGUPqKmSHaviBuZMzi
-         jJOmcl8gsMyNsctNAEYmqZD8ara+sb6s9sKlGL+AS3XZlxZGcbKFDg+TxZWu35DDTghi
-         p45RtWBLtPn5Fm2YVLfxcwi8+uRptoq4dghIgqr2Ze3PDzozh3pE1pNbyfC6dfeDTrIq
-         l1Z0odWvxsFi9ZULzqIhf30Gqb5mwhrpmXjOZDPwIFTGGsBGl5osmP4XDaCl3Z0LirID
-         0TwpDNaxsfwOyKZixZoSN9iCtFiOCJ8q7utyir8piieszXTmAqHtqwjjgVW1u3r1Saiw
-         hLug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=92ct+kIyuYCkffCnaII7e190oKIVCgMIRLBRHDA+hrQ=;
-        b=SKCZ09RLIoXXPW/OEpOoxtv7PMCuLwa/FVhHhbpvkUucNNbxouo+bq66w4KPV1tTCt
-         bdE82XGsedB87LsyLAwpyK5MAI1sCuWciG0varUHvDPu4zrzelJX6aEIthFDH3WCKpED
-         o7g1AGx0DjXxNFcU0oLlqnFmUoK03DttehlljR4SXDhWyLqT+2qVPw4cXG7ftEIdfFCD
-         1nX1yGFRb9YvnE+kuN8Lty+Yz3pl2S8Z7nxL0UvbU51zIzu/yvaNUzIkZdUxe7sfQite
-         HC5kPa1xQmPVNXhVpmMv/3tgmkpCai+/w83jWS4AvwPkL2fyLLa0qKx2Gm47hqlKukvv
-         v2Yw==
-X-Gm-Message-State: AOAM533HSLGJwaxMsVj/jvQyeiwiR8Vphbp+oCXT0Gjw6twr3+WKkA4l
-        E6wkMKcIhRLTEQNGAHaxoMbZpg==
-X-Google-Smtp-Source: ABdhPJyVDUfjm/E/allflF2ZvSZxow7JcquGxPsnUrNFqdBmD70tuJE9qiLNwz0mWV2sr/rUv8+dfg==
-X-Received: by 2002:a1c:1b0d:: with SMTP id b13mr7401130wmb.169.1592981141078;
-        Tue, 23 Jun 2020 23:45:41 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id u23sm11771941wru.94.2020.06.23.23.45.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2020 23:45:40 -0700 (PDT)
-Date:   Wed, 24 Jun 2020 07:45:38 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     andy.shevchenko@gmail.com, michael@walle.cc, robh+dt@kernel.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, linux@roeck-us.net,
-        andriy.shevchenko@linux.intel.com, robin.murphy@arm.com,
-        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] mfd: core: Make a best effort attempt to match
- devices with the correct of_nodes
-Message-ID: <20200624064538.GD954398@dell>
-References: <20200611191002.2256570-1-lee.jones@linaro.org>
- <2a25af37-a9b8-e4f3-6092-06c1c907dc9f@gmail.com>
+        id S2389442AbgFXG4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 02:56:13 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:28242 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389229AbgFXG4M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jun 2020 02:56:12 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1592981772; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=tdJMc4rQpzxOPWFJB10qMVMMhBp0QU5JBeHsCYxYnzo=;
+ b=t1LMOmzs1YEmEQd/9eMHWwx6JNeqGuOZgl+QYZWHh5Z8BOu8IhHFCAcU7PHCaH0/j7AiYd5q
+ FotH3wJDotjPXDvAESbAWct4Z8i2PB18lsdlpt7IUsraUeXZmkJwi5y0Gb/9NZa/Foxu/cKH
+ 82ybepIpf3FXfhtFHFUKC4K6MZI=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-east-1.postgun.com with SMTP id
+ 5ef2f90ba3d8a447438a0e95 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Jun 2020 06:56:11
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 30B35C4339C; Wed, 24 Jun 2020 06:56:11 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AAA86C433C8;
+        Wed, 24 Jun 2020 06:56:10 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a25af37-a9b8-e4f3-6092-06c1c907dc9f@gmail.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 24 Jun 2020 12:26:10 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        mike.leach@linaro.org, Jonathan Marek <jonathan@marek.ca>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7180: Add iommus property to ETR
+In-Reply-To: <f40621b2b01f836a8a97686707599dd0@codeaurora.org>
+References: <cover.1591708204.git.saiprakash.ranjan@codeaurora.org>
+ <2312c9a10e7251d69e31e4f51c0f1d70e6f2f2f5.1591708204.git.saiprakash.ranjan@codeaurora.org>
+ <20200621072213.GG128451@builder.lan>
+ <f40621b2b01f836a8a97686707599dd0@codeaurora.org>
+Message-ID: <e270acd3f7db076c043f1b982b1efea0@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jun 2020, Frank Rowand wrote:
+Hi Bjorn,
 
-> On 2020-06-11 14:10, Lee Jones wrote:
-> > Currently, when a child platform device (sometimes referred to as a
-> > sub-device) is registered via the Multi-Functional Device (MFD) API,
-> > the framework attempts to match the newly registered platform device
-> > with its associated Device Tree (OF) node.  Until now, the device has
-> > been allocated the first node found with an identical OF compatible
-> > string.  Unfortunately, if there are, say for example '3' devices
-> > which are to be handled by the same driver and therefore have the same
-> > compatible string, each of them will be allocated a pointer to the
-> > *first* node.
-> > 
-> > An example Device Tree entry might look like this:
-> > 
-> >   mfd_of_test {
-> >           compatible = "mfd,of-test-parent";
-> >           #address-cells = <0x02>;
-> >           #size-cells = <0x02>;
-> > 
-> >           child@aaaaaaaaaaaaaaaa {
-> >                   compatible = "mfd,of-test-child";
-> >                   reg = <0xaaaaaaaa 0xaaaaaaaa 0 0x11>,
-> >                         <0xbbbbbbbb 0xbbbbbbbb 0 0x22>;
-> >           };
-> > 
-> >           child@cccccccc {
-> >                   compatible = "mfd,of-test-child";
-> >                   reg = <0x00000000 0xcccccccc 0 0x33>;
-> >           };
-> > 
-> >           child@dddddddd00000000 {
-> >                   compatible = "mfd,of-test-child";
-> >                   reg = <0xdddddddd 0x00000000 0 0x44>;
-> >           };
-> >   };
-> > 
-> > When used with example sub-device registration like this:
-> > 
-> >   static const struct mfd_cell mfd_of_test_cell[] = {
-> >         OF_MFD_CELL("mfd-of-test-child", NULL, NULL, 0, 0, "mfd,of-test-child"),
-> >         OF_MFD_CELL("mfd-of-test-child", NULL, NULL, 0, 1, "mfd,of-test-child"),
-> >         OF_MFD_CELL("mfd-of-test-child", NULL, NULL, 0, 2, "mfd,of-test-child")
-> >   };
-> > 
-> > ... the current implementation will result in all devices being allocated
-> > the first OF node found containing a matching compatible string:
-> > 
-> >   [0.712511] mfd-of-test-child mfd-of-test-child.0: Probing platform device: 0
-> >   [0.712710] mfd-of-test-child mfd-of-test-child.0: Using OF node: child@aaaaaaaaaaaaaaaa
-> >   [0.713033] mfd-of-test-child mfd-of-test-child.1: Probing platform device: 1
-> >   [0.713381] mfd-of-test-child mfd-of-test-child.1: Using OF node: child@aaaaaaaaaaaaaaaa
-> >   [0.713691] mfd-of-test-child mfd-of-test-child.2: Probing platform device: 2
-> >   [0.713889] mfd-of-test-child mfd-of-test-child.2: Using OF node: child@aaaaaaaaaaaaaaaa
-> > 
-> > After this patch each device will be allocated a unique OF node:
-> > 
-> >   [0.712511] mfd-of-test-child mfd-of-test-child.0: Probing platform device: 0
-> >   [0.712710] mfd-of-test-child mfd-of-test-child.0: Using OF node: child@aaaaaaaaaaaaaaaa
-> >   [0.713033] mfd-of-test-child mfd-of-test-child.1: Probing platform device: 1
-> >   [0.713381] mfd-of-test-child mfd-of-test-child.1: Using OF node: child@cccccccc
-> >   [0.713691] mfd-of-test-child mfd-of-test-child.2: Probing platform device: 2
-> >   [0.713889] mfd-of-test-child mfd-of-test-child.2: Using OF node: child@dddddddd00000000
-> > 
-> > Which is fine if all OF nodes are identical.  However if we wish to
-> > apply an attribute to particular device, we really need to ensure the
-> > correct OF node will be associated with the device containing the
-> > correct address.  We accomplish this by matching the device's address
-> > expressed in DT with one provided during sub-device registration.
-> > Like this:
-> > 
-> >   static const struct mfd_cell mfd_of_test_cell[] = {
-> >         OF_MFD_CELL_REG("mfd-of-test-child", NULL, NULL, 0, 1, "mfd,of-test-child", 0xdddddddd00000000),
-> >         OF_MFD_CELL_REG("mfd-of-test-child", NULL, NULL, 0, 2, "mfd,of-test-child", 0xaaaaaaaaaaaaaaaa),
-> >         OF_MFD_CELL_REG("mfd-of-test-child", NULL, NULL, 0, 3, "mfd,of-test-child", 0x00000000cccccccc)
-> >   };
-> > 
-> > This will ensure a specific device (designated here using the
-> > platform_ids; 1, 2 and 3) is matched with a particular OF node:
-> > 
-> >   [0.712511] mfd-of-test-child mfd-of-test-child.0: Probing platform device: 0
-> >   [0.712710] mfd-of-test-child mfd-of-test-child.0: Using OF node: child@dddddddd00000000
-> >   [0.713033] mfd-of-test-child mfd-of-test-child.1: Probing platform device: 1
-> >   [0.713381] mfd-of-test-child mfd-of-test-child.1: Using OF node: child@aaaaaaaaaaaaaaaa
-> >   [0.713691] mfd-of-test-child mfd-of-test-child.2: Probing platform device: 2
-> >   [0.713889] mfd-of-test-child mfd-of-test-child.2: Using OF node: child@cccccccc
-> > 
-> > This implementation is still not infallible, hence the mention of
-> > "best effort" in the commit subject.  Since we have not *insisted* on
-> > the existence of 'reg' properties (in some scenarios they just do not
-> > make sense) and no device currently uses the new 'of_reg' attribute,
-> > we have to make an on-the-fly judgement call whether to associate the
-> > OF node anyway.  Which we do in cases where parent drivers haven't
-> > specified a particular OF node to match to.  So there is a *slight*
-> > possibility of the following result (note: the implementation here is
-> > convoluted, but it shows you one means by which this process can
-> > still break):
-> > 
-> >   /*
-> >    * First entry will match to the first OF node with matching compatible
-> >    * Second will fail, since the first took its OF node and is no longer available
-> >    * Third will succeed
-> >    */
-> >   static const struct mfd_cell mfd_of_test_cell[] = {
-> >         OF_MFD_CELL("mfd-of-test-child", NULL, NULL, 0, 1, "mfd,of-test-child"),
-> > 	OF_MFD_CELL_REG("mfd-of-test-child", NULL, NULL, 0, 2, "mfd,of-test-child", 0xaaaaaaaaaaaaaaaa),
-> >         OF_MFD_CELL_REG("mfd-of-test-child", NULL, NULL, 0, 3, "mfd,of-test-child", 0x00000000cccccccc)
-> >   };
-> > 
-> > The result:
-> > 
-> >   [0.753869] mfd-of-test-parent mfd_of_test: Registering 3 devices
-> >   [0.756597] mfd-of-test-child: Failed to locate of_node [id: 2]
-> >   [0.759999] mfd-of-test-child mfd-of-test-child.1: Probing platform device: 1
-> >   [0.760314] mfd-of-test-child mfd-of-test-child.1: Using OF node: child@aaaaaaaaaaaaaaaa
-> >   [0.760908] mfd-of-test-child mfd-of-test-child.2: Probing platform device: 2
-> >   [0.761183] mfd-of-test-child mfd-of-test-child.2: No OF node associated with this device
-> >   [0.761621] mfd-of-test-child mfd-of-test-child.3: Probing platform device: 3
-> >   [0.761899] mfd-of-test-child mfd-of-test-child.3: Using OF node: child@cccccccc
-> > 
-> > We could code around this with some pre-parsing semantics, but the
-> > added complexity required to cover each and every corner-case is not
-> > justified.  Merely patching the current failing (via this patch) is
-> > already working with some pretty small corner-cases.  Other issues
-> > should be patched in the parent drivers which can be achieved simply
-> > by implementing OF_MFD_CELL_REG().
-> > 
-> > Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> > ---
-> > 
-> > Changelog:
-> > 
-> > v1 => v2:
-> >   * Simply return -EAGAIN if node is already in use
-> >   * Allow for valid of_reg=0 by introducing use_of_reg boolean flag
-> >   * Split helpers out into separate patch
-> > 
-> > drivers/mfd/mfd-core.c   | 99 +++++++++++++++++++++++++++++++++++-----
-> >  include/linux/mfd/core.h | 10 ++++
-> >  2 files changed, 97 insertions(+), 12 deletions(-)
-
-[...]
-
-> > diff --git a/include/linux/mfd/core.h b/include/linux/mfd/core.h
-> > index d01d1299e49dc..a148b907bb7f1 100644
-> > --- a/include/linux/mfd/core.h
-> > +++ b/include/linux/mfd/core.h
-> > @@ -78,6 +78,16 @@ struct mfd_cell {
-> >  	 */
-> >  	const char		*of_compatible;
-> >  
-> > +	/*
-> > +	 * Address as defined in Device Tree.  Used to compement 'of_compatible'
-> > +	 * (above) when matching OF nodes with devices that have identical
-> > +	 * compatible strings
-> > +	 */
+On 2020-06-21 13:39, Sai Prakash Ranjan wrote:
+> Hi Bjorn,
 > 
-> Instead of the above comment, suggest something like instead (I have not properly
-> line wrapped, to make it easier to see the difference):
+> On 2020-06-21 12:52, Bjorn Andersson wrote:
+>> On Tue 09 Jun 06:30 PDT 2020, Sai Prakash Ranjan wrote:
+>> 
+>>> Define iommus property for Coresight ETR component in
+>>> SC7180 SoC with the SID and mask to enable SMMU
+>>> translation for this master.
+>>> 
+>> 
+>> We don't have &apps_smmu in linux-next, as we've yet to figure out how
+>> to disable the boot splash or support the stream mapping handover.
+>> 
+>> So I'm not able to apply this.
+>> 
 > 
->    > +	/*
->    > +	 * Address as defined in Device Tree mfd child node "reg" property.  Used in combination with 'of_compatible'
->    > +	 * (above) when matching OF nodes with devices that have identical
->    > +	 * compatible strings
->    > +	 */
+> This is for SC7180 which has apps_smmu not SM8150.
+> 
 
-I'll split the difference and make it more clear, thanks.
+Please let me know if this needs further explanation.
+
+Thanks,
+Sai
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
