@@ -2,80 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 168B6206DCA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 09:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA4C206DD6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2020 09:34:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387610AbgFXHan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 03:30:43 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:59652 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388375AbgFXH3y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jun 2020 03:29:54 -0400
-Received: from linux.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dx_93mAPNezSRJAA--.399S13;
-        Wed, 24 Jun 2020 15:29:48 +0800 (CST)
-From:   Tiezhu Yang <yangtiezhu@loongson.cn>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, Xuefeng Li <lixuefeng@loongson.cn>
-Subject: [PATCH v3 11/14] irqchip/omap-intc: Fix potential resource leak
-Date:   Wed, 24 Jun 2020 15:29:39 +0800
-Message-Id: <1592983782-8842-12-git-send-email-yangtiezhu@loongson.cn>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1592983782-8842-1-git-send-email-yangtiezhu@loongson.cn>
-References: <1592983782-8842-1-git-send-email-yangtiezhu@loongson.cn>
-X-CM-TRANSID: AQAAf9Dx_93mAPNezSRJAA--.399S13
-X-Coremail-Antispam: 1UD129KBjvdXoW7GF4rtF1xAryrCFyfWw1xZrb_yoW3AFc_u3
-        Wqgas3Wr4xAr4rGr1Igw13ZryYvrWkWFn7uF40q3ZxJ3y3Xw10yr42vrZ3JF10kFWUCr97
-        Gr4UurWxAw1IyjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbmxFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-        6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUAVCq3wA2048vs2
-        IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28E
-        F7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr
-        1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq
-        3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-        IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4U
-        M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-        kIc2xKxwCY1x0262kKe7AKxVWUAVWUtwCY02Avz4vE14v_GF4l42xK82IYc2Ij64vIr41l
-        4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67
-        AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8I
-        cVAFwI0_Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26c
-        xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4UJVWxJr1lIxAIcVC2z280aVCY1x02
-        67AKxVW0oVCq3bIYCTnIWIevJa73UjIFyTuYvjfUeQ6JUUUUU
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+        id S2389842AbgFXHe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 03:34:26 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37301 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388489AbgFXHe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 03:34:26 -0400
+Received: by mail-ot1-f67.google.com with SMTP id v13so1042225otp.4;
+        Wed, 24 Jun 2020 00:34:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j5iJaAmcwIz93ZsJcMmiCbrU1gnAgWj1jKvFm1JtK38=;
+        b=NE1sTZZLk+CtEKLsY9GmDuJF+nCrHxYUXDYxESgF62X5cZZThxTBD80cg3TO0SuF0k
+         IZiim3QKwi2btGz1ucU4P/8IFZEjwSYysBJfZp79C6AiIPJ3xkTtMvPclhtGAqzqiBn5
+         452rlzZfc+bvNAjQXWpBMkMT2IQgsoCEY+d2+LiG1Ku1qWORO9WvkNfg8Hg5Jxo+vY9E
+         BdDzwUqY1S6fMVrgOiu8dXxaMCV8zvaGfhXY08KKQe83FQa5vfWkDsongQ7AG1oZFaSb
+         sBaCPi87DyeMEc49+GxvLaXz4afGpOyDcwOL3EDk7FWcjrt04cJNNy7XWE+mKS7gxbEz
+         ldiw==
+X-Gm-Message-State: AOAM531i4jVbQ8VQB6+J55vZsjX1NZ5jAJnLaq488J4NavvHtKK9Ktqf
+        6071GagnkTnwP9GtYnEnZ3JjJqgKY1Bk4FaYSG2SJAK6
+X-Google-Smtp-Source: ABdhPJysMLeTgnT1zZNYcM9UUaX0LYbwwd5YK/jR2CfMmZxWqVy6gv8jlfq9DQ03hq5B5ML5uSUVwBSO6NQzv9Qjgg8=
+X-Received: by 2002:a4a:b804:: with SMTP id g4mr22189953oop.40.1592984065134;
+ Wed, 24 Jun 2020 00:34:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200603154329.31579-1-aford173@gmail.com>
+In-Reply-To: <20200603154329.31579-1-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 24 Jun 2020 09:34:13 +0200
+Message-ID: <CAMuHMdW1radtuje+z85TLXO8EAEdVYp3gF2ZE9aYbHUHdrY-Fg@mail.gmail.com>
+Subject: Re: [PATCH V3 1/3] clk: vc5: Allow Versaclock driver to support
+ multiple instances
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There exists potential resource leak in the error path, fix it.
+Hi Adam,
 
-Fixes: 8598066cddd1 ("arm: omap: irq: move irq.c to drivers/irqchip/")
-Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
----
- drivers/irqchip/irq-omap-intc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On Wed, Jun 3, 2020 at 5:44 PM Adam Ford <aford173@gmail.com> wrote:
+> Currently, the Versaclock driver is only expecting one instance and
+> uses hard-coded names for the various clock names.  Unfortunately,
+> this is a problem when there is more than one instance of the driver,
+> because the subsequent instantiations of the driver use the identical
+> name.  Each clock after the fist fails to load, because the clock
+> subsystem cannot handle two clocks with identical name.
 
-diff --git a/drivers/irqchip/irq-omap-intc.c b/drivers/irqchip/irq-omap-intc.c
-index d360a6e..e711530 100644
---- a/drivers/irqchip/irq-omap-intc.c
-+++ b/drivers/irqchip/irq-omap-intc.c
-@@ -254,8 +254,10 @@ static int __init omap_init_irq_of(struct device_node *node)
- 	omap_irq_soft_reset();
- 
- 	ret = omap_alloc_gc_of(domain, omap_irq_base);
--	if (ret < 0)
-+	if (ret < 0) {
- 		irq_domain_remove(domain);
-+		iounmap(omap_irq_base);
-+	}
- 
- 	return ret;
- }
+Thanks for your patch, which is now commit f491276a51685987 ("clk: vc5:
+Allow Versaclock driver to support multiple instances") in clk-next.
+
+> This patch removes the hard-coded name arrays and uses kasprintf to
+> assign clock names based on names of their respective node and parent
+> node which gives each clock a unique identifying name.
+>
+> For a verasaclock node with a name like:
+>    versaclock5: versaclock_som@6a
+>
+> The updated clock names would appear like:
+>     versaclock_som.mux
+>        versaclock_som.out0_sel_i2cb
+>        versaclock_som.pfd
+>           versaclock_som.pll
+>              versaclock_som.fod3
+>                 versaclock_som.out4
+>              versaclock_som.fod2
+>                 versaclock_som.out3
+>              versaclock_som.fod1
+>                 versaclock_som.out2
+>              versaclock_som.fod0
+>                 versaclock_som.out1
+
+I'm afraid this won't help, as all versaclock nodes should be named
+"clock-controller@<unit-address>", as per DT generic node name
+recommendations.
+Incorporating the unit-address won't help, as you can have multiple
+i2c buses in the system.
+How do other drivers handle this?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.1.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
