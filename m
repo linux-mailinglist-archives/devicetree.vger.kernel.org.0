@@ -2,95 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B73C20A82A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 00:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487A620A88E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 01:05:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404101AbgFYWVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jun 2020 18:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35460 "EHLO
+        id S2406000AbgFYXFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jun 2020 19:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403905AbgFYWV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jun 2020 18:21:29 -0400
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA73BC08C5C1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2020 15:21:29 -0700 (PDT)
-Received: by mail-vs1-xe36.google.com with SMTP id 190so4446766vsr.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2020 15:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HiC4BtBcvypNi0TT+uKmaMyQomfNIooMQQ9SMeSvJuE=;
-        b=hQeh5IvCT9+c5THqtc6WWb2AHU0aYgWF5ReZ+qFjCCpfIqgW19aaZnB90R90eRy0XI
-         aqqBosgZeXnP5zp2JACRzpjqBvLLkUVWfrSy6pNESy7bXlN8NAGyTcPtiDfqcYQkAXxh
-         Dtax+BMxyCZeltX5LaizJxMHd1OeZVgKaCSgM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HiC4BtBcvypNi0TT+uKmaMyQomfNIooMQQ9SMeSvJuE=;
-        b=amc80p6SxnHecbJ+Ii9LRHs8bfFvjFpIFVX1wVxmFMD/zOvvOjTzB1/Ebwpa/IA52x
-         4BGsDxLuWqO1Op3jySIZiiqFAZOQeT7PGbZZU4GyQkue8R0wL7p7qWMdaC7oXHvnEnWP
-         XZSN1YW0yVCtQnVKY/3mw1b70/Tr5DJ39XPjKy6F5rtbaMQ5snD9pyc1NPSbMIEgUf0I
-         I9SSVCfrq+sadOrs0Yrq4eYbG3IiYTEStMhLZxapaewd9+zBTwSUWIeDK+0+/YzqDy65
-         wwzUFzZjTKcUgR7BzLDiAYJOKKLha7tRCChrwUpLEUMmirOJ5lZthiXOckekXGrnFudI
-         j4Uw==
-X-Gm-Message-State: AOAM531DXLAQfT7Vvl7+LXgGpFrQFWFjWqGe36hM1BXzs6/+Xz9DS/6K
-        HZtzRV2Zn6nIi6Hx9067mCo4J8uwo1Q=
-X-Google-Smtp-Source: ABdhPJyhzwf4uDL8p7EzkMS281UK62bF2Ybfg9q/dvceTAQQjlRo2/Fh10CRWPE9fIAG66DoMMW5Fg==
-X-Received: by 2002:a67:2d16:: with SMTP id t22mr360403vst.160.1593123688405;
-        Thu, 25 Jun 2020 15:21:28 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id p7sm1189100vsl.25.2020.06.25.15.21.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jun 2020 15:21:27 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id e15so4465897vsc.7
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2020 15:21:27 -0700 (PDT)
-X-Received: by 2002:a05:6102:20c8:: with SMTP id i8mr347826vsr.106.1593123686688;
- Thu, 25 Jun 2020 15:21:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <1593087419-903-1-git-send-email-kalyan_t@codeaurora.org>
-In-Reply-To: <1593087419-903-1-git-send-email-kalyan_t@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 25 Jun 2020 15:21:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VXAQagbM-dn7MWGm08DdBxefc4jHNbkvHzuBjSM_jWnw@mail.gmail.com>
-Message-ID: <CAD=FV=VXAQagbM-dn7MWGm08DdBxefc4jHNbkvHzuBjSM_jWnw@mail.gmail.com>
-Subject: Re: [v2] drm/msm/dpu: add support for dither block in display
-To:     Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        mkrishn@codeaurora.org, travitej@codeaurora.org,
-        nganji@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S2405930AbgFYXFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jun 2020 19:05:47 -0400
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A06C08C5C1;
+        Thu, 25 Jun 2020 16:05:47 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 8E5B9153C7171;
+        Thu, 25 Jun 2020 16:05:46 -0700 (PDT)
+Date:   Thu, 25 Jun 2020 16:05:45 -0700 (PDT)
+Message-Id: <20200625.160545.16023142112288844.davem@davemloft.net>
+To:     dmurphy@ti.com
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        robh@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v11 0/5] RGMII Internal delay common property
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20200624121605.18259-1-dmurphy@ti.com>
+References: <20200624121605.18259-1-dmurphy@ti.com>
+X-Mailer: Mew version 6.8 on Emacs 26.3
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Thu, 25 Jun 2020 16:05:46 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Dan Murphy <dmurphy@ti.com>
+Date: Wed, 24 Jun 2020 07:16:00 -0500
 
-On Thu, Jun 25, 2020 at 5:17 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
->
-> This change enables dither block for primary interface
-> in display.
->
-> Enabled for 6bpc in the current version.
->
-> Changes in v1:
->  - Remove redundant error checks (Rob).
->
-> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c     | 39 +++++++++++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.c | 63 +++++++++++++++++++++----
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.h | 28 +++++++++++
->  3 files changed, 121 insertions(+), 9 deletions(-)
+> The RGMII internal delay is a common setting found in most RGMII capable PHY
+> devices.  It was found that many vendor specific device tree properties exist
+> to do the same function. This creates a common property to be used for PHY's
+> that have internal delays for the Rx and Tx paths.
+> 
+> If the internal delay is tunable then the caller needs to pass the internal
+> delay array and the return will be the index in the array that was found in
+> the firmware node.
+> 
+> If the internal delay is fixed then the caller only needs to indicate which
+> delay to return.  There is no need for a fixed delay to add device properties
+> since the value is not configurable. Per the ethernet-controller.yaml the
+> interface type indicates that the PHY should provide the delay.
+> 
+> This series contains examples of both a configurable delay and a fixed delay.
 
-Tested-by: Douglas Anderson <dianders@chromium.org>
+Series applied, thank you.
