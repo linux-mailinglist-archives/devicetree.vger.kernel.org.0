@@ -2,133 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9375820A931
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 01:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2760E20A93C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 01:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725921AbgFYXev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jun 2020 19:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725935AbgFYXei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jun 2020 19:34:38 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA81FC08C5DC;
-        Thu, 25 Jun 2020 16:34:37 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id a1so7582697ejg.12;
-        Thu, 25 Jun 2020 16:34:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zuENK659rKG+a5Ma0hucJQTrbZkZ4ohQwxPoDYc8kWU=;
-        b=ItiEF2Rg0/b2D5yRBWM2F2qjCjk7qcvp1qgb7+GNATxfYk2gMrFlIbeGmqjd94//Tq
-         XAl1tot+kbcRHyBee72ySllucM9RlGwvi7XVxDlnWdfi3+m5fvLjDrf6t8lO/b3uAIj+
-         0dVKQCoPSlWyHusDObaGxk57DvYIQymn60iSNIyjh6T2TcQvn+Tl+jUVLrQgwy2tsdBb
-         CM0W2jtC+mmNVCKe9pr8F7vGn5WxPfled/yo9eA+oFKzaNKQcfuACTH1oYeeP84Gph3L
-         g0u4hOBaYlURsBO05N2Q8pvVj3nFasqmCELcJxjQvA31+COmxfhG7NZxrR25wlVUWGpj
-         5zgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zuENK659rKG+a5Ma0hucJQTrbZkZ4ohQwxPoDYc8kWU=;
-        b=Aek34AaQVdKJ2ghRfRr8XRhC/3HqrSVSVauUz1GmXKA9Om/w9ilKKBioY4Kj/noGK4
-         cAX0SqNqjLbNImHqCDDPGfmLBlVAeeSKuzH0kyMVLC8oEsYdKqGxJHlZ9uxhs1iqsFFq
-         I+8wqwYeFxoEKrTW298veEDQ1bTQy5pfLLIdDgzEvk3e0R5sBHKRuPl/BXittFnHhBXE
-         5+CJikz0oRCKKAYdsB7qhIEBZaR9x5JoPDdPDZtnBcUaoVzJtRbC0g1Tle8nGmDabyG4
-         Mj4VXJOMfJyk1MpWnV7QaV7xy2SNhQZrhToAEdhhpeNa1a9SkibLRbD0BTiVj/FEYUS8
-         Y5mg==
-X-Gm-Message-State: AOAM5325l6NSh3Cy75BRsmLaEAtIoN6r3wO348UYxZ6H34CHibfjruFQ
-        8zTme4GLW9pOu0vMWGspG00=
-X-Google-Smtp-Source: ABdhPJxrSbfKOi8QkMG1n+35xPESQM1sYQkVh9IPWK7OVO1FpoMgGmV9kSOmyYYbz7Cip/0hmQb6eg==
-X-Received: by 2002:a17:906:2304:: with SMTP id l4mr200024eja.104.1593128076604;
-        Thu, 25 Jun 2020 16:34:36 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.137.55])
-        by smtp.gmail.com with ESMTPSA id u2sm13699184edq.29.2020.06.25.16.34.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2020 16:34:36 -0700 (PDT)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
-Subject: [PATCH 10/10] arm: dts: owl-s500-roseapplepi: Enable I2C0
-Date:   Fri, 26 Jun 2020 02:34:22 +0300
-Message-Id: <564bbfeac8c1ed6f103bf1d9be0550856778244f.1593124368.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <cover.1593124368.git.cristian.ciocaltea@gmail.com>
-References: <cover.1593124368.git.cristian.ciocaltea@gmail.com>
+        id S1725913AbgFYXhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jun 2020 19:37:18 -0400
+Received: from ns.mm-sol.com ([37.157.136.199]:48715 "EHLO extserv.mm-sol.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725834AbgFYXhS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jun 2020 19:37:18 -0400
+Received: from [192.168.1.4] (212-5-158-60.ip.btc-net.bg [212.5.158.60])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by extserv.mm-sol.com (Postfix) with ESMTPSA id 1957DD003;
+        Fri, 26 Jun 2020 02:37:15 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
+        t=1593128235; bh=2o4ThUiC17gIWs0ufb7+F/ueW41D7qZqy5puUdqvWU4=;
+        h=From:Subject:To:Cc:Date:From;
+        b=JMDF18ckJMrpFD/qEgYoia47BeQf+czsLXWH61YW/9ZMLflz9MvtqP9LC4K3ID60E
+         A7lYDCSLOscR3e0KyZmgjU4TfRA0XUxH1eQvID65yNOCqxCAGrfObO1Ayfke702/mV
+         p6JaLwnUZgbSWbyfVB1U4caMdIkwo5GNiKYgyF64rQ4KetrdKx/gaHdv5nYtAjQ4bd
+         c5tYHOWB4W93OsSXbcZblT8+GROx0+swJf2goMclZ6GdmfnKJ17B3jW6uM/S8+P2ux
+         p+6THoER8dUfr2A9bTxj5Komen/b6DzV3ahyjT4KjoU1hjNOjKbnMZ5Z9yRDvlfPbu
+         p2HLLXkkT0knA==
+From:   Stanimir Varbanov <svarbanov@mm-sol.com>
+Subject: Re: [PATCH v7 00/12] Multiple fixes in PCIe qcom driver
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200615210608.21469-1-ansuelsmth@gmail.com>
+Message-ID: <1dcf28c4-eb89-a5eb-52d8-b4356c3d0aaf@mm-sol.com>
+Date:   Fri, 26 Jun 2020 02:37:12 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200615210608.21469-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pinctrl definitions for the I2C controllers used in RoseapplePi SBC.
-For the moment enable only I2C0, which is used by PMIC.
+Hi Ansuel,
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
- arch/arm/boot/dts/owl-s500-roseapplepi.dts | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+Thank you for the patience.
 
-diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-index 0a916b6c83a8..f5d515ba9bdd 100644
---- a/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-+++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-@@ -37,7 +37,50 @@ sd_vcc: sd-vcc {
- 	};
- };
- 
-+&i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_default>;
-+};
-+
-+&i2c1 {
-+	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_default>;
-+};
-+
-+&i2c2 {
-+	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_default>;
-+};
-+
- &pinctrl {
-+	i2c0_default: i2c0_default {
-+		pinmux {
-+			groups = "i2c0_mfp";
-+			function = "i2c0";
-+		};
-+		pinconf {
-+			pins = "i2c0_sclk", "i2c0_sdata";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	i2c1_default: i2c1_default {
-+		pinconf {
-+			pins = "i2c1_sclk", "i2c1_sdata";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	i2c2_default: i2c2_default {
-+		pinconf {
-+			pins = "i2c2_sclk", "i2c2_sdata";
-+			bias-pull-up;
-+		};
-+	};
-+
- 	mmc0_default: mmc0_default {
- 		pinmux {
- 			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
+On 6/16/20 12:05 AM, Ansuel Smith wrote:
+> This contains multiple fix for PCIe qcom driver.
+> Some optional reset and clocks were missing.
+> Fix a problem with no PARF programming that cause kernel lock on load.
+> Add support to force gen 1 speed if needed. (due to hardware limitation)
+> Add ipq8064 rev 2 support that use a different tx termination offset.
+> 
+> v7:
+> * Rework GEN1 patch
+> 
+> v6:
+> * Replace custom define
+> * Move define not used in 07 to 08
+> 
+> v5:
+> * Split PCI: qcom: Add ipq8064 rev2 variant and set tx term offset
+> 
+> v4:
+> * Fix grammar error across all patch subject
+> * Use bulk api for clks
+> * Program PARF only in ipq8064 SoC
+> * Program tx term only in ipq8064 SoC
+> * Drop configurable tx-dempth rx-eq
+> * Make added clk optional
+> 
+> v3:
+> * Fix check reported by checkpatch --strict
+> * Rename force_gen1 to gen
+> 
+> v2:
+> * Drop iATU programming (already done in pcie init)
+> * Use max-link-speed instead of force-gen1 custom definition
+> * Drop MRRS to 256B (Can't find a realy reason why this was suggested)
+> * Introduce a new variant for different revision of ipq8064
+> 
+> Abhishek Sahu (1):
+>   PCI: qcom: Change duplicate PCI reset to phy reset
+> 
+> Ansuel Smith (10):
+>   PCI: qcom: Add missing ipq806x clocks in PCIe driver
+>   dt-bindings: PCI: qcom: Add missing clks
+>   PCI: qcom: Add missing reset for ipq806x
+>   dt-bindings: PCI: qcom: Add ext reset
+>   PCI: qcom: Use bulk clk api and assert on error
+>   PCI: qcom: Define some PARF params needed for ipq8064 SoC
+>   PCI: qcom: Add support for tx term offset for rev 2.1.0
+>   PCI: qcom: Add ipq8064 rev2 variant
+>   dt-bindings: PCI: qcom: Add ipq8064 rev 2 variant
+>   PCI: qcom: Replace define with standard value
+> 
+> Sham Muthayyan (1):
+>   PCI: qcom: Support pci speed set for ipq806x
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.txt     |  15 +-
+>  drivers/pci/controller/dwc/pcie-qcom.c        | 186 +++++++++++-------
+>  2 files changed, 128 insertions(+), 73 deletions(-)
+> 
+
+For the whole set:
+
+Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
+
 -- 
-2.27.0
-
+regards,
+Stan
