@@ -2,426 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B71209757
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2020 02:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B95209799
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2020 02:21:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388123AbgFYAIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jun 2020 20:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55676 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388099AbgFYAIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 20:08:15 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B04C061796
-        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2020 17:08:15 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id d12so1919197ply.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2020 17:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7XSfbaWwgfeqzjI1f2OAxr2wATpLsWrvOZYJtGKWY3Q=;
-        b=Wm4xoj6yQXcpR2bgz+HwhZvEzqzZNYTzwRFfAVHsJA07D4xJtMxl/vC/T8lHhgrTIG
-         a+XU67mgMTShQ8V6BnlVL2UFxBcB7Fbgf6NtYY0on6BwrQMpnvaRibIwNGGhjKqITWbB
-         22vzlRxTt+v8jhMnqUIIG4pxk6Z1ZaPoQ/O8A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7XSfbaWwgfeqzjI1f2OAxr2wATpLsWrvOZYJtGKWY3Q=;
-        b=Ul0mtPV9HONEl8eGZhwupJpap0R5p/PXV9FgrNofzGDmN5gKnRQOG+CxJd5Vb3AOsw
-         lDezrTFkJO3HItYot7lDiMOt2kxIsebLu9+t9UFTuzQ8JkvXg6RXU28v75x37VkQCQvA
-         fV39owZ3WZTkaQZFkI0jYvzKieQwMcjA2H11F0gnBtsdX50eKhNNZRwedRLE5icf4/M+
-         tCkgX/LC9lAKnt5dHWFEBC+zgY/4lL1rl/l7/vdRwlt7AfPQCLNKO9KUoHBNj3T7fjg3
-         OoQomqdb5ngqi0zadxMmopjDyCZNpFjRONtYadlAnJ91PDrfkX3P5+j4EWVyhHaVnOoX
-         +d2A==
-X-Gm-Message-State: AOAM531gSi8VEGa1QqJSuJnzRUeZP6bnqG12NNWFSJ7Afr83QZrjfAZE
-        QX0E5iWvlYeyxUgkdIEfXjD34Q==
-X-Google-Smtp-Source: ABdhPJw4S1HNkycqcrd80//h2hauSwe6nxEd0vm5+3m1sIdU1/0jbri5WoTnNkdlCqb5Wd3f1yyCGg==
-X-Received: by 2002:a17:90a:7645:: with SMTP id s5mr364365pjl.50.1593043694625;
-        Wed, 24 Jun 2020 17:08:14 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id dw17sm5905866pjb.40.2020.06.24.17.08.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jun 2020 17:08:14 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sdm845: Switch SPI to use GPIO for CS
-Date:   Wed, 24 Jun 2020 17:08:05 -0700
-Message-Id: <20200624170746.2.I0cabe4244069dd6e3ba47d522c54d4a36ff413f2@changeid>
-X-Mailer: git-send-email 2.27.0.212.ge8ba1cc988-goog
-In-Reply-To: <20200624170746.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
-References: <20200624170746.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+        id S2388479AbgFYAVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jun 2020 20:21:16 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:42807 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388337AbgFYAVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jun 2020 20:21:16 -0400
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20200625002112epoutp0107cf94341912daf6f3637a5498703208~boYHh1vF21283512835epoutp01R
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2020 00:21:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20200625002112epoutp0107cf94341912daf6f3637a5498703208~boYHh1vF21283512835epoutp01R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1593044472;
+        bh=9Tvx5LVQ92yDOHnxdae1m8tcACjD0IX4pwyY2EQbYCM=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=Zl8P0LSa8/v3Yqw9dIrC8x8Qlf0OzYghUAwUvSLy5fvSCwjMhNyELi2msW5ornFq7
+         ezsslF4sD1miiNS7B0Fn7afWpTqTbY4rUROd7a06Qh9yyVaIR+vkAVs1Yy90KZHvlx
+         vrMn1oDksuuJdhqn7lGe+G/HnbefMepw0Au33O54=
+Received: from epsmges5p1new.samsung.com (unknown [182.195.42.73]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20200625002111epcas5p31684db82d7f5e8246f24bbf3792aa8ae~boYHCljLa2533125331epcas5p3I;
+        Thu, 25 Jun 2020 00:21:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2C.2A.09467.7FDE3FE5; Thu, 25 Jun 2020 09:21:11 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200625002111epcas5p276f95efdd9e8675b7014b2050a2f0e4a~boYGhZnAJ0922509225epcas5p2F;
+        Thu, 25 Jun 2020 00:21:11 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200625002111epsmtrp2c6d129880dc0084f20367ba47cb16590~boYGdwGHl2241922419epsmtrp2X;
+        Thu, 25 Jun 2020 00:21:11 +0000 (GMT)
+X-AuditID: b6c32a49-a29ff700000024fb-65-5ef3edf7d0c1
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C2.09.08382.7FDE3FE5; Thu, 25 Jun 2020 09:21:11 +0900 (KST)
+Received: from alimakhtar02 (unknown [107.108.234.165]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200625002107epsmtip1aae9c4ad2d264c605d250d7aecb38d57~boYDWPAYc1560015600epsmtip1E;
+        Thu, 25 Jun 2020 00:21:07 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Vinod Koul'" <vkoul@kernel.org>
+Cc:     "'Kishon Vijay Abraham I'" <kishon@ti.com>, <robh@kernel.org>,
+        <krzk@kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+        <avri.altman@wdc.com>, <stanley.chu@mediatek.com>,
+        <linux-scsi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <cang@codeaurora.org>,
+        <devicetree@vger.kernel.org>, <kwmad.kim@samsung.com>,
+        <linux-kernel@vger.kernel.org>,
+        "'Martin K. Petersen'" <martin.petersen@oracle.com>
+In-Reply-To: <20200624173000.GJ2324254@vkoul-mobl>
+Subject: RE: [PATCH v10 00/10] exynos-ufs: Add support for UFS HCI
+Date:   Thu, 25 Jun 2020 05:51:06 +0530
+Message-ID: <008b01d64a86$872af1e0$9580d5a0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQNA14zZ9KpC6NxovY65uGX80LQ4kgIpylB3AdlmWUMBx1WEmQIl7FhyAiYYQSwBBY3htAG7IsXOAfG87UylnQyD8A==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEKsWRmVeSWpSXmKPExsWy7bCmuu73t5/jDBZ2Glq8/HmVzeLT+mWs
+        FvOPnGO1uPC0h83i/PkN7BY3txxlsdj0+BqrxeVdc9gsZpzfx2TRfX0Hm8Xy4/+YLP7v2cFu
+        sXTrTUaLnXdOMDvweVzu62Xy2LSqk81j85J6j5aT+1k8Pj69xeLRt2UVo8fxG9uZPD5vkvNo
+        P9DNFMAZxWWTkpqTWZZapG+XwJVxdu0i1oLX3BXv9p5nbGA8z9nFyMkhIWAisazhF2sXIxeH
+        kMBuRomne2YxQzifGCWeTFrADuF8Y5R4tHEtUIYDouVfIER8L6PE+mnvoIreMEpMe3KKFWQu
+        m4CuxI7FbWwgtoiAqsSWJw/AbGaBhcwSWxbog9icAkYSa5ccZQSxhQWcJF6v2MMEYrMA1T+8
+        PQFsDq+ApcT+rTuhbEGJkzOfsEDMkZfY/nYOM8QPChI/ny5jhYiLSxz92QN2qIhAlsTTb1Ug
+        t0kIvOCQODf1DxNEvYvEx2db2SFsYYlXx7dA2VISn9/tZYN4MluiZ5cxRLhGYum8YywQtr3E
+        gStzWEBKmAU0Jdbv0ofYyifR+/sJE0Qnr0RHmxBEtapE87urUJ3SEhO7u1khSjwk+ppEJzAq
+        zkLy1iwkb81C8soshF0LGFlWMUqmFhTnpqcWmxYY5qWW6xUn5haX5qXrJefnbmIEJzstzx2M
+        dx980DvEyMTBeIhRgoNZSYQ3xO1TnBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXFepR9n4oQE0hNL
+        UrNTUwtSi2CyTBycUg1MG7auZ3nE1zRVtUmqxmpu++dbuy22i3saltSs3L1dqpxF6rRBvf3E
+        noaM79ttG249dno76cek7Vc5LV/emhg89dGXpCwT9Ys/k199Kgj53Wkvc0n6sO+RP+wan5TL
+        Mp6ferXtxXGRIrXUJcfFGVhsz/SrrM3z1Dr7P14uL/nuOx6H4zpSiQoXWo4q/pn7Sl3i6Moj
+        KZPPV5//m7fzlugORucfja4fb1kJdE/YeUngisOUA98aZtpvEQj6ylBRtS+AYVn6wTj92ZL3
+        Yl6LnMz5mXfglGGhXHlN0EmGh0HFEfcTZsTe1pLjCu87dIqx88/Xr9FHb3UILed51j6n7X5d
+        ycq02b3F/uk8FWHv5wu3KbEUZyQaajEXFScCACwH/SzlAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrCIsWRmVeSWpSXmKPExsWy7bCSnO73t5/jDC61c1q8/HmVzeLT+mWs
+        FvOPnGO1uPC0h83i/PkN7BY3txxlsdj0+BqrxeVdc9gsZpzfx2TRfX0Hm8Xy4/+YLP7v2cFu
+        sXTrTUaLnXdOMDvweVzu62Xy2LSqk81j85J6j5aT+1k8Pj69xeLRt2UVo8fxG9uZPD5vkvNo
+        P9DNFMAZxWWTkpqTWZZapG+XwJVxdu0i1oLX3BXv9p5nbGA8z9nFyMEhIWAisexfIIgpJLCb
+        UeJmbRcjJ1BUWuL6xgnsELawxMp/z8FsIYFXjBKHJ1iA2GwCuhI7FrexgdgiAqoSW548ALK5
+        OJgF1jJLzD+0GswREjjLLHHp6WmwKk4BI4m1S44ygtjCAk4Sr1fsYQKxWYC6H96ewApi8wpY
+        SuzfuhPKFpQ4OfMJC8hxzAJ6Em0bwVqZBeQltr+dwwxxnILEz6fLWCHi4hJHf/Ywg5SLCGRJ
+        PP1WNYFReBaSQbMQBs1CMmgWkuYFjCyrGCVTC4pz03OLDQsM81LL9YoTc4tL89L1kvNzNzGC
+        I1ZLcwfj9lUf9A4xMnEwHmKU4GBWEuENcfsUJ8SbklhZlVqUH19UmpNafIhRmoNFSZz3RuHC
+        OCGB9MSS1OzU1ILUIpgsEwenVANTBf9/L/23vubxtUEs6s99pk/TONAcusD49pZq+VdZe2rr
+        9r7eu+f3v7fvdI2MJkX7hoRFvVow7V/NikubtNOL3r88zDmlKtq6Jq2qI+N1hX3+9M0PtjZU
+        pWzleGCsJaIn/TLj570F21qfxX/1tnNusRU/cDj1/EfHv/Ln5e+kWDjpV9b4mf6eXfzu4aaA
+        lX7LrSJ0XwkGz+DaFd5fw7ePK2eZvPhfx/kXw49dEd6+oP0Wm/yXs7NTKjzn8zQ25FjHy8VL
+        bivPW/ilpdLB8WqytUvbsZNy0iq513304s1euln8nKGuO4UjuTL9X+JkPYuYZ8G7v+xYbHmf
+        ZwJbVbzqVBEN9okNDw8d8FuxYpkSS3FGoqEWc1FxIgBkQA9mRwMAAA==
+X-CMS-MailID: 20200625002111epcas5p276f95efdd9e8675b7014b2050a2f0e4a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20200528013223epcas5p2be85fa8803326b49a905fb7225992cad
+References: <CGME20200528013223epcas5p2be85fa8803326b49a905fb7225992cad@epcas5p2.samsung.com>
+        <20200528011658.71590-1-alim.akhtar@samsung.com>
+        <159114947915.26776.12485309894552696104.b4-ty@oracle.com>
+        <013a01d63d3e$ecf404d0$c6dc0e70$@samsung.com>
+        <89b96bd0-a9a3-cdd8-dc67-1f9f49eef264@ti.com>
+        <000001d646a6$6cb5fd70$4621f850$@samsung.com>
+        <20200624102112.GX2324254@vkoul-mobl>
+        <004b01d64a48$8bb87270$a3295750$@samsung.com>
+        <20200624173000.GJ2324254@vkoul-mobl>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is like the same change for sc7180 but just for sdm845.
+Hi Vinod,
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+> -----Original Message-----
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: 24 June 2020 23:00
+> To: Alim Akhtar <alim.akhtar@samsung.com>
+> Cc: 'Kishon Vijay Abraham I' <kishon@ti.com>; robh@kernel.org;
+> krzk@kernel.org; linux-samsung-soc@vger.kernel.org; avri.altman@wdc.com;
+> stanley.chu@mediatek.com; linux-scsi@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; cang@codeaurora.org;
+devicetree@vger.kernel.org;
+> kwmad.kim@samsung.com; linux-kernel@vger.kernel.org; 'Martin K. Petersen'
+> <martin.petersen@oracle.com>
+> Subject: Re: [PATCH v10 00/10] exynos-ufs: Add support for UFS HCI
+> 
+> Hi Alim,
+> 
+> On 24-06-20, 22:27, Alim Akhtar wrote:
+> > > > > Sure, will re-send this series.
+> > >
+> > > But patches have not been sent right, pls send and me/Kishon will
+> > > review
+> > >
+> > Thanks for your kind attention on this series. As per [0] comment from
+> > Kishon, patch 7/10 [1] and probably 6/10 [2] should have been Applied
+> > after
+> > 5.8-rc1 was tagged.
+> 
+> And that is something I am trying atm, but I dont have patches in my
+mailbox, so
+> would you be kind enough to resend me these patches after rebasing to phy-
+> next, also do add acks/reviews collected in previous posts.
+> 
+> I dont think I have seen resend, or maybe I wasnt cced
+> 
+Just noticed you were not CCed.
+I have sent those two patches.
+https://patchwork.kernel.org/patch/11624571/
+https://patchwork.kernel.org/patch/11624569/
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 113 +++++++++++++++++++++++----
- 1 file changed, 97 insertions(+), 16 deletions(-)
+PTAL,
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 8eb5a31346d2..417cf1530848 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/clock/qcom,lpass-sdm845.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,videocc-sdm845.h>
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interconnect/qcom,sdm845.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/phy/phy-qcom-qusb2.h>
-@@ -837,6 +838,7 @@ spi0: spi@880000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi0_default>;
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -874,6 +876,7 @@ spi1: spi@884000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi1_default>;
- 				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 20 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -911,6 +914,7 @@ spi2: spi@888000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi2_default>;
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 30 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -948,6 +952,7 @@ spi3: spi@88c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi3_default>;
- 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 44 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -985,6 +990,7 @@ spi4: spi@890000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi4_default>;
- 				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1022,6 +1028,7 @@ spi5: spi@894000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi5_default>;
- 				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1059,6 +1066,7 @@ spi6: spi@898000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi6_default>;
- 				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 48 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1096,6 +1104,7 @@ spi7: spi@89c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi7_default>;
- 				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 96 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1145,6 +1154,7 @@ spi8: spi@a80000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi8_default>;
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 68 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1182,6 +1192,7 @@ spi9: spi@a84000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi9_default>;
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 5 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1219,6 +1230,7 @@ spi10: spi@a88000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi10_default>;
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1256,6 +1268,7 @@ spi11: spi@a8c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi11_default>;
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 34 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1293,6 +1306,7 @@ spi12: spi@a90000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi12_default>;
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1330,6 +1344,7 @@ spi13: spi@a94000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi13_default>;
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1367,6 +1382,7 @@ spi14: spi@a98000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi14_default>;
- 				interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -1404,6 +1420,7 @@ spi15: spi@a9c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_spi15_default>;
- 				interrupts = <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-+				cs-gpios = <&tlmm 84 GPIO_ACTIVE_LOW>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -2002,129 +2019,193 @@ pinmux {
- 			qup_spi0_default: qup-spi0-default {
- 				pinmux {
- 					pins = "gpio0", "gpio1",
--					       "gpio2", "gpio3";
-+					       "gpio2";
- 					function = "qup0";
- 				};
-+				pinmux-cs {
-+					pins = "gpio3";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi1_default: qup-spi1-default {
- 				pinmux {
- 					pins = "gpio17", "gpio18",
--					       "gpio19", "gpio20";
-+					       "gpio19";
- 					function = "qup1";
- 				};
-+				pinmux-cs {
-+					pins = "gpio20";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi2_default: qup-spi2-default {
- 				pinmux {
- 					pins = "gpio27", "gpio28",
--					       "gpio29", "gpio30";
-+					       "gpio29";
- 					function = "qup2";
- 				};
-+				pinmux-cs {
-+					pins = "gpio30";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi3_default: qup-spi3-default {
- 				pinmux {
- 					pins = "gpio41", "gpio42",
--					       "gpio43", "gpio44";
-+					       "gpio43";
- 					function = "qup3";
- 				};
-+				pinmux-cs {
-+					pins = "gpio44";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi4_default: qup-spi4-default {
- 				pinmux {
- 					pins = "gpio89", "gpio90",
--					       "gpio91", "gpio92";
-+					       "gpio91";
- 					function = "qup4";
- 				};
-+				pinmux-cs {
-+					pins = "gpio92";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi5_default: qup-spi5-default {
- 				pinmux {
- 					pins = "gpio85", "gpio86",
--					       "gpio87", "gpio88";
-+					       "gpio87";
- 					function = "qup5";
- 				};
-+				pinmux-cs {
-+					pins = "gpio88";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi6_default: qup-spi6-default {
- 				pinmux {
- 					pins = "gpio45", "gpio46",
--					       "gpio47", "gpio48";
-+					       "gpio47";
- 					function = "qup6";
- 				};
-+				pinmux-cs {
-+					pins = "gpio48";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi7_default: qup-spi7-default {
- 				pinmux {
- 					pins = "gpio93", "gpio94",
--					       "gpio95", "gpio96";
-+					       "gpio95";
- 					function = "qup7";
- 				};
-+				pinmux-cs {
-+					pins = "gpio96";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi8_default: qup-spi8-default {
- 				pinmux {
- 					pins = "gpio65", "gpio66",
--					       "gpio67", "gpio68";
-+					       "gpio67";
- 					function = "qup8";
- 				};
-+				pinmux-cs {
-+					pins = "gpio68";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi9_default: qup-spi9-default {
- 				pinmux {
- 					pins = "gpio6", "gpio7",
--					       "gpio4", "gpio5";
-+					       "gpio4";
- 					function = "qup9";
- 				};
-+				pinmux-cs {
-+					pins = "gpio5";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi10_default: qup-spi10-default {
- 				pinmux {
- 					pins = "gpio55", "gpio56",
--					       "gpio53", "gpio54";
-+					       "gpio53";
- 					function = "qup10";
- 				};
-+				pinmux-cs {
-+					pins = "gpio54";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi11_default: qup-spi11-default {
- 				pinmux {
- 					pins = "gpio31", "gpio32",
--					       "gpio33", "gpio34";
-+					       "gpio33";
- 					function = "qup11";
- 				};
-+				pinmux-cs {
-+					pins = "gpio34";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi12_default: qup-spi12-default {
- 				pinmux {
- 					pins = "gpio49", "gpio50",
--					       "gpio51", "gpio52";
-+					       "gpio51";
- 					function = "qup12";
- 				};
-+				pinmux-cs {
-+					pins = "gpio52";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi13_default: qup-spi13-default {
- 				pinmux {
- 					pins = "gpio105", "gpio106",
--					       "gpio107", "gpio108";
-+					       "gpio107";
- 					function = "qup13";
- 				};
-+				pinmux-cs {
-+					pins = "gpio108";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi14_default: qup-spi14-default {
- 				pinmux {
- 					pins = "gpio33", "gpio34",
--					       "gpio31", "gpio32";
-+					       "gpio31";
- 					function = "qup14";
- 				};
-+				pinmux-cs {
-+					pins = "gpio32";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_spi15_default: qup-spi15-default {
- 				pinmux {
- 					pins = "gpio81", "gpio82",
--					       "gpio83", "gpio84";
-+					       "gpio83";
- 					function = "qup15";
- 				};
-+				pinmux-cs {
-+					pins = "gpio84";
-+					function = "gpio";
-+				};
- 			};
- 
- 			qup_uart0_default: qup-uart0-default {
--- 
-2.27.0.212.ge8ba1cc988-goog
+Thanks,
+
+> 
+> --
+> ~Vinod
 
