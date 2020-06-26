@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A8320ACD9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 09:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D7220ACD5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 09:14:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728248AbgFZHON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jun 2020 03:14:13 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:55587 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728145AbgFZHON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 03:14:13 -0400
-Received: from localhost.localdomain (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 7C767100008;
-        Fri, 26 Jun 2020 07:14:08 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        masonccyang@mxic.com.tw, juliensu@mxic.com.tw,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v11 2/2] dt-bindings: mtd: Document boolean NAND ECC properties
-Date:   Fri, 26 Jun 2020 09:13:57 +0200
-Message-Id: <20200626071357.21421-3-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200626071357.21421-1-miquel.raynal@bootlin.com>
-References: <20200626071357.21421-1-miquel.raynal@bootlin.com>
+        id S1728057AbgFZHOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jun 2020 03:14:04 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:45967 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725801AbgFZHOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 03:14:04 -0400
+Received: by mail-ed1-f66.google.com with SMTP id t21so6102388edr.12;
+        Fri, 26 Jun 2020 00:14:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mY7VEfODaBnUoEDtRuN2imom2lqWT0mgrtCNgvYDPlg=;
+        b=Ieb7tcMX9NyjY/WbChSlqDwXW6F6fMlFOfMu83bdvj4c58dJxdwRmTaYS0Scwwanhi
+         ZI4a8Dea3gXmZH5G5aLBIUFiA2Pzx9nV0yJDxbsPgx8S7UpEFOg3yWTuIPJa8fj0Pm52
+         bi1fLEAcTbE8a9e213vvISY8iVeOYlBZ2firivLWXD8JJYk4yqkdavA13WyqW4X1vmAC
+         j83abanZcw4Vtr248dyg92sNWRnjZ0dIhXZb9AXZ1jxmDyfh4ushVefXaNULdtsIHrnt
+         W4zFZ8BmvGAJxXJfnX/BUKy4HLgMDmttcNPaJ/OG10yKtX5hFNOFiBXo0FfU/hpY6MBL
+         HsHw==
+X-Gm-Message-State: AOAM532sOvQeaB2+GHzDnGMWsfFlyKvExAGgENqgTRiRX6z/GPMrxymT
+        tcx7j+cp6QomWV5NxulbKGY=
+X-Google-Smtp-Source: ABdhPJwJpYjs1Lf68FS3bJS9+zTJCoFqIRpfWbDWbaYZCQdywsTpWpC9C/RZoXXzptOMgeeyNs1a+w==
+X-Received: by 2002:a50:eb06:: with SMTP id y6mr1918299edp.143.1593155642211;
+        Fri, 26 Jun 2020 00:14:02 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.235])
+        by smtp.googlemail.com with ESMTPSA id f1sm19998832edn.66.2020.06.26.00.14.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 26 Jun 2020 00:14:01 -0700 (PDT)
+Date:   Fri, 26 Jun 2020 09:13:58 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Subject: Re: [PATCH] ARM: dts: exynos: Fix L2 cache-controller nodename
+Message-ID: <20200626071358.GA21250@kozik-lap>
+References: <20200624110435.1150-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200624110435.1150-1-linux.amoon@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document nand-use-soft-ecc-engine and nand-no-ecc-engine properties.
-The former is here to force software correction, the latter prevents
-any correction to happen.
+On Wed, Jun 24, 2020 at 11:04:35AM +0000, Anand Moon wrote:
+> Fix warning message by changing nodename to 'cache-controller'.
+> 
+> make ARCH=arm dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/l2c2x0.yaml
+> arch/arm/boot/dts/exynos4210-i9100.dt.yaml: l2-cache-controller@10502000:
+> 	$nodename:0: 'l2-cache-controller@10502000' does not match '
+> 	^(cache-controller|cpu)(@[0-9a-f,]+)*$'
+> arch/arm/boot/dts/exynos4412-i9300.dt.yaml: l2-cache-controller@10502000:
+>         $nodename:0: 'l2-cache-controller@10502000' does not match '
+>         ^(cache-controller|cpu)(@[0-9a-f,]+)*$'
+> 
+> Fixes: 56b60b8bce4a ("ARM: 8265/1: dts: exynos4: Add nodes for L2 cache controller")
 
-These properties (along with nand-ecc-engine) are supposed to be more
-accurate than the current nand-ecc-modes wich is very misleading and
-very often people think it is mandatory while the core should be
-relied upon to decide which correction to handle.
+It is just naming convention introduced with dtschema so there is no
+error to fix.  Applied with modified commit msg.
 
-nand-ecc-mode was already inacurate, but it becomes totally
-problematic with setups where there are several hardware engines.
-
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- Documentation/devicetree/bindings/mtd/nand-controller.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-index 0969d2e6720b..a3750978ebb8 100644
---- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-+++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-@@ -68,6 +68,12 @@ patternProperties:
-           3/ The ECC engine is external, in this case the phandle should
-           reference the specific ECC engine node.
- 
-+      nand-use-soft-ecc-engine: true
-+        description: Use a software ECC engine.
-+
-+      nand-no-ecc-engine: true
-+        description: Do not use any ECC correction.
-+
-       nand-ecc-placement:
-         allOf:
-           - $ref: /schemas/types.yaml#/definitions/string
--- 
-2.20.1
+Best regards,
+Krzysztof
 
