@@ -2,145 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1390220B4A8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 17:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E03FF20B509
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 17:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgFZPet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jun 2020 11:34:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726296AbgFZPet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 11:34:49 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8411BC03E979
-        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2020 08:34:48 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id z13so9930220wrw.5
-        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2020 08:34:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=aAcfCgvKsfhT29xPLhnVNpyExCly3cUm2Peqoqgxmf0=;
-        b=KHUrbGo0dOOY8/YThmDbwKziPV5u3juGa1/NZs7GxPlI+Ky60oReECURQzxaIxKIPH
-         ybC5D38rG0u4HQBcc5+FyhyoWd7q9fFJbfAHIxwvyzYt4vxRUDqUXUJc1e6C35XKpMY1
-         JwkeivRV0+SR6hyxeZ7UsWCKI1v4jNX14qkrpwyXb1zThJMvLUVcu96NC8JD123zZJUc
-         7dcPzud94VOkiYt7v3SGzVWVl9ObxfuHX/nx7vex48z5cbRminHWdXtXdFxY/a6kWtoU
-         2ZnmY5/MWHvuI1f4LUCCbYZGRIc3biEgeMqUwKEufxecS7VxsywT3kusjLjoRkbsxtao
-         /+1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aAcfCgvKsfhT29xPLhnVNpyExCly3cUm2Peqoqgxmf0=;
-        b=nCgoggnJlOfzgrOjrKSCttWEaE9UTjXnPu2zZe6wG5WvlpVrK1zpT9X3ZXgBAmbavF
-         P4RUlM78dKPplPpTMs1Vb7xBS3++t3N/oZf6z6QdvGGlC5lxfcSuA+zqhAvQS7j4Phky
-         v6HT2IVpnpqDSqRCP7NZrH4cWc3RkWcE4d3kZOxDXPF2GAILoJKleWRkPcrdvEVY5bDZ
-         +PQUvhIWMpqEALfZVdD9A6YeKgZYMuNtUK/BsLnt3FwhCrjvwP6QOhjDLxug7g3Tk61K
-         ptYoQDUkAhTW97yaH23HvrGc4LevWcW2A7YROf56I91SW1V51cL5jcTiYubMhDocy/mN
-         CPpw==
-X-Gm-Message-State: AOAM533WxOoyIXm5QADpIU0GIp+1sDkB9ErChwkO/Ff2wMsNTaM1b/PA
-        U27etIhGiicbsVCD33tgdl1ggg==
-X-Google-Smtp-Source: ABdhPJzlwBw+/yQMNwLyasEb94h7nfE4+tQylcXHUSASL8mNdPqYJzqJsaJXHkxkzkGtzTNyYg5fPA==
-X-Received: by 2002:a5d:54c9:: with SMTP id x9mr4622718wrv.247.1593185687230;
-        Fri, 26 Jun 2020 08:34:47 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id 11sm17973885wmg.41.2020.06.26.08.34.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jun 2020 08:34:46 -0700 (PDT)
-Date:   Fri, 26 Jun 2020 16:34:44 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Nicolas Boitchat <drinkcat@chromium.org>,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH v7] dt-bindings: mfd: Convert ChromeOS EC bindings to
- json-schema
-Message-ID: <20200626153444.GE177734@dell>
-References: <20200306085513.76024-1-ikjn@chromium.org>
- <20200417101333.GA3737@dell>
- <ab5adcd1-18f2-9b1c-8c5d-744f7a0e5579@collabora.com>
- <20200625134620.GS954398@dell>
- <b2f27cee-327e-c96c-aa12-5e1ef1f352aa@collabora.com>
- <20200626094005.GA177734@dell>
- <42f68bda-a152-9f21-ff72-a71a474a8c92@collabora.com>
+        id S1729857AbgFZPn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jun 2020 11:43:28 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42740 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729850AbgFZPn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 11:43:27 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05QFgZOk078944;
+        Fri, 26 Jun 2020 10:42:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1593186155;
+        bh=GG7iVTtH66CFQ0+sz3xhPwwA2xGTNJWkclGWewHyGf4=;
+        h=From:To:CC:Subject:Date;
+        b=fnVlztAXaTajtyS5dLlDODhRhfpgylx93bLHM3hdaZtiPXS0Zui18+i5EXb10qVJa
+         /2XuVFOg+iQ4hc6v4MYLzisidZyjARrxjQesYNKrEgllSoq+6xJ/C/ULzQxNUgEqEn
+         ZE6/4NldMpDVL+MJqBkXwn8pmecPxDDooCle1QL8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05QFgZSe020449
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 26 Jun 2020 10:42:35 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 26
+ Jun 2020 10:42:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 26 Jun 2020 10:42:35 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05QFgYBX083829;
+        Fri, 26 Jun 2020 10:42:34 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/4] ASoC: tas2562: Add right and left channel slot programming
+Date:   Fri, 26 Jun 2020 10:41:40 -0500
+Message-ID: <20200626154143.20351-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <42f68bda-a152-9f21-ff72-a71a474a8c92@collabora.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jun 2020, Enric Balletbo i Serra wrote:
+Add programming for the tdm slots for the right and left. This also
+requires configuring the RX/TX offsets for the DAI format type.
 
-> Hi Lee,
-> 
-> On 26/6/20 11:40, Lee Jones wrote:
-> > On Fri, 26 Jun 2020, Enric Balletbo i Serra wrote:
-> > 
-> >> Hi Lee,
-> >>
-> >> On 25/6/20 15:46, Lee Jones wrote:
-> >>> On Thu, 25 Jun 2020, Enric Balletbo i Serra wrote:
-> >>>
-> >>>> Hi Lee,
-> >>>>
-> >>>> On 17/4/20 12:13, Lee Jones wrote:
-> >>>>> On Fri, 06 Mar 2020, Ikjoon Jang wrote:
-> >>>>>
-> >>>>>> Convert the ChromeOS EC bindings to json-schema.
-> >>>>>>
-> >>>>>> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> >>>>>> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> >>>>>> ---
-> >>>>>>  .../devicetree/bindings/mfd/cros-ec.txt       |  76 -----------
-> >>>>>>  .../bindings/mfd/google,cros-ec.yaml          | 129 ++++++++++++++++++
-> >>>>>>  2 files changed, 129 insertions(+), 76 deletions(-)
-> >>>>>>  delete mode 100644 Documentation/devicetree/bindings/mfd/cros-ec.txt
-> >>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >>>>>
-> >>>>> Applied, thanks.
-> >>>>
-> >>>> I don't see this patch applied, I am missing something?
-> >>>
-> >>> It should be there.  Not sure when the MFD repo was last pushed.
-> >>>
-> >>> I'll try pushing it again (there are a couple of new patches from
-> >>> today).  Maybe that will spur a fetch from -next.  If it's still not
-> >>> there tomorrow, let me know and I'll investigate further.
-> >>>
-> >>
-> >> Still not there, just to make sure I am looking at the right branch, I am checking
-> >>
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
-> > 
-> > Oh, I see what's happened.
-> > 
-> > Looks like this patch wasn't sent to LKML, so my apply script failed.
-> > 
-> > Any reason not to send it to LKML?
-> > 
-> 
-> Ikjoon? I agree that is a good practice cc always the LKML, also I didn't know
-> you had a script looking at it to pick the patches, that's useful to know :-)
-> 
-> Do you want we resend the patch? In such case, Ikjoon, can you resend it?
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ sound/soc/codecs/tas2562.c | 71 +++++++++++++++++++++++++++++---------
+ sound/soc/codecs/tas2562.h |  5 ++-
+ 2 files changed, 59 insertions(+), 17 deletions(-)
 
-No it's okay.  I will apply it manually (probably on Monday).
-
+diff --git a/sound/soc/codecs/tas2562.c b/sound/soc/codecs/tas2562.c
+index d26e30a2948c..1d3c381aeefe 100644
+--- a/sound/soc/codecs/tas2562.c
++++ b/sound/soc/codecs/tas2562.c
+@@ -175,7 +175,37 @@ static int tas2562_set_dai_tdm_slot(struct snd_soc_dai *dai,
+ {
+ 	struct snd_soc_component *component = dai->component;
+ 	struct tas2562_data *tas2562 = snd_soc_component_get_drvdata(component);
+-	int ret = 0;
++	int left_slot, right_slot;
++	int slots_cfg;
++	int ret;
++
++	if (!tx_mask) {
++		dev_err(component->dev, "tx masks must not be 0\n");
++		return -EINVAL;
++	}
++
++	if (slots == 1) {
++		if (tx_mask != 1)
++			return -EINVAL;
++
++		left_slot = 0;
++		right_slot = 0;
++	} else {
++		left_slot = __ffs(tx_mask);
++		tx_mask &= ~(1 << left_slot);
++		if (tx_mask == 0) {
++			right_slot = left_slot;
++		} else {
++			right_slot = __ffs(tx_mask);
++			tx_mask &= ~(1 << right_slot);
++		}
++	}
++
++	slots_cfg = (right_slot << TAS2562_RIGHT_SLOT_SHIFT) | left_slot;
++
++	ret = snd_soc_component_write(component, TAS2562_TDM_CFG3, slots_cfg);
++	if (ret < 0)
++		return ret;
+ 
+ 	switch (slot_width) {
+ 	case 16:
+@@ -208,6 +238,18 @@ static int tas2562_set_dai_tdm_slot(struct snd_soc_dai *dai,
+ 	if (ret < 0)
+ 		return ret;
+ 
++	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG5,
++					    TAS2562_TDM_CFG5_VSNS_SLOT_MASK,
++					    tas2562->v_sense_slot);
++	if (ret < 0)
++		return ret;
++
++	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG6,
++					    TAS2562_TDM_CFG6_ISNS_SLOT_MASK,
++					    tas2562->i_sense_slot);
++	if (ret < 0)
++		return ret;
++
+ 	return 0;
+ }
+ 
+@@ -285,7 +327,8 @@ static int tas2562_set_dai_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+ {
+ 	struct snd_soc_component *component = dai->component;
+ 	struct tas2562_data *tas2562 = snd_soc_component_get_drvdata(component);
+-	u8 tdm_rx_start_slot = 0, asi_cfg_1 = 0;
++	u8 asi_cfg_1 = 0;
++	u8 tdm_rx_start_slot = 0;
+ 	int ret;
+ 
+ 	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
+@@ -307,27 +350,23 @@ static int tas2562_set_dai_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+ 		dev_err(tas2562->dev, "Failed to set RX edge\n");
+ 		return ret;
+ 	}
+-
+ 	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+-	case (SND_SOC_DAIFMT_I2S):
+-	case (SND_SOC_DAIFMT_DSP_A):
+-	case (SND_SOC_DAIFMT_DSP_B):
+-		tdm_rx_start_slot = BIT(1);
+-		break;
+-	case (SND_SOC_DAIFMT_LEFT_J):
++	case SND_SOC_DAIFMT_LEFT_J:
++	case SND_SOC_DAIFMT_DSP_B:
+ 		tdm_rx_start_slot = 0;
+ 		break;
+-	default:
+-		dev_err(tas2562->dev, "DAI Format is not found, fmt=0x%x\n",
+-			fmt);
+-		ret = -EINVAL;
++	case SND_SOC_DAIFMT_I2S:
++	case SND_SOC_DAIFMT_DSP_A:
++		tdm_rx_start_slot = 1;
+ 		break;
++	default:
++		dev_err(tas2562->dev,
++			"DAI Format is not found, fmt=0x%x\n", fmt);
++		return -EINVAL;
+ 	}
+ 
+ 	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG1,
+-					    TAS2562_TDM_CFG1_RX_OFFSET_MASK,
+-					    tdm_rx_start_slot);
+-
++				TAS2562_RX_OFF_MASK, (tdm_rx_start_slot << 1));
+ 	if (ret < 0)
+ 		return ret;
+ 
+diff --git a/sound/soc/codecs/tas2562.h b/sound/soc/codecs/tas2562.h
+index 28e75fc431d0..18209f397921 100644
+--- a/sound/soc/codecs/tas2562.h
++++ b/sound/soc/codecs/tas2562.h
+@@ -34,6 +34,10 @@
+ #define TAS2562_TDM_DET		TAS2562_REG(0, 0x11)
+ #define TAS2562_REV_ID		TAS2562_REG(0, 0x7d)
+ 
++#define TAS2562_RX_OFF_MASK	GENMASK(5, 1)
++#define TAS2562_TX_OFF_MASK	GENMASK(3, 1)
++#define TAS2562_RIGHT_SLOT_SHIFT 4
++
+ /* Page 2 */
+ #define TAS2562_DVC_CFG1	TAS2562_REG(2, 0x0c)
+ #define TAS2562_DVC_CFG2	TAS2562_REG(2, 0x0d)
+@@ -49,7 +53,6 @@
+ 
+ #define TAS2562_TDM_CFG1_RX_EDGE_MASK	BIT(0)
+ #define TAS2562_TDM_CFG1_RX_FALLING	1
+-#define TAS2562_TDM_CFG1_RX_OFFSET_MASK	GENMASK(4, 0)
+ 
+ #define TAS2562_TDM_CFG0_RAMPRATE_MASK		BIT(5)
+ #define TAS2562_TDM_CFG0_RAMPRATE_44_1		BIT(5)
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.26.2
+
