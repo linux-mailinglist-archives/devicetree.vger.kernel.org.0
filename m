@@ -2,89 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36EF720B9F2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 22:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2DCD20BA1D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 22:18:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbgFZUHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jun 2020 16:07:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46088 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725806AbgFZUHM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jun 2020 16:07:12 -0400
-Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 058C8206C3;
-        Fri, 26 Jun 2020 20:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593202032;
-        bh=4oOD88XtGZC/uNbNT6wOOaDIgm3VB5umJpU7EFUTnZU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=obzLXtBTVJJGSeD0cbiCHxDtXmWB/hH2sZPMR14C2iGv+nabdMnUhC/p+gsX3vzpb
-         DRB7pEDj2buzXO6nXa8YiLcW4x6TMxuNaz7hDeb1bYxuyZ6m4QyyrLWFTEgVH8/cAk
-         1O3qQ4wXoWWBgv7oVCTJoTnL+YCkuF4EttpdzthU=
-Date:   Fri, 26 Jun 2020 16:07:10 -0400
-From:   Sasha Levin <sashal@kernel.org>
-To:     Ralph Siemsen <ralph.siemsen@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Pavel Machek <pavel@denx.de>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH 4.19 182/267] spi: dw: Return any value retrieved from
- the dma_transfer callback
-Message-ID: <20200626200710.GK1931@sasha-vm>
-References: <20200619141648.840376470@linuxfoundation.org>
- <20200619141657.498868116@linuxfoundation.org>
- <20200619210719.GB12233@amd>
- <20200622205121.4xuki7guyj6u5yul@mobilestation>
- <20200626151800.GA22242@maple.netwinder.org>
+        id S1725793AbgFZUSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jun 2020 16:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40678 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725780AbgFZUSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 16:18:03 -0400
+X-Greylist: delayed 395 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 26 Jun 2020 13:18:03 PDT
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9D5C03E979;
+        Fri, 26 Jun 2020 13:18:03 -0700 (PDT)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id D62985C0678;
+        Fri, 26 Jun 2020 22:11:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1593202285;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=A9NdSN7MzYe3M0t6hNqQzBzu71mmBpiOtRo4i0LRvN8=;
+        b=sy7tvbn+ji/gBGJqBUa8HYHzAuAxCdhJbbPTslRq2V0vTuO9hEDm79LniRLOwxNGTw58RZ
+        egNAoYnlJoXPP/s/OCXbJFMK8qh0AfSPuay0ZL2z3gO1i746FyerwSSU7pNz4z56hBL9q+
+        LG1LVXc9MLRarpS92Zp89fP/9SnLqYo=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20200626151800.GA22242@maple.netwinder.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 26 Jun 2020 22:11:25 +0200
+From:   Stefan Agner <stefan@agner.ch>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: vf610: Align L2 cache-controller nodename with
+ dtschema
+In-Reply-To: <20200626080547.3569-1-krzk@kernel.org>
+References: <20200626080547.3569-1-krzk@kernel.org>
+User-Agent: Roundcube Webmail/1.4.1
+Message-ID: <ea533f120d67df5bea9d2224037ae895@agner.ch>
+X-Sender: stefan@agner.ch
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 26, 2020 at 11:18:00AM -0400, Ralph Siemsen wrote:
->Hi Serge, Pavel, Greg,
->
->On Mon, Jun 22, 2020 at 11:51:21PM +0300, Serge Semin wrote:
->>Hello Pavel
->>
->>On Fri, Jun 19, 2020 at 11:07:19PM +0200, Pavel Machek wrote:
->>
->>>Mainline patch simply changes return value, but code is different in
->>>v4.19, and poll_transfer will now be avoided when dws->dma_mapped. Is
->>>that a problem?
->>
->>Actually no.) In that old 4.19 context it's even better to return straight away
->>no matter what value is returned by the dma_transfer() callback.
->
->This patch changes the return dma_transfer return value from 0 to 1, 
->however it was only done in spi-dw-mid.c func mid_spi_dma_transfer().
->
->There is an identical function in spi-dw-mmio.c that needs the same 
->treatment, otherwise access to the SPI device becomes erratic and even 
->causes kernel to hang. Guess how I found this ;-)
->
->So the following patch is needed as well, at least in 4.9 and 4.19, I 
->did not check/test other versions. Mainline does not need this, since 
->the code seems to have been refactored to avoid the duplication.
+On 2020-06-26 10:05, Krzysztof Kozlowski wrote:
+> Fix dtschema validator warnings like:
+>     l2-cache@40006000: $nodename:0:
+>         'l2-cache@40006000' does not match
+> '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Could you add your signed-off-by tag please? :)
+Acked-by: Stefan Agner <stefan@agner.ch>
 
--- 
-Thanks,
-Sasha
+--
+Stefan
+
+> ---
+>  arch/arm/boot/dts/vf610.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/vf610.dtsi b/arch/arm/boot/dts/vf610.dtsi
+> index 7fd39817f8ab..956182d08e74 100644
+> --- a/arch/arm/boot/dts/vf610.dtsi
+> +++ b/arch/arm/boot/dts/vf610.dtsi
+> @@ -10,7 +10,7 @@
+>  };
+>  
+>  &aips0 {
+> -	L2: l2-cache@40006000 {
+> +	L2: cache-controller@40006000 {
+>  		compatible = "arm,pl310-cache";
+>  		reg = <0x40006000 0x1000>;
+>  		cache-unified;
