@@ -2,86 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3539F20AD98
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 09:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8400720AE39
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2020 10:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728827AbgFZH47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jun 2020 03:56:59 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:45922 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728687AbgFZH46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jun 2020 03:56:58 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id A533B2A58EC
-Subject: Re: [PATCH v7] dt-bindings: mfd: Convert ChromeOS EC bindings to
- json-schema
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
+        id S1729295AbgFZIJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jun 2020 04:09:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36534 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728988AbgFZIFj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jun 2020 04:05:39 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 822F82076E;
+        Fri, 26 Jun 2020 08:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593158738;
+        bh=Z7q74NuEg6nB5QogV/A6u8EleRsTeIsfiwDh1MnapBo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Z7T8/W+7jmcl7OD7rBOY93skqQN2HWJoYlIbL9hHSMTStui+d0wxKqY7menS6jlD4
+         62amiFzRxaxh5o7ag+IhUO5/xam1oCDUmvWIQqxU38/PFkhIrNZZPKm6ha+6sMtv+7
+         mN2qqcav/YDBHhBSd+/JUfCXokahevctoKIAHiuk=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Nicolas Boitchat <drinkcat@chromium.org>,
-        linux-input@vger.kernel.org
-References: <20200306085513.76024-1-ikjn@chromium.org>
- <20200417101333.GA3737@dell>
- <ab5adcd1-18f2-9b1c-8c5d-744f7a0e5579@collabora.com>
- <20200625134620.GS954398@dell>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <b2f27cee-327e-c96c-aa12-5e1ef1f352aa@collabora.com>
-Date:   Fri, 26 Jun 2020 09:56:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
-MIME-Version: 1.0
-In-Reply-To: <20200625134620.GS954398@dell>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: arm-realview: Align L2 cache-controller nodename with dtschema
+Date:   Fri, 26 Jun 2020 10:05:34 +0200
+Message-Id: <20200626080534.3400-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Fix dtschema validator warnings like:
+    l2-cache: $nodename:0: 'l2-cache' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
 
-On 25/6/20 15:46, Lee Jones wrote:
-> On Thu, 25 Jun 2020, Enric Balletbo i Serra wrote:
-> 
->> Hi Lee,
->>
->> On 17/4/20 12:13, Lee Jones wrote:
->>> On Fri, 06 Mar 2020, Ikjoon Jang wrote:
->>>
->>>> Convert the ChromeOS EC bindings to json-schema.
->>>>
->>>> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
->>>> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->>>> ---
->>>>  .../devicetree/bindings/mfd/cros-ec.txt       |  76 -----------
->>>>  .../bindings/mfd/google,cros-ec.yaml          | 129 ++++++++++++++++++
->>>>  2 files changed, 129 insertions(+), 76 deletions(-)
->>>>  delete mode 100644 Documentation/devicetree/bindings/mfd/cros-ec.txt
->>>>  create mode 100644 Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->>>
->>> Applied, thanks.
->>
->> I don't see this patch applied, I am missing something?
-> 
-> It should be there.  Not sure when the MFD repo was last pushed.
-> 
-> I'll try pushing it again (there are a couple of new patches from
-> today).  Maybe that will spur a fetch from -next.  If it's still not
-> there tomorrow, let me know and I'll investigate further.
-> 
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm/boot/dts/arm-realview-eb-mp.dtsi | 2 +-
+ arch/arm/boot/dts/arm-realview-pb1176.dts | 2 +-
+ arch/arm/boot/dts/arm-realview-pb11mp.dts | 2 +-
+ arch/arm/boot/dts/arm-realview-pbx-a9.dts | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Still not there, just to make sure I am looking at the right branch, I am checking
+diff --git a/arch/arm/boot/dts/arm-realview-eb-mp.dtsi b/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
+index 29b636fce23f..26783d053ac7 100644
+--- a/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
++++ b/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
+@@ -59,7 +59,7 @@
+ 			interrupts = <0 10 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
+-		L2: l2-cache {
++		L2: cache-controller {
+ 			compatible = "arm,l220-cache";
+ 			reg = <0x1f002000 0x1000>;
+ 			interrupt-parent = <&intc>;
+diff --git a/arch/arm/boot/dts/arm-realview-pb1176.dts b/arch/arm/boot/dts/arm-realview-pb1176.dts
+index 2625ce66f8e7..f925782f8560 100644
+--- a/arch/arm/boot/dts/arm-realview-pb1176.dts
++++ b/arch/arm/boot/dts/arm-realview-pb1176.dts
+@@ -323,7 +323,7 @@
+ 			      <0x10120000 0x100>;
+ 		};
+ 
+-		L2: l2-cache {
++		L2: cache-controller {
+ 			compatible = "arm,l220-cache";
+ 			reg = <0x10110000 0x1000>;
+ 			interrupt-parent = <&intc_dc1176>;
+diff --git a/arch/arm/boot/dts/arm-realview-pb11mp.dts b/arch/arm/boot/dts/arm-realview-pb11mp.dts
+index c69cf7ddbe61..9748e0fe800f 100644
+--- a/arch/arm/boot/dts/arm-realview-pb11mp.dts
++++ b/arch/arm/boot/dts/arm-realview-pb11mp.dts
+@@ -92,7 +92,7 @@
+ 		      <0x1f000100 0x100>;
+ 	};
+ 
+-	L2: l2-cache {
++	L2: cache-controller {
+ 		compatible = "arm,l220-cache";
+ 		reg = <0x1f002000 0x1000>;
+ 		interrupt-parent = <&intc_tc11mp>;
+diff --git a/arch/arm/boot/dts/arm-realview-pbx-a9.dts b/arch/arm/boot/dts/arm-realview-pbx-a9.dts
+index 90d00b407f85..85d3968fbb91 100644
+--- a/arch/arm/boot/dts/arm-realview-pbx-a9.dts
++++ b/arch/arm/boot/dts/arm-realview-pbx-a9.dts
+@@ -60,7 +60,7 @@
+ 		};
+ 	};
+ 
+-	L2: l2-cache {
++	L2: cache-controller {
+ 		compatible = "arm,pl310-cache";
+ 		reg = <0x1f002000 0x1000>;
+ 		cache-unified;
+-- 
+2.17.1
 
-https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
-
-Thanks,
- Enric
