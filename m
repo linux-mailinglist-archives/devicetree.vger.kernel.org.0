@@ -2,87 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8BD20E5B9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C34E20E64F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730343AbgF2Vkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728211AbgF2Vky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:40:54 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C1CC061755
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:40:54 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id h23so14137248qtr.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:40:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=NkH+JCwdnaHsFKwJd89KAw2KS1C6oe1Q6V5c/F8UrWw=;
-        b=lQZLMS2w5+pWFl2sd5TIjZWJ4/XPOX0+L+PdyJuIDztOGrnigLMp/IcuPj6Cet/4fb
-         /FYu50ppT7KRCg6vM6Yv2lZtZdo2kyoe7NQm1A2Ng2IKld5ptfaONg7R/OJgl53pOt5a
-         tcQNJ0oCgTErqx+di2bwHFqGLytDHfhbrhmZdAqCdbU82JleEx0TGA5K6BDliUyagzCG
-         Kqf8BnreJ7YsJvQ+HA1XW1hSRCwAVNNSYuwBPbrsjYjmmfoa2nyc+Z5yoqnIpTV+2YPc
-         lls8nUuXIfZmZS6mBQIUCLcHP127wzaJ22J2U6GRtT6QQZdp/gJtIEPIlChBogRC9rrA
-         OtSA==
+        id S2403985AbgF2VqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:46:16 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:44090 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403971AbgF2VqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:46:15 -0400
+Received: by mail-il1-f193.google.com with SMTP id w73so4008872ila.11;
+        Mon, 29 Jun 2020 14:46:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=NkH+JCwdnaHsFKwJd89KAw2KS1C6oe1Q6V5c/F8UrWw=;
-        b=Zuo0Hs0NotT7+tcAOLOzdrKrWSONGeLzij0AOAaZ3w0JWTt9ORZZnE4n50mPm0mO5M
-         qaEGskDnbtnwCg2u/x6/yeuR5WD4bUjaAdXE3QJs5qoUkUgIfIUlx6NYb7zHZb9+24PY
-         MLVbay3wkp/I93rv4RarBvGyGU86rvh3hZZy9rTPYpIIOjM9Q9tb8tZn/FMEfJQEH9gB
-         IC5b+fqn5F1QhgNgCOcJ6sYBfoIJN5KH4cLoQWy5ifPZ+WNhhClFNQw0B4FghbYwOBgu
-         1dqzrz69uOotxJjQ1pJGyganQr1pQ8D9RPO9PKK2KJw9xUN6zXa1s+kE9JY0ShAI2hLd
-         wKFQ==
-X-Gm-Message-State: AOAM5336jdHn8MC6X+JdMcYZVEtN0DajOtHDb2QM2vDJ8i9qs+fTcCJw
-        vD/wRtxXNmvXKdZmtnLvT7Y=
-X-Google-Smtp-Source: ABdhPJz/N7qIh2/IvRFZAOJ+uGWgpzoBu83WvX3ehjE1dgFnwo2fZ9TMdPoFIjUNS6dSdZWJe83wEQ==
-X-Received: by 2002:ac8:c8:: with SMTP id d8mr17615166qtg.221.1593466853271;
-        Mon, 29 Jun 2020 14:40:53 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
-        by smtp.gmail.com with ESMTPSA id w1sm957319qto.0.2020.06.29.14.40.50
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uyW+jW1awHxTjKyRxm3xfnDiRBllSD4XGWQa5b78Aw8=;
+        b=bvczna650WplwrbE2t7lBZio1h82/M0jvHqMsVdFzDLnwQFT7OHKuk6ME5eHq6C7rI
+         INRc3gxByEzTCDdE1Rblvl0dRi0VUEOIiz/eUjDXGg+7xEJ2tj7qevgFZHHMV85Xvswz
+         cDvF/sAXKN8AoSqsNLHiTrwHZ++2hmE809fM+zcOpevJuL7j4TfKaJfdNTDT42MIukqU
+         w7cw0uatIu09PN4lUBHI+UxikLJQd6m2SQ5F2FChin9O56LWMKkhwVG7E3fS2QxVFScJ
+         VOm1qsH9Fspg8qd90mqmE0PoPtvpXRLndSEzDQTT2u3CPLJ84Jhddiogeou/pgHILVMX
+         GnrA==
+X-Gm-Message-State: AOAM530t+ex3qOLtQ+bOv5I1nLSdenyrJEMRcrLykP5qF6glB9Tm6xCN
+        p6h69JFn1NdGNlHJheg1bQ==
+X-Google-Smtp-Source: ABdhPJxBseoySQnNrO/ucBAVbxE8Ve40ZGwZtZVMP9DsPrIAMec0KapS8vUwFpWKDddIkdU/wn0rOw==
+X-Received: by 2002:a92:b684:: with SMTP id m4mr17425649ill.153.1593467174525;
+        Mon, 29 Jun 2020 14:46:14 -0700 (PDT)
+Received: from xps15 ([64.188.179.255])
+        by smtp.gmail.com with ESMTPSA id z9sm612748ilz.45.2020.06.29.14.46.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:40:52 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     rentao.bupt@gmail.com, balbi@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] dt-bindings: usb: aspeed: Remove the leading zeroes
-Date:   Mon, 29 Jun 2020 18:40:27 -0300
-Message-Id: <20200629214027.16768-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Mon, 29 Jun 2020 14:46:13 -0700 (PDT)
+Received: (nullmailer pid 2980772 invoked by uid 1000);
+        Mon, 29 Jun 2020 21:46:12 -0000
+Date:   Mon, 29 Jun 2020 15:46:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v4 1/6] dt-bindings: power: Convert mti,mips-cpc to DT
+ schema
+Message-ID: <20200629214612.GA2979868@bogus>
+References: <20200617223201.23259-1-Sergey.Semin@baikalelectronics.ru>
+ <20200617223201.23259-2-Sergey.Semin@baikalelectronics.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200617223201.23259-2-Sergey.Semin@baikalelectronics.ru>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the leading zeroes to fix the following warning seen with
-'make dt_binding_check':
+On Thu, 18 Jun 2020 01:31:55 +0300, Serge Semin wrote:
+> It's a Cluster Power Controller embedded into the MIPS IP cores.
+> Currently the corresponding dts node is supposed to have compatible
+> and reg properties.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog prev:
+> - Reword the changelog summary - use shorter version.
+> - Lowercase the example hex'es.
+> ---
+>  .../bindings/power/mti,mips-cpc.txt           |  8 -----
+>  .../bindings/power/mti,mips-cpc.yaml          | 35 +++++++++++++++++++
+>  2 files changed, 35 insertions(+), 8 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.yaml
+> 
 
-Documentation/devicetree/bindings/usb/aspeed,usb-vhub.example.dts:37.33-42.23: Warning (unit_address_format): /example-0/usb-vhub@1e6a0000/vhub-strings/string@0409: unit name should not have leading 0s
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-index e4e83d3971ac..8b019ac05bbe 100644
---- a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-+++ b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-@@ -127,8 +127,8 @@ examples:
-                 #address-cells = <1>;
-                 #size-cells = <0>;
- 
--                string@0409 {
--                        reg = <0x0409>;
-+                string@409 {
-+                        reg = <0x409>;
-                         manufacturer = "ASPEED";
-                         product = "USB Virtual Hub";
-                         serial-number = "0000";
--- 
-2.17.1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/mti,mips-cpc.example.dt.yaml: example-0: cpc@1bde0000:reg:0: [0, 467533824, 0, 32768] is too long
+
+
+See https://patchwork.ozlabs.org/patch/1311661
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
