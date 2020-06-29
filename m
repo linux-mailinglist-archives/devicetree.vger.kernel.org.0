@@ -2,106 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B0320E927
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E569520E89E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726254AbgF2XOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 19:14:12 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55864 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726180AbgF2XOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 19:14:12 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05TCqx0C108046;
-        Mon, 29 Jun 2020 07:52:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593435179;
-        bh=LxZK6XItt8eRN8M36E8UH3WGeBppveLJV6p+zmugmTI=;
-        h=From:To:CC:Subject:Date;
-        b=ciW8v2d9+KONMCI11Nvt2pemy2FVyX1TioT/topmoboAD+JEFreQeaSFDFiJHH00V
-         Gw43BL5TtfflHc7I9JwE5SV4Y6UKpFl6RWI4v/askkCrF2Pbij/LMoQf/35+YGVDeE
-         rWLwKvUrKyVJQB4qps0HHlmopiab4pCq+1aoCSfg=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05TCqxJl014789
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Jun 2020 07:52:59 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 29
- Jun 2020 07:52:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 29 Jun 2020 07:52:58 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TCqugv015456;
-        Mon, 29 Jun 2020 07:52:56 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <t-kristo@ti.com>
-CC:     <robh@kernel.org>, <kishon@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Roger Quadros <rogerq@ti.com>
-Subject: [PATCH v4 0/6] arm64: ti: k3-j721e: Add SERDES PHY and USB3.0 support
-Date:   Mon, 29 Jun 2020 15:52:48 +0300
-Message-ID: <20200629125254.28754-1-rogerq@ti.com>
+        id S1726035AbgF2WNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 18:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725937AbgF2WNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 18:13:51 -0400
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13B7BC061755
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 15:13:51 -0700 (PDT)
+Received: by mail-qk1-x744.google.com with SMTP id j80so16834205qke.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 15:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Cuh/C/o4/2xMCVX7Ug07E0pgB6dYuyyTbPP3iEiCt0o=;
+        b=fF9smog+rhnIxwze4Z6P52mRZneR+4MVVkKzIYai46NOU3R+tNxBI39u1qTItNVfwm
+         Z5ADdFv8bwFqBGdEXSi0QNDkElMW9tg5Tzz/TEKxRRDCBsJ26lDPC4295f431hRE5Eoy
+         EZF6We/27t62AIiEM0a4KZJUtnmJV/rzuUeLmzcx2k5eQxdYxd8h+1XbXPNyC3jwz6WD
+         68plmaBEgXiEzDWcHE1TlnZl09RFJwVj4DF+DbXFUDBQ9wLkdqIFOJ0L4GrJaVfY9O2h
+         5w/nxXToT4XohW8oqdALsjfAWuVY+Jnuu65HP3EWzzy+h3YpD9lBQBOAxd+pH7Z93Aqs
+         1ybw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Cuh/C/o4/2xMCVX7Ug07E0pgB6dYuyyTbPP3iEiCt0o=;
+        b=Ocyx9JvNQQ+7tQZwdF4ZL2WYDOXvA/Sp/SaxH9XoOGXmVpg82oU3l/peoag2xSqEMZ
+         wXoFgKNN6fqJwrNgpoIE6JCl9+pr0CfRpeyABOLGV8JZppY0cBkP7oLhxpso+EnKELkW
+         PiyHjbGBvvj3Vk53XYVlKa0m9XWlssRdIPWCwTNEXam8bYsV5ZGunpjxzPzmgJLGep2l
+         djseWKqzkVEqxVGm1lyS74tb63R3LEFNwVVKAxXVzJ7T/GVYsenQ0ifYKyiVMLUefu+Q
+         PFkHMXLfI3raNX8GH1vRlc9cmYhP/17R7D+PMxIVPxtrfEqU/ebLj4iMC81EWjqCX84e
+         UjyA==
+X-Gm-Message-State: AOAM533J1AYQYWd54YDAA1+ue8wLotAFw5EFULPzv0pI/tHAKxtFkiDR
+        EhUq4ZBrDpY/2gJ7Gk4QtaA=
+X-Google-Smtp-Source: ABdhPJymBGvWgOSu6/RlXOqDTDIjioaiXxuPHsle6prNy56s83I+OAPn5g3M3S3X+fC5ADgpeZY9cg==
+X-Received: by 2002:a37:2c41:: with SMTP id s62mr10784877qkh.165.1593468830199;
+        Mon, 29 Jun 2020 15:13:50 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
+        by smtp.gmail.com with ESMTPSA id y23sm1390365qkj.25.2020.06.29.15.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jun 2020 15:13:49 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     maxime@cerno.tech
+Cc:     eric@anholt.net, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: display: vc4: dpi: Remove unneeded 'simple-panel' property
+Date:   Mon, 29 Jun 2020 19:13:26 -0300
+Message-Id: <20200629221327.19885-1-festevam@gmail.com>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tero,
+Remove the unneeded "simple-panel" property to fix the following warning
+seen with 'make dt_binding_check': 
 
-This series adds SERDES PHY support and Type-C USB Super-Speed support
-to the J721E EVM.
+Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.example.dt.yaml: panel: compatible: Additional items are not allowed ('simple-panel' was unexpected)
+Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.example.dt.yaml: panel: compatible: ['ontat,yx700wv03', 'simple-panel'] is too long
 
-Please queue this for -next. Thanks.
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-cheers,
--roger
-
-Changelog:
-v4:
-- Removed redundant patch
-- used compaible string for yaml filename
-- typo fix s/mdf/mfd in patch subject
-- added simple-mfd, address-cells, size-cells and ranges
-
-v3:
-- Add new DT schema for J721E System controller.
-- Re-order system controller's compatible string i.e. most compatible to least.
-
-v2:
-- Addressed Rob's comments.
-- Changed type-C debounce delay from 300ms to 700ms as 300ms is not
-sufficient on EVM.
-
-
-Kishon Vijay Abraham I (2):
-  arm64: dts: ti: k3-j721e-main: Add WIZ and SERDES PHY nodes
-  arm64: dts: ti: k3-j721e-main: Add system controller node and SERDES
-    lane mux
-
-Roger Quadros (4):
-  dt-bindings: mfd: ti,j721e-system-controller.yaml: Add J721e system
-    controller
-  arm64: dts: ti: k3-j721e-main.dtsi: Add USB to SERDES MUX
-  arm64: dts: ti: k3-j721e: Enable Super-Speed support for USB0
-  arm64: dts: k3-j721e-proc-board: Add wait time for sampling Type-C DIR
-    line
-
- .../mfd/ti,j721e-system-controller.yaml       |  74 +++++
- .../dts/ti/k3-j721e-common-proc-board.dts     |  33 ++-
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 275 ++++++++++++++++++
- include/dt-bindings/mux/mux-j721e-wiz.h       |  53 ++++
- 4 files changed, 433 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
- create mode 100644 include/dt-bindings/mux/mux-j721e-wiz.h
-
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+index 58213c564e03..24119411b007 100644
+--- a/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+@@ -46,7 +46,7 @@ examples:
+     #include <dt-bindings/clock/bcm2835.h>
+ 
+     panel: panel {
+-        compatible = "ontat,yx700wv03", "simple-panel";
++        compatible = "ontat,yx700wv03";
+ 
+         port {
+             panel_in: endpoint {
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.17.1
 
