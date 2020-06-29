@@ -2,151 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2463A20D4D9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 21:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B64620DBF6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730972AbgF2TLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:11:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730760AbgF2TLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:11:16 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B92C031413
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:11:15 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id n2so4858199edr.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NroMd8DfMK868D8FL8lie3B1iaJmWDlvZoIY161nvvg=;
-        b=N7mXCg2NLcNbdNNrXCuFA8Af3Lc5aqsbv3Exg4+0dUr7yL0Eq863c9MSzQtN7Ej2vw
-         FnhLnser4TEh0nkGuUNgvLAl4qwmK0dQma56oE1xG4vHWnM3BWjEgd9njb06gyQkFBpu
-         tssbRMkIyNWgfrbRgqa+ealIZBwtD82n5H3qg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NroMd8DfMK868D8FL8lie3B1iaJmWDlvZoIY161nvvg=;
-        b=CSDD01URHxqN7wseJKTiSvcYq65zAbOr25fHRdqFt93W1tBf3AaPMQ+XeZ5fW4qIGa
-         GPdYwbheXGty2UvWTDyQQsebMEVIfMZIDs0GI9TTSfqKp8Pp7dgzvRSOfZwfgtC/Go4q
-         Lbn0ksYnv6SA0ghy9P9ITu2PmHSTkTdxFW0OtgsEfkfifUom3siCnUni8Lmrm0Tn96w5
-         W7ykwkPECnWMeiodo1hZBtTG68FJpw8gO478r8/bkt+8gcRJMJL6I9WDKC3VXBvdUii5
-         HWEJDatftHYpJ1Dma766o+J6bL6kgrawDS/jyVS01wvvBXVM1OQ6tZggp3gxegd0DRLz
-         GENg==
-X-Gm-Message-State: AOAM531wT+ZTbe/VbEPzAafy5020Fh52Az4Ri3SXN26vqFuQnnObzFuC
-        kf6W/nOabvUuHRivHrKI9OwrQnJiKcAY/3Wltrkffg==
-X-Google-Smtp-Source: ABdhPJzL7uVA+dVAF1QW30vuD7NCdhEOj1gDC9CMkWqkDjC97pJ9HEtE2P1H5GL5MRzD06Y+IN1VY11+kv6zy8NRcWE=
-X-Received: by 2002:a50:c90d:: with SMTP id o13mr19293199edh.338.1593457874607;
- Mon, 29 Jun 2020 12:11:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200602080644.11333-1-mylene.josserand@collabora.com> <20200602080644.11333-2-mylene.josserand@collabora.com>
-In-Reply-To: <20200602080644.11333-2-mylene.josserand@collabora.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 30 Jun 2020 00:41:03 +0530
-Message-ID: <CAMty3ZDx-_-VHEwjbV05GBb-hQbPpo21aZbCrQ+GTaoT_gxAMg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] clk: rockchip: rk3288: Handle clock tree for rk3288w
-To:     =?UTF-8?Q?Myl=C3=A8ne_Josserand?= <mylene.josserand@collabora.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        id S1729806AbgF2ULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:11:13 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:34904 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729379AbgF2ULB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 16:11:01 -0400
+Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id C36D583A98373F3E8DC4;
+        Mon, 29 Jun 2020 12:24:47 +0800 (CST)
+Received: from [127.0.0.1] (10.174.179.33) by DGGEMS409-HUB.china.huawei.com
+ (10.3.19.209) with Microsoft SMTP Server id 14.3.487.0; Mon, 29 Jun 2020
+ 12:24:44 +0800
+Subject: Re: [PATCH v2 01/12] ACPI/IORT: Make iort_match_node_callback walk
+ the ACPI namespace for NC
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Will Deacon <will@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        <iommu@lists.linux-foundation.org>, <linux-acpi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        kernel@collabora.com, linux-clk <linux-clk@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Joerg Roedel <joro@8bytes.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Makarand Pawagi <makarand.pawagi@nxp.com>,
+        Diana Craciun <diana.craciun@oss.nxp.com>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>
+References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-2-lorenzo.pieralisi@arm.com>
+From:   Hanjun Guo <guohanjun@huawei.com>
+Message-ID: <718cae1f-2f33-f6d9-f278-157300b73116@huawei.com>
+Date:   Mon, 29 Jun 2020 12:24:43 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
+MIME-Version: 1.0
+In-Reply-To: <20200619082013.13661-2-lorenzo.pieralisi@arm.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.33]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 2, 2020 at 1:37 PM Myl=C3=A8ne Josserand
-<mylene.josserand@collabora.com> wrote:
->
-> The revision rk3288w has a different clock tree about "hclk_vio"
-> clock, according to the BSP kernel code.
->
-> This patch handles this difference by detecting which device-tree
-> we are using. If it is a "rockchip,rk3288-cru", let's register
-> the clock tree as it was before. If the device-tree node is
-> "rockchip,rk3288w-cru", we will apply the difference with this
-> version of this SoC.
->
-> Noticed that this new device-tree compatible must be handled in
-> bootloader such as u-boot.
->
-> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@collabora.com>
+Hi Lorenzo,
+
+On 2020/6/19 16:20, Lorenzo Pieralisi wrote:
+> When the iort_match_node_callback is invoked for a named component
+> the match should be executed upon a device with an ACPI companion.
+> 
+> For devices with no ACPI companion set-up the ACPI device tree must be
+> walked in order to find the first parent node with a companion set and
+> check the parent node against the named component entry to check whether
+> there is a match and therefore an IORT node describing the in/out ID
+> translation for the device has been found.
+> 
+> Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Hanjun Guo <guohanjun@huawei.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
 > ---
->  drivers/clk/rockchip/clk-rk3288.c | 20 ++++++++++++++++++--
->  1 file changed, 18 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/rockchip/clk-rk3288.c b/drivers/clk/rockchip/clk=
--rk3288.c
-> index cc2a177bbdbf..204976e2d0cb 100644
-> --- a/drivers/clk/rockchip/clk-rk3288.c
-> +++ b/drivers/clk/rockchip/clk-rk3288.c
-> @@ -425,8 +425,6 @@ static struct rockchip_clk_branch rk3288_clk_branches=
-[] __initdata =3D {
->         COMPOSITE(0, "aclk_vio0", mux_pll_src_cpll_gpll_usb480m_p, CLK_IG=
-NORE_UNUSED,
->                         RK3288_CLKSEL_CON(31), 6, 2, MFLAGS, 0, 5, DFLAGS=
-,
->                         RK3288_CLKGATE_CON(3), 0, GFLAGS),
-> -       DIV(0, "hclk_vio", "aclk_vio0", 0,
-> -                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
->         COMPOSITE(0, "aclk_vio1", mux_pll_src_cpll_gpll_usb480m_p, CLK_IG=
-NORE_UNUSED,
->                         RK3288_CLKSEL_CON(31), 14, 2, MFLAGS, 8, 5, DFLAG=
-S,
->                         RK3288_CLKGATE_CON(3), 2, GFLAGS),
-> @@ -819,6 +817,16 @@ static struct rockchip_clk_branch rk3288_clk_branche=
-s[] __initdata =3D {
->         INVERTER(0, "pclk_isp", "pclk_isp_in", RK3288_CLKSEL_CON(29), 3, =
-IFLAGS),
->  };
->
-> +static struct rockchip_clk_branch rk3288w_hclkvio_branch[] __initdata =
-=3D {
-> +       DIV(0, "hclk_vio", "aclk_vio1", 0,
-> +                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
-> +};
+>   drivers/acpi/arm64/iort.c | 20 ++++++++++++++++++--
+>   1 file changed, 18 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> index 28a6b387e80e..5eee81758184 100644
+> --- a/drivers/acpi/arm64/iort.c
+> +++ b/drivers/acpi/arm64/iort.c
+> @@ -264,15 +264,31 @@ static acpi_status iort_match_node_callback(struct acpi_iort_node *node,
+>   
+>   	if (node->type == ACPI_IORT_NODE_NAMED_COMPONENT) {
+>   		struct acpi_buffer buf = { ACPI_ALLOCATE_BUFFER, NULL };
+> -		struct acpi_device *adev = to_acpi_device_node(dev->fwnode);
+> +		struct acpi_device *adev;
+>   		struct acpi_iort_named_component *ncomp;
+> +		struct device *nc_dev = dev;
 > +
-> +static struct rockchip_clk_branch rk3288_hclkvio_branch[] __initdata =3D=
- {
-> +       DIV(0, "hclk_vio", "aclk_vio0", 0,
-> +                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
-> +};
+> +		/*
+> +		 * Walk the device tree to find a device with an
+> +		 * ACPI companion; there is no point in scanning
+> +		 * IORT for a device matching a named component if
+> +		 * the device does not have an ACPI companion to
+> +		 * start with.
+> +		 */
+> +		do {
+> +			adev = ACPI_COMPANION(nc_dev);
+> +			if (adev)
+> +				break;
 > +
->  static const char *const rk3288_critical_clocks[] __initconst =3D {
->         "aclk_cpu",
->         "aclk_peri",
-> @@ -936,6 +944,14 @@ static void __init rk3288_clk_init(struct device_nod=
-e *np)
->                                    RK3288_GRF_SOC_STATUS1);
->         rockchip_clk_register_branches(ctx, rk3288_clk_branches,
->                                   ARRAY_SIZE(rk3288_clk_branches));
-> +
-> +       if (of_device_is_compatible(np, "rockchip,rk3288w-cru"))
-> +               rockchip_clk_register_branches(ctx, rk3288w_hclkvio_branc=
-h,
-> +                                              ARRAY_SIZE(rk3288w_hclkvio=
-_branch));
-> +       else
-> +               rockchip_clk_register_branches(ctx, rk3288_hclkvio_branch=
-,
-> +                                              ARRAY_SIZE(rk3288_hclkvio_=
-branch));
-> +
+> +			nc_dev = nc_dev->parent;
+> +		} while (nc_dev);
 
-Sorry for the late query on this. I am a bit unclear about this
-compatible change, does Linux expect to replace rockchip,rk3288-cru
-with rockchip,rk3288w-cru in bootloader if the chip is RK3288w? or
-append the existing cru compatible node with rockchip,rk3288w-cru?
-because replace new cru node make clock never probe since the
-CLK_OF_DECLARE checking rockchip,rk3288-cru
+I'm lost here, we need the ACPI_COMPANION (the same as
+to_acpi_device_node()) of the device, but why do we need to go
+up to find the parent node?
 
-Jagan.
+For a platform device, if I use its parent's full path name for
+its named component entry, then it will match, but this will violate
+the IORT spec.
+
+Thanks
+Hanjun
+
