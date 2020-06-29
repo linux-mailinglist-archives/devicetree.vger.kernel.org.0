@@ -2,74 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CA4620E654
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D64620E382
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403993AbgF2Vq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:46:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56764 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726765AbgF2Sft (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:35:49 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9520255CB;
-        Mon, 29 Jun 2020 18:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593454524;
-        bh=PRzEUjCwFdEbb2h7LthoNz2Fd8Gh9/Q8utmKomXm5U8=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=Cjie/f2sybCATA4dkTGFcdf59jIZLIWBY4SBWEoNDYh68xvujTFZ817yIvQtB6lI+
-         +9A/rMEaV7xPEijchgYYTDVRYRuTK28yEMdGLgZwWY15w/4gCz9kTkEzy03QVGT4ZI
-         JDzvQ3bLdUv9oA55zVyE9o5Mvdwp5zqxSnqSsIaI=
-Date:   Mon, 29 Jun 2020 19:15:22 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>, perex@perex.cz, tiwai@suse.com,
-        lgirdwood@gmail.com
-Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20200626154143.20351-1-dmurphy@ti.com>
-References: <20200626154143.20351-1-dmurphy@ti.com>
-Subject: Re: [PATCH 1/4] ASoC: tas2562: Add right and left channel slot programming
-Message-Id: <159345450675.54191.5281354512647747070.b4-ty@kernel.org>
+        id S1730210AbgF2VPA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jun 2020 17:15:00 -0400
+Received: from coyote.holtmann.net ([212.227.132.17]:55692 "EHLO
+        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726912AbgF2S4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:56:47 -0400
+Received: from marcel-macpro.fritz.box (p5b3d2638.dip0.t-ipconnect.de [91.61.38.56])
+        by mail.holtmann.org (Postfix) with ESMTPSA id 23289CECDA;
+        Mon, 29 Jun 2020 21:06:40 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
+Subject: Re: [PATCH] dt-bindings: net: bluetooth: realtek: Fix uart-has-rtscts
+ example
+From:   Marcel Holtmann <marcel@holtmann.org>
+In-Reply-To: <20200629180545.2879272-1-martin.blumenstingl@googlemail.com>
+Date:   Mon, 29 Jun 2020 20:56:45 +0200
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        kernel list <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Alistair Francis <alistair@alistair23.me>, anarsoul@gmail.com,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Content-Transfer-Encoding: 8BIT
+Message-Id: <8BBD6F0B-DE92-4241-999E-ED26040E891B@holtmann.org>
+References: <20200629180545.2879272-1-martin.blumenstingl@googlemail.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Mailer: Apple Mail (2.3608.80.23.2.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jun 2020 10:41:40 -0500, Dan Murphy wrote:
-> Add programming for the tdm slots for the right and left. This also
-> requires configuring the RX/TX offsets for the DAI format type.
+Hi Martin,
 
-Applied to
+> uart-has-rtscts is a boolean property. These are defined as present
+> (which means that this property evaluates to "true") or absent (which
+> means that this property evaluates to "false"). Remove the numeric value
+> from the example to make it comply with the boolean property bindings.
+> 
+> Fixes: 1cc2d0e021f867 ("dt-bindings: net: bluetooth: Add rtl8723bs-bluetooth")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch has been applied to bluetooth-next tree.
 
-Thanks!
+Regards
 
-[1/3] ASoC: tas2562: Add right and left channel slot programming
-      commit: d7bd40ae55ce339a3c9be7fc2087c671d3d80894
-[2/3] ASoC: tas2562: Add voltage sense slot property
-      commit: f10b6c99c08433861d1ed62267fa57ced7dbdf50
-[3/3] ASoC: tas2562: Add voltage sense slot configuration
-      commit: 09ed395b05feb7d0f77ab52c48d2f77c1b44d2ab
+Marcel
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
