@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1943A20E4A8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA4620E654
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729068AbgF2V1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729057AbgF2Smo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:42:44 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D4BC031C73;
-        Mon, 29 Jun 2020 11:05:55 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id h28so13687243edz.0;
-        Mon, 29 Jun 2020 11:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hJ7bwzBcJdJpIqyIZcO1uCM9Pw8AFzZZQdo+BMkM/wI=;
-        b=SLRB44N0JiC73+18YWv4FOQgCRuo9RDcXbGvKQN9AK5bgYKeK4KBNdylz0TGW704q2
-         mVyX0kOwJ8f2lhJVD6O4pvcH9fRnRamZAQ4k2fOeJ9y2nqv801LHCj9c+V0sV41kCYsl
-         qOafEoFtNGiraeC+62ve5Q59dPv05KWkzenF6UtDAvTfLOJ8t0jMRpEZVgx7oYfji6dv
-         v2ilBNMlssGpE2qqwUoAIXeCwvBfO7RUGvFARu0t1xZvlEsmJvpyT37fMHmkjAwEf0ky
-         St6mxRNAtxjV6tDEOEMHg9zhX0rdM4wWf6P11Y2tCyzxsFdhqUS0nP/fBPyeSefcVE7V
-         Vjtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hJ7bwzBcJdJpIqyIZcO1uCM9Pw8AFzZZQdo+BMkM/wI=;
-        b=gkEPeX7IT/kW6jasTz2HjoOAxirrQ7RhIbgyCGXVOkUGXsUEXvxbc/HRtzkbw+3YRg
-         XK6ZGcAErWq6Dxlo8K5ClZaAonN8X8OUjjoNRlU5TcEA5kF4aIdNFIP0TKZ7RYDqmkt0
-         /ju96LajN73bXeJmqNq+joOW9D72DSwJ0zjd1bzlwy/KPbwhHy9nSWDafDdH7ZLKhRLg
-         BhoFrqdN+RPPgtB/FXo1vPlko6qzglnWzXEAmE4BF7wbnrvsvSMnWCZ4wpvZorIgxdYL
-         rEaZPFr1jyiPUiZidlsap0qiwnM+o7HurCzkkLz5cCh1xt8hQbJLT1lcSoH8S3pNPMgy
-         9EIA==
-X-Gm-Message-State: AOAM533GFQoiVImqgCtrBYMl9GxcX8BTaicCKgE/ALswIzUyqBtET0G6
-        wCCTfOZPd+0i7aEw9dMeLBaSld6s
-X-Google-Smtp-Source: ABdhPJxCsPnKAQk2H0DnK6TPDN2TMKek+xOMmP/lSIUI54dR+E3eobWScl1UkHE91a2hvf1KvmltdA==
-X-Received: by 2002:aa7:c80d:: with SMTP id a13mr19225286edt.327.1593453954340;
-        Mon, 29 Jun 2020 11:05:54 -0700 (PDT)
-Received: from localhost.localdomain (p200300f137396800428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3739:6800:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id w18sm232937ejc.62.2020.06.29.11.05.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 11:05:53 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     devicetree@vger.kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        marcel@holtmann.org, alistair@alistair23.me, anarsoul@gmail.com,
-        kuba@kernel.org, davem@davemloft.net,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH] dt-bindings: net: bluetooth: realtek: Fix uart-has-rtscts example
-Date:   Mon, 29 Jun 2020 20:05:45 +0200
-Message-Id: <20200629180545.2879272-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2403993AbgF2Vq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:46:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726765AbgF2Sft (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:35:49 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E9520255CB;
+        Mon, 29 Jun 2020 18:15:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593454524;
+        bh=PRzEUjCwFdEbb2h7LthoNz2Fd8Gh9/Q8utmKomXm5U8=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=Cjie/f2sybCATA4dkTGFcdf59jIZLIWBY4SBWEoNDYh68xvujTFZ817yIvQtB6lI+
+         +9A/rMEaV7xPEijchgYYTDVRYRuTK28yEMdGLgZwWY15w/4gCz9kTkEzy03QVGT4ZI
+         JDzvQ3bLdUv9oA55zVyE9o5Mvdwp5zqxSnqSsIaI=
+Date:   Mon, 29 Jun 2020 19:15:22 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com
+Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20200626154143.20351-1-dmurphy@ti.com>
+References: <20200626154143.20351-1-dmurphy@ti.com>
+Subject: Re: [PATCH 1/4] ASoC: tas2562: Add right and left channel slot programming
+Message-Id: <159345450675.54191.5281354512647747070.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-uart-has-rtscts is a boolean property. These are defined as present
-(which means that this property evaluates to "true") or absent (which
-means that this property evaluates to "false"). Remove the numeric value
-from the example to make it comply with the boolean property bindings.
+On Fri, 26 Jun 2020 10:41:40 -0500, Dan Murphy wrote:
+> Add programming for the tdm slots for the right and left. This also
+> requires configuring the RX/TX offsets for the DAI format type.
 
-Fixes: 1cc2d0e021f867 ("dt-bindings: net: bluetooth: Add rtl8723bs-bluetooth")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-index f15a5e5e4859..c488f24ed38f 100644
---- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-@@ -44,7 +44,7 @@ examples:
-     uart1 {
-         pinctrl-names = "default";
-         pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
--        uart-has-rtscts = <1>;
-+        uart-has-rtscts;
- 
-         bluetooth {
-             compatible = "realtek,rtl8723bs-bt";
--- 
-2.27.0
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/3] ASoC: tas2562: Add right and left channel slot programming
+      commit: d7bd40ae55ce339a3c9be7fc2087c671d3d80894
+[2/3] ASoC: tas2562: Add voltage sense slot property
+      commit: f10b6c99c08433861d1ed62267fa57ced7dbdf50
+[3/3] ASoC: tas2562: Add voltage sense slot configuration
+      commit: 09ed395b05feb7d0f77ab52c48d2f77c1b44d2ab
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
