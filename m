@@ -2,140 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CED5A20D23E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBA8C20D120
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729370AbgF2Sru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 14:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39202 "EHLO
+        id S1726699AbgF2Sit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 14:38:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729360AbgF2Srq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:47:46 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFA80C02E2C2;
-        Mon, 29 Jun 2020 06:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=qWyNxceE1HxDR9dXe27zL2Runx7nsY5emtD94N5b97s=; b=YN5nfLhHtwAS5bza4algxyhr3
-        6ldxxk2+Hq3tRFjkQMCxV8cQsvoEhWZt9/PN9SG8360DvtYKHX1oxrz3Ur9oAM5hhskUF4KiYfEWX
-        CSFMYP7pm9SOn8nnSVcTO46vMYVSiqGsSBiLR5HvhrUTWss1B7chmVvaXYnYJ+UCY00CoUT4lW5Ej
-        b4f7DRoLGKoGp1FICS/Fq59Ku4k14U9e/ndBjLuJhoCUTHXxQ4cLt0DBRd8i8K02b8A3YtRXjflsx
-        6qw9FNQTxUBiG/PsY9W93rkyr36N60B6TZtbC5ly3vYr2Le3wHaFJL5kKKTQjpNvtGnHkIkl0NXY/
-        JRlhlr9VA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33104)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1jpuJ4-0007h0-CS; Mon, 29 Jun 2020 14:58:46 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1jpuJ0-0007AW-Al; Mon, 29 Jun 2020 14:58:42 +0100
-Date:   Mon, 29 Jun 2020 14:58:42 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
+        with ESMTP id S1727953AbgF2SiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:38:00 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE29C031416;
+        Mon, 29 Jun 2020 10:20:31 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id k1so7359789pls.2;
+        Mon, 29 Jun 2020 10:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EBxO7W3vjKfKExb7YIhRFg//dsteKdeNGdPmppkjMb8=;
+        b=ewKodK9aN0OWBZQbu44iYiVfZECWxTo16lvDvRM89Z4teK9Y+NqZrKgHYKIHfQNOTY
+         vWSJsKDUNNqYREungOJwclpKtKpmRkrGL+hMdIqE94CYuq5fgEYhUIMzysHUIT76AEss
+         9/Hf9IgN/E1R5MQ6oWDqXpxAzTI8bKdOJqf3X5whfi8CQo95Fb5coiHOOJu0SF++m1CG
+         xuFod+DMFoP8uTRz17dh9MvwIzMuRq7CCB2EiZri8RNCupv/MdpyiQacCznzyf9Hd0Hm
+         FhBrhOLm+FIsA6Wt/Uu/B/3Nlo28pPvmhyhjwn+WhNH66L0Y/en19olQMt1/sRgiJtSM
+         LrFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EBxO7W3vjKfKExb7YIhRFg//dsteKdeNGdPmppkjMb8=;
+        b=A92X8F6O9ZZ/sefrG8X3+lnBbHgSzPl/mH0w2b8Fr8ovLmcCCO3Y5wd8syVZhNHSAo
+         XEE8Yb1+zHFY8GwyiJavjdyPPJGoe5a3Mi0eUaH0PAfpiZQJi5MvY3Y3HntfHVaR5l3A
+         KLcsLcnF5aLnTeCaU9OwV5ygsP9dyWUm0vvcdYGhaPBWh4RCodBGcDSWeQSpsbGJhgGw
+         1LpiwXwHPfLVLoCAHFkyct2v5m8auuGJx8+87WHPBuF2JcW74T2bNxwHpF0A0EScN3Te
+         QbJvN/+/FLSbgtbq+Yi8qnDlNbqWk8KoBhVDyY+EEne8SOwQGSucIVvzTmzsEY+uYUZL
+         bxEQ==
+X-Gm-Message-State: AOAM533j5O2Dp47UJOXGXjMlbVZ9bVHufOnuGYp+UJ0wnbqIzW/bD/2E
+        0erjhOVP6vvY1GJnU71B5IU=
+X-Google-Smtp-Source: ABdhPJwBXYzSqVqaej7MrTtvAoxQQyVfrLurS2VT0FpRREZWIImH+ognZwMO6/Mmioqfe4mIEvAzzw==
+X-Received: by 2002:a17:902:301:: with SMTP id 1mr14726130pld.214.1593451231314;
+        Mon, 29 Jun 2020 10:20:31 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id f29sm331735pga.59.2020.06.29.10.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jun 2020 10:20:30 -0700 (PDT)
+Subject: Re: [PATCH v2 08/10] of: mdio: remove the 'extern' keyword from
+ function declarations
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
         Andrew Lunn <andrew@lunn.ch>,
-        Florinel Iordache <florinel.iordache@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v3 4/7] net: phy: add backplane kr driver support
-Message-ID: <20200629135842.GU1551@shell.armlinux.org.uk>
-References: <1592832924-31733-1-git-send-email-florinel.iordache@nxp.com>
- <1592832924-31733-5-git-send-email-florinel.iordache@nxp.com>
- <20200622142430.GP279339@lunn.ch>
- <AM6PR04MB397677E90EFBD9749D01B061EC970@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <7b12d7f1-9e36-e3ee-7a51-d8d8628e2e6f@gmail.com>
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+References: <20200629120346.4382-1-brgl@bgdev.pl>
+ <20200629120346.4382-9-brgl@bgdev.pl>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <4ec2d4c1-3169-da94-2fe2-1165e1fbd531@gmail.com>
+Date:   Mon, 29 Jun 2020 10:20:28 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7b12d7f1-9e36-e3ee-7a51-d8d8628e2e6f@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200629120346.4382-9-brgl@bgdev.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 26, 2020 at 12:02:05PM -0700, Florian Fainelli wrote:
-> On 6/22/20 8:08 AM, Madalin Bucur (OSS) wrote:
-> > Hi Andrew, the reasons behind this selection:
-> > 
-> > - the PCS that is controlled by the backplane driver belongs to the PHY
-> > layer so the representation as a PHY device is legitimate
+
+
+On 6/29/2020 5:03 AM, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 > 
-> That argument makes sense.
-
-It doesn't when you also are subjected to other parts of NXP arguing
-that the PCS is tightly bound inside the SoC and therefore should be
-effectively a library - as has been discussed in the threads about
-the Lynx PCS.
-
-> > - the PHY driver provides the state machine that is required, not using
-> > this representation backplane would need to add a separate, duplicate
-> > state machine
+> The 'extern' keyword in headers doesn't have any benefit. Remove them
+> all from the of_mdio.h header.
 > 
-> Which is entirely permissible according to the PHY library
-> documentation, not that we have seen many people do it though, even less
-> so when the PHY driver is providing the state machine.
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-It seems the PHYlib state machine is getting smaller and smaller
-as we move forward; phy_state_machine() is now looking very bare
-compared to what it used to look like.  I think it's not that far
-off being eliminated.
-
-> > - the limitation, that only one PHY layer entity can be managed by the
-> > PHYLib, is a known limitation that always existed, is not introduced by
-> > the backplane support; the unsupported scenario with a backplane connection
-> > to a PHY entity that needs to be managed relates to that limitation and
-> > a solution for it should not be added through the backplane support
-> > - afaik, Russell and Ioana are discussing the PCS representation in the
-> > context of PHYLink, this submission is using PHYLib. If we are to discuss
-> > about the PCS representation, it's the problem of the simplistic "one device
-> > in the PHY layer" issue that needs to be addressed to have a proper PCS
-> > representation at all times.
-> 
-> So would not it make sense for the PCS representation to be settled and
-> then add the backplane driver implementation such that there is no
-> double work happening for Florinel and for reviewers and the PCS
-> implementation als factors in the backplane use case and requirements?
-
-Yes, that is my assessment; there's a lot of work going on in different
-areas in QoriQ networking, and it seems people are pulling things in
-quite diverse directions.
-
-If we're not careful, we're going to end up with the Lynx PCS being
-implemented one way, and backplane PCS being implemented completely
-differently and preventing any hope of having a backplane PCS
-connected to a conventional copper PHY.
-
-I think folk at NXP need to stop, stand back, and look at the bigger
-picture about how they want to integrate all these individual,
-independent strands of development into the kernel, and come up with
-a common approach that also satisfies the mainline kernel, rather
-than having individual discussions with mainline kernel maintainers
-on public lists.  What I'm saying is, it isn't our job to co-ordinate
-between the different parts of NXP - that's fairly and squarely
-NXP's problem to sort out themselves.
-
-So, I think, further progress in public on backplane support needs to
-wait until we have the general situation for PCS resolved.
-
-Makes sense?
-
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Florian
