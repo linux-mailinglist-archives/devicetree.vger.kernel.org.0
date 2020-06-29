@@ -2,86 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2016520D9C2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A90D420DAA4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387739AbgF2Tuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:50:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57104 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388075AbgF2Tub (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:50:31 -0400
-Received: from [192.168.0.50] (89-70-52-201.dynamic.chello.pl [89.70.52.201])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E796920702;
-        Mon, 29 Jun 2020 19:50:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593460231;
-        bh=Gv9PLMZnlHIBTdk8O+vpWP9KP6QOJHRkkviInyIDGFY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=pRE1DYgdoC+D7zeA7XuI7g0EKUwKzDggaCcFUh8Yez80tWfqrygUio+UBwLy+RI4C
-         /Dy2ktTmVZ24qt23e64C7C1Cv6wAwcKUrJdZNscvrAidcoSOZjDvoageMG4p8YrVXC
-         5qvJmj+i6DG306rIUjaJRse+BMv8Y+J6eyP4Oga4=
-Subject: Re: [PATCH 1/3] ARM: dts: exynos: Fix missing empty reg/ranges
- property regulators on Trats
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>
-References: <20200629193338.29540-1-krzk@kernel.org>
-From:   Sylwester Nawrocki <snawrocki@kernel.org>
-Message-ID: <03a23289-1188-db77-6c38-a7dddeac183c@kernel.org>
-Date:   Mon, 29 Jun 2020 21:50:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1730368AbgF2T7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:59:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388504AbgF2T6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:58:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE44C061755
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:58:54 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jpzvT-0001Px-Tj; Mon, 29 Jun 2020 21:58:47 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jpzvS-0005io-8i; Mon, 29 Jun 2020 21:58:46 +0200
+Date:   Mon, 29 Jun 2020 21:58:46 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linux-pwm@vger.kernel.org, thierry.reding@gmail.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com
+Subject: Re: [PATCH v3 2/2] Add PWM fan controller driver for LGM SoC
+Message-ID: <20200629195846.6fonhke5d2rs4mna@pengutronix.de>
+References: <cover.1593420979.git.rahul.tanwar@linux.intel.com>
+ <df22a642083474e71f9f8274c033a6ef9757af5f.1593420979.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200629193338.29540-1-krzk@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kjvrp6vjwce3kmbh"
+Content-Disposition: inline
+In-Reply-To: <df22a642083474e71f9f8274c033a6ef9757af5f.1593420979.git.rahul.tanwar@linux.intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 6/29/20 21:33, Krzysztof Kozlowski wrote:
-> Remove the simple-bus compatible from a regulators node because its
-> children do not have any unit addresses.  This fixes DTC warning:
-> 
->      Warning (simple_bus_reg): /regulators/regulator-0: missing or empty reg/ranges property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->   arch/arm/boot/dts/exynos4210-trats.dts | 2 --
->   1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
-> index 3d791db6095c..cec413ee4490 100644
-> --- a/arch/arm/boot/dts/exynos4210-trats.dts
-> +++ b/arch/arm/boot/dts/exynos4210-trats.dts
-> @@ -31,8 +31,6 @@
->   	};
->   
->   	regulators {
-> -		compatible = "simple-bus";
+--kjvrp6vjwce3kmbh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think you would also need to remove the 'regulators' node altogether, 
-otherwise with your change the subnodes below won't get parsed and the 
-regulators will not get registered.
+Hello,
 
->   		vemmc_reg: regulator-0 {
->   			compatible = "regulator-fixed";
->   			regulator-name = "VMEM_VDD_2.8V";
-> 
+On Mon, Jun 29, 2020 at 05:03:47PM +0800, Rahul Tanwar wrote:
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index cb8d739067d2..a3303e22d5fa 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -232,6 +232,15 @@ config PWM_IMX_TPM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-imx-tpm.
+> =20
+> +config PWM_INTEL_LGM
+> +	tristate "Intel LGM PWM support"
+> +	depends on X86 || COMPILE_TEST
 
---
-Thanks,
-Sylwester
+Another thing I just noticed: You're using regmap, so I think you should
+have
+
+	select REGMAP_MMIO
+
+here.
+
+> +	help
+> +	  Generic PWM fan controller driver for LGM SoC.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-intel-lgm.
+> +
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--kjvrp6vjwce3kmbh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl76R/IACgkQwfwUeK3K
+7AnSIwgAioBKgOURNuZlj2ZaOEbNv0Asga+afCAc5eCL1G1zoFg3nIUlLLtz0EUT
+MGLMD63sjZHvB3kkMZYwA5DZFs6prNaWoI2HxN6LA2SCNalwjIQvbxQMvwUh9vwD
+9sJfzQaubgGEawID/xOniJyuTOf66HFXQ9moU0VEf3NwTm2pfrapFrOzsKQP8a/K
+8VPsgHGCWrIchyhSyw+zOM36XccSSl/TXLWEspAoPh5dOLKKxlcpPsgAe37v7JGJ
+QXg09RtvP+ipfWdrPSrt/+2tOj2b5AgatzgBh0Gdt0JEO0SMprMwkl+8PIv7mqhF
+LrDM55V72Emp+3WPOdTJUwrR7zN+iQ==
+=J0cp
+-----END PGP SIGNATURE-----
+
+--kjvrp6vjwce3kmbh--
