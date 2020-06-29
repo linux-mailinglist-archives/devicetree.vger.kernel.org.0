@@ -2,128 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285CB20E170
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5380720E059
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:56:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731618AbgF2Uzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:55:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50170 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389939AbgF2Uzm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 16:55:42 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.195])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40E782071A;
-        Mon, 29 Jun 2020 20:55:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593464141;
-        bh=s00t8QAICtoS+oej5Dnz47NSxZXSwZMp0RvcKaYJvGw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lT1cJRPXEdX91MeClkRsPqigq1yiDEPTP20KyaT3+in2wGS3jfjUiGUlhfhmB40Qu
-         jTfgJ2pSG0qVl4S9RI6hqKau9K4b9+vzIQ/QXXVYim2vm4VnFk8J/5hQqZ4CqOQGp6
-         2HMOzlz6fKqpme2tVo8FkuCRC2tX60UgWFXVf278=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>
-Subject: [PATCH 4/4] ARM: dts: exynos: Align DMA controller bus node name with dtschema
-Date:   Mon, 29 Jun 2020 22:44:42 +0200
-Message-Id: <20200629204442.17336-4-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200629204442.17336-1-krzk@kernel.org>
-References: <20200629204442.17336-1-krzk@kernel.org>
+        id S2389124AbgF2Up1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389307AbgF2UpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 16:45:25 -0400
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F31C03E979
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 13:45:25 -0700 (PDT)
+Received: by mail-ua1-x936.google.com with SMTP id l12so1046768uak.7
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 13:45:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w7kFF6I/7tjyYaS1rtr5oIMqxgnM+l1sJPudiJl+Cto=;
+        b=np8GQKHletK7G3CJusLVB9GC+G7QJF/kREt9GxLJ1t3Hlt3hdOPYI7AnTqvqvfjjOh
+         XTfgB9NlwsFFJPFFY/3WXO2tvqKQyGWdikLrXJA5twdfvWv6WqsfZ8fbSnJ761heXjn9
+         vHh9j+YN5HmSWr/N6yqL9vCMgNC/cINJ2irupbhcqOWIFiVYa2coSiBY23Qs4cG4b/ie
+         cUcy4Xxu/2VK8s6dDPcsm9MWe4pGDUccuyqfsEfwzQSOtHKWPVj5rEL732Fq4SCxwmox
+         8LSPZSwt63n11b2S6g6OLJdtEXt+dK5kugr9Rn/1xTEMZV2pqm/UsihoKln3VyxotYET
+         UjTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w7kFF6I/7tjyYaS1rtr5oIMqxgnM+l1sJPudiJl+Cto=;
+        b=thk/NVa08+cOm72RXF8kXxRh5obfohvARjwbe94qrsRmi5W53rqwq0gstUdhDP4OFe
+         cn1P/oYRo0yKt4JEBJkxgLlo1dQlf3GYZULKJQ80FwVGsKuS07RSywKxcm06e0kZfAGY
+         s9CAZPH8hCY2FtPkUw3bzinPLzBklghtyQqa6p2VqiSgqql6+J/z6O+8gcL4bgYz2CGd
+         +LzYjhA6HlOI/MigxqLLl5PQH9soWx2xCqLAhl5jCLBHdit45kOYD8hc9My0WjqDrpSP
+         LbVFrNBFGn5QFDBUAaqzWy7z4DL0dfK+rUA3zI5TSM/CnxnG0/VFNvgB7EfJljaHty5S
+         k9xQ==
+X-Gm-Message-State: AOAM531bCldUmzeP7iXrv1QwolFOGhp7/htgPtNv9ddLFUcztMADm9gn
+        2T547gksNhbKkIg6yr6bqT22VK6n2hUu0lExDFnpkQ==
+X-Google-Smtp-Source: ABdhPJxJKIf8c61d6Sxw032JzZeDqSjWcveZhm6ih/0vZLyM07fRcVrc1Lj+/k5p5DI0zMqvLZYhwCd5VnyTNVlYSEQ=
+X-Received: by 2002:a9f:3b18:: with SMTP id i24mr12193440uah.52.1593463524191;
+ Mon, 29 Jun 2020 13:45:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <1593087419-903-1-git-send-email-kalyan_t@codeaurora.org> <CAD=FV=VXAQagbM-dn7MWGm08DdBxefc4jHNbkvHzuBjSM_jWnw@mail.gmail.com>
+In-Reply-To: <CAD=FV=VXAQagbM-dn7MWGm08DdBxefc4jHNbkvHzuBjSM_jWnw@mail.gmail.com>
+From:   Kristian Kristensen <hoegsberg@google.com>
+Date:   Mon, 29 Jun 2020 13:45:13 -0700
+Message-ID: <CAOPc6T=E68D8NG+hkRH6WTnYBcCzq=-H6q1M_NVoU9S6eGkxFg@mail.gmail.com>
+Subject: Re: [v2] drm/msm/dpu: add support for dither block in display
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        mkrishn@codeaurora.org, travitej@codeaurora.org,
+        nganji@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AMBA is a bus so name the node with DMA controllers just as "bus" to fix
-dtschema warnings like:
+Yes, this is a big improvement for the display I have here. Thanks Kalyan.
 
-    amba: $nodename:0: 'amba' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+Tested-by: Kristian H. Kristensen <hoegsberg@google.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/exynos3250.dtsi | 2 +-
- arch/arm/boot/dts/exynos4.dtsi    | 2 +-
- arch/arm/boot/dts/exynos5250.dtsi | 2 +-
- arch/arm/boot/dts/exynos5410.dtsi | 2 +-
- arch/arm/boot/dts/exynos5420.dtsi | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-index 044e5da64a76..71010417b16f 100644
---- a/arch/arm/boot/dts/exynos3250.dtsi
-+++ b/arch/arm/boot/dts/exynos3250.dtsi
-@@ -418,7 +418,7 @@
- 			status = "disabled";
- 		};
- 
--		amba {
-+		bus {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/exynos4.dtsi b/arch/arm/boot/dts/exynos4.dtsi
-index d2779a790ce3..ed22d60570a7 100644
---- a/arch/arm/boot/dts/exynos4.dtsi
-+++ b/arch/arm/boot/dts/exynos4.dtsi
-@@ -669,7 +669,7 @@
- 			status = "disabled";
- 		};
- 
--		amba: amba {
-+		amba: bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "simple-bus";
-diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
-index b6135af7ef39..98299ed38b7c 100644
---- a/arch/arm/boot/dts/exynos5250.dtsi
-+++ b/arch/arm/boot/dts/exynos5250.dtsi
-@@ -679,7 +679,7 @@
- 			samsung,pmureg-phandle = <&pmu_system_controller>;
- 		};
- 
--		amba {
-+		bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "simple-bus";
-diff --git a/arch/arm/boot/dts/exynos5410.dtsi b/arch/arm/boot/dts/exynos5410.dtsi
-index 2eab80bf5f3a..a55b1a5f1a1c 100644
---- a/arch/arm/boot/dts/exynos5410.dtsi
-+++ b/arch/arm/boot/dts/exynos5410.dtsi
-@@ -189,7 +189,7 @@
- 			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		amba {
-+		bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "simple-bus";
-diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
-index b672080e7469..c3de26ac79dd 100644
---- a/arch/arm/boot/dts/exynos5420.dtsi
-+++ b/arch/arm/boot/dts/exynos5420.dtsi
-@@ -433,7 +433,7 @@
- 			power-domains = <&mau_pd>;
- 		};
- 
--		amba {
-+		bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "simple-bus";
--- 
-2.17.1
-
+On Thu, Jun 25, 2020 at 3:21 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Thu, Jun 25, 2020 at 5:17 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
+> >
+> > This change enables dither block for primary interface
+> > in display.
+> >
+> > Enabled for 6bpc in the current version.
+> >
+> > Changes in v1:
+> >  - Remove redundant error checks (Rob).
+> >
+> > Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> > ---
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c     | 39 +++++++++++++++
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.c | 63 +++++++++++++++++++++----
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.h | 28 +++++++++++
+> >  3 files changed, 121 insertions(+), 9 deletions(-)
+>
+> Tested-by: Douglas Anderson <dianders@chromium.org>
