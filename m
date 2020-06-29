@@ -2,72 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772C520D804
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15D6020D84E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730537AbgF2Te4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733299AbgF2Te4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:34:56 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE778C03E979
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:34:55 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id 9so19562317ljv.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:34:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
-        b=WztqoCpiN2aRp/epy6nUalbuEDQaBdioHJ7ckr2+K7AXuFYz4HhFjoJZqYvmLuYxze
-         q35iLB+XZdytysLOGOCHYs5Tz8YXqpNkc+PjpoA+rEQYTfDRphwfr66V21JrzeV281ad
-         mtf/RAs43x18a5OROsbdSqc9V4ZLPmd/7W1jABuXRsbzL+Qv14R3ojTjI9o2ClRv5j1S
-         vvmLgoP3FZOKaNIBcKhlYOowySOTuYW/BPcdYRWCemRuvbXh77cV9qZEcftY+IDAgPTX
-         x2mgcgF8ldPg+o7ffjWPdGCY4Wnt8Gx4A541UJqzBrktBgdkd+yLiwDU2wk09FzReK2B
-         Q+Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
-        b=tTKfwMuNMPOEgkL8gBjkiBir2/JL9hr56eGw7PNUxf2feAWQPVFPtFJOexMIrz8DPw
-         A7WRe47Un3ZOxYVGhIdpGiHzHgTQMDUN8oaFTcltVxdR2lgVjWI5x+2Lrl6XJJgiu6ko
-         p9GYQaFPg/5fHGUkUlAFmv48YJYFAqASLR6mNsZFFCA4RKVhL4/F6qtJHsnPnu5x76A/
-         u+pmFALJO1d4wIHgP2qgLtWfRd8X9ixg1ftgOCoVKdNC8lwaItQVlmMbkLX7j+fHTLg+
-         CG5tX2UhvaBrRQd1CNvnMvLLLS4hU3D/vGPV0+G3AlsIPg9wXPp3PwZcIOSU57yfyZfF
-         +tXg==
-X-Gm-Message-State: AOAM531cmRKpFKdy00MDztkfuzgWy9xRi2sqB0ZlzwcBd8XqKa4qGt38
-        ijxSM4a0WvTsi7nXck5dgvS0lM9JqHD3KBwwR4k=
-X-Google-Smtp-Source: ABdhPJxsINDyj/Ro8myfVgxXZZPleHXDVy7mDX7iEcrCRJ3GBiykFIDiBzIxduM0/Qouit8BQeGmiFSupJeCjWxfwwg=
-X-Received: by 2002:a2e:3602:: with SMTP id d2mr9089016lja.152.1593459294429;
- Mon, 29 Jun 2020 12:34:54 -0700 (PDT)
+        id S1730488AbgF2TiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:38:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45824 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387488AbgF2TiA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 15:38:00 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D22EF20780;
+        Mon, 29 Jun 2020 19:37:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593459479;
+        bh=IxP7fkKngaycJwsg21YV+tvkJ91Wj/BE51SsDiZ/4k8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sb7NGoy7T/HwxKy8QYvemUwy3DhQCubraado/xaW5kE1It/wO5zWa02cLwxkKlDun
+         FNvofZFfbaECarbvSqXT5Ocyk9BDO/wT+yRsxZyh111mndxwKLBeNp2D+Nvoe98cr0
+         iJ+dcVMJIHFs1G137M/dvcD5voKNYOQUl9Po0L0s=
+Received: by mail-ot1-f52.google.com with SMTP id 18so16545539otv.6;
+        Mon, 29 Jun 2020 12:37:59 -0700 (PDT)
+X-Gm-Message-State: AOAM5311vdv4r+NGlHKFVURWnKyJ6EUfYhWtNelqBt0R7t53JI+0lV2d
+        LiTSF9tnEDw3TegA2nWZY0JHc/SegfbpDXSCcA==
+X-Google-Smtp-Source: ABdhPJz6kmqtXJ1OIC7MMXmPStyq8zxaV71RF1e7y0B2HRZcYqLhuf4XSQqPFMKWaNblWCA07w8uXnCW74H/zUsItAM=
+X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr14923890ots.192.1593459479172;
+ Mon, 29 Jun 2020 12:37:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a2e:a551:0:0:0:0:0 with HTTP; Mon, 29 Jun 2020 12:34:53
- -0700 (PDT)
-Reply-To: daborahraymond@gmail.com
-From:   "Mrs. Daborah Raymond" <aleksandralex37@gmail.com>
-Date:   Mon, 29 Jun 2020 12:34:53 -0700
-Message-ID: <CAF4h0ebQKvOLsr4yoj31kk+o6XHzas9KxNHwOT6CL+-8iYda-w@mail.gmail.com>
-Subject: Hello,
-To:     undisclosed-recipients:;
+References: <20200618224413.1115849-1-robh@kernel.org> <20200619215341.GA6857@ravnborg.org>
+In-Reply-To: <20200619215341.GA6857@ravnborg.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 29 Jun 2020 13:37:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJcL6VJXiTGyAAs-UCD24wxh4NBAs_SntLomwUTo6Qhzw@mail.gmail.com>
+Message-ID: <CAL_JsqJcL6VJXiTGyAAs-UCD24wxh4NBAs_SntLomwUTo6Qhzw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: backlight: Convert common backlight bindings
+ to DT schema
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear friend,
+On Fri, Jun 19, 2020 at 3:53 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Rob.
+>
+> Good to have these converted. A few comments in the following. One
+> comment is for the backlight people as you copied the original text.
+>
+>         Sam
+>
+> On Thu, Jun 18, 2020 at 04:44:13PM -0600, Rob Herring wrote:
+> > Convert the common GPIO, LED, and PWM backlight bindings to DT schema
+> > format.
+> >
+> > Given there's only 2 common properties and the descriptions are slightly
+> > different, I opted to not create a common backlight schema.
+> >
+> > Cc: Lee Jones <lee.jones@linaro.org>
+> > Cc: Daniel Thompson <daniel.thompson@linaro.org>
+> > Cc: Jingoo Han <jingoohan1@gmail.com>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../leds/backlight/gpio-backlight.txt         | 16 ---
+> >  .../leds/backlight/gpio-backlight.yaml        | 41 ++++++++
+> >  .../bindings/leds/backlight/led-backlight.txt | 28 ------
+> >  .../leds/backlight/led-backlight.yaml         | 58 +++++++++++
+> >  .../bindings/leds/backlight/pwm-backlight.txt | 61 ------------
+> >  .../leds/backlight/pwm-backlight.yaml         | 98 +++++++++++++++++++
+> >  6 files changed, 197 insertions(+), 105 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
+> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
+> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/leds/backlight/pwm-backlight.txt
+> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
+> > deleted file mode 100644
+> > index 321be6640533..000000000000
+> > --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.txt
+> > +++ /dev/null
+> > @@ -1,16 +0,0 @@
+> > -gpio-backlight bindings
+> > -
+> > -Required properties:
+> > -  - compatible: "gpio-backlight"
+> > -  - gpios: describes the gpio that is used for enabling/disabling the backlight.
+> > -    refer to bindings/gpio/gpio.txt for more details.
+> > -
+> > -Optional properties:
+> > -  - default-on: enable the backlight at boot.
+> > -
+> > -Example:
+> > -     backlight {
+> > -             compatible = "gpio-backlight";
+> > -             gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
+> > -             default-on;
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> > new file mode 100644
+> > index 000000000000..75cc569b9c55
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> > @@ -0,0 +1,41 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/backlight/gpio-backlight.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: gpio-backlight bindings
+> > +
+> > +maintainers:
+> > +  - Lee Jones <lee.jones@linaro.org>
+> > +  - Daniel Thompson <daniel.thompson@linaro.org>
+> > +  - Jingoo Han <jingoohan1@gmail.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: gpio-backlight
+> > +
+> > +  gpios:
+> > +    description: The gpio that is used for enabling/disabling the backlight.
+> > +    maxItems: 1
+> > +
+> > +  default-on:
+> > +    description: enable the backlight at boot.
+> > +    type: boolean
+> > +
+> > +required:
+> > +  - compatible
+> > +  - gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    backlight {
+> > +        compatible = "gpio-backlight";
+> > +        gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
+> > +        default-on;
+> > +    };
+> > +
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
+> > deleted file mode 100644
+> > index 4c7dfbe7f67a..000000000000
+> > --- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.txt
+> > +++ /dev/null
+> > @@ -1,28 +0,0 @@
+> > -led-backlight bindings
+> > -
+> > -This binding is used to describe a basic backlight device made of LEDs.
+> > -It can also be used to describe a backlight device controlled by the output of
+> > -a LED driver.
+> > -
+> > -Required properties:
+> > -  - compatible: "led-backlight"
+> > -  - leds: a list of LEDs
+> > -
+> > -Optional properties:
+> > -  - brightness-levels: Array of distinct brightness levels. The levels must be
+> > -                       in the range accepted by the underlying LED devices.
+> > -                       This is used to translate a backlight brightness level
+> > -                       into a LED brightness level. If it is not provided, the
+> > -                       identity mapping is used.
+> > -
+> > -  - default-brightness-level: The default brightness level.
+> > -
+> > -Example:
+> > -
+> > -     backlight {
+> > -             compatible = "led-backlight";
+> > -
+> > -             leds = <&led1>, <&led2>;
+> > -             brightness-levels = <0 4 8 16 32 64 128 255>;
+> > -             default-brightness-level = <6>;
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> > new file mode 100644
+> > index 000000000000..ae50945d2798
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> > @@ -0,0 +1,58 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/backlight/led-backlight.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: led-backlight bindings
+> > +
+> > +maintainers:
+> > +  - Lee Jones <lee.jones@linaro.org>
+> > +  - Daniel Thompson <daniel.thompson@linaro.org>
+> > +  - Jingoo Han <jingoohan1@gmail.com>
+> > +
+> > +description:
+> > +  This binding is used to describe a basic backlight device made of LEDs. It
+> > +  can also be used to describe a backlight device controlled by the output of
+> > +  a LED driver.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: led-backlight
+> > +
+> > +  leds:
+> > +    description: A list of LED nodes
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +
+> > +  brightness-levels:
+> > +    description: Array of distinct brightness levels. The levels must be
+> > +      in the range accepted by the underlying LED devices. This is used
+> > +      to translate a backlight brightness level into a LED brightness level.
+> > +      If it is not provided, the identity mapping is used.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> bike-shedding. To me it is a tad easier to read when multi-line
+> descriptions are on a separate line.
+> So "description:" on one line, and the text on following lines.
+> example-schema.yaml does both - so both are official acceptable.
 
+I agree, but the one issue is ruamel yaml wants it the above way
+unless you do '|' (or really '>' may be the correct annotation here).
+That's mainly an issue if doing tree wide yaml->python
+processing->yaml transformations. But if the line lengths don't match
+exactly what ruamel is set to, then it reformats it anyways, so in the
+end it doesn't really matter. I just have to filter out unwanted
+reformatting (until ruamel can really do roundtrips with no
+reformatting).
 
-I have a business container transaction what that some of( $13million dollars)
-
- I would like to discuss with you. If you are interested, please
-contact my email
-
-address (mrs.victoria.alexander2@gmail.com)
-
-My WhatsApp number but only message (+19293737780)
-
-Please do not reply if you are not ready
-Thanks
+Rob
