@@ -2,117 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DEF20E8C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8100620E8D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728660AbgF2WaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 18:30:15 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:42832 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgF2WaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 18:30:14 -0400
-Received: by mail-io1-f65.google.com with SMTP id c16so18933166ioi.9;
-        Mon, 29 Jun 2020 15:30:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aGmQNEbF1Z1L1phYaSvVlsTnm5BPf7k4yHvjYUm7EmA=;
-        b=QFCSmxbD1AFNB8e12QdRIMIaOlWF3vVF/rHRcRmxdzBU9kJbIyIFHFkY1PqESuHAyT
-         kf5bnh5Hf+UlpZRn0AqCiZhaC+lxVlF7Re+d1UaowkxRPCTlKn3YfOPob4zi2XB/q1kR
-         MEq2CMXB2eZjJ3ugzfcbi2LW3qEyh941HxJej8p6THYY/9cfznJX8e2Ll3VX09ZhXqaz
-         Fi0yh1XVZKS6F7CZo+mWklVOqjgswJtTT1vdUs5RL9EdF0Fmyyhxy8yaLr9g0iE7IpE7
-         5Zq8ag9T83KIvHiA/F6r3W4r7qYh2v0i3oN8WKpoWwUK122LRnTgzp0+lA6eC5HxFnNC
-         M+iw==
-X-Gm-Message-State: AOAM533eYNXa69ombeL4d2s6h4RwoW4AlWIM8xIIuRpn5Drilc1bQTDX
-        kL+Vby7AyRUnC1sfyeat0HzHaMxwtA==
-X-Google-Smtp-Source: ABdhPJyVNbvX17VhfX0EFlfpZLx+W/pn+BWFrDM6q+CHhAkYhKFVPGebNlEHbcPwRZOyWWP0JNqCOw==
-X-Received: by 2002:a6b:ee02:: with SMTP id i2mr2855447ioh.110.1593469813356;
-        Mon, 29 Jun 2020 15:30:13 -0700 (PDT)
-Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id x16sm540604iob.35.2020.06.29.15.30.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 15:30:12 -0700 (PDT)
-Received: (nullmailer pid 3075349 invoked by uid 1000);
-        Mon, 29 Jun 2020 22:30:11 -0000
-Date:   Mon, 29 Jun 2020 16:30:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/3] dt-bindings: phy: Add DT bindings for Xilinx
- ZynqMP PSGTR PHY
-Message-ID: <20200629223011.GA3074548@bogus>
-References: <20200629120054.29338-1-laurent.pinchart@ideasonboard.com>
- <20200629120054.29338-2-laurent.pinchart@ideasonboard.com>
+        id S1727859AbgF2We6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 18:34:58 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:54002 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727013AbgF2We5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 18:34:57 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id CD9AD2A1386
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id B9E51480102; Tue, 30 Jun 2020 00:34:50 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Merlijn Wajer <merlijn@wizzup.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv1 0/4] panel-dsi-cm: update bindings
+Date:   Tue, 30 Jun 2020 00:33:11 +0200
+Message-Id: <20200629223315.118256-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200629120054.29338-2-laurent.pinchart@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Jun 2020 15:00:52 +0300, Laurent Pinchart wrote:
-> From: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-> 
-> Add DT bindings for the Xilinx ZynqMP PHY. ZynqMP SoCs have a High Speed
-> Processing System Gigabit Transceiver which provides PHY capabilities to
-> USB, SATA, PCIE, Display Port and Ehernet SGMII controllers.
-> 
-> Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changes since v8:
-> 
-> - Rebase on phy/next
-> 
-> Changes since v7:
-> 
-> - Switch to GPL-2.0-only OR BSD-2-Clause
-> 
-> Changes since v6:
-> 
-> - Fixed specification of compatible-dependent xlnx,tx-termination-fix
->   property
-> - Dropped status property from example
-> - Use 4 spaces to indent example
-> 
-> Changes since v5:
-> 
-> - Document clocks and clock-names properties
-> - Document resets and reset-names properties
-> - Replace subnodes with an additional entry in the PHY cells
-> - Drop lane frequency PHY cell, replaced by reference clock phandle
-> - Convert bindings to YAML
-> - Reword the subject line
-> - Drop Rob's R-b as the bindings have significantly changed
-> - Drop resets and reset-names properties
-> ---
->  .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 105 ++++++++++++++++++
->  include/dt-bindings/phy/phy.h                 |   1 +
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> 
+Subject: panel-dsi-cm: update bindings
 
+The cleanup series for omapdrm's DSI code got too big. Reviewing
+this is not fun and the same goes for keeping track of the change
+requests. Let's do the cleanup in smaller steps instead. This is
+the first batch, which updates the binding (txt -> yaml) and
+modifies the DT slightly.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+-- Sebastian
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.example.dt.yaml: example-0: phy@fd400000:reg:0: [0, 4248829952, 0, 262144] is too long
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.example.dt.yaml: example-0: phy@fd400000:reg:1: [0, 4248633344, 0, 4096] is too long
+Sebastian Reichel (4):
+  dt-bindings: display: panel-dsi-cm: convert to YAML
+  ARM: dts: omap: add channel to DSI panels
+  ARM: dts: omap4-droid4: add panel compatible
+  ARM: dts: omap4-droid4: add panel orientation
 
+ .../bindings/display/panel/panel-dsi-cm.txt   |  29 -----
+ .../bindings/display/panel/panel-dsi-cm.yaml  | 100 ++++++++++++++++++
+ .../boot/dts/motorola-mapphone-common.dtsi    |   6 +-
+ arch/arm/boot/dts/omap3-n950.dts              |   3 +-
+ arch/arm/boot/dts/omap3.dtsi                  |   3 +
+ arch/arm/boot/dts/omap4-sdp.dts               |   6 +-
+ arch/arm/boot/dts/omap4.dtsi                  |   6 ++
+ arch/arm/boot/dts/omap5.dtsi                  |   6 ++
+ 8 files changed, 125 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-dsi-cm.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
 
-See https://patchwork.ozlabs.org/patch/1319269
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+-- 
+2.27.0
 
