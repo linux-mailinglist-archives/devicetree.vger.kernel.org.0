@@ -2,239 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8604B20E609
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B28B20E7BB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404004AbgF2Vnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727843AbgF2Shs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:37:48 -0400
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A2CC031C42
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:20 -0700 (PDT)
-Received: by mail-qt1-x843.google.com with SMTP id e12so13406781qtr.9
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=snsizZHV6FarzIo1/rFuJ3/yVOUqTzRajk7bCD023lA=;
-        b=1JQT0OK5S8iqXV0ngr3NmpjqtgEGc1ny910dvyBLeebNJ3Z7wDyDzpLN1X00TtyrBM
-         mrnc/gcv2SENfHKLR3xBxf9vaGhP62J1JULk0R3jDR/FI41ysX0VS7oHugctNBUnQgTx
-         yd5r6lNbgC4i3xlmP8OtFhNGCxY321SPHfLS8BNc90NlojJX3kQBaYxDLECITzF6ZXkH
-         MGDGrzR7n5JF4cMPFMdZX8ub3zBCT3UF8Y8WEQaDRoOXlcgcDJKtn+2c3SU+THSQi9F5
-         miG/RT54YR3bp7fchH9v8S45sD6eba4ZAJgah8y19Q9UZtTZVSXrqlyn6wGL7WV25yco
-         AJTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=snsizZHV6FarzIo1/rFuJ3/yVOUqTzRajk7bCD023lA=;
-        b=UQT1okpEaVfetRf/vjtfkUY5no1XAVvYLq78xCmi5PmL7WE0Y16BONYsE/MLXJ3lrZ
-         gPPirHb8cKjp56/tV470iGjmvyY0Jt6AvLz8U/6ExpihbMPY1L/gmW7gB2I2hG7lzjpa
-         2IvzICXeQQkXM0RdeidiwjV5kUF09je5xg8X2f0/TYtyOF9wVC7G4vsBNmPleB9QVLYx
-         2BzSbqCebHzWSIak9HjQxSVq4qJ/cpFrRSffb+V44oba7fhDW9tA1al+gyXSMAtgBuTC
-         a36nPj2vuD0b5AXDevLDiYnbY+7e3llJvQfMkYjUNSXcxWd2yd96mNa/0P/X8+cZWlTJ
-         nNsA==
-X-Gm-Message-State: AOAM530Nm1gpQkcC70AbnCG7ZtoR2BYyHq5GZg6iG1zeA4pt3rLETN/7
-        pSMqTVfAaMML75uB3Tcy6ec2fA==
-X-Google-Smtp-Source: ABdhPJxMcwEqK90UbZjY+TgRHdTd09OSLpnceXNMlLhQKJ4PMKhybFFGTMNwD0O0wRw09XSGo2tIlA==
-X-Received: by 2002:ac8:6f26:: with SMTP id i6mr16695618qtv.61.1593451280085;
-        Mon, 29 Jun 2020 10:21:20 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id q5sm408363qtf.12.2020.06.29.10.21.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 10:21:19 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 13/13] arm64: dts: qcom: add sm8250 GPU nodes
-Date:   Mon, 29 Jun 2020 13:20:43 -0400
-Message-Id: <20200629172049.30452-14-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200629172049.30452-1-jonathan@marek.ca>
-References: <20200629172049.30452-1-jonathan@marek.ca>
+        id S2391713AbgF2V7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:59:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726392AbgF2SfZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:35:25 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DFCA3255C7;
+        Mon, 29 Jun 2020 17:57:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593453470;
+        bh=ZtASUsHSUH9iBmQouSmlHBp0adBRXfaTVKN3IEKwB2A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2kKS+wDhkOuxpH9plHm9j0XcBd1NOUkJJmJEvlxcmanpfHqlzhfaHZvWTWdWKm1fj
+         wSf07FVi3Vc5BoJg00SsFz9stOKYZjSXPZ0CZnwRUr9xGG9SK7jE+dnTuQahmLknAV
+         QdfXGtfSQm+QApl5nSJa5URHEmOz9dzGsODL98zw=
+Received: by mail-ot1-f51.google.com with SMTP id q21so8790879otc.7;
+        Mon, 29 Jun 2020 10:57:49 -0700 (PDT)
+X-Gm-Message-State: AOAM530ZH+ymx1LRhBUi64LdyKz+BbmrCg9xFIijTPklFGRFQdXbXrT8
+        a0c6j2G3NQXXwQ5O1ORx4/1uP7KmUySXwk2IGA==
+X-Google-Smtp-Source: ABdhPJyimQAzFgXMjRYrAPs8oEIeWpJhMBKYcA7auFeZopuljB1Q7c28J7qEymPHWgbqxTgyvUyyluEt85Lj4qCu1n4=
+X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr14554766ots.192.1593453469212;
+ Mon, 29 Jun 2020 10:57:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200618224413.1115849-1-robh@kernel.org> <20200619215341.GA6857@ravnborg.org>
+ <20200622165730.pnx7fzbq5e6q5h4l@holly.lan>
+In-Reply-To: <20200622165730.pnx7fzbq5e6q5h4l@holly.lan>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 29 Jun 2020 11:57:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK1yJ09k6tKak==TjRN17VzueVkcf-WOLw2ETL2ZJv9sg@mail.gmail.com>
+Message-ID: <CAL_JsqK1yJ09k6tKak==TjRN17VzueVkcf-WOLw2ETL2ZJv9sg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: backlight: Convert common backlight bindings
+ to DT schema
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This brings up the GPU. Tested on HDK865 by running vulkan CTS.
+On Mon, Jun 22, 2020 at 10:57 AM Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+>
+> On Fri, Jun 19, 2020 at 11:53:41PM +0200, Sam Ravnborg wrote:
+> > > diff --git a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+> > > new file mode 100644
+> > > index 000000000000..7e1f109a38a4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+> > > @@ -0,0 +1,98 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/backlight/pwm-backlight.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: pwm-backlight bindings
+> > > +
+> > > +maintainers:
+> > > +  - Lee Jones <lee.jones@linaro.org>
+> > > +  - Daniel Thompson <daniel.thompson@linaro.org>
+> > > +  - Jingoo Han <jingoohan1@gmail.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: pwm-backlight
+> > > +
+> > > +  pwms:
+> > > +    maxItems: 1
+> > > +
+> > > +  pwm-names: true
+> > > +
+> > > +  power-supply:
+> > > +    description: regulator for supply voltage
+> > > +
+> > > +  enable-gpios:
+> > > +    description: Contains a single GPIO specifier for the GPIO which enables
+> > > +      and disables the backlight
+> > > +    maxItems: 1
+> > > +
+> > > +  post-pwm-on-delay-ms:
+> > > +    description: Delay in ms between setting an initial (non-zero) PWM and
+> > > +      enabling the backlight using GPIO.
+> > > +
+> > > +  pwm-off-delay-ms:
+> > > +    description: Delay in ms between disabling the backlight using GPIO
+> > > +      and setting PWM value to 0.
+> > > +
+> > > +  brightness-levels:
+> > > +    description: Array of distinct brightness levels. Typically these are
+> > > +      in the range from 0 to 255, but any range starting at 0 will do. The
+> > > +      actual brightness level (PWM duty cycle) will be interpolated from
+> > > +      these values. 0 means a 0% duty cycle (darkest/off), while the last
+> > > +      value in the array represents a 100% duty cycle (brightest).
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +
+> > > +  default-brightness-level:
+> > > +    description: The default brightness level (index into the array defined
+> > > +      by the "brightness-levels" property).
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > Same comment as before...
+>
+> Sorry the "ditto" meant I didn't thing about PWM as much as I should
+> have.
+>
+> The situation for PWM is a little different to LED. That's mostly
+> because we decided not to clutter the LED code with
+> "num-interpolated-steps".
+>
+> The PWM code implements the default-brightness-level as an index into
+> the brightness array *after* it has been expanded using interpolation.
+> In other words today Linux treats the default-brightness-level more
+> like[1].
+>
+>     description: The default brightness level. When
+>       num-interpolated-steps is not set this is simply an index into
+>       the array defined by the "brightness-levels" property. If
+>       num-interpolated-steps is set the brightness array will be
+>       expanded by interpolation before we index to get a default
+>       level.
+>
+> This is the best I have come up with so far... but I concede it still
+> lacks elegance.
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 143 +++++++++++++++++++++++++++
- 1 file changed, 143 insertions(+)
+Happy to add this or whatever folks want if there's agreement, but I
+don't want to get bogged down on re-reviewing and re-writing the
+binding on what is just a conversion. There's a mountain of bindings
+to convert.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 25224d8cac4e..c9b38dd88f43 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+#include <dt-bindings/clock/qcom,gpucc-sm8250.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -387,6 +388,148 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		gpu: gpu@3d00000 {
-+			/*
-+			 * note: the amd,imageon compatible makes it possible
-+			 * to use the drm/msm driver without the display node,
-+			 * make sure to remove it when display node is added
-+			 */
-+			compatible = "qcom,adreno-650.2",
-+				     "qcom,adreno",
-+				     "amd,imageon";
-+			#stream-id-cells = <16>;
-+
-+			reg = <0 0x3d00000 0 0x40000>;
-+			reg-names = "kgsl_3d0_reg_memory";
-+
-+			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			iommus = <&adreno_smmu 0 0x401>;
-+
-+			operating-points-v2 = <&gpu_opp_table>;
-+
-+			qcom,gmu = <&gmu>;
-+
-+			zap-shader {
-+				memory-region = <&gpu_mem>;
-+			};
-+
-+			/* note: downstream checks gpu binning for 670 Mhz */
-+			gpu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-670000000 {
-+					opp-hz = /bits/ 64 <670000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+				};
-+
-+				opp-587000000 {
-+					opp-hz = /bits/ 64 <587000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+				};
-+
-+				opp-525000000 {
-+					opp-hz = /bits/ 64 <525000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+				};
-+
-+				opp-490000000 {
-+					opp-hz = /bits/ 64 <490000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+				};
-+
-+				opp-441600000 {
-+					opp-hz = /bits/ 64 <441600000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-+				};
-+
-+				opp-400000000 {
-+					opp-hz = /bits/ 64 <400000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+				};
-+
-+				opp-305000000 {
-+					opp-hz = /bits/ 64 <305000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+				};
-+			};
-+		};
-+
-+		gmu: gmu@3d6a000 {
-+			compatible="qcom,adreno-gmu-650.2", "qcom,adreno-gmu";
-+
-+			reg = <0 0x3d6a000 0 0x30000>,
-+			      <0 0x3de0000 0 0x10000>,
-+			      <0 0xb290000 0 0x10000>,
-+			      <0 0xb490000 0 0x10000>;
-+			reg-names = "gmu", "rscc", "gmu_pdc", "gmu_pdc_seq";
-+
-+			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hfi", "gmu";
-+
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gpucc GPU_CC_CX_GMU_CLK>,
-+			         <&gpucc GPU_CC_CXO_CLK>,
-+				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-+				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
-+			clock-names = "ahb", "gmu", "cxo", "axi", "memnoc";
-+
-+			power-domains = <&gpucc GPU_CX_GDSC>,
-+					<&gpucc GPU_GX_GDSC>;
-+			power-domain-names = "cx", "gx";
-+
-+			iommus = <&adreno_smmu 5 0x400>;
-+
-+			operating-points-v2 = <&gmu_opp_table>;
-+
-+			gmu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				};
-+			};
-+		};
-+
-+		gpucc: clock-controller@3d90000 {
-+			compatible = "qcom,sm8250-gpucc";
-+			reg = <0 0x3d90000 0 0x9000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			clock-names = "bi_tcxo",
-+				      "gcc_gpu_gpll0_clk_src",
-+				      "gcc_gpu_gpll0_div_clk_src";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		adreno_smmu: iommu@3da0000 {
-+			compatible = "qcom,sm8250-smmu-500", "arm,mmu-500";
-+			reg = <0 0x3da0000 0 0x10000>;
-+			#iommu-cells = <2>;
-+			#global-interrupts = <2>;
-+			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
-+			clock-names = "ahb", "bus", "iface";
-+
-+			power-domains = <&gpucc GPU_CX_GDSC>;
-+		};
-+
- 		usb_1_hsphy: phy@88e3000 {
- 			compatible = "qcom,sm8250-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
--- 
-2.26.1
-
+Rob
