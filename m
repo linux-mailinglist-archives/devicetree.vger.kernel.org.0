@@ -2,87 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D89B20DF54
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFA520DFBE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732483AbgF2Uel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731843AbgF2TXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:23:51 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B03DC061755
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:23:51 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id x62so13766918qtd.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:23:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=d9BGVshqPZNqtsgKezZ53Dstz56cRP9gTsU+AsUUoSE=;
-        b=BuDp9scEtuO1UJpKqW/ythg98OIq5vdZki8GlPCelrABvX/khclaPEaiZfheOQSEiE
-         D6JsqeBYl84apl8SpaiH3vk4zkPQEsB90dOnrfGVPVjzdZ9wwEhnX0Lh2kbR4CbZfHvX
-         ZoaVvg7/3vQ+JJVg1i7EpK0TbwUj5WcArH0RJ0rzkxUYr7Ar+NfLPlLBlf+Ndq8AqvcW
-         sSmmfeYK5TNFwLnjxZUS2DmFgE9ASF4NKx2QYA1ux9sSktYCWLD9wvnexM6hnRWM8wK3
-         xL4ua/YV/K20OhRpSryUuksrGH0tbHlZTv1q4I8ZpyHu3na7M203eyfjkglQys+hlo39
-         dWGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=d9BGVshqPZNqtsgKezZ53Dstz56cRP9gTsU+AsUUoSE=;
-        b=ewWmkw9oKEUp1EqORqE+uDbFuvVW6KynaUJuxCB3ECSUCoxxoqpddPlYcJxTS0hfjn
-         9yiCRMiGBqCr9OY9Ofsyt66Wt4rGrHL66yp5qamOQIxxYW7WTqxzmGf+CdZjHBAIye/x
-         GpfSFUWwrcC2fmpCVBsE/4VFrYVSGM8djAhEyN21mvmTRUB8/Tzq1CPOQCYO6B54QoEN
-         IJIyye4EuJaCUTutHLod/zu1q4iaiZatt0GYW5ZJPErM/GL+7zHCcAZ4SZfnNkeI8iHm
-         q3PRwekI4at9CuIgjo9i+wY3pysmRNUJC3zJtPKNWWB/awUj5YZ0O0CsgiQRH+XntR86
-         uIRw==
-X-Gm-Message-State: AOAM531OksSzdD7wO6xWkw0CsY/4f8cWeX9uoAlm+CxACl/Pz4nQuQDq
-        /cX1pbrJD2chzDqFIN6QOLQ=
-X-Google-Smtp-Source: ABdhPJwguGXCUEabIqEKOZqBAu7shyV6rh3WVKAjPnyVkpustWXuW+JRfsTFjz4K+juOnurNv2vpxw==
-X-Received: by 2002:ac8:4f50:: with SMTP id i16mr2010185qtw.216.1593458630427;
-        Mon, 29 Jun 2020 12:23:50 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
-        by smtp.gmail.com with ESMTPSA id w11sm737122qtk.35.2020.06.29.12.23.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 12:23:49 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     lee.jones@linaro.org, benjamin.gaignard@st.com,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [RFC] dt-bindings: mfd: st,stmfx: Remove extra additionalProperties
-Date:   Mon, 29 Jun 2020 16:23:35 -0300
-Message-Id: <20200629192335.24622-1-festevam@gmail.com>
+        id S2389590AbgF2UjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:39:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39302 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389392AbgF2UjU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 16:39:20 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.195])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 12F8B20672;
+        Mon, 29 Jun 2020 20:39:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593463159;
+        bh=L1Zczp4G94BGZF6AbOCQuN5y8MVMnaPGHuo808oDcHo=;
+        h=From:To:Subject:Date:From;
+        b=LDzIOgDv674g5tQqCvxsTTAKURVuacJ5Rf9RT9R+uWMp6sTNSpMwjEBywxXZs9/xU
+         Rx3i4ms6wo21O+78JqdY2Fp6UHaUsptFMfN10IYKj/6ecDXqKoyrQQDSH1SAhLx9sq
+         Z1sEONvenJ8ztfTbIFnrWfSDgJY0AcjApohqqJt8=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: samsung: Do not require clkout on Exynos5260 and Exynos7
+Date:   Mon, 29 Jun 2020 22:38:59 +0200
+Message-Id: <20200629203859.17298-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following build error is seen with 'make dt_binding_check':
+The PMU (Power Management Unit) driver is a clkout clock provider (for
+clock signal monitoring) only for certain Exynos SoCs.  It was never
+implemented for Exynos5260 and Exynos7.  This fixes dtschema validator
+warnings like:
 
-  CHKDT   Documentation/devicetree/bindings/mfd/st,stmfx.yaml
-/home/fabio/linux-next/Documentation/devicetree/bindings/mfd/st,stmfx.yaml: properties:pinctrl:patternProperties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
+    system-controller@105c0000: '#clock-cells' is a required property
 
-Remove the extra 'additionalProperties' to pass the build.
-
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- Documentation/devicetree/bindings/mfd/st,stmfx.yaml | 2 --
- 1 file changed, 2 deletions(-)
+ .../devicetree/bindings/arm/samsung/pmu.yaml  | 22 ++++++++++++++++---
+ 1 file changed, 19 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/st,stmfx.yaml b/Documentation/devicetree/bindings/mfd/st,stmfx.yaml
-index 0ce56a0da553..bed22d4abffb 100644
---- a/Documentation/devicetree/bindings/mfd/st,stmfx.yaml
-+++ b/Documentation/devicetree/bindings/mfd/st,stmfx.yaml
-@@ -73,8 +73,6 @@ properties:
-           output-high: true
-           output-low: true
+diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+index c9651892710e..686c13c14e32 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+@@ -85,12 +85,28 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - '#clock-cells'
+-  - clock-names
+-  - clocks
  
--      additionalProperties: false
--
-     additionalProperties: false
+ additionalProperties: false
  
-     required:
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynos3250-pmu
++              - samsung,exynos4210-pmu
++              - samsung,exynos4412-pmu
++              - samsung,exynos5250-pmu
++              - samsung,exynos5410-pmu
++              - samsung,exynos5420-pmu
++              - samsung,exynos5433-pmu
++    then:
++      required:
++        - '#clock-cells'
++        - clock-names
++        - clocks
++
+ examples:
+   - |
+     #include <dt-bindings/clock/exynos5250.h>
 -- 
 2.17.1
 
