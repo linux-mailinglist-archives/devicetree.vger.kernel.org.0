@@ -2,265 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3D9020E008
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA7E20E0BD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389633AbgF2UmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:42:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43380 "EHLO
+        id S1733120AbgF2UtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731652AbgF2TOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:14:04 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50523C008612
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:27:42 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id dg28so12364991edb.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:27:42 -0700 (PDT)
+        with ESMTP id S1731492AbgF2TNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:41 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F37FC008615;
+        Mon, 29 Jun 2020 03:28:07 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id f139so15568620wmf.5;
+        Mon, 29 Jun 2020 03:28:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dyroAN44J2OM/AhTWy0pxzrNp1szrmJqs4ojQ9k1drM=;
-        b=Lx3CXAeD23+wZge0roPuQ06+3bFnks98aupHyP/952olcUbmZ2dGTSHxJzw5EIsGUz
-         uvmG4nB45dVQbnkuBckzCSHvrW6zVQknmXJgYHoxX9RTQxR9W989Dk2c+DFBEIzUtvdl
-         dZiHdHK9D7RHwsK8Co1GH/0nYKIPbjqHYwn5s=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5PJq7fj4658s6JzN+saszR4MMaj+yVEmwSy9+6i9rdc=;
+        b=d95TheNGZwAr6v+hYUvaooNggRDEM0p1xdNnmO01/ZcVveMkHMo1JMnjLS5+lTmF3L
+         dK5PZBvNQmlLaUse5XNzyhhkWeGSvCV5aho4IQP+kDbfD5wIPhRl2wTvCx/4CAshfVE9
+         pjc/UepSTBWkKlU1BPcJt8HKAVuosWGPnUatwVTVfuLaDkKA9kRUj2fGQRsTUJgBSXPp
+         mV6jqg8jDW4bFFg6sBEABDJvz1OUAYWiRgz/Vfx5/u70FgIu8aDjI91ihVWOLEABcFji
+         9NsfNHJYoRtStM812LGLD413bWf9wl+yWFVB0/5IvS3BvYO0JoOLjuKiehF9oQsUV1XR
+         Musg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dyroAN44J2OM/AhTWy0pxzrNp1szrmJqs4ojQ9k1drM=;
-        b=TzkT0nXUK+VLCJtnZgYUM2ILRHg+tOH3pvVIGWvJ7uBldppH3LuzG3rWA6iJIMz/F8
-         7qw6hgoB6NEyszG2j96nAl5Lnv80xLbaH5s4qHhwQQgurpjwC2+/Z418kY12N2El+6zj
-         IYRAmtszCpVzIj0siPXWkSWmQGdzwBzUMXq/b5s0xJevIXZSz9FpMzyMukG1L5FFjlwb
-         Oy7JhiPvUR6I54gIJCN+2wpXnDww/uHAPqoIzcok3vJt5VwkwysVArFex/CP6TlQN2OO
-         QxnQgJu9Fn/fH5LETiZM3IFdMY+3ZvFSkT4T4cMwAScRyTTdIp+kSRhoxPA4dXeG+l0i
-         +SQg==
-X-Gm-Message-State: AOAM533qwM9JcvBzMqgXhGAGrjziVbcmUSPSfbFqQ2EpQakIPgM9tDLM
-        U55jshRiE+dRoqjLahZzt066xazYXBqtFw==
-X-Google-Smtp-Source: ABdhPJwtEXzYmEy5UMQoXLicEFeHmvS7tle7i5FeBP12xnc+2Ta0wC6eze8PtwJUhErguq2Ex5nGeQ==
-X-Received: by 2002:a50:eb02:: with SMTP id y2mr14195838edp.281.1593426460847;
-        Mon, 29 Jun 2020 03:27:40 -0700 (PDT)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
-        by smtp.gmail.com with ESMTPSA id dm1sm25528084ejc.99.2020.06.29.03.27.39
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=5PJq7fj4658s6JzN+saszR4MMaj+yVEmwSy9+6i9rdc=;
+        b=prQtkMDk8juhwgxLvnZX+VDo5oSTWUK8y0lVYGIa7olTzm5JFFx6mkdeFct5RdBHbq
+         z8aDRkExFvwsy6rClEKGaxlyQcTx96Eki/3cYoHu6+MeIZqpiVm2xNXMUlWmFx4N2STm
+         gS8OgcVPdcm8eqEEKKVFNTBvDh3XBwaB3u0DsHgps7Dr6hqWRmuoU3Djro6KtLiJqki4
+         pa+K/F/1MHJ/KbQxpTT5wqPEKu8MWuozz9pjXSRV7Od/dS+1Pd8wXzQa/MK1/7nZbSoJ
+         dOrBGEtGWL5RdwjVSEDwQZnpVvCcXN/VNTlxTNugud9sf2oilGfJ+uYiLV9iCqqCIVmU
+         u10A==
+X-Gm-Message-State: AOAM533WlIs/edeUB+l05zqanmhM6jlRCLEwmEHsZR6VICllNYlqfOms
+        ldtbtT0OUa5a7h5H9PLfxGU=
+X-Google-Smtp-Source: ABdhPJyldWi8DAwQgO1Wp4ecqSDphv3EfBMPnpbkrMBi6Es3zw5jdYzpisa8I4tFFFU80aL3TCZ82w==
+X-Received: by 2002:a1c:2044:: with SMTP id g65mr14427785wmg.127.1593426486034;
+        Mon, 29 Jun 2020 03:28:06 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.114.138])
+        by smtp.gmail.com with ESMTPSA id k126sm15714057wmf.3.2020.06.29.03.28.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2020 03:27:40 -0700 (PDT)
-Received: by mail-wm1-f53.google.com with SMTP id f18so15586512wml.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:27:39 -0700 (PDT)
-X-Received: by 2002:a1c:4303:: with SMTP id q3mr16649103wma.134.1593426459341;
- Mon, 29 Jun 2020 03:27:39 -0700 (PDT)
+        Mon, 29 Jun 2020 03:28:05 -0700 (PDT)
+Subject: Re: [PATCH v5 09/10] iommu/mediatek: Modify MMU_CTRL register setting
+To:     Chao Hao <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Evan Green <evgreen@chromium.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
+        FY Yang <fy.yang@mediatek.com>
+References: <20200629071310.1557-1-chao.hao@mediatek.com>
+ <20200629071310.1557-10-chao.hao@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <e063a5d2-8edc-9cf9-4872-d3f4abb1e481@gmail.com>
+Date:   Mon, 29 Jun 2020 12:28:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-References: <20200615122937.18965-1-dongchun.zhu@mediatek.com>
- <20200615122937.18965-3-dongchun.zhu@mediatek.com> <20200618191026.GA73379@chromium.org>
- <1593417224.17166.10.camel@mhfsdcap03>
-In-Reply-To: <1593417224.17166.10.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 29 Jun 2020 12:27:28 +0200
-X-Gmail-Original-Message-ID: <CAAFQd5DAbGDp=e-b2K89ydyK_bft5D2grpFfGDtX6hC__n-L-g@mail.gmail.com>
-Message-ID: <CAAFQd5DAbGDp=e-b2K89ydyK_bft5D2grpFfGDtX6hC__n-L-g@mail.gmail.com>
-Subject: Re: [PATCH V10 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200629071310.1557-10-chao.hao@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 29, 2020 at 9:54 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
->
-> Hi Tomasz,
->
-> On Thu, 2020-06-18 at 19:10 +0000, Tomasz Figa wrote:
-> > Hi Dongchun,
-> >
-> > On Mon, Jun 15, 2020 at 08:29:37PM +0800, Dongchun Zhu wrote:
-> > > Add a V4L2 sub-device driver for OV02A10 image sensor.
-> > >
-> > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > ---
-> > >  MAINTAINERS                 |    1 +
-> > >  drivers/media/i2c/Kconfig   |   13 +
-> > >  drivers/media/i2c/Makefile  |    1 +
-> > >  drivers/media/i2c/ov02a10.c | 1042 +++++++++++++++++++++++++++++++++++++++++++
-> > >  4 files changed, 1057 insertions(+)
-> > >  create mode 100644 drivers/media/i2c/ov02a10.c
-> > >
-> >
-> > Thank you for the patch. Please see my comments inline.
-> >
->
-> [snip]
->
-> > > +static int ov02a10_probe(struct i2c_client *client)
-> > > +{
-> > > +   struct device *dev = &client->dev;
-> > > +   struct ov02a10 *ov02a10;
-> > > +   unsigned int rotation;
-> > > +   unsigned int clock_lane_tx_speed;
-> > > +   unsigned int i;
-> > > +   int ret;
-> > > +
-> > > +   ov02a10 = devm_kzalloc(dev, sizeof(*ov02a10), GFP_KERNEL);
-> > > +   if (!ov02a10)
-> > > +           return -ENOMEM;
-> > > +
-> > > +   ret = ov02a10_check_hwcfg(dev, ov02a10);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to check HW configuration: %d", ret);
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   v4l2_i2c_subdev_init(&ov02a10->subdev, client, &ov02a10_subdev_ops);
-> > > +   ov02a10->mipi_clock_tx_speed = OV02A10_MIPI_TX_SPEED_DEFAULT;
-> > > +   ov02a10->fmt.code = MEDIA_BUS_FMT_SBGGR10_1X10;
-> > > +
-> > > +   /* Optional indication of physical rotation of sensor */
-> > > +   ret = fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
-> > > +   if (!ret && rotation == 180) {
-> > > +           ov02a10->upside_down = true;
-> > > +           ov02a10->fmt.code = MEDIA_BUS_FMT_SRGGB10_1X10;
-> > > +   }
-> > > +
-> > > +   /* Optional indication of mipi TX speed */
-> > > +   ret = fwnode_property_read_u32(dev_fwnode(dev), "ovti,mipi-tx-speed",
-> > > +                                  &clock_lane_tx_speed);
-> > > +
-> > > +   if (!ret)
-> > > +           ov02a10->mipi_clock_tx_speed = clock_lane_tx_speed;
-> > > +
-> > > +   /* Get system clock (eclk) */
-> > > +   ov02a10->eclk = devm_clk_get(dev, "eclk");
-> > > +   if (IS_ERR(ov02a10->eclk)) {
-> > > +           ret = PTR_ERR(ov02a10->eclk);
-> > > +           dev_err(dev, "failed to get eclk %d\n", ret);
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
-> > > +                                  &ov02a10->eclk_freq);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to get eclk frequency\n");
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   ret = clk_set_rate(ov02a10->eclk, ov02a10->eclk_freq);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to set eclk frequency (24MHz)\n");
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   if (clk_get_rate(ov02a10->eclk) != OV02A10_ECLK_FREQ) {
-> > > +           dev_warn(dev, "wrong eclk frequency %d Hz, expected: %d Hz\n",
-> > > +                    ov02a10->eclk_freq, OV02A10_ECLK_FREQ);
-> > > +           return -EINVAL;
-> > > +   }
-> > > +
-> > > +   ov02a10->pd_gpio = devm_gpiod_get(dev, "powerdown", GPIOD_OUT_HIGH);
-> > > +   if (IS_ERR(ov02a10->pd_gpio)) {
-> > > +           ret = PTR_ERR(ov02a10->pd_gpio);
-> > > +           dev_err(dev, "failed to get powerdown-gpios %d\n", ret);
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   ov02a10->rst_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> > > +   if (IS_ERR(ov02a10->rst_gpio)) {
-> > > +           ret = PTR_ERR(ov02a10->rst_gpio);
-> > > +           dev_err(dev, "failed to get reset-gpios %d\n", ret);
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   for (i = 0; i < ARRAY_SIZE(ov02a10_supply_names); i++)
-> > > +           ov02a10->supplies[i].supply = ov02a10_supply_names[i];
-> > > +
-> > > +   ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ov02a10_supply_names),
-> > > +                                 ov02a10->supplies);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to get regulators\n");
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   mutex_init(&ov02a10->mutex);
-> > > +   ov02a10->cur_mode = &supported_modes[0];
-> > > +   ret = ov02a10_initialize_controls(ov02a10);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to initialize controls\n");
-> > > +           goto err_destroy_mutex;
-> > > +   }
-> > > +
-> > > +   ov02a10->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > > +   ov02a10->subdev.entity.ops = &ov02a10_subdev_entity_ops;
-> > > +   ov02a10->subdev.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> > > +   ov02a10->pad.flags = MEDIA_PAD_FL_SOURCE;
-> > > +   ret = media_entity_pads_init(&ov02a10->subdev.entity, 1, &ov02a10->pad);
-> > > +   if (ret < 0) {
-> > > +           dev_err(dev, "failed to init entity pads: %d", ret);
-> > > +           goto err_free_handler;
-> > > +   }
-> > > +
-> > > +   pm_runtime_enable(dev);
-> > > +   if (!pm_runtime_enabled(dev)) {
-> > > +           ret = ov02a10_power_on(dev);
-> > > +           if (ret < 0) {
-> > > +                   dev_err(dev, "failed to power on: %d\n", ret);
-> > > +                   goto err_clean_entity;
-> > > +           }
-> > > +   }
-> > > +
-> > > +   ret = v4l2_async_register_subdev(&ov02a10->subdev);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "failed to register V4L2 subdev: %d", ret);
-> > > +           goto err_power_off;
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +
-> > > +err_power_off:
-> > > +   pm_runtime_disable(dev);
-> > > +   if (!pm_runtime_enabled(dev))
-> >
-> > This would be always true, resulting in unbalanced power off. Moving
-> > pm_runtime_disable() after this if should work better.
-> >
->
-> Pardon, do you mean that we shall use like this:
-> err_power_off:
->         if (!pm_runtime_enabled(dev)) {
->                 pm_runtime_disable(dev);
->                 if (!pm_runtime_status_suspended(dev)
->                         ov02a10_power_off(dev);
->         }
 
-Hmm, that wouldn't really work, because there is no reason to disable
-runtime PM if it's disabled already. I also noticed that we don't need
-to check pm_runtime_status_suspended() in the error path in probe,
-because we only ever attempt to power it on when runtime PM is
-disabled in kernel config. This would make the end result as:
 
-         if (pm_runtime_enabled(dev))
-                 pm_runtime_disable(dev);
-         else
-                 ov02a10_power_off(dev);
+On 29/06/2020 09:13, Chao Hao wrote:
+> MT8173 is different from other SoCs for MMU_CTRL register.
+> For mt8173, its bit9 is in_order_write_en and doesn't use its
+> default 1'b1.> For other SoCs, bit[12] represents victim_tlb_en feature and
+> victim_tlb is enable defaultly(bit[12]=1), if we use
+> "regval = F_MMU_TF_PROT_TO_PROGRAM_ADDR", victim_tlb will be
+> disabled, it will drop iommu performace.
+> So we need to deal with the setting of MMU_CTRL separately
+> for mt8173 and others.
+> 
 
-Best regards,
-Tomasz
+My proposal to rewrite the commit message:
+
+The MMU_CTRL regiser of MT8173 is different from other SoCs. The in_order_wr_en
+is bit[9] which is zero by default.
+Other SoCs have the vitcim_tlb_en feature mapped to bit[12]. This bit is set to
+one by default. We need to preserve the bit when setting
+F_MMU_TF_PROT_TO_PROGRAM_ADDR as otherwise the bit will be cleared and IOMMU
+performance will drop.
+
+
+> Suggested-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Suggested-by: Yong Wu <yong.wu@mediatek.com>
+> Signed-off-by: Chao Hao <chao.hao@mediatek.com>
+> ---
+>  drivers/iommu/mtk_iommu.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 8299a3299090..e46e2deee3fd 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -543,11 +543,12 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
+>  		return ret;
+>  	}
+>  
+> +	regval = readl_relaxed(data->base + REG_MMU_CTRL_REG);
+
+The read is only needed in the else branch.
+
+>  	if (data->plat_data->m4u_plat == M4U_MT8173)
+>  		regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
+>  			 F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
+>  	else
+> -		regval = F_MMU_TF_PROT_TO_PROGRAM_ADDR;
+> +		regval |= F_MMU_TF_PROT_TO_PROGRAM_ADDR;
+>  	writel_relaxed(regval, data->base + REG_MMU_CTRL_REG);
+>  
+>  	regval = F_L2_MULIT_HIT_EN |
+> 
