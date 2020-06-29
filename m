@@ -2,98 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F64420E4DC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE0D20E43B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728016AbgF2V3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:29:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60652 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728909AbgF2SlZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:41:25 -0400
-Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E4D8323B08;
-        Mon, 29 Jun 2020 14:26:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593440768;
-        bh=IEYbbfxHL0R+rJ5eiAE7+uNb2jSF+lIweaM7Y+Gfts8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uV2p61E7ul0vof3Ye7MwmEoZfRUDkdelrmFKPTDe7nX3rTdBPdKqf+PXonbfnc+ZS
-         IE6x4O0iKrR9J6T3f7gZXK4vHqJrCxmgaTcwfOc3rNzgZnlvj20lMrj6UNr+h3I6Uo
-         wQMWBv7DyXdsEhfd31poJwTw1BFlfPXjllT+muXE=
-Date:   Mon, 29 Jun 2020 10:26:06 -0400
-From:   Sasha Levin <sashal@kernel.org>
-To:     Ralph Siemsen <ralph.siemsen@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Pavel Machek <pavel@denx.de>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Georgy Vlasov <Georgy.Vlasov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH 4.19 182/267] spi: dw: Return any value retrieved from
- the dma_transfer callback
-Message-ID: <20200629142606.GR1931@sasha-vm>
-References: <20200619141648.840376470@linuxfoundation.org>
- <20200619141657.498868116@linuxfoundation.org>
- <20200619210719.GB12233@amd>
- <20200622205121.4xuki7guyj6u5yul@mobilestation>
- <20200626151800.GA22242@maple.netwinder.org>
+        id S2390965AbgF2VWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:22:45 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:58681 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729596AbgF2Sv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:51:27 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 805C058035E;
+        Mon, 29 Jun 2020 11:07:50 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 29 Jun 2020 11:07:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=WE1PSDJ6UR5jIFS55riBxt9LPeJ
+        Xh4U7NigTPnNX65A=; b=l8oEpc8ou0b31MaSG3xJyMa7ni1mk3WLjAf0+QKHhjs
+        AVpZBfZIOMlIwpRfzUZ14GCy22hl/ny7wF6EPd/RmE10onf4Ip8tNfeqRwOPe/KF
+        gPA9Mojv1xbR1GKjCgVa8zHPvuXzX/L9FcWYOtdSddgGtn8h1eG9jBxj75YJbHTK
+        AANJop2cVs8dOOdN/3CdbzUDXLfYiXtQNsQYaSDjYw02qjx1HRJeF5WHzMmAyjXS
+        3KhOuwB1qhHBpETNlNr2Wcj3pOWH0N/xGG6lycaJauSm7B8zbUUSEZMMBd+GhU53
+        6JgTxPN4HoKR9TklVbYstBJUuXqO1J9mbgHbuVlFbiA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=WE1PSD
+        J6UR5jIFS55riBxt9LPeJXh4U7NigTPnNX65A=; b=jvAnAfyGaqUn/08ZHsSqLO
+        uW19B9zLVT4SoApSBBkRM437Kkyd5+RLGxYcTd9L/oNbS6MJbqab7VsM98DbsCWO
+        4d+n8RBYK/BF0fHr9iBnrIaiiVmQvnFV3zkFgHUJ5uXQbG6usHTFF8bzNilFUc7u
+        VHSM1KJiVUTLlVmNRTKoIFa+4KuOnlVlYMVDSkofqAXPutOIj/pnE21k7/gu3pBQ
+        daqivTY5w3AmuBudK+2x1qoXFuOwCBazHChG9faFssJKqFPAI7ckWQyHm9tFFwxU
+        pbbe+PLQsGexmH8opjSu/KNzsplx1vR5KknkeXSlJ597pWOeC+sjwaFee54Bzuew
+        ==
+X-ME-Sender: <xms:wwP6XqWvknOfJkcPQBXZIqW8UorMwaNBI5C1ODdyBwTlMY09xUHPxw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudelledguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:wwP6XmkjVUmeiEdlJgUfigxWgJQVaqJmvthVxhwDQFDiMykoEnTrdA>
+    <xmx:wwP6XubBPGGFyYHtXHWC-1pZWDOV_FPhqmC25ASqd2-PXgI2_RfGwg>
+    <xmx:wwP6XhWf_nU3-9dDRfPGYtrX-iylRBw_6x4z_SVVOUOMQWduDd8qGA>
+    <xmx:xgP6XmWAWQwhFI3MhZjhHXi92Prz-GT5C9njmChD_WUolvvNS1KtFw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0E01A3280060;
+        Mon, 29 Jun 2020 11:07:47 -0400 (EDT)
+Date:   Mon, 29 Jun 2020 17:07:45 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Frank Lee <frank@allwinnertech.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, mturquette@baylibre.com,
+        sboyd@kernel.org, srinivas.kandagatla@linaro.org,
+        linus.walleij@linaro.org, anarsoul@gmail.com,
+        tiny.windzz@gmail.com, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amit.kucheria@verdurent.com,
+        p.zabel@pengutronix.de, clabbe@baylibre.com, icenowy@aosc.io,
+        megous@megous.com, karlp@tweak.net.au, bage@linutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+        huangshuosheng@allwinnertech.com, liyong@allwinnertech.com
+Subject: Re: [PATCH v2 06/11] nvmem: sunxi-sid: add support for A100's SID
+ controller
+Message-ID: <20200629150745.ettjdggv55gfxs5s@gilmour.lan>
+References: <20200622025907.32574-1-frank@allwinnertech.com>
+ <20200622025907.32574-7-frank@allwinnertech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qt3qjbwfvcqzuc6s"
 Content-Disposition: inline
-In-Reply-To: <20200626151800.GA22242@maple.netwinder.org>
+In-Reply-To: <20200622025907.32574-7-frank@allwinnertech.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 26, 2020 at 11:18:00AM -0400, Ralph Siemsen wrote:
->Hi Serge, Pavel, Greg,
->
->On Mon, Jun 22, 2020 at 11:51:21PM +0300, Serge Semin wrote:
->>Hello Pavel
->>
->>On Fri, Jun 19, 2020 at 11:07:19PM +0200, Pavel Machek wrote:
->>
->>>Mainline patch simply changes return value, but code is different in
->>>v4.19, and poll_transfer will now be avoided when dws->dma_mapped. Is
->>>that a problem?
->>
->>Actually no.) In that old 4.19 context it's even better to return straight away
->>no matter what value is returned by the dma_transfer() callback.
->
->This patch changes the return dma_transfer return value from 0 to 1, 
->however it was only done in spi-dw-mid.c func mid_spi_dma_transfer().
->
->There is an identical function in spi-dw-mmio.c that needs the same 
->treatment, otherwise access to the SPI device becomes erratic and even 
->causes kernel to hang. Guess how I found this ;-)
->
->So the following patch is needed as well, at least in 4.9 and 4.19, I 
->did not check/test other versions. Mainline does not need this, since 
->the code seems to have been refactored to avoid the duplication.
->
->Regards,
->-Ralph
->
->diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
->index c563c2815093..99641c485288 100644
->--- a/drivers/spi/spi-dw-mmio.c
->+++ b/drivers/spi/spi-dw-mmio.c
->@@ -358,7 +358,7 @@ static int mmio_spi_dma_transfer(struct dw_spi *dws, struct spi_transfer *xfer)
 
-Um, I can't find this function anywhere... what am I missing?
+--qt3qjbwfvcqzuc6s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Thanks,
-Sasha
+On Mon, Jun 22, 2020 at 10:59:02AM +0800, Frank Lee wrote:
+> Add support for A100's SID controller.
+>=20
+> Signed-off-by: Frank Lee <frank@allwinnertech.com>
+> ---
+>  drivers/nvmem/sunxi_sid.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/drivers/nvmem/sunxi_sid.c b/drivers/nvmem/sunxi_sid.c
+> index e26ef1b..8ac074b 100644
+> --- a/drivers/nvmem/sunxi_sid.c
+> +++ b/drivers/nvmem/sunxi_sid.c
+> @@ -189,6 +189,11 @@ static int sunxi_sid_probe(struct platform_device *p=
+dev)
+>  	.need_register_readout =3D true,
+>  };
+> =20
+> +static const struct sunxi_sid_cfg sun50i_a100_cfg =3D {
+> +	.value_offset =3D 0x200,
+> +	.size =3D 0x100,
+> +};
+> +
+
+It looks like it's the same tha nthe H3 / A64 then?
+
+If so, you can just reuse their compatible as fallback
+
+Maxime
+
+--qt3qjbwfvcqzuc6s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXvoDwQAKCRDj7w1vZxhR
+xR1+AQDUmJ2eKxkSAKY8N3oAYv2RkDrEZNTRivNZeW/rTDtt1gD/fIJbT8KdkTtN
+Oq4B49fJoiJYQc72b1d+sdbscb9XAw4=
+=7lp0
+-----END PGP SIGNATURE-----
+
+--qt3qjbwfvcqzuc6s--
