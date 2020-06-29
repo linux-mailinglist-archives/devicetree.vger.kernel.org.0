@@ -2,95 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8954920E089
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0485820E0D7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732940AbgF2UrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:47:11 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:37535 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389751AbgF2Uqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 16:46:47 -0400
-Received: by mail-ed1-f65.google.com with SMTP id g20so13961170edm.4;
-        Mon, 29 Jun 2020 13:46:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fpPGAVi5ST0Msn1ZYb/hxyyJfD9nRccBP2hwCtuMGbQ=;
-        b=i7GMMqckeMJNgqcvezDmEvoJHQUY/MZrJ8k2hDVJGSw5KRWzu2RVsOe1O8nIOhOGNv
-         GPy0KUcL//XG4ESPqqiGITqL1CB25ar0ClG6kOcorNaKefN+zrJFaJyiB+jSObJ8EjtQ
-         bzID+TFgcJU2NAIJSh2dncjw3x74bnPWm61cqUIrd6SXLEHSx7knMwYn1MFWLTz7dpCp
-         tK35COpcYgqjACbqIOFvRjIzlg5pq4wT2x5mdTnmdbCupqW3SrJxAxXeSoJiMtDtW94g
-         ccgSg1oJ7T0fvB7vV/ISZaRYN9J0a2gNbPxNCuTEo3da8YHw+J6pwucC3ogxGVUr8c0C
-         +OzA==
-X-Gm-Message-State: AOAM530r9E1IFSGDstTD2J9IYoLlD9/gDYSY92eV0CwLwLR3lNGRLHUS
-        D99JI5Gj/Haf23WTs7oS/GQ=
-X-Google-Smtp-Source: ABdhPJxKgZqpneEuu5YuIHLp12CmML5exM0XVIJFM5zeSUnLRZQcoWHqnrzGNkURRUuzjRkRJIbIeQ==
-X-Received: by 2002:a05:6402:134e:: with SMTP id y14mr19784901edw.4.1593463605392;
-        Mon, 29 Jun 2020 13:46:45 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.195])
-        by smtp.googlemail.com with ESMTPSA id k23sm434660ejo.120.2020.06.29.13.46.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Jun 2020 13:46:44 -0700 (PDT)
-Date:   Mon, 29 Jun 2020 22:46:42 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <snawrocki@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>
-Subject: Re: [PATCH 1/3] ARM: dts: exynos: Fix missing empty reg/ranges
- property regulators on Trats
-Message-ID: <20200629204642.GA26060@kozik-lap>
-References: <20200629193338.29540-1-krzk@kernel.org>
- <03a23289-1188-db77-6c38-a7dddeac183c@kernel.org>
+        id S2389338AbgF2UuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:50:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46664 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731473AbgF2UuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 16:50:08 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4DEE020720;
+        Mon, 29 Jun 2020 20:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593463807;
+        bh=bf1gx6HwyAGL1lgUaDDu+79hOVdRZJ+m+V17HLQNqP8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=13bkz6rT88bW5ozmcTVlIDpLKBOZ9RXp5Dr9YU/HxouH/lD3TjAXms857cHHw2KkV
+         /2ixNXRUdyyGI63P/xu6opcacLXslGJGqcQJutmchqqO/13Dp1GMejsr+c+vg2puDb
+         qanzweqYc6g3z+fdluowc8Z2mlJoZ+ONrT0Cw5pw=
+Received: by mail-ot1-f45.google.com with SMTP id d4so16724576otk.2;
+        Mon, 29 Jun 2020 13:50:07 -0700 (PDT)
+X-Gm-Message-State: AOAM530enl5d2ZGClclltXDXi9w2bAcDslvSppaGQZUxrk+FJUEOQVwb
+        E3C8G1nI7fIl4noVO/zSJ+k5EZMzh9Tx4SgQlg==
+X-Google-Smtp-Source: ABdhPJzzF4kN7KDy2z2NmYmJxIweiy6VO0KsRTtdXWY9U7ErrDy0wmMgtxFXM1W9UJjV4JYyi44/uK+KLXtRv6Qmytk=
+X-Received: by 2002:a9d:2646:: with SMTP id a64mr14052433otb.107.1593463806654;
+ Mon, 29 Jun 2020 13:50:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <03a23289-1188-db77-6c38-a7dddeac183c@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20200625170434.635114-1-masahiroy@kernel.org> <20200625170434.635114-5-masahiroy@kernel.org>
+In-Reply-To: <20200625170434.635114-5-masahiroy@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 29 Jun 2020 14:49:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL4pTFK_pSNn1cSvjzwdg71dVzM3P06BYYEwDj2t+swPA@mail.gmail.com>
+Message-ID: <CAL_JsqL4pTFK_pSNn1cSvjzwdg71dVzM3P06BYYEwDj2t+swPA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: split DT schema check rules
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 29, 2020 at 09:50:26PM +0200, Sylwester Nawrocki wrote:
-> Hi Krzysztof,
-> 
-> On 6/29/20 21:33, Krzysztof Kozlowski wrote:
-> > Remove the simple-bus compatible from a regulators node because its
-> > children do not have any unit addresses.  This fixes DTC warning:
-> > 
-> >      Warning (simple_bus_reg): /regulators/regulator-0: missing or empty reg/ranges property
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > ---
-> >   arch/arm/boot/dts/exynos4210-trats.dts | 2 --
-> >   1 file changed, 2 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
-> > index 3d791db6095c..cec413ee4490 100644
-> > --- a/arch/arm/boot/dts/exynos4210-trats.dts
-> > +++ b/arch/arm/boot/dts/exynos4210-trats.dts
-> > @@ -31,8 +31,6 @@
-> >   	};
-> >   	regulators {
-> > -		compatible = "simple-bus";
-> 
-> I think you would also need to remove the 'regulators' node altogether,
-> otherwise with your change the subnodes below won't get parsed and the
-> regulators will not get registered.
+On Thu, Jun 25, 2020 at 11:05 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+>
+> When building %.dt.yaml from %.dts, two things happen in a row:
+>
+>  [1] Run DTC to convert %.dts into %.dt.yaml
+>
+>  [2] Run dt-validate against %.dt.yaml
+>
+> Currently, when any .yaml schema file is updated, processed-schema.yaml
+> is regenerated, then both [1] and [2] are rerun for all .dts files.
+>
+> Actually, we do not need to rerun [1] since the original .dts is not
+> updated.
 
-Good point, I actually did not test this patch. Let me recheck and send
-a follow up.
+I have plans (and an intern working on it) to integrate the schema
+checks into dtc. That's going to make turning on the schema checks
+just a flag to dtc. I'm not sure if adding the complexity here is
+worth it as I'd expect much of this patch to go away again.
 
-Thanks for review!
+Is there any negative impact on the absolute clean build time? I'm
+more concerned about that than optimizing rerunning.
 
-Best regards,
-Krzysztof
-
+Rob
