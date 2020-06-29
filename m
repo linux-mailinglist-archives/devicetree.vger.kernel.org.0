@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E50EC20D7EE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87B820D805
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733285AbgF2TeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:34:06 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:48130 "EHLO inva020.nxp.com"
+        id S1730540AbgF2Te5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:34:57 -0400
+Received: from foss.arm.com ([217.140.110.172]:41218 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733279AbgF2TeD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:34:03 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E656C1A1147;
-        Mon, 29 Jun 2020 10:54:24 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 026821A01D3;
-        Mon, 29 Jun 2020 10:54:21 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4D43B402E7;
-        Mon, 29 Jun 2020 16:54:16 +0800 (SGT)
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com
-Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Joakim Zhang <qiangqing.zhang@nxp.com>
-Subject: [PATCH] arm64: dts: imx8mp: add ddr pmu device node
-Date:   Mon, 29 Jun 2020 16:42:30 +0800
-Message-Id: <1593420150-30904-1-git-send-email-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1730794AbgF2Tez (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 15:34:55 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B92501045;
+        Mon, 29 Jun 2020 01:55:19 -0700 (PDT)
+Received: from bogus (unknown [10.37.12.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 462B83F71E;
+        Mon, 29 Jun 2020 01:55:17 -0700 (PDT)
+Date:   Mon, 29 Jun 2020 09:55:10 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 04/20] arm64: dts: arm: vexpress: Move fixed devices
+ out of bus node
+Message-ID: <20200629085510.GA9940@bogus>
+References: <20200513103016.130417-1-andre.przywara@arm.com>
+ <20200513103016.130417-5-andre.przywara@arm.com>
+ <20200528024810.GA232303@roeck-us.net>
+ <20200528025552.GA232631@roeck-us.net>
+ <20200627035753.GA63049@roeck-us.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200627035753.GA63049@roeck-us.net>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ddr pmu device node for i.MX8MP.
+On Fri, Jun 26, 2020 at 08:57:53PM -0700, Guenter Roeck wrote:
+>
+> The problem reported below is still seen in the mainline kernel.
+>
+> > Here is my list of reverts on top of next-20200526:
+> >
+> > bdc8a817612b (HEAD -> master) Revert "arm64: dts: vexpress: Move fixed devices out of bus node"
+> > 9a1f85df9e1a Revert "arm64: dts: fvp/juno: Fix serial node names"
+> > 381e0bbe8c00 Revert "arm64: dts: fvp/juno: Fix bus node names"
+> > 63723f67bf4b Revert "arm64: dts: vexpress: Fix VExpress LED names"
+> >
+>
+> Maybe all those patches should be reverted if no fix is in sight ?
+>
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+I have pushed the fix to -next already more than 2 weeks ago and sent
+the pull request to Arm SoC team. I see it just landed in main over the
+weekend. Arm SoC team tend to wait until enough fixes get accumulate.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 90bdef8447fa..9de2aa1c573c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -744,5 +744,11 @@
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
- 		};
-+
-+		ddr-pmu@3d800000 {
-+			compatible = "fsl,imx8mp-ddr-pmu", "fsl,imx8m-ddr-pmu";
-+			reg = <0x3d800000 0x400000>;
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+		};
- 	};
- };
--- 
-2.17.1
-
+--
+Regards,
+Sudeep
