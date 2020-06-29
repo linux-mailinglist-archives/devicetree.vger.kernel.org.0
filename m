@@ -2,112 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C9F20D7E9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772C520D804
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730574AbgF2Td6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:33:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42900 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733202AbgF2Tdy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:33:54 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.195])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 112F9206F1;
-        Mon, 29 Jun 2020 19:33:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593459233;
-        bh=0/qT+6hY+eTg55XNf7QvFEvr0fFMkg9fWPy0NAfij6w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bkUr7orAJ1o4l//CB8whx7CubQPPH4BgwQS3R9ACPKCJwbdq3ocQdTHDPOcloY7Cg
-         1LQR7Bk6nGr8ihrALZ8QDTWucoEb2Fv4gKn6RO03P3Ok6CJv6g17PHhrD0roeB2la3
-         YjLNWc7JyVfPatR9YfqQVX0X/Hqcr13w5ixgn2D8=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>
-Subject: [RFT 3/3] arm64: dts: exynos: Add unit address to soc node and move thermal zones on Exynos7
-Date:   Mon, 29 Jun 2020 21:33:38 +0200
-Message-Id: <20200629193338.29540-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200629193338.29540-1-krzk@kernel.org>
-References: <20200629193338.29540-1-krzk@kernel.org>
+        id S1730537AbgF2Te4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733299AbgF2Te4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:34:56 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE778C03E979
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:34:55 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id 9so19562317ljv.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:34:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
+        b=WztqoCpiN2aRp/epy6nUalbuEDQaBdioHJ7ckr2+K7AXuFYz4HhFjoJZqYvmLuYxze
+         q35iLB+XZdytysLOGOCHYs5Tz8YXqpNkc+PjpoA+rEQYTfDRphwfr66V21JrzeV281ad
+         mtf/RAs43x18a5OROsbdSqc9V4ZLPmd/7W1jABuXRsbzL+Qv14R3ojTjI9o2ClRv5j1S
+         vvmLgoP3FZOKaNIBcKhlYOowySOTuYW/BPcdYRWCemRuvbXh77cV9qZEcftY+IDAgPTX
+         x2mgcgF8ldPg+o7ffjWPdGCY4Wnt8Gx4A541UJqzBrktBgdkd+yLiwDU2wk09FzReK2B
+         Q+Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
+        b=tTKfwMuNMPOEgkL8gBjkiBir2/JL9hr56eGw7PNUxf2feAWQPVFPtFJOexMIrz8DPw
+         A7WRe47Un3ZOxYVGhIdpGiHzHgTQMDUN8oaFTcltVxdR2lgVjWI5x+2Lrl6XJJgiu6ko
+         p9GYQaFPg/5fHGUkUlAFmv48YJYFAqASLR6mNsZFFCA4RKVhL4/F6qtJHsnPnu5x76A/
+         u+pmFALJO1d4wIHgP2qgLtWfRd8X9ixg1ftgOCoVKdNC8lwaItQVlmMbkLX7j+fHTLg+
+         CG5tX2UhvaBrRQd1CNvnMvLLLS4hU3D/vGPV0+G3AlsIPg9wXPp3PwZcIOSU57yfyZfF
+         +tXg==
+X-Gm-Message-State: AOAM531cmRKpFKdy00MDztkfuzgWy9xRi2sqB0ZlzwcBd8XqKa4qGt38
+        ijxSM4a0WvTsi7nXck5dgvS0lM9JqHD3KBwwR4k=
+X-Google-Smtp-Source: ABdhPJxsINDyj/Ro8myfVgxXZZPleHXDVy7mDX7iEcrCRJ3GBiykFIDiBzIxduM0/Qouit8BQeGmiFSupJeCjWxfwwg=
+X-Received: by 2002:a2e:3602:: with SMTP id d2mr9089016lja.152.1593459294429;
+ Mon, 29 Jun 2020 12:34:54 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a2e:a551:0:0:0:0:0 with HTTP; Mon, 29 Jun 2020 12:34:53
+ -0700 (PDT)
+Reply-To: daborahraymond@gmail.com
+From:   "Mrs. Daborah Raymond" <aleksandralex37@gmail.com>
+Date:   Mon, 29 Jun 2020 12:34:53 -0700
+Message-ID: <CAF4h0ebQKvOLsr4yoj31kk+o6XHzas9KxNHwOT6CL+-8iYda-w@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add @0 unit address to 'soc' node match its 'reg' property and move the
-thermal zones out of 'soc' to main root as it this is usually not a
-property of a Soc.
+Dear friend,
 
-This silences DTC warnings:
 
-    Warning (unit_address_vs_reg): /soc: node has a reg or ranges property, but no unit name
-    Warning (simple_bus_reg): /soc/thermal-zones: missing or empty reg/ranges property
+I have a business container transaction what that some of( $13million dollars)
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+ I would like to discuss with you. If you are interested, please
+contact my email
 
----
+address (mrs.victoria.alexander2@gmail.com)
 
-Not tested on HW.
----
- arch/arm64/boot/dts/exynos/exynos7.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+My WhatsApp number but only message (+19293737780)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 300ad7326ea8..f590891efe25 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -83,7 +83,7 @@
- 		method = "smc";
- 	};
- 
--	soc: soc {
-+	soc: soc@0 {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -597,15 +597,6 @@
- 			#thermal-sensor-cells = <0>;
- 		};
- 
--		thermal-zones {
--			atlas_thermal: cluster0-thermal {
--				polling-delay-passive = <0>; /* milliseconds */
--				polling-delay = <0>; /* milliseconds */
--				thermal-sensors = <&tmuctrl_0>;
--				#include "exynos7-trip-points.dtsi"
--			};
--		};
--
- 		ufs: ufs@15570000 {
- 			compatible = "samsung,exynos7-ufs";
- 			reg = <0x15570000 0x100>,  /* 0: HCI standard */
-@@ -675,6 +666,15 @@
- 		};
- 	};
- 
-+	thermal-zones {
-+		atlas_thermal: cluster0-thermal {
-+			polling-delay-passive = <0>; /* milliseconds */
-+			polling-delay = <0>; /* milliseconds */
-+			thermal-sensors = <&tmuctrl_0>;
-+			#include "exynos7-trip-points.dtsi"
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
--- 
-2.17.1
-
+Please do not reply if you are not ready
+Thanks
