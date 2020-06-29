@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2F820E0B5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5917B20DD46
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731681AbgF2Usx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731510AbgF2TNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33299C014AFC;
-        Mon, 29 Jun 2020 00:59:50 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: myjosserand)
-        with ESMTPSA id EA3EF2A1D14
-Subject: Re: [PATCH v4 0/2] ARM: Add Rockchip rk3288w support
-To:     Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com
-Cc:     linux-clk@vger.kernel.org, kernel@collabora.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20200602080644.11333-1-mylene.josserand@collabora.com>
- <159238429476.1470505.6023847362048785737.b4-ty@sntech.de>
-From:   Mylene Josserand <mylene.josserand@collabora.com>
-Message-ID: <66bfd77c-83e4-3689-d8c1-c5ae47b40f02@collabora.com>
-Date:   Mon, 29 Jun 2020 09:59:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
-MIME-Version: 1.0
-In-Reply-To: <159238429476.1470505.6023847362048785737.b4-ty@sntech.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1728232AbgF2SkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 14:40:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60642 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728204AbgF2SkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:40:21 -0400
+Received: from localhost.localdomain (unknown [194.230.155.195])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9249523343;
+        Mon, 29 Jun 2020 08:15:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593418543;
+        bh=lTTyTKp2tnmquFcsNq5+ReqbndcL5tQpxX5n04EmKg4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=CIXnTVclnOLzWhqMwlZEeXtUHfKlInmCrPzVPoiuvQNDxrpMXkUAQoWQ9ZUILAKRd
+         4JKNV3KCk1V5yrI2UWQaEciDSj18o35mf9xTx0GHubwlX0iKkW3E8t6Pu9pHrqk54o
+         VN8G0rgHtjWGjCDIutnCriTdqSuEeA2T+FxdGTTw=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 2/3] arm64: dts: alpine: Align GIC nodename with dtschema
+Date:   Mon, 29 Jun 2020 10:15:34 +0200
+Message-Id: <20200629081535.13502-2-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200629081535.13502-1-krzk@kernel.org>
+References: <20200629081535.13502-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Heiko,
+Fix dtschema validator warnings like:
+    gic@f0100000: $nodename:0:
+        'gic@f0100000' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
 
-On 6/17/20 10:58 AM, Heiko Stuebner wrote:
-> On Tue, 2 Jun 2020 10:06:42 +0200, Mylène Josserand wrote:
->> Context
->> -------
->>
->> Here is my V4 of my patches that add the support for the Rockchip
->> RK3288w which is a revision of the RK3288. It is mostly the same SOC
->> except for, at least, one clock tree which is different.
->> This difference is only known by looking at the BSP kernel [1].
->>
->> [...]
-> 
-> Applied, thanks!
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm64/boot/dts/al/alpine-v2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thank you!
-
-Best regards,
-Mylène
-
-> 
-> [1/2] clk: rockchip: Handle clock tree for rk3288w variant
->        commit: 1627f683636df70fb25358b0a7b39a24e8fce5bf
-> [2/2] dt-bindings: clocks: add rk3288w variant compatible
->        commit: 00bd404144241155653bb0d0c15be51e4e6983aa
-> 
-> Best regards,
-> 
+diff --git a/arch/arm64/boot/dts/al/alpine-v2.dtsi b/arch/arm64/boot/dts/al/alpine-v2.dtsi
+index d5e7e2bb4e6c..de2eaf77b1ff 100644
+--- a/arch/arm64/boot/dts/al/alpine-v2.dtsi
++++ b/arch/arm64/boot/dts/al/alpine-v2.dtsi
+@@ -113,7 +113,7 @@
+ 				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
+-		gic: gic@f0100000 {
++		gic: interrupt-controller@f0100000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0xf0200000 0x0 0x10000>,	/* GIC Dist */
+ 			      <0x0 0xf0280000 0x0 0x200000>,	/* GICR */
+-- 
+2.17.1
 
