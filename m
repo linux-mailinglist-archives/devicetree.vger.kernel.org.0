@@ -2,174 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB8820D872
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77AEB20D923
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730881AbgF2TjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:39:05 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:52156 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729884AbgF2TjD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:39:03 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7856C1A01C5;
-        Mon, 29 Jun 2020 09:51:24 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 836451A01C1;
-        Mon, 29 Jun 2020 09:51:20 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5D721402F7;
-        Mon, 29 Jun 2020 15:51:15 +0800 (SGT)
-From:   andy.tang@nxp.com
-To:     shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH 2/2] arm64: dts: ls1043a: add more thermal zone support
-Date:   Mon, 29 Jun 2020 15:45:19 +0800
-Message-Id: <20200629074519.28851-2-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200629074519.28851-1-andy.tang@nxp.com>
-References: <20200629074519.28851-1-andy.tang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2387837AbgF2Tou convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jun 2020 15:44:50 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:39312 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732079AbgF2Tot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:44:49 -0400
+X-Greylist: delayed 2416 seconds by postgrey-1.27 at vger.kernel.org; Mon, 29 Jun 2020 15:44:48 EDT
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 6BDD73A6287;
+        Mon, 29 Jun 2020 08:15:29 +0000 (UTC)
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id EB831C000E;
+        Mon, 29 Jun 2020 08:15:04 +0000 (UTC)
+Date:   Mon, 29 Jun 2020 10:15:03 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/2] drm/panel: simple: Add Satoz SAT050AT40H12R2
+ panel support
+Message-ID: <20200629101503.5bae21d6@xps13>
+In-Reply-To: <20200628072444.GA8391@pendragon.ideasonboard.com>
+References: <20200109184037.9091-1-miquel.raynal@bootlin.com>
+        <20200109184037.9091-2-miquel.raynal@bootlin.com>
+        <20200628072444.GA8391@pendragon.ideasonboard.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yuantian Tang <andy.tang@nxp.com>
+Hi Laurent,
 
-There are 5 thermal zones in ls1043a soc. Add the
-rest thermal zone nodes to enable them.
+[...]
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 88 ++++++++++++++++++-
- 1 file changed, 84 insertions(+), 4 deletions(-)
+> >  
+> > +static const struct display_timing satoz_sat050at40h12r2_timing = {
+> > +	.pixelclock = {33300000, 33300000, 50000000},
+> > +	.hactive = {800, 800, 800},
+> > +	.hfront_porch = {16, 210, 354},
+> > +	.hback_porch = {46, 46, 46},
+> > +	.hsync_len = {1, 1, 40},
+> > +	.vactive = {480, 480, 480},
+> > +	.vfront_porch = {7, 22, 147},
+> > +	.vback_porch = {23, 23, 23},
+> > +	.vsync_len = {1, 1, 20},
+> > +};
+> > +
+> > +static const struct panel_desc satoz_sat050at40h12r2 = {
+> > +	.timings = &satoz_sat050at40h12r2_timing,
+> > +	.num_timings = 1,
+> > +	.bpc = 8,
+> > +	.size = {
+> > +		.width = 108,
+> > +		.height = 65,
+> > +	},
+> > +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+> > +	.connector_type = DRM_MODE_CONNECTOR_LVDS,  
+> 
+> I'm trying to fix inconsistencies in the panel-simple driver, and this
+> caught my eyes. MEDIA_BUS_FMT_RGB888_1X24 isn't a correct format for
+> LVDS panels. MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
+> MEDIA_BUS_FMT_RGB888_1X7X4_SPWG or MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA
+> should be used instead. As I couldn't find documentation for the panel,
+> I can't tell which format is correct. Could you please help ?
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-index 3b641bd43229..17497b0d3542 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-@@ -149,19 +149,79 @@
- 	};
- 
- 	thermal-zones {
--		cpu_thermal: cpu-thermal {
-+		ddr-controller {
- 			polling-delay-passive = <1000>;
- 			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 0>;
- 
-+			trips {
-+				ddr-ctrler-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				ddr-ctrler-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		serdes {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 1>;
-+
-+			trips {
-+				serdes-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				serdes-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		fman {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 2>;
-+
-+			trips {
-+				fman-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				fman-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		core-cluster {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
- 			thermal-sensors = <&tmu 3>;
- 
- 			trips {
--				cpu_alert: cpu-alert {
-+				core_cluster_alert: core-cluster-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
- 					type = "passive";
- 				};
--				cpu_crit: cpu-crit {
-+
-+				core_cluster_crit: core-cluster-crit {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "critical";
-@@ -170,7 +230,7 @@
- 
- 			cooling-maps {
- 				map0 {
--					trip = <&cpu_alert>;
-+					trip = <&core_cluster_alert>;
- 					cooling-device =
- 						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
- 						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-@@ -179,6 +239,26 @@
- 				};
- 			};
- 		};
-+
-+		sec {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tmu 4>;
-+
-+			trips {
-+				sec-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				sec-crit {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.17.1
+Indeed, I got this datasheet under NDA.
 
+We checked with Paul, we think the right format is:
+MEDIA_BUS_FMT_RGB888_1X7X4_SPWG.
+
+Thanks,
+Miquèl
