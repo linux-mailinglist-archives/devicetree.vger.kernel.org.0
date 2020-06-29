@@ -2,111 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A7920D374
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 21:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2463A20D4D9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 21:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbgF2S7D convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jun 2020 14:59:03 -0400
-Received: from mga09.intel.com ([134.134.136.24]:65099 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726960AbgF2S6y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:58:54 -0400
-IronPort-SDR: eKoD8V2wqTWUE0QfvlcDWBj2fUJGp1JQFAZEWCcOdd9RB6Iz2k79WYN3SDqzCHfZ5x5HJtYUrS
- TCxYV5wPo5rQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="147558727"
-X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; 
-   d="scan'208";a="147558727"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2020 10:18:48 -0700
-IronPort-SDR: PfovTJ7ctRVVTVNzrBgATY6YChrZ/17qHIHtYJnPMMZEpZLRlO/kZ9uRGO0xFF6kZv7z2obVoF
- C6l1q1l38H6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; 
-   d="scan'208";a="424885466"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-  by orsmga004.jf.intel.com with ESMTP; 29 Jun 2020 10:18:47 -0700
-Received: from orsmsx112.amr.corp.intel.com ([169.254.3.199]) by
- ORSMSX106.amr.corp.intel.com ([169.254.1.104]) with mapi id 14.03.0439.000;
- Mon, 29 Jun 2020 10:18:47 -0700
-From:   "Kirsher, Jeffrey T" <jeffrey.t.kirsher@intel.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Heiner Kallweit" <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "Florian Fainelli" <f.fainelli@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: RE: [PATCH v2 02/10] net: ethernet: ixgbe: don't call
- devm_mdiobus_free()
-Thread-Topic: [PATCH v2 02/10] net: ethernet: ixgbe: don't call
- devm_mdiobus_free()
-Thread-Index: AQHWTg2KqoUStuk1GEW2zcU3EcxbWKjv1lQw
-Date:   Mon, 29 Jun 2020 17:18:46 +0000
-Message-ID: <61CC2BC414934749BD9F5BF3D5D940449874064D@ORSMSX112.amr.corp.intel.com>
-References: <20200629120346.4382-1-brgl@bgdev.pl>
- <20200629120346.4382-3-brgl@bgdev.pl>
-In-Reply-To: <20200629120346.4382-3-brgl@bgdev.pl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.138]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S1730972AbgF2TLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:11:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730760AbgF2TLQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:11:16 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B92C031413
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:11:15 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id n2so4858199edr.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:11:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NroMd8DfMK868D8FL8lie3B1iaJmWDlvZoIY161nvvg=;
+        b=N7mXCg2NLcNbdNNrXCuFA8Af3Lc5aqsbv3Exg4+0dUr7yL0Eq863c9MSzQtN7Ej2vw
+         FnhLnser4TEh0nkGuUNgvLAl4qwmK0dQma56oE1xG4vHWnM3BWjEgd9njb06gyQkFBpu
+         tssbRMkIyNWgfrbRgqa+ealIZBwtD82n5H3qg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NroMd8DfMK868D8FL8lie3B1iaJmWDlvZoIY161nvvg=;
+        b=CSDD01URHxqN7wseJKTiSvcYq65zAbOr25fHRdqFt93W1tBf3AaPMQ+XeZ5fW4qIGa
+         GPdYwbheXGty2UvWTDyQQsebMEVIfMZIDs0GI9TTSfqKp8Pp7dgzvRSOfZwfgtC/Go4q
+         Lbn0ksYnv6SA0ghy9P9ITu2PmHSTkTdxFW0OtgsEfkfifUom3siCnUni8Lmrm0Tn96w5
+         W7ykwkPECnWMeiodo1hZBtTG68FJpw8gO478r8/bkt+8gcRJMJL6I9WDKC3VXBvdUii5
+         HWEJDatftHYpJ1Dma766o+J6bL6kgrawDS/jyVS01wvvBXVM1OQ6tZggp3gxegd0DRLz
+         GENg==
+X-Gm-Message-State: AOAM531wT+ZTbe/VbEPzAafy5020Fh52Az4Ri3SXN26vqFuQnnObzFuC
+        kf6W/nOabvUuHRivHrKI9OwrQnJiKcAY/3Wltrkffg==
+X-Google-Smtp-Source: ABdhPJzL7uVA+dVAF1QW30vuD7NCdhEOj1gDC9CMkWqkDjC97pJ9HEtE2P1H5GL5MRzD06Y+IN1VY11+kv6zy8NRcWE=
+X-Received: by 2002:a50:c90d:: with SMTP id o13mr19293199edh.338.1593457874607;
+ Mon, 29 Jun 2020 12:11:14 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200602080644.11333-1-mylene.josserand@collabora.com> <20200602080644.11333-2-mylene.josserand@collabora.com>
+In-Reply-To: <20200602080644.11333-2-mylene.josserand@collabora.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 30 Jun 2020 00:41:03 +0530
+Message-ID: <CAMty3ZDx-_-VHEwjbV05GBb-hQbPpo21aZbCrQ+GTaoT_gxAMg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] clk: rockchip: rk3288: Handle clock tree for rk3288w
+To:     =?UTF-8?Q?Myl=C3=A8ne_Josserand?= <mylene.josserand@collabora.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        kernel@collabora.com, linux-clk <linux-clk@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Bartosz Golaszewski <brgl@bgdev.pl>
-> Sent: Monday, June 29, 2020 05:04
-> To: Kirsher, Jeffrey T <jeffrey.t.kirsher@intel.com>; David S . Miller
-> <davem@davemloft.net>; Jakub Kicinski <kuba@kernel.org>; John Crispin
-> <john@phrozen.org>; Sean Wang <sean.wang@mediatek.com>; Mark Lee
-> <Mark-MC.Lee@mediatek.com>; Matthias Brugger
-> <matthias.bgg@gmail.com>; Heiner Kallweit <hkallweit1@gmail.com>; Andrew
-> Lunn <andrew@lunn.ch>; Florian Fainelli <f.fainelli@gmail.com>; Russell King
-> <linux@armlinux.org.uk>; Rob Herring <robh+dt@kernel.org>; Frank Rowand
-> <frowand.list@gmail.com>
-> Cc: linux-kernel@vger.kernel.org; netdev@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-mediatek@lists.infradead.org;
-> devicetree@vger.kernel.org; Bartosz Golaszewski
-> <bgolaszewski@baylibre.com>
-> Subject: [PATCH v2 02/10] net: ethernet: ixgbe: don't call
-> devm_mdiobus_free()
-> 
-> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> 
-> The idea behind devres is that the release callbacks are called if probe fails. As
-> we now check the return value of ixgbe_mii_bus_init(), we can drop the call
-> devm_mdiobus_free() in error path as the release callback will be called
-> automatically.
-> 
-> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
- 
-Acked-by: Jeff Kirsher <jeffrey.t.kirsher@intel.com>
-
+On Tue, Jun 2, 2020 at 1:37 PM Myl=C3=A8ne Josserand
+<mylene.josserand@collabora.com> wrote:
+>
+> The revision rk3288w has a different clock tree about "hclk_vio"
+> clock, according to the BSP kernel code.
+>
+> This patch handles this difference by detecting which device-tree
+> we are using. If it is a "rockchip,rk3288-cru", let's register
+> the clock tree as it was before. If the device-tree node is
+> "rockchip,rk3288w-cru", we will apply the difference with this
+> version of this SoC.
+>
+> Noticed that this new device-tree compatible must be handled in
+> bootloader such as u-boot.
+>
+> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@collabora.com>
 > ---
->  drivers/net/ethernet/intel/ixgbe/ixgbe_phy.c | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
+>  drivers/clk/rockchip/clk-rk3288.c | 20 ++++++++++++++++++--
+>  1 file changed, 18 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/clk/rockchip/clk-rk3288.c b/drivers/clk/rockchip/clk=
+-rk3288.c
+> index cc2a177bbdbf..204976e2d0cb 100644
+> --- a/drivers/clk/rockchip/clk-rk3288.c
+> +++ b/drivers/clk/rockchip/clk-rk3288.c
+> @@ -425,8 +425,6 @@ static struct rockchip_clk_branch rk3288_clk_branches=
+[] __initdata =3D {
+>         COMPOSITE(0, "aclk_vio0", mux_pll_src_cpll_gpll_usb480m_p, CLK_IG=
+NORE_UNUSED,
+>                         RK3288_CLKSEL_CON(31), 6, 2, MFLAGS, 0, 5, DFLAGS=
+,
+>                         RK3288_CLKGATE_CON(3), 0, GFLAGS),
+> -       DIV(0, "hclk_vio", "aclk_vio0", 0,
+> -                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
+>         COMPOSITE(0, "aclk_vio1", mux_pll_src_cpll_gpll_usb480m_p, CLK_IG=
+NORE_UNUSED,
+>                         RK3288_CLKSEL_CON(31), 14, 2, MFLAGS, 8, 5, DFLAG=
+S,
+>                         RK3288_CLKGATE_CON(3), 2, GFLAGS),
+> @@ -819,6 +817,16 @@ static struct rockchip_clk_branch rk3288_clk_branche=
+s[] __initdata =3D {
+>         INVERTER(0, "pclk_isp", "pclk_isp_in", RK3288_CLKSEL_CON(29), 3, =
+IFLAGS),
+>  };
+>
+> +static struct rockchip_clk_branch rk3288w_hclkvio_branch[] __initdata =
+=3D {
+> +       DIV(0, "hclk_vio", "aclk_vio1", 0,
+> +                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
+> +};
+> +
+> +static struct rockchip_clk_branch rk3288_hclkvio_branch[] __initdata =3D=
+ {
+> +       DIV(0, "hclk_vio", "aclk_vio0", 0,
+> +                       RK3288_CLKSEL_CON(28), 8, 5, DFLAGS),
+> +};
+> +
+>  static const char *const rk3288_critical_clocks[] __initconst =3D {
+>         "aclk_cpu",
+>         "aclk_peri",
+> @@ -936,6 +944,14 @@ static void __init rk3288_clk_init(struct device_nod=
+e *np)
+>                                    RK3288_GRF_SOC_STATUS1);
+>         rockchip_clk_register_branches(ctx, rk3288_clk_branches,
+>                                   ARRAY_SIZE(rk3288_clk_branches));
+> +
+> +       if (of_device_is_compatible(np, "rockchip,rk3288w-cru"))
+> +               rockchip_clk_register_branches(ctx, rk3288w_hclkvio_branc=
+h,
+> +                                              ARRAY_SIZE(rk3288w_hclkvio=
+_branch));
+> +       else
+> +               rockchip_clk_register_branches(ctx, rk3288_hclkvio_branch=
+,
+> +                                              ARRAY_SIZE(rk3288_hclkvio_=
+branch));
+> +
+
+Sorry for the late query on this. I am a bit unclear about this
+compatible change, does Linux expect to replace rockchip,rk3288-cru
+with rockchip,rk3288w-cru in bootloader if the chip is RK3288w? or
+append the existing cru compatible node with rockchip,rk3288w-cru?
+because replace new cru node make clock never probe since the
+CLK_OF_DECLARE checking rockchip,rk3288-cru
+
+Jagan.
