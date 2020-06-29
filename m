@@ -2,85 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E44920E745
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55BB020E738
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727854AbgF2Vz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:55:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391537AbgF2VzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:55:14 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB56C061755
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:55:14 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id x62so14119797qtd.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:55:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=pxT9s3EqTCXsQUMXPgZ+Qokg9lpeo3j26jsBumMOCzU=;
-        b=ePlik7Ay+GtphgAve5CAj2xfrx1QbFpyLuV9Kb/NolXB4GJ6mN4x6SRxTM05MGUGZY
-         L4JZ2AaAOqXVSjnHzBhFG+eeT3JCYJC523zT6LjjUgSNeraRgXk9GqCqY/YXUxqy+m8B
-         SvUnn6W46acMHTKbrVac5HEJsCyseTx8/oV4zMHcpF8MN3Si9Whw0hHem8MPQCmc+ZvM
-         5bvmjwAMijkPprReMHxkI4EW3ylkqa2qHtGA+k9oxE65VsKYB05gqamw99Z6lY2FX+OT
-         YfaZ7oV+3hYgj4pOtKqkmrWq9RxH7URle7h/3iPWsuTwL77xzRMq8i4a73VET+ZHF4dd
-         O3Pg==
+        id S2388811AbgF2VzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:55:25 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:45504 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391553AbgF2VzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:55:24 -0400
+Received: by mail-il1-f194.google.com with SMTP id l9so15864742ilq.12;
+        Mon, 29 Jun 2020 14:55:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=pxT9s3EqTCXsQUMXPgZ+Qokg9lpeo3j26jsBumMOCzU=;
-        b=GluAPx/L6TJiwUpCcx78xOcAAVEp8dZKbU7rLjQUg136VlhBWRGQY/tZfLQRwztnvP
-         h9REwKZfazg2t+Yuw0d0P41Onj6NCC4QgYbSMlWRFE7pCS4eP+Rn7IACSBDI65gGZfhE
-         W8ssbP1+c2JHGVfkx5XDeUavWfHnv7t52ogFy3uSV27YwLwFJ7TVBTQGCLn83I+jrR5O
-         GH2C6mBOOwCr9kVLkkEvou4Pvozzxlg7kjart+/3eGNFnhV+e9/RbSiOtsiKdec1WMxD
-         hesNf6sM9Fb77jp8NN3dS2dHvjoNYcwVw22Zjif3lgADahviw1yh5v+tFi92d9YRVNnJ
-         1obA==
-X-Gm-Message-State: AOAM532IKIXebp5Fdevej8JJbQTSRSEWkeDvH9k8K295uWO+aiGRLe00
-        nIYWSITSThdT1Z1cTfR57qs=
-X-Google-Smtp-Source: ABdhPJxIHZpJNY5deu/0qCP2zBVuz+QM1abOEiGajD0jG0PAcaTa16luYlmNk9g12tIeL52RqwDZHg==
-X-Received: by 2002:aed:2c23:: with SMTP id f32mr18080683qtd.164.1593467713391;
-        Mon, 29 Jun 2020 14:55:13 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
-        by smtp.gmail.com with ESMTPSA id d19sm1185983qko.114.2020.06.29.14.55.10
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=z06gzP1D2QcJaBResbDn25dzkFa7czoMHbRABLK66e4=;
+        b=cidmVQoGlvZsu7yNTl5fFl8waOzFhwhgnxCTmm2w2tLvbo51oEEK0IDYE+nIwaBWe5
+         +Y+lySu7hJ8jBHkHANyAPraBQckilytV5WU7xO/d/D7EE/BPHLwbPhTm4ijaKt3FGz9q
+         X8WzhJCHttAfRuYCzxOu7RGu52ZDGvdMq1d+60X+y++QSoQurfFIaFhYqmBaaajOML08
+         fPF8CxGu9zYGH52XIvhiRnEbPxhbLIYyBmlLSQhW6K9OFcx0H9Ldf77tEMDSvg6HCcEE
+         pBUKvn3qbTAlo+k7fVYI3t7VFTbzz5+Un0UjhPIg/MKNsS7fG1bxqVLwBp6xjd0LjZXP
+         UKSg==
+X-Gm-Message-State: AOAM531DVd3P0AAp1Gjsjr4mDnNMJVWltK/+IyXQDdhtL6Frex1gNxIm
+        o+zRnySHTGQdRC/BNQtu8g==
+X-Google-Smtp-Source: ABdhPJwKg65QGLzlMM3KQdjO48s4QdfD6Lc3M0zgovxzCYpjPdp4mi+repNQ1psb8xWSS+aFBfPUfg==
+X-Received: by 2002:a92:8e41:: with SMTP id k1mr11387622ilh.250.1593467723506;
+        Mon, 29 Jun 2020 14:55:23 -0700 (PDT)
+Received: from xps15 ([64.188.179.255])
+        by smtp.gmail.com with ESMTPSA id w10sm619584ilo.10.2020.06.29.14.55.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:55:12 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     sam@ravnborg.org
-Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] dt-bindings: display: arm: versatile: Pass the sysreg unit name
-Date:   Mon, 29 Jun 2020 18:55:00 -0300
-Message-Id: <20200629215500.18037-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Mon, 29 Jun 2020 14:55:22 -0700 (PDT)
+Received: (nullmailer pid 2999258 invoked by uid 1000);
+        Mon, 29 Jun 2020 21:55:20 -0000
+Date:   Mon, 29 Jun 2020 15:55:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add UniPhier AHCI PHY description
+Message-ID: <20200629215520.GA2998145@bogus>
+References: <1592534207-13550-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1592534207-13550-2-git-send-email-hayashi.kunihiko@socionext.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1592534207-13550-2-git-send-email-hayashi.kunihiko@socionext.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pass the sysreg unit name to fix the following warning seen with
-'make dt_binding_check':
+On Fri, 19 Jun 2020 11:36:46 +0900, Kunihiko Hayashi wrote:
+> Add DT bindings for PHY interface built into ahci controller implemented
+> in UniPhier SoCs.
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  .../bindings/phy/socionext,uniphier-ahci-phy.yaml  | 76 ++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+> 
 
-Warning (unit_address_vs_reg): /example-0/sysreg: node has a reg or ranges property, but no unit name
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- .../bindings/display/panel/arm,versatile-tft-panel.yaml         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml b/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
-index 41fd5713c156..be69e0cc50fc 100644
---- a/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
-@@ -33,7 +33,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    sysreg {
-+    sysreg@0 {
-         compatible = "arm,versatile-sysreg", "syscon", "simple-mfd";
-         reg = <0x00000 0x1000>;
- 
--- 
-2.17.1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml: properties:reset-names: [{'items': [{'const': 'link'}, {'const': 'phy'}]}] is not of type 'object', 'boolean'
+Documentation/devicetree/bindings/Makefile:20: recipe for target 'Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.example.dts' failed
+make[1]: *** [Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1347: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1312535
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
