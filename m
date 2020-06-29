@@ -2,80 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C62A20E417
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E7F20E452
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727996AbgF2VU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:20:56 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34204 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729508AbgF2VUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:20:54 -0400
-Received: by mail-io1-f66.google.com with SMTP id m81so18796676ioa.1;
-        Mon, 29 Jun 2020 14:20:54 -0700 (PDT)
+        id S1729565AbgF2VXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:23:49 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39831 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726524AbgF2VXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:23:47 -0400
+Received: by mail-io1-f67.google.com with SMTP id f23so18790477iof.6;
+        Mon, 29 Jun 2020 14:23:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Nq/kHSVRzFcNw0IODBT+I/N6PwAl6jWjGRwKgSayGsA=;
-        b=hI9HINidBlKaaL72TmXdT3xCjrS+KJvQk5dQKLStxqcuG1yjk8YdsF+M7GMDzbjTdt
-         WfOpmNUC8hUl3WBfIJpGJtl9hD4aw2W9WLUr+XUBeiwH97a+bTE5ROIDJ+Xhc7e2WKqw
-         RK68rVnW5M4smksFaHu5T+iqKOQiAMfp7p3EZLCqts9e31zi/7pdgsfboYMBXHT6Zwrd
-         aOPB7F4v8CC8ExLfiPKinNVqHXjFkUSrkKgDHQoywnMW+IRkFXrCndkanpArpdBheEqn
-         eumsIewXgb/9qIZUehwpF+VBSRNvnMAXtNUq/8HHTTqUTlyIPoqANz7GTLJI3SgVGXyY
-         dvWw==
-X-Gm-Message-State: AOAM5323oKh3fvdEfYetGW1cQwv+4ALF2NhzOaT71SwwQFwA1boue6/D
-        RxRAGG1+YFXVHh99gTFV3A==
-X-Google-Smtp-Source: ABdhPJxv3PtS4RQsIakaQUoGXl8ifahEYDMJ9qJDJ3djTv2/Tdahsuj9+yPrhP0Qb0KDBrIQS4g2nA==
-X-Received: by 2002:a02:3908:: with SMTP id l8mr20234196jaa.121.1593465653694;
-        Mon, 29 Jun 2020 14:20:53 -0700 (PDT)
+        bh=bPNJneyouFFATOw4Dr0vJNDA4Ztsxwm7X1dPam5gKXc=;
+        b=GXUsOAnYIXWVU3ns2XQG/+nKhWlsNCNf3h0Q6geKniqIvRXiyuUl1AtymaCmMxSnje
+         hKeDElxpnlg7hDHOg2e1WrNNVHfsjXs0L263Ui0d7u05CQEoQapnJ3x3yUUhqEfklPOm
+         i+YP/l8zT8GbiuBCn35yOKb5utf7NR2fO8pHd7+knfor7lhOpujXytBEELGC7yaP/nX8
+         l/JeN1HHqowAdWslqpxrLPd3dqQbj+XZqf5SmfX2aNdhBMLZhoyaG6ETc0wEcaZ3hfP1
+         rHerSf+sUhiYFBXABkSe/qlH6cpbQLluQ1Buk4yHHNWEatEXnBc7mnVZTAqXtNDPoQCz
+         005A==
+X-Gm-Message-State: AOAM533YTAd2yYYVd+eUFGbxvILL61699X52jLSnKJ7KN0i/Kl2GeJTR
+        FllCc1dNwQmkvdPrRO7KEQ==
+X-Google-Smtp-Source: ABdhPJwN4xgBtOvB/QVmeS0dlgwgcCEX6eRha433UEB2sZAuODMXppw/myhpp3n0pTdObJJHwlROIg==
+X-Received: by 2002:a5d:858e:: with SMTP id f14mr14923501ioj.12.1593465826991;
+        Mon, 29 Jun 2020 14:23:46 -0700 (PDT)
 Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id q4sm556352ils.11.2020.06.29.14.20.52
+        by smtp.gmail.com with ESMTPSA id e3sm504612iot.7.2020.06.29.14.23.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:20:53 -0700 (PDT)
-Received: (nullmailer pid 2925373 invoked by uid 1000);
-        Mon, 29 Jun 2020 21:20:51 -0000
-Date:   Mon, 29 Jun 2020 15:20:51 -0600
+        Mon, 29 Jun 2020 14:23:46 -0700 (PDT)
+Received: (nullmailer pid 2932013 invoked by uid 1000);
+        Mon, 29 Jun 2020 21:23:44 -0000
+Date:   Mon, 29 Jun 2020 15:23:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: bus: uniphier-system-bus: fix warning in
- example
-Message-ID: <20200629212051.GA2925150@bogus>
-References: <20200623113242.779241-1-yamada.masahiro@socionext.com>
+To:     Kangmin Park <l4stpr0gr4m@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mailbox: zynqmp_ipi: fix unit address
+Message-ID: <20200629212343.GA2930951@bogus>
+References: <20200625135158.5861-1-l4stpr0gr4m@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200623113242.779241-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20200625135158.5861-1-l4stpr0gr4m@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jun 2020 20:32:42 +0900, Masahiro Yamada wrote:
-> Since commit e69f5dc623f9 ("dt-bindings: serial: Convert 8250 to
-> json-schema"), the schema for "ns16550a" is checked.
+On Thu, 25 Jun 2020 22:51:58 +0900, Kangmin Park wrote:
+> Fix unit address to match the first address specified in the reg
+> property of the node in example.
 > 
-> 'make dt_binding_check' emits the following warning:
-> 
->   uart@5,00200000: $nodename:0: 'uart@5,00200000' does not match '^serial(@[0-9a-f,]+)*$'
-> 
-> Rename the node to follow the pattern defined in
-> Documentation/devicetree/bindings/serial/serial.yaml
-> 
-> While I was here, I removed leading zeros from unit names.
-> 
-> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Kangmin Park <l4stpr0gr4m@gmail.com>
 > ---
-> 
-> Changes in v2:
->  - change unit names too
-> 
->  .../bindings/bus/socionext,uniphier-system-bus.yaml           | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt     | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Applied, thanks!
