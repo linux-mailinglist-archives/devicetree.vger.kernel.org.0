@@ -2,73 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0485820E0D7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2F120E1DD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389338AbgF2UuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:50:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46664 "EHLO mail.kernel.org"
+        id S1729905AbgF2VAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:00:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52960 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731473AbgF2UuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 16:50:08 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        id S2387950AbgF2VAW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 17:00:22 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.195])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4DEE020720;
-        Mon, 29 Jun 2020 20:50:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 78E9B20720;
+        Mon, 29 Jun 2020 21:00:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593463807;
-        bh=bf1gx6HwyAGL1lgUaDDu+79hOVdRZJ+m+V17HLQNqP8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=13bkz6rT88bW5ozmcTVlIDpLKBOZ9RXp5Dr9YU/HxouH/lD3TjAXms857cHHw2KkV
-         /2ixNXRUdyyGI63P/xu6opcacLXslGJGqcQJutmchqqO/13Dp1GMejsr+c+vg2puDb
-         qanzweqYc6g3z+fdluowc8Z2mlJoZ+ONrT0Cw5pw=
-Received: by mail-ot1-f45.google.com with SMTP id d4so16724576otk.2;
-        Mon, 29 Jun 2020 13:50:07 -0700 (PDT)
-X-Gm-Message-State: AOAM530enl5d2ZGClclltXDXi9w2bAcDslvSppaGQZUxrk+FJUEOQVwb
-        E3C8G1nI7fIl4noVO/zSJ+k5EZMzh9Tx4SgQlg==
-X-Google-Smtp-Source: ABdhPJzzF4kN7KDy2z2NmYmJxIweiy6VO0KsRTtdXWY9U7ErrDy0wmMgtxFXM1W9UJjV4JYyi44/uK+KLXtRv6Qmytk=
-X-Received: by 2002:a9d:2646:: with SMTP id a64mr14052433otb.107.1593463806654;
- Mon, 29 Jun 2020 13:50:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200625170434.635114-1-masahiroy@kernel.org> <20200625170434.635114-5-masahiroy@kernel.org>
-In-Reply-To: <20200625170434.635114-5-masahiroy@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 29 Jun 2020 14:49:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL4pTFK_pSNn1cSvjzwdg71dVzM3P06BYYEwDj2t+swPA@mail.gmail.com>
-Message-ID: <CAL_JsqL4pTFK_pSNn1cSvjzwdg71dVzM3P06BYYEwDj2t+swPA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: split DT schema check rules
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        s=default; t=1593464421;
+        bh=Lh3dzYXSrs+vBBw5yfOr7+OhUwSsd0+MyH/UH8tKOb0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kupGB0hbbgG6pMG1gVN5xphVJj+12dZ1xKSPlkX2A8B6AmtuglmspwxWi1U8a7rmS
+         79mcXRtRF3gL6cFZeOQ88ZKlMAQRyq8JphSQAhpOrzMsGg4cIhhTiJ1cvYqesf+Pql
+         PN7vnxw4+JHTNM1V+rrxLS8broP9JfjrOo74VD3Q=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <snawrocki@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2] ARM: dts: exynos: Fix missing empty reg/ranges property regulators on Trats
+Date:   Mon, 29 Jun 2020 22:59:48 +0200
+Message-Id: <20200629205948.32250-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 25, 2020 at 11:05 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> When building %.dt.yaml from %.dts, two things happen in a row:
->
->  [1] Run DTC to convert %.dts into %.dt.yaml
->
->  [2] Run dt-validate against %.dt.yaml
->
-> Currently, when any .yaml schema file is updated, processed-schema.yaml
-> is regenerated, then both [1] and [2] are rerun for all .dts files.
->
-> Actually, we do not need to rerun [1] since the original .dts is not
-> updated.
+Remove the regulators node entirely because its children do not have any
+unit addresses.  This fixes DTC warning:
 
-I have plans (and an intern working on it) to integrate the schema
-checks into dtc. That's going to make turning on the schema checks
-just a flag to dtc. I'm not sure if adding the complexity here is
-worth it as I'd expect much of this patch to go away again.
+    Warning (simple_bus_reg): /regulators/regulator-0: missing or empty reg/ranges property
 
-Is there any negative impact on the absolute clean build time? I'm
-more concerned about that than optimizing rerunning.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Rob
+---
+
+Changes since v1:
+1. Remove the node, not only compatible, as pointed out by Sylwester.
+---
+ arch/arm/boot/dts/exynos4210-trats.dts | 98 ++++++++++++--------------
+ 1 file changed, 47 insertions(+), 51 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+index 3d791db6095c..5cc96f04a4fa 100644
+--- a/arch/arm/boot/dts/exynos4210-trats.dts
++++ b/arch/arm/boot/dts/exynos4210-trats.dts
+@@ -30,62 +30,58 @@
+ 		stdout-path = "serial2:115200n8";
+ 	};
+ 
+-	regulators {
+-		compatible = "simple-bus";
+-
+-		vemmc_reg: regulator-0 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "VMEM_VDD_2.8V";
+-			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <2800000>;
+-			gpio = <&gpk0 2 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	vemmc_reg: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "VMEM_VDD_2.8V";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		gpio = <&gpk0 2 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
+ 
+-		tsp_reg: regulator-1 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "TSP_FIXED_VOLTAGES";
+-			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <2800000>;
+-			gpio = <&gpl0 3 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	tsp_reg: regulator-1 {
++		compatible = "regulator-fixed";
++		regulator-name = "TSP_FIXED_VOLTAGES";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		gpio = <&gpl0 3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
+ 
+-		cam_af_28v_reg: regulator-2 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "8M_AF_2.8V_EN";
+-			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <2800000>;
+-			gpio = <&gpk1 1 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	cam_af_28v_reg: regulator-2 {
++		compatible = "regulator-fixed";
++		regulator-name = "8M_AF_2.8V_EN";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		gpio = <&gpk1 1 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
+ 
+-		cam_io_en_reg: regulator-3 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "CAM_IO_EN";
+-			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <2800000>;
+-			gpio = <&gpe2 1 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	cam_io_en_reg: regulator-3 {
++		compatible = "regulator-fixed";
++		regulator-name = "CAM_IO_EN";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		gpio = <&gpe2 1 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
+ 
+-		cam_io_12v_reg: regulator-4 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "8M_1.2V_EN";
+-			regulator-min-microvolt = <1200000>;
+-			regulator-max-microvolt = <1200000>;
+-			gpio = <&gpe2 5 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	cam_io_12v_reg: regulator-4 {
++		compatible = "regulator-fixed";
++		regulator-name = "8M_1.2V_EN";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		gpio = <&gpe2 5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
+ 
+-		vt_core_15v_reg: regulator-5 {
+-			compatible = "regulator-fixed";
+-			regulator-name = "VT_CORE_1.5V";
+-			regulator-min-microvolt = <1500000>;
+-			regulator-max-microvolt = <1500000>;
+-			gpio = <&gpe2 2 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
+-		};
++	vt_core_15v_reg: regulator-5 {
++		compatible = "regulator-fixed";
++		regulator-name = "VT_CORE_1.5V";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
++		gpio = <&gpe2 2 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
+ 	};
+ 
+ 	gpio-keys {
+-- 
+2.17.1
+
