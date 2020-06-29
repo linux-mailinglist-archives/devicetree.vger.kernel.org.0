@@ -2,86 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B56F20D9C9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB9B20D7D7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726753AbgF2Tup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:50:45 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50840 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387812AbgF2Tuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:50:40 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05TCrDMG096114;
-        Mon, 29 Jun 2020 07:53:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593435193;
-        bh=ttFOPNsI8C7Qj6EFkUy2MjTPikihl8NG7soqqS4fgw8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pBRjibbJLkrIoCy4o33JgQ9f2ePI58oLNmoKiuNMb50EdVyYrM7OtDkG4xHuW3WMx
-         hcYocsAYAUt7SCQj6bVU2oGAEV3GiUyKOqp0sPNtWI3JWUczE4fO4bCtQYmnNtIrTe
-         lWnlhcjZ2nWayTTT9Gnm2wzzcfdaW9kAa27W5/3Y=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TCrDwk066355;
-        Mon, 29 Jun 2020 07:53:13 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 29
- Jun 2020 07:53:13 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 29 Jun 2020 07:53:12 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TCquh3015456;
-        Mon, 29 Jun 2020 07:53:10 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <t-kristo@ti.com>
-CC:     <robh@kernel.org>, <kishon@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Roger Quadros <rogerq@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [PATCH v4 6/6] arm64: dts: k3-j721e-proc-board: Add wait time for sampling Type-C DIR line
-Date:   Mon, 29 Jun 2020 15:52:54 +0300
-Message-ID: <20200629125254.28754-7-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200629125254.28754-1-rogerq@ti.com>
-References: <20200629125254.28754-1-rogerq@ti.com>
+        id S1733106AbgF2TdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733228AbgF2Tco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:32:44 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [IPv6:2a00:da80:fff0:2::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5576C02A56E;
+        Mon, 29 Jun 2020 06:36:47 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 2E0DD1C0C23; Mon, 29 Jun 2020 15:36:45 +0200 (CEST)
+Date:   Mon, 29 Jun 2020 15:36:44 +0200
+From:   Pavel Machek <pavel@denx.de>
+To:     Merlijn Wajer <merlijn@wizzup.org>, jikos@suse.cz, vojtech@suse.cz
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Beno??t Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Borislav Petkov <bp@suse.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mattias Jacobsson <2pi@mok.nu>,
+        Mark Gross <mgross@linux.intel.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        "open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>,
+        "open list:OMAP DEVICE TREE SUPPORT" <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." 
+        <linux-input@vger.kernel.org>
+Subject: input maintainer -- are you there? was Re: [PATCH 1/2] Input: add
+ `SW_MACHINE_COVER`
+Message-ID: <20200629133644.GA22227@amd>
+References: <20200612125402.18393-1-merlijn@wizzup.org>
+ <20200612125402.18393-2-merlijn@wizzup.org>
+ <20200616105045.GB1718@bug>
+ <fef69c79-9943-7bd1-5c51-101f551cf2c8@wizzup.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="0F1p//8PRICkK4MW"
+Content-Disposition: inline
+In-Reply-To: <fef69c79-9943-7bd1-5c51-101f551cf2c8@wizzup.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Type-C compainon chip on the board needs ~133ms (tCCB_DEFAULT)
-to debounce the CC lines in order to detect attach and plug orientation
-and reflect the correct DIR status. [1]
 
-On the EVM however we need to wait upto 700ms before sampling the
-Type-C DIR line else we can get incorrect direction state.
+--0F1p//8PRICkK4MW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] http://www.ti.com/lit/ds/symlink/tusb321.pdf
+Hi!
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 1 +
- 1 file changed, 1 insertion(+)
+> Looks like we're blocking on this input patch.
+>=20
+> On 16/06/2020 12:50, Pavel Machek wrote:
+> > On Fri 2020-06-12 14:53:58, Merlijn Wajer wrote:
+> >> This event code represents the state of a removable cover of a device.
+> >> Value 0 means that the cover is open or removed, value 1 means that the
+> >> cover is closed.
+> >>
+> >> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com> Acked=
+-by: Tony Lindgren=20
+> >> <tony@atomide.com> Signed-off-by: Merlijn Wajer <merlijn@wizzup.org> -=
+--
+> >=20
+> > Dmitry, can we get some kind of comment here, or better yet can we get =
+you to apply this?
+>=20
+> This is part of a patch series to resolve problems with the Nokia N900
+> not booting when the cover is removed (making the cover be the card
+> detect was also just weird IMHO). Just removing the card-detect from the
+> DTS is fine, but it was suggested that we expose the data instead as
+> input event. And that's gotten no response for about four months.
+>=20
+> Should we just drop the feature and only remove the cd-gpios line from
+> the DTS, assuming upstream doesn't want this SW_MACHINE_COVER code?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 3294b96ebba8..6307fe5ccb06 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -350,6 +350,7 @@
- 
- &serdes_wiz3 {
- 	typec-dir-gpios = <&main_gpio1 3 GPIO_ACTIVE_HIGH>;
-+	typec-dir-debounce-ms = <700>;	/* TUSB321, tCCB_DEFAULT 133 ms */
- };
- 
- &serdes3 {
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+I believe series is good, lets keep it. Changing now will only delay
+it a bit more. Let me try to get Dmitry's attention...
 
+If that does not work, we can get Linus' attention :-).
+
+If that does not work, umm, there are some other options.
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--0F1p//8PRICkK4MW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl757mwACgkQMOfwapXb+vJWKwCeKCWtJeiWc/FxANNI2HrHGQQ7
+Fx4An1mjqwvcVp1xJprABVuC4z8nryZ1
+=Fk60
+-----END PGP SIGNATURE-----
+
+--0F1p//8PRICkK4MW--
