@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DACDC20E229
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 727B520E188
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731647AbgF2VCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
+        id S1731280AbgF2U4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731150AbgF2TMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:12:49 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B4EC008772;
-        Mon, 29 Jun 2020 02:11:20 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id z15so4472939wrl.8;
-        Mon, 29 Jun 2020 02:11:20 -0700 (PDT)
+        with ESMTP id S1731275AbgF2TNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:09 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FBBC00877E;
+        Mon, 29 Jun 2020 02:28:15 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id f139so15389994wmf.5;
+        Mon, 29 Jun 2020 02:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4JFg11SCAZ+tQ5Ld3P7UQSzBglvzbQrCb01cJlFc3s8=;
-        b=tvsTl14bp0IqZRxmA7TB3uuMAClfRSl2R95c5g4nsnZUIAJN0inC9j7ch60VGkAPhn
-         SuTiE0Ac2gKMqa3RRXYd2HImMM2r+MilQ09OH6OenQDA8//zCduoSyfM/TSk/YverOq8
-         SqpBhhD/5RCg/EOv+BfpChXIut10xr829bAkv7OM1pGtDMu5wwmQA1ZjIRg262KF7lUY
-         crlI5quwrfv+4gH6dN9u1DcTRC7gjdVdNPfIvoF85pF6TU2YVFYUVoQ87dVGjAUH7j66
-         ZgmdquF8h2un/tSyQ0Wrrl6wpxHWecF9styJJX5Qm+jU3t5MxAQBeqw+Mcf+o8wYbzxu
-         wHIg==
+        bh=9jmh23NxVmiVZOqhxXccfhvhQo9rjgclPgRNTIzM2Zg=;
+        b=k6MxZu2f01F6wvw8Bu3KdsneTj+n1+HnKemOQAS4gmb1oFSwM1nXdZKLoLfeUhFPJ8
+         R/eMqcTPAFKwTymDGPhu9wAxgNQQptN6Ci9Z6p8r1wW0fAZGiYjJ7AbMyORbH50eBfnq
+         LiofUnQTr+nvCsy0iybwxhuCSxvD+qv/Ciyf3y/Jd8FepQ7Gf+KZFEsJxOFNbUQFadoU
+         Ns7Cm4L97IdwSjtQX2OG7ev867t6bE+ecyRgn+oxn8Mg6ASk4RqSR1i00ASPhx4MPB6U
+         8zFJSADjDdfgSA3Q9WcJFObnO7sabdda4OfbknzFtUbs+D9v4YMSCcG2RXSl+FGEz15j
+         2XoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=4JFg11SCAZ+tQ5Ld3P7UQSzBglvzbQrCb01cJlFc3s8=;
-        b=tlK/MSTmGLlN8796gE3xjSFITnCx54TWznPNbXllQQ23PodDR8RqvbVcVAahRV0jDZ
-         bPlrUoXaJHVmWJ5gI6adxSCAf0bTzuT5h5A/3J0gaElON6o43ycsBk11qYmBRH4w2xSW
-         ppVxGlKabYlb9hr6FKWaLh2FSjDHIDQs0ysmBNWMcSKSBKPoEdqnPTxM2oxJ5pxslqZG
-         YB3jZrNP5D94SVblrXlZppOb3FvOlZXmmLzuIIAynY85eICROKXuCxI1Qzw30ZESU1lI
-         rl8yKTLFzPPckXbk4Q1GwVSU4eQlpc5R0/BR22PUdJkRvcgLm5yPfhIEm06MDn9g1w96
-         s1xA==
-X-Gm-Message-State: AOAM5331OsvJFxayU6Sj9mS6y8beaU000HuKCRaR8rcHBNxcZInayog9
-        mjOj3KppYnRvJybII9Tivls=
-X-Google-Smtp-Source: ABdhPJwgST9DZrkRgUTRG0o6bLn98GQLrxLSP4aby+3/19e+a1551addOPKc44DDQ7RTMTuOrCD2JQ==
-X-Received: by 2002:adf:c441:: with SMTP id a1mr15912768wrg.130.1593421879072;
-        Mon, 29 Jun 2020 02:11:19 -0700 (PDT)
+        bh=9jmh23NxVmiVZOqhxXccfhvhQo9rjgclPgRNTIzM2Zg=;
+        b=GyNZB3imTFSLBfefTqRgwe5GeSQbKSIAEHFFEDOCAjdaSVMW1iAMW6PGWAWVXSJZ16
+         jNMc1k1JizXw3YHMYIzIbDieZAwVAx1oUqPqXQn0gQAEm+i3ZiYzyCnkmZ56nwKxfOaT
+         88lLHpxz/BS2ANY5iB5E3VyiAeZFcM/D0d+EjM8lu9pb2TsbcWnZO///iV8a95KHM/s/
+         mkI2SZGzRBwTJI1M4S1CdeJXZNNhJGUvuV6BZPzip5FvB3toLs3PRep4TkTBFbOPHxeY
+         FXCP5w6t1MdX46KvmyluF/hGOGUDlkub6BeV7plQIIWxTvQmCNA6cDyYMg7f1m6tGzg0
+         cMHg==
+X-Gm-Message-State: AOAM533rJeOpjGEq7jnCELTPz3pyesmPkxtGbjkP5SAQxR1C0dQ5VJUk
+        sLOmrDEPUcCGQqZb/StF4FE=
+X-Google-Smtp-Source: ABdhPJyxakvTjKvhXrUjZdv5uU0wefUAY9WB+AxW53yrtV07bI2wre2l4kHjIN0nalMYbmr+3Tgvwg==
+X-Received: by 2002:a1c:98cc:: with SMTP id a195mr15642943wme.89.1593422893715;
+        Mon, 29 Jun 2020 02:28:13 -0700 (PDT)
 Received: from ziggy.stardust ([213.195.114.138])
-        by smtp.gmail.com with ESMTPSA id k20sm4652407wmi.27.2020.06.29.02.11.17
+        by smtp.gmail.com with ESMTPSA id n8sm45044488wrj.44.2020.06.29.02.28.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2020 02:11:18 -0700 (PDT)
-Subject: Re: [PATCH v5 03/10] iommu/mediatek: Modify the usage of
- mtk_iommu_plat_data structure
+        Mon, 29 Jun 2020 02:28:12 -0700 (PDT)
+Subject: Re: [PATCH v5 04/10] iommu/mediatek: Setting MISC_CTRL register
 To:     Chao Hao <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Yong Wu <yong.wu@mediatek.com>, Evan Green <evgreen@chromium.org>,
@@ -58,7 +57,7 @@ Cc:     Yong Wu <yong.wu@mediatek.com>, Evan Green <evgreen@chromium.org>,
         linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
         FY Yang <fy.yang@mediatek.com>
 References: <20200629071310.1557-1-chao.hao@mediatek.com>
- <20200629071310.1557-4-chao.hao@mediatek.com>
+ <20200629071310.1557-5-chao.hao@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  mQINBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -134,15 +133,15 @@ Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  jzi+DzD9cvj2K6eD5j5kcKJJQactXqfJvF1Eb+OnxlB1BCLE8D1rNkPO5O742Mq3MgDmq19l
  +abzEL6QDAAxn9md8KwrA3RtucNh87cHlDXfUBKa7SRvBjTczDg+HEPNk2u3hrz1j3l2rliQ
  y1UfYx7Vk/TrdwUIJgKS8QAr8Lw9WuvY2hSqL9vEjx8VAkPWNWPwrQ==
-Message-ID: <afdd7edb-11b7-474b-206b-7a376524abc5@gmail.com>
-Date:   Mon, 29 Jun 2020 11:11:17 +0200
+Message-ID: <0e9ceba8-0cc4-44a1-148c-1c9a6b3844ce@gmail.com>
+Date:   Mon, 29 Jun 2020 11:28:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200629071310.1557-4-chao.hao@mediatek.com>
+In-Reply-To: <20200629071310.1557-5-chao.hao@mediatek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -151,125 +150,84 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 29/06/2020 09:13, Chao Hao wrote:
-> Given the fact that we are adding more and more plat_data bool values,
-> it would make sense to use a u32 flags register and add the appropriate
-> macro definitions to set and check for a flag present.
-> No functional change.
+> Add F_MMU_IN_ORDER_WR_EN and F_MMU_STANDARD_AXI_MODE_BIT definition
+> in MISC_CTRL register.
+> F_MMU_STANDARD_AXI_MODE_BIT:
+>   If we set F_MMU_STANDARD_AXI_MODE_BIT(bit[3][19] = 0, not follow
+> standard AXI protocol), iommu will send urgent read command firstly
+> compare with normal read command to improve performance.
+
+Can you please help me to understand the phrase. Sorry I'm not a AXI specialist.
+Does this mean that you will send a 'urgent read command' which is not described
+in the specifications instead of a normal read command?
+
+> F_MMU_IN_ORDER_WR_EN:
+>   If we set F_MMU_IN_ORDER_WR_EN(bit[1][17] = 0, out-of-order write), iommu
+> will re-order write command and send more higher priority write command
+> instead of sending write command in order. The feature be controlled
+> by OUT_ORDER_EN macro definition.
 > 
-> Suggested-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Suggested-by: Yong Wu <yong.wu@mediatek.com>
 > Signed-off-by: Chao Hao <chao.hao@mediatek.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
 > ---
->  drivers/iommu/mtk_iommu.c | 23 ++++++++++++-----------
->  drivers/iommu/mtk_iommu.h | 16 ++++++++++------
->  2 files changed, 22 insertions(+), 17 deletions(-)
+>  drivers/iommu/mtk_iommu.c | 12 +++++++++++-
+>  drivers/iommu/mtk_iommu.h |  1 +
+>  2 files changed, 12 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 88d3df5b91c2..8f81df6cbe51 100644
+> index 8f81df6cbe51..67b46b5d83d9 100644
 > --- a/drivers/iommu/mtk_iommu.c
 > +++ b/drivers/iommu/mtk_iommu.c
-> @@ -563,7 +563,8 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
->  			 upper_32_bits(data->protect_base);
->  	writel_relaxed(regval, data->base + REG_MMU_IVRP_PADDR);
+> @@ -42,6 +42,9 @@
+>  #define F_INVLD_EN1				BIT(1)
 >  
-> -	if (data->enable_4GB && data->plat_data->has_vld_pa_rng) {
-> +	if (data->enable_4GB &&
-> +	    MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_VLD_PA_RNG)) {
->  		/*
->  		 * If 4GB mode is enabled, the validate PA range is from
->  		 * 0x1_0000_0000 to 0x1_ffff_ffff. here record bit[32:30].
-> @@ -573,7 +574,7 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
+>  #define REG_MMU_MISC_CTRL			0x048
+> +#define F_MMU_IN_ORDER_WR_EN			(BIT(1) | BIT(17))
+> +#define F_MMU_STANDARD_AXI_MODE_BIT		(BIT(3) | BIT(19))
+
+Wouldn't it make more sense to name it F_MMU_STANDARD_AXI_MODE_EN?
+
+> +
+>  #define REG_MMU_DCM_DIS				0x050
+>  
+>  #define REG_MMU_CTRL_REG			0x110
+> @@ -574,10 +577,17 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
 >  	}
 >  	writel_relaxed(0, data->base + REG_MMU_DCM_DIS);
 >  
-> -	if (data->plat_data->reset_axi) {
-> +	if (MTK_IOMMU_HAS_FLAG(data->plat_data, RESET_AXI)) {
+> +	regval = readl_relaxed(data->base + REG_MMU_MISC_CTRL);
+
+We only need to read regval in the else branch.
+
+>  	if (MTK_IOMMU_HAS_FLAG(data->plat_data, RESET_AXI)) {
 >  		/* The register is called STANDARD_AXI_MODE in this case */
->  		writel_relaxed(0, data->base + REG_MMU_MISC_CTRL);
+> -		writel_relaxed(0, data->base + REG_MMU_MISC_CTRL);
+> +		regval = 0;
+> +	} else {
+> +		/* For mm_iommu, it can improve performance by the setting */
+> +		regval &= ~F_MMU_STANDARD_AXI_MODE_BIT;
+> +		if (MTK_IOMMU_HAS_FLAG(data->plat_data, OUT_ORDER_EN))
+> +			regval &= ~F_MMU_IN_ORDER_WR_EN;
 >  	}
-> @@ -618,7 +619,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+> +	writel_relaxed(regval, data->base + REG_MMU_MISC_CTRL);
 >  
->  	/* Whether the current dram is over 4GB */
->  	data->enable_4GB = !!(max_pfn > (BIT_ULL(32) >> PAGE_SHIFT));
-> -	if (!data->plat_data->has_4gb_mode)
-> +	if (!MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_4GB_MODE))
->  		data->enable_4GB = false;
->  
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> @@ -631,7 +632,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->  	if (data->irq < 0)
->  		return data->irq;
->  
-> -	if (data->plat_data->has_bclk) {
-> +	if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_BCLK)) {
->  		data->bclk = devm_clk_get(dev, "bclk");
->  		if (IS_ERR(data->bclk))
->  			return PTR_ERR(data->bclk);
-> @@ -763,23 +764,23 @@ static const struct dev_pm_ops mtk_iommu_pm_ops = {
->  
->  static const struct mtk_iommu_plat_data mt2712_data = {
->  	.m4u_plat     = M4U_MT2712,
-> -	.has_4gb_mode = true,
-> -	.has_bclk     = true,
-> -	.has_vld_pa_rng   = true,
-> +	.flags        = HAS_4GB_MODE |
-> +			HAS_BCLK |
-> +			HAS_VLD_PA_RNG,
->  	.larbid_remap = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
->  };
->  
->  static const struct mtk_iommu_plat_data mt8173_data = {
->  	.m4u_plat     = M4U_MT8173,
-> -	.has_4gb_mode = true,
-> -	.has_bclk     = true,
-> -	.reset_axi    = true,
-> +	.flags	      = HAS_4GB_MODE |
-> +			HAS_BCLK |
-> +			RESET_AXI,
->  	.larbid_remap = {0, 1, 2, 3, 4, 5}, /* Linear mapping. */
->  };
->  
->  static const struct mtk_iommu_plat_data mt8183_data = {
->  	.m4u_plat     = M4U_MT8183,
-> -	.reset_axi    = true,
-> +	.flags        = RESET_AXI,
->  	.larbid_remap = {0, 4, 5, 6, 7, 2, 3, 1},
->  };
->  
+>  	if (devm_request_irq(data->dev, data->irq, mtk_iommu_isr, 0,
+>  			     dev_name(data->dev), (void *)data)) {
 > diff --git a/drivers/iommu/mtk_iommu.h b/drivers/iommu/mtk_iommu.h
-> index 1b6ea839b92c..7cc39f729263 100644
+> index 7cc39f729263..4b780b651ef4 100644
 > --- a/drivers/iommu/mtk_iommu.h
 > +++ b/drivers/iommu/mtk_iommu.h
-> @@ -17,6 +17,15 @@
->  #include <linux/spinlock.h>
->  #include <soc/mediatek/smi.h>
+> @@ -22,6 +22,7 @@
+>  #define HAS_BCLK			BIT(1)
+>  #define HAS_VLD_PA_RNG			BIT(2)
+>  #define RESET_AXI			BIT(3)
+> +#define OUT_ORDER_EN			BIT(4)
+
+Maybe something like OUT_ORDER_WR_EN, to make clear that it's about the the
+write path.
+
 >  
-> +#define HAS_4GB_MODE			BIT(0)
-> +/* HW will use the EMI clock if there isn't the "bclk". */
-> +#define HAS_BCLK			BIT(1)
-> +#define HAS_VLD_PA_RNG			BIT(2)
-> +#define RESET_AXI			BIT(3)
-> +
-> +#define MTK_IOMMU_HAS_FLAG(pdata, _x) \
-> +		((((pdata)->flags) & (_x)) == (_x))
-> +
->  struct mtk_iommu_suspend_reg {
->  	u32				misc_ctrl;
->  	u32				dcm_dis;
-> @@ -36,12 +45,7 @@ enum mtk_iommu_plat {
->  
->  struct mtk_iommu_plat_data {
->  	enum mtk_iommu_plat m4u_plat;
-> -	bool                has_4gb_mode;
-> -
-> -	/* HW will use the EMI clock if there isn't the "bclk". */
-> -	bool                has_bclk;
-> -	bool                has_vld_pa_rng;
-> -	bool                reset_axi;
-> +	u32                 flags;
->  	unsigned char       larbid_remap[MTK_LARB_NR_MAX];
->  };
->  
+>  #define MTK_IOMMU_HAS_FLAG(pdata, _x) \
+>  		((((pdata)->flags) & (_x)) == (_x))
 > 
