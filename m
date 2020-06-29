@@ -2,69 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A04920E4F5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B8820E4D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:05:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728852AbgF2VbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:31:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60648 "EHLO mail.kernel.org"
+        id S1731125AbgF2V30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:29:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60600 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728698AbgF2SlU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:41:20 -0400
+        id S1728929AbgF2SlZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:41:25 -0400
 Received: from localhost.localdomain (unknown [194.230.155.195])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A0F9823356;
-        Mon, 29 Jun 2020 08:15:43 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E70E023355;
+        Mon, 29 Jun 2020 08:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593418545;
-        bh=P4Y+FCT/+WCOx5YCwdsX3MXOEtmwwCaFhV7DU4kMtKw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fh1HqOwJ9Z8Y/2rNYtoZQ9IDsjVKbXvY1kGz1lNPQBK+wYKWtNJ6YOIncMkGNNbJ/
-         HgMb3XXmbbKuDOGxdkUvLBRDoVl81X1238wxtmyDJvp0800+ljgHdLPd8nNtZANxHO
-         eWzLuFqmC9/GSf1qvvBz3OxfQZdI+/HujJ+BNDO0=
+        s=default; t=1593418594;
+        bh=iIs58fRuYkpMgTsFBKYFLGnGWc18yjUOw+YiUjF08do=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gZn1jSr0/iGSqKsIu83/ocM3a9UieUOU60YFQnCWXsZdzlDGLVoXBWelYDUPUW1OL
+         PMhBxLGwQxYeMGjFnycfsSx6vnwc8lqaIVTRL6QrNDYoWKbZBpa4WIbdCy4kVEwEbA
+         5aHgzdzCM9cnnXrdVsBL8QqrVua/9JxunrZGHMS8=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Tsahee Zidenberg <tsahee@annapurnalabs.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 3/3] arm64: dts: alpine: Fix GIC unit address
-Date:   Mon, 29 Jun 2020 10:15:35 +0200
-Message-Id: <20200629081535.13502-3-krzk@kernel.org>
+Subject: [PATCH] arm64: dts: spcfpga: Align GIC, NAND and UART nodenames with dtschema
+Date:   Mon, 29 Jun 2020 10:16:29 +0200
+Message-Id: <20200629081629.13653-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200629081535.13502-1-krzk@kernel.org>
-References: <20200629081535.13502-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node unit address should be the same as first address appearing in "reg"
-property.  Fixes DTC warning:
-
-    arch/arm64/boot/dts/al/alpine-v2.dtsi:116.38-126.5:
-        Warning (simple_bus_reg): /soc/interrupt-controller@f0100000: simple-bus unit address format error, expected "f0200000"
+Fix dtschema validator warnings like:
+    intc@fffc1000: $nodename:0:
+        'intc@fffc1000' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm64/boot/dts/al/alpine-v2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/al/alpine-v2.dtsi b/arch/arm64/boot/dts/al/alpine-v2.dtsi
-index de2eaf77b1ff..4eb2cd14e00b 100644
---- a/arch/arm64/boot/dts/al/alpine-v2.dtsi
-+++ b/arch/arm64/boot/dts/al/alpine-v2.dtsi
-@@ -113,7 +113,7 @@
- 				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index d1fc9c2055f4..9498d1de730c 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -77,7 +77,7 @@
+ 		method = "smc";
+ 	};
+ 
+-	intc: intc@fffc1000 {
++	intc: interrupt-controller@fffc1000 {
+ 		compatible = "arm,gic-400", "arm,cortex-a15-gic";
+ 		#interrupt-cells = <3>;
+ 		interrupt-controller;
+@@ -302,7 +302,7 @@
+ 			status = "disabled";
  		};
  
--		gic: interrupt-controller@f0100000 {
-+		gic: interrupt-controller@f0200000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x0 0xf0200000 0x0 0x10000>,	/* GIC Dist */
- 			      <0x0 0xf0280000 0x0 0x200000>,	/* GICR */
+-		nand: nand@ffb90000 {
++		nand: nand-controller@ffb90000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			compatible = "altr,socfpga-denali-nand";
+@@ -445,7 +445,7 @@
+ 			clock-names = "timer";
+ 		};
+ 
+-		uart0: serial0@ffc02000 {
++		uart0: serial@ffc02000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc02000 0x100>;
+ 			interrupts = <0 108 4>;
+@@ -456,7 +456,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		uart1: serial1@ffc02100 {
++		uart1: serial@ffc02100 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc02100 0x100>;
+ 			interrupts = <0 109 4>;
 -- 
 2.17.1
 
