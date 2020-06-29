@@ -2,85 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 197FB20E799
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A54C920E7D2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404455AbgF2V6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:58:43 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:39213 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729176AbgF2V6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:58:42 -0400
-Received: by mail-il1-f193.google.com with SMTP id k6so15862732ili.6;
-        Mon, 29 Jun 2020 14:58:41 -0700 (PDT)
+        id S2404828AbgF2WAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 18:00:46 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:43106 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404812AbgF2WAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 18:00:44 -0400
+Received: by mail-il1-f195.google.com with SMTP id i18so15885149ilk.10
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 15:00:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6QT2CxKngMlY2p6AbcTTZAUqsEvoLy2nz/okkRGauIc=;
-        b=lUp/19A7OQSUweoHI2QEAowtTQzqfc2lloX74hWdQME3l6d04TbFg9uaAKJkEZgTVG
-         P7rRIS3F1R3SShw2kyEAjSVL1YDPeDbfIIByNwf7RDW+95blrcRu77A1x3i8+17nEcnC
-         dbE89/8fqM8FS09XGD4CmFtwIv4J6sqSYfWax0HsIbPwSsiQ6nozeoZOLRMnM/FGIUzK
-         6rObPbd7dfRmV1z6ZoxJPXRYrsZ779rSrLHnVldNMrboR5+CruKN392Zwk3QGqMl9fyx
-         Mi01wCC05p7NADXAB8xJBqQ0qe9jwRmPii4L2SvQWKO1X2dkdmLRwIK7cDDIwh2/QgpC
-         CBZQ==
-X-Gm-Message-State: AOAM530kYFx0mchKQIasRRp81PyQLwgO3FrzYBgB7Ly0JozI8yel7UsC
-        2vtxG2ldVr1x3oQZ0bh+hg==
-X-Google-Smtp-Source: ABdhPJylefPN6e1fWTB8vAdKMAzJZl6DuCBfuuXfmf35nWeNuXIU1oLVRKCxPnf1E3+V6I0ZxzpOqw==
-X-Received: by 2002:a92:bf0c:: with SMTP id z12mr17464216ilh.151.1593467921338;
-        Mon, 29 Jun 2020 14:58:41 -0700 (PDT)
+        bh=XibhlPkg3VOTmV4eLtvatFLe5OTKIBnR1/3S5Ja9w/I=;
+        b=JQ4Em5kANRpQ1QGNwHXw3VnCdXCJrB4J70fVrPEVmxKmCxJHYoFfBQcCodDkSQiyi7
+         c6u23mYbZn8P3RDV+5hWYy4holFXFZ+tmxuVcyfOnPEcavSTjAbjNnfIxMuQqQlunXY3
+         mwVsW8U832eG4hUjLWwf5QZI+3GhrBoI9ye0bZLvWgMH5Sydq3PEE+wXkeoxSR32esf8
+         1qMhlRbZmCam8KOomr516tRpHXBRze3dm0dsTCbQdZi/V9dn3CW25tmFIz7TzZ38OVz6
+         TPWLLKrJjTq58XP3i4nHv9iVkaIVfk/ijD7frrFcM0xMCcY3Pdu45L9jWquaAycWREwF
+         D/Qw==
+X-Gm-Message-State: AOAM531p2+5PamQqRgsW5OSrPnLrcUsKhVGX1HAonDijXIg3IHthMZGZ
+        WcLaHdX5WLShEMhazw1NDK6Mq7aZFg==
+X-Google-Smtp-Source: ABdhPJw/3aWE5XK3CTeLWAvSAH1gjgTz2xAun9mWY7bxA0/ul+apY1Zq5c7rq/5DZCJLxWdy1hNz4Q==
+X-Received: by 2002:a05:6e02:e43:: with SMTP id l3mr17582767ilk.11.1593468043226;
+        Mon, 29 Jun 2020 15:00:43 -0700 (PDT)
 Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id b8sm669748ilc.42.2020.06.29.14.58.39
+        by smtp.gmail.com with ESMTPSA id s190sm674589ilc.28.2020.06.29.15.00.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:58:40 -0700 (PDT)
-Received: (nullmailer pid 3006922 invoked by uid 1000);
-        Mon, 29 Jun 2020 21:58:39 -0000
-Date:   Mon, 29 Jun 2020 15:58:39 -0600
+        Mon, 29 Jun 2020 15:00:42 -0700 (PDT)
+Received: (nullmailer pid 3011558 invoked by uid 1000);
+        Mon, 29 Jun 2020 22:00:40 -0000
+Date:   Mon, 29 Jun 2020 16:00:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Florinel Iordache <florinel.iordache@nxp.com>
-Cc:     kuba@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        davem@davemloft.net, andrew@lunn.ch, mark.rutland@arm.com,
-        linux@armlinux.org.uk, corbet@lwn.net, ioana.ciornei@nxp.com,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        f.fainelli@gmail.com, leoyang.li@nxp.com, netdev@vger.kernel.org,
-        madalin.bucur@oss.nxp.com
-Subject: Re: [PATCH net-next v3 2/7] dt-bindings: net: add backplane dt
- bindings
-Message-ID: <20200629215839.GA3004274@bogus>
-References: <1592832924-31733-1-git-send-email-florinel.iordache@nxp.com>
- <1592832924-31733-3-git-send-email-florinel.iordache@nxp.com>
+To:     Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 1/2] dt-bindings: sound: convert rk3328 codec binding to
+ yaml
+Message-ID: <20200629220040.GA3011219@bogus>
+References: <20200623124734.1736470-1-katsuhiro@katsuster.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1592832924-31733-3-git-send-email-florinel.iordache@nxp.com>
+In-Reply-To: <20200623124734.1736470-1-katsuhiro@katsuster.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Jun 2020 16:35:19 +0300, Florinel Iordache wrote:
-> Add ethernet backplane device tree bindings
+On Tue, 23 Jun 2020 21:47:33 +0900, Katsuhiro Suzuki wrote:
+> Just convert Rockchip rk3328 audio codec binding to DT schema.
 > 
-> Signed-off-by: Florinel Iordache <florinel.iordache@nxp.com>
+> Signed-off-by: Katsuhiro Suzuki <katsuhiro@katsuster.net>
 > ---
->  .../bindings/net/ethernet-controller.yaml          |  7 ++-
->  .../devicetree/bindings/net/ethernet-phy.yaml      | 50 ++++++++++++++++++++++
->  .../devicetree/bindings/net/serdes-lane.yaml       | 49 +++++++++++++++++++++
->  Documentation/devicetree/bindings/net/serdes.yaml  | 42 ++++++++++++++++++
->  4 files changed, 146 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/serdes-lane.yaml
->  create mode 100644 Documentation/devicetree/bindings/net/serdes.yaml
+>  .../bindings/sound/rockchip,rk3328-codec.txt  | 28 ---------
+>  .../bindings/sound/rockchip,rk3328-codec.yaml | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/serdes.example.dt.yaml: example-0: serdes@1ea0000:reg:0: [0, 32112640, 0, 8192] is too long
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/serdes-lane.example.dt.yaml: example-0: serdes@1ea0000:reg:0: [0, 32112640, 0, 8192] is too long
+Error: Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.example.dts:22.26-27 syntax error
+FATAL ERROR: Unable to parse input tree
+scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1347: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1314386
+See https://patchwork.ozlabs.org/patch/1315234
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
