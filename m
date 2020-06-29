@@ -2,84 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8312820E06B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F400E20DD92
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729174AbgF2UqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
+        id S1731591AbgF2TN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731559AbgF2TNx (ORCPT
+        with ESMTP id S1731558AbgF2TNx (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:53 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D95C08ECB9;
-        Sun, 28 Jun 2020 23:52:14 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id n2so2833421edr.5;
-        Sun, 28 Jun 2020 23:52:14 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755B9C0A88C0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 00:36:22 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id o2so15094622wmh.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 00:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=lpjt1zswNKMvS5djY3ctzDxWqp304nocjJTBTZb5p18=;
+        b=Xb6v613GSJsh7dDsApm/ir5qwYnG+gAoxzl8vTH96tkpKLL1mF97c2GqfpOtrQj2W6
+         QQcjmzdmPhYC5hJPSKm2uaEzcBag8wI9ndCV3kP0BuM1nBzpeOae8Pc2Q63/2fAHNHPu
+         ISeB8G+ht4jUjXD9Ogb10cbG/Jv1732N9rB8ogsB5xT5AXOAvNFZUT2PbFo8i3vsPozb
+         A/V+3Oi32EeHw2wJz8+xAtA7A3nnyj2tPKOCKp6oh7CLEV0O2IQjS+etZguzyx3xCZUo
+         pLU6BFrepzT0sbG0LLQ2jF33V7P0HHfNaFDSJnxoCXozxRk6XjuvnW/efM5mFPgmYySb
+         fAxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MJNvhIQCteTm5VtFSyzzsWJRKykcFhaBMFS+SgAaulE=;
-        b=uNI53+DW4ONYlbuHphXC9uYMySsEMjyWfy5sBfX+nJbg4OS9i4+HWrsrE1tWTK/Hef
-         02OIFYUVziudbAsKub4UzWh1xRVhXjYE5FnNrbLcGcXQ7qr+7Ilpk6XFAzB9kDwAr/QX
-         oVGpNc84c8tKZEO/yPLs7jAyvT8qSv0+gbiIG00uGK+Gwk026vO4birTebkPxwjQCQhf
-         /tHgX4kwxIn/+TzpFtRp457rHdY1XnQlQxPZnPfuwaj4Aa1o+VvZR5OWzyPUY0G5Aev4
-         cvLIOMRCe4/yYTnMIyWSIVYfHH2FtVDSQs1Xw2AFfqOuYKr//f3g2FyzEjOUPiRn0ykP
-         zNZA==
-X-Gm-Message-State: AOAM532Z9dACPIuq4ShX8Zn+MRhc06Y3FtBXyvPT6EdT5VC2gN9OcQ9L
-        8+/oJ1CkwU6vJkS4NbTiDc0=
-X-Google-Smtp-Source: ABdhPJw9FZnwCiOCE7JrbDHqCcdYHvx1EqL2R+gxeefz5/+dK9PWLHMqdziIkts4ezYexqkOwTWX0w==
-X-Received: by 2002:a50:f047:: with SMTP id u7mr16877181edl.274.1593413532938;
-        Sun, 28 Jun 2020 23:52:12 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.195])
-        by smtp.googlemail.com with ESMTPSA id m14sm9438582ejx.80.2020.06.28.23.52.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 28 Jun 2020 23:52:12 -0700 (PDT)
-Date:   Mon, 29 Jun 2020 08:52:10 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: bmc150_magn: Document and fix
- missing compatibles
-Message-ID: <20200629065210.GB5879@kozik-lap>
-References: <20200622060110.23192-1-krzk@kernel.org>
- <20200627144359.1ae30bb0@archlinux>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=lpjt1zswNKMvS5djY3ctzDxWqp304nocjJTBTZb5p18=;
+        b=WXhgcR02u8zVRJplqDRuLCz49v/2JZZ2aXJCH8jyz4i8MMK7018Jpmjdr5R6AGBkNA
+         j4sYXE3N1cW+61xSJtRn0KPq5XGTMiHZl1nBp39IbhouY6ASomCFtUbCENAmYGYWnxKP
+         7OpZ/wKufxg3gDzD7d9s53BtuoU4oMEvk/XDEnDe6ckM5ohses95WJlv/eJj1ei+pUoq
+         RlpzlTVVDkqWUpdFM93cfodSN7c5e57Z3JVeP7H2r1q9EN9B64Op9J9lR2fcZGF/WfoM
+         u9NjHrXtWB60hXdYNK4hIaK8Ol9eTkC8OtAG83vD2ky17qABM6R+773mimvHt1Ewjck5
+         HE4Q==
+X-Gm-Message-State: AOAM533kRnFsMZxpcOCDTw/YL+Jb0sgn9vsYYOGbW7jOpSwCZMZmU+de
+        t/IqG3oYWymGzM7dKynqGq/KJw==
+X-Google-Smtp-Source: ABdhPJy67jjtg4NKwoCcMRemNsFqljoxw5xMsjUhinUQsYu2vFwl6e5TypTLoHbqRvCXbQ6CnBoYsA==
+X-Received: by 2002:a7b:c345:: with SMTP id l5mr16097005wmj.31.1593416180947;
+        Mon, 29 Jun 2020 00:36:20 -0700 (PDT)
+Received: from dell ([2.27.35.144])
+        by smtp.gmail.com with ESMTPSA id a126sm26988070wme.28.2020.06.29.00.36.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jun 2020 00:36:19 -0700 (PDT)
+Date:   Mon, 29 Jun 2020 08:36:17 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] ARM: dts: uniphier: change support card to
+ simple-mfd from simple-bus
+Message-ID: <20200629073617.GF177734@dell>
+References: <20200623114614.792648-1-yamada.masahiro@socionext.com>
+ <20200623114614.792648-4-yamada.masahiro@socionext.com>
+ <20200623122413.GA954398@dell>
+ <CAK7LNAR-dm6Zbtt9MsUunn9+qqwTtRCbq4Wzb=8uKLtfaLK6TQ@mail.gmail.com>
+ <20200624181605.GJ954398@dell>
+ <CAK7LNATFUX56t=wn-3qOSYLwESp63gqDWjADEVQ1g1CYrGxA3g@mail.gmail.com>
+ <20200625145726.GT954398@dell>
+ <CAK7LNAQdoe_eS8d9AoF1p4QgAB7oUM9aA+qgFS2GwPZsZbTnhg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200627144359.1ae30bb0@archlinux>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAK7LNAQdoe_eS8d9AoF1p4QgAB7oUM9aA+qgFS2GwPZsZbTnhg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 27, 2020 at 02:43:59PM +0100, Jonathan Cameron wrote:
-> On Mon, 22 Jun 2020 08:01:09 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > The driver supports also BMC156B and BMM150B but these compatibles had
-> > redundant suffix "_magn".  Add existing compatibles marking them
-> > deprecated along with adding a new, proper one for this family of
-> > devices.
-> Thanks for tidying this up.
-> 
-> The BMC156B is a dual magnetometer and accelerometer chip
-> so for that one the _magn postfix probably is needed.
-> 
-> Or am I missing something?
-> 
-> The way this does SPI is rather odd but seems to be the same as the bmc150
-> (two chips with non overlapping register maps).
+On Mon, 29 Jun 2020, Masahiro Yamada wrote:
 
-You're right, only one compatible should be trimmed from suffix. I'll
-send v3.
+> On Thu, Jun 25, 2020 at 11:57 PM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Thu, 25 Jun 2020, Masahiro Yamada wrote:
+> >
+> > > On Thu, Jun 25, 2020 at 3:16 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > >
+> > > > On Thu, 25 Jun 2020, Masahiro Yamada wrote:
+> > > >
+> > > > > On Tue, Jun 23, 2020 at 9:24 PM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > >
+> > > > > > On Tue, 23 Jun 2020, Masahiro Yamada wrote:
+> > > > > >
+> > > > > > > 'make ARCH=arm dtbs_check' emits the following warning:
+> > > > > > >
+> > > > > > >   support-card@1,1f00000: $nodename:0: 'support-card@1,1f00000' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+> > > > > > >
+> > > > > > > Maybe, simple-mfd could be a better fit for this device.
+> > > > > >
+> > > > > > The two should be equivalent.
+> > > > >
+> > > > > Yes, I know.
+> > > > > That's why I can change "simple-bus" to "simple-mfd"
+> > > > > with no risk.
+> > > > >
+> > > > > The difference is schema-check.
+> > > > >
+> > > > > The node name for "simple-bus" is checked by 'make dtbs_check'.
+> > > > >
+> > > > > See this code:
+> > > > > https://github.com/robherring/dt-schema/blob/v2020.05/schemas/simple-bus.yaml#L17
+> > > > >
+> > > > > Even if I rename the node, it does not accept the
+> > > > > unit name '1,1f00000'
+> > > > >
+> > > > > > What do you mean by "maybe"?  Does this squash the warning?
+> > > > >
+> > > > > "maybe" means I am not quite sure
+> > > > > which compatible is a better fit
+> > > > > to describe this device.
+> > > > >
+> > > > > As mentioned above, simple-bus and simple-mfd
+> > > > > are interchangeable from a driver point of view.
+> > > > >
+> > > > > This add-on board is integrated with various peripherals
+> > > > > such as 16550a serial, smsc9115 ether etc.
+> > > > > The address-decode is implemented in a CPLD device.
+> > > > > It has chip selects and local addresses, which are mapped to
+> > > > > the parent.
+> > > > >
+> > > > > It can be either simple-bus or simple-mfd, I think.
+> > > > >
+> > > > >
+> > > > > dt-schema checks the node name of simple-bus.
+> > > > > Currently, there is no check for simple-mfd.
+> > > > >
+> > > > > So, I think this patch is an easy solution
+> > > > > to fix the warning.
+> > > >
+> > > > Yes, looking at the documentation it seems as though 'simple-mfd'
+> > > > would be a better fit.  Is the device a single IP with various
+> > > > different functions?
+> > >
+> > > Not an IP.
+> > >
+> > > This is a small board that consists of
+> > > a CPLD + ethernet controller + serial controller + LED, etc.
+> >
+> > Then simple MFD does not seem like a good fit.
+> >
+> > Neither does 'simple-bus'.
+> 
+> Then, I do not know what to do.
+> 
+> 
+> This board connection is so simple
+> that no hardware initialization needed to get access
+> to peripherals.
+> 
+> So, 'simple-bus' or 'simple-mfd' is preferred.
+> 
+> If this is not either simple-bus or simple-mfd,
+> I need a special driver to probe the
+> child devices such as ethernet, serial etc.
+> 
+> 
+> 
+> > What is it you're trying to describe in the device hierarchy?
+> 
+> 
+> The connection is as follows:
+> 
+> 
+> |-Main board -|      |----- add-on board ----|
+> |             |      |     (this board)      |
+> |             |      |                       |
+> |    (SoC) ---|------|--- CPLD --- ethernet  |
+> |             |      |          |- serial    |
+> |-------------|      |          |- LED       |
+>                      |                       |
+>                      |-----------------------|
+> 
+> 
+> 
+> uniphier-support-card.dtsi describes the
+> "add-on board" part.
+> Address-decode is implemented in CPLD.
+> 
+> 
+> So, the criteria to become MFD is
+> whether it is an IP integrated into SoC.
+> 
+> 
+> - implemented in an SoC  --> MFD
 
-Best regards,
-Krzysztof
+If
 
+ s/in an SoC/in a single piece of silicon/
+
+... then yes.
+
+> - implemented in a board + CPLD  --> not MFD
+> 
+> Right?
+
+Right.  Unless all H/W is represented inside the CPLD, in which case
+the CPLD is, in theory, the MFD.  Although, due to the nature of
+CPLDs, this is a slippery slope.
+
+You may want something like:
+
+  arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dts
+
+... where the add-on board is represented separately (not in the
+same hierarchical structure as the main board.  The main board is then
+included as a DTSI from the add-on board.
+
+It might also be worth looking at how consumer boards such as the
+RaspberryPi, BeagleBoard and the like handle their add-on boards,
+mezzanines, capes, hats, etc.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
