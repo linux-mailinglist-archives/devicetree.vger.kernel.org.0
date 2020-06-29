@@ -2,94 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9672620E72A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E44920E745
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391382AbgF2Vyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:54:33 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:45362 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389336AbgF2Vy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:54:28 -0400
-Received: by mail-il1-f194.google.com with SMTP id l9so15863059ilq.12;
-        Mon, 29 Jun 2020 14:54:27 -0700 (PDT)
+        id S1727854AbgF2Vz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:55:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391537AbgF2VzO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:55:14 -0400
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB56C061755
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:55:14 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id x62so14119797qtd.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:55:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=pxT9s3EqTCXsQUMXPgZ+Qokg9lpeo3j26jsBumMOCzU=;
+        b=ePlik7Ay+GtphgAve5CAj2xfrx1QbFpyLuV9Kb/NolXB4GJ6mN4x6SRxTM05MGUGZY
+         L4JZ2AaAOqXVSjnHzBhFG+eeT3JCYJC523zT6LjjUgSNeraRgXk9GqCqY/YXUxqy+m8B
+         SvUnn6W46acMHTKbrVac5HEJsCyseTx8/oV4zMHcpF8MN3Si9Whw0hHem8MPQCmc+ZvM
+         5bvmjwAMijkPprReMHxkI4EW3ylkqa2qHtGA+k9oxE65VsKYB05gqamw99Z6lY2FX+OT
+         YfaZ7oV+3hYgj4pOtKqkmrWq9RxH7URle7h/3iPWsuTwL77xzRMq8i4a73VET+ZHF4dd
+         O3Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=C8dUSvhRmWNPjC/Gxl3IeAC98sriVh3zuvoUxs+yN3o=;
-        b=UBGlhBo9qQTRssFhh/7fDs7y1nRpj6NGSpivSRzbxVhbqioJnjpyEUM1gcyKvEW7+O
-         9r6V7uHJntwbWG2yU/yxqXmZwOOoyIekPFG+eV1yfOZjO777pUzf1BZ/HOrcXK/mCR39
-         xa5slE+1Pc/zUdOA9EjBUMcbj+1+mZxMck6m6QRHCS8niYmTv4+BaXLMKqpZwRl2uUM7
-         xgnTQFGRVTxJv4AXMzjnnXMNhjc5OVoYB5BjwCikOtvbv6yZ+UBEP4QSMyItrmYwbAcH
-         6s6YqZNkkMMoRwEvp8Qu8x3pKimkgGwocb/dq9Py6Qmlof8grR1fRyCafi0Bj6eZwiO8
-         YzIQ==
-X-Gm-Message-State: AOAM533ECi4X4Pn4EG5gkgtKTfI1CMX3I/gJ12qzgrZGPhs9yrdabM3V
-        JqBCCSAP9Yy0afdh9+GTmg==
-X-Google-Smtp-Source: ABdhPJydHNBwHC1sjSL393mIV8ElpWA8UM200L9n5v4oEctdkRP/KNOR4wq2uIs9B/BUiGXS1q9B0w==
-X-Received: by 2002:a92:d4cf:: with SMTP id o15mr15678654ilm.160.1593467667476;
-        Mon, 29 Jun 2020 14:54:27 -0700 (PDT)
-Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id t18sm611073ilm.55.2020.06.29.14.54.25
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=pxT9s3EqTCXsQUMXPgZ+Qokg9lpeo3j26jsBumMOCzU=;
+        b=GluAPx/L6TJiwUpCcx78xOcAAVEp8dZKbU7rLjQUg136VlhBWRGQY/tZfLQRwztnvP
+         h9REwKZfazg2t+Yuw0d0P41Onj6NCC4QgYbSMlWRFE7pCS4eP+Rn7IACSBDI65gGZfhE
+         W8ssbP1+c2JHGVfkx5XDeUavWfHnv7t52ogFy3uSV27YwLwFJ7TVBTQGCLn83I+jrR5O
+         GH2C6mBOOwCr9kVLkkEvou4Pvozzxlg7kjart+/3eGNFnhV+e9/RbSiOtsiKdec1WMxD
+         hesNf6sM9Fb77jp8NN3dS2dHvjoNYcwVw22Zjif3lgADahviw1yh5v+tFi92d9YRVNnJ
+         1obA==
+X-Gm-Message-State: AOAM532IKIXebp5Fdevej8JJbQTSRSEWkeDvH9k8K295uWO+aiGRLe00
+        nIYWSITSThdT1Z1cTfR57qs=
+X-Google-Smtp-Source: ABdhPJxIHZpJNY5deu/0qCP2zBVuz+QM1abOEiGajD0jG0PAcaTa16luYlmNk9g12tIeL52RqwDZHg==
+X-Received: by 2002:aed:2c23:: with SMTP id f32mr18080683qtd.164.1593467713391;
+        Mon, 29 Jun 2020 14:55:13 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
+        by smtp.gmail.com with ESMTPSA id d19sm1185983qko.114.2020.06.29.14.55.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:54:26 -0700 (PDT)
-Received: (nullmailer pid 2997019 invoked by uid 1000);
-        Mon, 29 Jun 2020 21:54:24 -0000
-Date:   Mon, 29 Jun 2020 15:54:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc@vger.kernel.org,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: Add Sparx5 SDHCI controller
- bindings
-Message-ID: <20200629215424.GA2996213@bogus>
-References: <20200618141326.25723-1-lars.povlsen@microchip.com>
- <20200618141326.25723-2-lars.povlsen@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200618141326.25723-2-lars.povlsen@microchip.com>
+        Mon, 29 Jun 2020 14:55:12 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     sam@ravnborg.org
+Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: display: arm: versatile: Pass the sysreg unit name
+Date:   Mon, 29 Jun 2020 18:55:00 -0300
+Message-Id: <20200629215500.18037-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Jun 2020 16:13:24 +0200, Lars Povlsen wrote:
-> The Sparx5 SDHCI controller is based on the Designware controller IP.
-> 
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> ---
->  .../mmc/microchip,dw-sparx5-sdhci.yaml        | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.yaml
-> 
+Pass the sysreg unit name to fix the following warning seen with
+'make dt_binding_check':
 
+Warning (unit_address_vs_reg): /example-0/sysreg: node has a reg or ranges property, but no unit name
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ .../bindings/display/panel/arm,versatile-tft-panel.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.example.dts:20:18: fatal error: dt-bindings/clock/microchip,sparx5.h: No such file or directory
-         #include <dt-bindings/clock/microchip,sparx5.h>
-                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.example.dt.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1347: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1312158
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml b/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
+index 41fd5713c156..be69e0cc50fc 100644
+--- a/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
++++ b/Documentation/devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml
+@@ -33,7 +33,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    sysreg {
++    sysreg@0 {
+         compatible = "arm,versatile-sysreg", "syscon", "simple-mfd";
+         reg = <0x00000 0x1000>;
+ 
+-- 
+2.17.1
 
