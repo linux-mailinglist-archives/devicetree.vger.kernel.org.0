@@ -2,43 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8DD20D28B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C13A20D14A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727072AbgF2SuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 14:50:11 -0400
-Received: from muru.com ([72.249.23.125]:59954 "EHLO muru.com"
+        id S1727014AbgF2SkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 14:40:11 -0400
+Received: from muru.com ([72.249.23.125]:59944 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729467AbgF2SuL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:50:11 -0400
+        id S1726118AbgF2SkK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:40:10 -0400
 Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 57AB781BD;
-        Mon, 29 Jun 2020 18:15:12 +0000 (UTC)
-Date:   Mon, 29 Jun 2020 11:14:17 -0700
+        by muru.com (Postfix) with ESMTPS id 48A3381C1;
+        Mon, 29 Jun 2020 18:21:43 +0000 (UTC)
+Date:   Mon, 29 Jun 2020 11:20:48 -0700
 From:   Tony Lindgren <tony@atomide.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: omap: Align L2 cache-controller nodename with
- dtschema
-Message-ID: <20200629181417.GZ37466@atomide.com>
-References: <20200626080619.4017-1-krzk@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>
+Subject: Re: ARM: dts: motorola-mapphone-common: remove unneeded
+ "simple-graph-card"
+Message-ID: <20200629182048.GB37466@atomide.com>
+References: <87r1ub39hq.wl-kuninori.morimoto.gx@renesas.com>
+ <20200619113607.6h5qnq26nhxijjhp@earth.universe>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200626080619.4017-1-krzk@kernel.org>
+In-Reply-To: <20200619113607.6h5qnq26nhxijjhp@earth.universe>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Krzysztof Kozlowski <krzk@kernel.org> [200626 01:07]:
-> Fix dtschema validator warnings like:
->     l2-cache-controller@48242000: $nodename:0:
->         'l2-cache-controller@48242000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
+* Sebastian Reichel <sebastian.reichel@collabora.com> [200619 11:37]:
+> Hi,
+> 
+> On Fri, Jun 19, 2020 at 02:33:36PM +0900, Kuninori Morimoto wrote:
+> > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > 
+> > Audio Graph Card is using "audio-graph-card" prefix instead of
+> > "simple-graph-card", and moreover "widgets / routing" doesn't need it.
+> > This patch removes unsupported "simple-graph-card" prefix from
+> > motorola-mapphone-common.dtsi and vendor-prefixes.yaml.
+> > 
+> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > ---
+> 
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Applying into omap-for-v5.9/dt thanks.
+Probably best to merge this along with the other asoc patches:
 
-Tony
+Acked-by: Tony Lindgren <tony@atomide.com>
