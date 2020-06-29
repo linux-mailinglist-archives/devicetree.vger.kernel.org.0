@@ -2,215 +2,507 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0946F20E049
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3642A20E239
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733186AbgF2Uol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
+        id S1731140AbgF2VD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:03:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731592AbgF2TN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:59 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CEBC008616;
-        Mon, 29 Jun 2020 03:29:06 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id f139so15571273wmf.5;
-        Mon, 29 Jun 2020 03:29:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qH6Y8YLZwAQKLLRKt9UlLI5PhgjXpInExIUsMf3zs/o=;
-        b=GSFp18a4hT5psZ9d8iFlr7YHTQNN/uaOedWpgXDQv+7mlKvAw6asJKa32R40OpfaMf
-         hv2T5ZHWIbB9k9zuHCDP9iiGquaQKgVr0DLXOql0cyfd2epFcGLg8BRAd1n7hwf10RiJ
-         lbzodLDjKyVSyc7cGQv5cz1dUY9WXuTeoFKkTv3ZrH7XUA6+favrTFrmilo50o4zOkmL
-         hFLYPfHFlae3s9QWPCjqVuVH8Z8+Qn9bIlZ4TldVizer95x84pYlT1yyjW5ya9R4Z5DV
-         HO4wHux13wlISSavurvQrdkpg1Mis9bSyNHhqUaujc+7dpISt1pnF6FstLoecVsEt3FO
-         OvVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=qH6Y8YLZwAQKLLRKt9UlLI5PhgjXpInExIUsMf3zs/o=;
-        b=MkQLxrArCQ/U0Wzo7bzCmJciIJJLCl9/WOQcoDuf4MIzpQc5gIzIzez0cuSGohiINU
-         6ISVgqK0TWcMfIoFFuVFV2WgVXnuMtJ/kcIBQqU1YyU+CW2tO77xCCYgyFWp/t2BSKl0
-         xDzAa4hNBvXM4Rx2JD5WDOaai6Hlvrv3s05FM8BJsTy+TrXJSRQY+vycDst7DUcGOpsJ
-         CT1IZ+Smy+vMo0A4iPWsWrawqAqLjmmwlQ5H91xZyRdFHMSYmSqMtIUkOdgiBjZP1JPV
-         rPm5to/4aCvuFy3JChDCVGq2LDbTTQLfSL6Nc5q9h9oepM7VIZ7pWJovaHRIlnw7G2P0
-         iigQ==
-X-Gm-Message-State: AOAM533RQP3/8iTEXuYR1ekIVo92axjGkaycemSmgfiRp8KMndlqvw5O
-        /GoG63pMwjIIbSC1fTUUuPWyRq0CrZQ=
-X-Google-Smtp-Source: ABdhPJytODh0+QP7ijQ6hjMmEjsy1PHRom3lDtvr4XIcC8w/ihO7g7oh0Lhdq/WJBRPTYdj5pOzqgQ==
-X-Received: by 2002:a1c:b6c3:: with SMTP id g186mr16692459wmf.135.1593426545193;
-        Mon, 29 Jun 2020 03:29:05 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.114.138])
-        by smtp.gmail.com with ESMTPSA id c5sm27819182wmb.24.2020.06.29.03.29.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2020 03:29:04 -0700 (PDT)
-Subject: Re: [PATCH v5 10/10] iommu/mediatek: Add mt6779 basic support
-To:     Chao Hao <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Evan Green <evgreen@chromium.org>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
-        FY Yang <fy.yang@mediatek.com>
-References: <20200629071310.1557-1-chao.hao@mediatek.com>
- <20200629071310.1557-11-chao.hao@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <e1654652-85a9-0e30-df60-eee0957331d7@gmail.com>
-Date:   Mon, 29 Jun 2020 12:29:03 +0200
+        with ESMTP id S1731141AbgF2TMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:12:47 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on20606.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1b::606])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2C1C008629;
+        Mon, 29 Jun 2020 03:54:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4EOPaBF3jA6ib4DH7vLzxO7+AVikHf7twWj9okdseC4=;
+ b=Zeb8vR83bdgxA4izo/OLAYp9We45XaL+iHO2kCjZ8TVCkal8QEyk/VqT9kHvcK+rHytrvn7Kt114Pz4IBn5W3UlyigPTCY0FbuXci1xOXQNZRsVTT1ar47KPzpj74BzNOxGh72lyrFJiFIQpbebVaFPyVsorbGvjmsTlP1nSGis=
+Received: from AM6P193CA0060.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:8e::37)
+ by HE1PR0801MB2027.eurprd08.prod.outlook.com (2603:10a6:3:4f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.23; Mon, 29 Jun
+ 2020 10:54:45 +0000
+Received: from AM5EUR03FT008.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:209:8e:cafe::a7) by AM6P193CA0060.outlook.office365.com
+ (2603:10a6:209:8e::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.21 via Frontend
+ Transport; Mon, 29 Jun 2020 10:54:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; vger.kernel.org; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;vger.kernel.org; dmarc=bestguesspass
+ action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM5EUR03FT008.mail.protection.outlook.com (10.152.16.123) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3131.20 via Frontend Transport; Mon, 29 Jun 2020 10:54:45 +0000
+Received: ("Tessian outbound fcfbba629a49:v60"); Mon, 29 Jun 2020 10:54:45 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 53a17a117c5c123f
+X-CR-MTA-TID: 64aa7808
+Received: from 18e9caeea5b7.2
+        by 64aa7808-outbound-1.mta.getcheckrecipient.com id C5372EBA-9D68-47F7-B4F0-6035E4742977.1;
+        Mon, 29 Jun 2020 10:54:39 +0000
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 18e9caeea5b7.2
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Mon, 29 Jun 2020 10:54:39 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kUywMHQD3I2wNGYtP5xcGGq5tiW146dMMnnLcEb2X5fcQL5oMjmyNgRblVFmLzk9fPgLq220TJUbWi8eh7PrmViYWm6LoBxEw70XM8xY5/orPTE612ge3adzR6wmnMDEWi1nAAtn11DVv22J0EAKSRTHt5rOZO71Ol7nj+emy1YvY78pL7IUtLsDC/DEHbg2To4MIbLgz/6XL1O7zd8xaNN04yBKilKtR6lPn5ZpzcH344fBIkNu/Yw6ABWq29n6x5GTeRjspKVDp2aP0tNfm7r/9dt5ATwPxb3nwT5PKUuKDCtaCWJLIpl32Uge7vC3W02qKRMgO6Yj+Js0FgQ0DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4EOPaBF3jA6ib4DH7vLzxO7+AVikHf7twWj9okdseC4=;
+ b=Tglo77vVYf22dVcOgGig/dyzccLz5R93G0LftCrehtVO/8FDMhStFUvjEZEOFVURbPzI1wK3LD/xykdAkVJPdAJbEmRj35xdbV0rvbn1RSEZ73DuJaZogGbi/Q4WhwOAcJRFdpvy7a6T++AfzRDY2whVtSH3nAKj1NM558IoTHeTgvJuBGFi0g/kJ/HkwQAxoMa+u+sainoatQYh2ytYzR91rG6gJlzwDsZ0ITl1rBzK1TOmQ43LKjXu3aEik6OArz+wc5KjOlYBnSxYdil+ldTILE9aF4SXntQrFHU1u81uxY5YJ7Co/fYH/5xgN6gH6eB772j4bEaZHLkc0GutMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4EOPaBF3jA6ib4DH7vLzxO7+AVikHf7twWj9okdseC4=;
+ b=Zeb8vR83bdgxA4izo/OLAYp9We45XaL+iHO2kCjZ8TVCkal8QEyk/VqT9kHvcK+rHytrvn7Kt114Pz4IBn5W3UlyigPTCY0FbuXci1xOXQNZRsVTT1ar47KPzpj74BzNOxGh72lyrFJiFIQpbebVaFPyVsorbGvjmsTlP1nSGis=
+Authentication-Results-Original: lists.infradead.org; dkim=none (message not
+ signed) header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=arm.com;
+Received: from DB6PR08MB2680.eurprd08.prod.outlook.com (2603:10a6:6:19::11) by
+ DB6PR0801MB1669.eurprd08.prod.outlook.com (2603:10a6:4:30::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3131.23; Mon, 29 Jun 2020 10:54:37 +0000
+Received: from DB6PR08MB2680.eurprd08.prod.outlook.com
+ ([fe80::789f:c64f:efe3:2208]) by DB6PR08MB2680.eurprd08.prod.outlook.com
+ ([fe80::789f:c64f:efe3:2208%6]) with mapi id 15.20.3131.027; Mon, 29 Jun 2020
+ 10:54:37 +0000
+Subject: Re: next/master bisection: baseline.dmesg.crit on
+ qemu_arm-vexpress-a15
+To:     Guillaume Tucker <guillaume.tucker@collabora.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, kernelci-results@groups.io
+Cc:     devicetree@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <5ef64849.1c69fb81.2d891.248a@mx.google.com>
+ <9b77d663-311e-37ba-c33f-31dd0a77723c@collabora.com>
+From:   Andre Przywara <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Message-ID: <56cc006b-03e8-df26-f74b-ecfd8739ffb3@arm.com>
+Date:   Mon, 29 Jun 2020 11:53:25 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
-MIME-Version: 1.0
-In-Reply-To: <20200629071310.1557-11-chao.hao@mediatek.com>
+In-Reply-To: <9b77d663-311e-37ba-c33f-31dd0a77723c@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P265CA0194.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:9e::14) To DB6PR08MB2680.eurprd08.prod.outlook.com
+ (2603:10a6:6:19::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.2.22] (78.146.250.215) by LO2P265CA0194.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:9e::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.21 via Frontend Transport; Mon, 29 Jun 2020 10:54:36 +0000
+X-Originating-IP: [78.146.250.215]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 720957b4-5ca5-4e92-a8f8-08d81c1ad5c5
+X-MS-TrafficTypeDiagnostic: DB6PR0801MB1669:|HE1PR0801MB2027:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0801MB2027CEFBA887EE76FB1DFE5A9D6E0@HE1PR0801MB2027.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;OLM:7691;
+X-Forefront-PRVS: 044968D9E1
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: /5/95aB7nto5LawCsrxkA/BjwA10Z3QVw7z4n9OlMwUqrLEISVY1T+7x2+htzB2xTwDFOgvOrx7q8atwCN+rJTzu35wikYxUYvFzQVmlYu9fmthfmxvDKfF6eoY+ijF7uMzRawHsBBZ+ACHiw4r8YK6uuQWtnNd+baPdMCtMBFVJNlB4zs04snO5ayQThB31lcEiDfpCr9zkq4RSPULq3IIwhtPUKgEb9Xxe506zaJnohiQIYVr61NNLlf02i8QCXgJZMy0dWLclalLUo+EWGchPEbi2VZC9Zq+D3+i3Buiqdkjrlq3XtpqLx7Kj1FxUPEsr5rCMlArSb/bJZXGJ0FmU6J7Q3gfuDEeHNZYDuY7viwEH+Oi6bpRhL9OzYFyn4xgceffz1ukRCIddQgk/SY2piHgFXTF3VzMUNRQgCGQBf0P/Ar5RML9R9QE32q+kavDNGA4HPxA7UI4s62fSLnr5y3mNq5+xynnYS1DJDHQ=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR08MB2680.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(39860400002)(396003)(366004)(376002)(346002)(6666004)(52116002)(966005)(478600001)(30864003)(5660300002)(31696002)(53546011)(86362001)(54906003)(8936002)(110136005)(2906002)(8676002)(16576012)(44832011)(83380400001)(186003)(4326008)(956004)(316002)(2616005)(36756003)(16526019)(6486002)(26005)(31686004)(66946007)(66556008)(66476007)(45673001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 9s1zHsGi7dha+l4NVkiib3CzAL+AVYyOReTbMH2GlkBUza1URBB+c13c4mqCz14uN4T4gaDEKY6kkp8YNfcIUnJBu74NjZdKLqympqyPppXrlopuOBYXolhgEkETNrTJXBHHq0h0E2Bnrs9CK9W5gSaCnq77Ma2OJGrMN/ZvTmWeRUUKzoJWARqHz5MPbJ2Gn5z7v2iHivrfSQQxRvg7aP+B4kBsMZRWGrpYOGrIeeOZAKtl+CzouK3rT4Px1RBhsnuYJAfwDh5G3dYKTDLPQnUUwGQII2/zUXXgKIrrDSvxZCOsT07m3zR4SLGteyePtBtV9aAe/d96yckSSVJ19K8nboOWNGzg4/E1+aNihrdYbn8IZ2YBSd6CJ5utPISuo5s7A6BjHBTE1Hq8YSKsoeanv/lVu8LnoHRKHaJx2tvslYVCHVO9PN4HoWFAKs7ZU3hjtcof5Db7h7eGwowgrEsaHmkjWSa8Jqqxt/VRL4WZPaRGprd2JxYBLG3Pp67m
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0801MB1669
+Original-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT008.eop-EUR03.prod.protection.outlook.com
+X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFTY:;SFS:(4636009)(376002)(39860400002)(396003)(136003)(346002)(46966005)(478600001)(81166007)(966005)(6666004)(70586007)(82310400002)(356005)(82740400003)(70206006)(47076004)(26005)(450100002)(6486002)(186003)(16526019)(36756003)(4326008)(53546011)(107886003)(30864003)(5660300002)(31696002)(956004)(2616005)(44832011)(8936002)(336012)(31686004)(8676002)(54906003)(110136005)(16576012)(86362001)(2906002)(316002)(36906005)(83380400001)(45673001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 785b852d-f469-446b-51ad-08d81c1ad0d6
+X-Forefront-PRVS: 044968D9E1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TYP5WqOtezKcU7dgs+5AjKg+wjBM4ATUm3ScmSBgUi8sdKxblrB5OzbnLfZ3PGkuQ7hLGT4fSTUSrC0SB5LzpxtKrqIV9pC/ijnqkEUeRIGi0oN63YuRUWiC43MMavPpcMUeKYVv2C4Hy8adzcm5FYrmxsD7ZYNLlMIHcea5H+oD7AKdrdCOX0WVd+D2UJWkdDoHjYN0ARA913pE2oJeF9se1WHeSTtkGIjWpQyFnF9VO+C/96okucTM/o/3J2zrIsXPzAUrwje79P3xC3VYsDQ/xzBE5di/wq0Aq78VWzYKjNwo779/yHugYHQXiU0vMd1tlBWz8/LSLt4u7RyfJ5rXNW5Ca3cm14ZHc0kORsXa/P+4kIITMfAEjKNDfxYXgjgObTLJBULQlOFEH8YfuNxjoa4dsec3i7RouWa8K1ws1NeY3Vjgu4lOJ0YlYHKUAiSD3hlh0qptA4KKqZStLOhlD4FXS9VUBfDQWLkC1X7lIk51BZABzafjVsS5U5/Jy9WYAES2kO1hzjfeE2ulIA==
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2020 10:54:45.3173
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 720957b4-5ca5-4e92-a8f8-08d81c1ad5c5
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR03FT008.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0801MB2027
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/06/2020 21:23, Guillaume Tucker wrote:
 
+Hi,
 
-On 29/06/2020 09:13, Chao Hao wrote:
-> 1. Start from mt6779, INVLDT_SEL move to offset=0x2c, so we add
->    REG_MMU_INV_SEL_GEN2 definition and mt6779 uses it.
-> 2. Add mt6779_data to support mm_iommu HW init.
+> On 26/06/2020 20:11, kernelci.org bot wrote:
+>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>> * This automated bisection report was sent to you on the basis  *
+>> * that you may be involved with the breaking commit it has      *
+>> * found.  No manual investigation has been done to verify it,   *
+>> * and the root cause of the problem may be somewhere else.      *
+>> *                                                               *
+>> * If you do send a fix, please include this trailer:            *
+>> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+>> *                                                               *
+>> * Hope this helps!                                              *
+>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>>
+>> next/master bisection: baseline.dmesg.crit on qemu_arm-vexpress-a15
+>>
+>> Summary:
+>>   Start:      36e3135df4d4 Add linux-next specific files for 20200626
+>>   Plain log:  https://storage.kernelci.org/next/master/next-20200626/arm/vexpress_defconfig/gcc-8/lab-collabora/baseline-vexpress-v2p-ca15-tc1.txt
+>>   HTML log:   https://storage.kernelci.org/next/master/next-20200626/arm/vexpress_defconfig/gcc-8/lab-collabora/baseline-vexpress-v2p-ca15-tc1.html
+>>   Result:     38ac46002d1d arm: dts: vexpress: Move mcc node back into motherboard node
+>>
+>> Checks:
+>>   revert:     PASS
+>>   verify:     PASS
+>>
+>> Parameters:
+>>   Tree:       next
+>>   URL:        https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>>   Branch:     master
+>>   Target:     qemu_arm-vexpress-a15
+>>   CPU arch:   arm
+>>   Lab:        lab-collabora
+>>   Compiler:   gcc-8
+>>   Config:     vexpress_defconfig
+>>   Test case:  baseline.dmesg.crit
 > 
-> Cc: Yong Wu <yong.wu@mediatek.com>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Chao Hao <chao.hao@mediatek.com>
-
-Reviewed by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->  drivers/iommu/mtk_iommu.c | 11 +++++++++++
->  drivers/iommu/mtk_iommu.h |  1 +
->  2 files changed, 12 insertions(+)
+> The critical error message allegedly caused by this commit is:
 > 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index e46e2deee3fd..1575196d9cd5 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -37,6 +37,7 @@
->  #define REG_MMU_INVLD_START_A			0x024
->  #define REG_MMU_INVLD_END_A			0x028
->  
-> +#define REG_MMU_INV_SEL_GEN2			0x02c
->  #define REG_MMU_INV_SEL_GEN1			0x038
->  #define F_INVLD_EN0				BIT(0)
->  #define F_INVLD_EN1				BIT(1)
-> @@ -798,6 +799,15 @@ static const struct mtk_iommu_plat_data mt2712_data = {
->  	.larbid_remap = {{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}},
->  };
->  
-> +static const struct mtk_iommu_plat_data mt6779_data = {
-> +	.m4u_plat      = M4U_MT6779,
-> +	.flags         = HAS_SUB_COMM |
-> +			 OUT_ORDER_EN |
-> +			 WR_THROT_EN,
-> +	.inv_sel_reg   = REG_MMU_INV_SEL_GEN2,
-> +	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
-> +};
-> +
->  static const struct mtk_iommu_plat_data mt8173_data = {
->  	.m4u_plat     = M4U_MT8173,
->  	.flags	      = HAS_4GB_MODE |
-> @@ -816,6 +826,7 @@ static const struct mtk_iommu_plat_data mt8183_data = {
->  
->  static const struct of_device_id mtk_iommu_of_ids[] = {
->  	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
-> +	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
->  	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
->  	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
->  	{}
-> diff --git a/drivers/iommu/mtk_iommu.h b/drivers/iommu/mtk_iommu.h
-> index ce4f4e8f03aa..a080db2e8a93 100644
-> --- a/drivers/iommu/mtk_iommu.h
-> +++ b/drivers/iommu/mtk_iommu.h
-> @@ -43,6 +43,7 @@ struct mtk_iommu_suspend_reg {
->  enum mtk_iommu_plat {
->  	M4U_MT2701,
->  	M4U_MT2712,
-> +	M4U_MT6779,
->  	M4U_MT8173,
->  	M4U_MT8183,
->  };
+> <2>GIC CPU mask not found - kernel will fail to boot.
 > 
+> The report needs to be improved to show it automatically, sorry
+> if this wasn't clear.
+
+No worries, I saw this. But more important is this message:
+13:53:51.773784  <6>smp: Bringing up secondary CPUs ...
+13:53:51.774587  <3>CPU1: failed to boot: -38
+
+And this points to the actual problem: The QEMU command line according
+to the log is not specifying an "-smp" argument, so QEMU defaults to one
+core. Now we force a .dtb on it, which describes two cores - because
+this is what the actual hardware has. This won't go well, QEMU will deny
+to online a second core.
+
+So I don't see how this ever worked, regardless of this patch.
+I tested this here, which a slightly different QEMU cmdline to run on my
+box:
+qemu-system-arm -m 512 -cpu cortex-a15 -machine vexpress-a15 -dtb
+vexpress-v2p-ca15-tc1.dtb-5.8-next -nographic -kernel zImage-5.8-next
+-append "console=ttyAMA0 earlycon=pl011,0x1c090000 debug" -initrd
+initrd-armhf.img.gz
+I get the same GIC complaint and only one core coming online. If I
+however add "-smp 2" to the QEMU command line, everything works fine: no
+GIC messages, and the second core comes up.
+
+I did the test with v5.7, v5.8-rc2, v5.8-rc3 and linux-next, all with
+the same result (ignoring the bug in 5.8-rc2 that this patch here fixes).
+
+So can someone shed some light on what is going on here? Is there some
+bootlog that does not have the GIC messages and brings up the second
+core, with the same QEMU command line?
+
+Cheers,
+Andre
+
+>> Breaking commit found:
+>>
+>> -------------------------------------------------------------------------------
+>> commit 38ac46002d1df5707566a73486452851341028d2
+>> Author: Andre Przywara <andre.przywara@arm.com>
+>> Date:   Wed Jun 3 17:22:37 2020 +0100
+>>
+>>     arm: dts: vexpress: Move mcc node back into motherboard node
+>>     
+>>     Commit d9258898ad49 ("arm64: dts: arm: vexpress: Move fixed devices
+>>     out of bus node") moved the "mcc" DT node into the root node, because
+>>     it does not have any children using "reg" properties, so does violate
+>>     some dtc checks about "simple-bus" nodes.
+>>     
+>>     However this broke the vexpress config-bus code, which walks up the
+>>     device tree to find the first node with an "arm,vexpress,site" property.
+>>     This gave the wrong result (matching the root node instead of the
+>>     motherboard node), so broke the clocks and some other devices for
+>>     VExpress boards.
+>>     
+>>     Move the whole node back into its original position. This re-introduces
+>>     the dtc warning, but is conceptually the right thing to do. The dtc
+>>     warning seems to be overzealous here, there are discussions on fixing or
+>>     relaxing this check instead.
+>>     
+>>     Link: https://lore.kernel.org/r/20200603162237.16319-1-andre.przywara@arm.com
+>>     Fixes: d9258898ad49 ("arm64: dts: vexpress: Move fixed devices out of bus node")
+>>     Reported-and-tested-by: Guenter Roeck <linux@roeck-us.net>
+>>     Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>     Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+>>
+>> diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+>> index e6308fb76183..a88ee5294d35 100644
+>> --- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+>> +++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+>> @@ -100,79 +100,6 @@
+>>  		};
+>>  	};
+>>  
+>> -	mcc {
+>> -		compatible = "arm,vexpress,config-bus";
+>> -		arm,vexpress,config-bridge = <&v2m_sysreg>;
+>> -
+>> -		oscclk0 {
+>> -			/* MCC static memory clock */
+>> -			compatible = "arm,vexpress-osc";
+>> -			arm,vexpress-sysreg,func = <1 0>;
+>> -			freq-range = <25000000 60000000>;
+>> -			#clock-cells = <0>;
+>> -			clock-output-names = "v2m:oscclk0";
+>> -		};
+>> -
+>> -		v2m_oscclk1: oscclk1 {
+>> -			/* CLCD clock */
+>> -			compatible = "arm,vexpress-osc";
+>> -			arm,vexpress-sysreg,func = <1 1>;
+>> -			freq-range = <23750000 65000000>;
+>> -			#clock-cells = <0>;
+>> -			clock-output-names = "v2m:oscclk1";
+>> -		};
+>> -
+>> -		v2m_oscclk2: oscclk2 {
+>> -			/* IO FPGA peripheral clock */
+>> -			compatible = "arm,vexpress-osc";
+>> -			arm,vexpress-sysreg,func = <1 2>;
+>> -			freq-range = <24000000 24000000>;
+>> -			#clock-cells = <0>;
+>> -			clock-output-names = "v2m:oscclk2";
+>> -		};
+>> -
+>> -		volt-vio {
+>> -			/* Logic level voltage */
+>> -			compatible = "arm,vexpress-volt";
+>> -			arm,vexpress-sysreg,func = <2 0>;
+>> -			regulator-name = "VIO";
+>> -			regulator-always-on;
+>> -			label = "VIO";
+>> -		};
+>> -
+>> -		temp-mcc {
+>> -			/* MCC internal operating temperature */
+>> -			compatible = "arm,vexpress-temp";
+>> -			arm,vexpress-sysreg,func = <4 0>;
+>> -			label = "MCC";
+>> -		};
+>> -
+>> -		reset {
+>> -			compatible = "arm,vexpress-reset";
+>> -			arm,vexpress-sysreg,func = <5 0>;
+>> -		};
+>> -
+>> -		muxfpga {
+>> -			compatible = "arm,vexpress-muxfpga";
+>> -			arm,vexpress-sysreg,func = <7 0>;
+>> -		};
+>> -
+>> -		shutdown {
+>> -			compatible = "arm,vexpress-shutdown";
+>> -			arm,vexpress-sysreg,func = <8 0>;
+>> -		};
+>> -
+>> -		reboot {
+>> -			compatible = "arm,vexpress-reboot";
+>> -			arm,vexpress-sysreg,func = <9 0>;
+>> -		};
+>> -
+>> -		dvimode {
+>> -			compatible = "arm,vexpress-dvimode";
+>> -			arm,vexpress-sysreg,func = <11 0>;
+>> -		};
+>> -	};
+>> -
+>>  	bus@8000000 {
+>>  		motherboard-bus {
+>>  			model = "V2M-P1";
+>> @@ -435,6 +362,79 @@
+>>  						};
+>>  					};
+>>  				};
+>> +
+>> +				mcc {
+>> +					compatible = "arm,vexpress,config-bus";
+>> +					arm,vexpress,config-bridge = <&v2m_sysreg>;
+>> +
+>> +					oscclk0 {
+>> +						/* MCC static memory clock */
+>> +						compatible = "arm,vexpress-osc";
+>> +						arm,vexpress-sysreg,func = <1 0>;
+>> +						freq-range = <25000000 60000000>;
+>> +						#clock-cells = <0>;
+>> +						clock-output-names = "v2m:oscclk0";
+>> +					};
+>> +
+>> +					v2m_oscclk1: oscclk1 {
+>> +						/* CLCD clock */
+>> +						compatible = "arm,vexpress-osc";
+>> +						arm,vexpress-sysreg,func = <1 1>;
+>> +						freq-range = <23750000 65000000>;
+>> +						#clock-cells = <0>;
+>> +						clock-output-names = "v2m:oscclk1";
+>> +					};
+>> +
+>> +					v2m_oscclk2: oscclk2 {
+>> +						/* IO FPGA peripheral clock */
+>> +						compatible = "arm,vexpress-osc";
+>> +						arm,vexpress-sysreg,func = <1 2>;
+>> +						freq-range = <24000000 24000000>;
+>> +						#clock-cells = <0>;
+>> +						clock-output-names = "v2m:oscclk2";
+>> +					};
+>> +
+>> +					volt-vio {
+>> +						/* Logic level voltage */
+>> +						compatible = "arm,vexpress-volt";
+>> +						arm,vexpress-sysreg,func = <2 0>;
+>> +						regulator-name = "VIO";
+>> +						regulator-always-on;
+>> +						label = "VIO";
+>> +					};
+>> +
+>> +					temp-mcc {
+>> +						/* MCC internal operating temperature */
+>> +						compatible = "arm,vexpress-temp";
+>> +						arm,vexpress-sysreg,func = <4 0>;
+>> +						label = "MCC";
+>> +					};
+>> +
+>> +					reset {
+>> +						compatible = "arm,vexpress-reset";
+>> +						arm,vexpress-sysreg,func = <5 0>;
+>> +					};
+>> +
+>> +					muxfpga {
+>> +						compatible = "arm,vexpress-muxfpga";
+>> +						arm,vexpress-sysreg,func = <7 0>;
+>> +					};
+>> +
+>> +					shutdown {
+>> +						compatible = "arm,vexpress-shutdown";
+>> +						arm,vexpress-sysreg,func = <8 0>;
+>> +					};
+>> +
+>> +					reboot {
+>> +						compatible = "arm,vexpress-reboot";
+>> +						arm,vexpress-sysreg,func = <9 0>;
+>> +					};
+>> +
+>> +					dvimode {
+>> +						compatible = "arm,vexpress-dvimode";
+>> +						arm,vexpress-sysreg,func = <11 0>;
+>> +					};
+>> +				};
+>>  			};
+>>  		};
+>>  	};
+>> -------------------------------------------------------------------------------
+>>
+>>
+>> Git bisection log:
+>>
+>> -------------------------------------------------------------------------------
+>> git bisect start
+>> # good: [52366a107bf0600cf366f5ff3ea1f147b285e41f] Merge tag 'fsnotify_for_v5.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs
+>> git bisect good 52366a107bf0600cf366f5ff3ea1f147b285e41f
+>> # bad: [36e3135df4d426612fc77db26a312c2531108603] Add linux-next specific files for 20200626
+>> git bisect bad 36e3135df4d426612fc77db26a312c2531108603
+>> # bad: [11fdea666694c5c8c8a52cb75b2f0e70a2c2c201] Merge remote-tracking branch 'drm/drm-next'
+>> git bisect bad 11fdea666694c5c8c8a52cb75b2f0e70a2c2c201
+>> # bad: [39ac1a242d0940dabd9192d99113c2b082ba45bc] Merge remote-tracking branch 'printk/for-next'
+>> git bisect bad 39ac1a242d0940dabd9192d99113c2b082ba45bc
+>> # good: [4a750150d9fe543e2163998501b3ad947d6dff74] Merge remote-tracking branch 'at91/at91-next'
+>> git bisect good 4a750150d9fe543e2163998501b3ad947d6dff74
+>> # bad: [d7645ac1101c5160a05e2dced672a8d63c2a7ec0] Merge remote-tracking branch 'scmi/for-linux-next'
+>> git bisect bad d7645ac1101c5160a05e2dced672a8d63c2a7ec0
+>> # good: [2408a915a05c109169ab689dc91ce31315406513] Merge branches 'arm64-defconfig-for-5.9', 'arm64-for-5.9', 'drivers-for-5.9' and 'dts-for-5.9' into for-next
+>> git bisect good 2408a915a05c109169ab689dc91ce31315406513
+>> # good: [1679681fb8b2d169ac9d98660d7390620990bf77] Merge remote-tracking branch 'raspberrypi/for-next'
+>> git bisect good 1679681fb8b2d169ac9d98660d7390620990bf77
+>> # good: [137233bdcd265762a251dfa24e82ebc5468e0ec2] Merge remote-tracking branch 'reset/reset/next'
+>> git bisect good 137233bdcd265762a251dfa24e82ebc5468e0ec2
+>> # good: [99bcf38dd05b76b41f8564b53d9be6b44613fa92] Merge branch 'v5.9-clk/next' into for-next
+>> git bisect good 99bcf38dd05b76b41f8564b53d9be6b44613fa92
+>> # good: [dc45e438fac0b5df3c31bb83f3d809cd0f67dcfe] Merge branch 'next/dt' into for-next
+>> git bisect good dc45e438fac0b5df3c31bb83f3d809cd0f67dcfe
+>> # good: [d6fe116541b73a56110310c39a270c99766cd909] Merge branch 'next/soc' into for-next
+>> git bisect good d6fe116541b73a56110310c39a270c99766cd909
+>> # bad: [24077bf8f9e69a3a6a2c714634e6c813566a152f] Merge tag 'juno-fix-5.8' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into for-linux-next
+>> git bisect bad 24077bf8f9e69a3a6a2c714634e6c813566a152f
+>> # bad: [38ac46002d1df5707566a73486452851341028d2] arm: dts: vexpress: Move mcc node back into motherboard node
+>> git bisect bad 38ac46002d1df5707566a73486452851341028d2
+>> # first bad commit: [38ac46002d1df5707566a73486452851341028d2] arm: dts: vexpress: Move mcc node back into motherboard node
+>> -------------------------------------------------------------------------------
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>>
+> 
+
