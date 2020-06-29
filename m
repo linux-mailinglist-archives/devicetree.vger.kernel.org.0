@@ -2,166 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0077720E0EB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 932F820E07F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387758AbgF2Uu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43354 "EHLO
+        id S2389740AbgF2Uqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731427AbgF2TNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:34 -0400
-X-Greylist: delayed 517 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 29 Jun 2020 04:07:43 PDT
-Received: from pmg01-out2.zxcs.nl (pmg01-out2.zxcs.nl [IPv6:2a06:2ec0:1:a::ffeb])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4054AC00862B
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 04:07:43 -0700 (PDT)
-Received: from pmg01.zxcs.nl (localhost.localdomain [127.0.0.1])
-        by pmg01.zxcs.nl (Zxcs) with ESMTP id BE0761035FD;
-        Mon, 29 Jun 2020 12:59:04 +0200 (CEST)
-Received: from web0081.zxcs.nl (web0081.zxcs.nl [IPv6:2a06:2ec0:1::81])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by pmg01.zxcs.nl (Zxcs) with ESMTPS;
-        Mon, 29 Jun 2020 12:59:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=pascalroeleven.nl; s=x; h=Content-Transfer-Encoding:Content-Type:Message-ID
-        :References:In-Reply-To:Subject:Cc:To:From:Date:MIME-Version:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=BeEd1bjgVqI+6WM8IxHn3yBv6gBN5vUlSzEvbSv2GPY=; b=yMmYS8VgDQ27kiSVRfsNHb29iE
-        LPmdLaagH+bhjYa54+X3DMcJw/nqLZV5COm0Da2zOkefygoaxdrpUEvEHZmBtFVSzEFG9x1NIuXin
-        I1E5JmsDND6n2nkV9HZuv+1p5MFjUc+FoJDbKytPhTvY0MRa2F7TDed2QfZrlyxmEPFezW39If8ZR
-        llTMADSiNPRmBiZ72ZBx/mxD1WsEvyqYe2WHWTx83dzz1qTw7J73QFk0CDdeDSqELEzDMvAGMy+OK
-        9/A/IOH366nZ3vtIYr10sHMVvuSCsLkY1HJ6TRYo0Gx2ZTuUb633j1zBZovb0Pz192M3r0YlsTIN3
-        zIejNerg==;
-Received: from spamrelay.zxcs.nl ([185.104.28.12]:48016 helo=mail-slave02.zxcs.nl)
-        by web0081.zxcs.nl with esmtp (Exim 4.93.0.4)
-        (envelope-from <dev@pascalroeleven.nl>)
-        id 1jprV9-004AMs-6x; Mon, 29 Jun 2020 12:59:03 +0200
+        with ESMTP id S1731525AbgF2TNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:52 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1DFC0068BA;
+        Mon, 29 Jun 2020 04:49:32 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id e22so12548169edq.8;
+        Mon, 29 Jun 2020 04:49:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2uPO3vckqsooDcWfKZuORVgJvTI2dPV4QqBlpSlJ+WY=;
+        b=eDtph5pcsYHKVqyYe7AqdGWv7pSMpgITQFZvs/tZftfHXbon6dnQcD4JpPZjxHQ4F4
+         6Qi0Gxx6aAe54M7RXwfq7FsQrd54aX60+g3cBZ9COLWkFBcN2f+8NZmPYZ0/NGnAPacK
+         C44sHkNGCrA6E9leq32IEneHBWGF1XpmCsGzBiIjN9Nt+POJcFADpVYSffVo6ejOLTah
+         lE4W5B0yghA//VCbi493fDcVq892KnnCwZFJdO0XA0oZwD5H0YCL/dZnW/UYyPVeWWDt
+         YkyOJsSrGo/btZkZU7JP76om4gRGwk6XgIEgVb5wQxDaZOxxJ9kme+A4fhgZQXnYyF4i
+         pStA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2uPO3vckqsooDcWfKZuORVgJvTI2dPV4QqBlpSlJ+WY=;
+        b=YlGUEDK0rFZAS0NnsaEFxmEFv0dfMIXMmiqP+MFrQP/yk6LWuw+w8j7i75+8eyejrC
+         NM6fRRnjocCKIXcHjzv1Cebk3NTLaoyQBn4BvJZ+l81kvnDTCgZrcN0V1CV1Ken62tfb
+         pUfMNKA/fqNNGE1zo7bSO+5yZjBHlHfWilnRaEvl1iyl63TCUj2x0EKOqC6a5oxRxFEF
+         9eMY1845hMtGTuUM2bTaZNjHRTm6iaYw6II3YDLcoeWCwnInf93ANESZEpqyyJ0iamKm
+         lqBv+Hagx1aIP56Q5zs6HKaxPbuX3nCv+iUQYJ6VMO3MzBZfxKT7nazrCZ3gx6RLB0mm
+         ZZbQ==
+X-Gm-Message-State: AOAM53292xZoNRIXG5spEQp/w5uultxPiA5zP56Afqwp4L+OSoj3HVNs
+        WWPFmAVoGK4lP5ySkmAqgqSQgQIkvTM=
+X-Google-Smtp-Source: ABdhPJxX3ZkbA575LdtUr7ABCDWqwZSDSB4e/xyVQw9NjMO+OlKeImrqaZVJLNLDkt+5mICUb79hhw==
+X-Received: by 2002:a50:e1c5:: with SMTP id m5mr17248608edl.47.1593431370952;
+        Mon, 29 Jun 2020 04:49:30 -0700 (PDT)
+Received: from xps13.lan (3e6b1cc1.rev.stofanet.dk. [62.107.28.193])
+        by smtp.googlemail.com with ESMTPSA id z20sm9818006edq.97.2020.06.29.04.49.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jun 2020 04:49:30 -0700 (PDT)
+From:   Bruno Thomsen <bruno.thomsen@gmail.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, bth@kamstrup.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: ARM: imx: add kamstrup flex concentrator to schema
+Date:   Mon, 29 Jun 2020 13:49:25 +0200
+Message-Id: <20200629114927.17379-1-bruno.thomsen@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Date:   Mon, 29 Jun 2020 12:59:02 +0200
-From:   Pascal Roeleven <dev@pascalroeleven.nl>
-To:     laurent.pinchart@ideasonboard.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] Re: [PATCH v2 2/5] drm: panel: Add Starry KR070PE2T
-In-Reply-To: <20200628072819.GB8391@pendragon.ideasonboard.com>
-References: <20200320112205.7100-1-dev@pascalroeleven.nl>
- <20200320112205.7100-3-dev@pascalroeleven.nl>
- <20200628072819.GB8391@pendragon.ideasonboard.com>
-User-Agent: Roundcube Webmail/1.4.6
-Message-ID: <d43b324fa26638c179650e3c52adbf32@pascalroeleven.nl>
-X-Sender: dev@pascalroeleven.nl
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-AuthUser: 
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Add Kamstrup flex concentrator compatibles to the schema so we can
+make use of them for the validation.
 
-Good catch. It's actually the connector type which is wrong. The 
-connector_type should be DRM_MODE_CONNECTOR_DPI. If you would include 
-this in your patch series, you can have my acked-by.
+Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Regards,
-Pascal
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 05906e291e38..66627b272e40 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -299,6 +299,8 @@ properties:
+           - enum:
+               - fsl,imx7d-sdb             # i.MX7 SabreSD Board
+               - fsl,imx7d-sdb-reva        # i.MX7 SabreSD Rev-A Board
++              - kam,imx7d-flex-concentrator       # Kamstrup OMNIA Flex Concentrator
++              - kam,imx7d-flex-concentrator-mfg   # Kamstrup OMNIA Flex Concentrator in manufacturing mode
+               - novtech,imx7d-meerkat96   # i.MX7 Meerkat96 Board
+               - technexion,imx7d-pico-dwarf   # TechNexion i.MX7D Pico-Dwarf
+               - technexion,imx7d-pico-hobbit  # TechNexion i.MX7D Pico-Hobbit
 
-On 2020-06-28 09:28, Laurent Pinchart wrote:
-> Hi Pascal,
-> 
-> On Fri, Mar 20, 2020 at 12:21:33PM +0100, Pascal Roeleven wrote:
->> The KR070PE2T is a 7" panel with a resolution of 800x480.
->> 
->> KR070PE2T is the marking present on the ribbon cable. As this panel is
->> probably available under different brands, this marking will catch
->> most devices.
->> 
->> As I can't find a datasheet for this panel, the bus_flags are instead
->> from trial-and-error. The flags seem to be common for these kind of
->> panels as well.
->> 
->> Signed-off-by: Pascal Roeleven <dev@pascalroeleven.nl>
->> ---
->>  drivers/gpu/drm/panel/panel-simple.c | 29 
->> ++++++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/panel/panel-simple.c 
->> b/drivers/gpu/drm/panel/panel-simple.c
->> index e14c14ac6..b3d257257 100644
->> --- a/drivers/gpu/drm/panel/panel-simple.c
->> +++ b/drivers/gpu/drm/panel/panel-simple.c
->> @@ -2842,6 +2842,32 @@ static const struct panel_desc 
->> shelly_sca07010_bfn_lnn = {
->>  	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
->>  };
->> 
->> +static const struct drm_display_mode starry_kr070pe2t_mode = {
->> +	.clock = 33000,
->> +	.hdisplay = 800,
->> +	.hsync_start = 800 + 209,
->> +	.hsync_end = 800 + 209 + 1,
->> +	.htotal = 800 + 209 + 1 + 45,
->> +	.vdisplay = 480,
->> +	.vsync_start = 480 + 22,
->> +	.vsync_end = 480 + 22 + 1,
->> +	.vtotal = 480 + 22 + 1 + 22,
->> +	.vrefresh = 60,
->> +};
->> +
->> +static const struct panel_desc starry_kr070pe2t = {
->> +	.modes = &starry_kr070pe2t_mode,
->> +	.num_modes = 1,
->> +	.bpc = 8,
->> +	.size = {
->> +		.width = 152,
->> +		.height = 86,
->> +	},
->> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
->> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | 
->> DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
->> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> 
-> I'm trying to fix inconsistencies in the panel-simple driver, and this
-> caught my eyes. MEDIA_BUS_FMT_RGB888_1X24 isn't a correct format for
-> LVDS panels. MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
-> MEDIA_BUS_FMT_RGB888_1X7X4_SPWG or MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA
-> should be used instead. As I couldn't find documentation for the panel,
-> I can't tell which format is correct. Could you please help ?
-> 
->> +};
->> +
->>  static const struct drm_display_mode starry_kr122ea0sra_mode = {
->>  	.clock = 147000,
->>  	.hdisplay = 1920,
->> @@ -3474,6 +3500,9 @@ static const struct of_device_id 
->> platform_of_match[] = {
->>  	}, {
->>  		.compatible = "shelly,sca07010-bfn-lnn",
->>  		.data = &shelly_sca07010_bfn_lnn,
->> +	}, {
->> +		.compatible = "starry,kr070pe2t",
->> +		.data = &starry_kr070pe2t,
->>  	}, {
->>  		.compatible = "starry,kr122ea0sra",
->>  		.data = &starry_kr122ea0sra,
-> 
-> --
-> Regards,
-> 
-> Laurent Pinchart
+base-commit: 9ebcfadb0610322ac537dd7aa5d9cbc2b2894c68
+-- 
+2.26.2
 
