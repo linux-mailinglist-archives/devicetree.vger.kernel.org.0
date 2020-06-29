@@ -2,140 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E13F820D14D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:41:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74AFC20D13B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 20:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728238AbgF2SkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 14:40:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60654 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728191AbgF2SkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 14:40:21 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 90CF423CD0;
-        Mon, 29 Jun 2020 11:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593431023;
-        bh=ILZFwBhefvZnaUZ/7Eq1riYSV2CyDKBAdHgbSEH2bvk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a6eq+b/baQ8GRm4G4tA7nJQs1RF4yoXbAet+TfIH2YL8pVHzyt+ujIBmMtuPw+G55
-         jk2YHqwBRV4QvVyqu7Lm5tk+mzwndE62UwmdaHWhRifb9Wje5gTGF7Z/oqO6+w8ENI
-         ZYQGRwJn1Dal6tPhfOoEcg1AFPn+JyMwbtSySjbc=
-Date:   Mon, 29 Jun 2020 13:43:33 +0200
-From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-To:     Pawel Laszczak <pawell@cadence.com>
-Cc:     Peter Chen <peter.chen@nxp.com>, Felipe Balbi <balbi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
-        "ben.dooks@codethink.co.uk" <ben.dooks@codethink.co.uk>,
-        "colin.king@canonical.com" <colin.king@canonical.com>,
-        "rogerq@ti.com" <rogerq@ti.com>,
-        "weiyongjun1@huawei.com" <weiyongjun1@huawei.com>,
-        Jayshri Dajiram Pawar <jpawar@cadence.com>,
-        Rahul Kumar <kurahul@cadence.com>,
-        Sanket Parmar <sparmar@cadence.com>
-Subject: Re: [PATCH RFC 0/5] Introduced new Cadence USBSSP DRD Driver.
-Message-ID: <20200629114333.GB121549@kroah.com>
-References: <20200626045450.10205-1-pawell@cadence.com>
- <878sga5nfr.fsf@kernel.org>
- <BL0PR07MB5522A8796EE7BFB5062A8E76DD930@BL0PR07MB5522.namprd07.prod.outlook.com>
- <20200629034213.GB30684@b29397-desktop>
- <20200629043146.GA323164@kroah.com>
- <DM6PR07MB552969E5B50BF3B29547DAEADD6E0@DM6PR07MB5529.namprd07.prod.outlook.com>
+        id S1728124AbgF2Sjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 14:39:48 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:54506 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726084AbgF2Sjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:39:41 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05TCr25O015325;
+        Mon, 29 Jun 2020 07:53:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1593435182;
+        bh=P0UG0v9WZr2hySBskVuVNfPW+YNPbGGZZJtra3qz4wQ=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=BxIAXn9pA9SiL6e4p4eWsaoij0Hi+deiYTP2BN+gMGn9VYWWL8h+a8QtUv12ocBWT
+         ia1rvJwuMw5xlXW+2Qcp23rIjoi6WqaI1lKFDDQTbRbkhwReU4auk/olLTRmX7wp79
+         589Web2cMuwMWtPDEhaxXItGi5nSBXxPSNyiVRr0=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05TCr2NU111046
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 29 Jun 2020 07:53:02 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 29
+ Jun 2020 07:53:01 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 29 Jun 2020 07:53:01 -0500
+Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TCqugw015456;
+        Mon, 29 Jun 2020 07:52:59 -0500
+From:   Roger Quadros <rogerq@ti.com>
+To:     <t-kristo@ti.com>
+CC:     <robh@kernel.org>, <kishon@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Roger Quadros <rogerq@ti.com>
+Subject: [PATCH v4 1/6] dt-bindings: mfd: ti,j721e-system-controller.yaml: Add J721e system controller
+Date:   Mon, 29 Jun 2020 15:52:49 +0300
+Message-ID: <20200629125254.28754-2-rogerq@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200629125254.28754-1-rogerq@ti.com>
+References: <20200629125254.28754-1-rogerq@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR07MB552969E5B50BF3B29547DAEADD6E0@DM6PR07MB5529.namprd07.prod.outlook.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 29, 2020 at 11:20:00AM +0000, Pawel Laszczak wrote:
-> 
-> >> > Hi Felipe,
-> >> >
-> >> > >
-> >> > >Hi,
-> >> > >
-> >> > >Pawel Laszczak <pawell@cadence.com> writes:
-> >> > >> This patch introduce new Cadence USBSS DRD driver to linux kernel.
-> >> > >>
-> >> > >> The Cadence USBSS DRD Controller is a highly configurable IP Core which
-> >> > >> can be instantiated as Dual-Role Device (DRD), Peripheral Only and
-> >> > >> Host Only (XHCI)configurations.
-> >> > >>
-> >> > >> The current driver has been validated with FPGA burned. We have support
-> >> > >> for PCIe bus, which is used on FPGA prototyping.
-> >> > >>
-> >> > >> The host side of USBSS-DRD controller is compliance with XHCI
-> >> > >> specification, so it works with standard XHCI Linux driver.
-> >> > >>
-> >> > >> The host side of USBSS DRD controller is compliant with XHCI.
-> >> > >> The architecture for device side is almost the same as for host side,
-> >> > >> and most of the XHCI specification can be used to understand how
-> >> > >> this controller operates.
-> >> > >>
-> >> > >> This controller and driver support Full Speed, Hight Speed, Supper Speed
-> >> > >> and Supper Speed Plus USB protocol.
-> >> > >>
-> >> > >> The prefix cdnsp used in driver has chosen by analogy to cdn3 driver.
-> >> > >> The last letter of this acronym means PLUS. The formal name of controller
-> >> > >> is USBSSP but it's to generic so I've decided to use CDNSP.
-> >> > >>
-> >> > >> The patch 1: adds DT binding.
-> >> > >> The patch 2: adds PCI to platform wrapper used on Cadnece testing
-> >> > >>              platform. It is FPGA based on platform.
-> >> > >> The patches 3-5: add the main part of driver and has been intentionally
-> >> > >>              split into 3 part. In my opinion such division should not
-> >> > >>              affect understanding and reviewing the driver, and cause that
-> >> > >>              main patch (4/5) is little smaller. Patch 3 introduces main
-> >> > >>              header file for driver, 4 is the main part that implements all
-> >> > >>              functionality of driver and 5 introduces tracepoints.
-> >> > >
-> >> > >I'm more interested in how is this different from CDNS3. Aren't they SW compatible?
-> >> >
-> >> > In general, the controller can be split into 2 part- DRD part and the rest UDC.
-> >> >
-> >> > The second part UDC which consist gadget.c, ring.c and mem.c file is completely different.
-> >> >
-> >> > The DRD part contains drd.c and core.c.
-> >> > cdnsp drd.c is similar to cdns3 drd.c but it's little different. CDNSP has similar, but has different register space.
-> >> > Some register was moved, some was removed and some was added.
-> >> >
-> >> > core.c is very similar and eventually could be common for both drivers.  I thought about this but
-> >> > I wanted to avoid interfering with cdns3 driver at this point CDNSP is still under testing and
-> >> > CDNS3 is used by some products on the market.
-> >>
-> >> Pawel, I suggest adding CDNSP at driver/staging first since it is still
-> >> under testing. When you are thinking the driver (as well as hardware) are
-> >> mature, you could try to add gadget part (eg, gadget-v2) and make
-> >> necessary changes for core.c.
-> >
-> >I only take code for drivers/staging/ that for some reason is not
-> >meeting the normal coding style/rules/whatever.  For stuff that is an
-> >obvious duplicate of existing code like this, and needs to be
-> >rearchitected.  It is much more work to try to convert code once it is
-> >in the tree than to just do it out of the tree on your own and resubmit
-> >it, as you don't have to follow the in-kernel rules of "one patch does
-> >one thing" that you would if it was in staging.
-> >
-> >So don't think that staging is the right place for this, just spend a
-> >few weeks to get it right and then resubmit it.
-> >
-> 
-> Ok, 
-> I try to reuse the code from cdns3. Where  such common code should be
-> placed ? Should I move it to e.g. drivers/usb/common/cdns or it should remain in 
-> cdns3 directory.
+Add DT binding schema for J721e system controller.
 
-In the cdns3 directory makes the most sense.
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+---
+ .../mfd/ti,j721e-system-controller.yaml       | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
 
-thanks,
+diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+new file mode 100644
+index 000000000000..03d0a232c75e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,j721e-system-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI J721e System Controller Registers R/W Device Tree Bindings
++
++description: |
++  This represents the Control Module registers (CTRL_MMR0) on the SoC.
++  System controller node represents a register region containing a set
++  of miscellaneous registers. The registers are not cohesive enough to
++  represent as any specific type of device. The typical use-case is
++  for some other node's driver, or platform-specific code, to acquire
++  a reference to the syscon node (e.g. by phandle, node path, or
++  search using a specific compatible value), interrogate the node (or
++  associated OS driver) to determine the location of the registers,
++  and access the registers directly.
++
++maintainers:
++  - Kishon Vijay Abraham I <kishon@ti.com>
++  - Roger Quadros <rogerq@ti.com
++
++properties:
++  compatible:
++    anyOf:
++      - items:
++        - enum:
++           - ti,j721e-system-controller
++        - const: syscon
++        - const: simple-mfd
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++
++# Optional children
++
++  "^serdes-ln-ctrl@[0-9a-f]+$":
++    type: object
++    description: |
++      This is the SERDES lane control mux. It should follow the bindings
++      specified in
++      Documentation/devicetree/bindings/mux/reg-mux.txt
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    scm_conf: scm-conf@100000 {
++        compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
++        reg = <0x00100000 0x1c000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        serdes_ln_ctrl: serdes-ln-ctrl@4080 {
++            compatible = "mmio-mux";
++            reg = <0x00004080 0x50>;
++        };
++    };
++...
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-greg k-h
