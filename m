@@ -2,41 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DEA20D758
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7892C20D7EB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732347AbgF2T27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:28:59 -0400
-Received: from comms.puri.sm ([159.203.221.185]:43728 "EHLO comms.puri.sm"
+        id S1730578AbgF2TeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:34:00 -0400
+Received: from comms.puri.sm ([159.203.221.185]:43922 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731269AbgF2T26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:28:58 -0400
+        id S1730497AbgF2Td7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 15:33:59 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 2A8BDE0066;
-        Sun, 28 Jun 2020 23:33:02 -0700 (PDT)
+        by comms.puri.sm (Postfix) with ESMTP id 32B8FE00E1;
+        Sun, 28 Jun 2020 23:36:42 -0700 (PDT)
 Received: from comms.puri.sm ([127.0.0.1])
         by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id d8lQ6Y4R1a86; Sun, 28 Jun 2020 23:33:01 -0700 (PDT)
-Subject: Re: [PATCH v4 0/6] PM / devfreq: Add dynamic scaling for imx8m ddr
- controller
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Leonard Crestez <cdleonard@gmail.com>, leonard.crestez@nxp.com,
-        Anson.Huang@nxp.com, a.swigon@partner.samsung.com,
-        abailon@baylibre.com, aisheng.dong@nxp.com, angus@akkea.ca,
-        cw00.choi@samsung.com, devicetree@vger.kernel.org,
-        fabio.estevam@nxp.com, georgi.djakov@linaro.org,
-        kernel@pengutronix.de, krzk@kernel.org, kyungmin.park@samsung.com,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-imx@nxp.com, linux-pm@vger.kernel.org, mark.rutland@arm.com,
-        martink@posteo.de, mka@chromium.org, mturquette@baylibre.com,
-        myungjoo.ham@samsung.com, ping.bai@nxp.com, rjw@rjwysocki.net,
-        robh@kernel.org, saravanak@google.com, sboyd@kernel.org,
-        shawnguo@kernel.org, viresh.kumar@linaro.org
-References: <cover.1573252696.git.leonard.crestez@nxp.com>
- <20200622135858.15891-1-martin.kepplinger@puri.sm>
- <e8440abf-e51f-9846-f2af-a1a44a7fd89a@gmail.com>
- <b0f712d0-ea83-f073-f987-7bb33150f25d@puri.sm>
- <20200625144701.6xa7sdlm5llr5z3p@fsr-ub1664-175>
+        with ESMTP id rUhZomYSJLbQ; Sun, 28 Jun 2020 23:36:41 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] arm64: dts: Add a device tree for the Librem 5
+ phone
+To:     robh@kernel.org, kernel@puri.sm, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, mchehab@kernel.org, Anson.Huang@nxp.com,
+        agx@sigxcpu.org, angus@akkea.ca, broonie@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Baluta <daniel.baluta@nxp.com>
+References: <20200617073821.16737-1-martin.kepplinger@puri.sm>
 From:   Martin Kepplinger <martin.kepplinger@puri.sm>
 Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
  mQINBFULfZABEADRxJqDOYAHfrp1w8Egcv88qoru37k1x0Ugy8S6qYtKLAAt7boZW+q5gPv3
@@ -112,58 +102,67 @@ Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
  uV2Xzgbi3VEbw3GZr+EnDC7XNE2wUrnlD/w2W6RzVYjVT6IX4SamNlV+MWX0/1fYCutfqZl8
  6BSKmJjlWpfkPKzyzjhGQVZrTZYnKAu471hRv8/6Dx5JuZJgDCnYanNx3DDreRMu/nq6TfaO
  ekMtxgNYb/8oDry09UFHbGHLsWn6oBo=
-Message-ID: <f763f125-e796-5a12-69d9-52bb2efe4bce@puri.sm>
-Date:   Mon, 29 Jun 2020 08:32:49 +0200
+Message-ID: <1731775c-b94a-043a-c09e-8cca6ad8a8b0@puri.sm>
+Date:   Mon, 29 Jun 2020 08:36:34 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
-In-Reply-To: <20200625144701.6xa7sdlm5llr5z3p@fsr-ub1664-175>
+In-Reply-To: <20200617073821.16737-1-martin.kepplinger@puri.sm>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.06.20 16:47, Abel Vesa wrote:
-> On 20-06-25 08:57:52, Martin Kepplinger wrote:
->> hi Leonard,
->>
->> On 24.06.20 08:08, Leonard Crestez wrote:
->>> On 6/22/20 4:58 PM, Martin Kepplinger wrote:
->>>> hi Leondard,
->>>>
->>>> before using this patchset I'd like to ask: Do you have plans to create
->>>> an update and push this forward? It is useful.
->>>
->>> Hello.
->>>
->>> I am no longer with NXP and don't have access to imx hardware right now.
->>
->> I guess it'll get even harder to get the ATF part for devfreq
->> implemented now :) Thanks for the update and all the best for your new
->> stuff.
->>
->>>
->>> However the series that you replied to is very old and was accepted many
->>> months ago. You shouldn't have to apply out-of-tree kernel patches.
->>>
->>
->> that particular series doesn't seem to be in mainline, see
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Flatest%2Fsource%2Fdrivers%2Fdevfreq%2Fimx8m-ddrc.c%23L283&amp;data=02%7C01%7Cabel.vesa%40nxp.com%7Cb00f437e756d4850238f08d818d51b59%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637286650857331523&amp;sdata=S7%2BN3%2BiTFkUW5YnmVzl36wEBlr%2BkTatGoDDrvY9XfTk%3D&amp;reserved=0
->> or do I miss something?
->>
->> do you know who at nxp would be likely actively working on devfreq?
+On 17.06.20 09:38, Martin Kepplinger wrote:
+> From: "Angus Ainslie (Purism)" <angus@akkea.ca>
 > 
-> Hi Martin,
+> Add a devicetree description for the Librem 5 phone. The early batches
+> that have been sold are supported as well as the mass-produced device
+> available later this year, see https://puri.sm/products/librem-5/
 > 
-> I will be working on this in the following weeks.
+> This boots to a working console with working WWAN modem, wifi usdhc,
+> IMU sensor device, proximity sensor, haptic motor, gpio keys, GNSS and LEDs.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> For audio related part:
+> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+> 
+> revision history
+> ----------------
+> v3:
+> thanks a lot Mark for reviewing! changes since v2:
+>  * nicer audio cards names
+>  * squash unneeded audio_pwr regulator
+>  * remove the unneeded susphy_quirk from dwc3_1 after more testing
+>  * add usdhc2 card detect via gpio
+>  * add headphone detect for audio card
+> 
+> v2:
+> thanks a lot Marco, Daniel and Pavel for reviewing. changes since v1:
+>  * alphabetical sortings / more consistent node names
+>  * remove unused regulator and pinctrl descriptions
+>  * generic labels for leds, backlight, flash and torch
+>  * audio clk settings moved to sai2 node
+> https://lore.kernel.org/linux-arm-kernel/20200604084756.586-1-martin.kepplinger@puri.sm/T/
+> 
+> v1:
+> https://lore.kernel.org/linux-arm-kernel/20200514155737.12160-1-martin.kepplinger@puri.sm/
+> 
+> 
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |    1 +
+>  .../boot/dts/freescale/imx8mq-librem5.dts     | 1137 +++++++++++++++++
+>  2 files changed, 1138 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5.dts
 > 
 
-hi Abel,
+again thanks for reviewing so far. do you have any other objections or
+thoughts on this addition?
 
-that's good to hear. I'm basically always happy to test changes to
-devfreq (the ondemand governor or an atf implementation).
+                            martin
 
-thanks,
-                        martin
