@@ -2,68 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E87B820D805
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A49FD20D60D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730540AbgF2Te5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:34:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:41218 "EHLO foss.arm.com"
+        id S1730996AbgF2TRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:17:07 -0400
+Received: from mga01.intel.com ([192.55.52.88]:63701 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730794AbgF2Tez (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jun 2020 15:34:55 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B92501045;
-        Mon, 29 Jun 2020 01:55:19 -0700 (PDT)
-Received: from bogus (unknown [10.37.12.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 462B83F71E;
-        Mon, 29 Jun 2020 01:55:17 -0700 (PDT)
-Date:   Mon, 29 Jun 2020 09:55:10 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 04/20] arm64: dts: arm: vexpress: Move fixed devices
- out of bus node
-Message-ID: <20200629085510.GA9940@bogus>
-References: <20200513103016.130417-1-andre.przywara@arm.com>
- <20200513103016.130417-5-andre.przywara@arm.com>
- <20200528024810.GA232303@roeck-us.net>
- <20200528025552.GA232631@roeck-us.net>
- <20200627035753.GA63049@roeck-us.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200627035753.GA63049@roeck-us.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1731798AbgF2TRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 15:17:00 -0400
+IronPort-SDR: zQVslvxTdUJYmnYaCQxQykC8p0vqjS7YNVyM89ASyWn/EjmwOMcb9QKBeHGZqkvJqLKh+rDWu3
+ IHTOxb5iJr5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="163944968"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; 
+   d="scan'208";a="163944968"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2020 02:04:04 -0700
+IronPort-SDR: efGfS+925yJcyydLz+hA38uSECBwuq0VTi09MpkwYmNzyQB8Hi5E4S5E6idD+Kk58G5TjNEWpo
+ 96wjqlfNb0qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; 
+   d="scan'208";a="424750634"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by orsmga004.jf.intel.com with ESMTP; 29 Jun 2020 02:04:01 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org
+Cc:     thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v3 2/2] Add PWM fan controller driver for LGM SoC
+Date:   Mon, 29 Jun 2020 17:03:47 +0800
+Message-Id: <df22a642083474e71f9f8274c033a6ef9757af5f.1593420979.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1593420979.git.rahul.tanwar@linux.intel.com>
+References: <cover.1593420979.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <cover.1593420979.git.rahul.tanwar@linux.intel.com>
+References: <cover.1593420979.git.rahul.tanwar@linux.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 26, 2020 at 08:57:53PM -0700, Guenter Roeck wrote:
->
-> The problem reported below is still seen in the mainline kernel.
->
-> > Here is my list of reverts on top of next-20200526:
-> >
-> > bdc8a817612b (HEAD -> master) Revert "arm64: dts: vexpress: Move fixed devices out of bus node"
-> > 9a1f85df9e1a Revert "arm64: dts: fvp/juno: Fix serial node names"
-> > 381e0bbe8c00 Revert "arm64: dts: fvp/juno: Fix bus node names"
-> > 63723f67bf4b Revert "arm64: dts: vexpress: Fix VExpress LED names"
-> >
->
-> Maybe all those patches should be reverted if no fix is in sight ?
->
+Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
+This PWM controller does not have any other consumer, it is a
+dedicated PWM controller for fan attached to the system. Add
+driver for this PWM fan controller.
 
-I have pushed the fix to -next already more than 2 weeks ago and sent
-the pull request to Arm SoC team. I see it just landed in main over the
-weekend. Arm SoC team tend to wait until enough fixes get accumulate.
+Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+---
+ drivers/pwm/Kconfig         |   9 ++
+ drivers/pwm/Makefile        |   1 +
+ drivers/pwm/pwm-intel-lgm.c | 265 ++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 275 insertions(+)
+ create mode 100644 drivers/pwm/pwm-intel-lgm.c
 
---
-Regards,
-Sudeep
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index cb8d739067d2..a3303e22d5fa 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -232,6 +232,15 @@ config PWM_IMX_TPM
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called pwm-imx-tpm.
+ 
++config PWM_INTEL_LGM
++	tristate "Intel LGM PWM support"
++	depends on X86 || COMPILE_TEST
++	help
++	  Generic PWM fan controller driver for LGM SoC.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called pwm-intel-lgm.
++
+ config PWM_IQS620A
+ 	tristate "Azoteq IQS620A PWM support"
+ 	depends on MFD_IQS62X || COMPILE_TEST
+diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+index a59c710e98c7..db154a6b4f51 100644
+--- a/drivers/pwm/Makefile
++++ b/drivers/pwm/Makefile
+@@ -20,6 +20,7 @@ obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
+ obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
+ obj-$(CONFIG_PWM_IMX27)		+= pwm-imx27.o
+ obj-$(CONFIG_PWM_IMX_TPM)	+= pwm-imx-tpm.o
++obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
+ obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
+ obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
+ obj-$(CONFIG_PWM_LP3943)	+= pwm-lp3943.o
+diff --git a/drivers/pwm/pwm-intel-lgm.c b/drivers/pwm/pwm-intel-lgm.c
+new file mode 100644
+index 000000000000..661fa7d9145d
+--- /dev/null
++++ b/drivers/pwm/pwm-intel-lgm.c
+@@ -0,0 +1,265 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2020 Intel Corporation.
++ *
++ * Notes & Limitations:
++ * - The hardware supports fixed period which is dependent on 2/3 or 4
++ *   wire fan mode.
++ * - Supports normal polarity. Does not support changing polarity.
++ * - When PWM is disabled, output of PWM will become 0(inactive). It doesn't
++ *   keep track of running period.
++ * - When duty cycle is changed, PWM output may be a mix of previous setting
++ *   and new setting for the first period. From second period, the output is
++ *   based on new setting.
++ * - Supports 100% duty cycle.
++ * - It is a dedicated PWM fan controller. There are no other consumers for
++ *   this PWM controller.
++ */
++#include <linux/bitfield.h>
++#include <linux/clk.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/pwm.h>
++#include <linux/regmap.h>
++#include <linux/reset.h>
++
++#define PWM_FAN_CON0		0x0
++#define PWM_FAN_EN_EN		BIT(0)
++#define PWM_FAN_EN_DIS		0x0
++#define PWM_FAN_EN_MSK		BIT(0)
++#define PWM_FAN_MODE_2WIRE	0x0
++#define PWM_FAN_MODE_4WIRE	0x1
++#define PWM_FAN_MODE_MSK	BIT(1)
++#define PWM_FAN_DC_MSK		GENMASK(23, 16)
++
++#define PWM_FAN_CON1		0x4
++#define PWM_FAN_MAX_RPM_MSK	GENMASK(15, 0)
++
++#define MAX_RPM			(BIT(16) - 1)
++#define DFAULT_RPM		4000
++#define MAX_DUTY_CYCLE		(BIT(8) - 1)
++
++#define DC_BITS			8
++
++#define PERIOD_2WIRE_NSECS	40000000
++#define PERIOD_4WIRE_NSECS	40000
++
++#define LGM_PWM_DIV_ROUND_DOWN(n, d) (((n) + ((d) / 2) - 1) / (d))
++
++struct lgm_pwm_chip {
++	struct pwm_chip chip;
++	struct regmap *regmap;
++	struct clk *clk;
++	struct reset_control *rst;
++	u32 period;
++};
++
++static inline struct lgm_pwm_chip *to_lgm_pwm_chip(struct pwm_chip *chip)
++{
++	return container_of(chip, struct lgm_pwm_chip, chip);
++}
++
++static int lgm_pwm_enable(struct pwm_chip *chip, bool enable)
++{
++	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
++	struct regmap *regmap = pc->regmap;
++
++	if (enable)
++		regmap_update_bits(regmap, PWM_FAN_CON0,
++				   PWM_FAN_EN_MSK, PWM_FAN_EN_EN);
++	else
++		regmap_update_bits(regmap, PWM_FAN_CON0,
++			   	   PWM_FAN_EN_MSK, PWM_FAN_EN_DIS);
++
++	return 0;
++}
++
++static int lgm_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
++			 const struct pwm_state *state)
++{
++	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
++	u32 duty_cycle, val;
++	unsigned int period;
++
++	period = min_t(unsigned int, state->period, pc->period);
++
++	if (state->polarity != PWM_POLARITY_NORMAL ||
++	    period < pc->period)
++		return -EINVAL;
++
++	duty_cycle = min_t(u32, state->duty_cycle, period);
++
++	/* reg_value = duty_ns * MAX_REG_VAL(0xff) / period_ns */
++	val = LGM_PWM_DIV_ROUND_DOWN(duty_cycle << DC_BITS, period);
++	val = min_t(u32, val, MAX_DUTY_CYCLE);
++
++	regmap_update_bits(pc->regmap, PWM_FAN_CON0, PWM_FAN_DC_MSK,
++			   FIELD_PREP(PWM_FAN_DC_MSK, val));
++
++	if (state->enabled != regmap_test_bits(pc->regmap, PWM_FAN_CON0,
++					       PWM_FAN_EN_EN))
++		lgm_pwm_enable(chip, state->enabled);
++
++	return 0;
++}
++
++static void lgm_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
++			      struct pwm_state *state)
++{
++	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
++	u32 duty, val;
++
++	state->enabled = regmap_test_bits(pc->regmap, PWM_FAN_CON0,
++					  PWM_FAN_EN_EN);
++	state->polarity = PWM_POLARITY_NORMAL;
++	state->period = pc->period; /* fixed period */
++
++	regmap_read(pc->regmap, PWM_FAN_CON0, &val);
++	duty = FIELD_GET(PWM_FAN_DC_MSK, val);
++	state->duty_cycle = duty * pc->period >> DC_BITS;
++	state->duty_cycle = roundup_pow_of_two(state->duty_cycle);
++}
++
++static const struct pwm_ops lgm_pwm_ops = {
++	.get_state = lgm_pwm_get_state,
++	.apply = lgm_pwm_apply,
++	.owner = THIS_MODULE,
++};
++
++static void lgm_pwm_init(struct lgm_pwm_chip *pc)
++{
++	struct device *dev = pc->chip.dev;
++	struct regmap *regmap = pc->regmap;
++	u32 max_rpm, fan_wire, con0_val, con0_mask;
++
++	if (device_property_read_u32(dev, "intel,fan-wire", &fan_wire))
++		fan_wire = 2; /* default is 2 wire mode */
++
++	con0_mask = PWM_FAN_MODE_MSK;
++
++	switch (fan_wire) {
++	case 4:
++		con0_val = FIELD_PREP(PWM_FAN_MODE_MSK, PWM_FAN_MODE_4WIRE);
++		pc->period = PERIOD_4WIRE_NSECS;
++		break;
++	default:
++		/* default is 2wire mode */
++		con0_val = FIELD_PREP(PWM_FAN_MODE_MSK, PWM_FAN_MODE_2WIRE);
++		pc->period = PERIOD_2WIRE_NSECS;
++		break;
++	}
++
++	if (device_property_read_u32(dev, "intel,max-rpm", &max_rpm))
++		max_rpm = DFAULT_RPM;
++
++	max_rpm = min_t(u32, max_rpm, MAX_RPM);
++	if (max_rpm == 0)
++		max_rpm = DFAULT_RPM;
++
++	regmap_update_bits(regmap, PWM_FAN_CON1, PWM_FAN_MAX_RPM_MSK, max_rpm);
++	regmap_update_bits(regmap, PWM_FAN_CON0, con0_mask, con0_val);
++}
++
++static const struct regmap_config lgm_pwm_regmap_config = {
++	.reg_bits = 32,
++	.reg_stride = 4,
++	.val_bits = 32,
++};
++
++static int lgm_pwm_probe(struct platform_device *pdev)
++{
++	struct lgm_pwm_chip *pc;
++	struct device *dev = &pdev->dev;
++	void __iomem *io_base;
++	int ret;
++
++	pc = devm_kzalloc(dev, sizeof(*pc), GFP_KERNEL);
++	if (!pc)
++		return -ENOMEM;
++
++	io_base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(io_base))
++		return PTR_ERR(io_base);
++
++	pc->regmap = devm_regmap_init_mmio(dev, io_base, &lgm_pwm_regmap_config);
++	if (IS_ERR(pc->regmap)) {
++		ret = PTR_ERR(pc->regmap);
++		dev_err(dev, "failed to init register map: %pe\n", pc->regmap);
++		return ret;
++	}
++
++	pc->clk = devm_clk_get(dev, NULL);
++	if (IS_ERR(pc->clk)) {
++		ret = PTR_ERR(pc->clk);
++		dev_err(dev, "failed to get clock: %pe\n", pc->clk);
++		return ret;
++	}
++
++	pc->rst = devm_reset_control_get_exclusive(dev, NULL);
++	if (IS_ERR(pc->rst)) {
++		ret = PTR_ERR(pc->rst);
++		dev_err(dev, "failed to get reset control: %pe\n", pc->rst);
++		return ret;
++	}
++
++	ret = reset_control_deassert(pc->rst);
++	if (ret) {
++		dev_err(dev, "cannot deassert reset control: %pe\n",
++			ERR_PTR(ret));
++		return ret;
++	}
++
++	ret = clk_prepare_enable(pc->clk);
++	if (ret) {
++		dev_err(dev, "failed to enable clock\n");
++		return ret;
++	}
++
++	pc->chip.dev = dev;
++	pc->chip.ops = &lgm_pwm_ops;
++	pc->chip.npwm = 1;
++
++	lgm_pwm_init(pc);
++
++	ret = pwmchip_add(&pc->chip);
++	if (ret < 0) {
++		dev_err(dev, "failed to add PWM chip: %pe\n", ERR_PTR(ret));
++		clk_disable_unprepare(pc->clk);
++		reset_control_assert(pc->rst);
++		return ret;
++	}
++
++	platform_set_drvdata(pdev, pc);
++	return 0;
++}
++
++static int lgm_pwm_remove(struct platform_device *pdev)
++{
++	struct lgm_pwm_chip *pc = platform_get_drvdata(pdev);
++	int ret;
++
++	ret = pwmchip_remove(&pc->chip);
++	if (ret < 0)
++		return ret;
++
++	clk_disable_unprepare(pc->clk);
++	reset_control_assert(pc->rst);
++
++	return 0;
++}
++
++static const struct of_device_id lgm_pwm_of_match[] = {
++	{ .compatible = "intel,lgm-pwm" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, lgm_pwm_of_match);
++
++static struct platform_driver lgm_pwm_driver = {
++	.driver = {
++		.name = "intel-pwm",
++		.of_match_table = lgm_pwm_of_match,
++	},
++	.probe = lgm_pwm_probe,
++	.remove = lgm_pwm_remove,
++};
++module_platform_driver(lgm_pwm_driver);
+-- 
+2.11.0
+
