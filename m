@@ -2,72 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A13E620D9BF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2016520D9C2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 22:12:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387524AbgF2Tu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48126 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387736AbgF2Tkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:40:35 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B14C03E97E
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:40:35 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id e4so19607216ljn.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 12:40:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
-        b=g/jZ69PLn/eayNFGBAGYEdpOkAGxA4nsGE1JwAc0+meMul90celMORM+1vq1PnAiXj
-         A8P2O0RRjPRv1vgIgQo/FFCfB5orZs7dE5gBWrIHdd8ejdCI0rdUkfDHWhT8fFK1Vst+
-         KpNcseAnIOuiT1kq8VaWBd174sR4k6MbvFexafkerpNwqfeq88uMf2cPnzgsTVo6Rhhp
-         8WhqUbJMmhbNJga0wvTpMzwOJR4i7BqtMd9Atk7Ew7YGFpv36GmVhxvcl/LNR5DXPqCA
-         rWuIlrTQXnmYTyZugbwmaltTyIbVHzmXfOLhKACueCLhcTY0PUd1jMh/HWwhJE5upVV7
-         TEfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=XdfoRVGuOCD2JOxmLnJxyvoO2f5zjf1xh4i//8cGLHs=;
-        b=DIVioHicNwFlmBraDt0SwGU1UfKNkjQsFcSpkVf7DTjOoRuHRdwl23ZaniTOrNUsda
-         aKKH+Tqfc5VUb2Q6C7iNILFz9EuemqkyBg+LiAUTp0ExSmhegozHmVzHv10Cu4tPmILi
-         fwrXu58WcuJ0KUGI4tcYXznlSArG3vEQYP0b+boYDja0zpRBzR/8L08e+iqhilOEldTB
-         TsydCFqBx2QUH0WykY0zljgkuPa/I1HIPOs4ulDWrEvjC1kqiCSNcZfJhj7YlMvAq5zK
-         kTTKGNxDzIrhRz11yIrd8X36bnOU3/DHTkstWKmrYwqXs6i7YWz6yyrm0+BYqkW22UdT
-         C/Yg==
-X-Gm-Message-State: AOAM530xH+nQkTL4uVOhVm9ETGZ5jfKyRFGcZQ9Z62LDlNQ7Zim2GSL2
-        1vPBstD5oZ4bRLs5MgJ1FnInPzrY8ZkHU7pp4yM=
-X-Google-Smtp-Source: ABdhPJzWpDrvyatK3B6tUW1NFjZwrYkHxjRbFr/x7Ew3e08zJhfO5JFSNzoTRx+yuOlV4YNNL14TzC6DcP4dOTBrSCc=
-X-Received: by 2002:a2e:9e4f:: with SMTP id g15mr8859495ljk.159.1593459633785;
- Mon, 29 Jun 2020 12:40:33 -0700 (PDT)
+        id S2387739AbgF2Tuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 15:50:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57104 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388075AbgF2Tub (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 15:50:31 -0400
+Received: from [192.168.0.50] (89-70-52-201.dynamic.chello.pl [89.70.52.201])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E796920702;
+        Mon, 29 Jun 2020 19:50:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593460231;
+        bh=Gv9PLMZnlHIBTdk8O+vpWP9KP6QOJHRkkviInyIDGFY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=pRE1DYgdoC+D7zeA7XuI7g0EKUwKzDggaCcFUh8Yez80tWfqrygUio+UBwLy+RI4C
+         /Dy2ktTmVZ24qt23e64C7C1Cv6wAwcKUrJdZNscvrAidcoSOZjDvoageMG4p8YrVXC
+         5qvJmj+i6DG306rIUjaJRse+BMv8Y+J6eyP4Oga4=
+Subject: Re: [PATCH 1/3] ARM: dts: exynos: Fix missing empty reg/ranges
+ property regulators on Trats
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>
+References: <20200629193338.29540-1-krzk@kernel.org>
+From:   Sylwester Nawrocki <snawrocki@kernel.org>
+Message-ID: <03a23289-1188-db77-6c38-a7dddeac183c@kernel.org>
+Date:   Mon, 29 Jun 2020 21:50:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Received: by 2002:a2e:a551:0:0:0:0:0 with HTTP; Mon, 29 Jun 2020 12:40:33
- -0700 (PDT)
-Reply-To: daborahraymond@gmail.com
-From:   "Mrs. Daborah Raymond" <aleksandralex37@gmail.com>
-Date:   Mon, 29 Jun 2020 12:40:33 -0700
-Message-ID: <CAF4h0eahRyy=fsNjAJtnTO2RaW6ZFC22Mmg47FzC_rTaoSUDqQ@mail.gmail.com>
-Subject: Hello,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200629193338.29540-1-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear friend,
+Hi Krzysztof,
 
+On 6/29/20 21:33, Krzysztof Kozlowski wrote:
+> Remove the simple-bus compatible from a regulators node because its
+> children do not have any unit addresses.  This fixes DTC warning:
+> 
+>      Warning (simple_bus_reg): /regulators/regulator-0: missing or empty reg/ranges property
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>   arch/arm/boot/dts/exynos4210-trats.dts | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+> index 3d791db6095c..cec413ee4490 100644
+> --- a/arch/arm/boot/dts/exynos4210-trats.dts
+> +++ b/arch/arm/boot/dts/exynos4210-trats.dts
+> @@ -31,8 +31,6 @@
+>   	};
+>   
+>   	regulators {
+> -		compatible = "simple-bus";
 
-I have a business container transaction what that some of( $13million dollars)
+I think you would also need to remove the 'regulators' node altogether, 
+otherwise with your change the subnodes below won't get parsed and the 
+regulators will not get registered.
 
- I would like to discuss with you. If you are interested, please
-contact my email
+>   		vemmc_reg: regulator-0 {
+>   			compatible = "regulator-fixed";
+>   			regulator-name = "VMEM_VDD_2.8V";
+> 
 
-address (mrs.victoria.alexander2@gmail.com)
-
-My WhatsApp number but only message (+19293737780)
-
-Please do not reply if you are not ready
-Thanks
+--
+Thanks,
+Sylwester
