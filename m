@@ -2,115 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6852F20E923
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00AB520E938
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 01:21:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729428AbgF2XMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 19:12:15 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:42357 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727819AbgF2XMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 19:12:15 -0400
-Received: by mail-io1-f65.google.com with SMTP id c16so19022582ioi.9;
-        Mon, 29 Jun 2020 16:12:14 -0700 (PDT)
+        id S1728409AbgF2XTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 19:19:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728131AbgF2XTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 19:19:47 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF169C03E979
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 16:19:47 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id gc9so2182367pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 16:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=7BCJlfo7G05xbD0az983kKAGFwTGf/oknVgG88bEOuo=;
+        b=TNGaxkB4WqrzO1Rk2s8RincaD8Rigbs1OexXplCAyMg266FHEL1M5oJZrqqCc4OtXC
+         dp31cQYL6GvgZWbR4tfGNlmCwOL8ISJsaS6+8H/YyjK816ypFrD15qyg/sygrl2v6rKS
+         KvaPkQipNntsnindjHXBkzi19Wb2/S9eqVQ84Gy22MprFtGor1olAX78/0rFk/syv8J2
+         XRmPVPpEOBPLPUURo9vOOiZ9w040EIggc2A2RC6p3/F4ePo0v5eDZr+AaHShDKt1pcnp
+         WWU/sRbTyynjwsbTCN/rjvHArtlod0LWN3Sj6mMcXhil62v6nUoNNXdJd7tMDct8s2m9
+         Gd0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=op3i3z1L0LUQ12QfWOlDxJhiavChzqvWXr19iexaQZg=;
-        b=OQzAAqKgEHjysFnvuLkZfU2XFlsLpr0eaUkY8EMniHyH0G5kodDF9FgBMkzBl/HqFL
-         drCzXwx48IIoGURyAYf2Xo7wKl1A14t460pQ0R25dpeBRRdvjycuuVuB772WOwbbTeOi
-         9ov/q94D8bM5Txp9Eo6BiI9CEStufSoVaVpXd0fdL9S8D9nlsIeIjj72UGYeNGGsLaay
-         5Ep0rAX60qJFRINmHM86LJ4t5nTGxa7hpKsCvsQQhtzwFkkoKPT0kJSvSboHv4Tnr8To
-         bQnHx/+MEZEigLR+MPNKhFj3L2cu/RgzAFJYG1PXVT+Eiq3QO9XU4p4It23IkOuDChIH
-         c7dg==
-X-Gm-Message-State: AOAM531U23dmZDLqHOxmAMymURqUCw0i0AUF/gXCUPhPrF/weccACake
-        bPYsDvjX3F7ciHUWjmQd6w==
-X-Google-Smtp-Source: ABdhPJwqWxmbojLKjuDjx9fPibAgiAZ1p7u7BMvYsmcT/Qp0Zxzr9XR5iIvt0bzy9xxkhE4ie/Qu6w==
-X-Received: by 2002:a02:8796:: with SMTP id t22mr13133151jai.90.1593472334118;
-        Mon, 29 Jun 2020 16:12:14 -0700 (PDT)
-Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id e4sm697936ilq.68.2020.06.29.16.12.12
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=7BCJlfo7G05xbD0az983kKAGFwTGf/oknVgG88bEOuo=;
+        b=boOCcQykfqFgjS/HhUfTSe9SRfcTbMAVLdGCNrpRF5tb5/PFC6FPUhQDIoW61ToGWB
+         +OPVfXfC2UDEb70eMtHcv9Hr78NItG99FB+wiOo8T405doZEQkn4CK+LgxP1oLn6j1FP
+         bc3m+QupLhAR69cPut+wEf/A2AByxXVmjQhoag1HRVuUG/qrXIoch0bwo/KoVmPqCpWm
+         LZoYTqa4lZVQ5kQI9fEEy9UkqlU1MS1ipBVCOK3Glfuh0V96OdJDY24dwXq4VghxG3/1
+         Hh8bKD6E/y85eWKGZZ8BKxyEgDQVSz3H4hlJdZP9UmhAVHGy459zAoWhsILBzjYcRThG
+         OP7Q==
+X-Gm-Message-State: AOAM530XIg+kN26ZLaIOGJr6RXYb5jyTBWCgjgfd2EToa2oAWQtuzIL/
+        Lq4XgHzU6hPZxLqDCMyONlQTBg==
+X-Google-Smtp-Source: ABdhPJx0eXNtAX3bA2KoFAmvdhYvpSuaxwQz3i/aAvo77Rr8UlXpr4imdKYkriuLLMVI7PdD3GaHpQ==
+X-Received: by 2002:a17:902:b90c:: with SMTP id bf12mr15253811plb.61.1593472787396;
+        Mon, 29 Jun 2020 16:19:47 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id 9sm623822pfh.160.2020.06.29.16.19.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 16:12:13 -0700 (PDT)
-Received: (nullmailer pid 3148645 invoked by uid 1000);
-        Mon, 29 Jun 2020 23:12:11 -0000
-Date:   Mon, 29 Jun 2020 17:12:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/7] of_graph: add of_graph_presents()
-Message-ID: <20200629231211.GA3142766@bogus>
-References: <20200617222703.17080-1-digetx@gmail.com>
- <20200617222703.17080-2-digetx@gmail.com>
+        Mon, 29 Jun 2020 16:19:46 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson: add missing gxl rng clock
+Date:   Mon, 29 Jun 2020 16:19:44 -0700
+Message-Id: <159347276726.1911.12754465903057336311.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200617125346.1163527-1-jbrunet@baylibre.com>
+References: <20200617125346.1163527-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200617222703.17080-2-digetx@gmail.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 18, 2020 at 01:26:57AM +0300, Dmitry Osipenko wrote:
-> In some case, like a DRM display code for example, it's useful to silently
-> check whether port node exists at all in a device-tree before proceeding
-> with parsing of the graph.
-> 
-> This patch adds of_graph_presents() that returns true if given device-tree
-> node contains OF graph port.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/of/property.c    | 52 +++++++++++++++++++++++++++++++++-------
->  include/linux/of_graph.h |  6 +++++
->  2 files changed, 49 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 1f2086f4e7ce..b84ed6a7cf50 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -29,6 +29,48 @@
->  
->  #include "of_private.h"
->  
-> +/**
-> + * of_graph_get_first_local_port() - get first local port node
-> + * @node: pointer to a local endpoint device_node
-> + *
-> + * Return: First local port node associated with local endpoint node linked
-> + *	   to @node. Use of_node_put() on it when done.
-> + */
-> +static struct device_node *
-> +of_graph_get_first_local_port(const struct device_node *node)
-> +{
-> +	struct device_node *ports, *port;
-> +
-> +	ports = of_get_child_by_name(node, "ports");
-> +	if (ports)
-> +		node = ports;
-> +
-> +	port = of_get_child_by_name(node, "port");
-> +	of_node_put(ports);
-> +
-> +	return port;
-> +}
-> +
-> +/**
-> + * of_graph_presents() - check graph's presence
-> + * @node: pointer to a device_node checked for the graph's presence
-> + *
-> + * Return: True if @node has a port or ports sub-node, false otherwise.
-> + */
-> +bool of_graph_presents(const struct device_node *node)
+On Wed, 17 Jun 2020 14:53:46 +0200, Jerome Brunet wrote:
+> The peripheral clock of the RNG is missing for gxl while it is present
+> for gxbb.
 
-of_graph_is_present
+Applied, thanks!
 
-Otherwise,
+[1/1] arm64: dts: meson: add missing gxl rng clock
+      commit: 95ca6f06dd4827ff63be5154120c7a8511cd9a41
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
