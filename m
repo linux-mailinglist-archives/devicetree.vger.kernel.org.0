@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1662A20E5F4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5556920E62F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391105AbgF2VnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37566 "EHLO
+        id S1727935AbgF2VpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:45:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727871AbgF2Shv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:37:51 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317B3C031430
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:11 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id v19so13398587qtq.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:11 -0700 (PDT)
+        with ESMTP id S1727791AbgF2Sho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 14:37:44 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841C3C03143E
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:18 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id j80so15981209qke.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 10:21:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=marek-ca.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XikCz1+zr3FnvV2tYs/cOdK5k7ijVDZQLAkhovyJ9wo=;
-        b=oHzmtKVg4mDiXoIv90UY28rvbCERFVLGDpG/7OO1sWyA7OiOM8riiwAC+72M9N9i9y
-         TLg/CuNCRxl/UgM1VIft/qGTEG7l6vzZAFa/nN6A5vTVqSaBzSi/hi09c0tJtDq9MSfr
-         xYYf2me8OnHTlP6mo8vvmYDR4H/OHrDzF4O3QOIr5N2uudWtJEItuusx+10iNEjJTUOT
-         cH+IUlZcgYaXYLM50l3GFnbZdZha8zlsEy+4eePbHv4YCV9xB6Xvqz8vscWhvA1IR+pC
-         VTfkJ8zUy0GJ4GVvgBercGjMxA/jwmWSpnASmPEt+EG9ldlQAEHr2AK0tk03kKEn/FnS
-         59UA==
+        bh=I8kRZdRWy2CNksnUvA4vMT2OP8+RWTSu608AfsNc9EI=;
+        b=1apygDmxhVUeOck6YT2ehOf2FANif1flKXbiiH5pwXFOcVL3MCIB3rLJrm2Fi891Nk
+         MzNgJTynEbZEM6RmPWC6rQmHM0xisz7BS8Mjwg5hVhCpoBkycd9Pa4/fDRmeJb2AfcSt
+         PKq/bGA9ZrC0iJjj+vpWRm5jsPwpOjtmRa2PZluqW4vceoiYtwMp1hIUCJHzoLXAxogj
+         8qFJKmVqbkr6Il3ywL6U/S+ON5fpqB5wHxar/Oy1UeEpnPh8SP4+3Wem9ylowQrGiRHD
+         e242nR2eel4UrZ83dpXwhn3F0kpR9CteDtJEr++DuU2FRVyM73GrngJ/hGJ73KXTgy5s
+         9fkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XikCz1+zr3FnvV2tYs/cOdK5k7ijVDZQLAkhovyJ9wo=;
-        b=Sxo6hKHurDjHeszJXDtNWth/TJfJIa7r5SzwYCqS9L5vrtglhfmmoc2cPSyBjAzccn
-         MJetiqq+6nbJFYn1bcU9Otr8b5QbNRcwyhJ03xvCdqB806zvb1YqobQT3VArXSeyVMn7
-         HhVeEclv2IC68BtfVWmuuMByjYKLaXPfiFycB5mmrPOdDrfS0cPYD3jo3EU84VgrkzCk
-         k8mmp4RNTqklLSlxOe3otkfBGujj2f9qTeE0+eNuC3pIuHA57L97QonZ8pe2d/lNtNd0
-         kNewmjyPUnu6ft6tiY4lJWw8MgdzNyWnATlfWb0UGCWUiLex+s/4XdouGkMsha+fbPHg
-         zz7A==
-X-Gm-Message-State: AOAM532Lb7kbpYffwtmUMIsOCIHQo+UAZkxwNzJIFg9iw/4OA9o5TzhU
-        Ofop7YIrlgGHadpgNL3IYbtx9QSEyys=
-X-Google-Smtp-Source: ABdhPJx3skupfPl9B/dzCTc8I20RAdMZje7jYDHR44GD9LAHO48epycaqSeUhhgZpCUM6hLNojrG5g==
-X-Received: by 2002:ac8:378f:: with SMTP id d15mr16598634qtc.256.1593451270376;
-        Mon, 29 Jun 2020 10:21:10 -0700 (PDT)
+        bh=I8kRZdRWy2CNksnUvA4vMT2OP8+RWTSu608AfsNc9EI=;
+        b=JPGFBCMYQKB0oEYNop93IS3ZSamfsfR3wJ4b9CLBWab9mnkim8EyhaEJ7u6Ojj+CX9
+         6QiodxGEKWayJLbMRLWbjUErp4gUyf6xzQWIJecZ9VKB2Gbeeuumwr+zQRAxS1UJWI8O
+         +9W9EceWVY+Q2O+UIdLJGj0ZCnMZGwHy4Cgiin0UcfZHL5iIxteH2jwgf5DpzFvKYp1w
+         4vTNJQEi2CkdXK+phykqBTJzry0JBzQEYFY7msEOH2+1I5WNm65ZxhPaad7McWq7Lkha
+         rtQwyNZ/P5kMqUoamKEB1WblYx0nl1j2jgn4rN7ZYUyz03nLQFqz6LT1B9EsmL9izr/s
+         sTyA==
+X-Gm-Message-State: AOAM533H6RaOkNEisp6fuRZJHU5/4BMGl88Uy5fDw9gu5D0pZWZvpRbK
+        JAKzUHOMe0viJhuKvwlhJ2PeXw==
+X-Google-Smtp-Source: ABdhPJyjHZ1Ch/PjZ+965RMN96NmZrqCT+xeR/xLjS+9vfd0gWt6mXhLuZL/vyni7Vcfy2ZbrGQxEQ==
+X-Received: by 2002:a37:a204:: with SMTP id l4mr15330059qke.200.1593451277354;
+        Mon, 29 Jun 2020 10:21:17 -0700 (PDT)
 Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id q5sm408363qtf.12.2020.06.29.10.21.09
+        by smtp.gmail.com with ESMTPSA id q5sm408363qtf.12.2020.06.29.10.21.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 10:21:10 -0700 (PDT)
+        Mon, 29 Jun 2020 10:21:16 -0700 (PDT)
 From:   Jonathan Marek <jonathan@marek.ca>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 07/13] dt-bindings: clock: Introduce SM8250 QCOM Graphics clock bindings
-Date:   Mon, 29 Jun 2020 13:20:37 -0400
-Message-Id: <20200629172049.30452-8-jonathan@marek.ca>
+Subject: [PATCH v2 11/13] dt-bindings: power: Add missing rpmpd rpmh regulator level
+Date:   Mon, 29 Jun 2020 13:20:41 -0400
+Message-Id: <20200629172049.30452-12-jonathan@marek.ca>
 X-Mailer: git-send-email 2.26.1
 In-Reply-To: <20200629172049.30452-1-jonathan@marek.ca>
 References: <20200629172049.30452-1-jonathan@marek.ca>
@@ -70,143 +67,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for graphics clock controller for
-Qualcomm Technology Inc's SM8250 SoCs.
+Add RPMH_REGULATOR_LEVEL_SVS_L0, used by sm8250.
 
 Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 ---
- .../bindings/clock/qcom,sm8250-gpucc.yaml     | 74 +++++++++++++++++++
- include/dt-bindings/clock/qcom,gpucc-sm8250.h | 40 ++++++++++
- 2 files changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8250-gpucc.yaml
- create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8250.h
+ include/dt-bindings/power/qcom-rpmpd.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8250-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8250-gpucc.yaml
-new file mode 100644
-index 000000000000..2b9c8f97b76d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8250-gpucc.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sm8250-gpucc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Graphics Clock & Reset Controller Binding for SM8250
-+
-+maintainers:
-+  -
-+
-+description: |
-+  Qualcomm graphics clock control module which supports the clocks, resets and
-+  power domains on SM8250.
-+
-+  See also dt-bindings/clock/qcom,gpucc-sm8250.h.
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-gpucc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: GPLL0 main branch source
-+      - description: GPLL0 div branch source
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: gcc_gpu_gpll0_clk_src
-+      - const: gcc_gpu_gpll0_div_clk_src
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    clock-controller@3d90000 {
-+      compatible = "qcom,sm8250-gpucc";
-+      reg = <0x3d90000 0x9000>;
-+      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+               <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+               <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+      clock-names = "bi_tcxo",
-+                    "gcc_gpu_gpll0_clk_src",
-+                    "gcc_gpu_gpll0_div_clk_src";
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,gpucc-sm8250.h b/include/dt-bindings/clock/qcom,gpucc-sm8250.h
-new file mode 100644
-index 000000000000..c8fe64e399fd
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,gpucc-sm8250.h
-@@ -0,0 +1,40 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8250_H
-+
-+/* GPU_CC clock registers */
-+#define GPU_CC_AHB_CLK				0
-+#define GPU_CC_CRC_AHB_CLK			1
-+#define GPU_CC_CX_APB_CLK			2
-+#define GPU_CC_CX_GMU_CLK			3
-+#define GPU_CC_CX_QDSS_AT_CLK			4
-+#define GPU_CC_CX_QDSS_TRIG_CLK			5
-+#define GPU_CC_CX_QDSS_TSCTR_CLK		6
-+#define GPU_CC_CX_SNOC_DVM_CLK			7
-+#define GPU_CC_CXO_AON_CLK			8
-+#define GPU_CC_CXO_CLK				9
-+#define GPU_CC_GMU_CLK_SRC			10
-+#define GPU_CC_GX_GMU_CLK			11
-+#define GPU_CC_GX_QDSS_TSCTR_CLK		12
-+#define GPU_CC_GX_VSENSE_CLK			13
-+#define GPU_CC_PLL1				14
-+#define GPU_CC_SLEEP_CLK			15
-+#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK		16
-+
-+/* GPU_CC Resets */
-+#define GPUCC_GPU_CC_ACD_BCR			0
-+#define GPUCC_GPU_CC_CX_BCR			1
-+#define GPUCC_GPU_CC_GFX3D_AON_BCR		2
-+#define GPUCC_GPU_CC_GMU_BCR			3
-+#define GPUCC_GPU_CC_GX_BCR			4
-+#define GPUCC_GPU_CC_XO_BCR			5
-+
-+/* GPU_CC GDSCRs */
-+#define GPU_CX_GDSC				0
-+#define GPU_GX_GDSC				1
-+
-+#endif
+diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+index dc146e44228b..5e61eaf73bdd 100644
+--- a/include/dt-bindings/power/qcom-rpmpd.h
++++ b/include/dt-bindings/power/qcom-rpmpd.h
+@@ -55,6 +55,7 @@
+ #define RPMH_REGULATOR_LEVEL_MIN_SVS	48
+ #define RPMH_REGULATOR_LEVEL_LOW_SVS	64
+ #define RPMH_REGULATOR_LEVEL_SVS	128
++#define RPMH_REGULATOR_LEVEL_SVS_L0	144
+ #define RPMH_REGULATOR_LEVEL_SVS_L1	192
+ #define RPMH_REGULATOR_LEVEL_SVS_L2	224
+ #define RPMH_REGULATOR_LEVEL_NOM	256
 -- 
 2.26.1
 
