@@ -2,86 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E7A20E479
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A8BD20E5B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388646AbgF2VZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:25:46 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:37277 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726862AbgF2VZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:25:22 -0400
-Received: by mail-il1-f193.google.com with SMTP id r12so8592120ilh.4;
-        Mon, 29 Jun 2020 14:25:21 -0700 (PDT)
+        id S1730343AbgF2Vkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728211AbgF2Vky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:40:54 -0400
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C1CC061755
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:40:54 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id h23so14137248qtr.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 14:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=NkH+JCwdnaHsFKwJd89KAw2KS1C6oe1Q6V5c/F8UrWw=;
+        b=lQZLMS2w5+pWFl2sd5TIjZWJ4/XPOX0+L+PdyJuIDztOGrnigLMp/IcuPj6Cet/4fb
+         /FYu50ppT7KRCg6vM6Yv2lZtZdo2kyoe7NQm1A2Ng2IKld5ptfaONg7R/OJgl53pOt5a
+         tcQNJ0oCgTErqx+di2bwHFqGLytDHfhbrhmZdAqCdbU82JleEx0TGA5K6BDliUyagzCG
+         Kqf8BnreJ7YsJvQ+HA1XW1hSRCwAVNNSYuwBPbrsjYjmmfoa2nyc+Z5yoqnIpTV+2YPc
+         lls8nUuXIfZmZS6mBQIUCLcHP127wzaJ22J2U6GRtT6QQZdp/gJtIEPIlChBogRC9rrA
+         OtSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8sRNZq3i6sSIEbh/4bbkFq8rEMNhJ4QITzwGR/lljm8=;
-        b=BMC1syC41NCzxzB/pbvJpgmQ9FcJc5r2D9qsr143aDRDPwde32ULP75xo6hvY+HWtd
-         zDs9rX3aN+AZolPZnXfuJ/Pddaesd9gT3tUQhK1K5K72vX/qyoEOfeHK7MeisQh8vr6K
-         qPAivX8E+N9cl/7GtrHIjbACdnyPdHdSYBkce5VbSW3vJXAB0GlvsKZpksM7dgjTn/a8
-         CRq13jzvF8q+y0d4Gd0yz54JG48+UWl8PBqLIZpum2LNlhjllL2RzF1DgC116EdW50gy
-         bxMNzYL+dJMt6a9IJAfS84wSVfPTENitg2A8kHmFF/xZ10pVbQdB1JYin3bSl7doJ/qe
-         /fFQ==
-X-Gm-Message-State: AOAM531oa1G9btWWBSgKh3ZdNF6mVUbfN1BL+izUwqhB4NJd2u4Vhzxa
-        9+MVaBm15Ar84+kjGg5y3g==
-X-Google-Smtp-Source: ABdhPJx7dUZO0U25grEUl0vGwvMDDg6JWilgQ6/cy87UtwfMefk9HX94VG7CywqBbog84JPOnX3tTQ==
-X-Received: by 2002:a92:b685:: with SMTP id m5mr17246717ill.219.1593465921481;
-        Mon, 29 Jun 2020 14:25:21 -0700 (PDT)
-Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id v3sm630164ili.12.2020.06.29.14.25.20
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=NkH+JCwdnaHsFKwJd89KAw2KS1C6oe1Q6V5c/F8UrWw=;
+        b=Zuo0Hs0NotT7+tcAOLOzdrKrWSONGeLzij0AOAaZ3w0JWTt9ORZZnE4n50mPm0mO5M
+         qaEGskDnbtnwCg2u/x6/yeuR5WD4bUjaAdXE3QJs5qoUkUgIfIUlx6NYb7zHZb9+24PY
+         MLVbay3wkp/I93rv4RarBvGyGU86rvh3hZZy9rTPYpIIOjM9Q9tb8tZn/FMEfJQEH9gB
+         IC5b+fqn5F1QhgNgCOcJ6sYBfoIJN5KH4cLoQWy5ifPZ+WNhhClFNQw0B4FghbYwOBgu
+         1dqzrz69uOotxJjQ1pJGyganQr1pQ8D9RPO9PKK2KJw9xUN6zXa1s+kE9JY0ShAI2hLd
+         wKFQ==
+X-Gm-Message-State: AOAM5336jdHn8MC6X+JdMcYZVEtN0DajOtHDb2QM2vDJ8i9qs+fTcCJw
+        vD/wRtxXNmvXKdZmtnLvT7Y=
+X-Google-Smtp-Source: ABdhPJz/N7qIh2/IvRFZAOJ+uGWgpzoBu83WvX3ehjE1dgFnwo2fZ9TMdPoFIjUNS6dSdZWJe83wEQ==
+X-Received: by 2002:ac8:c8:: with SMTP id d8mr17615166qtg.221.1593466853271;
+        Mon, 29 Jun 2020 14:40:53 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:482:92b:9524:444f:ca0e:d637])
+        by smtp.gmail.com with ESMTPSA id w1sm957319qto.0.2020.06.29.14.40.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:25:21 -0700 (PDT)
-Received: (nullmailer pid 2935889 invoked by uid 1000);
-        Mon, 29 Jun 2020 21:25:19 -0000
-Date:   Mon, 29 Jun 2020 15:25:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Michal Marek <michal.lkml@markovi.net>
-Subject: Re: [PATCH 3/4] dt-bindings: copy process-schema-examples.yaml to
- process-schema.yaml
-Message-ID: <20200629212519.GA2935789@bogus>
-References: <20200625170434.635114-1-masahiroy@kernel.org>
- <20200625170434.635114-4-masahiroy@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200625170434.635114-4-masahiroy@kernel.org>
+        Mon, 29 Jun 2020 14:40:52 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     rentao.bupt@gmail.com, balbi@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: usb: aspeed: Remove the leading zeroes
+Date:   Mon, 29 Jun 2020 18:40:27 -0300
+Message-Id: <20200629214027.16768-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jun 2020 02:04:33 +0900, Masahiro Yamada wrote:
-> There are two processed schema files:
-> 
->  - processed-schema-examples.yaml
-> 
->     Used for 'make dt_binding_check'. This is always a full schema.
-> 
->  - processed-schema.yaml
-> 
->     Used for 'make dtbs_check'. This may be a full schema, or a smaller
->     subset if DT_SCHEMA_FILES is given by a user.
-> 
-> If DT_SCHEMA_FILES is not specified, they are the same. You can copy
-> the former to the latter instead of running dt-mk-schema twice. This
-> saves the cpu time a lot when you do 'make dt_binding_check dtbs_check'
-> because building the full schema takes a couple of seconds.
-> 
-> If DT_SCHEMA_FILES is specified, processed-schema.yaml is generated
-> based on the specified yaml files.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
-> 
->  Documentation/devicetree/bindings/Makefile | 28 +++++++++++++++-------
->  scripts/Makefile.lib                       |  3 +++
->  2 files changed, 23 insertions(+), 8 deletions(-)
-> 
+Remove the leading zeroes to fix the following warning seen with
+'make dt_binding_check':
 
-Applied, thanks!
+Documentation/devicetree/bindings/usb/aspeed,usb-vhub.example.dts:37.33-42.23: Warning (unit_address_format): /example-0/usb-vhub@1e6a0000/vhub-strings/string@0409: unit name should not have leading 0s
+
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+index e4e83d3971ac..8b019ac05bbe 100644
+--- a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
++++ b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+@@ -127,8 +127,8 @@ examples:
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+ 
+-                string@0409 {
+-                        reg = <0x0409>;
++                string@409 {
++                        reg = <0x409>;
+                         manufacturer = "ASPEED";
+                         product = "USB Virtual Hub";
+                         serial-number = "0000";
+-- 
+2.17.1
+
