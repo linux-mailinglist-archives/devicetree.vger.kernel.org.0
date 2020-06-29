@@ -2,83 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55BB020E738
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F84020E75A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388811AbgF2VzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:55:25 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:45504 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391553AbgF2VzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:55:24 -0400
-Received: by mail-il1-f194.google.com with SMTP id l9so15864742ilq.12;
-        Mon, 29 Jun 2020 14:55:23 -0700 (PDT)
+        id S2391600AbgF2V4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:56:13 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:38693 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726529AbgF2V4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 17:56:09 -0400
+Received: by mail-io1-f65.google.com with SMTP id f6so3249860ioj.5;
+        Mon, 29 Jun 2020 14:56:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=z06gzP1D2QcJaBResbDn25dzkFa7czoMHbRABLK66e4=;
-        b=cidmVQoGlvZsu7yNTl5fFl8waOzFhwhgnxCTmm2w2tLvbo51oEEK0IDYE+nIwaBWe5
-         +Y+lySu7hJ8jBHkHANyAPraBQckilytV5WU7xO/d/D7EE/BPHLwbPhTm4ijaKt3FGz9q
-         X8WzhJCHttAfRuYCzxOu7RGu52ZDGvdMq1d+60X+y++QSoQurfFIaFhYqmBaaajOML08
-         fPF8CxGu9zYGH52XIvhiRnEbPxhbLIYyBmlLSQhW6K9OFcx0H9Ldf77tEMDSvg6HCcEE
-         pBUKvn3qbTAlo+k7fVYI3t7VFTbzz5+Un0UjhPIg/MKNsS7fG1bxqVLwBp6xjd0LjZXP
-         UKSg==
-X-Gm-Message-State: AOAM531DVd3P0AAp1Gjsjr4mDnNMJVWltK/+IyXQDdhtL6Frex1gNxIm
-        o+zRnySHTGQdRC/BNQtu8g==
-X-Google-Smtp-Source: ABdhPJwKg65QGLzlMM3KQdjO48s4QdfD6Lc3M0zgovxzCYpjPdp4mi+repNQ1psb8xWSS+aFBfPUfg==
-X-Received: by 2002:a92:8e41:: with SMTP id k1mr11387622ilh.250.1593467723506;
-        Mon, 29 Jun 2020 14:55:23 -0700 (PDT)
+        bh=7BzdbzHdhO67Ygeg4vmtsn4XIT8EQ37NcHABkSdRi3E=;
+        b=I0At8bxZQkXym3kz+XxCrI1Zet38RIVqzWLaUWe4KNL20owkV8kedIk5u57bsFVxsf
+         2QZMGvbCYj7o3gYemLkx0YFr+fzMUF+BP0ht/BPr3q1S/89gUpUPzjpbShvHKl6gOOqd
+         QjPZ6El3Hu8wGPcidxbi69aPCC4p9mq5zrDQgo4lOkH6jQNVleiJx1Nge2/hGxQMhIsn
+         GTuXbtJHJX+IJVgI8nP/v/GnkklMWLqA5CtM8RKEO+K8MxbCL5eK7nP0wmdBbUmrgAcG
+         8zyD0NJyxXANuvQ6ByOo/mvCavuF75N9xBCIHQo4QgHT2+rsS2+I414OjS5XS/JXl7iE
+         ma9Q==
+X-Gm-Message-State: AOAM53163AWRJY0k7ytHI0M126BFg2CAz9IA5sCSWB/Mr1mNZTSOnU8W
+        Y5TG0P1srLKSELs4ITvOOA==
+X-Google-Smtp-Source: ABdhPJwEvFQMnYXTu1dUlTrx8NG/GBWsngrOu89NxHz6Tg+mFbZeo4sGg728NSX2H2aFS2/qL1GcVQ==
+X-Received: by 2002:a02:cf12:: with SMTP id q18mr13182774jar.3.1593467768763;
+        Mon, 29 Jun 2020 14:56:08 -0700 (PDT)
 Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id w10sm619584ilo.10.2020.06.29.14.55.21
+        by smtp.gmail.com with ESMTPSA id y5sm590604iov.3.2020.06.29.14.56.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 14:55:22 -0700 (PDT)
-Received: (nullmailer pid 2999258 invoked by uid 1000);
-        Mon, 29 Jun 2020 21:55:20 -0000
-Date:   Mon, 29 Jun 2020 15:55:20 -0600
+        Mon, 29 Jun 2020 14:56:08 -0700 (PDT)
+Received: (nullmailer pid 3001028 invoked by uid 1000);
+        Mon, 29 Jun 2020 21:56:06 -0000
+Date:   Mon, 29 Jun 2020 15:56:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: Add UniPhier AHCI PHY description
-Message-ID: <20200629215520.GA2998145@bogus>
-References: <1592534207-13550-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1592534207-13550-2-git-send-email-hayashi.kunihiko@socionext.com>
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, wsd_upstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: devapc: add bindings for
+ devapc-mt6873
+Message-ID: <20200629215606.GA3000557@bogus>
+References: <1592559720-8482-1-git-send-email-neal.liu@mediatek.com>
+ <1592559720-8482-2-git-send-email-neal.liu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1592534207-13550-2-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1592559720-8482-2-git-send-email-neal.liu@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Jun 2020 11:36:46 +0900, Kunihiko Hayashi wrote:
-> Add DT bindings for PHY interface built into ahci controller implemented
-> in UniPhier SoCs.
+On Fri, 19 Jun 2020 17:41:59 +0800, Neal Liu wrote:
+> Add bindings for MT6873 devapc.
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
 > ---
->  .../bindings/phy/socionext,uniphier-ahci-phy.yaml  | 76 ++++++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>  .../soc/mediatek/devapc/devapc-mt6873.yaml         |   61 ++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml: properties:reset-names: [{'items': [{'const': 'link'}, {'const': 'phy'}]}] is not of type 'object', 'boolean'
-Documentation/devicetree/bindings/Makefile:20: recipe for target 'Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1347: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.example.dt.yaml: example-0: devapc@10207000:reg:0: [0, 270561280, 0, 4096] is too long
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.example.dt.yaml: example-0: devapc@10207000:reg:1: [0, 271007744, 0, 4096] is too long
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.example.dt.yaml: example-0: devapc@10207000:reg:2: [0, 271011840, 0, 4096] is too long
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.example.dt.yaml: example-0: devapc@10207000:reg:3: [0, 285343744, 0, 4096] is too long
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc/devapc-mt6873.example.dt.yaml: example-0: devapc@10207000:reg:4: [0, 270589952, 0, 4096] is too long
 
 
-See https://patchwork.ozlabs.org/patch/1312535
+See https://patchwork.ozlabs.org/patch/1312741
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
