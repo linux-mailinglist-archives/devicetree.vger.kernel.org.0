@@ -2,179 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE7B20E1EE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD7320E22F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 00:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387752AbgF2VBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 17:01:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43362 "EHLO
+        id S1731153AbgF2VDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 17:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731203AbgF2TM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:12:58 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95ADEC008605;
-        Mon, 29 Jun 2020 03:17:21 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id j4so13496920wrp.10;
-        Mon, 29 Jun 2020 03:17:21 -0700 (PDT)
+        with ESMTP id S1731145AbgF2TMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:12:48 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBDDC008608
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:22:29 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id n2so3335263edr.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:22:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vEwK4lSukE6zJDRZlz+0iEToMuV8fReSxfwSiJsBBt4=;
-        b=KHKoTDVDgVMWSQnYtgSW/TauAy5n+RSJe/CHk1Vq2k2Knd0Pu7XhlXrPUp7HWgUXBI
-         35+L0Jbc+f65+1WdQhhDmdOrg3bgp9opsExRHIrXHx5iTFUtF22UBB3OUIj2RBj2kRlE
-         X9EGoZ3wovr8mpguJb3NxC7sMtrxqQNukxa2XZ5u2Bo0j/a0w1iIDq7cKuKNpUD5W9Oy
-         7B74p2Rhzha5oAZVM5lNgfcx//kNsUx8fxQcCa1RUEBtRDRBj31EqhoQTh2RExD7oMeJ
-         cSewmbJBSDwFUSp5SpWEs9d18sAfMwxVMQ2sPARwuDvf5eKyyBmwdngPY+CR6TgEuNOX
-         ElqA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PhguteWn+BNL2rOz+hmBG6LMc95B72qiCMa6M5a1mog=;
+        b=GryIZOgwWXWQdlINYt+x/02V6RsfowLZwhA3TrXCr0kgs/XolUBKkiYBVjZIeZVq6U
+         B0A+U5FpFXsT10NBtK+1s80jnmBYvKFrjgCI6zXkQLKW1c9oDO0LQ4FLIsfYd0rfHVAx
+         jfAXF26rS6rgbwq+ioEFJHVIJaG2W8rmmHqW4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=vEwK4lSukE6zJDRZlz+0iEToMuV8fReSxfwSiJsBBt4=;
-        b=hpUgfx+52nTrK5eZ1qk5DO9+976duARK9RFpCfZZTLB3EiEBOx3LQnPFP3gGCNh/mM
-         nDDXhfyoBVQsMLjTBsjhRn9VkLZacBzwjOmVcgadtRr1I9IndX0uM3FwtYRL3Yxr9VMa
-         Ydst+D3T6vu4Mp+jlwOTfjHXp26AacKWoWHhcxYkA8YTjmE13iocIIxbrzP7pBcMwXH0
-         XByQ/A1ImLSJLwpjaB0WeCL9/+SGvajVi3ijWH6C3R4soHcANi/Frbty7A1XDCxAaYTv
-         qBrsWkB4aHyYtYNmxLBq3fGf8MmzeEt3M5FNhdN+rbEzHpWjHvE7QT7GP5jihE6FH2Fo
-         v6YA==
-X-Gm-Message-State: AOAM530fv+KGQ+bBcO5K1Hoh02shcMzXEfiP4skQXnwj15fSh/bJRWcd
-        6ytdWEtbIRhrureIi1/NVtc=
-X-Google-Smtp-Source: ABdhPJzhIFYSI76k5keRrxJ/YosnmFN5CcIrq+smP4Iaxg8KsJc+Bat4VIuVqaRGAa1+gnZ8HBeqBg==
-X-Received: by 2002:a05:6000:1c8:: with SMTP id t8mr17480192wrx.73.1593425840368;
-        Mon, 29 Jun 2020 03:17:20 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.114.138])
-        by smtp.gmail.com with ESMTPSA id c5sm27780601wmb.24.2020.06.29.03.17.19
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PhguteWn+BNL2rOz+hmBG6LMc95B72qiCMa6M5a1mog=;
+        b=lZQTlUwvxv2umpyK/3Qde7DNRcW3qQBtuhVdpZTETIRrQCCl1LrXrrh1qngi0NTpAO
+         OapXQelB+0DCcdrWtr0u5i0/5DeIKcnE0lCrXefU4E7Mza/KcMCAmH4sOssSIb4LvDN8
+         Sz6KiL+hMItUBfen5doiyFgFc6cFfn7E98bM1wHC74yJpSnKCDUIuaQFOKUim8hsE57s
+         1iZhvu0wG8w/zOT4EMB1NKw7iEDR9+FIr4mEWoYxaIDomoz4bQwiRbdr4WYofkISUWDY
+         hPtoE43kMmOOrEp8bo+dBxB8UPCBXijMGQfgZRK/rp6e1I6+U5Wvyssdx3T8VT83sQ69
+         EBQg==
+X-Gm-Message-State: AOAM532Er1ck/PGcUzZ6zfZcwfeiRyRO8Ym8CkANt1t5fc5OJmfiATDc
+        WDrT5h/QYvtMIFaLGI81ymXeaznIcbqxZw==
+X-Google-Smtp-Source: ABdhPJzGj/AQkmntAyNr8QfhzRpRAJxWDW0z42PBwEBwOvncNus8ljIorMdv/eMryCnKKro0BtxNcA==
+X-Received: by 2002:a50:e604:: with SMTP id y4mr16131595edm.373.1593426147787;
+        Mon, 29 Jun 2020 03:22:27 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id y11sm8118710ejw.63.2020.06.29.03.22.26
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2020 03:17:19 -0700 (PDT)
-Subject: Re: [PATCH v5 08/10] iommu/mediatek: Extend protect pa alignment
- value
-To:     Chao Hao <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Evan Green <evgreen@chromium.org>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
-        FY Yang <fy.yang@mediatek.com>
-References: <20200629071310.1557-1-chao.hao@mediatek.com>
- <20200629071310.1557-9-chao.hao@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <ce29ba24-f89b-4e1e-f98e-fd3497d08e05@gmail.com>
-Date:   Mon, 29 Jun 2020 12:17:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        Mon, 29 Jun 2020 03:22:26 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id o11so15960689wrv.9
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 03:22:26 -0700 (PDT)
+X-Received: by 2002:adf:80e6:: with SMTP id 93mr15866385wrl.17.1593426145911;
+ Mon, 29 Jun 2020 03:22:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200629071310.1557-9-chao.hao@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200615122937.18965-1-dongchun.zhu@mediatek.com>
+ <20200615122937.18965-3-dongchun.zhu@mediatek.com> <20200618191026.GA73379@chromium.org>
+ <1592639284.8804.712.camel@mhfsdcap03> <20200622152350.GB260716@chromium.org> <1593412218.17166.3.camel@mhfsdcap03>
+In-Reply-To: <1593412218.17166.3.camel@mhfsdcap03>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 29 Jun 2020 12:22:14 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5Bi+Dh85Wz5q4RMGQvKw3aHFWWgypKsNukg_MwF4_ceCw@mail.gmail.com>
+Message-ID: <CAAFQd5Bi+Dh85Wz5q4RMGQvKw3aHFWWgypKsNukg_MwF4_ceCw@mail.gmail.com>
+Subject: Re: [PATCH V10 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
+        <shengnan.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 29, 2020 at 8:30 AM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
+>
+> Hi Tomasz,
+>
+> Thanks for the review.
+>
+> On Mon, 2020-06-22 at 15:23 +0000, Tomasz Figa wrote:
+> > On Sat, Jun 20, 2020 at 03:48:04PM +0800, Dongchun Zhu wrote:
+> > > Hi Tomasz,
+> > >
+> > > Thanks for the review.
+> > >
+> > > On Thu, 2020-06-18 at 19:10 +0000, Tomasz Figa wrote:
+> > > > Hi Dongchun,
+> > > >
+> > > > On Mon, Jun 15, 2020 at 08:29:37PM +0800, Dongchun Zhu wrote:
+> > > > > Add a V4L2 sub-device driver for OV02A10 image sensor.
+> > > > >
+> > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > > > > ---
+> > > > >  MAINTAINERS                 |    1 +
+> > > > >  drivers/media/i2c/Kconfig   |   13 +
+> > > > >  drivers/media/i2c/Makefile  |    1 +
+> > > > >  drivers/media/i2c/ov02a10.c | 1042 +++++++++++++++++++++++++++++++++++++++++++
+> > > > >  4 files changed, 1057 insertions(+)
+> > > > >  create mode 100644 drivers/media/i2c/ov02a10.c
+> > > > >
+> > > >
+> > > > Thank you for the patch. Please see my comments inline.
+> > > >
+> > > > [snip]
+> > > > > +static int ov02a10_set_fmt(struct v4l2_subdev *sd,
+> > > > > +                          struct v4l2_subdev_pad_config *cfg,
+> > > > > +                          struct v4l2_subdev_format *fmt)
+> > > > > +{
+> > > > > +       struct ov02a10 *ov02a10 = to_ov02a10(sd);
+> > > > > +       struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+> > > > > +
+> > > > > +       mutex_lock(&ov02a10->mutex);
+> > > > > +
+> > > > > +       if (ov02a10->streaming) {
+> > > > > +               mutex_unlock(&ov02a10->mutex);
+> > > > > +               return -EBUSY;
+> > > > > +       }
+> > > > > +
+> > > > > +       /* Only one sensor mode supported */
+> > > > > +       mbus_fmt->code = ov02a10->fmt.code;
+> > > > > +       ov02a10_fill_fmt(ov02a10->cur_mode, mbus_fmt);
+> > > > > +       ov02a10->fmt = fmt->format;
+> > > > > +
+> > > > > +       if (fmt->which == V4L2_SUBDEV_FORMAT_TRY)
+> > > > > +               *v4l2_subdev_get_try_format(sd, cfg, fmt->pad) = fmt->format;
+> > > >
+> > > > If fmt->which is V4L2_SUBDEV_FORMAT_TRY, the internal driver state must not
+> > > > be affected. It also should not depend on whether the sensor is streaming
+> > > > or not. Basically it should be considered a special "candidate" format,
+> > > > which isn't programmed to the hardware, but just stored aside.
+> > > >
+> > >
+> > > Hmm. Maybe we shall use FORMAT_TRY like this:
+> > > struct v4l2_mbus_framefmt *frame_fmt;
+> > > ...
+> > > if (fmt->which == V4L2_SUBDEV_FORMAT_TRY)
+> > >     frame_fmt = v4l2_subdev_get_try_format(sd, cfg, 0);
+> > > else
+> > >     frame_fmt = &ov02a10->fmt;
+> > >
+> > > *frame_fmt = *mbus_fmt;
+> > >
+> > > (Remove 'ov02a10->fmt = fmt->format;' above)
+> > >
+> >
+> > Yes, I guess that should work. Also the ov02a10->streaming condition
+> > shouldn't be checked if fmt->which is V4L2_SUBDEV_FORMAT_TRY).
+> >
+>
+> Maybe we shall use more strict condition to check streaming state:
+> 'if (ov02a10->streaming)' --> 'if (ov02a10->streaming && fmt->which ==
+> V4L2_SUBDEV_FORMAT_ACTIVE)'
 
+Yes, that should work.
 
-On 29/06/2020 09:13, Chao Hao wrote:
-> Starting with mt6779, iommu needs to extend to 256 bytes from 128
-> bytes which can send the max number of data for memory protection
-> pa alignment. So we can use a separate patch to modify it.
-> 
-> Suggested-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Chao Hao <chao.hao@mediatek.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->  drivers/iommu/mtk_iommu.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 92316c4175a9..8299a3299090 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -98,7 +98,7 @@
->  #define F_MMU_INT_ID_LARB_ID(a)			(((a) >> 7) & 0x7)
->  #define F_MMU_INT_ID_PORT_ID(a)			(((a) >> 2) & 0x1f)
->  
-> -#define MTK_PROTECT_PA_ALIGN			128
-> +#define MTK_PROTECT_PA_ALIGN			256
->  
->  /*
->   * Get the local arbiter ID and the portid within the larb arbiter
-> 
+Best regards,
+Tomasz
