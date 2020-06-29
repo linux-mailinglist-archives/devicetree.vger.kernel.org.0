@@ -2,195 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A41120DD9E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8EC620DD68
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731733AbgF2TXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 15:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732226AbgF2TWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:22:42 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on0601.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0d::601])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22434C02A566;
-        Mon, 29 Jun 2020 06:23:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EZVd31c1sCZbrLwpIfiwrCpiHNiGry3dUmc0D9ZafZH/LhFYm6pkPJQ+C+h/dYSP7yATaECvwbQB+ReeyuhnV6qDPeenSLVvy5W80hhftPPxwBtzC1dm7x6xmj+eNdp047zXxdtTP7W/Gni9WUHHBnWqrmr589yaoRmXPUNRuP+vhtWKGGeHKAeDv6iCxYOve9WgXILo5XRqOpNJgRBb+QLZlCXJS0Lr+YKRekfPJ3CjzmKJ7jvj9baZ9Tj8ONn5XFQCBZDIyCCqYvvyTCKcoGv0ic1Q04YSR64DEiOQhkq9z6M+ySGQQXg7kcg6VY2I3MvqlLHN2YHFEQoG4X59lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1amHVcgdX65bnf8s84divLoILbcUSjVrRdavIPH9Vnc=;
- b=OKiSIJTwfChQ0PiEBJlJKazcqZcuICgDREE/sqpObpX6iBWaFmc2uVM757p+Zc9ztzFQozXQM43u5/fNTxJnceolaFc5sbG7U9GrPtBXuk4rQAGeroc5uQzf2VbjhCjwj2ffS2V6YZmBvE6FxJYJ8NmzU+QzGAmCjW4Zlfldr0gxDMqVEH7x6Hbi4yf2RBE5zhO1mDaO35Wg284ImEeyIsiB2qRoiSKSTzQypbuRQyJ61g5NZXYUoGFssOvuWkL2mHVZwslJnamiJZrdp71Wt0QQJdrpGa00fe5onM0FXoTzsckHmzbYG2BQA4ei35C+z2hVws1pUWNy5sFIGGwGzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1amHVcgdX65bnf8s84divLoILbcUSjVrRdavIPH9Vnc=;
- b=lbzg/zzXnW1wrDzAzF/OvMSoKxV3v12XHtS2dZ4uwxlqoMT7EYYn/p2F16zPAi7zZRSLVemYMB9OuSh4qlEG5JLhHI+NG2cNbxsxCDtSd1HL4NWX2eROJYtKCF090RGpnNJIfrxN84Kbeaforqy5/2c4VzXctNw7vRDrwHyo75o=
-Received: from AM0PR04MB5443.eurprd04.prod.outlook.com (2603:10a6:208:119::33)
- by AM0PR04MB5444.eurprd04.prod.outlook.com (2603:10a6:208:114::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.21; Mon, 29 Jun
- 2020 13:23:21 +0000
-Received: from AM0PR04MB5443.eurprd04.prod.outlook.com
- ([fe80::f0b7:8439:3b5a:61bd]) by AM0PR04MB5443.eurprd04.prod.outlook.com
- ([fe80::f0b7:8439:3b5a:61bd%7]) with mapi id 15.20.3131.026; Mon, 29 Jun 2020
- 13:23:21 +0000
-From:   Florinel Iordache <florinel.iordache@nxp.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Florinel Iordache <florinel.iordache@nxp.com>
-Subject: RE: [EXT] Re: [PATCH net-next v3 4/7] net: phy: add backplane kr
- driver support
-Thread-Topic: [EXT] Re: [PATCH net-next v3 4/7] net: phy: add backplane kr
- driver support
-Thread-Index: AQHWSJoOSv10qY8hR027u6Fzd8TnaKjksHoAgAAAoSCABpcfgIAETVgQ
-Date:   Mon, 29 Jun 2020 13:23:21 +0000
-Message-ID: <AM0PR04MB54437450D9A5CBAE5CB3FF45FB6E0@AM0PR04MB5443.eurprd04.prod.outlook.com>
-References: <1592832924-31733-1-git-send-email-florinel.iordache@nxp.com>
- <1592832924-31733-5-git-send-email-florinel.iordache@nxp.com>
- <20200622142430.GP279339@lunn.ch>
- <AM0PR04MB5443DAF865284ADE78423C64FB970@AM0PR04MB5443.eurprd04.prod.outlook.com>
- <83ff6b40-157e-3f1c-7370-29a0681dfad2@gmail.com>
-In-Reply-To: <83ff6b40-157e-3f1c-7370-29a0681dfad2@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [86.126.18.63]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7a6cbb62-42aa-42d4-7e25-08d81c2f9821
-x-ms-traffictypediagnostic: AM0PR04MB5444:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB54448524617E1AFE5EB06BEDFB6E0@AM0PR04MB5444.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 044968D9E1
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cLizEL72jA0IF/O36H/NbZ9rsTyimMSYxMlj9pcFE7s59rQV3xEpazc5U/g6HNDjYcuqxWp7IhUla/IsTsaC1XyYHjWp84kEAuitd4jAfEkewC1oBhsJ8Bdl3jPV79qTKN6W+JewZdQdTUGFCMYQ7sA5upalBQTFNwSmmrwYj2cJ0sWjIXC4gf+679Od2FBX/BbdUI/uAUqEilBuac2YPB+YTJzUYYWs33Q5qrSK6HebL12nkl1pyEQEZZF4y7ddyaKImiVNIHiR4tTjDOEWV8SzjK1vW4Z9yYjtpCf5NO6LUm6tOmyCwgC2YYmluIwvQ1GhXEP41Ji7SXoR0W2epQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5443.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(76116006)(4326008)(52536014)(7696005)(86362001)(5660300002)(6506007)(53546011)(54906003)(110136005)(71200400001)(66446008)(64756008)(66556008)(66476007)(66946007)(55016002)(7416002)(44832011)(186003)(26005)(8676002)(33656002)(9686003)(8936002)(498600001)(83380400001)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Vu1Oz7F42vGfMOpEENdpNjNRoe5BAdKhbuMlzeWX2N/u44RLDNj6o0TBbbuhS7Qh+a69toCpP+IERrWrMAwPwRSYwnYvZnPl076RUv3sq9Gj+1UM3xLrZsv8HITAmutJ0HbfwicEEbrgJ8ks0M3shBKpYyHGlzURO1Cty9gXPKgkg9U+x05QlznTvJ3WyXzbxYa5ETTwgUaOSJiSDS5FjeqgwNM3fL3FkKl+Uu1vhtfyiWRJe/q3UTdGR+cRKYP3FzLhLCL2mmd8MVLtBOx2RFRhxi15JQEuX8HUPePMA+jxKA7NnMvTDq7kNHXzKUXDxS2j09NZixvk/SEklL35TfzB3NVMiUKfrmq2VEUqBavKKqu5snsboW9oTxm7D3yoEw8PFGqH8GsC26Qg8/Z3dAJH2sin1x+9npMxrJsRUMT1h6vj4JrZakTtKEaBfnbZHjIb3QXDj+a9ns08FSMlwPjEFAAqCdhAmeiVrFeDMYQ=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1729611AbgF2Sva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 14:51:30 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:52063 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729600AbgF2Sv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jun 2020 14:51:27 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B5752580101;
+        Mon, 29 Jun 2020 10:21:47 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 29 Jun 2020 10:21:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=OtjGPZeLZ6wR3WLazxOSh3tcZhM
+        5G1wf4Vv5N/3NOvc=; b=f1k4nneyfy3IM5VsaAqJKH8lYX5x6KisHa8BA9eR2IT
+        CNGzwwDhugnSlhpocOKWK6jeZaQMPWV4HU6hi+ak4P1d/lHYSZfAbz5+7lYpmfuy
+        zVOczEYdtuhdN6GuVyULdHB8uQJdTYHlBaeG7pTXAp8IpkiC0LwzW8bFaO/hsLV7
+        yMVXtpGWrvs/Ok5vCfP4ovIjGbpZgvc/siNC4vNRyH8EQ4uAKGGW6FNi/UoIypbe
+        1VB/jdjLnjF+e/ntJZuoF/pdYYK5iqZ1U0YEBXhM7ty3irhKuubjFVTkHcMiI5Wt
+        +y+LNb2LNWXYSjPwvhJnnCpHpDx346LDSuJYLMFCSjw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=OtjGPZ
+        eLZ6wR3WLazxOSh3tcZhM5G1wf4Vv5N/3NOvc=; b=ldBH0fhV20x+1MYt/JGAx0
+        6aXa53FgauyKaJfrOPM+WqUuEOITix48Z5M1H76NmAhI29uhdJsEc06Ybka2PNQM
+        GlAZe3HWT1aEQqEsTfL89HB73o2r4FYBT/F3797fVgPlYjFniKCWc38ahTsg+uD8
+        oG0gRZyDa73uKRlTXQNIAXhBGMcuXRIIFYmP5a5Wo8SfcFngs/uwa9/MWuIjpaVf
+        0mQTLbEQds2AUdmfOYsRmfGPEwHPa+l5zk26/o3im1gVyeVW4OK+9kYjoTddQpic
+        njB4mEDqpzzSkgsufLW/VBiFzqlhDOXJQhhKjjZ7wZ1BaSvrZL5En+ysxxUdroeQ
+        ==
+X-ME-Sender: <xms:-_j5XkGmJ47fKeKphuIuqcWekEUJeXR60i6Cw5JZztIbQSrasVEtUg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudelledgtdefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepheelgfehhfefiefgfeegteeuveeigffhffdvtdeuffffleekgeefudejfefh
+    veelnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpghhithhhuhgsrdgtohhmnecukf
+    hppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
+    pehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:-_j5XtVLIhC037U0wxnGtjnnf29016eBc2eRIxXwGcSam3vUP9xsrQ>
+    <xmx:-_j5XuL_d0T6NEp3WzBiimqqN5rnuprS2s_9sLJx5RUIsI6DfSJjog>
+    <xmx:-_j5XmFrOBzM8yd6GN__aXQv4kml0SBN-6u2ycQEErncH-BPIfoZlg>
+    <xmx:-_j5XmQmM8DhEpQIoRIkAWXnz63DH3EPTXF1iQAQBsw_wqZ_XIsmJQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C562A328005E;
+        Mon, 29 Jun 2020 10:21:46 -0400 (EDT)
+Date:   Mon, 29 Jun 2020 16:21:45 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jian-Hong Pan <jian-hong@endlessm.com>
+Cc:     Daniel Drake <drake@endlessm.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Linux Upstreaming Team <linux@endlessm.com>
+Subject: Re: [PATCH v2 00/91] drm/vc4: Support BCM2711 Display Pipelin
+Message-ID: <20200629142145.aa2vdfkgeugrze4c@gilmour.lan>
+References: <CAPpJ_efxenmSXt2OXkhkQ1jDJ59tyWBDUvmpyOB-bfPMDENQZg@mail.gmail.com>
+ <CAPpJ_ed9TMJjN8xS1_3saf5obQhULJSLNgQSAFxgiWM2QX9A7Q@mail.gmail.com>
+ <20200526102018.kznh6aglpkqlp6en@gilmour.lan>
+ <CAD8Lp467DiYWLwH6T1Jeq-uyN4VEuef-gGWw0_bBTtmSPr00Ag@mail.gmail.com>
+ <20200527091335.7wc3uy67lbz7j4di@gilmour.lan>
+ <CAD8Lp45ucK-yZ5G_DrUVA7rnxo58UF1LPUy65w2PCOcSxKx_Sg@mail.gmail.com>
+ <20200528073055.znutrhkryzu3grrl@gilmour.lan>
+ <CAPpJ_ec1KRwUrHGVVZrReaDPz4iga-Nvj5H652-tTKmkXL=Xmg@mail.gmail.com>
+ <20200602110442.2ceuymhwuomvjj6i@gilmour>
+ <CAPpJ_eePgLxO5URB3V5aeNMvBHOp+vXrW=+6SnVt4mB9J8oR+Q@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5443.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a6cbb62-42aa-42d4-7e25-08d81c2f9821
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2020 13:23:21.3248
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qisXWL2VjeOVE+mCeyy/MFBptV2k2Fim2PxgK817rNDSt/wnoerp0w+hkiGjDp29vaJ/nmAYYc5kUAoVbbItZUP2FQL3RFlS2jyCJvO8PRc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5444
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="24cvice2wllspfzm"
+Content-Disposition: inline
+In-Reply-To: <CAPpJ_eePgLxO5URB3V5aeNMvBHOp+vXrW=+6SnVt4mB9J8oR+Q@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBGbG9yaWFuIEZhaW5lbGxpIDxm
-LmZhaW5lbGxpQGdtYWlsLmNvbT4NCj4gU2VudDogRnJpZGF5LCBKdW5lIDI2LCAyMDIwIDEwOjA1
-IFBNDQo+IFRvOiBGbG9yaW5lbCBJb3JkYWNoZSA8ZmxvcmluZWwuaW9yZGFjaGVAbnhwLmNvbT47
-IEFuZHJldyBMdW5uDQo+IDxhbmRyZXdAbHVubi5jaD4NCj4gQ2M6IGRhdmVtQGRhdmVtbG9mdC5u
-ZXQ7IG5ldGRldkB2Z2VyLmtlcm5lbC5vcmc7IGhrYWxsd2VpdDFAZ21haWwuY29tOw0KPiBsaW51
-eEBhcm1saW51eC5vcmcudWs7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1kb2NA
-dmdlci5rZXJuZWwub3JnOw0KPiByb2JoK2R0QGtlcm5lbC5vcmc7IG1hcmsucnV0bGFuZEBhcm0u
-Y29tOyBrdWJhQGtlcm5lbC5vcmc7DQo+IGNvcmJldEBsd24ubmV0OyBzaGF3bmd1b0BrZXJuZWwu
-b3JnOyBMZW8gTGkgPGxlb3lhbmcubGlAbnhwLmNvbT47IE1hZGFsaW4NCj4gQnVjdXIgKE9TUykg
-PG1hZGFsaW4uYnVjdXJAb3NzLm54cC5jb20+OyBJb2FuYSBDaW9ybmVpDQo+IDxpb2FuYS5jaW9y
-bmVpQG54cC5jb20+OyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJl
-OiBbRVhUXSBSZTogW1BBVENIIG5ldC1uZXh0IHYzIDQvN10gbmV0OiBwaHk6IGFkZCBiYWNrcGxh
-bmUga3IgZHJpdmVyDQo+IHN1cHBvcnQNCj4gDQo+IENhdXRpb246IEVYVCBFbWFpbA0KPiANCj4g
-T24gNi8yMi8yMCA3OjM5IEFNLCBGbG9yaW5lbCBJb3JkYWNoZSB3cm90ZToNCj4gPj4gLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJvbTogQW5kcmV3IEx1bm4gPGFuZHJld0BsdW5u
-LmNoPg0KPiA+PiBTZW50OiBNb25kYXksIEp1bmUgMjIsIDIwMjAgNToyNSBQTQ0KPiA+PiBUbzog
-RmxvcmluZWwgSW9yZGFjaGUgPGZsb3JpbmVsLmlvcmRhY2hlQG54cC5jb20+DQo+ID4+IENjOiBk
-YXZlbUBkYXZlbWxvZnQubmV0OyBuZXRkZXZAdmdlci5rZXJuZWwub3JnOw0KPiA+PiBmLmZhaW5l
-bGxpQGdtYWlsLmNvbTsgaGthbGx3ZWl0MUBnbWFpbC5jb207IGxpbnV4QGFybWxpbnV4Lm9yZy51
-azsNCj4gPj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWRvY0B2Z2VyLmtlcm5l
-bC5vcmc7DQo+ID4+IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207IGt1
-YmFAa2VybmVsLm9yZzsNCj4gPj4gY29yYmV0QGx3bi5uZXQ7IHNoYXduZ3VvQGtlcm5lbC5vcmc7
-IExlbyBMaSA8bGVveWFuZy5saUBueHAuY29tPjsNCj4gPj4gTWFkYWxpbiBCdWN1ciAoT1NTKSA8
-bWFkYWxpbi5idWN1ckBvc3MubnhwLmNvbT47IElvYW5hIENpb3JuZWkNCj4gPj4gPGlvYW5hLmNp
-b3JuZWlAbnhwLmNvbT47IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gPj4gU3ViamVj
-dDogW0VYVF0gUmU6IFtQQVRDSCBuZXQtbmV4dCB2MyA0LzddIG5ldDogcGh5OiBhZGQgYmFja3Bs
-YW5lIGtyDQo+ID4+IGRyaXZlciBzdXBwb3J0DQo+ID4+DQo+ID4+IENhdXRpb246IEVYVCBFbWFp
-bA0KPiA+Pg0KPiA+PiBPbiBNb24sIEp1biAyMiwgMjAyMCBhdCAwNDozNToyMVBNICswMzAwLCBG
-bG9yaW5lbCBJb3JkYWNoZSB3cm90ZToNCj4gPj4+IEFkZCBzdXBwb3J0IGZvciBiYWNrcGxhbmUg
-a3IgZ2VuZXJpYyBkcml2ZXIgaW5jbHVkaW5nIGxpbmsgdHJhaW5pbmcNCj4gPj4+IChpZWVlODAy
-LjNhcC9iYSkgYW5kIGZpeGVkIGVxdWFsaXphdGlvbiBhbGdvcml0aG0NCj4gPj4NCj4gPj4gSGkg
-RmxvcmluZWwNCj4gPj4NCj4gPj4gVGhpcyBpcyBzdGlsbCBhIFBIWSBkZXZpY2UuIEkgZG9uJ3Qg
-cmVtZW1iZXIgYW55IGRpc2N1c3Npb25zIHdoaWNoDQo+ID4+IHJlc29sdmVkIHRoZSBpc3N1ZXMg
-b2YgaWYgYXQgdGhlIGVuZCBvZiB0aGUgYmFja3BsYW5lIHRoZXJlIGlzIGFub3RoZXIgUEhZLg0K
-PiA+Pg0KPiA+PiBJdCBtYWtlcyBsaXR0bGUgc2Vuc2UgdG8gcmVwb3N0IHRoaXMgY29kZSB1bnRp
-bCB3ZSBoYXZlIHRoaXMgcHJvYmxlbQ0KPiA+PiBkaXNjdXNzZWQgYW5kIGEgd2F5IGZvcndhcmQg
-ZGVjaWRlZCBvbi4gSXQgZml0cyBpbnRvIHRoZSBkaXNjdXNzaW9uDQo+ID4+IFJ1c3NlbGwgYW5k
-IElvYW5hIGFyZSBoYXZpbmcgYWJvdXQgcmVwcmVzZW50aW5nIFBDUyBkcml2ZXJzLiBQbGVhc2UN
-Cj4gY29udHJpYnV0ZSB0byB0aGF0Lg0KPiA+Pg0KPiA+PiAgICAgICAgIEFuZHJldw0KPiA+DQo+
-ID4gSGkgQW5kcmV3LA0KPiA+DQo+ID4gWWVzLCB5b3UgYXJlIHJpZ2h0OiB3ZSBkZWNpZGVkIHRv
-IHNlbmQgb25seSBzdXBwb3J0IGZvciBEUEFBMSB1c2luZw0KPiA+IGN1cnJlbnQgYXBwcm9hY2gg
-YXMgYSBQSFkgZGV2aWNlIChhcyBtZW50aW9uZWQgaW4gY292ZXItbGV0dGVyKSwgdW50aWwgUENT
-DQo+IHJlcHJlc2VudGF0aW9uIHdpbGwgYmUgZnVsbHkgY2xhcmlmaWVkLg0KPiA+IFRoZSBlbnRp
-cmUgRFBBQTIgc3VwcG9ydCB3YXMgcmVtb3ZlZCBmb3Igbm93LCB0b2dldGhlciB3aXRoIHBoeWxp
-bmsNCj4gY2hhbmdlcy4NCj4gPiBEUEFBMSBtYWludGFpbmVyIChNYWRhbGluIEJ1Y3VyKSBhZ3Jl
-ZXMgd2l0aCBjdXJyZW50IHJlcHJlc2VudGF0aW9uIGFzIGEgUEhZDQo+IGRldmljZSBmb3IgRFBB
-QTEuDQo+ID4gU28gd2Ugd291bGQgbGlrZSB0byBoYXZlIHNvbWUgZGlzY3Vzc2lvbnMgYXJvdW5k
-IHRoaXMgYXBwcm9hY2ggZm9yIERQQUExDQo+IG9ubHksIGFzIGl0IHNlZW1zIHN1aXRhYmxlIGZv
-ciB1cy4NCj4gDQo+IFRoZSBxdWVzdGlvbiBpcyByZWFsbHkgd2hldGhlciBpdCBpcyBzdWl0YWJs
-ZSBmb3Igb3RoZXJzIGJleW9uZCBOWFAsIHRoZSBkcml2ZXJzDQo+IGFyZSBjZXJ0YWlubHkgb3Jn
-YW5pemVkIGluIHN1Y2ggYSB3YXkgdGhhdCB0aGVyZSBpcyBsaXR0bGUgTlhQIHNwZWNpZmljcyBp
-biB0aGVtIHNvDQo+IHRoZSBpbnRlbnQgaXMgY2xlYXJseSB0aGVyZS4NCj4gDQo+IFdlIHdpbGwg
-cHJvYmFibHkgbm90IGtub3csIGVpdGhlciBiZWNhdXNlIHZlbmRvcnMgaGF2ZSBkZWNpZGVkIHRv
-IGhpZGUgYWxsIG9mDQo+IHRoaXMgc3R1ZmYgdW5kZXIgZmlybXdhcmUsIG9yIHRoZXkgZG8gbm90
-IHVzZSBMaW51eCBvciB0aGV5IGp1c3QgYXJlIG5vdCBmb2xsb3dpbmcNCj4gd2hhdCBpcyBnb2lu
-ZyBvbiB1cHN0cmVhbSBhbmQgaGF2ZSBubyBkZXNpcmUgdG8gcGFydGljaXBhdGUuDQo+IC0tDQo+
-IEZsb3JpYW4NCg0KSGkgRmxvcmlhbiwNClRoaXMgaXMgY29ycmVjdDogYmFja3BsYW5lIHN1cHBv
-cnQgaGFzIGEgbW9kdWxhciwgZXh0ZW5zaWJsZSwgZ2VuZXJpYyBhcmNoaXRlY3R1cmUNCmFuZCB0
-aGUgbW9kdWxlcyBhcmUgY29tcGxldGVseSBkaXNjb25uZWN0ZWQNCnNvIHRoZXkgY2FuIGJlIHJl
-dXNlZCBhbW9uZyBkaWZmZXJlbnQgY29uZmlndXJhdGlvbnMgc2V0dXBzLg0KVGhlcmVmb3JlIHdl
-IGhhdmUgZW5jYXBzdWxhdGVkIHRoZSBzdGFuZGFyZCBiYWNrcGxhbmUgZnVuY3Rpb25hbGl0eSBp
-biBzZXZlcmFsDQpnZW5lcmljIG1vZHVsZXMgbGlrZTogRXRoZXJuZXQgQmFja3BsYW5lIEdlbmVy
-aWMgRHJpdmVyLCBMaW5rIFRyYWluaW5nIGFuZA0KQXV0by1uZWdvdGlhdGlvbiBpbmNsdWRpbmc6
-IElFRUUgODAyLjMtYXAvYmEgc3RhbmRhcmRzLCBFcXVhbGl6YXRpb24gQWxnb3JpdGhtcw0KKHRo
-YXQgaW5jbHVkZTogRml4ZWQgYWxnb3JpdGhtIGFuZCBCRUUgLSBCaXQgRWRnZSBlcXVhbGl6YXRp
-b24gYWxnb3JpdGhtKS4NCkRldmljZSBzcGVjaWZpYyBtb2R1bGVzIGFyZSB1c2VkIHRvIGVuYWJs
-ZSBRb3JJUSBmYW1pbHkgb2YgZGV2aWNlcy4NClRoaXMgYXJjaGl0ZWN0dXJlIGlzIGRlc2NyaWJl
-ZCBpbiBkZXRhaWwgaW4gRG9jIGZpbGU6IGJhY2twbGFuZS5yc3QNCk90aGVyIHZlbmRvcnMgdGhh
-dCB3YW50IHRvIGVuYWJsZSBiYWNrcGxhbmUgZm9yIHRoZWlyIGRldmljZXMgc2hvdWxkDQphZGQg
-b25seSB0aGVpciBkZXZpY2Ugc3BlY2lmaWMgbW9kdWxlcyAoc2ltaWxhciB3aXRoIHFvcmlxIG1v
-ZHVsZXMpLg0KVGhlc2UgbW9kdWxlcyBiYXNpY2FsbHkgbXVzdCBkZXNjcmliZSBkZXZpY2Ugc3Bl
-Y2lmaWMgcmVnaXN0ZXJzIGFuZA0KbWFrZSB0aGUgY29ubmVjdGlvbiBiZXR3ZWVuIGJhY2twbGFu
-ZSBnZW5lcmljIEFQSSBzZXJ2aWNlcyBhbmQgZGV2aWNlIHNwZWNpZmljIG9wZXJhdGlvbnMuDQpB
-bGwgZ2VuZXJpYyBtb2R1bGVzIHRoYXQgZW5jYXBzdWxhdGUgc3RhbmRhcmQgYmFja3BsYW5lIGZ1
-bmN0aW9uYWxpdHkgY2FuIGJlDQpyZXVzZWQgYnkgb3RoZXIgdmVuZG9ycyBidXQgdGhpcyBpcyBu
-b3QgbWFuZGF0b3J5Lg0KT3RoZXIgdmVuZG9ycyBjYW4gZXh0ZW5kIGN1cnJlbnQgYXJjaGl0ZWN0
-dXJlIHdpdGggbmV3IGdlbmVyaWMgbW9kdWxlczoNCmZvciBleGFtcGxlIG90aGVyIGVxdWFsaXph
-dGlvbiBhbGdvcml0aG1zIGFuZCBzdGFuZGFyZHMgY2FuIGJlIGFkZGVkIGluIHRoZSBmdXR1cmUN
-CmlmIGN1cnJlbnRseSBleGlzdGluZyBvbmVzIGFyZSBub3QgZGVzaXJlZCBvciBjb25zaWRlcmVk
-IGluYXBwcm9wcmlhdGUuDQpUaGVyZSBhcmUgc2V2ZXJhbCBvdGhlciBzdGFuZGFyZCBhbGdvcml0
-aG1zIGF2YWlsYWJsZSB0aGF0IGNhbiBiZSB1c2VkIGZvcg0KU2lnbmFsIGVxdWFsaXphdGlvbjog
-dGhleSBqdXN0IGhhdmUgdG8gYmUgaW1wbGVtZW50ZWQgYW5kIGludGVncmF0ZWQgaGVyZS4NCk9m
-IGNvdXJzZSB3ZSB2YWxpZGF0ZWQgdGhpcyBiYWNrcGxhbmUgYXJjaGl0ZWN0dXJlIG9ubHkgb24g
-TlhQIHBsYXRmb3JtcyAoYnkgdXNpbmcgUW9ySVEgZGV2aWNlcykNCmJ1dCBvdGhlciB2ZW5kb3Jz
-IHdpbGwgYmUgYWJsZSB0byB1c2UgaXQgaW4gdGhlIGZ1dHVyZSBvbiB0aGVpciBvd24gcGxhdGZv
-cm1zLg0KVGhhbmsgeW91IGZvciBmZWVkYmFjaywNCkZsb3JpbmVsLg0K
+
+--24cvice2wllspfzm
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+On Fri, Jun 05, 2020 at 04:44:51PM +0800, Jian-Hong Pan wrote:
+> Maxime Ripard <maxime@cerno.tech> =E6=96=BC 2020=E5=B9=B46=E6=9C=882=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=887:04=E5=AF=AB=E9=81=93=EF=BC=9A
+> >
+> > Hi,
+> >
+> > On Mon, Jun 01, 2020 at 03:58:26PM +0800, Jian-Hong Pan wrote:
+> > > Maxime Ripard <maxime@cerno.tech> =E6=96=BC 2020=E5=B9=B45=E6=9C=8828=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=883:30=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> > > >
+> > > > Hi Daniel,
+> > > >
+> > > > On Wed, May 27, 2020 at 05:15:12PM +0800, Daniel Drake wrote:
+> > > > > On Wed, May 27, 2020 at 5:13 PM Maxime Ripard <maxime@cerno.tech>=
+ wrote:
+> > > > > > I'm about to send a v3 today or tomorrow, I can Cc you (and Jia=
+n-Hong) if you
+> > > > > > want.
+> > > > >
+> > > > > That would be great, although given the potentially inconsistent
+> > > > > results we've been seeing so far it would be great if you could
+> > > > > additionally push a git branch somewhere.
+> > > > > That way we can have higher confidence that we are applying exact=
+ly
+> > > > > the same patches to the same base etc.
+> > > >
+> > > > So I sent a new iteration yesterday, and of course forgot to cc you=
+=2E.. Sorry for
+> > > > that.
+> > > >
+> > > > I've pushed my current branch here:
+> > > > https://git.kernel.org/pub/scm/linux/kernel/git/mripard/linux.git/l=
+og/?h=3Drpi4-kms
+> > >
+> > > Thanks to Maxime!
+> > >
+> > > I have tried your repository on branch rpi4-kms.  The DRM VC4 is used!
+> > > But got some issues:
+> > > 1. Some weird error message in dmesg.  Not sure it is related, or not
+> > > [    5.219321] [drm:vc5_hdmi_init_resources] *ERROR* Failed to get
+> > > HDMI state machine clock
+> > > https://gist.github.com/starnight/3f317dca121065a361cf08e91225e389
+> >
+> > That's a deferred probing. The first time the HDMI driver is being
+> > probed, the firmware clock driver has not been probed yet. It's making
+> > another attempt later on, which succeeds.
+> >
+> > > 2. The screen flashes suddenly sometimes.
+>=20
+> I append drm.debug=3D0x3 to boot command.  Whenever, the screen flashes,
+> I notice the logs like this:
+>=20
+> Jun 01 15:22:40 endless kernel: [drm:drm_calc_timestamping_constants]
+> crtc 64: hwmode: htotal 2200, vtotal 1125, vdisplay 1080
+> Jun 01 15:22:40 endless kernel: [drm:drm_calc_timestamping_constants]
+> crtc 64: clock 148500 kHz framedur 16666666 linedur 14814
+> Jun 01 15:22:40 endless kernel: [drm:drm_vblank_enable] enabling
+> vblank on crtc 3, ret: 0
+> Jun 01 15:22:40 endless kernel: [drm:drm_mode_object_put.part.0] OBJ ID: =
+159 (2)
+> Jun 01 15:22:40 endless kernel: [drm:drm_mode_object_put.part.0] OBJ ID: =
+154 (1)
+> Jun 01 15:22:40 endless kernel: [drm:vblank_disable_fn] disabling
+> vblank on crtc 3
+> Jun 01 15:22:42 endless kernel: [drm:drm_ioctl] pid=3D584, dev=3D0xe200,
+> auth=3D1, DRM_IOCTL_MODE_CURSOR
+> Jun 01 15:22:42 endless kernel: [drm:drm_ioctl] pid=3D584, dev=3D0xe200,
+> auth=3D1, DRM_IOCTL_MODE_CURSOR2
+> Jun 01 15:22:42 endless kernel: [drm:drm_mode_object_get] OBJ ID: 159 (1)
+> Jun 01 15:22:42 endless kernel: [drm:drm_mode_object_get] OBJ ID: 154 (1)
+> Jun 01 15:22:42 endless kernel: [drm:drm_calc_timestamping_constants]
+> crtc 64: hwmode: htotal 2200, vtotal 1125, vdisplay 1080
+> Jun 01 15:22:42 endless kernel: [drm:drm_calc_timestamping_constants]
+> crtc 64: clock 148500 kHz framedur 16666666 linedur 14814
+> Jun 01 15:22:42 endless kernel: [drm:drm_vblank_enable] enabling
+> vblank on crtc 3, ret: 0
+> Jun 01 15:22:42 endless kernel: [drm:drm_mode_object_put.part.0] OBJ ID: =
+159 (2)
+> Jun 01 15:22:42 endless kernel: [drm:drm_mode_object_put.part.0] OBJ ID: =
+154 (2)
+>=20
+> Here is the full log
+> https://gist.github.com/starnight/85d641819839eddc7a55ca7173990a56
+>=20
+> > > 3. The higher resolutions, like 1920x1080 ... are lost after hot
+> > > re-plug HDMI cable (HDMI0)
+>=20
+> I should explain this in more detail.  Here are the steps to reproduce
+> this issue:
+> 1. Before unplug the HDMI cable from HDMI0 port.
+> $ xrandr
+> Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 2048 x 2048
+> HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x
+> axis y axis) 521mm x 293mm
+>    1920x1080     60.00*+  50.00    59.94
+>    1920x1080i    60.00    50.00    59.94
+>    1680x1050     59.88
+>    1280x1024     75.02    60.02
+>    1440x900      59.90
+>    1280x960      60.00
+>    1152x864      75.00
+>    1280x720      60.00    50.00    59.94
+>    1440x576      50.00
+>    1024x768      75.03    70.07    60.00
+>    1440x480      60.00    59.94
+>    832x624       74.55
+>    800x600       72.19    75.00    60.32    56.25
+>    720x576       50.00
+>    720x480       60.00    59.94
+>    640x480       75.00    72.81    66.67    60.00    59.94
+>    720x400       70.08
+> HDMI-2 disconnected (normal left inverted right x axis y axis)
+>=20
+> 2. Unplug the HDMI cable from HDMI0 port.
+> 3. Plug the HDMI cable to **HDMI1** port.
+> $ xrandr
+> Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 2048 x 2048
+> HDMI-1 disconnected (normal left inverted right x axis y axis)
+> HDMI-2 connected primary 1920x1080+0+0 (normal left inverted right x
+> axis y axis) 521mm x 293mm
+>    1920x1080     60.00*+  50.00    59.94
+>    1920x1080i    60.00    50.00    59.94
+>    1680x1050     59.88
+>    1280x1024     75.02    60.02
+>    1440x900      59.90
+>    1280x960      60.00
+>    1152x864      75.00
+>    1280x720      60.00    50.00    59.94
+>    1440x576      50.00
+>    1024x768      75.03    70.07    60.00
+>    1440x480      60.00    59.94
+>    832x624       74.55
+>    800x600       72.19    75.00    60.32    56.25
+>    720x576       50.00
+>    720x480       60.00    59.94
+>    640x480       75.00    72.81    66.67    60.00    59.94
+>    720x400       70.08
+>=20
+> 4. Unplug the HDMI cable from **HDMI1** port.
+> 5. Plug the HDMI cable back to HDMI0 port.
+> $ xrandr
+> Screen 0: minimum 320 x 200, current 1368 x 768, maximum 2048 x 2048
+> HDMI-1 connected primary 1368x768+0+0 (normal left inverted right x
+> axis y axis) 0mm x 0mm
+>    1368x768      59.88*
+>    1360x768      59.80
+>    1280x800      59.81
+>    1152x864      60.00
+>    1280x720      59.86
+>    1024x768      60.00
+>    1024x576      59.90
+>    960x540       59.63
+>    800x600       60.32
+>    800x450       59.82
+>    700x450       59.88
+>    640x480       59.94
+>    684x384       59.88    59.85
+>    680x384       59.80    59.96
+>    640x400       59.88    59.98
+>    576x432       60.06
+>    640x360       59.86    59.83
+>    512x384       60.00
+>    512x288       60.00    59.92
+>    480x270       59.63    59.82
+>    400x300       60.32
+>    320x240       60.05
+> HDMI-2 disconnected (normal left inverted right x axis y axis)
+
+Sorry for getting back at it so late. I just tested with modetest only
+and my current branch and it seems to behave properly. Did you had to
+run X to get that issue, or is it just how you noticed it?
+
+Also, was that with the branch based on 5.7 I pushed on my git tree on
+kernel.org or some earlier revision of the series?
+
+Thanks!
+Maxime
+
+--24cvice2wllspfzm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXvn4+QAKCRDj7w1vZxhR
+xbDTAPkBlUO8O0ST7H/4Wv8khNgXd4Gl1juEMoSbxw7EDw1ahQD/a/JTw0mlcjIk
+SFNvz6oKy8Ww6Fxbrs4ltBjarlHXEAk=
+=lIBi
+-----END PGP SIGNATURE-----
+
+--24cvice2wllspfzm--
