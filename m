@@ -2,40 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3534820E18E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1503F20DFED
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2020 23:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387978AbgF2U5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 16:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
+        id S2387972AbgF2UlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 16:41:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731263AbgF2TNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:13:06 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058DDC0D941B;
-        Mon, 29 Jun 2020 05:01:03 -0700 (PDT)
-Received: from pendragon.bb.dnainternet.fi (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 07B58734;
-        Mon, 29 Jun 2020 14:01:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1593432062;
-        bh=X0xCbcYYYzfCKHt5yFv1VQW59LoexinUu8b4tbBY7VU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S5gF1lYbPD5U7b9shzsI+EzCTcQZ14Chmrflm1b+TCuAJ2Yq0MXD2Ds1TsocSI50E
-         RIyuIUhozo3GKTcD6xFieOC6MHOaAl4A1FEhFOr4jtLhwiM9KSSV0HIQeDL8I4wQZk
-         jVcDb0HmYnbtZfjEjdhNQ06b/gTCz93lsoz9RNUA=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v9 1/3] dt-bindings: phy: Add DT bindings for Xilinx ZynqMP PSGTR PHY
-Date:   Mon, 29 Jun 2020 15:00:52 +0300
-Message-Id: <20200629120054.29338-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200629120054.29338-1-laurent.pinchart@ideasonboard.com>
-References: <20200629120054.29338-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S1731684AbgF2TOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 15:14:08 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D19EC0F26C2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 05:04:12 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id a6so16286174wrm.4
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 05:04:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C3SFeAEvbOoZI/xpVJ8MO71Sd1LqnSCGoIeWQbxnMQg=;
+        b=W34A5EzIFj5HWi2O+Uu6ihBeBiDeWhpckbWrX2jnfqXAR3x0qNViaW+WgvnvpxwiWO
+         MGqgE1enmwmS0gQxdKT5NnCo8pT8qbnyks2TEEdLnPjFm0OCLBWs+QPHAs9eXm7uQdat
+         JWbhorZHQ3BtymX0aXM/lywfKu/bT8ZNk4SSMGwMY45YdISPCRJHVeIp8gOWUa6hI3x5
+         yl2q7FCGF3ftBuUSxFt5y3sPjglhVa+3G49n58H+eBi39BWD3W01vtmugl+iYZj5MxaS
+         mkrYBWhfSoM6r/EQlCIFuE/GmGSu3DIPQIVdw8C/+juCBxxelde4Yfeywt4RMER4CJbR
+         0+DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C3SFeAEvbOoZI/xpVJ8MO71Sd1LqnSCGoIeWQbxnMQg=;
+        b=GgqkL/8KmYS4fZlHLi/8LB8pSnPX2WSNjWBhtNV9/pTQU9gPuP7lq1gHm1zO4/YROr
+         UynCyEvWZHf2kbIiLMyrXHTLP+DHYUquLft49kbJKh6kwssgC4TzyGYbGUY36zCXbDQl
+         pI5KNs/e6PWXM1AbR7szGj6vransyTKx5EVvkiQzGEoQf6b5AHHnzNp4Va4CpQZn590F
+         AoFnFtxlQYADbu3aovnN8r4MBNidUb2i2yAMLwaXtJy5GRChFcNDcPlYEE6frYDP17Md
+         NzX5QYOt65fTxga0tSLGLQVH0CSDelHQD9g+6FAklCIz5RdUWnh73e6UOug1tBV1e3B0
+         YUBw==
+X-Gm-Message-State: AOAM531sQBuztn5WDh8ANrWeWhBYwd9TX7sYZnaFPZbpWcpaKR3P5xee
+        ifzb+HSgicUzPiXJg1k8eu2tKw==
+X-Google-Smtp-Source: ABdhPJzvKPYK67MLNdl2CXmAriudaJFiLrZRmwhzT6FCEy4WwbiER21DP71IWFlJPEiw6dlp0MpaYQ==
+X-Received: by 2002:adf:e40e:: with SMTP id g14mr18038664wrm.271.1593432250982;
+        Mon, 29 Jun 2020 05:04:10 -0700 (PDT)
+Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
+        by smtp.gmail.com with ESMTPSA id d81sm25274347wmc.0.2020.06.29.05.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jun 2020 05:04:10 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH v2 00/10] net: improve devres helpers
+Date:   Mon, 29 Jun 2020 14:03:36 +0200
+Message-Id: <20200629120346.4382-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -43,171 +76,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Add DT bindings for the Xilinx ZynqMP PHY. ZynqMP SoCs have a High Speed
-Processing System Gigabit Transceiver which provides PHY capabilities to
-USB, SATA, PCIE, Display Port and Ehernet SGMII controllers.
+So it seems like there's no support for relaxing certain networking devres
+helpers to not require previously allocated structures to also be managed.
+However the way mdio devres variants are implemented is still wrong and I
+modified my series to address it while keeping the functions strict.
 
-Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes since v8:
+First two patches modify the ixgbe driver to get rid of the last user of
+devm_mdiobus_free().
 
-- Rebase on phy/next
+Patches 3, 4, 5 and 6 are mostly cosmetic.
 
-Changes since v7:
+Patch 7 fixes the way devm_mdiobus_register() is implemented.
 
-- Switch to GPL-2.0-only OR BSD-2-Clause
+Patches 8 & 9 provide a managed variant of of_mdiobus_register() and
+last patch uses it in mtk-star-emac driver.
 
-Changes since v6:
+v1 -> v2:
+- drop the patch relaxing devm_register_netdev()
+- require struct mii_bus to be managed in devm_mdiobus_register() and
+  devm_of_mdiobus_register() but don't store that information in the
+  structure itself: use devres_find() instead
 
-- Fixed specification of compatible-dependent xlnx,tx-termination-fix
-  property
-- Dropped status property from example
-- Use 4 spaces to indent example
+Bartosz Golaszewski (10):
+  net: ethernet: ixgbe: check the return value of ixgbe_mii_bus_init()
+  net: ethernet: ixgbe: don't call devm_mdiobus_free()
+  net: devres: rename the release callback of devm_register_netdev()
+  Documentation: devres: add missing mdio helper
+  phy: un-inline devm_mdiobus_register()
+  phy: mdio: add kerneldoc for __devm_mdiobus_register()
+  net: phy: don't abuse devres in devm_mdiobus_register()
+  of: mdio: remove the 'extern' keyword from function declarations
+  of: mdio: provide devm_of_mdiobus_register()
+  net: ethernet: mtk-star-emac: use devm_of_mdiobus_register()
 
-Changes since v5:
+ .../driver-api/driver-model/devres.rst        |   3 +-
+ drivers/net/ethernet/intel/ixgbe/ixgbe_main.c |   6 +-
+ drivers/net/ethernet/intel/ixgbe/ixgbe_phy.c  |  14 +-
+ drivers/net/ethernet/mediatek/mtk_star_emac.c |  13 +-
+ drivers/net/ethernet/realtek/r8169_main.c     |   2 +-
+ drivers/net/phy/Makefile                      |   2 +
+ drivers/net/phy/mdio_bus.c                    |  73 ----------
+ drivers/net/phy/mdio_devres.c                 | 133 ++++++++++++++++++
+ include/linux/of_mdio.h                       |  40 +++---
+ include/linux/phy.h                           |  21 +--
+ net/devres.c                                  |   4 +-
+ 11 files changed, 174 insertions(+), 137 deletions(-)
+ create mode 100644 drivers/net/phy/mdio_devres.c
 
-- Document clocks and clock-names properties
-- Document resets and reset-names properties
-- Replace subnodes with an additional entry in the PHY cells
-- Drop lane frequency PHY cell, replaced by reference clock phandle
-- Convert bindings to YAML
-- Reword the subject line
-- Drop Rob's R-b as the bindings have significantly changed
-- Drop resets and reset-names properties
----
- .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 105 ++++++++++++++++++
- include/dt-bindings/phy/phy.h                 |   1 +
- 2 files changed, 106 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-new file mode 100644
-index 000000000000..09e3cde7ebca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/xlnx,zynqmp-psgtr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx ZynqMP Gigabit Transceiver PHY Device Tree Bindings
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |
-+  This binding describes the Xilinx ZynqMP Gigabit Transceiver (GTR) PHY. The
-+  GTR provides four lanes and is used by USB, SATA, PCIE, Display port and
-+  Ethernet SGMII controllers.
-+
-+properties:
-+  "#phy-cells":
-+    const: 4
-+    description: |
-+      The cells contain the following arguments.
-+
-+      - description: The GTR lane
-+        minimum: 0
-+        maximum: 3
-+      - description: The PHY type
-+        enum:
-+          - PHY_TYPE_DP
-+          - PHY_TYPE_PCIE
-+          - PHY_TYPE_SATA
-+          - PHY_TYPE_SGMII
-+          - PHY_TYPE_USB
-+      - description: The PHY instance
-+        minimum: 0
-+        maximum: 1 # for DP, SATA or USB
-+        maximum: 3 # for PCIE or SGMII
-+      - description: The reference clock number
-+        minimum: 0
-+        maximum: 3
-+
-+  compatible:
-+    enum:
-+      - xlnx,zynqmp-psgtr-v1.1
-+      - xlnx,zynqmp-psgtr
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 4
-+    description: |
-+      Clock for each PS_MGTREFCLK[0-3] reference clock input. Unconnected
-+      inputs shall not have an entry.
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 4
-+    items:
-+      pattern: "^ref[0-3]$"
-+
-+  reg:
-+    items:
-+      - description: SERDES registers block
-+      - description: SIOU registers block
-+
-+  reg-names:
-+    items:
-+      - const: serdes
-+      - const: siou
-+
-+  xlnx,tx-termination-fix:
-+    description: |
-+      Include this for fixing functional issue with the TX termination
-+      resistance in GT, which can be out of spec for the XCZU9EG silicon
-+      version.
-+    type: boolean
-+
-+required:
-+  - "#phy-cells"
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+if:
-+  properties:
-+    compatible:
-+      const: xlnx,zynqmp-psgtr-v1.1
-+
-+then:
-+  properties:
-+    xlnx,tx-termination-fix: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    phy: phy@fd400000 {
-+        compatible = "xlnx,zynqmp-psgtr-v1.1";
-+        reg = <0x0 0xfd400000 0x0 0x40000>,
-+              <0x0 0xfd3d0000 0x0 0x1000>;
-+        reg-names = "serdes", "siou";
-+        clocks = <&refclks 3>, <&refclks 2>, <&refclks 0>;
-+        clock-names = "ref1", "ref2", "ref3";
-+        #phy-cells = <4>;
-+    };
-+
-+...
-diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
-index 3727ef72138b..36e8c241cf48 100644
---- a/include/dt-bindings/phy/phy.h
-+++ b/include/dt-bindings/phy/phy.h
-@@ -18,5 +18,6 @@
- #define PHY_TYPE_UFS		5
- #define PHY_TYPE_DP		6
- #define PHY_TYPE_XPCS		7
-+#define PHY_TYPE_SGMII		8
- 
- #endif /* _DT_BINDINGS_PHY */
 -- 
-Regards,
-
-Laurent Pinchart
+2.26.1
 
