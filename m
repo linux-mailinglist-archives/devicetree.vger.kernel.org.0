@@ -2,68 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA50320F3DC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 13:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2458220F3A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 13:35:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732456AbgF3Lw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jun 2020 07:52:56 -0400
-Received: from smtp3.sd73.bc.ca ([142.24.50.246]:55928 "EHLO smtp3.sd73.bc.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729580AbgF3Lw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jun 2020 07:52:56 -0400
-X-Greylist: delayed 10878 seconds by postgrey-1.27 at vger.kernel.org; Tue, 30 Jun 2020 07:52:56 EDT
-Received: from smtp.sd73.bc.ca (smtp.sd73.bc.ca [10.10.10.14])
-        by smtp3.sd73.bc.ca (Postfix) with ESMTP id 9582A6635A;
-        Tue, 30 Jun 2020 01:16:18 -0700 (PDT)
-Received: from zimbra2.sd73.bc.ca (zimbra.sd73.bc.ca [10.10.10.7])
-        by smtp.sd73.bc.ca (Postfix) with ESMTP id 4EEF0E043B;
-        Tue, 30 Jun 2020 01:16:23 -0700 (PDT)
-Received: from zimbra2.sd73.bc.ca (localhost [127.0.0.1])
-        by zimbra2.sd73.bc.ca (Postfix) with ESMTPS id 1123D5C07D981C;
-        Tue, 30 Jun 2020 01:09:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra2.sd73.bc.ca (Postfix) with ESMTP id BA2295C18C9802;
-        Tue, 30 Jun 2020 01:09:30 -0700 (PDT)
-Received: from zimbra2.sd73.bc.ca ([127.0.0.1])
-        by localhost (zimbra2.sd73.bc.ca [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id IKRHZEW4sR12; Tue, 30 Jun 2020 01:09:30 -0700 (PDT)
-Received: from zimbra2.sd73.bc.ca (zimbra3.sd73.bc.ca [10.10.10.7])
-        by zimbra2.sd73.bc.ca (Postfix) with ESMTP id 571C05C1417820;
-        Tue, 30 Jun 2020 01:09:29 -0700 (PDT)
-Date:   Tue, 30 Jun 2020 01:09:29 -0700 (PDT)
-From:   charles jackson <lisa.petel@sd73.bc.ca>
-Reply-To: charles jackson <charlesjacksonjr001@gmail.com>
-Message-ID: <834246548.67039860.1593504569252.JavaMail.zimbra@zimbra.sd73.bc.ca>
-Subject: =?UTF-8?Q?=5BPossible_Spam=5D_Covid?= =?UTF-8?Q?_19_Wohlt=C3=A4tigkeitsfon?= =?UTF-8?Q?ds?=
+        id S1731394AbgF3Lfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jun 2020 07:35:48 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:42248 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727108AbgF3Lfr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 07:35:47 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id BFD1E8053C;
+        Tue, 30 Jun 2020 13:35:43 +0200 (CEST)
+Date:   Tue, 30 Jun 2020 13:35:42 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, od@zcrc.me, stable@vger.kernel.org
+Subject: Re: [PATCH v2 05/10] drm/ingenic: Fix incorrect assumption about
+ plane->index
+Message-ID: <20200630113542.GA560155@ravnborg.org>
+References: <20200629235210.441709-1-paul@crapouillou.net>
+ <20200629235210.441709-5-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.10.10.90]
-X-Mailer: Zimbra 8.6.0_GA_1242 (zclient/8.6.0_GA_1242)
-Thread-Topic: Covid 19 =?utf-8?Q?Wohlt=C3=A4tigkeitsfonds?=
-Thread-Index: sMdgU5VtaJQmkntGS55F4GQNgKM2gQ==
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200629235210.441709-5-paul@crapouillou.net>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=ER_8r6IbAAAA:8 a=7gkXJVJtAAAA:8
+        a=e5mUnYsNAAAA:8 a=h8Z_pZuLarzTNQul7jAA:9 a=CjuIK1q_8ugA:10
+        a=AjGcO6oz07-iQ99wixmX:22 a=9LHmKk7ezEChjTCyhBa9:22
+        a=E9Po1WZjFZOl8hwRPBS3:22 a=Vxmtnl_E_bksehYqCbjh:22
+        a=pHzHmUro8NiASowvMSCR:22 a=nt3jZW36AmriUCFCBwmW:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 30, 2020 at 01:52:05AM +0200, Paul Cercueil wrote:
+> plane->index is NOT the index of the color plane in a YUV frame.
+> Actually, a YUV frame is represented by a single drm_plane, even though
+> it contains three Y, U, V planes.
+> 
+> Cc: stable@vger.kernel.org # v5.3
+> Fixes: 90b86fcc47b4 ("DRM: Add KMS driver for the Ingenic JZ47xx SoCs")
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 
+Look correct to me.
 
--- 
-Hallo
- 
- Ich bin Charles W. Jackson aus North Carolina, Vereinigte Staaten von Amerika, und ich bin der Gewinner des Mega-Millionen-Jackpots von 344 Millionen US-Dollar. Ich spende die Summe von 2.000.000 Millionen Euro als Teil der Hilfsgelder f&uuml;r das Corona-Virus.
- 
- Dies ist Ihr Spendencode: [CJ530342019]
- 
- www.youtube.com/watch?v=BSr8myiLPMQ
- 
- Bitte antworten Sie auf diese E-Mail mit dem SPENDERCODE:
- 
- charlesjacksonjr001@gmail.com
- 
- Ich hoffe, dass Sie und Ihre Familie dies durchkommen
- 
- 
- Herr Charles Jackson
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+As this is tagged fixes: I assume this is for drm-misc-fixes and
+not for drm-misc-next.
+If you resend could you move it as patch 1/10 so this is more obvious.
+
+	Sam
+> ---
+> 
+> Notes:
+>     v2: No change
+> 
+>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> index a15f9a1940c6..924c8daf071a 100644
+> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> @@ -386,7 +386,7 @@ static void ingenic_drm_plane_atomic_update(struct drm_plane *plane,
+>  		addr = drm_fb_cma_get_gem_addr(state->fb, state, 0);
+>  		width = state->src_w >> 16;
+>  		height = state->src_h >> 16;
+> -		cpp = state->fb->format->cpp[plane->index];
+> +		cpp = state->fb->format->cpp[0];
+>  
+>  		priv->dma_hwdesc->addr = addr;
+>  		priv->dma_hwdesc->cmd = width * height * cpp / 4;
+> -- 
+> 2.27.0
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
