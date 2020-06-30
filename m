@@ -2,67 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73FBB20EB3C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 04:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7838620EB3E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 04:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726169AbgF3CDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 22:03:33 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:40046 "EHLO
+        id S1726144AbgF3CE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 22:04:28 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:36577 "EHLO
         mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgF3CDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 22:03:32 -0400
-Received: by mail-il1-f196.google.com with SMTP id e18so5623032ilr.7
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 19:03:32 -0700 (PDT)
+        with ESMTP id S1726072AbgF3CE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 22:04:28 -0400
+Received: by mail-il1-f196.google.com with SMTP id x9so16340639ila.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 19:04:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=arq4AzF5CkvhiBn6DSLrfoxPguoNXuVsu2ZMowJNTtQ=;
-        b=D/2iCGraaQ+kHhSa2sO6WFV5YgJjRjrbckuATPRa3YjZWxF0yZZWsytWOMS6mZ7wUO
-         PZcdoVckSGPAjrzKJspjXgZG00Obo6q0bwpfGpsiMFFRi2gruV4M/kOpfnwJ8VnJNLkn
-         /+CyX6o4/cB4T9HaQfxQBtxxiEfIJHOW+uX/4KT2Ca8BwFnjXhJ4xFwHLI70bN0lBrc5
-         Gm8DSeHf06IpoBo0daLqbACInz4DtPF8BrXGIasmJQlr2iG4pGfsvzmJ92PoHaFJjpLX
-         pKXrL3JxMjx2EWRtr0vnBtPRHqnPM3ipscO4VRc1TBNUT5g2NzTSORBL47SmkH84Odtp
-         CnrQ==
-X-Gm-Message-State: AOAM53122NjDPop7KOcAXYN2z+LByht20ihrW9ixlOpVcL7HYorQZo/Z
-        bnOFtxdTTteZhu0CL9+Z0g==
-X-Google-Smtp-Source: ABdhPJy4YdprQkBab9MNxn7MCyP0zBHmDtP3iUN4v9PGOMDumN1PdNL3gz2xqEUU0sWQx4F9dWvIow==
-X-Received: by 2002:a05:6e02:8e4:: with SMTP id n4mr406791ilt.96.1593482611937;
-        Mon, 29 Jun 2020 19:03:31 -0700 (PDT)
+        bh=5aTkVLos9/xn9XRjNeZf+9N0nfWjIIzOFIYJ9XZTsZo=;
+        b=Qt0XouLOZeXU7rUcROLGpjLgMS+ngjr57wp/5GWW7YjCDtn/l7ICt3bAEyTGn1CFmQ
+         odhVKb+khiAdqVQlpe1bSwhrBgCMulrFiC3mRoLEHBSCZ1vtYSNR8YpCjwy4JgeLYVEa
+         nrhhFa7M5Fbq3TlTy+czRiHRTcFh2+9OIDVMxztz9DJg5BNTSgvMNgPNJGK7mxpHp1kb
+         FCckkTACJoRzR4bAVYx1V7iAaUmRh/9/WQBeLKmQ3GepdbEbeLunqPHQYyInhETHYoQG
+         0RWd4RDp9h3iN+eBn5wDBeLb9yN8BUjna3YP47JFxwhs3IWKGyvUv1R13454OQGzbcQf
+         da2g==
+X-Gm-Message-State: AOAM531ovG6aP3FzPjCFbfPe2VEJCS4I08rCHC7t6CAZUNiC6vBwojQN
+        P7SgEu/uSNdivUDQlbYO4Rp+69SvKA==
+X-Google-Smtp-Source: ABdhPJwHq++7HOeuGQe//SVGz0kt42TZemyCS2hRllqraaE/nYvq7m40EaFxt+hsIx6QtI2Bxbfc7Q==
+X-Received: by 2002:a92:6e11:: with SMTP id j17mr450408ilc.54.1593482667538;
+        Mon, 29 Jun 2020 19:04:27 -0700 (PDT)
 Received: from xps15 ([64.188.179.255])
-        by smtp.gmail.com with ESMTPSA id a5sm882562ilt.71.2020.06.29.19.03.30
+        by smtp.gmail.com with ESMTPSA id f9sm923162ilq.9.2020.06.29.19.04.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 19:03:31 -0700 (PDT)
-Received: (nullmailer pid 3467058 invoked by uid 1000);
-        Tue, 30 Jun 2020 02:03:29 -0000
-Date:   Mon, 29 Jun 2020 20:03:29 -0600
+        Mon, 29 Jun 2020 19:04:27 -0700 (PDT)
+Received: (nullmailer pid 3468570 invoked by uid 1000);
+        Tue, 30 Jun 2020 02:04:25 -0000
+Date:   Mon, 29 Jun 2020 20:04:25 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, sam@ravnborg.org
-Subject: Re: [PATCH] dt-bindings: display: arm: versatile: Pass the sysreg
- unit name
-Message-ID: <20200630020329.GA3466998@bogus>
-References: <20200629215500.18037-1-festevam@gmail.com>
+Cc:     maxime@cerno.tech, eric@anholt.net, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: vc4: dpi: Remove unneeded
+ 'simple-panel' property
+Message-ID: <20200630020425.GA3467335@bogus>
+References: <20200629221327.19885-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200629215500.18037-1-festevam@gmail.com>
+In-Reply-To: <20200629221327.19885-1-festevam@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Jun 2020 18:55:00 -0300, Fabio Estevam wrote:
-> Pass the sysreg unit name to fix the following warning seen with
-> 'make dt_binding_check':
+On Mon, Jun 29, 2020 at 07:13:26PM -0300, Fabio Estevam wrote:
+> Remove the unneeded "simple-panel" property to fix the following warning
+> seen with 'make dt_binding_check': 
 > 
-> Warning (unit_address_vs_reg): /example-0/sysreg: node has a reg or ranges property, but no unit name
+> Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.example.dt.yaml: panel: compatible: Additional items are not allowed ('simple-panel' was unexpected)
+> Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.example.dt.yaml: panel: compatible: ['ontat,yx700wv03', 'simple-panel'] is too long
+
+There's already a fix for this from Maxime which just removes the 
+example as it doesn't add much value.
+
 > 
 > Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  .../bindings/display/panel/arm,versatile-tft-panel.yaml         | 2 +-
+>  Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-
-Applied, thanks!
+> diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+> index 58213c564e03..24119411b007 100644
+> --- a/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+> @@ -46,7 +46,7 @@ examples:
+>      #include <dt-bindings/clock/bcm2835.h>
+>  
+>      panel: panel {
+> -        compatible = "ontat,yx700wv03", "simple-panel";
+> +        compatible = "ontat,yx700wv03";
+>  
+>          port {
+>              panel_in: endpoint {
+> -- 
+> 2.17.1
+> 
