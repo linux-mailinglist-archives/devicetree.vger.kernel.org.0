@@ -2,94 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC5320F69D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 16:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7357620F6C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 16:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388758AbgF3OAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jun 2020 10:00:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49122 "EHLO
+        id S2388604AbgF3OJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jun 2020 10:09:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388748AbgF3OAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 10:00:08 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7350C03E97A
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2020 07:00:07 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id l2so18221206wmf.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2020 07:00:07 -0700 (PDT)
+        with ESMTP id S1730339AbgF3OJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 10:09:33 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31ECC061755;
+        Tue, 30 Jun 2020 07:09:31 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id d16so9716662edz.12;
+        Tue, 30 Jun 2020 07:09:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+Oh4ApefyTnqgl3zRri2ZSE2mhpbCR1hfUifrIURqpY=;
-        b=DjbUwWSe0bUOM79CA2NMctk+cF1xo4+d4SgV4E081WpLOL71nEMW/qhGD4qvMVdkxD
-         dFQW7QgDRN86ePS6S0HIQoSyEwa2ndIcxq/ZG47135c7UHKCGmbVdpt+hQMoogfEDJgZ
-         jmAwWa3o0MUkXn4uggszhTCs1cLF1JiH3rtDSZI8cgk7HLi/5EFBJz8Jbwmv27Y6KREZ
-         G++sPZQaGCqQbhngv033h+GyA/J4Bck5x7iVJ+kyz8W8oQ6AfP+kHArvuv57Fg7tOXXw
-         NyI0XKPo20bCaXkQGlyd4GGel83m4H+oRbCoOyckk8eZYcZ073bm58KmfMskU0tLIN2v
-         7V0Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2aw9SI1zZwxufKdUMmejN/ekatHE+VAVco1DX+Y+FY4=;
+        b=rwwK6jpRJsEHiK4BoMlll0ENItVNp+mdP+ONVk1jZq6ohef/P76F/DtnarxckVKWQR
+         BHstHgSub3cksT46FLvW/F7jYFucwEKwfUFffHse00k8NakI4sbCQ9vz0plj5z07KmDf
+         BTLyYoWByVhXIV03J20RrH5AggIqbGVQX6NIDTbA29FuEaTzHo4q8a1jiHUVmzHpFp/0
+         TMJbg4tqasK+gCNNOsAoHBhHFJZzPXjvl4foU3+d2v2ayU9l2jVRQVUCb+HrkwknRPWa
+         Vk5VHuvga0SXfiYcEkRQSoCZU+cAzet08TBKBBim/+5oiohSWDy9gBHOTfdf8b+gI/8Y
+         9UKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+Oh4ApefyTnqgl3zRri2ZSE2mhpbCR1hfUifrIURqpY=;
-        b=UWZHQ+C4i+c+iyC1+HvEQCt1GusAE3GED9lXKIBKK9XAnXzrLO4l/4uU+8T5RWvSnx
-         sWgbn2oMh5cjuBZ0xXLzBMm6CogpFPK0LE6Dm6CZ0mNAPNaoNtdUii8XLCDjHd7IHe7I
-         ZuMn/O0o4Z/227nrFSEW0CpkUBnX61m+/Vcz3XL6VRzGfRLQAbX0OCEyKO+SL4Gt5jgg
-         BcHSDWcoJjyMz+fi1+0nZ+wnfvQu3mtFQP0PenYrTGoaiqe3Cso7l1Qj7JxTRQD9e6sG
-         9TPsqbfNYdlyP8ICo9Eh5CT9ePCSwgjrTcyI/3zasaZVIBWYCgv3H/lV6scteUqb2pJx
-         FaOg==
-X-Gm-Message-State: AOAM531XKpZuY0r+paZmSusAi9AU3F//NOByrAIqS8BCDv17TaK0CZLm
-        SsxEmm178C1g/V2aXs8bhec5Ow==
-X-Google-Smtp-Source: ABdhPJwbLE+kcjKkrLT/25qlwcFppdADS5iumyeK5/Qqd5eAaD0ht8ENlqsto/03COPQKARN64Thnw==
-X-Received: by 2002:a7b:c099:: with SMTP id r25mr22949202wmh.159.1593525606573;
-        Tue, 30 Jun 2020 07:00:06 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id o9sm3931023wrs.1.2020.06.30.07.00.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2020 07:00:05 -0700 (PDT)
-Date:   Tue, 30 Jun 2020 15:00:04 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, benjamin.gaignard@st.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: st,stmfx: Remove extra
- additionalProperties
-Message-ID: <20200630140004.GM1179328@dell>
-References: <20200630114443.26414-1-festevam@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2aw9SI1zZwxufKdUMmejN/ekatHE+VAVco1DX+Y+FY4=;
+        b=C3IuiKKQeKdsNdLTTMPX1NjWuE0Vj1pLHGQRG9yU3UM3GLpb9j8TieUqbfRk9ii/+L
+         ARByIZDXSwq8MlkM58039z6nPI61xv5kxlN94dwu6mM6xFat65t789K9Zl0cQh2ZmGwo
+         F7g27YEbuq3mfExxSXA+MHLQf/UAwXs+S2eRYiSugf99YJFYKnx8qle9EjXUuULoY63m
+         Iy6DOAvc4ASlACbDWuJk0gkx4AJwH8DKkESPGqFogdUZ+G+3igkuhpSY+W9FJ0gJMIMv
+         SbwNZZF+BwtE/sqEmI5NhtyXNwntyKxTeIlTCUEcqGVT7/rpynkaUzm+DB0HxyeLbcWR
+         Timw==
+X-Gm-Message-State: AOAM5336znGWlqK4yY5c0BTB9zez7d2MlEaxGHWSFENPoPK6KZH/GTB2
+        3MBza5kebfQyrKxXlDFb/iY=
+X-Google-Smtp-Source: ABdhPJzYXiy/R6+9eFuU9RewJe73bnv8r6K5lsqiboSZRIHamXRSwLD42BFEmfwnH2m+rnpJO5sLYQ==
+X-Received: by 2002:a50:9dc8:: with SMTP id l8mr23076742edk.248.1593526170484;
+        Tue, 30 Jun 2020 07:09:30 -0700 (PDT)
+Received: from localhost ([213.191.183.145])
+        by smtp.gmail.com with ESMTPSA id b98sm2982891edf.24.2020.06.30.07.09.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2020 07:09:29 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH 0/7] ARM: dts: qcom: msm8974: klte: Enable some hardware
+Date:   Tue, 30 Jun 2020 17:09:05 +0300
+Message-Id: <20200630140912.260294-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200630114443.26414-1-festevam@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Jun 2020, Fabio Estevam wrote:
+Enable support for various hw found on the Samsung Galaxy S5:
+- touchkey (the two buttons around the home button)
+- touchscreen
+- notification led
+- wifi
+- external SD card
 
-> The following build error is seen with 'make dt_binding_check':
-> 
->   CHKDT   Documentation/devicetree/bindings/mfd/st,stmfx.yaml
-> /home/fabio/linux-next/Documentation/devicetree/bindings/mfd/st,stmfx.yaml: properties:pinctrl:patternProperties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
-> 
-> Remove the extra 'additionalProperties' to pass the build.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changes since RFC:
-> - Added Rob's Reviewed-by
-> - Added lkml on Cc
-> 
->  Documentation/devicetree/bindings/mfd/st,stmfx.yaml | 2 --
->  1 file changed, 2 deletions(-)
+Please note that for working wifi the correct firmware is needed. Check [1]
+for links and locations.
 
-Applied, thanks.
+Also note, that to actually run a mainline kernel on the klte, you'd need
+to apply this patch [2]. Any feedback on getting this to run on pure
+mainline are welcome.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+[1] https://gitlab.com/postmarketOS/pmaports/-/blob/master/firmware/firmware-samsung-klte/APKBUILD
+[2] https://gitlab.com/postmarketOS/linux-postmarketos/-/commit/765f55b248cd3b231af8431fe2f2aeca263b4e4b
+
+Iskren Chernev (7):
+  ARM: dts: qcom: msm8974-klte: Merge pinctrl nodes
+  ARM: dts: qcom: msm8974-klte: Add support for touchkey
+  ARM: dts: qcom: msm8974-klte: Add support for touchscreen
+  ARM: dts: qcom: msm8974-klte: Add support for led
+  ARM: dts: qcom: msm8974-klte: Add gpio expander chip
+  ARM: dts: qcom: msm8974-klte: Add support for wifi
+  ARM: dts: qcom: msm8974-klte: Add support for SD card
+
+ .../boot/dts/qcom-msm8974-samsung-klte.dts    | 301 +++++++++++++++++-
+ 1 file changed, 292 insertions(+), 9 deletions(-)
+
+
+base-commit: c28e58ee9dadc99f79cf16ca805221feddd432ad
+--
+2.27.0
+
