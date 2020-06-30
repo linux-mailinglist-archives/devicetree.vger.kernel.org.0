@@ -2,114 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9083220EE3A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 08:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 439C420EE53
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 08:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729975AbgF3GWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jun 2020 02:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730014AbgF3GWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 02:22:42 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB6CC03E97A
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 23:22:41 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id u185so6935739pfu.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2020 23:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yxI0dB1QFgZNIVokC1hI+G+Iqlv6A0nmADwj9+78Tks=;
-        b=CdZajyIJHDjOv65E77khrmmw03A7NqdRALdHclmEq43x0A5YERCb9uk8uLW+tX46JL
-         zSfex5IBG8VNGN9gNc70Fxurl907/DAYftlHGmLH9BFvsGGy8nIXnFHWNmHXHSpaSCz/
-         qDqUQZaZcpY5ijqfUZnFDGCWEx6Lgt2HkKvc8oc/Ao9Z0RLEFiXPgur13RH4msc0NuBO
-         7hSiDCK2LgMP9EW7nWsi0kh1ymWFCECLq47QkmJ+3IeZnRZoEHNQl8Zxe/GFOuFd5Q0D
-         YXp8LhRkXDNS1eig3k5dfutAxsToJhnqtQW+V4e/4F7uLVYKOPTTAG6CHrxxWGv12DlY
-         WthQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yxI0dB1QFgZNIVokC1hI+G+Iqlv6A0nmADwj9+78Tks=;
-        b=KeG+s1Zy9RCPnCHZ2QuT+qz7p9+N7ZjbWQUcJaeGBk1SNhs7YwngdZKlHVFvEuH67Q
-         /n1VqIAlhnECfco1CCAmqj105ZZau2OTuRM3IWZxCJASrA+eQl/AXRGfHf43pDSdGFdJ
-         Epk1tefV/D5ZrgMexJ8/7tTW6i3/QA9T/bg/1GbpyGvMPW5uQryxWq7OHALYe7GsmbMB
-         eOfZta2kDAQEu5ZIAOS8lBS86Yr7zZW5xhSGcnjxrWfYwjBVwXBPH5N61iUHIXL5lymd
-         q1HH6RwgQalIkuzZHa9Hh8Qu8l5z6EEtJNNjH2xo3UYUVpcFvV9IoPIiBbu3bdshFh9L
-         aqBA==
-X-Gm-Message-State: AOAM530p/Vbro3gS9tl84blA4Wscco1sARTHe5lXimZVNllm5QUaC0Ry
-        DYnb1dr1o5qK81soz+49ogqMLA==
-X-Google-Smtp-Source: ABdhPJwkpX+UqkRhUMU2StSSepg0T7aIZhYVKhSZq4GziMwUla8dN0NFMDLDBH2U3p99v/31HC6nbw==
-X-Received: by 2002:aa7:8f08:: with SMTP id x8mr2228098pfr.41.1593498161157;
-        Mon, 29 Jun 2020 23:22:41 -0700 (PDT)
-Received: from localhost ([103.208.69.16])
-        by smtp.gmail.com with ESMTPSA id n37sm1486372pgl.82.2020.06.29.23.22.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2020 23:22:39 -0700 (PDT)
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-To:     linux-kernel@vger.kernel.org, daniel.lezcano@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] MAINTAINERS: update Amit Kucheria's email to a single email address
-Date:   Tue, 30 Jun 2020 11:52:32 +0530
-Message-Id: <8cbb7004a6a9b846a8d827f514f33f1a265dd5d4.1593498024.git.amit.kucheria@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        id S1730167AbgF3G1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jun 2020 02:27:06 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:57650 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730152AbgF3G1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 02:27:04 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200630062701euoutp024f2224c5833b0600ecfad2a17159dd34~dPl88ghJc0911009110euoutp025
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2020 06:27:01 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200630062701euoutp024f2224c5833b0600ecfad2a17159dd34~dPl88ghJc0911009110euoutp025
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1593498421;
+        bh=837mH5WoZoAfjQ/qyJerBSqKjDYL+ctM09x1q/ySjVk=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=AO0scRZq6Ez63v77F/RX554SC6gekSq9bBUTe3t0IQRWSiU/0SWPYluKTvdSKWQOc
+         uj12irRVT3mYNXi0Ll1o5jbnNihKjmZF1vvqqrXvwmOeM/qWMDPgQSDPLgFLFneQGf
+         z/nQnM749CmxFTcQ0JNdgN25uvnyBkPwCKbPI/P0=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200630062701eucas1p1b691c1894216947d32cca0a029408300~dPl8eZ-jt1426414264eucas1p1Y;
+        Tue, 30 Jun 2020 06:27:01 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id C1.4D.06318.53BDAFE5; Tue, 30
+        Jun 2020 07:27:01 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200630062700eucas1p26889ded55f324aa745bc914dcd1faed4~dPl79WWlp2732027320eucas1p2F;
+        Tue, 30 Jun 2020 06:27:00 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200630062700eusmtrp2f1d0f04afba5316efc4a2f294370e3ba~dPl78ncSS3011830118eusmtrp2c;
+        Tue, 30 Jun 2020 06:27:00 +0000 (GMT)
+X-AuditID: cbfec7f5-371ff700000018ae-38-5efadb35f8aa
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 84.0A.06017.43BDAFE5; Tue, 30
+        Jun 2020 07:27:00 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200630062700eusmtip1dcf28c8e096329f4a9f6145f772ef6f5~dPl7SBLzl0872808728eusmtip1X;
+        Tue, 30 Jun 2020 06:27:00 +0000 (GMT)
+Subject: Re: [PATCH v2] ARM: dts: exynos: Fix missing empty reg/ranges
+ property regulators on Trats
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <97651868-30f3-6b91-1ea2-551ee1ebad8f@samsung.com>
+Date:   Tue, 30 Jun 2020 08:27:01 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200629205948.32250-1-krzk@kernel.org>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa2xLYRjO13PantYq347VXiZIk80l2YaZHCGyiR8lEUQiIVbKjlm03dLa
+        jEjsQlndSiKtGruwaJrsVlZMLNkxKxmtdNjCwlixmkZil24zRnuM/Xve532e73ne5KMIulk4
+        m8rWHWT1OrVGIZKSrrZRT2LqmzHVkmGHnOm55hIxDdY6IdM5+FnIlLd6hMz53n6C8XrrxYyz
+        95WQ6WgqEzFWb7OAqWocFDMnHrSKmZMfA0RalNLpKBUpb904pjx324GUA865m8kd0tWZrCY7
+        n9Unr9kt3d9Z9J3MDQkL2rmngkI0QpqQhAK8HH51NApNSErR2I7gR+EtET8MIvCVDAvCKhoP
+        IPh2ctmko8UVQrzoJoLHodNifviGoN/ujThmYBZeFdcQYRyDt0Eo8DjyLIHHBTDy5q0ovBDh
+        pWAKmiJYhtdAF1caMZA4HiotzyIF5TgDzlVX/NVEw5PL/j88RUlwKpiD+8I0gefBnWAZweNY
+        eO0vF4SzAPvE8OK6T8DXXgeWPjPB4xnwxX1bzOM5MHFv0lCC4L2nRswPZxB0FFsRr1oF3Z4x
+        UTiZwIugrimZp9Oh+8KYOEwDng5dwWi+xHS46LIQPC2DU0aaVyeAzV37L7bluY8wI4VtymW2
+        KefYppxj+59bgUgHimXzDNos1pCiYw8lGdRaQ54uK2lvjtaJ/vyq9l/uobuoeXwPhzCFFFGy
+        3Z5RFS1U5xsOazkEFKGIka191q6iZZnqw0dYfc4ufZ6GNXAojiIVsbKUqkAGjbPUB9kDLJvL
+        6ie3AkoyuxA9vEOrMlHasUDnzk/pwyuS7HTaUe5+QeuCoZWKCZtRdbyNbLpedmljQjWncebU
+        c3V3N1ji46XrTWetukcp282s2z7ta4/xim8TSU+Le+DvspuXp17NlY9LEt/5G7S9C7lt8p/p
+        3saXRa/z+7ZU9httH+bN2rP1fdnM+bUl6iFCQRr2q5cuJvQG9W/pUwM2UQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPIsWRmVeSWpSXmKPExsVy+t/xu7omt3/FGXzbYWDxYN42NouNM9az
+        Wlz/8pzVYv6Rc6wW/Y9fM1ucP7+B3WLT42usFpd3zWGzmHF+H5PFoq1f2C1a9x5ht2h/+pLZ
+        gcdj06pONo/NS+o9+rasYvT4vEkugCVKz6Yov7QkVSEjv7jEVina0MJIz9DSQs/IxFLP0Ng8
+        1srIVEnfziYlNSezLLVI3y5BL+N64yeWgu+sFacPnWFqYPzB0sXIySEhYCJxcNt3RhBbSGAp
+        o8Trs/4QcRmJk9MaWCFsYYk/17rYuhi5gGreMkpMmLSaCSQhLJAqca1pLXMXIweHiECYxNpV
+        5iA1zAJ/mCQ23HvDCNHQwSix/nsPG0gDm4ChRNfbLjCbV8BO4sahTmYQm0VAVWLh9LNgF4kK
+        xEp8u7cFqkZQ4uTMJywgCzgFTCUmvE0DCTMLmEnM2/yQGcKWl9j+dg6ULS5x68l8pgmMQrOQ
+        dM9C0jILScssJC0LGFlWMYqklhbnpucWG+kVJ+YWl+al6yXn525iBEbmtmM/t+xg7HoXfIhR
+        gINRiYc34dzPOCHWxLLiytxDjBIczEoivE5nT8cJ8aYkVlalFuXHF5XmpBYfYjQF+m0is5Ro
+        cj4waeSVxBuaGppbWBqaG5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamDc3rSoX+qh
+        lcVz4wa2R//WLn56efMkrY0fdhssfHU75KVNrdZTF7Zfd1d9n3e7mDH6npNFyNYFYo82HUg8
+        IHjc4Umb3dbSy0xOPf68kvv3HnqfLv9M3V79c8SJUj6V6hRO/3nbG0pP7ut61bq6dHJios0G
+        0wt5lZcduw/wb1gulPU6h+3OugobJZbijERDLeai4kQADzbOMeICAAA=
+X-CMS-MailID: 20200630062700eucas1p26889ded55f324aa745bc914dcd1faed4
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200629210025eucas1p219a52e75ecce9e813aa80f0126780189
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200629210025eucas1p219a52e75ecce9e813aa80f0126780189
+References: <CGME20200629210025eucas1p219a52e75ecce9e813aa80f0126780189@eucas1p2.samsung.com>
+        <20200629205948.32250-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails currently go to different mailboxes. Switch to the kernel.org
-address so I can forward them to a single mailbox.
+Hi Krzysztof,
 
-Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
----
- Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 2 +-
- MAINTAINERS                                               | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+On 29.06.2020 22:59, Krzysztof Kozlowski wrote:
+> Remove the regulators node entirely because its children do not have any
+> unit addresses.  This fixes DTC warning:
+>
+>      Warning (simple_bus_reg): /regulators/regulator-0: missing or empty reg/ranges property
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index d7be931b42d22..0985e65a9d871 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: QCOM SoC Temperature Sensor (TSENS)
- 
- maintainers:
--  - Amit Kucheria <amit.kucheria@linaro.org>
-+  - Amit Kucheria <amitk@kernel.org>
- 
- description: |
-   QCOM SoCs have TSENS IP to allow temperature measurement. There are currently
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 496fd4eafb68c..f80cb6185662f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14230,7 +14230,7 @@ F:	drivers/net/ethernet/qualcomm/rmnet/
- F:	include/linux/if_rmnet.h
- 
- QUALCOMM TSENS THERMAL DRIVER
--M:	Amit Kucheria <amit.kucheria@linaro.org>
-+M:	Amit Kucheria <amitk@kernel.org>
- L:	linux-pm@vger.kernel.org
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
-@@ -16930,7 +16930,7 @@ F:	drivers/media/radio/radio-raremono.c
- THERMAL
- M:	Zhang Rui <rui.zhang@intel.com>
- M:	Daniel Lezcano <daniel.lezcano@linaro.org>
--R:	Amit Kucheria <amit.kucheria@verdurent.com>
-+R:	Amit Kucheria <amitk@kernel.org>
- L:	linux-pm@vger.kernel.org
- S:	Supported
- Q:	https://patchwork.kernel.org/project/linux-pm/list/
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+
+What about removing the regulators node from other boards: 
+exynos4412-origen.dts, exynos5420-smdk5420.dts and exynos5250-arndale.dts?
+
+On the other hand, maybe it would be really easier to add missing 
+address/size-cells properties to exynos4210-trats.dts/regulators node?
+
+Best regards
 -- 
-2.25.1
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
