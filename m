@@ -2,259 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF5D20ED8A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 07:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E0E20ED56
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 07:24:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbgF3F2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jun 2020 01:28:23 -0400
-Received: from mail-eopbgr70044.outbound.protection.outlook.com ([40.107.7.44]:24452
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        id S1727794AbgF3FYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jun 2020 01:24:35 -0400
+Received: from mail-am6eur05on2054.outbound.protection.outlook.com ([40.107.22.54]:35649
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726015AbgF3F2X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jun 2020 01:28:23 -0400
+        id S1726117AbgF3FYe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jun 2020 01:24:34 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iz0zMau0dkqhDSxEoyzi65R0oEKKlXpx/TPiyXq9DQIIpqn1IXnhTqju0CB55jhAxkwKq3C+t+hG01RgdNuwiLRj75TGdqn9L9eDNBXaAumxrKuJSUbZda+Q3X8yArP5X9bgHTqLCqWufLhIirHUOKki1HuzXy3RdN9BGzyU4strp5hWaYZQEVax/FQ+cjB71iHF9K4svGmT3igBG3BPLdyoYaDkEDnO63O0Rya6LDqAwrA8O+Qw8gVzrWHDOaUXvdhxqgSeWC+JVV/IialT7AhqDbEB4DzqZffyFaGEJImadfS52fqP6y+H5DKFxItpFimIcjSRqjHh7bLhqfn9yw==
+ b=ZxQ/GXslvtDLc0mvw8ibKvyFMAMwf03UfPf61MiOR1p5lV1cxCAWBJlVIIUJ4dMnNTwlS6NhV7QTB/niSUd+HIp52+2U5HBtFVjTia9Swl+AR1ywF/axwhDSDu/T65bOpopTpJIeJ1axW5R2po+96B6SHduOmDs8ypL4qIZ5q1xIT0SUyCBM2sB5MPCUGFrnTuYGVAqV6WnfDG7jFNAOaFhtfUSCkC6lDnFXDOXSuJQsU4hGpDjRadyOPgWKvO1lYMdC9zefvMyzY17eYoNhXOdio/dWuUgMC98phuuh3xZWvhUPkN0h9GryiWWJqoPy34V/mRZ+fOCdV8xelP9lFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lF6plXu65UdsuRH3ZRGToErneNpkGcq9PN+qbD4wdEA=;
- b=eCARefYb8xzTmovRTwEauO9EPxgafl/wkyHdCnvHtdqEbero8NFMWeKwEUOQA3Zv89qYEuvdXjDoguOIo6YWvrgFPxRHnThCrYbZZs1vDbZAfCizLU1tLKNxO5P1a1BRW5lNQnECI3CRY+clzE9zTr22W5Bq0OSA5gjgFpC6MJiYEM42lOJ/a58kxHFVxVhb5rxYeiLuE63VXzQNTZj2e29MQ0UK5hLpRBfA+WTXnz/HSmeYziGvpvI4bHIuzE/8BFfe/R1jWxVuj9B1XVzY8FPDgvMRTbtZuxYqBRXATYufMnX2xu3aSEm4fVurov7ukSTkNRBlP7WEoYpfr6b99Q==
+ bh=zwa9tEd1POHbUIM4Xm8BoOQjdEesdscNwIUMqUGqAZ0=;
+ b=K83kB0b5opSt4ZlPv1aTFeUqKLSjtTpvcVSkkCnUBkZbyB8kvSHWsgkLzCe56OKELS0bgRQ4uhrKZAkgK22EffIRV5LoRfcAPXQ61OP2Mj+TgJC5p4MhU3HQdP+1aZ5a8BQ3WG8Z++hq9AvVqPwuQgbk1eQpdRbyk6ceq0YuCuxRqdWmtDQ05EwJOHhKglF1ppz3gmOgm24jNUxRLTkIAne+syTX4mT+H/MT6fBKxAJJRLTdzG7IsXdOc2UUT/J1Cir+HNP6+7+ghP441dqcQCl0796tQYZZzvvJZ5QR8Ozt22AgmxZqKHOSk3UxosvAImuDMr6lzQ4vsCwtk1PswA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lF6plXu65UdsuRH3ZRGToErneNpkGcq9PN+qbD4wdEA=;
- b=nzwt2UEd85UW6WVikjX8ujDtzHD1fOlf847Jae7O3q6M9pTaHmmod461dBg77u+ZyurPvH5saPghbOCvy4xjiVQ+aUyzHqqgKJdKs0DhFc7KmS+nqh36tDErQsHtpLrrZ7/JkGUNxpWasQJfBFqdrU5oCHbmPNKX8Fr9cVdekpc=
-Received: from DBBPR04MB6090.eurprd04.prod.outlook.com (2603:10a6:10:c4::22)
- by DB6PR04MB3032.eurprd04.prod.outlook.com (2603:10a6:6:10::18) with
+ bh=zwa9tEd1POHbUIM4Xm8BoOQjdEesdscNwIUMqUGqAZ0=;
+ b=oUPVV+iUq9i99QXDBySwhumXi+Q0lT1Kd4UdXWCVK60f537AqBS8vaYChJQKL/M0Ph9FB5/LrYn6BT6Wzc1Hw5OCivnj5s1OY4FJ2CE8kMTd5La9aUnHwAvXlblJK8ifdtlr2zIbJ41VLSL8yr09c8ZY04idVTo80tdS29EwRVU=
+Authentication-Results: arm.com; dkim=none (message not signed)
+ header.d=none;arm.com; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VE1PR04MB6640.eurprd04.prod.outlook.com (2603:10a6:803:122::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.26; Tue, 30 Jun
- 2020 05:28:16 +0000
-Received: from DBBPR04MB6090.eurprd04.prod.outlook.com
- ([fe80::c11b:3254:dd7b:66d]) by DBBPR04MB6090.eurprd04.prod.outlook.com
- ([fe80::c11b:3254:dd7b:66d%7]) with mapi id 15.20.3131.028; Tue, 30 Jun 2020
- 05:28:16 +0000
-From:   Andy Tang <andy.tang@nxp.com>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-CC:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH 1/2] arm64: dts: ls1088a: add more thermal zone
- support
-Thread-Topic: [EXT] Re: [PATCH 1/2] arm64: dts: ls1088a: add more thermal zone
- support
-Thread-Index: AQHWTo44S8AorskBBEKeL2bS3reQjqjwnPGAgAAC6hA=
-Date:   Tue, 30 Jun 2020 05:28:16 +0000
-Message-ID: <DBBPR04MB609085CD69E4CCBDD49CCF66F36F0@DBBPR04MB6090.eurprd04.prod.outlook.com>
-References: <20200630032014.22956-1-andy.tang@nxp.com>
- <CAHLCerO3B4Z67KP8VaF957Jkid21gLvzhS49gNeqUC+6muPkjA@mail.gmail.com>
-In-Reply-To: <CAHLCerO3B4Z67KP8VaF957Jkid21gLvzhS49gNeqUC+6muPkjA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [92.121.68.129]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 4671f3c2-0890-4e61-516e-08d81cb6648b
-x-ms-traffictypediagnostic: DB6PR04MB3032:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB6PR04MB30321A711D9F683EA1643762F36F0@DB6PR04MB3032.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 0450A714CB
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +xaIAgirmH60gQVwBjqhFSxsqVg+KIaxt4B/AO0ZaRbSfx2NPMhkY+Ym9GwWkgGDKBaGy2RiJgOhthHt2Lvp8oMXzo2ZP1E2qaOLFBDZ3GpkNQ/cNSRiICVYsRHNHU3ahGFEpWZdnj5jrGbkuNd9IZ7SLTxXqI3J7IrF98B1+lpnlN3uJNKI1hEEPrUrJ0JakDUOQ8ZwwwkX+lNh0BTzemo06peLjJ9nyM4cW6uqdDOX6CED1xL6Fu0mX7qRaz4IhYET/6iHT9qqAwLGqUtnF99C19K4wpC0ncQwup3MjP2Mx0MvtVwyPi/P0iCHlSZ7WQyvXYwXIuBhrWKcQvv/3w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB6090.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(136003)(39860400002)(396003)(346002)(376002)(54906003)(64756008)(9686003)(76116006)(7696005)(55016002)(8676002)(2906002)(86362001)(83380400001)(66446008)(186003)(6916009)(26005)(52536014)(4326008)(66556008)(33656002)(44832011)(5660300002)(316002)(8936002)(66946007)(6506007)(478600001)(53546011)(71200400001)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 8NbHHRRV1Bs+UJwRlmbi11cUKny7WfXJNoVvGoqtOPvTTjWTFjZnRBqQkZY9yEqfDkMoQTZjDMZ2GE75U5jYUvoA0izAljvI6XDIzIOEhoLX+WZq7DqbQf/lzw2eH1txy2VVxNC6lkpbDH662yjFmBNtJKlBUkhOGU0l8ad17X7Nd3LotlOsUDTY8uAUwzAT3HcS+X31VYnzVumUJoQNC/WJYdofuNTP5WOqvP5hhcu312HcBjDCugaCns5ZATIjVrMyiRqdpB81aSiPRvNbgQBwr8ig3CeXs+q2igmFpbItNzmdKjJ2qMmpQwX1LHhh4XU2OOCq9m7baqvE8ZNv3c/+a2fsbF0fUiUS2/Y9s47xcP+b1UJ62c6MHt+VwObmOOMsFc0VkcQSfbl7YkCQr1Qdj5V4aIYkowKQlbAVeY489pCrwF8bVJmo63R1m9V1XGGGwpyVl0QeKJXpHj2224dft/es+SyLRPqSNJv30n0=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2020 05:24:27 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::5cc4:23a5:ca17:da7d]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::5cc4:23a5:ca17:da7d%6]) with mapi id 15.20.3131.028; Tue, 30 Jun 2020
+ 05:24:27 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     mark.rutland@arm.com, broonie@kernel.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, vkoul@kernel.org, will.deacon@arm.com,
+        shawnguo@kernel.org, festevam@gmail.com, s.hauer@pengutronix.de,
+        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
+        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com
+Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, dmaengine@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH v10 00/12] add ecspi ERR009165 for i.mx6/7 soc family
+Date:   Tue, 30 Jun 2020 21:31:04 +0800
+Message-Id: <1593523876-22387-1-git-send-email-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0132.apcprd06.prod.outlook.com
+ (2603:1096:1:1d::34) To VE1PR04MB6638.eurprd04.prod.outlook.com
+ (2603:10a6:803:119::15)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.67) by SG2PR06CA0132.apcprd06.prod.outlook.com (2603:1096:1:1d::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3131.21 via Frontend Transport; Tue, 30 Jun 2020 05:24:21 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.67]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: aae7f62a-b640-4e14-f3eb-08d81cb5db50
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6640:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB664040790976798F1E133DD1896F0@VE1PR04MB6640.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-Forefront-PRVS: 0450A714CB
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rv/FQrGpEmSmxvio05fIgnm2I6NpB+E417BfCOFQ9y7MkZLx0Iha1k4l/B/biOs8/ohHA7Zfn+8oF5q83wvZsoAGXn1xhZWadjpjTzlOM+7HKxYz/7tyDZ1UJCmrGBCWDTW7RasOUi2EPthqSDxvpK0LlNWYrdhm5EAxs7RCj0tEsqv7OkbWMOw45FCZhQmuHhawJh+nXI+fEKBSEfAx/ObVPfM4TxTgFaMtcMdoE8kPquk8r/h2NcZVEMxyiim6ppamJT+SGKM6RSKJeRtAwIwzjQ0Uuria/h4MChPBmcXxGeinUOjiVIS0wZkfDi8aGZGsSrXiP8uFqp81pZrl/toTe4j9OTNmwAv5gFTO/wcYC2sgOEZmeIPvZ6P0iwPBzu2pbabGFasafq9Aap85pwN5HTyRnClYkNyePkfTiO2r9Z7iu9gdij2Y8SS4zrEV
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(376002)(346002)(136003)(39860400002)(366004)(396003)(86362001)(956004)(6666004)(2616005)(52116002)(7416002)(4326008)(6506007)(6486002)(2906002)(5660300002)(186003)(26005)(36756003)(16526019)(8676002)(966005)(478600001)(316002)(83380400001)(66946007)(66476007)(6512007)(8936002)(66556008)(921003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: wf1ueChDBtV3sL6vRGpPFyh/aDOJJwOFNQp/5IzGiEcJHXWdvs/d9h3ovw4uUvJBeWXvvYtatJk3v4Hz6i32BrE0+c013xGAJBrNrorHGVcBTlakfCYz5qEIbEklvK2dstiiAz+PIIHFmNNWtsvIFSTdArY4hX1r+kq0OBq0me8x6nOZIy7U1hGspY8pu0UOveyQZm7nwgEURRUlXHq76oLRvYYabDUO14oxLer1L/cI+OGf7LIp497ZnP1dkkp+Cpno3wEWUOIJ5Wcp9zmOvSLlO5HmXvxAoLamOcVoUV3Pvkvd3+wx1MAbVNt2k2DtEAlxxi63iINtCInnkbHKeSpsTIRMVTiJDHnPRXgFRV6kWP0tuakNTS6dirCaUtLJLVVuZDYGZqi6llWTVzsAKFFUwq9y/F4cPWY0AERH9DjWGPiNpGrVd8suEM7sEjfK4trJzdcvq+mXuIu23+Z4FOJ1oM15k5Cu+WMU39Yz5k4=
 X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aae7f62a-b640-4e14-f3eb-08d81cb5db50
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB6090.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4671f3c2-0890-4e61-516e-08d81cb6648b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2020 05:28:16.8513
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2020 05:24:27.0097
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: N8FQn1n1H58dz34M7gTtscmiwboAorpN8myYqdkbnoW/vAX0k0L6xg1YJ5UThZAtTAZo5+nHoD5qxGXDARg7ww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3032
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Te0jn8nKaJVoNM+zKoT09LrLKyf8GgUSd5RGfc3ikAM/XmhG67ZaC725vCPnMl0cYHecBoFYlWLC5DtlvUT6Gw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6640
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW1pdCBLdWNoZXJpYSA8
-YW1pdC5rdWNoZXJpYUBsaW5hcm8ub3JnPg0KPiBTZW50OiAyMDIw5bm0NuaciDMw5pelIDEzOjEy
-DQo+IFRvOiBBbmR5IFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiBDYzogU2hhd24gR3VvIDxz
-aGF3bmd1b0BrZXJuZWwub3JnPjsgTGVvIExpIDxsZW95YW5nLmxpQG54cC5jb20+OyBSb2INCj4g
-SGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgbGFrbWwgPGxpbnV4LWFybS1rZXJuZWxAbGlz
-dHMuaW5mcmFkZWFkLm9yZz47DQo+IG9wZW4gbGlzdDpPUEVOIEZJUk1XQVJFIEFORCBGTEFUVEVO
-RUQgREVWSUNFIFRSRUUgQklORElOR1MNCj4gPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsg
-TEtNTCA8bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZz4NCj4gU3ViamVjdDogW0VYVF0gUmU6
-IFtQQVRDSCAxLzJdIGFybTY0OiBkdHM6IGxzMTA4OGE6IGFkZCBtb3JlIHRoZXJtYWwgem9uZQ0K
-PiBzdXBwb3J0DQo+IA0KPiBDYXV0aW9uOiBFWFQgRW1haWwNCj4gDQo+IE9uIFR1ZSwgSnVuIDMw
-LCAyMDIwIGF0IDg6NTYgQU0gPGFuZHkudGFuZ0BueHAuY29tPiB3cm90ZToNCj4gPg0KPiA+IEZy
-b206IFl1YW50aWFuIFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiA+DQo+ID4gVGhlcmUgYXJl
-IDIgdGhlcm1hbCB6b25lcyBpbiBsczEwODhhIHNvYy4gQWRkIHRoZSBvdGhlciB0aGVybWFsIHpv
-bmUNCj4gPiBub2RlIHRvIGVuYWJsZSBpdC4NCj4gPiBBbHNvIHVwZGF0ZSB0aGUgdmFsdWVzIGlu
-IGNhbGlicmF0aW9uIHRhYmxlIHRvIG1ha2UgdGhlIHRlbXBlcmF0dXJlcw0KPiA+IG1vbml0b3Jl
-ZCBtb3JlIHByZWNpc2UuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZdWFudGlhbiBUYW5nIDxh
-bmR5LnRhbmdAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
-Y2FsZS9mc2wtbHMxMDg4YS5kdHNpIHwgMTAwDQo+ID4gKysrKysrKysrKystLS0tLS0tDQo+ID4g
-IDEgZmlsZSBjaGFuZ2VkLCA2MiBpbnNlcnRpb25zKCspLCAzOCBkZWxldGlvbnMoLSkNCj4gPg0K
-PiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDg4
-YS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDg4YS5k
-dHNpDQo+ID4gaW5kZXggMzZhNzk5NTU0NjIwLi5jY2JiYzIzZTZjODUgMTAwNjQ0DQo+ID4gLS0t
-IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTA4OGEuZHRzaQ0KPiA+ICsr
-KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwODhhLmR0c2kNCj4gPiBA
-QCAtMTI5LDE5ICsxMjksMTkgQEANCj4gPiAgICAgICAgIH07DQo+ID4NCj4gPiAgICAgICAgIHRo
-ZXJtYWwtem9uZXMgew0KPiA+IC0gICAgICAgICAgICAgICBjcHVfdGhlcm1hbDogY3B1LXRoZXJt
-YWwgew0KPiA+ICsgICAgICAgICAgICAgICBjb3JlLWNsdXN0ZXIgew0KPiA+ICAgICAgICAgICAg
-ICAgICAgICAgICAgIHBvbGxpbmctZGVsYXktcGFzc2l2ZSA9IDwxMDAwPjsNCj4gPiAgICAgICAg
-ICAgICAgICAgICAgICAgICBwb2xsaW5nLWRlbGF5ID0gPDUwMDA+Ow0KPiA+ICAgICAgICAgICAg
-ICAgICAgICAgICAgIHRoZXJtYWwtc2Vuc29ycyA9IDwmdG11IDA+Ow0KPiA+DQo+ID4gICAgICAg
-ICAgICAgICAgICAgICAgICAgdHJpcHMgew0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgY3B1X2FsZXJ0OiBjcHUtYWxlcnQgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgY29yZV9jbHVzdGVyX2FsZXJ0Og0KPiBjb3JlLWNsdXN0ZXItYWxlcnQNCj4gPiAr
-IHsNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVtcGVyYXR1
-cmUgPSA8ODUwMDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBoeXN0ZXJlc2lzID0gPDIwMDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICB0eXBlID0gInBhc3NpdmUiOw0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgfTsNCj4gPg0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY3B1
-X2NyaXQ6IGNwdS1jcml0IHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNv
-cmVfY2x1c3Rlcl9jcml0OiBjb3JlLWNsdXN0ZXItY3JpdCB7DQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHRlbXBlcmF0dXJlID0gPDk1MDAwPjsNCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaHlzdGVyZXNpcyA9IDwyMDAwPjsN
-Cj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdHlwZSA9ICJjcml0
-aWNhbCI7IEBADQo+IC0xNTAsNw0KPiA+ICsxNTAsNyBAQA0KPiA+DQo+ID4gICAgICAgICAgICAg
-ICAgICAgICAgICAgY29vbGluZy1tYXBzIHsNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIG1hcDAgew0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB0cmlwID0gPCZjcHVfYWxlcnQ+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICB0cmlwID0NCj4gPCZjb3JlX2NsdXN0ZXJfYWxlcnQ+Ow0KPiA+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb29saW5nLWRldmljZSA9DQo+ID4gICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZjcHUwDQo+IFRI
-RVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sDQo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZjcHUxDQo+ID4gVEhFUk1BTF9OT19MSU1J
-VCBUSEVSTUFMX05PX0xJTUlUPiwgQEAgLTE2Myw2ICsxNjMsMjYgQEANCj4gPiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgfTsN
-Cj4gPiAgICAgICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgIHNvYyB7
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcG9sbGluZy1kZWxheS1wYXNzaXZlID0gPDEw
-MDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHBvbGxpbmctZGVsYXkgPSA8NTAwMD47
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgdGhlcm1hbC1zZW5zb3JzID0gPCZ0bXUgMT47
-DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHRyaXBzIHsNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHNvYy1hbGVydCB7DQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHRlbXBlcmF0dXJlID0gPDg1MDAwPjsNCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaHlzdGVyZXNpcyA9IDwyMDAwPjsN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdHlwZSA9ICJwYXNz
-aXZlIjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+
-ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc29jLWNyaXQgew0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0ZW1wZXJhdHVyZSA9IDw5NTAwMD47DQo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGh5c3RlcmVzaXMgPSA8
-MjAwMD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGUg
-PSAiY3JpdGljYWwiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgICAgICAgICB9Ow0KPiAN
-Cj4gWW91IHNob3VsZCBhbHNvIGFkZCBhIGNvb2xpbmctbWFwcyBzZWN0aW9uIGZvciB0aGlzIHRo
-ZXJtYWwgem9uZSBnaXZlbiB0aGF0IGl0DQo+IGhhcyBhIHBhc3NpdmUgdHJpcCB0eXBlLiBPdGhl
-cndpc2UgdGhlcmUgaXMgbm8gdXNlIGZvciBhIHBhc3NpdmUgdHJpcCB0eXBlLg0KSXQgaXMgYmV0
-dGVyIHRvIGhhdmUgYSBjb29saW5nIGRldmljZS4gQnV0IHRoZXJlIGlzIG9ubHkgb25lIGNvb2xp
-bmcgZGV2aWNlIG9uIHRoaXMgcGxhdGZvcm0NCndoaWNoIGlzIHVzZWQgYnkgY29yZS1jbHVzdGVy
-LiBTbyB0aGVyZSBpcyBubyBleHRyYSBjb29saW5nIGRldmljZSBmb3IgaXQuDQpUaGlzIHpvbmUg
-Y2FuIHRha2UgYWN0aW9uIHdoZW4gY3JpdGljYWwgdGVtcCBpcyByZWFjaGVkLiBTbyBpdCBpcyBz
-dGlsbCB1c2VmdWwuDQpXaGF0IGRvIHlvdSBzdWdnZXN0PyANCg0KQlIsDQpBbmR5DQo+IA0KPiA+
-ICAgICAgICAgfTsNCj4gPg0KPiA+ICAgICAgICAgdGltZXIgew0KPiA+IEBAIC0yMDksNDUgKzIy
-OSw0OSBAQA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiZnNsLHFv
-cmlxLXRtdSI7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MCAweDFmODAw
-MDAgMHgwIDB4MTAwMDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGludGVycnVwdHMg
-PSA8MCAyMyAweDQ+Ow0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIGZzbCx0bXUtcmFuZ2Ug
-PSA8MHhiMDAwMCAweDkwMDJhIDB4NjAwNGMNCj4gMHgzMDA2Mj47DQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgZnNsLHRtdS1yYW5nZSA9IDwweGIwMDAwIDB4OTAwMmEgMHg2MDA0Yw0KPiA+
-ICsgMHg3MDA2Mj47DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgZnNsLHRtdS1jYWxpYnJh
-dGlvbiA9DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBDYWxpYnJhdGlv
-biBkYXRhIGdyb3VwIDEgKi8NCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDww
-eDAwMDAwMDAwIDB4MDAwMDAwMjYNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IDB4MDAwMDAwMDEgMHgwMDAwMDAyZA0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgMHgwMDAwMDAwMiAweDAwMDAwMDMyDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAweDAwMDAwMDAzIDB4MDAwMDAwMzkNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDB4MDAwMDAwMDQgMHgwMDAwMDAzZg0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgMHgwMDAwMDAwNSAweDAwMDAwMDQ2DQo+ID4gLSAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAweDAwMDAwMDA2IDB4MDAwMDAwNGQNCj4gPiAtICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIDB4MDAwMDAwMDcgMHgwMDAwMDA1NA0KPiA+IC0gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgMHgwMDAwMDAwOCAweDAwMDAwMDVhDQo+ID4gLSAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAweDAwMDAwMDA5IDB4MDAwMDAwNjENCj4gPiAtICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMGEgMHgwMDAwMDA2YQ0KPiA+IC0gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwYiAweDAwMDAwMDcxDQo+ID4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICA8MHgwMDAwMDAwMCAweDAwMDAwMDIzDQo+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAxIDB4MDAwMDAwMmENCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDIgMHgwMDAwMDAzMA0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMyAweDAwMDAwMDM3DQo+ID4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDA0IDB4MDAwMDAwM2QNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDUgMHgwMDAwMDA0NA0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwNiAweDAwMDAwMDRh
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDA3IDB4MDAwMDAw
-NTENCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDggMHgwMDAw
-MDA1Nw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwOSAweDAw
-MDAwMDVlDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDBhIDB4
-MDAwMDAwNjQNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMGIg
-MHgwMDAwMDA2Yg0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLyogQ2FsaWJy
-YXRpb24gZGF0YSBncm91cCAyICovDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAweDAwMDEwMDAwIDB4MDAwMDAwMjUNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIDB4MDAwMTAwMDEgMHgwMDAwMDAyYw0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwMDAxMDAwMiAweDAwMDAwMDM1DQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAweDAwMDEwMDAzIDB4MDAwMDAwM2QNCj4gPiAtICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIDB4MDAwMTAwMDQgMHgwMDAwMDA0NQ0KPiA+IC0gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgMHgwMDAxMDAwNSAweDAwMDAwMDRlDQo+ID4gLSAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAweDAwMDEwMDA2IDB4MDAwMDAwNTcNCj4gPiAtICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIDB4MDAwMTAwMDcgMHgwMDAwMDA2MQ0KPiA+IC0gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgMHgwMDAxMDAwOCAweDAwMDAwMDZiDQo+ID4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAweDAwMDEwMDA5IDB4MDAwMDAwNzYNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMTAwMDAgMHgwMDAwMDAyMg0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAxMDAwMSAweDAwMDAwMDJhDQo+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDEwMDAyIDB4MDAwMDAwMzINCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMTAwMDMgMHgwMDAwMDAzYQ0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAxMDAwNCAweDAwMDAwMDQyDQo+ID4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDEwMDA1IDB4MDAwMDAwNGENCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMTAwMDYgMHgwMDAwMDA1Mg0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAxMDAwNyAweDAwMDAwMDVh
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDEwMDA4IDB4MDAwMDAw
-NjINCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMTAwMDkgMHgwMDAw
-MDA2YQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLyogQ2FsaWJyYXRpb24g
-ZGF0YSBncm91cCAzICovDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAw
-MDIwMDAwIDB4MDAwMDAwMjkNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4
-MDAwMjAwMDEgMHgwMDAwMDAzMw0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-MHgwMDAyMDAwMiAweDAwMDAwMDNkDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAweDAwMDIwMDAzIDB4MDAwMDAwNDkNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIDB4MDAwMjAwMDQgMHgwMDAwMDA1Ng0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwMDAyMDAwNSAweDAwMDAwMDYxDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAweDAwMDIwMDA2IDB4MDAwMDAwNmQNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIDB4MDAwMjAwMDAgMHgwMDAwMDAyMQ0KPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgMHgwMDAyMDAwMSAweDAwMDAwMDJiDQo+ID4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAweDAwMDIwMDAyIDB4MDAwMDAwMzUNCj4gPiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIDB4MDAwMjAwMDMgMHgwMDAwMDA0MA0KPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgMHgwMDAyMDAwNCAweDAwMDAwMDRhDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAweDAwMDIwMDA1IDB4MDAwMDAwNTQNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMjAwMDYgMHgwMDAwMDA1ZQ0KPiA+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgLyogQ2FsaWJyYXRpb24gZGF0YSBncm91cCA0ICovDQo+
-ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDMwMDAwIDB4MDAwMDAwMjEN
-Cj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMzAwMDEgMHgwMDAwMDAy
-YQ0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAzMDAwMiAweDAwMDAw
-MDNjDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDMwMDAzIDB4MDAw
-MDAwNGU+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAzMDAwMCAw
-eDAwMDAwMDEwDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDMwMDAx
-IDB4MDAwMDAwMWMNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMzAw
-MDIgMHgwMDAwMDAyNw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAz
-MDAwMyAweDAwMDAwMDMyDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAw
-MDMwMDA0IDB4MDAwMDAwM2UNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4
-MDAwMzAwMDUgMHgwMDAwMDA0OQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-MHgwMDAzMDAwNiAweDAwMDAwMDU0DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAweDAwMDMwMDA3IDB4MDAwMDAwNjA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGxp
-dHRsZS1lbmRpYW47DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgI3RoZXJtYWwtc2Vuc29y
-LWNlbGxzID0gPDE+Ow0KPiA+ICAgICAgICAgICAgICAgICB9Ow0KPiA+IC0tDQo+ID4gMi4xNy4x
-DQo+ID4NCg==
+There is ecspi ERR009165 on i.mx6/7 soc family, which cause FIFO
+transfer to be send twice in DMA mode. Please get more information from:
+https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf. The workaround is adding
+new sdma ram script which works in XCH  mode as PIO inside sdma instead
+of SMC mode, meanwhile, 'TX_THRESHOLD' should be 0. The issue should be
+exist on all legacy i.mx6/7 soc family before i.mx6ul.
+NXP fix this design issue from i.mx6ul, so newer chips including i.mx6ul/
+6ull/6sll do not need this workaroud anymore. All other i.mx6/7/8 chips
+still need this workaroud. This patch set add new 'fsl,imx6ul-ecspi'
+for ecspi driver and 'ecspi_fixed' in sdma driver to choose if need errata
+or not.
+The first two reverted patches should be the same issue, though, it
+seems 'fixed' by changing to other shp script. Hope Sean or Sascha could
+have the chance to test this patch set if could fix their issues.
+Besides, enable sdma support for i.mx8mm/8mq and fix ecspi1 not work
+on i.mx8mm because the event id is zero.
+
+PS:
+   Please get sdma firmware from below linux-firmware and copy it to your
+local rootfs /lib/firmware/imx/sdma.
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/imx/sdma
+
+v2:
+  1.Add commit log for reverted patches.
+  2.Add comment for 'ecspi_fixed' in sdma driver.
+  3.Add 'fsl,imx6sll-ecspi' compatible instead of 'fsl,imx6ul-ecspi'
+    rather than remove.
+v3:
+  1.Confirm with design team make sure ERR009165 fixed on i.mx6ul/i.mx6ull
+    /i.mx6sll, not fixed on i.mx8m/8mm and other i.mx6/7 legacy chips.
+    Correct dts related dts patch in v2.
+  2.Clean eratta information in binding doc and new 'tx_glitch_fixed' flag
+    in spi-imx driver to state ERR009165 fixed or not.
+  3.Enlarge burst size to fifo size for tx since tx_wml set to 0 in the
+    errata workaroud, thus improve performance as possible.
+v4:
+  1.Add Ack tag from Mark and Vinod
+  2.Remove checking 'event_id1' zero as 'event_id0'.
+v5:
+  1.Add the last patch for compatible with the current uart driver which
+    using rom script, so both uart ram script and rom script supported
+    in latest firmware, by default uart rom script used. UART driver
+    will be broken without this patch.
+v6:
+  1.Resend after rebase the latest next branch.
+  2.Remove below No.13~No.15 patches of v5 because they were mergered.
+  	ARM: dts: imx6ul: add dma support on ecspi
+  	ARM: dts: imx6sll: correct sdma compatible
+  	arm64: defconfig: Enable SDMA on i.mx8mq/8mm
+  3.Revert "dmaengine: imx-sdma: fix context cache" since
+    'context_loaded' removed.
+v7:
+  1.Put the last patch 13/13 'Revert "dmaengine: imx-sdma: fix context
+    cache"' to the ahead of 03/13 'Revert "dmaengine: imx-sdma: refine
+    to load context only once" so that no building waring during comes out
+    during bisect.
+  2.Address Sascha's comments, including eliminating any i.mx6sx in this
+    series, adding new 'is_imx6ul_ecspi()' instead imx in imx51 and taking
+    care SMC bit for PIO.
+  3.Add back missing 'Reviewed-by' tag on 08/15(v5):09/13(v7)
+   'spi: imx: add new i.mx6ul compatible name in binding doc'
+v8:
+  1.remove 0003-Revert-dmaengine-imx-sdma-fix-context-cache.patch and merge
+    it into 04/13 of v7
+  2.add 0005-spi-imx-fallback-to-PIO-if-dma-setup-failure.patch for no any
+    ecspi function broken even if sdma firmware not updated.
+  3.merge 'tx.dst_maxburst' changes in the two continous patches into one
+    patch to avoid confusion.
+  4.fix typo 'duplicated'.
+v9:
+  1. add "spi: imx: add dma_sync_sg_for_device after fallback from dma"
+     to fix the potential issue brought by commit bcd8e7761ec9("spi: imx:
+     fallback to PIO if dma setup failure") which is the only one patch
+     of v8 merged. Thanks Matthias for reporting:
+     https://lore.kernel.org/linux-arm-kernel/5d246dd81607bb6e5cb9af86ad4e53f7a7a99c50.camel@ew.tq-group.com/
+  2. remove 05/13 of v8 "spi: imx:fallback to PIO if dma setup failure"
+     since it's been merged.
+v10:
+  1. remove 01/13 "spi: imx: add dma_sync_sg_for_device after fallback from dma"
+     since there is another independent patch merged:
+     -- commit 809b1b04df898 ("spi: introduce fallback to pio")
+  2. add "dmaengine: dma: imx-sdma: add fw_loaded and is_ram_script" which
+     is used to fix the potential dma_alloc_coherent() failure while this
+     patchset applied but sdma firmware may not be ready for long time.
+  3. burst size change back from fifo size to normal wml to align with nxp
+     internal tree which has been test for years. Overnight with loopback
+     test with spidev failed with fifo size, but pass with wml(half of fifo
+     size).Seems the whole fifo size fed may cause rxfifo overflow during
+     tx shift out while rx shift in.
+     "spi: imx: remove ERR009165 workaround on i.mx6ul"
+  4. remove 12/13 'dmaengine: imx-sdma: fix ecspi1 rx dma not work on i.mx8mm'
+     since below two similar patches merged:
+     -- commit 25962e1a7f1d ("dmaengine: imx-sdma: Fix the event id check to
+     include RX event for UART6")
+     -- commit 2f57b8d57673 ("dmaengine: imx-sdma: Fix: Remove 'always true'
+     comparison")
+
+Robin Gong (12):
+  Revert "ARM: dts: imx6q: Use correct SDMA script for SPI5 core"
+  Revert "ARM: dts: imx6: Use correct SDMA script for SPI cores"
+  Revert "dmaengine: imx-sdma: refine to load context only once"
+  dmaengine: imx-sdma: remove duplicated sdma_load_context
+  dmaengine: dma: imx-sdma: add fw_loaded and is_ram_script
+  dmaengine: imx-sdma: add mcu_2_ecspi script
+  spi: imx: fix ERR009165
+  spi: imx: remove ERR009165 workaround on i.mx6ul
+  spi: imx: add new i.mx6ul compatible name in binding doc
+  dmaengine: imx-sdma: remove ERR009165 on i.mx6ul
+  dma: imx-sdma: add i.mx6ul compatible name
+  dmaengine: imx-sdma: add uart rom script
+
+ .../devicetree/bindings/dma/fsl-imx-sdma.txt       |  1 +
+ .../devicetree/bindings/spi/fsl-imx-cspi.txt       |  1 +
+ arch/arm/boot/dts/imx6q.dtsi                       |  2 +-
+ arch/arm/boot/dts/imx6qdl.dtsi                     |  8 +--
+ drivers/dma/imx-sdma.c                             | 63 ++++++++++++++++------
+ drivers/spi/spi-imx.c                              | 52 +++++++++++++++---
+ include/linux/platform_data/dma-imx-sdma.h         |  8 ++-
+ 7 files changed, 106 insertions(+), 29 deletions(-)
+
+-- 
+2.7.4
+
