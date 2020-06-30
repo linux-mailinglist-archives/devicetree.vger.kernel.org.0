@@ -2,216 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6C920EB91
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 04:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A68D20EB9C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 04:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728688AbgF3Cti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jun 2020 22:49:38 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45388 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbgF3Cth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 22:49:37 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05U2nTtM048175;
-        Mon, 29 Jun 2020 21:49:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593485369;
-        bh=XyAVH615sMRx3zwc7jKfCZgvfg3V97TNnw+Om9xj2gA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=tnjlF0sPN76vGcdO2OKAacn6xsOdlu8KaM808+4MsJITo+P70x8Oz7CQhM1gwSzTD
-         0dMa7M9p2OaS7efPdw3L/hqGw8DgPa/qQcLGa+/DXHpR++5C+a40s7dmYO0hoN1jbz
-         oUHLXQk8dUsOn3wn7uPPsoQSniI34nbFX/Wl2jFI=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05U2nTVn064760
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Jun 2020 21:49:29 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 29
- Jun 2020 21:49:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 29 Jun 2020 21:49:29 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05U2nTte083925;
-        Mon, 29 Jun 2020 21:49:29 -0500
-Received: from localhost ([10.250.48.148])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 05U2nTXA029160;
-        Mon, 29 Jun 2020 21:49:29 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 4/4] remoteproc: k3-r5: Add loading support for on-chip SRAM regions
-Date:   Mon, 29 Jun 2020 21:49:22 -0500
-Message-ID: <20200630024922.32491-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200630024922.32491-1-s-anna@ti.com>
-References: <20200630024922.32491-1-s-anna@ti.com>
+        id S1728764AbgF3CuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jun 2020 22:50:22 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:10582 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726746AbgF3CuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jun 2020 22:50:21 -0400
+X-UUID: f202c3ed1e094bf19253249996f51644-20200630
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=RYhTo3ImPjc8DYiqz9mKElKM/RF9Xgj3mJn+T6zHAvI=;
+        b=szZCSzBEkruUgJMP4szQPc/+s2/7JGwAWI2c8kMm3MRFgfzm9Ybte089AuB38Bx9U19rDYKqIBdnjW06HF6RG00aff0yZXsRnARYjqwq9QGRKAiK0B7Ru8bvh1OrrAlAPuzvqkW51s+jSdCC06cg+TSGWHLPnug5yC9UtBrQCUQ=;
+X-UUID: f202c3ed1e094bf19253249996f51644-20200630
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 513364050; Tue, 30 Jun 2020 10:50:13 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 30 Jun 2020 10:50:11 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 30 Jun 2020 10:50:10 +0800
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [PATCH V11 0/2] media: i2c: Add support for 0V02A10 sensor
+Date:   Tue, 30 Jun 2020 10:49:40 +0800
+Message-ID: <20200630024942.20891-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The K3 SoCs has various internal on-chip SRAM memories like the SRAM
-within the MCU domain or the shared MSMC RAM within NavSS that can be
-used for multiple purposes. One such purpose is to have the R5F cores
-use a portion of such on-chip SRAM for fast-access data or to directly
-execute code.
-
-Add support to the K3 R5 remoteproc driver to parse and support
-loading into such memories. The SRAM regions need to be mapped as
-normal non-cacheable memory to avoid kernel crashes when the remoteproc
-loader code uses the Arm64 memset library function (the "DC ZVA"
-instruction throws a alignment fault on device type memory).
-
-These SRAM regions are completely optional as not all firmware images
-require these memories, and any such memory has to be reserved as such
-in the DTS files.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2:
- - Adapted to use various devm_ functions resulting in a smaller patch
- - Failure path code is dropped as a result in k3_r5_core_of_exit() and
-   k3_r5_core_of_get_sram_memories()
- - Dropped unneeded whitespaces in a debug trace
- - Revised the patch title to move away from remoteproc/k3-r5
- - Dropped Mathieu's Acked-by because of the changes
-v1: https://patchwork.kernel.org/patch/11456373/
-
- drivers/remoteproc/ti_k3_r5_remoteproc.c | 79 ++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
-
-diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-index aca0eaf42a38..ac8ae29f38aa 100644
---- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-@@ -86,7 +86,9 @@ struct k3_r5_cluster {
-  * @dev: cached device pointer
-  * @rproc: rproc handle representing this core
-  * @mem: internal memory regions data
-+ * @sram: on-chip SRAM memory regions data
-  * @num_mems: number of internal memory regions
-+ * @num_sram: number of on-chip SRAM memory regions
-  * @reset: reset control handle
-  * @tsp: TI-SCI processor control handle
-  * @ti_sci: TI-SCI handle
-@@ -100,7 +102,9 @@ struct k3_r5_core {
- 	struct device *dev;
- 	struct rproc *rproc;
- 	struct k3_r5_mem *mem;
-+	struct k3_r5_mem *sram;
- 	int num_mems;
-+	int num_sram;
- 	struct reset_control *reset;
- 	struct ti_sci_proc *tsp;
- 	const struct ti_sci_handle *ti_sci;
-@@ -588,6 +592,18 @@ static void *k3_r5_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
- 		}
- 	}
- 
-+	/* handle any SRAM regions using SoC-view addresses */
-+	for (i = 0; i < core->num_sram; i++) {
-+		dev_addr = core->sram[i].dev_addr;
-+		size = core->sram[i].size;
-+
-+		if (da >= dev_addr && ((da + len) <= (dev_addr + size))) {
-+			offset = da - dev_addr;
-+			va = core->sram[i].cpu_addr + offset;
-+			return (__force void *)va;
-+		}
-+	}
-+
- 	/* handle static DDR reserved memory regions */
- 	for (i = 0; i < kproc->num_rmems; i++) {
- 		dev_addr = kproc->rmem[i].dev_addr;
-@@ -1030,6 +1046,63 @@ static int k3_r5_core_of_get_internal_memories(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int k3_r5_core_of_get_sram_memories(struct platform_device *pdev,
-+					   struct k3_r5_core *core)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *sram_np;
-+	struct resource res;
-+	int num_sram;
-+	int i, ret;
-+
-+	num_sram = of_property_count_elems_of_size(np, "sram", sizeof(phandle));
-+	if (num_sram <= 0) {
-+		dev_dbg(dev, "device does not use reserved on-chip memories, num_sram = %d\n",
-+			num_sram);
-+		return 0;
-+	}
-+
-+	core->sram = devm_kcalloc(dev, num_sram, sizeof(*core->sram), GFP_KERNEL);
-+	if (!core->sram)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < num_sram; i++) {
-+		sram_np = of_parse_phandle(np, "sram", i);
-+		if (!sram_np)
-+			return -EINVAL;
-+
-+		if (!of_device_is_available(sram_np)) {
-+			of_node_put(sram_np);
-+			return -EINVAL;
-+		}
-+
-+		ret = of_address_to_resource(sram_np, 0, &res);
-+		of_node_put(sram_np);
-+		if (ret)
-+			return -EINVAL;
-+
-+		core->sram[i].bus_addr = res.start;
-+		core->sram[i].dev_addr = res.start;
-+		core->sram[i].size = resource_size(&res);
-+		core->sram[i].cpu_addr = devm_ioremap_wc(dev, res.start,
-+							 resource_size(&res));
-+		if (!core->sram[i].cpu_addr) {
-+			dev_err(dev, "failed to parse and map sram%d memory at %pad\n",
-+				i, &res.start);
-+			return -ENOMEM;
-+		}
-+
-+		dev_dbg(dev, "memory sram%d: bus addr %pa size 0x%zx va %pK da 0x%x\n",
-+			i, &core->sram[i].bus_addr,
-+			core->sram[i].size, core->sram[i].cpu_addr,
-+			core->sram[i].dev_addr);
-+	}
-+	core->num_sram = num_sram;
-+
-+	return 0;
-+}
-+
- static
- struct ti_sci_proc *k3_r5_core_of_get_tsp(struct device *dev,
- 					  const struct ti_sci_handle *sci)
-@@ -1143,6 +1216,12 @@ static int k3_r5_core_of_init(struct platform_device *pdev)
- 		goto err;
- 	}
- 
-+	ret = k3_r5_core_of_get_sram_memories(pdev, core);
-+	if (ret) {
-+		dev_err(dev, "failed to get sram memories, ret = %d\n", ret);
-+		goto err;
-+	}
-+
- 	ret = ti_sci_proc_request(core->tsp);
- 	if (ret < 0) {
- 		dev_err(dev, "ti_sci_proc_request failed, ret = %d\n", ret);
--- 
-2.26.0
+SGVsbG8sDQoNClRoaXMgc2VyaWVzIGFkZHMgRFQgYmluZGluZ3MgYW5kIFY0TDIgc3ViLWRldmlj
+ZSBkcml2ZXIgZm9yIE9tbmlWaXNpb24ncw0KT1YwMkExMCAyIG1lZ2FwaXhlbCBDTU9TIDEvNSIg
+c2Vuc29yLCB3aGljaCBoYXMgYSBzaW5nbGUgTUlQSSBsYW5lIGludGVyZmFjZQ0KYW5kIG91dHB1
+dCBmb3JtYXQgb2YgMTAtYml0IFJBVy4NCg0KVGhlIGRyaXZlciBpcyBpbXBsZW1lbnRlZCB3aXRo
+IFY0TDIgZnJhbWV3b3JrLg0KIC0gQXN5bmMgcmVnaXN0ZXJlZCBhcyBhIFY0TDIgc3ViLWRldmlj
+ZS4NCiAtIEFzIHRoZSBmaXJzdCBjb21wb25lbnQgb2YgY2FtZXJhIHN5c3RlbSBpbmNsdWRpbmcg
+U2VuaW5mLCBJU1AgcGlwZWxpbmUuDQogLSBBIG1lZGlhIGVudGl0eSB0aGF0IHByb3ZpZGVzIG9u
+ZSBzb3VyY2UgcGFkIGluIGNvbW1vbiBhbmQgdHdvIGZvciBkdWFsLWNhbS4NCiANClByZXZpb3Vz
+IHZlcnNpb25zIG9mIHRoaXMgcGF0Y2gtc2V0IGNhbiBiZSBmb3VuZCBoZXJlOg0KIHYxMDogaHR0
+cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAyMDA2MTUxMjI5MzcuMTg5NjUtMy1k
+b25nY2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHYwOTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+bGludXgtbWVkaWEvMjAyMDA1MjMwODQxMDMuMzEyNzYtMS1kb25nY2h1bi56aHVAbWVkaWF0ZWsu
+Y29tLw0KIHYwODogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAyMDA1MDkw
+ODA2MjcuMjMyMjItMS1kb25nY2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHYwNzogaHR0cHM6Ly9s
+b3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAyMDA0MzAwODA5MjQuMTE0MC0xLWRvbmdjaHVu
+LnpodUBtZWRpYXRlay5jb20vDQogdjA2OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1t
+ZWRpYS8yMDE5MTIxMTExMjg0OS4xNjcwNS0xLWRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20vDQog
+djA1OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8yMDE5MTEwNDEwNTcxMy4y
+NDMxMS0xLWRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20vDQogdjA0OiBodHRwczovL2xvcmUua2Vy
+bmVsLm9yZy9saW51eC1tZWRpYS8yMDE5MDkwNzA5MjcyOC4yMzg5Ny0xLWRvbmdjaHVuLnpodUBt
+ZWRpYXRlay5jb20vDQogdjAzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8y
+MDE5MDgxOTAzNDMzMS4xMzA5OC0xLWRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20vDQogdjAyOiBo
+dHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8yMDE5MDcwNDA4NDY1MS4zMTA1LTEt
+ZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MDE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3Jn
+L2xpbnV4LW1lZGlhLzIwMTkwNTIzMTAyMjA0LjI0MTEyLTEtZG9uZ2NodW4uemh1QG1lZGlhdGVr
+LmNvbS8NCg0KQ2hhbmdlcyBvZiB2MTEgYXJlIG1haW5seSBhZGRyZXNzaW5nIGNvbW1lbnRzIGZy
+b20gVG9tYXN6Lg0KQ29tcGFyZWQgdG8gdjEwOg0KIC0gUmViYXNlIG9udG8gNS44LXJjMQ0KIC0g
+VXBkYXRlIHRoZSBHUElPIHBvbGFyaXR5IGZvciBwb3dlcmRvd24gYW5kIHJlc2V0IHBpbnMgdGhh
+dCBkZWZpbmVkIGluIERUDQogLSBSZWZpbmUgb3YwMmExMF9zZXRfZm10KCkNCiAtIFJlYWRqdXN0
+IHRoZSBHUElPIHN0YXRlL3ZhbHVlIHNldHRpbmcgZm9yIHBvd2VyZG93biBhbmQgcmVzZXQgcGlu
+cw0KIC0gUmVmaW5lIGVycl9wb3dlcl9vZmYgZXJyb3IgaGFuZGxlciBzZWN0aW9uIGluIHByb2Jl
+DQogLSBVc2UgcG1fcnVudGltZV9zdGF0dXNfc3VzcGVuZGVkKCkgaW4gcmVtb3ZlDQoNClBsZWFz
+ZSByZXZpZXcuDQpUaGFua3MuDQoNCkRvbmdjaHVuIFpodSAoMik6DQogIG1lZGlhOiBkdC1iaW5k
+aW5nczogbWVkaWE6IGkyYzogRG9jdW1lbnQgT1YwMkExMCBiaW5kaW5ncw0KICBtZWRpYTogaTJj
+OiBvdjAyYTEwOiBBZGQgT1YwMkExMCBpbWFnZSBzZW5zb3IgZHJpdmVyDQoNCiAuLi4vYmluZGlu
+Z3MvbWVkaWEvaTJjL292dGksb3YwMmExMC55YW1sICAgICAgICAgICB8ICAxNzIgKysrKw0KIE1B
+SU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAgOCAr
+DQogZHJpdmVycy9tZWRpYS9pMmMvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
+IDEzICsNCiBkcml2ZXJzL21lZGlhL2kyYy9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgICAg
+ICB8ICAgIDEgKw0KIGRyaXZlcnMvbWVkaWEvaTJjL292MDJhMTAuYyAgICAgICAgICAgICAgICAg
+ICAgICAgIHwgMTA1MiArKysrKysrKysrKysrKysrKysrKw0KIDUgZmlsZXMgY2hhbmdlZCwgMTI0
+NiBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwNCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJpdmVycy9tZWRpYS9pMmMvb3YwMmExMC5jDQoNCi0tIA0KMi45LjINCg==
 
