@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3737B20FF86
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 23:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EF520FF91
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2020 23:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726421AbgF3Vu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jun 2020 17:50:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51842 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726362AbgF3Vu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jun 2020 17:50:58 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2EF322081A;
-        Tue, 30 Jun 2020 21:50:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593553858;
-        bh=Y08yb1+85H5CsPhN8ZHhbI4ulSqWuc3rJJ7/ULdUJNM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LfOglyVc53syQnH+ENGGMBJ43MMGwpXaAFiPzBQhdI/fJHlPjgPyT1ZYdY1WJehvq
-         2eAP36M/GRNzPxR0NdnQqPx0pWf1+Qu8CDMaH2wi2Z/DcgIoowR0WVyxmfgkTRrZsO
-         2msYeR93Pkd6ApEYizVCifZploGHdUvEZDRNlaeM=
-Received: by mail-ot1-f54.google.com with SMTP id 72so19760939otc.3;
-        Tue, 30 Jun 2020 14:50:58 -0700 (PDT)
-X-Gm-Message-State: AOAM530ZJ36y4fMWfbktGJeps0XHxjYb56FXroPEjgiV9CrxDuCNCsTG
-        BEhgWFl8PWYC7nfhkXb8Cw8iY/mRbflXl/396A==
-X-Google-Smtp-Source: ABdhPJx7pnl9Svudsv4ydHbc2/CjlDVMFTLvVkn6po1+o39FpJpEk6/LM/iNmoDYoPrvmUEdQJboN67w9UvSKjOzwhQ=
-X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr20071478ots.192.1593553857583;
- Tue, 30 Jun 2020 14:50:57 -0700 (PDT)
+        id S1726413AbgF3Vy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jun 2020 17:54:59 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:49430 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbgF3Vy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jun 2020 17:54:58 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05ULstDJ045398;
+        Tue, 30 Jun 2020 16:54:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1593554095;
+        bh=uEJgcb4tcrP5fgkrX6EiOUahHBi41yHxOfg797i9G7Y=;
+        h=From:To:CC:Subject:Date;
+        b=luJLCjuo3qyLzaTYTDGeMj8qnvTA/p8dChi5GC/qx6xjHk793ZR6fw1aq8vl/LbtH
+         6/53pvEVo5jHDk/gxP44InzITsFkaeuQDMNhxPZf3frWqrsh5JNwzAjY8EBbJyDVvO
+         mea5vS7KyGYvkJPGp/uMFM67s7x/iGWYZkK2+Lm4=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05ULstac018843;
+        Tue, 30 Jun 2020 16:54:55 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 30
+ Jun 2020 16:54:55 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 30 Jun 2020 16:54:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05ULstKj046698;
+        Tue, 30 Jun 2020 16:54:55 -0500
+From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+To:     <sre@kernel.org>, <pali@kernel.org>, <robh@kernel.org>
+CC:     <afd@ti.com>, <r-rivera-matos@ti.com>, <dmurphy@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <sspatil@android.com>
+Subject: [PATCH v14 0/4] Add JEITA properties and introduce the bq2515x charger
+Date:   Tue, 30 Jun 2020 16:54:22 -0500
+Message-ID: <20200630215426.26450-1-r-rivera-matos@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-1-lorenzo.pieralisi@arm.com> <20200619082013.13661-10-lorenzo.pieralisi@arm.com>
-In-Reply-To: <20200619082013.13661-10-lorenzo.pieralisi@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 30 Jun 2020 15:50:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKEXOhmK6Mi1BK4UWwc=eZKNoAvfHU-K7DnMcW34fNFdw@mail.gmail.com>
-Message-ID: <CAL_JsqKEXOhmK6Mi1BK4UWwc=eZKNoAvfHU-K7DnMcW34fNFdw@mail.gmail.com>
-Subject: Re: [PATCH v2 09/12] of/irq: make of_msi_map_get_device_domain() bus agnostic
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Diana Craciun <diana.craciun@oss.nxp.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        PCI <linux-pci@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Joerg Roedel <joro@8bytes.org>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Makarand Pawagi <makarand.pawagi@nxp.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 19, 2020 at 2:20 AM Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
->
-> From: Diana Craciun <diana.craciun@oss.nxp.com>
->
-> of_msi_map_get_device_domain() is PCI specific but it need not be and
-> can be easily changed to be bus agnostic in order to be used by other
-> busses by adding an IRQ domain bus token as an input parameter.
->
-> Signed-off-by: Diana Craciun <diana.craciun@oss.nxp.com>
-> Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>   # pci/msi.c
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/of/irq.c       | 8 +++++---
->  drivers/pci/msi.c      | 2 +-
->  include/linux/of_irq.h | 5 +++--
->  3 files changed, 9 insertions(+), 6 deletions(-)
+Hello,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This patchset adds additional health properties to the power_supply header.
+These additional properties are taken from the JEITA specification. This
+patchset also introduces the bq2515x family of charging ICs.
+
+Dan Murphy (2):
+  power_supply: Add additional health properties to the header
+  dt-bindings: power: Convert battery.txt to battery.yaml
+
+Ricardo Rivera-Matos (2):
+  dt-bindings: power: Add the bindings for the bq2515x family of
+    chargers.
+  power: supply: bq25150 introduce the bq25150
+
+ Documentation/ABI/testing/sysfs-class-power   |    3 +-
+ .../bindings/power/supply/battery.txt         |   86 +-
+ .../bindings/power/supply/battery.yaml        |  157 +++
+ .../bindings/power/supply/bq2515x.yaml        |   93 ++
+ drivers/power/supply/Kconfig                  |   13 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/bq2515x_charger.c        | 1158 +++++++++++++++++
+ drivers/power/supply/power_supply_sysfs.c     |    3 +
+ include/linux/power_supply.h                  |    3 +
+ 9 files changed, 1431 insertions(+), 86 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/battery.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq2515x.yaml
+ create mode 100644 drivers/power/supply/bq2515x_charger.c
+
+-- 
+2.27.0
+
