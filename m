@@ -2,167 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C652111D6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 19:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC2ED211196
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 19:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732361AbgGARVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 13:21:45 -0400
-Received: from relay5.mymailcheap.com ([159.100.248.207]:55362 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726432AbgGARVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 13:21:44 -0400
-X-Greylist: delayed 340 seconds by postgrey-1.27 at vger.kernel.org; Wed, 01 Jul 2020 13:21:42 EDT
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.199.117])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id C4C8E2634F;
-        Wed,  1 Jul 2020 17:16:00 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id 70A263F1D0;
-        Wed,  1 Jul 2020 19:15:44 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id 38A662A514;
-        Wed,  1 Jul 2020 19:15:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1593623714;
-        bh=INLbBUm6KCC6ep5sjzH746qIHvSD5JWXu0vO2Bff8Es=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=PAr96xZARsThxj/DqTEWzFDQ40ZNuRmKqr4bvVeYU84lUurcynUnkimqlt/t3Up/V
-         OS7YLwngUbgqvnMiZ72MIFQHvctzD5CxisuHp/us9hOFROlEIyQCc99dwaOxaPwMYf
-         6gk1RypDwTuf4wcvZoeDQZvVd1hMboSj8ERyajgA=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id QBz6TygpYTK1; Wed,  1 Jul 2020 19:15:12 +0200 (CEST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Wed,  1 Jul 2020 19:15:12 +0200 (CEST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 45B6040842;
-        Wed,  1 Jul 2020 17:15:04 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="pa/FN35O";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [172.19.0.1] (unknown [64.225.114.122])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 6E11140842;
-        Wed,  1 Jul 2020 17:14:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1593623681; bh=INLbBUm6KCC6ep5sjzH746qIHvSD5JWXu0vO2Bff8Es=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=pa/FN35Om/1LGd9F8uy1es7wSm/UHgN2AvfkQBAn9u6MJBHr5prBeY3A7+Yv5in9C
-         R1XARGiF76TKknam84nUcCoLja/BgALU6z3VaVRQo4U+WFI30Wq0PW0rfNyn487tG7
-         e5M0AJu4kZWb44Zb2slBWqzN6/D64FIqZEtcyYvQ=
-Date:   Wed, 01 Jul 2020 20:01:14 +0800
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20200701103126.1512615-14-megous@megous.com>
-References: <20200701103126.1512615-1-megous@megous.com> <20200701103126.1512615-14-megous@megous.com>
+        id S1732693AbgGARGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 13:06:02 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:8637 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732571AbgGARGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 13:06:01 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5efcc26c0000>; Wed, 01 Jul 2020 10:05:48 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 01 Jul 2020 10:06:01 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 01 Jul 2020 10:06:01 -0700
+Received: from [10.2.167.193] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 1 Jul
+ 2020 17:06:00 +0000
+Subject: Re: [RFC PATCH v2 00/18] Support for Tegra video capture from
+ external sensor
+To:     Hans Verkuil <hverkuil@xs4all.nl>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <sakari.ailus@iki.fi>,
+        <robh+dt@kernel.org>, <helen.koike@collabora.com>
+CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+References: <1592358094-23459-1-git-send-email-skomatineni@nvidia.com>
+ <b3f63f3f-50b2-e818-2c59-8009c31a9825@xs4all.nl>
+ <f5c84071-46ad-aa6f-0820-1813d4a907c9@nvidia.com>
+ <a60d8f80-312d-fce3-61f5-328e7f2a7a64@xs4all.nl>
+ <72ca3b09-7ca6-7421-4a9d-98326d1af087@nvidia.com>
+ <e8a8a678-e9e8-e941-8dcb-0e747616ba59@nvidia.com>
+ <a606ac84-e0bc-aa85-5799-eeeb544d130d@nvidia.com>
+ <92f25457-f4e5-78ea-d453-2b5cf8f272e8@xs4all.nl>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <77888877-969f-6279-b6b3-b77c7c5e9fb8@nvidia.com>
+Date:   Wed, 1 Jul 2020 10:07:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+In-Reply-To: <92f25457-f4e5-78ea-d453-2b5cf8f272e8@xs4all.nl>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 13/13] arm64: dts: sun50i-a64-pinephone: Add touchscreen support
-To:     Ondrej Jirman <megous@megous.com>, linux-sunxi@googlegroups.com,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        =?ISO-8859-1?Q?Guido_G=FCnther?= <agx@sigxcpu.org>,
-        Purism Kernel Team <kernel@puri.sm>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>,
-        Martijn Braam <martijn@brixit.nl>, Luca Weiss <luca@z3ntu.xyz>,
-        Bhushan Shah <bshah@kde.org>
-From:   Icenowy Zheng <icenowy@aosc.io>
-Message-ID: <78C72279-99DB-4FDE-81B3-1CF6BEF80BBF@aosc.io>
-X-Rspamd-Queue-Id: 45B6040842
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_TWELVE(0.00)[20];
-         RCVD_IN_DNSWL_NONE(0.00)[213.133.102.83:from];
-         FREEMAIL_TO(0.00)[megous.com,googlegroups.com,gmail.com,ravnborg.org,linux.ie,ffwll.ch,sigxcpu.org,puri.sm,kernel.org,csie.org,linaro.org];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1593623148; bh=6t042SSwiTMkHkAYRX6tXLKdJDNCAX4qvSTvGAK8T/g=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=BBhu8NOZMj5MgK00nlxC05bRbLYUqau521GrP50sC7IoR3+67pCSgjjiVL59M0PFi
+         F4ZBuMAoNj39LQEJaCndrPjrL6+9avfiy7vsMF7VUb61ou2UVv3MaSoN6w/pELKdUn
+         0fItlFT+0JoOvbkPfC7WTOMp29gluGjn3KwadL/TRtVL+ihrbEr0yOItzPw0jlK386
+         FMRm3SpJBS58QIyfqJWPDu/QSXUFWe7q8O7auc1cWaF88ecNyxh/32QfMOjlMZXItR
+         ksymi8t/Yrexyzg96sIuQHG5jv6rh8i8/PwzUYNn+pJyuo6ekgDTbOCaKjJL4a22ZH
+         48ecPki/y4nQw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-=E4=BA=8E 2020=E5=B9=B47=E6=9C=881=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=886:=
-31:26, Ondrej Jirman <megous@megous=2Ecom> =E5=86=99=E5=88=B0:
->Pinephone has a Goodix GT917S capacitive touchscreen controller on
->I2C0 bus=2E Add support for it=2E
+On 7/1/20 9:54 AM, Hans Verkuil wrote:
+> On 30/06/2020 18:34, Sowjanya Komatineni wrote:
+>> On 6/30/20 9:17 AM, Sowjanya Komatineni wrote:
+>>> On 6/30/20 8:44 AM, Sowjanya Komatineni wrote:
+>>>> On 6/30/20 8:13 AM, Hans Verkuil wrote:
+>>>>> On 30/06/2020 16:58, Sowjanya Komatineni wrote:
+>>>>>> On 6/30/20 2:21 AM, Hans Verkuil wrote:
+>>>>>>> On 17/06/2020 03:41, Sowjanya Komatineni wrote:
+>>>>>>>> This series adds support for video capture from external camera
+>>>>>>>> sensor to
+>>>>>>>> Tegra video driver.
+>>>>>>>>
+>>>>>>>> Jetson TX1 has camera expansion connector and supports custom
+>>>>>>>> camera module
+>>>>>>>> designed as per TX1 design specification.
+>>>>>>>>
+>>>>>>>> This series also enables camera capture support for Jetson Nano
+>>>>>>>> which has
+>>>>>>>> Raspberry PI camera header.
+>>>>>>>>
+>>>>>>>> This series is tested with IMX219 camera sensor.
+>>>>>>> Which tree did you base this on? The media_tree master? Or the
+>>>>>>> mainline kernel?
+>>>>>> These patches are with linux-next base at the time I sent them out
+>>>>>> which
+>>>>>> are on 20200616
+>>>>>>> I now have the imx219 detected, but if I try to stream I get this:
+>>>>>>>
+>>>>>>> $ v4l2-ctl --stream-mmap
+>>>>>>> <[=C2=A0 512.840944] video4linux video0: MW_ACK_DONE syncpt timeout=
+: -11
+>>>>>>> [=C2=A0 512.972975] video4linux video0: frame start syncpt timeout:=
+ -11
+>>>>>>> <VIDIOC_DQBUF: failed: Input/output error
+>>>>>>> [=C2=A0 513.180770] video4linux video0: MW_ACK_DONE syncpt timeout:=
+ -11
+>>>>>>>
+>>>>>>> And then everything hangs and I need to reset.
+>>>>>>>
+>>>>>>> I'm testing with the media_tree master with your patches on top.
+>>>>>>>
+>>>>>>> Regards,
+>>>>>>>
+>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0Hans
+>>>>>> Are you using same device tree as I sent offline? It uses CSI A for
+>>>>>> IMX219.
+>>>>>>
+>>>>>> Does you setup also uses CSI-A as x2 for IMX219?
+>>>>>>
+>>>>>> I tested them on Jetson Nano + IMX219 rasp PI module and also on
+>>>>>> Jetson
+>>>>>> TX1 + IMX274.
+>>>>>>
+>>>>>> I did not see any issue and am able to capture from both.
+>>>>>>
+>>>>>> Will try again on my side with today's latest linux-next and update
+>>>>>> result.
+>>>>> Please use the media_tree master, that's what I use as well.
+>>>>>
+>>>>> I did some more testing and there is something weird going on.
+>>>>>
+>>>>> I have a Leopard Imaging camera expansion board (LI-JTX1-MIPI-ADPT)
+>>>>> with
+>>>>> three camera connectors. See here for the datasheet:
+>>>>>
+>>>>> https://www.leopardimaging.com/uploads/LI-TX1-KIT-IMX274M12-T_datashe=
+et.pdf
+>>>>>
+>>>>>
+>>>>> The first connector (with an IMX274) causes this error:
+>>>>>
+>>>>> $ v4l2-ctl -d1 --stream-mmap
+>>>>> [=C2=A0 599.265885] video4linux video1: MW_ACK_DONE syncpt timeout: -=
+11
+>>>>> [=C2=A0 599.473883] video4linux video1: MW_ACK_DONE syncpt timeout: -=
+11
+>>>>> [=C2=A0 599.681904] video4linux video1: frame start syncpt timeout: -=
+11
+>>>>> [=C2=A0 599.681909] video4linux video1: MW_ACK_DONE syncpt timeout: -=
+11
+>>>>> <VIDIOC_DQBUF: failed: Input/output error
+>>>>> [=C2=A0 599.897884] video4linux video1: MW_ACK_DONE syncpt timeout: -=
+11
+>>>>>
+>>>>> Similar to the test above where I had an IMX219 connected. Except it
+>>>>> didn't
+>>>>> hang with the IMX274 (I'm beginning to suspect a locking issue in
+>>>>> the imx219
+>>>>> driver that is causing the hang, I'll look at that tomorrow).
+>>>>>
+>>>>> If I connect the IMX219 to the middle camera connector, then it
+>>>>> works fine.
+>>>>> I think I tested this with the IMX274 as well, but I'm not 100%
+>>>>> certain, also
+>>>>> something to double check tomorrow.
+>>>>>
+>>>>> If I connect the IMX219 or IMX274 to the third camera connector,
+>>>>> then I get this:
+>>>> Would like to know CSI port mapping to connectors as mipi calibrate
+>>>> pads cells need to be updated in device tree based on CSI port in use.
+>>>>
+>>>> Will see if I can find that from DS link you sent above.
+>>>>
+>>>>> $ v4l2-ctl -d0 --stream-mmap
+>>>>> [=C2=A0 820.513866] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [=C2=A0 820.525354] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [=C2=A0 820.536780] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [=C2=A0 820.548222] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [=C2=A0 820.559639] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> <[=C2=A0 820.646931] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 820.658355] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 820.669797] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 820.681216] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 820.692601] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> <<<<<<<<<<<<<<< 14.50 fps
+>>>>> <<<<<<<<<<<<<<< 14.75 fps
+>>>>> <<<<<<<<<<<<<<< 14.73 fps
+>>>>> <<<<<<<<<<<<<<< 14.80 fps
+>>>>> <<<<<<<<<<<<<[ 825.517854] tegra_mc_irq: 133437 callbacks suppressed
+>>>>> [=C2=A0 825.517874] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.534395] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.545833] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.557280] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.579346] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.590764] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.602188] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.613649] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.625075] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [=C2=A0 825.645983] tegra-mc 70019000.memory-controller: viw: write
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> < 14.64 fps
+>>>>> <<<<<<<<<<<<<<<< 14.87 fps
+>>>>> <<<<<<<<<<<<<<< 14.89 fps
+>>>>>
+>>>>> Something is producing EMEM address decode errors. But it is streamin=
+g.
+>>>> above memory controller errors may be due to access faults and not
+>>>> sure why these show up on your setup. I never have these with my
+>>>> testing.
+>>>>
+>>>> Also I am using CMA alloc of 256MB and not sure if low CMA alloc size
+>>>> is causing this. Can you try with CMA alloc size of 256MB?
+>>>>
+>>>>> If I enable the TPG then everything is fine.
+>>>>>
+>>>>> So I have currently three different behaviors for three camera
+>>>>> connectors.
+>>>>>
+>>>>> Do you have a datasheet for your Jetson TX1 camera board? It could
+>>>>> be useful
+>>>>> to compare the two.
+>>>> Yeah we have and will send it offline.
+>>>>
+>>>> Also based on connector mapping to corresponding CSI port,
+>>>> mipi-calibrate pad cell value also need to be changed.
+>>>>
+>>>> Below is for CSI-A
+>>>>
+>>>> nvidia,mipi-calibrate =3D <&mipi 0x001>
+>>>>> Regards,
+>>>>>
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0Hans
+>>> Connector-1 is CSI-AB where you had timeouts.
+>>>
+>>> Connector-2 is CSI-CD and this works for you.
+>>>
+>>> Connector-3 is CSI-EF and this works for streaming from above but
+>>> there's memory access fault errors (EMEM address decode errors)
+>>>
+>>> These EMEM decode errors are not related to connector but its just
+>>> they showed up during connector-3 testing I believe. Can you also keep
+>>> CMA size to 256MB and try?
+>>>
+>>> Not sure if CSI-AB issue with FS and MW_ACK sp timeouts are due to
+>>> some HW/setup issue. Streaming should work on CSI-AB ports as well
+>>> just like CSI-CD/EF with proper device tree change for port index and
+>>> mipi calibrate cells for corresponding ports.
+>>>
+>>> On my setup that I tested IMX274 is on CSI-AB.
+>>>
+>>> Will update my side test results with today's linux-next
+>> Hans,
+>>
+>> We have this module as well. Will try to get this today for testing and
+>> will update just to make sure of this combo as well on my side.
+> Sowjanya,
 >
->Signed-off-by: Ondrej Jirman <megous@megous=2Ecom>
->Acked-by: Linus Walleij <linus=2Ewalleij@linaro=2Eorg>
->---
-> =2E=2E=2E/dts/allwinner/sun50i-a64-pinephone=2Edtsi   | 19 +++++++++++++=
-++++++
-> 1 file changed, 19 insertions(+)
+> A quick update: I had to update my u-boot and I ended up reinstalling eve=
+rything.
 >
->diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone=2Edtsi
->b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone=2Edtsi
->index 85a7aa5efd32=2E=2E2d5694446d17 100644
->--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone=2Edtsi
->+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone=2Edtsi
->@@ -123,6 +123,25 @@ &ehci1 {
-> 	status =3D "okay";
-> };
->=20
->+&i2c0 {
->+	pinctrl-names =3D "default";
->+	pinctrl-0 =3D <&i2c0_pins>;
->+	status =3D "okay";
->+
->+	touchscreen@5d {
->+		compatible =3D "goodix,gt917s", "goodix,gt911";
-
-Please drop gt911 here=2E GT917S belong to the GT1x product line, not the =
-same line with GT911=2E
-
-You will see this in the driver=2E
-
->+		reg =3D <0x5d>;
->+		interrupt-parent =3D <&pio>;
->+		interrupts =3D <7 4 IRQ_TYPE_LEVEL_HIGH>; /* PH4 */
->+		irq-gpios =3D <&pio 7 4 GPIO_ACTIVE_HIGH>; /* PH4 */
->+		reset-gpios =3D <&pio 7 11 GPIO_ACTIVE_HIGH>; /* PH11 */
->+		AVDD28-supply =3D <&reg_ldo_io0>;
->+		VDDIO-supply =3D <&reg_ldo_io0>;
->+		touchscreen-size-x =3D <720>;
->+		touchscreen-size-y =3D <1440>;
->+	};
->+};
->+
-> &i2c1 {
-> 	status =3D "okay";
->=20
+> And now the problems I described just disappeared. Very strange.
+>
+> I have yet to verify if the issue with the third camera connector is also=
+ solved,
+> I'll do that tomorrow.
+>
+> But for now you don't have to take any action.
+>
+> Regards,
+>
+> 	Hans
+OK. Thanks Hans.
