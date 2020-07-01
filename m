@@ -2,171 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33E3A2114F2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 23:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB22211519
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 23:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727826AbgGAVWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 17:22:14 -0400
-Received: from rnd-relay.smtp.broadcom.com ([192.19.229.170]:43312 "EHLO
-        rnd-relay.smtp.broadcom.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726942AbgGAVWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 17:22:13 -0400
-Received: from mail-irv-17.broadcom.com (mail-irv-17.lvn.broadcom.net [10.75.242.48])
-        by rnd-relay.smtp.broadcom.com (Postfix) with ESMTP id 66F4630C05C;
-        Wed,  1 Jul 2020 14:22:12 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 rnd-relay.smtp.broadcom.com 66F4630C05C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-        s=dkimrelay; t=1593638532;
-        bh=GSqFzmHeOiSek+62bFpDJcfrtOQWQUrThlJG71lclKo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tEB1dOdB4mCMT/CINRpEULUdgrBzSMGdrPnFaguWD+zq2PGPPc2KRaPMxUJnM5BIE
-         8WfvQseprpaf1c62YJzJf5yn1keBiaxCazW3+mhdI5vNurr5GqXxSX7kk1ZOvvm/ga
-         HzWCJ5Vg3HtPXYEO1RGkVI4+1ceqFocOrzOv53dI=
-Received: from stbsrv-and-01.and.broadcom.net (stbsrv-and-01.and.broadcom.net [10.28.16.211])
-        by mail-irv-17.broadcom.com (Postfix) with ESMTP id A198514008B;
-        Wed,  1 Jul 2020 14:22:10 -0700 (PDT)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v6 03/12] dt-bindings: PCI: Add bindings for more Brcmstb chips
-Date:   Wed,  1 Jul 2020 17:21:33 -0400
-Message-Id: <20200701212155.37830-4-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200701212155.37830-1-james.quinlan@broadcom.com>
-References: <20200701212155.37830-1-james.quinlan@broadcom.com>
+        id S1725915AbgGAV2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 17:28:10 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:49774 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726144AbgGAV2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 17:28:09 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 9F98A803202A;
+        Wed,  1 Jul 2020 21:28:04 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id g3WW4EqKCj7G; Thu,  2 Jul 2020 00:28:03 +0300 (MSK)
+Date:   Thu, 2 Jul 2020 00:28:00 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 6/6] MAINTAINERS: Add maintainers for MIPS core drivers
+Message-ID: <20200701212800.r7ue36dp2qnmmsmm@mobilestation>
+References: <20200617223201.23259-1-Sergey.Semin@baikalelectronics.ru>
+ <20200617223201.23259-7-Sergey.Semin@baikalelectronics.ru>
+ <e29c9643-db5c-2d89-ff56-0900091770ea@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e29c9643-db5c-2d89-ff56-0900091770ea@linaro.org>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jim Quinlan <jquinlan@broadcom.com>
+Hello Daniel
 
-- Add compatible strings for three more Broadcom STB chips: 7278, 7216,
-  7211 (STB version of RPi4).
-- Add new property 'brcm,scb-sizes'.
-- Add new property 'resets'.
-- Add new property 'reset-names' for 7216 only.
-- Allow 'ranges' and 'dma-ranges' to have more than one item and update
-  the example to show this.
+On Wed, Jul 01, 2020 at 09:00:03AM +0200, Daniel Lezcano wrote:
+> On 18/06/2020 00:32, Serge Semin wrote:
+> > Add Thomas and myself as maintainers of the MIPS CPU and GIC IRQchip, MIPS
+> > GIC timer and MIPS CPS CPUidle drivers.
+> 
 
-Signed-off-by: Jim Quinlan <jquinlan@broadcom.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/pci/brcm,stb-pcie.yaml           | 56 ++++++++++++++++---
- 1 file changed, 49 insertions(+), 7 deletions(-)
+> Why will you add yourself in the MAINTAINERS file for those drivers when
+> git shows just one contribution for the mips-gic-timer for the timer
+> stability ?
+> 
+> git shortlog --numbered --summary drivers/cpuidle/cpuidle-cps.c
+>      4  Paul Burton
+>      1  Daniel Lezcano
+>      1  Marcin Nowakowski
+>      1  Matt Redfearn
+>      1  Thomas Gleixner
+> 
+> git shortlog --numbered --summary drivers/clocksource/mips-gic-timer.c
+>     11  Andrew Bresticker
+>      4  Ezequiel Garcia
+>      4  Matt Redfearn
+>      4  Paul Burton
+>      3  Daniel Lezcano
+>      3  Thomas Gleixner
+>      2  Linus Torvalds
+>      1  Alex Smith
+>      1  Christophe Jaillet
+>      1  Felix Fietkau
+>      1  Ingo Molnar
+>      1  Markos Chandras
+>      1  Paul Gortmaker
+>      1  Rafał Miłecki
+>      1  Richard Cochran
+>      1  Serge Semin
+>      1  Viresh Kumar
+>      1  YueHaibing
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 8680a0f86c5a..807694b4f41f 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -9,12 +9,15 @@ title: Brcmstb PCIe Host Controller Device Tree Bindings
- maintainers:
-   - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
- 
--allOf:
--  - $ref: /schemas/pci/pci-bus.yaml#
--
- properties:
-   compatible:
--    const: brcm,bcm2711-pcie # The Raspberry Pi 4
-+    items:
-+      - enum:
-+          - brcm,bcm2711-pcie # The Raspberry Pi 4
-+          - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-+          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-+          - brcm,bcm7216-pcie # Broadcom 7216 Arm
-+          - brcm,bcm7445-pcie # Broadcom 7445 Arm
- 
-   reg:
-     maxItems: 1
-@@ -34,10 +37,12 @@ properties:
-       - const: msi
- 
-   ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
- 
-   dma-ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 6
- 
-   clocks:
-     maxItems: 1
-@@ -58,8 +63,31 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  resets:
-+    description: for "brcm,bcm7216-pcie", must be a valid reset
-+      phandle pointing to the RESCAL reset controller provider node.
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+
-+  reset-names:
-+    items:
-+      - const: rescal
-+
-+  brcm,scb-sizes:
-+    description: u64 giving the 64bit PCIe memory
-+      viewport size of a memory controller.  There may be up to
-+      three controllers, and each size must be a power of two
-+      with a size greater or equal to the amount of memory the
-+      controller supports.  Note that each memory controller
-+      may have two component regions -- base and extended -- so
-+      this information cannot be deduced from the dma-ranges.
-+    $ref: /schemas/types.yaml#/definitions/uint64-array
-+    items:
-+      minItems: 1
-+      maxItems: 3
-+
- required:
-   - reg
-+  - ranges
-   - dma-ranges
-   - "#interrupt-cells"
-   - interrupts
-@@ -68,6 +96,18 @@ required:
-   - interrupt-map
-   - msi-controller
- 
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm7216-pcie
-+    then:
-+      required:
-+        - resets
-+        - reset-names
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -93,7 +133,9 @@ examples:
-                     msi-parent = <&pcie0>;
-                     msi-controller;
-                     ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000 0x0 0x04000000>;
--                    dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-+                    dma-ranges = <0x42000000 0x1 0x00000000 0x0 0x40000000 0x0 0x80000000>,
-+                                 <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-+                    brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-             };
-     };
--- 
-2.17.1
+I suppose that the number of commits isn't a main criteria to make someone of
+being a maintainer of a particular driver, though it might be a sufficient
+condition why someone could be appointed with the role. Anyway as I said in
+the cover letter that was a mere suggestion:
 
+> > Suggestion.
+> > Since Paul isn't looking after the MIPS arch code anymore, Ralf hasn't
+> > been seen maintaining MIPS for a long time, Thomas is only responsible
+> > for the next part of it:
+> >         F:      Documentation/devicetree/bindings/mips/
+> >         F:      Documentation/mips/
+> >         F:      arch/mips/
+> >         F:      drivers/platform/mips/
+> > the MIPS-specific drivers like:
+> >         F:      drivers/bus/mips_cdmm.c
+> >         F:      drivers/irqchip/irq-mips-cpu.c
+> >         F:      drivers/irqchip/irq-mips-gic.c
+> >         F:      drivers/clocksource/mips-gic-timer.c
+> >         F:      drivers/cpuidle/cpuidle-cps.c
+> > seem to be left for the subsystems maintainers to support. So if you don't
+> > mind or unless there is a better alternative, I can help with looking
+> > after them to ease the maintainers review burden and since I'll be working
+> > on our MIPS-based SoC drivers integrating into the mainline kernel repo
+> > anyway. Thomas agreed to join in maintaining that drivers."
+
+Primarily I've propose my help with looking after those drivers, since I'll be
+working on our SoC drivers with those components installed anyway.
+
+Another reason why I've decided to create this patch is that I've discovered there
+is noone looking after the drivers/bus/mips_cdmm.c driver. Noone responded to
+accept/decline the CDMM-related changes proposed in this patchset
+(mips_cdmm.c driver), noone except Rob responded to the DT bindings conversion
+patches (irq-mips-gic.c, mips_cdmm.c drivers):
+  68d4fa5d0bb8 dt-bindings: bus: Add MIPS CDMM controller
+  7256641fe15e dt-bindings: interrupt-controller: Convert mti,gic to DT schema
+  da16cdddd947 dt-bindings: power: Convert mti,mips-cpc to DT schema
+Finally I didn't say it in the cover letter, but cpuidle-cps wasn't working for
+our SoC, so I'll have to dig into that driver anyway. Moreover It seems to me
+that cpuidle-cps.c will be abandoned by the author since Paul Burton stopped
+working for MIPS. So based on that I collected all MIPS-related but scattered
+around the kernel subsystems drivers (MIPS CDMM, MIPS CPU/GIC IRQ-chip,
+MIPS GIC-timer and MIPS CPU-idle CPS) in the dedicated maintainers entry and
+proposed my help with their maintenance. By Marc' suggestion Thomas agreed to
+join in.
+
+If you don't need our help in maintaining the mips-gic-timer.c and cpuidle-cps.c
+drivers, then just say so. I'll discard them from the maintenance entry created
+by this patch. Though in that case the list won't be full.)
+
+> 
+> Also, in the cpuidle-cps.c history, there is no signed-off from Rafael,
+> neither an Acked-by when it was merged. That make me think the patch
+> went through another path than the linux-pm tree without a cpuidle
+> framework maintainer acknowledgement.
+> 
+> Perhaps it is a mistake and the patch was actually acked-by, but I would
+> like to remind the patches have to be acked by the upper maintainers and
+> being listed in the MAINTAINERS file does not give the right of override
+> this rule.
+
+Sorry. I don't really get it what patch you are talking about. But I
+totally aware of the rule you've mentioned.
+
+-Sergey
+
+> 
+> 
+> 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Acked-by: Marc Zyngier <maz@kernel.org>
+> > Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> > Cc: linux-mips@vger.kernel.org
+> > Cc: devicetree@vger.kernel.org
+> > 
+> > ---
+> > 
+> > Changelog v3:
+> > - Keep the files list alphabetically ordered.
+> > - Add Thomas as the co-maintainer of the designated drivers.
+> > ---
+> >  MAINTAINERS | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 2926327e4976..20532e0287d7 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11278,6 +11278,17 @@ F:	arch/mips/configs/generic/board-boston.config
+> >  F:	drivers/clk/imgtec/clk-boston.c
+> >  F:	include/dt-bindings/clock/boston-clock.h
+> >  
+> > +MIPS CORE DRIVERS
+> > +M:	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > +M:	Serge Semin <fancer.lancer@gmail.com>
+> > +L:	linux-mips@vger.kernel.org
+> > +S:	Supported
+> > +F:	drivers/bus/mips_cdmm.c
+> > +F:	drivers/clocksource/mips-gic-timer.c
+> > +F:	drivers/cpuidle/cpuidle-cps.c
+> > +F:	drivers/irqchip/irq-mips-cpu.c
+> > +F:	drivers/irqchip/irq-mips-gic.c
+> > +
+> >  MIPS GENERIC PLATFORM
+> >  M:	Paul Burton <paulburton@kernel.org>
+> >  L:	linux-mips@vger.kernel.org
+> > 
+> 
+> 
+> -- 
+> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> 
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
