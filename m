@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1409210553
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EA7221055C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728389AbgGAHtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 03:49:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44848 "EHLO
+        id S1728415AbgGAHuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 03:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728243AbgGAHtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:49:23 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E22FDC03E97A
-        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 00:49:22 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id q7so12544872ljm.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 00:49:22 -0700 (PDT)
+        with ESMTP id S1728331AbgGAHuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:50:15 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94EAC03E97A
+        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 00:50:14 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id q7so12547464ljm.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 00:50:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=++uGLkdCf/60V7s9CDFLkDgLRpplORGsi+7jDmsg2a0=;
-        b=VcehAVisE+6s2+bxMOyJUI3XZCbK9Yqe1A5IAZ74+sXsRGf1//4lTfVXvEi90+ymhA
-         XLDA13LVc8yKXBNVrkEwfLG38vrVl1zaJNskU0H4dYNHnlcBml2CT/zODmOcu/Kbg13G
-         RN3JWAi4jsyLj0x2pb0JFbZCYjDCTT4oAmZ8FcZVyHnnjv7/arqZaE9Kvh9DM91qcZPu
-         b3CEEVEndnTMHN+ovKIZIzL1NDs+cjioV2ZLizrNYhkE86rMVj22ZPag9Wsw8pWFdHJY
-         RrNoEe2rMSRtz5HlSpgVjr76KN+8Be6U5GeXpjcCqYwVyGCaaguHqJjxsOWLHgRyYg01
-         8ktw==
+        bh=BK6LxcRRscqsnEluIPMx3er/wRY4fpMutYOWykUjzz8=;
+        b=s3vWfnzqTWTwOUb5oa/2WEKziwyZzj5P21ho4P1IyINRBBNYpb5sRzdLP2skObVtce
+         ivbDf8XMoC+QAkjxEBT0WtQ58ZuKaw27t7XvTi3rW25VVJJH/FwRc0EY3368hJixCYaM
+         Z8Q9IK68mxFCDPiSXtl3aCA9E0tZhB6n3euJ65+MJM1jldE+RnVoGvM6SfzV188kugqu
+         BGknh6a3NCrCbH0eppFCaZHHrhhsDyvDDb3N51tFAp3aUb2wNufBbUh0pQhpQvHxgCns
+         orFgCtiZDeF+ppwNMX/J6Icgerpaii4OLN2Ydw76eQWP2rg9HSx/8yvoUvzWhKI2Hw25
+         7DbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=++uGLkdCf/60V7s9CDFLkDgLRpplORGsi+7jDmsg2a0=;
-        b=GzyWgaUH/P5Z6a2BTveZLaWBPOGQXzSRNsu9oCLVSC3RydgaNJiiq07opz78Gl8usJ
-         5sfMjyKdYnkWgYB1kgalaJ4JSdpSgHeHwb7tgWV3J0TCCFefjhvdSl924R9ipBv7d6ys
-         gJ8GhrLayyU4ZVjUx1uVAMkwPgc4HeCtTmt+pe37Ep2oI909R2g8avnXhbyOuhrbFu9A
-         LtA7htGdEnUc+pDwR4bcnwHAVDw5zlnlJ+Blm2ADXPCMAMQigK/TZVHdDSt8RwEJey1V
-         u8XWf5esBOsJ3EzN/2Sk56YPxBVwwB55OO6eCxiKp+xUDqJ73C0L5q2S42OLzKZLasYq
-         cTvg==
-X-Gm-Message-State: AOAM531fCPbiZUEwUOnBQ3GpsdaX4darMhJImNqVCSoTyMe4G+bN0G0F
-        pm3Md1xeSBRu6ME9Q+cVsaACKV+104mU5nq+G8k0lQ==
-X-Google-Smtp-Source: ABdhPJw1FRf3UGjIm8Aw/1ssXYvNABKPHlodmDoTYJBWduHQRMKFH+GUhry8/4a3iTFlum0ADTfAg+Z+9PH8e1iUju4=
-X-Received: by 2002:a05:651c:284:: with SMTP id b4mr1764447ljo.283.1593589761445;
- Wed, 01 Jul 2020 00:49:21 -0700 (PDT)
+        bh=BK6LxcRRscqsnEluIPMx3er/wRY4fpMutYOWykUjzz8=;
+        b=s+QXgJ2UM6Ccmqk1OKU7F11kiVvQaYxTkapNv7W7Fh6levgR/xqEptxR1n9jIyGQ86
+         Rt7T6Ypt3ljNAXLTB8f4SORINHlSA+ggcIDlVacLyekK00+Bgs6rjAGT0G9BoqYj5/dy
+         fkFSxYocFfTLvnx2VMw8Dlm0srgWcH3tsunMeS4x5NY/s2XSf/VHECDq1KexJ8lrgLGA
+         QNXqb2KXwkwxYnaTFE+ONbT5FT9FbWN46mD5KwUfLLUuj9RYr9QpfZy+XMBEY0PbY/Rj
+         SNM8Z87jD6Gev+ocpkYvw+FirW2XyIuYVHGqySObqD2GQswRezKPlzRd28w9OWUAnY/t
+         W3QQ==
+X-Gm-Message-State: AOAM5305owjUAonf8rPyprIee/NYGYnIj+4n18ZMOKi9pYDIZjy+UwSd
+        wWVTGZ1a+9hMxc/ZreCZAkPoLhO6vfsSxCd+rCf4WQ==
+X-Google-Smtp-Source: ABdhPJyDVgBP0COvfyAl2ABGdKqijtb4W240jklwI9mjQ/CSvLAJC8aqzhqumLuGWJRH5kaYpZDb17Vcges4Q5+E7mQ=
+X-Received: by 2002:a2e:9c3:: with SMTP id 186mr13146317ljj.293.1593589813316;
+ Wed, 01 Jul 2020 00:50:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200626005601.241022-1-megous@megous.com> <20200626005601.241022-8-megous@megous.com>
-In-Reply-To: <20200626005601.241022-8-megous@megous.com>
+References: <20200626005601.241022-1-megous@megous.com> <20200626005601.241022-9-megous@megous.com>
+In-Reply-To: <20200626005601.241022-9-megous@megous.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 1 Jul 2020 09:49:10 +0200
-Message-ID: <CACRpkdZN2rEB9gSQiBiB5Fu8tUUt=DCfF3dpfOBTsUbCc7HUgw@mail.gmail.com>
-Subject: Re: [PATCH v5 07/13] drm/panel: st7703: Move code specific to jh057n
- closer together
+Date:   Wed, 1 Jul 2020 09:50:02 +0200
+Message-ID: <CACRpkdZAZauS19W7GTbhB4FgjrVtd2+RPx9cuLAac4s4vx234A@mail.gmail.com>
+Subject: Re: [PATCH v5 08/13] drm/panel: st7703: Move generic part of init
+ sequence to enable callback
 To:     Ondrej Jirman <megous@megous.com>
 Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -78,7 +78,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, Jun 26, 2020 at 2:56 AM Ondrej Jirman <megous@megous.com> wrote:
 
-> It's better than having it spread around the driver.
+> Calling sleep out and display on is a controller specific part
+> of the initialization process. Move it out of the panel specific
+> initialization function to the enable callback.
 >
 > Signed-off-by: Ondrej Jirman <megous@megous.com>
 
