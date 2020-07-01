@@ -2,231 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52EA2210888
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 11:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8502108FC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 12:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729670AbgGAJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 05:46:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729658AbgGAJqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 05:46:06 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF97C03E979
-        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 02:46:05 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id g75so21686979wme.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 02:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2LMkCbMP/fW3R0JY/uxUZEZ9R2osohzFUesMp17+pMA=;
-        b=HuiGKxnQzZpLlRxThfRTnOhCSU//LCi/puShODTGZ46B+LoY9thZL2n/lyYruh84Xy
-         FzX7LqEVPAhmNdR9GoZwEnl0PWHhtCLSGKm76GYKq0wrcAc0UMQRfpsIAZoK+ENSX97w
-         L1h7/Ulp7uzTMNjxF2k6j+NOMBz0XgFVRS85qp0jjWtvuhBOUOJUC1ariSviTZTXoxt4
-         ILIcPg4Ty5znQQ80vRwKVkTXul8z2PcHwyal3RDtEREF6bFb0JdM/m+M5fqn4wA+Cp/K
-         6hYOqUEnSQJqxBOLNHwvKPskeMprusRmjAMlkjJvebIH4d1L6klHbgyg/dh3z3IURGaD
-         RDXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2LMkCbMP/fW3R0JY/uxUZEZ9R2osohzFUesMp17+pMA=;
-        b=XQSLtclfn1FLS/iH+/SfROgORI61miiwu/z0JQhE7g+4cqHEBLoXUoRL3eHdl1pE7A
-         799T6uLn0PQeB0JkBzdmaJW8HZIU34IWqclrRxQnnf/2/5TCQMxR5gQ4k+HeodSovcF/
-         ydQAUq2OIpzJgwfuOKyqZ2hHuTvgzcOO3nM8DepKy9JipmIx35NcNfqIRYeAAFqQSRZZ
-         J3qQIR6BSVgZtXyuSGYXXubDehLGex1hpXF1eE8PLYFhFLgHrt6ciRT+y+e+dflPbslL
-         Xjluli0gujWCedCNaFXxcdwIBIVe86460bnKb6IZCshvVZnL7syTelKMYjyeTDJbAYKT
-         X5wg==
-X-Gm-Message-State: AOAM531dueNrVnWodNAAt2UG5DDuNmta3AHeSV4DUYdZQHBdmb0IACqz
-        J48xt879eOi/hldtgdVbjUiWnQ==
-X-Google-Smtp-Source: ABdhPJzdxyb0nGawWBsr2xEb7LJdcuL1c2OsDnBTglQIDKTV8eA1yyQ0UVabx6iu+anzu0LLvTOukQ==
-X-Received: by 2002:a7b:c7d2:: with SMTP id z18mr26629285wmk.149.1593596764449;
-        Wed, 01 Jul 2020 02:46:04 -0700 (PDT)
-Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id f13sm6270472wmb.33.2020.07.01.02.46.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2020 02:46:03 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: odroid-n2: add jack audio output support
-Date:   Wed,  1 Jul 2020 11:45:56 +0200
-Message-Id: <20200701094556.194498-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200701094556.194498-1-jbrunet@baylibre.com>
-References: <20200701094556.194498-1-jbrunet@baylibre.com>
+        id S1729339AbgGAKLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 06:11:07 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:33469 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729358AbgGAKLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 06:11:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1593598266; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=amiqoJGPjX9RNHOLVHTe5Q2mOjhh5iGIl3d/MtXJOIs=;
+ b=klJWoWQj2Memq5yCwOsgscVbjLRTXuQKSZKwTXxTsBas6yfpx/UCmToaAzbt3H0QdzS9u/Ws
+ m40mWJw3jNTzr50hjGX25nE5felUcxTK4nYuFy0kKmoVpSYGyvzJg3tjwojh74D7nlpmiA8E
+ Qnl9QzhpdwqI6A8m9GWHIK3frrk=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n12.prod.us-west-2.postgun.com with SMTP id
+ 5efc6139117610c7ff405ea6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 01 Jul 2020 10:11:05
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2A470C433AD; Wed,  1 Jul 2020 10:11:05 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B6F35C433C8;
+        Wed,  1 Jul 2020 10:11:03 +0000 (UTC)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 01 Jul 2020 15:41:03 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        John Stultz <john.stultz@linaro.org>,
+        freedreno@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Brian Masney <masneyb@onstation.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Shawn Guo <shawn.guo@linaro.org>, Takashi Iwai <tiwai@suse.de>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [PATCH v9 0/7] iommu/arm-smmu: Enable split pagetable support
+In-Reply-To: <20200626200042.13713-1-jcrouse@codeaurora.org>
+References: <20200626200042.13713-1-jcrouse@codeaurora.org>
+Message-ID: <bdc2a4348230f430138d320e49e188c0@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for audio on jack socket of the odroid-n2
+Hi Will, Robin,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 79 +++++++++++++++++--
- 1 file changed, 74 insertions(+), 5 deletions(-)
+On 2020-06-27 01:30, Jordan Crouse wrote:
+> Another iteration of the split-pagetable support for arm-smmu and the 
+> Adreno GPU
+> SMMU. After email discussions [1] we opted to make a arm-smmu 
+> implementation for
+> specifically for the Adreno GPU and use that to enable split pagetable 
+> support
+> and later other implementation specific bits that we need.
+> 
+> On the hardware side this is very close to the same code from before 
+> [2] only
+> the TTBR1 quirk is turned on by the implementation and not a domain 
+> attribute.
+> In drm/msm we use the returned size of the aperture as a clue to let us 
+> know
+> which virtual address space we should use for global memory objects.
+> 
+> There are two open items that you should be aware of. First, in the
+> implementation specific code we have to check the compatible string of 
+> the
+> device so that we only enable TTBR1 for the GPU (SID 0) and not the GMU 
+> (SID 4).
+> I went back and forth trying to decide if I wanted to use the 
+> compatible string
+> or the SID as the filter and settled on the compatible string but I 
+> could be
+> talked out of it.
+> 
+> The other open item is that in drm/msm the hardware only uses 49 bits 
+> of the
+> address space but arm-smmu expects the address to be sign extended all 
+> the way
+> to 64 bits. This isn't a problem normally unless you look at the 
+> hardware
+> registers that contain a IOVA and then the upper bits will be zero. I 
+> opted to
+> restrict the internal drm/msm IOVA range to only 49 bits and then sign 
+> extend
+> right before calling iommu_map / iommu_unmap. This is a bit wonky but I 
+> thought
+> that matching the hardware would be less confusing when debugging a 
+> hang.
+> 
+> v9: Fix bot-detected merge conflict
+> v7: Add attached device to smmu_domain to pass to implementation 
+> specific
+> functions
+> 
+> [1] 
+> https://lists.linuxfoundation.org/pipermail/iommu/2020-May/044537.html
+> [2] https://patchwork.kernel.org/patch/11482591/
+> 
+> 
+> Jordan Crouse (7):
+>   iommu/arm-smmu: Pass io-pgtable config to implementation specific
+>     function
+>   iommu/arm-smmu: Add support for split pagetables
+>   dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
+>   iommu/arm-smmu: Add a pointer to the attached device to smmu_domain
+>   iommu/arm-smmu: Add implementation for the adreno GPU SMMU
+>   drm/msm: Set the global virtual address range from the IOMMU domain
+>   arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
+> 
+>  .../devicetree/bindings/iommu/arm,smmu.yaml   |  4 ++
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.c       | 13 +++++-
+>  drivers/gpu/drm/msm/msm_iommu.c               |  7 +++
+>  drivers/iommu/arm-smmu-impl.c                 |  6 ++-
+>  drivers/iommu/arm-smmu-qcom.c                 | 45 ++++++++++++++++++-
+>  drivers/iommu/arm-smmu.c                      | 38 +++++++++++-----
+>  drivers/iommu/arm-smmu.h                      | 30 ++++++++++---
+>  8 files changed, 120 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index d4421ad164bd..34fffa6d859d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -9,6 +9,7 @@
- #include "meson-g12b-s922x.dtsi"
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-toacodec.h>
- #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
- 
- / {
-@@ -20,6 +21,14 @@ aliases {
- 		ethernet0 = &ethmac;
- 	};
- 
-+	dioo2133: audio-amplifier-0 {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		VCC-supply = <&vcc_5v>;
-+		sound-name-prefix = "U19";
-+		status = "okay";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -209,16 +218,26 @@ hdmi_connector_in: endpoint {
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "G12B-ODROID-N2";
--		audio-aux-devs = <&tdmout_b>, <&tdmin_a>, <&tdmin_b>,
--				 <&tdmin_c>, <&tdmin_lb>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-aux-devs = <&tdmout_b>, <&tdmout_c>, <&tdmin_a>,
-+				 <&tdmin_b>, <&tdmin_c>, <&tdmin_lb>,
-+				 <&dioo2133>;
- 		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
- 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
- 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
- 				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
-+				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
-+				"TDM_C Playback", "TDMOUT_C OUT",
- 				"TDMIN_A IN 4", "TDM_B Loopback",
- 				"TDMIN_B IN 4", "TDM_B Loopback",
- 				"TDMIN_C IN 4", "TDM_B Loopback",
- 				"TDMIN_LB IN 1", "TDM_B Loopback",
-+				"TDMIN_A IN 5", "TDM_C Loopback",
-+				"TDMIN_B IN 5", "TDM_C Loopback",
-+				"TDMIN_C IN 5", "TDM_C Loopback",
-+				"TDMIN_LB IN 2", "TDM_C Loopback",
- 				"TODDR_A IN 0", "TDMIN_A OUT",
- 				"TODDR_B IN 0", "TDMIN_A OUT",
- 				"TODDR_C IN 0", "TDMIN_A OUT",
-@@ -230,7 +249,11 @@ sound {
- 				"TODDR_C IN 2", "TDMIN_C OUT",
- 				"TODDR_A IN 6", "TDMIN_LB OUT",
- 				"TODDR_B IN 6", "TDMIN_LB OUT",
--				"TODDR_C IN 6", "TDMIN_LB OUT";
-+				"TODDR_C IN 6", "TDMIN_LB OUT",
-+				"U19 INL", "ACODEC LOLP",
-+				"U19 INR", "ACODEC LORP",
-+				"Lineout", "U19 OUTL",
-+				"Lineout", "U19 OUTR";
- 
- 		assigned-clocks = <&clkc CLKID_MPLL2>,
- 				  <&clkc CLKID_MPLL0>,
-@@ -275,22 +298,56 @@ dai-link-6 {
- 			dai-tdm-slot-tx-mask-3 = <1 1>;
- 			mclk-fs = <256>;
- 
--			codec {
-+			codec-0 {
- 				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
- 			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_B>;
-+			};
- 		};
- 
--		/* hdmi glue */
-+		/* i2s jack output interface */
- 		dai-link-7 {
-+			sound-dai = <&tdmif_c>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_C>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-8 {
- 			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
- 
- 			codec {
- 				sound-dai = <&hdmi_tx>;
- 			};
- 		};
-+
-+		/* acodec glue */
-+		dai-link-9 {
-+			sound-dai = <&toacodec TOACODEC_OUT>;
-+
-+			codec {
-+				sound-dai = <&acodec>;
-+			};
-+		};
- 	};
- };
- 
-+&acodec {
-+	AVDD-supply = <&vddao_1v8>;
-+	status = "okay";
-+};
-+
- &arb {
- 	status = "okay";
- };
-@@ -505,6 +562,10 @@ &tdmif_b {
- 	status = "okay";
- };
- 
-+&tdmif_c {
-+	status = "okay";
-+};
-+
- &tdmin_a {
- 	status = "okay";
- };
-@@ -525,6 +586,14 @@ &tdmout_b {
- 	status = "okay";
- };
- 
-+&tdmout_c {
-+	status = "okay";
-+};
-+
-+&toacodec {
-+	status = "okay";
-+};
-+
- &tohdmitx {
- 	status = "okay";
- };
+Any chance reviewing this?
+
+Thanks,
+Sai
+
 -- 
-2.25.4
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
